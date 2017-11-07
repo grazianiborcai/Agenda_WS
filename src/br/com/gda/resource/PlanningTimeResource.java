@@ -167,6 +167,10 @@ public class PlanningTimeResource extends JsonBuilder {
 		Response response = new PlanningTimeModel().selectPlanningTimeResponseLoc(codOwner, codStore, codEmployee,
 				beginDate, beginTime, group, weekday, codMaterial, recordMode, reservedTo, codCustomer, number, iniDate,
 				finDate, latitudeF, longitudeF);
+		
+		/*Response response = new PlanningTimeModel().selectPlanningTimeResponse(codOwner, codStore, codEmployee,
+				beginDate, beginTime, group, weekday, codMaterial, recordMode, reservedTo, codCustomer, number, iniDate,
+				finDate);*/
 
 		return response;
 	}
