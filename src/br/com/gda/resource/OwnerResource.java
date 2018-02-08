@@ -16,22 +16,35 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.model.OwnerModel;
+import br.com.gda.model.OwnerModel.SelectOwnerOption;
 
 @Path("/Owner")
 public class OwnerResource {
 
-	private static final String INSERT_OWNER = "/insertOwner";
-	private static final String UPDATE_OWNER = "/updateOwner";
-	private static final String DELETE_OWNER = "/deleteOwner";
-	private static final String SELECT_OWNER = "/selectOwner";
+	private static final String INSERT_OWNER 	= "/insertOwner"	;
+	private static final String UPDATE_OWNER 	= "/updateOwner"	;
+	private static final String DELETE_OWNER 	= "/deleteOwner"	;
+	private static final String SELECT_OWNER 	= "/selectOwner"	;
+	private static final String LOGIN_OWNER  	= "/loginOwner" 	;
+	private static final String CHANGE_PASSWORD = "/changePassword"	;
+	private static final String INSERT_CUSTOMER = "/insertCustomer"	;
 
 	@POST
 	@Path(INSERT_OWNER)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertOwner(String incomingData) {
-
+	public Response insertOwner(String incomingData) {		
+		
 		return new OwnerModel().insertOwner(incomingData);
 	}
+	
+	
+	@GET																										
+	@Path(LOGIN_OWNER)																							
+	@Produces(MediaType.APPLICATION_JSON)																		
+	public Response loginOwner(@HeaderParam("email") String email, @HeaderParam("password") String password) {
+		return new OwnerModel().loginOwner(email, password);											
+	}		
+	
 
 	@POST
 	@Path(UPDATE_OWNER)
@@ -60,29 +73,55 @@ public class OwnerResource {
 	@GET
 	@Path(SELECT_OWNER)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectOwner(@DefaultValue("Z") @HeaderParam("zoneId") String zoneId,
-			@HeaderParam("email") String email, @HeaderParam("password") String password,
-			@HeaderParam("cpf") String cpf, @QueryParam("language") List<String> language,
-			@DefaultValue("true") @QueryParam("withDetailMat") Boolean withDetailMat,
-			@DefaultValue("true") @QueryParam("withMaterial") Boolean withMaterial,
-			@DefaultValue("true") @QueryParam("withMenu") Boolean withMenu,
-			@DefaultValue("true") @QueryParam("withStore") Boolean withStore,
-			@DefaultValue("true") @QueryParam("withEmployee") Boolean withEmployee,
-			@DefaultValue("true") @QueryParam("withStoreMenu") Boolean withStoreMenu,
-			@DefaultValue("true") @QueryParam("withStoreMaterial") Boolean withStoreMaterial,
-			@DefaultValue("true") @QueryParam("withStoreEmployee") Boolean withStoreEmployee,
-			@DefaultValue("true") @QueryParam("withStoreTables") Boolean withStoreTables,
-			@DefaultValue("true") @QueryParam("withStoreBill") Boolean withStoreBill) {
+	public Response selectOwner(@HeaderParam("ownerCode") String ownerCode, 
+			@HeaderParam("language") String language,
+			@DefaultValue("true") @HeaderParam("withHeader") Boolean withHeader,
+			@DefaultValue("true") @HeaderParam("withDetailMat") Boolean withDetailMat,
+			@DefaultValue("true") @HeaderParam("withMaterial") Boolean withMaterial,
+			@DefaultValue("true") @HeaderParam("withMenu") Boolean withMenu,
+			@DefaultValue("true") @HeaderParam("withStore") Boolean withStore,
+			@DefaultValue("true") @HeaderParam("withEmployee") Boolean withEmployee,
+			@DefaultValue("true") @HeaderParam("withStoreMenu") Boolean withStoreMenu,
+			@DefaultValue("true") @HeaderParam("withStoreMaterial") Boolean withStoreMaterial,
+			@DefaultValue("true") @HeaderParam("withStoreEmployee") Boolean withStoreEmployee,
+			@DefaultValue("true") @HeaderParam("withStoreTables") Boolean withStoreTables,
+			@DefaultValue("true") @HeaderParam("withStoreBill") Boolean withStoreBill) {
 		
-		System.out.println(LocalDateTime.now());
+		OwnerModel.SelectOwnerOption option = new OwnerModel.SelectOwnerOption();
+		option.isMenu      = withMenu     ;
+		option.isStore     = withStore    ;
+		option.isHeader	   = withHeader   ;
+		option.isMaterial  = withMaterial ;
+		option.isEmployee  = withEmployee ;
+		option.isDetailMat = withDetailMat;
+		option.language    = language     ;
 		
-		Response r = new OwnerModel().selectOwnerResponse(email, cpf, password, language, withDetailMat, withMaterial,
+		return new OwnerModel().selectOwner(ownerCode, option);
+		
+		/*Response r = new OwnerModel().selectOwnerResponse(email, cpf, password, language, withDetailMat, withMaterial,
 				withMenu, withStore, withEmployee, withStoreMenu, withStoreMaterial, withStoreEmployee, withStoreTables,
-				withStoreBill, zoneId);
+				withStoreBill, zoneId);*/
 	
-		System.out.println(LocalDateTime.now());
 		
-		return r;
 	}
+	
+	
+	@GET																										
+	@Path(CHANGE_PASSWORD)																						
+	@Produces(MediaType.APPLICATION_JSON)																		
+	public Response changePassword(@HeaderParam("codOwner") Long codOwner,										
+			@HeaderParam("newPassword") String newPassword) {													
+																												
+		return new OwnerModel().changePassword(codOwner, newPassword);											
+	}																											
+	
+	
+	
+	@POST
+	@Path(INSERT_CUSTOMER)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response insertCustomer(String incomingData) {
 
+		return new OwnerModel().insertCustomer(incomingData);
+	}
 }

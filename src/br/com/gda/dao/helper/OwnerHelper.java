@@ -53,6 +53,9 @@ public class OwnerHelper extends GdaDB {
 			+ TABLE;
 	
 	public static final String ST_SELECT_LAST_INSERT_ID = "SELECT " + LAST_INSERT_ID;
+	
+	public static final String ST_UP_PASS = "UPDATE " + SCHEMA + "." + TABLE + " SET " + FIELD02 + "=?" + " WHERE "		// M.Maciel - 21-jan-18
+			+ FIELD01 + "=?";																							// M.Maciel - 21-jan-18
 
 	public Owner assignResult(ResultSet resultSet) throws SQLException {
 
@@ -97,21 +100,22 @@ public class OwnerHelper extends GdaDB {
 		return stmt;
 	}
 
-	public String prepareSelect(String email, String cpf, String password, List<String> recordMode) {
+	public String prepareSelect(String ownerCode, String email, String cpf, String password, List<String> recordMode) {
 
 		String stmt = ST_SELECT;
 
 		stmt = prepareWhereClause(
 				stmt,
-				prepareOwnerWhere(email, cpf, password, recordMode));
+				prepareOwnerWhere(ownerCode, email, cpf, password, recordMode));
 
 		return stmt;
 	}
 
-	public List<String> prepareOwnerWhere(String email, String cpf, String password,  List<String> recordMode) {
+	public List<String> prepareOwnerWhere(String ownerCode, String email, String cpf, String password,  List<String> recordMode) {
 
 		List<String> where = new ArrayList<String>();
 
+		singleFilter(where, FIELD01, EQ, ownerCode);
 		singleFilter(where, FIELD02, EQ, password);
 		singleFilter(where, FIELD04, EQ, cpf);
 		singleFilter(where, FIELD06, EQ, email);

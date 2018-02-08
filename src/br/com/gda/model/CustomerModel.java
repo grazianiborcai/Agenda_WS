@@ -29,9 +29,17 @@ import moip.sdk.base.APIContext;
 public class CustomerModel extends JsonBuilder {
 
 	public Response insertCustomer(String incomingData) {
-
 		ArrayList<Customer> customerList = jsonToCustomerList(incomingData);
+		
+		//TODO: mover para um novo método isCustomerValid(customerList)
+		if (isMandatoryFieldEmpty(customerList))
+			throw new WebApplicationException(Status.BAD_REQUEST);
+		
+		
+		if (isCustomerExist(customerList))
+				throw new WebApplicationException(Status.UNAUTHORIZED);
 
+		
 		SQLException exception = new CustomerDAO().insertCustomer(customerList);
 
 		if (exception.getErrorCode() == 200) {
@@ -39,7 +47,6 @@ public class CustomerModel extends JsonBuilder {
 			try {
 				createMoipCustomer(customerList);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -49,7 +56,52 @@ public class CustomerModel extends JsonBuilder {
 
 		return response(jsonObject);
 	}
+	
+	
+	private boolean isMandatoryFieldEmpty(List<Customer> customerList) {
+		if (customerList == null)
+			return true;
+		
+		if (customerList.isEmpty())
+			return true;
+		
+		Customer customer = customerList.get(0);
+		
+		if (customer.getEmail() == null || customer.getPassword() == null)
+			return true;
+		
+		return false;
+	}
+	
+	
+	public boolean isCustomerExist(List<Customer> customerList) {
+		if (customerList == null)
+			return false;
+		
+		if (customerList.isEmpty())
+			return false;
+		
+		return isCustomerExist(customerList.get(0).getEmail());		
+	}
+	
+	
+	public boolean isCustomerExist(String email) {
+		try {
+			List<Customer> customerList = selectCustomerFromEmail(email);
+			
+			if (customerList == null)
+				return false;
+			
+			if (customerList.isEmpty())
+				return false;
+			
+			return true;
+		} catch (SQLException e) {
+			throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
+		}		
+	}
 
+	
 	public ArrayList<Customer> createMoipCustomer(ArrayList<Customer> customerList) throws SQLException {
 		ArrayList<Customer> customerUpdateList = new ArrayList<Customer>();
 
@@ -154,6 +206,16 @@ public class CustomerModel extends JsonBuilder {
 		return new CustomerDAO().selectCustomer(codCustomer, phone, password, name, codGender, cpf, bornDate, email,
 				address1, address2, postalcode, city, country, state);
 	}
+	
+	
+	public ArrayList<Customer> selectCustomerFromEmail(String email) throws SQLException {
+		List<String> emailList = new ArrayList<>();
+		emailList.add(email);
+		
+		return new CustomerDAO().selectCustomer(null, null, null, null, null, null, null, emailList,
+				null, null, null, null, null, null);
+	}
+	
 
 	public JsonObject selectCustomerJson(List<Long> codCustomer, List<String> phone, List<String> password,
 			List<String> name, List<Byte> codGender, List<String> cpf, List<String> bornDate, List<String> email,
@@ -228,7 +290,7 @@ public class CustomerModel extends JsonBuilder {
 		return response(selectCustomerJson(email, password));
 	}
 
-	private ArrayList<Customer> jsonToCustomerList(String incomingData) {
+	public ArrayList<Customer> jsonToCustomerList(String incomingData) {
 
 		ArrayList<Customer> customerList = new ArrayList<Customer>();
 		Gson gson = new Gson();

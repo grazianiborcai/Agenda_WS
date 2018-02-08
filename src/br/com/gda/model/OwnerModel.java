@@ -1,21 +1,22 @@
 package br.com.gda.model;
 
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonParseException;
 
 import br.com.gda.dao.OwnerDAO;
+import br.com.gda.helper.Customer;
 import br.com.gda.helper.DetailMat;
 import br.com.gda.helper.Employee;
 import br.com.gda.helper.Material;
@@ -24,31 +25,262 @@ import br.com.gda.helper.Owner;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.helper.Store;
 
+
 public class OwnerModel extends JsonBuilder {
-
 	public Response insertOwner(String incomingData) {
+		Response resultResponse = tryToInsertOwner(incomingData);
 		
-		ArrayList<Owner> ownerList = jsonToOwnerList(incomingData);
-
-		SQLException exception = new OwnerDAO().insertOwner(ownerList);
-
-		JsonObject jsonObject = getJsonObjectUpdate(exception);
+		if (resultResponse.getStatus() == 200) 
+			resultResponse = loginOwner(incomingData);
 		
-		if (exception.getErrorCode() == 200) {
-			SQLException selectException = new SQLException(RETURNED_SUCCESSFULLY, null, 200);
-			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(ownerList, selectException));
-		} else {
-			JsonElement jsonElement = new JsonArray();
-			SQLException ex = new SQLException();
-			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
+		return resultResponse;
+	}
+	
+	
+	
+	private Response tryToInsertOwner(String incomingData) {
+		try {
+			ArrayList<Owner> owners = jsonToOwners(incomingData);
+			
+			if (! isOwnersValid(owners)) 
+				return Response.status(400).entity("IllegalArgument: mandatory argument might be missing or invalid value was passed").build();
+			
+			if (isOwnersExist(owners)) 
+				return Response.status(403).entity("Operation cannot be processed").build();
+			
+			new OwnerDAO().insertOwner(owners);
+			return Response.status(200).entity("Success").build();
+			
+		} catch (JsonParseException e) {
+			return Response.status(400).entity("IllegalArgument: mandatory argument might be missing or invalid value was passed").build();
+		} catch (SQLException e) {
+			return Response.status(500).entity("Ops... something went wrong").build();
+		}
+	}
+	
+	
+	
+	private ArrayList<Owner> jsonToOwners(String incomingData) {
+		ArrayList<Owner> owners = jsonArrayToOwners(incomingData);
+		
+		if (owners.isEmpty()) {
+			Owner oneOwner = jsonObjectToOwner(incomingData);
+			owners.add(oneOwner);
 		}
 
+		return owners;
+	}
+	
+	
+	
+	private ArrayList<Owner> jsonArrayToOwners(String incomingData) {
+		ArrayList<Owner> owners = new ArrayList<>();		
+		JsonParser parser = new JsonParser();
+
+		if (parser.parse(incomingData).isJsonArray()) {
+			JsonArray rawOwners = parser.parse(incomingData).getAsJsonArray();
+			Gson gson = new Gson();
+			for (int i = 0; i < rawOwners.size(); i++) {
+				owners.add(gson.fromJson(rawOwners.get(i), Owner.class));
+			}
+		}
+
+		return owners;
+	}
+	
+	
+	
+	
+	private Owner jsonObjectToOwner(String incomingData) {
+		Owner owner = new Owner();		
+		JsonParser parser = new JsonParser();
+
+		if (parser.parse(incomingData).isJsonObject()) {
+			Gson gson = new Gson();
+			JsonObject object = parser.parse(incomingData).getAsJsonObject();
+			owner = gson.fromJson(object, Owner.class);
+		}
+
+		return owner;
+	}
+	
+	
+	
+	private boolean isOwnersValid(List<Owner> owners) {
+		if (owners == null)
+			return false;
+		
+		if (owners.isEmpty())
+			return false;
+		
+		for (Owner eachOwner : owners) {
+			if (isMandatoryFieldEmpty(eachOwner)) 
+				return false;
+		}
+		
+		return true;
+	}
+	
+	
+	
+	private boolean isMandatoryFieldEmpty(Owner owner) {
+		if (owner.getPassword() 	== null ||
+			owner.getName()     	== null || 
+			owner.getCpf()      	== null || 
+			owner.getPhone()		== null ||
+			owner.getEmail()		== null ||
+			owner.getAddress1() 	== null ||
+			owner.getCity()			== null ||
+			owner.getState()		== null ||
+			owner.getCountry()		== null ||
+			owner.getBornDate()		== null ||
+			owner.getEmailAux()		== null ||
+			owner.getPostalcode() 	== 0	||
+			owner.getCodGender()    == 0) {
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
+	
+	private boolean isOwnersExist(List<Owner> owners) throws SQLException {
+		for (Owner eachOwner : owners) {
+			if (isOwnerExist(eachOwner)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	
+	private boolean isOwnerExist(Owner owner) throws SQLException {
+		List<Owner> owners = new OwnerDAO().selectOwnerFromEmail(owner.getEmail());
+		
+		if (owners == null)
+			return false;
+		
+		if (owners.isEmpty())
+			return false;
+		
+		
+		return true;
+	}
+	
+	
+	
+	public Response loginOwner(String incomingData) {
+		Response resultResponse = tryToLoginOwner(incomingData);
+		return resultResponse;
+	}
+	
+	
+	
+	public Response loginOwner(String email, String password) {
+		Response resultResponse = tryToLoginOwner(email, password);
+		return resultResponse;
+	}
+	
+	
+	
+	private Response tryToLoginOwner(String incomingData) {
+		try {
+			List<Owner> owners = jsonToOwners(incomingData);
+			Owner oneOwner = owners.get(0);
+			
+			return tryToLoginOwner(oneOwner.getEmail(), oneOwner.getPassword());
+			
+			
+		} catch (JsonParseException e) {
+			return Response.status(400).entity("IllegalArgument: mandatory argument might be missing or invalid value was passed").build();
+		}
+	}	
+	
+	
+	
+	private Response tryToLoginOwner(String email, String password) {
+		try {
+			 Owner owner = new OwnerDAO().loginOwner(email, password);
+			
+			if (owner.getCodOwner() == 0) 
+				return Response.status(403).entity("User or password does not match").build();			
+			
+			return makeResponse(RETURNED_SUCCESSFULLY, 200, owner);
+			
+		} catch (JsonParseException e) {
+			return Response.status(400).entity("IllegalArgument: mandatory argument might be missing or invalid value was passed").build();
+		} catch (SQLException | IndexOutOfBoundsException e) {
+			return Response.status(500).entity("Ops... something went wrong").build();
+		}
+	}	
+	
+	
+	
+	private Response makeResponse(String msg, int htmlReturnCode, Object dataObj) {
+		JsonElement jsonElement = new JsonArray().getAsJsonArray();
+		SQLException exception = new SQLException(msg, null, htmlReturnCode);		
+		jsonElement = new Gson().toJsonTree(dataObj);
+		JsonObject jsonObject = getJsonObjectSelect(jsonElement, exception);			
 		return response(jsonObject);
 	}
+	
+	
+	
+	public Response selectOwner(String ownerCode, SelectOwnerOption option) {
+		Response resultResponse = tryToSelectOwner(ownerCode, option);
+		return resultResponse;
+	}
+	
+	
+	//TODO: Código original colocava cada IF dentro de uma THREAD
+	//TODO: Colocar cada IF dentro de um método
+	//TODO: Verificar opções mandatórias: Language
+	private Response tryToSelectOwner(String ownerCode, SelectOwnerOption option) {
+		Owner owner = new Owner();
+		
+		try {
+			if (option.isHeader)
+				owner = new OwnerDAO().selectOwnerFromOwnerCode(ownerCode);
+			
+			
+			if (option.isDetailMat) {
+				List<Long> codOwnerList = new ArrayList<>();
+				codOwnerList.add(Long.valueOf(ownerCode));
+				List<String> recordMode = new ArrayList<String>();
+				recordMode.add(RecordMode.RECORD_OK);
+				List<String> language = new ArrayList<>();
+				language.add(option.language);				
+				
+				ArrayList<DetailMat> detailMaterial = new DetailMatModel().selectDetailMat(codOwnerList, null, recordMode, language, null);
+				owner.setDetailMat(detailMaterial);
+			}
+			
+			return makeResponse(RETURNED_SUCCESSFULLY, 200, owner);
+			
+			
+		} catch (SQLException e) {
+			return Response.status(500).entity("Ops... something went wrong").build();
+		}
+		
+		
+		
+/*
+		return response(selectOwnerJson(email, cpf, password, language, withDetailMat,
+				withMaterial, withMenu, withStore, withEmployee, withStoreMenu, withStoreMaterial, withStoreEmployee,
+				withStoreTables, withStoreBill, zoneId));*/
+	}
+	
+	
+	
+	
 
 	public Response updateOwner(String incomingData) {
 		
-		ArrayList<Owner> ownerList = jsonToOwnerList(incomingData);
+		ArrayList<Owner> ownerList = jsonToOwners(incomingData);
 
 		SQLException exception = new OwnerDAO().updateOwner(ownerList);
 
@@ -115,7 +347,6 @@ public class OwnerModel extends JsonBuilder {
 							try {
 								detailMatModel.selectDetailMat(codOwnerList, null, recordMode, language, null);
 							} catch (SQLException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -131,7 +362,6 @@ public class OwnerModel extends JsonBuilder {
 								materialModel.selectMaterial(codOwnerList, null, null, null, null, null, recordMode,
 										language, null, null, null);
 							} catch (SQLException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -146,7 +376,6 @@ public class OwnerModel extends JsonBuilder {
 							try {
 								menuModel.selectMenu(codOwnerList, null, recordMode, language, null);
 							} catch (SQLException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -164,7 +393,6 @@ public class OwnerModel extends JsonBuilder {
 										null, null, null, null, null, null, recordMode, language,
 										withStoreMaterial, withStoreEmployee, zoneId);
 							} catch (SQLException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -180,7 +408,6 @@ public class OwnerModel extends JsonBuilder {
 								employeeModel.selectEmployee(codOwnerList, null, null, null, null, null, null, null,
 										null, null, null, null, null, null, null, null, recordMode);
 							} catch (SQLException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -200,7 +427,6 @@ public class OwnerModel extends JsonBuilder {
 					if (tEmployee != null)
 						tEmployee.join();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -224,9 +450,6 @@ public class OwnerModel extends JsonBuilder {
 				});
 			}
 		}
-		
-		if (ownerList == null || ownerList.size() == 0)
-			throw new WebApplicationException(Status.UNAUTHORIZED);
 
 		return ownerList;
 
@@ -252,7 +475,9 @@ public class OwnerModel extends JsonBuilder {
 
 		return jsonObject;
 	}
+	
 
+	//TODO: Refactoring - Começa aqui
 	public Response selectOwnerResponse(String email, String cpf, String password, List<String> language, Boolean withDetailMat, Boolean withMaterial, Boolean withMenu, Boolean withStore,
 			Boolean withEmployee, Boolean withStoreMenu, Boolean withStoreMaterial, Boolean withStoreEmployee,
 			Boolean withStoreTables, Boolean withStoreBill, String zoneId) {
@@ -261,25 +486,48 @@ public class OwnerModel extends JsonBuilder {
 				withMaterial, withMenu, withStore, withEmployee, withStoreMenu, withStoreMaterial, withStoreEmployee,
 				withStoreTables, withStoreBill, zoneId));
 	}
-
-	private ArrayList<Owner> jsonToOwnerList(String incomingData) {
-
-		ArrayList<Owner> ownerList = new ArrayList<Owner>();
-		Gson gson = new Gson();
-		JsonParser parser = new JsonParser();
-
-		if (parser.parse(incomingData).isJsonArray()) {
-			JsonArray array = parser.parse(incomingData).getAsJsonArray();
-
-			for (int i = 0; i < array.size(); i++) {
-				ownerList.add(gson.fromJson(array.get(i), Owner.class));
-			}
-		} else {
-			JsonObject object = parser.parse(incomingData).getAsJsonObject();
-			ownerList.add(gson.fromJson(object, Owner.class));
-		}
-
-		return ownerList;
+	
+	
+	public Response changePassword(Long codOwner, String newPassword) {						// M.Maciel - 21-jan-18
+		SQLException exception = new OwnerDAO().changePassword(codOwner, newPassword);		// M.Maciel - 21-jan-18
+		JsonObject jsonObject = getJsonObjectUpdate(exception);								// M.Maciel - 21-jan-18
+		return response(jsonObject);														// M.Maciel - 21-jan-18
+	}					
+	
+	
+	
+	public Response insertCustomer(String incomingData) {
+		CustomerModel customerModel = new CustomerModel();
+		List<Customer> customerList = customerModel.jsonToCustomerList(incomingData);
+		
+		Response responseResult = null;
+		
+		if (!customerModel.isCustomerExist(customerList))
+			responseResult = customerModel.insertCustomer(incomingData);
+		
+		return responseResult;
 	}
+	
+	
+	
+	public static class SelectOwnerOption {		
+		public String  language;		
+		public boolean isMenu;
+		public boolean isStore;		
+		public boolean isHeader;
+		public boolean isEmployee;
+		public boolean isMaterial;
+		public boolean isDetailMat;		
 
+		
+		public SelectOwnerOption() {
+			language    = null;
+			isMenu      = false;			
+			isStore     = false;
+			isHeader    = false;
+			isMaterial  = false;
+			isEmployee  = false;
+			isDetailMat = false;
+		}
+	}
 }
