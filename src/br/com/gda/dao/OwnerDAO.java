@@ -8,14 +8,91 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.dao.helper.CustomerHelper;
 import br.com.gda.dao.helper.OwnerHelper;
 import br.com.gda.db.ConnectionBD;
 import br.com.gda.helper.Owner;
 import br.com.gda.helper.RecordMode;
 
 public class OwnerDAO extends ConnectionBD {
+	public Owner loginOwner(String email, String password) throws SQLException {
+		Connection conn = null;
+		PreparedStatement selectStmt = null;
+		ResultSet resultSet = null;
 
-	public SQLException insertOwner(ArrayList<Owner> ownerList) {
+		try {
+			conn = getConnection();
+			OwnerHelper ownerHelper = new OwnerHelper();
+			selectStmt = conn.prepareStatement(ownerHelper.prepareSelect(null, email, null, password, null));
+
+			resultSet = selectStmt.executeQuery();
+			resultSet.first();
+			return ownerHelper.assignResult(resultSet);
+
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			closeConnection(conn, selectStmt, resultSet);
+		}
+	}
+	
+	
+	
+	public ArrayList<Owner> selectOwnerFromEmail(String email) throws SQLException {
+		ArrayList<Owner> owners = new ArrayList<Owner>();
+		Connection conn = null;
+		PreparedStatement selectStmt = null;
+		ResultSet resultSet = null;
+
+		try {
+			conn = getConnection();
+			OwnerHelper ownerHelper = new OwnerHelper();
+			selectStmt = conn.prepareStatement(ownerHelper.prepareSelect(null, email, null, null, null));
+			resultSet = selectStmt.executeQuery();
+
+			while (resultSet.next()) {
+				owners.add(ownerHelper.assignResult(resultSet));
+			}
+
+			return owners;
+
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			closeConnection(conn, selectStmt, resultSet);
+		}
+	}
+	
+	
+	
+	public Owner selectOwnerFromOwnerCode(String ownerCode) throws SQLException {
+		Connection conn = null;
+		PreparedStatement selectStmt = null;
+		ResultSet resultSet = null;
+
+		try {
+			conn = getConnection();
+			OwnerHelper ownerHelper = new OwnerHelper();
+			selectStmt = conn.prepareStatement(ownerHelper.prepareSelect(ownerCode, null, null, null, null));
+			resultSet = selectStmt.executeQuery();
+
+			resultSet.first();
+			Owner resultOwner = ownerHelper.assignResult(resultSet);
+
+			return resultOwner;
+
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			closeConnection(conn, selectStmt, resultSet);
+		}
+	}
+	
+	
+	
+	
+
+	public void insertOwner(ArrayList<Owner> ownerList) throws SQLException {
 
 		Connection conn = null;
 		PreparedStatement insertStmt = null;
@@ -45,15 +122,9 @@ public class OwnerDAO extends ConnectionBD {
 
 			conn.commit();
 
-			return new SQLException(INSERT_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw new SQLException(e);
 		} finally {
 			closeConnection(conn, insertStmt, selectStmt, resultSet);
 		}
@@ -190,7 +261,7 @@ public class OwnerDAO extends ConnectionBD {
 
 			OwnerHelper ownerHelper = new OwnerHelper();
 
-			selectStmt = conn.prepareStatement(ownerHelper.prepareSelect(email, cpf, password, recordMode));
+			selectStmt = conn.prepareStatement(ownerHelper.prepareSelect(null, email, cpf, password, recordMode));
 
 			resultSet = selectStmt.executeQuery();
 
@@ -207,7 +278,9 @@ public class OwnerDAO extends ConnectionBD {
 			closeConnection(conn, selectStmt, resultSet);
 		}
 	}
-
+	
+	
+	
 	private void prepareInsert(PreparedStatement insertStmt, Owner owner) throws SQLException {
 
 		insertStmt.setString(1, owner.getPassword());
@@ -229,5 +302,36 @@ public class OwnerDAO extends ConnectionBD {
 
 		insertStmt.addBatch();
 	}
+	
+	
+	public SQLException changePassword(Long codOwner, String newPassword) {		// M.Maciel - 21-jan-18
+																				// M.Maciel - 21-jan-18
+		Connection conn = null;													// M.Maciel - 21-jan-18
+		PreparedStatement updateStmt = null;									// M.Maciel - 21-jan-18
+																				// M.Maciel - 21-jan-18
+		try {																	// M.Maciel - 21-jan-18
+			conn = getConnection();												// M.Maciel - 21-jan-18
+			conn.setAutoCommit(false);											// M.Maciel - 21-jan-18
+																				// M.Maciel - 21-jan-18
+			updateStmt = conn.prepareStatement(OwnerHelper.ST_UP_PASS);			// M.Maciel - 21-jan-18
+			updateStmt.setString(1, newPassword);								// M.Maciel - 21-jan-18
+			updateStmt.setLong(2, codOwner);									// M.Maciel - 21-jan-18
+																				// M.Maciel - 21-jan-18
+			updateStmt.execute();												// M.Maciel - 21-jan-18
+			conn.commit();														// M.Maciel - 21-jan-18
+																				// M.Maciel - 21-jan-18
+			return new SQLException(UPDATE_OK, null, 200);						// M.Maciel - 21-jan-18
+																				// M.Maciel - 21-jan-18
+		} catch (SQLException e) {												// M.Maciel - 21-jan-18
+			try {																// M.Maciel - 21-jan-18
+				conn.rollback();												// M.Maciel - 21-jan-18
+				return e;														// M.Maciel - 21-jan-18
+			} catch (SQLException e1) {											// M.Maciel - 21-jan-18
+				return e1;														// M.Maciel - 21-jan-18
+			}																	// M.Maciel - 21-jan-18
+		} finally {																// M.Maciel - 21-jan-18
+			closeConnection(conn, updateStmt);									// M.Maciel - 21-jan-18
+		}																		// M.Maciel - 21-jan-18
+	}																			// M.Maciel - 21-jan-18
 
 }
