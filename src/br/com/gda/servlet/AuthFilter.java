@@ -22,131 +22,8 @@ import br.com.gda.helper.Customer;
 import br.com.gda.helper.Owner;
 import br.com.gda.model.OwnerModel;
 
-
+//TODO: melhorar as mensagens de resposta para ficar no mesmo padrão
 public class AuthFilter implements ContainerRequestFilter {
-	private static class HtmlRequestHeaderAttr {
-		private String   	app		   ;
-		private String   	htmlMethod ;
-		private String   	uriPath    ;
-		private String   	authBasic  ;
-		private String   	username   ;
-		private String 	 	password   ;
-		private String		emailLogin ;
-		private String      userCode   ;
-		
-		private HashMap<String, String> 		additionalParamMap	;
-		private MultivaluedMap<String, String> 	incomeParamMap		;
-		
-		
-		public HtmlRequestHeaderAttr(String app) {
-			additionalParamMap 	= new HashMap<>();
-			this.app 			= app			 ;
-			this.userCode 		= "0"			 ;
-		}		
-		public MultivaluedMap<String, String> getIncomeParamMap() {
-			return incomeParamMap;
-		}
-		public void setIncomeParamMap(MultivaluedMap<String, String> incomeParamMap) {
-			this.incomeParamMap = incomeParamMap;
-		}
-		public String getUserCode() {
-			return (this.userCode == null ? "0" : this.userCode);
-		}
-		public void setUserCode(String userCode) {
-			this.userCode = userCode;
-		}
-		public String getEmailLogin() {
-			return emailLogin;
-		}
-		public void setEmailLogin(String emailLogin) {
-			this.emailLogin = emailLogin;
-		}
-		public void addParam(String paramName, String paramValue) {
-			additionalParamMap.put(paramName, paramValue);
-		}
-		public String getParamValue(String paramName) {
-			return additionalParamMap.get(paramName);
-		}
-		public String getApp() {
-			return app;
-		}
-		public String getUsername() {
-			return username;
-		}
-		public String getPassword() {
-			return password;
-		}	
-		public void setUsernameAndPassword(String[] usernameAndPassword) {
-			this.username = usernameAndPassword[0];
-			this.password = usernameAndPassword[1];
-		}
-		public void setUsername(String username) {
-			this.username = username;
-		}
-		public String getHtmlMethod() {
-			return htmlMethod;
-		}
-		public void setHtmlMethod(String htmlMethod) {
-			this.htmlMethod = htmlMethod;
-		}
-		public String getUriPath() {
-			return uriPath;
-		}
-		public void setUriPath(String uriPath) {
-			this.uriPath = uriPath;
-		}
-		public String getAuthBasic() {
-			return authBasic;
-		}
-		public void setAuthBasic(String authBasic) {
-			this.authBasic = authBasic;
-		}
-		public InBoundHeaders getNewInputHeader() {
-			InBoundHeaders resultHeader = new InBoundHeaders();
-			
-			for (Entry<String, List<String>> eachHeaderParam : this.incomeParamMap.entrySet()) {
-				if (eachHeaderParam.getKey().equals(COD_CUSTOMER) || 
-					eachHeaderParam.getKey().equals(PHONE)   	  || 
-					eachHeaderParam.getKey().equals(EMAIL) 	   	  || 
-					eachHeaderParam.getKey().equals(CPF)   	      || 
-					eachHeaderParam.getKey().equals(PASSWORD)) {
-					
-					continue;
-				}			
-					
-				if (eachHeaderParam.getValue().size() > 1)
-					resultHeader.addObject(eachHeaderParam.getKey(), eachHeaderParam.getValue());
-				else
-					resultHeader.add(eachHeaderParam.getKey(), eachHeaderParam.getValue().get(0));
-			}
-			
-			
-			if (this.uriPath.equals("Customer/loginCustomer") || this.uriPath.equals("Owner/loginOwner")) {
-				resultHeader.add(EMAIL   , this.username);
-				resultHeader.add(PASSWORD, this.password);
-			}
-			
-			
-			if (this.app.equals(APP_CLIENT))
-				addParam(COD_CUSTOMER, this.userCode);
-			
-			
-			if (this.app.equals(APP_OWNER)) 
-				addParam(COD_OWNER, this.userCode);
-			
-
-			Iterator<Map.Entry<String, String>> itr = additionalParamMap.entrySet().iterator();
-			while (itr.hasNext()) {
-				Map.Entry<String, String> paramPair = itr.next();
-				resultHeader.add(paramPair.getKey(), paramPair.getValue());
-			}
-			
-			
-			return resultHeader;
-		}
-	}
-
-	
 	private static final HashSet<String> requestAuthNotRequired = new HashSet<>();
 	HtmlRequestHeaderAttr headerAttr;
 	
@@ -197,7 +74,7 @@ public class AuthFilter implements ContainerRequestFilter {
 		
 		getUserInfo();
 		
-		
+		//TODO: obter o ownerCode do banco e confrontar com o passado
 		if (isHtmlRequestFreeOfAuthentication()) {
 			containerRequest.setHeaders(this.headerAttr.getNewInputHeader());
 			return containerRequest;
@@ -442,5 +319,130 @@ public class AuthFilter implements ContainerRequestFilter {
 		
 		
 		return false;
+	}
+	
+	
+	
+	
+	private static class HtmlRequestHeaderAttr {
+		private String   	app		   ;
+		private String   	htmlMethod ;
+		private String   	uriPath    ;
+		private String   	authBasic  ;
+		private String   	username   ;
+		private String 	 	password   ;
+		private String		emailLogin ;
+		private String      userCode   ;
+		
+		private HashMap<String, String> 		additionalParamMap	;
+		private MultivaluedMap<String, String> 	incomeParamMap		;
+		
+		
+		public HtmlRequestHeaderAttr(String app) {
+			additionalParamMap 	= new HashMap<>();
+			this.app 			= app			 ;
+			this.userCode 		= "0"			 ;
+		}		
+		public MultivaluedMap<String, String> getIncomeParamMap() {
+			return incomeParamMap;
+		}
+		public void setIncomeParamMap(MultivaluedMap<String, String> incomeParamMap) {
+			this.incomeParamMap = incomeParamMap;
+		}
+		public String getUserCode() {
+			return (this.userCode == null ? "0" : this.userCode);
+		}
+		public void setUserCode(String userCode) {
+			this.userCode = userCode;
+		}
+		public String getEmailLogin() {
+			return emailLogin;
+		}
+		public void setEmailLogin(String emailLogin) {
+			this.emailLogin = emailLogin;
+		}
+		public void addParam(String paramName, String paramValue) {
+			additionalParamMap.put(paramName, paramValue);
+		}
+		public String getParamValue(String paramName) {
+			return additionalParamMap.get(paramName);
+		}
+		public String getApp() {
+			return app;
+		}
+		public String getUsername() {
+			return username;
+		}
+		public String getPassword() {
+			return password;
+		}	
+		public void setUsernameAndPassword(String[] usernameAndPassword) {
+			this.username = usernameAndPassword[0];
+			this.password = usernameAndPassword[1];
+		}
+		public void setUsername(String username) {
+			this.username = username;
+		}
+		public String getHtmlMethod() {
+			return htmlMethod;
+		}
+		public void setHtmlMethod(String htmlMethod) {
+			this.htmlMethod = htmlMethod;
+		}
+		public String getUriPath() {
+			return uriPath;
+		}
+		public void setUriPath(String uriPath) {
+			this.uriPath = uriPath;
+		}
+		public String getAuthBasic() {
+			return authBasic;
+		}
+		public void setAuthBasic(String authBasic) {
+			this.authBasic = authBasic;
+		}
+		public InBoundHeaders getNewInputHeader() {
+			InBoundHeaders resultHeader = new InBoundHeaders();
+			
+			for (Entry<String, List<String>> eachHeaderParam : this.incomeParamMap.entrySet()) {
+				if (eachHeaderParam.getKey().equals(COD_CUSTOMER) || 
+					eachHeaderParam.getKey().equals(PHONE)   	  || 
+					eachHeaderParam.getKey().equals(EMAIL) 	   	  || 
+					eachHeaderParam.getKey().equals(CPF)   	      || 
+					eachHeaderParam.getKey().equals(PASSWORD)) {
+					
+					continue;
+				}			
+					
+				if (eachHeaderParam.getValue().size() > 1)
+					resultHeader.addObject(eachHeaderParam.getKey(), eachHeaderParam.getValue());
+				else
+					resultHeader.add(eachHeaderParam.getKey(), eachHeaderParam.getValue().get(0));
+			}
+			
+			
+			if (this.uriPath.equals("Customer/loginCustomer") || this.uriPath.equals("Owner/loginOwner")) {
+				resultHeader.add(EMAIL   , this.username);
+				resultHeader.add(PASSWORD, this.password);
+			}
+			
+			
+			if (this.app.equals(APP_CLIENT))
+				addParam(COD_CUSTOMER, this.userCode);
+			
+			
+			if (this.app.equals(APP_OWNER)) 
+				addParam(COD_OWNER, this.userCode);
+			
+
+			Iterator<Map.Entry<String, String>> itr = additionalParamMap.entrySet().iterator();
+			while (itr.hasNext()) {
+				Map.Entry<String, String> paramPair = itr.next();
+				resultHeader.add(paramPair.getKey(), paramPair.getValue());
+			}
+			
+			
+			return resultHeader;
+		}
 	}
 }
