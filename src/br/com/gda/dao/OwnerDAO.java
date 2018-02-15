@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.dao.helper.CustomerHelper;
 import br.com.gda.dao.helper.OwnerHelper;
 import br.com.gda.db.ConnectionBD;
 import br.com.gda.helper.Owner;
@@ -105,15 +104,11 @@ public class OwnerDAO extends ConnectionBD {
 			conn.setAutoCommit(false);
 
 			insertStmt = conn.prepareStatement(OwnerHelper.ST_IN_ALL_FIELD);
-
 			selectStmt = conn.prepareStatement(OwnerHelper.ST_SELECT_LAST_INSERT_ID);
 
 			for (Owner owner : ownerList) {
-
 				prepareInsert(insertStmt, owner);
-
 				insertStmt.executeUpdate();
-
 				resultSet = selectStmt.executeQuery();
 
 				if (resultSet.next())

@@ -16,9 +16,110 @@ import br.com.gda.helper.MaterialStore;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.helper.Store;
 
-public class StoreDAO extends ConnectionBD {
+public class StoreDAO extends ConnectionBD {	
+	public List<Store> selectStoreFromCodStore(long codOwner, List<Integer> codStores) throws SQLException {
+		Connection conn = null;
+		PreparedStatement selectStmt = null;
+		ResultSet resultSet = null;
 
-	public SQLException insertStore(ArrayList<Store> storeList) {
+		try {
+			conn = getConnection();
+			StoreHelper storeHelper = new StoreHelper();
+			
+			List<Long> codOwners = new ArrayList<>();
+			codOwners.add(codOwner);
+			
+			selectStmt = conn.prepareStatement(
+					storeHelper.prepareSelect(codOwners, codStores, null, null, null, null, null, null, null, null, null, null, null, null, null, null));
+
+			resultSet = selectStmt.executeQuery();
+			List<Store> resultStores = new ArrayList<>();
+			
+			while (resultSet.next()) {
+				resultStores.add(storeHelper.assignResult(resultSet));
+			}
+			
+			return resultStores;
+
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			closeConnection(conn, selectStmt, resultSet);
+		}
+	}
+	
+	
+	
+	public List<Store> selectStoreFromCodOwner(Long codOwner) throws SQLException {
+		Connection conn = null;
+		PreparedStatement selectStmt = null;
+		ResultSet resultSet = null;
+
+		try {
+			conn = getConnection();
+			StoreHelper storeHelper = new StoreHelper();
+
+			List<Long> codOwners = new ArrayList<>();
+			codOwners.add(codOwner);
+			
+			selectStmt = conn.prepareStatement(
+					storeHelper.prepareSelect(codOwners, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null));
+
+			resultSet = selectStmt.executeQuery();
+			List<Store> stores = new ArrayList<>();
+			
+			while (resultSet.next()) {
+				stores.add(storeHelper.assignResult(resultSet));
+			}
+			
+			return stores;
+
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			closeConnection(conn, selectStmt, resultSet);
+		}
+	}
+	
+	
+	
+	public List<Store> selectStoreFromCnpj(long codOwner, String cnpj) throws SQLException {
+		Connection conn = null;
+		PreparedStatement selectStmt = null;
+		ResultSet resultSet = null;
+
+		try {
+			conn = getConnection();
+			StoreHelper storeHelper = new StoreHelper();
+
+			List<Long> codOwners = new ArrayList<>();
+			codOwners.add(codOwner);
+			
+			List<String> cnpjs = new ArrayList<>();
+			cnpjs.add(cnpj);
+			
+			selectStmt = conn.prepareStatement(
+					storeHelper.prepareSelect(codOwners, null, cnpjs, null, null, null, null, null, null, null, null, null, null, null, null, null));
+
+			resultSet = selectStmt.executeQuery();
+			List<Store> stores = new ArrayList<>();
+			
+			while (resultSet.next()) {
+				stores.add(storeHelper.assignResult(resultSet));
+			}
+			
+			return stores;
+
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			closeConnection(conn, selectStmt, resultSet);
+		}
+	}
+	
+	
+
+	public void insertStore(ArrayList<Store> storeList) throws SQLException {
 
 		Connection conn = null;
 		PreparedStatement insertStmtT01 = null;
@@ -27,16 +128,12 @@ public class StoreDAO extends ConnectionBD {
 		PreparedStatement variableStmt = null;
 
 		try {
-
 			conn = getConnection();
 			conn.setAutoCommit(false);
 
 			insertStmtT01 = conn.prepareStatement(StoreHelper.ST_IN_ALL_FIELD);
-
 			insertStmtT03 = conn.prepareStatement(MaterialStoreHelper.ST_IN_ALL_FIELD);
-
 			insertStmtT04 = conn.prepareStatement(StoreEmployeeHelper.ST_IN_ALL);
-
 			variableStmt = conn.prepareStatement(StoreHelper.VARIABLE);
 
 			for (Store store : storeList) {
@@ -44,14 +141,11 @@ public class StoreDAO extends ConnectionBD {
 				prepareInsertStore(insertStmtT01, variableStmt, store);
 
 				for (MaterialStore material : store.getMaterial()) {
-
 					prepareInsertMaterialStore(insertStmtT03, store, material);
 				}
 
 				for (StoreEmployee employee : store.getEmployee()) {
-
-					prepareInsertStoreEmployee(insertStmtT04, store, employee);
-				}
+					prepareInsertStoreEmployee(insertStmtT04, store, employee);				}
 
 				insertStmtT03.executeBatch();
 
@@ -60,22 +154,16 @@ public class StoreDAO extends ConnectionBD {
 
 			conn.commit();
 
-			return new SQLException(INSERT_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, insertStmtT01, insertStmtT03, insertStmtT04, variableStmt);
 		}
 
 	}
 
-	public SQLException updateStore(ArrayList<Store> storeList) {
+	public void updateStore(ArrayList<Store> storeList) throws SQLException {
 
 		Connection conn = null;
 		PreparedStatement insertStmtT01 = null;
@@ -267,15 +355,9 @@ public class StoreDAO extends ConnectionBD {
 
 			conn.commit();
 
-			return new SQLException(UPDATE_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw new SQLException(e);
 		} finally {
 			closeConnection(conn, deleteStmtT01, deleteStmtT02, deleteStmtT03, insertStmtT01, insertStmtT03,
 					insertStmtT04, updateStmtT01, updateStmtT04, updateStmtT05, updateStmtT06, updateStmtT07,

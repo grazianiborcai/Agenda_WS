@@ -62,7 +62,8 @@ public class OwnerHelper extends GdaDB {
 		Owner owner = new Owner();
 
 		owner.setCodOwner(resultSet.getLong(FIELD01));
-		owner.setPassword(resultSet.getString(FIELD02));
+		//TODO: Remover o campo password
+		//owner.setPassword(resultSet.getString(FIELD02));
 		owner.setName(resultSet.getString(FIELD03));
 		owner.setCpf(resultSet.getString(FIELD04));
 		owner.setPhone(resultSet.getString(FIELD05));
