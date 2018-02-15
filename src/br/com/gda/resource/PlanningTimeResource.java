@@ -144,7 +144,7 @@ public class PlanningTimeResource extends JsonBuilder {
 //			jsonObject = getJsonObjectUpdate(exception);
 //		}
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 	
 	

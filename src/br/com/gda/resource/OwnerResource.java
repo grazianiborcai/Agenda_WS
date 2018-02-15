@@ -1,6 +1,5 @@
 package br.com.gda.resource;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -16,7 +15,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.model.OwnerModel;
-import br.com.gda.model.OwnerModel.SelectOwnerOption;
 
 @Path("/Owner")
 public class OwnerResource {
@@ -28,7 +26,35 @@ public class OwnerResource {
 	private static final String LOGIN_OWNER  	= "/loginOwner" 	;
 	private static final String CHANGE_PASSWORD = "/changePassword"	;
 	private static final String INSERT_CUSTOMER = "/insertCustomer"	;
+	
+	
+	
+	@GET
+	@Path(SELECT_OWNER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectOwner(@HeaderParam("ownerCode") String ownerCode, 
+			@HeaderParam("language") String language,
+			@DefaultValue("true") @HeaderParam("withHeader") Boolean withHeader,
+			@DefaultValue("true") @HeaderParam("withDetailMat") Boolean withDetailMat,
+			@DefaultValue("true") @HeaderParam("withMaterial") Boolean withMaterial,
+			@DefaultValue("true") @HeaderParam("withMenu") Boolean withMenu,
+			@DefaultValue("true") @HeaderParam("withStore") Boolean withStore,
+			@DefaultValue("true") @HeaderParam("withEmployee") Boolean withEmployee) {
+		
+		OwnerModel.SelectOwnerOption option = new OwnerModel.SelectOwnerOption();
+		option.isMenu      = withMenu     ;
+		option.isStore     = withStore    ;
+		option.isHeader	   = withHeader   ;
+		option.isMaterial  = withMaterial ;
+		option.isEmployee  = withEmployee ;
+		option.isDetailMat = withDetailMat;
+		option.language    = language     ;
+		
+		return new OwnerModel().selectOwner(ownerCode, option);		
+	}
+	
 
+	
 	@POST
 	@Path(INSERT_OWNER)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -68,41 +94,6 @@ public class OwnerResource {
 
 		return new OwnerModel().deleteOwner(codOwner, password, name, cpf, phone, email, emailAux, codGender, bornDate,
 				postalcode, address1, address2, city, country, state, codCurr, recordMode);
-	}
-
-	@GET
-	@Path(SELECT_OWNER)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectOwner(@HeaderParam("ownerCode") String ownerCode, 
-			@HeaderParam("language") String language,
-			@DefaultValue("true") @HeaderParam("withHeader") Boolean withHeader,
-			@DefaultValue("true") @HeaderParam("withDetailMat") Boolean withDetailMat,
-			@DefaultValue("true") @HeaderParam("withMaterial") Boolean withMaterial,
-			@DefaultValue("true") @HeaderParam("withMenu") Boolean withMenu,
-			@DefaultValue("true") @HeaderParam("withStore") Boolean withStore,
-			@DefaultValue("true") @HeaderParam("withEmployee") Boolean withEmployee,
-			@DefaultValue("true") @HeaderParam("withStoreMenu") Boolean withStoreMenu,
-			@DefaultValue("true") @HeaderParam("withStoreMaterial") Boolean withStoreMaterial,
-			@DefaultValue("true") @HeaderParam("withStoreEmployee") Boolean withStoreEmployee,
-			@DefaultValue("true") @HeaderParam("withStoreTables") Boolean withStoreTables,
-			@DefaultValue("true") @HeaderParam("withStoreBill") Boolean withStoreBill) {
-		
-		OwnerModel.SelectOwnerOption option = new OwnerModel.SelectOwnerOption();
-		option.isMenu      = withMenu     ;
-		option.isStore     = withStore    ;
-		option.isHeader	   = withHeader   ;
-		option.isMaterial  = withMaterial ;
-		option.isEmployee  = withEmployee ;
-		option.isDetailMat = withDetailMat;
-		option.language    = language     ;
-		
-		return new OwnerModel().selectOwner(ownerCode, option);
-		
-		/*Response r = new OwnerModel().selectOwnerResponse(email, cpf, password, language, withDetailMat, withMaterial,
-				withMenu, withStore, withEmployee, withStoreMenu, withStoreMaterial, withStoreEmployee, withStoreTables,
-				withStoreBill, zoneId);*/
-	
-		
 	}
 	
 	

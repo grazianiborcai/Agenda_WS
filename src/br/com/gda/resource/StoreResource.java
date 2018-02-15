@@ -28,18 +28,21 @@ public class StoreResource {
 	@POST
 	@Path(INSERT_STORE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertStore(@DefaultValue("Z") @HeaderParam("zoneId") String zoneId, String incomingData) {
-
-		return new StoreModel().insertStore(incomingData, zoneId);
+	public Response insertStore(String incomingData) {
+		//TODO: verificar fluxo: Store com status inativo/eliminado
+		Response resultResponse = new StoreModel().insertStore(incomingData);	
+		return resultResponse;
 	}
+	
 
 	@POST
 	@Path(UPDATE_STORE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateStore(@DefaultValue("Z") @HeaderParam("zoneId") String zoneId, String incomingData) {
-
-		return new StoreModel().updateStore(incomingData, zoneId);
+	public Response updateStore(String incomingData) {
+		//TODO: falta inativar/ativar um Store
+		return new StoreModel().updateStore(incomingData);
 	}
+	
 
 	@DELETE
 	@Path(DELETE_STORE)
