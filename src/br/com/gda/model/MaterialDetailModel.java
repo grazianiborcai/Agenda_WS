@@ -45,7 +45,7 @@ public class MaterialDetailModel extends JsonBuilder {
 			SQLException ex = new SQLException();
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response updateMaterialDetail(String incomingData) {
@@ -72,7 +72,7 @@ public class MaterialDetailModel extends JsonBuilder {
 			SQLException ex = new SQLException();
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteMaterialDetail(List<Long> codOwner, List<Integer> codMaterial, List<Integer> codDetail,
@@ -83,7 +83,7 @@ public class MaterialDetailModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<MaterialDetail> selectMaterialDetail(List<Long> codOwner, List<Integer> codMaterial,
@@ -152,7 +152,7 @@ public class MaterialDetailModel extends JsonBuilder {
 	public Response selectMaterialDetailResponse(List<Long> codOwner, List<Integer> codMaterial,
 			List<Integer> codDetail, List<String> recordMode, List<String> language, List<String> name) {
 
-		return response(selectMaterialDetailJson(codOwner, codMaterial, codDetail, recordMode, language, name, false));
+		return responseSuccess(selectMaterialDetailJson(codOwner, codMaterial, codDetail, recordMode, language, name, false));
 	}
 
 	public ArrayList<MaterialDetail> getDetailMatList() {

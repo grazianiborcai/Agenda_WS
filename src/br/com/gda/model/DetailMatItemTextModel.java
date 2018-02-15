@@ -44,7 +44,7 @@ public class DetailMatItemTextModel extends JsonBuilder {
 				selectDetailMatItemTextJson(codOwner, codDetail, codItem, null,
 						null, null, null));
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response updateDetailMatItemText(String incomingData) {
@@ -73,7 +73,7 @@ public class DetailMatItemTextModel extends JsonBuilder {
 				selectDetailMatItemTextJson(codOwner, codDetail, codItem, null,
 						null, null, null));
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteDetailMatItemText(List<Long> codOwner,
@@ -87,7 +87,7 @@ public class DetailMatItemTextModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<DetailMatItemText> selectDetailMatItemText(
@@ -131,7 +131,7 @@ public class DetailMatItemTextModel extends JsonBuilder {
 			List<String> language, List<String> name, List<String> description,
 			List<String> textLong) {
 
-		return response(selectDetailMatItemTextJson(codOwner, codDetail,
+		return responseSuccess(selectDetailMatItemTextJson(codOwner, codDetail,
 				codItem, language, name, description, textLong));
 	}
 

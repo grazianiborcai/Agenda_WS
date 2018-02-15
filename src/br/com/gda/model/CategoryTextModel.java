@@ -48,7 +48,7 @@ public class CategoryTextModel extends JsonBuilder {
 	public Response selectCategoryTextResponse(List<Integer> codCategory,
 			List<String> language, List<String> name) {
 
-		return response(selectCategoryTextJson(codCategory, language, name));
+		return responseSuccess(selectCategoryTextJson(codCategory, language, name));
 	}
 
 }

@@ -36,7 +36,7 @@ public class MaterialTextModel extends JsonBuilder {
 
 		jsonObject = mergeJsonObject(jsonObject, selectMaterialTextJson(codOwner, codMaterial, null, null, null, null));
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response updateMaterialText(String incomingData) {
@@ -55,7 +55,7 @@ public class MaterialTextModel extends JsonBuilder {
 
 		jsonObject = mergeJsonObject(jsonObject, selectMaterialTextJson(codOwner, codMaterial, null, null, null, null));
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteMaterialText(List<Long> codOwner, List<Integer> codMaterial, List<String> language,
@@ -66,7 +66,7 @@ public class MaterialTextModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<MaterialText> selectMaterialText(List<Long> codOwner, List<Integer> codMaterial,
@@ -101,7 +101,7 @@ public class MaterialTextModel extends JsonBuilder {
 	public Response selectMaterialTextResponse(List<Long> codOwner, List<Integer> codMaterial, List<String> language,
 			List<String> name, List<String> description, List<String> textLong) {
 
-		return response(selectMaterialTextJson(codOwner, codMaterial, language, name, description, textLong));
+		return responseSuccess(selectMaterialTextJson(codOwner, codMaterial, language, name, description, textLong));
 	}
 
 	private ArrayList<MaterialText> jsonToMaterialTextList(String incomingData) {

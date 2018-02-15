@@ -39,7 +39,7 @@ public class CurrencyModel extends JsonBuilder {
 
 	public Response selectCurrencyResponse(String baseCode, String language) {
 
-		return response(selectCurrencyJson(baseCode, language));
+		return responseSuccess(selectCurrencyJson(baseCode, language));
 	}
 
 }

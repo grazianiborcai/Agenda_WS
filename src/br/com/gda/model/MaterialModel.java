@@ -48,7 +48,7 @@ public class MaterialModel extends JsonBuilder {
 			SQLException ex = new SQLException();
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response updateMaterial(String incomingData) {
@@ -74,7 +74,7 @@ public class MaterialModel extends JsonBuilder {
 			SQLException ex = new SQLException();
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 
 	}
 
@@ -86,7 +86,7 @@ public class MaterialModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<Material> selectMaterial(List<Long> codOwner, List<Integer> codMaterial, List<Integer> codCategory,
@@ -156,7 +156,7 @@ public class MaterialModel extends JsonBuilder {
 			List<Integer> codType, List<String> image, List<String> barCode, List<String> recordMode,
 			List<String> language, List<String> name, List<String> description, List<String> textLong) {
 
-		return response(selectMaterialJson(codOwner, codMaterial, codCategory, codType, image, barCode, recordMode,
+		return responseSuccess(selectMaterialJson(codOwner, codMaterial, codCategory, codType, image, barCode, recordMode,
 				language, name, description, textLong, false));
 	}
 
@@ -216,7 +216,7 @@ public class MaterialModel extends JsonBuilder {
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 
 	}
 
@@ -267,7 +267,7 @@ public class MaterialModel extends JsonBuilder {
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 
 	}
 

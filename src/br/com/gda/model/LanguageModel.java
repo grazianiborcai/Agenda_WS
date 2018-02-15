@@ -46,7 +46,7 @@ public class LanguageModel extends JsonBuilder {
 	public Response selectLanguageResponse(List<String> language,
 			List<String> name) {
 
-		return response(selectLanguageJson(language, name));
+		return responseSuccess(selectLanguageJson(language, name));
 	}
 
 }

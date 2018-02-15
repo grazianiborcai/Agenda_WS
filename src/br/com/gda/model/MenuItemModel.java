@@ -46,7 +46,7 @@ public class MenuItemModel extends JsonBuilder {
 			SQLException ex = new SQLException();
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response updateMenuItem(String incomingData) {
@@ -75,7 +75,7 @@ public class MenuItemModel extends JsonBuilder {
 			SQLException ex = new SQLException();
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteMenuItem(List<Long> codOwner, List<Integer> codMenu, List<Integer> item,
@@ -85,7 +85,7 @@ public class MenuItemModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<MenuItem> selectMenuItem(List<Long> codOwner, Integer codStore, List<Integer> codMenu,
@@ -176,7 +176,7 @@ public class MenuItemModel extends JsonBuilder {
 	public Response selectMenuItemResponse(List<Long> codOwner, Integer codStore, List<Integer> codMenu,
 			List<String> language, List<String> recordMode) {
 
-		return response(selectMenuItemJson(codOwner, null, codMenu, language, recordMode, false));
+		return responseSuccess(selectMenuItemJson(codOwner, null, codMenu, language, recordMode, false));
 	}
 
 }

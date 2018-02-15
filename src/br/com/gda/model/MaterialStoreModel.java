@@ -48,7 +48,7 @@ public class MaterialStoreModel extends JsonBuilder {
 			SQLException ex = new SQLException();
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response updateMaterialStore(String incomingData) {
@@ -78,7 +78,7 @@ public class MaterialStoreModel extends JsonBuilder {
 			SQLException ex = new SQLException();
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteMaterialStore(List<Long> codOwner, List<Integer> codMaterial, List<Integer> codStore,
@@ -89,7 +89,7 @@ public class MaterialStoreModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<MaterialStore> selectMaterialStore(List<Long> codOwner, List<Integer> codMaterial,
@@ -161,7 +161,7 @@ public class MaterialStoreModel extends JsonBuilder {
 			List<String> recordMode, List<String> language, List<String> name, List<String> description,
 			List<String> textLong) {
 
-		return response(selectMaterialStoreJson(codOwner, codMaterial, codStore, codCategory, codType, image, barCode,
+		return responseSuccess(selectMaterialStoreJson(codOwner, codMaterial, codStore, codCategory, codType, image, barCode,
 				recordMode, language, name, description, textLong, false));
 	}
 

@@ -54,7 +54,7 @@ public class CustomerModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 	
 	
@@ -173,7 +173,7 @@ public class CustomerModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response changePassword(Long codCustomer, String newPassword) {
@@ -182,7 +182,7 @@ public class CustomerModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteCustomer(List<Long> codCustomer, List<String> phone, List<String> password, List<String> name,
@@ -195,7 +195,7 @@ public class CustomerModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<Customer> selectCustomer(List<Long> codCustomer, List<String> phone, List<String> password,
@@ -244,7 +244,7 @@ public class CustomerModel extends JsonBuilder {
 			List<String> address1, List<String> address2, List<Integer> postalcode, List<String> city,
 			List<String> country, List<String> state) {
 
-		return response(selectCustomerJson(codCustomer, phone, password, name, codGender, cpf, bornDate, email,
+		return responseSuccess(selectCustomerJson(codCustomer, phone, password, name, codGender, cpf, bornDate, email,
 				address1, address2, postalcode, city, country, state));
 	}
 
@@ -287,7 +287,7 @@ public class CustomerModel extends JsonBuilder {
 
 	public Response selectCustomerResponse(String email, String password) {
 
-		return response(selectCustomerJson(email, password));
+		return responseSuccess(selectCustomerJson(email, password));
 	}
 
 	public ArrayList<Customer> jsonToCustomerList(String incomingData) {

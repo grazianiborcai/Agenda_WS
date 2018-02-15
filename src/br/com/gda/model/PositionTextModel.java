@@ -48,7 +48,7 @@ public class PositionTextModel extends JsonBuilder {
 	public Response selectPositionTextResponse(List<Integer> codPosition,
 			List<String> language, List<String> name) {
 
-		return response(selectPositionTextJson(codPosition, language, name));
+		return responseSuccess(selectPositionTextJson(codPosition, language, name));
 	}
 
 }

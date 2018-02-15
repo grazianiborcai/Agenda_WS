@@ -46,7 +46,7 @@ public class GenderModel extends JsonBuilder {
 	public Response selectGenderResponse(List<Integer> codGender,
 			List<String> language, List<String> name) {
 
-		return response(selectGenderJson(codGender, language, name));
+		return responseSuccess(selectGenderJson(codGender, language, name));
 	}
 
 }

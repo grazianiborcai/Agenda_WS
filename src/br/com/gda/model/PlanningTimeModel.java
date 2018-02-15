@@ -68,7 +68,7 @@ public class PlanningTimeModel extends JsonBuilder {
 		jsonObject = mergeJsonObject(jsonObject, selectPlanningTimeJson(codOwner, codStore, null, null, null, null,
 				null, null, recordMode, null, null, null, null, null));
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response reservePlanningTime(String incomingData, Long customer) {
@@ -83,7 +83,7 @@ public class PlanningTimeModel extends JsonBuilder {
 
 		jsonObject.add(RESULTS, new Gson().toJsonTree(planningTimeList));
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response releasePlanningTime(String incomingData, Long customer) {
@@ -96,7 +96,7 @@ public class PlanningTimeModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	private SQLException releasePTime(ArrayList<PlanningTime> planningTimeList, Long customer, String recordMode) {
@@ -114,7 +114,7 @@ public class PlanningTimeModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<PlanningTime> selectPlanningTime(List<Long> codOwner, List<Integer> codStore,
@@ -265,7 +265,7 @@ public class PlanningTimeModel extends JsonBuilder {
 			List<Integer> codMaterial, List<String> recordMode, List<String> reservedTo, List<Long> codCustomer,
 			List<Long> number, String iniDate, String finDate) {
 
-		return response(selectPlanningTimeJson(codOwner, codStore, codEmployee, beginDate, beginTime, group, weekday,
+		return responseSuccess(selectPlanningTimeJson(codOwner, codStore, codEmployee, beginDate, beginTime, group, weekday,
 				codMaterial, recordMode, reservedTo, codCustomer, number, iniDate, finDate));
 	}
 
@@ -274,7 +274,7 @@ public class PlanningTimeModel extends JsonBuilder {
 			List<Integer> weekday, List<Integer> codMaterial, List<String> recordMode, List<String> reservedTo,
 			List<Long> codCustomer, List<Long> number, String iniDate, String finDate, Float latitude, Float longitude) {
 
-		return response(selectPlanningTimeJsonLoc(codOwner, codStore, codEmployee, beginDate, beginTime, group, weekday,
+		return responseSuccess(selectPlanningTimeJsonLoc(codOwner, codStore, codEmployee, beginDate, beginTime, group, weekday,
 				codMaterial, recordMode, reservedTo, codCustomer, number, iniDate, finDate, latitude, longitude));
 	}
 
@@ -304,7 +304,7 @@ public class PlanningTimeModel extends JsonBuilder {
 
 	public Response getCartResponse(Long codCustomer) {
 
-		return response(getCartJson(codCustomer));
+		return responseSuccess(getCartJson(codCustomer));
 	}
 
 	public ArrayList<PlanningTime> getBooked(Long codCustomer) throws SQLException {
@@ -333,7 +333,7 @@ public class PlanningTimeModel extends JsonBuilder {
 
 	public Response getBookedResponse(Long codCustomer) {
 
-		return response(getBookedJson(codCustomer));
+		return responseSuccess(getBookedJson(codCustomer));
 	}
 
 	public Response payCart(String incomingData, Long customer, String codPayment, String phone) {
@@ -349,7 +349,7 @@ public class PlanningTimeModel extends JsonBuilder {
 
 			jsonObject.add(RESULTS, new JsonArray());
 
-			return response(jsonObject);
+			return responseSuccess(jsonObject);
 		}
 
 		ArrayList<PlanningTime> planningTimeList = payCart.get(0).getPlanningTime();
@@ -385,7 +385,7 @@ public class PlanningTimeModel extends JsonBuilder {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				JsonObject jsonObject = getJsonObjectUpdate(e);
-				return response(jsonObject);
+				return responseSuccess(jsonObject);
 			}
 
 			String numMulti = customer.toString() + String.valueOf(dateTime.getYear())
@@ -408,7 +408,7 @@ public class PlanningTimeModel extends JsonBuilder {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					JsonObject jsonObject = getJsonObjectUpdate(e);
-					return response(jsonObject);
+					return responseSuccess(jsonObject);
 				}
 
 			}
@@ -550,10 +550,10 @@ public class PlanningTimeModel extends JsonBuilder {
 				e.printStackTrace();
 				exception = new SQLException(e.getMessage(), null, 55);
 				JsonObject jsonObject = getJsonObjectUpdate(exception);
-				return response(jsonObject);
+				return responseSuccess(jsonObject);
 			} catch (SQLException e) {
 				JsonObject jsonObject = getJsonObjectUpdate(e);
-				return response(jsonObject);
+				return responseSuccess(jsonObject);
 			}
 
 			List<Order> orderList = multiOrderCreated.getOrders();
@@ -620,7 +620,7 @@ public class PlanningTimeModel extends JsonBuilder {
 
 			jsonObject.add(RESULTS, new Gson().toJsonTree(planningTimeList));
 
-			return response(jsonObject);
+			return responseSuccess(jsonObject);
 
 		} else {
 
@@ -628,7 +628,7 @@ public class PlanningTimeModel extends JsonBuilder {
 
 			jsonObject.add(RESULTS, new Gson().toJsonTree(planningTimeList));
 
-			return response(jsonObject);
+			return responseSuccess(jsonObject);
 
 		}
 	}
@@ -660,7 +660,7 @@ public class PlanningTimeModel extends JsonBuilder {
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 		jsonObject.addProperty("refund", refund.getId());
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 }

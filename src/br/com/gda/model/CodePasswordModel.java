@@ -63,7 +63,7 @@ public class CodePasswordModel extends JsonBuilder {
 
 	public Response getCodeResponse(String email, String password, String name) {
 
-		return response(getCodeJson(email, password, name));
+		return responseSuccess(getCodeJson(email, password, name));
 	}
 
 }

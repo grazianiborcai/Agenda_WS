@@ -38,7 +38,7 @@ public class DetailMatTextModel extends JsonBuilder {
 		jsonObject = mergeJsonObject(jsonObject,
 				selectDetailMatTextJson(codOwner, codDetail, null, null));
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response updateDetailMatText(String incomingData) {
@@ -61,7 +61,7 @@ public class DetailMatTextModel extends JsonBuilder {
 		jsonObject = mergeJsonObject(jsonObject,
 				selectDetailMatTextJson(codOwner, codDetail, null, null));
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteDetailMatText(List<Long> codOwner,
@@ -72,7 +72,7 @@ public class DetailMatTextModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<DetailMatText> selectDetailMatText(List<Long> codOwner,
@@ -108,7 +108,7 @@ public class DetailMatTextModel extends JsonBuilder {
 	public Response selectDetailMatTextResponse(List<Long> codOwner,
 			List<Integer> codDetail, List<String> language, List<String> name) {
 
-		return response(selectDetailMatTextJson(codOwner, codDetail, language,
+		return responseSuccess(selectDetailMatTextJson(codOwner, codDetail, language,
 				name));
 	}
 

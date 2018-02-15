@@ -45,7 +45,7 @@ public class MenuModel extends JsonBuilder {
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response updateMenu(String incomingData) {
@@ -71,7 +71,7 @@ public class MenuModel extends JsonBuilder {
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteMenu(List<Long> codOwner, List<Integer> codMenu, List<String> recordMode) {
@@ -80,7 +80,7 @@ public class MenuModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<Menu> selectMenu(List<Long> codOwner, List<Integer> codMenu, List<String> recordMode,
@@ -145,7 +145,7 @@ public class MenuModel extends JsonBuilder {
 	public Response selectMenuResponse(List<Long> codOwner, List<Integer> codMenu, List<String> recordMode,
 			List<String> language, List<String> name) {
 
-		return response(selectMenuJson(codOwner, codMenu, recordMode, language, name, false));
+		return responseSuccess(selectMenuJson(codOwner, codMenu, recordMode, language, name, false));
 	}
 
 	public ArrayList<Menu> getMenuList() {

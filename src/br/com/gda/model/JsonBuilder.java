@@ -18,8 +18,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import br.com.gda.servlet.ServletContainerGDA;
-
 public class JsonBuilder {
 
 	protected static final String OWNER = "Owner";
@@ -36,8 +34,18 @@ public class JsonBuilder {
 	protected static final String SELECT_CODE = "selectCode";
 	protected static final String SELECT_MESSAGE = "selectMessage";
 	// protected static final String COUNT = "count";
-	protected static final String RESULTS = "results";
-	protected static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";
+	//TODO: encapsular essas mensagens em um Enum
+	//TODO: traduzir tudo para Português
+	//TODO: substituir constantes por tabela no BD
+	public static final String RESULTS = "results";
+	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";
+	public static final String LOGIN_FAILED = "User or password does not match";
+	public static final String ILLEGAL_ARGUMENT = "IllegalArgument: mandatory argument might be missing or invalid value was passed";
+	public static final String INTERNAL_ERROR = "Ops... something went wrong";
+	public static final String FORBIDDEN = "Operation cannot be processed";
+	public static final String USER_ALREADY_EXIST = "User datails already taken";
+	public static final String STORED_ALREADY_EXIST = "CNPJ already taken";
+	public static final String STORE_NOT_FOUND = "Store not found";
 
 	protected static final String UPDATED_PROCESS = "updatedProcess";
 	
@@ -46,7 +54,18 @@ public class JsonBuilder {
 	
 	protected static final String JPG = "jpg";
 	protected static final String BAR = "/";
+	
+	
+	protected Response makeResponse(String msg, Response.Status htmlStatus, Object dataObj) {
+		JsonElement jsonElement = new JsonArray().getAsJsonArray();
+		SQLException exception = new SQLException(msg, null, htmlStatus.getStatusCode());		
+		jsonElement = new Gson().toJsonTree(dataObj);
+		JsonObject jsonObject = getJsonObjectSelect(jsonElement, exception);			
+		return response(htmlStatus, jsonObject);
+	}
+	
 
+	
 	protected final JsonObject getJsonObjectUpdate(SQLException e) {
 
 		JsonObject jsonObject = new JsonObject();
@@ -110,9 +129,15 @@ public class JsonBuilder {
 
 		return jOdject01;
 	}
+	
 
-	protected final Response response(JsonObject jsonObject) {
-		return Response.status(Response.Status.OK).entity(jsonObject.toString()).type(MediaType.APPLICATION_JSON)
+	protected final Response responseSuccess(JsonObject jsonObject) {
+		return response(Response.Status.OK, jsonObject);
+	}
+	
+	
+	protected final Response response(Response.Status status, JsonObject jsonObject) {
+		return Response.status(status).entity(jsonObject.toString()).type(MediaType.APPLICATION_JSON)
 				.build();
 	}
 
@@ -172,25 +197,19 @@ public class JsonBuilder {
 
 						@Override
 						public boolean test(Object object) {
-							// TODO Auto-generated method stub
 							boolean test = false;
 							try {
 								Method method = object.getClass().getMethod(methodS);
 								test = method.invoke(object).equals(eachTopic);
 							} catch (IllegalAccessException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							} catch (IllegalArgumentException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							} catch (InvocationTargetException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							} catch (NoSuchMethodException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							} catch (SecurityException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 

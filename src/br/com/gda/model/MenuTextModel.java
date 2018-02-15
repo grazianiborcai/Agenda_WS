@@ -36,7 +36,7 @@ public class MenuTextModel extends JsonBuilder {
 		jsonObject = mergeJsonObject(jsonObject,
 				selectMenuTextJson(codOwner, codMenu, null, null));
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response updateMenuText(String incomingData) {
@@ -57,7 +57,7 @@ public class MenuTextModel extends JsonBuilder {
 		jsonObject = mergeJsonObject(jsonObject,
 				selectMenuTextJson(codOwner, codMenu, null, null));
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteMenuText(List<Long> codOwner, List<Integer> codMenu,
@@ -68,7 +68,7 @@ public class MenuTextModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<MenuText> selectMenuText(List<Long> codOwner,
@@ -104,7 +104,7 @@ public class MenuTextModel extends JsonBuilder {
 	public Response selectMenuTextResponse(List<Long> codOwner,
 			List<Integer> codMenu, List<String> language, List<String> name) {
 
-		return response(selectMenuTextJson(codOwner, codMenu, language, name));
+		return responseSuccess(selectMenuTextJson(codOwner, codMenu, language, name));
 	}
 
 	private ArrayList<MenuText> jsonToMenuTextList(String incomingData) {

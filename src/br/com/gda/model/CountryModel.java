@@ -68,7 +68,7 @@ public class CountryModel extends JsonBuilder {
 	public Response selectCountryResponse(List<String> country,
 			List<String> language, List<String> name) {
 
-		return response(selectCountryJson(country, language, name));
+		return responseSuccess(selectCountryJson(country, language, name));
 	}
 
 }

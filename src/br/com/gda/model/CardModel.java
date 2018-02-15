@@ -33,7 +33,7 @@ public class CardModel extends JsonBuilder {
 
 			jsonObject.add(RESULTS, new JsonArray());
 
-			return response(jsonObject);
+			return responseSuccess(jsonObject);
 		}
 
 		SQLException exception = new CardDAO().insertCreditCard(creditCardAGList, codCustomer);
@@ -52,7 +52,7 @@ public class CardModel extends JsonBuilder {
 		// getJsonObjectSelect(jsonElement, ex));
 		// }
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteCreditCard(Long codCustomer, String last4) {
@@ -61,7 +61,7 @@ public class CardModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 		
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<CreditCardAG> selectCreditCard(Long codCustomer) throws SQLException {
@@ -89,7 +89,7 @@ public class CardModel extends JsonBuilder {
 
 	public Response selectCreditCardResponse(Long codCustomer) {
 
-		return response(selectCreditCardJson(codCustomer));
+		return responseSuccess(selectCreditCardJson(codCustomer));
 	}
 
 }

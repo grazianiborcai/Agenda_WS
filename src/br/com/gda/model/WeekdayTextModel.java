@@ -47,7 +47,7 @@ public class WeekdayTextModel extends JsonBuilder {
 	public Response selectWeekdayTextResponse(List<Integer> weekday,
 			List<String> language, List<String> name) {
 
-		return response(selectWeekdayTextJson(weekday, language, name));
+		return responseSuccess(selectWeekdayTextJson(weekday, language, name));
 	}
 
 }

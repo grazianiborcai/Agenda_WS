@@ -46,7 +46,7 @@ public class DetailMatItemModel extends JsonBuilder {
 			SQLException ex = new SQLException();
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response updateDetailMatItem(String incomingData) {
@@ -75,7 +75,7 @@ public class DetailMatItemModel extends JsonBuilder {
 			SQLException ex = new SQLException();
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteDetailMatItem(List<Long> codOwner, List<Integer> codDetail, List<Integer> codItem,
@@ -85,7 +85,7 @@ public class DetailMatItemModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<DetailMatItem> selectDetailMatItem(List<Long> codOwner, List<Integer> codDetail,
@@ -124,7 +124,7 @@ public class DetailMatItemModel extends JsonBuilder {
 			List<String> recordMode, List<String> language, List<String> name, List<String> description,
 			List<String> textLong) {
 
-		return response(selectDetailMatItemJson(codOwner, codDetail, codItem, recordMode, language, name, description,
+		return responseSuccess(selectDetailMatItemJson(codOwner, codDetail, codItem, recordMode, language, name, description,
 				textLong, false));
 	}
 

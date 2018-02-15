@@ -43,7 +43,7 @@ public class EmployeeModel extends JsonBuilder {
 			SQLException ex = new SQLException();
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response updateEmployee(String incomingData) {
@@ -69,7 +69,7 @@ public class EmployeeModel extends JsonBuilder {
 			SQLException ex = new SQLException();
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteEmployee(List<Long> codOwner, List<Integer> codEmployee, List<String> cpf,
@@ -84,7 +84,7 @@ public class EmployeeModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public ArrayList<Employee> selectEmployee(List<Long> codOwner, List<Integer> codEmployee, List<String> cpf,
@@ -131,7 +131,7 @@ public class EmployeeModel extends JsonBuilder {
 			List<Integer> postalcode, List<String> city, List<String> country, List<String> state, List<String> phone,
 			List<String> recordMode) {
 
-		return response(selectEmployeeJson(codOwner, codEmployee, cpf, password, name, codPosition, codGender, bornDate,
+		return responseSuccess(selectEmployeeJson(codOwner, codEmployee, cpf, password, name, codPosition, codGender, bornDate,
 				email, address1, address2, postalcode, city, country, state, phone, recordMode, false));
 	}
 

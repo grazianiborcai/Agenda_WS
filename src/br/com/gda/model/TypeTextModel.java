@@ -46,7 +46,7 @@ public class TypeTextModel extends JsonBuilder {
 	public Response selectTypeTextResponse(List<Integer> codType,
 			List<String> language, List<String> name) {
 
-		return response(selectTypeTextJson(codType, language, name));
+		return responseSuccess(selectTypeTextJson(codType, language, name));
 	}
 
 }

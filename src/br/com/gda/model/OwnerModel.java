@@ -30,7 +30,9 @@ public class OwnerModel extends JsonBuilder {
 	public Response insertOwner(String incomingData) {
 		Response resultResponse = tryToInsertOwner(incomingData);
 		
-		if (resultResponse.getStatus() == 200) 
+		int success = Response.Status.OK.getStatusCode();
+		
+		if (resultResponse.getStatus() == success) 
 			resultResponse = loginOwner(incomingData);
 		
 		return resultResponse;
@@ -39,22 +41,28 @@ public class OwnerModel extends JsonBuilder {
 	
 	
 	private Response tryToInsertOwner(String incomingData) {
+		Owner emptyOwner = new Owner();
+		
 		try {
 			ArrayList<Owner> owners = jsonToOwners(incomingData);
 			
-			if (! isOwnersValid(owners)) 
-				return Response.status(400).entity("IllegalArgument: mandatory argument might be missing or invalid value was passed").build();
+			if (! isOwnersValid(owners))
+				return makeResponse(ILLEGAL_ARGUMENT, Response.Status.BAD_REQUEST, emptyOwner);
 			
-			if (isOwnersExist(owners)) 
-				return Response.status(403).entity("Operation cannot be processed").build();
+			
+			if (isOwnersExist(owners))
+				return makeResponse(USER_ALREADY_EXIST, Response.Status.FORBIDDEN, emptyOwner);
+			
+			
 			
 			new OwnerDAO().insertOwner(owners);
-			return Response.status(200).entity("Success").build();
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, emptyOwner);
 			
 		} catch (JsonParseException e) {
-			return Response.status(400).entity("IllegalArgument: mandatory argument might be missing or invalid value was passed").build();
+			return makeResponse(ILLEGAL_ARGUMENT, Response.Status.BAD_REQUEST, emptyOwner);
+			
 		} catch (SQLException e) {
-			return Response.status(500).entity("Ops... something went wrong").build();
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyOwner);
 		}
 	}
 	
@@ -196,37 +204,33 @@ public class OwnerModel extends JsonBuilder {
 			
 			
 		} catch (JsonParseException e) {
-			return Response.status(400).entity("IllegalArgument: mandatory argument might be missing or invalid value was passed").build();
+			Owner emptyOwner = new Owner();
+			return makeResponse(ILLEGAL_ARGUMENT, Response.Status.BAD_REQUEST, emptyOwner);
 		}
 	}	
 	
 	
 	
 	private Response tryToLoginOwner(String email, String password) {
+		Owner emptyOwner = new Owner();
+		
 		try {
 			 Owner owner = new OwnerDAO().loginOwner(email, password);
 			
 			if (owner.getCodOwner() == 0) 
-				return Response.status(403).entity("User or password does not match").build();			
+				return makeResponse(LOGIN_FAILED, Response.Status.FORBIDDEN, emptyOwner);
 			
-			return makeResponse(RETURNED_SUCCESSFULLY, 200, owner);
+			
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, owner);
+			
 			
 		} catch (JsonParseException e) {
-			return Response.status(400).entity("IllegalArgument: mandatory argument might be missing or invalid value was passed").build();
+			return makeResponse(ILLEGAL_ARGUMENT, Response.Status.BAD_REQUEST, emptyOwner);
+			
 		} catch (SQLException | IndexOutOfBoundsException e) {
-			return Response.status(500).entity("Ops... something went wrong").build();
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyOwner);
 		}
 	}	
-	
-	
-	
-	private Response makeResponse(String msg, int htmlReturnCode, Object dataObj) {
-		JsonElement jsonElement = new JsonArray().getAsJsonArray();
-		SQLException exception = new SQLException(msg, null, htmlReturnCode);		
-		jsonElement = new Gson().toJsonTree(dataObj);
-		JsonObject jsonObject = getJsonObjectSelect(jsonElement, exception);			
-		return response(jsonObject);
-	}
 	
 	
 	
@@ -236,45 +240,168 @@ public class OwnerModel extends JsonBuilder {
 	}
 	
 	
-	//TODO: Código original colocava cada IF dentro de uma THREAD
-	//TODO: Colocar cada IF dentro de um método
-	//TODO: Verificar opções mandatórias: Language
+
 	private Response tryToSelectOwner(String ownerCode, SelectOwnerOption option) {
-		Owner owner = new Owner();
+		Owner emptyOwner = new Owner();
 		
 		try {
-			if (option.isHeader)
-				owner = new OwnerDAO().selectOwnerFromOwnerCode(ownerCode);
+			if (! isSelectOwnerValid(ownerCode, option)) 
+				return makeResponse(ILLEGAL_ARGUMENT, Response.Status.BAD_REQUEST, emptyOwner);
 			
+			Owner owner = new Owner();
+			owner = selectOwnerHeader(ownerCode, option);
 			
-			if (option.isDetailMat) {
-				List<Long> codOwnerList = new ArrayList<>();
-				codOwnerList.add(Long.valueOf(ownerCode));
-				List<String> recordMode = new ArrayList<String>();
-				recordMode.add(RecordMode.RECORD_OK);
-				List<String> language = new ArrayList<>();
-				language.add(option.language);				
-				
-				ArrayList<DetailMat> detailMaterial = new DetailMatModel().selectDetailMat(codOwnerList, null, recordMode, language, null);
-				owner.setDetailMat(detailMaterial);
-			}
+			ArrayList<DetailMat> detailMaterial = selectOwnerDetailMat(ownerCode, option);
+			owner.setDetailMat(detailMaterial);
 			
-			return makeResponse(RETURNED_SUCCESSFULLY, 200, owner);
+			ArrayList<Material> material = selectOwnerMaterial(ownerCode, option);
+			owner.setMaterial(material);
+			
+			ArrayList<Menu> menu = selectOwnerMenu(ownerCode, option);
+			owner.setMenu(menu);
+			
+			ArrayList<Store> store = selectOwnerStore(ownerCode, option);
+			owner.setStore(store);
+			
+			ArrayList<Employee> employee = selectOwnerEmployee(ownerCode, option);
+			owner.setEmployee(employee);
+			
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, owner);
 			
 			
 		} catch (SQLException e) {
-			return Response.status(500).entity("Ops... something went wrong").build();
-		}
-		
-		
-		
-/*
-		return response(selectOwnerJson(email, cpf, password, language, withDetailMat,
-				withMaterial, withMenu, withStore, withEmployee, withStoreMenu, withStoreMaterial, withStoreEmployee,
-				withStoreTables, withStoreBill, zoneId));*/
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyOwner);
+		}		
 	}
 	
 	
+	
+	private boolean isSelectOwnerValid(String ownerCode, SelectOwnerOption option) {
+		if (ownerCode == null)
+			return false;
+		
+		if (option.language == null)
+			return false;
+		
+		
+		return true;
+	}
+	
+	
+		
+	private Owner selectOwnerHeader(String ownerCode, SelectOwnerOption option) throws SQLException {
+		Owner ownerResult = new Owner();
+		
+		if (option.isHeader)
+			ownerResult = new OwnerDAO().selectOwnerFromOwnerCode(ownerCode);
+		
+		return ownerResult;
+	}
+	
+	
+	
+	private ArrayList<DetailMat> selectOwnerDetailMat(String ownerCode, SelectOwnerOption option) throws SQLException {
+		ArrayList<DetailMat> resultDetailMat = new ArrayList<>();
+		
+		List<Long> codOwnerList = new ArrayList<>();
+		codOwnerList.add(Long.valueOf(ownerCode));
+		
+		List<String> recordMode = new ArrayList<String>();
+		recordMode.add(RecordMode.RECORD_OK);
+		
+		List<String> language = new ArrayList<>();
+		language.add(option.language);	
+		
+		if (option.isDetailMat) 
+			resultDetailMat = new DetailMatModel().selectDetailMat(codOwnerList, null, recordMode, language, null);			
+		
+		
+		return resultDetailMat;
+	}
+	
+	
+	
+	private ArrayList<Material> selectOwnerMaterial(String ownerCode, SelectOwnerOption option) throws SQLException {
+		ArrayList<Material> resultMaterial = new ArrayList<>();
+		
+		List<Long> codOwnerList = new ArrayList<>();
+		codOwnerList.add(Long.valueOf(ownerCode));
+		
+		List<String> recordMode = new ArrayList<String>();
+		recordMode.add(RecordMode.RECORD_OK);
+		
+		List<String> language = new ArrayList<>();
+		language.add(option.language);	
+		
+		if (option.isMaterial) 
+			resultMaterial = new MaterialModel().selectMaterial(codOwnerList, null, null, null, null, null, recordMode, language, null, null, null);
+		
+		
+		return resultMaterial;
+	}
+	
+	
+	
+	private ArrayList<Menu> selectOwnerMenu(String ownerCode, SelectOwnerOption option) throws SQLException {
+		ArrayList<Menu> resultMenu = new ArrayList<>();
+		
+		List<Long> codOwnerList = new ArrayList<>();
+		codOwnerList.add(Long.valueOf(ownerCode));
+		
+		List<String> recordMode = new ArrayList<String>();
+		recordMode.add(RecordMode.RECORD_OK);
+		
+		List<String> language = new ArrayList<>();
+		language.add(option.language);	
+		
+		if (option.isMenu) 
+			resultMenu = new MenuModel().selectMenu(codOwnerList, null, recordMode, language, null);
+		
+		
+		return resultMenu;
+	}
+	
+	
+	
+	private ArrayList<Store> selectOwnerStore(String ownerCode, SelectOwnerOption option) throws SQLException {
+		ArrayList<Store> resultStore = new ArrayList<>();
+		
+		List<Long> codOwnerList = new ArrayList<>();
+		codOwnerList.add(Long.valueOf(ownerCode));
+		
+		List<String> recordMode = new ArrayList<String>();
+		recordMode.add(RecordMode.RECORD_OK);
+		
+		List<String> language = new ArrayList<>();
+		language.add(option.language);	
+		
+		if (option.isStore) 
+			resultStore = new StoreModel().selectStore(codOwnerList, null, null, null, null, null, null, null, null, null, null, null, null, null, null, recordMode, language, option.isMaterial, option.isEmployee, null);
+		
+		
+		return resultStore;
+	}
+	
+	
+	
+	private ArrayList<Employee> selectOwnerEmployee(String ownerCode, SelectOwnerOption option) throws SQLException {
+		ArrayList<Employee> resultEmployee = new ArrayList<>();
+		
+		List<Long> codOwnerList = new ArrayList<>();
+		codOwnerList.add(Long.valueOf(ownerCode));
+		
+		List<String> recordMode = new ArrayList<String>();
+		recordMode.add(RecordMode.RECORD_OK);
+		
+		List<String> language = new ArrayList<>();
+		language.add(option.language);	
+		
+		if (option.isEmployee) 
+			resultEmployee = new EmployeeModel().selectEmployee(codOwnerList, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, recordMode);
+		
+		
+		return resultEmployee;
+	}
 	
 	
 
@@ -295,7 +422,7 @@ public class OwnerModel extends JsonBuilder {
 			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
 		}
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	public Response deleteOwner(List<Long> codOwner, List<String> password, List<String> name, List<String> cpf,
@@ -308,9 +435,10 @@ public class OwnerModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
+	//TODO: Ainda utilizado. Revisar o número de parâmetros 
 	public ArrayList<Owner> selectOwner(String email, String cpf, String password, 
 			List<String> language, Boolean withDetailMat, Boolean withMaterial, Boolean withMenu, Boolean withStore,
 			Boolean withEmployee, Boolean withStoreMenu, Boolean withStoreMaterial, Boolean withStoreEmployee,
@@ -454,44 +582,14 @@ public class OwnerModel extends JsonBuilder {
 		return ownerList;
 
 	}
-
-	public JsonObject selectOwnerJson(String email, String cpf, String password, List<String> language, Boolean withDetailMat, Boolean withMaterial, Boolean withMenu, Boolean withStore,
-			Boolean withEmployee, Boolean withStoreMenu, Boolean withStoreMaterial, Boolean withStoreEmployee,
-			Boolean withStoreTables, Boolean withStoreBill, String zoneId) {
-
-		JsonElement jsonElement = new JsonArray().getAsJsonArray();
-		SQLException exception = new SQLException(RETURNED_SUCCESSFULLY, null, 200);
-
-		try {
-
-			jsonElement = new Gson().toJsonTree(selectOwner(email, cpf, password, language, withDetailMat, withMaterial, withMenu, withStore, withEmployee, withStoreMenu,
-					withStoreMaterial, withStoreEmployee, withStoreTables, withStoreBill, zoneId));
-
-		} catch (SQLException e) {
-			exception = e;
-		}
-
-		JsonObject jsonObject = getJsonObjectSelect(jsonElement, exception);
-
-		return jsonObject;
-	}
-	
-
-	//TODO: Refactoring - Começa aqui
-	public Response selectOwnerResponse(String email, String cpf, String password, List<String> language, Boolean withDetailMat, Boolean withMaterial, Boolean withMenu, Boolean withStore,
-			Boolean withEmployee, Boolean withStoreMenu, Boolean withStoreMaterial, Boolean withStoreEmployee,
-			Boolean withStoreTables, Boolean withStoreBill, String zoneId) {
-
-		return response(selectOwnerJson(email, cpf, password, language, withDetailMat,
-				withMaterial, withMenu, withStore, withEmployee, withStoreMenu, withStoreMaterial, withStoreEmployee,
-				withStoreTables, withStoreBill, zoneId));
-	}
 	
 	
+	
+	//TODO: encapsular em um método Try
 	public Response changePassword(Long codOwner, String newPassword) {						// M.Maciel - 21-jan-18
 		SQLException exception = new OwnerDAO().changePassword(codOwner, newPassword);		// M.Maciel - 21-jan-18
 		JsonObject jsonObject = getJsonObjectUpdate(exception);								// M.Maciel - 21-jan-18
-		return response(jsonObject);														// M.Maciel - 21-jan-18
+		return responseSuccess(jsonObject);														// M.Maciel - 21-jan-18
 	}					
 	
 	

@@ -33,7 +33,7 @@ public class FileModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(saveCompressedFile(fileInputStream, filePath));
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 	}
 
 	// save uploaded file with lower size
@@ -107,7 +107,7 @@ public class FileModel extends JsonBuilder {
 
 		if (!f.exists()) {
 			SQLException exception = new SQLException(FILE_NOT_FOUND, null, 4002);
-			return response(getJsonObjectUpdate(exception));
+			return responseSuccess(getJsonObjectUpdate(exception));
 		}
 
 		ResponseBuilder responseBuilder = Response.ok((Object) f);

@@ -11,56 +11,186 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 
 import br.com.gda.dao.StoreDAO;
 import br.com.gda.helper.StoreEmployee;
+import br.com.gda.resource.StoreChecker;
+import br.com.gda.resource.StoreCheckerOperation;
 import br.com.gda.helper.MaterialStore;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.helper.Store;
 
-public class StoreModel extends JsonBuilder {
 
+public class StoreModel extends JsonBuilder {
 	private ArrayList<Store> storeList = new ArrayList<Store>();
 
-	public Response insertStore(String incomingData, String zoneId) {
-
-		ArrayList<Store> storeList = jsonToStoreList(incomingData);
-
-		SQLException exception = new StoreDAO().insertStore(storeList);
-
-		JsonObject jsonObject = getJsonObjectUpdate(exception);
-
-		List<Long> codOwner = storeList.stream().map(m -> m.getCodOwner()).distinct().collect(Collectors.toList());
-
-		List<String> recordMode = new ArrayList<String>();
-		recordMode.add(RecordMode.RECORD_OK);
-
-		jsonObject = mergeJsonObject(jsonObject, selectStoreJson(codOwner, null, null, null, null, null, null, null,
-				null, null, null, null, null, null, null, recordMode, null, true, true, zoneId));
-
-		return response(jsonObject);
+	public Response insertStore(String incomingData) {
+		Response resultResponse = tryToInsertStore(incomingData);	
+		
+		int success = Response.Status.OK.getStatusCode();
+		
+		if (resultResponse.getStatus() == success) 
+			resultResponse = selectStoreFromCnpj(incomingData);
+		
+		return resultResponse;
 	}
+	
+	
+	private Response tryToInsertStore(String incomingData) {
+		Store emptyStore = new Store();
+		
+		//TODO: inserir regra de validação de CNPJ
+		//TODO: levantar os campos obrigatórios do Moip
+		
+		try {
+			ArrayList<Store> stores = jsonToStoreList(incomingData);	
+			StoreChecker updateChecker = StoreChecker.factory(StoreCheckerOperation.INSERT);
 
-	public Response updateStore(String incomingData, String zoneId) {
-
-		ArrayList<Store> storeList = jsonToStoreList(incomingData);
-
-		SQLException exception = new StoreDAO().updateStore(storeList);
-
-		JsonObject jsonObject = getJsonObjectUpdate(exception);
-
-		List<Long> codOwner = storeList.stream().map(m -> m.getCodOwner()).distinct().collect(Collectors.toList());
-
-		List<String> recordMode = new ArrayList<String>();
-		recordMode.add(RecordMode.RECORD_OK);
-
-		jsonObject = mergeJsonObject(jsonObject, selectStoreJson(codOwner, null, null, null, null, null, null, null,
-				null, null, null, null, null, null, null, recordMode, null, true, true, zoneId));
-
-		return response(jsonObject);
-
+			if (! updateChecker.isOperationValid(stores)) {
+				String errorMessage = updateChecker.getFailedExplanation();
+				Response.Status errorCode = updateChecker.getFailedStatus();
+				return makeResponse(errorMessage, errorCode, emptyStore);
+			}
+			
+			new StoreDAO().insertStore(stores);			
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, emptyStore);
+			
+			
+		} catch (JsonParseException e) {
+			return makeResponse(ILLEGAL_ARGUMENT, Response.Status.BAD_REQUEST, emptyStore);
+		} catch (SQLException | IndexOutOfBoundsException e) {
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyStore);
+		}
 	}
+	
+	
+	
+	public Response selectStoreFromCodOwner(String incomingData) {
+		Response resultResponse = tryToSelectStoreFromCodOwner(incomingData);
+		return resultResponse;
+	}
+	
+	
+	
+	private Response tryToSelectStoreFromCodOwner(String incomingData) {
+		Store emptyStore = new Store();
+		
+		try {
+			ArrayList<Store> stores = jsonToStoreList(incomingData);
+			Store oneStore = stores.get(0);
+			
+			List<Store> resultStores = new StoreDAO().selectStoreFromCodOwner(oneStore.getCodOwner());
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, resultStores);
+			
+			
+		} catch (JsonParseException e) {
+			return makeResponse(ILLEGAL_ARGUMENT, Response.Status.BAD_REQUEST, emptyStore);
+		} catch (SQLException e) {
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyStore);
+		}
+	}
+	
+	
+	
+	public Response selectStoreFromCodStore(String incomingData) {
+		Response resultResponse = tryToSelectStoreFromCodStore(incomingData);
+		return resultResponse;
+	}
+	
+	
+	
+	private Response tryToSelectStoreFromCodStore(String incomingData) {
+		Store emptyStore = new Store();
+		
+		try {
+			ArrayList<Store> stores = jsonToStoreList(incomingData);
+			
+			long codOwner = Long.MIN_VALUE;			
+			List<Integer> codStores = new ArrayList<>();
+			
+			for (Store eachStore : stores) {
+				codOwner = eachStore.getCodOwner();
+				codStores.add(eachStore.getCodStore());
+			}
+			
+			
+			List<Store> resultStores = new StoreDAO().selectStoreFromCodStore(codOwner, codStores);
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, resultStores);
+			
+		} catch (SQLException e) {
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyStore);
+		}
+	}
+	
+	
+	
+	public Response selectStoreFromCnpj(String incomingData) {
+		Response resultResponse = tryToSelectStoreFromCnpj(incomingData);
+		return resultResponse;
+	}
+	
+	
+	
+	private Response tryToSelectStoreFromCnpj(String incomingData) {
+		Store emptyStore = new Store();
+		
+		try {
+			ArrayList<Store> stores = jsonToStoreList(incomingData);
+			Store oneStore = stores.get(0);
+			
+			List<Store> resultStores = new StoreDAO().selectStoreFromCnpj(oneStore.getCodOwner(), oneStore.getCnpj());
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, resultStores);
+			
+			
+		} catch (JsonParseException e) {
+			return makeResponse(ILLEGAL_ARGUMENT, Response.Status.BAD_REQUEST, emptyStore);
+		} catch (SQLException e) {
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyStore);
+		}
+	}
+	
+	
+
+	public Response updateStore(String incomingData) {
+		Response resultResponse = tryToUpdateStore(incomingData);		
+		int success = Response.Status.OK.getStatusCode();
+		
+		if (resultResponse.getStatus() == success) {
+			resultResponse = null;
+			resultResponse = selectStoreFromCodStore(incomingData);
+		}
+		
+		return resultResponse;
+	}
+	
+	
+	
+	private Response tryToUpdateStore(String incomingData) {
+		Store emptyStore = new Store();
+		
+		try {
+			ArrayList<Store> stores = jsonToStoreList(incomingData);
+			StoreChecker updateChecker = StoreChecker.factory(StoreCheckerOperation.UPDATE);
+			//TODO: validar mudança de CNPJ
+			if (! updateChecker.isOperationValid(stores)) {
+				String errorMessage = updateChecker.getFailedExplanation();
+				Response.Status errorCode = updateChecker.getFailedStatus();
+				return makeResponse(errorMessage, errorCode, emptyStore);
+			}
+			
+			new StoreDAO().updateStore(stores);
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, stores);
+			
+			
+		} catch (JsonParseException e) {
+			return makeResponse(ILLEGAL_ARGUMENT, Response.Status.BAD_REQUEST, emptyStore);
+		} catch (SQLException e) {
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyStore);
+		}
+	}
+	
+	
 
 	public Response deleteStore(List<Long> codOwner, List<Integer> codStore, List<String> cnpj,
 			List<String> inscEstadual, List<String> inscMunicipal, List<String> razaoSocial, List<String> name,
@@ -72,7 +202,7 @@ public class StoreModel extends JsonBuilder {
 
 		JsonObject jsonObject = getJsonObjectUpdate(exception);
 
-		return response(jsonObject);
+		return responseSuccess(jsonObject);
 
 	}
 
@@ -114,7 +244,6 @@ public class StoreModel extends JsonBuilder {
 									materialStoreModel.selectMaterialStore(codOwnerList, null, codStoreList, null, null,
 											null, null, recordMode, language, null, null, null);
 								} catch (SQLException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 							}
@@ -131,7 +260,6 @@ public class StoreModel extends JsonBuilder {
 											null, null, null, null, null, null, null, null, null, null, null, null,
 											recordMode);
 								} catch (SQLException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 							}
@@ -145,7 +273,6 @@ public class StoreModel extends JsonBuilder {
 						if (tStoreEmployee != null)
 							tStoreEmployee.join();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
@@ -210,7 +337,6 @@ public class StoreModel extends JsonBuilder {
 									materialStoreModel.selectMaterialStore(codOwnerList, null, codStoreList, null, null,
 											null, null, recordMode, language, null, null, null);
 								} catch (SQLException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 							}
@@ -227,7 +353,6 @@ public class StoreModel extends JsonBuilder {
 											null, null, null, null, null, null, null, null, null, null, null, null,
 											recordMode);
 								} catch (SQLException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 							}
@@ -241,7 +366,6 @@ public class StoreModel extends JsonBuilder {
 						if (tStoreEmployee != null)
 							tStoreEmployee.join();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
@@ -322,7 +446,7 @@ public class StoreModel extends JsonBuilder {
 			List<String> country, List<String> state, List<String> phone, List<String> codCurr, List<String> recordMode,
 			List<String> language, Boolean withMaterial, Boolean withEmployee, String zoneId) {
 
-		return response(selectStoreJson(codOwner, codStore, cnpj, inscEstadual, inscMunicipal, razaoSocial, name,
+		return responseSuccess(selectStoreJson(codOwner, codStore, cnpj, inscEstadual, inscMunicipal, razaoSocial, name,
 				address1, address2, postalcode, city, country, state, phone, codCurr, recordMode, language,
 				withMaterial, withEmployee, zoneId));
 	}
@@ -334,7 +458,7 @@ public class StoreModel extends JsonBuilder {
 			List<String> language, Boolean withMaterial, Boolean withEmployee, String zoneId, Float latitude,
 			Float longitude) {
 
-		return response(selectStoreJsonLoc(codOwner, codStore, cnpj, inscEstadual, inscMunicipal, razaoSocial, name,
+		return responseSuccess(selectStoreJsonLoc(codOwner, codStore, cnpj, inscEstadual, inscMunicipal, razaoSocial, name,
 				address1, address2, postalcode, city, country, state, phone, codCurr, recordMode, language,
 				withMaterial, withEmployee, zoneId, latitude, longitude));
 	}
@@ -367,5 +491,4 @@ public class StoreModel extends JsonBuilder {
 		this.storeList = storeList;
 		return storeList;
 	}
-
 }
