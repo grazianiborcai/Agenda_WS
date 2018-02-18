@@ -46,18 +46,8 @@ public class StoreResource {
 
 	@DELETE
 	@Path(DELETE_STORE)
-	public Response deleteStore(@HeaderParam("codOwner") List<Long> codOwner,
-			@QueryParam("codStore") List<Integer> codStore, @QueryParam("cnpj") List<String> cnpj,
-			@QueryParam("inscEstadual") List<String> inscEstadual,
-			@QueryParam("inscMunicipal") List<String> inscMunicipal,
-			@QueryParam("razaoSocial") List<String> razaoSocial, @QueryParam("name") List<String> name,
-			@QueryParam("address1") List<String> address1, @QueryParam("address2") List<String> address2,
-			@QueryParam("postalcode") List<Integer> postalcode, @QueryParam("city") List<String> city,
-			@QueryParam("country") List<String> country, @QueryParam("state") List<String> state,
-			@QueryParam("codCurr") List<String> codCurr, @QueryParam("recordMode") List<String> recordMode) {
-
-		return new StoreModel().deleteStore(codOwner, codStore, cnpj, inscEstadual, inscMunicipal, razaoSocial, name,
-				address1, address2, postalcode, city, country, state, codCurr, recordMode);
+	public Response deleteStore(@HeaderParam("codOwner") long codOwner, @HeaderParam("codStore") int codStore) {
+		return new StoreModel().deleteStore(codOwner, codStore);
 	}
 
 	@GET
@@ -77,6 +67,7 @@ public class StoreResource {
 			@DefaultValue("true") @QueryParam("withMaterial") Boolean withMaterial,
 			@DefaultValue("true") @QueryParam("withEmployee") Boolean withEmployee) {
 
+		//TODO: precisa investigar a chamada do iOS para que o refactoring aqui não quebre a chamada iOS
 		return new StoreModel().selectStoreResponse(codOwner, codStore, cnpj, inscEstadual, inscMunicipal, razaoSocial,
 				name, address1, address2, postalcode, city, country, state, phone, codCurr, recordMode, language,
 				withMaterial, withEmployee, zoneId);

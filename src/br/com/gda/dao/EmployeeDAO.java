@@ -10,61 +10,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.dao.helper.EmployeeHelper;
+import br.com.gda.dao.helper.MaterialHelper;
 import br.com.gda.db.ConnectionBD;
 import br.com.gda.helper.Employee;
 import br.com.gda.helper.RecordMode;
 
 public class EmployeeDAO extends ConnectionBD {
 
-	public SQLException insertEmployee(ArrayList<Employee> employeeList) {
-
+	public void insertEmployee(List<Employee> employeeList) throws SQLException {
 		Connection conn = null;
 		PreparedStatement insertStmt = null;
+		PreparedStatement selectStmt = null;
+		ResultSet resultSet = null;
 
 		try {
-
 			conn = getConnection();
 			conn.setAutoCommit(false);
 
 			insertStmt = conn.prepareStatement(EmployeeHelper.ST_IN_ALL);
+			selectStmt = conn.prepareStatement(EmployeeHelper.ST_SELECT_LAST_INSERT_ID);
 
 			for (Employee employee : employeeList) {
-
 				prepareInsert(insertStmt, employee);
+				insertStmt.executeBatch();
+				resultSet = selectStmt.executeQuery();
+				
+				if (resultSet.next())
+					employee.setCodEmployee(resultSet.getInt(MaterialHelper.LAST_INSERT_ID));
 			}
-
-			insertStmt.executeBatch();
-
+			
 			conn.commit();
 
-			return new SQLException(INSERT_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, insertStmt);
 		}
 
 	}
 
-	public SQLException updateEmployee(ArrayList<Employee> employeeList) {
-
+	public void updateEmployee(List<Employee> employeeList) throws SQLException {
 		Connection conn = null;
 		PreparedStatement insertStmtT01 = null;
 		PreparedStatement updateStmtT01 = null;
 
 		try {
-
 			conn = getConnection();
 			conn.setAutoCommit(false);
 
 			insertStmtT01 = conn.prepareStatement(EmployeeHelper.ST_IN_ALL);
-
 			updateStmtT01 = conn.prepareStatement(EmployeeHelper.ST_UP_ALL);
 
 			for (Employee employee : employeeList) {
@@ -109,56 +104,36 @@ public class EmployeeDAO extends ConnectionBD {
 			}
 
 			insertStmtT01.executeBatch();
-
 			updateStmtT01.executeBatch();
-
 			conn.commit();
 
-			return new SQLException(UPDATE_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, insertStmtT01, updateStmtT01);
 		}
 	}
 
-	public SQLException deleteEmployee(List<Long> codOwner, List<Integer> codEmployee, List<String> cpf,
-			List<String> password, List<String> name, List<Byte> codPosition, List<Byte> codGender,
-			List<String> bornDate, List<String> email, List<String> address1, List<String> address2,
-			List<Integer> postalcode, List<String> city, List<String> country, List<String> state, List<String> phone,
-			List<String> recordMode) {
-
+	public void deleteEmployee(long codOwner, int codEmployee) throws SQLException {
 		Connection conn = null;
 		PreparedStatement deleteStmt = null;
 
 		try {
-
 			conn = getConnection();
-			conn.setAutoCommit(false);
-
-			deleteStmt = conn.prepareStatement(new EmployeeHelper().prepareDelete(codOwner, codEmployee, cpf, password,
-					name, codPosition, codGender, bornDate, email, address1, address2, postalcode, city, country, state,
-					phone, recordMode));
+			conn.setAutoCommit(false);			
+			
+			deleteStmt = conn.prepareStatement(EmployeeHelper.ST_FLAG_AS_DELETED);			
+			deleteStmt.setString(1, RecordMode.RECORD_DELETED);
+			deleteStmt.setLong(2, codOwner);
+			deleteStmt.setInt(3, codEmployee);
 
 			deleteStmt.execute();
-
 			conn.commit();
 
-			return new SQLException(DELETE_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, deleteStmt);
 		}
@@ -219,8 +194,8 @@ public class EmployeeDAO extends ConnectionBD {
 		insertStmt.setString(14, employee.getState());
 		insertStmt.setString(15, employee.getPhone());
 		insertStmt.setString(16, RecordMode.RECORD_OK);
-		insertStmt.setTime(17, Time.valueOf(employee.getBeginTime()));
-		insertStmt.setTime(18, Time.valueOf(employee.getEndTime()));
+		insertStmt.setTime(17, employee.getBeginTime() == null ? null : Time.valueOf(employee.getBeginTime()));
+		insertStmt.setTime(18, employee.getBeginTime() == null ? null : Time.valueOf(employee.getEndTime()));
 
 		insertStmt.addBatch();
 	}

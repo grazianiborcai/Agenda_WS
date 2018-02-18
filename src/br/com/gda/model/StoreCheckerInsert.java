@@ -1,10 +1,9 @@
-package br.com.gda.resource;
+package br.com.gda.model;
 
 import javax.ws.rs.core.Response.Status;
 
 import br.com.gda.helper.RecordMode;
 import br.com.gda.helper.Store;
-import br.com.gda.model.JsonBuilder;
 
 final class StoreCheckerInsert extends StoreCheckerAbstract {
 	protected StoreCheckerInsert() {
@@ -13,7 +12,7 @@ final class StoreCheckerInsert extends StoreCheckerAbstract {
 	
 	
 	
-	@Override protected boolean isRecordModeValidHook(Store store) {
+	@Override protected boolean checkRecordModeHook(Store store) {
 		if (store.getRecordMode().equals(RecordMode.RECORD_OK) ||
 			store.getRecordMode().equals(RecordMode.ISNEW))
 			return true;
@@ -25,30 +24,30 @@ final class StoreCheckerInsert extends StoreCheckerAbstract {
 	
 	
 	
-	@Override protected boolean isMandatoryFieldEmptyHook(Store store) {
+	@Override protected boolean checkMandatoryFieldHook(Store store) {
 		if (store.getAddress1() 	== null ||
-				store.getAddress2() 	== null ||
-				store.getCity() 		== null ||
-				store.getState() 		== null ||
-				store.getCnpj() 		== null ||
-				store.getCodOwner() 	== null ||
-				store.getCountry() 		== null ||
-				store.getName() 		== null ||
-				store.getPhone() 		== null ||
-				store.getPostalcode() 	== null ||
-				store.getRazaoSocial() 	== null) {
-				
-				this.failMsg = JsonBuilder.ILLEGAL_ARGUMENT;
-				this.failStatus = Status.BAD_REQUEST;
-				return true;
-			}
+			store.getAddress2() 	== null ||
+			store.getCity() 		== null ||
+			store.getState() 		== null ||
+			store.getCnpj() 		== null ||
+			store.getCodOwner() 	== null ||
+			store.getCountry() 		== null ||
+			store.getName() 		== null ||
+			store.getPhone() 		== null ||
+			store.getPostalcode() 	== null ||
+			store.getRazaoSocial() 	== null) {
 			
+			this.failMsg = JsonBuilder.ILLEGAL_ARGUMENT;
+			this.failStatus = Status.BAD_REQUEST;
 			return false;
+		}
+		
+		return true;
 	}
 	
 	
 	
-	@Override protected boolean isStoreExistHook(Store store) {		
+	@Override protected boolean checkStoreExistHook(Store store) {		
 		Store selectedStore = tryToSelectStoreFromCnpj(store);
 		
 		if (selectedStore.getCodStore() != null) {

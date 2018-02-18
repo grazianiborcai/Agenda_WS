@@ -20,9 +20,9 @@ public class ConnectionBD extends GdaDB {
 	private static final String CLOSE_CONNECTION_PROBLEM = "There is a problem to close the connection";
 	private static final String OPEN_CONNECTION_PROBLEM = "There is a problem to open the connection";
 
-	protected static final String INSERT_OK = "Records inserted";
-	protected static final String UPDATE_OK = "Records updated";
-	protected static final String DELETE_OK = "Records deleted";
+	public static final String INSERT_OK = "Records inserted";
+	public static final String UPDATE_OK = "Records updated";
+	public static final String DELETE_OK = "Records deleted";
 
 	public Connection getConnection() {
 		Connection con = null;

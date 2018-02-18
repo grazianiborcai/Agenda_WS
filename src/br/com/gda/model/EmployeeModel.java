@@ -7,85 +7,116 @@ import java.util.stream.Collectors;
 
 import javax.ws.rs.core.Response;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 
 import br.com.gda.dao.EmployeeDAO;
 import br.com.gda.helper.Employee;
 import br.com.gda.helper.RecordMode;
 
 public class EmployeeModel extends JsonBuilder {
-
 	private static final String EMPLOYEE = "Employee";
 	private ArrayList<Employee> employeeList = new ArrayList<Employee>();
 
+	
+	
 	public Response insertEmployee(String incomingData) {
-
-		@SuppressWarnings("unchecked")
-		ArrayList<Employee> employeeList = (ArrayList<Employee>) jsonToObjectList(incomingData, Employee.class);
-
-		SQLException exception = new EmployeeDAO().insertEmployee(employeeList);
-
-		JsonObject jsonObject = getJsonObjectUpdate(exception);
-
-		if (exception.getErrorCode() == 200) {
-			List<Long> codOwner = employeeList.stream().map(m -> m.getCodOwner()).distinct()
-					.collect(Collectors.toList());
-
-			List<String> recordMode = new ArrayList<String>();
-			recordMode.add(RecordMode.RECORD_OK);
-
-			jsonObject = mergeJsonObject(jsonObject, selectEmployeeJson(codOwner, null, null, null, null, null, null,
-					null, null, null, null, null, null, null, null, null, recordMode, true));
-		} else {
-			JsonElement jsonElement = new JsonArray();
-			SQLException ex = new SQLException();
-			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
-		}
-		return responseSuccess(jsonObject);
+		Response resultResponse = tryToInsertEmployee(incomingData);
+		return resultResponse;
 	}
-
+	
+	
+	
+	private Response tryToInsertEmployee(String incomingData) {
+		Employee emptyEmployee = new Employee();
+		
+		try {
+			List<Employee> employees = jsonToEmployeeList(incomingData);
+			
+			new EmployeeDAO().insertEmployee(employees);			
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, employees);
+			
+			
+		} catch (JsonParseException e) {
+			return makeResponse(ILLEGAL_ARGUMENT, Response.Status.BAD_REQUEST, emptyEmployee);
+		} catch (SQLException | IndexOutOfBoundsException e) {
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyEmployee);
+		}
+	}
+	
+	
+	
+	public Response deleteEmployee(long codOwner, int codEmployee) {
+		Response resultResponse = tryToDeleteEmployee(codOwner, codEmployee);
+		return resultResponse;
+	}
+	
+	
+	
+	private Response tryToDeleteEmployee(long codOwner, int codEmployee) {
+		Employee emptyEmployee = new Employee();
+		
+		try {
+			new EmployeeDAO().deleteEmployee(codOwner, codEmployee);
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, emptyEmployee);
+		
+		} catch (SQLException e) {
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyEmployee);
+		}
+	}
+	
+	
+	
 	public Response updateEmployee(String incomingData) {
-
-		@SuppressWarnings("unchecked")
-		ArrayList<Employee> employeeList = (ArrayList<Employee>) jsonToObjectList(incomingData, Employee.class);
-
-		SQLException exception = new EmployeeDAO().updateEmployee(employeeList);
-
-		JsonObject jsonObject = getJsonObjectUpdate(exception);
-
-		if (exception.getErrorCode() == 200) {
-			List<Long> codOwner = employeeList.stream().map(m -> m.getCodOwner()).distinct()
-					.collect(Collectors.toList());
-
-			List<String> recordMode = new ArrayList<String>();
-			recordMode.add(RecordMode.RECORD_OK);
-
-			jsonObject = mergeJsonObject(jsonObject, selectEmployeeJson(codOwner, null, null, null, null, null, null,
-					null, null, null, null, null, null, null, null, null, recordMode, true));
-		} else {
-			JsonElement jsonElement = new JsonArray();
-			SQLException ex = new SQLException();
-			jsonObject = mergeJsonObject(jsonObject, getJsonObjectSelect(jsonElement, ex));
+		Response responseResult = tryToUpdateEmployee(incomingData);
+		return responseResult;
+	}
+	
+	
+	
+	private Response tryToUpdateEmployee(String incomingData) {
+		Employee emptyEmployee = new Employee();
+		
+		try {
+			List<Employee> employees = jsonToEmployeeList(incomingData);
+			
+			new EmployeeDAO().updateEmployee(employees);			
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, employees);
+			
+			
+		} catch (JsonParseException e) {
+			return makeResponse(ILLEGAL_ARGUMENT, Response.Status.BAD_REQUEST, emptyEmployee);
+		} catch (SQLException | IndexOutOfBoundsException e) {
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyEmployee);
 		}
-		return responseSuccess(jsonObject);
 	}
+	
+	
+	
+	private List<Employee> jsonToEmployeeList(String incomingData) {
+		List<Employee> employees = new ArrayList<>();
+		Gson gson = new Gson();
+		JsonParser parser = new JsonParser();
 
-	public Response deleteEmployee(List<Long> codOwner, List<Integer> codEmployee, List<String> cpf,
-			List<String> password, List<String> name, List<Byte> codPosition, List<Byte> codGender,
-			List<String> bornDate, List<String> email, List<String> address1, List<String> address2,
-			List<Integer> postalcode, List<String> city, List<String> country, List<String> state, List<String> phone,
-			List<String> recordMode) {
+		if (parser.parse(incomingData).isJsonArray()) {
+			JsonArray array = parser.parse(incomingData).getAsJsonArray();
 
-		SQLException exception = new EmployeeDAO().deleteEmployee(codOwner, codEmployee, cpf, password, name,
-				codPosition, codGender, bornDate, email, address1, address2, postalcode, city, country, state, phone,
-				recordMode);
+			for (int i = 0; i < array.size(); i++) {
+				employees.add(gson.fromJson(array.get(i), Employee.class));
+			}
+		} else {
+			JsonObject object = parser.parse(incomingData).getAsJsonObject();
+			employees.add(gson.fromJson(object, Employee.class));
+		}
 
-		JsonObject jsonObject = getJsonObjectUpdate(exception);
-
-		return responseSuccess(jsonObject);
+		return employees;
 	}
+	
+
 
 	public ArrayList<Employee> selectEmployee(List<Long> codOwner, List<Integer> codEmployee, List<String> cpf,
 			List<String> password, List<String> name, List<Byte> codPosition, List<Byte> codGender,

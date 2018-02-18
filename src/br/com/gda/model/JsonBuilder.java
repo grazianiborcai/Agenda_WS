@@ -46,6 +46,7 @@ public class JsonBuilder {
 	public static final String USER_ALREADY_EXIST = "User datails already taken";
 	public static final String STORED_ALREADY_EXIST = "CNPJ already taken";
 	public static final String STORE_NOT_FOUND = "Store not found";
+	public static final String MATERIAL_NOT_FOUND = "Material not found";
 
 	protected static final String UPDATED_PROCESS = "updatedProcess";
 	

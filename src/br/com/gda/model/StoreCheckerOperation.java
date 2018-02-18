@@ -1,4 +1,4 @@
-package br.com.gda.resource;
+package br.com.gda.model;
 
 public enum StoreCheckerOperation {
 	UPDATE {
@@ -10,6 +10,12 @@ public enum StoreCheckerOperation {
 	INSERT {
 		@Override protected StoreChecker getInstanceOfStoreChecker() {
 			return new StoreCheckerInsert();
+		}
+	},
+	
+	DELETE {
+		@Override protected StoreChecker getInstanceOfStoreChecker() {
+			return new StoreCheckerDelete();
 		}
 	};
 	

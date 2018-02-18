@@ -1,20 +1,19 @@
-package br.com.gda.resource;
+package br.com.gda.model;
 
 import javax.ws.rs.core.Response.Status;
 
 import br.com.gda.helper.RecordMode;
 import br.com.gda.helper.Store;
-import br.com.gda.model.JsonBuilder;
 
-final class StoreCheckerUpdate extends StoreCheckerAbstract {
-	protected StoreCheckerUpdate() {
+final class StoreCheckerDelete extends StoreCheckerAbstract {
+	protected StoreCheckerDelete() {
 		super();
 	}
 	
 	
-	@Override protected boolean isRecordModeValidHook(Store store) {
-		if (store.getRecordMode().equals(RecordMode.RECORD_OK) ||
-			store.getRecordMode().equals(RecordMode.ISUPDATED))
+	@Override protected boolean checkRecordModeHook(Store store) {
+		if (store.getRecordMode().equals(RecordMode.ISDELETED) ||
+			store.getRecordMode().equals(RecordMode.RECORD_DELETED))
 			return true;
 			
 		this.failMsg = JsonBuilder.ILLEGAL_ARGUMENT;	
@@ -24,7 +23,7 @@ final class StoreCheckerUpdate extends StoreCheckerAbstract {
 	
 	
 	
-	@Override protected boolean isStoreExistHook(Store store) {		
+	@Override protected boolean checkStoreExistHook(Store store) {		
 		Store oldStore = tryToSelectStoreFromCodStore(store);
 		
 		if (oldStore.getCodStore() == null) {

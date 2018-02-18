@@ -42,6 +42,9 @@ public class StoreHelper extends GdaDB {
 			+ " WHERE " + FIELD01 + "=? AND " + FIELD02 + "=?";
 
 	public static final String ST_DELETE = "DELETE FROM " + SCHEMA + "." + TABLE;
+	
+	public static final String ST_FLAG_AS_DELETE = "UPDATE " + SCHEMA + "." + TABLE + " SET " + FIELD16 + "=?"
+			+ " WHERE " + FIELD01 + "=? AND " + FIELD02 + "=?";
 
 	public static final String ST_SELECT = "SELECT * FROM " + SCHEMA + "." + TABLE;
 
@@ -79,18 +82,16 @@ public class StoreHelper extends GdaDB {
 		return store;
 	}
 
-	public String prepareDelete(List<Long> codOwner, List<Integer> codStore, List<String> cnpj,
-			List<String> inscEstadual, List<String> inscMunicipal, List<String> razaoSocial, List<String> name,
-			List<String> address1, List<String> address2, List<Integer> postalcode, List<String> city,
-			List<String> country, List<String> state, List<String> codCurr, List<String> recordMode) {
+	public String prepareDelete(List<Long> codOwner, List<Integer> codStore, List<String> recordMode) {
 
-		String stmt = ST_DELETE;
+		String stmt = ST_FLAG_AS_DELETE;
 
-		stmt = prepareWhereClause(stmt, prepareStoreWhere(codOwner, codStore, cnpj, inscEstadual, inscMunicipal,
-				razaoSocial, name, address1, address2, postalcode, city, country, state, null, codCurr, recordMode));
+		stmt = prepareWhereClause(stmt, prepareStoreWhere(codOwner, codStore, null, null, null,
+				null, null, null, null, null, null, null, null, null, null, null));
 
 		return stmt;
 	}
+		
 
 	public String prepareSelect(List<Long> codOwner, List<Integer> codStore, List<String> cnpj,
 			List<String> inscEstadual, List<String> inscMunicipal, List<String> razaoSocial, List<String> name,

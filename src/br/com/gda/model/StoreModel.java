@@ -16,9 +16,8 @@ import com.google.gson.JsonParser;
 
 import br.com.gda.dao.StoreDAO;
 import br.com.gda.helper.StoreEmployee;
-import br.com.gda.resource.StoreChecker;
-import br.com.gda.resource.StoreCheckerOperation;
 import br.com.gda.helper.MaterialStore;
+import br.com.gda.helper.RecordMode;
 import br.com.gda.helper.Store;
 
 
@@ -45,11 +44,11 @@ public class StoreModel extends JsonBuilder {
 		
 		try {
 			ArrayList<Store> stores = jsonToStoreList(incomingData);	
-			StoreChecker updateChecker = StoreChecker.factory(StoreCheckerOperation.INSERT);
+			StoreChecker insertChecker = StoreChecker.factory(StoreCheckerOperation.INSERT);
 
-			if (! updateChecker.isOperationValid(stores)) {
-				String errorMessage = updateChecker.getFailedExplanation();
-				Response.Status errorCode = updateChecker.getFailedStatus();
+			if (! insertChecker.checkOperation(stores)) {
+				String errorMessage = insertChecker.getFailedExplanation();
+				Response.Status errorCode = insertChecker.getFailedStatus();
 				return makeResponse(errorMessage, errorCode, emptyStore);
 			}
 			
@@ -173,7 +172,7 @@ public class StoreModel extends JsonBuilder {
 			ArrayList<Store> stores = jsonToStoreList(incomingData);
 			StoreChecker updateChecker = StoreChecker.factory(StoreCheckerOperation.UPDATE);
 			//TODO: validar mudança de CNPJ
-			if (! updateChecker.isOperationValid(stores)) {
+			if (! updateChecker.checkOperation(stores)) {
 				String errorMessage = updateChecker.getFailedExplanation();
 				Response.Status errorCode = updateChecker.getFailedStatus();
 				return makeResponse(errorMessage, errorCode, emptyStore);
@@ -192,19 +191,45 @@ public class StoreModel extends JsonBuilder {
 	
 	
 
-	public Response deleteStore(List<Long> codOwner, List<Integer> codStore, List<String> cnpj,
-			List<String> inscEstadual, List<String> inscMunicipal, List<String> razaoSocial, List<String> name,
-			List<String> address1, List<String> address2, List<Integer> postalcode, List<String> city,
-			List<String> country, List<String> state, List<String> codCurr, List<String> recordMode) {
-
-		SQLException exception = new StoreDAO().deleteStore(codOwner, codStore, cnpj, inscEstadual, inscMunicipal,
-				razaoSocial, name, address1, address2, postalcode, city, country, state, codCurr, recordMode);
-
-		JsonObject jsonObject = getJsonObjectUpdate(exception);
-
-		return responseSuccess(jsonObject);
-
+	public Response deleteStore(long codOwner, int codStore) {
+		Response resultResponse = tryToDeleteStore(codOwner, codStore);
+		return resultResponse;
 	}
+	
+	
+	
+	private Response tryToDeleteStore(long codOwner, int codStore) {
+		Store emptyStore = new Store();
+		
+		try {
+			Store store = initStoreForDeletion(codOwner, codStore);		
+			StoreChecker deleteChecker = StoreChecker.factory(StoreCheckerOperation.DELETE);
+			
+			if (! deleteChecker.checkOperation(store)) {
+				String errorMessage = deleteChecker.getFailedExplanation();
+				Response.Status errorCode = deleteChecker.getFailedStatus();
+				return makeResponse(errorMessage, errorCode, emptyStore);
+			}
+		
+			new StoreDAO().deleteStore(store);
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, emptyStore);
+		
+		} catch (SQLException e) {
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyStore);
+		}
+	}
+	
+	
+	
+	private Store initStoreForDeletion(long codOwner, int codStore) {
+		Store store = new Store();
+		store.setCodOwner(codOwner);
+		store.setCodStore(codStore);
+		store.setRecordMode(RecordMode.RECORD_DELETED);
+		return store;
+	}
+	
+	
 
 	public ArrayList<Store> selectStore(List<Long> codOwner, List<Integer> codStore, List<String> cnpj,
 			List<String> inscEstadual, List<String> inscMunicipal, List<String> razaoSocial, List<String> name,

@@ -31,6 +31,8 @@ public class EmployeeHelper extends GdaDB {
 	public static final String FIELD17 = "Record_mode";
 	public static final String FIELD18 = "Begin_time";
 	public static final String FIELD19 = "End_time";
+	
+	public static final String ST_SELECT_LAST_INSERT_ID = "SELECT " + LAST_INSERT_ID;
 
 	public static final String ST_IN_ALL = "INSERT INTO " + SCHEMA + "." + TABLE + " (" + FIELD01 + ", " + FIELD03
 			+ ", " + FIELD04 + ", " + FIELD05 + ", " + FIELD06 + ", " + FIELD07 + ", " + FIELD08 + ", " + FIELD09 + ", "
@@ -45,6 +47,9 @@ public class EmployeeHelper extends GdaDB {
 			+ "=?" + ", " + FIELD18 + "=?" + ", " + FIELD19 + "=?" + " WHERE " + FIELD01 + "=? AND " + FIELD02 + "=?";
 
 	public static final String ST_DELETE = "DELETE FROM " + SCHEMA + "." + TABLE;
+	
+	public static final String ST_FLAG_AS_DELETED = "UPDATE " + SCHEMA + "." + TABLE + " SET " + FIELD17 + "=?"
+			+ " WHERE " + FIELD01 + "=? AND " + FIELD02 + "=?";
 
 	public static final String ST_SELECT = "SELECT * FROM " + SCHEMA + "." + TABLE;
 

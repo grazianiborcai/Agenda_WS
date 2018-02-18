@@ -20,8 +20,8 @@ import br.com.gda.helper.RecordMode;
 
 public class MaterialDAO extends ConnectionBD {
 
-	public SQLException insertMaterial(ArrayList<Material> materialList) {
-
+	public void insertMaterial(List<Material> materialList) throws SQLException {
+		//TODO: receber Material ao invés de List
 		Connection conn = null;
 		PreparedStatement insertStmtT01 = null;
 		PreparedStatement insertStmtT02 = null;
@@ -30,63 +30,49 @@ public class MaterialDAO extends ConnectionBD {
 		ResultSet resultSet = null;
 
 		try {
-
 			conn = getConnection();
 			conn.setAutoCommit(false);
 
 			insertStmtT01 = conn.prepareStatement(MaterialHelper.ST_IN_ALL_FIELD);
-
 			insertStmtT02 = conn.prepareStatement(MaterialTextHelper.ST_IN_ALL_FIELD);
-
 			insertStmtT03 = conn.prepareStatement(MaterialDetailHelper.ST_IN_ALL_FIELD);
-
 			selectStmt = conn.prepareStatement(MaterialHelper.ST_SELECT_LAST_INSERT_ID);
 
 			for (Material material : materialList) {
-
 				prepareMaterialInsert(insertStmtT01, material);
 
 				for (MaterialText materialText : material.getMaterialText()) {
-
 					prepareMaterialTextInsert(insertStmtT02, material, materialText);
 				}
 
 				for (MaterialDetail detailMat : material.getDetailMat()) {
-
 					prepareMaterialDetailInsert(insertStmtT03, material, detailMat);
 				}
 
 				insertStmtT01.executeBatch();
-
 				resultSet = selectStmt.executeQuery();
 
 				if (resultSet.next())
 					material.setCodMaterial(resultSet.getInt(MaterialHelper.LAST_INSERT_ID));
+				
 
 				insertStmtT02.executeBatch();
-
 				insertStmtT03.executeBatch();
 			}
 
 			conn.commit();
 
-			return new SQLException(INSERT_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, insertStmtT01, insertStmtT02, insertStmtT03, selectStmt, resultSet);
 		}
-
 	}
+	
 
 	@SuppressWarnings("resource")
-	public SQLException updateMaterial(ArrayList<Material> materialList) {
+	public void updateMaterial(List<Material> materialList) throws SQLException {
 
 		Connection conn = null;
 		PreparedStatement insertStmtT01 = null;
@@ -111,26 +97,17 @@ public class MaterialDAO extends ConnectionBD {
 			conn.setAutoCommit(false);
 
 			insertStmtT01 = conn.prepareStatement(MaterialHelper.ST_IN_ALL_FIELD);
-
 			insertStmtT02 = conn.prepareStatement(MaterialTextHelper.ST_IN_ALL_FIELD);
-
 			insertStmtT03 = conn.prepareStatement(MaterialDetailHelper.ST_IN_ALL_FIELD);
-
 			updateStmtT01 = conn.prepareStatement(MaterialHelper.ST_UP_ALL_FIELD_BY_FULL_KEY);
-
 			updateStmtT02 = conn.prepareStatement(MaterialTextHelper.ST_UP_ALL_FIELD);
-
 			updateStmtT03 = conn.prepareStatement(MaterialDetailHelper.ST_UP_ALL_FIELD_BY_MATERIAL);
-
 			updateStmtT04 = conn.prepareStatement(MaterialDetailHelper.ST_UP_ALL_FIELD_BY_FULL_KEY);
-
 			updateStmtT06 = conn.prepareStatement(MenuItemHelper.ST_UP_RECORD_MODE_BY_MATERIAL);
-			
 			selectStmt = conn.prepareStatement(MaterialHelper.ST_SELECT_LAST_INSERT_ID);
 
 			MaterialDetailHelper materialDetailHelper = new MaterialDetailHelper();
 			for (Material material : materialList) {
-
 				List<Integer> codDetail = new ArrayList<Integer>();
 
 				if ((material.getRecordMode() != null && material.getRecordMode().equals(RecordMode.ISNEW))
@@ -287,26 +264,18 @@ public class MaterialDAO extends ConnectionBD {
 			}
 
 			updateStmtT01.executeBatch();
-
 			updateStmtT02.executeBatch();
-
 			updateStmtT03.executeBatch();
-
 			updateStmtT04.executeBatch();
-
 			updateStmtT06.executeBatch();
 
 			conn.commit();
 
-			return new SQLException(UPDATE_OK, null, 200);
+			
 
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, deleteStmtT01, deleteStmtT02, insertStmtT01, insertStmtT02, insertStmtT03,
 					updateStmtT01, updateStmtT02, updateStmtT03, updateStmtT04, updateStmtT05, updateStmtT06,
@@ -314,33 +283,25 @@ public class MaterialDAO extends ConnectionBD {
 		}
 	}
 
-	public SQLException deleteMaterial(List<Long> codOwner, List<Integer> codMaterial, List<Integer> codCategory,
-			List<Integer> codType, List<String> image, List<String> barCode, List<String> recordMode) {
-
+	public void deleteMaterial(long codOwner, int codMaterial) throws SQLException {
 		Connection conn = null;
 		PreparedStatement deleteStmt = null;
 
 		try {
-
 			conn = getConnection();
-			conn.setAutoCommit(false);
+			conn.setAutoCommit(false);			
 
-			deleteStmt = conn.prepareStatement(new MaterialHelper().prepareDelete(codOwner, codMaterial, codCategory,
-					codType, image, barCode, recordMode));
+			deleteStmt = conn.prepareStatement(MaterialHelper.ST_FLAG_AS_DELETED);			
+			deleteStmt.setString(1, RecordMode.RECORD_DELETED);
+			deleteStmt.setLong(2, codOwner);
+			deleteStmt.setInt(3, codMaterial);
 
 			deleteStmt.execute();
-
 			conn.commit();
 
-			return new SQLException(DELETE_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, deleteStmt);
 		}
@@ -380,6 +341,82 @@ public class MaterialDAO extends ConnectionBD {
 			closeConnection(conn, selectStmt, resultSet);
 		}
 	}
+	
+	
+	
+	public Material selectMaterialFromCodeMat(long codOwner, int codMaterial) throws SQLException {
+		ArrayList<Material> materialList = new ArrayList<Material>();
+		Connection conn = null;
+		PreparedStatement selectStmt = null;
+		ResultSet resultSet = null;
+
+		try {
+			conn = getConnection();
+			MaterialHelper materialHelper = new MaterialHelper();
+			
+			List<Long> codOwners = new ArrayList<>();
+			codOwners.add(codOwner);
+			
+			List<Integer> codMaterials = new ArrayList<>();
+			codMaterials.add(codMaterial);
+
+			selectStmt = conn.prepareStatement(materialHelper.prepareSelect(codOwners, codMaterials, null, null,
+					null, null, null, null, null, null, null));
+
+			resultSet = selectStmt.executeQuery();
+
+			while (resultSet.next()) {
+				materialHelper.assignResultWithText(materialList, resultSet);
+			}
+			
+			if (materialList.isEmpty())
+				return new Material();
+			else
+				return materialList.get(0);
+			
+
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			closeConnection(conn, selectStmt, resultSet);
+		}
+	}
+	
+	
+	
+	public List<Material> selectMaterialFromCodeOwner(long codOwner) throws SQLException {
+		ArrayList<Material> materials = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement selectStmt = null;
+		ResultSet resultSet = null;
+
+		try {
+			conn = getConnection();
+			MaterialHelper materialHelper = new MaterialHelper();
+			
+			List<Long> codOwners = new ArrayList<>();
+			codOwners.add(codOwner);
+
+			selectStmt = conn.prepareStatement(materialHelper.prepareSelect(codOwners, null, null, null,
+					null, null, null, null, null, null, null));
+
+			resultSet = selectStmt.executeQuery();
+
+			while (resultSet.next()) {
+				materialHelper.assignResultWithText(materials, resultSet);
+			}
+			
+			return materials;
+			
+
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			closeConnection(conn, selectStmt, resultSet);
+		}
+	}
+	
+	
 
 	private void prepareMaterialInsert(PreparedStatement insertStmtT01, Material material) throws SQLException {
 

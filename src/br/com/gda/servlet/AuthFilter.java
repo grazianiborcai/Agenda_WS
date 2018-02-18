@@ -22,7 +22,7 @@ import br.com.gda.helper.Customer;
 import br.com.gda.helper.Owner;
 import br.com.gda.model.OwnerModel;
 
-//TODO: melhorar as mensagens de resposta para ficar no mesmo padrão
+//TODO: melhorar as mensagens de resposta para ficar no mesmo padrão (makeResponse)
 public class AuthFilter implements ContainerRequestFilter {
 	private static final HashSet<String> requestAuthNotRequired = new HashSet<>();
 	HtmlRequestHeaderAttr headerAttr;
@@ -75,6 +75,7 @@ public class AuthFilter implements ContainerRequestFilter {
 		getUserInfo();
 		
 		//TODO: obter o ownerCode do banco e confrontar com o passado
+		//TODO: implementar perfil de acesso
 		if (isHtmlRequestFreeOfAuthentication()) {
 			containerRequest.setHeaders(this.headerAttr.getNewInputHeader());
 			return containerRequest;
@@ -98,7 +99,9 @@ public class AuthFilter implements ContainerRequestFilter {
 	private boolean isHtmlMethodBlackListed() {
 		String methodName = this.headerAttr.getHtmlMethod();
 		
-		if (methodName.equals("POST") || methodName.equals("GET")) {
+		if (methodName.equals("POST") || 
+			methodName.equals("GET")  || 
+			methodName.equals("DELETE")  ) {
 			return false;
 		}
 		

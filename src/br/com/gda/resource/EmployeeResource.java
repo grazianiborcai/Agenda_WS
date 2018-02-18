@@ -32,6 +32,7 @@ public class EmployeeResource {
 		return new EmployeeModel().insertEmployee(incomingData);
 	}
 
+	
 	@POST
 	@Path(UPDATE_EMPLOYEE)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -40,22 +41,17 @@ public class EmployeeResource {
 		return new EmployeeModel().updateEmployee(incomingData);
 	}
 
+	
+	
 	@DELETE
 	@Path(DELETE_EMPLOYEE)
-	public Response deleteEmployee(@HeaderParam("codOwner") List<Long> codOwner,
-			@QueryParam("codEmployee") List<Integer> codEmployee, @QueryParam("cpf") List<String> cpf,
-			@QueryParam("password") List<String> password, @QueryParam("name") List<String> name,
-			@QueryParam("codPosition") List<Byte> codPosition, @QueryParam("codGender") List<Byte> codGender,
-			@QueryParam("bornDate") List<String> bornDate, @QueryParam("email") List<String> email,
-			@QueryParam("address1") List<String> address1, @QueryParam("address2") List<String> address2,
-			@QueryParam("postalcode") List<Integer> postalcode, @QueryParam("city") List<String> city,
-			@QueryParam("country") List<String> country, @QueryParam("state") List<String> state,
-			@QueryParam("phone") List<String> phone, @QueryParam("recordMode") List<String> recordMode) {
+	public Response deleteEmployee(@HeaderParam("codOwner") long codOwner,
+								   @HeaderParam("codEmployee") int codEmployee) {
 
-		return new EmployeeModel().deleteEmployee(codOwner, codEmployee, cpf, password, name, codPosition, codGender,
-				bornDate, email, address1, address2, postalcode, city, country, state, phone, recordMode);
+		return new EmployeeModel().deleteEmployee(codOwner, codEmployee);
 	}
 
+	
 	@GET
 	@Path(SELECT_EMPLOYEE)
 	@Produces(MediaType.APPLICATION_JSON)

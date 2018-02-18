@@ -1,4 +1,4 @@
-package br.com.gda.resource;
+package br.com.gda.model;
 
 import java.util.List;
 
@@ -14,7 +14,8 @@ public interface StoreChecker {
 	
 	
 	
-	public boolean isOperationValid(List<Store> stores);
+	public boolean checkOperation(List<Store> stores);
+	public boolean checkOperation(Store store);
 	public String getFailedExplanation();
 	public Status getFailedStatus();
 }

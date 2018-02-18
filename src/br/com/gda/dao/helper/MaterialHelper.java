@@ -34,6 +34,9 @@ public class MaterialHelper extends GdaDB {
 			+ "=?";
 
 	public static final String ST_DELETE = "DELETE FROM " + SCHEMA + "." + TABLE;
+	
+	public static final String ST_FLAG_AS_DELETED = "UPDATE " + SCHEMA + "." + TABLE + " SET " + FIELD09 + "=?"
+			+ " WHERE " + FIELD01 + "=? AND " + FIELD02 + "=?";
 
 	public static final String ST_SELECT_WITH_TEXT = "SELECT * FROM " + SCHEMA + "." + TABLE + " LEFT JOIN " + SCHEMA
 			+ "." + MaterialTextHelper.TABLE + " ON " + TABLE + "." + FIELD01 + " = " + MaterialTextHelper.TABLE + "."

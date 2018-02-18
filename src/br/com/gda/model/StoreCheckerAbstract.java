@@ -1,4 +1,4 @@
-package br.com.gda.resource;
+package br.com.gda.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,7 +8,6 @@ import javax.ws.rs.core.Response.Status;
 
 import br.com.gda.dao.StoreDAO;
 import br.com.gda.helper.Store;
-import br.com.gda.model.JsonBuilder;
 
 abstract class StoreCheckerAbstract implements StoreChecker {
 	protected String failMsg;
@@ -21,69 +20,118 @@ abstract class StoreCheckerAbstract implements StoreChecker {
 	}
 	
 	
-	@Override public boolean isOperationValid(List<Store> stores) {
-		if (stores == null)
+	@Override public boolean checkOperation(List<Store> stores) {
+		if (! checkArgument(stores))
 			return false;
 		
-		if (stores.isEmpty())
-			return false;
 		
 		for (Store eachStore: stores) {
-			if (! isRecordModeValid(eachStore))
-				return false;
-			
-			if (isMandatoryFieldEmpty(eachStore)) 
-				return false;
-			
-			if (! isStoreExist(eachStore))
+			if (! checkOperation(eachStore))
 				return false;
 		}
 		
-		return isOperationValidHook(stores);
-	}
-	
-	
-	
-	protected boolean isOperationValidHook(List<Store> stores) {
 		return true;
 	}
 	
 	
 	
-	private boolean isRecordModeValid(Store store) {
+	private boolean checkArgument(List<Store> stores) {
+		if (stores == null || stores.isEmpty()) {
+			this.failMsg = JsonBuilder.ILLEGAL_ARGUMENT;	
+			this.failStatus = Status.BAD_REQUEST;
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	
+	@Override public boolean checkOperation(Store store) {
+		if (! checkArgument(store))
+			return false;
+		
+		if (! checkRecordMode(store))
+			return false;
+		
+		if (! checkMandatoryField(store)) 
+			return false;
+		//TODO: Verificar o RecordMode para saber se o registro é válido
+		if (! checkStoreExist(store))
+			return false;
+		
+		if (! checkDependency(store))
+			return false;
+		
+		return checkOperationHook(store);
+	}
+	
+	
+	
+	private boolean checkArgument(Store store) {
+		if (store == null) {
+			this.failMsg = JsonBuilder.ILLEGAL_ARGUMENT;	
+			this.failStatus = Status.BAD_REQUEST;
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	
+	private boolean checkRecordMode(Store store) {
 		if (store.getRecordMode() == null)
 			return false;
 		
-		return isRecordModeValidHook(store);
+		return checkRecordModeHook(store);
 	}
 	
 	
 	
-	protected boolean isRecordModeValidHook(Store store) {
+	protected boolean checkRecordModeHook(Store store) {
 		return true;
 	}
 	
 	
 	
-	private boolean isMandatoryFieldEmpty(Store store) {
-		return isMandatoryFieldEmptyHook(store);
+	private boolean checkMandatoryField(Store store) {
+		return checkMandatoryFieldHook(store);
 	}
 	
 	
 	
-	protected boolean isMandatoryFieldEmptyHook(Store store) {
-		return false;
+	protected boolean checkMandatoryFieldHook(Store store) {
+		return true;
 	}
 	
 	
 	
-	private boolean isStoreExist(Store store) {
-		return isStoreExistHook(store);
+	private boolean checkStoreExist(Store store) {
+		return checkStoreExistHook(store);
 	}
 	
 	
 	
-	protected boolean isStoreExistHook(Store newStore) {
+	protected boolean checkStoreExistHook(Store newStore) {
+		return true;
+	}
+	
+	
+	
+	private boolean checkDependency(Store store) {
+		return checkDependencyHook(store);
+	}
+	
+	
+	
+	protected boolean checkDependencyHook(Store store) {
+		return true;
+	}
+	
+	
+	
+	protected boolean checkOperationHook(Store store) {
 		return true;
 	}
 	

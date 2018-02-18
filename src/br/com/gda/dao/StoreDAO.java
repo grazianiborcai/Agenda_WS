@@ -365,36 +365,34 @@ public class StoreDAO extends ConnectionBD {
 		}
 	}
 
-	public SQLException deleteStore(List<Long> codOwner, List<Integer> codStore, List<String> cnpj,
-			List<String> inscEstadual, List<String> inscMunicipal, List<String> razaoSocial, List<String> name,
-			List<String> address1, List<String> address2, List<Integer> postalcode, List<String> city,
-			List<String> country, List<String> state, List<String> codCurr, List<String> recordMode) {
-
+	public void deleteStore(Store store) throws SQLException {
 		Connection conn = null;
 		PreparedStatement deleteStmt = null;
 
 		try {
-
 			conn = getConnection();
 			conn.setAutoCommit(false);
+			
+			List<Long> codOwners = new ArrayList<>();
+			codOwners.add(store.getCodOwner());
+			
+			List<Integer> codStores = new ArrayList<>();
+			codStores.add(store.getCodStore());
+			
+			List<String> recordModes = new ArrayList<>();
+			recordModes.add(store.getRecordMode());
 
-			deleteStmt = conn.prepareStatement(
-					new StoreHelper().prepareDelete(codOwner, codStore, cnpj, inscEstadual, inscMunicipal, razaoSocial,
-							name, address1, address2, postalcode, city, country, state, codCurr, recordMode));
+			deleteStmt = conn.prepareStatement(StoreHelper.ST_FLAG_AS_DELETE);
+			deleteStmt.setString(1, store.getRecordMode());
+			deleteStmt.setLong(2, store.getCodOwner());
+			deleteStmt.setInt(3, store.getCodStore());
 
 			deleteStmt.execute();
-
 			conn.commit();
 
-			return new SQLException(DELETE_OK);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, deleteStmt);
 		}
