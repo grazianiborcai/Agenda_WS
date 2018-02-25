@@ -19,19 +19,23 @@ import com.sun.jersey.spi.container.ContainerRequestFilter;
 
 import br.com.gda.dao.CustomerDAO;
 import br.com.gda.helper.Customer;
+import br.com.gda.helper.Employee;
 import br.com.gda.helper.Owner;
+import br.com.gda.helper.RecordMode;
+import br.com.gda.model.EmployeeModel;
 import br.com.gda.model.OwnerModel;
 
-//TODO: melhorar as mensagens de resposta para ficar no mesmo padrão (makeResponse)
+//TODO: melhorar as mensagens de resposta para ficar no mesmo padrï¿½o (makeResponse)
 public class AuthFilter implements ContainerRequestFilter {
 	private static final HashSet<String> requestAuthNotRequired = new HashSet<>();
 	HtmlRequestHeaderAttr headerAttr;
 	
 	static {
+		requestAuthNotRequired.add("Employee/changePassword");
 		requestAuthNotRequired.add("CodePassword/getCode" 	);
 		requestAuthNotRequired.add("Customer/changePassword");
 		requestAuthNotRequired.add("Customer/insertCustomer");
-		requestAuthNotRequired.add("Owner/changePassword" 	);
+		requestAuthNotRequired.add("Owner/changePassword" 	);		
 		requestAuthNotRequired.add("Owner/insertOwner"		);
 		requestAuthNotRequired.add("Time/getTime" 			);
 		requestAuthNotRequired.add("Token/getToken" 		);
@@ -229,31 +233,150 @@ public class AuthFilter implements ContainerRequestFilter {
 	
 	
 	
+	private Employee getEmployeeFromUsername(long codOwner, String username) {		
+		List<Long> codOwners = new ArrayList<>();
+		codOwners.add(codOwner);
+		
+		List<String> emails = new ArrayList<>();
+		emails.add(username);
+		
+		List<String> recordModes = new ArrayList<>();
+		recordModes.add(RecordMode.RECORD_OK);
+		
+		try {			
+			ArrayList<Employee> employeeList = new EmployeeModel().selectEmployee(codOwners, null, null, null, null, null, null, null, emails,
+					null, null, null, null, null, null, null, recordModes);
+			
+			if (employeeList == null)
+				return new Employee();
+			
+			if (employeeList.isEmpty())
+				return new Employee();
+			
+			return employeeList.get(0);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return new Employee();
+		}
+	}
+	
+	
+	
+	private Employee getEmployeeFromUsernameAndPassword(long codOwner, String username, String password) {
+		List<Long> codOwners = new ArrayList<>();
+		codOwners.add(codOwner);
+		
+		List<String> emails = new ArrayList<>();
+		emails.add(username);
+		
+		List<String> passwords = new ArrayList<>();
+		passwords.add(password);
+		
+		List<String> recordModes = new ArrayList<>();
+		recordModes.add(RecordMode.RECORD_OK);
+		
+		try {			
+			ArrayList<Employee> employeeList = new EmployeeModel().selectEmployee(codOwners, null, null, passwords, null, null, null, null, emails,
+					null, null, null, null, null, null, null, recordModes);
+			
+			if (employeeList == null)
+				return new Employee();
+			
+			if (employeeList.isEmpty())
+				return new Employee();
+			
+			return employeeList.get(0);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return new Employee();
+		}
+	}
+	
+	
+	
+	private void setHeaderAttributteFromEmployee(Employee employee) {
+		headerAttr.addParam(COD_OWNER, (employee.getCodOwner() == null ? null : employee.getCodOwner().toString()));
+		headerAttr.setUserCode(employee.getCodEmployee() == null ? null : employee.getCodEmployee().toString());
+	}
+	
+	
+	
 	private void getUserInfo() {	
-		if (this.headerAttr.getApp().equals(APP_CLIENT)) {
-			Customer customer;
-			
-			if (this.headerAttr.getUriPath().equals("CodePassword/getCode") || this.headerAttr.getUriPath().equals("Customer/changePassword")) {
-				customer = getCustomerFromUsername(this.headerAttr.getUsername());
-			} else {			
-				customer = getCustomerFromUsernameAndPassword(this.headerAttr.getUsername(), this.headerAttr.getPassword());
-			}
-			
+		if (isUserCustomer()) {
+			Customer customer = getUserInfoCustomer();
 			setHeaderAttributteFromCustomer(customer);
+			return;
 		}
 		
 		
-		if (headerAttr.getApp().equals(APP_OWNER)) {
-			Owner owner;
-			
-			if (this.headerAttr.getUriPath().equals("Owner/getCode") || this.headerAttr.getUriPath().equals("Owner/changePassword")) {
-				owner = getOwnerFromUsername(this.headerAttr.getUsername());
-			} else {			
-				owner = getOwnerFromUsernameAndPassword(headerAttr.getUsername(), headerAttr.getPassword());
-			}
-			
+		if (isUserOwner()) {
+			Owner owner = getUserInfoOwner();
 			setHeaderAttributteFromOwner(owner);
+			return;
 		}
+		
+		
+		if (isUserEmployee()) {
+			Employee employee = getUserInfoEmployee();
+			setHeaderAttributteFromEmployee(employee);
+			return;
+		}
+	}
+	
+	
+	
+	private boolean isUserCustomer() {
+		if (this.headerAttr.getApp().equals(APP_CLIENT))
+			return true;
+		
+		return false;			
+	}
+	
+	
+	
+	private Customer getUserInfoCustomer() {
+		if (this.headerAttr.getUriPath().equals("CodePassword/getCode") || this.headerAttr.getUriPath().equals("Customer/changePassword")) 
+			return getCustomerFromUsername(this.headerAttr.getUsername());		
+			
+		return getCustomerFromUsernameAndPassword(this.headerAttr.getUsername(), this.headerAttr.getPassword());
+	}
+	
+	
+	
+	private boolean isUserOwner() {
+		if (this.headerAttr.getApp().equals(APP_OWNER) && (this.headerAttr.getUriPath().contains("Owner") || this.headerAttr.getUriPath().contains("owner")))
+			return true;
+		
+		return false;			
+	}
+	
+	
+	
+	private Owner getUserInfoOwner() {
+		if (this.headerAttr.getUriPath().equals("CodePassword/getCode") || this.headerAttr.getUriPath().equals("Owner/changePassword")) 
+			return getOwnerFromUsername(this.headerAttr.getUsername());
+					
+		return getOwnerFromUsernameAndPassword(headerAttr.getUsername(), headerAttr.getPassword());
+	}
+	
+	
+	
+	private boolean isUserEmployee() {
+		if (this.headerAttr.getApp().equals(APP_OWNER) && (this.headerAttr.getUriPath().contains("Employee") || this.headerAttr.getUriPath().contains("employee")))
+			return true;
+		
+		return false;			
+	}
+	
+	
+	
+	private Employee getUserInfoEmployee() {
+		if (this.headerAttr.getUriPath().equals("CodePassword/getCode") || this.headerAttr.getUriPath().equals("Employee/changePassword")) 
+			return getEmployeeFromUsername(this.headerAttr.getOwnerCode(), this.headerAttr.getUsername());
+					
+		return getEmployeeFromUsernameAndPassword(this.headerAttr.getOwnerCode(), headerAttr.getUsername(), headerAttr.getPassword());
 	}
 	
 	
@@ -295,6 +418,9 @@ public class AuthFilter implements ContainerRequestFilter {
 		this.headerAttr.setUriPath(containerRequest.getPath(true));
 		this.headerAttr.setAuthBasic(containerRequest.getHeaderValue(AUTHORIZATION));
 		this.headerAttr.setEmailLogin(containerRequest.getHeaderValue(EMAIL_LOGIN));
+		String codOwner = containerRequest.getHeaderValue(COD_OWNER);
+		codOwner = codOwner == null ? "-1" : codOwner;
+		this.headerAttr.setOwnerCode(Long.valueOf(codOwner));
 		this.headerAttr.setIncomeParamMap(containerRequest.getRequestHeaders());
 		
 		if (this.headerAttr.getAuthBasic() == null) {
@@ -336,6 +462,7 @@ public class AuthFilter implements ContainerRequestFilter {
 		private String 	 	password   ;
 		private String		emailLogin ;
 		private String      userCode   ;
+		private long        ownerCode   ;
 		
 		private HashMap<String, String> 		additionalParamMap	;
 		private MultivaluedMap<String, String> 	incomeParamMap		;
@@ -403,6 +530,12 @@ public class AuthFilter implements ContainerRequestFilter {
 		}
 		public void setAuthBasic(String authBasic) {
 			this.authBasic = authBasic;
+		}		
+		public long getOwnerCode() {
+			return ownerCode;
+		}
+		public void setOwnerCode(long ownerCode) {
+			this.ownerCode = ownerCode;
 		}
 		public InBoundHeaders getNewInputHeader() {
 			InBoundHeaders resultHeader = new InBoundHeaders();
@@ -424,7 +557,7 @@ public class AuthFilter implements ContainerRequestFilter {
 			}
 			
 			
-			if (this.uriPath.equals("Customer/loginCustomer") || this.uriPath.equals("Owner/loginOwner")) {
+			if (this.uriPath.equals("Customer/loginCustomer") || this.uriPath.equals("Owner/loginOwner") || this.uriPath.equals("Employee/loginEmployee") || this.uriPath.equals("CodePassword/getCode")) {
 				resultHeader.add(EMAIL   , this.username);
 				resultHeader.add(PASSWORD, this.password);
 			}

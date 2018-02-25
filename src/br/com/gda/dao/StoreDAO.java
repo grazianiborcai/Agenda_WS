@@ -229,6 +229,7 @@ public class StoreDAO extends ConnectionBD {
 					updateStmtT01.setString(11, store.getState());
 					updateStmtT01.setString(12, store.getPhone());
 					updateStmtT01.setString(13, store.getCodCurr());
+					updateStmtT01.setString(15, store.getCodPayment());
 
 					if (store.getRecordMode() != null && (store.getRecordMode().equals(RecordMode.ISDELETED)
 							|| store.getRecordMode().equals(RecordMode.RECORD_DELETED))) {
@@ -249,8 +250,8 @@ public class StoreDAO extends ConnectionBD {
 					} else {
 						updateStmtT01.setString(14, RecordMode.RECORD_OK);
 					}
-					updateStmtT01.setLong(15, store.getCodOwner());
-					updateStmtT01.setInt(16, store.getCodStore());
+					updateStmtT01.setLong(16, store.getCodOwner());
+					updateStmtT01.setInt(17, store.getCodStore());
 
 					updateStmtT01.addBatch();
 
@@ -494,6 +495,7 @@ public class StoreDAO extends ConnectionBD {
 		insertStmtT01.setString(13, store.getPhone());
 		insertStmtT01.setString(14, store.getCodCurr());
 		insertStmtT01.setString(15, RecordMode.RECORD_OK);
+		insertStmtT01.setString(16, store.getCodPayment());
 
 		insertStmtT01.executeUpdate();
 		variableStmt.execute();

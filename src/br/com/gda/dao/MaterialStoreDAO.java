@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.dao.helper.MaterialStoreHelper;
+import br.com.gda.dao.helper.StoreEmployeeHelper;
 import br.com.gda.db.ConnectionBD;
 import br.com.gda.db.GdaDB;
 import br.com.gda.helper.MaterialStore;
@@ -15,63 +16,48 @@ import br.com.gda.helper.RecordMode;
 
 public class MaterialStoreDAO extends ConnectionBD {
 
-	public SQLException insertMaterialStore(ArrayList<MaterialStore> materialStoreList) {
+	public void insertMaterialStore(List<MaterialStore> materialStoreList) throws SQLException {
 
 		Connection conn = null;
 		PreparedStatement insertStmtT01 = null;
 
 		try {
-
 			conn = getConnection();
 			conn.setAutoCommit(false);
-
 			insertStmtT01 = conn.prepareStatement(MaterialStoreHelper.ST_IN_ALL_FIELD);
 
 			for (MaterialStore materialStore : materialStoreList) {
-
 				prepareInsert(insertStmtT01, materialStore);
 			}
 
 			insertStmtT01.executeBatch();
-
 			conn.commit();
 
-			return new SQLException(INSERT_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, insertStmtT01);
 		}
-
 	}
 
-	public SQLException updateMaterialStore(ArrayList<MaterialStore> materialStoreList) {
-
+	public void updateMaterialStore(List<MaterialStore> materialStoreList) throws SQLException {
 		Connection conn = null;
 		PreparedStatement insertStmtT01 = null;
 		PreparedStatement updateStmtT01 = null;
 		PreparedStatement deleteStmtT01 = null;
 
 		try {
-
 			conn = getConnection();
 			conn.setAutoCommit(false);
 
 			insertStmtT01 = conn.prepareStatement(MaterialStoreHelper.ST_IN_ALL_FIELD);
-
 			updateStmtT01 = conn.prepareStatement(MaterialStoreHelper.ST_UP_ALL_FIELD_BY_FULL_KEY);
 
 			MaterialStoreHelper materialStoreHelper = new MaterialStoreHelper();
 			for (MaterialStore materialStore : materialStoreList) {
 
 				if (materialStore.getRecordMode() != null && materialStore.getRecordMode().equals(RecordMode.ISNEW)) {
-
 					prepareInsert(insertStmtT01, materialStore);
 
 				} else {
@@ -106,58 +92,44 @@ public class MaterialStoreDAO extends ConnectionBD {
 			}
 
 			insertStmtT01.executeBatch();
-
 			updateStmtT01.executeBatch();
-
 			conn.commit();
 
-			return new SQLException(UPDATE_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, deleteStmtT01, insertStmtT01, updateStmtT01);
 		}
 	}
 
-	public SQLException deleteMaterialStore(List<Long> codOwner, List<Integer> codMaterial, List<Integer> codStore,
-			List<String> recordMode) {
-
+	public void deleteMaterialStore(long codOwner, int codMaterial, int codStore, int weekday) throws SQLException {
 		Connection conn = null;
 		PreparedStatement deleteStmt = null;
 
 		try {
-
 			conn = getConnection();
 			conn.setAutoCommit(false);
-
-			deleteStmt = conn.prepareStatement(
-					new MaterialStoreHelper().prepareDelete(codOwner, codMaterial, codStore, recordMode));
+			
+			deleteStmt = conn.prepareStatement(MaterialStoreHelper.ST_FLAG_AS_DELETED);			
+			deleteStmt.setString(1, RecordMode.RECORD_DELETED);
+			deleteStmt.setLong(2, codOwner);
+			deleteStmt.setInt(3, codStore);
+			deleteStmt.setInt(4, codMaterial);
+			deleteStmt.setInt(5, weekday);
 
 			deleteStmt.execute();
-
 			conn.commit();
 
-			return new SQLException(DELETE_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, deleteStmt);
 		}
 	}
 
-	public ArrayList<MaterialStore> selectMaterialStore(List<Long> codOwner, List<Integer> codMaterial,
+	public List<MaterialStore> selectMaterialStore(List<Long> codOwner, List<Integer> codMaterial,
 			List<Integer> codStore, List<Integer> codCategory, List<Integer> codType, List<String> image,
 			List<String> barCode, List<String> recordMode, List<String> language, List<String> name,
 			List<String> description, List<String> textLong) throws SQLException {
@@ -170,7 +142,6 @@ public class MaterialStoreDAO extends ConnectionBD {
 		try {
 
 			conn = getConnection();
-
 			MaterialStoreHelper materialStoreHelper = new MaterialStoreHelper();
 
 			selectStmt = conn.prepareStatement(materialStoreHelper.prepareSelect(codOwner, codMaterial, codStore,
@@ -179,7 +150,6 @@ public class MaterialStoreDAO extends ConnectionBD {
 			resultSet = selectStmt.executeQuery();
 
 			while (resultSet.next()) {
-
 				materialStoreHelper.assignResult(materialList, resultSet);
 			}
 
@@ -204,6 +174,7 @@ public class MaterialStoreDAO extends ConnectionBD {
 						? materialStore.getDurationStore() : materialStore.getDuration());
 		insertStmtT01.setString(6, RecordMode.RECORD_OK);
 		insertStmtT01.setString(7, materialStore.getCodCurrStore());
+		insertStmtT01.setInt(8, materialStore.getWeekday());
 
 		insertStmtT01.addBatch();
 	}

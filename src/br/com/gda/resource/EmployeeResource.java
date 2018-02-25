@@ -23,12 +23,13 @@ public class EmployeeResource {
 	private static final String UPDATE_EMPLOYEE = "/updateEmployee";
 	private static final String DELETE_EMPLOYEE = "/deleteEmployee";
 	private static final String SELECT_EMPLOYEE = "/selectEmployee";
+	private static final String LOGIN_EMPLOYEE = "/loginEmployee";
 
 	@POST
 	@Path(INSERT_EMPLOYEE)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertOwner(String incomingData) {
-
+		//TODO: horário do empregado. Se nulo, então pegar da Store
 		return new EmployeeModel().insertEmployee(incomingData);
 	}
 
@@ -37,7 +38,7 @@ public class EmployeeResource {
 	@Path(UPDATE_EMPLOYEE)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateOwner(String incomingData) {
-
+		//TODO: mudanã de password não pode ser por esse serviço
 		return new EmployeeModel().updateEmployee(incomingData);
 	}
 
@@ -50,6 +51,17 @@ public class EmployeeResource {
 
 		return new EmployeeModel().deleteEmployee(codOwner, codEmployee);
 	}
+	
+	
+	
+	@GET																										
+	@Path(LOGIN_EMPLOYEE)																							
+	@Produces(MediaType.APPLICATION_JSON)																		
+	public Response loginOwner(@HeaderParam("codOwner") long codOwner, @HeaderParam("email") String email, @HeaderParam("password") String password) {
+		//TODO: um mesmo empregado pode estar em mais de um estabelecimento. Retornar uma lista com todos os Owner para seleção
+		//TODO: não retornar o password
+		return new EmployeeModel().loginEmployee(codOwner, email, password);											
+	}		
 
 	
 	@GET
@@ -65,7 +77,7 @@ public class EmployeeResource {
 			@QueryParam("country") List<String> country, @QueryParam("state") List<String> state,
 			@QueryParam("phone") List<String> phone,
 			@DefaultValue(" ") @QueryParam("recordMode") List<String> recordMode) {
-
+		//TODO: O Android est� chamando esse m�todo para obter os empregados. Verificar se StoreEmployee � mais apropriado
 		return new EmployeeModel().selectEmployeeResponse(codOwner, codEmployee, cpf, password, name, codPosition,
 				codGender, bornDate, email, address1, address2, postalcode, city, country, state, phone, recordMode);
 	}

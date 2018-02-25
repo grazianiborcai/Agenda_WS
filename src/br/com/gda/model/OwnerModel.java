@@ -27,6 +27,7 @@ import br.com.gda.helper.Store;
 
 
 public class OwnerModel extends JsonBuilder {
+	//TODO: Precisa inserir regras de validaÃ§Ã£o de campos
 	public Response insertOwner(String incomingData) {
 		Response resultResponse = tryToInsertOwner(incomingData);
 		
@@ -438,7 +439,7 @@ public class OwnerModel extends JsonBuilder {
 		return responseSuccess(jsonObject);
 	}
 
-	//TODO: Ainda utilizado. Revisar o número de parâmetros 
+	//TODO: Ainda utilizado. Revisar o nï¿½mero de parï¿½metros 
 	public ArrayList<Owner> selectOwner(String email, String cpf, String password, 
 			List<String> language, Boolean withDetailMat, Boolean withMaterial, Boolean withMenu, Boolean withStore,
 			Boolean withEmployee, Boolean withStoreMenu, Boolean withStoreMaterial, Boolean withStoreEmployee,
@@ -585,7 +586,7 @@ public class OwnerModel extends JsonBuilder {
 	
 	
 	
-	//TODO: encapsular em um método Try
+	//TODO: encapsular em um mï¿½todo Try
 	public Response changePassword(Long codOwner, String newPassword) {						// M.Maciel - 21-jan-18
 		SQLException exception = new OwnerDAO().changePassword(codOwner, newPassword);		// M.Maciel - 21-jan-18
 		JsonObject jsonObject = getJsonObjectUpdate(exception);								// M.Maciel - 21-jan-18

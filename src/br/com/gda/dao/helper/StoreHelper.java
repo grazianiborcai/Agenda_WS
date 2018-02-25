@@ -28,18 +28,18 @@ public class StoreHelper extends GdaDB {
 	protected static final String FIELD14 = PHONE;
 	protected static final String FIELD15 = COD_CURR;
 	protected static final String FIELD16 = RECORD_MODE;
-	protected static final String FIELD17 = "Cod_payment";
+	protected static final String FIELD17 = COD_PAYMENT;
 
 	public static final String ST_IN_ALL_FIELD = "INSERT INTO " + SCHEMA + "." + TABLE + " (" + FIELD01 + ", " + FIELD03
 			+ ", " + FIELD04 + ", " + FIELD05 + ", " + FIELD06 + ", " + FIELD07 + ", " + FIELD08 + ", " + FIELD09 + ", "
 			+ FIELD10 + ", " + FIELD11 + ", " + FIELD12 + ", " + FIELD13 + ", " + FIELD14 + ", " + FIELD15 + ", "
-			+ FIELD16 + ") " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ FIELD16 + "," + FIELD17 + ") " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	public static final String ST_UP_ALL_FIELD_BY_FULL_KEY = "UPDATE " + SCHEMA + "." + TABLE + " SET " + FIELD03 + "=?"
 			+ ", " + FIELD04 + "=?" + ", " + FIELD05 + "=?" + ", " + FIELD06 + "=?" + ", " + FIELD07 + "=?" + ", "
 			+ FIELD08 + "=?" + ", " + FIELD09 + "=?" + ", " + FIELD10 + "=?" + ", " + FIELD11 + "=?" + ", " + FIELD12
 			+ "=?" + ", " + FIELD13 + "=?" + ", " + FIELD14 + "=?" + ", " + FIELD15 + "=?" + ", " + FIELD16 + "=?"
-			+ " WHERE " + FIELD01 + "=? AND " + FIELD02 + "=?";
+			+ ", " + FIELD17 + "=?" + " WHERE " + FIELD01 + "=? AND " + FIELD02 + "=?";
 
 	public static final String ST_DELETE = "DELETE FROM " + SCHEMA + "." + TABLE;
 	

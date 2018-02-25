@@ -59,7 +59,9 @@ public class OwnerResource {
 	@Path(INSERT_OWNER)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertOwner(String incomingData) {		
-		
+		//TODO: o Owner é na verdade um grupo/franquia. Pode ser visto como um usuário Master/Admin com acesso total ao sistema. 
+		//dessa forma não precisa de dados de pessoa física/jurídica. Basta um email, senha, nome da rede/grupo/franquia, telefone
+		//TODO: verificar se é interessante criar como employee
 		return new OwnerModel().insertOwner(incomingData);
 	}
 	
@@ -76,7 +78,8 @@ public class OwnerResource {
 	@Path(UPDATE_OWNER)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateOwner(String incomingData) {
-
+		//TODO: está alterando o password. Isso não pode acontecer.
+		//TODO: se não for informado o código do owner, cria um registro novo. Isso não pode acontecer.
 		return new OwnerModel().updateOwner(incomingData);
 	}
 
@@ -112,7 +115,7 @@ public class OwnerResource {
 	@Path(INSERT_CUSTOMER)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertCustomer(String incomingData) {
-
+		//TODO: realmente precisa desse serviço? Não pode usar o CustomerResource ?
 		return new OwnerModel().insertCustomer(incomingData);
 	}
 }

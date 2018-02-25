@@ -41,6 +41,9 @@ public class StoreEmployeeHelper extends GdaDB {
 
 	public static final String ST_DELETE = "DELETE FROM " + SCHEMA + "."
 			+ TABLE;
+	
+	public static final String ST_FLAG_AS_DELETED = "UPDATE " + SCHEMA + "." + TABLE + " SET " + FIELD05 + "=?"
+			+ " WHERE " + FIELD01 + "=? AND " + FIELD02 + "=? AND " + FIELD03 + "=?";
 
 	public static final String ST_SEL_ALL_W_EMP = "SELECT * FROM " + SCHEMA
 			+ "." + TABLE + " LEFT JOIN " + SCHEMA + "." + EmployeeHelper.TABLE

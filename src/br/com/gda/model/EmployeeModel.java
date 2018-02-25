@@ -3,20 +3,17 @@ package br.com.gda.model;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 
 import br.com.gda.dao.EmployeeDAO;
 import br.com.gda.helper.Employee;
-import br.com.gda.helper.RecordMode;
 
 public class EmployeeModel extends JsonBuilder {
 	private static final String EMPLOYEE = "Employee";
@@ -94,6 +91,36 @@ public class EmployeeModel extends JsonBuilder {
 			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyEmployee);
 		}
 	}
+	
+	
+	
+	public Response loginEmployee(long codOwner, String email, String password) {
+		Response resultResponse = tryToLoginEmployee(codOwner, email, password);
+		return resultResponse;
+	}
+	
+	
+	
+	private Response tryToLoginEmployee(long codOwner, String email, String password) {
+		Employee emptyEmployee = new Employee();
+		
+		try {
+			 Employee employee = new EmployeeDAO().loginEmployee(codOwner, email, password);
+			
+			if (employee.getCodEmployee() == 0) 
+				return makeResponse(LOGIN_FAILED, Response.Status.FORBIDDEN, emptyEmployee);
+			
+			
+			return makeResponse(RETURNED_SUCCESSFULLY, Response.Status.OK, employee);
+			
+			
+		} catch (JsonParseException e) {
+			return makeResponse(ILLEGAL_ARGUMENT, Response.Status.BAD_REQUEST, emptyEmployee);
+			
+		} catch (SQLException | IndexOutOfBoundsException e) {
+			return makeResponse(INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR, emptyEmployee);
+		}
+	}	
 	
 	
 	

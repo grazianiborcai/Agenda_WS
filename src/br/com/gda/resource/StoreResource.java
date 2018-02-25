@@ -30,6 +30,8 @@ public class StoreResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStore(String incomingData) {
 		//TODO: verificar fluxo: Store com status inativo/eliminado
+		//TODO: campos latitude e longitude não setão sendo preenchidos
+		//TODO: não tem campos de horário de funcionamento
 		Response resultResponse = new StoreModel().insertStore(incomingData);	
 		return resultResponse;
 	}

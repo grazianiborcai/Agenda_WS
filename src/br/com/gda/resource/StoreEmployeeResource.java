@@ -42,11 +42,11 @@ public class StoreEmployeeResource {
 
 	@DELETE
 	@Path(DELETE_STORE_EMPLOYEE)
-	public Response deleteStoreEmployee(@HeaderParam("codOwner") List<Long> codOwner,
-			@QueryParam("codStore") List<Integer> codStore, @QueryParam("codEmployee") List<Integer> codEmployee,
-			@QueryParam("codPosition") List<Byte> codPosition, @QueryParam("recordMode") List<String> recordMode) {
+	public Response deleteStoreEmployee(@HeaderParam("codOwner") long codOwner,
+										@HeaderParam("codStore") int codStore, 
+										@HeaderParam("codEmployee") int codEmployee) {
 
-		return new StoreEmployeeModel().deleteStoreEmployee(codOwner, codStore, codEmployee, codPosition, recordMode);
+		return new StoreEmployeeModel().deleteStoreEmployee(codOwner, codStore, codEmployee);
 	}
 
 	@GET

@@ -47,8 +47,45 @@ public class EmployeeDAO extends ConnectionBD {
 		} finally {
 			closeConnection(conn, insertStmt);
 		}
-
 	}
+	
+	
+	
+	public Employee loginEmployee(long codOwner, String email, String password) throws SQLException {
+		Connection conn = null;
+		PreparedStatement selectStmt = null;
+		ResultSet resultSet = null;
+		
+		List<Long> codOwners = new ArrayList<>();
+		codOwners.add(codOwner);
+		
+		List<String> passwords = new ArrayList<>();
+		passwords.add(password);
+		
+		List<String> emails = new ArrayList<>();
+		emails.add(email);
+		
+		List<String> recordModes = new ArrayList<>();
+		recordModes.add(RecordMode.RECORD_OK);
+
+		try {
+			conn = getConnection();
+			EmployeeHelper employeeHelper = new EmployeeHelper();
+			selectStmt = conn.prepareStatement(employeeHelper.prepareSelect(codOwners, null, null, passwords, null, 
+					null, null, null, emails, null, null, null, null, null, null, null, recordModes));
+
+			resultSet = selectStmt.executeQuery();
+			resultSet.first();
+			return employeeHelper.assignResult(resultSet);
+
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			closeConnection(conn, selectStmt, resultSet);
+		}
+	}
+	
+	
 
 	public void updateEmployee(List<Employee> employeeList) throws SQLException {
 		Connection conn = null;

@@ -95,6 +95,7 @@ public class GdaDB {
 	protected static final String COD_BILL_STATUS = "Cod_bill_status";
 	protected static final String BEGIN_DATE = "Begin_date";
 	protected static final String COD_CURR = "Cod_curr";
+	protected static final String COD_PAYMENT = "Cod_payment";
 
 	protected static final String SCHEMA = "agenda";
 

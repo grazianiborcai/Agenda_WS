@@ -31,6 +31,8 @@ public class MaterialStoreResource {
 
 		return new MaterialStoreModel().insertMaterialStore(incomingData);
 	}
+	
+	
 
 	@POST
 	@Path(UPDATE_MATERIAL_STORE)
@@ -40,28 +42,38 @@ public class MaterialStoreResource {
 		return new MaterialStoreModel().updateMaterialStore(incomingData);
 	}
 
+	
+	
 	@DELETE
 	@Path(DELETE_MATERIAL_STORE)
-	public Response deleteMaterialStore(@HeaderParam("codOwner") List<Long> codOwner,
-			@QueryParam("codMaterial") List<Integer> codMaterial, @QueryParam("codStore") List<Integer> codStore,
-			@QueryParam("recordMode") List<String> recordMode) {
+	public Response deleteMaterialStore(@HeaderParam("codOwner") long codOwner,
+			@HeaderParam("codMaterial") int codMaterial, @HeaderParam("codStore") int codStore, 
+			@HeaderParam("weekday") int weekday) {
 
-		return new MaterialStoreModel().deleteMaterialStore(codOwner, codMaterial, codStore, recordMode);
+		return new MaterialStoreModel().deleteMaterialStore(codOwner, codMaterial, codStore, weekday);
 	}
 
+	
+	
 	@GET
 	@Path(SELECT_MATERIAL_STORE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMaterialStore(@HeaderParam("codOwner") List<Long> codOwner,
-			@QueryParam("codMaterial") List<Integer> codMaterial, @QueryParam("codStore") List<Integer> codStore,
-			@QueryParam("codCategory") List<Integer> codCategory, @QueryParam("codType") List<Integer> codType,
-			@QueryParam("image") List<String> image, @QueryParam("barCode") List<String> barCode,
-			@DefaultValue(" ") @QueryParam("recordMode") List<String> recordMode,
-			@QueryParam("language") List<String> language, @QueryParam("name") List<String> name,
-			@QueryParam("description") List<String> description, @QueryParam("textLong") List<String> textLong) {
+	public Response selectMaterialStore(@HeaderParam("codOwner") long codOwner,
+									    @HeaderParam("codMaterial") int codMaterial, 
+									    @HeaderParam("codStore") int codStore,
+									    @HeaderParam("codCategory") int codCategory, 
+									    @HeaderParam("codType") int codType,
+									    @HeaderParam("language") String language) {
 
-		return new MaterialStoreModel().selectMaterialStoreResponse(codOwner, codMaterial, codStore, codCategory,
-				codType, image, barCode, recordMode, language, name, description, textLong);
+		MaterialStoreModel.SelectOption option = new MaterialStoreModel.SelectOption();
+		option.codOwner = codOwner;
+		option.codMaterial = codMaterial;
+		option.codStore = codStore;
+		option.codCategory = codCategory;
+		option.codType = codType;
+		option.language = language;
+		
+		return new MaterialStoreModel().selectMaterialStoreResponse(option);
 	}
 
 }

@@ -23,8 +23,8 @@ public class MaterialStoreHelper extends GdaDB {
 
 	public static final String ST_IN_ALL_FIELD = "INSERT INTO " + SCHEMA + "."
 			+ TABLE + " (" + FIELD01 + ", " + FIELD02 + ", " + FIELD03 + ", "
-			+ FIELD04 + ", " + FIELD05 + ", " + FIELD06 + ", " + FIELD07 + ") "
-			+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+			+ FIELD04 + ", " + FIELD05 + ", " + FIELD06 + ", " + FIELD07 + ", " + FIELD08 + ") "
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 	public static final String ST_UP_ALL_FIELD_BY_FULL_KEY = "UPDATE " + SCHEMA
 			+ "." + TABLE + " SET " + FIELD04 + "=?" + ", " + FIELD05 + "=?"
@@ -45,6 +45,10 @@ public class MaterialStoreHelper extends GdaDB {
 
 	public static final String ST_DELETE = "DELETE FROM " + SCHEMA + "."
 			+ TABLE;
+	
+	public static final String ST_FLAG_AS_DELETED = "UPDATE " + SCHEMA
+			+ "." + TABLE + " SET " + FIELD06 + "=?" + " WHERE " + FIELD01
+			+ "=? AND " + FIELD03 + "=? AND " + FIELD02 + "=? AND " + FIELD08 + "=?";
 
 	public static final String ST_SELECT = "SELECT * FROM " + SCHEMA + "."
 			+ TABLE + " LEFT JOIN " + SCHEMA + "." + MaterialHelper.TABLE
@@ -180,6 +184,15 @@ public class MaterialStoreHelper extends GdaDB {
 			List<Integer> codType, List<String> image, List<String> barCode,
 			List<String> recordMode, List<String> language, List<String> name,
 			List<String> description, List<String> textLong) {
+		
+		if (codMaterial.get(0) <= 0)
+			codMaterial = null;
+		
+		if (codCategory.get(0) <= 0)
+			codCategory = null;
+		
+		if (codType.get(0) <= 0)
+			codType = null;
 
 		List<String> where = prepareMaterialStoreWhere(codOwner, codMaterial,
 				codStore, recordMode);

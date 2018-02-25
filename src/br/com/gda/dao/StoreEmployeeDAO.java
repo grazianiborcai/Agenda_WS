@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.dao.helper.EmployeeHelper;
 import br.com.gda.dao.helper.StoreEmployeeHelper;
 import br.com.gda.db.ConnectionBD;
 import br.com.gda.db.GdaDB;
@@ -15,60 +16,45 @@ import br.com.gda.helper.RecordMode;
 
 public class StoreEmployeeDAO extends ConnectionBD {
 
-	public SQLException insertStoreEmployee(ArrayList<StoreEmployee> storeList) {
-
+	public void insertStoreEmployee(List<StoreEmployee> storeEmployees) throws SQLException {
 		Connection conn = null;
 		PreparedStatement insertStmtT01 = null;
 
 		try {
-
 			conn = getConnection();
 			conn.setAutoCommit(false);
 
 			insertStmtT01 = conn
 					.prepareStatement(StoreEmployeeHelper.ST_IN_ALL);
 
-			for (StoreEmployee storeEmployee : storeList) {
-
-				prepareInsert(insertStmtT01, storeEmployee);
+			for (StoreEmployee storeEmployee : storeEmployees) {
+				prepareInsert(insertStmtT01, storeEmployee);			
 			}
 
 			insertStmtT01.executeBatch();
-
 			conn.commit();
 
-			return new SQLException(INSERT_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, insertStmtT01);
 		}
 
 	}
 
-	public SQLException updateStoreEmployee(ArrayList<StoreEmployee> storeList) {
-
+	public void updateStoreEmployee(List<StoreEmployee> storeList) throws SQLException {
 		Connection conn = null;
 		PreparedStatement insertStmtT01 = null;
 		PreparedStatement updateStmtT01 = null;
 		PreparedStatement deleteStmtT01 = null;
 
 		try {
-
 			conn = getConnection();
 			conn.setAutoCommit(false);
 
-			insertStmtT01 = conn
-					.prepareStatement(StoreEmployeeHelper.ST_IN_ALL);
-
-			updateStmtT01 = conn
-					.prepareStatement(StoreEmployeeHelper.ST_UP_ALL_BY_FULL_KEY);
+			insertStmtT01 = conn.prepareStatement(StoreEmployeeHelper.ST_IN_ALL);
+			updateStmtT01 = conn.prepareStatement(StoreEmployeeHelper.ST_UP_ALL_BY_FULL_KEY);
 
 			StoreEmployeeHelper storeEmployeeHelper = new StoreEmployeeHelper();
 			for (StoreEmployee storeEmployee : storeList) {
@@ -80,7 +66,6 @@ public class StoreEmployeeDAO extends ConnectionBD {
 					prepareInsert(insertStmtT01, storeEmployee);
 
 				} else {
-
 					if (storeEmployee.getRecordMode() != null
 							&& (storeEmployee.getRecordMode().equals(
 									RecordMode.ISDELETED) || storeEmployee
@@ -118,54 +103,37 @@ public class StoreEmployeeDAO extends ConnectionBD {
 			}
 
 			insertStmtT01.executeBatch();
-
 			updateStmtT01.executeBatch();
-
 			conn.commit();
 
-			return new SQLException(UPDATE_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, deleteStmtT01, insertStmtT01, updateStmtT01);
 		}
 	}
 
-	public SQLException deleteStoreEmployee(List<Long> codOwner,
-			List<Integer> codStore, List<Integer> codEmployee,
-			List<Byte> codPosition, List<String> recordMode) {
-
+	public void deleteStoreEmployee(long codOwner, int codStore, int codEmployee) throws SQLException {
 		Connection conn = null;
 		PreparedStatement deleteStmt = null;
 
 		try {
-
 			conn = getConnection();
 			conn.setAutoCommit(false);
-
-			deleteStmt = conn.prepareStatement(new StoreEmployeeHelper()
-					.prepareDelete(codOwner, codStore, codEmployee,
-							codPosition, recordMode));
+			
+			deleteStmt = conn.prepareStatement(StoreEmployeeHelper.ST_FLAG_AS_DELETED);			
+			deleteStmt.setString(1, RecordMode.RECORD_DELETED);
+			deleteStmt.setLong(2, codOwner);
+			deleteStmt.setInt(3, codStore);
+			deleteStmt.setInt(4, codEmployee);
 
 			deleteStmt.execute();
-
 			conn.commit();
 
-			return new SQLException(DELETE_OK, null, 200);
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-				return e;
-			} catch (SQLException e1) {
-				return e1;
-			}
+			conn.rollback();
+			throw e;
 		} finally {
 			closeConnection(conn, deleteStmt);
 		}

@@ -18,7 +18,8 @@ public class CodePasswordResource {
 	@Path(GET_CODE)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response loginCustomer(@HeaderParam("email") String email, @HeaderParam("password") String password, @HeaderParam("name") String name) {
-
+		//TODO: inserir o idioma como parâmetro
+		//TODO: o parâmetro name nulo retorna nulo para o Owner
 		return new CodePasswordModel().getCodeResponse(email, password, name);
 	}
 
