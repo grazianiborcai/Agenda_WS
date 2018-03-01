@@ -49,6 +49,7 @@ public class EmployeeResource {
 	public Response deleteEmployee(@HeaderParam("codOwner") long codOwner,
 								   @HeaderParam("codEmployee") int codEmployee) {
 
+		//TODO: atualizar StoreEmployee
 		return new EmployeeModel().deleteEmployee(codOwner, codEmployee);
 	}
 	

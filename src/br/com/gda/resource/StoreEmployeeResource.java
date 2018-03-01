@@ -28,7 +28,7 @@ public class StoreEmployeeResource {
 	@Path(INSERT_STORE_EMPLOYEE)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStoreEmployee(String incomingData) {
-
+		//TODO: por que do codPosition? Sempre deixar em Branco?
 		return new StoreEmployeeModel().insertStoreEmployee(incomingData);
 	}
 
