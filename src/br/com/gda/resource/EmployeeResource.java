@@ -14,6 +14,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.gda.employee.model.EmployeeWorkingTimeInsert;
 import br.com.gda.model.EmployeeModel;
 
 @Path("/Employee")
@@ -24,11 +25,24 @@ public class EmployeeResource {
 	private static final String DELETE_EMPLOYEE = "/deleteEmployee";
 	private static final String SELECT_EMPLOYEE = "/selectEmployee";
 	private static final String LOGIN_EMPLOYEE = "/loginEmployee";
+	private static final String INSERT_WOKING_TIME = "/insertWorkingTime";
+	
+	
+	@POST
+	@Path(INSERT_WOKING_TIME)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response insertWorkingTime(String incomingData) {
+		EmployeeWorkingTimeInsert workingTimeInsert = new EmployeeWorkingTimeInsert(incomingData);
+		workingTimeInsert.insert();
+		return workingTimeInsert.getResponse();
+	}
+	
+	
 
 	@POST
 	@Path(INSERT_EMPLOYEE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertOwner(String incomingData) {
+	public Response insertEmployee(String incomingData) {
 		//TODO: horário do empregado. Se nulo, então pegar da Store
 		return new EmployeeModel().insertEmployee(incomingData);
 	}
