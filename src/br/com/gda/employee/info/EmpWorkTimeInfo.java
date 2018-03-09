@@ -2,7 +2,7 @@ package br.com.gda.employee.info;
 
 import java.time.LocalTime;
 
-public class EmployeeWorkingTimeInfo implements Cloneable {
+public class EmpWorkTimeInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codEmployee;
@@ -12,7 +12,7 @@ public class EmployeeWorkingTimeInfo implements Cloneable {
 	public String recordMode;
 	
 	
-	public EmployeeWorkingTimeInfo() {
+	public EmpWorkTimeInfo() {
 		this.codOwner = -1;
 		this.codStore = -1;
 		this.codEmployee = -1;
@@ -22,7 +22,7 @@ public class EmployeeWorkingTimeInfo implements Cloneable {
 	
 	
 	@Override public Object clone()throws CloneNotSupportedException{  
-		EmployeeWorkingTimeInfo deepCopy = (EmployeeWorkingTimeInfo) super.clone();  		
+		EmpWorkTimeInfo deepCopy = (EmpWorkTimeInfo) super.clone();  		
 		
 		LocalTime cloneBeginTime = null;		
 		if (beginTime != null) 

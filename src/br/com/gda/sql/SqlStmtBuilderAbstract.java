@@ -3,14 +3,14 @@ package br.com.gda.sql;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class SqlStatementBuilderAbstract implements SqlStatementBuilder {
+abstract class SqlStmtBuilderAbstract implements SqlStmtBuilder {
 	protected String schemaName;
 	protected String tableName;
 	protected String whereClause;
 	protected List<String> columns = new ArrayList<>();
 	
 	
-	SqlStatementBuilderAbstract(SqlStatementBuilderOption option) {
+	SqlStmtBuilderAbstract(SqlStmtBuilderOption option) {
 		if (option == null)
 			throw new NullPointerException("option argument is null");
 		
@@ -19,7 +19,7 @@ abstract class SqlStatementBuilderAbstract implements SqlStatementBuilder {
 	
 	
 	
-	protected void initializationHook(SqlStatementBuilderOption option) {
+	protected void initializationHook(SqlStmtBuilderOption option) {
 		//Template method to be overridden by subclasses
 	}
 	

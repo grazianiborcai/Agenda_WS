@@ -2,18 +2,18 @@ package br.com.gda.sql;
 
 import java.util.Iterator;
 
-final class SqlStatementBuilderInsert extends SqlStatementBuilderAbstract {
+final class SqlStmtBuilderInsert extends SqlStmtBuilderAbstract {
 
-	SqlStatementBuilderInsert(SqlStatementBuilderOption option) {
+	SqlStmtBuilderInsert(SqlStmtBuilderOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected void initializationHook(SqlStatementBuilderOption option) {		
+	@Override protected void initializationHook(SqlStmtBuilderOption option) {		
 		this.schemaName = option.schemaName;
 		this.tableName = option.tableName;
-		this.columns = option.insertColumns;
+		this.columns = option.columns;
 	}
 	
 	

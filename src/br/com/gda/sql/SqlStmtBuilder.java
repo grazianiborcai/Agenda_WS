@@ -1,7 +1,7 @@
 package br.com.gda.sql;
 
-public interface SqlStatementBuilder {
-	public static SqlStatementBuilder factory(SqlOperation operation, SqlStatementBuilderOption option) {
+public interface SqlStmtBuilder {
+	public static SqlStmtBuilder factory(SqlOperation operation, SqlStmtBuilderOption option) {
 		return operation.factorySqlStatementBuilder(option);
 	}
 	

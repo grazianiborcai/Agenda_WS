@@ -14,7 +14,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.employee.model.EmployeeWorkingTimeInsert;
+import br.com.gda.employee.model.EmpWorkTimeInsert;
 import br.com.gda.model.EmployeeModel;
 
 @Path("/Employee")
@@ -32,7 +32,7 @@ public class EmployeeResource {
 	@Path(INSERT_WOKING_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertWorkingTime(String incomingData) {
-		EmployeeWorkingTimeInsert workingTimeInsert = new EmployeeWorkingTimeInsert(incomingData);
+		EmpWorkTimeInsert workingTimeInsert = new EmpWorkTimeInsert(incomingData);
 		workingTimeInsert.insert();
 		return workingTimeInsert.getResponse();
 	}

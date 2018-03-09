@@ -7,18 +7,18 @@ import java.sql.Time;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.sql.SqlFormatterNumber;
-import br.com.gda.sql.SqlStatement;
+import br.com.gda.sql.SqlStmt;
 
 
 
-public final class EmployeeWorkingTimeStmtInsert implements SqlStatement {
-	private final EmployeeStmtOption option;
+public final class EmpWorkTimeStmtInsert implements SqlStmt {
+	private final EmpStmtOption option;
 	private String statementSkeleton;
 	private PreparedStatement statement;
 	
-	public EmployeeWorkingTimeStmtInsert(EmployeeStmtOption option) {
+	public EmpWorkTimeStmtInsert(EmpStmtOption option) {
 		try {
-			this.option = (EmployeeStmtOption) option.clone();
+			this.option = (EmpStmtOption) option.clone();
 			
 		} catch (CloneNotSupportedException e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
@@ -28,21 +28,21 @@ public final class EmployeeWorkingTimeStmtInsert implements SqlStatement {
 	
 	
 	public void generateStmt() throws SQLException {
-		buildStatementSkeleton();
-		createStatement();
+		buildStmtSkeleton();
+		createStmt();
 		translateParameterIntoValue();
 	}
 	
 	
 	
-	private void buildStatementSkeleton() {
-		EmployeeWorkingTimeBuilderInsert builder = new EmployeeWorkingTimeBuilderInsert(option.schemaName, option.workingTime);
+	private void buildStmtSkeleton() {
+		EmpWorkTimeBuilderInsert builder = new EmpWorkTimeBuilderInsert(option.schemaName, option.workingTime);
 		this.statementSkeleton = builder.generateStatement();
 	}
 	
 	
 	
-	private void createStatement() throws SQLException {
+	private void createStmt() throws SQLException {
 		this.statement = this.option.conn.prepareStatement(this.statementSkeleton);
 	}
 	
@@ -64,17 +64,17 @@ public final class EmployeeWorkingTimeStmtInsert implements SqlStatement {
 	
 	
 	
-	public boolean checkStatementGeneration() {
-		return tryToCheckStatementGeneration();
+	public boolean checkStmtGeneration() {
+		return tryToCheckStmtGeneration();
 	}
 	
 	
 	
-	private boolean tryToCheckStatementGeneration() {
+	private boolean tryToCheckStmtGeneration() {
 		try {
 			checkArguments();
 			checkConnection();
-			return checkStatementSkeleton();
+			return checkStmtSkeleton();
 			
 		} catch (Exception e) {
 			return false;
@@ -93,8 +93,8 @@ public final class EmployeeWorkingTimeStmtInsert implements SqlStatement {
 	
 	
 	
-	private boolean checkStatementSkeleton() throws Exception {
-		buildStatementSkeleton();
+	private boolean checkStmtSkeleton() throws Exception {
+		buildStmtSkeleton();
 		return (this.statementSkeleton != null);
 	}
 	
@@ -107,7 +107,7 @@ public final class EmployeeWorkingTimeStmtInsert implements SqlStatement {
 	
 	
 	
-	public void executeStatement() throws SQLException {
+	public void executeStmt() throws SQLException {
 		this.statement.executeUpdate();
 	}
 	

@@ -2,25 +2,25 @@ package br.com.gda.sql;
 
 public enum SqlOperation {
 	INSERT("INSERT") {
-		@Override protected SqlStatementBuilder factorySqlStatementBuilder(SqlStatementBuilderOption option) {
-			return new SqlStatementBuilderInsert(option);
+		@Override protected SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option) {
+			return new SqlStmtBuilderInsert(option);
 		}
 	}, 
 	
 	DELETE("DELETE") {
-		@Override protected SqlStatementBuilder factorySqlStatementBuilder(SqlStatementBuilderOption option) {
+		@Override protected SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option) {
 			return null;
 		}
 	}, 
 	
 	UPDATE("UPDATE") {
-		@Override protected SqlStatementBuilder factorySqlStatementBuilder(SqlStatementBuilderOption option) {
+		@Override protected SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option) {
 			return null;
 		}
 	}, 
 	
 	SELECT("SELECT") {
-		@Override protected SqlStatementBuilder factorySqlStatementBuilder(SqlStatementBuilderOption option) {
+		@Override protected SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option) {
 			return null;
 		}
 	};
@@ -41,5 +41,5 @@ public enum SqlOperation {
 	}
 	
 	
-	protected abstract SqlStatementBuilder factorySqlStatementBuilder(SqlStatementBuilderOption option);
+	protected abstract SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option);
 }
