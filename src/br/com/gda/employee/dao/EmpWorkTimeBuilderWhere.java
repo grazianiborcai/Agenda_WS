@@ -18,20 +18,20 @@ final class EmpWorkTimeBuilderWhere {
 	
 	
 	
+	private void checkArgument(EmpWorkTimeInfo workingTime) {
+		if (workingTime == null)
+			throw new NullPointerException();
+	}
+	
+	
+	
 	private void buildClause(EmpWorkTimeInfo workingTime) {
 		builder.appendClauseWithAnd("cod_owner", SqlFormatterNumber.numberToString(workingTime.codOwner));
 		builder.appendClauseWithAnd("cod_store", SqlFormatterNumber.numberToString(workingTime.codStore));
 		builder.appendClauseWithAnd("cod_employee", SqlFormatterNumber.numberToString(workingTime.codEmployee));
 		builder.appendClauseWithAnd("record_mode", RecordMode.RECORD_OK);
 	}	
-	
-	
-	
-	private void checkArgument(EmpWorkTimeInfo workingTime) {
-		if (workingTime == null)
-			throw new NullPointerException();
-	}
-	
+
 	
 	
 	public String generateClause() {

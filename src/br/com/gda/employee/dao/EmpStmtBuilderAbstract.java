@@ -38,21 +38,16 @@ abstract class EmpStmtBuilderAbstract<T> {
 	private void buildStatementOption() {
 		builderOption = new SqlStmtBuilderOption();		
 		builderOption.schemaName = this.schemaName;		
-		builderOption.columns = buildColumns();
-
-		buildStatementOptionHook();
+		builderOption.tableName = buildTableNameHook();
+		builderOption.columns = buildColumnsHook();
+		builderOption.whereClause = buildWhereClauseHook();
 	}
 	
 	
 	
-	protected void buildStatementOptionHook() {
+	protected String buildTableNameHook() {
 		//Template method: to be overridden by subclasses
-	}
-	
-	
-	
-	private List<String> buildColumns() {
-		return buildColumnsHook();
+		return null;
 	}
 	
 	
@@ -64,14 +59,22 @@ abstract class EmpStmtBuilderAbstract<T> {
 	
 	
 	
-	private void buildStatement() {
-		buildStatementHook();
+	protected String buildWhereClauseHook() {
+		//Template method: to be overridden by subclasses
+		return null;
 	}
 	
 	
 	
-	protected void buildStatementHook() {		
+	private void buildStatement() {		
+		builder = buildStatementHook();
+	}
+	
+	
+	
+	protected SqlStmtBuilder buildStatementHook() {		
 		//Template method: to be overridden by subclasses
+		return null;
 	}
 	
 	

@@ -13,40 +13,56 @@ import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.employee.dao.EmpStmtOption;
-import br.com.gda.employee.dao.EmpWorkTimeStmtExecInsert;
 import br.com.gda.employee.info.EmpWorkTimeInfo;
 import br.com.gda.json.JsonResponseMaker;
-import br.com.gda.json.JsonToList;
 import br.com.gda.sql.SqlStmtExecutor;
 
-public class EmpWorkTimeInsert {
-	private final String rawInfo;
-	private List<EmpWorkTimeInfo> workingTimeInfos;
-	private SqlStmtExecutor sqlStatemetExecutor;
-	private List<EmpStmtOption> sqlStatemetOptions = new ArrayList<>();
-	private final Connection conn;
-	private final String schemaName;
-	private Response response;
+abstract class EmpWorkTimeModelAbstract {
+	protected String rawInfo;
+	protected List<EmpWorkTimeInfo> workingTimeInfos;
+	protected SqlStmtExecutor<EmpWorkTimeInfo> sqlStmtExecutor;
+	protected List<EmpStmtOption> sqlStmtOptions = new ArrayList<>();
+	protected List<EmpWorkTimeInfo>resultset;
+	protected Connection conn;
+	protected String schemaName;
+	protected Response response;
 	
 	
-	public EmpWorkTimeInsert(String incomingData) {
+	
+	protected EmpWorkTimeModelAbstract(String incomingData) {
+		initialize();
 		this.rawInfo = incomingData;
+	}
+	
+	
+	
+	protected EmpWorkTimeModelAbstract(EmpWorkTimeInfo workingTimeInfo) {
+		initialize();
+		this.workingTimeInfos = new ArrayList<>();
+		this.workingTimeInfos.add(workingTimeInfo);
+	}
+	
+	
+	
+	private void initialize() {
 		this.conn = DbConnection.getConnection();
 		this.schemaName = DbSchema.getDefaultSchemaName();
 	}
 	
 	
 	
-	public boolean insert() {
-		return tryToInsert();
+	public boolean executeRequest() {
+		return tryToExecuteRequest();
 	}
 	
 	
 	
-	private boolean tryToInsert() {		
+	private boolean tryToExecuteRequest() {		
 		try {
-			parseRawInfo();
-			insertIntoDb();
+			parseRawInfoHook();
+			checkRequestHook();
+			pushRequestToDb();
+			buildResultset();
 		
 			makeResponse(SystemMessage.RETURNED_SUCCESSFULLY, Response.Status.OK);
 			return true;
@@ -62,47 +78,52 @@ public class EmpWorkTimeInsert {
 	
 	
 	
-	private void parseRawInfo() {
-		JsonToList<EmpWorkTimeInfo> parser = new JsonToList<>(EmpWorkTimeInfo.class);
-		workingTimeInfos = parser.parse(this.rawInfo);
+	protected void parseRawInfoHook() {
+		//Template method: to be overridden by subclasses
 	}
 	
 	
 	
-	private void insertIntoDb() throws SQLException {
+	protected void checkRequestHook() {
+		//Template method: to be overridden by subclasses
+	}
+	
+	
+	
+	protected void pushRequestToDb() throws SQLException {
 		prepareStatementOption();
-		prepareStatementExecutor();
+		prepareStatementExecutorHook();
 		executeStatement();
 		commitWork();
 	}
 	
 	
 	
-	private void prepareStatementOption() {		
+	protected void prepareStatementOption() {		
 		for (EmpWorkTimeInfo eachInfo : this.workingTimeInfos) {
 			EmpStmtOption oneOption = new EmpStmtOption();		
 			oneOption.conn = this.conn;
 			oneOption.schemaName = this.schemaName;
 			oneOption.workingTime = eachInfo;
-			this.sqlStatemetOptions.add(oneOption);
+			this.sqlStmtOptions.add(oneOption);
 		}
 	}
 	
 	
 	
-	private void prepareStatementExecutor() {
-		this.sqlStatemetExecutor = new EmpWorkTimeStmtExecInsert(this.sqlStatemetOptions);
+	protected void prepareStatementExecutorHook() {
+		//Template method: to be overwritten by subclasses
 	}
 	
 	
 	
-	private void executeStatement() throws SQLException {
-		this.sqlStatemetExecutor.executeStmt();
+	protected void executeStatement() throws SQLException {
+		this.sqlStmtExecutor.executeStmt();
 	}
 	
 	
 	
-	private void commitWork() throws SQLException {
+	protected void commitWork() throws SQLException {
 		try {
 			this.conn.commit();
 		
@@ -114,14 +135,20 @@ public class EmpWorkTimeInsert {
 	
 	
 	
-	private void makeResponse(String msg, Response.Status htmlStatus) {
+	private void buildResultset() {
+		this.resultset = this.sqlStmtExecutor.getResultset();
+	}
+	
+	
+	
+	protected void makeResponse(String msg, Response.Status htmlStatus) {
 		Object info;
 		
 		if (htmlStatus.getStatusCode() >= 400) {
 			EmpWorkTimeInfo emptyInfo = new EmpWorkTimeInfo();
 			info = emptyInfo;
 		} else {
-			info = this.workingTimeInfos;
+			info = this.resultset;
 		}		
 		
 		JsonResponseMaker responseMaker = new JsonResponseMaker(msg, htmlStatus, info);

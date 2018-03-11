@@ -2,6 +2,8 @@ package br.com.gda.employee.info;
 
 import java.time.LocalTime;
 
+import br.com.gda.common.DefaultValue;
+
 public class EmpWorkTimeInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;
@@ -13,10 +15,10 @@ public class EmpWorkTimeInfo implements Cloneable {
 	
 	
 	public EmpWorkTimeInfo() {
-		this.codOwner = -1;
-		this.codStore = -1;
-		this.codEmployee = -1;
-		this.weekday = -1;
+		this.codOwner = DefaultValue.number();
+		this.codStore = DefaultValue.number();
+		this.codEmployee = DefaultValue.number();
+		this.weekday = DefaultValue.number();
 	}
 	
 	

@@ -12,15 +12,12 @@ abstract class SqlStmtBuilderAbstract implements SqlStmtBuilder {
 	
 	SqlStmtBuilderAbstract(SqlStmtBuilderOption option) {
 		if (option == null)
-			throw new NullPointerException("option argument is null");
+			throw new NullPointerException("option argument is null");		
 		
-		initializationHook(option);
-	}
-	
-	
-	
-	protected void initializationHook(SqlStmtBuilderOption option) {
-		//Template method to be overridden by subclasses
+		this.schemaName = option.schemaName;
+		this.tableName = option.tableName;
+		this.columns = option.columns;
+		this.whereClause = option.whereClause;
 	}
 	
 	

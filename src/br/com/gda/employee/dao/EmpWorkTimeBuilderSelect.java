@@ -6,9 +6,10 @@ import br.com.gda.employee.info.EmpWorkTimeInfo;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlStmtBuilder;
 
-final class EmpWorkTimeBuilderInsert extends EmpStmtBuilderAbstract<EmpWorkTimeInfo> {	
+final class EmpWorkTimeBuilderSelect extends EmpStmtBuilderAbstract<EmpWorkTimeInfo> {
+	private EmpWorkTimeBuilderWhere whereBuilder;
 	
-	public EmpWorkTimeBuilderInsert(String schemaName, EmpWorkTimeInfo workingTime) {
+	public EmpWorkTimeBuilderSelect(String schemaName, EmpWorkTimeInfo workingTime) {
 		super(schemaName, workingTime);
 	}
 	
@@ -16,6 +17,13 @@ final class EmpWorkTimeBuilderInsert extends EmpStmtBuilderAbstract<EmpWorkTimeI
 	
 	@Override protected String buildTableNameHook() {
 		return EmpDbTable.EMPLOYEE_WORKING_TIME_TABLE;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook() {
+		this.whereBuilder = new EmpWorkTimeBuilderWhere(this.infoRecord);		
+		return whereBuilder.generateClause();
 	}
 	
 	
@@ -28,6 +36,6 @@ final class EmpWorkTimeBuilderInsert extends EmpStmtBuilderAbstract<EmpWorkTimeI
 	
 	
 	@Override protected SqlStmtBuilder buildStatementHook() {		
-		return SqlStmtBuilder.factory(SqlOperation.INSERT, builderOption);
+		return SqlStmtBuilder.factory(SqlOperation.SELECT, builderOption);
 	}
 }

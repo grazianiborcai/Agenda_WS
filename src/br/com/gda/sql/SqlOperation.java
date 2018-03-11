@@ -21,7 +21,7 @@ public enum SqlOperation {
 	
 	SELECT("SELECT") {
 		@Override protected SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option) {
-			return null;
+			return new SqlStmtBuilderSelect(option);
 		}
 	};
 	

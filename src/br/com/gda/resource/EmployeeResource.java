@@ -14,7 +14,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.employee.model.EmpWorkTimeInsert;
+import br.com.gda.employee.info.EmpWorkTimeInfo;
+import br.com.gda.employee.model.EmpWorkTimeModelInsert;
+import br.com.gda.employee.model.EmpWorkTimeModelSelect;
 import br.com.gda.model.EmployeeModel;
 
 @Path("/Employee")
@@ -26,14 +28,34 @@ public class EmployeeResource {
 	private static final String SELECT_EMPLOYEE = "/selectEmployee";
 	private static final String LOGIN_EMPLOYEE = "/loginEmployee";
 	private static final String INSERT_WOKING_TIME = "/insertWorkingTime";
+	private static final String SELECT_WOKING_TIME = "/selectWorkingTime";
+	
+	
+	@GET
+	@Path(SELECT_WOKING_TIME)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response selectWorkingTime(@HeaderParam("codOwner") long codOwner,
+									  @HeaderParam("codStore") long codStore,
+									  @HeaderParam("codEmployee") int codEmployee) {
+		
+		EmpWorkTimeInfo workingTimeInfo = new EmpWorkTimeInfo();
+		workingTimeInfo.codOwner = codOwner;
+		workingTimeInfo.codStore = codStore;
+		workingTimeInfo.codEmployee = codEmployee;
+		
+		EmpWorkTimeModelSelect workingTimeInsert = new EmpWorkTimeModelSelect(workingTimeInfo);
+		workingTimeInsert.executeRequest();
+		return workingTimeInsert.getResponse();
+	}
+	
 	
 	
 	@POST
 	@Path(INSERT_WOKING_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertWorkingTime(String incomingData) {
-		EmpWorkTimeInsert workingTimeInsert = new EmpWorkTimeInsert(incomingData);
-		workingTimeInsert.insert();
+		EmpWorkTimeModelInsert workingTimeInsert = new EmpWorkTimeModelInsert(incomingData);
+		workingTimeInsert.executeRequest();
 		return workingTimeInsert.getResponse();
 	}
 	

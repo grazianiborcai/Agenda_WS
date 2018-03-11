@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.gda.employee.info.EmpWorkTimeInfo;
 import br.com.gda.sql.SqlStmt;
 
-public final class EmpWorkTimeStmtExecInsert extends EmpWorkTimeStmtExecAbstract {	
-	
-	public EmpWorkTimeStmtExecInsert(List<EmpStmtOption> options) {
+public final class EmpWorkTimeStmtExecSelect extends EmpWorkTimeStmtExecAbstract {
+
+	public EmpWorkTimeStmtExecSelect(List<EmpStmtOption> options) {
 		super(options);	
 	}
 	
@@ -18,7 +18,7 @@ public final class EmpWorkTimeStmtExecInsert extends EmpWorkTimeStmtExecAbstract
 		List<SqlStmt<EmpWorkTimeInfo>> resultStatements = new ArrayList<>();
 		
 		for (EmpStmtOption eachOption : this.options) {
-			SqlStmt<EmpWorkTimeInfo> sqlStatement = new EmpWorkTimeStmtInsert(eachOption);
+			SqlStmt<EmpWorkTimeInfo> sqlStatement = new EmpWorkTimeStmtSelect(eachOption);
 			resultStatements.add(sqlStatement);
 		}
 		

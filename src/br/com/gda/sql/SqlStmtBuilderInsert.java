@@ -10,14 +10,6 @@ final class SqlStmtBuilderInsert extends SqlStmtBuilderAbstract {
 	
 	
 	
-	@Override protected void initializationHook(SqlStmtBuilderOption option) {		
-		this.schemaName = option.schemaName;
-		this.tableName = option.tableName;
-		this.columns = option.columns;
-	}
-	
-	
-	
 	@Override protected void tryToCheckStatementGenerationHook() {		
 		if (this.columns == null)
 			throw new NullPointerException("Columns for this given builder were passed null");
