@@ -3,7 +3,6 @@ package br.com.gda.employee.dao;
 import br.com.gda.employee.info.EmpWorkTimeInfo;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.sql.SqlFormatterNumber;
-import br.com.gda.sql.SqlOperator;
 import br.com.gda.sql.SqlWhereBuilder;
 
 final class EmpWorkTimeBuilderWhere {
@@ -11,8 +10,14 @@ final class EmpWorkTimeBuilderWhere {
 	
 	
 	public EmpWorkTimeBuilderWhere(EmpWorkTimeInfo workingTime) {
+		this(workingTime, true);
+	}
+	
+	
+	
+	public EmpWorkTimeBuilderWhere(EmpWorkTimeInfo workingTime, boolean ignoreNullCondition) {
 		checkArgument(workingTime);		
-		builder = SqlWhereBuilder.factory(SqlOperator.EQUAL);
+		builder = SqlWhereBuilder.factory(ignoreNullCondition);
 		buildClause(workingTime);
 	}
 	

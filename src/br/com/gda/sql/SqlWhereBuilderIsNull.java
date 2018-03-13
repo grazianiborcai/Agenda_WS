@@ -15,7 +15,7 @@ final class SqlWhereBuilderIsNull extends SqlWhereBuilderAbstract {
 		StringBuilder resultClause = new StringBuilder();
 		resultClause.append(columnName);
 		resultClause.append(SqlDictionary.SPACE);
-		resultClause.append(SqlOperator.IS_NULL.toString());
+		resultClause.append(SqlDictionary.IS_NULL);
 		
 		return resultClause.toString();
 	}

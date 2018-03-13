@@ -2,6 +2,8 @@ package br.com.gda.sql;
 
 import java.util.Iterator;
 
+import br.com.gda.common.SystemMessage;
+
 final class SqlStmtBuilderInsert extends SqlStmtBuilderAbstract {
 
 	SqlStmtBuilderInsert(SqlStmtBuilderOption option) {
@@ -12,10 +14,10 @@ final class SqlStmtBuilderInsert extends SqlStmtBuilderAbstract {
 	
 	@Override protected void tryToCheckStatementGenerationHook() {		
 		if (this.columns == null)
-			throw new NullPointerException("Columns for this given builder were passed null");
+			throw new NullPointerException(SystemMessage.NULL_COLUMNS);
 		
 		if (this.columns.isEmpty())
-			throw new IllegalArgumentException("No columns for this given builder were passed");
+			throw new IllegalArgumentException(SystemMessage.EMPTY_COLUMNS);
 	}
 	
 	

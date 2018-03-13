@@ -63,8 +63,7 @@ abstract class EmpWorkTimeModelAbstract {
 			checkRequestHook();
 			pushRequestToDb();
 			buildResultset();
-		
-			makeResponse(SystemMessage.RETURNED_SUCCESSFULLY, Response.Status.OK);
+			buildResponse();
 			return true;
 			
 		} catch (JsonParseException e) {
@@ -136,7 +135,25 @@ abstract class EmpWorkTimeModelAbstract {
 	
 	
 	private void buildResultset() {
-		this.resultset = this.sqlStmtExecutor.getResultset();
+		this.resultset = buildResultsetHook();
+	}
+	
+	
+	
+	private void buildResponse() {
+		if (this.resultset == null || this.resultset.isEmpty()) {
+			makeResponse(SystemMessage.EMPLOYEE_DATA_NOT_FOUND, Response.Status.NOT_FOUND);
+		} else {
+			makeResponse(SystemMessage.RETURNED_SUCCESSFULLY, Response.Status.OK);
+		}
+			
+			
+	}
+	
+	
+	
+	protected List<EmpWorkTimeInfo> buildResultsetHook() {
+		return new ArrayList<EmpWorkTimeInfo>();
 	}
 	
 	

@@ -3,6 +3,8 @@ package br.com.gda.sql;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.common.SystemMessage;
+
 abstract class SqlStmtBuilderAbstract implements SqlStmtBuilder {
 	protected String schemaName;
 	protected String tableName;
@@ -12,7 +14,7 @@ abstract class SqlStmtBuilderAbstract implements SqlStmtBuilder {
 	
 	SqlStmtBuilderAbstract(SqlStmtBuilderOption option) {
 		if (option == null)
-			throw new NullPointerException("option argument is null");		
+			throw new NullPointerException(SystemMessage.NULL_SQL_BUILDER_OPTION);		
 		
 		this.schemaName = option.schemaName;
 		this.tableName = option.tableName;
@@ -36,10 +38,10 @@ abstract class SqlStmtBuilderAbstract implements SqlStmtBuilder {
 	
 	private void tryToCheckStatementGeneration() {
 		if (this.schemaName == null)
-			throw new NullPointerException("Schema name is null");
+			throw new NullPointerException(SystemMessage.NULL_SCHEMA);
 		
 		if (this.tableName == null)
-			throw new NullPointerException("Table name is null");
+			throw new NullPointerException(SystemMessage.NULL_TABLE_NAME);
 		
 		tryToCheckStatementGenerationHook();
 	}

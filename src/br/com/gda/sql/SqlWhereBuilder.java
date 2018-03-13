@@ -1,10 +1,17 @@
 package br.com.gda.sql;
 
 public interface SqlWhereBuilder {	
-	public static SqlWhereBuilder factory(SqlOperator operator) {
+	public static SqlWhereBuilder factory() {
 		boolean DO_IGNORE_NULL_CONDITION = true;
-		return operator.factoryWhereBuilder(DO_IGNORE_NULL_CONDITION);
+		return factory(DO_IGNORE_NULL_CONDITION);
 	}
+	
+	
+	
+	public static SqlWhereBuilder factory(boolean ignoreNullCondition) {
+		return new SqlWhereBuilderEqual(ignoreNullCondition);
+	}
+	
 	
 	
 	public boolean isIgnoringNullCondition();

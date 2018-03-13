@@ -18,7 +18,7 @@ final class SqlWhereBuilderEqual extends SqlWhereBuilderAbstract {
 		StringBuilder resultClause = new StringBuilder();
 		resultClause.append(columnName);
 		resultClause.append(SqlDictionary.SPACE);
-		resultClause.append(SqlOperator.EQUAL.toString());
+		resultClause.append(SqlDictionary.EQUAL);
 		resultClause.append(SqlDictionary.SPACE);
 		resultClause.append(SqlDictionary.QUOTE);
 		resultClause.append(conditionValue);

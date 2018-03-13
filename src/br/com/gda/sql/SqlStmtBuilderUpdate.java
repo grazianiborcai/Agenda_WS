@@ -4,9 +4,9 @@ import java.util.Iterator;
 
 import br.com.gda.common.SystemMessage;
 
-public final class SqlStmtBuilderSelect extends SqlStmtBuilderAbstract {
+public final class SqlStmtBuilderUpdate extends SqlStmtBuilderAbstract {
 
-	SqlStmtBuilderSelect(SqlStmtBuilderOption option) {
+	SqlStmtBuilderUpdate(SqlStmtBuilderOption option) {
 		super(option);
 	}
 	
@@ -28,8 +28,15 @@ public final class SqlStmtBuilderSelect extends SqlStmtBuilderAbstract {
 	@Override protected String generateStatementHook() {
 		StringBuilder resultStatement = new StringBuilder();
 		
-		resultStatement.append(SqlOperation.SELECT.toString());
+		resultStatement.append(SqlOperation.UPDATE.toString());
 		resultStatement.append(SqlDictionary.SPACE);
+		resultStatement.append(this.schemaName);
+		resultStatement.append(SqlDictionary.PERIOD);
+		resultStatement.append(this.tableName);
+		resultStatement.append(SqlDictionary.SPACE);
+		resultStatement.append(SqlDictionary.SET);
+		resultStatement.append(SqlDictionary.SPACE);
+		
 		
 		Iterator<String> columnItr = this.columns.iterator();
 		
@@ -37,23 +44,22 @@ public final class SqlStmtBuilderSelect extends SqlStmtBuilderAbstract {
 			String eachColumn = columnItr.next();
 			resultStatement.append(eachColumn);
 			
-			if (columnItr.hasNext()) {
+			resultStatement.append(SqlDictionary.SPACE);
+			resultStatement.append(SqlDictionary.EQUAL);
+			resultStatement.append(SqlDictionary.SPACE);
+			resultStatement.append(SqlDictionary.WILDCARD);
+			
+			if (columnItr.hasNext()) 
 				resultStatement.append(SqlDictionary.COMMA);
-				resultStatement.append(SqlDictionary.SPACE);
-			}
+			
+			resultStatement.append(SqlDictionary.SPACE);
 		}
 		
-		resultStatement.append(SqlDictionary.SPACE);
-		resultStatement.append(SqlDictionary.FROM);
-		resultStatement.append(SqlDictionary.SPACE);		
-		resultStatement.append(this.schemaName);
-		resultStatement.append(SqlDictionary.PERIOD);
-		resultStatement.append(this.tableName);
-		resultStatement.append(SqlDictionary.SPACE);
+		
 		resultStatement.append(SqlDictionary.WHERE);
 		resultStatement.append(SqlDictionary.SPACE);
 		resultStatement.append(this.whereClause);
-		resultStatement.append(SqlDictionary.END_STATEMENT);
+		resultStatement.append(SqlDictionary.END_STATEMENT);		
 		
 		return resultStatement.toString();
 	}

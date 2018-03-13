@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 import br.com.gda.employee.info.EmpWorkTimeInfo;
 import br.com.gda.employee.model.EmpWorkTimeModelInsert;
 import br.com.gda.employee.model.EmpWorkTimeModelSelect;
+import br.com.gda.employee.model.EmpWorkTimeModelUpdate;
 import br.com.gda.model.EmployeeModel;
 
 @Path("/Employee")
@@ -28,6 +29,7 @@ public class EmployeeResource {
 	private static final String SELECT_EMPLOYEE = "/selectEmployee";
 	private static final String LOGIN_EMPLOYEE = "/loginEmployee";
 	private static final String INSERT_WOKING_TIME = "/insertWorkingTime";
+	private static final String UPDATE_WOKING_TIME = "/updateWorkingTime";
 	private static final String SELECT_WOKING_TIME = "/selectWorkingTime";
 	
 	
@@ -57,6 +59,17 @@ public class EmployeeResource {
 		EmpWorkTimeModelInsert workingTimeInsert = new EmpWorkTimeModelInsert(incomingData);
 		workingTimeInsert.executeRequest();
 		return workingTimeInsert.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(UPDATE_WOKING_TIME)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateWorkingTime(String incomingData) {
+		EmpWorkTimeModelUpdate workingTimeUpdate = new EmpWorkTimeModelUpdate(incomingData);
+		workingTimeUpdate.executeRequest();
+		return workingTimeUpdate.getResponse();
 	}
 	
 	

@@ -15,7 +15,7 @@ public enum SqlOperation {
 	
 	UPDATE("UPDATE") {
 		@Override protected SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option) {
-			return null;
+			return new SqlStmtBuilderUpdate(option);
 		}
 	}, 
 	

@@ -2,13 +2,13 @@ package br.com.gda.employee.model;
 
 import java.util.List;
 
-import br.com.gda.employee.dao.EmpWorkTimeStmtExecInsert;
+import br.com.gda.employee.dao.EmpWorkTimeStmtExecUpdate;
 import br.com.gda.employee.info.EmpWorkTimeInfo;
 import br.com.gda.json.JsonToList;
 
-public class EmpWorkTimeModelInsert extends EmpWorkTimeModelAbstract {
+public final class EmpWorkTimeModelUpdate extends EmpWorkTimeModelAbstract {
 	
-	public EmpWorkTimeModelInsert(String incomingData) {
+	public EmpWorkTimeModelUpdate(String incomingData) {
 		super(incomingData);
 	}
 	
@@ -22,7 +22,7 @@ public class EmpWorkTimeModelInsert extends EmpWorkTimeModelAbstract {
 	
 	
 	@Override protected void prepareStatementExecutorHook() {
-		this.sqlStmtExecutor = new EmpWorkTimeStmtExecInsert(this.sqlStmtOptions);
+		this.sqlStmtExecutor = new EmpWorkTimeStmtExecUpdate(this.sqlStmtOptions);
 	}
 	
 	
