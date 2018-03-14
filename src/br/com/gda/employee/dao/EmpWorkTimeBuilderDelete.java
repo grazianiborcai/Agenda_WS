@@ -6,11 +6,12 @@ import br.com.gda.employee.info.EmpWorkTimeInfo;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlStmtBuilder;
+import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpWorkTimeBuilderSelect extends EmpStmtBuilderAbstract<EmpWorkTimeInfo> {
+final class EmpWorkTimeBuilderDelete extends EmpStmtBuilderAbstract<EmpWorkTimeInfo> {
 	private EmpWorkTimeBuilderWhere whereBuilder;
 	
-	public EmpWorkTimeBuilderSelect(String schemaName, EmpWorkTimeInfo workingTime) {
+	public EmpWorkTimeBuilderDelete(String schemaName, EmpWorkTimeInfo workingTime) {
 		super(schemaName, workingTime);
 	}
 	
@@ -23,7 +24,11 @@ final class EmpWorkTimeBuilderSelect extends EmpStmtBuilderAbstract<EmpWorkTimeI
 	
 	
 	@Override protected String buildWhereClauseHook() {
-		this.whereBuilder = new EmpWorkTimeBuilderWhere(this.infoRecord);		
+		boolean DONT_IGNORE_NULL_CONDITION = false;
+		SqlWhereBuilderOption option = new SqlWhereBuilderOption();
+		option.isIgnoringNull = DONT_IGNORE_NULL_CONDITION;
+		
+		this.whereBuilder = new EmpWorkTimeBuilderWhere(this.infoRecord, option);		
 		return whereBuilder.generateClause();
 	}
 	
@@ -37,6 +42,6 @@ final class EmpWorkTimeBuilderSelect extends EmpStmtBuilderAbstract<EmpWorkTimeI
 	
 	
 	@Override protected SqlStmtBuilder buildStatementHook() {		
-		return SqlStmtBuilder.factory(SqlOperation.SELECT, builderOption);
+		return SqlStmtBuilder.factory(SqlOperation.DELETE, builderOption);
 	}
 }

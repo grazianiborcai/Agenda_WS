@@ -2,14 +2,14 @@ package br.com.gda.sql;
 
 public interface SqlWhereBuilder {	
 	public static SqlWhereBuilder factory() {
-		boolean DO_IGNORE_NULL_CONDITION = true;
-		return factory(DO_IGNORE_NULL_CONDITION);
+		SqlWhereBuilderOption defaultOption = new SqlWhereBuilderOption();
+		return factory(defaultOption);
 	}
 	
 	
 	
-	public static SqlWhereBuilder factory(boolean ignoreNullCondition) {
-		return new SqlWhereBuilderEqual(ignoreNullCondition);
+	public static SqlWhereBuilder factory(SqlWhereBuilderOption option) {
+		return new SqlWhereBuilderEqual(option);
 	}
 	
 	

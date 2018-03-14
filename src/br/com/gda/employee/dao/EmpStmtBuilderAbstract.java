@@ -3,6 +3,7 @@ package br.com.gda.employee.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlStmtBuilder;
 import br.com.gda.sql.SqlStmtBuilderOption;
 
@@ -52,9 +53,9 @@ abstract class EmpStmtBuilderAbstract<T> {
 	
 	
 	
-	protected List<String> buildColumnsHook() {
+	protected List<SqlColumn> buildColumnsHook() {
 		//Template method: to be overridden by subclasses
-		return new ArrayList<String>();
+		return new ArrayList<>();
 	}
 	
 	

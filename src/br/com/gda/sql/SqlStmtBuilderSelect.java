@@ -31,11 +31,11 @@ public final class SqlStmtBuilderSelect extends SqlStmtBuilderAbstract {
 		resultStatement.append(SqlOperation.SELECT.toString());
 		resultStatement.append(SqlDictionary.SPACE);
 		
-		Iterator<String> columnItr = this.columns.iterator();
+		Iterator<SqlColumn> columnItr = this.columns.iterator();
 		
 		while (columnItr.hasNext()) {
-			String eachColumn = columnItr.next();
-			resultStatement.append(eachColumn);
+			SqlColumn eachColumn = columnItr.next();
+			resultStatement.append(eachColumn.columnName);
 			
 			if (columnItr.hasNext()) {
 				resultStatement.append(SqlDictionary.COMMA);

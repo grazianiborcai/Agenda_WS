@@ -9,7 +9,7 @@ abstract class SqlStmtBuilderAbstract implements SqlStmtBuilder {
 	protected String schemaName;
 	protected String tableName;
 	protected String whereClause;
-	protected List<String> columns = new ArrayList<>();
+	protected List<SqlColumn> columns = new ArrayList<>();
 	
 	
 	SqlStmtBuilderAbstract(SqlStmtBuilderOption option) {

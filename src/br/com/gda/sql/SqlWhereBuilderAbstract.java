@@ -4,40 +4,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class SqlWhereBuilderAbstract implements SqlWhereBuilder {
-
 	
-	protected boolean ignoreNull;
+	protected SqlWhereBuilderOption option;
 	protected String whereClause;
 	protected List<DataClause> dataClauses = new ArrayList<>();
 	
 	
 	
 	public SqlWhereBuilderAbstract() {
-		this(true);
+		this(new SqlWhereBuilderOption());
 	}
 	
 	
 	
-	public SqlWhereBuilderAbstract(boolean ignoreNullCondition) {
-		this.ignoreNull = ignoreNullCondition;
+	public SqlWhereBuilderAbstract(SqlWhereBuilderOption option) {
+		this.option = option;
 	}
 	
 	
 		
 	public boolean isIgnoringNullCondition() {
-		return this.ignoreNull;
+		return option.isIgnoringNull;
 	}
 	
 		
 	
 	public void appendClauseWithAnd(String columnName, String conditionValue) {
-		appendClause(columnName, conditionValue, "AND");
+		appendClause(columnName, conditionValue, SqlDictionary.AND);
 	}
 		
 	
 	
 	public void appendClauseWithOr(String columnName, String conditionValue) {
-		appendClause(columnName, conditionValue, "OR");
+		appendClause(columnName, conditionValue, SqlDictionary.OR);
 	}
 	
 	
@@ -61,7 +60,7 @@ abstract class SqlWhereBuilderAbstract implements SqlWhereBuilder {
 	
 	
 	protected boolean isSkipBuilding(String conditionValue) {
-		if (conditionValue == null && this.ignoreNull)
+		if (conditionValue == null && this.option.isIgnoringNull)
 			return true;
 		
 		return false;

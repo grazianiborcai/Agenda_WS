@@ -36,11 +36,11 @@ final class SqlStmtBuilderInsert extends SqlStmtBuilderAbstract {
 		resultStatement.append(SqlDictionary.PARENTHESIS_OPENING);
 		
 		
-		Iterator<String> columnItr = this.columns.iterator();
+		Iterator<SqlColumn> columnItr = this.columns.iterator();
 		
 		while (columnItr.hasNext()) {
-			String eachColumn = columnItr.next();
-			resultStatement.append(eachColumn);
+			SqlColumn eachColumn = columnItr.next();
+			resultStatement.append(eachColumn.columnName);
 			
 			if (columnItr.hasNext()) {
 				resultStatement.append(SqlDictionary.COMMA);

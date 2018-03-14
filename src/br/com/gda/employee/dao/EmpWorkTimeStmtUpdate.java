@@ -27,10 +27,6 @@ final class EmpWorkTimeStmtUpdate extends EmpWorkTimeStmtAbstract {
 		Time endTime = SqlFormatterNumber.localToSqlTime(this.option.workingTime.endTime);				
 		
 		int i = 1;
-		this.statement.setLong(i++, this.option.workingTime.codOwner);
-		this.statement.setLong(i++, this.option.workingTime.codStore);
-		this.statement.setLong(i++, this.option.workingTime.codEmployee);
-		this.statement.setInt(i++, this.option.workingTime.weekday);
 		this.statement.setTime(i++, beginTime);
 		this.statement.setTime(i++, endTime);
 		this.statement.setString(i++, RecordMode.RECORD_OK); //TODO: mover para a classe model

@@ -38,12 +38,15 @@ public final class SqlStmtBuilderUpdate extends SqlStmtBuilderAbstract {
 		resultStatement.append(SqlDictionary.SPACE);
 		
 		
-		Iterator<String> columnItr = this.columns.iterator();
+		Iterator<SqlColumn> columnItr = this.columns.iterator();
 		
 		while (columnItr.hasNext()) {
-			String eachColumn = columnItr.next();
-			resultStatement.append(eachColumn);
+			SqlColumn eachColumn = columnItr.next();
 			
+			if (eachColumn.isPK)
+				continue;
+			
+			resultStatement.append(eachColumn.columnName);			
 			resultStatement.append(SqlDictionary.SPACE);
 			resultStatement.append(SqlDictionary.EQUAL);
 			resultStatement.append(SqlDictionary.SPACE);

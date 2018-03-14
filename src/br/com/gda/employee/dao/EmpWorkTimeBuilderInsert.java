@@ -3,6 +3,7 @@ package br.com.gda.employee.dao;
 import java.util.List;
 
 import br.com.gda.employee.info.EmpWorkTimeInfo;
+import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlStmtBuilder;
 
@@ -20,8 +21,8 @@ final class EmpWorkTimeBuilderInsert extends EmpStmtBuilderAbstract<EmpWorkTimeI
 	
 	
 	
-	@Override protected List<String> buildColumnsHook() {
-		List<String> resultColumns = EmpDbTableColumn.getTableColumns(EmpDbTable.EMPLOYEE_WORKING_TIME_TABLE);
+	@Override protected List<SqlColumn> buildColumnsHook() {
+		List<SqlColumn> resultColumns = EmpDbTableColumn.getTableColumnsAsList(EmpDbTable.EMPLOYEE_WORKING_TIME_TABLE);
 		return resultColumns;
 	}
 	

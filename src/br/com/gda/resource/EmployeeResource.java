@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.employee.info.EmpWorkTimeInfo;
+import br.com.gda.employee.model.EmpWorkTimeModelDelete;
 import br.com.gda.employee.model.EmpWorkTimeModelInsert;
 import br.com.gda.employee.model.EmpWorkTimeModelSelect;
 import br.com.gda.employee.model.EmpWorkTimeModelUpdate;
@@ -31,6 +32,7 @@ public class EmployeeResource {
 	private static final String INSERT_WOKING_TIME = "/insertWorkingTime";
 	private static final String UPDATE_WOKING_TIME = "/updateWorkingTime";
 	private static final String SELECT_WOKING_TIME = "/selectWorkingTime";
+	private static final String DELETE_WOKING_TIME = "/deleteWorkingTime";
 	
 	
 	@GET
@@ -70,6 +72,27 @@ public class EmployeeResource {
 		EmpWorkTimeModelUpdate workingTimeUpdate = new EmpWorkTimeModelUpdate(incomingData);
 		workingTimeUpdate.executeRequest();
 		return workingTimeUpdate.getResponse();
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_WOKING_TIME)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response deleteWorkingTime(@HeaderParam("codOwner") long codOwner,
+									  @HeaderParam("codStore") long codStore,
+									  @HeaderParam("codEmployee") int codEmployee,
+									  @HeaderParam("weekday") int weekday) {
+		
+		EmpWorkTimeInfo workingTimeInfo = new EmpWorkTimeInfo();
+		workingTimeInfo.codOwner = codOwner;
+		workingTimeInfo.codStore = codStore;
+		workingTimeInfo.codEmployee = codEmployee;
+		workingTimeInfo.weekday = weekday;
+		
+		EmpWorkTimeModelDelete workingTimeInsert = new EmpWorkTimeModelDelete(workingTimeInfo);
+		workingTimeInsert.executeRequest();
+		return workingTimeInsert.getResponse();
 	}
 	
 	

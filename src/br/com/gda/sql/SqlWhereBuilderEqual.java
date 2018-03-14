@@ -6,8 +6,8 @@ final class SqlWhereBuilderEqual extends SqlWhereBuilderAbstract {
 	}
 	
 	
-	SqlWhereBuilderEqual(boolean ignoreNullCondition) {
-		super(ignoreNullCondition);
+	SqlWhereBuilderEqual(SqlWhereBuilderOption option) {
+		super(option);
 	}
 	
 	

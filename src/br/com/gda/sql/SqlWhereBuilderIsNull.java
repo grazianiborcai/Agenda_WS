@@ -2,12 +2,13 @@ package br.com.gda.sql;
 
 final class SqlWhereBuilderIsNull extends SqlWhereBuilderAbstract {
 	SqlWhereBuilderIsNull() {
-		super(false);
+		this(new SqlWhereBuilderOption());
 	}
 	
 	
-	SqlWhereBuilderIsNull(boolean ignoreNullCondition) {
-		super(false);
+	SqlWhereBuilderIsNull(SqlWhereBuilderOption option) {
+		super(option);
+		this.option.isIgnoringNull = false;
 	}
 	
 	

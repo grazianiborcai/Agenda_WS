@@ -5,20 +5,41 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
+import br.com.gda.sql.SqlColumn;
 
 final class EmpDbTableColumn {
-	private static final Hashtable<String, List<String>> tableColumns = new Hashtable<>();	
+	private static final Hashtable<String, List<SqlColumn>> tableColumns = new Hashtable<>();	
 	
 	static {
 		buildTableColumns();
 	}
 
 	
-	public static List<String> getTableColumns(String tableName) {
-		List<String> resultColumns = tableColumns.get(tableName);
+	public static List<SqlColumn> getTableColumnsAsList(String tableName) {
+		List<SqlColumn> columns = tableColumns.get(tableName);
 		
-		if (resultColumns == null)
+		if (columns == null)
 			throw new IllegalArgumentException(tableName + " " + SystemMessage.TABLE_NOT_FOUND);
+		
+		
+		List<SqlColumn> resultColumns = new ArrayList<>();
+		
+		for (SqlColumn eachColumn : columns) {
+			resultColumns.add(eachColumn);
+		}
+		
+		return resultColumns;
+	}
+	
+	
+	
+	public static Hashtable<String, SqlColumn> getTableColumnsAsHashTable(String tableName) {
+		List<SqlColumn> columns = getTableColumnsAsList(tableName);
+		Hashtable<String, SqlColumn> resultColumns = new Hashtable<>();
+		
+		for (SqlColumn eachColumns : columns) {
+			resultColumns.put(eachColumns.columnName, eachColumns);
+		}
 		
 		return resultColumns;
 	}
@@ -32,14 +53,46 @@ final class EmpDbTableColumn {
 	
 	
 	private static void employeeWoerkingTimeTable() {
-		List<String> columns = new ArrayList<>();		
-		columns.add("cod_owner");
-		columns.add("cod_store");
-		columns.add("cod_employee");
-		columns.add("weekday");
-		columns.add("begin_time");
-		columns.add("end_time");
-		columns.add("record_mode");		
+		boolean IS_PRIMARY_KEY = true;
+		boolean NOT_PRIMARY_KEY = false;
+		SqlColumn oneColumn;
+		List<SqlColumn> columns = new ArrayList<>();	
+		
+		oneColumn = new SqlColumn();
+		oneColumn.columnName = "cod_owner";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.columnName = "cod_store";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.columnName = "cod_employee";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.columnName = "weekday";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.columnName = "begin_time";
+		oneColumn.isPK = NOT_PRIMARY_KEY;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.columnName = "end_time";
+		oneColumn.isPK = NOT_PRIMARY_KEY;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.columnName = "record_mode";
+		oneColumn.isPK = NOT_PRIMARY_KEY;
+		columns.add(oneColumn);
+		
 		tableColumns.put(EmpDbTable.EMPLOYEE_WORKING_TIME_TABLE, columns);
 	}
 }

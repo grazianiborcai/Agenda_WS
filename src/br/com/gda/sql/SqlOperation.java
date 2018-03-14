@@ -9,7 +9,7 @@ public enum SqlOperation {
 	
 	DELETE("DELETE") {
 		@Override protected SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option) {
-			return null;
+			return new SqlStmtBuilderDelete(option);
 		}
 	}, 
 	
