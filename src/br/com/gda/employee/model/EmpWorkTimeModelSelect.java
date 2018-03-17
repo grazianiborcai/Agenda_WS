@@ -19,7 +19,7 @@ public final class EmpWorkTimeModelSelect extends EmpWorkTimeModelAbstract {
 	
 	
 	
-	@Override 	protected List<EmpWorkTimeInfo> buildResultsetHook() {
+	@Override protected List<EmpWorkTimeInfo> buildResultsetHook() {
 		return this.sqlStmtExecutor.getResultset();
 	}
 }

@@ -7,5 +7,10 @@ public final class SqlStmtBuilderOption {
 	public String schemaName;
 	public String tableName;
 	public String whereClause;
-	public List<SqlColumn> columns = new ArrayList<>();
+	public List<SqlColumn> columns;
+	
+	
+	public SqlStmtBuilderOption() {
+		columns = new ArrayList<>();
+	}
 }

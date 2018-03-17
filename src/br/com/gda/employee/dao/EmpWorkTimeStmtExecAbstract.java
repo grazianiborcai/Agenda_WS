@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.employee.info.EmpWorkTimeInfo;
+import br.com.gda.helper.RecordMode;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtExecutor;
 
@@ -24,6 +25,7 @@ abstract class EmpWorkTimeStmtExecAbstract implements SqlStmtExecutor<EmpWorkTim
 		
 		
 		makeDefensiveCopy(options);	
+		setRecordMode();
 	}
 	
 	
@@ -38,6 +40,21 @@ abstract class EmpWorkTimeStmtExecAbstract implements SqlStmtExecutor<EmpWorkTim
 		} catch (CloneNotSupportedException e) {
 			throw new IllegalArgumentException(e);
 		}	
+	}
+	
+	
+	
+	private void setRecordMode() {
+		for (EmpStmtOption eachOption : this.options) {
+			eachOption.workingTime.recordMode = setRecordModeHook();
+		}
+	}
+	
+	
+	
+	protected String setRecordModeHook() {
+		//Template method: to be overridden by subclasses
+		return RecordMode.RECORD_OK;
 	}
 	
 	

@@ -4,7 +4,9 @@ import java.util.List;
 
 import br.com.gda.employee.dao.EmpWorkTimeStmtExecInsert;
 import br.com.gda.employee.info.EmpWorkTimeInfo;
+import br.com.gda.employee.model.checker.CheckerEmpWorkTimeModelInsert;
 import br.com.gda.json.JsonToList;
+import br.com.gda.model.checker.ModelCheckerAbstract;
 
 public class EmpWorkTimeModelInsert extends EmpWorkTimeModelAbstract {
 	
@@ -17,6 +19,14 @@ public class EmpWorkTimeModelInsert extends EmpWorkTimeModelAbstract {
 	@Override protected void parseRawInfoHook() {
 		JsonToList<EmpWorkTimeInfo> parser = new JsonToList<>(EmpWorkTimeInfo.class);
 		workingTimeInfos = parser.parse(this.rawInfo);
+	}
+	
+	
+	
+	@Override protected void checkRequestHook() {
+		ModelCheckerAbstract<EmpWorkTimeInfo> checker = new CheckerEmpWorkTimeModelInsert();
+		boolean result = checker.check(this.workingTimeInfos);
+		result = result;
 	}
 	
 	

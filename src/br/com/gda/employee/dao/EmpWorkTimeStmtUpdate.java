@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 
-import br.com.gda.helper.RecordMode;
 import br.com.gda.sql.SqlFormatterNumber;
 
 final class EmpWorkTimeStmtUpdate extends EmpWorkTimeStmtAbstract {
@@ -29,7 +28,7 @@ final class EmpWorkTimeStmtUpdate extends EmpWorkTimeStmtAbstract {
 		int i = 1;
 		this.statement.setTime(i++, beginTime);
 		this.statement.setTime(i++, endTime);
-		this.statement.setString(i++, RecordMode.RECORD_OK); //TODO: mover para a classe model
+		this.statement.setString(i++, this.option.workingTime.recordMode);
 	}
 	
 	

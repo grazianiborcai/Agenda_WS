@@ -22,6 +22,7 @@ public final class EmpWorkTimeModelDelete extends EmpWorkTimeModelAbstract {
 	
 	@Override 	protected List<EmpWorkTimeInfo> buildResultsetHook() {
 		List<EmpWorkTimeInfo> emptyResult = new ArrayList<>();
+		emptyResult.add(new EmpWorkTimeInfo());
 		return emptyResult;
 	}
 }
