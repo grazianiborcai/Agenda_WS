@@ -15,6 +15,7 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.employee.dao.EmpStmtOption;
 import br.com.gda.employee.info.EmpWorkTimeInfo;
 import br.com.gda.json.JsonResponseMaker;
+import br.com.gda.model.checker.ModelCheckerAbstract;
 import br.com.gda.sql.SqlStmtExecutor;
 
 abstract class EmpWorkTimeModelAbstract {
@@ -26,6 +27,7 @@ abstract class EmpWorkTimeModelAbstract {
 	protected Connection conn;
 	protected String schemaName;
 	protected Response response;
+	private ModelCheckerAbstract<EmpWorkTimeInfo> modelChecker;
 	
 	
 	
@@ -47,6 +49,14 @@ abstract class EmpWorkTimeModelAbstract {
 	private void initialize() {
 		this.conn = DbConnection.getConnection();
 		this.schemaName = DbSchema.getDefaultSchemaName();
+		this.modelChecker = buildModelCheckerHook();
+	}
+	
+	
+	
+	protected ModelCheckerAbstract<EmpWorkTimeInfo> buildModelCheckerHook() {
+		//Template Method: to be overwritten by subclasses
+		return null;
 	}
 	
 	
@@ -60,7 +70,7 @@ abstract class EmpWorkTimeModelAbstract {
 	private boolean tryToExecuteRequest() {		
 		try {
 			parseRawInfoHook();
-			checkRequestHook();
+			checkRequest();
 			pushRequestToDb();
 			buildResultset();
 			buildResponse();
@@ -83,8 +93,9 @@ abstract class EmpWorkTimeModelAbstract {
 	
 	
 	
-	protected void checkRequestHook() {
-		//Template method: to be overridden by subclasses
+	private void checkRequest() {
+		//TODO: parei aqui
+		//this.modelChecker;
 	}
 	
 	

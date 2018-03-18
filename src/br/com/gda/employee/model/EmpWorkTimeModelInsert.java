@@ -23,10 +23,8 @@ public class EmpWorkTimeModelInsert extends EmpWorkTimeModelAbstract {
 	
 	
 	
-	@Override protected void checkRequestHook() {
-		ModelCheckerAbstract<EmpWorkTimeInfo> checker = new CheckerEmpWorkTimeModelInsert();
-		boolean result = checker.check(this.workingTimeInfos);
-		result = result;
+	@Override protected ModelCheckerAbstract<EmpWorkTimeInfo> buildModelCheckerHook() {
+		return new CheckerEmpWorkTimeModelInsert();
 	}
 	
 	

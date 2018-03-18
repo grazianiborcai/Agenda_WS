@@ -5,50 +5,23 @@ import java.util.List;
 
 import br.com.gda.employee.info.EmpWorkTimeInfo;
 import br.com.gda.model.checker.ModelCheckerAbstract;
+import br.com.gda.model.checker.ModelCheckerStackAbstract;
 
-public final class CheckerEmpWorkTimeModelInsert extends ModelCheckerAbstract<EmpWorkTimeInfo> {
-	private List<ModelCheckerAbstract<EmpWorkTimeInfo>> stackChecker;
-	private ModelCheckerAbstract<EmpWorkTimeInfo> failedChecker;
-	
+public final class CheckerEmpWorkTimeModelInsert extends ModelCheckerStackAbstract<EmpWorkTimeInfo> {
 	public CheckerEmpWorkTimeModelInsert() {
 		super();	
-		buildStackChecker();
 	}
 	
 	
 	
-	private void buildStackChecker() {
-		final boolean DONT_EXIST_ON_DB = false;		
-		this.stackChecker = new ArrayList<>();		
+	@Override protected List<ModelCheckerAbstract<EmpWorkTimeInfo>> buildStackCheckerHook() {
+		List<ModelCheckerAbstract<EmpWorkTimeInfo>> resultStackChecker = new ArrayList<>();		
 		ModelCheckerAbstract<EmpWorkTimeInfo> checker;
 		
+		final boolean DONT_EXIST_ON_DB = false;	
 		checker = new CheckerEmpWorkTimeExistOnDb(DONT_EXIST_ON_DB);
-		this.stackChecker.add(checker);
-	}
-	
-	
-	
-	@Override protected boolean checkHook(EmpWorkTimeInfo recordInfo) {		
-		for (ModelCheckerAbstract<EmpWorkTimeInfo> eachChecker : this.stackChecker) {
-			boolean resultChecker = eachChecker.check(recordInfo);
-			if (resultChecker != eachChecker.getExpectedResult()) {
-				failedChecker = eachChecker;
-				return RESULT_FAILED;
-			}
-		}
+		resultStackChecker.add(checker);
 		
-		return RESULT_SUCCESS;
-	}
-	
-	
-	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return failedChecker.getFailureExplanation();
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return failedChecker.getFailureCode();
+		return resultStackChecker;
 	}
 }
