@@ -4,7 +4,7 @@ import java.time.LocalTime;
 
 import br.com.gda.common.DefaultValue;
 
-public class EmpWorkTimeInfo implements Cloneable {
+public class EmpWtimeInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codEmployee;
@@ -14,7 +14,7 @@ public class EmpWorkTimeInfo implements Cloneable {
 	public String recordMode;
 	
 	
-	public EmpWorkTimeInfo() {
+	public EmpWtimeInfo() {
 		this.codOwner = DefaultValue.number();
 		this.codStore = DefaultValue.number();
 		this.codEmployee = DefaultValue.number();
@@ -24,7 +24,7 @@ public class EmpWorkTimeInfo implements Cloneable {
 	
 	
 	@Override public Object clone()throws CloneNotSupportedException{  
-		EmpWorkTimeInfo deepCopy = (EmpWorkTimeInfo) super.clone();  		
+		EmpWtimeInfo deepCopy = (EmpWtimeInfo) super.clone();  		
 		
 		LocalTime cloneBeginTime = null;		
 		if (beginTime != null) 

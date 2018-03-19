@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.employee.info.EmpWorkTimeInfo;
+import br.com.gda.employee.info.EmpWtimeInfo;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtExecutor;
 
-abstract class EmpWorkTimeStmtExecAbstract implements SqlStmtExecutor<EmpWorkTimeInfo> {
-	protected List<SqlStmt<EmpWorkTimeInfo>> sqlStatements;
+abstract class EmpWtimeStmtExecAbstract implements SqlStmtExecutor<EmpWtimeInfo> {
+	protected List<SqlStmt<EmpWtimeInfo>> sqlStatements;
 	protected List<EmpStmtOption> options = new ArrayList<>();
-	protected List<EmpWorkTimeInfo> resultset = new ArrayList<>();
+	protected List<EmpWtimeInfo> resultset = new ArrayList<>();
 	
 	
-	public EmpWorkTimeStmtExecAbstract(List<EmpStmtOption> options) {
+	public EmpWtimeStmtExecAbstract(List<EmpStmtOption> options) {
 		if (options == null) 
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
@@ -74,7 +74,7 @@ abstract class EmpWorkTimeStmtExecAbstract implements SqlStmtExecutor<EmpWorkTim
 	
 	
 	
-	protected List<SqlStmt<EmpWorkTimeInfo>> requestPrepareStatementHook() {
+	protected List<SqlStmt<EmpWtimeInfo>> requestPrepareStatementHook() {
 		//Template method: to be overridden by subclasses
 		return new ArrayList<>();
 	}
@@ -83,7 +83,7 @@ abstract class EmpWorkTimeStmtExecAbstract implements SqlStmtExecutor<EmpWorkTim
 	
 	protected void requestCheckStmtGeneration() {
 		//TODO: Seria interessante que a exceção pudesse ser a mesma da origem. Verifica a adição de um método void de verificação que dispara exceção original 
-		for (SqlStmt<EmpWorkTimeInfo> eachStatement : this.sqlStatements) {
+		for (SqlStmt<EmpWtimeInfo> eachStatement : this.sqlStatements) {
 			if (! eachStatement.checkStmtGeneration())
 				throw new IllegalStateException(SystemMessage.REQUEST_FAILED);
 		}
@@ -92,7 +92,7 @@ abstract class EmpWorkTimeStmtExecAbstract implements SqlStmtExecutor<EmpWorkTim
 	
 	
 	protected void requestGenerateStmt() throws SQLException {
-		for (SqlStmt<EmpWorkTimeInfo> eachStatement : this.sqlStatements) {
+		for (SqlStmt<EmpWtimeInfo> eachStatement : this.sqlStatements) {
 			eachStatement.generateStmt();			
 		}
 	}
@@ -100,7 +100,7 @@ abstract class EmpWorkTimeStmtExecAbstract implements SqlStmtExecutor<EmpWorkTim
 	
 	
 	protected void requestExecuteStmt()  throws SQLException {
-		for (SqlStmt<EmpWorkTimeInfo> eachStatement : this.sqlStatements) {
+		for (SqlStmt<EmpWtimeInfo> eachStatement : this.sqlStatements) {
 			eachStatement.executeStmt();
 			addToResultset(eachStatement.getResultset());
 		}
@@ -108,15 +108,15 @@ abstract class EmpWorkTimeStmtExecAbstract implements SqlStmtExecutor<EmpWorkTim
 	
 	
 	
-	private void addToResultset(List<EmpWorkTimeInfo> stmtResults) {
-		for (EmpWorkTimeInfo eachResult : stmtResults) {
+	private void addToResultset(List<EmpWtimeInfo> stmtResults) {
+		for (EmpWtimeInfo eachResult : stmtResults) {
 			this.resultset.add(eachResult);
 		}
 	}
 	
 	
 	
-	public List<EmpWorkTimeInfo> getResultset() {
+	public List<EmpWtimeInfo> getResultset() {
 		try {
 			return tryToGetResultset();
 			
@@ -127,11 +127,11 @@ abstract class EmpWorkTimeStmtExecAbstract implements SqlStmtExecutor<EmpWorkTim
 	
 	
 	
-	private List<EmpWorkTimeInfo> tryToGetResultset() throws CloneNotSupportedException {
-		List<EmpWorkTimeInfo> results = new ArrayList<>();
+	private List<EmpWtimeInfo> tryToGetResultset() throws CloneNotSupportedException {
+		List<EmpWtimeInfo> results = new ArrayList<>();
 		
-		for (EmpWorkTimeInfo eachResult : this.resultset) {
-			EmpWorkTimeInfo resultCloned = (EmpWorkTimeInfo) eachResult.clone();
+		for (EmpWtimeInfo eachResult : this.resultset) {
+			EmpWtimeInfo resultCloned = (EmpWtimeInfo) eachResult.clone();
 			results.add(resultCloned);
 		}
 		

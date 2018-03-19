@@ -6,18 +6,16 @@ import java.sql.Time;
 
 import br.com.gda.sql.SqlFormatterNumber;
 
-
-
-final class EmpWorkTimeStmtInsert extends EmpWorkTimeStmtAbstract {
+final class EmpWtimeStmtUpdate extends EmpWtimeStmtAbstract {
 	
-	public EmpWorkTimeStmtInsert(EmpStmtOption option) {
+	public EmpWtimeStmtUpdate(EmpStmtOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected String buildStmtSkeletonHook() {
-		EmpWorkTimeBuilderInsert builder = new EmpWorkTimeBuilderInsert(option.schemaName, option.workingTime);
+		EmpWtimeBuilderUpdate builder = new EmpWtimeBuilderUpdate(option.schemaName, option.workingTime);
 		return builder.generateStatement();
 	}
 	
@@ -28,10 +26,6 @@ final class EmpWorkTimeStmtInsert extends EmpWorkTimeStmtAbstract {
 		Time endTime = SqlFormatterNumber.localToSqlTime(this.option.workingTime.endTime);				
 		
 		int i = 1;
-		this.statement.setLong(i++, this.option.workingTime.codOwner);
-		this.statement.setLong(i++, this.option.workingTime.codStore);
-		this.statement.setLong(i++, this.option.workingTime.codEmployee);
-		this.statement.setInt(i++, this.option.workingTime.weekday);
 		this.statement.setTime(i++, beginTime);
 		this.statement.setTime(i++, endTime);
 		this.statement.setString(i++, this.option.workingTime.recordMode);

@@ -2,18 +2,15 @@ package br.com.gda.model.checker;
 
 import java.util.List;
 
-import javax.ws.rs.core.Response.Status;
-
 import br.com.gda.common.SystemMessage;
 
 public abstract class ModelCheckerAbstract<T> implements ModelChecker<T> {
 	protected final boolean RESULT_SUCCESS = true;
 	protected final boolean RESULT_FAILED = false;
-	protected final String NO_FAILURE_MSG = "";
-	protected final int SUCCESS_CODE = Status.OK.getStatusCode();
 	
 	private String failMsg;
 	private int failCode;
+	private Boolean actualResult;
 	private boolean expectedResult;
 	
 	
@@ -24,8 +21,8 @@ public abstract class ModelCheckerAbstract<T> implements ModelChecker<T> {
 	
 	
 	protected ModelCheckerAbstract(boolean expectedResult) {
-		this.failMsg = NO_FAILURE_MSG;
-		this.failCode = SUCCESS_CODE;
+		this.failMsg = null;
+		this.failCode = -1;
 		this.expectedResult = expectedResult;
 	}
 	
@@ -42,7 +39,7 @@ public abstract class ModelCheckerAbstract<T> implements ModelChecker<T> {
 		for (T eachRecordInfo : recordInfos) {
 			boolean checkerResult = check(eachRecordInfo);
 			
-			if (checkerResult != RESULT_SUCCESS)
+			if (checkerResult == RESULT_FAILED)
 				return checkerResult;
 		}
 		
@@ -53,36 +50,47 @@ public abstract class ModelCheckerAbstract<T> implements ModelChecker<T> {
 	
 	@Override public boolean check(T recordInfo) {
 		boolean checkerResult = checkHook(recordInfo);
+		actualResult = RESULT_SUCCESS;
 		
 		if (checkerResult != this.expectedResult) {
 			this.failMsg = makeFailureExplanationHook(checkerResult);
 			this.failCode = makeFailureCodeHook(checkerResult);
+			actualResult = RESULT_FAILED;
 		}
 		
-		return checkerResult;
+		return getResult();
 	}
 	
 	
 	
 	protected boolean checkHook(T recordInfo) {
-		return RESULT_SUCCESS;
+		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	
 	
-	@Override public boolean getExpectedResult() {
-		return this.expectedResult;
+	@Override public boolean getResult() {
+		if (this.actualResult == null)
+			throw new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED);
+		
+		return this.actualResult;
 	}
 	
 	
 	
 	@Override public String getFailureExplanation() {
+		if (this.failMsg == null)
+			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
+		
 		return this.failMsg;
 	}
 	
 	
 	
 	@Override public int getFailureCode() {
+		if (this.failCode < 0)
+			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
+		
 		return this.failCode;
 	}
 	
@@ -90,13 +98,13 @@ public abstract class ModelCheckerAbstract<T> implements ModelChecker<T> {
 	
 	protected String makeFailureExplanationHook(boolean checkerResult) {
 		//Template method: to be overwritten by subclasses
-		return this.failMsg;
+		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	
 	
 	protected int makeFailureCodeHook(boolean checkerResult) {
 		//Template method: to be overwritten by subclasses
-		return this.failCode;
+		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 }

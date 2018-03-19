@@ -1,7 +1,8 @@
 package br.com.gda.model.checker;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import br.com.gda.common.SystemMessage;
 
 
 public abstract class ModelCheckerStackAbstract<T> extends ModelCheckerAbstract<T>{
@@ -17,7 +18,7 @@ public abstract class ModelCheckerStackAbstract<T> extends ModelCheckerAbstract<
 	
 	protected List<ModelCheckerAbstract<T>> buildStackCheckerHook() {
 		//Template method: to be overwritten by subclasses
-		return new ArrayList<>();
+		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	
@@ -25,7 +26,8 @@ public abstract class ModelCheckerStackAbstract<T> extends ModelCheckerAbstract<
 	@Override protected boolean checkHook(T recordInfo) {		
 		for (ModelCheckerAbstract<T> eachChecker : this.stackChecker) {
 			boolean resultChecker = eachChecker.check(recordInfo);
-			if (resultChecker != eachChecker.getExpectedResult()) {
+			
+			if (resultChecker == RESULT_FAILED) {
 				failedChecker = eachChecker;
 				return RESULT_FAILED;
 			}

@@ -14,11 +14,11 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.employee.info.EmpWorkTimeInfo;
-import br.com.gda.employee.model.EmpWorkTimeModelDelete;
-import br.com.gda.employee.model.EmpWorkTimeModelInsert;
-import br.com.gda.employee.model.EmpWorkTimeModelSelect;
-import br.com.gda.employee.model.EmpWorkTimeModelUpdate;
+import br.com.gda.employee.info.EmpWtimeInfo;
+import br.com.gda.employee.model.EmpWtimeModelDelete;
+import br.com.gda.employee.model.EmpWtimeModelInsert;
+import br.com.gda.employee.model.EmpWtimeModelSelect;
+import br.com.gda.employee.model.EmpWtimeModelUpdate;
 import br.com.gda.model.EmployeeModel;
 
 @Path("/Employee")
@@ -42,12 +42,12 @@ public class EmployeeResource {
 									  @HeaderParam("codStore") long codStore,
 									  @HeaderParam("codEmployee") int codEmployee) {
 		
-		EmpWorkTimeInfo workingTimeInfo = new EmpWorkTimeInfo();
+		EmpWtimeInfo workingTimeInfo = new EmpWtimeInfo();
 		workingTimeInfo.codOwner = codOwner;
 		workingTimeInfo.codStore = codStore;
 		workingTimeInfo.codEmployee = codEmployee;
 		
-		EmpWorkTimeModelSelect workingTimeInsert = new EmpWorkTimeModelSelect(workingTimeInfo);
+		EmpWtimeModelSelect workingTimeInsert = new EmpWtimeModelSelect(workingTimeInfo);
 		workingTimeInsert.executeRequest();
 		return workingTimeInsert.getResponse();
 	}
@@ -58,7 +58,7 @@ public class EmployeeResource {
 	@Path(INSERT_WOKING_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertWorkingTime(String incomingData) {
-		EmpWorkTimeModelInsert workingTimeInsert = new EmpWorkTimeModelInsert(incomingData);
+		EmpWtimeModelInsert workingTimeInsert = new EmpWtimeModelInsert(incomingData);
 		workingTimeInsert.executeRequest();
 		return workingTimeInsert.getResponse();
 	}
@@ -69,7 +69,7 @@ public class EmployeeResource {
 	@Path(UPDATE_WOKING_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateWorkingTime(String incomingData) {
-		EmpWorkTimeModelUpdate workingTimeUpdate = new EmpWorkTimeModelUpdate(incomingData);
+		EmpWtimeModelUpdate workingTimeUpdate = new EmpWtimeModelUpdate(incomingData);
 		workingTimeUpdate.executeRequest();
 		return workingTimeUpdate.getResponse();
 	}
@@ -84,13 +84,13 @@ public class EmployeeResource {
 									  @HeaderParam("codEmployee") int codEmployee,
 									  @HeaderParam("weekday") int weekday) {
 		
-		EmpWorkTimeInfo workingTimeInfo = new EmpWorkTimeInfo();
+		EmpWtimeInfo workingTimeInfo = new EmpWtimeInfo();
 		workingTimeInfo.codOwner = codOwner;
 		workingTimeInfo.codStore = codStore;
 		workingTimeInfo.codEmployee = codEmployee;
 		workingTimeInfo.weekday = weekday;
 		
-		EmpWorkTimeModelDelete workingTimeInsert = new EmpWorkTimeModelDelete(workingTimeInfo);
+		EmpWtimeModelDelete workingTimeInsert = new EmpWtimeModelDelete(workingTimeInfo);
 		workingTimeInsert.executeRequest();
 		return workingTimeInsert.getResponse();
 	}

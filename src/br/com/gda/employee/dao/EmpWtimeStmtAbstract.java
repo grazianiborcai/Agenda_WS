@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.employee.info.EmpWorkTimeInfo;
+import br.com.gda.employee.info.EmpWtimeInfo;
 import br.com.gda.sql.SqlStmt;
 
-abstract class EmpWorkTimeStmtAbstract implements SqlStmt<EmpWorkTimeInfo> {
+abstract class EmpWtimeStmtAbstract implements SqlStmt<EmpWtimeInfo> {
 	protected EmpStmtOption option;
 	protected String statementSkeleton;
 	protected PreparedStatement statement;
-	protected List<EmpWorkTimeInfo> resultset = new ArrayList<>();
+	protected List<EmpWtimeInfo> resultset = new ArrayList<>();
 	protected ResultSet stmtResult;
 	
 	
-	public EmpWorkTimeStmtAbstract(EmpStmtOption option) {
+	public EmpWtimeStmtAbstract(EmpStmtOption option) {
 		makeDefensiveCopy(option);
 	}
 	
@@ -139,7 +139,7 @@ abstract class EmpWorkTimeStmtAbstract implements SqlStmt<EmpWorkTimeInfo> {
 			if (this.stmtResult.getLong("cod_employee") <= 0)
 				return;
 			
-			EmpWorkTimeInfo dataInfo = new EmpWorkTimeInfo();
+			EmpWtimeInfo dataInfo = new EmpWtimeInfo();
 			dataInfo.codOwner = this.stmtResult.getLong("cod_owner");
 			dataInfo.codStore = this.stmtResult.getLong("cod_store");
 			dataInfo.codEmployee = this.stmtResult.getLong("cod_employee");
@@ -161,7 +161,7 @@ abstract class EmpWorkTimeStmtAbstract implements SqlStmt<EmpWorkTimeInfo> {
 	
 	
 	
-	@Override public List<EmpWorkTimeInfo> getResultset() {		
+	@Override public List<EmpWtimeInfo> getResultset() {		
 		return this.resultset;
 	}
 	

@@ -1,22 +1,22 @@
 package br.com.gda.employee.dao;
 
-import br.com.gda.employee.info.EmpWorkTimeInfo;
+import br.com.gda.employee.info.EmpWtimeInfo;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlWhereBuilder;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpWorkTimeBuilderWhere {
+final class EmpWtimeBuilderWhere {
 	private SqlWhereBuilder builder;
 	
 	
-	public EmpWorkTimeBuilderWhere(EmpWorkTimeInfo workingTime) {
+	public EmpWtimeBuilderWhere(EmpWtimeInfo workingTime) {
 		this(workingTime, new SqlWhereBuilderOption());
 	}
 	
 	
 	
-	public EmpWorkTimeBuilderWhere(EmpWorkTimeInfo workingTime, SqlWhereBuilderOption option) {
+	public EmpWtimeBuilderWhere(EmpWtimeInfo workingTime, SqlWhereBuilderOption option) {
 		checkArgument(workingTime);		
 		builder = SqlWhereBuilder.factory(option);
 		buildClause(workingTime);
@@ -24,14 +24,14 @@ final class EmpWorkTimeBuilderWhere {
 	
 	
 	
-	private void checkArgument(EmpWorkTimeInfo workingTime) {
+	private void checkArgument(EmpWtimeInfo workingTime) {
 		if (workingTime == null)
 			throw new NullPointerException();
 	}
 	
 	
 	
-	private void buildClause(EmpWorkTimeInfo workingTime) {
+	private void buildClause(EmpWtimeInfo workingTime) {
 		builder.appendClauseWithAnd("cod_owner", SqlFormatterNumber.numberToString(workingTime.codOwner));
 		builder.appendClauseWithAnd("cod_store", SqlFormatterNumber.numberToString(workingTime.codStore));
 		builder.appendClauseWithAnd("cod_employee", SqlFormatterNumber.numberToString(workingTime.codEmployee));

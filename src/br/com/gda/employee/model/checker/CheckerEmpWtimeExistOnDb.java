@@ -3,24 +3,24 @@ package br.com.gda.employee.model.checker;
 import javax.ws.rs.core.Response;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.employee.info.EmpWorkTimeInfo;
-import br.com.gda.employee.model.EmpWorkTimeModelSelect;
+import br.com.gda.employee.info.EmpWtimeInfo;
+import br.com.gda.employee.model.EmpWtimeModelSelect;
 import br.com.gda.model.checker.ModelCheckerAbstract;
 
-class CheckerEmpWorkTimeExistOnDb extends ModelCheckerAbstract<EmpWorkTimeInfo> {
+class CheckerEmpWtimeExistOnDb extends ModelCheckerAbstract<EmpWtimeInfo> {
 	private final boolean EMPLOYEE_WORKING_TIME_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	
 	
 	
-	public CheckerEmpWorkTimeExistOnDb(boolean expectedResult) {
+	public CheckerEmpWtimeExistOnDb(boolean expectedResult) {
 		super(expectedResult);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(EmpWorkTimeInfo recordInfo) {		
-		EmpWorkTimeModelSelect readDatabase = new EmpWorkTimeModelSelect(recordInfo);
+	@Override protected boolean checkHook(EmpWtimeInfo recordInfo) {		
+		EmpWtimeModelSelect readDatabase = new EmpWtimeModelSelect(recordInfo);
 		readDatabase.executeRequest();
 		Response response = readDatabase.getResponse();
 		

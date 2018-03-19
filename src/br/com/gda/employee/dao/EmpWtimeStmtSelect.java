@@ -3,16 +3,16 @@ package br.com.gda.employee.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-final class EmpWorkTimeStmtSelect extends EmpWorkTimeStmtAbstract {
+final class EmpWtimeStmtSelect extends EmpWtimeStmtAbstract {
 	
-	public EmpWorkTimeStmtSelect(EmpStmtOption option) {
+	public EmpWtimeStmtSelect(EmpStmtOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected String buildStmtSkeletonHook() {
-		EmpWorkTimeBuilderSelect builder = new EmpWorkTimeBuilderSelect(option.schemaName, option.workingTime);
+		EmpWtimeBuilderSelect builder = new EmpWtimeBuilderSelect(option.schemaName, option.workingTime);
 		return builder.generateStatement();
 	}
 	

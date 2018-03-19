@@ -1,5 +1,5 @@
 package br.com.gda.employee.model.checker;
 
-public class CheckerEmpWorkTimeInsert {
+public class CheckerEmpWtimeInsert {
 
 }
