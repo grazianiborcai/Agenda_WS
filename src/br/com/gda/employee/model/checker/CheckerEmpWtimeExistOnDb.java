@@ -33,17 +33,19 @@ class CheckerEmpWtimeExistOnDb extends ModelCheckerAbstract<EmpWtimeInfo> {
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.OPERATION_CANT_BE_PROCESSED;
+	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
+		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB)
+			return SystemMessage.EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB;
+		
+		return SystemMessage.EMPLOYEE_WORKING_TIME_DONT_EXIST_ON_DB;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == EMPLOYEE_WORKING_TIME_EXIST) {
-			return SystemCode.EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB;
-		} else {
-			return SystemCode.EMPLOYEE_WORKING_TIME_DONT_EXIST_ON_DB;
-		}
+		if (checkerResult == EMPLOYEE_WORKING_TIME_EXIST)
+			return SystemCode.EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB;	
+			
+		return SystemCode.EMPLOYEE_WORKING_TIME_DONT_EXIST_ON_DB;
 	}
 }

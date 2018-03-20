@@ -101,7 +101,7 @@ abstract class EmpWtimeModelAbstract {
 	
 	
 	
-	protected void pushRequestToDb() throws SQLException {
+	private void pushRequestToDb() throws SQLException {
 		prepareStatementOption();
 		this.sqlStmtExecutor = prepareStatementExecutorHook(sqlStmtOptions);
 		executeStatement();
@@ -110,7 +110,7 @@ abstract class EmpWtimeModelAbstract {
 	
 	
 	
-	protected void prepareStatementOption() {		
+	private void prepareStatementOption() {		
 		for (EmpWtimeInfo eachInfo : this.recordInfos) {
 			EmpStmtOption oneOption = new EmpStmtOption();		
 			oneOption.conn = this.conn;
@@ -129,13 +129,13 @@ abstract class EmpWtimeModelAbstract {
 	
 	
 	
-	protected void executeStatement() throws SQLException {
+	private void executeStatement() throws SQLException {
 		this.sqlStmtExecutor.executeStmt();
 	}
 	
 	
 	
-	protected void commitWork() throws SQLException {
+	private void commitWork() throws SQLException {
 		try {
 			this.conn.commit();
 		
@@ -162,7 +162,7 @@ abstract class EmpWtimeModelAbstract {
 	
 	private void buildResponse() {		
 		if (this.modelChecker.getResult() == RESULT_FAILED) {
-			makeResponse(this.modelChecker.getFailureExplanation(), Response.Status.BAD_REQUEST);
+			makeResponse(this.modelChecker.getFailureExplanation(), this.modelChecker.getFailureCode(), Response.Status.BAD_REQUEST);
 			return;
 		}
 		
@@ -178,7 +178,13 @@ abstract class EmpWtimeModelAbstract {
 	
 	
 	
-	protected void makeResponse(String msg, Response.Status htmlStatus) {
+	private void makeResponse(String msg, Response.Status htmlStatus) {
+		makeResponse(msg, htmlStatus.getStatusCode(), htmlStatus);
+	}
+	
+	
+	
+	private void makeResponse(String msg, int msgCode, Response.Status htmlStatus) {
 		Object infoRecord;
 		
 		if (htmlStatus.getStatusCode() >= 400) {
@@ -188,7 +194,7 @@ abstract class EmpWtimeModelAbstract {
 			infoRecord = this.resultset;
 		}		
 		
-		JsonResponseMaker responseMaker = new JsonResponseMaker(msg, htmlStatus, infoRecord);
+		JsonResponseMaker responseMaker = new JsonResponseMaker(msg, msgCode, htmlStatus, infoRecord);
 		this.response = responseMaker.makeResponse();
 	}
 	

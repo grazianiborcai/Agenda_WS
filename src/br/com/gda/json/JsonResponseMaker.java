@@ -17,13 +17,21 @@ public class JsonResponseMaker {
 	private JsonObject jsonObject = null;
 	private JsonElement jsonElement = null;
 	private String msg;
+	private int msgCode;
 	private Response.Status htmlStatus;
 	private Object dataObj;
 	
 	
 	
 	public JsonResponseMaker(String msg, Response.Status htmlStatus, Object dataObj) {
+		this(msg, htmlStatus.getStatusCode(), htmlStatus, dataObj);
+	}
+	
+	
+	
+	public JsonResponseMaker(String msg, int msgCode, Response.Status htmlStatus, Object dataObj) {
 		this.msg = msg;
+		this.msgCode = msgCode;
 		this.htmlStatus = htmlStatus;
 		this.dataObj = dataObj; //TODO: defensive copy		
 	}
@@ -46,7 +54,7 @@ public class JsonResponseMaker {
 	
 	private void addMessage() {
 		this.jsonObject = new JsonObject();
-		this.jsonObject.addProperty(SELECT_CODE, this.htmlStatus.getStatusCode());
+		this.jsonObject.addProperty(SELECT_CODE, this.msgCode);
 		this.jsonObject.addProperty(SELECT_MESSAGE, this.msg);
 		this.jsonObject.add(RESULTS, jsonElement);
 	}

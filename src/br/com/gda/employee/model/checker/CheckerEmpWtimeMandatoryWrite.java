@@ -17,9 +17,7 @@ public final class CheckerEmpWtimeMandatoryWrite extends ModelCheckerAbstract<Em
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.codStore    	<= 0 	||
 			recordInfo.codEmployee 	<= 0 	||
-			recordInfo.weekday		<= 0 	||
-			recordInfo.beginTime    == null ||
-			recordInfo.endTime		== null )
+			recordInfo.weekday		<= 0 )
 			
 			return RESULT_FAILED;
 		

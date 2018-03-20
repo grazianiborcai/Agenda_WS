@@ -18,9 +18,12 @@ public final class SystemMessage {
 	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";
 	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";
 	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
-	public static final String EMPLOYEE_DATA_NOT_FOUND = "Employee's data not found";
+	public static final String EMPLOYEE_DATA_NOT_FOUND = "Employee's data not found";	
 	public static final String RESULTSET_NOT_APPLICABLE = "Resultset is either not applicable or is empty";
 	public static final String NO_TEMPLATE_IMPLEMENTATION = "Template method not overwritten by subclass";
 	public static final String OPERATION_CANT_BE_PROCESSED = "Not possible to process this operation";	
+	public static final String EMPLOYEE_DATA_ALREADY_EXIST = "Employee's data already exist";
 	public static final String ERROR_CREATING_SKELETON_STATEMENT = "Not possible to create skeleton statment";	
+	public static final String EMPLOYEE_WORKING_TIME_DONT_EXIST_ON_DB = "Employee's working time data don't exist on DB";
+	public static final String EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB = "Employee's working time data already exist on DB";	
 }
