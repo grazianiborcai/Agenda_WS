@@ -47,9 +47,9 @@ public class EmployeeResource {
 		workingTimeInfo.codStore = codStore;
 		workingTimeInfo.codEmployee = codEmployee;
 		
-		EmpWtimeModelSelect workingTimeInsert = new EmpWtimeModelSelect(workingTimeInfo);
-		workingTimeInsert.executeRequest();
-		return workingTimeInsert.getResponse();
+		EmpWtimeModelSelect workingTimeSelect = new EmpWtimeModelSelect(workingTimeInfo);
+		workingTimeSelect.executeRequest();
+		return workingTimeSelect.getResponse();
 	}
 	
 	

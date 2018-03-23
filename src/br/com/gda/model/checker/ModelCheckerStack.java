@@ -2,23 +2,14 @@ package br.com.gda.model.checker;
 
 import java.util.List;
 
-import br.com.gda.common.SystemMessage;
 
-
-public abstract class ModelCheckerStackAbstract<T> extends ModelCheckerAbstract<T>{
+public final class ModelCheckerStack<T> extends ModelCheckerAbstract<T>{
 	private List<ModelCheckerAbstract<T>> stackChecker;
 	private ModelCheckerAbstract<T> failedChecker;
 	
-	public ModelCheckerStackAbstract() {
+	public ModelCheckerStack(List<ModelCheckerAbstract<T>> stack) {
 		super();	
-		stackChecker = buildStackCheckerHook();
-	}
-	
-	
-	
-	protected List<ModelCheckerAbstract<T>> buildStackCheckerHook() {
-		//Template method: to be overwritten by subclasses
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+		stackChecker = stack;
 	}
 	
 	

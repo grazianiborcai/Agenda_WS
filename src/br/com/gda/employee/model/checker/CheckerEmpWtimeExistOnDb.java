@@ -7,7 +7,7 @@ import br.com.gda.employee.info.EmpWtimeInfo;
 import br.com.gda.employee.model.EmpWtimeModelSelect;
 import br.com.gda.model.checker.ModelCheckerAbstract;
 
-class CheckerEmpWtimeExistOnDb extends ModelCheckerAbstract<EmpWtimeInfo> {
+public class CheckerEmpWtimeExistOnDb extends ModelCheckerAbstract<EmpWtimeInfo> {
 	private final boolean EMPLOYEE_WORKING_TIME_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	

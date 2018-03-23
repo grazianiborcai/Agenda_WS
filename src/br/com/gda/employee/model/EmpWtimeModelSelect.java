@@ -1,12 +1,14 @@
 package br.com.gda.employee.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.employee.dao.EmpStmtOption;
 import br.com.gda.employee.dao.EmpWtimeStmtExecSelect;
 import br.com.gda.employee.info.EmpWtimeInfo;
-import br.com.gda.employee.model.checker.CheckerEmpWtimeModelSelect;
+import br.com.gda.employee.model.checker.CheckerEmpWtimeMandatoryRead;
 import br.com.gda.model.checker.ModelCheckerAbstract;
+import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.sql.SqlStmtExecutor;
 
 public final class EmpWtimeModelSelect extends EmpWtimeModelAbstract {
@@ -18,7 +20,13 @@ public final class EmpWtimeModelSelect extends EmpWtimeModelAbstract {
 	
 	
 	@Override protected ModelCheckerAbstract<EmpWtimeInfo> buildModelCheckerHook() {
-		return new CheckerEmpWtimeModelSelect();
+		List<ModelCheckerAbstract<EmpWtimeInfo>> stack = new ArrayList<>();		
+		ModelCheckerAbstract<EmpWtimeInfo> checker;
+		
+		checker = new CheckerEmpWtimeMandatoryRead();
+		stack.add(checker);
+		
+		return new ModelCheckerStack<>(stack);
 	}
 	
 	

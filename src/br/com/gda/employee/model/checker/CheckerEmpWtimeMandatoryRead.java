@@ -5,7 +5,7 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.employee.info.EmpWtimeInfo;
 import br.com.gda.model.checker.ModelCheckerAbstract;
 
-final class CheckerEmpWtimeMandatoryRead extends ModelCheckerAbstract<EmpWtimeInfo> {
+public final class CheckerEmpWtimeMandatoryRead extends ModelCheckerAbstract<EmpWtimeInfo> {
 
 	public CheckerEmpWtimeMandatoryRead() {
 		super();
