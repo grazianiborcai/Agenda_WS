@@ -14,7 +14,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.model.MaterialStoreModel;
+import br.com.gda.model.legacy.MaterialStoreModel;
 
 @Path("/MaterialStore")
 public class MaterialStoreResource {

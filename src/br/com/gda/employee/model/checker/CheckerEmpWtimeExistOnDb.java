@@ -3,11 +3,11 @@ package br.com.gda.employee.model.checker;
 import javax.ws.rs.core.Response;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.employee.info.EmpWtimeInfo;
+import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.employee.model.EmpWtimeModelSelect;
 import br.com.gda.model.checker.ModelCheckerAbstract;
 
-public class CheckerEmpWtimeExistOnDb extends ModelCheckerAbstract<EmpWtimeInfo> {
+public class CheckerEmpWtimeExistOnDb extends ModelCheckerAbstract<EmpWTimeInfo> {
 	private final boolean EMPLOYEE_WORKING_TIME_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	
@@ -19,14 +19,16 @@ public class CheckerEmpWtimeExistOnDb extends ModelCheckerAbstract<EmpWtimeInfo>
 	
 	
 	
-	@Override protected boolean checkHook(EmpWtimeInfo recordInfo) {		
+	@Override protected boolean checkHook(EmpWTimeInfo recordInfo) {		
 		EmpWtimeModelSelect readDatabase = new EmpWtimeModelSelect(recordInfo);
 		readDatabase.executeRequest();
 		Response response = readDatabase.getResponse();
 		
-		if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+		if (response.getStatus() == Response.Status.OK.getStatusCode()) 
 			return EMPLOYEE_WORKING_TIME_EXIST;
-		}		
+		
+		if (response.getStatus() == Response.Status.INTERNAL_SERVER_ERROR.getStatusCode()) 
+			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);			
 		
 		return NO_ENTRY_FOUND_ON_DB;
 	}

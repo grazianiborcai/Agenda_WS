@@ -24,7 +24,7 @@ import com.google.gson.stream.JsonReader;
 
 import br.com.gda.helper.Customer;
 import br.com.gda.helper.Weekday;
-import br.com.gda.model.CustomerModel;
+import br.com.gda.model.legacy.CustomerModel;
 
 @Path("/Customer")
 public class CustomerResource {

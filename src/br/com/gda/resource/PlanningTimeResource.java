@@ -17,8 +17,8 @@ import javax.ws.rs.core.Response;
 
 import com.google.gson.JsonObject;
 
-import br.com.gda.model.JsonBuilder;
-import br.com.gda.model.PlanningTimeModel;
+import br.com.gda.model.legacy.JsonBuilder;
+import br.com.gda.model.legacy.PlanningTimeModel;
 
 @Path("/PlanningTime")
 public class PlanningTimeResource extends JsonBuilder {

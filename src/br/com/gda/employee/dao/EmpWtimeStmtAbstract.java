@@ -8,26 +8,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.employee.info.EmpWtimeInfo;
+import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.sql.SqlStmt;
 
-abstract class EmpWtimeStmtAbstract implements SqlStmt<EmpWtimeInfo> {
-	protected EmpStmtOption option;
+abstract class EmpWtimeStmtAbstract implements SqlStmt<EmpWTimeInfo> {
+	protected EmpStmtOption<EmpWTimeInfo> option;
 	protected String statementSkeleton;
 	protected PreparedStatement statement;
-	protected List<EmpWtimeInfo> resultset = new ArrayList<>();
+	protected List<EmpWTimeInfo> resultset = new ArrayList<>();
 	protected ResultSet stmtResult;
 	
 	
-	public EmpWtimeStmtAbstract(EmpStmtOption option) {
+	public EmpWtimeStmtAbstract(EmpStmtOption<EmpWTimeInfo> option) {
 		makeDefensiveCopy(option);
 	}
 	
 	
 	
-	private void makeDefensiveCopy(EmpStmtOption option) {
+	@SuppressWarnings("unchecked")
+	private void makeDefensiveCopy(EmpStmtOption<EmpWTimeInfo> option) {
 		try {
-			this.option = (EmpStmtOption) option.clone();
+			this.option = (EmpStmtOption<EmpWTimeInfo>) option.clone();
 			
 		} catch (CloneNotSupportedException e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
@@ -139,7 +140,7 @@ abstract class EmpWtimeStmtAbstract implements SqlStmt<EmpWtimeInfo> {
 			if (this.stmtResult.getLong("cod_employee") <= 0)
 				return;
 			
-			EmpWtimeInfo dataInfo = new EmpWtimeInfo();
+			EmpWTimeInfo dataInfo = new EmpWTimeInfo();
 			dataInfo.codOwner = this.stmtResult.getLong("cod_owner");
 			dataInfo.codStore = this.stmtResult.getLong("cod_store");
 			dataInfo.codEmployee = this.stmtResult.getLong("cod_employee");
@@ -161,7 +162,7 @@ abstract class EmpWtimeStmtAbstract implements SqlStmt<EmpWtimeInfo> {
 	
 	
 	
-	@Override public List<EmpWtimeInfo> getResultset() {		
+	@Override public List<EmpWTimeInfo> getResultset() {		
 		return this.resultset;
 	}
 	

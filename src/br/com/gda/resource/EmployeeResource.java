@@ -14,12 +14,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.employee.info.EmpWtimeInfo;
+import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.employee.model.EmpWtimeModelDelete;
 import br.com.gda.employee.model.EmpWtimeModelInsert;
 import br.com.gda.employee.model.EmpWtimeModelSelect;
 import br.com.gda.employee.model.EmpWtimeModelUpdate;
-import br.com.gda.model.EmployeeModel;
+import br.com.gda.model.legacy.EmployeeModel;
 
 @Path("/Employee")
 public class EmployeeResource {
@@ -42,7 +42,7 @@ public class EmployeeResource {
 									  @HeaderParam("codStore") long codStore,
 									  @HeaderParam("codEmployee") int codEmployee) {
 		
-		EmpWtimeInfo workingTimeInfo = new EmpWtimeInfo();
+		EmpWTimeInfo workingTimeInfo = new EmpWTimeInfo();
 		workingTimeInfo.codOwner = codOwner;
 		workingTimeInfo.codStore = codStore;
 		workingTimeInfo.codEmployee = codEmployee;
@@ -84,7 +84,7 @@ public class EmployeeResource {
 									  @HeaderParam("codEmployee") int codEmployee,
 									  @HeaderParam("weekday") int weekday) {
 		
-		EmpWtimeInfo workingTimeInfo = new EmpWtimeInfo();
+		EmpWTimeInfo workingTimeInfo = new EmpWTimeInfo();
 		workingTimeInfo.codOwner = codOwner;
 		workingTimeInfo.codStore = codStore;
 		workingTimeInfo.codEmployee = codEmployee;

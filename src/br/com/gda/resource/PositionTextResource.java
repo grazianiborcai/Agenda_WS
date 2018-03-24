@@ -9,7 +9,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.model.PositionTextModel;
+import br.com.gda.model.legacy.PositionTextModel;
 
 @Path("/PositionText")
 public class PositionTextResource {

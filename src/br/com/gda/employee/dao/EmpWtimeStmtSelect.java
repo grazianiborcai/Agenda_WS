@@ -12,7 +12,7 @@ final class EmpWtimeStmtSelect extends EmpWtimeStmtAbstract {
 	
 	
 	@Override protected String buildStmtSkeletonHook() {
-		EmpWtimeBuilderSelect builder = new EmpWtimeBuilderSelect(option.schemaName, option.workingTime);
+		EmpWtimeBuilderSelect builder = new EmpWtimeBuilderSelect(option.schemaName, option.recordInfo);
 		return builder.generateStatement();
 	}
 	

@@ -7,7 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.model.CurrencyModel;
+import br.com.gda.model.legacy.CurrencyModel;
 
 @Path("/Currency")
 public class CurrencyResource {

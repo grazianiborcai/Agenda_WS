@@ -25,10 +25,10 @@ import br.com.gda.helper.CreditCardAG;
 import br.com.gda.helper.HolderAG;
 import br.com.gda.helper.PayCart;
 import br.com.gda.helper.TaxDocumentAG;
-import br.com.gda.model.CardModel;
-import br.com.gda.model.CustomerModel;
-import br.com.gda.model.JsonBuilder;
-import br.com.gda.model.PlanningTimeModel;
+import br.com.gda.model.legacy.CardModel;
+import br.com.gda.model.legacy.CustomerModel;
+import br.com.gda.model.legacy.JsonBuilder;
+import br.com.gda.model.legacy.PlanningTimeModel;
 
 @Path("/Card")
 public class CardResource extends JsonBuilder {

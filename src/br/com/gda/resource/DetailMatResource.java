@@ -14,7 +14,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.model.DetailMatModel;
+import br.com.gda.model.legacy.DetailMatModel;
 
 @Path("/DetailMat")
 public class DetailMatResource {

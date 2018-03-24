@@ -22,8 +22,8 @@ import br.com.gda.helper.Customer;
 import br.com.gda.helper.Employee;
 import br.com.gda.helper.Owner;
 import br.com.gda.helper.RecordMode;
-import br.com.gda.model.EmployeeModel;
-import br.com.gda.model.OwnerModel;
+import br.com.gda.model.legacy.EmployeeModel;
+import br.com.gda.model.legacy.OwnerModel;
 
 //TODO: melhorar as mensagens de resposta para ficar no mesmo padr�o (makeResponse)
 public class AuthFilter implements ContainerRequestFilter {

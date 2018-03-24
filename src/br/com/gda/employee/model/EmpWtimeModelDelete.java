@@ -5,24 +5,25 @@ import java.util.List;
 
 import br.com.gda.employee.dao.EmpStmtOption;
 import br.com.gda.employee.dao.EmpWtimeStmtExecDelete;
-import br.com.gda.employee.info.EmpWtimeInfo;
+import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.employee.model.checker.CheckerEmpWtimeExistOnDb;
 import br.com.gda.employee.model.checker.CheckerEmpWtimeMandatoryWrite;
+import br.com.gda.model.ModelAbstract;
 import br.com.gda.model.checker.ModelCheckerAbstract;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.sql.SqlStmtExecutor;
 
-public final class EmpWtimeModelDelete extends EmpWtimeModelAbstract {
+public final class EmpWtimeModelDelete extends ModelAbstract<EmpWTimeInfo> {
 
-	public EmpWtimeModelDelete(EmpWtimeInfo workingTimeInfo) {
-		super(workingTimeInfo);
+	public EmpWtimeModelDelete(EmpWTimeInfo workingTimeInfo) {
+		super(EmpWTimeInfo.class, workingTimeInfo);
 	}
 	
 	
 	
-	@Override protected ModelCheckerAbstract<EmpWtimeInfo> buildModelCheckerHook() {
-		List<ModelCheckerAbstract<EmpWtimeInfo>> stack = new ArrayList<>();		
-		ModelCheckerAbstract<EmpWtimeInfo> checker;
+	@Override protected ModelCheckerAbstract<EmpWTimeInfo> buildModelCheckerHook() {
+		List<ModelCheckerAbstract<EmpWTimeInfo>> stack = new ArrayList<>();		
+		ModelCheckerAbstract<EmpWTimeInfo> checker;
 		
 		checker = new CheckerEmpWtimeMandatoryWrite();
 		stack.add(checker);
@@ -31,20 +32,20 @@ public final class EmpWtimeModelDelete extends EmpWtimeModelAbstract {
 		checker = new CheckerEmpWtimeExistOnDb(EXIST_ON_DB);
 		stack.add(checker);		
 		
-		 return new ModelCheckerStack<EmpWtimeInfo>(stack);
+		 return new ModelCheckerStack<EmpWTimeInfo>(stack);
 	}
 	
 	
 	
-	@Override protected SqlStmtExecutor<EmpWtimeInfo> prepareStatementExecutorHook(List<EmpStmtOption> sqlStmtOptions) {
+	@Override protected SqlStmtExecutor<EmpWTimeInfo> prepareStatementExecutorHook(List<EmpStmtOption<EmpWTimeInfo>> sqlStmtOptions) {
 		return new EmpWtimeStmtExecDelete(sqlStmtOptions);
 	}
 	
 	
 	
-	@Override protected List<EmpWtimeInfo> buildResultsetHook(List<EmpWtimeInfo> workingTimeInfos) {
-		List<EmpWtimeInfo> emptyResult = new ArrayList<>();
-		emptyResult.add(new EmpWtimeInfo());
+	@Override protected List<EmpWTimeInfo> buildResultsetHook(List<EmpWTimeInfo> workingTimeInfos) {
+		List<EmpWTimeInfo> emptyResult = new ArrayList<>();
+		emptyResult.add(new EmpWTimeInfo());
 		return emptyResult;
 	}
 }

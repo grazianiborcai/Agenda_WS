@@ -13,7 +13,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.model.MenuTextModel;
+import br.com.gda.model.legacy.MenuTextModel;
 
 @Path("/MenuText")
 public class MenuTextResource {

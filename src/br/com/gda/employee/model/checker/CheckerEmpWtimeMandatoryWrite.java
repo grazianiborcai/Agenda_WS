@@ -2,10 +2,10 @@ package br.com.gda.employee.model.checker;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.employee.info.EmpWtimeInfo;
+import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.model.checker.ModelCheckerAbstract;
 
-public final class CheckerEmpWtimeMandatoryWrite extends ModelCheckerAbstract<EmpWtimeInfo> {
+public final class CheckerEmpWtimeMandatoryWrite extends ModelCheckerAbstract<EmpWTimeInfo> {
 
 	public CheckerEmpWtimeMandatoryWrite() {
 		super();
@@ -13,7 +13,7 @@ public final class CheckerEmpWtimeMandatoryWrite extends ModelCheckerAbstract<Em
 	
 	
 	
-	@Override protected boolean checkHook(EmpWtimeInfo recordInfo) {	
+	@Override protected boolean checkHook(EmpWTimeInfo recordInfo) {	
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.codStore    	<= 0 	||
 			recordInfo.codEmployee 	<= 0 	||

@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
 
 import com.sun.jersey.multipart.FormDataMultiPart;
 
-import br.com.gda.model.MaterialModel;
+import br.com.gda.model.legacy.MaterialModel;
 
 @Path("/Material")
 public class MaterialResource {

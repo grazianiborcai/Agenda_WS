@@ -9,7 +9,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.model.CategoryModel;
+import br.com.gda.model.legacy.CategoryModel;
 
 @Path("/Category")
 public class CategoryResource {

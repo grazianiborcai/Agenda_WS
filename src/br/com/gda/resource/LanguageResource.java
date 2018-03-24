@@ -9,7 +9,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.model.LanguageModel;
+import br.com.gda.model.legacy.LanguageModel;
 
 @Path("/Language")
 public class LanguageResource {

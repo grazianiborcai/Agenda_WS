@@ -13,7 +13,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.model.DetailMatItemTextModel;
+import br.com.gda.model.legacy.DetailMatItemTextModel;
 
 @Path("/DetailMatItemText")
 public class DetailMatItemTextResource {

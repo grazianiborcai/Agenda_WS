@@ -1,20 +1,24 @@
 package br.com.gda.employee.dao;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 
-import br.com.gda.employee.info.EmpWtimeInfo;
-
-public final class EmpStmtOption implements Cloneable {
+public final class EmpStmtOption<T> implements Cloneable {
 	public Connection conn;
 	public String schemaName;
-	public EmpWtimeInfo workingTime;
+	public T recordInfo;
 	
 	
 	
-	@Override public Object clone()throws CloneNotSupportedException{  
-		EmpStmtOption deepCopy = (EmpStmtOption) super.clone();  
-		deepCopy.workingTime = (EmpWtimeInfo) workingTime.clone();
-		
-		return deepCopy;
+	@SuppressWarnings("unchecked")
+	@Override public Object clone()throws CloneNotSupportedException {  
+		try {
+			EmpStmtOption<T> deepCopy = (EmpStmtOption<T>) super.clone(); 
+			deepCopy.recordInfo = (T) recordInfo.getClass().getMethod("clone").invoke(recordInfo);
+			return deepCopy;
+			
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			throw new CloneNotSupportedException();
+		} 		
 	}  
 }

@@ -5,23 +5,24 @@ import java.util.List;
 
 import br.com.gda.employee.dao.EmpStmtOption;
 import br.com.gda.employee.dao.EmpWtimeStmtExecSelect;
-import br.com.gda.employee.info.EmpWtimeInfo;
+import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.employee.model.checker.CheckerEmpWtimeMandatoryRead;
+import br.com.gda.model.ModelAbstract;
 import br.com.gda.model.checker.ModelCheckerAbstract;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.sql.SqlStmtExecutor;
 
-public final class EmpWtimeModelSelect extends EmpWtimeModelAbstract {
+public final class EmpWtimeModelSelect extends ModelAbstract<EmpWTimeInfo> {
 	
-	public EmpWtimeModelSelect(EmpWtimeInfo workingTimeInfo) {
-		super(workingTimeInfo);
+	public EmpWtimeModelSelect(EmpWTimeInfo workingTimeInfo) {
+		super(EmpWTimeInfo.class, workingTimeInfo);
 	}
 	
 	
 	
-	@Override protected ModelCheckerAbstract<EmpWtimeInfo> buildModelCheckerHook() {
-		List<ModelCheckerAbstract<EmpWtimeInfo>> stack = new ArrayList<>();		
-		ModelCheckerAbstract<EmpWtimeInfo> checker;
+	@Override protected ModelCheckerAbstract<EmpWTimeInfo> buildModelCheckerHook() {
+		List<ModelCheckerAbstract<EmpWTimeInfo>> stack = new ArrayList<>();		
+		ModelCheckerAbstract<EmpWTimeInfo> checker;
 		
 		checker = new CheckerEmpWtimeMandatoryRead();
 		stack.add(checker);
@@ -31,7 +32,7 @@ public final class EmpWtimeModelSelect extends EmpWtimeModelAbstract {
 	
 	
 	
-	@Override protected SqlStmtExecutor<EmpWtimeInfo> prepareStatementExecutorHook(List<EmpStmtOption> sqlStmtOptions) {
+	@Override protected SqlStmtExecutor<EmpWTimeInfo> prepareStatementExecutorHook(List<EmpStmtOption<EmpWTimeInfo>> sqlStmtOptions) {
 		return new EmpWtimeStmtExecSelect(sqlStmtOptions);
 	}
 }

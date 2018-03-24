@@ -2,14 +2,14 @@ package br.com.gda.employee.dao;
 
 import java.util.List;
 
-import br.com.gda.employee.info.EmpWtimeInfo;
+import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlStmtBuilder;
 
-final class EmpWtimeBuilderInsert extends EmpStmtBuilderAbstract<EmpWtimeInfo> {	
+final class EmpWtimeBuilderInsert extends EmpStmtBuilderAbstract<EmpWTimeInfo> {	
 	
-	public EmpWtimeBuilderInsert(String schemaName, EmpWtimeInfo workingTime) {
+	public EmpWtimeBuilderInsert(String schemaName, EmpWTimeInfo workingTime) {
 		super(schemaName, workingTime);
 	}
 	

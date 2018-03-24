@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
-import br.com.gda.model.FileModel;
+import br.com.gda.model.legacy.FileModel;
 
 @Path("/File")
 public class FileResource {

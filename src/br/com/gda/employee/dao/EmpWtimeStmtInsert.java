@@ -17,24 +17,24 @@ final class EmpWtimeStmtInsert extends EmpWtimeStmtAbstract {
 	
 	
 	@Override protected String buildStmtSkeletonHook() {
-		EmpWtimeBuilderInsert builder = new EmpWtimeBuilderInsert(option.schemaName, option.workingTime);
+		EmpWtimeBuilderInsert builder = new EmpWtimeBuilderInsert(option.schemaName, option.recordInfo);
 		return builder.generateStatement();
 	}
 	
 	
 	
 	@Override protected void translateParameterIntoValueHook() throws SQLException {
-		Time beginTime = SqlFormatterNumber.localToSqlTime(this.option.workingTime.beginTime);
-		Time endTime = SqlFormatterNumber.localToSqlTime(this.option.workingTime.endTime);				
+		Time beginTime = SqlFormatterNumber.localToSqlTime(this.option.recordInfo.beginTime);
+		Time endTime = SqlFormatterNumber.localToSqlTime(this.option.recordInfo.endTime);				
 		
 		int i = 1;
-		this.statement.setLong(i++, this.option.workingTime.codOwner);
-		this.statement.setLong(i++, this.option.workingTime.codStore);
-		this.statement.setLong(i++, this.option.workingTime.codEmployee);
-		this.statement.setInt(i++, this.option.workingTime.weekday);
+		this.statement.setLong(i++, this.option.recordInfo.codOwner);
+		this.statement.setLong(i++, this.option.recordInfo.codStore);
+		this.statement.setLong(i++, this.option.recordInfo.codEmployee);
+		this.statement.setInt(i++, this.option.recordInfo.weekday);
 		this.statement.setTime(i++, beginTime);
 		this.statement.setTime(i++, endTime);
-		this.statement.setString(i++, this.option.workingTime.recordMode);
+		this.statement.setString(i++, this.option.recordInfo.recordMode);
 	}
 	
 	

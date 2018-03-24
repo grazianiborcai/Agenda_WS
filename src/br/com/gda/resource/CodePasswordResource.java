@@ -7,7 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.model.CodePasswordModel;
+import br.com.gda.model.legacy.CodePasswordModel;
 
 @Path("/CodePassword")
 public class CodePasswordResource {
