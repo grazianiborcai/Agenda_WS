@@ -3,7 +3,6 @@ package br.com.gda.employee.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.employee.dao.EmpStmtOption;
 import br.com.gda.employee.dao.EmpWtimeStmtExecInsert;
 import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.employee.model.checker.CheckerEmpWtimeExistOnDb;
@@ -11,6 +10,7 @@ import br.com.gda.employee.model.checker.CheckerEmpWtimeMandatoryWrite;
 import br.com.gda.model.ModelAbstract;
 import br.com.gda.model.checker.ModelCheckerAbstract;
 import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtExecutor;
 
 public class EmpWtimeModelInsert extends ModelAbstract<EmpWTimeInfo> {
@@ -37,7 +37,7 @@ public class EmpWtimeModelInsert extends ModelAbstract<EmpWTimeInfo> {
 	
 	
 	
-	@Override protected SqlStmtExecutor<EmpWTimeInfo> prepareStatementExecutorHook(List<EmpStmtOption<EmpWTimeInfo>> sqlStmtOptions) {
+	@Override protected SqlStmtExecutor<EmpWTimeInfo> prepareStatementExecutorHook(List<SqlStmtOption<EmpWTimeInfo>> sqlStmtOptions) {
 		return new EmpWtimeStmtExecInsert(sqlStmtOptions);
 	}
 	

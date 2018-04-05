@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlStmtBuilder;
 import br.com.gda.sql.SqlStmtBuilderOption;
-
+//TODO: verificar se é realmente necessário
 abstract class EmpStmtBuilderAbstract<T> {
 	protected SqlStmtBuilder builder;
 	protected SqlStmtBuilderOption builderOption;
@@ -87,7 +87,7 @@ abstract class EmpStmtBuilderAbstract<T> {
 	
 	
 	public String generateStatement() {
-		String resultStatement = builder.generateStatement();
+		String resultStatement = builder.generatedStatement();
 		return resultStatement;
 	}
 }

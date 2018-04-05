@@ -7,16 +7,17 @@ import java.util.List;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.helper.RecordMode;
+import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtExecutor;
 
 abstract class EmpWtimeStmtExecAbstract implements SqlStmtExecutor<EmpWTimeInfo> {
 	protected List<SqlStmt<EmpWTimeInfo>> sqlStatements;
-	protected List<EmpStmtOption<EmpWTimeInfo>> options = new ArrayList<>();
+	protected List<SqlStmtOption<EmpWTimeInfo>> options = new ArrayList<>();
 	protected List<EmpWTimeInfo> resultset = new ArrayList<>();
 	
 	
-	public EmpWtimeStmtExecAbstract(List<EmpStmtOption<EmpWTimeInfo>> options) {
+	public EmpWtimeStmtExecAbstract(List<SqlStmtOption<EmpWTimeInfo>> options) {
 		if (options == null) 
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
@@ -30,11 +31,11 @@ abstract class EmpWtimeStmtExecAbstract implements SqlStmtExecutor<EmpWTimeInfo>
 	
 	
 	
-	private void makeDefensiveCopy(List<EmpStmtOption<EmpWTimeInfo>> options) {
+	private void makeDefensiveCopy(List<SqlStmtOption<EmpWTimeInfo>> options) {
 		try {
-			for (EmpStmtOption<EmpWTimeInfo> eachOption : options) {
+			for (SqlStmtOption<EmpWTimeInfo> eachOption : options) {
 				@SuppressWarnings("unchecked")
-				EmpStmtOption<EmpWTimeInfo> cloneOption = (EmpStmtOption<EmpWTimeInfo>) eachOption.clone();			
+				SqlStmtOption<EmpWTimeInfo> cloneOption = (SqlStmtOption<EmpWTimeInfo>) eachOption.clone();			
 				this.options.add(cloneOption);
 			}
 			
@@ -46,7 +47,7 @@ abstract class EmpWtimeStmtExecAbstract implements SqlStmtExecutor<EmpWTimeInfo>
 	
 	
 	private void setRecordMode() {
-		for (EmpStmtOption<EmpWTimeInfo> eachOption : this.options) {
+		for (SqlStmtOption<EmpWTimeInfo> eachOption : this.options) {
 			eachOption.recordInfo.recordMode = setRecordModeHook();
 		}
 	}

@@ -4,10 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.gda.employee.info.EmpWTimeInfo;
+import br.com.gda.sql.SqlStmtOption;
 
 final class EmpWtimeStmtDelete extends EmpWtimeStmtAbstract {
 
-	public EmpWtimeStmtDelete(EmpStmtOption<EmpWTimeInfo> option) {
+	public EmpWtimeStmtDelete(SqlStmtOption<EmpWTimeInfo> option) {
 		super(option);
 	}
 	
@@ -21,7 +22,7 @@ final class EmpWtimeStmtDelete extends EmpWtimeStmtAbstract {
 	
 	
 	@Override protected ResultSet executeStmtHook() throws SQLException {
-		this.statement.executeUpdate();
+		this.stmt.executeUpdate();
 		return null;
 	}
 }

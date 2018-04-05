@@ -10,11 +10,11 @@ import javax.ws.rs.core.Response;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.employee.dao.EmpStmtOption;
 import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.json.JsonResponseMaker;
 import br.com.gda.json.JsonToList;
 import br.com.gda.model.checker.ModelCheckerAbstract;
+import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtExecutor;
 
 public abstract class ModelAbstract<T> {
@@ -23,7 +23,7 @@ public abstract class ModelAbstract<T> {
 	
 	private List<T> recordInfos;
 	private SqlStmtExecutor<T> sqlStmtExecutor;
-	private List<EmpStmtOption<T>> sqlStmtOptions = new ArrayList<>();
+	private List<SqlStmtOption<T>> sqlStmtOptions = new ArrayList<>();
 	private List<T>resultset;
 	private Connection conn;
 	private String schemaName;
@@ -114,7 +114,7 @@ public abstract class ModelAbstract<T> {
 	
 	private void prepareStatementOption() {		
 		for (T eachInfo : this.recordInfos) {
-			EmpStmtOption<T> oneOption = new EmpStmtOption<>();		
+			SqlStmtOption<T> oneOption = new SqlStmtOption<>();		
 			oneOption.conn = this.conn;
 			oneOption.schemaName = this.schemaName;
 			oneOption.recordInfo = eachInfo;
@@ -124,7 +124,7 @@ public abstract class ModelAbstract<T> {
 	
 	
 	
-	protected SqlStmtExecutor<T> prepareStatementExecutorHook(List<EmpStmtOption<T>> sqlStmtOptions) {
+	protected SqlStmtExecutor<T> prepareStatementExecutorHook(List<SqlStmtOption<T>> sqlStmtOptions) {
 		//Template method: to be overwritten by subclasses
 		return null;
 	}

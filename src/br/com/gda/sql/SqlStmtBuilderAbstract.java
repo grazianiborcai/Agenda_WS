@@ -54,7 +54,7 @@ abstract class SqlStmtBuilderAbstract implements SqlStmtBuilder {
 	
 	
 	
-	public String generateStatement() {
+	public String generatedStatement() {
 		tryToCheckStatementGeneration();
 		return generateStatementHook();
 	}

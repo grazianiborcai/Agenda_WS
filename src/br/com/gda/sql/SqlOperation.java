@@ -1,37 +1,45 @@
 package br.com.gda.sql;
 
 public enum SqlOperation {
-	INSERT("INSERT") {
-		@Override protected SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option) {
+	INSERT("INSERT", true) {
+		@Override protected SqlStmtBuilder factorySqlStmtBuilder(SqlStmtBuilderOption option) {
 			return new SqlStmtBuilderInsert(option);
 		}
 	}, 
 	
-	DELETE("DELETE") {
-		@Override protected SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option) {
+	DELETE("DELETE", true) {
+		@Override protected SqlStmtBuilder factorySqlStmtBuilder(SqlStmtBuilderOption option) {
 			return new SqlStmtBuilderDelete(option);
 		}
 	}, 
 	
-	UPDATE("UPDATE") {
-		@Override protected SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option) {
+	UPDATE("UPDATE", true) {
+		@Override protected SqlStmtBuilder factorySqlStmtBuilder(SqlStmtBuilderOption option) {
 			return new SqlStmtBuilderUpdate(option);
 		}
 	}, 
 	
-	SELECT("SELECT") {
-		@Override protected SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option) {
+	SELECT("SELECT", false) {
+		@Override protected SqlStmtBuilder factorySqlStmtBuilder(SqlStmtBuilderOption option) {
 			return new SqlStmtBuilderSelect(option);
 		}
 	};
 	
 	
 	private final String operationSymbol;
+	private final boolean isWrittable;
 	
 	
 	
-	private SqlOperation(String operationSymbol) {
+	private SqlOperation(String operationSymbol, boolean isWrittable) {
 		this.operationSymbol = operationSymbol;
+		this.isWrittable = isWrittable;
+	}
+	
+	
+	
+	public boolean isWrittable() {
+		return isWrittable;
 	}
 	
 	
@@ -41,5 +49,5 @@ public enum SqlOperation {
 	}
 	
 	
-	protected abstract SqlStmtBuilder factorySqlStatementBuilder(SqlStmtBuilderOption option);
+	protected abstract SqlStmtBuilder factorySqlStmtBuilder(SqlStmtBuilderOption option);
 }

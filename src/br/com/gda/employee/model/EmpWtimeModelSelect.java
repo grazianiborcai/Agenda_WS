@@ -3,13 +3,13 @@ package br.com.gda.employee.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.employee.dao.EmpStmtOption;
 import br.com.gda.employee.dao.EmpWtimeStmtExecSelect;
 import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.employee.model.checker.CheckerEmpWtimeMandatoryRead;
 import br.com.gda.model.ModelAbstract;
 import br.com.gda.model.checker.ModelCheckerAbstract;
 import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtExecutor;
 
 public final class EmpWtimeModelSelect extends ModelAbstract<EmpWTimeInfo> {
@@ -32,7 +32,7 @@ public final class EmpWtimeModelSelect extends ModelAbstract<EmpWTimeInfo> {
 	
 	
 	
-	@Override protected SqlStmtExecutor<EmpWTimeInfo> prepareStatementExecutorHook(List<EmpStmtOption<EmpWTimeInfo>> sqlStmtOptions) {
+	@Override protected SqlStmtExecutor<EmpWTimeInfo> prepareStatementExecutorHook(List<SqlStmtOption<EmpWTimeInfo>> sqlStmtOptions) {
 		return new EmpWtimeStmtExecSelect(sqlStmtOptions);
 	}
 }

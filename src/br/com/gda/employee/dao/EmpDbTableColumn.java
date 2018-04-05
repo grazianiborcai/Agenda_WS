@@ -7,7 +7,7 @@ import java.util.List;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.sql.SqlColumn;
 
-final class EmpDbTableColumn {
+public final class EmpDbTableColumn {
 	private static final Hashtable<String, List<SqlColumn>> tableColumns = new Hashtable<>();	
 	
 	static {

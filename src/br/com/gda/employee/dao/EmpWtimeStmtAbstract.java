@@ -9,26 +9,27 @@ import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.employee.info.EmpWTimeInfo;
+import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmt;
 
 abstract class EmpWtimeStmtAbstract implements SqlStmt<EmpWTimeInfo> {
-	protected EmpStmtOption<EmpWTimeInfo> option;
-	protected String statementSkeleton;
-	protected PreparedStatement statement;
+	protected SqlStmtOption<EmpWTimeInfo> option;
+	protected String stmtSkeleton;
+	protected PreparedStatement stmt;
 	protected List<EmpWTimeInfo> resultset = new ArrayList<>();
 	protected ResultSet stmtResult;
 	
 	
-	public EmpWtimeStmtAbstract(EmpStmtOption<EmpWTimeInfo> option) {
+	public EmpWtimeStmtAbstract(SqlStmtOption<EmpWTimeInfo> option) {
 		makeDefensiveCopy(option);
 	}
 	
 	
 	
 	@SuppressWarnings("unchecked")
-	private void makeDefensiveCopy(EmpStmtOption<EmpWTimeInfo> option) {
+	private void makeDefensiveCopy(SqlStmtOption<EmpWTimeInfo> option) {
 		try {
-			this.option = (EmpStmtOption<EmpWTimeInfo>) option.clone();
+			this.option = (SqlStmtOption<EmpWTimeInfo>) option.clone();
 			
 		} catch (CloneNotSupportedException e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
@@ -46,7 +47,7 @@ abstract class EmpWtimeStmtAbstract implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	private void buildStmtSkeleton() {
-		this.statementSkeleton = buildStmtSkeletonHook();
+		this.stmtSkeleton = buildStmtSkeletonHook();
 	}
 	
 	
@@ -59,7 +60,7 @@ abstract class EmpWtimeStmtAbstract implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	private void createStmt() throws SQLException {
-		this.statement = this.option.conn.prepareStatement(this.statementSkeleton);
+		this.stmt = this.option.conn.prepareStatement(this.stmtSkeleton);
 	}
 	
 	
@@ -108,10 +109,10 @@ abstract class EmpWtimeStmtAbstract implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	private void checkStmtSkeleton() throws Exception {
-		if (this.statementSkeleton == null)
+		if (this.stmtSkeleton == null)
 			buildStmtSkeleton();
 		
-		if (this.statementSkeleton == null)
+		if (this.stmtSkeleton == null)
 			throw new IllegalStateException(SystemMessage.ERROR_CREATING_SKELETON_STATEMENT);
 	}
 	
@@ -169,6 +170,6 @@ abstract class EmpWtimeStmtAbstract implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	@Override public String toString() {
-		return this.statement.toString();
+		return this.stmt.toString();
 	}
 }

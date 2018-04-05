@@ -4,11 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 
+import br.com.gda.employee.info.EmpWTimeInfo;
+import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlFormatterNumber;
 
 final class EmpWtimeStmtUpdate extends EmpWtimeStmtAbstract {
 	
-	public EmpWtimeStmtUpdate(EmpStmtOption option) {
+	public EmpWtimeStmtUpdate(SqlStmtOption<EmpWTimeInfo> option) {
 		super(option);
 	}
 	
@@ -26,15 +28,15 @@ final class EmpWtimeStmtUpdate extends EmpWtimeStmtAbstract {
 		Time endTime = SqlFormatterNumber.localToSqlTime(this.option.recordInfo.endTime);				
 		
 		int i = 1;
-		this.statement.setTime(i++, beginTime);
-		this.statement.setTime(i++, endTime);
-		this.statement.setString(i++, this.option.recordInfo.recordMode);
+		this.stmt.setTime(i++, beginTime);
+		this.stmt.setTime(i++, endTime);
+		this.stmt.setString(i++, this.option.recordInfo.recordMode);
 	}
 	
 	
 	
 	@Override protected ResultSet executeStmtHook() throws SQLException {
-		this.statement.executeUpdate();
+		this.stmt.executeUpdate();
 		return null;
 	}
 }
