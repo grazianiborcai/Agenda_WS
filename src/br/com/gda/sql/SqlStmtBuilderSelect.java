@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import br.com.gda.common.SystemMessage;
 
-public final class SqlStmtBuilderSelect extends SqlStmtBuilderAbstract {
+final class SqlStmtBuilderSelect extends SqlStmtBuilderAbstract {
 
 	SqlStmtBuilderSelect(SqlStmtBuilderOption option) {
 		super(option);

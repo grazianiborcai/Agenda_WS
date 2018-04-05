@@ -2,7 +2,7 @@ package br.com.gda.sql;
 
 import br.com.gda.common.SystemMessage;
 
-public final class SqlStmtBuilderDelete extends SqlStmtBuilderAbstract {
+final class SqlStmtBuilderDelete extends SqlStmtBuilderAbstract {
 
 	SqlStmtBuilderDelete(SqlStmtBuilderOption option) {
 		super(option);

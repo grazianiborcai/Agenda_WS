@@ -12,7 +12,7 @@ public final class SqlStmtOption<T> implements Cloneable {
 	public String tableName;
 	public String whereClause;
 	public List<SqlColumn> columns;
-	public SqlStmtParamTranslator stmtParamTranslator;
+	public SqlStmtParamTranslator<T> stmtParamTranslator;
 	public SqlResultParser<T> resultParser;
 	
 	

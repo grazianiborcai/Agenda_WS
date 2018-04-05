@@ -8,31 +8,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.employee.info.EmpWTimeInfo;
-import br.com.gda.helper.RecordMode;
-import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtConcrete;
 import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlWhereBuilder;
-import br.com.gda.sql.SqlWhereBuilderOption;
 
 
 final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 	private SqlStmt<EmpWTimeInfo> stmtSql;
 	private SqlStmtOption<EmpWTimeInfo> stmtOption;
-	
+	/*
 	public EmpWtimeStmtSelect(SqlStmtOption<EmpWTimeInfo> option) {
 		this(option.conn, option.recordInfo, option.schemaName);
-	}
+	} */
 	
 	
 	
 	public EmpWtimeStmtSelect(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
-		
+		buildStmt();		
 	}
 	
 	
@@ -52,15 +47,9 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	private String buildWhereClause() {
-		SqlWhereBuilder builder = SqlWhereBuilder.factory(new SqlWhereBuilderOption());
-		
-		builder.appendClauseWithAnd("cod_owner", SqlFormatterNumber.numberToString(stmtOption.recordInfo.codOwner));
-		builder.appendClauseWithAnd("cod_store", SqlFormatterNumber.numberToString(stmtOption.recordInfo.codStore));
-		builder.appendClauseWithAnd("cod_employee", SqlFormatterNumber.numberToString(stmtOption.recordInfo.codEmployee));
-		builder.appendClauseWithAnd("weekday", SqlFormatterNumber.numberToString(stmtOption.recordInfo.weekday));
-		builder.appendClauseWithAnd("record_mode", RecordMode.RECORD_OK);
-		
-		return builder.generateClause();
+		final boolean IGNORE_NULL = true;
+		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(IGNORE_NULL, stmtOption.recordInfo);
+		return whereClause.getWhereClause();
 	}
 	
 	

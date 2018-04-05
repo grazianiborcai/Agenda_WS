@@ -16,6 +16,7 @@ import br.com.gda.json.JsonToList;
 import br.com.gda.model.checker.ModelCheckerAbstract;
 import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtExecutor;
+import br.com.gda.sql.SqlStmtExecutorOption;
 
 public abstract class ModelAbstract<T> {
 	protected final boolean RESULT_FAILED = false;
@@ -23,7 +24,7 @@ public abstract class ModelAbstract<T> {
 	
 	private List<T> recordInfos;
 	private SqlStmtExecutor<T> sqlStmtExecutor;
-	private List<SqlStmtOption<T>> sqlStmtOptions = new ArrayList<>();
+	private List<SqlStmtExecutorOption<T>> sqlStmtOptions = new ArrayList<>();
 	private List<T>resultset;
 	private Connection conn;
 	private String schemaName;
@@ -114,7 +115,7 @@ public abstract class ModelAbstract<T> {
 	
 	private void prepareStatementOption() {		
 		for (T eachInfo : this.recordInfos) {
-			SqlStmtOption<T> oneOption = new SqlStmtOption<>();		
+			SqlStmtExecutorOption<T> oneOption = new SqlStmtExecutorOption<>();		
 			oneOption.conn = this.conn;
 			oneOption.schemaName = this.schemaName;
 			oneOption.recordInfo = eachInfo;
@@ -124,7 +125,7 @@ public abstract class ModelAbstract<T> {
 	
 	
 	
-	protected SqlStmtExecutor<T> prepareStatementExecutorHook(List<SqlStmtOption<T>> sqlStmtOptions) {
+	protected SqlStmtExecutor<T> prepareStatementExecutorHook(List<SqlStmtExecutorOption<T>> sqlStmtOptions) {
 		//Template method: to be overwritten by subclasses
 		return null;
 	}

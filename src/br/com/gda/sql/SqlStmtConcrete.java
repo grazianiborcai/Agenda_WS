@@ -70,9 +70,9 @@ public final class SqlStmtConcrete<T> implements SqlStmt<T> {
 	
 	
 	
-	private void translateStmtParam() {
+	private void translateStmtParam() throws SQLException {
 		if (option.stmtParamTranslator != null) 
-			this.stmt = option.stmtParamTranslator.translateStmtParam(stmt);
+			this.stmt = option.stmtParamTranslator.translateStmtParam(stmt, option.recordInfo);
 	}
 	
 	
