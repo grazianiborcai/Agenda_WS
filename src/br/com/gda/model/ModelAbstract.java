@@ -15,16 +15,16 @@ import br.com.gda.json.JsonResponseMaker;
 import br.com.gda.json.JsonToList;
 import br.com.gda.model.checker.ModelCheckerAbstract;
 import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtExecutor;
-import br.com.gda.sql.SqlStmtExecutorOption;
+import br.com.gda.sql.SqlStmtExec;
+import br.com.gda.sql.SqlStmtExecOption;
 
 public abstract class ModelAbstract<T> {
 	protected final boolean RESULT_FAILED = false;
 	protected final boolean RESULT_SUCCESS = true;
 	
 	private List<T> recordInfos;
-	private SqlStmtExecutor<T> sqlStmtExecutor;
-	private List<SqlStmtExecutorOption<T>> sqlStmtOptions = new ArrayList<>();
+	private SqlStmtExec<T> sqlStmtExecutor;
+	private List<SqlStmtExecOption<T>> sqlStmtOptions = new ArrayList<>();
 	private List<T>resultset;
 	private Connection conn;
 	private String schemaName;
@@ -115,7 +115,7 @@ public abstract class ModelAbstract<T> {
 	
 	private void prepareStatementOption() {		
 		for (T eachInfo : this.recordInfos) {
-			SqlStmtExecutorOption<T> oneOption = new SqlStmtExecutorOption<>();		
+			SqlStmtExecOption<T> oneOption = new SqlStmtExecOption<>();		
 			oneOption.conn = this.conn;
 			oneOption.schemaName = this.schemaName;
 			oneOption.recordInfo = eachInfo;
@@ -125,7 +125,7 @@ public abstract class ModelAbstract<T> {
 	
 	
 	
-	protected SqlStmtExecutor<T> prepareStatementExecutorHook(List<SqlStmtExecutorOption<T>> sqlStmtOptions) {
+	protected SqlStmtExec<T> prepareStatementExecutorHook(List<SqlStmtExecOption<T>> sqlStmtOptions) {
 		//Template method: to be overwritten by subclasses
 		return null;
 	}

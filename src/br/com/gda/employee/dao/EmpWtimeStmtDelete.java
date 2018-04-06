@@ -7,18 +7,12 @@ import java.util.List;
 import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtConcrete;
+import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
 
 final class EmpWtimeStmtDelete implements SqlStmt<EmpWTimeInfo> {
 	private SqlStmt<EmpWTimeInfo> stmtSql;
-	private SqlStmtOption<EmpWTimeInfo> stmtOption;
-	
-	
-	public EmpWtimeStmtDelete(SqlStmtOption<EmpWTimeInfo> option) {
-		this(option.conn, option.recordInfo, option.schemaName);
-	}
-	
+	private SqlStmtOption<EmpWTimeInfo> stmtOption;	
 	
 	
 	public EmpWtimeStmtDelete(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
@@ -51,7 +45,7 @@ final class EmpWtimeStmtDelete implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtConcrete<>(SqlOperation.DELETE, this.stmtOption);
+		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SOFT_DELETE, this.stmtOption);
 	}
 	
 	
@@ -80,23 +74,8 @@ final class EmpWtimeStmtDelete implements SqlStmt<EmpWTimeInfo> {
 	}
 	
 	
-	/*
-	public EmpWtimeStmtDelete(SqlStmtOption<EmpWTimeInfo> option) {
-		super(option);
+	
+	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
+		return new EmpWtimeStmtDelete(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
-	
-	
-	
-	@Override protected String buildStmtSkeletonHook() {
-		EmpWtimeBuilderDelete builder = new EmpWtimeBuilderDelete(option.schemaName, option.recordInfo);
-		return builder.generateStatement();
-	}
-	
-	
-	
-	@Override protected ResultSet executeStmtHook() throws SQLException {
-		this.stmt.executeUpdate();
-		return null;
-	}
-	*/
 }

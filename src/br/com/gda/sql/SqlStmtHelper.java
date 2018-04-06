@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 
-public final class SqlStmtConcrete<T> implements SqlStmt<T> {
+public final class SqlStmtHelper<T> implements SqlStmt<T> {
 	private SqlOperation operation;
 	private SqlStmtOption<T> option;
 	private String stmtSkeleton;
@@ -17,7 +17,7 @@ public final class SqlStmtConcrete<T> implements SqlStmt<T> {
 	private List<T> resultset = new ArrayList<>();
 	
 	
-	public SqlStmtConcrete(SqlOperation operation, SqlStmtOption<T> option) {
+	public SqlStmtHelper(SqlOperation operation, SqlStmtOption<T> option) {
 		if (operation == null)
 			throw new NullPointerException("operation" + SystemMessage.NULL_ARGUMENT);
 		
@@ -146,7 +146,13 @@ public final class SqlStmtConcrete<T> implements SqlStmt<T> {
 
 	
 	@Override public String toString() {
-		//TODO: realmente necessário ?
+		//TODO: realmente necessário ? Pode ser eliminado ? Gera problema se nulo
 		return this.stmt.toString();
+	}
+	
+	
+	
+	@Override public SqlStmt<T> getNewInstance() {
+		return new SqlStmtHelper<T>(operation, option);
 	}
 }

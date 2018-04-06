@@ -2,9 +2,9 @@ package br.com.gda.sql;
 
 import br.com.gda.common.SystemMessage;
 
-final class SqlStmtBuilderDelete extends SqlStmtBuilderAbstract {
+final class SqlStmtBuilderDeleteHard extends SqlStmtBuilderAbstract {
 
-	SqlStmtBuilderDelete(SqlStmtBuilderOption option) {
+	SqlStmtBuilderDeleteHard(SqlStmtBuilderOption option) {
 		super(option);
 	}
 	
@@ -20,7 +20,7 @@ final class SqlStmtBuilderDelete extends SqlStmtBuilderAbstract {
 	@Override protected String generateStatementHook() {
 		StringBuilder resultStatement = new StringBuilder();
 		
-		resultStatement.append(SqlOperation.DELETE.toString());
+		resultStatement.append(SqlOperation.HARD_DELETE.toString());
 		resultStatement.append(SqlDictionary.SPACE);
 		resultStatement.append(SqlDictionary.FROM);
 		resultStatement.append(SqlDictionary.SPACE);		

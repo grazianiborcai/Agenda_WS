@@ -11,7 +11,7 @@ import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtConcrete;
+import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
 
 
@@ -55,7 +55,7 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtConcrete<>(SqlOperation.SELECT, this.stmtOption);
+		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SELECT, this.stmtOption);
 	}
 	
 	
@@ -114,5 +114,11 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 			
 			return finalResult;
 		}
+	}
+	
+	
+	
+	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
+		return new EmpWtimeStmtSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 }

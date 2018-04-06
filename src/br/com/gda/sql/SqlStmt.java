@@ -13,5 +13,8 @@ public interface SqlStmt<T> {
 	public void executeStmt() throws SQLException;
 	
 	
-	public List<T> getResultset();
+	public List<T> getResultset();	
+	
+	
+	public SqlStmt<T> getNewInstance();
 }

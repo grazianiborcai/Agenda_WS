@@ -1,35 +1,58 @@
 package br.com.gda.employee.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.common.SystemMessage;
 import br.com.gda.employee.info.EmpWTimeInfo;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtExecutorOption;
+import br.com.gda.sql.SqlStmtExec;
+import br.com.gda.sql.SqlStmtExecHelper;
+import br.com.gda.sql.SqlStmtExecOption;
 
-public final class EmpWtimeStmtExecDelete extends EmpWtimeStmtExecAbstract {
+public final class EmpWtimeStmtExecDelete implements SqlStmtExec<EmpWTimeInfo> {
+	private List<SqlStmt<EmpWTimeInfo>> sqlStatements;
+	private SqlStmtExec<EmpWTimeInfo> helper;
 	
-	public EmpWtimeStmtExecDelete(List<SqlStmtExecutorOption<EmpWTimeInfo>> options) {
-		super(options);	
-	}
-	
-	
-	
-	@Override protected String setRecordModeHook() {
-		return RecordMode.RECORD_DELETED;
-	}
-	
-	
-	
-	@Override protected List<SqlStmt<EmpWTimeInfo>> requestPrepareStatementHook() {
-		List<SqlStmt<EmpWTimeInfo>> resultStatements = new ArrayList<>();
+	public EmpWtimeStmtExecDelete(List<SqlStmtExecOption<EmpWTimeInfo>> options) {
+		if (options == null) 
+			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
-		for (SqlStmtExecutorOption<EmpWTimeInfo> eachOption : this.options) {
-			SqlStmt<EmpWTimeInfo> sqlStatement = new EmpWtimeStmtUpdate(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
-			resultStatements.add(sqlStatement);
+		if (options.isEmpty())
+			throw new IllegalArgumentException("options" + SystemMessage.EMPTY_ARGUMENT);
+		
+		prepareStatement(options);
+		buildHelper();
+	}
+	
+	
+	
+	private void prepareStatement(List<SqlStmtExecOption<EmpWTimeInfo>> options) {
+		sqlStatements = new ArrayList<>();
+		
+		for (SqlStmtExecOption<EmpWTimeInfo> eachOption : options) {
+			SqlStmt<EmpWTimeInfo> sqlStatement = new EmpWtimeStmtDelete(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
+			sqlStatements.add(sqlStatement);
 		}
+	}
+	
+	
+	
+	private void buildHelper() {
+		helper = new SqlStmtExecHelper<>(sqlStatements);
+	}
+	
+
+	
+	@Override public void executeStmt() throws SQLException {
+		helper.executeStmt();
 		
-		return resultStatements;
+	}
+
+	
+	
+	@Override public List<EmpWTimeInfo> getResultset() {
+		return helper.getResultset();
 	}
 }

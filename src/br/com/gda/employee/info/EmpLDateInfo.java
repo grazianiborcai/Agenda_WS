@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import br.com.gda.common.DefaultValue;
+import br.com.gda.helper.RecordMode;
 
 public final class EmpLDateInfo implements Cloneable {
 	public long codOwner;
@@ -22,6 +23,7 @@ public final class EmpLDateInfo implements Cloneable {
 		this.codStore = DefaultValue.number();
 		this.codEmployee = DefaultValue.number();
 		this.lineCount = DefaultValue.number();
+		this.recordMode = RecordMode.RECORD_OK;
 	}
 	
 	

@@ -2,10 +2,10 @@ package br.com.gda.sql;
 
 import br.com.gda.common.SystemMessage;
 
-public final class SqlStmtBuilderConcrete implements SqlStmtBuilder {
+public final class SqlStmtBuilderHelper implements SqlStmtBuilder {
 	SqlStmtBuilder builder;
 	
-	public SqlStmtBuilderConcrete(SqlOperation operation, SqlStmtBuilderOption option) {
+	public SqlStmtBuilderHelper(SqlOperation operation, SqlStmtBuilderOption option) {
 		if (operation == null)
 			throw new NullPointerException(operation + SystemMessage.NULL_ARGUMENT);
 		

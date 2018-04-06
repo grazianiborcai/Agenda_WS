@@ -12,7 +12,7 @@ import br.com.gda.sql.SqlStmtParamTranslator;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtConcrete;
+import br.com.gda.sql.SqlStmtHelper;
 
 final class EmpWtimeStmtUpdate implements SqlStmt<EmpWTimeInfo> {
 	private SqlStmt<EmpWTimeInfo> stmtSql;
@@ -49,7 +49,7 @@ final class EmpWtimeStmtUpdate implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtConcrete<>(SqlOperation.UPDATE, this.stmtOption);
+		this.stmtSql = new SqlStmtHelper<>(SqlOperation.UPDATE, this.stmtOption);
 	}
 	
 	
@@ -91,5 +91,11 @@ final class EmpWtimeStmtUpdate implements SqlStmt<EmpWTimeInfo> {
 			
 			return stmt;
 		}		
+	}
+	
+	
+	
+	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
+		return new EmpWtimeStmtUpdate(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 }

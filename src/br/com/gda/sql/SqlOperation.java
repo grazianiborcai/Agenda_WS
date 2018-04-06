@@ -7,9 +7,15 @@ public enum SqlOperation {
 		}
 	}, 
 	
-	DELETE("DELETE", true) {
+	HARD_DELETE("HARD_DELETE", true) {
 		@Override protected SqlStmtBuilder factorySqlStmtBuilder(SqlStmtBuilderOption option) {
-			return new SqlStmtBuilderDelete(option);
+			return new SqlStmtBuilderDeleteHard(option);
+		}
+	}, 
+	
+	SOFT_DELETE("SOFT_DELETE", true) {
+		@Override protected SqlStmtBuilder factorySqlStmtBuilder(SqlStmtBuilderOption option) {
+			return new SqlStmtBuilderDeleteSoft(option);
 		}
 	}, 
 	
