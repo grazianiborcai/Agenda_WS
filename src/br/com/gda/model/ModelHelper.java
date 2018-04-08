@@ -10,20 +10,18 @@ import javax.ws.rs.core.Response;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.json.JsonResponseMaker;
 import br.com.gda.json.JsonToList;
 import br.com.gda.model.checker.ModelCheckerAbstract;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public abstract class ModelAbstract<T> {
-	protected final boolean RESULT_FAILED = false;
-	protected final boolean RESULT_SUCCESS = true;
+public final class ModelHelper<T> implements Model {
+	private final boolean RESULT_FAILED = false;
+	private final boolean RESULT_SUCCESS = true;
 	
 	private List<T> recordInfos;
 	private SqlStmtExec<T> sqlStmtExecutor;
-	private List<SqlStmtExecOption<T>> sqlStmtOptions = new ArrayList<>();
 	private List<T>resultset;
 	private Connection conn;
 	private String schemaName;
@@ -32,34 +30,28 @@ public abstract class ModelAbstract<T> {
 	private Class<T> infoRecordClass;
 	
 	
-	
-	protected ModelAbstract(Class<T> infoRecordClass, String incomingData) {
-		initialize(infoRecordClass);
+	public ModelHelper(ModelOption<T> option, String incomingData) {
+		initialize(option, null);
 		parseRawInfo(incomingData);
+		buildStmtExec(option.visitorStmtExec);
 	}
 	
 	
 	
-	protected ModelAbstract(Class<T> infoRecordClass, T recordInfo) {
-		initialize(infoRecordClass);
+	public ModelHelper(ModelOption<T> option, T recordInfo) {
+		initialize(option, recordInfo);
 		this.recordInfos = new ArrayList<>();
 		this.recordInfos.add(recordInfo);
+		buildStmtExec(option.visitorStmtExec);
 	}
 	
 	
 	
-	private void initialize(Class<T> infoRecordClass) {
+	private void initialize(ModelOption<T> option, T recordInfo) {
 		this.conn = DbConnection.getConnection();
 		this.schemaName = DbSchema.getDefaultSchemaName();
-		this.modelChecker = buildModelCheckerHook();
-		this.infoRecordClass = infoRecordClass;
-	}
-	
-	
-	
-	protected ModelCheckerAbstract<T> buildModelCheckerHook() {
-		//Template Method: to be overwritten by subclasses
-		return null;
+		this.modelChecker = option.visitorChecker;
+		this.infoRecordClass = option.infoRecordClass;		
 	}
 	
 	
@@ -71,7 +63,23 @@ public abstract class ModelAbstract<T> {
 	
 	
 	
-	public boolean executeRequest() {
+	private void buildStmtExec(ModelStmtExec<T> modelStmtExec) {
+		List<SqlStmtExecOption<T>> stmtExecOptions = new ArrayList<>();
+		
+		for (T eachRecord : this.recordInfos) {
+			SqlStmtExecOption<T> eachExecOption = new SqlStmtExecOption<>();
+			eachExecOption.conn = this.conn;
+			eachExecOption.recordInfo = eachRecord;
+			eachExecOption.schemaName = this.schemaName;
+			stmtExecOptions.add(eachExecOption);
+		}
+		
+		this.sqlStmtExecutor = modelStmtExec.getStmtExec(stmtExecOptions);
+	}
+	
+
+	
+	@Override public boolean executeRequest() {
 		return tryToExecuteRequest();
 	}
 	
@@ -104,35 +112,14 @@ public abstract class ModelAbstract<T> {
 	
 	
 	private void pushRequestToDb() throws SQLException {
-		prepareStatementOption();
-		this.sqlStmtExecutor = prepareStatementExecutorHook(sqlStmtOptions);
 		executeStatement();
 		commitWork();
 	}
 	
 	
 	
-	private void prepareStatementOption() {		
-		for (T eachInfo : this.recordInfos) {
-			SqlStmtExecOption<T> oneOption = new SqlStmtExecOption<>();		
-			oneOption.conn = this.conn;
-			oneOption.schemaName = this.schemaName;
-			oneOption.recordInfo = eachInfo;
-			this.sqlStmtOptions.add(oneOption);
-		}
-	}
-	
-	
-	
-	protected SqlStmtExec<T> prepareStatementExecutorHook(List<SqlStmtExecOption<T>> sqlStmtOptions) {
-		//Template method: to be overwritten by subclasses
-		return null;
-	}
-	
-	
-	
 	private void executeStatement() throws SQLException {
-		this.sqlStmtExecutor.executeStmt();
+		this.sqlStmtExecutor.executeStmt(); 
 	}
 	
 	
@@ -150,14 +137,7 @@ public abstract class ModelAbstract<T> {
 	
 	
 	private void buildResultset() {
-		this.resultset = buildResultsetHook(recordInfos);
-	}
-	
-	
-	
-	protected List<T> buildResultsetHook(List<T> recordInfos) {
-		//Template method: to be overwritten by subclasses
-		return this.sqlStmtExecutor.getResultset();
+		this.resultset = this.sqlStmtExecutor.getResultset(); //###
 	}
 	
 	
@@ -190,8 +170,7 @@ public abstract class ModelAbstract<T> {
 		Object infoRecord;
 		
 		if (htmlStatus.getStatusCode() >= 400) {
-			EmpWTimeInfo emptyInfo = new EmpWTimeInfo();
-			infoRecord = emptyInfo;
+			infoRecord = new Object();
 		} else {
 			infoRecord = this.resultset;
 		}		
