@@ -3,8 +3,7 @@ package br.com.gda.sql;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class SqlWhereBuilderAbstract implements SqlWhereBuilder {
-	
+abstract class SqlWhereBuilderAbstract implements SqlWhereBuilder {	
 	protected SqlWhereBuilderOption option;
 	protected String whereClause;
 	protected List<DataClause> dataClauses = new ArrayList<>();

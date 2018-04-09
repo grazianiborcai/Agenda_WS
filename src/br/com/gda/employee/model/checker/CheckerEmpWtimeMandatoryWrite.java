@@ -3,9 +3,9 @@ package br.com.gda.employee.model.checker;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.employee.info.EmpWTimeInfo;
-import br.com.gda.model.checker.ModelCheckerAbstract;
+import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerEmpWtimeMandatoryWrite extends ModelCheckerAbstract<EmpWTimeInfo> {
+public final class CheckerEmpWtimeMandatoryWrite extends ModelCheckerTemplate<EmpWTimeInfo> {
 
 	public CheckerEmpWtimeMandatoryWrite() {
 		super();

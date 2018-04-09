@@ -13,7 +13,7 @@ import br.com.gda.model.Model;
 import br.com.gda.model.ModelHelper;
 import br.com.gda.model.ModelOption;
 import br.com.gda.model.ModelStmtExec;
-import br.com.gda.model.checker.ModelCheckerAbstract;
+import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
@@ -33,9 +33,9 @@ public final class EmpWtimeModelDelete implements Model {
 	
 	
 	
-	private ModelCheckerAbstract<EmpWTimeInfo> buildModelChecker() {
-		List<ModelCheckerAbstract<EmpWTimeInfo>> stack = new ArrayList<>();		
-		ModelCheckerAbstract<EmpWTimeInfo> checker;
+	private ModelChecker<EmpWTimeInfo> buildModelChecker() {
+		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
+		ModelChecker<EmpWTimeInfo> checker;
 		
 		checker = new CheckerEmpWtimeMandatoryWrite();
 		stack.add(checker);
@@ -50,7 +50,7 @@ public final class EmpWtimeModelDelete implements Model {
 	
 	
 	private ModelStmtExec<EmpWTimeInfo> buildStmtExec() {
-		return new EmpWtimeModelDeleteStmtExec();
+		return new EmpWtimeModelStmtExec();
 	}
 	
 	
@@ -67,46 +67,9 @@ public final class EmpWtimeModelDelete implements Model {
 	
 	
 	
-	private class EmpWtimeModelDeleteStmtExec implements ModelStmtExec<EmpWTimeInfo> {		
+	private class EmpWtimeModelStmtExec implements ModelStmtExec<EmpWTimeInfo> {		
 		@Override public SqlStmtExec<EmpWTimeInfo> getStmtExec(List<SqlStmtExecOption<EmpWTimeInfo>> sqlStmtOptions) {
 			return new EmpWtimeStmtExecDelete(sqlStmtOptions);
 		}		
 	}
-	
-	
-	/*
-	public EmpWtimeModelDelete(EmpWTimeInfo workingTimeInfo) {
-		super(EmpWTimeInfo.class, workingTimeInfo);
-	}
-	
-	
-	
-	@Override protected ModelCheckerAbstract<EmpWTimeInfo> buildModelCheckerHook() {
-		List<ModelCheckerAbstract<EmpWTimeInfo>> stack = new ArrayList<>();		
-		ModelCheckerAbstract<EmpWTimeInfo> checker;
-		
-		checker = new CheckerEmpWtimeMandatoryWrite();
-		stack.add(checker);
-		
-		final boolean EXIST_ON_DB = true;	
-		checker = new CheckerEmpWtimeExistOnDb(EXIST_ON_DB);
-		stack.add(checker);		
-		
-		 return new ModelCheckerStack<EmpWTimeInfo>(stack);
-	}
-	
-	
-	
-	@Override protected SqlStmtExec<EmpWTimeInfo> prepareStatementExecutorHook(List<SqlStmtExecOption<EmpWTimeInfo>> sqlStmtOptions) {
-		return new EmpWtimeStmtExecDelete(sqlStmtOptions);
-	}
-	
-	
-	
-	@Override protected List<EmpWTimeInfo> buildResultsetHook(List<EmpWTimeInfo> workingTimeInfos) {
-		List<EmpWTimeInfo> emptyResult = new ArrayList<>();
-		emptyResult.add(new EmpWTimeInfo());
-		return emptyResult;
-	}
-	*/
 }

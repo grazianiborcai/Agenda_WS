@@ -18,10 +18,6 @@ import br.com.gda.sql.SqlStmtOption;
 final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 	private SqlStmt<EmpWTimeInfo> stmtSql;
 	private SqlStmtOption<EmpWTimeInfo> stmtOption;
-	/*
-	public EmpWtimeStmtSelect(SqlStmtOption<EmpWTimeInfo> option) {
-		this(option.conn, option.recordInfo, option.schemaName);
-	} */
 	
 	
 	
@@ -85,6 +81,12 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	
+	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
+		return new EmpWtimeStmtSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	}
+	
+	
+	
 	private class ResultParser implements SqlResultParser<EmpWTimeInfo> {
 		@Override public List<EmpWTimeInfo> parseResult(ResultSet stmtResult) throws SQLException {
 			List<EmpWTimeInfo> finalResult = new ArrayList<>();
@@ -114,11 +116,5 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 			
 			return finalResult;
 		}
-	}
-	
-	
-	
-	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
-		return new EmpWtimeStmtSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 }

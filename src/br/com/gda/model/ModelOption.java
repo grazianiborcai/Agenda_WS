@@ -1,9 +1,9 @@
 package br.com.gda.model;
 
-import br.com.gda.model.checker.ModelCheckerAbstract;
+import br.com.gda.model.checker.ModelChecker;
 
 public final class ModelOption<T> {
 	public Class<T> infoRecordClass; 
-	public ModelCheckerAbstract<T> visitorChecker;
+	public ModelChecker<T> visitorChecker;
 	public ModelStmtExec<T> visitorStmtExec;
 }

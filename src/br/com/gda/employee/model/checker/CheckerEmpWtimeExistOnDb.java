@@ -5,9 +5,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.employee.model.EmpWtimeModelSelect;
-import br.com.gda.model.checker.ModelCheckerAbstract;
+import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public class CheckerEmpWtimeExistOnDb extends ModelCheckerAbstract<EmpWTimeInfo> {
+public class CheckerEmpWtimeExistOnDb extends ModelCheckerTemplate<EmpWTimeInfo> {
 	private final boolean EMPLOYEE_WORKING_TIME_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	

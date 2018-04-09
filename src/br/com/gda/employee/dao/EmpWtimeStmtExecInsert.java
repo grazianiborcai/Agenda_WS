@@ -46,8 +46,7 @@ public final class EmpWtimeStmtExecInsert implements SqlStmtExec<EmpWTimeInfo> {
 
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

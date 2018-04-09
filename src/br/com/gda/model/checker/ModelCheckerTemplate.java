@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 
-public abstract class ModelCheckerAbstract<T> implements ModelChecker<T> {
+public abstract class ModelCheckerTemplate<T> implements ModelChecker<T> {
 	protected final boolean RESULT_SUCCESS = true;
 	protected final boolean RESULT_FAILED = false;
 	
@@ -14,13 +14,13 @@ public abstract class ModelCheckerAbstract<T> implements ModelChecker<T> {
 	private boolean expectedResult;
 	
 	
-	protected ModelCheckerAbstract() {
+	protected ModelCheckerTemplate() {
 		this(true);
 	}
 	
 	
 	
-	protected ModelCheckerAbstract(boolean expectedResult) {
+	protected ModelCheckerTemplate(boolean expectedResult) {
 		this.failMsg = null;
 		this.failCode = -1;
 		this.expectedResult = expectedResult;
@@ -64,6 +64,7 @@ public abstract class ModelCheckerAbstract<T> implements ModelChecker<T> {
 	
 	
 	protected boolean checkHook(T recordInfo) {
+		//Template method: to be overwritten by subclasses
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	

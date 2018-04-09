@@ -3,11 +3,11 @@ package br.com.gda.model.checker;
 import java.util.List;
 
 
-public final class ModelCheckerStack<T> extends ModelCheckerAbstract<T>{
-	private List<ModelCheckerAbstract<T>> stackChecker;
-	private ModelCheckerAbstract<T> failedChecker;
+public final class ModelCheckerStack<T> extends ModelCheckerTemplate<T>{
+	private List<ModelChecker<T>> stackChecker;
+	private ModelChecker<T> failedChecker;
 	
-	public ModelCheckerStack(List<ModelCheckerAbstract<T>> stack) {
+	public ModelCheckerStack(List<ModelChecker<T>> stack) {
 		super();	
 		stackChecker = stack;
 	}
@@ -15,7 +15,7 @@ public final class ModelCheckerStack<T> extends ModelCheckerAbstract<T>{
 	
 	
 	@Override protected boolean checkHook(T recordInfo) {		
-		for (ModelCheckerAbstract<T> eachChecker : this.stackChecker) {
+		for (ModelChecker<T> eachChecker : this.stackChecker) {
 			boolean resultChecker = eachChecker.check(recordInfo);
 			
 			if (resultChecker == RESULT_FAILED) {

@@ -12,7 +12,7 @@ import br.com.gda.common.DbSchema;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.json.JsonResponseMaker;
 import br.com.gda.json.JsonToList;
-import br.com.gda.model.checker.ModelCheckerAbstract;
+import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
@@ -26,7 +26,7 @@ public final class ModelHelper<T> implements Model {
 	private Connection conn;
 	private String schemaName;
 	private Response response;
-	private ModelCheckerAbstract<T> modelChecker;
+	private ModelChecker<T> modelChecker;
 	private Class<T> infoRecordClass;
 	
 	

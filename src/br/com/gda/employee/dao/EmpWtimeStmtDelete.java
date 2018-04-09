@@ -1,11 +1,14 @@
 package br.com.gda.employee.dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.sql.SqlOperation;
+import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
@@ -30,7 +33,7 @@ final class EmpWtimeStmtDelete implements SqlStmt<EmpWTimeInfo> {
 		this.stmtOption.tableName = EmpDbTable.EMPLOYEE_WORKING_TIME_TABLE;
 		this.stmtOption.columns = EmpDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = null;
+		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
 	}
 	
@@ -77,5 +80,16 @@ final class EmpWtimeStmtDelete implements SqlStmt<EmpWTimeInfo> {
 	
 	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
 		return new EmpWtimeStmtDelete(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	}
+	
+	
+	
+	private class ResultParser implements SqlResultParser<EmpWTimeInfo> {
+		@Override public List<EmpWTimeInfo> parseResult(ResultSet stmtResult) throws SQLException {
+			List<EmpWTimeInfo> finalResult = new ArrayList<>();
+			EmpWTimeInfo emptyInfo = new EmpWTimeInfo();
+			finalResult.add(emptyInfo);			
+			return finalResult;
+		}
 	}
 }

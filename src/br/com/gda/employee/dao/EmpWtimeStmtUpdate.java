@@ -2,8 +2,10 @@ package br.com.gda.employee.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.employee.info.EmpWTimeInfo;
@@ -11,6 +13,7 @@ import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtParamTranslator;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlOperation;
+import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 
@@ -34,7 +37,7 @@ final class EmpWtimeStmtUpdate implements SqlStmt<EmpWTimeInfo> {
 		this.stmtOption.tableName = EmpDbTable.EMPLOYEE_WORKING_TIME_TABLE;
 		this.stmtOption.columns = EmpDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = null;
+		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
 	}
 	
@@ -79,6 +82,12 @@ final class EmpWtimeStmtUpdate implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	
+	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
+		return new EmpWtimeStmtUpdate(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	}
+	
+	
+	
 	private class ParamTranslator implements SqlStmtParamTranslator<EmpWTimeInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpWTimeInfo recordInfo) throws SQLException {
 			Time beginTime = SqlFormatterNumber.localToSqlTime(recordInfo.beginTime);
@@ -95,7 +104,12 @@ final class EmpWtimeStmtUpdate implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	
-	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
-		return new EmpWtimeStmtUpdate(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	private class ResultParser implements SqlResultParser<EmpWTimeInfo> {
+		@Override public List<EmpWTimeInfo> parseResult(ResultSet stmtResult) throws SQLException {
+			List<EmpWTimeInfo> finalResult = new ArrayList<>();
+			EmpWTimeInfo emptyInfo = new EmpWTimeInfo();
+			finalResult.add(emptyInfo);			
+			return finalResult;
+		}
 	}
 }

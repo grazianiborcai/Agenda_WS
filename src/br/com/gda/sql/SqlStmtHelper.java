@@ -24,6 +24,9 @@ public final class SqlStmtHelper<T> implements SqlStmt<T> {
 		if (option == null)
 			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
 		
+		if (option.resultParser == null)
+			throw new NullPointerException("option.resultParser" + SystemMessage.NULL_ARGUMENT);
+		
 		
 		this.operation = operation;
 		makeDefensiveCopy(option);		
@@ -133,7 +136,7 @@ public final class SqlStmtHelper<T> implements SqlStmt<T> {
 	private void parseResultSet() throws SQLException {
 		this.resultset = new ArrayList<>();
 		
-		if (this.option.resultParser != null) 
+		if (this.option.resultParser != null)
 			this.resultset = option.resultParser.parseResult(this.stmtResultSet);
 	}
 
