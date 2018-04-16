@@ -12,7 +12,6 @@ public class CheckerEmpWtimeExistOnDb extends ModelCheckerTemplate<EmpWTimeInfo>
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	
 	
-	
 	public CheckerEmpWtimeExistOnDb(boolean expectedResult) {
 		super(expectedResult);
 	}

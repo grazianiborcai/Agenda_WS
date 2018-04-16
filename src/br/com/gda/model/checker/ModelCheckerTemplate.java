@@ -7,6 +7,8 @@ import br.com.gda.common.SystemMessage;
 public abstract class ModelCheckerTemplate<T> implements ModelChecker<T> {
 	protected final boolean RESULT_SUCCESS = true;
 	protected final boolean RESULT_FAILED = false;
+	protected final String NO_FAIL_MSG = null;
+	protected final int NO_FAIL_CODE = -1;
 	
 	private String failMsg;
 	private int failCode;
@@ -21,8 +23,8 @@ public abstract class ModelCheckerTemplate<T> implements ModelChecker<T> {
 	
 	
 	protected ModelCheckerTemplate(boolean expectedResult) {
-		this.failMsg = null;
-		this.failCode = -1;
+		this.failMsg = NO_FAIL_MSG;
+		this.failCode = NO_FAIL_CODE;
 		this.expectedResult = expectedResult;
 	}
 	
@@ -80,7 +82,7 @@ public abstract class ModelCheckerTemplate<T> implements ModelChecker<T> {
 	
 	
 	@Override public String getFailureExplanation() {
-		if (this.failMsg == null)
+		if (this.failMsg == NO_FAIL_MSG)
 			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
 		
 		return this.failMsg;
@@ -89,7 +91,7 @@ public abstract class ModelCheckerTemplate<T> implements ModelChecker<T> {
 	
 	
 	@Override public int getFailureCode() {
-		if (this.failCode < 0)
+		if (this.failCode == NO_FAIL_CODE)
 			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
 		
 		return this.failCode;

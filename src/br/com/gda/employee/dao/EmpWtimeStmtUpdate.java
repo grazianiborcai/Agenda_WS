@@ -11,6 +11,7 @@ import java.util.List;
 import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtParamTranslator;
+import br.com.gda.sql.SqlWhereBuilderOption;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
@@ -45,7 +46,13 @@ final class EmpWtimeStmtUpdate implements SqlStmt<EmpWTimeInfo> {
 	
 	private String buildWhereClause() {
 		final boolean DONT_IGNORE_NULL = false;
-		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(DONT_IGNORE_NULL, stmtOption.recordInfo);
+		final boolean IGNORE_RECORD_MODE = true;
+		
+		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		whereOption.isIgnoringNull = DONT_IGNORE_NULL;
+		whereOption.isIgnoringRecordMode = IGNORE_RECORD_MODE;
+		
+		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(whereOption, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

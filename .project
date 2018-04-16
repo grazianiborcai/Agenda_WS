@@ -3,7 +3,6 @@
 	<name>Agenda_WS</name>
 	<comment></comment>
 	<projects>
-		<project>agenda-metadata_lib</project>
 		<project>moip-sdk-java</project>
 	</projects>
 	<buildSpec>

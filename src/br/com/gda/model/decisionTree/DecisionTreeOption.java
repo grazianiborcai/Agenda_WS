@@ -1,8 +1,10 @@
 package br.com.gda.model.decisionTree;
 
-import br.com.gda.model.checker.ModelChecker;
+import java.sql.Connection;
+import java.util.List;
 
 public final class DecisionTreeOption<T> {
-	ModelChecker<T> visitorChecker;
-	T recordInfo;
+	public List<T> recordInfos;
+	public Connection conn;
+	public String schemaName;
 }

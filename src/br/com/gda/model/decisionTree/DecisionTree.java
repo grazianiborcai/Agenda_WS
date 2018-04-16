@@ -1,5 +1,9 @@
 package br.com.gda.model.decisionTree;
 
 public interface DecisionTree<T> {
-	public DecisionResult getDecision();
+	public void makeDecision();
+	
+	public DecisionChoice getDecisionMade();	
+	
+	public DecisionResult<T> getDecisionResult();
 }

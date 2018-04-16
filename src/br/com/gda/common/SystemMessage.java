@@ -1,6 +1,7 @@
 package br.com.gda.common;
 
 public final class SystemMessage {
+	public static final String SUCCESS = "Success";
 	public static final String NULL_SCHEMA = "Schema name is null";
 	public static final String NO_RESPONSE = "Main operation was not executed";
 	public static final String NULL_COLUMNS = "Columns for this given builder were passed null";
@@ -24,6 +25,7 @@ public final class SystemMessage {
 	public static final String OPERATION_CANT_BE_PROCESSED = "Not possible to process this operation";	
 	public static final String EMPLOYEE_DATA_ALREADY_EXIST = "Employee's data already exist";
 	public static final String ERROR_CREATING_SKELETON_STATEMENT = "Not possible to create skeleton statment";	
+	public static final String EMPLOYEE_WORKING_FLAGGED_AS_DELETED = "Employee's working time data is flagged as deleted on DB";
 	public static final String EMPLOYEE_WORKING_TIME_DONT_EXIST_ON_DB = "Employee's working time data don't exist on DB";
 	public static final String EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB = "Employee's working time data already exist on DB";	
 }

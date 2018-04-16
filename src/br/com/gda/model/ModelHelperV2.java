@@ -13,42 +13,45 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.json.JsonResponseMaker;
 import br.com.gda.json.JsonToList;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.decisionTree.DecisionTree;
+import br.com.gda.model.decisionTree.DecisionTreeFactory;
+import br.com.gda.model.decisionTree.DecisionTreeOption;
 import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecFactory;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class ModelHelper<T> implements Model {
+public final class ModelHelperV2<T> implements Model {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
 	private List<T> recordInfos;
-	private SqlStmtExec<T> sqlStmtExecutor;
+	private SqlStmtExec<T> sqlStmtExecutor; 	// ###
 	private List<T>resultset;
 	private Connection conn;
 	private String schemaName;
 	private Response response;
 	private ModelChecker<T> modelChecker;
 	private Class<T> infoRecordClass;
+	private DecisionTree<T> decisionTree;
 	
 	
-	public ModelHelper(ModelOption<T> option, String incomingData) {
+	public ModelHelperV2(ModelOptionV2<T> option, String incomingData) {
 		initialize(option, null);
 		parseRawInfo(incomingData);
-		buildStmtExec(option.visitorStmtExec);
+		buildDecisionTree(option.decisionTreeFactory);
 	}
 	
 	
 	
-	public ModelHelper(ModelOption<T> option, T recordInfo) {
+	public ModelHelperV2(ModelOptionV2<T> option, T recordInfo) {
 		initialize(option, recordInfo);
 		this.recordInfos = new ArrayList<>();
 		this.recordInfos.add(recordInfo);
-		buildStmtExec(option.visitorStmtExec);
+		buildDecisionTree(option.decisionTreeFactory);
 	}
 	
 	
 	
-	private void initialize(ModelOption<T> option, T recordInfo) {
+	private void initialize(ModelOptionV2<T> option, T recordInfo) {
 		this.conn = DbConnection.getConnection();
 		this.schemaName = DbSchema.getDefaultSchemaName();
 		this.modelChecker = option.visitorChecker;
@@ -64,18 +67,14 @@ public final class ModelHelper<T> implements Model {
 	
 	
 	
-	private void buildStmtExec(SqlStmtExecFactory<T> modelStmtExec) {
-		List<SqlStmtExecOption<T>> stmtExecOptions = new ArrayList<>();
+	private void buildDecisionTree(DecisionTreeFactory<T> treeFactory) {
+		DecisionTreeOption<T> treeOption = new DecisionTreeOption<>();
 		
-		for (T eachRecord : this.recordInfos) {
-			SqlStmtExecOption<T> eachExecOption = new SqlStmtExecOption<>();
-			eachExecOption.conn = this.conn;
-			eachExecOption.recordInfo = eachRecord;
-			eachExecOption.schemaName = this.schemaName;
-			stmtExecOptions.add(eachExecOption);
-		}
+		treeOption.conn = this.conn;
+		treeOption.recordInfos = this.recordInfos;
+		treeOption.schemaName = this.schemaName;
 		
-		this.sqlStmtExecutor = modelStmtExec.getStmtExec(stmtExecOptions);
+		this.decisionTree = treeFactory.getDecisionTree(treeOption);
 	}
 	
 

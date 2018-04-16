@@ -11,10 +11,10 @@ import br.com.gda.employee.model.checker.CheckerEmpWtimeMandatoryRead;
 import br.com.gda.model.Model;
 import br.com.gda.model.ModelHelper;
 import br.com.gda.model.ModelOption;
-import br.com.gda.model.ModelStmtExec;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.sql.SqlStmtExec;
+import br.com.gda.sql.SqlStmtExecFactory;
 import br.com.gda.sql.SqlStmtExecOption;
 
 public final class EmpWtimeModelSelect implements Model {
@@ -44,7 +44,7 @@ public final class EmpWtimeModelSelect implements Model {
 	
 	
 	
-	private ModelStmtExec<EmpWTimeInfo> buildStmtExec() {
+	private SqlStmtExecFactory<EmpWTimeInfo> buildStmtExec() {
 		return new EmpWtimeModelStmtExec();
 	}
 
@@ -62,7 +62,7 @@ public final class EmpWtimeModelSelect implements Model {
 	
 	
 	
-	private class EmpWtimeModelStmtExec implements ModelStmtExec<EmpWTimeInfo> {		
+	private class EmpWtimeModelStmtExec implements SqlStmtExecFactory<EmpWTimeInfo> {		
 		@Override public SqlStmtExec<EmpWTimeInfo> getStmtExec(List<SqlStmtExecOption<EmpWTimeInfo>> sqlStmtOptions) {
 			return new EmpWtimeStmtExecSelect(sqlStmtOptions);
 		}		

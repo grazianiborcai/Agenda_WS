@@ -12,6 +12,7 @@ import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
+import br.com.gda.sql.SqlWhereBuilderOption;
 
 final class EmpWtimeStmtDelete implements SqlStmt<EmpWTimeInfo> {
 	private SqlStmt<EmpWTimeInfo> stmtSql;
@@ -41,7 +42,14 @@ final class EmpWtimeStmtDelete implements SqlStmt<EmpWTimeInfo> {
 	
 	private String buildWhereClause() {
 		final boolean DONT_IGNORE_NULL = false;
-		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(DONT_IGNORE_NULL, stmtOption.recordInfo);
+		final boolean DONT_IGNORE_RECORD_MODE = false;
+		
+		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		whereOption.isIgnoringNull = DONT_IGNORE_NULL;
+		whereOption.isIgnoringRecordMode = DONT_IGNORE_RECORD_MODE;	
+		
+		
+		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(whereOption, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

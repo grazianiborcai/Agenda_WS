@@ -41,7 +41,7 @@ abstract class SqlWhereBuilderAbstract implements SqlWhereBuilder {
 	
 	
 	protected void appendClause(String columnName, String conditionValue, String logicalOperator) {
-		if (isSkipBuilding(conditionValue))
+		if (isSkipBuilding(columnName, conditionValue))
 			return;
 		
 		if (this.whereClause == null) {
@@ -58,8 +58,11 @@ abstract class SqlWhereBuilderAbstract implements SqlWhereBuilder {
 	
 	
 	
-	protected boolean isSkipBuilding(String conditionValue) {
+	protected boolean isSkipBuilding(String columnName, String conditionValue) {
 		if (conditionValue == null && this.option.isIgnoringNull)
+			return true;
+		
+		if (columnName.equals("record_mode")  && this.option.isIgnoringRecordMode)
 			return true;
 		
 		return false;
@@ -68,7 +71,7 @@ abstract class SqlWhereBuilderAbstract implements SqlWhereBuilder {
 	
 	
 	protected void insertClause(String columnName, String conditionValue) {
-		if (isSkipBuilding(conditionValue))
+		if (isSkipBuilding(columnName, conditionValue))
 			return;
 		
 		this.whereClause = buildWhereClause(columnName, conditionValue);
