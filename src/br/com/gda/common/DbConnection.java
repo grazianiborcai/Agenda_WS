@@ -29,4 +29,35 @@ public final class DbConnection {
 	private static void initialize() {
 		ds = ServletContainerGDA.datasource.get("jdbc/gdaDB");
 	}
+	
+	
+	
+	public static void closeConnection(Connection conn) {
+		rollback(conn);
+		close(conn);
+	}
+	
+	
+	
+	private static void rollback(Connection conn) {
+		try {
+			if (conn != null)
+				conn.rollback();
+			
+		} catch (SQLException e) {
+		}
+	}
+	
+	
+	
+	private static void close(Connection conn) {
+		try {
+			if (conn != null) 
+				conn.close();
+			
+		} catch (SQLException e) {
+		}
+		
+		conn = null;
+	}
 }

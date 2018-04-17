@@ -6,11 +6,10 @@ import java.util.List;
 import br.com.gda.model.checker.ModelChecker;
 
 public final class DecisionTreeHelperOption<T> {
-	public T recordInfo;			//TODO: remover
 	public List<T> recordInfos;
 	public Connection conn;
 	public String schemaName;
 	public ModelChecker<T> visitorChecker;
-	public DecisionActionAdapter<T> actionOnPassed;
-	public DecisionActionAdapter<T> actionOnFailed;
+	public List<DecisionActionAdapter<T>> actionsOnPassed;
+	public List<DecisionActionAdapter<T>> actionsOnFailed;
 }

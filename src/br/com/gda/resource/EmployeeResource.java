@@ -1,8 +1,5 @@
 package br.com.gda.resource;
 
-import java.sql.SQLException;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -17,16 +14,11 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.common.DbConnection;
-import br.com.gda.common.DbSchema;
 import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.employee.model.EmpWtimeModelDelete;
 import br.com.gda.employee.model.EmpWtimeModelInsert;
 import br.com.gda.employee.model.EmpWtimeModelSelect;
 import br.com.gda.employee.model.EmpWtimeModelUpdate;
-import br.com.gda.employee.model.decisionTree.EmpWtimeNodeInsOrUpd;
-import br.com.gda.employee.model.decisionTree.EmpWtimeRootInsert;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
 import br.com.gda.model.legacy.EmployeeModel;
 
 @Path("/Employee")
@@ -66,35 +58,9 @@ public class EmployeeResource {
 	@Path(INSERT_WOKING_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertWorkingTime(String incomingData) {
-		List<EmpWTimeInfo> recordInfos = new ArrayList<>(); 
-		EmpWTimeInfo oneRecordInfo = new EmpWTimeInfo();
-		oneRecordInfo.codOwner = 8;
-		oneRecordInfo.codStore = 15;
-		oneRecordInfo.codEmployee = 54;
-		oneRecordInfo.weekday = 1;
-		oneRecordInfo.beginTime = LocalTime.of(10,11);
-		oneRecordInfo.endTime = LocalTime.of(12,13);
-		recordInfos.add(oneRecordInfo);
-		
-		DecisionTreeOption<EmpWTimeInfo> treeOption = new DecisionTreeOption<>();
-		treeOption.conn = DbConnection.getConnection();
-		treeOption.schemaName = DbSchema.getDefaultSchemaName();
-		treeOption.recordInfos = recordInfos;
-		
-		EmpWtimeRootInsert tree = new EmpWtimeRootInsert(treeOption);
-		tree.makeDecision();
-		
-		try {
-			treeOption.conn.commit();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-		
-		/*EmpWtimeModelInsert workingTimeInsert = new EmpWtimeModelInsert(incomingData);
+		EmpWtimeModelInsert workingTimeInsert = new EmpWtimeModelInsert(incomingData);
 		workingTimeInsert.executeRequest();
-		return workingTimeInsert.getResponse(); */
+		return workingTimeInsert.getResponse();
 	}
 	
 	

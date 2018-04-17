@@ -10,6 +10,7 @@ public final class SystemMessage {
 	public static final String EMPTY_ARGUMENT = " argument is empty";
 	public static final String REQUEST_FAILED = "It was not possible to complete your request";
 	public static final String NO_ERROR_FOUND = "No error was found";
+	public static final String DATA_NOT_FOUND = "Data not found";
 	public static final String INTERNAL_ERROR = "Ops... something went wrong";
 	public static final String NULL_TABLE_NAME = "Table name is null";
 	public static final String TABLE_NOT_FOUND = "table was not found";

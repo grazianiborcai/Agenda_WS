@@ -13,8 +13,8 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	private ModelChecker<T> checker;
 	private DecisionChoice decisionChoice;
 	private DecisionResultHelper<T> decisionResult;
-	private DecisionActionAdapter<T> actionOnPassed;
-	private DecisionActionAdapter<T> actionOnFailed;
+	private List<DecisionActionAdapter<T>> actionsOnPassed;
+	private List<DecisionActionAdapter<T>> actionsOnFailed;
 	
 
 	public DecisionTreeHelper(DecisionTreeHelperOption<T> option) {
@@ -33,8 +33,8 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 		
 		this.checker = option.visitorChecker;
 		this.recordInfos = option.recordInfos;
-		this.actionOnPassed = option.actionOnPassed;
-		this.actionOnFailed = option.actionOnFailed;
+		this.actionsOnPassed = option.actionsOnPassed;
+		this.actionsOnFailed = option.actionsOnFailed;
 		this.decisionChoice = null;
 		this.decisionResult = new DecisionResultHelper<>();
 	}
@@ -69,7 +69,7 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	private void onPassed() {
 		this.decisionChoice = DecisionChoice.PASSED;		
 		this.decisionResult.finishedWithSuccess = RESULT_SUCCESS;
-		executeDecisionAction(this.actionOnPassed);
+		executeDecisionAction(this.actionsOnPassed);
 	}
 	
 	
@@ -78,7 +78,7 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 		this.decisionChoice = DecisionChoice.FAILED;
 		this.decisionResult.finishedWithSuccess = RESULT_FAILED;
 		buildFailureMessage();
-		executeDecisionAction(this.actionOnFailed);		
+		executeDecisionAction(this.actionsOnFailed);		
 	}
 	
 	
@@ -90,13 +90,18 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	
 	
 	
-	private void executeDecisionAction(DecisionActionAdapter<T> decisionAction) {
-		if (decisionAction == null)
+	private void executeDecisionAction(List<DecisionActionAdapter<T>> decisionActions) {
+		if (decisionActions == null)
 			return;
 			
-		decisionAction.executeAction();
-		DecisionResult<T> actionResult = decisionAction.getDecisionResult();		
-		buildResultFromAction(actionResult);
+		for (DecisionActionAdapter<T> eachAction : decisionActions) {
+			eachAction.executeAction();
+			DecisionResult<T> actionResult = eachAction.getDecisionResult();		
+			buildResultFromAction(actionResult);
+			
+			if (actionResult.hasSuccessfullyFinished() == RESULT_FAILED)
+				break;
+		}
 	}
 	
 	

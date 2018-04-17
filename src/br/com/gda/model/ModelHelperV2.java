@@ -12,26 +12,23 @@ import br.com.gda.common.DbSchema;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.json.JsonResponseMaker;
 import br.com.gda.json.JsonToList;
-import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.decisionTree.DecisionResult;
 import br.com.gda.model.decisionTree.DecisionTree;
 import br.com.gda.model.decisionTree.DecisionTreeFactory;
 import br.com.gda.model.decisionTree.DecisionTreeOption;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
 
 public final class ModelHelperV2<T> implements Model {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
 	private List<T> recordInfos;
-	private SqlStmtExec<T> sqlStmtExecutor; 	// ###
-	private List<T>resultset;
+	private List<T> resultset;
 	private Connection conn;
 	private String schemaName;
 	private Response response;
-	private ModelChecker<T> modelChecker;
 	private Class<T> infoRecordClass;
 	private DecisionTree<T> decisionTree;
+	private DecisionResult<T> treeResult;
 	
 	
 	public ModelHelperV2(ModelOptionV2<T> option, String incomingData) {
@@ -54,7 +51,6 @@ public final class ModelHelperV2<T> implements Model {
 	private void initialize(ModelOptionV2<T> option, T recordInfo) {
 		this.conn = DbConnection.getConnection();
 		this.schemaName = DbSchema.getDefaultSchemaName();
-		this.modelChecker = option.visitorChecker;
 		this.infoRecordClass = option.infoRecordClass;		
 	}
 	
@@ -87,15 +83,14 @@ public final class ModelHelperV2<T> implements Model {
 	
 	private boolean tryToExecuteRequest() {		
 		try {
-			boolean resultChecker = checkRequest();
+			this.decisionTree.makeDecision();
+			this.treeResult = this.decisionTree.getDecisionResult();			
 			
-			if (resultChecker == RESULT_SUCCESS) { 	
-				pushRequestToDb();
-				buildResultset();
-			}
-			
+			closeTransaction();
+			buildResultset();
 			buildResponse();
-			return resultChecker;
+			
+			return treeResult.hasSuccessfullyFinished();
 			
 		} catch (Exception e) {
 			makeResponse(SystemMessage.INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR);
@@ -105,21 +100,14 @@ public final class ModelHelperV2<T> implements Model {
 	
 	
 	
-	private boolean checkRequest() {
-		return this.modelChecker.check(this.recordInfos);
-	}
-	
-	
-	
-	private void pushRequestToDb() throws SQLException {
-		executeStatement();
-		commitWork();
-	}
-	
-	
-	
-	private void executeStatement() throws SQLException {
-		this.sqlStmtExecutor.executeStmt(); 
+	private void closeTransaction() throws SQLException {
+		if (treeResult.hasSuccessfullyFinished() == RESULT_SUCCESS) 
+			commitWork();
+			
+		if (treeResult.hasSuccessfullyFinished() == RESULT_FAILED) 
+			rollback();
+		
+		DbConnection.closeConnection(this.conn);
 	}
 	
 	
@@ -136,22 +124,38 @@ public final class ModelHelperV2<T> implements Model {
 	
 	
 	
+	private void rollback() throws SQLException {
+		try {
+			this.conn.rollback();
+		
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	
+	
+	
 	private void buildResultset() {
-		this.resultset = this.sqlStmtExecutor.getResultset();
+		this.resultset = new ArrayList<>();
+		
+		if (this.treeResult.hasResultset())
+		  this.resultset = this.treeResult.getResultset();
 	}
 	
 	
 	
 	private void buildResponse() {		
-		if (this.modelChecker.getResult() == RESULT_FAILED) {
-			makeResponse(this.modelChecker.getFailureExplanation(), this.modelChecker.getFailureCode(), Response.Status.BAD_REQUEST);
+		if (this.treeResult.hasSuccessfullyFinished() == RESULT_FAILED) {
+			makeResponse(this.treeResult.getFailureMessage(), this.treeResult.getFailureCode(), Response.Status.BAD_REQUEST);
 			return;
 		}
 		
 		
-		if (this.resultset == null || this.resultset.isEmpty()) {
-			makeResponse(SystemMessage.EMPLOYEE_DATA_NOT_FOUND, Response.Status.BAD_REQUEST);
-			return;
+		if (this.treeResult.hasResultset()) {
+			if (this.resultset == null || this.resultset.isEmpty()) {
+				makeResponse(SystemMessage.DATA_NOT_FOUND, Response.Status.BAD_REQUEST);
+				return;
+			}
 		}
 			
 		
