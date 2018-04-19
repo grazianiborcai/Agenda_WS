@@ -9,6 +9,7 @@ import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.employee.model.checker.CheckerEmpWtimeExistOnDb;
 import br.com.gda.employee.model.checker.CheckerEmpWtimeSoftDelete;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DecisionActionAdapter;
 import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
@@ -28,8 +29,10 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 	public EmpWtimeNodeInsOrUpd(DecisionTreeOption<EmpWTimeInfo> option) {
 		DecisionTreeHelperOption<EmpWTimeInfo> helperOption = new DecisionTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
+		helperOption.conn = option.conn;
+		helperOption.schemaName = option.schemaName;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
@@ -38,15 +41,24 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private ModelChecker<EmpWTimeInfo> buildDecisionChecker() {
+	private ModelChecker<EmpWTimeInfo> buildDecisionChecker(DecisionTreeOption<EmpWTimeInfo> option) {
 		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpWTimeInfo> checker;
 		
-		checker = new CheckerEmpWtimeSoftDelete();
+		final boolean EXPECTED_NOT_DELETED = false;
+		ModelCheckerOption checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXPECTED_NOT_DELETED;
+		checker = new CheckerEmpWtimeSoftDelete(checkerOption);
 		stack.add(checker);
 		
-		final boolean EXIST_ON_DB = true;	
-		checker = new CheckerEmpWtimeExistOnDb(EXIST_ON_DB);
+		final boolean DONT_EXIST_ON_DB = false;	
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
+		checker = new CheckerEmpWtimeExistOnDb(checkerOption);
 		stack.add(checker);		
 		
 		return new ModelCheckerStack<>(stack);

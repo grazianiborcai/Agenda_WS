@@ -17,6 +17,7 @@ public final class SystemMessage {
 	public static final String ILLEGAL_ARGUMENT = "IllegalArgument: mandatory argument might be missing or invalid value was passed";
 	public static final String NULL_WHERE_CLAUSE = "where clause is null";	
 	public static final String NO_CHECK_PERFORMED = "Check operation was not performed";
+	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";
 	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";
 	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";
 	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
@@ -28,5 +29,5 @@ public final class SystemMessage {
 	public static final String ERROR_CREATING_SKELETON_STATEMENT = "Not possible to create skeleton statment";	
 	public static final String EMPLOYEE_WORKING_FLAGGED_AS_DELETED = "Employee's working time data is flagged as deleted on DB";
 	public static final String EMPLOYEE_WORKING_TIME_DONT_EXIST_ON_DB = "Employee's working time data don't exist on DB";
-	public static final String EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB = "Employee's working time data already exist on DB";	
+	public static final String EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB = "Employee's working time data already exist on DB";		
 }

@@ -1,5 +1,6 @@
 package br.com.gda.model.checker;
 
+import java.sql.Connection;
 import java.util.List;
 
 
@@ -14,7 +15,7 @@ public final class ModelCheckerStack<T> extends ModelCheckerTemplate<T>{
 	
 	
 	
-	@Override protected boolean checkHook(T recordInfo) {		
+	@Override protected boolean checkHook(T recordInfo, Connection conn, String schemaName) {		
 		for (ModelChecker<T> eachChecker : this.stackChecker) {
 			boolean resultChecker = eachChecker.check(recordInfo);
 			

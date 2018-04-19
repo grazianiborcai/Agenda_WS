@@ -1,5 +1,6 @@
 package br.com.gda.model.decisionTree;
 
+import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
@@ -10,6 +11,7 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	private final boolean RESULT_FAILED = false;
 	
 	private List<T> recordInfos;
+	private Connection conn;
 	private ModelChecker<T> checker;
 	private DecisionChoice decisionChoice;
 	private DecisionResultHelper<T> decisionResult;
@@ -24,6 +26,9 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 		if (option.visitorChecker == null)
 			throw new NullPointerException("option.visitorChecker" + SystemMessage.NULL_ARGUMENT);
 		
+		if (option.conn == null)
+			throw new NullPointerException("option.connr" + SystemMessage.NULL_ARGUMENT);
+		
 		if (option.recordInfos == null)
 			throw new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT);
 		
@@ -32,6 +37,7 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 		
 		
 		this.checker = option.visitorChecker;
+		this.conn = option.conn;
 		this.recordInfos = option.recordInfos;
 		this.actionsOnPassed = option.actionsOnPassed;
 		this.actionsOnFailed = option.actionsOnFailed;

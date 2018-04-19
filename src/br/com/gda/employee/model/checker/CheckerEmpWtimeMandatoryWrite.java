@@ -1,5 +1,7 @@
 package br.com.gda.employee.model.checker;
 
+import java.sql.Connection;
+
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.employee.info.EmpWTimeInfo;
@@ -13,7 +15,7 @@ public final class CheckerEmpWtimeMandatoryWrite extends ModelCheckerTemplate<Em
 	
 	
 	
-	@Override protected boolean checkHook(EmpWTimeInfo recordInfo) {	
+	@Override protected boolean checkHook(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.codStore    	<= 0 	||
 			recordInfo.codEmployee 	<= 0 	||

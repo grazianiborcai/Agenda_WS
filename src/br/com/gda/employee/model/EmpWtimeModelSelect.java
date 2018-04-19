@@ -1,51 +1,49 @@
 package br.com.gda.employee.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.employee.dao.EmpWtimeStmtExecSelect;
+import br.com.gda.common.DbConnection;
+import br.com.gda.common.DbSchema;
 import br.com.gda.employee.info.EmpWTimeInfo;
-import br.com.gda.employee.model.checker.CheckerEmpWtimeMandatoryRead;
+import br.com.gda.employee.model.decisionTree.EmpWtimeRootSelect;
 import br.com.gda.model.Model;
-import br.com.gda.model.ModelHelper;
-import br.com.gda.model.ModelOption;
-import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecFactory;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.model.ModelHelperV2;
+import br.com.gda.model.ModelOptionV2;
+import br.com.gda.model.decisionTree.DecisionTree;
+import br.com.gda.model.decisionTree.DecisionTreeFactory;
+import br.com.gda.model.decisionTree.DecisionTreeOption;
 
 public final class EmpWtimeModelSelect implements Model {
-	private ModelHelper<EmpWTimeInfo> helper;
+	private ModelHelperV2<EmpWTimeInfo> helper;
+	private Connection conn;
+	private String schemaName;
+	
 	
 	public EmpWtimeModelSelect(EmpWTimeInfo workingTimeInfo) {
-		ModelOption<EmpWTimeInfo> helperOption = new ModelOption<>();
+		initialize();
+		buildHelper(workingTimeInfo);
+	}
+	
+	
+	
+	private void initialize() {
+		this.conn = DbConnection.getConnection();
+		this.schemaName = DbSchema.getDefaultSchemaName();
+	}
+	
+	
+	
+	private void buildHelper(EmpWTimeInfo workingTimeInfo) {
+		ModelOptionV2<EmpWTimeInfo> helperOption = new ModelOptionV2<>();
 		
 		helperOption.infoRecordClass = EmpWTimeInfo.class;
-		helperOption.visitorChecker = buildModelChecker();
-		helperOption.visitorStmtExec = buildStmtExec();
+		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.conn = this.conn;
+		helperOption.schemaName = this.schemaName;
 		
-		helper = new ModelHelper<>(helperOption, workingTimeInfo);
-	}
-	
-	
-	
-	private ModelChecker<EmpWTimeInfo> buildModelChecker() {
-		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
-		ModelChecker<EmpWTimeInfo> checker;
-		
-		checker = new CheckerEmpWtimeMandatoryRead();
-		stack.add(checker);
-		
-		return new ModelCheckerStack<>(stack);
-	}
-	
-	
-	
-	private SqlStmtExecFactory<EmpWTimeInfo> buildStmtExec() {
-		return new EmpWtimeModelStmtExec();
+		helper = new ModelHelperV2<>(helperOption, workingTimeInfo);
 	}
 
 
@@ -62,9 +60,13 @@ public final class EmpWtimeModelSelect implements Model {
 	
 	
 	
-	private class EmpWtimeModelStmtExec implements SqlStmtExecFactory<EmpWTimeInfo> {		
-		@Override public SqlStmtExec<EmpWTimeInfo> getStmtExec(List<SqlStmtExecOption<EmpWTimeInfo>> sqlStmtOptions) {
-			return new EmpWtimeStmtExecSelect(sqlStmtOptions);
+	
+	
+	
+	private static class TreeFactory implements DecisionTreeFactory<EmpWTimeInfo> {		
+		@Override public DecisionTree<EmpWTimeInfo> getDecisionTree(DecisionTreeOption<EmpWTimeInfo> option) {
+			return new EmpWtimeRootSelect(option);
 		}		
+	
 	}
 }

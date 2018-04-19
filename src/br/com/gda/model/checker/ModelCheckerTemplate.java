@@ -1,5 +1,6 @@
 package br.com.gda.model.checker;
 
+import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
@@ -14,19 +15,24 @@ public abstract class ModelCheckerTemplate<T> implements ModelChecker<T> {
 	private int failCode;
 	private Boolean actualResult;
 	private boolean expectedResult;
+	private Connection conn;
+	private String schemaName;
+	
 	
 	
 	protected ModelCheckerTemplate() {
-		this(true);
+		this(new ModelCheckerOption());
 	}
 	
 	
 	
-	protected ModelCheckerTemplate(boolean expectedResult) {
+	protected ModelCheckerTemplate(ModelCheckerOption option) {
 		this.failMsg = NO_FAIL_MSG;
 		this.failCode = NO_FAIL_CODE;
-		this.expectedResult = expectedResult;
-	}
+		this.expectedResult = option.expectedResult;
+		this.conn = option.conn;
+		this.schemaName = option.schemaName;
+	} 
 	
 	
 	
@@ -51,7 +57,7 @@ public abstract class ModelCheckerTemplate<T> implements ModelChecker<T> {
 	
 	
 	@Override public boolean check(T recordInfo) {
-		boolean checkerResult = checkHook(recordInfo);
+		boolean checkerResult = checkHook(recordInfo, this.conn, this.schemaName);
 		actualResult = RESULT_SUCCESS;
 		
 		if (checkerResult != this.expectedResult) {
@@ -65,7 +71,7 @@ public abstract class ModelCheckerTemplate<T> implements ModelChecker<T> {
 	
 	
 	
-	protected boolean checkHook(T recordInfo) {
+	protected boolean checkHook(T recordInfo, Connection conn, String schemaName) {
 		//Template method: to be overwritten by subclasses
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}

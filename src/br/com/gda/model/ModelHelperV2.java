@@ -8,7 +8,6 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.common.DbConnection;
-import br.com.gda.common.DbSchema;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.json.JsonResponseMaker;
 import br.com.gda.json.JsonToList;
@@ -21,14 +20,14 @@ public final class ModelHelperV2<T> implements Model {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private List<T> recordInfos;
-	private List<T> resultset;
+	private List<T> recordInfos;	
 	private Connection conn;
 	private String schemaName;
 	private Response response;
 	private Class<T> infoRecordClass;
 	private DecisionTree<T> decisionTree;
 	private DecisionResult<T> treeResult;
+	private boolean closeTransaction;
 	
 	
 	public ModelHelperV2(ModelOptionV2<T> option, String incomingData) {
@@ -42,16 +41,17 @@ public final class ModelHelperV2<T> implements Model {
 	public ModelHelperV2(ModelOptionV2<T> option, T recordInfo) {
 		initialize(option, recordInfo);
 		this.recordInfos = new ArrayList<>();
-		this.recordInfos.add(recordInfo);
+		this.recordInfos.add(recordInfo);		
 		buildDecisionTree(option.decisionTreeFactory);
 	}
 	
 	
 	
 	private void initialize(ModelOptionV2<T> option, T recordInfo) {
-		this.conn = DbConnection.getConnection();
-		this.schemaName = DbSchema.getDefaultSchemaName();
-		this.infoRecordClass = option.infoRecordClass;		
+		this.conn = option.conn;
+		this.schemaName = option.schemaName;
+		this.infoRecordClass = option.infoRecordClass;
+		this.closeTransaction = option.closeTransaction;
 	}
 	
 	
@@ -87,7 +87,6 @@ public final class ModelHelperV2<T> implements Model {
 			this.treeResult = this.decisionTree.getDecisionResult();			
 			
 			closeTransaction();
-			buildResultset();
 			buildResponse();
 			
 			return treeResult.hasSuccessfullyFinished();
@@ -101,6 +100,11 @@ public final class ModelHelperV2<T> implements Model {
 	
 	
 	private void closeTransaction() throws SQLException {
+	/*	boolean DONT_CLOSE_TRANSACTION = false;
+		
+		if (closeTransaction == DONT_CLOSE_TRANSACTION)
+			return; */
+		
 		if (treeResult.hasSuccessfullyFinished() == RESULT_SUCCESS) 
 			commitWork();
 			
@@ -117,7 +121,7 @@ public final class ModelHelperV2<T> implements Model {
 			this.conn.commit();
 		
 		} catch (Exception e) {
-			this.conn.rollback();
+			rollback();
 			throw e;
 		}
 	}
@@ -125,26 +129,18 @@ public final class ModelHelperV2<T> implements Model {
 	
 	
 	private void rollback() throws SQLException {
-		try {
-			this.conn.rollback();
-		
-		} catch (Exception e) {
-			throw e;
-		}
-	}
-	
-	
-	
-	private void buildResultset() {
-		this.resultset = new ArrayList<>();
-		
-		if (this.treeResult.hasResultset())
-		  this.resultset = this.treeResult.getResultset();
+		this.conn.rollback();
 	}
 	
 	
 	
 	private void buildResponse() {		
+		if (this.treeResult.hasSuccessfullyFinished() == RESULT_FAILED && this.treeResult.getFailureCode() == Response.Status.INTERNAL_SERVER_ERROR.getStatusCode()) {
+			makeResponse(this.treeResult.getFailureMessage(), this.treeResult.getFailureCode(), Response.Status.INTERNAL_SERVER_ERROR);
+			return;
+		}
+		
+		
 		if (this.treeResult.hasSuccessfullyFinished() == RESULT_FAILED) {
 			makeResponse(this.treeResult.getFailureMessage(), this.treeResult.getFailureCode(), Response.Status.BAD_REQUEST);
 			return;
@@ -152,7 +148,9 @@ public final class ModelHelperV2<T> implements Model {
 		
 		
 		if (this.treeResult.hasResultset()) {
-			if (this.resultset == null || this.resultset.isEmpty()) {
+			List<T> resultset = this.treeResult.getResultset();
+					
+			if (resultset == null || resultset.isEmpty()) {
 				makeResponse(SystemMessage.DATA_NOT_FOUND, Response.Status.BAD_REQUEST);
 				return;
 			}
@@ -171,13 +169,11 @@ public final class ModelHelperV2<T> implements Model {
 	
 	
 	private void makeResponse(String msg, int msgCode, Response.Status htmlStatus) {
-		Object infoRecord;
+		final int ERROR_RANGER_MIN = 400;		
+		Object infoRecord = new Object();
 		
-		if (htmlStatus.getStatusCode() >= 400) {
-			infoRecord = new Object();
-		} else {
-			infoRecord = this.resultset;
-		}		
+		if (htmlStatus.getStatusCode() < ERROR_RANGER_MIN && this.treeResult.hasResultset())
+			infoRecord = this.treeResult.getResultset();
 		
 		JsonResponseMaker responseMaker = new JsonResponseMaker(msg, msgCode, htmlStatus, infoRecord);
 		this.response = responseMaker.makeResponse();

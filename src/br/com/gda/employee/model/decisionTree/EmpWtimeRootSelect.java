@@ -24,6 +24,7 @@ public final class EmpWtimeRootSelect implements DecisionTree<EmpWTimeInfo> {
 		
 		helperOption.visitorChecker = buildDecisionChecker();
 		helperOption.recordInfos = option.recordInfos;
+		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		
 		tree = new DecisionTreeHelper<>(helperOption);

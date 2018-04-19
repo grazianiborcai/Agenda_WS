@@ -125,7 +125,10 @@ public final class SqlStmtHelper<T> implements SqlStmt<T> {
 	
 	private void execute() throws SQLException {
 		if (operation.isWrittable()) {
-			this.stmt.executeUpdate();
+			int affectRow = this.stmt.executeUpdate();
+			
+			if (affectRow <= 0)
+				throw new SQLException(SystemMessage.NO_AFFECT_ROWS_IN_DB);
 		} else {
 			this.stmtResultSet = this.stmt.executeQuery();
 		}

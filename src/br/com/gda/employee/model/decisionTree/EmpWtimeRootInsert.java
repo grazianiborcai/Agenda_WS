@@ -7,6 +7,7 @@ import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.employee.model.checker.CheckerEmpWtimeExistOnDb;
 import br.com.gda.employee.model.checker.CheckerEmpWtimeMandatoryWrite;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DecisionActionAdapter;
 import br.com.gda.model.decisionTree.DecisionChoice;
@@ -23,8 +24,9 @@ public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
 	public EmpWtimeRootInsert(DecisionTreeOption<EmpWTimeInfo> option) {
 		DecisionTreeHelperOption<EmpWTimeInfo> helperOption = new DecisionTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
+		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		
 		tree = new DecisionTreeHelper<>(helperOption);
@@ -32,7 +34,7 @@ public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private ModelChecker<EmpWTimeInfo> buildDecisionChecker() {
+	private ModelChecker<EmpWTimeInfo> buildDecisionChecker(DecisionTreeOption<EmpWTimeInfo> option) {
 		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpWTimeInfo> checker;
 		
@@ -40,7 +42,12 @@ public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
 		stack.add(checker);
 		
 		final boolean DONT_EXIST_ON_DB = false;	
-		checker = new CheckerEmpWtimeExistOnDb(DONT_EXIST_ON_DB);
+		ModelCheckerOption checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = DONT_EXIST_ON_DB;
+		
+		checker = new CheckerEmpWtimeExistOnDb(checkerOption);
 		stack.add(checker);		
 		
 		return new ModelCheckerStack<>(stack);
