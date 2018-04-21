@@ -36,19 +36,6 @@ public class CheckerEmpWtimeExistOnDb extends ModelCheckerTemplate<EmpWTimeInfo>
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
 		}
-		
-		/*
-		EmpWtimeModelSelect readDatabase = new EmpWtimeModelSelect(recordInfo);
-		readDatabase.executeRequest();
-		Response response = readDatabase.getResponse();
-		
-		if (response.getStatus() == Response.Status.OK.getStatusCode()) 
-			return EMPLOYEE_WORKING_TIME_EXIST;
-		
-		if (response.getStatus() == Response.Status.INTERNAL_SERVER_ERROR.getStatusCode()) 
-			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);			
-		
-		return NO_ENTRY_FOUND_ON_DB; */
 	}
 	
 	

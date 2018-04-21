@@ -1,10 +1,12 @@
 package br.com.gda.model;
 
-import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.sql.SqlStmtExecFactory;
+import java.sql.Connection;
+
+import br.com.gda.model.decisionTree.DecisionTreeFactory;
 
 public final class ModelOption<T> {
 	public Class<T> infoRecordClass; 
-	public ModelChecker<T> visitorChecker;
-	public SqlStmtExecFactory<T> visitorStmtExec;
+	public DecisionTreeFactory<T> decisionTreeFactory;
+	public Connection conn;
+	public String schemaName;
 }

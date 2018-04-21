@@ -64,8 +64,7 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 	
 
 	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
+		stmtSql.generateStmt();		
 	}
 
 	

@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.gda.employee.dao.EmpWtimeStmtExecInsert;
 import br.com.gda.employee.dao.EmpWtimeStmtExecUpdate;
 import br.com.gda.employee.info.EmpWTimeInfo;
-import br.com.gda.employee.model.checker.CheckerEmpWtimeExistOnDb;
 import br.com.gda.employee.model.checker.CheckerEmpWtimeSoftDelete;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -52,15 +51,7 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 		checkerOption.expectedResult = EXPECTED_NOT_DELETED;
 		checker = new CheckerEmpWtimeSoftDelete(checkerOption);
 		stack.add(checker);
-		
-		final boolean DONT_EXIST_ON_DB = false;	
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new CheckerEmpWtimeExistOnDb(checkerOption);
-		stack.add(checker);		
-		
+
 		return new ModelCheckerStack<>(stack);
 	}
 	

@@ -3,82 +3,68 @@ package br.com.gda.model;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
 
 import br.com.gda.common.DbConnection;
-import br.com.gda.common.DbSchema;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.json.JsonResponseMaker;
 import br.com.gda.json.JsonToList;
-import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecFactory;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.model.decisionTree.DecisionResult;
+import br.com.gda.model.decisionTree.DecisionTree;
+import br.com.gda.model.decisionTree.DecisionTreeFactory;
+import br.com.gda.model.decisionTree.DecisionTreeOption;
 
-public final class ModelHelper<T> implements Model {
+public class ModelHelper<T> implements Model {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private List<T> recordInfos;
-	private SqlStmtExec<T> sqlStmtExecutor;
-	private List<T>resultset;
+	private List<T> recordInfos;	
 	private Connection conn;
 	private String schemaName;
 	private Response response;
-	private ModelChecker<T> modelChecker;
-	private Class<T> infoRecordClass;
+	private DecisionTree<T> decisionTree;
+	private List<DecisionResult<T>> treeResults;
+	private DecisionTreeFactory<T> treeFactory;
+	private Iterator<T> infoRecordItr;
+	private T currentRecordInfo;
+	private DecisionResult<T> currentTreeResult;
 	
 	
-	public ModelHelper(ModelOption<T> option, String incomingData) {
-		initialize(option, null);
-		parseRawInfo(incomingData);
-		buildStmtExec(option.visitorStmtExec);
+	public ModelHelper(ModelOption<T> option, String incomingData) {		
+		List<T> parsedRecordInfos = parseRawInfo(incomingData, option.infoRecordClass);
+		initialize(option, parsedRecordInfos);		
 	}
 	
 	
 	
 	public ModelHelper(ModelOption<T> option, T recordInfo) {
-		initialize(option, recordInfo);
-		this.recordInfos = new ArrayList<>();
-		this.recordInfos.add(recordInfo);
-		buildStmtExec(option.visitorStmtExec);
+		List<T> requestedRecordInfos = new ArrayList<>();
+		requestedRecordInfos.add(recordInfo);
+		initialize(option, requestedRecordInfos);	
 	}
 	
 	
 	
-	private void initialize(ModelOption<T> option, T recordInfo) {
-		this.conn = DbConnection.getConnection();
-		this.schemaName = DbSchema.getDefaultSchemaName();
-		this.modelChecker = option.visitorChecker;
-		this.infoRecordClass = option.infoRecordClass;		
+	private List<T> parseRawInfo(String rawInfo, Class<T> infoRecordClass) {
+		JsonToList<T> parser = new JsonToList<>(infoRecordClass);
+		return parser.parse(rawInfo);
 	}
 	
 	
 	
-	private void parseRawInfo(String rawInfo) {
-		JsonToList<T> parser = new JsonToList<>(this.infoRecordClass);
-		this.recordInfos = parser.parse(rawInfo);
+	private void initialize(ModelOption<T> option, List<T> recordInfos) {
+		this.conn = option.conn;
+		this.schemaName = option.schemaName;
+		this.treeFactory = option.decisionTreeFactory;
+		this.recordInfos = recordInfos;	
+		this.infoRecordItr = this.recordInfos.iterator();
+		this.treeResults = new ArrayList<>();
 	}
-	
-	
-	
-	private void buildStmtExec(SqlStmtExecFactory<T> modelStmtExec) {
-		List<SqlStmtExecOption<T>> stmtExecOptions = new ArrayList<>();
-		
-		for (T eachRecord : this.recordInfos) {
-			SqlStmtExecOption<T> eachExecOption = new SqlStmtExecOption<>();
-			eachExecOption.conn = this.conn;
-			eachExecOption.recordInfo = eachRecord;
-			eachExecOption.schemaName = this.schemaName;
-			stmtExecOptions.add(eachExecOption);
-		}
-		
-		this.sqlStmtExecutor = modelStmtExec.getStmtExec(stmtExecOptions);
-	}
-	
 
+	
 	
 	@Override public boolean executeRequest() {
 		return tryToExecuteRequest();
@@ -86,41 +72,63 @@ public final class ModelHelper<T> implements Model {
 	
 	
 	
-	private boolean tryToExecuteRequest() {		
+	private boolean tryToExecuteRequest() {				
 		try {
-			boolean resultChecker = checkRequest();
-			
-			if (resultChecker == RESULT_SUCCESS) { 	
-				pushRequestToDb();
-				buildResultset();
+			while (infoRecordItr.hasNext()) {
+				currentRecordInfo = infoRecordItr.next();
+				
+				buildDecisionTree();
+				makeDecision();
+				
+				if (currentTreeResult.hasSuccessfullyFinished() == RESULT_FAILED)
+					break;
 			}
 			
+			closeTransaction();
 			buildResponse();
-			return resultChecker;
+			
+			return currentTreeResult.hasSuccessfullyFinished();
 			
 		} catch (Exception e) {
-			makeResponse(SystemMessage.INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR);
+			makeResponse(SystemMessage.INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(), Response.Status.INTERNAL_SERVER_ERROR);
 			return RESULT_FAILED;
 		}
 	}
 	
 	
 	
-	private boolean checkRequest() {
-		return this.modelChecker.check(this.recordInfos);
+	private void buildDecisionTree() {
+		DecisionTreeOption<T> treeOption = new DecisionTreeOption<>();
+		
+		List<T> currentRecordInfos = new ArrayList<>();
+		currentRecordInfos.add(this.currentRecordInfo);
+		
+		treeOption.conn = this.conn;
+		treeOption.recordInfos = currentRecordInfos;
+		treeOption.schemaName = this.schemaName;
+		
+		this.decisionTree = this.treeFactory.getDecisionTree(treeOption);
 	}
 	
 	
 	
-	private void pushRequestToDb() throws SQLException {
-		executeStatement();
-		commitWork();
+	private void makeDecision() {
+		decisionTree.makeDecision();
+		
+		currentTreeResult = decisionTree.getDecisionResult();
+		treeResults.add(currentTreeResult);
 	}
 	
 	
 	
-	private void executeStatement() throws SQLException {
-		this.sqlStmtExecutor.executeStmt(); 
+	private void closeTransaction() throws SQLException {
+		if (this.currentTreeResult.hasSuccessfullyFinished() == RESULT_SUCCESS) 
+			commitWork();
+			
+		if (this.currentTreeResult.hasSuccessfullyFinished() == RESULT_FAILED) 
+			rollback();
+		
+		DbConnection.closeConnection(this.conn);
 	}
 	
 	
@@ -130,53 +138,64 @@ public final class ModelHelper<T> implements Model {
 			this.conn.commit();
 		
 		} catch (Exception e) {
-			this.conn.rollback();
+			rollback();
 			throw e;
 		}
 	}
 	
 	
 	
-	private void buildResultset() {
-		this.resultset = this.sqlStmtExecutor.getResultset();
+	private void rollback() throws SQLException {
+		this.conn.rollback();
 	}
 	
 	
 	
 	private void buildResponse() {		
-		if (this.modelChecker.getResult() == RESULT_FAILED) {
-			makeResponse(this.modelChecker.getFailureExplanation(), this.modelChecker.getFailureCode(), Response.Status.BAD_REQUEST);
-			return;
-		}
+		if (this.currentTreeResult.hasSuccessfullyFinished() == RESULT_FAILED) 
+			makeResponseFailed();
 		
 		
-		if (this.resultset == null || this.resultset.isEmpty()) {
-			makeResponse(SystemMessage.EMPLOYEE_DATA_NOT_FOUND, Response.Status.BAD_REQUEST);
-			return;
-		}
-			
-		
-		makeResponse(SystemMessage.RETURNED_SUCCESSFULLY, Response.Status.OK);
+		if (this.currentTreeResult.hasSuccessfullyFinished() == RESULT_SUCCESS)
+			makeResponseSuccess();
 	}
 	
 	
 	
-	private void makeResponse(String msg, Response.Status htmlStatus) {
-		makeResponse(msg, htmlStatus.getStatusCode(), htmlStatus);
+	private void makeResponseFailed() {
+		Response.Status htmlStatus = Response.Status.BAD_REQUEST;
+		
+		if (this.currentTreeResult.getFailureCode() == Response.Status.INTERNAL_SERVER_ERROR.getStatusCode())
+			htmlStatus = Response.Status.INTERNAL_SERVER_ERROR;
+		
+		makeResponse(this.currentTreeResult.getFailureMessage(), this.currentTreeResult.getFailureCode(), htmlStatus);
 	}
 	
 	
 	
-	private void makeResponse(String msg, int msgCode, Response.Status htmlStatus) {
-		Object infoRecord;
+	private void makeResponseSuccess() {
+		List<T> allResultset = new ArrayList<>();
 		
-		if (htmlStatus.getStatusCode() >= 400) {
-			infoRecord = new Object();
-		} else {
-			infoRecord = this.resultset;
-		}		
+		for (DecisionResult<T> eachTreeResult : this.treeResults) {
+			if (eachTreeResult.hasResultset()) {
+				List<T> eachResultset = eachTreeResult.getResultset();
+				allResultset.addAll(eachResultset);
+			}
+		}
 		
-		JsonResponseMaker responseMaker = new JsonResponseMaker(msg, msgCode, htmlStatus, infoRecord);
+		makeResponse(SystemMessage.RETURNED_SUCCESSFULLY, Response.Status.OK.getStatusCode(), Response.Status.OK, allResultset);
+	}
+	
+	
+	
+	private void makeResponse(String msg, int msgCode, Response.Status htmlStatus) {		
+		makeResponse(msg, msgCode, htmlStatus, new Object());
+	}
+	
+	
+	
+	private void makeResponse(String msg, int msgCode, Response.Status htmlStatus, Object bodyMsg) {		
+		JsonResponseMaker responseMaker = new JsonResponseMaker(msg, msgCode, htmlStatus, bodyMsg);
 		this.response = responseMaker.makeResponse();
 	}
 	

@@ -40,22 +40,6 @@ public final class CheckerEmpWtimeSoftDelete extends ModelCheckerTemplate<EmpWTi
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
 		}
-		
-		/*
-
-		
-		EmpWtimeModelSelect readDatabase = new EmpWtimeModelSelect(clonedInfo);
-		readDatabase.executeRequest();
-		Response response = readDatabase.getResponse();
-		
-		if (response.getStatus() == Response.Status.OK.getStatusCode()) 
-			return EMPLOYEE_WORKING_IS_DELETED;
-		
-		if (response.getStatus() == Response.Status.INTERNAL_SERVER_ERROR.getStatusCode()) 
-			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);			
-		
-		return NOT_FOUND_OR_NOT_DELETED;
-		*/
 	}
 	
 	

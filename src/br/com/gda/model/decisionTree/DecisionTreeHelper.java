@@ -1,7 +1,8 @@
 package br.com.gda.model.decisionTree;
 
-import java.sql.Connection;
 import java.util.List;
+
+import javax.ws.rs.core.Response;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelChecker;
@@ -11,7 +12,6 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	private final boolean RESULT_FAILED = false;
 	
 	private List<T> recordInfos;
-	private Connection conn;
 	private ModelChecker<T> checker;
 	private DecisionChoice decisionChoice;
 	private DecisionResultHelper<T> decisionResult;
@@ -37,7 +37,6 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 		
 		
 		this.checker = option.visitorChecker;
-		this.conn = option.conn;
 		this.recordInfos = option.recordInfos;
 		this.actionsOnPassed = option.actionsOnPassed;
 		this.actionsOnFailed = option.actionsOnFailed;
@@ -119,9 +118,19 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 			this.decisionResult.failureMessage = decisionActionResult.getFailureMessage();
 		}
 		
+		
 		this.decisionResult.hasResultset = decisionActionResult.hasResultset();
-		if (decisionActionResult.hasResultset() == true) {
+		if (decisionActionResult.hasResultset()) {
 			this.decisionResult.resultset = decisionActionResult.getResultset();
+		}
+		
+		
+		if (this.decisionResult.hasResultset()) {
+			if (this.decisionResult.resultset == null || this.decisionResult.resultset.isEmpty()) {
+				this.decisionResult.finishedWithSuccess = RESULT_FAILED;
+				this.decisionResult.failureCode = Response.Status.BAD_REQUEST.getStatusCode();
+				this.decisionResult.failureMessage = SystemMessage.DATA_NOT_FOUND;
+			}
 		}
 	}
 	

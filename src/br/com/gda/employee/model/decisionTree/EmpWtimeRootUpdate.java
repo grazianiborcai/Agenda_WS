@@ -63,6 +63,7 @@ public final class EmpWtimeRootUpdate implements DecisionTree<EmpWTimeInfo> {
 		List<DecisionActionAdapter<EmpWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionUpdate(option));
+		actions.add(new EmpWtimeActionSelect(option));
 		return actions;
 	}
 	
