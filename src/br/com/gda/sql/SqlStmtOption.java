@@ -14,6 +14,7 @@ public final class SqlStmtOption<T> implements Cloneable {
 	public List<SqlColumn> columns;
 	public SqlStmtParamTranslator<T> stmtParamTranslator;
 	public SqlResultParser<T> resultParser;
+	public List<SqlJoin> joins;
 	
 	
 	@SuppressWarnings("unchecked")
@@ -23,15 +24,14 @@ public final class SqlStmtOption<T> implements Cloneable {
 			deepCopy.recordInfo = (T) recordInfo.getClass().getMethod("clone").invoke(recordInfo);
 			
 			
-			if (deepCopy.columns != null) {
+			if (columns != null) {
 				List<SqlColumn> clonedColumns = new ArrayList<>();
 				for (SqlColumn eachColumn : columns) {
 					clonedColumns.add((SqlColumn) eachColumn.clone());
 				}			
 			
 				deepCopy.columns = clonedColumns;
-			}
-			
+			}			
 			
 			return deepCopy;
 			

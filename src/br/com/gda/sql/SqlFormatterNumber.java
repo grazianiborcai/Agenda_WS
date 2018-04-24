@@ -1,6 +1,8 @@
 package br.com.gda.sql;
 
+import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public final class SqlFormatterNumber {
@@ -29,5 +31,16 @@ public final class SqlFormatterNumber {
 			resultTime = Time.valueOf(localTime);		
 		
 		return resultTime;
+	}
+	
+	
+	
+	public static Date localToSqlDate(LocalDate localDate) {
+		Date resultDate = null;
+		
+		if (localDate != null) 
+			resultDate = Date.valueOf(localDate);		
+		
+		return resultDate;
 	}
 }

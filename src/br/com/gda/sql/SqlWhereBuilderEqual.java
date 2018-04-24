@@ -1,9 +1,10 @@
 package br.com.gda.sql;
 
-final class SqlWhereBuilderEqual extends SqlWhereBuilderAbstract {
+final class SqlWhereBuilderEqual extends SqlWhereBuilderTemplate {
 	SqlWhereBuilderEqual() {
 		super();
 	}
+	
 	
 	
 	SqlWhereBuilderEqual(SqlWhereBuilderOption option) {
@@ -11,11 +12,14 @@ final class SqlWhereBuilderEqual extends SqlWhereBuilderAbstract {
 	}
 	
 	
-	@Override protected String buildWhereClauseHook(String columnName, String conditionValue) {				
+	
+	@Override protected String buildWhereClauseHook(String tableName, String columnName, String conditionValue) {				
 		if (conditionValue == null)
-			return buildWhereClauseIsNull(columnName);
+			return buildWhereClauseIsNull(tableName, columnName);
 		
 		StringBuilder resultClause = new StringBuilder();
+		resultClause.append(tableName);
+		resultClause.append(SqlDictionary.PERIOD);
 		resultClause.append(columnName);
 		resultClause.append(SqlDictionary.SPACE);
 		resultClause.append(SqlDictionary.EQUAL);
@@ -25,5 +29,13 @@ final class SqlWhereBuilderEqual extends SqlWhereBuilderAbstract {
 		resultClause.append(SqlDictionary.QUOTE);
 		
 		return resultClause.toString();
+	}
+	
+	
+	
+	private String buildWhereClauseIsNull(String tableName, String columnName) {		
+		SqlWhereBuilder isNullBuilder = new SqlWhereBuilderIsNull();
+		isNullBuilder.appendClauseWithAnd(tableName, columnName, null);
+		return isNullBuilder.generateClauseWithoutParentheses();
 	}
 }

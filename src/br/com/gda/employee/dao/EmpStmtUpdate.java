@@ -1,6 +1,7 @@
 package br.com.gda.employee.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,34 +9,34 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.employee.info.EmpWTimeInfo;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtParamTranslator;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.employee.info.EmpInfo;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
+import br.com.gda.sql.SqlStmtOption;
+import br.com.gda.sql.SqlStmtParamTranslator;
+import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpWtimeStmtUpdate implements SqlStmt<EmpWTimeInfo> {
-	private SqlStmt<EmpWTimeInfo> stmtSql;
-	private SqlStmtOption<EmpWTimeInfo> stmtOption;
+public final class EmpStmtUpdate implements SqlStmt<EmpInfo> {
+	private SqlStmt<EmpInfo> stmtSql;
+	private SqlStmtOption<EmpInfo> stmtOption;
 	
 	
-	public EmpWtimeStmtUpdate(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
+	public EmpStmtUpdate(Connection conn, EmpInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, EmpInfo recordInfo, String schemaName) {
 		this.stmtOption = new SqlStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = EmpDbTable.EMPLOYEE_WORKING_TIME_TABLE;
+		this.stmtOption.tableName = EmpDbTable.EMPLOYEE_TABLE;
 		this.stmtOption.columns = EmpDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser();
@@ -52,7 +53,7 @@ final class EmpWtimeStmtUpdate implements SqlStmt<EmpWTimeInfo> {
 		whereOption.isIgnoringNull = DONT_IGNORE_NULL;
 		whereOption.isIgnoringRecordMode = IGNORE_RECORD_MODE;
 		
-		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		EmpStmtWhere whereClause = new EmpStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -83,26 +84,40 @@ final class EmpWtimeStmtUpdate implements SqlStmt<EmpWTimeInfo> {
 
 	
 	
-	@Override public List<EmpWTimeInfo> getResultset() {
+	@Override public List<EmpInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
-		return new EmpWtimeStmtUpdate(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public SqlStmt<EmpInfo> getNewInstance() {
+		return new EmpStmtUpdate(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ParamTranslator implements SqlStmtParamTranslator<EmpWTimeInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpWTimeInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements SqlStmtParamTranslator<EmpInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpInfo recordInfo) throws SQLException {
 			Time beginTime = SqlFormatterNumber.localToSqlTime(recordInfo.beginTime);
-			Time endTime = SqlFormatterNumber.localToSqlTime(recordInfo.endTime);				
+			Time endTime = SqlFormatterNumber.localToSqlTime(recordInfo.endTime);		
+			Date birthDate = SqlFormatterNumber.localToSqlDate(recordInfo.birthDate);
 			
 			int i = 1;
+			stmt.setString(i++, recordInfo.cpf);
+			stmt.setString(i++, recordInfo.name);
+			stmt.setInt(i++, recordInfo.codGender);
+			stmt.setDate(i++, birthDate);
+			stmt.setString(i++, recordInfo.email);
+			stmt.setString(i++, recordInfo.address1);
+			stmt.setString(i++, recordInfo.address2);
+			stmt.setLong(i++, recordInfo.postalCode);
+			stmt.setString(i++, recordInfo.city);
+			stmt.setString(i++, recordInfo.codCountry);
+			stmt.setString(i++, recordInfo.stateProvince);
+			stmt.setString(i++, recordInfo.phone);			
 			stmt.setTime(i++, beginTime);
 			stmt.setTime(i++, endTime);
+			stmt.setLong(i++, recordInfo.codPosition);
 			stmt.setString(i++, recordInfo.recordMode);
 			
 			return stmt;
@@ -111,10 +126,10 @@ final class EmpWtimeStmtUpdate implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	
-	private class ResultParser implements SqlResultParser<EmpWTimeInfo> {
-		@Override public List<EmpWTimeInfo> parseResult(ResultSet stmtResult) throws SQLException {
-			List<EmpWTimeInfo> finalResult = new ArrayList<>();
-			EmpWTimeInfo emptyInfo = new EmpWTimeInfo();
+	private class ResultParser implements SqlResultParser<EmpInfo> {
+		@Override public List<EmpInfo> parseResult(ResultSet stmtResult) throws SQLException {
+			List<EmpInfo> finalResult = new ArrayList<>();
+			EmpInfo emptyInfo = new EmpInfo();
 			finalResult.add(emptyInfo);			
 			return finalResult;
 		}

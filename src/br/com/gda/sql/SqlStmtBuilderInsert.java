@@ -1,42 +1,68 @@
 package br.com.gda.sql;
 
 import java.util.Iterator;
+import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 
-final class SqlStmtBuilderInsert extends SqlStmtBuilderAbstract {
-
+final class SqlStmtBuilderInsert extends SqlStmtBuilderTemplate {	
+	
 	SqlStmtBuilderInsert(SqlStmtBuilderOption option) {
-		super(option);
+		super(enforcePolicy(option));
 	}
 	
 	
 	
-	@Override protected void tryToCheckStatementGenerationHook() {		
-		if (this.columns == null)
+	static private SqlStmtBuilderOption enforcePolicy(SqlStmtBuilderOption option) {
+		SqlStmtBuilderOption resultOption = option;
+		
+		resultOption = enforceIgnoreLookup(resultOption);
+		resultOption = enforceIgnoreAutoIncremented(resultOption);
+		
+		return option;
+	}
+	
+	
+	
+	static private SqlStmtBuilderOption enforceIgnoreLookup(SqlStmtBuilderOption option) {
+		option.ignoreLookUpColumn = true;
+		return option;
+	}
+	
+	
+	
+	static private SqlStmtBuilderOption enforceIgnoreAutoIncremented(SqlStmtBuilderOption option) {
+		option.ignoreAutoIncrementedColumn = true;
+		return option;
+	}
+	
+	
+	
+	@Override protected void tryToCheckStatementGenerationHook(String whereClause, List<SqlColumn> columns) {		
+		if (columns == null)
 			throw new NullPointerException(SystemMessage.NULL_COLUMNS);
 		
-		if (this.columns.isEmpty())
+		if (columns.isEmpty())
 			throw new IllegalArgumentException(SystemMessage.EMPTY_COLUMNS);
 	}
 	
 	
 	
-	@Override protected String generateStatementHook() {
+	@Override protected String generateStatementHook(String schemaName, String tableName, String whereClause, List<SqlColumn> columns, List<SqlJoin> joins) {
 		StringBuilder resultStatement = new StringBuilder();
 		
 		resultStatement.append(SqlOperation.INSERT.toString());
 		resultStatement.append(SqlDictionary.SPACE);
 		resultStatement.append(SqlDictionary.INTO);
 		resultStatement.append(SqlDictionary.SPACE);
-		resultStatement.append(this.schemaName);
+		resultStatement.append(schemaName);
 		resultStatement.append(SqlDictionary.PERIOD);
-		resultStatement.append(this.tableName);
+		resultStatement.append(tableName);
 		resultStatement.append(SqlDictionary.SPACE);
 		resultStatement.append(SqlDictionary.PARENTHESIS_OPENING);
 		
 		
-		Iterator<SqlColumn> columnItr = this.columns.iterator();
+		Iterator<SqlColumn> columnItr = columns.iterator();
 		
 		while (columnItr.hasNext()) {
 			SqlColumn eachColumn = columnItr.next();
@@ -56,11 +82,11 @@ final class SqlStmtBuilderInsert extends SqlStmtBuilderAbstract {
 		resultStatement.append(SqlDictionary.PARENTHESIS_OPENING);
 		
 		
-		for (int i=0; i<this.columns.size(); i++) {
+		for (int i=0; i<columns.size(); i++) {
 			resultStatement.append(SqlDictionary.WILDCARD);
 			
 			int nextColumnIndex = i + 1;
-			if (nextColumnIndex < this.columns.size()) {
+			if (nextColumnIndex < columns.size()) {
 				resultStatement.append(SqlDictionary.COMMA);
 				resultStatement.append(SqlDictionary.SPACE);
 			}

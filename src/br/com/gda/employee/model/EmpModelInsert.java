@@ -1,12 +1,13 @@
 package br.com.gda.employee.model;
 
 import java.sql.Connection;
+
 import javax.ws.rs.core.Response;
 
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
-import br.com.gda.employee.info.EmpWTimeInfo;
-import br.com.gda.employee.model.decisionTree.EmpWtimeRootInsert;
+import br.com.gda.employee.info.EmpInfo;
+import br.com.gda.employee.model.decisionTree.EmpRootInsert;
 import br.com.gda.model.Model;
 import br.com.gda.model.ModelHelper;
 import br.com.gda.model.ModelOption;
@@ -14,13 +15,13 @@ import br.com.gda.model.decisionTree.DecisionTree;
 import br.com.gda.model.decisionTree.DecisionTreeFactory;
 import br.com.gda.model.decisionTree.DecisionTreeOption;
 
-public final class EmpWtimeModelInsert implements Model {	
-	private ModelHelper<EmpWTimeInfo> helper;
+public final class EmpModelInsert implements Model {
+	private ModelHelper<EmpInfo> helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public EmpWtimeModelInsert(String incomingData) {
+	public EmpModelInsert(String incomingData) {
 		initialize();
 		buildHelper(incomingData);
 	}
@@ -35,9 +36,9 @@ public final class EmpWtimeModelInsert implements Model {
 	
 	
 	private void buildHelper(String incomingData) {
-		ModelOption<EmpWTimeInfo> helperOption = new ModelOption<>();
+		ModelOption<EmpInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpWTimeInfo.class;
+		helperOption.infoRecordClass = EmpInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -62,9 +63,9 @@ public final class EmpWtimeModelInsert implements Model {
 	
 	
 	
-	private static class TreeFactory implements DecisionTreeFactory<EmpWTimeInfo> {		
-		@Override public DecisionTree<EmpWTimeInfo> getDecisionTree(DecisionTreeOption<EmpWTimeInfo> option) {
-			return new EmpWtimeRootInsert(option);
+	private static class TreeFactory implements DecisionTreeFactory<EmpInfo> {		
+		@Override public DecisionTree<EmpInfo> getDecisionTree(DecisionTreeOption<EmpInfo> option) {
+			return new EmpRootInsert(option);
 		}			
 	}
 }

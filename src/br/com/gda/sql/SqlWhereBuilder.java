@@ -13,14 +13,11 @@ public interface SqlWhereBuilder {
 	}
 	
 	
-	
-	public boolean isIgnoringNullCondition();
-	
 
-	public void appendClauseWithAnd(String columnName, String conditionValue);
+	public void appendClauseWithAnd(String tableName, String columnName, String conditionValue);
 
 	
-	public void appendClauseWithOr(String columnName, String conditionValue);
+	public void appendClauseWithOr(String tableName, String columnName, String conditionValue);
 
 	
 	public String generateClause();

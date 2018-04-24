@@ -51,7 +51,7 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 		whereOption.isIgnoringNull = IGNORE_NULL;
 		whereOption.isIgnoringRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(whereOption, stmtOption.recordInfo);
+		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -94,13 +94,15 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	private class ResultParser implements SqlResultParser<EmpWTimeInfo> {
+		private final boolean EMPTY_RESULT_SET = false;
+		
 		@Override public List<EmpWTimeInfo> parseResult(ResultSet stmtResult) throws SQLException {
 			List<EmpWTimeInfo> finalResult = new ArrayList<>();
 			
-			while (stmtResult.next()) {
-				if (stmtResult.getLong("cod_employee") <= 0)
-					return finalResult;
-				
+			if (stmtResult.next() == EMPTY_RESULT_SET )				
+				return finalResult;
+		
+			do {				
 				EmpWTimeInfo dataInfo = new EmpWTimeInfo();
 				dataInfo.codOwner = stmtResult.getLong("cod_owner");
 				dataInfo.codStore = stmtResult.getLong("cod_store");
@@ -114,11 +116,10 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 				
 				tempTime = stmtResult.getTime("end_time");
 				if (tempTime != null)
-					dataInfo.endTime = tempTime.toLocalTime();
+					dataInfo.endTime = tempTime.toLocalTime();				
 				
-				
-				finalResult.add(dataInfo);
-			}
+				finalResult.add(dataInfo);				
+			} while (stmtResult.next());
 			
 			return finalResult;
 		}

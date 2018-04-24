@@ -1,9 +1,11 @@
 package br.com.gda.sql;
 
+import java.util.List;
+
 import br.com.gda.common.SystemMessage;
 import br.com.gda.helper.RecordMode;
 
-final class SqlStmtBuilderDeleteSoft extends SqlStmtBuilderAbstract {
+final class SqlStmtBuilderDeleteSoft extends SqlStmtBuilderTemplate {
 
 	SqlStmtBuilderDeleteSoft(SqlStmtBuilderOption option) {
 		super(option);
@@ -11,21 +13,21 @@ final class SqlStmtBuilderDeleteSoft extends SqlStmtBuilderAbstract {
 	
 	
 	
-	@Override protected void tryToCheckStatementGenerationHook() {			
-		if (this.whereClause == null)
+	@Override protected void tryToCheckStatementGenerationHook(String whereClause, List<SqlColumn> columns) {			
+		if (whereClause == null)
 			throw new NullPointerException(SystemMessage.NULL_WHERE_CLAUSE);
 	}
 	
 	
 	
-	@Override protected String generateStatementHook() {
+	@Override protected String generateStatementHook(String schemaName, String tableName, String whereClause, List<SqlColumn> columns, List<SqlJoin> joins) {
 		StringBuilder resultStatement = new StringBuilder();
 		
 		resultStatement.append(SqlOperation.UPDATE.toString());
 		resultStatement.append(SqlDictionary.SPACE);
-		resultStatement.append(this.schemaName);
+		resultStatement.append(schemaName);
 		resultStatement.append(SqlDictionary.PERIOD);
-		resultStatement.append(this.tableName);
+		resultStatement.append(tableName);
 		resultStatement.append(SqlDictionary.SPACE);
 		resultStatement.append(SqlDictionary.SET);
 		resultStatement.append(SqlDictionary.SPACE);
@@ -39,7 +41,7 @@ final class SqlStmtBuilderDeleteSoft extends SqlStmtBuilderAbstract {
 		resultStatement.append(SqlDictionary.SPACE);
 		resultStatement.append(SqlDictionary.WHERE);
 		resultStatement.append(SqlDictionary.SPACE);
-		resultStatement.append(this.whereClause);
+		resultStatement.append(whereClause);
 		resultStatement.append(SqlDictionary.END_STATEMENT);		
 		
 		return resultStatement.toString();

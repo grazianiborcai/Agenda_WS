@@ -3,10 +3,9 @@ package br.com.gda.employee.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.employee.info.EmpWTimeInfo;
-import br.com.gda.employee.model.checker.CheckerEmpWtimeEmpExistOnDb;
-import br.com.gda.employee.model.checker.CheckerEmpWtimeExistOnDb;
-import br.com.gda.employee.model.checker.CheckerEmpWtimeMandatoryWrite;
+import br.com.gda.employee.info.EmpInfo;
+import br.com.gda.employee.model.checker.CheckerEmpExistOnDb;
+import br.com.gda.employee.model.checker.CheckerEmpMandatoryWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -18,12 +17,12 @@ import br.com.gda.model.decisionTree.DecisionTreeHelper;
 import br.com.gda.model.decisionTree.DecisionTreeHelperOption;
 import br.com.gda.model.decisionTree.DecisionTreeOption;
 
-public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
-	private DecisionTree<EmpWTimeInfo> tree;
+public final class EmpRootInsert implements DecisionTree<EmpInfo> {
+	private DecisionTree<EmpInfo> tree;
 	
 	
-	public EmpWtimeRootInsert(DecisionTreeOption<EmpWTimeInfo> option) {
-		DecisionTreeHelperOption<EmpWTimeInfo> helperOption = new DecisionTreeHelperOption<>();
+	public EmpRootInsert(DecisionTreeOption<EmpInfo> option) {
+		DecisionTreeHelperOption<EmpInfo> helperOption = new DecisionTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
@@ -35,31 +34,21 @@ public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private ModelChecker<EmpWTimeInfo> buildDecisionChecker(DecisionTreeOption<EmpWTimeInfo> option) {
-		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
-		ModelChecker<EmpWTimeInfo> checker;
+	private ModelChecker<EmpInfo> buildDecisionChecker(DecisionTreeOption<EmpInfo> option) {
+		List<ModelChecker<EmpInfo>> stack = new ArrayList<>();		
+		ModelChecker<EmpInfo> checker;
 		
-		checker = new CheckerEmpWtimeMandatoryWrite();
+		checker = new CheckerEmpMandatoryWrite();
 		stack.add(checker);
 		
-		final boolean EXIST_ON_DB = true;	
 		final boolean DONT_EXIST_ON_DB = false;	
 		ModelCheckerOption checkerOption;
-		
-		//TODO: trocar por emp_store
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new CheckerEmpWtimeEmpExistOnDb(checkerOption);
-		stack.add(checker);	
-		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new CheckerEmpWtimeExistOnDb(checkerOption);
+		checker = new CheckerEmpExistOnDb(checkerOption);
 		stack.add(checker);	
 		
 		return new ModelCheckerStack<>(stack);
@@ -67,11 +56,11 @@ public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<EmpWTimeInfo>> buildActionsOnPassed(DecisionTreeOption<EmpWTimeInfo> option) {
-		List<DecisionActionAdapter<EmpWTimeInfo>> actions = new ArrayList<>();
+	private List<DecisionActionAdapter<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
+		List<DecisionActionAdapter<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionInsertOrUpdate(option));
-		actions.add(new EmpWtimeActionSelect(option));		
+		actions.add(new EmpActionSelect(option));		
 		return actions;
 	}
 	
@@ -89,7 +78,7 @@ public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	@Override public DecisionResult<EmpWTimeInfo> getDecisionResult() {
+	@Override public DecisionResult<EmpInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
@@ -99,12 +88,12 @@ public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private static class ActionInsertOrUpdate implements DecisionActionAdapter<EmpWTimeInfo> {
-		private DecisionTree<EmpWTimeInfo> forwardTree;
+	private static class ActionInsertOrUpdate implements DecisionActionAdapter<EmpInfo> {
+		private DecisionTree<EmpInfo> forwardTree;
 		
 		
-		public ActionInsertOrUpdate(DecisionTreeOption<EmpWTimeInfo> option) {
-			forwardTree = new EmpWtimeNodeInsOrUpd(option);
+		public ActionInsertOrUpdate(DecisionTreeOption<EmpInfo> option) {
+			forwardTree = new EmpNodeInsOrUpd(option);
 		}
 		
 		
@@ -116,7 +105,7 @@ public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
 		
 		
 		
-		@Override public DecisionResult<EmpWTimeInfo> getDecisionResult() {
+		@Override public DecisionResult<EmpInfo> getDecisionResult() {
 			return forwardTree.getDecisionResult();
 		}
 	}

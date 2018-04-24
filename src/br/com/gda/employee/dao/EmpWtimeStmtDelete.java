@@ -49,7 +49,7 @@ final class EmpWtimeStmtDelete implements SqlStmt<EmpWTimeInfo> {
 		whereOption.isIgnoringRecordMode = DONT_IGNORE_RECORD_MODE;	
 		
 		
-		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(whereOption, stmtOption.recordInfo);
+		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

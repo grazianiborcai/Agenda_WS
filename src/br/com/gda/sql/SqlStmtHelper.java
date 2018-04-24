@@ -60,6 +60,7 @@ public final class SqlStmtHelper<T> implements SqlStmt<T> {
 		builderOption.schemaName = this.option.schemaName;
 		builderOption.tableName = this.option.tableName;
 		builderOption.whereClause = this.option.whereClause;
+		builderOption.joins = this.option.joins;
 		
 		SqlStmtBuilder builder = this.operation.factorySqlStmtBuilder(builderOption);
 		this.stmtSkeleton = builder.generatedStatement();

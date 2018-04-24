@@ -1,6 +1,7 @@
 package br.com.gda.sql;
 
-final class SqlDictionary {
+public final class SqlDictionary {
+	public static final String ON = "ON";
 	public static final String OR = "OR";
 	public static final String AND = "AND";
 	public static final String SET = "SET";	

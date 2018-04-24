@@ -8,9 +8,14 @@ public final class SqlStmtBuilderOption {
 	public String tableName;
 	public String whereClause;
 	public List<SqlColumn> columns;
+	public List<SqlJoin> joins;
+	public boolean ignoreLookUpColumn;
+	public boolean ignoreAutoIncrementedColumn;
 	
 	
 	public SqlStmtBuilderOption() {
 		columns = new ArrayList<>();
+		ignoreLookUpColumn = false;
+		ignoreAutoIncrementedColumn = false;
 	}
 }

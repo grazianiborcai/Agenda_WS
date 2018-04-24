@@ -7,8 +7,13 @@ public final class SystemCode {
 	public static final int SUCCESS = 200;
 	public static final int INTERNAL_ERROR = 500;
 	
-	// Employee
+	// Employee Working Time
 	public static final int EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB 	= 1000;
 	public static final int EMPLOYEE_WORKING_TIME_DONT_EXIST_ON_DB 		= 1001;
 	public static final int EMPLOYEE_WORKING_FLAGGED_AS_DELETED 		= 1002;
+	
+	// Employee
+	public static final int EMPLOYEE_ALREALDY_EXIST_ON_DB 				= 1050;
+	public static final int EMPLOYEE_DONT_EXIST_ON_DB 					= 1051;
+	public static final int EMPLOYEE_FLAGGED_AS_DELETED 				= 1052;
 }
