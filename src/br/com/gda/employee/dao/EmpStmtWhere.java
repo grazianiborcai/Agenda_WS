@@ -9,6 +9,9 @@ import br.com.gda.sql.SqlWhereBuilder;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 final class EmpStmtWhere {
+	private final boolean NON_PRIMARY_KEY = false;
+	private final boolean IGNORE_NON_PK = true;
+	
 	private String whereClause;	
 	
 	
@@ -24,6 +27,9 @@ final class EmpStmtWhere {
 		List<SqlColumn> columns = EmpDbTableColumn.getTableColumnsAsList(tableName);
 		
 		for (SqlColumn eachColumn : columns) {
+			if (eachColumn.isPK == NON_PRIMARY_KEY && whereOption.isIgnoringNonPrimaryKey == IGNORE_NON_PK)
+				continue;
+			
 			switch(eachColumn.columnName) {
 				case "cod_owner" :
 					builder.appendClauseWithAnd(eachColumn.tableName, eachColumn.columnName, SqlFormatterNumber.numberToString(recordInfo.codOwner));

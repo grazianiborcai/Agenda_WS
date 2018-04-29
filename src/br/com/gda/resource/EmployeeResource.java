@@ -14,6 +14,7 @@ import br.com.gda.employee.info.EmpInfo;
 import br.com.gda.employee.info.EmpWTimeInfo;
 import br.com.gda.employee.model.EmpModelInsert;
 import br.com.gda.employee.model.EmpModelSelect;
+import br.com.gda.employee.model.EmpModelUpdate;
 import br.com.gda.employee.model.EmpWtimeModelDelete;
 import br.com.gda.employee.model.EmpWtimeModelInsert;
 import br.com.gda.employee.model.EmpWtimeModelSelect;
@@ -111,7 +112,9 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateOwner(String incomingData) {
 		//TODO: mudanã de password não pode ser por esse serviço
-		return new EmployeeModel().updateEmployee(incomingData);
+		EmpModelUpdate employeeUpdate = new EmpModelUpdate(incomingData);
+		employeeUpdate.executeRequest();
+		return employeeUpdate.getResponse();
 	}
 
 	

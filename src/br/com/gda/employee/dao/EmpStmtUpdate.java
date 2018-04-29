@@ -47,14 +47,26 @@ public final class EmpStmtUpdate implements SqlStmt<EmpInfo> {
 	
 	private String buildWhereClause() {
 		final boolean DONT_IGNORE_NULL = false;
-		final boolean IGNORE_RECORD_MODE = true;
+		final boolean IGNORE_NON_PK = true;
+		final boolean IGNORE_RECORD_MODE = true;		
 		
 		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
 		whereOption.isIgnoringNull = DONT_IGNORE_NULL;
 		whereOption.isIgnoringRecordMode = IGNORE_RECORD_MODE;
+		whereOption.isIgnoringNonPrimaryKey = IGNORE_NON_PK;
 		
-		EmpStmtWhere whereClause = new EmpStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		EmpInfo enforcedInfo = enforceUpdateByKey(stmtOption.recordInfo);
+		EmpStmtWhere whereClause = new EmpStmtWhere(whereOption, stmtOption.tableName, enforcedInfo);
 		return whereClause.getWhereClause();
+	}
+	
+	
+	
+	private EmpInfo enforceUpdateByKey(EmpInfo recordInfo) {
+		EmpInfo enforcedInfo = new EmpInfo();
+		enforcedInfo.codOwner = recordInfo.codOwner;
+		enforcedInfo.codEmployee = recordInfo.codEmployee;
+		return enforcedInfo;
 	}
 	
 	

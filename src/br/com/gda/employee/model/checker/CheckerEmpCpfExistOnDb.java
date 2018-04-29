@@ -13,12 +13,12 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class CheckerEmpExistOnDb extends ModelCheckerTemplate<EmpInfo> {
-	private final boolean EMPLOYEE_EXIST = true;
-	private final boolean NO_ENTRY_FOUND_ON_DB = false;
+public final class CheckerEmpCpfExistOnDb extends ModelCheckerTemplate<EmpInfo> {
+	private final boolean CPF_ALREADY_EXIST_ON_DB = true;
+	private final boolean CPF_NOT_FOUND_ON_DB = false;
 	
 	
-	public CheckerEmpExistOnDb(ModelCheckerOption option) {
+	public CheckerEmpCpfExistOnDb(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -26,14 +26,13 @@ public final class CheckerEmpExistOnDb extends ModelCheckerTemplate<EmpInfo> {
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
 		try {
-			EmpInfo enforcedInfo = enforceSelectByKey(recordInfo);
-			
+			EmpInfo enforcedInfo = enforceSlectByCpf(recordInfo);			
 			List<EmpInfo> resultset = executeStmt(enforcedInfo, conn, schemaName);
 			
 			if (resultset == null || resultset.isEmpty())
-				return NO_ENTRY_FOUND_ON_DB;
+				return CPF_NOT_FOUND_ON_DB;
 			
-			return EMPLOYEE_EXIST;
+			return CPF_ALREADY_EXIST_ON_DB;
 			
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
@@ -42,11 +41,11 @@ public final class CheckerEmpExistOnDb extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	
-	private EmpInfo enforceSelectByKey(EmpInfo recordInfo) {
-		EmpInfo keyInfo = new EmpInfo();
-		keyInfo.codOwner = recordInfo.codOwner;
-		keyInfo.codEmployee = recordInfo.codEmployee;		
-		return keyInfo;
+	private EmpInfo enforceSlectByCpf(EmpInfo recordInfo) {
+		EmpInfo enforcedInfo = new EmpInfo();
+		enforcedInfo.codOwner = recordInfo.codOwner;
+		enforcedInfo.cpf = recordInfo.cpf;
+		return enforcedInfo;
 	}
 	
 	
@@ -75,18 +74,18 @@ public final class CheckerEmpExistOnDb extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_ALREALDY_EXIST_ON_DB)
-			return SystemMessage.EMPLOYEE_ALREALDY_EXIST_ON_DB;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_CPF_ALREADY_EXIST)
+			return SystemMessage.EMPLOYEE_CPF_ALREADY_EXIST;
 		
-		return SystemMessage.EMPLOYEE_DONT_EXIST_ON_DB;
+		return SystemMessage.EMPLOYEE_CPF_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == EMPLOYEE_EXIST)
-			return SystemCode.EMPLOYEE_ALREALDY_EXIST_ON_DB;	
+		if (checkerResult == CPF_ALREADY_EXIST_ON_DB)
+			return SystemCode.EMPLOYEE_CPF_ALREADY_EXIST;	
 			
-		return SystemCode.EMPLOYEE_DONT_EXIST_ON_DB;
+		return SystemCode.EMPLOYEE_CPF_NOT_FOUND;
 	}
 }

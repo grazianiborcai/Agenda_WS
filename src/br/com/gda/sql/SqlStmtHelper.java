@@ -27,6 +27,12 @@ public final class SqlStmtHelper<T> implements SqlStmt<T> {
 		if (option.resultParser == null)
 			throw new NullPointerException("option.resultParser" + SystemMessage.NULL_ARGUMENT);
 		
+		if (option.conn == null)
+			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
+		
+		if (option.schemaName == null)
+			throw new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT);
+		
 		
 		this.operation = operation;
 		makeDefensiveCopy(option);		

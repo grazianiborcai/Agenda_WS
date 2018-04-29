@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.employee.info.EmpInfo;
-import br.com.gda.employee.model.checker.CheckerEmpCpf;
-import br.com.gda.employee.model.checker.CheckerEmpMandatoryRead;
+import br.com.gda.employee.model.checker.CheckerEmpCpfExistOnDb;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DecisionActionAdapter;
 import br.com.gda.model.decisionTree.DecisionChoice;
@@ -16,15 +16,16 @@ import br.com.gda.model.decisionTree.DecisionTreeHelper;
 import br.com.gda.model.decisionTree.DecisionTreeHelperOption;
 import br.com.gda.model.decisionTree.DecisionTreeOption;
 
-public final class EmpRootSelect implements DecisionTree<EmpInfo> {
+public final class EmpNodeUpdateL2 implements DecisionTree<EmpInfo> {
 	private DecisionTree<EmpInfo> tree;
 	
 	
-	public EmpRootSelect(DecisionTreeOption<EmpInfo> option) {
+	public EmpNodeUpdateL2(DecisionTreeOption<EmpInfo> option) {
 		DecisionTreeHelperOption<EmpInfo> helperOption = new DecisionTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
+		helperOption.schemaName = option.schemaName;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		
@@ -33,14 +34,18 @@ public final class EmpRootSelect implements DecisionTree<EmpInfo> {
 	
 	
 	
-	private ModelChecker<EmpInfo> buildDecisionChecker() {
+	private ModelChecker<EmpInfo> buildDecisionChecker(DecisionTreeOption<EmpInfo> option) {
+		final boolean DONT_EXIST_ON_DB = false;
+		
 		List<ModelChecker<EmpInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
+		ModelCheckerOption checkerOption;
 		
-		checker = new CheckerEmpMandatoryRead();
-		stack.add(checker);
-		
-		checker = new CheckerEmpCpf();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;		
+		checker = new CheckerEmpCpfExistOnDb(checkerOption);
 		stack.add(checker);
 		
 		return new ModelCheckerStack<>(stack);
@@ -51,7 +56,8 @@ public final class EmpRootSelect implements DecisionTree<EmpInfo> {
 	private List<DecisionActionAdapter<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
 		List<DecisionActionAdapter<EmpInfo>> actions = new ArrayList<>();
 		
-		actions.add(new EmpActionSelect(option));
+		actions.add(new EmpActionUpdate(option));
+		actions.add(new EmpActionSelect(option));		
 		return actions;
 	}
 	

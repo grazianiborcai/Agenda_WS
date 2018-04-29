@@ -20,6 +20,19 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	
 
 	public DecisionTreeHelper(DecisionTreeHelperOption<T> option) {
+		checkArgument(option);
+		
+		this.checker = option.visitorChecker;
+		this.recordInfos = option.recordInfos;
+		this.actionsOnPassed = option.actionsOnPassed;
+		this.actionsOnFailed = option.actionsOnFailed;
+		this.decisionChoice = null;
+		this.decisionResult = new DecisionResultHelper<>();
+	}
+	
+	
+	
+	private void checkArgument(DecisionTreeHelperOption<T> option) {
 		if (option == null)
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
@@ -34,14 +47,6 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 		
 		if (option.recordInfos.isEmpty())
 			throw new NullPointerException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT);
-		
-		
-		this.checker = option.visitorChecker;
-		this.recordInfos = option.recordInfos;
-		this.actionsOnPassed = option.actionsOnPassed;
-		this.actionsOnFailed = option.actionsOnFailed;
-		this.decisionChoice = null;
-		this.decisionResult = new DecisionResultHelper<>();
 	}
 	
 	
@@ -51,7 +56,7 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 		
 		if (checkResult == RESULT_SUCCESS)
 			onPassed();
-		
+			
 		if (checkResult == RESULT_FAILED)
 			onFailed();		
 	}

@@ -13,12 +13,12 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class CheckerEmpExistOnDb extends ModelCheckerTemplate<EmpInfo> {
-	private final boolean EMPLOYEE_EXIST = true;
-	private final boolean NO_ENTRY_FOUND_ON_DB = false;
+public final class CheckerEmpUniqueOnDb extends ModelCheckerTemplate<EmpInfo> {
+	private final boolean SINGLE_EMPLOYEE_FOUND = true;
+	private final boolean MULTIPLE_ENTRIES_FOUND_ON_DB = false;
 	
 	
-	public CheckerEmpExistOnDb(ModelCheckerOption option) {
+	public CheckerEmpUniqueOnDb(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -26,27 +26,19 @@ public final class CheckerEmpExistOnDb extends ModelCheckerTemplate<EmpInfo> {
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
 		try {
-			EmpInfo enforcedInfo = enforceSelectByKey(recordInfo);
-			
-			List<EmpInfo> resultset = executeStmt(enforcedInfo, conn, schemaName);
+			List<EmpInfo> resultset = executeStmt(recordInfo, conn, schemaName);
 			
 			if (resultset == null || resultset.isEmpty())
-				return NO_ENTRY_FOUND_ON_DB;
+				throw new IllegalStateException(SystemMessage.EMPLOYEE_DATA_NOT_FOUND);
+				
+			if (resultset.size() > 1)
+				return MULTIPLE_ENTRIES_FOUND_ON_DB;
 			
-			return EMPLOYEE_EXIST;
+			return SINGLE_EMPLOYEE_FOUND;
 			
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
 		}
-	}
-	
-	
-	
-	private EmpInfo enforceSelectByKey(EmpInfo recordInfo) {
-		EmpInfo keyInfo = new EmpInfo();
-		keyInfo.codOwner = recordInfo.codOwner;
-		keyInfo.codEmployee = recordInfo.codEmployee;		
-		return keyInfo;
 	}
 	
 	
@@ -75,17 +67,17 @@ public final class CheckerEmpExistOnDb extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_ALREALDY_EXIST_ON_DB)
-			return SystemMessage.EMPLOYEE_ALREALDY_EXIST_ON_DB;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_MULTIPLE_ENTRIES_FOUND)
+			return SystemMessage.EMPLOYEE_MULTIPLE_ENTRIES_FOUND;
 		
-		return SystemMessage.EMPLOYEE_DONT_EXIST_ON_DB;
+		return SystemMessage.EMPLOYEE_SINGLE_ENTRY_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == EMPLOYEE_EXIST)
-			return SystemCode.EMPLOYEE_ALREALDY_EXIST_ON_DB;	
+		if (checkerResult == SINGLE_EMPLOYEE_FOUND)
+			return SystemCode.EMPLOYEE_MULTIPLE_ENTRIES_FOUND;	
 			
 		return SystemCode.EMPLOYEE_DONT_EXIST_ON_DB;
 	}
