@@ -8,18 +8,19 @@ import br.com.gda.employee.info.EmpInfo;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerEmpCodEmployee extends ModelCheckerTemplate<EmpInfo> {
+public final class CheckerEmpMandatoryKey extends ModelCheckerTemplate<EmpInfo> {
 	private final boolean FIELD_NOT_NULL = true;
 	private final boolean EMPTY_FIELD = false;
 	
-	public CheckerEmpCodEmployee(ModelCheckerOption option) {
+	public CheckerEmpMandatoryKey(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codEmployee >= 0 )			
+		if (    recordInfo.codOwner 	>= 0 
+			 && recordInfo.codEmployee  >= 0 )			
 			return FIELD_NOT_NULL;
 		
 		

@@ -3,12 +3,10 @@ package br.com.gda.employee.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.employee.dao.EmpStmtExecInsert;
+import br.com.gda.employee.dao.EmpStmtExecDelete;
 import br.com.gda.employee.info.EmpInfo;
+import br.com.gda.employee.model.checker.CheckerEmpExistOnDb;
 import br.com.gda.employee.model.checker.CheckerEmpMandatoryKey;
-import br.com.gda.employee.model.checker.CheckerEmpCpf;
-import br.com.gda.employee.model.checker.CheckerEmpCpfExistOnDb;
-import br.com.gda.employee.model.checker.CheckerEmpMandatoryWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -23,11 +21,11 @@ import br.com.gda.model.decisionTree.DecisionTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class EmpRootInsert implements DecisionTree<EmpInfo> {
+public final class EmpRootDelete implements DecisionTree<EmpInfo> {
 	private DecisionTree<EmpInfo> tree;
 	
 	
-	public EmpRootInsert(DecisionTreeOption<EmpInfo> option) {
+	public EmpRootDelete(DecisionTreeOption<EmpInfo> option) {
 		DecisionTreeHelperOption<EmpInfo> helperOption = new DecisionTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -35,38 +33,34 @@ public final class EmpRootInsert implements DecisionTree<EmpInfo> {
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		
+		
 		tree = new DecisionTreeHelper<>(helperOption);
 	}
 	
 	
 	
 	private ModelChecker<EmpInfo> buildDecisionChecker(DecisionTreeOption<EmpInfo> option) {
-		final boolean DONT_EXIST_ON_DB = false;	
-		final boolean EMPTY_FIELD = false;	
+		final boolean EXIST_ON_DB = true;
+		final boolean KEY_NOT_NULL = true;		
 		
 		List<ModelChecker<EmpInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
-		ModelCheckerOption checkerOption;		
-		
-		checker = new CheckerEmpMandatoryWrite();
-		stack.add(checker);
+		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = EMPTY_FIELD;
+		checkerOption.expectedResult = KEY_NOT_NULL;
 		checker = new CheckerEmpMandatoryKey(checkerOption);
 		stack.add(checker);
-		
-		checker = new CheckerEmpCpf();
-		stack.add(checker);
-		
+			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new CheckerEmpCpfExistOnDb(checkerOption);
-		stack.add(checker);	
+		checkerOption.expectedResult = EXIST_ON_DB;
 		
-		return new ModelCheckerStack<>(stack);
+		checker = new CheckerEmpExistOnDb(checkerOption);
+		stack.add(checker);		
+		
+		 return new ModelCheckerStack<EmpInfo>(stack);
 	}
 	
 	
@@ -74,8 +68,7 @@ public final class EmpRootInsert implements DecisionTree<EmpInfo> {
 	private List<DecisionActionAdapter<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
 		List<DecisionActionAdapter<EmpInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionInsert(option));
-		actions.add(new EmpActionSelect(option));		
+		actions.add(new ActionDelete(option));
 		return actions;
 	}
 	
@@ -101,13 +94,12 @@ public final class EmpRootInsert implements DecisionTree<EmpInfo> {
 	
 
 	
-	
-	
-	private static class ActionInsert implements DecisionActionAdapter<EmpInfo> {
+		
+	private static class ActionDelete implements DecisionActionAdapter<EmpInfo> {
 		DecisionActionAdapter<EmpInfo> actionHelper;
 		
 		
-		public ActionInsert(DecisionTreeOption<EmpInfo> option) {
+		public ActionDelete(DecisionTreeOption<EmpInfo> option) {
 			SqlStmtExec<EmpInfo> sqlStmtExecutor = buildStmtExec(option);
 			actionHelper = new DecisionActionStmtHelper<>(sqlStmtExecutor);
 		}
@@ -125,7 +117,7 @@ public final class EmpRootInsert implements DecisionTree<EmpInfo> {
 				stmtExecOptions.add(stmtExecOption);
 			}
 			
-			return new EmpStmtExecInsert(stmtExecOptions);
+			return new EmpStmtExecDelete(stmtExecOptions);
 		}
 		
 		

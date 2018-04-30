@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.gda.employee.info.EmpInfo;
 import br.com.gda.employee.info.EmpWTimeInfo;
+import br.com.gda.employee.model.EmpModelDelete;
 import br.com.gda.employee.model.EmpModelInsert;
 import br.com.gda.employee.model.EmpModelSelect;
 import br.com.gda.employee.model.EmpModelUpdate;
@@ -19,6 +20,7 @@ import br.com.gda.employee.model.EmpWtimeModelDelete;
 import br.com.gda.employee.model.EmpWtimeModelInsert;
 import br.com.gda.employee.model.EmpWtimeModelSelect;
 import br.com.gda.employee.model.EmpWtimeModelUpdate;
+import br.com.gda.model.Model;
 import br.com.gda.model.legacy.EmployeeModel;
 
 @Path("/Employee")
@@ -46,7 +48,7 @@ public class EmployeeResource {
 		workingTimeInfo.codStore = codStore;
 		workingTimeInfo.codEmployee = codEmployee;
 		
-		EmpWtimeModelSelect workingTimeSelect = new EmpWtimeModelSelect(workingTimeInfo);
+		Model workingTimeSelect = new EmpWtimeModelSelect(workingTimeInfo);
 		workingTimeSelect.executeRequest();
 		return workingTimeSelect.getResponse();
 	}
@@ -57,7 +59,7 @@ public class EmployeeResource {
 	@Path(INSERT_WOKING_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertWorkingTime(String incomingData) {
-		EmpWtimeModelInsert workingTimeInsert = new EmpWtimeModelInsert(incomingData);
+		Model workingTimeInsert = new EmpWtimeModelInsert(incomingData);
 		workingTimeInsert.executeRequest();
 		return workingTimeInsert.getResponse();
 	}
@@ -68,7 +70,7 @@ public class EmployeeResource {
 	@Path(UPDATE_WOKING_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateWorkingTime(String incomingData) {
-		EmpWtimeModelUpdate workingTimeUpdate = new EmpWtimeModelUpdate(incomingData);
+		Model workingTimeUpdate = new EmpWtimeModelUpdate(incomingData);
 		workingTimeUpdate.executeRequest();
 		return workingTimeUpdate.getResponse();
 	}
@@ -89,7 +91,7 @@ public class EmployeeResource {
 		workingTimeInfo.codEmployee = codEmployee;
 		workingTimeInfo.weekday = weekday;
 		
-		EmpWtimeModelDelete workingTimeInsert = new EmpWtimeModelDelete(workingTimeInfo);
+		Model workingTimeInsert = new EmpWtimeModelDelete(workingTimeInfo);
 		workingTimeInsert.executeRequest();
 		return workingTimeInsert.getResponse();
 	}
@@ -101,7 +103,7 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertEmployee(String incomingData) {
 		//TODO: horário do empregado. Se nulo, então pegar da Store		
-		EmpModelInsert employeeInsert = new EmpModelInsert(incomingData);
+		Model employeeInsert = new EmpModelInsert(incomingData);
 		employeeInsert.executeRequest();
 		return employeeInsert.getResponse();
 	}
@@ -112,7 +114,7 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateOwner(String incomingData) {
 		//TODO: mudanã de password não pode ser por esse serviço
-		EmpModelUpdate employeeUpdate = new EmpModelUpdate(incomingData);
+		Model employeeUpdate = new EmpModelUpdate(incomingData);
 		employeeUpdate.executeRequest();
 		return employeeUpdate.getResponse();
 	}
@@ -121,11 +123,17 @@ public class EmployeeResource {
 	
 	@DELETE
 	@Path(DELETE_EMPLOYEE)
-	public Response deleteEmployee(@HeaderParam("codOwner") long codOwner,
+	public Response deleteEmployee(@HeaderParam("codOwner")    long codOwner,
 								   @HeaderParam("codEmployee") int codEmployee) {
-
+		
 		//TODO: atualizar StoreEmployee
-		return new EmployeeModel().deleteEmployee(codOwner, codEmployee);
+		EmpInfo employeeInfo = new EmpInfo();
+		employeeInfo.codOwner = codOwner;
+		employeeInfo.codEmployee = codEmployee;
+		
+		Model workingTimeInsert = new EmpModelDelete(employeeInfo);
+		workingTimeInsert.executeRequest();
+		return workingTimeInsert.getResponse();
 	}
 	
 	
@@ -155,7 +163,7 @@ public class EmployeeResource {
 		employeeInfo.codOwner = codOwner;
 		employeeInfo.codEmployee = codEmployee;
 		
-		EmpModelSelect employeeSelect = new EmpModelSelect(employeeInfo);
+		Model employeeSelect = new EmpModelSelect(employeeInfo);
 		employeeSelect.executeRequest();
 		return employeeSelect.getResponse();
 	}

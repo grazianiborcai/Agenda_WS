@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.employee.info.EmpInfo;
-import br.com.gda.employee.model.checker.CheckerEmpCodEmployee;
+import br.com.gda.employee.model.checker.CheckerEmpMandatoryKey;
 import br.com.gda.employee.model.checker.CheckerEmpCpf;
 import br.com.gda.employee.model.checker.CheckerEmpExistOnDb;
 import br.com.gda.employee.model.checker.CheckerEmpMandatoryWrite;
@@ -39,7 +39,7 @@ public final class EmpRootUpdate implements DecisionTree<EmpInfo> {
 	
 	private ModelChecker<EmpInfo> buildDecisionChecker(DecisionTreeOption<EmpInfo> option) {
 		final boolean EXIST_ON_DB = true;			
-		final boolean FIELD_NOT_NULL = true;	
+		final boolean KEY_NOT_NULL = true;	
 		
 		List<ModelChecker<EmpInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
@@ -49,8 +49,8 @@ public final class EmpRootUpdate implements DecisionTree<EmpInfo> {
 		stack.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = FIELD_NOT_NULL;
-		checker = new CheckerEmpCodEmployee(checkerOption);
+		checkerOption.expectedResult = KEY_NOT_NULL;
+		checker = new CheckerEmpMandatoryKey(checkerOption);
 		stack.add(checker);
 		
 		checker = new CheckerEmpCpf();
