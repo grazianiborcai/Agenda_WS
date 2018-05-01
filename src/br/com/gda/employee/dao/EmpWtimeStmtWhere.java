@@ -19,30 +19,29 @@ final class EmpWtimeStmtWhere {
 	
 	
 	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, EmpWTimeInfo recordInfo) {
-		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);
-		
+		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);		
 		List<SqlColumn> columns = EmpDbTableColumn.getTableColumnsAsList(tableName);
 		
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "cod_owner" :
-					builder.appendClauseWithAnd(eachColumn.tableName, eachColumn.columnName, SqlFormatterNumber.numberToString(recordInfo.codOwner));
+					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
 					break;
 				
 				case "cod_store" :
-					builder.appendClauseWithAnd(eachColumn.tableName, eachColumn.columnName, SqlFormatterNumber.numberToString(recordInfo.codStore));
+					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codStore));
 					break;
 					
 				case "cod_employee" :
-					builder.appendClauseWithAnd(eachColumn.tableName, eachColumn.columnName, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
+					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
 					break;
 					
 				case "weekday" :
-					builder.appendClauseWithAnd(eachColumn.tableName, eachColumn.columnName, SqlFormatterNumber.numberToString(recordInfo.weekday));
+					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.weekday));
 					break;
 					
 				case "record_mode" :
-					builder.appendClauseWithAnd(eachColumn.tableName, eachColumn.columnName, recordInfo.recordMode);
+					builder.appendClauseWithAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
 		}

@@ -8,10 +8,7 @@ import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlWhereBuilder;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpStmtWhere {
-	private final boolean NON_PRIMARY_KEY = false;
-	private final boolean IGNORE_NON_PK = true;
-	
+final class EmpStmtWhere {	
 	private String whereClause;	
 	
 	
@@ -26,25 +23,22 @@ final class EmpStmtWhere {
 		
 		List<SqlColumn> columns = EmpDbTableColumn.getTableColumnsAsList(tableName);
 		
-		for (SqlColumn eachColumn : columns) {
-			if (eachColumn.isPK == NON_PRIMARY_KEY && whereOption.isIgnoringNonPrimaryKey == IGNORE_NON_PK)
-				continue;
-			
+		for (SqlColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
 				case "cod_owner" :
-					builder.appendClauseWithAnd(eachColumn.tableName, eachColumn.columnName, SqlFormatterNumber.numberToString(recordInfo.codOwner));
+					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
 					break;
 					
 				case "cod_employee" :
-					builder.appendClauseWithAnd(eachColumn.tableName, eachColumn.columnName, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
+					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
 					break;
 					
 				case "CPF" :
-					builder.appendClauseWithAnd(eachColumn.tableName, eachColumn.columnName, recordInfo.cpf);
+					builder.appendClauseWithAnd(eachColumn, recordInfo.cpf);
 					break;
 					
 				case "record_mode" :
-					builder.appendClauseWithAnd(eachColumn.tableName, eachColumn.columnName, recordInfo.recordMode);
+					builder.appendClauseWithAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
 		}		

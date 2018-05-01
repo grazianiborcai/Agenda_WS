@@ -13,10 +13,7 @@ final class SqlWhereBuilderEqual extends SqlWhereBuilderTemplate {
 	
 	
 	
-	@Override protected String buildWhereClauseHook(String tableName, String columnName, String conditionValue) {				
-		if (conditionValue == null)
-			return buildWhereClauseIsNull(tableName, columnName);
-		
+	@Override protected String buildWhereClauseHook(String tableName, String columnName, String conditionValue) {			
 		StringBuilder resultClause = new StringBuilder();
 		resultClause.append(tableName);
 		resultClause.append(SqlDictionary.PERIOD);
@@ -29,13 +26,5 @@ final class SqlWhereBuilderEqual extends SqlWhereBuilderTemplate {
 		resultClause.append(SqlDictionary.QUOTE);
 		
 		return resultClause.toString();
-	}
-	
-	
-	
-	private String buildWhereClauseIsNull(String tableName, String columnName) {		
-		SqlWhereBuilder isNullBuilder = new SqlWhereBuilderIsNull();
-		isNullBuilder.appendClauseWithAnd(tableName, columnName, null);
-		return isNullBuilder.generateClauseWithoutParentheses();
 	}
 }

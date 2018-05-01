@@ -9,6 +9,7 @@ import br.com.gda.common.SystemMessage;
 abstract class SqlWhereBuilderTemplate implements SqlWhereBuilder {	
 	private final boolean OK = true;
 	private final boolean SKIP = true;
+	private final boolean NOT_PRIMARY_KEY = false;
 	private final boolean NO_COLUMN_ADDED = false;
 	
 	private SqlWhereBuilderOption option;
@@ -26,27 +27,27 @@ abstract class SqlWhereBuilderTemplate implements SqlWhereBuilder {
 		this.option = option;
 	}
 	
-		
-	
-	public void appendClauseWithAnd(String tableName, String columnName, String conditionValue) {
-		appendClause(tableName, columnName, conditionValue, SqlDictionary.AND);
-	}
-		
 	
 	
-	public void appendClauseWithOr(String tableName, String columnName, String conditionValue) {
-		appendClause(tableName, columnName, conditionValue, SqlDictionary.OR);
+	public void appendClauseWithAnd(SqlColumn column, String conditionValue) {
+		appendClause(column, conditionValue, SqlDictionary.AND);
 	}
 	
 	
 	
-	private void appendClause(String tableName, String columnName, String conditionValue, String logicalOperator) {
-		if (shouldSkipColumn(columnName, conditionValue) == SKIP)
+	public void appendClauseWithOr(SqlColumn column, String conditionValue) {
+		appendClause(column, conditionValue, SqlDictionary.OR);
+	}
+	
+	
+	
+	private void appendClause(SqlColumn column, String conditionValue, String logicalOperator) {
+		if (shouldSkipColumn(column, conditionValue) == SKIP)
 			return;
 
 		DataClause clause = new DataClause();
-		clause.tableName = tableName;
-		clause.columnName = columnName;
+		clause.tableName = column.tableName;
+		clause.columnName = column.columnName;
 		clause.conditionValue = conditionValue;
 		clause.logicalOperator = logicalOperator;
 		this.dataClauses.add(clause);
@@ -54,11 +55,14 @@ abstract class SqlWhereBuilderTemplate implements SqlWhereBuilder {
 	
 	
 	
-	private boolean shouldSkipColumn(String columnName, String conditionValue) {
+	private boolean shouldSkipColumn(SqlColumn column, String conditionValue) {
 		if (conditionValue == null && this.option.isIgnoringNull)
 			return true;
 		
-		if (columnName.equals("record_mode")  && this.option.isIgnoringRecordMode)
+		if (column.isPK == NOT_PRIMARY_KEY && this.option.isIgnoringNonPrimaryKey)
+			return true;
+		
+		if (column.columnName.equals("record_mode")  && this.option.isIgnoringRecordMode)
 			return true;
 		
 		return false;
@@ -114,7 +118,23 @@ abstract class SqlWhereBuilderTemplate implements SqlWhereBuilder {
 	
 	
 	private String buildWhereClause(String tableName, String columnName, String conditionValue) {		
+		if (conditionValue == null)
+			return  buildIsNull(tableName, columnName);
+		
 		return buildWhereClauseHook(tableName, columnName, conditionValue);
+	}
+	
+	
+	
+	private String buildIsNull(String tableName, String columnName) {				
+		StringBuilder resultClause = new StringBuilder();
+		resultClause.append(tableName);
+		resultClause.append(SqlDictionary.PERIOD);
+		resultClause.append(columnName);
+		resultClause.append(SqlDictionary.SPACE);
+		resultClause.append(SqlDictionary.IS_NULL);
+		
+		return resultClause.toString();
 	}
 		
 	
