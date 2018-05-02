@@ -41,7 +41,7 @@ public final class EmpRootDelete implements DecisionTree<EmpInfo> {
 	
 	private ModelChecker<EmpInfo> buildDecisionChecker(DecisionTreeOption<EmpInfo> option) {
 		final boolean EXIST_ON_DB = true;
-		final boolean KEY_NOT_NULL = true;		
+		final boolean KEY_NOT_NULL = true;	
 		
 		List<ModelChecker<EmpInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
@@ -55,8 +55,7 @@ public final class EmpRootDelete implements DecisionTree<EmpInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;
-		
+		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new CheckerEmpExistOnDb(checkerOption);
 		stack.add(checker);		
 		

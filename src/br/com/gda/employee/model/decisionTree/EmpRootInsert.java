@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.employee.dao.EmpStmtExecInsert;
 import br.com.gda.employee.info.EmpInfo;
-import br.com.gda.employee.model.checker.CheckerEmpMandatoryKey;
 import br.com.gda.employee.model.checker.CheckerEmpCpf;
 import br.com.gda.employee.model.checker.CheckerEmpCpfExistOnDb;
+import br.com.gda.employee.model.checker.CheckerEmpGenField;
 import br.com.gda.employee.model.checker.CheckerEmpMandatoryWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -42,7 +42,6 @@ public final class EmpRootInsert implements DecisionTree<EmpInfo> {
 	
 	private ModelChecker<EmpInfo> buildDecisionChecker(DecisionTreeOption<EmpInfo> option) {
 		final boolean DONT_EXIST_ON_DB = false;	
-		final boolean EMPTY_FIELD = false;	
 		
 		List<ModelChecker<EmpInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
@@ -51,9 +50,7 @@ public final class EmpRootInsert implements DecisionTree<EmpInfo> {
 		checker = new CheckerEmpMandatoryWrite();
 		stack.add(checker);
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = EMPTY_FIELD;
-		checker = new CheckerEmpMandatoryKey(checkerOption);
+		checker = new CheckerEmpGenField();
 		stack.add(checker);
 		
 		checker = new CheckerEmpCpf();

@@ -119,14 +119,14 @@ abstract class SqlWhereBuilderTemplate implements SqlWhereBuilder {
 	
 	private String buildWhereClause(String tableName, String columnName, String conditionValue) {		
 		if (conditionValue == null)
-			return  buildIsNull(tableName, columnName);
+			return buildClauseIsNull(tableName, columnName);
 		
 		return buildWhereClauseHook(tableName, columnName, conditionValue);
 	}
 	
 	
 	
-	private String buildIsNull(String tableName, String columnName) {				
+	private String buildClauseIsNull(String tableName, String columnName) {				
 		StringBuilder resultClause = new StringBuilder();
 		resultClause.append(tableName);
 		resultClause.append(SqlDictionary.PERIOD);

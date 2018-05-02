@@ -9,8 +9,8 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
 public final class CheckerEmpMandatoryKey extends ModelCheckerTemplate<EmpInfo> {
-	private final boolean FIELD_NOT_NULL = true;
-	private final boolean EMPTY_FIELD = false;
+	private final boolean KEY_NOT_NULL = true;
+	private final boolean EMPTY_KEY = false;
 	
 	public CheckerEmpMandatoryKey(ModelCheckerOption option) {
 		super(option);
@@ -21,27 +21,26 @@ public final class CheckerEmpMandatoryKey extends ModelCheckerTemplate<EmpInfo> 
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
 		if (    recordInfo.codOwner 	>= 0 
 			 && recordInfo.codEmployee  >= 0 )			
-			return FIELD_NOT_NULL;
+			return KEY_NOT_NULL;		
 		
-		
-		return EMPTY_FIELD;
+		return EMPTY_KEY;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		if (makeFailureCodeHook(checkerResult) == SystemCode.COD_EMPLOYEE_FIELD_NOT_NULL)
-			return SystemMessage.COD_EMPLOYEE_FIELD_NOT_NULL;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_KEY_FIELD_NOT_NULL)
+			return SystemMessage.EMPLOYEE_KEY_FIELD_NOT_NULL;
 		
-		return SystemMessage.COD_EMPLOYEE_FIELD_IS_EMPTY;
+		return SystemMessage.EMPLOYEE_KEY_FIELD_IS_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == FIELD_NOT_NULL)
-			return SystemCode.COD_EMPLOYEE_FIELD_NOT_NULL;				
+		if (checkerResult == KEY_NOT_NULL)
+			return SystemCode.EMPLOYEE_KEY_FIELD_NOT_NULL;				
 		
-		return SystemCode.COD_EMPLOYEE_FIELD_IS_EMPTY;
+		return SystemCode.EMPLOYEE_KEY_FIELD_IS_EMPTY;
 	}
 }

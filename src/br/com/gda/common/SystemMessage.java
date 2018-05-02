@@ -33,11 +33,12 @@ public final class SystemMessage {
 	public static final String EMPLOYEE_FLAGGED_AS_DELETED = "Employee's data is flagged as deleted on DB";
 	public static final String OPERATION_CANT_BE_PROCESSED = "Not possible to process this operation";	
 	public static final String EMPLOYEE_DATA_ALREADY_EXIST = "Employee's data already exist";	
-	public static final String COD_EMPLOYEE_FIELD_NOT_NULL = "CodEmployee is an auto gennerated field and should not be passed";
-	public static final String COD_EMPLOYEE_FIELD_IS_EMPTY = "CodEmployee is madatory and should not be null";
+	public static final String EMPLOYEE_KEY_FIELD_NOT_NULL = "Key field should not be passed";
+	public static final String EMPLOYEE_KEY_FIELD_IS_EMPTY = "Key field should not be null";	
 	public static final String EMPLOYEE_ALREALDY_EXIST_ON_DB = "Employee's data already exist on DB";		
 	public static final String SQL_WHERE_CLAUSE_HAS_NO_COLUMN = "SQL Where clause has no column";	
 	public static final String EMPLOYEE_MULTIPLE_ENTRIES_FOUND = "Multiple entries found for Employee's data selection";	
+	public static final String AUTO_GENERATED_FIELD_IS_NOT_EMPTY = "Auto generated fields should not be passed";
 	public static final String ERROR_CREATING_SKELETON_STATEMENT = "Not possible to create skeleton statment";		
 	public static final String EMPLOYEE_WORKING_FLAGGED_AS_DELETED = "Employee's working time data is flagged as deleted on DB";
 	public static final String EMPLOYEE_WORKING_TIME_DONT_EXIST_ON_DB = "Employee's working time data don't exist on DB";

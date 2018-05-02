@@ -12,8 +12,6 @@ public final class SystemCode {
 	public static final int EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB 	= 1000;
 	public static final int EMPLOYEE_WORKING_TIME_DONT_EXIST_ON_DB 		= 1001;
 	public static final int EMPLOYEE_WORKING_FLAGGED_AS_DELETED 		= 1002;
-	public static final int COD_EMPLOYEE_FIELD_NOT_NULL					= 1003;
-	public static final int COD_EMPLOYEE_FIELD_IS_EMPTY					= 1004;
 	
 	// Employee
 	public static final int EMPLOYEE_ALREALDY_EXIST_ON_DB 				= 1050;
@@ -23,4 +21,7 @@ public final class SystemCode {
 	public static final int EMPLOYEE_SINGLE_ENTRY_FOUND					= 1054;
 	public static final int EMPLOYEE_CPF_ALREADY_EXIST					= 1055;
 	public static final int EMPLOYEE_CPF_NOT_FOUND						= 1056;
+	public static final int EMPLOYEE_KEY_FIELD_NOT_NULL					= 1057;
+	public static final int EMPLOYEE_KEY_FIELD_IS_EMPTY					= 1058;
+	public static final int AUTO_GENERATED_FIELD_IS_NOT_EMPTY			= 1059;
 }
