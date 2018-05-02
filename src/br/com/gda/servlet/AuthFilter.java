@@ -366,7 +366,8 @@ public class AuthFilter implements ContainerRequestFilter {
 	
 	
 	private boolean isUserEmployee() {
-		if (this.headerAttr.getApp().equals(APP_OWNER) && (this.headerAttr.getUriPath().contains("Employee") || this.headerAttr.getUriPath().contains("employee")))
+		// if (this.headerAttr.getApp().equals(APP_OWNER) && (this.headerAttr.getUriPath().contains("Employee") || this.headerAttr.getUriPath().contains("employee")))
+		if (this.headerAttr.getApp().equals(APP_OWNER))
 			return true;
 		
 		return false;			
