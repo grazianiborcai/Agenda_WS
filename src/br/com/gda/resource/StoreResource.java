@@ -14,8 +14,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.businessModel.store.info.StoreInfo;
-import br.com.gda.businessModel.store.model.StoreModelSelect;
+import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.StoreModelInsert;
+import br.com.gda.business.store.model.StoreModelSelect;
+import br.com.gda.business.store.model.StoreModelUpdate;
 import br.com.gda.model.Model;
 import br.com.gda.model.legacy.StoreModel;
 
@@ -35,8 +37,9 @@ public class StoreResource {
 		//TODO: verificar fluxo: Store com status inativo/eliminado
 		//TODO: campos latitude e longitude não setão sendo preenchidos
 		//TODO: não tem campos de horário de funcionamento
-		Response resultResponse = new StoreModel().insertStore(incomingData);	
-		return resultResponse;
+		Model storeInsert = new StoreModelInsert(incomingData);
+		storeInsert.executeRequest();
+		return storeInsert.getResponse();
 	}
 	
 
@@ -45,7 +48,9 @@ public class StoreResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateStore(String incomingData) {
 		//TODO: falta inativar/ativar um Store
-		return new StoreModel().updateStore(incomingData);
+		Model storeUpdate = new StoreModelUpdate(incomingData);
+		storeUpdate.executeRequest();
+		return storeUpdate.getResponse();
 	}
 	
 
@@ -63,11 +68,11 @@ public class StoreResource {
 	public Response selectStore(@HeaderParam("codOwner") long codOwner, @HeaderParam("codStore")int codStore) {
 
 		//TODO: precisa investigar a chamada do iOS para que o refactoring aqui não quebre a chamada iOS
-		StoreInfo workingTimeInfo = new StoreInfo();
-		workingTimeInfo.codOwner = codOwner;
-		workingTimeInfo.codStore = codStore;
+		StoreInfo recordInfo = new StoreInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
 		
-		Model storeSelect = new StoreModelSelect(workingTimeInfo);
+		Model storeSelect = new StoreModelSelect(recordInfo);
 		storeSelect.executeRequest();
 		return storeSelect.getResponse();
 	}

@@ -10,16 +10,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.businessModel.employee.info.EmpInfo;
-import br.com.gda.businessModel.employee.info.EmpWTimeInfo;
-import br.com.gda.businessModel.employee.model.EmpModelDelete;
-import br.com.gda.businessModel.employee.model.EmpModelInsert;
-import br.com.gda.businessModel.employee.model.EmpModelSelect;
-import br.com.gda.businessModel.employee.model.EmpModelUpdate;
-import br.com.gda.businessModel.employee.model.EmpWtimeModelDelete;
-import br.com.gda.businessModel.employee.model.EmpWtimeModelInsert;
-import br.com.gda.businessModel.employee.model.EmpWtimeModelSelect;
-import br.com.gda.businessModel.employee.model.EmpWtimeModelUpdate;
+import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employee.info.EmpWTimeInfo;
+import br.com.gda.business.employee.model.EmpModelDelete;
+import br.com.gda.business.employee.model.EmpModelInsert;
+import br.com.gda.business.employee.model.EmpModelSelect;
+import br.com.gda.business.employee.model.EmpModelUpdate;
+import br.com.gda.business.employee.model.EmpWtimeModelDelete;
+import br.com.gda.business.employee.model.EmpWtimeModelInsert;
+import br.com.gda.business.employee.model.EmpWtimeModelSelect;
+import br.com.gda.business.employee.model.EmpWtimeModelUpdate;
 import br.com.gda.model.Model;
 import br.com.gda.model.legacy.EmployeeModel;
 
