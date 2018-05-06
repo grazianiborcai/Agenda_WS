@@ -1,7 +1,6 @@
 package br.com.gda.business.store.dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,15 +13,14 @@ import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtParamTranslator;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class StoreStmtUpdate implements SqlStmt<StoreInfo> {
+final class StoreStmtDelete implements SqlStmt<StoreInfo> {
 	private SqlStmt<StoreInfo> stmtSql;
-	private SqlStmtOption<StoreInfo> stmtOption;
+	private SqlStmtOption<StoreInfo> stmtOption;	
 	
 	
-	public StoreStmtUpdate(Connection conn, StoreInfo recordInfo, String schemaName) {
+	public StoreStmtDelete(Connection conn, StoreInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
@@ -36,7 +34,7 @@ final class StoreStmtUpdate implements SqlStmt<StoreInfo> {
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = DbTable.STORE_TABLE;
 		this.stmtOption.columns = StoreDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = new ParamTranslator();
+		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
 	}
@@ -46,35 +44,25 @@ final class StoreStmtUpdate implements SqlStmt<StoreInfo> {
 	private String buildWhereClause() {
 		final boolean DONT_IGNORE_NULL = false;
 		final boolean IGNORE_NON_PK = true;
-		final boolean IGNORE_RECORD_MODE = true;		
+		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
 		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
 		whereOption.isIgnoringNull = DONT_IGNORE_NULL;
-		whereOption.isIgnoringRecordMode = IGNORE_RECORD_MODE;
-		whereOption.isIgnoringNonPrimaryKey = IGNORE_NON_PK;
+		whereOption.isIgnoringRecordMode = DONT_IGNORE_RECORD_MODE;	
+		whereOption.isIgnoringNonPrimaryKey = IGNORE_NON_PK;		
 		
-		StoreInfo enforcedInfo = enforceUpdateByKey(stmtOption.recordInfo);
-		StoreStmtWhere whereClause = new StoreStmtWhere(whereOption, stmtOption.tableName, enforcedInfo);
+		StoreStmtWhere whereClause = new StoreStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private StoreInfo enforceUpdateByKey(StoreInfo recordInfo) {
-		StoreInfo enforcedInfo = new StoreInfo();
-		enforcedInfo.codOwner = recordInfo.codOwner;
-		enforcedInfo.codStore = recordInfo.codStore;
-		return enforcedInfo;
-	}
-	
-	
-	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.UPDATE, this.stmtOption);
+		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SOFT_DELETE, this.stmtOption);
 	}
 	
 	
-
+	
 	@Override public void generateStmt() throws SQLException {
 		stmtSql.generateStmt();
 		
@@ -101,34 +89,7 @@ final class StoreStmtUpdate implements SqlStmt<StoreInfo> {
 	
 	
 	@Override public SqlStmt<StoreInfo> getNewInstance() {
-		return new StoreStmtUpdate(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	private class ParamTranslator implements SqlStmtParamTranslator<StoreInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreInfo recordInfo) throws SQLException {			
-			int i = 1;
-			stmt.setString(i++, recordInfo.cnpj);
-			stmt.setString(i++, recordInfo.inscrMun);
-			stmt.setString(i++, recordInfo.inscrEst);
-			stmt.setString(i++, recordInfo.razaoSocial);
-			stmt.setString(i++, recordInfo.name);
-			stmt.setString(i++, recordInfo.address1);
-			stmt.setString(i++, recordInfo.address2);
-			stmt.setLong(i++, recordInfo.postalCode);
-			stmt.setString(i++, recordInfo.city);
-			stmt.setString(i++, recordInfo.codCountry);
-			stmt.setString(i++, recordInfo.stateProvince);
-			stmt.setString(i++, recordInfo.phone);	
-			stmt.setString(i++, recordInfo.codCurr);
-			stmt.setString(i++, recordInfo.codPayment);
-			stmt.setDouble(i++, recordInfo.latitude);
-			stmt.setDouble(i++, recordInfo.longitude);
-			stmt.setString(i++, recordInfo.recordMode);
-			
-			return stmt;
-		}		
+		return new StoreStmtDelete(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	

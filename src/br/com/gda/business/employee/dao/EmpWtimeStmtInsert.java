@@ -10,7 +10,6 @@ import java.util.List;
 
 import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtParamTranslator;
-import br.com.gda.sql.SqlWhereBuilderOption;
 import br.com.gda.business.employee.info.EmpWTimeInfo;
 import br.com.gda.sql.DbTable;
 import br.com.gda.sql.SqlFormatterNumber;
@@ -44,21 +43,7 @@ public final class EmpWtimeStmtInsert implements SqlStmt<EmpWTimeInfo> {
 		this.stmtOption.columns = EmpDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-	}
-	
-	
-	
-	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
-		whereOption.isIgnoringNull = DONT_IGNORE_NULL;
-		whereOption.isIgnoringRecordMode = DONT_IGNORE_RECORD_MODE;
-		
-		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
-		return whereClause.getWhereClause();
+		this.stmtOption.whereClause = null;
 	}
 	
 	

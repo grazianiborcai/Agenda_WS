@@ -1,11 +1,11 @@
-package br.com.gda.business.employee.model;
+package br.com.gda.business.store.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.decisionTree.EmpRootDelete;
+import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.decisionTree.StoreRootDelete;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DecisionTree;
 import br.com.gda.model.decisionTree.DecisionTreeFactory;
 import br.com.gda.model.decisionTree.DecisionTreeOption;
 
-public final class EmpModelDelete implements Model {
-	private ModelHelper<EmpInfo> helper;
+public final class StoreModelDelete implements Model {
+	private ModelHelper<StoreInfo> helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public EmpModelDelete(EmpInfo recordInfo) {
+	public StoreModelDelete(StoreInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class EmpModelDelete implements Model {
 	
 	
 	
-	private void buildHelper(EmpInfo recordInfo) {
-		ModelOption<EmpInfo> helperOption = new ModelOption<>();
+	private void buildHelper(StoreInfo recordInfo) {
+		ModelOption<StoreInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpInfo.class;
+		helperOption.infoRecordClass = StoreInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class EmpModelDelete implements Model {
 	
 	
 	
-	private static class TreeFactory implements DecisionTreeFactory<EmpInfo> {		
-		@Override public DecisionTree<EmpInfo> getDecisionTree(DecisionTreeOption<EmpInfo> option) {
-			return new EmpRootDelete(option);
+	private static class TreeFactory implements DecisionTreeFactory<StoreInfo> {		
+		@Override public DecisionTree<StoreInfo> getDecisionTree(DecisionTreeOption<StoreInfo> option) {
+			return new StoreRootDelete(option);
 		}		
 	}
 }

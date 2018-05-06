@@ -18,7 +18,6 @@ import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtParamTranslator;
-import br.com.gda.sql.SqlWhereBuilderOption;
 
 final class EmpStmtInsert implements SqlStmt<EmpInfo> {	
 	private SqlStmt<EmpInfo> stmtSql;
@@ -43,21 +42,7 @@ final class EmpStmtInsert implements SqlStmt<EmpInfo> {
 		this.stmtOption.columns = EmpDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-	}
-	
-	
-	
-	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
-		whereOption.isIgnoringNull = DONT_IGNORE_NULL;
-		whereOption.isIgnoringRecordMode = DONT_IGNORE_RECORD_MODE;
-		
-		EmpStmtWhere whereClause = new EmpStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
-		return whereClause.getWhereClause();
+		this.stmtOption.whereClause = null;
 	}
 	
 	

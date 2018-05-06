@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.StoreModelDelete;
 import br.com.gda.business.store.model.StoreModelInsert;
 import br.com.gda.business.store.model.StoreModelSelect;
 import br.com.gda.business.store.model.StoreModelUpdate;
@@ -30,6 +31,7 @@ public class StoreResource {
 	private static final String SELECT_STORE = "/selectStore";
 	private static final String SELECT_STORE_LOCATION = "/selectStoreLoc";
 
+	
 	@POST
 	@Path(INSERT_STORE)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -41,6 +43,7 @@ public class StoreResource {
 		storeInsert.executeRequest();
 		return storeInsert.getResponse();
 	}
+	
 	
 
 	@POST
@@ -54,10 +57,17 @@ public class StoreResource {
 	}
 	
 
+	
 	@DELETE
 	@Path(DELETE_STORE)
 	public Response deleteStore(@HeaderParam("codOwner") long codOwner, @HeaderParam("codStore") int codStore) {
-		return new StoreModel().deleteStore(codOwner, codStore);
+		StoreInfo store = new StoreInfo();
+		store.codOwner = codOwner;
+		store.codStore = codStore;
+		
+		Model storeDelete = new StoreModelDelete(store);
+		storeDelete.executeRequest();
+		return storeDelete.getResponse();
 	}
 
 	
