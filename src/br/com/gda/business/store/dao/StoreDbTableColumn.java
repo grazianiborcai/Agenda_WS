@@ -25,7 +25,8 @@ public final class StoreDbTableColumn {
 	
 	
 	private static void buildTableColumns() {
-		storeTable();		
+		buildStoreTable();	
+		buildStoreEmployeeTable();
 	}
 	
 	
@@ -48,7 +49,7 @@ public final class StoreDbTableColumn {
 	
 	
 	
-	private static void storeTable() {
+	private static void buildStoreTable() {
 		final String TABLE_NAME = DbTable.STORE_TABLE;
 		
 		SqlColumn oneColumn;
@@ -208,6 +209,81 @@ public final class StoreDbTableColumn {
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = DbTable.COUNTRY_TEXT_TABLE;
+		oneColumn.columnName = "Name";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private static void buildStoreEmployeeTable() {
+		final String TABLE_NAME = DbTable.STORE_EMPLOYEE_TABLE;
+		
+		SqlColumn oneColumn;
+		List<SqlColumn> columns = new ArrayList<>();	
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Cod_owner";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Cod_store";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Cod_employee";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Cod_position_store";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "record_mode";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.POSITION_TEXT_TABLE;
+		oneColumn.columnName = "Name";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.STORE_TABLE;
+		oneColumn.columnName = "Name";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.EMPLOYEE_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

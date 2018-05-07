@@ -39,7 +39,7 @@ public final class StoreInfo implements Cloneable {
 	
 	
 	
-	@Override public Object clone()throws CloneNotSupportedException {
+	@Override public Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}
 }
