@@ -31,4 +31,6 @@ public final class SystemCode {
 	public static final int STORE_CNPJ_NOT_FOUND						= 1101;
 	public static final int STORE_ALREALDY_EXIST_ON_DB 					= 1102;
 	public static final int STORE_DONT_EXIST_ON_DB 						= 1103;
+	public static final int STORE_EMP_ALREALDY_EXIST_ON_DB 				= 1104;
+	public static final int STORE_EMP_DONT_EXIST_ON_DB 					= 1105;
 }

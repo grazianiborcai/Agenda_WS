@@ -1,11 +1,11 @@
-package br.com.gda.business.employee.model;
+package br.com.gda.business.store.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.employee.info.EmpWTimeInfo;
-import br.com.gda.business.employee.model.decisionTree.EmpWtimeRootSelect;
+import br.com.gda.business.store.info.StoreEmpInfo;
+import br.com.gda.business.store.model.decisionTree.StoreEmpRootInsert;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,15 +15,15 @@ import br.com.gda.model.decisionTree.DecisionTree;
 import br.com.gda.model.decisionTree.DecisionTreeFactory;
 import br.com.gda.model.decisionTree.DecisionTreeOption;
 
-public final class EmpWtimeModelSelect implements Model {
-	private ModelHelper<EmpWTimeInfo> helper;
+public final class StoreEmpModelInsert implements Model {
+	private ModelHelper<StoreEmpInfo> helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public EmpWtimeModelSelect(EmpWTimeInfo recordInfo) {
+	public StoreEmpModelInsert(String incomingData) {
 		initialize();
-		buildHelper(recordInfo);
+		buildHelper(incomingData);
 	}
 	
 	
@@ -35,15 +35,15 @@ public final class EmpWtimeModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(EmpWTimeInfo recordInfo) {
-		ModelOption<EmpWTimeInfo> helperOption = new ModelOption<>();
+	private void buildHelper(String incomingData) {
+		ModelOption<StoreEmpInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpWTimeInfo.class;
+		helperOption.infoRecordClass = StoreEmpInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = new ModelHelper<>(helperOption, recordInfo);
+		helper = new ModelHelper<>(helperOption, incomingData);
 	}
 
 
@@ -63,10 +63,9 @@ public final class EmpWtimeModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DecisionTreeFactory<EmpWTimeInfo> {		
-		@Override public DecisionTree<EmpWTimeInfo> getDecisionTree(DecisionTreeOption<EmpWTimeInfo> option) {
-			return new EmpWtimeRootSelect(option);
-		}		
-	
+	private static class TreeFactory implements DecisionTreeFactory<StoreEmpInfo> {		
+		@Override public DecisionTree<StoreEmpInfo> getDecisionTree(DecisionTreeOption<StoreEmpInfo> option) {
+			return new StoreEmpRootInsert(option);
+		}			
 	}
 }

@@ -33,6 +33,10 @@ final class StoreEmpStmtWhere {
 					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codStore));
 					break;
 					
+				case "Cod_employee" :
+					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
+					break;
+					
 				case "record_mode" :
 					builder.appendClauseWithAnd(eachColumn, recordInfo.recordMode);
 					break;

@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.gda.business.store.info.StoreEmpInfo;
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.StoreEmpModelInsert;
 import br.com.gda.business.store.model.StoreEmpModelSelect;
 import br.com.gda.business.store.model.StoreModelDelete;
 import br.com.gda.business.store.model.StoreModelInsert;
@@ -32,6 +33,7 @@ public class StoreResource {
 	private static final String DELETE_STORE = "/deleteStore";
 	private static final String SELECT_STORE = "/selectStore";
 	private static final String SELECT_STORE_EMPLOYEE = "/selectStoreEmployee";
+	private static final String INSERT_STORE_EMPLOYEE = "/insertStoreEmployee";
 	private static final String SELECT_STORE_LOCATION = "/selectStoreLoc";
 
 	
@@ -103,6 +105,17 @@ public class StoreResource {
 		Model storeSelect = new StoreEmpModelSelect(recordInfo);
 		storeSelect.executeRequest();
 		return storeSelect.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_STORE_EMPLOYEE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response insertStoreEmp(String incomingData) {
+		Model storeEmpInsert = new StoreEmpModelInsert(incomingData);
+		storeEmpInsert.executeRequest();
+		return storeEmpInsert.getResponse();
 	}
 
 	
