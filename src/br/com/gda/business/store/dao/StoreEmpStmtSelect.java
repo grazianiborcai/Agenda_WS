@@ -57,8 +57,8 @@ final class StoreEmpStmtSelect implements SqlStmt<StoreEmpInfo> {
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
 		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
-		whereOption.isIgnoringNull = IGNORE_NULL;
-		whereOption.isIgnoringRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = IGNORE_NULL;
+		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
 		StoreEmpStmtWhere whereClause = new StoreEmpStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

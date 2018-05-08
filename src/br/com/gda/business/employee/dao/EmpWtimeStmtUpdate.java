@@ -50,8 +50,8 @@ final class EmpWtimeStmtUpdate implements SqlStmt<EmpWTimeInfo> {
 		final boolean IGNORE_RECORD_MODE = true;
 		
 		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
-		whereOption.isIgnoringNull = DONT_IGNORE_NULL;
-		whereOption.isIgnoringRecordMode = IGNORE_RECORD_MODE;
+		whereOption.ignoreNull = DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
 		
 		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

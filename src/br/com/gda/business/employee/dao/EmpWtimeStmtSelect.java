@@ -49,8 +49,8 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
 		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
-		whereOption.isIgnoringNull = IGNORE_NULL;
-		whereOption.isIgnoringRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = IGNORE_NULL;
+		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
 		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

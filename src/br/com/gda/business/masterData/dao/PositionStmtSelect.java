@@ -1,4 +1,4 @@
-package br.com.gda.business.position.dao;
+package br.com.gda.business.masterData.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.position.info.PositionInfo;
+import br.com.gda.business.masterData.info.PositionInfo;
 import br.com.gda.sql.DbTable;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
@@ -41,7 +41,7 @@ final class PositionStmtSelect implements SqlStmt<PositionInfo> {
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LEFT_TABLE_POSITION;
-		this.stmtOption.columns = PositionDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.columns = MasterDataDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -53,10 +53,12 @@ final class PositionStmtSelect implements SqlStmt<PositionInfo> {
 	private String buildWhereClause() {
 		final boolean IGNORE_NULL = true;
 		final boolean IGNORE_RECORD_MODE = true;
+		final boolean DUMMY_CLAUSE_ALLOWED = true;
 		
 		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
-		whereOption.isIgnoringNull = IGNORE_NULL;
-		whereOption.isIgnoringRecordMode = IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = IGNORE_NULL;
+		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;	
+		whereOption.dummyClauseWhenEmpty = DUMMY_CLAUSE_ALLOWED;
 		
 		PositionStmtWhere whereClause = new PositionStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

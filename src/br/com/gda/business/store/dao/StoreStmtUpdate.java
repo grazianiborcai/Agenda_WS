@@ -49,9 +49,9 @@ final class StoreStmtUpdate implements SqlStmt<StoreInfo> {
 		final boolean IGNORE_RECORD_MODE = true;		
 		
 		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
-		whereOption.isIgnoringNull = DONT_IGNORE_NULL;
-		whereOption.isIgnoringRecordMode = IGNORE_RECORD_MODE;
-		whereOption.isIgnoringNonPrimaryKey = IGNORE_NON_PK;
+		whereOption.ignoreNull = DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;
 		
 		StoreInfo enforcedInfo = enforceUpdateByKey(stmtOption.recordInfo);
 		StoreStmtWhere whereClause = new StoreStmtWhere(whereOption, stmtOption.tableName, enforcedInfo);

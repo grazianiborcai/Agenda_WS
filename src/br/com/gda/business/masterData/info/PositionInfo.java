@@ -1,4 +1,4 @@
-package br.com.gda.business.position.info;
+package br.com.gda.business.masterData.info;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;

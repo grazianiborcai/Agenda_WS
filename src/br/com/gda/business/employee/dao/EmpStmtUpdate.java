@@ -52,9 +52,9 @@ public final class EmpStmtUpdate implements SqlStmt<EmpInfo> {
 		final boolean IGNORE_RECORD_MODE = true;		
 		
 		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
-		whereOption.isIgnoringNull = DONT_IGNORE_NULL;
-		whereOption.isIgnoringRecordMode = IGNORE_RECORD_MODE;
-		whereOption.isIgnoringNonPrimaryKey = IGNORE_NON_PK;
+		whereOption.ignoreNull = DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;
 		
 		EmpInfo enforcedInfo = enforceUpdateByKey(stmtOption.recordInfo);
 		EmpStmtWhere whereClause = new EmpStmtWhere(whereOption, stmtOption.tableName, enforcedInfo);

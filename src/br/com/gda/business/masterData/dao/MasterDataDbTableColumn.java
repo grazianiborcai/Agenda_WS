@@ -1,4 +1,4 @@
-package br.com.gda.business.position.dao;
+package br.com.gda.business.masterData.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -8,7 +8,7 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.sql.DbTable;
 import br.com.gda.sql.SqlColumn;
 
-public final class PositionDbTableColumn {
+public final class MasterDataDbTableColumn {
 	private static final boolean IS_PRIMARY_KEY = true;	
 	private static final boolean IS_LOOKUP_COLUMN = true;
 	private static final boolean NEGATIVE = false;
@@ -61,7 +61,7 @@ public final class PositionDbTableColumn {
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.COUNTRY_TEXT_TABLE;
+		oneColumn.tableName = DbTable.POSITION_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -69,7 +69,7 @@ public final class PositionDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.COUNTRY_TEXT_TABLE;
+		oneColumn.tableName = DbTable.POSITION_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

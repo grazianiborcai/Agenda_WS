@@ -8,9 +8,13 @@ import br.com.gda.common.SystemMessage;
 
 abstract class SqlWhereBuilderTemplate implements SqlWhereBuilder {	
 	private final boolean OK = true;
+	private final boolean FAIL = false;
 	private final boolean SKIP = true;
 	private final boolean NOT_PRIMARY_KEY = false;
 	private final boolean NO_COLUMN_ADDED = false;
+	private final boolean HAS_COLUMN_ADDED = true;
+	private final boolean NO_DUMMY_CLAUSE = false;
+	private final boolean DUMMY_CLAUSE_REQUESTED = true;
 	
 	private SqlWhereBuilderOption option;
 	private List<DataClause> dataClauses = new ArrayList<>();
@@ -56,13 +60,13 @@ abstract class SqlWhereBuilderTemplate implements SqlWhereBuilder {
 	
 	
 	private boolean shouldSkipColumn(SqlColumn column, String conditionValue) {
-		if (conditionValue == null && this.option.isIgnoringNull)
+		if (conditionValue == null && this.option.ignoreNull)
 			return true;
 		
-		if (column.isPK == NOT_PRIMARY_KEY && this.option.isIgnoringNonPrimaryKey)
+		if (column.isPK == NOT_PRIMARY_KEY && this.option.ignoreNonPrimaryKey)
 			return true;
 		
-		if (column.columnName.equals("record_mode")  && this.option.isIgnoringRecordMode)
+		if (column.columnName.equals("record_mode")  && this.option.ignoreRecordMode)
 			return true;
 		
 		return false;
@@ -83,8 +87,11 @@ abstract class SqlWhereBuilderTemplate implements SqlWhereBuilder {
 	
 	
 	public String generateClauseWithoutParentheses() {
-		if (checkClauseGeneration() == NO_COLUMN_ADDED)
+		if (checkClauseGeneration() == FAIL)
 			throw new IllegalStateException(SystemMessage.SQL_WHERE_CLAUSE_HAS_NO_COLUMN);
+		
+		if (hasColumnAdded() == NO_COLUMN_ADDED && option.dummyClauseWhenEmpty == DUMMY_CLAUSE_REQUESTED)
+			return dummyClause();
 		
 		
 		StringBuilder resultClause = new StringBuilder();
@@ -109,10 +116,25 @@ abstract class SqlWhereBuilderTemplate implements SqlWhereBuilder {
 	
 	
 	public boolean checkClauseGeneration() {
+		if (hasColumnAdded() == NO_COLUMN_ADDED && option.dummyClauseWhenEmpty == NO_DUMMY_CLAUSE)
+			return FAIL;
+		
+		return OK;
+	}
+	
+	
+	
+	private boolean hasColumnAdded() {
 		if (this.dataClauses == null || this.dataClauses.isEmpty())
 			return NO_COLUMN_ADDED;
 		
-		return OK;
+		return HAS_COLUMN_ADDED;
+	}
+	
+	
+	
+	private String dummyClause() {
+		return "1 = 1";
 	}
 	
 	

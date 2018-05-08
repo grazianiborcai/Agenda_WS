@@ -1,8 +1,8 @@
-package br.com.gda.business.position.dao;
+package br.com.gda.business.masterData.dao;
 
 import java.util.List;
 
-import br.com.gda.business.position.info.PositionInfo;
+import br.com.gda.business.masterData.info.PositionInfo;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlWhereBuilder;
@@ -20,7 +20,7 @@ public final class PositionStmtWhere {
 	
 	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, PositionInfo recordInfo) {
 		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);		
-		List<SqlColumn> columns = PositionDbTableColumn.getTableColumnsAsList(tableName);
+		List<SqlColumn> columns = MasterDataDbTableColumn.getTableColumnsAsList(tableName);
 		
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
@@ -28,10 +28,10 @@ public final class PositionStmtWhere {
 					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codPosition));
 					break;
 			}
-		}
-		
-		
+		}		
+			
 		whereClause = builder.generateClause();
+
 	}
 	
 	

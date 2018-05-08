@@ -1,8 +1,8 @@
-package br.com.gda.business.position.model.checker;
+package br.com.gda.business.masterData.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.position.info.PositionInfo;
+import br.com.gda.business.masterData.info.PositionInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;

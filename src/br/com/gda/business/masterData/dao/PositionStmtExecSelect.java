@@ -1,10 +1,10 @@
-package br.com.gda.business.position.dao;
+package br.com.gda.business.masterData.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.position.info.PositionInfo;
+import br.com.gda.business.masterData.info.PositionInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtExec;

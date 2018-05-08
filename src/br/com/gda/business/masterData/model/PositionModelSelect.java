@@ -1,11 +1,11 @@
-package br.com.gda.business.position.model;
+package br.com.gda.business.masterData.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.position.info.PositionInfo;
-import br.com.gda.business.position.model.decisionTree.PositionRootSelect;
+import br.com.gda.business.masterData.info.PositionInfo;
+import br.com.gda.business.masterData.model.decisionTree.PositionRootSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;

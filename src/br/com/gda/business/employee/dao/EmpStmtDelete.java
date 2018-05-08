@@ -47,9 +47,9 @@ final class EmpStmtDelete implements SqlStmt<EmpInfo> {
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
 		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
-		whereOption.isIgnoringNull = DONT_IGNORE_NULL;
-		whereOption.isIgnoringRecordMode = DONT_IGNORE_RECORD_MODE;	
-		whereOption.isIgnoringNonPrimaryKey = IGNORE_NON_PK;		
+		whereOption.ignoreNull = DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;	
+		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;		
 		
 		EmpStmtWhere whereClause = new EmpStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

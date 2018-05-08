@@ -1,10 +1,10 @@
-package br.com.gda.business.position.model.decisionTree;
+package br.com.gda.business.masterData.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.position.info.PositionInfo;
-import br.com.gda.business.position.model.checker.CheckerPositionMandatoryRead;
+import br.com.gda.business.masterData.info.PositionInfo;
+import br.com.gda.business.masterData.model.checker.CheckerPositionMandatoryRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DecisionActionAdapter;

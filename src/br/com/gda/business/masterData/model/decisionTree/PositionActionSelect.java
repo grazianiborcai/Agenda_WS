@@ -1,10 +1,10 @@
-package br.com.gda.business.position.model.decisionTree;
+package br.com.gda.business.masterData.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.position.dao.PositionStmtExecSelect;
-import br.com.gda.business.position.info.PositionInfo;
+import br.com.gda.business.masterData.dao.PositionStmtExecSelect;
+import br.com.gda.business.masterData.info.PositionInfo;
 import br.com.gda.model.decisionTree.DecisionActionAdapter;
 import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
 import br.com.gda.model.decisionTree.DecisionResult;
