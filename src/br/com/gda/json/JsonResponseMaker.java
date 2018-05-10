@@ -4,6 +4,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -47,7 +48,8 @@ public class JsonResponseMaker {
 	
 	
 	private void buildJson() {
-		this.jsonElement = new Gson().toJsonTree(this.dataObj);
+		Gson gson = new GsonBuilder().setExclusionStrategies(new JsonAttrExclusion()).create();
+		this.jsonElement = gson.toJsonTree(this.dataObj);
 	}
 	
 	

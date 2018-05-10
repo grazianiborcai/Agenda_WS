@@ -1,21 +1,21 @@
-package br.com.gda.business.masterData.dao;
+package br.com.gda.business.store.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.PositionInfo;
+import br.com.gda.business.store.info.StoreEmpInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecHelper;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class PositionStmtExecSelect implements SqlStmtExec<PositionInfo> {
-	private List<SqlStmt<PositionInfo>> sqlStatements;
-	private SqlStmtExec<PositionInfo> helper;
+public final class StoreEmpStmtExecUpdate implements SqlStmtExec<StoreEmpInfo> {
+	private List<SqlStmt<StoreEmpInfo>> sqlStatements;
+	private SqlStmtExec<StoreEmpInfo> helper;
 	
-	public PositionStmtExecSelect(List<SqlStmtExecOption<PositionInfo>> options) {
+	public StoreEmpStmtExecUpdate(List<SqlStmtExecOption<StoreEmpInfo>> options) {
 		if (options == null) 
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
@@ -28,11 +28,11 @@ public final class PositionStmtExecSelect implements SqlStmtExec<PositionInfo> {
 	
 	
 	
-	private void prepareStatement(List<SqlStmtExecOption<PositionInfo>> options) {
+	private void prepareStatement(List<SqlStmtExecOption<StoreEmpInfo>> options) {
 		sqlStatements = new ArrayList<>();
 		
-		for (SqlStmtExecOption<PositionInfo> eachOption : options) {
-			SqlStmt<PositionInfo> sqlStatement = new PositionStmtSelect(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
+		for (SqlStmtExecOption<StoreEmpInfo> eachOption : options) {
+			SqlStmt<StoreEmpInfo> sqlStatement = new StoreEmpStmtUpdate(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
 			sqlStatements.add(sqlStatement);
 		}
 	}
@@ -46,12 +46,13 @@ public final class PositionStmtExecSelect implements SqlStmtExec<PositionInfo> {
 
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();		
+		helper.executeStmt();
+		
 	}
 
 	
 	
-	@Override public List<PositionInfo> getResultset() {
+	@Override public List<StoreEmpInfo> getResultset() {
 		return helper.getResultset();
 	}
 }

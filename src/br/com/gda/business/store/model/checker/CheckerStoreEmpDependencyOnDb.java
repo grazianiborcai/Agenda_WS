@@ -4,6 +4,8 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.checker.CheckerEmpExistOnDb;
+import br.com.gda.business.masterData.info.PositionInfo;
+import br.com.gda.business.masterData.model.checker.CheckerPositionExistOnDb;
 import br.com.gda.business.store.info.StoreEmpInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemMessage;
@@ -18,11 +20,13 @@ public final class CheckerStoreEmpDependencyOnDb implements ModelChecker<StoreEm
 	private ModelCheckerOption option;
 	private ModelChecker<StoreInfo> checkerStoreExistOnDb;
 	private ModelChecker<EmpInfo> checkerEmployeeExistOnDb;
+	private ModelChecker<PositionInfo> checkerPositionExistOnDb;
 	
 	
 	public CheckerStoreEmpDependencyOnDb(ModelCheckerOption option) {
 		this.option = enforceOption(option);
 		
+		buildCheckerPosition();
 		buildCheckerStore();
 		buildCheckerEmployee();
 	}
@@ -32,6 +36,16 @@ public final class CheckerStoreEmpDependencyOnDb implements ModelChecker<StoreEm
 	private ModelCheckerOption enforceOption(ModelCheckerOption option) {
 		option.expectedResult = EXIST_ON_DB;
 		return option;
+	}
+	
+	
+	
+	private void buildCheckerPosition() {
+		ModelCheckerOption checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = option.expectedResult;		
+		checkerPositionExistOnDb = new CheckerPositionExistOnDb(checkerOption);
 	}
 	
 	
@@ -77,6 +91,9 @@ public final class CheckerStoreEmpDependencyOnDb implements ModelChecker<StoreEm
 	
 	
 	@Override public boolean check(StoreEmpInfo recordInfo) {
+		if (checkPosition(recordInfo) == RESULT_FAILED)
+			return RESULT_FAILED;
+		
 		if (checkStore(recordInfo) == RESULT_FAILED)
 			return RESULT_FAILED;
 		
@@ -84,6 +101,15 @@ public final class CheckerStoreEmpDependencyOnDb implements ModelChecker<StoreEm
 			return RESULT_FAILED;
 		
 		return RESULT_SUCCESS;
+	}
+	
+	
+	
+	private boolean checkPosition(StoreEmpInfo recordInfo) {
+		PositionInfo positionInfo = new PositionInfo();
+		positionInfo.codPosition = recordInfo.codPositionStore;
+		
+		return checkerPositionExistOnDb.check(positionInfo);
 	}
 	
 	
@@ -121,6 +147,9 @@ public final class CheckerStoreEmpDependencyOnDb implements ModelChecker<StoreEm
 	
 	
 	@Override public String getFailureExplanation() {
+		if (checkerPositionExistOnDb.getResult() == RESULT_FAILED)
+			return checkerPositionExistOnDb.getFailureExplanation();
+		
 		if (checkerStoreExistOnDb.getResult() == RESULT_FAILED)
 			return checkerStoreExistOnDb.getFailureExplanation();
 		
@@ -133,6 +162,9 @@ public final class CheckerStoreEmpDependencyOnDb implements ModelChecker<StoreEm
 	
 	
 	@Override public int getFailureCode() {
+		if (checkerPositionExistOnDb.getResult() == RESULT_FAILED)
+			return checkerPositionExistOnDb.getFailureCode();
+		
 		if (checkerStoreExistOnDb.getResult() == RESULT_FAILED)
 			return checkerStoreExistOnDb.getFailureCode();
 		

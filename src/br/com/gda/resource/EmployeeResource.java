@@ -102,7 +102,8 @@ public class EmployeeResource {
 	@Path(INSERT_EMPLOYEE)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertEmployee(String incomingData) {
-		//TODO: horário do empregado. Se nulo, então pegar da Store		
+		//TODO: horário do empregado. Se nulo, então pegar da Store	
+		//TODO: position (ex: cabelereiro, manicuro) não deviria ficar na tab empregado, mas somente na store_emp. Assim um empregado pode ter mais de uma position na loja
 		Model employeeInsert = new EmpModelInsert(incomingData);
 		employeeInsert.executeRequest();
 		return employeeInsert.getResponse();

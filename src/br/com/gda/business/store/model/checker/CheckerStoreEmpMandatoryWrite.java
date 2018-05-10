@@ -17,6 +17,7 @@ public final class CheckerStoreEmpMandatoryWrite extends ModelCheckerTemplate<St
 	
 	@Override protected boolean checkHook(StoreEmpInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 			<= 0 	
+			|| recordInfo.codStore 			<= 0
 			|| recordInfo.codEmployee		<= 0  	
 			|| recordInfo.codPositionStore	<= 0	)
 			
