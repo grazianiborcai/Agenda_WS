@@ -1,10 +1,11 @@
-package br.com.gda.business.employee.model;
+package br.com.gda.business.store.model;
 
 import java.sql.Connection;
+
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.employee.info.EmpWTimeInfo;
-import br.com.gda.business.employee.model.decisionTree.EmpWtimeRootDelete;
+import br.com.gda.business.store.info.StoreEmpInfo;
+import br.com.gda.business.store.model.decisionTree.StoreEmpRootDelete;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -14,13 +15,13 @@ import br.com.gda.model.decisionTree.DecisionTree;
 import br.com.gda.model.decisionTree.DecisionTreeFactory;
 import br.com.gda.model.decisionTree.DecisionTreeOption;
 
-public final class EmpWtimeModelDelete implements Model {	
-	private ModelHelper<EmpWTimeInfo> helper;
+public final class StoreEmpModelDelete implements Model {
+	private ModelHelper<StoreEmpInfo> helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public EmpWtimeModelDelete(EmpWTimeInfo recordInfo) {
+	public StoreEmpModelDelete(StoreEmpInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -34,10 +35,10 @@ public final class EmpWtimeModelDelete implements Model {
 	
 	
 	
-	private void buildHelper(EmpWTimeInfo recordInfo) {
-		ModelOption<EmpWTimeInfo> helperOption = new ModelOption<>();
+	private void buildHelper(StoreEmpInfo recordInfo) {
+		ModelOption<StoreEmpInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpWTimeInfo.class;
+		helperOption.infoRecordClass = StoreEmpInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -62,9 +63,9 @@ public final class EmpWtimeModelDelete implements Model {
 	
 	
 	
-	private static class TreeFactory implements DecisionTreeFactory<EmpWTimeInfo> {		
-		@Override public DecisionTree<EmpWTimeInfo> getDecisionTree(DecisionTreeOption<EmpWTimeInfo> option) {
-			return new EmpWtimeRootDelete(option);
+	private static class TreeFactory implements DecisionTreeFactory<StoreEmpInfo> {		
+		@Override public DecisionTree<StoreEmpInfo> getDecisionTree(DecisionTreeOption<StoreEmpInfo> option) {
+			return new StoreEmpRootDelete(option);
 		}		
 	
 	}

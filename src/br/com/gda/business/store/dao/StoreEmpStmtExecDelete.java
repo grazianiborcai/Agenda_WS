@@ -11,11 +11,11 @@ import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecHelper;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class StoreEmpStmtExecUpdate implements SqlStmtExec<StoreEmpInfo> {
+public final class StoreEmpStmtExecDelete implements SqlStmtExec<StoreEmpInfo> {
 	private List<SqlStmt<StoreEmpInfo>> sqlStatements;
 	private SqlStmtExec<StoreEmpInfo> helper;
 	
-	public StoreEmpStmtExecUpdate(List<SqlStmtExecOption<StoreEmpInfo>> options) {
+	public StoreEmpStmtExecDelete(List<SqlStmtExecOption<StoreEmpInfo>> options) {
 		if (options == null) 
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
@@ -32,7 +32,7 @@ public final class StoreEmpStmtExecUpdate implements SqlStmtExec<StoreEmpInfo> {
 		sqlStatements = new ArrayList<>();
 		
 		for (SqlStmtExecOption<StoreEmpInfo> eachOption : options) {
-			SqlStmt<StoreEmpInfo> sqlStatement = new StoreEmpStmtUpdate(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
+			SqlStmt<StoreEmpInfo> sqlStatement = new StoreEmpStmtDelete(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
 			sqlStatements.add(sqlStatement);
 		}
 	}
@@ -46,7 +46,8 @@ public final class StoreEmpStmtExecUpdate implements SqlStmtExec<StoreEmpInfo> {
 
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();		
+		helper.executeStmt();
+		
 	}
 
 	

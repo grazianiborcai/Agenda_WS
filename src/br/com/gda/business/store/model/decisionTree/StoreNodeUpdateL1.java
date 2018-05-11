@@ -67,7 +67,7 @@ public final class StoreNodeUpdateL1 implements DecisionTree<StoreInfo> {
 	private List<DecisionActionAdapter<StoreInfo>> buildActionsOnFailed(DecisionTreeOption<StoreInfo> option) {
 		List<DecisionActionAdapter<StoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionNodeUpdate(option));	
+		actions.add(new ActionNodeUpdateL2(option));	
 		return actions;
 	}
 	
@@ -91,11 +91,11 @@ public final class StoreNodeUpdateL1 implements DecisionTree<StoreInfo> {
 	
 	
 	
-	private static class ActionNodeUpdate implements DecisionActionAdapter<StoreInfo> {
+	private static class ActionNodeUpdateL2 implements DecisionActionAdapter<StoreInfo> {
 		DecisionTree<StoreInfo> treeHelper;
 		
 		
-		public ActionNodeUpdate(DecisionTreeOption<StoreInfo> option) {
+		public ActionNodeUpdateL2(DecisionTreeOption<StoreInfo> option) {
 			treeHelper = new StoreNodeUpdateL2(option);
 		}
 		

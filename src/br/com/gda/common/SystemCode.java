@@ -33,6 +33,7 @@ public final class SystemCode {
 	public static final int STORE_DONT_EXIST_ON_DB 						= 1103;
 	public static final int STORE_EMP_ALREALDY_EXIST_ON_DB 				= 1104;
 	public static final int STORE_EMP_DONT_EXIST_ON_DB 					= 1105;
+	public static final int STORE_EMP_FLAGGED_AS_DELETED 				= 1106;
 	
 	// Master Data
 	public static final int POSITION_ALREADY_EXIST						= 1150;

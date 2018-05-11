@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.gda.business.store.info.StoreEmpInfo;
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.StoreEmpModelDelete;
 import br.com.gda.business.store.model.StoreEmpModelInsert;
 import br.com.gda.business.store.model.StoreEmpModelSelect;
 import br.com.gda.business.store.model.StoreEmpModelUpdate;
@@ -36,6 +37,7 @@ public class StoreResource {
 	private static final String SELECT_STORE_EMPLOYEE = "/selectStoreEmployee";
 	private static final String INSERT_STORE_EMPLOYEE = "/insertStoreEmployee";
 	private static final String UPDATE_STORE_EMPLOYEE = "/updateStoreEmployee";
+	private static final String DELETE_STORE_EMPLOYEE = "/deleteStoreEmployee";
 	private static final String SELECT_STORE_LOCATION = "/selectStoreLoc";
 
 	
@@ -67,7 +69,8 @@ public class StoreResource {
 	
 	@DELETE
 	@Path(DELETE_STORE)
-	public Response deleteStore(@HeaderParam("codOwner") long codOwner, @HeaderParam("codStore") int codStore) {
+	public Response deleteStore(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codStore") @DefaultValue("-1") int codStore) {
 		StoreInfo store = new StoreInfo();
 		store.codOwner = codOwner;
 		store.codStore = codStore;
@@ -82,7 +85,8 @@ public class StoreResource {
 	@GET
 	@Path(SELECT_STORE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectStore(@HeaderParam("codOwner") long codOwner, @HeaderParam("codStore")int codStore) {
+	public Response selectStore(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codStore") @DefaultValue("-1") int codStore) {
 
 		//TODO: precisa investigar a chamada do iOS para que o refactoring aqui não quebre a chamada iOS
 		StoreInfo recordInfo = new StoreInfo();
@@ -99,7 +103,8 @@ public class StoreResource {
 	@GET
 	@Path(SELECT_STORE_EMPLOYEE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectStoreEmp(@HeaderParam("codOwner") long codOwner, @HeaderParam("codStore") int codStore) {
+	public Response selectStoreEmp(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+			                       @HeaderParam("codStore") @DefaultValue("-1") int codStore) {
 		StoreEmpInfo recordInfo = new StoreEmpInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
@@ -129,6 +134,27 @@ public class StoreResource {
 		Model storeEmpUpdate = new StoreEmpModelUpdate(incomingData);
 		storeEmpUpdate.executeRequest();
 		return storeEmpUpdate.getResponse();
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_STORE_EMPLOYEE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteStoreEmp(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+			                       @HeaderParam("codStore") @DefaultValue("-1") int codStore,
+			                       @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
+			                       @HeaderParam("codPositionStore") @DefaultValue("-1") long codPositionStore) {
+		
+		StoreEmpInfo recordInfo = new StoreEmpInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codPositionStore = codPositionStore;
+		
+		Model storeDelete = new StoreEmpModelDelete(recordInfo);
+		storeDelete.executeRequest();
+		return storeDelete.getResponse();
 	}
 
 	

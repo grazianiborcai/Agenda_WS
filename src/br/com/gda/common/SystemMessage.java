@@ -40,9 +40,10 @@ public final class SystemMessage {
 	public static final String EMPLOYEE_CPF_ALREADY_EXIST = "Employee's CPF already exist on DB";	
 	public static final String STORE_EMP_DONT_EXIST_ON_DB = "Store-Employee's data don't exist on DB";
 	public static final String EMPLOYEE_SINGLE_ENTRY_FOUND = "Single entry found for Employee's data selection";
-	public static final String EMPLOYEE_FLAGGED_AS_DELETED = "Employee's data is flagged as deleted on DB";
+	public static final String EMPLOYEE_FLAGGED_AS_DELETED = "Employee's data is flagged as deleted on DB";	
 	public static final String OPERATION_CANT_BE_PROCESSED = "Not possible to process this operation";	
-	public static final String EMPLOYEE_DATA_ALREADY_EXIST = "Employee's data already exist";			
+	public static final String EMPLOYEE_DATA_ALREADY_EXIST = "Employee's data already exist";	
+	public static final String STORE_EMP_FLAGGED_AS_DELETED = "Store-Employee's data is flagged as deleted on DB";
 	public static final String EMPLOYEE_ALREALDY_EXIST_ON_DB = "Employee's data already exist on DB";	
 	public static final String STORE_EMP_ALREALDY_EXIST_ON_DB = "Store-Employee's data already exist on DB";
 	public static final String SQL_WHERE_CLAUSE_HAS_NO_COLUMN = "SQL Where clause has no column";	
