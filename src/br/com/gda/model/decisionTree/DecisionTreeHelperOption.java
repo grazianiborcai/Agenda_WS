@@ -10,6 +10,6 @@ public final class DecisionTreeHelperOption<T> {
 	public Connection conn;
 	public String schemaName;
 	public ModelChecker<T> visitorChecker;
-	public List<DecisionActionAdapter<T>> actionsOnPassed;
-	public List<DecisionActionAdapter<T>> actionsOnFailed;	
+	public List<DecisionAction<T>> actionsOnPassed;
+	public List<DecisionAction<T>> actionsOnFailed;	
 }

@@ -10,7 +10,7 @@ import br.com.gda.business.employee.model.checker.CheckerEmpWtimeSoftDelete;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
 import br.com.gda.model.decisionTree.DecisionChoice;
 import br.com.gda.model.decisionTree.DecisionResult;
@@ -57,8 +57,8 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<EmpWTimeInfo>> buildActionsOnPassed(DecisionTreeOption<EmpWTimeInfo> option) {
-		List<DecisionActionAdapter<EmpWTimeInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<EmpWTimeInfo>> buildActionsOnPassed(DecisionTreeOption<EmpWTimeInfo> option) {
+		List<DecisionAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionInsert(option));
 		return actions;
@@ -66,8 +66,8 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<EmpWTimeInfo>> buildActionsOnFailed(DecisionTreeOption<EmpWTimeInfo> option) {
-		List<DecisionActionAdapter<EmpWTimeInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<EmpWTimeInfo>> buildActionsOnFailed(DecisionTreeOption<EmpWTimeInfo> option) {
+		List<DecisionAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionUpdate(option));
 		return actions;
@@ -96,8 +96,8 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private static class ActionInsert implements DecisionActionAdapter<EmpWTimeInfo> {
-		DecisionActionAdapter<EmpWTimeInfo> actionHelper;
+	private static class ActionInsert implements DecisionAction<EmpWTimeInfo> {
+		DecisionAction<EmpWTimeInfo> actionHelper;
 		
 		
 		public ActionInsert(DecisionTreeOption<EmpWTimeInfo> option) {
@@ -139,8 +139,8 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private static class ActionUpdate implements DecisionActionAdapter<EmpWTimeInfo> {
-		DecisionActionAdapter<EmpWTimeInfo> actionHelper;
+	private static class ActionUpdate implements DecisionAction<EmpWTimeInfo> {
+		DecisionAction<EmpWTimeInfo> actionHelper;
 		
 		
 		public ActionUpdate(DecisionTreeOption<EmpWTimeInfo> option) {

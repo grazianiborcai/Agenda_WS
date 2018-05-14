@@ -8,7 +8,7 @@ import br.com.gda.business.employee.model.checker.CheckerEmpCpf;
 import br.com.gda.business.employee.model.checker.CheckerEmpMandatoryRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionChoice;
 import br.com.gda.model.decisionTree.DecisionResult;
 import br.com.gda.model.decisionTree.DecisionTree;
@@ -48,8 +48,8 @@ public final class EmpRootSelect implements DecisionTree<EmpInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
-		List<DecisionActionAdapter<EmpInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
+		List<DecisionAction<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new EmpActionSelect(option));
 		return actions;

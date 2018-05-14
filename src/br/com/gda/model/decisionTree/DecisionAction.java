@@ -1,6 +1,6 @@
 package br.com.gda.model.decisionTree;
 
-public interface DecisionActionAdapter<T> {
+public interface DecisionAction<T> {
 	public boolean executeAction();
 	
 	public DecisionResult<T> getDecisionResult();

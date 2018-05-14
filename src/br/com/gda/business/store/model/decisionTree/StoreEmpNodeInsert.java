@@ -10,7 +10,7 @@ import br.com.gda.business.store.model.checker.CheckerStoreEmpSoftDelete;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
 import br.com.gda.model.decisionTree.DecisionChoice;
 import br.com.gda.model.decisionTree.DecisionResult;
@@ -61,8 +61,8 @@ public final class StoreEmpNodeInsert implements DecisionTree<StoreEmpInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<StoreEmpInfo>> buildActionsOnPassed(DecisionTreeOption<StoreEmpInfo> option) {
-		List<DecisionActionAdapter<StoreEmpInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<StoreEmpInfo>> buildActionsOnPassed(DecisionTreeOption<StoreEmpInfo> option) {
+		List<DecisionAction<StoreEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionInsert(option));
 		actions.add(new StoreEmpActionSelect(option));		
@@ -71,8 +71,8 @@ public final class StoreEmpNodeInsert implements DecisionTree<StoreEmpInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<StoreEmpInfo>> buildActionsOnFailed(DecisionTreeOption<StoreEmpInfo> option) {
-		List<DecisionActionAdapter<StoreEmpInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<StoreEmpInfo>> buildActionsOnFailed(DecisionTreeOption<StoreEmpInfo> option) {
+		List<DecisionAction<StoreEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StoreEmpActionUpdate(option));
 		actions.add(new StoreEmpActionSelect(option));		
@@ -103,8 +103,8 @@ public final class StoreEmpNodeInsert implements DecisionTree<StoreEmpInfo> {
 	
 	
 	
-	private static class ActionInsert implements DecisionActionAdapter<StoreEmpInfo> {
-		DecisionActionAdapter<StoreEmpInfo> actionHelper;
+	private static class ActionInsert implements DecisionAction<StoreEmpInfo> {
+		DecisionAction<StoreEmpInfo> actionHelper;
 		
 		
 		public ActionInsert(DecisionTreeOption<StoreEmpInfo> option) {

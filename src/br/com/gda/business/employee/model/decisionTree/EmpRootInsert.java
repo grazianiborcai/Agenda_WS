@@ -12,7 +12,7 @@ import br.com.gda.business.employee.model.checker.CheckerEmpMandatoryWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
 import br.com.gda.model.decisionTree.DecisionChoice;
 import br.com.gda.model.decisionTree.DecisionResult;
@@ -68,8 +68,8 @@ public final class EmpRootInsert implements DecisionTree<EmpInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
-		List<DecisionActionAdapter<EmpInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
+		List<DecisionAction<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionInsert(option));
 		actions.add(new EmpActionSelect(option));		
@@ -100,8 +100,8 @@ public final class EmpRootInsert implements DecisionTree<EmpInfo> {
 	
 	
 	
-	private static class ActionInsert implements DecisionActionAdapter<EmpInfo> {
-		DecisionActionAdapter<EmpInfo> actionHelper;
+	private static class ActionInsert implements DecisionAction<EmpInfo> {
+		DecisionAction<EmpInfo> actionHelper;
 		
 		
 		public ActionInsert(DecisionTreeOption<EmpInfo> option) {

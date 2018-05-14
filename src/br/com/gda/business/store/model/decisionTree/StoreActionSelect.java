@@ -5,15 +5,15 @@ import java.util.List;
 
 import br.com.gda.business.store.dao.StoreStmtExecSelect;
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
 import br.com.gda.model.decisionTree.DecisionResult;
 import br.com.gda.model.decisionTree.DecisionTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class StoreActionSelect implements DecisionActionAdapter<StoreInfo> {
-	DecisionActionAdapter<StoreInfo> actionHelper;
+public final class StoreActionSelect implements DecisionAction<StoreInfo> {
+	DecisionAction<StoreInfo> actionHelper;
 	
 	
 	public StoreActionSelect(DecisionTreeOption<StoreInfo> option) {

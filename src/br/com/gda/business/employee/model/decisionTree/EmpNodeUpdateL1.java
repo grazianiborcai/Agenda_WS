@@ -8,7 +8,7 @@ import br.com.gda.business.employee.model.checker.CheckerEmpConstraintOnDb;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionChoice;
 import br.com.gda.model.decisionTree.DecisionResult;
 import br.com.gda.model.decisionTree.DecisionTree;
@@ -54,8 +54,8 @@ final class EmpNodeUpdateL1 implements DecisionTree<EmpInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
-		List<DecisionActionAdapter<EmpInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
+		List<DecisionAction<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new EmpActionUpdate(option));
 		actions.add(new EmpActionSelect(option));		
@@ -64,8 +64,8 @@ final class EmpNodeUpdateL1 implements DecisionTree<EmpInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<EmpInfo>> buildActionsOnFailed(DecisionTreeOption<EmpInfo> option) {
-		List<DecisionActionAdapter<EmpInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<EmpInfo>> buildActionsOnFailed(DecisionTreeOption<EmpInfo> option) {
+		List<DecisionAction<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionNodeUpdate(option));	
 		return actions;
@@ -91,7 +91,7 @@ final class EmpNodeUpdateL1 implements DecisionTree<EmpInfo> {
 	
 	
 	
-	private static class ActionNodeUpdate implements DecisionActionAdapter<EmpInfo> {
+	private static class ActionNodeUpdate implements DecisionAction<EmpInfo> {
 		EmpNodeUpdateL2 treeHelper;
 		
 		

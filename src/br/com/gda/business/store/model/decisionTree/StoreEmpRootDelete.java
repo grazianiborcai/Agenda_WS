@@ -10,7 +10,7 @@ import br.com.gda.business.store.model.checker.CheckerStoreEmpMandatoryKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
 import br.com.gda.model.decisionTree.DecisionChoice;
 import br.com.gda.model.decisionTree.DecisionResult;
@@ -63,8 +63,8 @@ public final class StoreEmpRootDelete implements DecisionTree<StoreEmpInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<StoreEmpInfo>> buildActionsOnPassed(DecisionTreeOption<StoreEmpInfo> option) {
-		List<DecisionActionAdapter<StoreEmpInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<StoreEmpInfo>> buildActionsOnPassed(DecisionTreeOption<StoreEmpInfo> option) {
+		List<DecisionAction<StoreEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionDelete(option));
 		return actions;
@@ -93,8 +93,8 @@ public final class StoreEmpRootDelete implements DecisionTree<StoreEmpInfo> {
 
 	
 		
-	private static class ActionDelete implements DecisionActionAdapter<StoreEmpInfo> {
-		DecisionActionAdapter<StoreEmpInfo> actionHelper;
+	private static class ActionDelete implements DecisionAction<StoreEmpInfo> {
+		DecisionAction<StoreEmpInfo> actionHelper;
 		
 		
 		public ActionDelete(DecisionTreeOption<StoreEmpInfo> option) {

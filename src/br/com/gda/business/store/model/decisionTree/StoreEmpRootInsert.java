@@ -10,7 +10,7 @@ import br.com.gda.business.store.model.checker.CheckerStoreEmpMandatoryWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionChoice;
 import br.com.gda.model.decisionTree.DecisionResult;
 import br.com.gda.model.decisionTree.DecisionTree;
@@ -65,8 +65,8 @@ public final class StoreEmpRootInsert implements DecisionTree<StoreEmpInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<StoreEmpInfo>> buildActionsOnPassed(DecisionTreeOption<StoreEmpInfo> option) {
-		List<DecisionActionAdapter<StoreEmpInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<StoreEmpInfo>> buildActionsOnPassed(DecisionTreeOption<StoreEmpInfo> option) {
+		List<DecisionAction<StoreEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionNodeInsert(option));	
 		return actions;
@@ -96,7 +96,7 @@ public final class StoreEmpRootInsert implements DecisionTree<StoreEmpInfo> {
 	
 	
 	
-	private static class ActionNodeInsert implements DecisionActionAdapter<StoreEmpInfo> {
+	private static class ActionNodeInsert implements DecisionAction<StoreEmpInfo> {
 		DecisionTree<StoreEmpInfo> treeHelper;
 		
 		

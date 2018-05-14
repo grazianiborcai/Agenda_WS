@@ -7,7 +7,7 @@ import br.com.gda.business.store.info.StoreEmpInfo;
 import br.com.gda.business.store.model.checker.CheckerStoreEmpMandatoryRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionChoice;
 import br.com.gda.model.decisionTree.DecisionResult;
 import br.com.gda.model.decisionTree.DecisionTree;
@@ -44,8 +44,8 @@ public final class StoreEmpRootSelect implements DecisionTree<StoreEmpInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<StoreEmpInfo>> buildActionsOnPassed(DecisionTreeOption<StoreEmpInfo> option) {
-		List<DecisionActionAdapter<StoreEmpInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<StoreEmpInfo>> buildActionsOnPassed(DecisionTreeOption<StoreEmpInfo> option) {
+		List<DecisionAction<StoreEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StoreEmpActionSelect(option));
 		return actions;

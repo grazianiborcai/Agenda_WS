@@ -7,7 +7,7 @@ import br.com.gda.business.masterData.info.PositionInfo;
 import br.com.gda.business.masterData.model.checker.CheckerPositionMandatoryRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionChoice;
 import br.com.gda.model.decisionTree.DecisionResult;
 import br.com.gda.model.decisionTree.DecisionTree;
@@ -44,8 +44,8 @@ public final class PositionRootSelect implements DecisionTree<PositionInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<PositionInfo>> buildActionsOnPassed(DecisionTreeOption<PositionInfo> option) {
-		List<DecisionActionAdapter<PositionInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<PositionInfo>> buildActionsOnPassed(DecisionTreeOption<PositionInfo> option) {
+		List<DecisionAction<PositionInfo>> actions = new ArrayList<>();
 		
 		actions.add(new PositionActionSelect(option));
 		return actions;

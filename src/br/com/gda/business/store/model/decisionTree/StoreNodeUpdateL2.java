@@ -8,7 +8,7 @@ import br.com.gda.business.store.model.checker.CheckerStoreCnpjExistOnDb;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionChoice;
 import br.com.gda.model.decisionTree.DecisionResult;
 import br.com.gda.model.decisionTree.DecisionTree;
@@ -53,8 +53,8 @@ final class StoreNodeUpdateL2 implements DecisionTree<StoreInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<StoreInfo>> buildActionsOnPassed(DecisionTreeOption<StoreInfo> option) {
-		List<DecisionActionAdapter<StoreInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<StoreInfo>> buildActionsOnPassed(DecisionTreeOption<StoreInfo> option) {
+		List<DecisionAction<StoreInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StoreActionUpdate(option));
 		actions.add(new StoreActionSelect(option));		

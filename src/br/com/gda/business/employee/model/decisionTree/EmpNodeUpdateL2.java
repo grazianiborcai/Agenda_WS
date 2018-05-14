@@ -8,7 +8,7 @@ import br.com.gda.business.employee.model.checker.CheckerEmpCpfExistOnDb;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionChoice;
 import br.com.gda.model.decisionTree.DecisionResult;
 import br.com.gda.model.decisionTree.DecisionTree;
@@ -53,8 +53,8 @@ public final class EmpNodeUpdateL2 implements DecisionTree<EmpInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
-		List<DecisionActionAdapter<EmpInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
+		List<DecisionAction<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new EmpActionUpdate(option));
 		actions.add(new EmpActionSelect(option));		

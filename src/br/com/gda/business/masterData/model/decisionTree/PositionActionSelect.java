@@ -5,15 +5,15 @@ import java.util.List;
 
 import br.com.gda.business.masterData.dao.PositionStmtExecSelect;
 import br.com.gda.business.masterData.info.PositionInfo;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
 import br.com.gda.model.decisionTree.DecisionResult;
 import br.com.gda.model.decisionTree.DecisionTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class PositionActionSelect implements DecisionActionAdapter<PositionInfo> {
-	DecisionActionAdapter<PositionInfo> actionHelper;
+public final class PositionActionSelect implements DecisionAction<PositionInfo> {
+	DecisionAction<PositionInfo> actionHelper;
 	
 	
 	public PositionActionSelect(DecisionTreeOption<PositionInfo> option) {

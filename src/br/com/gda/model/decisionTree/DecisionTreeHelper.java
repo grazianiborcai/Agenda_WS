@@ -15,8 +15,8 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	private ModelChecker<T> checker;
 	private DecisionChoice decisionChoice;
 	private DecisionResultHelper<T> decisionResult;
-	private List<DecisionActionAdapter<T>> actionsOnPassed;
-	private List<DecisionActionAdapter<T>> actionsOnFailed;
+	private List<DecisionAction<T>> actionsOnPassed;
+	private List<DecisionAction<T>> actionsOnFailed;
 	
 
 	public DecisionTreeHelper(DecisionTreeHelperOption<T> option) {
@@ -100,11 +100,11 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	
 	
 	
-	private void executeDecisionAction(List<DecisionActionAdapter<T>> decisionActions) {
+	private void executeDecisionAction(List<DecisionAction<T>> decisionActions) {
 		if (decisionActions == null)
 			return;
 			
-		for (DecisionActionAdapter<T> eachAction : decisionActions) {
+		for (DecisionAction<T> eachAction : decisionActions) {
 			eachAction.executeAction();
 			DecisionResult<T> actionResult = eachAction.getDecisionResult();		
 			buildResultFromAction(actionResult);

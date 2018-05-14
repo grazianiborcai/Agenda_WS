@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.store.info.StoreEmpInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
@@ -44,6 +45,16 @@ public final class EmpInfo implements Cloneable {
 		this.codPosition = DefaultValue.number();
 		this.codLanguage = Language.getDefaultLanguage();
 		this.recordMode = RecordMode.RECORD_OK;		
+	}
+	
+	
+	
+	public StoreEmpInfo toStoreEmpInfo() {
+		StoreEmpInfo storeEmp = new StoreEmpInfo();
+		storeEmp.codOwner = codOwner;
+		storeEmp.codEmployee = codEmployee;
+		
+		return storeEmp;
 	}
 	
 	

@@ -10,7 +10,7 @@ import br.com.gda.business.employee.model.checker.CheckerEmpWtimeMandatoryWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
 import br.com.gda.model.decisionTree.DecisionChoice;
 import br.com.gda.model.decisionTree.DecisionResult;
@@ -59,8 +59,8 @@ public final class EmpWtimeRootUpdate implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private List<DecisionActionAdapter<EmpWTimeInfo>> buildActionsOnPassed(DecisionTreeOption<EmpWTimeInfo> option) {
-		List<DecisionActionAdapter<EmpWTimeInfo>> actions = new ArrayList<>();
+	private List<DecisionAction<EmpWTimeInfo>> buildActionsOnPassed(DecisionTreeOption<EmpWTimeInfo> option) {
+		List<DecisionAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionUpdate(option));
 		actions.add(new EmpWtimeActionSelect(option));
@@ -90,8 +90,8 @@ public final class EmpWtimeRootUpdate implements DecisionTree<EmpWTimeInfo> {
 
 	
 		
-	private static class ActionUpdate implements DecisionActionAdapter<EmpWTimeInfo> {
-		DecisionActionAdapter<EmpWTimeInfo> actionHelper;
+	private static class ActionUpdate implements DecisionAction<EmpWTimeInfo> {
+		DecisionAction<EmpWTimeInfo> actionHelper;
 		
 		
 		public ActionUpdate(DecisionTreeOption<EmpWTimeInfo> option) {

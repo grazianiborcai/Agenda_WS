@@ -5,15 +5,15 @@ import java.util.List;
 
 import br.com.gda.business.employee.dao.EmpStmtExecSelect;
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.model.decisionTree.DecisionActionAdapter;
+import br.com.gda.model.decisionTree.DecisionAction;
 import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
 import br.com.gda.model.decisionTree.DecisionResult;
 import br.com.gda.model.decisionTree.DecisionTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class EmpActionSelect implements DecisionActionAdapter<EmpInfo> {
-	DecisionActionAdapter<EmpInfo> actionHelper;
+public final class EmpActionSelect implements DecisionAction<EmpInfo> {
+	DecisionAction<EmpInfo> actionHelper;
 	
 	
 	public EmpActionSelect(DecisionTreeOption<EmpInfo> option) {
