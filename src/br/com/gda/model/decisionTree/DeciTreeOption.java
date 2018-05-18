@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class DecisionTreeOption<T> implements Cloneable {
+public final class DeciTreeOption<T> implements Cloneable {
 	public List<T> recordInfos;
 	public Connection conn;
 	public String schemaName;
@@ -15,7 +15,7 @@ public final class DecisionTreeOption<T> implements Cloneable {
 	@SuppressWarnings("unchecked")
 	@Override public Object clone()throws CloneNotSupportedException {  
 		try {
-			DecisionTreeOption<T> deepCopy = (DecisionTreeOption<T>) super.clone(); 
+			DeciTreeOption<T> deepCopy = (DeciTreeOption<T>) super.clone(); 
 			deepCopy.recordInfos = new ArrayList<>();
 			
 			for (T eachRecord : recordInfos) {

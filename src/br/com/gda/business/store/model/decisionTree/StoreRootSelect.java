@@ -8,28 +8,28 @@ import br.com.gda.business.store.model.checker.CheckerStoreCnpj;
 import br.com.gda.business.store.model.checker.CheckerStoreMandatoryRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionAction;
-import br.com.gda.model.decisionTree.DecisionChoice;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeHelper;
-import br.com.gda.model.decisionTree.DecisionTreeHelperOption;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciChoice;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeHelper;
+import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
 
-public final class StoreRootSelect implements DecisionTree<StoreInfo> {
-	private DecisionTree<StoreInfo> tree;
+public final class StoreRootSelect implements DeciTree<StoreInfo> {
+	private DeciTree<StoreInfo> tree;
 	
 	
-	public StoreRootSelect(DecisionTreeOption<StoreInfo> option) {
-		DecisionTreeHelperOption<StoreInfo> helperOption = new DecisionTreeHelperOption<>();
+	public StoreRootSelect(DeciTreeOption<StoreInfo> option) {
+		DeciTreeHelperOption<StoreInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker();
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		
-		tree = new DecisionTreeHelper<>(helperOption);
+		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
@@ -49,8 +49,8 @@ public final class StoreRootSelect implements DecisionTree<StoreInfo> {
 	
 	
 	
-	private List<DecisionAction<StoreInfo>> buildActionsOnPassed(DecisionTreeOption<StoreInfo> option) {
-		List<DecisionAction<StoreInfo>> actions = new ArrayList<>();
+	private List<DeciAction<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
+		List<DeciAction<StoreInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StoreActionSelect(option));
 		return actions;
@@ -64,13 +64,13 @@ public final class StoreRootSelect implements DecisionTree<StoreInfo> {
 		
 
 	
-	@Override public DecisionChoice getDecisionMade() {
+	@Override public DeciChoice getDecisionMade() {
 		return tree.getDecisionMade();
 	}
 	
 	
 	
-	@Override public DecisionResult<StoreInfo> getDecisionResult() {
+	@Override public DeciResult<StoreInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 }

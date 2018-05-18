@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.PositionInfo;
+import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.sql.DbTable;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
@@ -19,28 +19,28 @@ import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class PositionStmtSelect implements SqlStmt<PositionInfo> {
-	private final String LEFT_TABLE_POSITION = DbTable.POSITION_TABLE;
-	private final String RIGHT_TABLE_POSITION_TEXT = DbTable.POSITION_TEXT_TABLE;
+public final class MatUnitStmtSelect implements SqlStmt<MatUnitInfo> {
+	private final String LEFT_TABLE_UNIT = DbTable.MATERIAL_UNIT_TABLE;
+	private final String RIGHT_TABLE_UNIT_TEXT = DbTable.MATERIAL_UNIT_TEXT_TABLE;
 	
-	private SqlStmt<PositionInfo> stmtSql;
-	private SqlStmtOption<PositionInfo> stmtOption;
+	private SqlStmt<MatUnitInfo> stmtSql;
+	private SqlStmtOption<MatUnitInfo> stmtOption;
 	
 	
 	
-	public PositionStmtSelect(Connection conn, PositionInfo recordInfo, String schemaName) {
+	public MatUnitStmtSelect(Connection conn, MatUnitInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, PositionInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, MatUnitInfo recordInfo, String schemaName) {
 		this.stmtOption = new SqlStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LEFT_TABLE_POSITION;
+		this.stmtOption.tableName = LEFT_TABLE_UNIT;
 		this.stmtOption.columns = MasterDataDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -60,7 +60,7 @@ final class PositionStmtSelect implements SqlStmt<PositionInfo> {
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DUMMY_CLAUSE_ALLOWED;
 		
-		PositionStmtWhere whereClause = new PositionStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		MatUnitStmtWhere whereClause = new MatUnitStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -68,27 +68,27 @@ final class PositionStmtSelect implements SqlStmt<PositionInfo> {
 	
 	private List<SqlJoin> buildJoins() {
 		List<SqlJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinPositionText());
+		joins.add(buildJoinUnitText());
 		return joins;
 	}
 	
 	
 	
-	private SqlJoin buildJoinPositionText() {
+	private SqlJoin buildJoinUnitText() {
 		List<SqlJoinColumn> joinColumns = new ArrayList<>();
 		
 		SqlJoinColumn oneColumn = new SqlJoinColumn();
-		oneColumn.leftTableName = LEFT_TABLE_POSITION;
-		oneColumn.leftColumnName = "Cod_position";
-		oneColumn.rightColumnName = "Cod_position";
+		oneColumn.leftTableName = LEFT_TABLE_UNIT;
+		oneColumn.leftColumnName = "Unit";
+		oneColumn.rightColumnName = "Unit";
 		joinColumns.add(oneColumn);
 		
 		
 		SqlJoin join = new SqlJoin();
-		join.rightTableName = RIGHT_TABLE_POSITION_TEXT;
+		join.rightTableName = RIGHT_TABLE_UNIT_TEXT;
 		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE_POSITION_TEXT);
+		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE_UNIT_TEXT);
 		
 		return join;
 	}
@@ -137,33 +137,33 @@ final class PositionStmtSelect implements SqlStmt<PositionInfo> {
 
 	
 	
-	@Override public List<PositionInfo> getResultset() {
+	@Override public List<MatUnitInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public SqlStmt<PositionInfo> getNewInstance() {
-		return new PositionStmtSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public SqlStmt<MatUnitInfo> getNewInstance() {
+		return new MatUnitStmtSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements SqlResultParser<PositionInfo> {
+	private class ResultParser implements SqlResultParser<MatUnitInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String POSITION_TEXT_COLUMN = DbTable.POSITION_TEXT_TABLE + "." + "Name";
-		private final String POSITION_LANGU_COLUMN = DbTable.POSITION_TEXT_TABLE + "." + "Language";
+		private final String UNIT_TEXT_COLUMN = DbTable.MATERIAL_UNIT_TEXT_TABLE + "." + "Name";
+		private final String POSITION_LANGU_COLUMN = DbTable.MATERIAL_UNIT_TEXT_TABLE + "." + "Language";
 		
-		@Override public List<PositionInfo> parseResult(ResultSet stmtResult) throws SQLException {
-			List<PositionInfo> finalResult = new ArrayList<>();
+		@Override public List<MatUnitInfo> parseResult(ResultSet stmtResult) throws SQLException {
+			List<MatUnitInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 				return finalResult;
 		
 			do {				
-				PositionInfo dataInfo = new PositionInfo();
-				dataInfo.codPosition = stmtResult.getLong("Cod_position");
-				dataInfo.txtPosition = stmtResult.getString(POSITION_TEXT_COLUMN);
+				MatUnitInfo dataInfo = new MatUnitInfo();
+				dataInfo.codUnit = stmtResult.getString("Unit");
+				dataInfo.txtUnit = stmtResult.getString(UNIT_TEXT_COLUMN);
 				dataInfo.codLanguage = stmtResult.getString(POSITION_LANGU_COLUMN);		
 				
 				finalResult.add(dataInfo);				

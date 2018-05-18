@@ -8,5 +8,7 @@ public final class DbTable {
 	public static final String STORE_EMPLOYEE_TABLE = "store_emp";
 	public static final String POSITION_TEXT_TABLE = "position_text";
 	public static final String POSITION_TABLE = "position";
+	public static final String MATERIAL_UNIT_TABLE = "measure_unit";
+	public static final String MATERIAL_UNIT_TEXT_TABLE = "measure_unit_text";
 	public static final String STORE_TABLE = "store";
 }

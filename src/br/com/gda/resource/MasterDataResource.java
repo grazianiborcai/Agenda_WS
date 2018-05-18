@@ -8,28 +8,48 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.masterData.info.PositionInfo;
-import br.com.gda.business.masterData.model.PositionModelSelect;
+import br.com.gda.business.masterData.info.MatUnitInfo;
+import br.com.gda.business.masterData.info.EmpPositionInfo;
+import br.com.gda.business.masterData.model.MatUnitModelSelect;
+import br.com.gda.business.masterData.model.EmpPositionModelSelect;
 import br.com.gda.model.Model;
 
 
 @Path("/MasterData")
 public final class MasterDataResource {
-	private static final String SELECT_POSTION = "/selectPosition";
+	private static final String SELECT_EMPLOYEE_POSTION = "/selectEmpPosition";
+	private static final String SELECT_MATERIAL_UNIT = "/selectMatUnit";
 	
 	
 	@GET
-	@Path(SELECT_POSTION)
+	@Path(SELECT_EMPLOYEE_POSTION)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectPosition(@HeaderParam("codLanguage") String codLanguage, 
+	public Response selectEmpPosition(@HeaderParam("codLanguage") String codLanguage, 
 			                       @HeaderParam("codPosition") @DefaultValue("-1") long codPosition) {
 		
-		PositionInfo recordInfo = new PositionInfo();
+		EmpPositionInfo recordInfo = new EmpPositionInfo();
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codPosition = codPosition;
 		
-		Model positionSelect = new PositionModelSelect(recordInfo);
-		positionSelect.executeRequest();
-		return positionSelect.getResponse();
+		Model modelSelect = new EmpPositionModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_MATERIAL_UNIT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectMatUnit(@HeaderParam("codLanguage") String codLanguage, 
+			                      @HeaderParam("codUnit") String codUnit) {
+		
+		MatUnitInfo recordInfo = new MatUnitInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codUnit = codUnit;
+		
+		Model modelSelect = new MatUnitModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
 	}
 }

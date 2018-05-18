@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.gda.model.checker.ModelChecker;
 
-public final class DecisionTreeHelperOption<T> {
+public final class DeciTreeHelperOption<T> {
 	public List<T> recordInfos;
 	public Connection conn;
 	public String schemaName;
 	public ModelChecker<T> visitorChecker;
-	public List<DecisionAction<T>> actionsOnPassed;
-	public List<DecisionAction<T>> actionsOnFailed;	
+	public List<DeciAction<T>> actionsOnPassed;
+	public List<DeciAction<T>> actionsOnFailed;	
 }

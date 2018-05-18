@@ -10,23 +10,23 @@ import br.com.gda.business.store.model.checker.CheckerStoreEmpMandatoryKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionAction;
-import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
-import br.com.gda.model.decisionTree.DecisionChoice;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeHelper;
-import br.com.gda.model.decisionTree.DecisionTreeHelperOption;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciChoice;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeHelper;
+import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class StoreEmpRootDelete implements DecisionTree<StoreEmpInfo> {
-	private DecisionTree<StoreEmpInfo> tree;
+public final class StoreEmpRootDelete implements DeciTree<StoreEmpInfo> {
+	private DeciTree<StoreEmpInfo> tree;
 	
 	
-	public StoreEmpRootDelete(DecisionTreeOption<StoreEmpInfo> option) {
-		DecisionTreeHelperOption<StoreEmpInfo> helperOption = new DecisionTreeHelperOption<>();
+	public StoreEmpRootDelete(DeciTreeOption<StoreEmpInfo> option) {
+		DeciTreeHelperOption<StoreEmpInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
@@ -34,12 +34,12 @@ public final class StoreEmpRootDelete implements DecisionTree<StoreEmpInfo> {
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		
 		
-		tree = new DecisionTreeHelper<>(helperOption);
+		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
 	
-	private ModelChecker<StoreEmpInfo> buildDecisionChecker(DecisionTreeOption<StoreEmpInfo> option) {
+	private ModelChecker<StoreEmpInfo> buildDecisionChecker(DeciTreeOption<StoreEmpInfo> option) {
 		List<ModelChecker<StoreEmpInfo>> stack = new ArrayList<>();		
 		ModelChecker<StoreEmpInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -63,8 +63,8 @@ public final class StoreEmpRootDelete implements DecisionTree<StoreEmpInfo> {
 	
 	
 	
-	private List<DecisionAction<StoreEmpInfo>> buildActionsOnPassed(DecisionTreeOption<StoreEmpInfo> option) {
-		List<DecisionAction<StoreEmpInfo>> actions = new ArrayList<>();
+	private List<DeciAction<StoreEmpInfo>> buildActionsOnPassed(DeciTreeOption<StoreEmpInfo> option) {
+		List<DeciAction<StoreEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionDelete(option));
 		return actions;
@@ -78,13 +78,13 @@ public final class StoreEmpRootDelete implements DecisionTree<StoreEmpInfo> {
 		
 
 	
-	@Override public DecisionChoice getDecisionMade() {
+	@Override public DeciChoice getDecisionMade() {
 		return tree.getDecisionMade();
 	}
 	
 	
 	
-	@Override public DecisionResult<StoreEmpInfo> getDecisionResult() {
+	@Override public DeciResult<StoreEmpInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
@@ -93,18 +93,18 @@ public final class StoreEmpRootDelete implements DecisionTree<StoreEmpInfo> {
 
 	
 		
-	private static class ActionDelete implements DecisionAction<StoreEmpInfo> {
-		DecisionAction<StoreEmpInfo> actionHelper;
+	private static class ActionDelete implements DeciAction<StoreEmpInfo> {
+		DeciAction<StoreEmpInfo> actionHelper;
 		
 		
-		public ActionDelete(DecisionTreeOption<StoreEmpInfo> option) {
+		public ActionDelete(DeciTreeOption<StoreEmpInfo> option) {
 			SqlStmtExec<StoreEmpInfo> sqlStmtExecutor = buildStmtExec(option);
-			actionHelper = new DecisionActionStmtHelper<>(sqlStmtExecutor);
+			actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
 		}
 		
 		
 		
-		private SqlStmtExec<StoreEmpInfo> buildStmtExec(DecisionTreeOption<StoreEmpInfo> option) {
+		private SqlStmtExec<StoreEmpInfo> buildStmtExec(DeciTreeOption<StoreEmpInfo> option) {
 			List<SqlStmtExecOption<StoreEmpInfo>> stmtExecOptions = new ArrayList<>();			
 			
 			for(StoreEmpInfo eachRecord : option.recordInfos) {
@@ -126,7 +126,7 @@ public final class StoreEmpRootDelete implements DecisionTree<StoreEmpInfo> {
 		
 		
 		
-		@Override public DecisionResult<StoreEmpInfo> getDecisionResult() {
+		@Override public DeciResult<StoreEmpInfo> getDecisionResult() {
 			return actionHelper.getDecisionResult();
 		}
 	}

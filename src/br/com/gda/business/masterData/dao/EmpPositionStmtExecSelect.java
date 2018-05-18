@@ -4,18 +4,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.PositionInfo;
+import br.com.gda.business.masterData.info.EmpPositionInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecHelper;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class PositionStmtExecSelect implements SqlStmtExec<PositionInfo> {
-	private List<SqlStmt<PositionInfo>> sqlStatements;
-	private SqlStmtExec<PositionInfo> helper;
+public final class EmpPositionStmtExecSelect implements SqlStmtExec<EmpPositionInfo> {
+	private List<SqlStmt<EmpPositionInfo>> sqlStatements;
+	private SqlStmtExec<EmpPositionInfo> helper;
 	
-	public PositionStmtExecSelect(List<SqlStmtExecOption<PositionInfo>> options) {
+	public EmpPositionStmtExecSelect(List<SqlStmtExecOption<EmpPositionInfo>> options) {
 		if (options == null) 
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
@@ -28,11 +28,11 @@ public final class PositionStmtExecSelect implements SqlStmtExec<PositionInfo> {
 	
 	
 	
-	private void prepareStatement(List<SqlStmtExecOption<PositionInfo>> options) {
+	private void prepareStatement(List<SqlStmtExecOption<EmpPositionInfo>> options) {
 		sqlStatements = new ArrayList<>();
 		
-		for (SqlStmtExecOption<PositionInfo> eachOption : options) {
-			SqlStmt<PositionInfo> sqlStatement = new PositionStmtSelect(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
+		for (SqlStmtExecOption<EmpPositionInfo> eachOption : options) {
+			SqlStmt<EmpPositionInfo> sqlStatement = new EmpPositionStmtSelect(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
 			sqlStatements.add(sqlStatement);
 		}
 	}
@@ -51,7 +51,7 @@ public final class PositionStmtExecSelect implements SqlStmtExec<PositionInfo> {
 
 	
 	
-	@Override public List<PositionInfo> getResultset() {
+	@Override public List<EmpPositionInfo> getResultset() {
 		return helper.getResultset();
 	}
 }

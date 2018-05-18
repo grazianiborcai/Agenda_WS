@@ -7,27 +7,27 @@ import br.com.gda.business.store.info.StoreEmpInfo;
 import br.com.gda.business.store.model.checker.CheckerStoreEmpMandatoryRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionAction;
-import br.com.gda.model.decisionTree.DecisionChoice;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeHelper;
-import br.com.gda.model.decisionTree.DecisionTreeHelperOption;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciChoice;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeHelper;
+import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StoreEmpRootSelect implements DecisionTree<StoreEmpInfo> {
-	private DecisionTree<StoreEmpInfo> tree;
+public final class StoreEmpRootSelect implements DeciTree<StoreEmpInfo> {
+	private DeciTree<StoreEmpInfo> tree;
 	
 	
-	public StoreEmpRootSelect(DecisionTreeOption<StoreEmpInfo> option) {
-		DecisionTreeHelperOption<StoreEmpInfo> helperOption = new DecisionTreeHelperOption<>();
+	public StoreEmpRootSelect(DeciTreeOption<StoreEmpInfo> option) {
+		DeciTreeHelperOption<StoreEmpInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker();
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		
-		tree = new DecisionTreeHelper<>(helperOption);
+		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
@@ -44,8 +44,8 @@ public final class StoreEmpRootSelect implements DecisionTree<StoreEmpInfo> {
 	
 	
 	
-	private List<DecisionAction<StoreEmpInfo>> buildActionsOnPassed(DecisionTreeOption<StoreEmpInfo> option) {
-		List<DecisionAction<StoreEmpInfo>> actions = new ArrayList<>();
+	private List<DeciAction<StoreEmpInfo>> buildActionsOnPassed(DeciTreeOption<StoreEmpInfo> option) {
+		List<DeciAction<StoreEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StoreEmpActionSelect(option));
 		return actions;
@@ -59,13 +59,13 @@ public final class StoreEmpRootSelect implements DecisionTree<StoreEmpInfo> {
 		
 
 	
-	@Override public DecisionChoice getDecisionMade() {
+	@Override public DeciChoice getDecisionMade() {
 		return tree.getDecisionMade();
 	}
 	
 	
 	
-	@Override public DecisionResult<StoreEmpInfo> getDecisionResult() {
+	@Override public DeciResult<StoreEmpInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 }

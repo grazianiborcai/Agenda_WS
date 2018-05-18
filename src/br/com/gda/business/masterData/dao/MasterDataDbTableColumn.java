@@ -42,6 +42,7 @@ public final class MasterDataDbTableColumn {
 	
 	private static void buildTableColumns() {
 		positionTable();	
+		materialUnitTable();
 	}
 	
 	
@@ -70,6 +71,41 @@ public final class MasterDataDbTableColumn {
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = DbTable.POSITION_TEXT_TABLE;
+		oneColumn.columnName = "Name";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private static void materialUnitTable() {
+		final String TABLE_NAME = DbTable.MATERIAL_UNIT_TABLE;
+		
+		SqlColumn oneColumn;
+		List<SqlColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Unit";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.MATERIAL_UNIT_TEXT_TABLE;
+		oneColumn.columnName = "Language";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.MATERIAL_UNIT_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

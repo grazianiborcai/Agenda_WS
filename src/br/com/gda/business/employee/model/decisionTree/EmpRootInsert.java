@@ -12,35 +12,35 @@ import br.com.gda.business.employee.model.checker.CheckerEmpMandatoryWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionAction;
-import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
-import br.com.gda.model.decisionTree.DecisionChoice;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeHelper;
-import br.com.gda.model.decisionTree.DecisionTreeHelperOption;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciChoice;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeHelper;
+import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class EmpRootInsert implements DecisionTree<EmpInfo> {
-	private DecisionTree<EmpInfo> tree;
+public final class EmpRootInsert implements DeciTree<EmpInfo> {
+	private DeciTree<EmpInfo> tree;
 	
 	
-	public EmpRootInsert(DecisionTreeOption<EmpInfo> option) {
-		DecisionTreeHelperOption<EmpInfo> helperOption = new DecisionTreeHelperOption<>();
+	public EmpRootInsert(DeciTreeOption<EmpInfo> option) {
+		DeciTreeHelperOption<EmpInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		
-		tree = new DecisionTreeHelper<>(helperOption);
+		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
 	
-	private ModelChecker<EmpInfo> buildDecisionChecker(DecisionTreeOption<EmpInfo> option) {
+	private ModelChecker<EmpInfo> buildDecisionChecker(DeciTreeOption<EmpInfo> option) {
 		final boolean DONT_EXIST_ON_DB = false;	
 		
 		List<ModelChecker<EmpInfo>> stack = new ArrayList<>();		
@@ -68,8 +68,8 @@ public final class EmpRootInsert implements DecisionTree<EmpInfo> {
 	
 	
 	
-	private List<DecisionAction<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
-		List<DecisionAction<EmpInfo>> actions = new ArrayList<>();
+	private List<DeciAction<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
+		List<DeciAction<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionInsert(option));
 		actions.add(new EmpActionSelect(option));		
@@ -84,13 +84,13 @@ public final class EmpRootInsert implements DecisionTree<EmpInfo> {
 		
 
 	
-	@Override public DecisionChoice getDecisionMade() {
+	@Override public DeciChoice getDecisionMade() {
 		return tree.getDecisionMade();
 	}
 	
 	
 	
-	@Override public DecisionResult<EmpInfo> getDecisionResult() {
+	@Override public DeciResult<EmpInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
@@ -100,18 +100,18 @@ public final class EmpRootInsert implements DecisionTree<EmpInfo> {
 	
 	
 	
-	private static class ActionInsert implements DecisionAction<EmpInfo> {
-		DecisionAction<EmpInfo> actionHelper;
+	private static class ActionInsert implements DeciAction<EmpInfo> {
+		DeciAction<EmpInfo> actionHelper;
 		
 		
-		public ActionInsert(DecisionTreeOption<EmpInfo> option) {
+		public ActionInsert(DeciTreeOption<EmpInfo> option) {
 			SqlStmtExec<EmpInfo> sqlStmtExecutor = buildStmtExec(option);
-			actionHelper = new DecisionActionStmtHelper<>(sqlStmtExecutor);
+			actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
 		}
 		
 		
 		
-		private SqlStmtExec<EmpInfo> buildStmtExec(DecisionTreeOption<EmpInfo> option) {
+		private SqlStmtExec<EmpInfo> buildStmtExec(DeciTreeOption<EmpInfo> option) {
 			List<SqlStmtExecOption<EmpInfo>> stmtExecOptions = new ArrayList<>();			
 			
 			for(EmpInfo eachRecord : option.recordInfos) {
@@ -133,7 +133,7 @@ public final class EmpRootInsert implements DecisionTree<EmpInfo> {
 		
 		
 		
-		@Override public DecisionResult<EmpInfo> getDecisionResult() {
+		@Override public DeciResult<EmpInfo> getDecisionResult() {
 			return actionHelper.getDecisionResult();
 		}
 	}

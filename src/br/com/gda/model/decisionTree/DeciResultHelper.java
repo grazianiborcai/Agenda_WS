@@ -2,7 +2,7 @@ package br.com.gda.model.decisionTree;
 
 import java.util.List;
 
-public final class DecisionResultHelper<T> implements DecisionResult<T> {
+public final class DeciResultHelper<T> implements DeciResult<T> {
 	public List<T> resultset;
 	public String failureMessage;
 	public int failureCode;
@@ -10,7 +10,7 @@ public final class DecisionResultHelper<T> implements DecisionResult<T> {
 	public boolean hasResultset;
 	
 	
-	public DecisionResultHelper() {
+	public DeciResultHelper() {
 		this.resultset = null;
 		this.failureMessage = null;
 		this.failureCode = -1;

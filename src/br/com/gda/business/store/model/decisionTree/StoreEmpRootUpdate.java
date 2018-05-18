@@ -10,32 +10,32 @@ import br.com.gda.business.store.model.checker.CheckerStoreEmpMandatoryWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionAction;
-import br.com.gda.model.decisionTree.DecisionChoice;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeHelper;
-import br.com.gda.model.decisionTree.DecisionTreeHelperOption;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciChoice;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeHelper;
+import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StoreEmpRootUpdate implements DecisionTree<StoreEmpInfo> {
-	private DecisionTree<StoreEmpInfo> tree;
+public final class StoreEmpRootUpdate implements DeciTree<StoreEmpInfo> {
+	private DeciTree<StoreEmpInfo> tree;
 	
 	
-	public StoreEmpRootUpdate(DecisionTreeOption<StoreEmpInfo> option) {
-		DecisionTreeHelperOption<StoreEmpInfo> helperOption = new DecisionTreeHelperOption<>();
+	public StoreEmpRootUpdate(DeciTreeOption<StoreEmpInfo> option) {
+		DeciTreeHelperOption<StoreEmpInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		helperOption.conn = option.conn;
 		
-		tree = new DecisionTreeHelper<>(helperOption);
+		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
 	
-	private ModelChecker<StoreEmpInfo> buildDecisionChecker(DecisionTreeOption<StoreEmpInfo> option) {
+	private ModelChecker<StoreEmpInfo> buildDecisionChecker(DeciTreeOption<StoreEmpInfo> option) {
 		List<ModelChecker<StoreEmpInfo>> stack = new ArrayList<>();		
 		ModelChecker<StoreEmpInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -63,8 +63,8 @@ public final class StoreEmpRootUpdate implements DecisionTree<StoreEmpInfo> {
 	
 	
 	
-	private List<DecisionAction<StoreEmpInfo>> buildActionsOnPassed(DecisionTreeOption<StoreEmpInfo> option) {
-		List<DecisionAction<StoreEmpInfo>> actions = new ArrayList<>();
+	private List<DeciAction<StoreEmpInfo>> buildActionsOnPassed(DeciTreeOption<StoreEmpInfo> option) {
+		List<DeciAction<StoreEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StoreEmpActionUpdate(option));
 		actions.add(new StoreEmpActionSelect(option));
@@ -79,13 +79,13 @@ public final class StoreEmpRootUpdate implements DecisionTree<StoreEmpInfo> {
 		
 
 	
-	@Override public DecisionChoice getDecisionMade() {
+	@Override public DeciChoice getDecisionMade() {
 		return tree.getDecisionMade();
 	}
 	
 	
 	
-	@Override public DecisionResult<StoreEmpInfo> getDecisionResult() {
+	@Override public DeciResult<StoreEmpInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 }

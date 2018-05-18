@@ -7,115 +7,51 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.store.info.StoreEmpInfo;
 import br.com.gda.business.store.model.decisionTree.StoreEmpActionSelect;
 import br.com.gda.business.store.model.decisionTree.StoreEmpRootDelete;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.decisionTree.DecisionAction;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionResultHelper;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionNestedTemplate;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpActionDeleteStoreEmp implements DecisionAction<EmpInfo> {
-	private final boolean FAILED = false;
-	private final boolean THERE_IS_RESULTSET = true;
-	
-	private DecisionAction<StoreEmpInfo> actionStarter;
-	private DecisionTree<StoreEmpInfo> treeHelper;
-	
-	
-	
-	public EmpActionDeleteStoreEmp(DecisionTreeOption<EmpInfo> option) {
-		buildActionStarter(option);
-		executeActionStater();
-		buildDecisionTree(option);
+public final class EmpActionDeleteStoreEmp extends DeciActionNestedTemplate<EmpInfo, StoreEmpInfo>{
+
+	public EmpActionDeleteStoreEmp(DeciTreeOption<EmpInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	private void buildActionStarter(DecisionTreeOption<EmpInfo> option) {
-		List<StoreEmpInfo> translatedInfos;
-		DecisionTreeOption<StoreEmpInfo> translatedOption;
-		
-		translatedInfos = translateRecordInfos(option.recordInfos);
-		translatedOption = translateOption(option, translatedInfos);
-		
-		actionStarter = new StoreEmpActionSelect(translatedOption);
-	}
-	
-	
-	
-	private List<StoreEmpInfo> translateRecordInfos(List<EmpInfo> recordInfos) {
-		List<StoreEmpInfo> translatedInfos = new ArrayList<>();
+	@Override protected List<StoreEmpInfo> translateRecordInfosHook(List<EmpInfo> recordInfos) {
+		List<StoreEmpInfo> transInfos = new ArrayList<>();
 		
 		for (EmpInfo eachRecord : recordInfos) {
-			translatedInfos.add(eachRecord.toStoreEmpInfo());
+			transInfos.add(eachRecord.toStoreEmpInfo());
 		}
 		
-		return translatedInfos;
+		return transInfos;
 	}
 	
 	
 	
-	private DecisionTreeOption<StoreEmpInfo> translateOption(DecisionTreeOption<EmpInfo> option, List<StoreEmpInfo> recordInfos) {
-		DecisionTreeOption<StoreEmpInfo> newOption = new DecisionTreeOption<>();
-		newOption.conn = option.conn;
-		newOption.schemaName = option.schemaName;
-		newOption.recordInfos = recordInfos;
-		return newOption;
+	@Override protected Class<? extends DeciAction<StoreEmpInfo>> getClassOfStarterHook() {
+		return StoreEmpActionSelect.class;
 	}
 	
 	
 	
-	private void executeActionStater() {
-		if ( actionStarter.executeAction() == FAILED) 
-			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
+	@Override protected Class<? extends DeciTree<StoreEmpInfo>> getClassOfTreeHook() {
+		return StoreEmpRootDelete.class;
 	}
 	
 	
 	
-	private void buildDecisionTree(DecisionTreeOption<EmpInfo> option) {
-		List<StoreEmpInfo> recordInfos;
-		DecisionTreeOption<StoreEmpInfo> translatedOption;
+	@Override protected List<EmpInfo> getResultsetHook(DeciResult<StoreEmpInfo> decisionResult) {
+		EmpInfo emptyInfo = new EmpInfo();
 		
-		recordInfos = actionStarter.getDecisionResult().getResultset();
-		translatedOption = translateOption(option, recordInfos);
+		List<EmpInfo> resultList = new ArrayList<>();
+		resultList.add(emptyInfo);
 		
-		treeHelper = new StoreEmpRootDelete(translatedOption);
+		return resultList;
 	}
-	
-		
-	
-	@Override public boolean executeAction() {	
-		treeHelper.makeDecision();
-		return treeHelper.getDecisionResult().hasSuccessfullyFinished();
-	}
-	
-	
-	
-	@Override public DecisionResult<EmpInfo> getDecisionResult() {
-		return translateDecisionResult(treeHelper.getDecisionResult());
-	}
-	
-	
-	
-	private DecisionResult<EmpInfo> translateDecisionResult(DecisionResult<StoreEmpInfo> decisionResult) {
-		DecisionResultHelper<EmpInfo> translatedResult = new DecisionResultHelper<>();
-		
-		translatedResult.finishedWithSuccess = decisionResult.hasSuccessfullyFinished();
-		
-		if (decisionResult.hasSuccessfullyFinished() == FAILED) {
-			translatedResult.failureCode = decisionResult.getFailureCode();
-			translatedResult.failureMessage = decisionResult.getFailureMessage();
-		}
-		
-		
-		translatedResult.hasResultset = decisionResult.hasResultset();
-		
-		if (decisionResult.hasResultset() == THERE_IS_RESULTSET) {
-			EmpInfo emptyInfo = new EmpInfo();
-			translatedResult.resultset = new ArrayList<>();
-			translatedResult.resultset.add(emptyInfo);
-		}
-		
-		return translatedResult;
-	} 
+
 }

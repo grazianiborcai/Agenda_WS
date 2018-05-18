@@ -2,20 +2,20 @@ package br.com.gda.business.masterData.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.masterData.info.PositionInfo;
+import br.com.gda.business.masterData.info.EmpPositionInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerPositionMandatoryRead extends ModelCheckerTemplate<PositionInfo> {
+public final class CheckerEmpPositionMandatoryRead extends ModelCheckerTemplate<EmpPositionInfo> {
 
-	public CheckerPositionMandatoryRead() {
+	public CheckerEmpPositionMandatoryRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(PositionInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(EmpPositionInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codLanguage == null )			
 			return RESULT_FAILED;
 		

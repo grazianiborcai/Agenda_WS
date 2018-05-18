@@ -2,7 +2,7 @@ package br.com.gda.model.decisionTree;
 
 import java.util.List;
 
-public interface DecisionResult<T> {
+public interface DeciResult<T> {
 	public boolean hasSuccessfullyFinished();	
 	
 	public String getFailureMessage();

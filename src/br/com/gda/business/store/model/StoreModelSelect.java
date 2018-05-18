@@ -11,9 +11,9 @@ import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
 import br.com.gda.model.ModelHelper;
 import br.com.gda.model.ModelOption;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeFactory;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeFactory;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class StoreModelSelect implements Model {
 	private ModelHelper<StoreInfo> helper;
@@ -63,8 +63,8 @@ public final class StoreModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DecisionTreeFactory<StoreInfo> {		
-		@Override public DecisionTree<StoreInfo> getDecisionTree(DecisionTreeOption<StoreInfo> option) {
+	private static class TreeFactory implements DeciTreeFactory<StoreInfo> {		
+		@Override public DeciTree<StoreInfo> getDecisionTree(DeciTreeOption<StoreInfo> option) {
 			return new StoreRootSelect(option);
 		}		
 	

@@ -11,9 +11,9 @@ import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
 import br.com.gda.model.ModelHelper;
 import br.com.gda.model.ModelOption;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeFactory;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeFactory;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class EmpModelSelect implements Model {
 	private ModelHelper<EmpInfo> helper;
@@ -63,8 +63,8 @@ public final class EmpModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DecisionTreeFactory<EmpInfo> {		
-		@Override public DecisionTree<EmpInfo> getDecisionTree(DecisionTreeOption<EmpInfo> option) {
+	private static class TreeFactory implements DeciTreeFactory<EmpInfo> {		
+		@Override public DeciTree<EmpInfo> getDecisionTree(DeciTreeOption<EmpInfo> option) {
 			return new EmpRootSelect(option);
 		}		
 	

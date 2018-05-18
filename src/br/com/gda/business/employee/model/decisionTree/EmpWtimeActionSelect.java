@@ -5,25 +5,25 @@ import java.util.List;
 
 import br.com.gda.business.employee.dao.EmpWtimeStmtExecSelect;
 import br.com.gda.business.employee.info.EmpWTimeInfo;
-import br.com.gda.model.decisionTree.DecisionAction;
-import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public class EmpWtimeActionSelect implements DecisionAction<EmpWTimeInfo> {
-	DecisionAction<EmpWTimeInfo> actionHelper;
+public class EmpWtimeActionSelect implements DeciAction<EmpWTimeInfo> {
+	DeciAction<EmpWTimeInfo> actionHelper;
 	
 	
-	public EmpWtimeActionSelect(DecisionTreeOption<EmpWTimeInfo> option) {
+	public EmpWtimeActionSelect(DeciTreeOption<EmpWTimeInfo> option) {
 		SqlStmtExec<EmpWTimeInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DecisionActionStmtHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private SqlStmtExec<EmpWTimeInfo> buildStmtExec(DecisionTreeOption<EmpWTimeInfo> option) {
+	private SqlStmtExec<EmpWTimeInfo> buildStmtExec(DeciTreeOption<EmpWTimeInfo> option) {
 		List<SqlStmtExecOption<EmpWTimeInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EmpWTimeInfo eachRecord : option.recordInfos) {
@@ -45,7 +45,7 @@ public class EmpWtimeActionSelect implements DecisionAction<EmpWTimeInfo> {
 	
 	
 	
-	@Override public DecisionResult<EmpWTimeInfo> getDecisionResult() {
+	@Override public DeciResult<EmpWTimeInfo> getDecisionResult() {
 		return actionHelper.getDecisionResult();
 	}
 }

@@ -9,20 +9,20 @@ import br.com.gda.business.employee.model.checker.CheckerEmpMandatoryKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionAction;
-import br.com.gda.model.decisionTree.DecisionChoice;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeHelper;
-import br.com.gda.model.decisionTree.DecisionTreeHelperOption;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciChoice;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeHelper;
+import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpRootDelete implements DecisionTree<EmpInfo> {
-	private DecisionTree<EmpInfo> tree;
+public final class EmpRootDelete implements DeciTree<EmpInfo> {
+	private DeciTree<EmpInfo> tree;
 	
 	
-	public EmpRootDelete(DecisionTreeOption<EmpInfo> option) {
-		DecisionTreeHelperOption<EmpInfo> helperOption = new DecisionTreeHelperOption<>();
+	public EmpRootDelete(DeciTreeOption<EmpInfo> option) {
+		DeciTreeHelperOption<EmpInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
@@ -30,12 +30,12 @@ public final class EmpRootDelete implements DecisionTree<EmpInfo> {
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		
 		
-		tree = new DecisionTreeHelper<>(helperOption);
+		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
 	
-	private ModelChecker<EmpInfo> buildDecisionChecker(DecisionTreeOption<EmpInfo> option) {
+	private ModelChecker<EmpInfo> buildDecisionChecker(DeciTreeOption<EmpInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		final boolean KEY_NOT_NULL = true;	
 		
@@ -60,8 +60,8 @@ public final class EmpRootDelete implements DecisionTree<EmpInfo> {
 	
 	
 	
-	private List<DecisionAction<EmpInfo>> buildActionsOnPassed(DecisionTreeOption<EmpInfo> option) {
-		List<DecisionAction<EmpInfo>> actions = new ArrayList<>();
+	private List<DeciAction<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
+		List<DeciAction<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new EmpActionDeleteStoreEmp(option));
 		actions.add(new EmpActionDelete(option));
@@ -76,13 +76,13 @@ public final class EmpRootDelete implements DecisionTree<EmpInfo> {
 		
 
 	
-	@Override public DecisionChoice getDecisionMade() {
+	@Override public DeciChoice getDecisionMade() {
 		return tree.getDecisionMade();
 	}
 	
 	
 	
-	@Override public DecisionResult<EmpInfo> getDecisionResult() {
+	@Override public DeciResult<EmpInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 }

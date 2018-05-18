@@ -11,9 +11,9 @@ import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
 import br.com.gda.model.ModelHelper;
 import br.com.gda.model.ModelOption;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeFactory;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeFactory;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class StoreEmpModelInsert implements Model {
 	private ModelHelper<StoreEmpInfo> helper;
@@ -63,8 +63,8 @@ public final class StoreEmpModelInsert implements Model {
 	
 	
 	
-	private static class TreeFactory implements DecisionTreeFactory<StoreEmpInfo> {		
-		@Override public DecisionTree<StoreEmpInfo> getDecisionTree(DecisionTreeOption<StoreEmpInfo> option) {
+	private static class TreeFactory implements DeciTreeFactory<StoreEmpInfo> {		
+		@Override public DeciTree<StoreEmpInfo> getDecisionTree(DeciTreeOption<StoreEmpInfo> option) {
 			return new StoreEmpRootInsert(option);
 		}			
 	}

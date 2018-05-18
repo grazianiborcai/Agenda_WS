@@ -1,11 +1,11 @@
-package br.com.gda.business.employee.model;
+package br.com.gda.business.masterData.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.decisionTree.EmpRootUpdate;
+import br.com.gda.business.masterData.info.MatUnitInfo;
+import br.com.gda.business.masterData.model.decisionTree.MatUnitRootSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,15 +15,15 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpModelUpdate implements Model {
-	private ModelHelper<EmpInfo> helper;
+public final class MatUnitModelSelect implements Model {
+	private ModelHelper<MatUnitInfo> helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public EmpModelUpdate(String incomingData) {
+	public MatUnitModelSelect(MatUnitInfo recordInfo) {
 		initialize();
-		buildHelper(incomingData);
+		buildHelper(recordInfo);
 	}
 	
 	
@@ -35,15 +35,15 @@ public final class EmpModelUpdate implements Model {
 	
 	
 	
-	private void buildHelper(String incomingData) {
-		ModelOption<EmpInfo> helperOption = new ModelOption<>();
+	private void buildHelper(MatUnitInfo recordInfo) {
+		ModelOption<MatUnitInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpInfo.class;
+		helperOption.infoRecordClass = MatUnitInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = new ModelHelper<>(helperOption, incomingData);
+		helper = new ModelHelper<>(helperOption, recordInfo);
 	}
 
 
@@ -63,9 +63,10 @@ public final class EmpModelUpdate implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<EmpInfo> {		
-		@Override public DeciTree<EmpInfo> getDecisionTree(DeciTreeOption<EmpInfo> option) {
-			return new EmpRootUpdate(option);
-		}			
+	private static class TreeFactory implements DeciTreeFactory<MatUnitInfo> {		
+		@Override public DeciTree<MatUnitInfo> getDecisionTree(DeciTreeOption<MatUnitInfo> option) {
+			return new MatUnitRootSelect(option);
+		}		
+	
 	}
 }

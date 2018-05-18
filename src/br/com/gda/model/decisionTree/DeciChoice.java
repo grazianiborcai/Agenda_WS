@@ -1,5 +1,5 @@
 package br.com.gda.model.decisionTree;
 
-public enum DecisionChoice {
+public enum DeciChoice {
 	PASSED, FAILED;
 }

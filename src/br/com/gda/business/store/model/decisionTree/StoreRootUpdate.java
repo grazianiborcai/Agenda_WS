@@ -11,20 +11,20 @@ import br.com.gda.business.store.model.checker.CheckerStoreMandatoryWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionAction;
-import br.com.gda.model.decisionTree.DecisionChoice;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeHelper;
-import br.com.gda.model.decisionTree.DecisionTreeHelperOption;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciChoice;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeHelper;
+import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StoreRootUpdate implements DecisionTree<StoreInfo> {
-	private DecisionTree<StoreInfo> tree;
+public final class StoreRootUpdate implements DeciTree<StoreInfo> {
+	private DeciTree<StoreInfo> tree;
 	
 	
-	public StoreRootUpdate(DecisionTreeOption<StoreInfo> option) {
-		DecisionTreeHelperOption<StoreInfo> helperOption = new DecisionTreeHelperOption<>();
+	public StoreRootUpdate(DeciTreeOption<StoreInfo> option) {
+		DeciTreeHelperOption<StoreInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
@@ -32,12 +32,12 @@ public final class StoreRootUpdate implements DecisionTree<StoreInfo> {
 		helperOption.schemaName = option.schemaName;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		
-		tree = new DecisionTreeHelper<>(helperOption);
+		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
 	
-	private ModelChecker<StoreInfo> buildDecisionChecker(DecisionTreeOption<StoreInfo> option) {
+	private ModelChecker<StoreInfo> buildDecisionChecker(DeciTreeOption<StoreInfo> option) {
 		final boolean EXIST_ON_DB = true;			
 		final boolean KEY_NOT_NULL = true;	
 		
@@ -68,8 +68,8 @@ public final class StoreRootUpdate implements DecisionTree<StoreInfo> {
 	
 	
 	
-	private List<DecisionAction<StoreInfo>> buildActionsOnPassed(DecisionTreeOption<StoreInfo> option) {
-		List<DecisionAction<StoreInfo>> actions = new ArrayList<>();
+	private List<DeciAction<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
+		List<DeciAction<StoreInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionNodeUpdate(option));	
 		return actions;
@@ -83,13 +83,13 @@ public final class StoreRootUpdate implements DecisionTree<StoreInfo> {
 		
 
 	
-	@Override public DecisionChoice getDecisionMade() {
+	@Override public DeciChoice getDecisionMade() {
 		return tree.getDecisionMade();
 	}
 	
 	
 	
-	@Override public DecisionResult<StoreInfo> getDecisionResult() {
+	@Override public DeciResult<StoreInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
@@ -98,11 +98,11 @@ public final class StoreRootUpdate implements DecisionTree<StoreInfo> {
 	
 	
 	
-	private static class ActionNodeUpdate implements DecisionAction<StoreInfo> {
-		DecisionTree<StoreInfo> treeHelper;
+	private static class ActionNodeUpdate implements DeciAction<StoreInfo> {
+		DeciTree<StoreInfo> treeHelper;
 		
 		
-		public ActionNodeUpdate(DecisionTreeOption<StoreInfo> option) {
+		public ActionNodeUpdate(DeciTreeOption<StoreInfo> option) {
 			treeHelper = new StoreNodeUpdateL1(option);
 		}
 		
@@ -110,13 +110,13 @@ public final class StoreRootUpdate implements DecisionTree<StoreInfo> {
 		
 		@Override public boolean executeAction() {			
 			  treeHelper.makeDecision();
-			  DecisionResult<StoreInfo> treeResult = treeHelper.getDecisionResult();
+			  DeciResult<StoreInfo> treeResult = treeHelper.getDecisionResult();
 			  return treeResult.hasSuccessfullyFinished();
 		}
 		
 		
 		
-		@Override public DecisionResult<StoreInfo> getDecisionResult() {
+		@Override public DeciResult<StoreInfo> getDecisionResult() {
 			return treeHelper.getDecisionResult();
 		}
 	}

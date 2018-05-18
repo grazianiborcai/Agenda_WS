@@ -10,23 +10,23 @@ import br.com.gda.business.employee.model.checker.CheckerEmpWtimeSoftDelete;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionAction;
-import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
-import br.com.gda.model.decisionTree.DecisionChoice;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeHelper;
-import br.com.gda.model.decisionTree.DecisionTreeHelperOption;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciChoice;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeHelper;
+import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
-	private DecisionTree<EmpWTimeInfo> tree;
+final class EmpWtimeNodeInsOrUpd implements DeciTree<EmpWTimeInfo> {
+	private DeciTree<EmpWTimeInfo> tree;
 	
 	
-	public EmpWtimeNodeInsOrUpd(DecisionTreeOption<EmpWTimeInfo> option) {
-		DecisionTreeHelperOption<EmpWTimeInfo> helperOption = new DecisionTreeHelperOption<>();
+	public EmpWtimeNodeInsOrUpd(DeciTreeOption<EmpWTimeInfo> option) {
+		DeciTreeHelperOption<EmpWTimeInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
@@ -35,12 +35,12 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
-		tree = new DecisionTreeHelper<>(helperOption);
+		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
 	
-	private ModelChecker<EmpWTimeInfo> buildDecisionChecker(DecisionTreeOption<EmpWTimeInfo> option) {
+	private ModelChecker<EmpWTimeInfo> buildDecisionChecker(DeciTreeOption<EmpWTimeInfo> option) {
 		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpWTimeInfo> checker;
 		
@@ -57,8 +57,8 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private List<DecisionAction<EmpWTimeInfo>> buildActionsOnPassed(DecisionTreeOption<EmpWTimeInfo> option) {
-		List<DecisionAction<EmpWTimeInfo>> actions = new ArrayList<>();
+	private List<DeciAction<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
+		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionInsert(option));
 		return actions;
@@ -66,8 +66,8 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private List<DecisionAction<EmpWTimeInfo>> buildActionsOnFailed(DecisionTreeOption<EmpWTimeInfo> option) {
-		List<DecisionAction<EmpWTimeInfo>> actions = new ArrayList<>();
+	private List<DeciAction<EmpWTimeInfo>> buildActionsOnFailed(DeciTreeOption<EmpWTimeInfo> option) {
+		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionUpdate(option));
 		return actions;
@@ -81,13 +81,13 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 		
 
 	
-	@Override public DecisionChoice getDecisionMade() {
+	@Override public DeciChoice getDecisionMade() {
 		return tree.getDecisionMade();
 	}
 	
 	
 	
-	@Override public DecisionResult<EmpWTimeInfo> getDecisionResult() {
+	@Override public DeciResult<EmpWTimeInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
@@ -96,18 +96,18 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private static class ActionInsert implements DecisionAction<EmpWTimeInfo> {
-		DecisionAction<EmpWTimeInfo> actionHelper;
+	private static class ActionInsert implements DeciAction<EmpWTimeInfo> {
+		DeciAction<EmpWTimeInfo> actionHelper;
 		
 		
-		public ActionInsert(DecisionTreeOption<EmpWTimeInfo> option) {
+		public ActionInsert(DeciTreeOption<EmpWTimeInfo> option) {
 			SqlStmtExec<EmpWTimeInfo> sqlStmtExecutor = buildStmtExec(option);
-			actionHelper = new DecisionActionStmtHelper<>(sqlStmtExecutor);
+			actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
 		}
 		
 		
 		
-		private SqlStmtExec<EmpWTimeInfo> buildStmtExec(DecisionTreeOption<EmpWTimeInfo> option) {
+		private SqlStmtExec<EmpWTimeInfo> buildStmtExec(DeciTreeOption<EmpWTimeInfo> option) {
 			List<SqlStmtExecOption<EmpWTimeInfo>> stmtExecOptions = new ArrayList<>();			
 			
 			for(EmpWTimeInfo eachRecord : option.recordInfos) {
@@ -129,7 +129,7 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 		
 		
 		
-		@Override public DecisionResult<EmpWTimeInfo> getDecisionResult() {
+		@Override public DeciResult<EmpWTimeInfo> getDecisionResult() {
 			return actionHelper.getDecisionResult();
 		}
 	}
@@ -139,18 +139,18 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private static class ActionUpdate implements DecisionAction<EmpWTimeInfo> {
-		DecisionAction<EmpWTimeInfo> actionHelper;
+	private static class ActionUpdate implements DeciAction<EmpWTimeInfo> {
+		DeciAction<EmpWTimeInfo> actionHelper;
 		
 		
-		public ActionUpdate(DecisionTreeOption<EmpWTimeInfo> option) {
+		public ActionUpdate(DeciTreeOption<EmpWTimeInfo> option) {
 			SqlStmtExec<EmpWTimeInfo> sqlStmtExecutor = buildStmtExec(option);
-			actionHelper = new DecisionActionStmtHelper<>(sqlStmtExecutor);
+			actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
 		}
 		
 		
 		
-		private SqlStmtExec<EmpWTimeInfo> buildStmtExec(DecisionTreeOption<EmpWTimeInfo> option) {
+		private SqlStmtExec<EmpWTimeInfo> buildStmtExec(DeciTreeOption<EmpWTimeInfo> option) {
 			List<SqlStmtExecOption<EmpWTimeInfo>> stmtExecOptions = new ArrayList<>();			
 			
 			for(EmpWTimeInfo eachRecord : option.recordInfos) {
@@ -172,7 +172,7 @@ final class EmpWtimeNodeInsOrUpd implements DecisionTree<EmpWTimeInfo> {
 		
 		
 		
-		@Override public DecisionResult<EmpWTimeInfo> getDecisionResult() {
+		@Override public DeciResult<EmpWTimeInfo> getDecisionResult() {
 			return actionHelper.getDecisionResult();
 		}
 	}

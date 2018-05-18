@@ -1,16 +1,14 @@
 package br.com.gda.business.masterData.info;
 
-import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 
-public final class PositionInfo implements Cloneable {
-	public long codPosition;
-	public String txtPosition;
+public final class MatUnitInfo implements Cloneable {
+	public String codUnit;
+	public String txtUnit;
 	public String codLanguage;
 	
 	
-	public PositionInfo() {
-		this.codPosition = DefaultValue.number();
+	public MatUnitInfo() {
 		this.codLanguage = Language.getDefaultLanguage();
 	}
 	

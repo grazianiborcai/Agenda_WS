@@ -7,19 +7,19 @@ import javax.ws.rs.core.Response;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelChecker;
 
-public final class DecisionTreeHelper<T> implements DecisionTree<T> {
+public final class DeciTreeHelper<T> implements DeciTree<T> {
 	private final boolean RESULT_SUCCESS = true;
 	private final boolean RESULT_FAILED = false;
 	
 	private List<T> recordInfos;
 	private ModelChecker<T> checker;
-	private DecisionChoice decisionChoice;
-	private DecisionResultHelper<T> decisionResult;
-	private List<DecisionAction<T>> actionsOnPassed;
-	private List<DecisionAction<T>> actionsOnFailed;
+	private DeciChoice decisionChoice;
+	private DeciResultHelper<T> decisionResult;
+	private List<DeciAction<T>> actionsOnPassed;
+	private List<DeciAction<T>> actionsOnFailed;
 	
 
-	public DecisionTreeHelper(DecisionTreeHelperOption<T> option) {
+	public DeciTreeHelper(DeciTreeHelperOption<T> option) {
 		checkArgument(option);
 		
 		this.checker = option.visitorChecker;
@@ -27,12 +27,12 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 		this.actionsOnPassed = option.actionsOnPassed;
 		this.actionsOnFailed = option.actionsOnFailed;
 		this.decisionChoice = null;
-		this.decisionResult = new DecisionResultHelper<>();
+		this.decisionResult = new DeciResultHelper<>();
 	}
 	
 	
 	
-	private void checkArgument(DecisionTreeHelperOption<T> option) {
+	private void checkArgument(DeciTreeHelperOption<T> option) {
 		if (option == null)
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
@@ -77,7 +77,7 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	
 		
 	private void onPassed() {
-		this.decisionChoice = DecisionChoice.PASSED;		
+		this.decisionChoice = DeciChoice.PASSED;		
 		this.decisionResult.finishedWithSuccess = RESULT_SUCCESS;
 		executeDecisionAction(this.actionsOnPassed);
 	}
@@ -85,7 +85,7 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	
 	
 	private void onFailed() {
-		this.decisionChoice = DecisionChoice.FAILED;
+		this.decisionChoice = DeciChoice.FAILED;
 		this.decisionResult.finishedWithSuccess = RESULT_FAILED;
 		buildFailureMessage();
 		executeDecisionAction(this.actionsOnFailed);		
@@ -100,13 +100,13 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	
 	
 	
-	private void executeDecisionAction(List<DecisionAction<T>> decisionActions) {
+	private void executeDecisionAction(List<DeciAction<T>> decisionActions) {
 		if (decisionActions == null)
 			return;
 			
-		for (DecisionAction<T> eachAction : decisionActions) {
+		for (DeciAction<T> eachAction : decisionActions) {
 			eachAction.executeAction();
-			DecisionResult<T> actionResult = eachAction.getDecisionResult();		
+			DeciResult<T> actionResult = eachAction.getDecisionResult();		
 			buildResultFromAction(actionResult);
 			
 			if (actionResult.hasSuccessfullyFinished() == RESULT_FAILED)
@@ -116,7 +116,7 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	
 	
 	
-	private void buildResultFromAction(DecisionResult<T> decisionActionResult) {
+	private void buildResultFromAction(DeciResult<T> decisionActionResult) {
 		this.decisionResult.finishedWithSuccess = decisionActionResult.hasSuccessfullyFinished();
 		if (this.decisionResult.finishedWithSuccess == RESULT_FAILED) {
 			this.decisionResult.failureCode = decisionActionResult.getFailureCode();
@@ -141,13 +141,13 @@ public final class DecisionTreeHelper<T> implements DecisionTree<T> {
 	
 	
 	
-	public DecisionChoice getDecisionMade() {
+	public DeciChoice getDecisionMade() {
 		return this.decisionChoice;
 	}
 
 
 	
-	public DecisionResult<T> getDecisionResult() {
+	public DeciResult<T> getDecisionResult() {
 		return this.decisionResult;
 	}
 }

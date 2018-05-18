@@ -4,24 +4,24 @@ import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.masterData.info.PositionInfo;
-import br.com.gda.business.masterData.model.decisionTree.PositionRootSelect;
+import br.com.gda.business.masterData.info.EmpPositionInfo;
+import br.com.gda.business.masterData.model.decisionTree.EmpPositionRootSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
 import br.com.gda.model.ModelHelper;
 import br.com.gda.model.ModelOption;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeFactory;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeFactory;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class PositionModelSelect implements Model {
-	private ModelHelper<PositionInfo> helper;
+public final class EmpPositionModelSelect implements Model {
+	private ModelHelper<EmpPositionInfo> helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public PositionModelSelect(PositionInfo recordInfo) {
+	public EmpPositionModelSelect(EmpPositionInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class PositionModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(PositionInfo recordInfo) {
-		ModelOption<PositionInfo> helperOption = new ModelOption<>();
+	private void buildHelper(EmpPositionInfo recordInfo) {
+		ModelOption<EmpPositionInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PositionInfo.class;
+		helperOption.infoRecordClass = EmpPositionInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class PositionModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DecisionTreeFactory<PositionInfo> {		
-		@Override public DecisionTree<PositionInfo> getDecisionTree(DecisionTreeOption<PositionInfo> option) {
-			return new PositionRootSelect(option);
+	private static class TreeFactory implements DeciTreeFactory<EmpPositionInfo> {		
+		@Override public DeciTree<EmpPositionInfo> getDecisionTree(DeciTreeOption<EmpPositionInfo> option) {
+			return new EmpPositionRootSelect(option);
 		}		
 	
 	}

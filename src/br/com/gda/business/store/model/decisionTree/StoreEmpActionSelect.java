@@ -5,25 +5,25 @@ import java.util.List;
 
 import br.com.gda.business.store.dao.StoreEmpStmtExecSelect;
 import br.com.gda.business.store.info.StoreEmpInfo;
-import br.com.gda.model.decisionTree.DecisionAction;
-import br.com.gda.model.decisionTree.DecisionActionStmtHelper;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class StoreEmpActionSelect implements DecisionAction<StoreEmpInfo> {
-	DecisionAction<StoreEmpInfo> actionHelper;
+public final class StoreEmpActionSelect implements DeciAction<StoreEmpInfo> {
+	DeciAction<StoreEmpInfo> actionHelper;
 	
 	
-	public StoreEmpActionSelect(DecisionTreeOption<StoreEmpInfo> option) {
+	public StoreEmpActionSelect(DeciTreeOption<StoreEmpInfo> option) {
 		SqlStmtExec<StoreEmpInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DecisionActionStmtHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private SqlStmtExec<StoreEmpInfo> buildStmtExec(DecisionTreeOption<StoreEmpInfo> option) {
+	private SqlStmtExec<StoreEmpInfo> buildStmtExec(DeciTreeOption<StoreEmpInfo> option) {
 		List<SqlStmtExecOption<StoreEmpInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(StoreEmpInfo eachRecord : option.recordInfos) {
@@ -45,7 +45,7 @@ public final class StoreEmpActionSelect implements DecisionAction<StoreEmpInfo> 
 	
 	
 	
-	@Override public DecisionResult<StoreEmpInfo> getDecisionResult() {
+	@Override public DeciResult<StoreEmpInfo> getDecisionResult() {
 		return actionHelper.getDecisionResult();
 	}
 }

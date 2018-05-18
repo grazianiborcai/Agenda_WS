@@ -12,10 +12,10 @@ import br.com.gda.common.DbConnection;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.json.JsonResponseMaker;
 import br.com.gda.json.JsonToList;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeFactory;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeFactory;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public class ModelHelper<T> implements Model {
 	private final boolean RESULT_FAILED = false;
@@ -25,12 +25,12 @@ public class ModelHelper<T> implements Model {
 	private Connection conn;
 	private String schemaName;
 	private Response response;
-	private DecisionTree<T> decisionTree;
-	private List<DecisionResult<T>> treeResults;
-	private DecisionTreeFactory<T> treeFactory;
+	private DeciTree<T> decisionTree;
+	private List<DeciResult<T>> treeResults;
+	private DeciTreeFactory<T> treeFactory;
 	private Iterator<T> infoRecordItr;
 	private T currentRecordInfo;
-	private DecisionResult<T> currentTreeResult;
+	private DeciResult<T> currentTreeResult;
 	
 	
 	public ModelHelper(ModelOption<T> option, String incomingData) {		
@@ -98,7 +98,7 @@ public class ModelHelper<T> implements Model {
 	
 	
 	private void buildDecisionTree() {
-		DecisionTreeOption<T> treeOption = new DecisionTreeOption<>();
+		DeciTreeOption<T> treeOption = new DeciTreeOption<>();
 		
 		List<T> currentRecordInfos = new ArrayList<>();
 		currentRecordInfos.add(this.currentRecordInfo);
@@ -176,7 +176,7 @@ public class ModelHelper<T> implements Model {
 	private void makeResponseSuccess() {
 		List<T> allResultset = new ArrayList<>();
 		
-		for (DecisionResult<T> eachTreeResult : this.treeResults) {
+		for (DeciResult<T> eachTreeResult : this.treeResults) {
 			if (eachTreeResult.hasResultset()) {
 				List<T> eachResultset = eachTreeResult.getResultset();
 				allResultset.addAll(eachResultset);

@@ -11,9 +11,9 @@ import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
 import br.com.gda.model.ModelHelper;
 import br.com.gda.model.ModelOption;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeFactory;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeFactory;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class EmpWtimeModelSelect implements Model {
 	private ModelHelper<EmpWTimeInfo> helper;
@@ -63,8 +63,8 @@ public final class EmpWtimeModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DecisionTreeFactory<EmpWTimeInfo> {		
-		@Override public DecisionTree<EmpWTimeInfo> getDecisionTree(DecisionTreeOption<EmpWTimeInfo> option) {
+	private static class TreeFactory implements DeciTreeFactory<EmpWTimeInfo> {		
+		@Override public DeciTree<EmpWTimeInfo> getDecisionTree(DeciTreeOption<EmpWTimeInfo> option) {
 			return new EmpWtimeRootSelect(option);
 		}		
 	

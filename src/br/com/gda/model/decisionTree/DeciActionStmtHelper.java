@@ -4,15 +4,15 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.sql.SqlStmtExec;
 
-public final class DecisionActionStmtHelper<T> implements DecisionAction<T> {
+public final class DeciActionStmtHelper<T> implements DeciAction<T> {
 	private SqlStmtExec<T> sqlStmtExecutor;
-	private DecisionResultHelper<T> decisionResult;
+	private DeciResultHelper<T> decisionResult;
 	
-	public DecisionActionStmtHelper(SqlStmtExec<T> sqlStmtExecutor) {
+	public DeciActionStmtHelper(SqlStmtExec<T> sqlStmtExecutor) {
 		checkArgument(sqlStmtExecutor);
 		
 		this.sqlStmtExecutor = sqlStmtExecutor;
-		decisionResult = new DecisionResultHelper<>();
+		decisionResult = new DeciResultHelper<>();
 	}
 	
 	
@@ -69,7 +69,7 @@ public final class DecisionActionStmtHelper<T> implements DecisionAction<T> {
 	
 	
 	
-	@Override public DecisionResult<T> getDecisionResult() {
+	@Override public DeciResult<T> getDecisionResult() {
 		return this.decisionResult;
 	}
 }

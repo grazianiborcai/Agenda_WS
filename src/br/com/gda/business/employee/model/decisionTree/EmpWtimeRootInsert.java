@@ -10,32 +10,32 @@ import br.com.gda.business.employee.model.checker.CheckerEmpWtimeMandatoryWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
-import br.com.gda.model.decisionTree.DecisionAction;
-import br.com.gda.model.decisionTree.DecisionChoice;
-import br.com.gda.model.decisionTree.DecisionResult;
-import br.com.gda.model.decisionTree.DecisionTree;
-import br.com.gda.model.decisionTree.DecisionTreeHelper;
-import br.com.gda.model.decisionTree.DecisionTreeHelperOption;
-import br.com.gda.model.decisionTree.DecisionTreeOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciChoice;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeHelper;
+import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
-	private DecisionTree<EmpWTimeInfo> tree;
+public final class EmpWtimeRootInsert implements DeciTree<EmpWTimeInfo> {
+	private DeciTree<EmpWTimeInfo> tree;
 	
 	
-	public EmpWtimeRootInsert(DecisionTreeOption<EmpWTimeInfo> option) {
-		DecisionTreeHelperOption<EmpWTimeInfo> helperOption = new DecisionTreeHelperOption<>();
+	public EmpWtimeRootInsert(DeciTreeOption<EmpWTimeInfo> option) {
+		DeciTreeHelperOption<EmpWTimeInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		
-		tree = new DecisionTreeHelper<>(helperOption);
+		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
 	
-	private ModelChecker<EmpWTimeInfo> buildDecisionChecker(DecisionTreeOption<EmpWTimeInfo> option) {
+	private ModelChecker<EmpWTimeInfo> buildDecisionChecker(DeciTreeOption<EmpWTimeInfo> option) {
 		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpWTimeInfo> checker;
 		
@@ -67,8 +67,8 @@ public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private List<DecisionAction<EmpWTimeInfo>> buildActionsOnPassed(DecisionTreeOption<EmpWTimeInfo> option) {
-		List<DecisionAction<EmpWTimeInfo>> actions = new ArrayList<>();
+	private List<DeciAction<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
+		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionInsertOrUpdate(option));
 		actions.add(new EmpWtimeActionSelect(option));		
@@ -83,13 +83,13 @@ public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
 		
 
 	
-	@Override public DecisionChoice getDecisionMade() {
+	@Override public DeciChoice getDecisionMade() {
 		return tree.getDecisionMade();
 	}
 	
 	
 	
-	@Override public DecisionResult<EmpWTimeInfo> getDecisionResult() {
+	@Override public DeciResult<EmpWTimeInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
@@ -99,11 +99,11 @@ public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
 	
 	
 	
-	private static class ActionInsertOrUpdate implements DecisionAction<EmpWTimeInfo> {
-		private DecisionTree<EmpWTimeInfo> forwardTree;
+	private static class ActionInsertOrUpdate implements DeciAction<EmpWTimeInfo> {
+		private DeciTree<EmpWTimeInfo> forwardTree;
 		
 		
-		public ActionInsertOrUpdate(DecisionTreeOption<EmpWTimeInfo> option) {
+		public ActionInsertOrUpdate(DeciTreeOption<EmpWTimeInfo> option) {
 			forwardTree = new EmpWtimeNodeInsOrUpd(option);
 		}
 		
@@ -116,7 +116,7 @@ public final class EmpWtimeRootInsert implements DecisionTree<EmpWTimeInfo> {
 		
 		
 		
-		@Override public DecisionResult<EmpWTimeInfo> getDecisionResult() {
+		@Override public DeciResult<EmpWTimeInfo> getDecisionResult() {
 			return forwardTree.getDecisionResult();
 		}
 	}
