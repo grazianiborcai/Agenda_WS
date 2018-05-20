@@ -10,13 +10,17 @@ import javax.ws.rs.core.Response;
 
 import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.business.masterData.info.BusinessInfo;
+import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.EmpPosInfo;
+import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.model.MatUnitModelSelect;
 import br.com.gda.business.masterData.model.BusinessModelSelect;
+import br.com.gda.business.masterData.model.CurrencyModelSelect;
 import br.com.gda.business.masterData.model.EmpPosModelSelect;
+import br.com.gda.business.masterData.model.LanguModelSelect;
 import br.com.gda.business.masterData.model.MatCategModelSelect;
 import br.com.gda.business.masterData.model.MatGroupModelSelect;
 import br.com.gda.business.masterData.model.MatTypeModelSelect;
@@ -31,6 +35,8 @@ public final class MasterDataResource {
 	private static final String SELECT_MATERIAL_CATEG = "/selectMatCategory";
 	private static final String SELECT_MATERIAL_GROUP = "/selectMatGroup";
 	private static final String SELECT_BUSINESS_AREA = "/selectBusinessArea";
+	private static final String SELECT_CURRENCY = "/selectCurrency";
+	private static final String SELECT_LANGUAGE = "/selectLanguage";
 	
 	
 	@GET
@@ -131,6 +137,38 @@ public final class MasterDataResource {
 		recordInfo.codBusiness = codBusiness;
 		
 		Model modelSelect = new BusinessModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_CURRENCY)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectCurrency(@HeaderParam("codLanguage") String codLanguage,
+			                       @HeaderParam("codCurr") String codCurr){
+		
+		CurrencyInfo recordInfo = new CurrencyInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codCurr = codCurr;
+		
+		Model modelSelect = new CurrencyModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_LANGUAGE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectLangu(@HeaderParam("codLanguage") String codLanguage){
+		
+		LanguInfo recordInfo = new LanguInfo();
+		recordInfo.codLanguage = codLanguage;
+		
+		Model modelSelect = new LanguModelSelect(recordInfo);
 		modelSelect.executeRequest();
 		return modelSelect.getResponse();
 	}

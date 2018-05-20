@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.MatUnitInfo;
+import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.sql.DbTable;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
@@ -20,28 +20,28 @@ import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-public final class MatUnitSelect implements SqlStmt<MatUnitInfo> {
-	private final String LT_UNIT = DbTable.MATERIAL_UNIT_TABLE;
-	private final String RT_UNIT_TEXT = DbTable.MATERIAL_UNIT_TEXT_TABLE;
+public final class CurrencySelect implements SqlStmt<CurrencyInfo> {
+	private final String LT_CURRENCY = DbTable.CURRENCY_TABLE;
+	private final String RT_CURRENCY_TEXT = DbTable.CURRENCY_TEXT_TABLE;
 	
-	private SqlStmt<MatUnitInfo> stmtSql;
-	private SqlStmtOption<MatUnitInfo> stmtOption;
+	private SqlStmt<CurrencyInfo> stmtSql;
+	private SqlStmtOption<CurrencyInfo> stmtOption;
 	
 	
 	
-	public MatUnitSelect(Connection conn, MatUnitInfo recordInfo, String schemaName) {
+	public CurrencySelect(Connection conn, CurrencyInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, MatUnitInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, CurrencyInfo recordInfo, String schemaName) {
 		this.stmtOption = new SqlStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_UNIT;
+		this.stmtOption.tableName = LT_CURRENCY;
 		this.stmtOption.columns = MasterDataDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -61,7 +61,7 @@ public final class MatUnitSelect implements SqlStmt<MatUnitInfo> {
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DUMMY_CLAUSE_ALLOWED;
 		
-		SqlStmtWhere whereClause = new MatUnitWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		SqlStmtWhere whereClause = new CurrencyWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -79,17 +79,17 @@ public final class MatUnitSelect implements SqlStmt<MatUnitInfo> {
 		List<SqlJoinColumn> joinColumns = new ArrayList<>();
 		
 		SqlJoinColumn oneColumn = new SqlJoinColumn();
-		oneColumn.leftTableName = LT_UNIT;
-		oneColumn.leftColumnName = "Unit";
-		oneColumn.rightColumnName = "Unit";
+		oneColumn.leftTableName = LT_CURRENCY;
+		oneColumn.leftColumnName = "Cod_curr";
+		oneColumn.rightColumnName = "Cod_curr";
 		joinColumns.add(oneColumn);
 		
 		
 		SqlJoin join = new SqlJoin();
-		join.rightTableName = RT_UNIT_TEXT;
+		join.rightTableName = RT_CURRENCY_TEXT;
 		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RT_UNIT_TEXT);
+		join.constraintClause = buildJoinConstraintText(RT_CURRENCY_TEXT);
 		
 		return join;
 	}
@@ -138,33 +138,34 @@ public final class MatUnitSelect implements SqlStmt<MatUnitInfo> {
 
 	
 	
-	@Override public List<MatUnitInfo> getResultset() {
+	@Override public List<CurrencyInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public SqlStmt<MatUnitInfo> getNewInstance() {
-		return new MatUnitSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public SqlStmt<CurrencyInfo> getNewInstance() {
+		return new CurrencySelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements SqlResultParser<MatUnitInfo> {
+	private class ResultParser implements SqlResultParser<CurrencyInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String UNIT_TEXT_COL = DbTable.MATERIAL_UNIT_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = DbTable.MATERIAL_UNIT_TEXT_TABLE + "." + "Language";
+		private final String CURRENCY_TEXT_COL = DbTable.CURRENCY_TEXT_TABLE + "." + "Name";
+		private final String LANGU_COL = DbTable.CURRENCY_TEXT_TABLE + "." + "Language";
 		
-		@Override public List<MatUnitInfo> parseResult(ResultSet stmtResult) throws SQLException {
-			List<MatUnitInfo> finalResult = new ArrayList<>();
+		@Override public List<CurrencyInfo> parseResult(ResultSet stmtResult) throws SQLException {
+			List<CurrencyInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 				return finalResult;
 		
 			do {				
-				MatUnitInfo dataInfo = new MatUnitInfo();
-				dataInfo.codUnit = stmtResult.getString("Unit");
-				dataInfo.txtUnit = stmtResult.getString(UNIT_TEXT_COL);
+				CurrencyInfo dataInfo = new CurrencyInfo();
+				dataInfo.codCurr = stmtResult.getString("Cod_curr");
+				dataInfo.symbolCurr = stmtResult.getString("Symbol");
+				dataInfo.txtCurr = stmtResult.getString(CURRENCY_TEXT_COL);
 				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				
 				finalResult.add(dataInfo);				

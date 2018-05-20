@@ -20,7 +20,7 @@ import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpPosSelect implements SqlStmt<EmpPosInfo> {
+public final class EmpPosSelect implements SqlStmt<EmpPosInfo> {
 	private final String LEFT_TABLE_POSITION = DbTable.POSITION_TABLE;
 	private final String RIGHT_TABLE_POSITION_TEXT = DbTable.POSITION_TEXT_TABLE;
 	

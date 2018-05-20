@@ -47,6 +47,8 @@ public final class MasterDataDbTableColumn {
 		materialCategTable();
 		materialGroupTable();
 		businessAreaTable();
+		currencyTable();
+		languageTable();
 	}
 	
 	
@@ -271,6 +273,76 @@ public final class MasterDataDbTableColumn {
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private static void currencyTable() {
+		final String TABLE_NAME = DbTable.CURRENCY_TABLE;
+		
+		SqlColumn oneColumn;
+		List<SqlColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Cod_curr";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Symbol";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.CURRENCY_TEXT_TABLE;
+		oneColumn.columnName = "Language";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.CURRENCY_TEXT_TABLE;
+		oneColumn.columnName = "Name";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private static void languageTable() {
+		final String TABLE_NAME = DbTable.LANGUAGE_TABLE;
+		
+		SqlColumn oneColumn;
+		List<SqlColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Language";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Name";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

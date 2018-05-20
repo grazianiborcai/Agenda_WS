@@ -37,7 +37,6 @@ public final class MatInfo implements Cloneable {
 		this.codGroup = DefaultValue.number();		
 		this.codBusiness = DefaultValue.number();	
 		this.codLanguage = Language.getDefaultLanguage();
-		this.codOwner = DefaultValue.number();
 	}
 	
 	
