@@ -1,28 +1,28 @@
-package br.com.gda.business.store.dao;
+package br.com.gda.business.material.dao;
 
 import java.util.List;
 
-import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilder;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class StoreStmtWhere implements SqlStmtWhere {
+public final class MatStmtWhere implements SqlStmtWhere {
 	private String whereClause;	
 	
 	
-	public StoreStmtWhere(SqlWhereBuilderOption whereOption, String tableName, StoreInfo recordInfo) {
+	public MatStmtWhere(SqlWhereBuilderOption whereOption, String tableName, MatInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, StoreInfo recordInfo) {
+	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, MatInfo recordInfo) {
 		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);
 		
-		List<SqlColumn> columns = StoreDbTableColumn.getTableColumnsAsList(tableName);
+		List<SqlColumn> columns = MatDbTableColumn.getTableColumnsAsList(tableName);
 		
 		for (SqlColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
@@ -30,12 +30,16 @@ final class StoreStmtWhere implements SqlStmtWhere {
 					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
 					break;
 					
-				case "Cod_store" :
-					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codStore));
+				case "Cod_material" :
+					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codMat));
 					break;
 					
-				case "CNPJ" :
-					builder.appendClauseWithAnd(eachColumn, recordInfo.cnpj);
+				case "Cod_type" :
+					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codType));
+					break;
+					
+				case "Cod_group" :
+					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codGroup));
 					break;
 					
 				case "record_mode" :

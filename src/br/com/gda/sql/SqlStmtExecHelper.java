@@ -1,6 +1,8 @@
 package br.com.gda.sql;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +14,57 @@ public final class SqlStmtExecHelper<T> implements SqlStmtExec<T> {
 	private List<T> resultset = new ArrayList<>();
 	
 	
+	
+	public SqlStmtExecHelper(List<SqlStmtExecOption<T>> options, Class<? extends SqlStmt<T>> classOfStmt, Class<T> classOfT) {
+		if (options == null) 
+			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
+		
+		if (classOfStmt == null) 
+			throw new NullPointerException("classOfStmt" + SystemMessage.NULL_ARGUMENT);
+		
+		if (classOfT == null) 
+			throw new NullPointerException("classOfT" + SystemMessage.NULL_ARGUMENT);
+		
+		if (options.isEmpty())
+			throw new IllegalArgumentException("options" + SystemMessage.EMPTY_ARGUMENT);
+		
+		
+		buildStmt(options, classOfStmt, classOfT);
+	}
+	
+	
+	
+	private void buildStmt(List<SqlStmtExecOption<T>> options, Class<? extends SqlStmt<T>> classOfStmt, Class<T> classOfT) {
+		for (SqlStmtExecOption<T> eachOption : options) {
+			SqlStmt<T> sqlStatement = getNewInstanceOfStmt(eachOption, classOfStmt, classOfT);
+			this.sqlStatements.add(sqlStatement);
+		}
+		
+		
+		if (sqlStatements.isEmpty())
+			throw new IllegalArgumentException("sqlStatements" + SystemMessage.EMPTY_ARGUMENT);
+	}
+	
+	
+	
+	private SqlStmt<T> getNewInstanceOfStmt(SqlStmtExecOption<T> option, Class<? extends SqlStmt<T>> classOfStmt, Class<T> classOfT) {
+		try {	
+			Constructor<? extends SqlStmt<T>> constructor = classOfStmt.getConstructor(Connection.class, classOfT, String.class);
+			return (SqlStmt<T>) constructor.newInstance(option.conn, option.recordInfo, option.schemaName); 
+			
+		} catch (Exception e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
+	
+	
+	//TODO: remover esse constructor e adaptar classes clientes que a utilizam
 	public SqlStmtExecHelper(List<SqlStmt<T>> sqlStatements) {
 		if (sqlStatements == null) 
 			throw new NullPointerException("sqlStatements" + SystemMessage.NULL_ARGUMENT);
 		
 		if (sqlStatements.isEmpty())
-			throw new IllegalArgumentException("recordInfos" + SystemMessage.EMPTY_ARGUMENT);
+			throw new IllegalArgumentException("sqlStatements" + SystemMessage.EMPTY_ARGUMENT);
 
 		this.sqlStatements = sqlStatements;	
 	}
@@ -68,8 +115,7 @@ public final class SqlStmtExecHelper<T> implements SqlStmtExec<T> {
 	
 	
 
-	@Override
-	public List<T> getResultset() {
+	@Override public List<T> getResultset() {
 		try {
 			return tryToGetResultset();
 			

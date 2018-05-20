@@ -4,8 +4,8 @@ import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.masterData.info.EmpPositionInfo;
-import br.com.gda.business.masterData.model.decisionTree.EmpPositionRootSelect;
+import br.com.gda.business.masterData.info.MatGroupInfo;
+import br.com.gda.business.masterData.model.decisionTree.MatGroupRootSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpPositionModelSelect implements Model {
-	private ModelHelper<EmpPositionInfo> helper;
+public final class MatGroupModelSelect implements Model {
+	private ModelHelper<MatGroupInfo> helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public EmpPositionModelSelect(EmpPositionInfo recordInfo) {
+	public MatGroupModelSelect(MatGroupInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class EmpPositionModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(EmpPositionInfo recordInfo) {
-		ModelOption<EmpPositionInfo> helperOption = new ModelOption<>();
+	private void buildHelper(MatGroupInfo recordInfo) {
+		ModelOption<MatGroupInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpPositionInfo.class;
+		helperOption.infoRecordClass = MatGroupInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class EmpPositionModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<EmpPositionInfo> {		
-		@Override public DeciTree<EmpPositionInfo> getDecisionTree(DeciTreeOption<EmpPositionInfo> option) {
-			return new EmpPositionRootSelect(option);
+	private static class TreeFactory implements DeciTreeFactory<MatGroupInfo> {		
+		@Override public DeciTree<MatGroupInfo> getDecisionTree(DeciTreeOption<MatGroupInfo> option) {
+			return new MatGroupRootSelect(option);
 		}		
 	
 	}

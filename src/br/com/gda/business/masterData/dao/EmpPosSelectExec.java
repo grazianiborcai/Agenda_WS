@@ -4,18 +4,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.EmpPositionInfo;
+import br.com.gda.business.masterData.info.EmpPosInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecHelper;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class EmpPositionStmtExecSelect implements SqlStmtExec<EmpPositionInfo> {
-	private List<SqlStmt<EmpPositionInfo>> sqlStatements;
-	private SqlStmtExec<EmpPositionInfo> helper;
+public final class EmpPosSelectExec implements SqlStmtExec<EmpPosInfo> {
+	private List<SqlStmt<EmpPosInfo>> sqlStatements;
+	private SqlStmtExec<EmpPosInfo> helper;
 	
-	public EmpPositionStmtExecSelect(List<SqlStmtExecOption<EmpPositionInfo>> options) {
+	public EmpPosSelectExec(List<SqlStmtExecOption<EmpPosInfo>> options) {
 		if (options == null) 
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
@@ -28,11 +28,11 @@ public final class EmpPositionStmtExecSelect implements SqlStmtExec<EmpPositionI
 	
 	
 	
-	private void prepareStatement(List<SqlStmtExecOption<EmpPositionInfo>> options) {
+	private void prepareStatement(List<SqlStmtExecOption<EmpPosInfo>> options) {
 		sqlStatements = new ArrayList<>();
 		
-		for (SqlStmtExecOption<EmpPositionInfo> eachOption : options) {
-			SqlStmt<EmpPositionInfo> sqlStatement = new EmpPositionStmtSelect(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
+		for (SqlStmtExecOption<EmpPosInfo> eachOption : options) {
+			SqlStmt<EmpPosInfo> sqlStatement = new EmpPosSelect(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
 			sqlStatements.add(sqlStatement);
 		}
 	}
@@ -51,7 +51,7 @@ public final class EmpPositionStmtExecSelect implements SqlStmtExec<EmpPositionI
 
 	
 	
-	@Override public List<EmpPositionInfo> getResultset() {
+	@Override public List<EmpPosInfo> getResultset() {
 		return helper.getResultset();
 	}
 }

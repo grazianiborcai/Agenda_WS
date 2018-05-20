@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.MatUnitInfo;
+import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.sql.DbTable;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
@@ -17,30 +17,31 @@ import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
+import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-public final class MatUnitStmtSelect implements SqlStmt<MatUnitInfo> {
-	private final String LEFT_TABLE_UNIT = DbTable.MATERIAL_UNIT_TABLE;
-	private final String RIGHT_TABLE_UNIT_TEXT = DbTable.MATERIAL_UNIT_TEXT_TABLE;
+public final class MatCategSelect implements SqlStmt<MatCategInfo> {
+	private final String LT_MAT_CATEG = DbTable.MATERIAL_CATEGORY_TABLE;
+	private final String RT_MAT_CATEG_TEXT = DbTable.MATERIAL_CATEGORY_TEXT_TABLE;
 	
-	private SqlStmt<MatUnitInfo> stmtSql;
-	private SqlStmtOption<MatUnitInfo> stmtOption;
+	private SqlStmt<MatCategInfo> stmtSql;
+	private SqlStmtOption<MatCategInfo> stmtOption;
 	
 	
 	
-	public MatUnitStmtSelect(Connection conn, MatUnitInfo recordInfo, String schemaName) {
+	public MatCategSelect(Connection conn, MatCategInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, MatUnitInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, MatCategInfo recordInfo, String schemaName) {
 		this.stmtOption = new SqlStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LEFT_TABLE_UNIT;
+		this.stmtOption.tableName = LT_MAT_CATEG;
 		this.stmtOption.columns = MasterDataDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -60,7 +61,7 @@ public final class MatUnitStmtSelect implements SqlStmt<MatUnitInfo> {
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DUMMY_CLAUSE_ALLOWED;
 		
-		MatUnitStmtWhere whereClause = new MatUnitStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		SqlStmtWhere whereClause = new MatCategWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -78,17 +79,17 @@ public final class MatUnitStmtSelect implements SqlStmt<MatUnitInfo> {
 		List<SqlJoinColumn> joinColumns = new ArrayList<>();
 		
 		SqlJoinColumn oneColumn = new SqlJoinColumn();
-		oneColumn.leftTableName = LEFT_TABLE_UNIT;
-		oneColumn.leftColumnName = "Unit";
-		oneColumn.rightColumnName = "Unit";
+		oneColumn.leftTableName = LT_MAT_CATEG;
+		oneColumn.leftColumnName = "Cod_category";
+		oneColumn.rightColumnName = "Cod_category";
 		joinColumns.add(oneColumn);
 		
 		
 		SqlJoin join = new SqlJoin();
-		join.rightTableName = RIGHT_TABLE_UNIT_TEXT;
+		join.rightTableName = RT_MAT_CATEG_TEXT;
 		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE_UNIT_TEXT);
+		join.constraintClause = buildJoinConstraintText(RT_MAT_CATEG_TEXT);
 		
 		return join;
 	}
@@ -137,34 +138,34 @@ public final class MatUnitStmtSelect implements SqlStmt<MatUnitInfo> {
 
 	
 	
-	@Override public List<MatUnitInfo> getResultset() {
+	@Override public List<MatCategInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public SqlStmt<MatUnitInfo> getNewInstance() {
-		return new MatUnitStmtSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public SqlStmt<MatCategInfo> getNewInstance() {
+		return new MatCategSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements SqlResultParser<MatUnitInfo> {
+	private class ResultParser implements SqlResultParser<MatCategInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String UNIT_TEXT_COLUMN = DbTable.MATERIAL_UNIT_TEXT_TABLE + "." + "Name";
-		private final String POSITION_LANGU_COLUMN = DbTable.MATERIAL_UNIT_TEXT_TABLE + "." + "Language";
+		private final String CATEG_TEXT_COL = DbTable.MATERIAL_CATEGORY_TEXT_TABLE + "." + "Name";
+		private final String LANGU_COL = DbTable.MATERIAL_CATEGORY_TEXT_TABLE + "." + "Language";
 		
-		@Override public List<MatUnitInfo> parseResult(ResultSet stmtResult) throws SQLException {
-			List<MatUnitInfo> finalResult = new ArrayList<>();
+		@Override public List<MatCategInfo> parseResult(ResultSet stmtResult) throws SQLException {
+			List<MatCategInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 				return finalResult;
 		
 			do {				
-				MatUnitInfo dataInfo = new MatUnitInfo();
-				dataInfo.codUnit = stmtResult.getString("Unit");
-				dataInfo.txtUnit = stmtResult.getString(UNIT_TEXT_COLUMN);
-				dataInfo.codLanguage = stmtResult.getString(POSITION_LANGU_COLUMN);		
+				MatCategInfo dataInfo = new MatCategInfo();
+				dataInfo.codCategory = stmtResult.getInt("Cod_category");
+				dataInfo.txtCategory = stmtResult.getString(CATEG_TEXT_COL);
+				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

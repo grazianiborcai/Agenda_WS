@@ -3,8 +3,8 @@ package br.com.gda.business.masterData.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.EmpPositionInfo;
-import br.com.gda.business.masterData.model.checker.CheckerEmpPositionMandatoryRead;
+import br.com.gda.business.masterData.info.MatCategInfo;
+import br.com.gda.business.masterData.model.checker.CheckerMatCategRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
@@ -15,12 +15,12 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpPositionRootSelect implements DeciTree<EmpPositionInfo> {
-	private DeciTree<EmpPositionInfo> tree;
+public final class MatCategRootSelect implements DeciTree<MatCategInfo> {
+	private DeciTree<MatCategInfo> tree;
 	
 	
-	public EmpPositionRootSelect(DeciTreeOption<EmpPositionInfo> option) {
-		DeciTreeHelperOption<EmpPositionInfo> helperOption = new DeciTreeHelperOption<>();
+	public MatCategRootSelect(DeciTreeOption<MatCategInfo> option) {
+		DeciTreeHelperOption<MatCategInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker();
 		helperOption.recordInfos = option.recordInfos;
@@ -32,11 +32,11 @@ public final class EmpPositionRootSelect implements DeciTree<EmpPositionInfo> {
 	
 	
 	
-	private ModelChecker<EmpPositionInfo> buildDecisionChecker() {
-		List<ModelChecker<EmpPositionInfo>> stack = new ArrayList<>();		
-		ModelChecker<EmpPositionInfo> checker;
+	private ModelChecker<MatCategInfo> buildDecisionChecker() {
+		List<ModelChecker<MatCategInfo>> stack = new ArrayList<>();		
+		ModelChecker<MatCategInfo> checker;
 		
-		checker = new CheckerEmpPositionMandatoryRead();
+		checker = new CheckerMatCategRead();
 		stack.add(checker);
 		
 		return new ModelCheckerStack<>(stack);
@@ -44,10 +44,10 @@ public final class EmpPositionRootSelect implements DeciTree<EmpPositionInfo> {
 	
 	
 	
-	private List<DeciAction<EmpPositionInfo>> buildActionsOnPassed(DeciTreeOption<EmpPositionInfo> option) {
-		List<DeciAction<EmpPositionInfo>> actions = new ArrayList<>();
+	private List<DeciAction<MatCategInfo>> buildActionsOnPassed(DeciTreeOption<MatCategInfo> option) {
+		List<DeciAction<MatCategInfo>> actions = new ArrayList<>();
 		
-		actions.add(new EmpPositionActionSelect(option));
+		actions.add(new MatCategActionSelect(option));
 		return actions;
 	}
 	
@@ -65,7 +65,7 @@ public final class EmpPositionRootSelect implements DeciTree<EmpPositionInfo> {
 	
 	
 	
-	@Override public DeciResult<EmpPositionInfo> getDecisionResult() {
+	@Override public DeciResult<MatCategInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 }

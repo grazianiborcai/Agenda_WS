@@ -3,8 +3,8 @@ package br.com.gda.business.masterData.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.MatUnitInfo;
-import br.com.gda.business.masterData.model.checker.CheckerMatUnitRead;
+import br.com.gda.business.masterData.info.MatGroupInfo;
+import br.com.gda.business.masterData.model.checker.CheckerMatGroupRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
@@ -15,12 +15,12 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class MatUnitRootSelect implements DeciTree<MatUnitInfo> {
-	private DeciTree<MatUnitInfo> tree;
+public final class MatGroupRootSelect implements DeciTree<MatGroupInfo> {
+	private DeciTree<MatGroupInfo> tree;
 	
 	
-	public MatUnitRootSelect(DeciTreeOption<MatUnitInfo> option) {
-		DeciTreeHelperOption<MatUnitInfo> helperOption = new DeciTreeHelperOption<>();
+	public MatGroupRootSelect(DeciTreeOption<MatGroupInfo> option) {
+		DeciTreeHelperOption<MatGroupInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker();
 		helperOption.recordInfos = option.recordInfos;
@@ -32,11 +32,11 @@ public final class MatUnitRootSelect implements DeciTree<MatUnitInfo> {
 	
 	
 	
-	private ModelChecker<MatUnitInfo> buildDecisionChecker() {
-		List<ModelChecker<MatUnitInfo>> stack = new ArrayList<>();		
-		ModelChecker<MatUnitInfo> checker;
+	private ModelChecker<MatGroupInfo> buildDecisionChecker() {
+		List<ModelChecker<MatGroupInfo>> stack = new ArrayList<>();		
+		ModelChecker<MatGroupInfo> checker;
 		
-		checker = new CheckerMatUnitRead();
+		checker = new CheckerMatGroupRead();
 		stack.add(checker);
 		
 		return new ModelCheckerStack<>(stack);
@@ -44,10 +44,10 @@ public final class MatUnitRootSelect implements DeciTree<MatUnitInfo> {
 	
 	
 	
-	private List<DeciAction<MatUnitInfo>> buildActionsOnPassed(DeciTreeOption<MatUnitInfo> option) {
-		List<DeciAction<MatUnitInfo>> actions = new ArrayList<>();
+	private List<DeciAction<MatGroupInfo>> buildActionsOnPassed(DeciTreeOption<MatGroupInfo> option) {
+		List<DeciAction<MatGroupInfo>> actions = new ArrayList<>();
 		
-		actions.add(new MatUnitActionSelect(option));
+		actions.add(new MatGroupActionSelect(option));
 		return actions;
 	}
 	
@@ -65,7 +65,7 @@ public final class MatUnitRootSelect implements DeciTree<MatUnitInfo> {
 	
 	
 	
-	@Override public DeciResult<MatUnitInfo> getDecisionResult() {
+	@Override public DeciResult<MatGroupInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 }

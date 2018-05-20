@@ -1,6 +1,4 @@
-package br.com.gda.resource.legacy;
-
-import java.util.List;
+package br.com.gda.resource;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -10,12 +8,15 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.sun.jersey.multipart.FormDataMultiPart;
 
+import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.material.model.MatModelInsert;
+import br.com.gda.business.material.model.MatModelSelect;
+import br.com.gda.model.Model;
 import br.com.gda.model.legacy.MaterialModel;
 
 @Path("/Material")
@@ -31,10 +32,13 @@ public class MaterialResource {
 	@POST
 	@Path(INSERT_MATERIAL)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertMaterial(String incomingData) {
-
-		return new MaterialModel().insertMaterial(incomingData);
+	public Response insertMaterial(String incomingData) {		
+		
+		Model modelInsert = new MatModelInsert(incomingData);
+		modelInsert.executeRequest();
+		return modelInsert.getResponse();
 	}
+	
 	
 	
 	@POST
@@ -44,6 +48,7 @@ public class MaterialResource {
 
 		return new MaterialModel().updateMaterial(incomingData);
 	}
+	
 	
 	
 	@DELETE
@@ -58,16 +63,23 @@ public class MaterialResource {
 	@GET
 	@Path(SELECT_MATERIAL)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMaterial(@HeaderParam("codOwner") long codOwner,
-								   @HeaderParam("codMaterial") int codMaterial, 
-								   @HeaderParam("language") String language) {
+	public Response selectMaterial(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+								   @HeaderParam("codMaterial") @DefaultValue("-1") long codMat, 
+								   @HeaderParam("codLanguage") String codLanguage) {
 
 
-		Response response = new MaterialModel().selectMaterial(codOwner, codMaterial, language);
-
-		return response;
+		MatInfo recordInfo = new MatInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codMat = codMat;
+		recordInfo.codLanguage = codLanguage;
+		
+		
+		Model modelSelect = new MatModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
 	}
 
+	
 	
 	@POST
 	@Path(INSERT_MATERIAL_WITH_IMAGE)

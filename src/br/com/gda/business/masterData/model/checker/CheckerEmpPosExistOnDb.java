@@ -5,28 +5,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.EmpPositionStmtExecSelect;
-import br.com.gda.business.masterData.info.EmpPositionInfo;
+import br.com.gda.business.masterData.dao.EmpPosSelectExec;
+import br.com.gda.business.masterData.info.EmpPosInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class CheckerEmpPositionExistOnDb extends ModelCheckerTemplate<EmpPositionInfo> {
+public final class CheckerEmpPosExistOnDb extends ModelCheckerTemplate<EmpPosInfo> {
 	private final boolean POSITION_EXIST_ON_DB = true;
 	private final boolean POSITION_NOT_FOUND_ON_DB = false;
 	
 	
-	public CheckerEmpPositionExistOnDb(ModelCheckerOption option) {
+	public CheckerEmpPosExistOnDb(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(EmpPositionInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(EmpPosInfo recordInfo, Connection conn, String schemaName) {	
 		try {		
-			List<EmpPositionInfo> resultset = executeStmt(recordInfo, conn, schemaName);
+			List<EmpPosInfo> resultset = executeStmt(recordInfo, conn, schemaName);
 			
 			if (resultset == null || resultset.isEmpty())
 				return POSITION_NOT_FOUND_ON_DB;
@@ -40,8 +40,8 @@ public final class CheckerEmpPositionExistOnDb extends ModelCheckerTemplate<EmpP
 	
 	
 	
-	private List<EmpPositionInfo> executeStmt(EmpPositionInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		EmpPositionStmtExecSelect stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+	private List<EmpPosInfo> executeStmt(EmpPosInfo recordInfo, Connection conn, String schemaName) throws SQLException {
+		EmpPosSelectExec stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
 		
 		stmtExecutor.executeStmt();
 		return stmtExecutor.getResultset();
@@ -49,16 +49,16 @@ public final class CheckerEmpPositionExistOnDb extends ModelCheckerTemplate<EmpP
 	
 	
 	
-	private EmpPositionStmtExecSelect buildStmtExecutor(EmpPositionInfo recordInfo, Connection conn, String schemaName) {
-		SqlStmtExecOption<EmpPositionInfo> stmtExecOption = new SqlStmtExecOption<>();
+	private EmpPosSelectExec buildStmtExecutor(EmpPosInfo recordInfo, Connection conn, String schemaName) {
+		SqlStmtExecOption<EmpPosInfo> stmtExecOption = new SqlStmtExecOption<>();
 		stmtExecOption.conn = conn;
 		stmtExecOption.recordInfo = recordInfo;
 		stmtExecOption.schemaName = schemaName;
 		
-		List<SqlStmtExecOption<EmpPositionInfo>> stmtExecOptions = new ArrayList<>();
+		List<SqlStmtExecOption<EmpPosInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new EmpPositionStmtExecSelect(stmtExecOptions);
+		return new EmpPosSelectExec(stmtExecOptions);
 	}
 	
 	

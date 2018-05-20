@@ -3,13 +3,13 @@ package br.com.gda.business.masterData.info;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 
-public final class EmpPositionInfo implements Cloneable {
+public final class EmpPosInfo implements Cloneable {
 	public long codPosition;
 	public String txtPosition;
 	public String codLanguage;
 	
 	
-	public EmpPositionInfo() {
+	public EmpPosInfo() {
 		this.codPosition = DefaultValue.number();
 		this.codLanguage = Language.getDefaultLanguage();
 	}

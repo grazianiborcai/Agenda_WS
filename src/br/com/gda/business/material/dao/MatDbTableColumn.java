@@ -1,4 +1,4 @@
-package br.com.gda.business.masterData.dao;
+package br.com.gda.business.material.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -8,9 +8,10 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.sql.DbTable;
 import br.com.gda.sql.SqlColumn;
 
-public final class MasterDataDbTableColumn {
+public final class MatDbTableColumn {
 	private static final boolean IS_PRIMARY_KEY = true;	
 	private static final boolean IS_LOOKUP_COLUMN = true;
+	private static final boolean IS_AUTO_INCREMENTED = true;
 	private static final boolean NEGATIVE = false;
 	
 	private static final Hashtable<String, List<SqlColumn>> tableColumns = new Hashtable<>();	
@@ -20,7 +21,14 @@ public final class MasterDataDbTableColumn {
 	static {
 		buildTableColumns();
 	}
-
+	
+	
+	
+	private static void buildTableColumns() {
+		buildMatTable();	
+	}
+	
+	
 	
 	public static List<SqlColumn> getTableColumnsAsList(String tableName) {
 		List<SqlColumn> columns = tableColumns.get(tableName);
@@ -40,182 +48,143 @@ public final class MasterDataDbTableColumn {
 	
 	
 	
-	private static void buildTableColumns() {
-		positionTable();	
-		materialUnitTable();
-		materialTypeTable();
-		materialCategTable();
-		materialGroupTable();
-		businessAreaTable();
-	}
-	
-	
-	
-	private static void positionTable() {
-		final String TABLE_NAME = DbTable.POSITION_TABLE;
+	private static void buildMatTable() {
+		final String TABLE_NAME = DbTable.MATERIAL_TABLE;
 		
 		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		List<SqlColumn> columns = new ArrayList<>();	
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_position";
+		oneColumn.columnName = "Cod_owner";
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.POSITION_TEXT_TABLE;
-		oneColumn.columnName = "Language";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.POSITION_TEXT_TABLE;
-		oneColumn.columnName = "Name";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private static void materialUnitTable() {
-		final String TABLE_NAME = DbTable.MATERIAL_UNIT_TABLE;
-		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Unit";
+		oneColumn.columnName = "Cod_material";
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_UNIT_TEXT_TABLE;
-		oneColumn.columnName = "Language";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
+		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_UNIT_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Price";
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
-		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private static void materialTypeTable() {
-		final String TABLE_NAME = DbTable.MATERIAL_TYPE_TABLE;
-		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_type";
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_TYPE_TEXT_TABLE;
-		oneColumn.columnName = "Language";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_TYPE_TEXT_TABLE;
-		oneColumn.columnName = "Name";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private static void materialCategTable() {
-		final String TABLE_NAME = DbTable.MATERIAL_CATEGORY_TABLE;
-		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_category";
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
+		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_CATEGORY_TEXT_TABLE;
-		oneColumn.columnName = "Language";
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Cod_curr";
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_CATEGORY_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Unit";
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private static void materialGroupTable() {
-		final String TABLE_NAME = DbTable.MATERIAL_GROUP_TABLE;
-		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Price_unit";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_group";
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_business";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
+		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_GROUP_TEXT_TABLE;
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "record_mode";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.MATERIAL_TEXT_TABLE;
+		oneColumn.columnName = "Name";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.MATERIAL_TEXT_TABLE;
+		oneColumn.columnName = "Description";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.MATERIAL_TEXT_TABLE;
 		oneColumn.columnName = "Language";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.MATERIAL_TYPE_TEXT_TABLE;
+		oneColumn.columnName = "Name";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.MATERIAL_CATEGORY_TEXT_TABLE;
+		oneColumn.columnName = "Name";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.CURRENCY_TEXT_TABLE;
+		oneColumn.columnName = "Name";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = DbTable.UNIT_TEXT_TABLE;
+		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -230,35 +199,8 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.BUSINESS_AREA_TEXT_TABLE;
-		oneColumn.columnName = "Name";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private static void businessAreaTable() {
-		final String TABLE_NAME = DbTable.BUSINESS_AREA_TABLE;
-		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
+		oneColumn.tableName = DbTable.MATERIAL_GROUP_TABLE;
 		oneColumn.columnName = "Cod_business";
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.BUSINESS_AREA_TEXT_TABLE;
-		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;

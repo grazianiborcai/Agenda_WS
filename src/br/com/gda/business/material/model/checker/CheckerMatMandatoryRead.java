@@ -1,22 +1,23 @@
-package br.com.gda.business.masterData.model.checker;
+package br.com.gda.business.material.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.masterData.info.EmpPositionInfo;
+import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerEmpPositionMandatoryRead extends ModelCheckerTemplate<EmpPositionInfo> {
+public final class CheckerMatMandatoryRead extends ModelCheckerTemplate<MatInfo> {
 
-	public CheckerEmpPositionMandatoryRead() {
+	public CheckerMatMandatoryRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(EmpPositionInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codLanguage == null )			
+	@Override protected boolean checkHook(MatInfo recordInfo, Connection conn, String schemaName) {	
+		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codLanguage 	== null		)			
 			return RESULT_FAILED;
 		
 		
