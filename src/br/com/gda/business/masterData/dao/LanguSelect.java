@@ -101,7 +101,7 @@ public final class LanguSelect implements SqlStmt<LanguInfo> {
 	private class ResultParser implements SqlResultParser<LanguInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<LanguInfo> parseResult(ResultSet stmtResult) throws SQLException {
+		@Override public List<LanguInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<LanguInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				

@@ -329,7 +329,7 @@ public final class MatSelect implements SqlStmt<MatInfo> {
 		private final String CURRENCY_TEXT_COL = DbTable.CURRENCY_TEXT_TABLE + "." + "Name";
 		private final String UNIT_TEXT_COL = DbTable.UNIT_TEXT_TABLE + "." + "Name";
 		
-		@Override public List<MatInfo> parseResult(ResultSet stmtResult) throws SQLException {
+		@Override public List<MatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				

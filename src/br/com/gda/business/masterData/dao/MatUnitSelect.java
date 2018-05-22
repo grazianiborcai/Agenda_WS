@@ -155,7 +155,7 @@ public final class MatUnitSelect implements SqlStmt<MatUnitInfo> {
 		private final String UNIT_TEXT_COL = DbTable.MATERIAL_UNIT_TEXT_TABLE + "." + "Name";
 		private final String LANGU_COL = DbTable.MATERIAL_UNIT_TEXT_TABLE + "." + "Language";
 		
-		@Override public List<MatUnitInfo> parseResult(ResultSet stmtResult) throws SQLException {
+		@Override public List<MatUnitInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatUnitInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				

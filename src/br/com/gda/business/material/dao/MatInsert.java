@@ -38,7 +38,7 @@ public final class MatInsert implements SqlStmt<MatInfo> {
 		this.stmtOption.tableName = DbTable.MATERIAL_TABLE;
 		this.stmtOption.columns = MatDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser();
+		this.stmtOption.resultParser = new ResultParser(recordInfo);
 		this.stmtOption.whereClause = null;
 	}
 	
@@ -101,11 +101,21 @@ public final class MatInsert implements SqlStmt<MatInfo> {
 	
 	
 	
+	
+	
 	private class ResultParser implements SqlResultParser<MatInfo> {
-		@Override public List<MatInfo> parseResult(ResultSet stmtResult) throws SQLException {
+		private MatInfo recordInfo;
+		
+		public ResultParser(MatInfo recordToParse) {
+			recordInfo = recordToParse;
+		}
+		
+		
+		
+		@Override public List<MatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatInfo> finalResult = new ArrayList<>();
-			MatInfo emptyInfo = new MatInfo();
-			finalResult.add(emptyInfo);			
+			recordInfo.codMat = lastId;
+			finalResult.add(recordInfo);			
 			return finalResult;
 		}
 	}

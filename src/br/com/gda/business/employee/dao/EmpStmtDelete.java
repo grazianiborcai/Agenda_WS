@@ -95,7 +95,7 @@ final class EmpStmtDelete implements SqlStmt<EmpInfo> {
 	
 	
 	private class ResultParser implements SqlResultParser<EmpInfo> {
-		@Override public List<EmpInfo> parseResult(ResultSet stmtResult) throws SQLException {
+		@Override public List<EmpInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpInfo> finalResult = new ArrayList<>();
 			EmpInfo emptyInfo = new EmpInfo();
 			finalResult.add(emptyInfo);			

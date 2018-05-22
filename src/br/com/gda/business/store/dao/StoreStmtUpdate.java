@@ -134,7 +134,7 @@ final class StoreStmtUpdate implements SqlStmt<StoreInfo> {
 	
 	
 	private class ResultParser implements SqlResultParser<StoreInfo> {
-		@Override public List<StoreInfo> parseResult(ResultSet stmtResult) throws SQLException {
+		@Override public List<StoreInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreInfo> finalResult = new ArrayList<>();
 			StoreInfo emptyInfo = new StoreInfo();
 			finalResult.add(emptyInfo);			

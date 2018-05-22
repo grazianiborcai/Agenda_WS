@@ -155,7 +155,7 @@ public final class MatTypeSelect implements SqlStmt<MatTypeInfo> {
 		private final String TYPE_TEXT_COL = DbTable.MATERIAL_TYPE_TEXT_TABLE + "." + "Name";
 		private final String LANGU_COL = DbTable.MATERIAL_TYPE_TEXT_TABLE + "." + "Language";
 		
-		@Override public List<MatTypeInfo> parseResult(ResultSet stmtResult) throws SQLException {
+		@Override public List<MatTypeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatTypeInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				

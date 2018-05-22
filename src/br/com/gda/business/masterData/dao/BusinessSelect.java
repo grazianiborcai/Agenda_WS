@@ -155,7 +155,7 @@ public final class BusinessSelect implements SqlStmt<BusinessInfo> {
 		private final String BUSINESS_TEXT_COL = DbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
 		private final String LANGU_COL = DbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Language";
 		
-		@Override public List<BusinessInfo> parseResult(ResultSet stmtResult) throws SQLException {
+		@Override public List<BusinessInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<BusinessInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				

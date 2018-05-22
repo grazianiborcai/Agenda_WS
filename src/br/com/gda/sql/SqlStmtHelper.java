@@ -14,7 +14,7 @@ public final class SqlStmtHelper<T> implements SqlStmt<T> {
 	private String stmtSkeleton;
 	private PreparedStatement stmt;
 	ResultSet stmtResultSet;
-	private List<T> resultset = new ArrayList<>();
+	private List<T> resultset;
 	
 	
 	public SqlStmtHelper(SqlOperation operation, SqlStmtOption<T> option) {
@@ -23,10 +23,7 @@ public final class SqlStmtHelper<T> implements SqlStmt<T> {
 		
 		if (option == null)
 			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
-		
-		if (option.resultParser == null)
-			throw new NullPointerException("option.resultParser" + SystemMessage.NULL_ARGUMENT);
-		
+
 		if (option.conn == null)
 			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
 		
@@ -146,8 +143,21 @@ public final class SqlStmtHelper<T> implements SqlStmt<T> {
 	private void parseResultSet() throws SQLException {
 		this.resultset = new ArrayList<>();
 		
-		if (this.option.resultParser != null)
-			this.resultset = option.resultParser.parseResult(this.stmtResultSet);
+		if (this.option.resultParser == null) {
+			this.resultset.add(this.option.recordInfo);
+		} else {
+			long lastId = getLastInsertId();
+			this.resultset = option.resultParser.parseResult(this.stmtResultSet, lastId);
+		}
+	}
+	
+	
+	
+	private long getLastInsertId() throws SQLException {
+		PreparedStatement stmtLastId = option.conn.prepareStatement("SELECT LAST_INSERT_ID();");
+		ResultSet resultLastId = stmtLastId.executeQuery();
+		resultLastId.next();
+		return resultLastId.getLong("LAST_INSERT_ID()");		
 	}
 
 

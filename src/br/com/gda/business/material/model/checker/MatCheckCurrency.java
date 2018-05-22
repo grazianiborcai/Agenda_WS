@@ -3,7 +3,7 @@ package br.com.gda.business.material.model.checker;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.CurrencyInfo;
-import br.com.gda.business.masterData.model.checker.CurrencyCheckExistOnDb;
+import br.com.gda.business.masterData.model.checker.CurrencyCheckExist;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -16,7 +16,7 @@ public final class MatCheckCurrency implements ModelChecker<MatInfo> {
 	
 	
 	public MatCheckCurrency(ModelCheckerOption option) {
-		checker = new CurrencyCheckExistOnDb(option);
+		checker = new CurrencyCheckExist(option);
 	}
 	
 	

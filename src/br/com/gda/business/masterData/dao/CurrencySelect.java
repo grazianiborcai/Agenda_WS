@@ -155,7 +155,7 @@ public final class CurrencySelect implements SqlStmt<CurrencyInfo> {
 		private final String CURRENCY_TEXT_COL = DbTable.CURRENCY_TEXT_TABLE + "." + "Name";
 		private final String LANGU_COL = DbTable.CURRENCY_TEXT_TABLE + "." + "Language";
 		
-		@Override public List<CurrencyInfo> parseResult(ResultSet stmtResult) throws SQLException {
+		@Override public List<CurrencyInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CurrencyInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				

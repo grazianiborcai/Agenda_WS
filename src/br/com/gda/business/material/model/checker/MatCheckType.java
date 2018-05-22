@@ -2,21 +2,21 @@ package br.com.gda.business.material.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.masterData.info.MatCategInfo;
-import br.com.gda.business.masterData.model.checker.MatCategCheckExist;
+import br.com.gda.business.masterData.info.MatTypeInfo;
+import br.com.gda.business.masterData.model.checker.MatTypeCheckExist;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class MatCheckCateg implements ModelChecker<MatInfo> {
+public final class MatCheckType implements ModelChecker<MatInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<MatCategInfo> checker;
+	private ModelChecker<MatTypeInfo> checker;
 	
 	
-	public MatCheckCateg(ModelCheckerOption option) {
-		checker = new MatCategCheckExist(option);
+	public MatCheckType(ModelCheckerOption option) {
+		checker = new MatTypeCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class MatCheckCateg implements ModelChecker<MatInfo> {
 	
 	
 	@Override public boolean check(MatInfo recordInfo) {
-		return checker.check(recordInfo.toMatCategInfo());
+		return checker.check(recordInfo.toMatTypeInfo());
 	}
 
 	

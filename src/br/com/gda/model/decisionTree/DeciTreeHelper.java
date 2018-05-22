@@ -79,7 +79,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	private void onPassed() {
 		this.decisionChoice = DeciChoice.PASSED;		
 		this.decisionResult.finishedWithSuccess = RESULT_SUCCESS;
-		executeDecisionAction(this.actionsOnPassed);
+		executeDecisionActions(this.actionsOnPassed);
 	}
 	
 	
@@ -88,7 +88,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 		this.decisionChoice = DeciChoice.FAILED;
 		this.decisionResult.finishedWithSuccess = RESULT_FAILED;
 		buildFailureMessage();
-		executeDecisionAction(this.actionsOnFailed);		
+		executeDecisionActions(this.actionsOnFailed);		
 	}
 	
 	
@@ -99,19 +99,26 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	}
 	
 	
-	
-	private void executeDecisionAction(List<DeciAction<T>> decisionActions) {
+	//TODO: preparar para executar o ForwardAction
+	private void executeDecisionActions(List<DeciAction<T>> decisionActions) {
 		if (decisionActions == null)
 			return;
 			
 		for (DeciAction<T> eachAction : decisionActions) {
-			eachAction.executeAction();
-			DeciResult<T> actionResult = eachAction.getDecisionResult();		
+			DeciResult<T> actionResult = executeDecisionAction(eachAction);		
 			buildResultFromAction(actionResult);
 			
 			if (actionResult.hasSuccessfullyFinished() == RESULT_FAILED)
 				break;
 		}
+	}
+	
+	
+	
+	private DeciResult<T> executeDecisionAction(DeciAction<T> decisionAction) {
+		decisionAction.executeAction();
+		DeciResult<T> actionResult = decisionAction.getDecisionResult();
+		return actionResult;
 	}
 	
 	

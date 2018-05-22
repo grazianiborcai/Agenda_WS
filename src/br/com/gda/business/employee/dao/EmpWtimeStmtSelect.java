@@ -97,7 +97,7 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 	private class ResultParser implements SqlResultParser<EmpWTimeInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<EmpWTimeInfo> parseResult(ResultSet stmtResult) throws SQLException {
+		@Override public List<EmpWTimeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpWTimeInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				

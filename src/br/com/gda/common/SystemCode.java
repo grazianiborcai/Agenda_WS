@@ -46,4 +46,8 @@ public final class SystemCode {
 	public static final int UNIT_NOT_FOUND								= 1157;
 	public static final int MAT_CATEG_ALREADY_EXIST						= 1158;
 	public static final int MAT_CATEG_NOT_FOUND							= 1159;
+	public static final int MAT_GROUP_ALREADY_EXIST						= 1160;
+	public static final int MAT_GROUP_NOT_FOUND							= 1161;
+	public static final int MAT_TYPE_ALREADY_EXIST						= 1162;
+	public static final int MAT_TYPE_NOT_FOUND							= 1163;
 }

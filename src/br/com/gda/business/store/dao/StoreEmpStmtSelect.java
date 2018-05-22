@@ -215,7 +215,7 @@ final class StoreEmpStmtSelect implements SqlStmt<StoreEmpInfo> {
 		private final String STORE_NAME_COLUMN = DbTable.STORE_TABLE + "." + "Name";
 		private final String EMPLOYEE_NAME_COLUMN = DbTable.EMPLOYEE_TABLE + "." + "Name";
 		
-		@Override public List<StoreEmpInfo> parseResult(ResultSet stmtResult) throws SQLException {
+		@Override public List<StoreEmpInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreEmpInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				

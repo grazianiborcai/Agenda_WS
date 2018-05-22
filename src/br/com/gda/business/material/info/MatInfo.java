@@ -3,6 +3,8 @@ package br.com.gda.business.material.info;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.business.masterData.info.MatCategInfo;
+import br.com.gda.business.masterData.info.MatGroupInfo;
+import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
@@ -77,6 +79,28 @@ public final class MatInfo implements Cloneable {
 		MatCategInfo categ = new MatCategInfo();		
 		categ.codCategory = this.codCategory;
 		categ.txtCategory = this.txtCategory;
+		categ.codLanguage = this.codLanguage;
+		return categ;
+	}
+	
+	
+	
+	public MatGroupInfo toMatGroupInfo() {
+		MatGroupInfo group = new MatGroupInfo();		
+		group.codGroup = this.codGroup;
+		group.txtGroup = this.txtGroup;		
+		group.codBusiness = this.codBusiness;
+		group.txtBusiness = this.txtBusiness;
+		group.codLanguage = this.codLanguage;
+		return group;
+	}
+	
+	
+	
+	public MatTypeInfo toMatTypeInfo() {
+		MatTypeInfo categ = new MatTypeInfo();		
+		categ.codType = this.codType;
+		categ.txtType = this.txtType;
 		categ.codLanguage = this.codLanguage;
 		return categ;
 	}

@@ -26,8 +26,10 @@ public final class SystemMessage {
 	public static final String KEY_FIELD_NOT_NULL = "Key field should not be passed";		
 	public static final String LANGUAGE_NOT_FOUND = "Language not found on DB";
 	public static final String CURRENCY_NOT_FOUND = "Currency not found on DB";	
+	public static final String MAT_TYPE_NOT_FOUND = "Type not found on DB";	
 	public static final String UNIT_ALREADY_EXIST = "Unit already exist on DB";
 	public static final String MAT_CATEG_NOT_FOUND = "Category not found on DB";
+	public static final String MAT_GROUP_NOT_FOUND = "Group not found on DB";
 	public static final String STORE_CNPJ_NOT_FOUND = "Store's CNPJ not found on DB";	
 	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";		
 	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";		
@@ -37,7 +39,9 @@ public final class SystemMessage {
 	public static final String EMPLOYEE_CPF_NOT_FOUND = "Employee's CPF not found on DB";		
 	public static final String LANGUAGE_ALREADY_EXIST = "Language already exist on DB";
 	public static final String CURRENCY_ALREADY_EXIST = "Currency already exist on DB";
+	public static final String MAT_TYPE_ALREADY_EXIST = "Type already exist on DB";
 	public static final String MAT_CATEG_ALREADY_EXIST = "Category already exist on DB";
+	public static final String MAT_GROUP_ALREADY_EXIST = "Group already exist on DB";
 	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
 	public static final String EMPLOYEE_DATA_NOT_FOUND = "Employee's data not found";	
 	public static final String STORE_CNPJ_ALREADY_EXIST = "Store's CNPJ already exist on DB";	

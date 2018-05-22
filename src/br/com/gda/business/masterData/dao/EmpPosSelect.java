@@ -155,7 +155,7 @@ public final class EmpPosSelect implements SqlStmt<EmpPosInfo> {
 		private final String POSITION_TEXT_COLUMN = DbTable.POSITION_TEXT_TABLE + "." + "Name";
 		private final String POSITION_LANGU_COLUMN = DbTable.POSITION_TEXT_TABLE + "." + "Language";
 		
-		@Override public List<EmpPosInfo> parseResult(ResultSet stmtResult) throws SQLException {
+		@Override public List<EmpPosInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpPosInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				

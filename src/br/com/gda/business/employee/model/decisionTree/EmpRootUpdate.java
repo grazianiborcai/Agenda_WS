@@ -99,7 +99,7 @@ public final class EmpRootUpdate implements DeciTree<EmpInfo> {
 	
 	
 	private static class ActionNodeUpdate implements DeciAction<EmpInfo> {
-		EmpNodeUpdateL1 treeHelper;
+		DeciTree<EmpInfo> treeHelper;
 		
 		
 		public ActionNodeUpdate(DeciTreeOption<EmpInfo> option) {
