@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.CurrencyInfo;
-import br.com.gda.business.masterData.model.checker.CheckerCurrencyRead;
+import br.com.gda.business.masterData.model.checker.CurrencyCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
@@ -36,7 +36,7 @@ public final class CurrencyRootSelect implements DeciTree<CurrencyInfo> {
 		List<ModelChecker<CurrencyInfo>> stack = new ArrayList<>();		
 		ModelChecker<CurrencyInfo> checker;
 		
-		checker = new CheckerCurrencyRead();
+		checker = new CurrencyCheckRead();
 		stack.add(checker);
 		
 		return new ModelCheckerStack<>(stack);

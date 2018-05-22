@@ -36,6 +36,14 @@ public final class SystemCode {
 	public static final int STORE_EMP_FLAGGED_AS_DELETED 				= 1106;
 	
 	// Master Data
-	public static final int POSITION_ALREADY_EXIST						= 1150;
-	public static final int POSITION_NOT_FOUND							= 1151;
+	public static final int EMP_POS_ALREADY_EXIST						= 1150;
+	public static final int EMP_POS_NOT_FOUND							= 1151;
+	public static final int LANGUAGE_ALREADY_EXIST						= 1152;
+	public static final int LANGUAGE_NOT_FOUND							= 1153;
+	public static final int CURRENCY_ALREADY_EXIST						= 1154;
+	public static final int CURRENCY_NOT_FOUND							= 1155;
+	public static final int UNIT_ALREADY_EXIST							= 1156;
+	public static final int UNIT_NOT_FOUND								= 1157;
+	public static final int MAT_CATEG_ALREADY_EXIST						= 1158;
+	public static final int MAT_CATEG_NOT_FOUND							= 1159;
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.MatTypeInfo;
-import br.com.gda.business.masterData.model.checker.CheckerMatTypeRead;
+import br.com.gda.business.masterData.model.checker.MatTypeCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
@@ -36,7 +36,7 @@ public final class MatTypeRootSelect implements DeciTree<MatTypeInfo> {
 		List<ModelChecker<MatTypeInfo>> stack = new ArrayList<>();		
 		ModelChecker<MatTypeInfo> checker;
 		
-		checker = new CheckerMatTypeRead();
+		checker = new MatTypeCheckRead();
 		stack.add(checker);
 		
 		return new ModelCheckerStack<>(stack);

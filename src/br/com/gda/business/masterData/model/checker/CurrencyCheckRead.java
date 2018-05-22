@@ -2,20 +2,20 @@ package br.com.gda.business.masterData.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.masterData.info.MatTypeInfo;
+import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerMatTypeRead extends ModelCheckerTemplate<MatTypeInfo> {
-	
-	public CheckerMatTypeRead() {
+public class CurrencyCheckRead extends ModelCheckerTemplate<CurrencyInfo> {
+
+	public CurrencyCheckRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(MatTypeInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(CurrencyInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codLanguage == null )			
 			return RESULT_FAILED;
 		

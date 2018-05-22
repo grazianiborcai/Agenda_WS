@@ -3,11 +3,16 @@ package br.com.gda.business.material.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.material.dao.MatStmtExecInsert;
+import br.com.gda.business.material.dao.MatInsertExec;
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.checker.CheckerMatGenField;
-import br.com.gda.business.material.model.checker.CheckerMatMandatoryWrite;
+import br.com.gda.business.material.model.checker.MatCheckCateg;
+import br.com.gda.business.material.model.checker.MatCheckCurrency;
+import br.com.gda.business.material.model.checker.MatCheckGenField;
+import br.com.gda.business.material.model.checker.MatCheckLangu;
+import br.com.gda.business.material.model.checker.MatCheckUnit;
+import br.com.gda.business.material.model.checker.MatCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionStmtHelper;
@@ -38,13 +43,44 @@ public final class MatRootInsert implements DeciTree<MatInfo> {
 	
 	
 	private ModelChecker<MatInfo> buildDecisionChecker(DeciTreeOption<MatInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<MatInfo>> stack = new ArrayList<>();		
 		ModelChecker<MatInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new CheckerMatMandatoryWrite();
+		checker = new MatCheckWrite();
 		stack.add(checker);
 		
-		checker = new CheckerMatGenField();
+		checker = new MatCheckGenField();
+		stack.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new MatCheckLangu(checkerOption);
+		stack.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new MatCheckCurrency(checkerOption);
+		stack.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new MatCheckUnit(checkerOption);
+		stack.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new MatCheckCateg(checkerOption);
 		stack.add(checker);
 		
 		//TODO: verificar se barcode ou código do fornecedor já existe  no banco
@@ -108,7 +144,7 @@ public final class MatRootInsert implements DeciTree<MatInfo> {
 				stmtExecOptions.add(stmtExecOption);
 			}
 			
-			return new MatStmtExecInsert(stmtExecOptions);
+			return new MatInsertExec(stmtExecOptions);
 		}
 		
 		

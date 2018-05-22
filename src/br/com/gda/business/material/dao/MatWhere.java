@@ -9,11 +9,11 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilder;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-public final class MatStmtWhere implements SqlStmtWhere {
+public final class MatWhere implements SqlStmtWhere {
 	private String whereClause;	
 	
 	
-	public MatStmtWhere(SqlWhereBuilderOption whereOption, String tableName, MatInfo recordInfo) {
+	public MatWhere(SqlWhereBuilderOption whereOption, String tableName, MatInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	

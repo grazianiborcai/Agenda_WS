@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerMatMandatoryWrite extends ModelCheckerTemplate<MatInfo> {
+public final class MatCheckWrite extends ModelCheckerTemplate<MatInfo> {
 
-	public CheckerMatMandatoryWrite() {
+	public MatCheckWrite() {
 		super();
 	}
 	

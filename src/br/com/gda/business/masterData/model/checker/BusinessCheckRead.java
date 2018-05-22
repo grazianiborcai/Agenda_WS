@@ -1,23 +1,22 @@
-package br.com.gda.business.material.model.checker;
+package br.com.gda.business.masterData.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.masterData.info.BusinessInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerMatMandatoryRead extends ModelCheckerTemplate<MatInfo> {
-
-	public CheckerMatMandatoryRead() {
+public final class BusinessCheckRead extends ModelCheckerTemplate<BusinessInfo> {
+	
+	public BusinessCheckRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(MatInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.codLanguage 	== null		)			
+	@Override protected boolean checkHook(BusinessInfo recordInfo, Connection conn, String schemaName) {	
+		if (recordInfo.codLanguage == null )			
 			return RESULT_FAILED;
 		
 		

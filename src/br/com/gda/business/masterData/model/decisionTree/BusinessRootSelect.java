@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.BusinessInfo;
-import br.com.gda.business.masterData.model.checker.CheckerBusinessRead;
+import br.com.gda.business.masterData.model.checker.BusinessCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
@@ -36,7 +36,7 @@ public final class BusinessRootSelect implements DeciTree<BusinessInfo> {
 		List<ModelChecker<BusinessInfo>> stack = new ArrayList<>();		
 		ModelChecker<BusinessInfo> checker;
 		
-		checker = new CheckerBusinessRead();
+		checker = new BusinessCheckRead();
 		stack.add(checker);
 		
 		return new ModelCheckerStack<>(stack);

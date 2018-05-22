@@ -7,11 +7,11 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerMatGenField extends ModelCheckerTemplate<MatInfo> {
+public final class MatCheckGenField extends ModelCheckerTemplate<MatInfo> {
 	private final boolean AUTO_GEN_FIELD_NOT_NULL = false;
 	private final boolean EMPTY_AUTO_GEN_FIELD = true;
 	
-	public CheckerMatGenField() {
+	public MatCheckGenField() {
 		super();
 	}
 	

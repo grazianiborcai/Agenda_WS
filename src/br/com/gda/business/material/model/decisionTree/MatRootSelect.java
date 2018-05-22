@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.checker.CheckerMatMandatoryRead;
+import br.com.gda.business.material.model.checker.MatCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
@@ -36,7 +36,7 @@ public final class MatRootSelect implements DeciTree<MatInfo> {
 		List<ModelChecker<MatInfo>> stack = new ArrayList<>();		
 		ModelChecker<MatInfo> checker;
 		
-		checker = new CheckerMatMandatoryRead();
+		checker = new MatCheckRead();
 		stack.add(checker);
 		
 		return new ModelCheckerStack<>(stack);

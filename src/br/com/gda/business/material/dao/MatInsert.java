@@ -16,13 +16,13 @@ import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtParamTranslator;
 
-public final class MatStmtInsert implements SqlStmt<MatInfo> {
+public final class MatInsert implements SqlStmt<MatInfo> {
 	private SqlStmt<MatInfo> stmtSql;
 	private SqlStmtOption<MatInfo> stmtOption;
 	
 	
 	
-	public MatStmtInsert(Connection conn, MatInfo recordInfo, String schemaName) {
+	public MatInsert(Connection conn, MatInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 		
@@ -96,7 +96,7 @@ public final class MatStmtInsert implements SqlStmt<MatInfo> {
 	
 	
 	@Override public SqlStmt<MatInfo> getNewInstance() {
-		return new MatStmtInsert(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new MatInsert(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	

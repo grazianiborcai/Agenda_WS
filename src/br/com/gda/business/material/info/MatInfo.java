@@ -1,5 +1,9 @@
 package br.com.gda.business.material.info;
 
+import br.com.gda.business.masterData.info.CurrencyInfo;
+import br.com.gda.business.masterData.info.LanguInfo;
+import br.com.gda.business.masterData.info.MatCategInfo;
+import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 
@@ -37,6 +41,44 @@ public final class MatInfo implements Cloneable {
 		this.codGroup = DefaultValue.number();		
 		this.codBusiness = DefaultValue.number();	
 		this.codLanguage = Language.getDefaultLanguage();
+	}
+	
+	
+	
+	public LanguInfo toLanguInfo() {
+		LanguInfo langu = new LanguInfo();
+		langu.codLanguage = this.codLanguage;
+		return langu;
+	}
+	
+	
+	
+	public CurrencyInfo toCurrencyInfo() {
+		CurrencyInfo currency = new CurrencyInfo();		
+		currency.codCurr = this.codCurr;
+		currency.txtCurr = this.txtCurr;
+		currency.codLanguage = this.codLanguage;
+		return currency;
+	}
+	
+	
+	
+	public MatUnitInfo toMatUnitInfo() {
+		MatUnitInfo unit = new MatUnitInfo();		
+		unit.codUnit = this.codUnit;
+		unit.txtUnit = this.txtUnit;
+		unit.codLanguage = this.codLanguage;
+		return unit;
+	}
+	
+	
+	
+	public MatCategInfo toMatCategInfo() {
+		MatCategInfo categ = new MatCategInfo();		
+		categ.codCategory = this.codCategory;
+		categ.txtCategory = this.txtCategory;
+		categ.codLanguage = this.codLanguage;
+		return categ;
 	}
 	
 	

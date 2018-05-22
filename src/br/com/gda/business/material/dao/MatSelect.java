@@ -20,7 +20,7 @@ import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-public final class MatStmtSelect implements SqlStmt<MatInfo> {
+public final class MatSelect implements SqlStmt<MatInfo> {
 	private final String LT_MAT = DbTable.MATERIAL_TABLE;	
 	private final String RT_MAT_TEXT = DbTable.MATERIAL_TEXT_TABLE;
 	private final String RT_MAT_TYPE_TEXT = DbTable.MATERIAL_TYPE_TEXT_TABLE;
@@ -36,7 +36,7 @@ public final class MatStmtSelect implements SqlStmt<MatInfo> {
 	
 	
 	
-	public MatStmtSelect(Connection conn, MatInfo recordInfo, String schemaName) {
+	public MatSelect(Connection conn, MatInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
@@ -66,7 +66,7 @@ public final class MatStmtSelect implements SqlStmt<MatInfo> {
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		SqlStmtWhere whereClause = new MatStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		SqlStmtWhere whereClause = new MatWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -308,7 +308,7 @@ public final class MatStmtSelect implements SqlStmt<MatInfo> {
 	
 	
 	@Override public SqlStmt<MatInfo> getNewInstance() {
-		return new MatStmtSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new MatSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	

@@ -8,12 +8,12 @@ import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecHelper;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class MatStmtExecSelect implements SqlStmtExec<MatInfo> {
+public final class MatSelectExec implements SqlStmtExec<MatInfo> {
 	private SqlStmtExec<MatInfo> helper;
 	
 	
-	public MatStmtExecSelect(List<SqlStmtExecOption<MatInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, MatStmtSelect.class, MatInfo.class);
+	public MatSelectExec(List<SqlStmtExecOption<MatInfo>> options) {
+		helper = new SqlStmtExecHelper<>(options, MatSelect.class, MatInfo.class);
 	}
 	
 	
