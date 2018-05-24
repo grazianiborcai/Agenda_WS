@@ -4,18 +4,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employee.info.EmpWTimeInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecHelper;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class EmpStmtExecInsert implements SqlStmtExec<EmpInfo> {
-	private List<SqlStmt<EmpInfo>> sqlStatements;
-	private SqlStmtExec<EmpInfo> helper;
+public final class EmpWtimeDeleteExec implements SqlStmtExec<EmpWTimeInfo> {
+	private List<SqlStmt<EmpWTimeInfo>> sqlStatements;
+	private SqlStmtExec<EmpWTimeInfo> helper;
 	
-	public EmpStmtExecInsert(List<SqlStmtExecOption<EmpInfo>> options) {
+	public EmpWtimeDeleteExec(List<SqlStmtExecOption<EmpWTimeInfo>> options) {
 		if (options == null) 
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
@@ -28,11 +28,11 @@ public final class EmpStmtExecInsert implements SqlStmtExec<EmpInfo> {
 	
 	
 	
-	private void prepareStatement(List<SqlStmtExecOption<EmpInfo>> options) {
+	private void prepareStatement(List<SqlStmtExecOption<EmpWTimeInfo>> options) {
 		sqlStatements = new ArrayList<>();
 		
-		for (SqlStmtExecOption<EmpInfo> eachOption : options) {
-			SqlStmt<EmpInfo> sqlStatement = new EmpStmtInsert(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
+		for (SqlStmtExecOption<EmpWTimeInfo> eachOption : options) {
+			SqlStmt<EmpWTimeInfo> sqlStatement = new EmpWtimeDelete(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
 			sqlStatements.add(sqlStatement);
 		}
 	}
@@ -46,12 +46,13 @@ public final class EmpStmtExecInsert implements SqlStmtExec<EmpInfo> {
 
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();		
+		helper.executeStmt();
+		
 	}
 
 	
 	
-	@Override public List<EmpInfo> getResultset() {
+	@Override public List<EmpWTimeInfo> getResultset() {
 		return helper.getResultset();
 	}
 }

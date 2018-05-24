@@ -9,11 +9,11 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilder;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpWtimeStmtWhere implements SqlStmtWhere {
+final class EmpWtimeWhere implements SqlStmtWhere {
 	private String whereClause;	
 	
 	
-	public EmpWtimeStmtWhere(SqlWhereBuilderOption whereOption, String tableName, EmpWTimeInfo recordInfo) {
+	public EmpWtimeWhere(SqlWhereBuilderOption whereOption, String tableName, EmpWTimeInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	

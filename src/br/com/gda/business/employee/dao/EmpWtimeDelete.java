@@ -13,14 +13,15 @@ import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
+import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpWtimeStmtDelete implements SqlStmt<EmpWTimeInfo> {
+final class EmpWtimeDelete implements SqlStmt<EmpWTimeInfo> {
 	private SqlStmt<EmpWTimeInfo> stmtSql;
 	private SqlStmtOption<EmpWTimeInfo> stmtOption;	
 	
 	
-	public EmpWtimeStmtDelete(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
+	public EmpWtimeDelete(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
@@ -50,7 +51,7 @@ final class EmpWtimeStmtDelete implements SqlStmt<EmpWTimeInfo> {
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;	
 		
 		
-		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		SqlStmtWhere whereClause = new EmpWtimeWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -88,7 +89,7 @@ final class EmpWtimeStmtDelete implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
-		return new EmpWtimeStmtDelete(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new EmpWtimeDelete(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	

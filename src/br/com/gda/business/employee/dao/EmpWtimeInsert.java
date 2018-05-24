@@ -20,13 +20,13 @@ import br.com.gda.sql.SqlStmtHelper;
 
 
 
-public final class EmpWtimeStmtInsert implements SqlStmt<EmpWTimeInfo> {
+public final class EmpWtimeInsert implements SqlStmt<EmpWTimeInfo> {
 	private SqlStmt<EmpWTimeInfo> stmtSql;
 	private SqlStmtOption<EmpWTimeInfo> stmtOption;
 	
 	
 	
-	public EmpWtimeStmtInsert(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
+	public EmpWtimeInsert(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 		
@@ -99,7 +99,7 @@ public final class EmpWtimeStmtInsert implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
-		return new EmpWtimeStmtInsert(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new EmpWtimeInsert(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	

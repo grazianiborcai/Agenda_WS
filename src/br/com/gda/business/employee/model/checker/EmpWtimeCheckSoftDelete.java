@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employee.dao.EmpWtimeStmtExecSelect;
+import br.com.gda.business.employee.dao.EmpWtimeSelectExec;
 import br.com.gda.business.employee.info.EmpWTimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -55,7 +55,7 @@ public final class EmpWtimeCheckSoftDelete extends ModelCheckerTemplate<EmpWTime
 	
 	
 	private List<EmpWTimeInfo> executeStmt(EmpWTimeInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		EmpWtimeStmtExecSelect stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+		EmpWtimeSelectExec stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
 		
 		stmtExecutor.executeStmt();
 		return stmtExecutor.getResultset();
@@ -63,7 +63,7 @@ public final class EmpWtimeCheckSoftDelete extends ModelCheckerTemplate<EmpWTime
 	
 	
 	
-	private EmpWtimeStmtExecSelect buildStmtExecutor(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {
+	private EmpWtimeSelectExec buildStmtExecutor(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {
 		SqlStmtExecOption<EmpWTimeInfo> stmtExecOption = new SqlStmtExecOption<>();
 		stmtExecOption.conn = conn;
 		stmtExecOption.recordInfo = recordInfo;
@@ -72,7 +72,7 @@ public final class EmpWtimeCheckSoftDelete extends ModelCheckerTemplate<EmpWTime
 		List<SqlStmtExecOption<EmpWTimeInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new EmpWtimeStmtExecSelect(stmtExecOptions);
+		return new EmpWtimeSelectExec(stmtExecOptions);
 	}
 	
 	

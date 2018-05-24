@@ -3,7 +3,7 @@ package br.com.gda.business.employee.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employee.dao.EmpWtimeStmtExecUpdate;
+import br.com.gda.business.employee.dao.EmpWtimeUpdateExec;
 import br.com.gda.business.employee.info.EmpWTimeInfo;
 import br.com.gda.business.employee.model.checker.EmpWtimeCheckExist;
 import br.com.gda.business.employee.model.checker.EmpWtimeCheckWrite;
@@ -112,7 +112,7 @@ public final class EmpWtimeRootUpdate implements DeciTree<EmpWTimeInfo> {
 				stmtExecOptions.add(stmtExecOption);
 			}
 			
-			return new EmpWtimeStmtExecUpdate(stmtExecOptions);
+			return new EmpWtimeUpdateExec(stmtExecOptions);
 		}
 		
 		

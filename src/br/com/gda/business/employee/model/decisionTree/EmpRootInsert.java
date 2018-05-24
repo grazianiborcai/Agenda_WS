@@ -3,7 +3,7 @@ package br.com.gda.business.employee.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employee.dao.EmpStmtExecInsert;
+import br.com.gda.business.employee.dao.EmpInsertExec;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.checker.EmpCheckCpf;
 import br.com.gda.business.employee.model.checker.EmpCheckExistCpf;
@@ -122,7 +122,7 @@ public final class EmpRootInsert implements DeciTree<EmpInfo> {
 				stmtExecOptions.add(stmtExecOption);
 			}
 			
-			return new EmpStmtExecInsert(stmtExecOptions);
+			return new EmpInsertExec(stmtExecOptions);
 		}
 		
 		

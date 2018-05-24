@@ -18,14 +18,15 @@ import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtParamTranslator;
+import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-public final class EmpStmtUpdate implements SqlStmt<EmpInfo> {
+public final class EmpUpdate implements SqlStmt<EmpInfo> {
 	private SqlStmt<EmpInfo> stmtSql;
 	private SqlStmtOption<EmpInfo> stmtOption;
 	
 	
-	public EmpStmtUpdate(Connection conn, EmpInfo recordInfo, String schemaName) {
+	public EmpUpdate(Connection conn, EmpInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
@@ -57,7 +58,7 @@ public final class EmpStmtUpdate implements SqlStmt<EmpInfo> {
 		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;
 		
 		EmpInfo enforcedInfo = enforceUpdateByKey(stmtOption.recordInfo);
-		EmpStmtWhere whereClause = new EmpStmtWhere(whereOption, stmtOption.tableName, enforcedInfo);
+		SqlStmtWhere whereClause = new EmpWhere(whereOption, stmtOption.tableName, enforcedInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -104,7 +105,7 @@ public final class EmpStmtUpdate implements SqlStmt<EmpInfo> {
 	
 	
 	@Override public SqlStmt<EmpInfo> getNewInstance() {
-		return new EmpStmtUpdate(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new EmpUpdate(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	

@@ -11,11 +11,11 @@ import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecHelper;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class EmpWtimeStmtExecSelect implements SqlStmtExec<EmpWTimeInfo> {
+public final class EmpWtimeInsertExec implements SqlStmtExec<EmpWTimeInfo> {	
 	private List<SqlStmt<EmpWTimeInfo>> sqlStatements;
 	private SqlStmtExec<EmpWTimeInfo> helper;
 	
-	public EmpWtimeStmtExecSelect(List<SqlStmtExecOption<EmpWTimeInfo>> options) {
+	public EmpWtimeInsertExec(List<SqlStmtExecOption<EmpWTimeInfo>> options) {
 		if (options == null) 
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
@@ -32,7 +32,7 @@ public final class EmpWtimeStmtExecSelect implements SqlStmtExec<EmpWTimeInfo> {
 		sqlStatements = new ArrayList<>();
 		
 		for (SqlStmtExecOption<EmpWTimeInfo> eachOption : options) {
-			SqlStmt<EmpWTimeInfo> sqlStatement = new EmpWtimeStmtSelect(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
+			SqlStmt<EmpWTimeInfo> sqlStatement = new EmpWtimeInsert(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
 			sqlStatements.add(sqlStatement);
 		}
 	}
@@ -46,8 +46,7 @@ public final class EmpWtimeStmtExecSelect implements SqlStmtExec<EmpWTimeInfo> {
 
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

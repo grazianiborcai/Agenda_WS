@@ -3,7 +3,7 @@ package br.com.gda.business.employee.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employee.dao.EmpWtimeStmtExecSelect;
+import br.com.gda.business.employee.dao.EmpWtimeSelectExec;
 import br.com.gda.business.employee.info.EmpWTimeInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionStmtHelper;
@@ -34,7 +34,7 @@ public class EmpWtimeActionSelect implements DeciAction<EmpWTimeInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new EmpWtimeStmtExecSelect(stmtExecOptions);
+		return new EmpWtimeSelectExec(stmtExecOptions);
 	}
 	
 	

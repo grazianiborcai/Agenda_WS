@@ -11,11 +11,11 @@ import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecHelper;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class EmpWtimeStmtExecDelete implements SqlStmtExec<EmpWTimeInfo> {
+public final class EmpWtimeUpdateExec implements SqlStmtExec<EmpWTimeInfo> {
 	private List<SqlStmt<EmpWTimeInfo>> sqlStatements;
 	private SqlStmtExec<EmpWTimeInfo> helper;
 	
-	public EmpWtimeStmtExecDelete(List<SqlStmtExecOption<EmpWTimeInfo>> options) {
+	public EmpWtimeUpdateExec(List<SqlStmtExecOption<EmpWTimeInfo>> options) {
 		if (options == null) 
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
@@ -32,7 +32,7 @@ public final class EmpWtimeStmtExecDelete implements SqlStmtExec<EmpWTimeInfo> {
 		sqlStatements = new ArrayList<>();
 		
 		for (SqlStmtExecOption<EmpWTimeInfo> eachOption : options) {
-			SqlStmt<EmpWTimeInfo> sqlStatement = new EmpWtimeStmtDelete(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
+			SqlStmt<EmpWTimeInfo> sqlStatement = new EmpWtimeUpdate(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
 			sqlStatements.add(sqlStatement);
 		}
 	}

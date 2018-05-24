@@ -5,14 +5,15 @@ import java.util.List;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlFormatterNumber;
+import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilder;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpStmtWhere {	
+final class EmpWhere implements SqlStmtWhere {	
 	private String whereClause;	
 	
 	
-	public EmpStmtWhere(SqlWhereBuilderOption whereOption, String tableName, EmpInfo recordInfo) {
+	public EmpWhere(SqlWhereBuilderOption whereOption, String tableName, EmpInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	

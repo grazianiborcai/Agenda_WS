@@ -11,11 +11,11 @@ import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecHelper;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class EmpStmtExecDelete implements SqlStmtExec<EmpInfo> {
+public final class EmpUpdateExec implements SqlStmtExec<EmpInfo> {
 	private List<SqlStmt<EmpInfo>> sqlStatements;
 	private SqlStmtExec<EmpInfo> helper;
 	
-	public EmpStmtExecDelete(List<SqlStmtExecOption<EmpInfo>> options) {
+	public EmpUpdateExec(List<SqlStmtExecOption<EmpInfo>> options) {
 		if (options == null) 
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
@@ -32,7 +32,7 @@ public final class EmpStmtExecDelete implements SqlStmtExec<EmpInfo> {
 		sqlStatements = new ArrayList<>();
 		
 		for (SqlStmtExecOption<EmpInfo> eachOption : options) {
-			SqlStmt<EmpInfo> sqlStatement = new EmpStmtDelete(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
+			SqlStmt<EmpInfo> sqlStatement = new EmpUpdate(eachOption.conn, eachOption.recordInfo, eachOption.schemaName);
 			sqlStatements.add(sqlStatement);
 		}
 	}

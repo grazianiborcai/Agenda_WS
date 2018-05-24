@@ -1,29 +1,31 @@
 package br.com.gda.business.employee.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.sql.SqlStmtOption;
+import br.com.gda.sql.SqlStmtParamTranslator;
+import br.com.gda.sql.SqlStmtWhere;
+import br.com.gda.sql.SqlWhereBuilderOption;
 import br.com.gda.business.employee.info.EmpWTimeInfo;
 import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlWhereBuilderOption;
 
-
-final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
+final class EmpWtimeUpdate implements SqlStmt<EmpWTimeInfo> {
 	private SqlStmt<EmpWTimeInfo> stmtSql;
 	private SqlStmtOption<EmpWTimeInfo> stmtOption;
 	
 	
-	
-	public EmpWtimeStmtSelect(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
+	public EmpWtimeUpdate(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
@@ -37,7 +39,7 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = DbTable.EMPLOYEE_WORKING_TIME_TABLE;
 		this.stmtOption.columns = EmpDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = null;
+		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
 	}
@@ -45,27 +47,28 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
+		final boolean DONT_IGNORE_NULL = false;
+		final boolean IGNORE_RECORD_MODE = true;
 		
 		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
 		
-		EmpWtimeStmtWhere whereClause = new EmpWtimeStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		SqlStmtWhere whereClause = new EmpWtimeWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SELECT, this.stmtOption);
+		this.stmtSql = new SqlStmtHelper<>(SqlOperation.UPDATE, this.stmtOption);
 	}
 	
 	
 
 	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
+		stmtSql.generateStmt();
+		
 	}
 
 	
@@ -89,39 +92,32 @@ final class EmpWtimeStmtSelect implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
-		return new EmpWtimeStmtSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new EmpWtimeUpdate(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	}
+	
+	
+	
+	private class ParamTranslator implements SqlStmtParamTranslator<EmpWTimeInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpWTimeInfo recordInfo) throws SQLException {
+			Time beginTime = SqlFormatterNumber.localToSqlTime(recordInfo.beginTime);
+			Time endTime = SqlFormatterNumber.localToSqlTime(recordInfo.endTime);				
+			
+			int i = 1;
+			stmt.setTime(i++, beginTime);
+			stmt.setTime(i++, endTime);
+			stmt.setString(i++, recordInfo.recordMode);
+			
+			return stmt;
+		}		
 	}
 	
 	
 	
 	private class ResultParser implements SqlResultParser<EmpWTimeInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
 		@Override public List<EmpWTimeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpWTimeInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-				return finalResult;
-		
-			do {				
-				EmpWTimeInfo dataInfo = new EmpWTimeInfo();
-				dataInfo.codOwner = stmtResult.getLong("cod_owner");
-				dataInfo.codStore = stmtResult.getLong("cod_store");
-				dataInfo.codEmployee = stmtResult.getLong("cod_employee");
-				dataInfo.weekday = stmtResult.getInt("weekday");
-				dataInfo.recordMode = stmtResult.getString("record_mode");
-				
-				Time tempTime = stmtResult.getTime("begin_time");
-				if (tempTime != null)
-					dataInfo.beginTime = tempTime.toLocalTime();
-				
-				tempTime = stmtResult.getTime("end_time");
-				if (tempTime != null)
-					dataInfo.endTime = tempTime.toLocalTime();				
-				
-				finalResult.add(dataInfo);				
-			} while (stmtResult.next());
-			
+			EmpWTimeInfo emptyInfo = new EmpWTimeInfo();
+			finalResult.add(emptyInfo);			
 			return finalResult;
 		}
 	}

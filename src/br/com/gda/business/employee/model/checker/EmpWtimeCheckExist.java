@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employee.dao.EmpWtimeStmtExecSelect;
+import br.com.gda.business.employee.dao.EmpWtimeSelectExec;
 import br.com.gda.business.employee.info.EmpWTimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -59,7 +59,7 @@ public class EmpWtimeCheckExist extends ModelCheckerTemplate<EmpWTimeInfo> {
 		List<SqlStmtExecOption<EmpWTimeInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new EmpWtimeStmtExecSelect(stmtExecOptions);
+		return new EmpWtimeSelectExec(stmtExecOptions);
 	}
 	
 	

@@ -13,14 +13,15 @@ import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
+import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpStmtDelete implements SqlStmt<EmpInfo> {
+final class EmpDelete implements SqlStmt<EmpInfo> {
 	private SqlStmt<EmpInfo> stmtSql;
 	private SqlStmtOption<EmpInfo> stmtOption;	
 	
 	
-	public EmpStmtDelete(Connection conn, EmpInfo recordInfo, String schemaName) {
+	public EmpDelete(Connection conn, EmpInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
@@ -51,7 +52,7 @@ final class EmpStmtDelete implements SqlStmt<EmpInfo> {
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;		
 		
-		EmpStmtWhere whereClause = new EmpStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		SqlStmtWhere whereClause = new EmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -89,7 +90,7 @@ final class EmpStmtDelete implements SqlStmt<EmpInfo> {
 	
 	
 	@Override public SqlStmt<EmpInfo> getNewInstance() {
-		return new EmpStmtDelete(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new EmpDelete(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	

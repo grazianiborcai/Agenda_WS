@@ -19,13 +19,13 @@ import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtParamTranslator;
 
-final class EmpStmtInsert implements SqlStmt<EmpInfo> {	
+final class EmpInsert implements SqlStmt<EmpInfo> {	
 	private SqlStmt<EmpInfo> stmtSql;
 	private SqlStmtOption<EmpInfo> stmtOption;
 	
 	
 	
-	public EmpStmtInsert(Connection conn, EmpInfo recordInfo, String schemaName) {
+	public EmpInsert(Connection conn, EmpInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 		
@@ -110,7 +110,7 @@ final class EmpStmtInsert implements SqlStmt<EmpInfo> {
 	
 	
 	@Override public SqlStmt<EmpInfo> getNewInstance() {
-		return new EmpStmtInsert(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new EmpInsert(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	

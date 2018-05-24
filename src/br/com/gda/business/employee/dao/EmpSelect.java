@@ -19,9 +19,10 @@ import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
+import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpStmtSelect implements SqlStmt<EmpInfo> {
+final class EmpSelect implements SqlStmt<EmpInfo> {
 	private final String LEFT_TABLE_EMPLOYEE = DbTable.EMPLOYEE_TABLE;	
 	private final String RIGHT_TABLE_GENDER_TEXT = DbTable.GENDER_TEXT_TABLE;
 	private final String RIGHT_TABLE_POSITION_TEXT = DbTable.POSITION_TEXT_TABLE;
@@ -32,7 +33,7 @@ final class EmpStmtSelect implements SqlStmt<EmpInfo> {
 	
 	
 	
-	public EmpStmtSelect(Connection conn, EmpInfo recordInfo, String schemaName) {
+	public EmpSelect(Connection conn, EmpInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
@@ -62,7 +63,7 @@ final class EmpStmtSelect implements SqlStmt<EmpInfo> {
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		EmpStmtWhere whereClause = new EmpStmtWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		SqlStmtWhere whereClause = new EmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -192,7 +193,7 @@ final class EmpStmtSelect implements SqlStmt<EmpInfo> {
 	
 	
 	@Override public SqlStmt<EmpInfo> getNewInstance() {
-		return new EmpStmtSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new EmpSelect(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
