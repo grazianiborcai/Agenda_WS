@@ -64,7 +64,7 @@ public final class StoreEmpModelDelete implements Model {
 	
 	
 	private static class TreeFactory implements DeciTreeFactory<StoreEmpInfo> {		
-		@Override public DeciTree<StoreEmpInfo> getDecisionTree(DeciTreeOption<StoreEmpInfo> option) {
+		@Override public DeciTree<StoreEmpInfo> getInstance(DeciTreeOption<StoreEmpInfo> option) {
 			return new StoreEmpRootDelete(option);
 		}		
 	

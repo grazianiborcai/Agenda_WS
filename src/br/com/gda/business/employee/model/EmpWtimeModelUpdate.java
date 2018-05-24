@@ -63,7 +63,7 @@ public final class EmpWtimeModelUpdate implements Model {
 	
 	
 	private static class TreeFactory implements DeciTreeFactory<EmpWTimeInfo> {		
-		@Override public DeciTree<EmpWTimeInfo> getDecisionTree(DeciTreeOption<EmpWTimeInfo> option) {
+		@Override public DeciTree<EmpWTimeInfo> getInstance(DeciTreeOption<EmpWTimeInfo> option) {
 			return new EmpWtimeRootUpdate(option);
 		}			
 	}

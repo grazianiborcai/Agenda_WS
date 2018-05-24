@@ -2,27 +2,24 @@ package br.com.gda.business.material.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.sql.DbTable;
 import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtParamTranslator;
 
-public final class MatInsert implements SqlStmt<MatInfo> {
+public final class MatTextInsert implements SqlStmt<MatInfo> {
 	private SqlStmt<MatInfo> stmtSql;
 	private SqlStmtOption<MatInfo> stmtOption;
 	
 	
 	
-	public MatInsert(Connection conn, MatInfo recordInfo, String schemaName) {
+	public MatTextInsert(Connection conn, MatInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 		
@@ -35,10 +32,10 @@ public final class MatInsert implements SqlStmt<MatInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DbTable.MATERIAL_TABLE;
+		this.stmtOption.tableName = DbTable.MATERIAL_TEXT_TABLE;
 		this.stmtOption.columns = MatDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser(recordInfo);
+		this.stmtOption.resultParser = null;
 		this.stmtOption.whereClause = null;
 	}
 	
@@ -80,14 +77,10 @@ public final class MatInsert implements SqlStmt<MatInfo> {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
-			stmt.setDouble(i++, recordInfo.price);
-			stmt.setInt(i++, recordInfo.codType);
-			stmt.setInt(i++, recordInfo.codCategory);
-			stmt.setString(i++, recordInfo.codCurr);
-			stmt.setString(i++, recordInfo.codUnit);
-			stmt.setInt(i++, recordInfo.priceUnit);
-			stmt.setInt(i++, recordInfo.codGroup);
-			stmt.setString(i++, recordInfo.recordMode);
+			stmt.setLong(i++, recordInfo.codMat);
+			stmt.setString(i++, recordInfo.codLanguage);
+			stmt.setString(i++, recordInfo.txtMat);
+			stmt.setString(i++, recordInfo.description);
 			
 			return stmt;
 		}		
@@ -96,27 +89,6 @@ public final class MatInsert implements SqlStmt<MatInfo> {
 	
 	
 	@Override public SqlStmt<MatInfo> getNewInstance() {
-		return new MatInsert(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	private class ResultParser implements SqlResultParser<MatInfo> {
-		private MatInfo recordInfo;
-		
-		public ResultParser(MatInfo recordToParse) {
-			recordInfo = recordToParse;
-		}
-		
-		
-		
-		@Override public List<MatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<MatInfo> finalResult = new ArrayList<>();
-			recordInfo.codMat = lastId;
-			finalResult.add(recordInfo);			
-			return finalResult;
-		}
+		return new MatAttrInsert(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 }

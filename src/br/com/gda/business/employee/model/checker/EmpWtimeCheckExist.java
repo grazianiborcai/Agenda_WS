@@ -11,14 +11,15 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public class CheckerEmpWtimeExistOnDb extends ModelCheckerTemplate<EmpWTimeInfo> {
+public class EmpWtimeCheckExist extends ModelCheckerTemplate<EmpWTimeInfo> {
 	private final boolean EMPLOYEE_WORKING_TIME_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	
 	
-	public CheckerEmpWtimeExistOnDb(ModelCheckerOption option) {
+	public EmpWtimeCheckExist(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -41,7 +42,7 @@ public class CheckerEmpWtimeExistOnDb extends ModelCheckerTemplate<EmpWTimeInfo>
 	
 	
 	private List<EmpWTimeInfo> executeStmt(EmpWTimeInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		EmpWtimeStmtExecSelect stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+		SqlStmtExec<EmpWTimeInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
 		
 		stmtExecutor.executeStmt();
 		return stmtExecutor.getResultset();
@@ -49,7 +50,7 @@ public class CheckerEmpWtimeExistOnDb extends ModelCheckerTemplate<EmpWTimeInfo>
 	
 	
 	
-	private EmpWtimeStmtExecSelect buildStmtExecutor(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {
+	private SqlStmtExec<EmpWTimeInfo> buildStmtExecutor(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {
 		SqlStmtExecOption<EmpWTimeInfo> stmtExecOption = new SqlStmtExecOption<>();
 		stmtExecOption.conn = conn;
 		stmtExecOption.recordInfo = recordInfo;
@@ -64,18 +65,18 @@ public class CheckerEmpWtimeExistOnDb extends ModelCheckerTemplate<EmpWTimeInfo>
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB)
-			return SystemMessage.EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_WORKING_TIME_ALREADY_EXIST)
+			return SystemMessage.EMPLOYEE_WORKING_TIME_ALREALDY_EXIST;
 		
-		return SystemMessage.EMPLOYEE_WORKING_TIME_DONT_EXIST_ON_DB;
+		return SystemMessage.EMPLOYEE_WORKING_TIME_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == EMPLOYEE_WORKING_TIME_EXIST)
-			return SystemCode.EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB;	
+			return SystemCode.EMPLOYEE_WORKING_TIME_ALREADY_EXIST;	
 			
-		return SystemCode.EMPLOYEE_WORKING_TIME_DONT_EXIST_ON_DB;
+		return SystemCode.EMPLOYEE_WORKING_TIME_NOT_FOUND;
 	}
 }

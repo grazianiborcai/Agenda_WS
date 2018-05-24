@@ -2,21 +2,25 @@ package br.com.gda.business.employee.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employee.info.EmpWTimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerEmpMandatoryRead extends ModelCheckerTemplate<EmpInfo> {
+public final class EmpWtimeCheckWrite extends ModelCheckerTemplate<EmpWTimeInfo> {
 
-	public CheckerEmpMandatoryRead() {
+	public EmpWtimeCheckWrite() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner <= 0 )			
+	@Override protected boolean checkHook(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {	
+		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codStore    	<= 0 	||
+			recordInfo.codEmployee 	<= 0 	||
+			recordInfo.weekday		<= 0 )
+			
 			return RESULT_FAILED;
 		
 		

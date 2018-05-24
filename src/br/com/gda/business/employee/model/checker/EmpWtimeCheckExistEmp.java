@@ -7,15 +7,15 @@ import br.com.gda.business.employee.info.EmpWTimeInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class CheckerEmpWtimeEmpExistOnDb implements ModelChecker<EmpWTimeInfo> {	
+public final class EmpWtimeCheckExistEmp implements ModelChecker<EmpWTimeInfo> {	
 	private final boolean RESULT_SUCCESS = true;
 	private final boolean RESULT_FAILED = false;
 	
 	private ModelChecker<EmpInfo> checkerEmp;
 	
 	
-	public CheckerEmpWtimeEmpExistOnDb(ModelCheckerOption option) {
-		checkerEmp = new CheckerEmpExistOnDb(option);
+	public EmpWtimeCheckExistEmp(ModelCheckerOption option) {
+		checkerEmp = new EmpCheckExistKey(option);
 	}
 
 

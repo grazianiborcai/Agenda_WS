@@ -6,13 +6,13 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerCpf;
 
-public final class CheckerEmpCpf implements ModelChecker<EmpInfo> {
+public final class EmpCheckCpf implements ModelChecker<EmpInfo> {
 	private final boolean RESULT_SUCCESS = true;
 	private final boolean RESULT_FAILED = false;
 	
 	private ModelChecker<String> checkerCpf;
 	
-	public CheckerEmpCpf() {
+	public EmpCheckCpf() {
 		checkerCpf = new ModelCheckerCpf();
 	}
 

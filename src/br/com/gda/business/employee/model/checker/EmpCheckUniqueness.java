@@ -9,46 +9,35 @@ import br.com.gda.business.employee.dao.EmpStmtExecSelect;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class CheckerEmpSoftDelete extends ModelCheckerTemplate<EmpInfo> {
-	private final boolean EMPLOYEE_IS_DELETED = true;
-	private final boolean NOT_FOUND_OR_NOT_DELETED = false;	
+public final class EmpCheckUniqueness extends ModelCheckerTemplate<EmpInfo> {
+	private final boolean SINGLE_EMPLOYEE_FOUND = true;
+	private final boolean MULTIPLE_ENTRIES_FOUND_ON_DB = false;
 	
 	
-	public CheckerEmpSoftDelete(ModelCheckerOption option) {
+	public EmpCheckUniqueness(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {
-		EmpInfo clonedInfo = makeClone(recordInfo);
-		clonedInfo.recordMode = RecordMode.RECORD_DELETED;
-		
+	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
 		try {
-			List<EmpInfo> resultset = executeStmt(clonedInfo, conn, schemaName);
+			List<EmpInfo> resultset = executeStmt(recordInfo, conn, schemaName);
 			
 			if (resultset == null || resultset.isEmpty())
-				return NOT_FOUND_OR_NOT_DELETED;
+				throw new IllegalStateException(SystemMessage.EMPLOYEE_DATA_NOT_FOUND);
+				
+			if (resultset.size() > 1)
+				return MULTIPLE_ENTRIES_FOUND_ON_DB;
 			
-			return EMPLOYEE_IS_DELETED;
+			return SINGLE_EMPLOYEE_FOUND;
 			
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
-		}
-	}
-	
-	
-	
-	private EmpInfo makeClone(EmpInfo recordInfo) {
-		try {
-			return (EmpInfo) recordInfo.clone();
-		} catch (CloneNotSupportedException e) {
-			throw new IllegalStateException(e);
 		}
 	}
 	
@@ -77,13 +66,19 @@ public final class CheckerEmpSoftDelete extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {	
-		return SystemMessage.EMPLOYEE_FLAGGED_AS_DELETED;
+	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
+		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_MULTIPLE_ENTRIES_FOUND)
+			return SystemMessage.EMPLOYEE_MULTIPLE_ENTRIES_FOUND;
+		
+		return SystemMessage.EMPLOYEE_SINGLE_ENTRY_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.EMPLOYEE_FLAGGED_AS_DELETED;	
+		if (checkerResult == SINGLE_EMPLOYEE_FOUND)
+			return SystemCode.EMPLOYEE_MULTIPLE_ENTRIES_FOUND;	
+			
+		return SystemCode.EMPLOYEE_NOT_FOUND;
 	}
 }

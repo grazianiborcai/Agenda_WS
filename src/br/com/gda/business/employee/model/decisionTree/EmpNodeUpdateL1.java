@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.checker.CheckerEmpConstraintOnDb;
+import br.com.gda.business.employee.model.checker.EmpCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -36,7 +36,7 @@ final class EmpNodeUpdateL1 implements DeciTree<EmpInfo> {
 	
 	
 	private ModelChecker<EmpInfo> buildDecisionChecker(DeciTreeOption<EmpInfo> option) {
-		final boolean EXIST_WITH_CONSTRAINT_ON_DB = true;
+		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<EmpInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
@@ -45,8 +45,8 @@ final class EmpNodeUpdateL1 implements DeciTree<EmpInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_WITH_CONSTRAINT_ON_DB;		
-		checker = new CheckerEmpConstraintOnDb(checkerOption);
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpCheckExist(checkerOption);
 		stack.add(checker);	
 		
 		return new ModelCheckerStack<>(stack);

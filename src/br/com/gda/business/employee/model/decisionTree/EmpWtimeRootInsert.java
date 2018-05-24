@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpWTimeInfo;
-import br.com.gda.business.employee.model.checker.CheckerEmpWtimeEmpExistOnDb;
-import br.com.gda.business.employee.model.checker.CheckerEmpWtimeExistOnDb;
-import br.com.gda.business.employee.model.checker.CheckerEmpWtimeMandatoryWrite;
+import br.com.gda.business.employee.model.checker.EmpWtimeCheckExistEmp;
+import br.com.gda.business.employee.model.checker.EmpWtimeCheckExist;
+import br.com.gda.business.employee.model.checker.EmpWtimeCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -39,7 +39,7 @@ public final class EmpWtimeRootInsert implements DeciTree<EmpWTimeInfo> {
 		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpWTimeInfo> checker;
 		
-		checker = new CheckerEmpWtimeMandatoryWrite();
+		checker = new EmpWtimeCheckWrite();
 		stack.add(checker);
 		
 		final boolean EXIST_ON_DB = true;	
@@ -51,7 +51,7 @@ public final class EmpWtimeRootInsert implements DeciTree<EmpWTimeInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new CheckerEmpWtimeEmpExistOnDb(checkerOption);
+		checker = new EmpWtimeCheckExistEmp(checkerOption);
 		stack.add(checker);	
 		
 		
@@ -59,7 +59,7 @@ public final class EmpWtimeRootInsert implements DeciTree<EmpWTimeInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new CheckerEmpWtimeExistOnDb(checkerOption);
+		checker = new EmpWtimeCheckExist(checkerOption);
 		stack.add(checker);	
 		
 		return new ModelCheckerStack<>(stack);

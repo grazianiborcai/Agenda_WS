@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.checker.CheckerEmpCpf;
-import br.com.gda.business.employee.model.checker.CheckerEmpMandatoryRead;
+import br.com.gda.business.employee.model.checker.EmpCheckCpf;
+import br.com.gda.business.employee.model.checker.EmpCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
@@ -37,10 +37,10 @@ public final class EmpRootSelect implements DeciTree<EmpInfo> {
 		List<ModelChecker<EmpInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
 		
-		checker = new CheckerEmpMandatoryRead();
+		checker = new EmpCheckRead();
 		stack.add(checker);
 		
-		checker = new CheckerEmpCpf();
+		checker = new EmpCheckCpf();
 		stack.add(checker);
 		
 		return new ModelCheckerStack<>(stack);

@@ -64,7 +64,7 @@ public final class StoreModelUpdate implements Model {
 	
 	
 	private static class TreeFactory implements DeciTreeFactory<StoreInfo> {		
-		@Override public DeciTree<StoreInfo> getDecisionTree(DeciTreeOption<StoreInfo> option) {
+		@Override public DeciTree<StoreInfo> getInstance(DeciTreeOption<StoreInfo> option) {
 			return new StoreRootUpdate(option);
 		}			
 	}

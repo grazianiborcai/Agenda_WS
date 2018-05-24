@@ -99,26 +99,19 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	}
 	
 	
-	//TODO: preparar para executar o ForwardAction
+	
 	private void executeDecisionActions(List<DeciAction<T>> decisionActions) {
 		if (decisionActions == null)
 			return;
 			
 		for (DeciAction<T> eachAction : decisionActions) {
-			DeciResult<T> actionResult = executeDecisionAction(eachAction);		
+			eachAction.executeAction();
+			DeciResult<T> actionResult = eachAction.getDecisionResult();		
 			buildResultFromAction(actionResult);
 			
 			if (actionResult.hasSuccessfullyFinished() == RESULT_FAILED)
 				break;
 		}
-	}
-	
-	
-	
-	private DeciResult<T> executeDecisionAction(DeciAction<T> decisionAction) {
-		decisionAction.executeAction();
-		DeciResult<T> actionResult = decisionAction.getDecisionResult();
-		return actionResult;
 	}
 	
 	

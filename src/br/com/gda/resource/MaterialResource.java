@@ -16,6 +16,7 @@ import com.sun.jersey.multipart.FormDataMultiPart;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.MatModelInsert;
 import br.com.gda.business.material.model.MatModelSelect;
+import br.com.gda.business.material.model.MatModelUpdate;
 import br.com.gda.model.Model;
 import br.com.gda.model.legacy.MaterialModel;
 
@@ -32,7 +33,7 @@ public class MaterialResource {
 	@POST
 	@Path(INSERT_MATERIAL)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertMaterial(String incomingData) {		
+	public Response insertMaterial(String incomingData) {	
 		
 		Model modelInsert = new MatModelInsert(incomingData);
 		modelInsert.executeRequest();
@@ -46,7 +47,9 @@ public class MaterialResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateMaterial(String incomingData) {
 
-		return new MaterialModel().updateMaterial(incomingData);
+		Model modelUpdate = new MatModelUpdate(incomingData);
+		modelUpdate.executeRequest();
+		return modelUpdate.getResponse();
 	}
 	
 	

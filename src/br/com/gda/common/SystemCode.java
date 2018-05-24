@@ -12,13 +12,13 @@ public final class SystemCode {
 	public static final int INTERNAL_ERROR 								= 500;
 	
 	// Employee Working Time
-	public static final int EMPLOYEE_WORKING_TIME_ALREALDY_EXIST_ON_DB 	= 1000;
-	public static final int EMPLOYEE_WORKING_TIME_DONT_EXIST_ON_DB 		= 1001;
+	public static final int EMPLOYEE_WORKING_TIME_ALREADY_EXIST 		= 1000;
+	public static final int EMPLOYEE_WORKING_TIME_NOT_FOUND 			= 1001;
 	public static final int EMPLOYEE_WORKING_FLAGGED_AS_DELETED 		= 1002;
 	
 	// Employee
-	public static final int EMPLOYEE_ALREALDY_EXIST_ON_DB 				= 1050;
-	public static final int EMPLOYEE_DONT_EXIST_ON_DB 					= 1051;
+	public static final int EMPLOYEE_ALREALDY_EXIST 					= 1050;
+	public static final int EMPLOYEE_NOT_FOUND 							= 1051;
 	public static final int EMPLOYEE_FLAGGED_AS_DELETED 				= 1052;
 	public static final int EMPLOYEE_MULTIPLE_ENTRIES_FOUND				= 1053;
 	public static final int EMPLOYEE_SINGLE_ENTRY_FOUND					= 1054;
@@ -29,10 +29,10 @@ public final class SystemCode {
 	// Store
 	public static final int STORE_CNPJ_ALREADY_EXIST					= 1100;
 	public static final int STORE_CNPJ_NOT_FOUND						= 1101;
-	public static final int STORE_ALREALDY_EXIST_ON_DB 					= 1102;
-	public static final int STORE_DONT_EXIST_ON_DB 						= 1103;
-	public static final int STORE_EMP_ALREALDY_EXIST_ON_DB 				= 1104;
-	public static final int STORE_EMP_DONT_EXIST_ON_DB 					= 1105;
+	public static final int STORE_ALREALDY_EXIST 						= 1102;
+	public static final int STORE_DONT_EXIST 							= 1103;
+	public static final int STORE_EMP_ALREALDY_EXIST 					= 1104;
+	public static final int STORE_EMP_NOT_FOUND 						= 1105;
 	public static final int STORE_EMP_FLAGGED_AS_DELETED 				= 1106;
 	
 	// Master Data
@@ -50,4 +50,8 @@ public final class SystemCode {
 	public static final int MAT_GROUP_NOT_FOUND							= 1161;
 	public static final int MAT_TYPE_ALREADY_EXIST						= 1162;
 	public static final int MAT_TYPE_NOT_FOUND							= 1163;
+	
+	//Material
+	public static final int MATERIAL_ALREADY_EXIST						= 1200;
+	public static final int MATERIAL_NOT_FOUND							= 1201;
 }

@@ -14,12 +14,12 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class CheckerEmpWtimeSoftDelete extends ModelCheckerTemplate<EmpWTimeInfo> {
+public final class EmpWtimeCheckSoftDelete extends ModelCheckerTemplate<EmpWTimeInfo> {
 	private final boolean EMPLOYEE_WORKING_IS_DELETED = true;
 	private final boolean NOT_FOUND_OR_NOT_DELETED = false;	
 	
 	
-	public CheckerEmpWtimeSoftDelete(ModelCheckerOption option) {
+	public EmpWtimeCheckSoftDelete(ModelCheckerOption option) {
 		super(option);
 	}
 	

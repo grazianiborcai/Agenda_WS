@@ -1,25 +1,23 @@
-package br.com.gda.business.employee.model.checker;
+package br.com.gda.business.material.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.employee.info.EmpWTimeInfo;
+import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerEmpWtimeMandatoryWrite extends ModelCheckerTemplate<EmpWTimeInfo> {
+public final class MatCheckKey extends ModelCheckerTemplate<MatInfo> {
 
-	public CheckerEmpWtimeMandatoryWrite() {
+	public MatCheckKey() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.codStore    	<= 0 	||
-			recordInfo.codEmployee 	<= 0 	||
-			recordInfo.weekday		<= 0 )
+	@Override protected boolean checkHook(MatInfo recordInfo, Connection conn, String schemaName) {	
+		if (   recordInfo.codOwner 		<= 0 	
+			|| recordInfo.codMat 		<= 0	)
 			
 			return RESULT_FAILED;
 		

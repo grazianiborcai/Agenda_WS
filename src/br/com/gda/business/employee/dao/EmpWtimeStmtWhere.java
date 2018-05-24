@@ -5,10 +5,11 @@ import java.util.List;
 import br.com.gda.business.employee.info.EmpWTimeInfo;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlFormatterNumber;
+import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilder;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpWtimeStmtWhere {
+final class EmpWtimeStmtWhere implements SqlStmtWhere {
 	private String whereClause;	
 	
 	

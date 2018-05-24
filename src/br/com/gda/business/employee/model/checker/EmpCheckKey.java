@@ -8,11 +8,11 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerEmpMandatoryKey extends ModelCheckerTemplate<EmpInfo> {
+public final class EmpCheckKey extends ModelCheckerTemplate<EmpInfo> {
 	private final boolean KEY_NOT_NULL = true;
 	private final boolean EMPTY_KEY = false;
 	
-	public CheckerEmpMandatoryKey(ModelCheckerOption option) {
+	public EmpCheckKey(ModelCheckerOption option) {
 		super(option);
 	}
 	

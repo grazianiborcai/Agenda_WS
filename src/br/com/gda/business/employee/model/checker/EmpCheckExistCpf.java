@@ -13,12 +13,12 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class CheckerEmpUniqueOnDb extends ModelCheckerTemplate<EmpInfo> {
-	private final boolean SINGLE_EMPLOYEE_FOUND = true;
-	private final boolean MULTIPLE_ENTRIES_FOUND_ON_DB = false;
+public final class EmpCheckExistCpf extends ModelCheckerTemplate<EmpInfo> {
+	private final boolean CPF_ALREADY_EXIST_ON_DB = true;
+	private final boolean CPF_NOT_FOUND_ON_DB = false;
 	
 	
-	public CheckerEmpUniqueOnDb(ModelCheckerOption option) {
+	public EmpCheckExistCpf(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -26,19 +26,26 @@ public final class CheckerEmpUniqueOnDb extends ModelCheckerTemplate<EmpInfo> {
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
 		try {
-			List<EmpInfo> resultset = executeStmt(recordInfo, conn, schemaName);
+			EmpInfo enforcedInfo = enforceSlectByCpf(recordInfo);			
+			List<EmpInfo> resultset = executeStmt(enforcedInfo, conn, schemaName);
 			
 			if (resultset == null || resultset.isEmpty())
-				throw new IllegalStateException(SystemMessage.EMPLOYEE_DATA_NOT_FOUND);
-				
-			if (resultset.size() > 1)
-				return MULTIPLE_ENTRIES_FOUND_ON_DB;
+				return CPF_NOT_FOUND_ON_DB;
 			
-			return SINGLE_EMPLOYEE_FOUND;
+			return CPF_ALREADY_EXIST_ON_DB;
 			
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
 		}
+	}
+	
+	
+	
+	private EmpInfo enforceSlectByCpf(EmpInfo recordInfo) {
+		EmpInfo enforcedInfo = new EmpInfo();
+		enforcedInfo.codOwner = recordInfo.codOwner;
+		enforcedInfo.cpf = recordInfo.cpf;
+		return enforcedInfo;
 	}
 	
 	
@@ -67,18 +74,18 @@ public final class CheckerEmpUniqueOnDb extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_MULTIPLE_ENTRIES_FOUND)
-			return SystemMessage.EMPLOYEE_MULTIPLE_ENTRIES_FOUND;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_CPF_ALREADY_EXIST)
+			return SystemMessage.EMPLOYEE_CPF_ALREADY_EXIST;
 		
-		return SystemMessage.EMPLOYEE_SINGLE_ENTRY_FOUND;
+		return SystemMessage.EMPLOYEE_CPF_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == SINGLE_EMPLOYEE_FOUND)
-			return SystemCode.EMPLOYEE_MULTIPLE_ENTRIES_FOUND;	
+		if (checkerResult == CPF_ALREADY_EXIST_ON_DB)
+			return SystemCode.EMPLOYEE_CPF_ALREADY_EXIST;	
 			
-		return SystemCode.EMPLOYEE_DONT_EXIST_ON_DB;
+		return SystemCode.EMPLOYEE_CPF_NOT_FOUND;
 	}
 }

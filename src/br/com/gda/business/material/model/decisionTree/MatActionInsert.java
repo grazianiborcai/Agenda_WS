@@ -1,51 +1,106 @@
 package br.com.gda.business.material.model.decisionTree;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.gda.business.material.dao.MatInsertExec;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionStmtHelper;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
 
 public final class MatActionInsert implements DeciAction<MatInfo> {
-	DeciAction<MatInfo> actionHelper;
+	private final boolean SUCCESS = true;
 	
+	DeciAction<MatInfo> actionOneAttr;	
+	DeciAction<MatInfo> actionTwoText;
+	DeciAction<MatInfo> actionThreeSelec;
+	DeciTreeOption<MatInfo> actionOption;
 	
 	public MatActionInsert(DeciTreeOption<MatInfo> option) {
-		SqlStmtExec<MatInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
+		actionOption = option;
+		buildActionOne();
 	}
 	
 	
 	
-	private SqlStmtExec<MatInfo> buildStmtExec(DeciTreeOption<MatInfo> option) {
-		List<SqlStmtExecOption<MatInfo>> stmtExecOptions = new ArrayList<>();			
-		
-		for(MatInfo eachRecord : option.recordInfos) {
-			SqlStmtExecOption<MatInfo> stmtExecOption = new SqlStmtExecOption<>();
-			stmtExecOption.conn = option.conn;
-			stmtExecOption.recordInfo = eachRecord;
-			stmtExecOption.schemaName = option.schemaName;
-			stmtExecOptions.add(stmtExecOption);
-		}
-		
-		return new MatInsertExec(stmtExecOptions);
+	private void buildActionOne() {
+		actionOneAttr = new MatAttrActionInsert(actionOption);
 	}
 	
 	
 	
 	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
+		boolean result = actionOneAttr.executeAction();
+		
+		if (result == SUCCESS)
+			return forwardAction();
+		
+		return result;
+	}
+	
+	
+	
+	private boolean forwardAction() {
+		boolean result = forwardActionTwo();
+		
+		if (result == SUCCESS)
+			return forwardActionThree();
+		
+		return result;
+	}
+	
+	
+	
+	private boolean forwardActionTwo() {
+		prepareOption();
+		buildSecondTwo();
+		return executeActionTwo();
+	}
+	
+	
+	
+	private void prepareOption() {
+		actionOption.recordInfos = actionOneAttr.getDecisionResult().getResultset();
+	}
+	
+	
+	
+	private void buildSecondTwo() {
+		actionTwoText = new MatTextActionInsert(actionOption);
+	}
+	
+	
+	
+	private boolean executeActionTwo() {
+		return actionTwoText.executeAction();
+	}
+	
+	
+	
+	private boolean forwardActionThree() {
+		prepareOption();
+		buildSecondThree();
+		return executeActionThree();
+	}
+	
+	
+	
+	private void buildSecondThree() {
+		actionThreeSelec = new MatActionSelect(actionOption);
+	}
+	
+	
+	
+	private boolean executeActionThree() {
+		return actionThreeSelec.executeAction();
 	}
 	
 	
 	
 	@Override public DeciResult<MatInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+		if (actionThreeSelec != null)
+			return actionThreeSelec.getDecisionResult();
+		
+		if (actionTwoText != null)
+			return actionTwoText.getDecisionResult();
+		
+		return actionOneAttr.getDecisionResult();
 	}
 }

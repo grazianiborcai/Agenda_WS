@@ -1,11 +1,11 @@
-package br.com.gda.business.store.model;
+package br.com.gda.business.material.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.store.info.StoreEmpInfo;
-import br.com.gda.business.store.model.decisionTree.StoreEmpRootInsert;
+import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.material.model.decisionTree.MatRootUpdate;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StoreEmpModelInsert implements Model {
-	private ModelHelper<StoreEmpInfo> helper;
+public final class MatModelUpdate implements Model {
+	private ModelHelper<MatInfo> helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public StoreEmpModelInsert(String incomingData) {
+	public MatModelUpdate(String incomingData) {
 		initialize();
 		buildHelper(incomingData);
 	}
@@ -36,9 +36,9 @@ public final class StoreEmpModelInsert implements Model {
 	
 	
 	private void buildHelper(String incomingData) {
-		ModelOption<StoreEmpInfo> helperOption = new ModelOption<>();
+		ModelOption<MatInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = StoreEmpInfo.class;
+		helperOption.infoRecordClass = MatInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class StoreEmpModelInsert implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<StoreEmpInfo> {		
-		@Override public DeciTree<StoreEmpInfo> getInstance(DeciTreeOption<StoreEmpInfo> option) {
-			return new StoreEmpRootInsert(option);
+	private static class TreeFactory implements DeciTreeFactory<MatInfo> {		
+		@Override public DeciTree<MatInfo> getInstance(DeciTreeOption<MatInfo> option) {
+			return new MatRootUpdate(option);
 		}			
 	}
 }

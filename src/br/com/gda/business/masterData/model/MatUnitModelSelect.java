@@ -64,7 +64,7 @@ public final class MatUnitModelSelect implements Model {
 	
 	
 	private static class TreeFactory implements DeciTreeFactory<MatUnitInfo> {		
-		@Override public DeciTree<MatUnitInfo> getDecisionTree(DeciTreeOption<MatUnitInfo> option) {
+		@Override public DeciTree<MatUnitInfo> getInstance(DeciTreeOption<MatUnitInfo> option) {
 			return new MatUnitRootSelect(option);
 		}		
 	

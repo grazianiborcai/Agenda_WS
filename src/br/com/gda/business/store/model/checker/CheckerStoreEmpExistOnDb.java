@@ -64,18 +64,18 @@ public final class CheckerStoreEmpExistOnDb extends ModelCheckerTemplate<StoreEm
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_EMP_ALREALDY_EXIST_ON_DB)
-			return SystemMessage.STORE_EMP_ALREALDY_EXIST_ON_DB;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_EMP_ALREALDY_EXIST)
+			return SystemMessage.STORE_EMP_ALREALDY_EXIST;
 		
-		return SystemMessage.STORE_EMP_DONT_EXIST_ON_DB;
+		return SystemMessage.STORE_EMP_DATA_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == STORE_EMP_EXIST)
-			return SystemCode.STORE_EMP_ALREALDY_EXIST_ON_DB;	
+			return SystemCode.STORE_EMP_ALREALDY_EXIST;	
 			
-		return SystemCode.STORE_EMP_DONT_EXIST_ON_DB;
+		return SystemCode.STORE_EMP_NOT_FOUND;
 	}
 }

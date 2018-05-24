@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.checker.CheckerEmpCpf;
-import br.com.gda.business.employee.model.checker.CheckerEmpExistOnDb;
-import br.com.gda.business.employee.model.checker.CheckerEmpMandatoryKey;
-import br.com.gda.business.employee.model.checker.CheckerEmpMandatoryWrite;
+import br.com.gda.business.employee.model.checker.EmpCheckCpf;
+import br.com.gda.business.employee.model.checker.EmpCheckExistKey;
+import br.com.gda.business.employee.model.checker.EmpCheckKey;
+import br.com.gda.business.employee.model.checker.EmpCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -45,22 +45,22 @@ public final class EmpRootUpdate implements DeciTree<EmpInfo> {
 		ModelChecker<EmpInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new CheckerEmpMandatoryWrite();
+		checker = new EmpCheckWrite();
 		stack.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.expectedResult = KEY_NOT_NULL;
-		checker = new CheckerEmpMandatoryKey(checkerOption);
+		checker = new EmpCheckKey(checkerOption);
 		stack.add(checker);
 		
-		checker = new CheckerEmpCpf();
+		checker = new EmpCheckCpf();
 		stack.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new CheckerEmpExistOnDb(checkerOption);
+		checker = new EmpCheckExistKey(checkerOption);
 		stack.add(checker);	
 		
 		return new ModelCheckerStack<>(stack);

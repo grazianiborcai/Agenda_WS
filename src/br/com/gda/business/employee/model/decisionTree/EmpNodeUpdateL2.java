@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.checker.CheckerEmpCpfExistOnDb;
+import br.com.gda.business.employee.model.checker.EmpCheckExistCpf;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -45,7 +45,7 @@ public final class EmpNodeUpdateL2 implements DeciTree<EmpInfo> {
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;		
-		checker = new CheckerEmpCpfExistOnDb(checkerOption);
+		checker = new EmpCheckExistCpf(checkerOption);
 		stack.add(checker);
 		
 		return new ModelCheckerStack<>(stack);

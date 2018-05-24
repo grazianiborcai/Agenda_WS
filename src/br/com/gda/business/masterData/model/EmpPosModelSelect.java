@@ -64,7 +64,7 @@ public final class EmpPosModelSelect implements Model {
 	
 	
 	private static class TreeFactory implements DeciTreeFactory<EmpPosInfo> {		
-		@Override public DeciTree<EmpPosInfo> getDecisionTree(DeciTreeOption<EmpPosInfo> option) {
+		@Override public DeciTree<EmpPosInfo> getInstance(DeciTreeOption<EmpPosInfo> option) {
 			return new EmpPosRootSelect(option);
 		}		
 	

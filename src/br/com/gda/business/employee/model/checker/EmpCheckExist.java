@@ -14,12 +14,12 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class CheckerEmpConstraintOnDb extends ModelCheckerTemplate<EmpInfo> {
+public final class EmpCheckExist extends ModelCheckerTemplate<EmpInfo> {
 	private final boolean EMPLOYEE_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	
 	
-	public CheckerEmpConstraintOnDb(ModelCheckerOption option) {
+	public EmpCheckExist(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -81,18 +81,18 @@ public final class CheckerEmpConstraintOnDb extends ModelCheckerTemplate<EmpInfo
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_ALREALDY_EXIST_ON_DB)
-			return SystemMessage.EMPLOYEE_ALREALDY_EXIST_ON_DB;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_ALREALDY_EXIST)
+			return SystemMessage.EMPLOYEE_ALREALDY_EXIST;
 		
-		return SystemMessage.EMPLOYEE_DONT_EXIST_ON_DB;
+		return SystemMessage.EMPLOYEE_DATA_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == EMPLOYEE_EXIST)
-			return SystemCode.EMPLOYEE_ALREALDY_EXIST_ON_DB;	
+			return SystemCode.EMPLOYEE_ALREALDY_EXIST;	
 			
-		return SystemCode.EMPLOYEE_DONT_EXIST_ON_DB;
+		return SystemCode.EMPLOYEE_NOT_FOUND;
 	}
 }

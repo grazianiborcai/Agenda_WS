@@ -107,7 +107,7 @@ public class ModelHelper<T> implements Model {
 		treeOption.recordInfos = currentRecordInfos;
 		treeOption.schemaName = this.schemaName;
 		
-		this.decisionTree = this.treeFactory.getDecisionTree(treeOption);
+		this.decisionTree = this.treeFactory.getInstance(treeOption);
 	}
 	
 	

@@ -3,7 +3,7 @@ package br.com.gda.business.store.model.checker;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.checker.CheckerEmpExistOnDb;
+import br.com.gda.business.employee.model.checker.EmpCheckExistKey;
 import br.com.gda.business.masterData.info.EmpPosInfo;
 import br.com.gda.business.masterData.model.checker.EmpPosCheckExist;
 import br.com.gda.business.store.info.StoreEmpInfo;
@@ -65,7 +65,7 @@ public final class CheckerStoreEmpDependencyOnDb implements ModelChecker<StoreEm
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = option.expectedResult;		
-		checkerEmployeeExistOnDb = new CheckerEmpExistOnDb(checkerOption);
+		checkerEmployeeExistOnDb = new EmpCheckExistKey(checkerOption);
 	}
 
 	

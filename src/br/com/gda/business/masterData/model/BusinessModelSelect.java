@@ -64,7 +64,7 @@ public final class BusinessModelSelect implements Model {
 	
 	
 	private static class TreeFactory implements DeciTreeFactory<BusinessInfo> {		
-		@Override public DeciTree<BusinessInfo> getDecisionTree(DeciTreeOption<BusinessInfo> option) {
+		@Override public DeciTree<BusinessInfo> getInstance(DeciTreeOption<BusinessInfo> option) {
 			return new BusinessRootSelect(option);
 		}		
 	

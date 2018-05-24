@@ -106,7 +106,6 @@ public final class MatRootInsert implements DeciTree<MatInfo> {
 		List<DeciAction<MatInfo>> actions = new ArrayList<>();
 		
 		actions.add(new MatActionInsert(option));
-		actions.add(new MatActionSelect(option));		
 		return actions;
 	}
 	

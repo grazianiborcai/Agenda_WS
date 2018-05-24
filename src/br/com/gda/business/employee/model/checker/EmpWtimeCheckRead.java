@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerEmpWtimeMandatoryRead extends ModelCheckerTemplate<EmpWTimeInfo> {
+public final class EmpWtimeCheckRead extends ModelCheckerTemplate<EmpWTimeInfo> {
 
-	public CheckerEmpWtimeMandatoryRead() {
+	public EmpWtimeCheckRead() {
 		super();
 	}
 	

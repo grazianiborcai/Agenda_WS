@@ -7,34 +7,32 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerEmpMandatoryWrite extends ModelCheckerTemplate<EmpInfo> {
-
-	public CheckerEmpMandatoryWrite() {
+public final class EmpCheckGenField extends ModelCheckerTemplate<EmpInfo> {
+	private final boolean AUTO_GEN_FIELD_NOT_NULL = false;
+	private final boolean EMPTY_AUTO_GEN_FIELD = true;
+	
+	public EmpCheckGenField() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 	<= 0 	
-			|| recordInfo.cpf 		== null 	
-			|| recordInfo.name 		== null	)
-			
-			return RESULT_FAILED;
+		if ( recordInfo.codEmployee >= 0 )			
+			return AUTO_GEN_FIELD_NOT_NULL;		
 		
-		
-		return RESULT_SUCCESS;
+		return EMPTY_AUTO_GEN_FIELD;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.AUTO_GENERATED_FIELD_IS_NOT_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.AUTO_GENERATED_FIELD_IS_NOT_EMPTY;
 	}
 }

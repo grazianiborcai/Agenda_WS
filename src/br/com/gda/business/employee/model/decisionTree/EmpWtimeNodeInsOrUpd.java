@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.employee.dao.EmpWtimeStmtExecInsert;
 import br.com.gda.business.employee.dao.EmpWtimeStmtExecUpdate;
 import br.com.gda.business.employee.info.EmpWTimeInfo;
-import br.com.gda.business.employee.model.checker.CheckerEmpWtimeSoftDelete;
+import br.com.gda.business.employee.model.checker.EmpWtimeCheckSoftDelete;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -49,7 +49,7 @@ final class EmpWtimeNodeInsOrUpd implements DeciTree<EmpWTimeInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXPECTED_NOT_DELETED;
-		checker = new CheckerEmpWtimeSoftDelete(checkerOption);
+		checker = new EmpWtimeCheckSoftDelete(checkerOption);
 		stack.add(checker);
 
 		return new ModelCheckerStack<>(stack);

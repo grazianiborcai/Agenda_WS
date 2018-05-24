@@ -64,7 +64,7 @@ public final class MatGroupModelSelect implements Model {
 	
 	
 	private static class TreeFactory implements DeciTreeFactory<MatGroupInfo> {		
-		@Override public DeciTree<MatGroupInfo> getDecisionTree(DeciTreeOption<MatGroupInfo> option) {
+		@Override public DeciTree<MatGroupInfo> getInstance(DeciTreeOption<MatGroupInfo> option) {
 			return new MatGroupRootSelect(option);
 		}		
 	

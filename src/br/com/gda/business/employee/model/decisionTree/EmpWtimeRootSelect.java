@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpWTimeInfo;
-import br.com.gda.business.employee.model.checker.CheckerEmpWtimeMandatoryRead;
+import br.com.gda.business.employee.model.checker.EmpWtimeCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
@@ -36,7 +36,7 @@ public final class EmpWtimeRootSelect implements DeciTree<EmpWTimeInfo> {
 		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
 		ModelChecker<EmpWTimeInfo> checker;
 		
-		checker = new CheckerEmpWtimeMandatoryRead();
+		checker = new EmpWtimeCheckRead();
 		stack.add(checker);
 		
 		return new ModelCheckerStack<>(stack);

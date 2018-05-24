@@ -9,30 +9,33 @@ import br.com.gda.business.employee.dao.EmpStmtExecSelect;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.helper.RecordMode;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class CheckerEmpCpfExistOnDb extends ModelCheckerTemplate<EmpInfo> {
-	private final boolean CPF_ALREADY_EXIST_ON_DB = true;
-	private final boolean CPF_NOT_FOUND_ON_DB = false;
+public final class EmpCheckSoftDelete extends ModelCheckerTemplate<EmpInfo> {
+	private final boolean EMPLOYEE_IS_DELETED = true;
+	private final boolean NOT_FOUND_OR_NOT_DELETED = false;	
 	
 	
-	public CheckerEmpCpfExistOnDb(ModelCheckerOption option) {
+	public EmpCheckSoftDelete(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {
+		EmpInfo clonedInfo = makeClone(recordInfo);
+		clonedInfo.recordMode = RecordMode.RECORD_DELETED;
+		
 		try {
-			EmpInfo enforcedInfo = enforceSlectByCpf(recordInfo);			
-			List<EmpInfo> resultset = executeStmt(enforcedInfo, conn, schemaName);
+			List<EmpInfo> resultset = executeStmt(clonedInfo, conn, schemaName);
 			
 			if (resultset == null || resultset.isEmpty())
-				return CPF_NOT_FOUND_ON_DB;
+				return NOT_FOUND_OR_NOT_DELETED;
 			
-			return CPF_ALREADY_EXIST_ON_DB;
+			return EMPLOYEE_IS_DELETED;
 			
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
@@ -41,11 +44,12 @@ public final class CheckerEmpCpfExistOnDb extends ModelCheckerTemplate<EmpInfo> 
 	
 	
 	
-	private EmpInfo enforceSlectByCpf(EmpInfo recordInfo) {
-		EmpInfo enforcedInfo = new EmpInfo();
-		enforcedInfo.codOwner = recordInfo.codOwner;
-		enforcedInfo.cpf = recordInfo.cpf;
-		return enforcedInfo;
+	private EmpInfo makeClone(EmpInfo recordInfo) {
+		try {
+			return (EmpInfo) recordInfo.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 	
 	
@@ -73,19 +77,13 @@ public final class CheckerEmpCpfExistOnDb extends ModelCheckerTemplate<EmpInfo> 
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_CPF_ALREADY_EXIST)
-			return SystemMessage.EMPLOYEE_CPF_ALREADY_EXIST;
-		
-		return SystemMessage.EMPLOYEE_CPF_NOT_FOUND;
+	@Override protected String makeFailureExplanationHook(boolean checkerResult) {	
+		return SystemMessage.EMPLOYEE_FLAGGED_AS_DELETED;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == CPF_ALREADY_EXIST_ON_DB)
-			return SystemCode.EMPLOYEE_CPF_ALREADY_EXIST;	
-			
-		return SystemCode.EMPLOYEE_CPF_NOT_FOUND;
+		return SystemCode.EMPLOYEE_FLAGGED_AS_DELETED;	
 	}
 }
