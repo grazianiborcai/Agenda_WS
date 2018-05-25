@@ -245,7 +245,7 @@ public final class MatDbTableColumn {
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Language";
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);

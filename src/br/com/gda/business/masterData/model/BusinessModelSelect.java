@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.masterData.info.BusinessInfo;
-import br.com.gda.business.masterData.model.decisionTree.BusinessRootSelect;
+import br.com.gda.business.masterData.model.decisionTree.RootBusinessSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -65,7 +65,7 @@ public final class BusinessModelSelect implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<BusinessInfo> {		
 		@Override public DeciTree<BusinessInfo> getInstance(DeciTreeOption<BusinessInfo> option) {
-			return new BusinessRootSelect(option);
+			return new RootBusinessSelect(option);
 		}		
 	
 	}

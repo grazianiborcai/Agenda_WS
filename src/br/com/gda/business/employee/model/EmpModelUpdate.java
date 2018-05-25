@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.decisionTree.EmpRootUpdate;
+import br.com.gda.business.employee.model.decisionTree.RootEmpUpdate;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -65,7 +65,7 @@ public final class EmpModelUpdate implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<EmpInfo> {		
 		@Override public DeciTree<EmpInfo> getInstance(DeciTreeOption<EmpInfo> option) {
-			return new EmpRootUpdate(option);
+			return new RootEmpUpdate(option);
 		}			
 	}
 }

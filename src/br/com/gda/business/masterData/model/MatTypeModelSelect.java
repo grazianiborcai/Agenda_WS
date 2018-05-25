@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.masterData.info.MatTypeInfo;
-import br.com.gda.business.masterData.model.decisionTree.MatTypeRootSelect;
+import br.com.gda.business.masterData.model.decisionTree.RootMatTypeSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -65,7 +65,7 @@ public final class MatTypeModelSelect implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<MatTypeInfo> {		
 		@Override public DeciTree<MatTypeInfo> getInstance(DeciTreeOption<MatTypeInfo> option) {
-			return new MatTypeRootSelect(option);
+			return new RootMatTypeSelect(option);
 		}		
 	
 	}

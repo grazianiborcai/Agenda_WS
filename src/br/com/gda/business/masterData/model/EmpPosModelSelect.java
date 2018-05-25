@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.masterData.info.EmpPosInfo;
-import br.com.gda.business.masterData.model.decisionTree.EmpPosRootSelect;
+import br.com.gda.business.masterData.model.decisionTree.RootEmpPosSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -65,7 +65,7 @@ public final class EmpPosModelSelect implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<EmpPosInfo> {		
 		@Override public DeciTree<EmpPosInfo> getInstance(DeciTreeOption<EmpPosInfo> option) {
-			return new EmpPosRootSelect(option);
+			return new RootEmpPosSelect(option);
 		}		
 	
 	}

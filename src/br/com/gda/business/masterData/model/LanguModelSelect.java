@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.masterData.info.LanguInfo;
-import br.com.gda.business.masterData.model.decisionTree.LanguRootSelect;
+import br.com.gda.business.masterData.model.decisionTree.RootLanguSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -65,7 +65,7 @@ public final class LanguModelSelect implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<LanguInfo> {		
 		@Override public DeciTree<LanguInfo> getInstance(DeciTreeOption<LanguInfo> option) {
-			return new LanguRootSelect(option);
+			return new RootLanguSelect(option);
 		}		
 	
 	}

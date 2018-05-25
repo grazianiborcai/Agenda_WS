@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.masterData.info.CurrencyInfo;
-import br.com.gda.business.masterData.model.decisionTree.CurrencyRootSelect;
+import br.com.gda.business.masterData.model.decisionTree.RootCurrencySelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -65,7 +65,7 @@ public final class CurrencyModelSelect implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<CurrencyInfo> {		
 		@Override public DeciTree<CurrencyInfo> getInstance(DeciTreeOption<CurrencyInfo> option) {
-			return new CurrencyRootSelect(option);
+			return new RootCurrencySelect(option);
 		}		
 	
 	}

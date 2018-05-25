@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.masterData.info.MatCategInfo;
-import br.com.gda.business.masterData.model.decisionTree.MatCategRootSelect;
+import br.com.gda.business.masterData.model.decisionTree.RootMatCategSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -65,7 +65,7 @@ public final class MatCategModelSelect implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<MatCategInfo> {		
 		@Override public DeciTree<MatCategInfo> getInstance(DeciTreeOption<MatCategInfo> option) {
-			return new MatCategRootSelect(option);
+			return new RootMatCategSelect(option);
 		}		
 	
 	}

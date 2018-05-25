@@ -26,7 +26,7 @@ public final class EmpCheckExistKey extends ModelCheckerTemplate<EmpInfo> {
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
 		try {
-			EmpInfo enforcedInfo = enforceSelectByKey(recordInfo);
+			EmpInfo enforcedInfo = enforcePrimaryKey(recordInfo);
 			
 			List<EmpInfo> resultset = executeStmt(enforcedInfo, conn, schemaName);
 			
@@ -42,7 +42,7 @@ public final class EmpCheckExistKey extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	
-	private EmpInfo enforceSelectByKey(EmpInfo recordInfo) {
+	private EmpInfo enforcePrimaryKey(EmpInfo recordInfo) {
 		EmpInfo keyInfo = new EmpInfo();
 		keyInfo.codOwner = recordInfo.codOwner;
 		keyInfo.codEmployee = recordInfo.codEmployee;		

@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.decisionTree.MatRootInsert;
+import br.com.gda.business.material.model.decisionTree.RootMatInsert;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -65,7 +65,7 @@ public final class MatModelInsert implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<MatInfo> {		
 		@Override public DeciTree<MatInfo> getInstance(DeciTreeOption<MatInfo> option) {
-			return new MatRootInsert(option);
+			return new RootMatInsert(option);
 		}			
 	}
 }

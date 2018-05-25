@@ -22,7 +22,7 @@ public final class SystemMessage {
 	public static final String ILLEGAL_ARGUMENT = "IllegalArgument: mandatory argument might be missing or invalid value was passed";	
 	public static final String NULL_WHERE_CLAUSE = "where clause is null";	
 	public static final String EMP_POS_NOT_FOUND = "Position not found on DB";
-	public static final String MATERIAL_NOT_FOUND = "Material data not found on DB";
+	public static final String MATERIAL_NOT_FOUND = "Material data not found on DB";	
 	public static final String NO_CHECK_PERFORMED = "Check operation was not performed";
 	public static final String KEY_FIELD_IS_EMPTY = "Key field should not be null";
 	public static final String KEY_FIELD_NOT_NULL = "Key field should not be passed";		
@@ -43,12 +43,13 @@ public final class SystemMessage {
 	public static final String LANGUAGE_ALREADY_EXIST = "Language already exist on DB";
 	public static final String CURRENCY_ALREADY_EXIST = "Currency already exist on DB";
 	public static final String MAT_TYPE_ALREADY_EXIST = "Type already exist on DB";	
-	public static final String MATERIAL_ALREALDY_EXIST = "Material data already exist on DB";	
+	public static final String MATERIAL_ALREALDY_EXIST = "Material data already exist on DB";		
 	public static final String EMPLOYEE_ALREALDY_EXIST = "Employee's data already exist on DB";		
 	public static final String MAT_CATEG_ALREADY_EXIST = "Category already exist on DB";
 	public static final String MAT_GROUP_ALREADY_EXIST = "Group already exist on DB";
 	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
 	public static final String EMPLOYEE_DATA_NOT_FOUND = "Employee's data not found";	
+	public static final String MATERIAL_TEXT_NOT_FOUND = "Material text data not found on DB";
 	public static final String STORE_EMP_ALREALDY_EXIST = "Store-Employee's data already exist on DB";
 	public static final String STORE_EMP_DATA_NOT_FOUND = "Store-Employee's data not found on DB";
 	public static final String STORE_CNPJ_ALREADY_EXIST = "Store's CNPJ already exist on DB";	
@@ -60,6 +61,7 @@ public final class SystemMessage {
 	public static final String OPERATION_CANT_BE_PROCESSED = "Not possible to process this operation";	
 	public static final String EMPLOYEE_DATA_ALREADY_EXIST = "Employee's data already exist";	
 	public static final String STORE_EMP_FLAGGED_AS_DELETED = "Store-Employee's data is flagged as deleted on DB";
+	public static final String MATERIAL_TEXT_ALREALDY_EXIST = "Material text data already exist on DB";
 	public static final String SQL_WHERE_CLAUSE_HAS_NO_COLUMN = "SQL Where clause has no column";	
 	public static final String EMPLOYEE_MULTIPLE_ENTRIES_FOUND = "Multiple entries found for Employee's data selection";	
 	public static final String EMPLOYEE_WORKING_TIME_NOT_FOUND = "Employee's working time data not found on DB";

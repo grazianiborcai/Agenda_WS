@@ -46,8 +46,7 @@ public final class EmpUpdateExec implements SqlStmtExec<EmpInfo> {
 
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.masterData.info.MatGroupInfo;
-import br.com.gda.business.masterData.model.decisionTree.MatGroupRootSelect;
+import br.com.gda.business.masterData.model.decisionTree.RootMatGroupSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -65,7 +65,7 @@ public final class MatGroupModelSelect implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<MatGroupInfo> {		
 		@Override public DeciTree<MatGroupInfo> getInstance(DeciTreeOption<MatGroupInfo> option) {
-			return new MatGroupRootSelect(option);
+			return new RootMatGroupSelect(option);
 		}		
 	
 	}

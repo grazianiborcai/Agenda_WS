@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.material.model.MatModelDelete;
 import br.com.gda.business.material.model.MatModelInsert;
 import br.com.gda.business.material.model.MatModelSelect;
 import br.com.gda.business.material.model.MatModelUpdate;
@@ -56,11 +57,19 @@ public class MaterialResource {
 	
 	@DELETE
 	@Path(DELETE_MATERIAL)
-	public Response deleteMaterial(@HeaderParam("codOwner") long codOwner, 
-			                       @HeaderParam("codMaterial") int codMaterial) {
+	public Response deleteMaterial(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
+			                       @HeaderParam("codMaterial") @DefaultValue("-1") long codMat) {
 		
-		return new MaterialModel().deleteMaterial(codOwner, codMaterial);
+		MatInfo recordInfo = new MatInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codMat = codMat;
+		
+		
+		Model modelDelete = new MatModelDelete(recordInfo);
+		modelDelete.executeRequest();
+		return modelDelete.getResponse();
 	}
+	
 	
 	
 	@GET

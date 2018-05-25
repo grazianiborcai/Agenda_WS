@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.masterData.info.MatUnitInfo;
-import br.com.gda.business.masterData.model.decisionTree.MatUnitRootSelect;
+import br.com.gda.business.masterData.model.decisionTree.RootMatUnitSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -65,7 +65,7 @@ public final class MatUnitModelSelect implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<MatUnitInfo> {		
 		@Override public DeciTree<MatUnitInfo> getInstance(DeciTreeOption<MatUnitInfo> option) {
-			return new MatUnitRootSelect(option);
+			return new RootMatUnitSelect(option);
 		}		
 	
 	}

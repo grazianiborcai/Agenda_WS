@@ -4,7 +4,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.employee.info.EmpWTimeInfo;
-import br.com.gda.business.employee.model.decisionTree.EmpWtimeRootDelete;
+import br.com.gda.business.employee.model.decisionTree.RootEmpWtimeDelete;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -64,7 +64,7 @@ public final class EmpWtimeModelDelete implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<EmpWTimeInfo> {		
 		@Override public DeciTree<EmpWTimeInfo> getInstance(DeciTreeOption<EmpWTimeInfo> option) {
-			return new EmpWtimeRootDelete(option);
+			return new RootEmpWtimeDelete(option);
 		}		
 	
 	}

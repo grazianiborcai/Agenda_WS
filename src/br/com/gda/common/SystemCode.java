@@ -54,4 +54,6 @@ public final class SystemCode {
 	//Material
 	public static final int MATERIAL_ALREADY_EXIST						= 1200;
 	public static final int MATERIAL_NOT_FOUND							= 1201;
+	public static final int MATERIAL_TEXT_ALREADY_EXIST					= 1202;
+	public static final int MATERIAL_TEXT_NOT_FOUND						= 1203;
 }

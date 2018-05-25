@@ -8,6 +8,7 @@ import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
+import br.com.gda.helper.RecordMode;
 
 public final class MatInfo implements Cloneable {
 	public long codOwner;
@@ -43,6 +44,7 @@ public final class MatInfo implements Cloneable {
 		this.codGroup = DefaultValue.number();		
 		this.codBusiness = DefaultValue.number();	
 		this.codLanguage = Language.getDefaultLanguage();
+		this.recordMode = RecordMode.RECORD_OK;	
 	}
 	
 	
