@@ -9,16 +9,17 @@ import br.com.gda.business.store.dao.StoreStmtExecSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.helper.RecordMode;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class CheckerStoreCnpjExistOnDb extends ModelCheckerTemplate<StoreInfo> {
-	private final boolean CNPJ_ALREADY_EXIST_ON_DB = true;
-	private final boolean CNPJ_NOT_FOUND_ON_DB = false;
+public final class CheckerStoreKeyCnpj extends ModelCheckerTemplate<StoreInfo> {
+	private final boolean STORE_EXIST = true;
+	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	
 	
-	public CheckerStoreCnpjExistOnDb(ModelCheckerOption option) {
+	public CheckerStoreKeyCnpj(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -26,13 +27,14 @@ public final class CheckerStoreCnpjExistOnDb extends ModelCheckerTemplate<StoreI
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
 		try {
-			StoreInfo enforcedInfo = enforceSlectByCnpj(recordInfo);			
+			StoreInfo enforcedInfo = enforceSelectByConstraint(recordInfo);
+			
 			List<StoreInfo> resultset = executeStmt(enforcedInfo, conn, schemaName);
 			
 			if (resultset == null || resultset.isEmpty())
-				return CNPJ_NOT_FOUND_ON_DB;
+				return NO_ENTRY_FOUND_ON_DB;
 			
-			return CNPJ_ALREADY_EXIST_ON_DB;
+			return STORE_EXIST;
 			
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
@@ -41,11 +43,16 @@ public final class CheckerStoreCnpjExistOnDb extends ModelCheckerTemplate<StoreI
 	
 	
 	
-	private StoreInfo enforceSlectByCnpj(StoreInfo recordInfo) {
-		StoreInfo enforcedInfo = new StoreInfo();
-		enforcedInfo.codOwner = recordInfo.codOwner;
-		enforcedInfo.cnpj = recordInfo.cnpj;
-		return enforcedInfo;
+	private StoreInfo enforceSelectByConstraint(StoreInfo recordInfo) {
+		StoreInfo keyInfo;
+		try {
+			keyInfo = (StoreInfo) recordInfo.clone();
+			keyInfo.recordMode = RecordMode.RECORD_OK;
+			return keyInfo;
+		
+		} catch (CloneNotSupportedException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 	
 	
@@ -74,18 +81,18 @@ public final class CheckerStoreCnpjExistOnDb extends ModelCheckerTemplate<StoreI
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_CNPJ_ALREADY_EXIST)
-			return SystemMessage.STORE_CNPJ_ALREADY_EXIST;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_ALREALDY_EXIST)
+			return SystemMessage.STORE_ALREALDY_EXIST;
 		
-		return SystemMessage.STORE_CNPJ_NOT_FOUND;
+		return SystemMessage.STORE_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == CNPJ_ALREADY_EXIST_ON_DB)
-			return SystemCode.STORE_CNPJ_ALREADY_EXIST;	
+		if (checkerResult == STORE_EXIST)
+			return SystemCode.STORE_ALREALDY_EXIST;	
 			
-		return SystemCode.STORE_CNPJ_NOT_FOUND;
+		return SystemCode.STORE_DONT_EXIST;
 	}
 }

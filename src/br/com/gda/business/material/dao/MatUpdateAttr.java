@@ -105,6 +105,7 @@ public final class MatUpdateAttr implements SqlStmt<MatInfo> {
 			stmt.setString(i++, recordInfo.codUnit);
 			stmt.setInt(i++, recordInfo.priceUnit);
 			stmt.setInt(i++, recordInfo.codGroup);
+			stmt.setBoolean(i++, recordInfo.isLocked);
 			stmt.setString(i++, recordInfo.recordMode);
 			
 			return stmt;

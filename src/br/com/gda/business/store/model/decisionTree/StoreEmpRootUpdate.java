@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.gda.business.store.info.StoreEmpInfo;
 import br.com.gda.business.store.model.checker.CheckerStoreEmpDependencyOnDb;
-import br.com.gda.business.store.model.checker.CheckerStoreEmpExistOnDb;
-import br.com.gda.business.store.model.checker.CheckerStoreEmpMandatoryWrite;
+import br.com.gda.business.store.model.checker.CheckerStoreEmpExist;
+import br.com.gda.business.store.model.checker.CheckerStoreEmpWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -41,7 +41,7 @@ public final class StoreEmpRootUpdate implements DeciTree<StoreEmpInfo> {
 		ModelCheckerOption checkerOption;
 		final boolean EXIST_ON_DB = true;
 		
-		checker = new CheckerStoreEmpMandatoryWrite();
+		checker = new CheckerStoreEmpWrite();
 		stack.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -55,7 +55,7 @@ public final class StoreEmpRootUpdate implements DeciTree<StoreEmpInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new CheckerStoreEmpExistOnDb(checkerOption);
+		checker = new CheckerStoreEmpExist(checkerOption);
 		stack.add(checker);		
 		
 		return new ModelCheckerStack<>(stack);

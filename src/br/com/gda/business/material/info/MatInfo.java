@@ -30,6 +30,7 @@ public final class MatInfo implements Cloneable {
 	public int codBusiness;
 	public String txtBusiness; 
 	public String codLanguage;
+	public boolean isLocked;
 	public String recordMode;
 	//TODO: testar material com preço com mais de 2 casas decimais
 	
@@ -44,6 +45,7 @@ public final class MatInfo implements Cloneable {
 		this.codGroup = DefaultValue.number();		
 		this.codBusiness = DefaultValue.number();	
 		this.codLanguage = Language.getDefaultLanguage();
+		this.isLocked = false;
 		this.recordMode = RecordMode.RECORD_OK;	
 	}
 	

@@ -9,17 +9,16 @@ import br.com.gda.business.store.dao.StoreStmtExecSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class CheckerStoreConstraintOnDb extends ModelCheckerTemplate<StoreInfo> {
+public final class CheckerStoreExist extends ModelCheckerTemplate<StoreInfo> {
 	private final boolean STORE_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	
 	
-	public CheckerStoreConstraintOnDb(ModelCheckerOption option) {
+	public CheckerStoreExist(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -27,7 +26,7 @@ public final class CheckerStoreConstraintOnDb extends ModelCheckerTemplate<Store
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
 		try {
-			StoreInfo enforcedInfo = enforceSelectByConstraint(recordInfo);
+			StoreInfo enforcedInfo = enforceSelectByKey(recordInfo);
 			
 			List<StoreInfo> resultset = executeStmt(enforcedInfo, conn, schemaName);
 			
@@ -43,16 +42,11 @@ public final class CheckerStoreConstraintOnDb extends ModelCheckerTemplate<Store
 	
 	
 	
-	private StoreInfo enforceSelectByConstraint(StoreInfo recordInfo) {
-		StoreInfo keyInfo;
-		try {
-			keyInfo = (StoreInfo) recordInfo.clone();
-			keyInfo.recordMode = RecordMode.RECORD_OK;
-			return keyInfo;
-		
-		} catch (CloneNotSupportedException e) {
-			throw new IllegalStateException(e);
-		}
+	private StoreInfo enforceSelectByKey(StoreInfo recordInfo) {
+		StoreInfo keyInfo = new StoreInfo();
+		keyInfo.codOwner = recordInfo.codOwner;
+		keyInfo.codStore = recordInfo.codStore;		
+		return keyInfo;
 	}
 	
 	

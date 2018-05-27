@@ -356,6 +356,7 @@ public final class MatSelect implements SqlStmt<MatInfo> {
 				dataInfo.codBusiness = stmtResult.getInt(MAT_BUSINESS_COL);	
 				dataInfo.txtBusiness = stmtResult.getString(MAT_BUSINESS_TEXT_COL);
 				dataInfo.codLanguage = stmtResult.getString(MAT_LANGU_COL);	
+				dataInfo.isLocked = stmtResult.getBoolean("Is_locked");	
 				dataInfo.recordMode = stmtResult.getString("record_mode");					
 				
 				finalResult.add(dataInfo);

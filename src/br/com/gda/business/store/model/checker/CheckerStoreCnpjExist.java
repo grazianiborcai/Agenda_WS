@@ -13,12 +13,12 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class CheckerStoreExistOnDb extends ModelCheckerTemplate<StoreInfo> {
-	private final boolean STORE_EXIST = true;
-	private final boolean NO_ENTRY_FOUND_ON_DB = false;
+public final class CheckerStoreCnpjExist extends ModelCheckerTemplate<StoreInfo> {
+	private final boolean CNPJ_ALREADY_EXIST_ON_DB = true;
+	private final boolean CNPJ_NOT_FOUND_ON_DB = false;
 	
 	
-	public CheckerStoreExistOnDb(ModelCheckerOption option) {
+	public CheckerStoreCnpjExist(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -26,14 +26,13 @@ public final class CheckerStoreExistOnDb extends ModelCheckerTemplate<StoreInfo>
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
 		try {
-			StoreInfo enforcedInfo = enforceSelectByKey(recordInfo);
-			
+			StoreInfo enforcedInfo = enforceSlectByCnpj(recordInfo);			
 			List<StoreInfo> resultset = executeStmt(enforcedInfo, conn, schemaName);
 			
 			if (resultset == null || resultset.isEmpty())
-				return NO_ENTRY_FOUND_ON_DB;
+				return CNPJ_NOT_FOUND_ON_DB;
 			
-			return STORE_EXIST;
+			return CNPJ_ALREADY_EXIST_ON_DB;
 			
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
@@ -42,11 +41,11 @@ public final class CheckerStoreExistOnDb extends ModelCheckerTemplate<StoreInfo>
 	
 	
 	
-	private StoreInfo enforceSelectByKey(StoreInfo recordInfo) {
-		StoreInfo keyInfo = new StoreInfo();
-		keyInfo.codOwner = recordInfo.codOwner;
-		keyInfo.codStore = recordInfo.codStore;		
-		return keyInfo;
+	private StoreInfo enforceSlectByCnpj(StoreInfo recordInfo) {
+		StoreInfo enforcedInfo = new StoreInfo();
+		enforcedInfo.codOwner = recordInfo.codOwner;
+		enforcedInfo.cnpj = recordInfo.cnpj;
+		return enforcedInfo;
 	}
 	
 	
@@ -75,18 +74,18 @@ public final class CheckerStoreExistOnDb extends ModelCheckerTemplate<StoreInfo>
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_ALREALDY_EXIST)
-			return SystemMessage.STORE_ALREALDY_EXIST;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_CNPJ_ALREADY_EXIST)
+			return SystemMessage.STORE_CNPJ_ALREADY_EXIST;
 		
-		return SystemMessage.STORE_NOT_FOUND;
+		return SystemMessage.STORE_CNPJ_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == STORE_EXIST)
-			return SystemCode.STORE_ALREALDY_EXIST;	
+		if (checkerResult == CNPJ_ALREADY_EXIST_ON_DB)
+			return SystemCode.STORE_CNPJ_ALREADY_EXIST;	
 			
-		return SystemCode.STORE_DONT_EXIST;
+		return SystemCode.STORE_CNPJ_NOT_FOUND;
 	}
 }

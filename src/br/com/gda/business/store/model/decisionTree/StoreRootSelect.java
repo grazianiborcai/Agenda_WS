@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.checker.CheckerStoreCnpj;
-import br.com.gda.business.store.model.checker.CheckerStoreMandatoryRead;
+import br.com.gda.business.store.model.checker.CheckerStoreRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
@@ -38,7 +38,7 @@ public final class StoreRootSelect implements DeciTree<StoreInfo> {
 		List<ModelChecker<StoreInfo>> stack = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		
-		checker = new CheckerStoreMandatoryRead();
+		checker = new CheckerStoreRead();
 		stack.add(checker);
 		
 		checker = new CheckerStoreCnpj();

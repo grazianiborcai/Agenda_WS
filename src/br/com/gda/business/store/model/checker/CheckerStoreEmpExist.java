@@ -13,12 +13,12 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class CheckerStoreEmpExistOnDb extends ModelCheckerTemplate<StoreEmpInfo> {
+public final class CheckerStoreEmpExist extends ModelCheckerTemplate<StoreEmpInfo> {
 	private final boolean STORE_EMP_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	
 	
-	public CheckerStoreEmpExistOnDb(ModelCheckerOption option) {
+	public CheckerStoreEmpExist(ModelCheckerOption option) {
 		super(option);
 	}
 	

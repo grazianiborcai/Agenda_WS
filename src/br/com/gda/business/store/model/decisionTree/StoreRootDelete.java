@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.gda.business.store.dao.StoreStmtExecDelete;
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.checker.CheckerStoreExistOnDb;
-import br.com.gda.business.store.model.checker.CheckerStoreMandatoryKey;
+import br.com.gda.business.store.model.checker.CheckerStoreExist;
+import br.com.gda.business.store.model.checker.CheckerStoreKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -49,14 +49,14 @@ public final class StoreRootDelete implements DeciTree<StoreInfo> {
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.expectedResult = KEY_NOT_NULL;
-		checker = new CheckerStoreMandatoryKey(checkerOption);
+		checker = new CheckerStoreKey(checkerOption);
 		stack.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new CheckerStoreExistOnDb(checkerOption);
+		checker = new CheckerStoreExist(checkerOption);
 		stack.add(checker);		
 		
 		 return new ModelCheckerStack<StoreInfo>(stack);

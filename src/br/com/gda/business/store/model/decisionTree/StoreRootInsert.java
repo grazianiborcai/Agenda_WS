@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.gda.business.store.dao.StoreStmtExecInsert;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.checker.CheckerStoreCnpj;
-import br.com.gda.business.store.model.checker.CheckerStoreCnpjExistOnDb;
+import br.com.gda.business.store.model.checker.CheckerStoreCnpjExist;
 import br.com.gda.business.store.model.checker.CheckerStoreGenField;
-import br.com.gda.business.store.model.checker.CheckerStoreMandatoryWrite;
+import br.com.gda.business.store.model.checker.CheckerStoreWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -47,7 +47,7 @@ public final class StoreRootInsert implements DeciTree<StoreInfo> {
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new CheckerStoreMandatoryWrite();
+		checker = new CheckerStoreWrite();
 		stack.add(checker);
 		
 		checker = new CheckerStoreGenField();
@@ -60,7 +60,7 @@ public final class StoreRootInsert implements DeciTree<StoreInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new CheckerStoreCnpjExistOnDb(checkerOption);
+		checker = new CheckerStoreCnpjExist(checkerOption);
 		stack.add(checker);	
 		
 		return new ModelCheckerStack<>(stack);

@@ -55,7 +55,7 @@ public final class CheckerStoreEmpDependencyOnDb implements ModelChecker<StoreEm
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = option.expectedResult;		
-		checkerStoreExistOnDb = new CheckerStoreExistOnDb(checkerOption);
+		checkerStoreExistOnDb = new CheckerStoreExist(checkerOption);
 	}
 	
 	

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreEmpInfo;
-import br.com.gda.business.store.model.checker.CheckerStoreEmpMandatoryRead;
+import br.com.gda.business.store.model.checker.CheckerStoreEmpRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
@@ -36,7 +36,7 @@ public final class StoreEmpRootSelect implements DeciTree<StoreEmpInfo> {
 		List<ModelChecker<StoreEmpInfo>> stack = new ArrayList<>();		
 		ModelChecker<StoreEmpInfo> checker;
 		
-		checker = new CheckerStoreEmpMandatoryRead();
+		checker = new CheckerStoreEmpRead();
 		stack.add(checker);
 		
 		return new ModelCheckerStack<>(stack);

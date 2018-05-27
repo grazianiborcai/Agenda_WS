@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.checker.CheckerStoreCnpjExistOnDb;
+import br.com.gda.business.store.model.checker.CheckerStoreCnpjExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -45,7 +45,7 @@ final class StoreNodeUpdateL2 implements DeciTree<StoreInfo> {
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;		
-		checker = new CheckerStoreCnpjExistOnDb(checkerOption);
+		checker = new CheckerStoreCnpjExist(checkerOption);
 		stack.add(checker);
 		
 		return new ModelCheckerStack<>(stack);

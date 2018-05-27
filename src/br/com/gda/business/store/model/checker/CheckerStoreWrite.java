@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class CheckerStoreMandatoryWrite extends ModelCheckerTemplate<StoreInfo> {
+public final class CheckerStoreWrite extends ModelCheckerTemplate<StoreInfo> {
 
-	public CheckerStoreMandatoryWrite() {
+	public CheckerStoreWrite() {
 		super();
 	}
 	

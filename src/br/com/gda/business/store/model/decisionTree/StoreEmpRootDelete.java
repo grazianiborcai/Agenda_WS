@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.gda.business.store.dao.StoreEmpStmtExecDelete;
 import br.com.gda.business.store.info.StoreEmpInfo;
-import br.com.gda.business.store.model.checker.CheckerStoreEmpExistOnDb;
-import br.com.gda.business.store.model.checker.CheckerStoreEmpMandatoryKey;
+import br.com.gda.business.store.model.checker.CheckerStoreEmpExist;
+import br.com.gda.business.store.model.checker.CheckerStoreEmpKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -47,7 +47,7 @@ public final class StoreEmpRootDelete implements DeciTree<StoreEmpInfo> {
 		final boolean KEY_NOT_NULL = true;	
 		checkerOption = new ModelCheckerOption();
 		checkerOption.expectedResult = KEY_NOT_NULL;		
-		checker = new CheckerStoreEmpMandatoryKey(checkerOption);
+		checker = new CheckerStoreEmpKey(checkerOption);
 		stack.add(checker);
 		
 		final boolean EXIST_ON_DB = true;	
@@ -55,7 +55,7 @@ public final class StoreEmpRootDelete implements DeciTree<StoreEmpInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new CheckerStoreEmpExistOnDb(checkerOption);
+		checker = new CheckerStoreEmpExist(checkerOption);
 		stack.add(checker);		
 		
 		 return new ModelCheckerStack<StoreEmpInfo>(stack);
