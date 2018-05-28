@@ -19,7 +19,7 @@ import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtParamTranslator;
 
-final class EmpInsert implements SqlStmt<EmpInfo> {	
+public final class EmpInsert implements SqlStmt<EmpInfo> {	
 	private SqlStmt<EmpInfo> stmtSql;
 	private SqlStmtOption<EmpInfo> stmtOption;
 	

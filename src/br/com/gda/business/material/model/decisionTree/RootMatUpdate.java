@@ -10,6 +10,7 @@ import br.com.gda.business.material.model.checker.MatCheckExistKey;
 import br.com.gda.business.material.model.checker.MatCheckGroup;
 import br.com.gda.business.material.model.checker.MatCheckKey;
 import br.com.gda.business.material.model.checker.MatCheckLangu;
+import br.com.gda.business.material.model.checker.MatCheckOwner;
 import br.com.gda.business.material.model.checker.MatCheckType;
 import br.com.gda.business.material.model.checker.MatCheckUnit;
 import br.com.gda.business.material.model.checker.MatCheckWrite;
@@ -52,6 +53,13 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 		stack.add(checker);
 		
 		checker = new MatCheckKey();
+		stack.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new MatCheckOwner(checkerOption);
 		stack.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

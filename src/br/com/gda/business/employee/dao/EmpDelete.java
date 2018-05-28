@@ -16,7 +16,7 @@ import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpDelete implements SqlStmt<EmpInfo> {
+public final class EmpDelete implements SqlStmt<EmpInfo> {
 	private SqlStmt<EmpInfo> stmtSql;
 	private SqlStmtOption<EmpInfo> stmtOption;	
 	

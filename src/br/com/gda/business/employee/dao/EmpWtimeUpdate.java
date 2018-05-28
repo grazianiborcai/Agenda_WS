@@ -20,7 +20,7 @@ import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 
-final class EmpWtimeUpdate implements SqlStmt<EmpWTimeInfo> {
+public final class EmpWtimeUpdate implements SqlStmt<EmpWTimeInfo> {
 	private SqlStmt<EmpWTimeInfo> stmtSql;
 	private SqlStmtOption<EmpWTimeInfo> stmtOption;
 	

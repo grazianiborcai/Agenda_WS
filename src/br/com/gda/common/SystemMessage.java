@@ -16,13 +16,14 @@ public final class SystemMessage {
 	public static final String NO_ERROR_FOUND = "No error was found";
 	public static final String DATA_NOT_FOUND = "Data not found";
 	public static final String INTERNAL_ERROR = "Ops... something went wrong";
+	public static final String OWNER_NOT_FOUND = "Owner data not found on DB";
 	public static final String NULL_TABLE_NAME = "Table name is null";
 	public static final String TABLE_NOT_FOUND = "table was not found";	
 	public static final String STORE_NOT_FOUND = "Store's data not found on DB";
 	public static final String ILLEGAL_ARGUMENT = "IllegalArgument: mandatory argument might be missing or invalid value was passed";	
 	public static final String NULL_WHERE_CLAUSE = "where clause is null";	
-	public static final String EMP_POS_NOT_FOUND = "Position not found on DB";
-	public static final String MATERIAL_NOT_FOUND = "Material data not found on DB";	
+	public static final String EMP_POS_NOT_FOUND = "Position not found on DB";	
+	public static final String MATERIAL_NOT_FOUND = "Material data not found on DB";		
 	public static final String NO_CHECK_PERFORMED = "Check operation was not performed";
 	public static final String KEY_FIELD_IS_EMPTY = "Key field should not be null";
 	public static final String KEY_FIELD_NOT_NULL = "Key field should not be passed";		
@@ -33,6 +34,7 @@ public final class SystemMessage {
 	public static final String EMPLOYEE_NOT_FOUND = "Employee's data not found on DB";	
 	public static final String MAT_CATEG_NOT_FOUND = "Category not found on DB";
 	public static final String MAT_GROUP_NOT_FOUND = "Group not found on DB";
+	public static final String OWNER_ALREALDY_EXIST = "Owner data already exist on DB";	
 	public static final String STORE_CNPJ_NOT_FOUND = "Store's CNPJ not found on DB";	
 	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";		
 	public static final String STORE_ALREALDY_EXIST = "Store's data already exist on DB";	
@@ -43,7 +45,7 @@ public final class SystemMessage {
 	public static final String LANGUAGE_ALREADY_EXIST = "Language already exist on DB";
 	public static final String CURRENCY_ALREADY_EXIST = "Currency already exist on DB";
 	public static final String MAT_TYPE_ALREADY_EXIST = "Type already exist on DB";	
-	public static final String MATERIAL_ALREALDY_EXIST = "Material data already exist on DB";		
+	public static final String MATERIAL_ALREALDY_EXIST = "Material data already exist on DB";	
 	public static final String EMPLOYEE_ALREALDY_EXIST = "Employee's data already exist on DB";		
 	public static final String MAT_CATEG_ALREADY_EXIST = "Category already exist on DB";
 	public static final String MAT_GROUP_ALREADY_EXIST = "Group already exist on DB";

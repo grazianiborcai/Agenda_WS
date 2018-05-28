@@ -22,7 +22,7 @@ import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpSelect implements SqlStmt<EmpInfo> {
+public final class EmpSelect implements SqlStmt<EmpInfo> {
 	private final String LEFT_TABLE_EMPLOYEE = DbTable.EMPLOYEE_TABLE;	
 	private final String RIGHT_TABLE_GENDER_TEXT = DbTable.GENDER_TEXT_TABLE;
 	private final String RIGHT_TABLE_POSITION_TEXT = DbTable.POSITION_TEXT_TABLE;

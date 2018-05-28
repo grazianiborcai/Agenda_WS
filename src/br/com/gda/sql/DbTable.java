@@ -26,4 +26,5 @@ public final class DbTable {
 	public static final String BUSINESS_AREA_TABLE = "business_area";
 	public static final String BUSINESS_AREA_TEXT_TABLE = "business_area_text";
 	public static final String LANGUAGE_TABLE = "language";
+	public static final String OWNER_TABLE = "owner";
 }

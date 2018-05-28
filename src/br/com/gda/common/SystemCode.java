@@ -56,4 +56,8 @@ public final class SystemCode {
 	public static final int MATERIAL_NOT_FOUND							= 1201;
 	public static final int MATERIAL_TEXT_ALREADY_EXIST					= 1202;
 	public static final int MATERIAL_TEXT_NOT_FOUND						= 1203;
+	
+	//Owner
+	public static final int OWNER_ALREADY_EXIST							= 1250;
+	public static final int OWNER_NOT_FOUND								= 1251;
 }

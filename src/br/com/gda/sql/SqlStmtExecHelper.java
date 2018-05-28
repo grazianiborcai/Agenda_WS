@@ -16,20 +16,46 @@ public final class SqlStmtExecHelper<T> implements SqlStmtExec<T> {
 	
 	
 	public SqlStmtExecHelper(List<SqlStmtExecOption<T>> options, Class<? extends SqlStmt<T>> classOfStmt, Class<T> classOfT) {
+		checkArgument(options, classOfStmt, classOfT);
+		buildStmt(options, classOfStmt, classOfT);
+	}
+	
+	
+	
+	private void checkArgument(List<SqlStmtExecOption<T>> options, Class<? extends SqlStmt<T>> classOfStmt, Class<T> classOfT) {
 		if (options == null) 
 			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
+		
 		
 		if (classOfStmt == null) 
 			throw new NullPointerException("classOfStmt" + SystemMessage.NULL_ARGUMENT);
 		
+		
 		if (classOfT == null) 
 			throw new NullPointerException("classOfT" + SystemMessage.NULL_ARGUMENT);
+		
 		
 		if (options.isEmpty())
 			throw new IllegalArgumentException("options" + SystemMessage.EMPTY_ARGUMENT);
 		
 		
-		buildStmt(options, classOfStmt, classOfT);
+		checkEachOption(options);
+
+	}
+	
+	
+	
+	private void checkEachOption(List<SqlStmtExecOption<T>> options) {
+		for (SqlStmtExecOption<T> eachOption: options) {
+			if (eachOption.recordInfo == null)
+				throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
+			
+			if (eachOption.schemaName == null)
+				throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+			
+			if (eachOption.conn == null)
+				throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	

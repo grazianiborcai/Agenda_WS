@@ -39,6 +39,8 @@ public class AuthFilter implements ContainerRequestFilter {
 		requestAuthNotRequired.add("Owner/insertOwner"		);
 		requestAuthNotRequired.add("Time/getTime" 			);
 		requestAuthNotRequired.add("Token/getToken" 		);
+		
+		requestAuthNotRequired.add("Owner/selectOwner" 		); //TODO: somente para testar
 	}
 	
 	

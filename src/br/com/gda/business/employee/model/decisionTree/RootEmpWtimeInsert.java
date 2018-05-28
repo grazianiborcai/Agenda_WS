@@ -70,7 +70,7 @@ public final class RootEmpWtimeInsert implements DeciTree<EmpWTimeInfo> {
 	private List<DeciAction<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
 		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionInsertOrUpdate(option));
+		actions.add(new ActionEmpWtimeInsert(option));
 		actions.add(new ActionEmpWtimeSelect(option));		
 		return actions;
 	}
@@ -91,33 +91,5 @@ public final class RootEmpWtimeInsert implements DeciTree<EmpWTimeInfo> {
 	
 	@Override public DeciResult<EmpWTimeInfo> getDecisionResult() {
 		return tree.getDecisionResult();
-	}
-	
-	
-	
-
-	
-	
-	
-	private static class ActionInsertOrUpdate implements DeciAction<EmpWTimeInfo> {
-		private DeciTree<EmpWTimeInfo> forwardTree;
-		
-		
-		public ActionInsertOrUpdate(DeciTreeOption<EmpWTimeInfo> option) {
-			forwardTree = new NodeEmpWtimeInsOrUpd(option);
-		}
-		
-		
-		
-		@Override public boolean executeAction() {
-			forwardTree.makeDecision();
-			return forwardTree.getDecisionResult().hasSuccessfullyFinished();
-		}	
-		
-		
-		
-		@Override public DeciResult<EmpWTimeInfo> getDecisionResult() {
-			return forwardTree.getDecisionResult();
-		}
 	}
 }

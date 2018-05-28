@@ -18,7 +18,7 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 
-final class EmpWtimeSelect implements SqlStmt<EmpWTimeInfo> {
+public final class EmpWtimeSelect implements SqlStmt<EmpWTimeInfo> {
 	private SqlStmt<EmpWTimeInfo> stmtSql;
 	private SqlStmtOption<EmpWTimeInfo> stmtOption;
 	

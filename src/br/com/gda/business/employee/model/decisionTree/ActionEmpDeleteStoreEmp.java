@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.store.info.StoreEmpInfo;
-import br.com.gda.business.store.model.decisionTree.StoreEmpActionSelect;
-import br.com.gda.business.store.model.decisionTree.StoreEmpRootDelete;
+import br.com.gda.business.store.model.decisionTree.ActionStoreEmpSelect;
+import br.com.gda.business.store.model.decisionTree.RootStoreEmpDelete;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionNestedTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -34,13 +34,13 @@ public final class ActionEmpDeleteStoreEmp extends DeciActionNestedTemplate<EmpI
 	
 	
 	@Override protected Class<? extends DeciAction<StoreEmpInfo>> getClassOfStarterHook() {
-		return StoreEmpActionSelect.class;
+		return ActionStoreEmpSelect.class;
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<StoreEmpInfo>> getClassOfTreeHook() {
-		return StoreEmpRootDelete.class;
+		return RootStoreEmpDelete.class;
 	}
 	
 	

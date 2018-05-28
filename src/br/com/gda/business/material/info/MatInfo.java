@@ -6,6 +6,7 @@ import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.info.MatUnitInfo;
+import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
@@ -107,6 +108,15 @@ public final class MatInfo implements Cloneable {
 		categ.txtType = this.txtType;
 		categ.codLanguage = this.codLanguage;
 		return categ;
+	}
+	
+	
+	
+	public OwnerInfo toOwnerInfo() {
+		OwnerInfo owner = new OwnerInfo();		
+		owner.codOwner = this.codOwner;
+		owner.codLanguage = this.codLanguage;
+		return owner;
 	}
 	
 	

@@ -71,7 +71,7 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 	private List<DeciAction<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
 		List<DeciAction<EmpInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionNodeUpdate(option));	
+		actions.add(new ActionNodeUpdateL1(option));	
 		return actions;
 	}
 	
@@ -98,11 +98,11 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 	
 	
 	
-	private static class ActionNodeUpdate implements DeciAction<EmpInfo> {
+	private static class ActionNodeUpdateL1 implements DeciAction<EmpInfo> {
 		DeciTree<EmpInfo> treeHelper;
 		
 		
-		public ActionNodeUpdate(DeciTreeOption<EmpInfo> option) {
+		public ActionNodeUpdateL1(DeciTreeOption<EmpInfo> option) {
 			treeHelper = new NodeEmpUpdateL1(option);
 		}
 		
