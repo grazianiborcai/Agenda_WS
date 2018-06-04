@@ -11,7 +11,7 @@ import java.util.List;
 import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtParamTranslator;
 import br.com.gda.business.employee.info.EmpWTimeInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
@@ -39,7 +39,7 @@ public final class EmpWtimeInsert implements SqlStmt<EmpWTimeInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DbTable.EMPLOYEE_WORKING_TIME_TABLE;
+		this.stmtOption.tableName = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;
 		this.stmtOption.columns = EmpDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser();

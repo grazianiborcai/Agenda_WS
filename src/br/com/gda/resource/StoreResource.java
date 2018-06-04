@@ -14,6 +14,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.gda.business.materialEmployee.info.MatEmpInfo;
+import br.com.gda.business.materialEmployee.model.MatEmpModelDelete;
+import br.com.gda.business.materialEmployee.model.MatEmpModelInsert;
+import br.com.gda.business.materialEmployee.model.MatEmpModelSelect;
 import br.com.gda.business.store.info.StoreEmpInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.StoreEmpModelDelete;
@@ -34,6 +38,9 @@ public class StoreResource {
 	private static final String UPDATE_STORE = "/updateStore";
 	private static final String DELETE_STORE = "/deleteStore";
 	private static final String SELECT_STORE = "/selectStore";
+	private static final String SELECT_STORE_MAT_EMP = "/selectStoreMatEmp";
+	private static final String INSERT_STORE_MAT_EMP = "/insertStoreMatEmp";
+	private static final String DELETE_STORE_MAT_EMP = "/deleteStoreMatEmp";
 	private static final String SELECT_STORE_EMPLOYEE = "/selectStoreEmployee";
 	private static final String INSERT_STORE_EMPLOYEE = "/insertStoreEmployee";
 	private static final String UPDATE_STORE_EMPLOYEE = "/updateStoreEmployee";
@@ -75,9 +82,9 @@ public class StoreResource {
 		store.codOwner = codOwner;
 		store.codStore = codStore;
 		
-		Model storeDelete = new StoreModelDelete(store);
-		storeDelete.executeRequest();
-		return storeDelete.getResponse();
+		Model modelDelete = new StoreModelDelete(store);
+		modelDelete.executeRequest();
+		return modelDelete.getResponse();
 	}
 
 	
@@ -120,9 +127,10 @@ public class StoreResource {
 	@Path(INSERT_STORE_EMPLOYEE)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStoreEmp(String incomingData) {
-		Model storeEmpInsert = new StoreEmpModelInsert(incomingData);
-		storeEmpInsert.executeRequest();
-		return storeEmpInsert.getResponse();
+		
+		Model modelInsert = new StoreEmpModelInsert(incomingData);
+		modelInsert.executeRequest();
+		return modelInsert.getResponse();
 	}
 	
 	
@@ -152,9 +160,9 @@ public class StoreResource {
 		recordInfo.codEmployee = codEmployee;
 		recordInfo.codPositionStore = codPositionStore;
 		
-		Model storeDelete = new StoreEmpModelDelete(recordInfo);
-		storeDelete.executeRequest();
-		return storeDelete.getResponse();
+		Model modelDelete = new StoreEmpModelDelete(recordInfo);
+		modelDelete.executeRequest();
+		return modelDelete.getResponse();
 	}
 
 	
@@ -184,5 +192,61 @@ public class StoreResource {
 				razaoSocial, name, address1, address2, postalcode, city, country, state, phone, codCurr, recordMode,
 				language, withMaterial, withEmployee, zoneId, latitudeF, longitudeF);
 	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STORE_MAT_EMP)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStoreMatEmp(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+			                          @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
+			                          @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
+								      @HeaderParam("codMaterial") @DefaultValue("-1") long codMat, 
+								      @HeaderParam("codLanguage") String codLanguage) {
 
+
+		MatEmpInfo recordInfo = new MatEmpInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codMat = codMat;
+		recordInfo.codLanguage = codLanguage;
+		
+		
+		Model modelSelect = new MatEmpModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_STORE_MAT_EMP)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response insertStoreMatEmp(String incomingData) {
+		
+		Model modelInsert = new MatEmpModelInsert(incomingData);
+		modelInsert.executeRequest();
+		return modelInsert.getResponse();
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_STORE_MAT_EMP)
+	public Response deleteStoreMatEmp(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+            						  @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
+            						  @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
+            						  @HeaderParam("codMaterial") @DefaultValue("-1") long codMat) {
+		
+		MatEmpInfo recordInfo = new MatEmpInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codMat = codMat;
+		
+		Model modelDelete = new MatEmpModelDelete(recordInfo);
+		modelDelete.executeRequest();
+		return modelDelete.getResponse();
+	}
 }

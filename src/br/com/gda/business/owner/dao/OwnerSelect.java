@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
@@ -17,7 +17,7 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class OwnerSelect implements SqlStmt<OwnerInfo> {
-	private final String LEFT_TABLE = DbTable.OWNER_TABLE;	
+	private final String LEFT_TABLE = SqlDbTable.OWNER_TABLE;	
 	
 	private SqlStmt<OwnerInfo> stmtSql;
 	private SqlStmtOption<OwnerInfo> stmtOption;

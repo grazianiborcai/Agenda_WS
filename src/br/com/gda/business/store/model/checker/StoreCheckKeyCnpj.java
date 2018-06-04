@@ -93,6 +93,6 @@ public final class StoreCheckKeyCnpj extends ModelCheckerTemplate<StoreInfo> {
 		if (checkerResult == STORE_EXIST)
 			return SystemCode.STORE_ALREALDY_EXIST;	
 			
-		return SystemCode.STORE_DONT_EXIST;
+		return SystemCode.STORE_NOT_FOUND;
 	}
 }

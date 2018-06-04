@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.MatGroupInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
 import br.com.gda.sql.SqlJoinColumn;
@@ -21,9 +21,9 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class MatGroupSelect implements SqlStmt<MatGroupInfo> {
-	private final String LT_MAT_GROUP = DbTable.MATERIAL_GROUP_TABLE;
-	private final String RT_MAT_GROUP_TEXT = DbTable.MATERIAL_GROUP_TEXT_TABLE;
-	private final String RT_BUSINESS_TEXT = DbTable.BUSINESS_AREA_TEXT_TABLE;
+	private final String LT_MAT_GROUP = SqlDbTable.MATERIAL_GROUP_TABLE;
+	private final String RT_MAT_GROUP_TEXT = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE;
+	private final String RT_BUSINESS_TEXT = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
 	
 	private SqlStmt<MatGroupInfo> stmtSql;
 	private SqlStmtOption<MatGroupInfo> stmtOption;
@@ -176,9 +176,9 @@ public final class MatGroupSelect implements SqlStmt<MatGroupInfo> {
 	
 	private class ResultParser implements SqlResultParser<MatGroupInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String GROUP_TEXT_COL = DbTable.MATERIAL_GROUP_TEXT_TABLE + "." + "Name";
-		private final String BUSINESS_TEXT_COL = DbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = DbTable.MATERIAL_GROUP_TEXT_TABLE + "." + "Language";
+		private final String GROUP_TEXT_COL = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE + "." + "Name";
+		private final String BUSINESS_TEXT_COL = SqlDbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
+		private final String LANGU_COL = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE + "." + "Language";
 		
 		@Override public List<MatGroupInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatGroupInfo> finalResult = new ArrayList<>();

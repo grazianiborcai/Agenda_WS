@@ -26,7 +26,7 @@ public class MaterialResource {
 	private static final String INSERT_MATERIAL = "/insertMaterial";
 	private static final String UPDATE_MATERIAL = "/updateMaterial";
 	private static final String DELETE_MATERIAL = "/deleteMaterial";
-	private static final String SELECT_MATERIAL = "/selectMaterial";
+	private static final String SELECT_MATERIAL = "/selectMaterial";	
 	private static final String INSERT_MATERIAL_WITH_IMAGE = "/insertMaterialWithImage";
 	private static final String UPDATE_MATERIAL_WITH_IMAGE = "/updateMaterialWithImage";
 
@@ -102,6 +102,7 @@ public class MaterialResource {
 	}
 
 
+	
 	@POST
 	@Path(UPDATE_MATERIAL_WITH_IMAGE)
 	@Consumes(MediaType.MULTIPART_FORM_DATA)

@@ -12,10 +12,11 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
 public final class StoreEmpCheckSoftDelete extends ModelCheckerTemplate<StoreEmpInfo> {
-	private final boolean STORE_EMP_IS_DELETED = true;
+	private final boolean RECORD_IS_DELETED = true;
 	private final boolean NOT_FOUND_OR_NOT_DELETED = false;	
 	
 	
@@ -35,7 +36,7 @@ public final class StoreEmpCheckSoftDelete extends ModelCheckerTemplate<StoreEmp
 			if (resultset == null || resultset.isEmpty())
 				return NOT_FOUND_OR_NOT_DELETED;
 			
-			return STORE_EMP_IS_DELETED;
+			return RECORD_IS_DELETED;
 			
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
@@ -55,7 +56,7 @@ public final class StoreEmpCheckSoftDelete extends ModelCheckerTemplate<StoreEmp
 	
 	
 	private List<StoreEmpInfo> executeStmt(StoreEmpInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		StoreEmpSelectExec stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+		SqlStmtExec<StoreEmpInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
 		
 		stmtExecutor.executeStmt();
 		return stmtExecutor.getResultset();
@@ -63,7 +64,7 @@ public final class StoreEmpCheckSoftDelete extends ModelCheckerTemplate<StoreEmp
 	
 	
 	
-	private StoreEmpSelectExec buildStmtExecutor(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
+	private SqlStmtExec<StoreEmpInfo> buildStmtExecutor(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
 		SqlStmtExecOption<StoreEmpInfo> stmtExecOption = new SqlStmtExecOption<>();
 		stmtExecOption.conn = conn;
 		stmtExecOption.recordInfo = recordInfo;

@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlColumn;
 
 public final class StoreDbTableColumn {
@@ -50,7 +50,7 @@ public final class StoreDbTableColumn {
 	
 	
 	private static void buildStoreTable() {
-		final String TABLE_NAME = DbTable.STORE_TABLE;
+		final String TABLE_NAME = SqlDbTable.STORE_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	
@@ -208,7 +208,7 @@ public final class StoreDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.COUNTRY_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.COUNTRY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -221,7 +221,7 @@ public final class StoreDbTableColumn {
 	
 	
 	private static void buildStoreEmployeeTable() {
-		final String TABLE_NAME = DbTable.STORE_EMPLOYEE_TABLE;
+		final String TABLE_NAME = SqlDbTable.STORE_EMPLOYEE_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	
@@ -267,7 +267,7 @@ public final class StoreDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.POSITION_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.POSITION_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -275,7 +275,7 @@ public final class StoreDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.STORE_TABLE;
+		oneColumn.tableName = SqlDbTable.STORE_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -283,7 +283,7 @@ public final class StoreDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.EMPLOYEE_TABLE;
+		oneColumn.tableName = SqlDbTable.EMPLOYEE_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

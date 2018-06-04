@@ -1,6 +1,6 @@
 package br.com.gda.sql;
 
-public final class DbTable {	
+public final class SqlDbTable {	
 	public static final String COUNTRY_TEXT_TABLE = "country_text";
 	public static final String EMPLOYEE_TABLE = "employee";	
 	public static final String EMPLOYEE_WORKING_TIME_TABLE = "employee_working_time";
@@ -27,4 +27,5 @@ public final class DbTable {
 	public static final String BUSINESS_AREA_TEXT_TABLE = "business_area_text";
 	public static final String LANGUAGE_TABLE = "language";
 	public static final String OWNER_TABLE = "owner";
+	public static final String MAT_EMP_TABLE = "employee_material";
 }

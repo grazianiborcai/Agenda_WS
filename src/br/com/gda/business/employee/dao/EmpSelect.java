@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
 import br.com.gda.sql.SqlJoinColumn;
@@ -23,10 +23,10 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class EmpSelect implements SqlStmt<EmpInfo> {
-	private final String LEFT_TABLE_EMPLOYEE = DbTable.EMPLOYEE_TABLE;	
-	private final String RIGHT_TABLE_GENDER_TEXT = DbTable.GENDER_TEXT_TABLE;
-	private final String RIGHT_TABLE_POSITION_TEXT = DbTable.POSITION_TEXT_TABLE;
-	private final String RIGHT_TABLE_COUNTRY_TEXT = DbTable.COUNTRY_TEXT_TABLE;
+	private final String LEFT_TABLE_EMPLOYEE = SqlDbTable.EMPLOYEE_TABLE;	
+	private final String RIGHT_TABLE_GENDER_TEXT = SqlDbTable.GENDER_TEXT_TABLE;
+	private final String RIGHT_TABLE_POSITION_TEXT = SqlDbTable.POSITION_TEXT_TABLE;
+	private final String RIGHT_TABLE_COUNTRY_TEXT = SqlDbTable.COUNTRY_TEXT_TABLE;
 	
 	private SqlStmt<EmpInfo> stmtSql;
 	private SqlStmtOption<EmpInfo> stmtOption;
@@ -203,9 +203,9 @@ public final class EmpSelect implements SqlStmt<EmpInfo> {
 	
 	private static class ResultParser implements SqlResultParser<EmpInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String GENDER_TEXT_COLUMN = DbTable.GENDER_TEXT_TABLE + "." + "Name";
-		private final String POSITION_TEXT_COLUMN = DbTable.POSITION_TEXT_TABLE + "." + "Name";
-		private final String COUNTRY_TEXT_COLUMN = DbTable.COUNTRY_TEXT_TABLE + "." + "Name";
+		private final String GENDER_TEXT_COLUMN = SqlDbTable.GENDER_TEXT_TABLE + "." + "Name";
+		private final String POSITION_TEXT_COLUMN = SqlDbTable.POSITION_TEXT_TABLE + "." + "Name";
+		private final String COUNTRY_TEXT_COLUMN = SqlDbTable.COUNTRY_TEXT_TABLE + "." + "Name";
 		
 		@Override public List<EmpInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpInfo> finalResult = new ArrayList<>();

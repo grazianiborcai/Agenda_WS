@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlColumn;
 
 public final class OwnerDbTableColumn {
@@ -49,7 +49,7 @@ public final class OwnerDbTableColumn {
 	
 	
 	private static void buildMatTable() {
-		final String TABLE_NAME = DbTable.OWNER_TABLE;
+		final String TABLE_NAME = SqlDbTable.OWNER_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	

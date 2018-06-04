@@ -66,6 +66,5 @@ public final class EmpWtimeModelDelete implements Model {
 		@Override public DeciTree<EmpWTimeInfo> getInstance(DeciTreeOption<EmpWTimeInfo> option) {
 			return new RootEmpWtimeDelete(option);
 		}		
-	
 	}
 }

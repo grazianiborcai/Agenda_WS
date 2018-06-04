@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
@@ -32,7 +32,7 @@ public final class MatUpdateText implements SqlStmt<MatInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DbTable.MATERIAL_TEXT_TABLE;
+		this.stmtOption.tableName = SqlDbTable.MATERIAL_TEXT_TABLE;
 		this.stmtOption.columns = MatDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;

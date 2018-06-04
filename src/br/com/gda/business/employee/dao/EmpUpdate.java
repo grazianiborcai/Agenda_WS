@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
@@ -38,7 +38,7 @@ public final class EmpUpdate implements SqlStmt<EmpInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DbTable.EMPLOYEE_TABLE;
+		this.stmtOption.tableName = SqlDbTable.EMPLOYEE_TABLE;
 		this.stmtOption.columns = EmpDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser();

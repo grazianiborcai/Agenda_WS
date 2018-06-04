@@ -40,7 +40,6 @@ public final class SqlStmtExecHelper<T> implements SqlStmtExec<T> {
 		
 		
 		checkEachOption(options);
-
 	}
 	
 	

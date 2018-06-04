@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
@@ -33,7 +33,7 @@ public final class MatDelete implements SqlStmt<MatInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DbTable.MATERIAL_TABLE;
+		this.stmtOption.tableName = SqlDbTable.MATERIAL_TABLE;
 		this.stmtOption.columns = MatDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();

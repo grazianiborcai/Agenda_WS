@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.MatUnitInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
 import br.com.gda.sql.SqlJoinColumn;
@@ -21,8 +21,8 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class MatUnitSelect implements SqlStmt<MatUnitInfo> {
-	private final String LT_UNIT = DbTable.MATERIAL_UNIT_TABLE;
-	private final String RT_UNIT_TEXT = DbTable.MATERIAL_UNIT_TEXT_TABLE;
+	private final String LT_UNIT = SqlDbTable.MATERIAL_UNIT_TABLE;
+	private final String RT_UNIT_TEXT = SqlDbTable.MATERIAL_UNIT_TEXT_TABLE;
 	
 	private SqlStmt<MatUnitInfo> stmtSql;
 	private SqlStmtOption<MatUnitInfo> stmtOption;
@@ -152,8 +152,8 @@ public final class MatUnitSelect implements SqlStmt<MatUnitInfo> {
 	
 	private class ResultParser implements SqlResultParser<MatUnitInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String UNIT_TEXT_COL = DbTable.MATERIAL_UNIT_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = DbTable.MATERIAL_UNIT_TEXT_TABLE + "." + "Language";
+		private final String UNIT_TEXT_COL = SqlDbTable.MATERIAL_UNIT_TEXT_TABLE + "." + "Name";
+		private final String LANGU_COL = SqlDbTable.MATERIAL_UNIT_TEXT_TABLE + "." + "Language";
 		
 		@Override public List<MatUnitInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatUnitInfo> finalResult = new ArrayList<>();

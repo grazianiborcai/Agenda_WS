@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.CurrencyInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
 import br.com.gda.sql.SqlJoinColumn;
@@ -21,8 +21,8 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class CurrencySelect implements SqlStmt<CurrencyInfo> {
-	private final String LT_CURRENCY = DbTable.CURRENCY_TABLE;
-	private final String RT_CURRENCY_TEXT = DbTable.CURRENCY_TEXT_TABLE;
+	private final String LT_CURRENCY = SqlDbTable.CURRENCY_TABLE;
+	private final String RT_CURRENCY_TEXT = SqlDbTable.CURRENCY_TEXT_TABLE;
 	
 	private SqlStmt<CurrencyInfo> stmtSql;
 	private SqlStmtOption<CurrencyInfo> stmtOption;
@@ -152,8 +152,8 @@ public final class CurrencySelect implements SqlStmt<CurrencyInfo> {
 	
 	private class ResultParser implements SqlResultParser<CurrencyInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String CURRENCY_TEXT_COL = DbTable.CURRENCY_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = DbTable.CURRENCY_TEXT_TABLE + "." + "Language";
+		private final String CURRENCY_TEXT_COL = SqlDbTable.CURRENCY_TEXT_TABLE + "." + "Name";
+		private final String LANGU_COL = SqlDbTable.CURRENCY_TEXT_TABLE + "." + "Language";
 		
 		@Override public List<CurrencyInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CurrencyInfo> finalResult = new ArrayList<>();

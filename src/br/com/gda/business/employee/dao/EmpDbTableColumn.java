@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlColumn;
 
 public final class EmpDbTableColumn {
@@ -49,7 +49,7 @@ public final class EmpDbTableColumn {
 	
 	
 	private static void employeeTable() {
-		final String TABLE_NAME = DbTable.EMPLOYEE_TABLE;
+		final String TABLE_NAME = SqlDbTable.EMPLOYEE_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	
@@ -199,7 +199,7 @@ public final class EmpDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.GENDER_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.GENDER_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -207,7 +207,7 @@ public final class EmpDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.POSITION_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.POSITION_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -215,7 +215,7 @@ public final class EmpDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.COUNTRY_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.COUNTRY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -228,7 +228,7 @@ public final class EmpDbTableColumn {
 	
 	
 	private static void employeeWoerkingTimeTable() {
-		final String TABLE_NAME = DbTable.EMPLOYEE_WORKING_TIME_TABLE;
+		final String TABLE_NAME = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	

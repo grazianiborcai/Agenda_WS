@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlColumn;
 
 public final class MatDbTableColumn {
@@ -50,7 +50,7 @@ public final class MatDbTableColumn {
 	
 	
 	private static void buildMatTable() {
-		final String TABLE_NAME = DbTable.MATERIAL_TABLE;
+		final String TABLE_NAME = SqlDbTable.MATERIAL_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	
@@ -144,7 +144,7 @@ public final class MatDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -152,7 +152,7 @@ public final class MatDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_TEXT_TABLE;
 		oneColumn.columnName = "Description";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -160,7 +160,7 @@ public final class MatDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -168,7 +168,7 @@ public final class MatDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_TYPE_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -176,7 +176,7 @@ public final class MatDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_CATEGORY_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_CATEGORY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -184,7 +184,7 @@ public final class MatDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.CURRENCY_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.CURRENCY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -192,7 +192,7 @@ public final class MatDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.UNIT_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.UNIT_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -200,7 +200,7 @@ public final class MatDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_GROUP_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -208,7 +208,7 @@ public final class MatDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_GROUP_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_GROUP_TABLE;
 		oneColumn.columnName = "Cod_business";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -216,7 +216,7 @@ public final class MatDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.BUSINESS_AREA_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -229,7 +229,7 @@ public final class MatDbTableColumn {
 	
 	
 	private static void buildMatTextTable() {
-		final String TABLE_NAME = DbTable.MATERIAL_TEXT_TABLE;
+		final String TABLE_NAME = SqlDbTable.MATERIAL_TEXT_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	

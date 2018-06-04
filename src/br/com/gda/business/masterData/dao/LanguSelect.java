@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.LanguInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
@@ -17,7 +17,7 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class LanguSelect implements SqlStmt<LanguInfo> {
-	private final String LT_LANGU = DbTable.LANGUAGE_TABLE;
+	private final String LT_LANGU = SqlDbTable.LANGUAGE_TABLE;
 	
 	private SqlStmt<LanguInfo> stmtSql;
 	private SqlStmtOption<LanguInfo> stmtOption;

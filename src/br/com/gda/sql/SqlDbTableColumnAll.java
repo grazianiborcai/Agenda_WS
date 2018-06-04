@@ -1,0 +1,56 @@
+package br.com.gda.sql;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+
+import br.com.gda.business.materialEmployee.dao.MatEmpDbTableColumn;
+import br.com.gda.common.SystemMessage;
+
+public final class SqlDbTableColumnAll {
+	private static Hashtable<String, List<SqlColumn>> tableColumns;
+	
+	
+	
+	static {
+		buildTableColumns();
+	}
+	
+	
+	
+	private static void buildTableColumns() {
+		tableColumns = new Hashtable<>();
+		
+		addMatEmpTable();	
+	}
+	
+	
+	
+	private static void addMatEmpTable() {
+		MatEmpDbTableColumn tblCol = new MatEmpDbTableColumn();
+		List<String> tblNames = tblCol.getTableNamesAsList();
+		
+		for (String eachTblName : tblNames) {
+			List<SqlColumn> columns = tblCol.getTableColumnsAsList(eachTblName);
+			tableColumns.put(eachTblName, columns);
+		}
+	}
+	
+	
+	
+	public static List<SqlColumn> getTableColumnsAsList(String tableName) {
+		List<SqlColumn> columns = tableColumns.get(tableName);
+		
+		if (columns == null)
+			throw new IllegalArgumentException(tableName + " " + SystemMessage.TABLE_NOT_FOUND);
+		
+		
+		List<SqlColumn> resultColumns = new ArrayList<>();
+		
+		for (SqlColumn eachColumn : columns) {
+			resultColumns.add(eachColumn);
+		}
+		
+		return resultColumns;
+	}
+}

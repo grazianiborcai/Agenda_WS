@@ -30,10 +30,13 @@ public final class SystemCode {
 	public static final int STORE_CNPJ_ALREADY_EXIST					= 1100;
 	public static final int STORE_CNPJ_NOT_FOUND						= 1101;
 	public static final int STORE_ALREALDY_EXIST 						= 1102;
-	public static final int STORE_DONT_EXIST 							= 1103;
+	public static final int STORE_NOT_FOUND 							= 1103;
 	public static final int STORE_EMP_ALREALDY_EXIST 					= 1104;
 	public static final int STORE_EMP_NOT_FOUND 						= 1105;
-	public static final int STORE_EMP_FLAGGED_AS_DELETED 				= 1106;
+	public static final int STORE_EMP_FLAGGED_AS_DELETED 				= 1106;	
+	public static final int STORE_MAT_EMP_ALREALDY_EXIST 				= 1107;
+	public static final int STORE_MAT_EMP_NOT_FOUND 					= 1108;
+	public static final int STORE_MAT_EMP_FLAGGED_AS_DELETED 			= 1109;
 	
 	// Master Data
 	public static final int EMP_POS_ALREADY_EXIST						= 1150;

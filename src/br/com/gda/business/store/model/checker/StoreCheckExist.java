@@ -11,6 +11,7 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
 public final class StoreCheckExist extends ModelCheckerTemplate<StoreInfo> {
@@ -52,7 +53,7 @@ public final class StoreCheckExist extends ModelCheckerTemplate<StoreInfo> {
 	
 	
 	private List<StoreInfo> executeStmt(StoreInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		StoreSelectExec stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+		SqlStmtExec<StoreInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
 		
 		stmtExecutor.executeStmt();
 		return stmtExecutor.getResultset();
@@ -60,7 +61,7 @@ public final class StoreCheckExist extends ModelCheckerTemplate<StoreInfo> {
 	
 	
 	
-	private StoreSelectExec buildStmtExecutor(StoreInfo recordInfo, Connection conn, String schemaName) {
+	private SqlStmtExec<StoreInfo> buildStmtExecutor(StoreInfo recordInfo, Connection conn, String schemaName) {
 		SqlStmtExecOption<StoreInfo> stmtExecOption = new SqlStmtExecOption<>();
 		stmtExecOption.conn = conn;
 		stmtExecOption.recordInfo = recordInfo;
@@ -87,6 +88,6 @@ public final class StoreCheckExist extends ModelCheckerTemplate<StoreInfo> {
 		if (checkerResult == STORE_EXIST)
 			return SystemCode.STORE_ALREALDY_EXIST;	
 			
-		return SystemCode.STORE_DONT_EXIST;
+		return SystemCode.STORE_NOT_FOUND;
 	}
 }

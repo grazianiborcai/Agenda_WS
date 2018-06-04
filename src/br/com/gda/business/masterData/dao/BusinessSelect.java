@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.BusinessInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
 import br.com.gda.sql.SqlJoinColumn;
@@ -21,8 +21,8 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class BusinessSelect implements SqlStmt<BusinessInfo> {
-	private final String LT_BUSINESS = DbTable.BUSINESS_AREA_TABLE;
-	private final String RT_BUSINESS_TEXT = DbTable.BUSINESS_AREA_TEXT_TABLE;
+	private final String LT_BUSINESS = SqlDbTable.BUSINESS_AREA_TABLE;
+	private final String RT_BUSINESS_TEXT = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
 	
 	private SqlStmt<BusinessInfo> stmtSql;
 	private SqlStmtOption<BusinessInfo> stmtOption;
@@ -152,8 +152,8 @@ public final class BusinessSelect implements SqlStmt<BusinessInfo> {
 	
 	private class ResultParser implements SqlResultParser<BusinessInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String BUSINESS_TEXT_COL = DbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = DbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Language";
+		private final String BUSINESS_TEXT_COL = SqlDbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
+		private final String LANGU_COL = SqlDbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Language";
 		
 		@Override public List<BusinessInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<BusinessInfo> finalResult = new ArrayList<>();

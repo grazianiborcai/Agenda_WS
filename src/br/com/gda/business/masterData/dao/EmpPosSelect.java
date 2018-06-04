@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.EmpPosInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
 import br.com.gda.sql.SqlJoinColumn;
@@ -21,8 +21,8 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class EmpPosSelect implements SqlStmt<EmpPosInfo> {
-	private final String LEFT_TABLE_POSITION = DbTable.POSITION_TABLE;
-	private final String RIGHT_TABLE_POSITION_TEXT = DbTable.POSITION_TEXT_TABLE;
+	private final String LEFT_TABLE_POSITION = SqlDbTable.POSITION_TABLE;
+	private final String RIGHT_TABLE_POSITION_TEXT = SqlDbTable.POSITION_TEXT_TABLE;
 	
 	private SqlStmt<EmpPosInfo> stmtSql;
 	private SqlStmtOption<EmpPosInfo> stmtOption;
@@ -152,8 +152,8 @@ public final class EmpPosSelect implements SqlStmt<EmpPosInfo> {
 	
 	private class ResultParser implements SqlResultParser<EmpPosInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String POSITION_TEXT_COLUMN = DbTable.POSITION_TEXT_TABLE + "." + "Name";
-		private final String POSITION_LANGU_COLUMN = DbTable.POSITION_TEXT_TABLE + "." + "Language";
+		private final String POSITION_TEXT_COLUMN = SqlDbTable.POSITION_TEXT_TABLE + "." + "Name";
+		private final String POSITION_LANGU_COLUMN = SqlDbTable.POSITION_TEXT_TABLE + "." + "Language";
 		
 		@Override public List<EmpPosInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpPosInfo> finalResult = new ArrayList<>();

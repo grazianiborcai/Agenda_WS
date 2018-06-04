@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
 import br.com.gda.sql.SqlJoinColumn;
@@ -21,8 +21,8 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class StoreSelect implements SqlStmt<StoreInfo> {
-	private final String LEFT_TABLE_STORE = DbTable.STORE_TABLE;	
-	private final String RIGHT_TABLE_COUNTRY_TEXT = DbTable.COUNTRY_TEXT_TABLE;
+	private final String LEFT_TABLE_STORE = SqlDbTable.STORE_TABLE;	
+	private final String RIGHT_TABLE_COUNTRY_TEXT = SqlDbTable.COUNTRY_TEXT_TABLE;
 	
 	private SqlStmt<StoreInfo> stmtSql;
 	private SqlStmtOption<StoreInfo> stmtOption;
@@ -153,7 +153,7 @@ public final class StoreSelect implements SqlStmt<StoreInfo> {
 	
 	private static class ResultParser implements SqlResultParser<StoreInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String COUNTRY_TEXT_COLUMN = DbTable.COUNTRY_TEXT_TABLE + "." + "Name";
+		private final String COUNTRY_TEXT_COLUMN = SqlDbTable.COUNTRY_TEXT_TABLE + "." + "Name";
 		
 		@Override public List<StoreInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreInfo> finalResult = new ArrayList<>();

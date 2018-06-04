@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.MatTypeInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
 import br.com.gda.sql.SqlJoinColumn;
@@ -21,8 +21,8 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class MatTypeSelect implements SqlStmt<MatTypeInfo> {
-	private final String LT_MAT_TYPE = DbTable.MATERIAL_TYPE_TABLE;
-	private final String RT_MAT_TYPE_TEXT = DbTable.MATERIAL_TYPE_TEXT_TABLE;
+	private final String LT_MAT_TYPE = SqlDbTable.MATERIAL_TYPE_TABLE;
+	private final String RT_MAT_TYPE_TEXT = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE;
 	
 	private SqlStmt<MatTypeInfo> stmtSql;
 	private SqlStmtOption<MatTypeInfo> stmtOption;
@@ -152,8 +152,8 @@ public final class MatTypeSelect implements SqlStmt<MatTypeInfo> {
 	
 	private class ResultParser implements SqlResultParser<MatTypeInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TYPE_TEXT_COL = DbTable.MATERIAL_TYPE_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = DbTable.MATERIAL_TYPE_TEXT_TABLE + "." + "Language";
+		private final String TYPE_TEXT_COL = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE + "." + "Name";
+		private final String LANGU_COL = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE + "." + "Language";
 		
 		@Override public List<MatTypeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatTypeInfo> finalResult = new ArrayList<>();

@@ -3,7 +3,7 @@ package br.com.gda.business.material.dao;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlStmtWhere;
@@ -44,7 +44,7 @@ public final class MatWhere implements SqlStmtWhere {
 					break;
 					
 				case "Language":
-					if (tableName == DbTable.MATERIAL_TEXT_TABLE)
+					if (tableName == SqlDbTable.MATERIAL_TEXT_TABLE)
 						builder.appendClauseWithAnd(eachColumn, recordInfo.codLanguage);
 					break;
 					

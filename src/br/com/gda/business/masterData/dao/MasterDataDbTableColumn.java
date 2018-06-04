@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.sql.DbTable;
+import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlColumn;
 
 public final class MasterDataDbTableColumn {
@@ -54,7 +54,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	private static void positionTable() {
-		final String TABLE_NAME = DbTable.POSITION_TABLE;
+		final String TABLE_NAME = SqlDbTable.POSITION_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();			
@@ -68,7 +68,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.POSITION_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.POSITION_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -76,7 +76,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.POSITION_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.POSITION_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -89,7 +89,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	private static void materialUnitTable() {
-		final String TABLE_NAME = DbTable.MATERIAL_UNIT_TABLE;
+		final String TABLE_NAME = SqlDbTable.MATERIAL_UNIT_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();			
@@ -103,7 +103,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_UNIT_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_UNIT_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -111,7 +111,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_UNIT_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_UNIT_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -124,7 +124,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	private static void materialTypeTable() {
-		final String TABLE_NAME = DbTable.MATERIAL_TYPE_TABLE;
+		final String TABLE_NAME = SqlDbTable.MATERIAL_TYPE_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();			
@@ -138,7 +138,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_TYPE_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -146,7 +146,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_TYPE_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -159,7 +159,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	private static void materialCategTable() {
-		final String TABLE_NAME = DbTable.MATERIAL_CATEGORY_TABLE;
+		final String TABLE_NAME = SqlDbTable.MATERIAL_CATEGORY_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();			
@@ -173,7 +173,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_CATEGORY_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_CATEGORY_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -181,7 +181,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_CATEGORY_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_CATEGORY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -194,7 +194,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	private static void materialGroupTable() {
-		final String TABLE_NAME = DbTable.MATERIAL_GROUP_TABLE;
+		final String TABLE_NAME = SqlDbTable.MATERIAL_GROUP_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();			
@@ -216,7 +216,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_GROUP_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -224,7 +224,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.MATERIAL_GROUP_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -232,7 +232,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.BUSINESS_AREA_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -245,7 +245,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	private static void businessAreaTable() {
-		final String TABLE_NAME = DbTable.BUSINESS_AREA_TABLE;
+		final String TABLE_NAME = SqlDbTable.BUSINESS_AREA_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();			
@@ -259,7 +259,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.BUSINESS_AREA_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -267,7 +267,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.BUSINESS_AREA_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -280,7 +280,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	private static void currencyTable() {
-		final String TABLE_NAME = DbTable.CURRENCY_TABLE;
+		final String TABLE_NAME = SqlDbTable.CURRENCY_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();			
@@ -302,7 +302,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.CURRENCY_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.CURRENCY_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -310,7 +310,7 @@ public final class MasterDataDbTableColumn {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = DbTable.CURRENCY_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.CURRENCY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -323,7 +323,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	private static void languageTable() {
-		final String TABLE_NAME = DbTable.LANGUAGE_TABLE;
+		final String TABLE_NAME = SqlDbTable.LANGUAGE_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();			
