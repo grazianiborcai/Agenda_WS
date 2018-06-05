@@ -15,7 +15,7 @@ import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class EmpWtimeModelDelete implements Model {	
-	private ModelHelper<EmpWTimeInfo> helper;
+	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
@@ -42,7 +42,7 @@ public final class EmpWtimeModelDelete implements Model {
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = new ModelHelper<>(helperOption, recordInfo);
+		helper = ModelHelper.factory(helperOption, recordInfo);
 	}
 
 

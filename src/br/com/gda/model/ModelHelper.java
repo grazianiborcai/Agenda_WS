@@ -33,17 +33,77 @@ public class ModelHelper<T> implements Model {
 	private DeciResult<T> currentTreeResult;
 	
 	
-	public ModelHelper(ModelOption<T> option, String incomingData) {		
-		List<T> parsedRecordInfos = parseRawInfo(incomingData, option.infoRecordClass);
-		initialize(option, parsedRecordInfos);		
+	
+	public static <T> Model factory(ModelOption<T> option, String incomingData) {
+		try {
+			return new ModelHelper<T>(option, incomingData);
+		} catch (Exception e) {
+			return new ModelDummyFailed();
+		}
 	}
 	
 	
 	
-	public ModelHelper(ModelOption<T> option, T recordInfo) {
+	public static <T> Model factory(ModelOption<T> option, T recordInfo) {
+		try {
+			return new ModelHelper<T>(option, recordInfo);
+		} catch (Exception e) {
+			return new ModelDummyFailed();
+		}
+	}
+	
+	
+	
+	private ModelHelper(ModelOption<T> option, String incomingData) {		
+		checkArgument(option, incomingData);
+		List<T> parsedRecordInfos = parseRawInfo(incomingData, option.infoRecordClass);
+		initialize(option, parsedRecordInfos);	
+	}
+	
+	
+
+	private ModelHelper(ModelOption<T> option, T recordInfo) {
+		checkArgument(option, recordInfo);
 		List<T> requestedRecordInfos = new ArrayList<>();
 		requestedRecordInfos.add(recordInfo);
 		initialize(option, requestedRecordInfos);	
+	}
+	
+	
+	
+	private void checkArgument(ModelOption<T> option, String incomingData) {
+		if (incomingData == null)
+			throw new NullPointerException("incomingData" + SystemMessage.NULL_ARGUMENT);
+		
+		checkOption(option);
+	}
+	
+	
+	
+	private void checkArgument(ModelOption<T> option, T recordInfo) {
+		if (recordInfo == null)
+			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
+		
+		checkOption(option);
+	}
+	
+	
+	
+	private void checkOption(ModelOption<T> option) {
+		if (option == null)
+			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
+		
+		if (option.infoRecordClass == null)
+			throw new NullPointerException("option.infoRecordClass" + SystemMessage.NULL_ARGUMENT);
+		
+		if (option.decisionTreeFactory == null)
+			throw new NullPointerException("option.decisionTreeFactory" + SystemMessage.NULL_ARGUMENT);
+		
+		if (option.conn == null)
+			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
+		
+		if (option.schemaName == null)
+			throw new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT);
 	}
 	
 	

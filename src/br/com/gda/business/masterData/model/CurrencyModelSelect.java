@@ -16,7 +16,7 @@ import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class CurrencyModelSelect implements Model {
-	private ModelHelper<CurrencyInfo> helper;
+	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
@@ -43,7 +43,7 @@ public final class CurrencyModelSelect implements Model {
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = new ModelHelper<>(helperOption, recordInfo);
+		helper = ModelHelper.factory(helperOption, recordInfo);
 	}
 
 
