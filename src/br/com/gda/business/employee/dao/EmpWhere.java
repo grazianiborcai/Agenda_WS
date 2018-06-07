@@ -27,19 +27,19 @@ final class EmpWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
 				case "cod_owner" :
-					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
 					break;
 					
 				case "cod_employee" :
-					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
 					break;
 					
 				case "CPF" :
-					builder.appendClauseWithAnd(eachColumn, recordInfo.cpf);
+					builder.addClauseEqualAnd(eachColumn, recordInfo.cpf);
 					break;
 					
 				case "record_mode" :
-					builder.appendClauseWithAnd(eachColumn, recordInfo.recordMode);
+					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
 		}		

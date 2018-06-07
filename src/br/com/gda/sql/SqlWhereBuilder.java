@@ -9,21 +9,15 @@ public interface SqlWhereBuilder {
 	
 	
 	public static SqlWhereBuilder factory(SqlWhereBuilderOption option) {
-		return new SqlWhereBuilderEqual(option);
+		return new SqlWhereBuilderConcrete(option);
 	}
 	
 	
-	public void appendClauseWithAnd(SqlColumn column, String conditionValue);
-	
-	
-	public void appendClauseWithOr(SqlColumn column, String conditionValue);
+	public void addClauseEqualAnd(SqlColumn column, String value);
 
 	
 	public String generateClause();
-	
-	
-	public String generateClauseWithoutParentheses();
 
 	
-	public boolean checkClauseGeneration();
+	public boolean checkBeforeGeneration();
 }

@@ -26,7 +26,7 @@ public final class EmpPosWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "Cod_position" :
-					builder.appendClauseWithAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codPosition));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codPosition));
 					break;
 			}
 		}		

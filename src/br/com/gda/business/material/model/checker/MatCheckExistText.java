@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.material.dao.MatSelectExec;
+import br.com.gda.business.material.dao.MatSelect;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -77,7 +77,7 @@ public final class MatCheckExistText extends ModelCheckerTemplate<MatInfo> {
 		List<SqlStmtExecOption<MatInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new MatSelectExec(stmtExecOptions);
+		return new MatSelect(stmtExecOptions);
 	}
 	
 	

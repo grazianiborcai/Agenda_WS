@@ -25,7 +25,7 @@ public final class LanguWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "Language" :
-					builder.appendClauseWithAnd(eachColumn, recordInfo.codLanguage);
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
 		}		

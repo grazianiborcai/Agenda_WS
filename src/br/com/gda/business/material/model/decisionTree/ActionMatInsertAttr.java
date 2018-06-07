@@ -3,7 +3,7 @@ package br.com.gda.business.material.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.material.dao.MatInsertAttrExec;
+import br.com.gda.business.material.dao.MatInsertAttr;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionStmtHelper;
@@ -34,7 +34,7 @@ public final class ActionMatInsertAttr implements DeciAction<MatInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new MatInsertAttrExec(stmtExecOptions);
+		return new MatInsertAttr(stmtExecOptions);
 	}
 	
 	

@@ -3,7 +3,7 @@ package br.com.gda.business.material.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.material.dao.MatDeleteExec;
+import br.com.gda.business.material.dao.MatDelete;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionStmtHelper;
@@ -34,7 +34,7 @@ public final class ActionMatDelete implements DeciAction<MatInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new MatDeleteExec(stmtExecOptions);
+		return new MatDelete(stmtExecOptions);
 	}
 	
 	

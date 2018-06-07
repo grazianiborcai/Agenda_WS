@@ -25,7 +25,7 @@ public final class MatUnitWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "Unit" :
-					builder.appendClauseWithAnd(eachColumn, recordInfo.codUnit);
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codUnit);
 					break;
 			}
 		}		
