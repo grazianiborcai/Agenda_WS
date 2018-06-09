@@ -6,7 +6,8 @@ import java.util.List;
 import br.com.gda.business.employee.dao.EmpWtimeSelectExec;
 import br.com.gda.business.employee.info.EmpWTimeInfo;
 import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciActionHandler;
+import br.com.gda.model.decisionTree.DeciActionHelper;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
@@ -18,7 +19,7 @@ public class ActionEmpWtimeSelect implements DeciAction<EmpWTimeInfo> {
 	
 	public ActionEmpWtimeSelect(DeciTreeOption<EmpWTimeInfo> option) {
 		SqlStmtExec<EmpWTimeInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
 	}
 	
 	
@@ -35,6 +36,12 @@ public class ActionEmpWtimeSelect implements DeciAction<EmpWTimeInfo> {
 		}
 		
 		return new EmpWtimeSelectExec(stmtExecOptions);
+	}
+	
+	
+	
+	@Override public void addPostAction(DeciActionHandler<EmpWTimeInfo> actionHandler) {
+		actionHelper.addPostAction(actionHandler);
 	}
 	
 	

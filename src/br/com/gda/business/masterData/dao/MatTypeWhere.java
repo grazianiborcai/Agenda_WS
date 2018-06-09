@@ -26,7 +26,7 @@ final class MatTypeWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "Cod_type" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codType));
+					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codType));
 					break;
 			}
 		}		

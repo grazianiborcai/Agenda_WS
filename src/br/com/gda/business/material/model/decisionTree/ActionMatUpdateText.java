@@ -6,19 +6,20 @@ import java.util.List;
 import br.com.gda.business.material.dao.MatUpdateText;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciActionHandler;
+import br.com.gda.model.decisionTree.DeciActionHelper;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
 public final class ActionMatUpdateText implements DeciAction<MatInfo> {
-	DeciAction<MatInfo> actionHelper;
+	DeciAction<MatInfo> actionHelper;	
 	
 	
 	public ActionMatUpdateText(DeciTreeOption<MatInfo> option) {
 		SqlStmtExec<MatInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
 	}
 	
 	
@@ -35,6 +36,12 @@ public final class ActionMatUpdateText implements DeciAction<MatInfo> {
 		}
 		
 		return new MatUpdateText(stmtExecOptions);
+	}
+	
+	
+	
+	@Override public void addPostAction(DeciActionHandler<MatInfo> actionHandler) {
+		actionHelper.addPostAction(actionHandler);
 	}
 	
 	

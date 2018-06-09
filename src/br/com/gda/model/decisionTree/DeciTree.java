@@ -6,4 +6,6 @@ public interface DeciTree<T> {
 	public DeciChoice getDecisionMade();	
 	
 	public DeciResult<T> getDecisionResult();
+	
+	public DeciAction<T> getAsAction();
 }

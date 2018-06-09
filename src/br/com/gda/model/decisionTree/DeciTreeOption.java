@@ -16,6 +16,10 @@ public final class DeciTreeOption<T> implements Cloneable {
 	@Override public Object clone()throws CloneNotSupportedException {  
 		try {
 			DeciTreeOption<T> deepCopy = (DeciTreeOption<T>) super.clone(); 
+			
+			if (recordInfos == null)
+				return deepCopy;
+				
 			deepCopy.recordInfos = new ArrayList<>();
 			
 			for (T eachRecord : recordInfos) {

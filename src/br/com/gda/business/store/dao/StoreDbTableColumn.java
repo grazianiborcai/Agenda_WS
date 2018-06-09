@@ -4,52 +4,30 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.common.SystemMessage;
-import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlColumn;
+import br.com.gda.sql.SqlDbTable;
+import br.com.gda.sql.SqlDbTableColumnTemplate;
 
-public final class StoreDbTableColumn {
-	private static final boolean IS_PRIMARY_KEY = true;	
-	private static final boolean IS_LOOKUP_COLUMN = true;
-	private static final boolean IS_AUTO_INCREMENTED = true;
-	private static final boolean NEGATIVE = false;
+public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
+	private Hashtable<String, List<SqlColumn>> tableColumns;	
 	
-	private static final Hashtable<String, List<SqlColumn>> tableColumns = new Hashtable<>();	
-	
-	
-	
-	static {
-		buildTableColumns();
+	public StoreDbTableColumn() {
+		super();
 	}
 	
 	
 	
-	private static void buildTableColumns() {
-		buildStoreTable();	
-		buildStoreEmployeeTable();
+	@Override protected Hashtable<String, List<SqlColumn>> buildTableColumnsHook() {
+		tableColumns = new Hashtable<>();
+		
+		buildStoreTable();
+		
+		return tableColumns;
 	}
 	
 	
 	
-	public static List<SqlColumn> getTableColumnsAsList(String tableName) {
-		List<SqlColumn> columns = tableColumns.get(tableName);
-		
-		if (columns == null)
-			throw new IllegalArgumentException(tableName + " " + SystemMessage.TABLE_NOT_FOUND);
-		
-		
-		List<SqlColumn> resultColumns = new ArrayList<>();
-		
-		for (SqlColumn eachColumn : columns) {
-			resultColumns.add(eachColumn);
-		}
-		
-		return resultColumns;
-	}
-	
-	
-	
-	private static void buildStoreTable() {
+	private void buildStoreTable() {
 		final String TABLE_NAME = SqlDbTable.STORE_TABLE;
 		
 		SqlColumn oneColumn;
@@ -209,81 +187,6 @@ public final class StoreDbTableColumn {
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = SqlDbTable.COUNTRY_TEXT_TABLE;
-		oneColumn.columnName = "Name";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private static void buildStoreEmployeeTable() {
-		final String TABLE_NAME = SqlDbTable.STORE_EMPLOYEE_TABLE;
-		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();	
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_owner";
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_store";
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_employee";
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_position_store";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "record_mode";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.POSITION_TEXT_TABLE;
-		oneColumn.columnName = "Name";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.STORE_TABLE;
-		oneColumn.columnName = "Name";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.EMPLOYEE_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

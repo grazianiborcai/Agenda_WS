@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.store.dao.StoreSelectExec;
+import br.com.gda.business.store.dao.StoreSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -51,7 +51,7 @@ public final class StoreCheckCnpjExist extends ModelCheckerTemplate<StoreInfo> {
 	
 	
 	private List<StoreInfo> executeStmt(StoreInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		StoreSelectExec stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+		StoreSelect stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
 		
 		stmtExecutor.executeStmt();
 		return stmtExecutor.getResultset();
@@ -59,7 +59,7 @@ public final class StoreCheckCnpjExist extends ModelCheckerTemplate<StoreInfo> {
 	
 	
 	
-	private StoreSelectExec buildStmtExecutor(StoreInfo recordInfo, Connection conn, String schemaName) {
+	private StoreSelect buildStmtExecutor(StoreInfo recordInfo, Connection conn, String schemaName) {
 		SqlStmtExecOption<StoreInfo> stmtExecOption = new SqlStmtExecOption<>();
 		stmtExecOption.conn = conn;
 		stmtExecOption.recordInfo = recordInfo;
@@ -68,7 +68,7 @@ public final class StoreCheckCnpjExist extends ModelCheckerTemplate<StoreInfo> {
 		List<SqlStmtExecOption<StoreInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new StoreSelectExec(stmtExecOptions);
+		return new StoreSelect(stmtExecOptions);
 	}
 	
 	

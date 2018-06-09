@@ -68,4 +68,10 @@ public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 	@Override public DeciResult<OwnerInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
+	
+	
+	
+	@Override public DeciAction<OwnerInfo> getAsAction() {
+		return tree.getAsAction();
+	}
 }

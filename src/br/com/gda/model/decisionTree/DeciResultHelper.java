@@ -11,11 +11,17 @@ public final class DeciResultHelper<T> implements DeciResult<T> {
 	
 	
 	public DeciResultHelper() {
-		this.resultset = null;
-		this.failureMessage = null;
-		this.failureCode = -1;
-		this.finishedWithSuccess = null;
-		this.hasResultset = false;
+		clear();
+	}
+	
+	
+	
+	private void clear() {
+		resultset = null;
+		failureMessage = null;
+		failureCode = -1;
+		finishedWithSuccess = null;
+		hasResultset = false;
 	}
 	
 	
@@ -58,5 +64,23 @@ public final class DeciResultHelper<T> implements DeciResult<T> {
 			throw new IllegalStateException();
 		
 		return this.resultset;
+	}
+	
+	
+	
+	public void copyFrom(DeciResult<T> sourceResult) {
+		clear();
+		
+		finishedWithSuccess = sourceResult.hasSuccessfullyFinished();
+		
+		if (sourceResult.hasSuccessfullyFinished() == false) {
+			failureMessage = sourceResult.getFailureMessage();
+			failureCode = sourceResult.getFailureCode();
+		}
+		
+		hasResultset = sourceResult.hasResultset();
+
+		if (sourceResult.hasResultset()) 
+			resultset = sourceResult.getResultset();
 	}
 }

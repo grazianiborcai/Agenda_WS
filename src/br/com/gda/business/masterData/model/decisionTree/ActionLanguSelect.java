@@ -6,7 +6,8 @@ import java.util.List;
 import br.com.gda.business.masterData.dao.LanguSelectExec;
 import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciActionHandler;
+import br.com.gda.model.decisionTree.DeciActionHelper;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
@@ -18,7 +19,7 @@ public final class ActionLanguSelect implements DeciAction<LanguInfo> {
 	
 	public ActionLanguSelect(DeciTreeOption<LanguInfo> option) {
 		SqlStmtExec<LanguInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
 	}
 	
 	
@@ -35,6 +36,12 @@ public final class ActionLanguSelect implements DeciAction<LanguInfo> {
 		}
 		
 		return new LanguSelectExec(stmtExecOptions);
+	}
+	
+	
+	
+	@Override public void addPostAction(DeciActionHandler<LanguInfo> actionHandler) {
+		actionHelper.addPostAction(actionHandler);
 	}
 	
 	

@@ -2,6 +2,7 @@ package br.com.gda.business.material.model.decisionTree;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -102,5 +103,11 @@ public final class ActionMatInsert implements DeciAction<MatInfo> {
 			return actionTwoText.getDecisionResult();
 		
 		return actionOneAttr.getDecisionResult();
+	}
+	
+	
+	
+	@Override public void addPostAction(DeciActionHandler<MatInfo> actionHandler) {
+		//Dummy
 	}
 }

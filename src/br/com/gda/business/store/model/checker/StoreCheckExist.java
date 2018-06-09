@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.store.dao.StoreSelectExec;
+import br.com.gda.business.store.dao.StoreSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -70,7 +70,7 @@ public final class StoreCheckExist extends ModelCheckerTemplate<StoreInfo> {
 		List<SqlStmtExecOption<StoreInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new StoreSelectExec(stmtExecOptions);
+		return new StoreSelect(stmtExecOptions);
 	}
 	
 	

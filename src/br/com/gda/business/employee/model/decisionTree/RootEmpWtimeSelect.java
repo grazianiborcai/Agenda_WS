@@ -44,6 +44,12 @@ public final class RootEmpWtimeSelect implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
+	@Override public DeciAction<EmpWTimeInfo> getAsAction() {
+		return tree.getAsAction();
+	}
+	
+	
+	
 	private List<DeciAction<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
 		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		

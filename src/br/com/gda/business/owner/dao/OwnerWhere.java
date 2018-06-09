@@ -27,11 +27,11 @@ public final class OwnerWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
 				case "Cod_owner" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
+					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
 					break;
 					
 				case "record_mode" :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
+					builder.addClause(eachColumn, recordInfo.recordMode);
 					break;
 			}
 		}		

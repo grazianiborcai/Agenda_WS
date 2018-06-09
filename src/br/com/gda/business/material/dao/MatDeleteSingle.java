@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.sql.SqlDbTable;
+import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
@@ -34,7 +35,7 @@ public final class MatDeleteSingle implements SqlStmt<MatInfo> {
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = SqlDbTable.MATERIAL_TABLE;
-		this.stmtOption.columns = MatDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();

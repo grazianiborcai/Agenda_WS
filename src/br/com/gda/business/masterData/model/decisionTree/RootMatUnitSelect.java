@@ -68,4 +68,10 @@ public final class RootMatUnitSelect implements DeciTree<MatUnitInfo> {
 	@Override public DeciResult<MatUnitInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
+	
+	
+	
+	@Override public DeciAction<MatUnitInfo> getAsAction() {
+		return tree.getAsAction();
+	}
 }

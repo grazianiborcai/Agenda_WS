@@ -68,4 +68,10 @@ public final class RootLanguSelect implements DeciTree<LanguInfo> {
 	@Override public DeciResult<LanguInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
+	
+	
+	
+	@Override public DeciAction<LanguInfo> getAsAction() {
+		return tree.getAsAction();
+	}
 }

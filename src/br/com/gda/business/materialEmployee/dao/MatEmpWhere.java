@@ -28,23 +28,23 @@ public final class MatEmpWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
 				case "Cod_owner" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
+					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
 					break;
 					
 				case "Cod_store" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codStore));
+					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codStore));
 					break;
 					
 				case "Cod_employee" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
+					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
 					break;
 					
 				case "Cod_material" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codMat));
+					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codMat));
 					break;
 					
 				case "record_mode" :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
+					builder.addClause(eachColumn, recordInfo.recordMode);
 					break;
 			}
 		}		

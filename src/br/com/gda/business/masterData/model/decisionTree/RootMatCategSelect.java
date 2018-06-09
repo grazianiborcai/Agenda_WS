@@ -68,4 +68,10 @@ public final class RootMatCategSelect implements DeciTree<MatCategInfo> {
 	@Override public DeciResult<MatCategInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
+	
+	
+	
+	@Override public DeciAction<MatCategInfo> getAsAction() {
+		return tree.getAsAction();
+	}
 }

@@ -53,6 +53,12 @@ public final class NodeEmpUpdateL2 implements DeciTree<EmpInfo> {
 	
 	
 	
+	@Override public DeciAction<EmpInfo> getAsAction() {
+		return tree.getAsAction();
+	}
+	
+	
+	
 	private List<DeciAction<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
 		List<DeciAction<EmpInfo>> actions = new ArrayList<>();
 		

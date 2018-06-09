@@ -68,4 +68,10 @@ public final class RootMatGroupSelect implements DeciTree<MatGroupInfo> {
 	@Override public DeciResult<MatGroupInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
+	
+	
+	
+	@Override public DeciAction<MatGroupInfo> getAsAction() {
+		return tree.getAsAction();
+	}
 }

@@ -11,7 +11,8 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciActionHandler;
+import br.com.gda.model.decisionTree.DeciActionHelper;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -66,6 +67,12 @@ final class NodeEmpWtimeInsert implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
+	@Override public DeciAction<EmpWTimeInfo> getAsAction() {
+		return tree.getAsAction();
+	}
+	
+	
+	
 	private List<DeciAction<EmpWTimeInfo>> buildActionsOnFailed(DeciTreeOption<EmpWTimeInfo> option) {
 		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		
@@ -102,7 +109,7 @@ final class NodeEmpWtimeInsert implements DeciTree<EmpWTimeInfo> {
 		
 		public ActionInsert(DeciTreeOption<EmpWTimeInfo> option) {
 			SqlStmtExec<EmpWTimeInfo> sqlStmtExecutor = buildStmtExec(option);
-			actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
+			actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
 		}
 		
 		
@@ -119,6 +126,12 @@ final class NodeEmpWtimeInsert implements DeciTree<EmpWTimeInfo> {
 			}
 			
 			return new EmpWtimeInsertExec(stmtExecOptions);
+		}
+		
+		
+		
+		@Override public void addPostAction(DeciActionHandler<EmpWTimeInfo> actionHandler) {
+			actionHelper.addPostAction(actionHandler);
 		}
 		
 		
@@ -145,7 +158,7 @@ final class NodeEmpWtimeInsert implements DeciTree<EmpWTimeInfo> {
 		
 		public ActionUpdate(DeciTreeOption<EmpWTimeInfo> option) {
 			SqlStmtExec<EmpWTimeInfo> sqlStmtExecutor = buildStmtExec(option);
-			actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
+			actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
 		}
 		
 		
@@ -163,6 +176,13 @@ final class NodeEmpWtimeInsert implements DeciTree<EmpWTimeInfo> {
 			
 			return new EmpWtimeUpdateExec(stmtExecOptions);
 		}
+		
+		
+		
+		@Override public void addPostAction(DeciActionHandler<EmpWTimeInfo> actionHandler) {
+			actionHelper.addPostAction(actionHandler);
+		}
+		
 		
 		
 		

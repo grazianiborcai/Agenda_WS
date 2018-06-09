@@ -80,4 +80,10 @@ public final class RootMatEmpDelete implements DeciTree<MatEmpInfo> {
 	@Override public DeciResult<MatEmpInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
+	
+	
+	
+	@Override public DeciAction<MatEmpInfo> getAsAction() {
+		return tree.getAsAction();
+	}
 }

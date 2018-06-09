@@ -68,4 +68,10 @@ public final class RootCurrencySelect implements DeciTree<CurrencyInfo> {
 	@Override public DeciResult<CurrencyInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
+	
+	
+	
+	@Override public DeciAction<CurrencyInfo> getAsAction() {
+		return tree.getAsAction();
+	}
 }

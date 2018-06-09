@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.sql.SqlDbTable;
+import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlDictionary;
 import br.com.gda.sql.SqlJoin;
 import br.com.gda.sql.SqlJoinColumn;
@@ -49,7 +50,7 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LT_MAT;
-		this.stmtOption.columns = MatDbTableColumn.getTableColumnsAsList(LT_MAT);
+		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(LT_MAT);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();

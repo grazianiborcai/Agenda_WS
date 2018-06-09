@@ -84,4 +84,10 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 	@Override public DeciResult<StoreInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
+	
+	
+	
+	@Override public DeciAction<StoreInfo> getAsAction() {
+		return tree.getAsAction();
+	}
 }

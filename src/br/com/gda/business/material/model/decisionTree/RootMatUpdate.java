@@ -107,8 +107,7 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 		new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;
-		
+		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new MatCheckExistKey(checkerOption);
 		stack.add(checker);		
 		
@@ -121,7 +120,7 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 		List<DeciAction<MatInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionMatUpdateAttr(option));
-		actions.add(new ActionNodeUpdate(option));
+		actions.add(new NodeMatUpdateText(option).getAsAction());
 		actions.add(new ActionMatSelect(option));
 		return actions;
 	}
@@ -146,29 +145,7 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 	
 	
 	
-	
-	
-	
-	private static class ActionNodeUpdate implements DeciAction<MatInfo> {
-		DeciTree<MatInfo> treeHelper;
-		
-		
-		public ActionNodeUpdate(DeciTreeOption<MatInfo> option) {
-			treeHelper = new NodeMatUpdateText(option);
-		}
-		
-		
-		
-		@Override public boolean executeAction() {			
-			  treeHelper.makeDecision();
-			  DeciResult<MatInfo> treeResult = treeHelper.getDecisionResult();
-			  return treeResult.hasSuccessfullyFinished();
-		}
-		
-		
-		
-		@Override public DeciResult<MatInfo> getDecisionResult() {
-			return treeHelper.getDecisionResult();
-		}
+	@Override public DeciAction<MatInfo> getAsAction() {
+		return tree.getAsAction();
 	}
 }

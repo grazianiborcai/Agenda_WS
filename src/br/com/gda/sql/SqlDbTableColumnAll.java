@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.gda.business.material.dao.MatDbTableColumn;
 import br.com.gda.business.materialEmployee.dao.MatEmpDbTableColumn;
+import br.com.gda.business.store.dao.StoreDbTableColumn;
+import br.com.gda.business.storeEmployee.dao.StoreEmpDbTableColumn;
 import br.com.gda.common.SystemMessage;
 
 public final class SqlDbTableColumnAll {
@@ -21,13 +24,15 @@ public final class SqlDbTableColumnAll {
 	private static void buildTableColumns() {
 		tableColumns = new Hashtable<>();
 		
-		addMatEmpTable();	
+		addTable(new MatDbTableColumn());
+		addTable(new MatEmpDbTableColumn());
+		addTable(new StoreDbTableColumn());
+		addTable(new StoreEmpDbTableColumn());
 	}
 	
 	
 	
-	private static void addMatEmpTable() {
-		MatEmpDbTableColumn tblCol = new MatEmpDbTableColumn();
+	private static void addTable(SqlDbTableColumn tblCol) {
 		List<String> tblNames = tblCol.getTableNamesAsList();
 		
 		for (String eachTblName : tblNames) {

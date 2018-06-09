@@ -67,7 +67,7 @@ public final class NodeStoreUpdateL1 implements DeciTree<StoreInfo> {
 	private List<DeciAction<StoreInfo>> buildActionsOnFailed(DeciTreeOption<StoreInfo> option) {
 		List<DeciAction<StoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionNodeUpdateL2(option));	
+		actions.add(new NodeStoreUpdateL2(option).getAsAction());	
 		return actions;
 	}
 	
@@ -91,26 +91,7 @@ public final class NodeStoreUpdateL1 implements DeciTree<StoreInfo> {
 	
 	
 	
-	private static class ActionNodeUpdateL2 implements DeciAction<StoreInfo> {
-		DeciTree<StoreInfo> treeHelper;
-		
-		
-		public ActionNodeUpdateL2(DeciTreeOption<StoreInfo> option) {
-			treeHelper = new NodeStoreUpdateL2(option);
-		}
-		
-		
-		
-		@Override public boolean executeAction() {			
-			  treeHelper.makeDecision();
-			  DeciResult<StoreInfo> treeResult = treeHelper.getDecisionResult();
-			  return treeResult.hasSuccessfullyFinished();
-		}
-		
-		
-		
-		@Override public DeciResult<StoreInfo> getDecisionResult() {
-			return treeHelper.getDecisionResult();
-		}
+	@Override public DeciAction<StoreInfo> getAsAction() {
+		return tree.getAsAction();
 	}
 }

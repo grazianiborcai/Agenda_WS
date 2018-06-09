@@ -13,7 +13,7 @@ public interface SqlWhereBuilder {
 	}
 	
 	
-	public void addClauseEqualAnd(SqlColumn column, String value);
+	public void addClause(SqlColumn column, String value);
 
 	
 	public String generateClause();

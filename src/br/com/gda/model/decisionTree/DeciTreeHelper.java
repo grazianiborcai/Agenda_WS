@@ -150,4 +150,10 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	public DeciResult<T> getDecisionResult() {
 		return this.decisionResult;
 	}
+	
+	
+	
+	@Override public DeciAction<T> getAsAction() {
+		return new DeciTreeAdapter<>(this);
+	}
 }

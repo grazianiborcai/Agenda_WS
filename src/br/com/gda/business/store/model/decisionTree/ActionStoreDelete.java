@@ -3,10 +3,11 @@ package br.com.gda.business.store.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.store.dao.StoreDeleteExec;
+import br.com.gda.business.store.dao.StoreDelete;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciActionHandler;
+import br.com.gda.model.decisionTree.DeciActionHelper;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
@@ -18,7 +19,7 @@ public final class ActionStoreDelete implements DeciAction<StoreInfo> {
 	
 	public ActionStoreDelete(DeciTreeOption<StoreInfo> option) {
 		SqlStmtExec<StoreInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
 	}
 	
 	
@@ -34,7 +35,13 @@ public final class ActionStoreDelete implements DeciAction<StoreInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new StoreDeleteExec(stmtExecOptions);
+		return new StoreDelete(stmtExecOptions);
+	}
+	
+	
+	
+	@Override public void addPostAction(DeciActionHandler<StoreInfo> actionHandler) {
+		actionHelper.addPostAction(actionHandler);
 	}
 	
 	

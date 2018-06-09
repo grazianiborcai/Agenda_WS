@@ -7,6 +7,7 @@ import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.sql.SqlDbTable;
+import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
@@ -33,7 +34,7 @@ public final class MatUpdateTextSingle implements SqlStmt<MatInfo> {
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = SqlDbTable.MATERIAL_TEXT_TABLE;
-		this.stmtOption.columns = MatDbTableColumn.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;
 		this.stmtOption.whereClause = buildWhereClause();

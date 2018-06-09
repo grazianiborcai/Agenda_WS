@@ -41,8 +41,8 @@ public final class RootBusinessSelect implements DeciTree<BusinessInfo> {
 		
 		return new ModelCheckerStack<>(stack);
 	}
-	
-	
+
+		
 	
 	private List<DeciAction<BusinessInfo>> buildActionsOnPassed(DeciTreeOption<BusinessInfo> option) {
 		List<DeciAction<BusinessInfo>> actions = new ArrayList<>();
@@ -67,5 +67,11 @@ public final class RootBusinessSelect implements DeciTree<BusinessInfo> {
 	
 	@Override public DeciResult<BusinessInfo> getDecisionResult() {
 		return tree.getDecisionResult();
+	}
+	
+	
+	
+	@Override public DeciAction<BusinessInfo> getAsAction() {
+		return tree.getAsAction();
 	}
 }

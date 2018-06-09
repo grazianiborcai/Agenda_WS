@@ -68,4 +68,10 @@ public final class RootEmpPosSelect implements DeciTree<EmpPosInfo> {
 	@Override public DeciResult<EmpPosInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
+	
+	
+	
+	@Override public DeciAction<EmpPosInfo> getAsAction() {
+		return tree.getAsAction();
+	}
 }

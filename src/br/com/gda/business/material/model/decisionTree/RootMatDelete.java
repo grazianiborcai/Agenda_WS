@@ -82,4 +82,10 @@ public final class RootMatDelete implements DeciTree<MatInfo> {
 	@Override public DeciResult<MatInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
+	
+	
+	
+	@Override public DeciAction<MatInfo> getAsAction() {
+		return tree.getAsAction();
+	}
 }

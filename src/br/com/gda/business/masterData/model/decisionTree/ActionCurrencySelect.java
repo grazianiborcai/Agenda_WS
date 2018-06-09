@@ -6,7 +6,8 @@ import java.util.List;
 import br.com.gda.business.masterData.dao.CurrencySelectExec;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciActionHandler;
+import br.com.gda.model.decisionTree.DeciActionHelper;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
@@ -18,7 +19,7 @@ public final class ActionCurrencySelect implements DeciAction<CurrencyInfo> {
 	
 	public ActionCurrencySelect(DeciTreeOption<CurrencyInfo> option) {
 		SqlStmtExec<CurrencyInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
 	}
 	
 	
@@ -35,6 +36,11 @@ public final class ActionCurrencySelect implements DeciAction<CurrencyInfo> {
 		}
 		
 		return new CurrencySelectExec(stmtExecOptions);
+	}
+	
+	
+	@Override public void addPostAction(DeciActionHandler<CurrencyInfo> actionHandler) {
+		actionHelper.addPostAction(actionHandler);
 	}
 	
 	

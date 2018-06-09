@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.sql.SqlDbTable;
+import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlStmtWhere;
@@ -23,33 +24,33 @@ public final class MatWhere implements SqlStmtWhere {
 	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, MatInfo recordInfo) {
 		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);
 		
-		List<SqlColumn> columns = MatDbTableColumn.getTableColumnsAsList(tableName);
+		List<SqlColumn> columns = SqlDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (SqlColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
 				case "Cod_owner" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
+					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
 					break;
 					
 				case "Cod_material" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codMat));
+					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codMat));
 					break;
 					
 				case "Cod_type" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codType));
+					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codType));
 					break;
 					
 				case "Cod_group" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codGroup));
+					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codGroup));
 					break;
 					
 				case "Language":
 					if (tableName == SqlDbTable.MATERIAL_TEXT_TABLE)
-						builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+						builder.addClause(eachColumn, recordInfo.codLanguage);
 					break;
 					
 				case "record_mode" :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
+					builder.addClause(eachColumn, recordInfo.recordMode);
 					break;
 			}
 		}		

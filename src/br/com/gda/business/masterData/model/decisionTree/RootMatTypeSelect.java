@@ -68,4 +68,10 @@ public final class RootMatTypeSelect implements DeciTree<MatTypeInfo> {
 	@Override public DeciResult<MatTypeInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
+	
+	
+	
+	@Override public DeciAction<MatTypeInfo> getAsAction() {
+		return tree.getAsAction();
+	}
 }

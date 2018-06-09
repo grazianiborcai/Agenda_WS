@@ -17,6 +17,7 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -111,9 +112,16 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 	
 	
 	private List<DeciAction<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
-		List<DeciAction<MatInfo>> actions = new ArrayList<>();
+		List<DeciAction<MatInfo>> actions = new ArrayList<>();		
+		DeciAction<MatInfo> actionInsertAttr = new ActionMatInsertAttr(option);
 		
-		actions.add(new ActionMatInsert(option));
+		DeciActionHandler<MatInfo> insertTxt = new HandlerMatInsertTxt(option.conn, option.schemaName);		
+		actionInsertAttr.addPostAction(insertTxt);		
+		
+		DeciActionHandler<MatInfo> selectMat = new HandlerMatSelect(option.conn, option.schemaName);		
+		actionInsertAttr.addPostAction(selectMat);	
+		
+		actions.add(actionInsertAttr);		
 		return actions;
 	}
 	
@@ -133,5 +141,11 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 	
 	@Override public DeciResult<MatInfo> getDecisionResult() {
 		return tree.getDecisionResult();
+	}
+	
+	
+	
+	@Override public DeciAction<MatInfo> getAsAction() {
+		return tree.getAsAction();
 	}
 }

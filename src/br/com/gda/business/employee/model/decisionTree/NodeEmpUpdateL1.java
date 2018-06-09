@@ -9,6 +9,7 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -91,12 +92,24 @@ final class NodeEmpUpdateL1 implements DeciTree<EmpInfo> {
 	
 	
 	
+	@Override public DeciAction<EmpInfo> getAsAction() {
+		return tree.getAsAction();
+	}
+	
+	
+	
 	private static class ActionNodeUpdate implements DeciAction<EmpInfo> {
 		NodeEmpUpdateL2 treeHelper;
 		
 		
 		public ActionNodeUpdate(DeciTreeOption<EmpInfo> option) {
 			treeHelper = new NodeEmpUpdateL2(option);
+		}
+		
+		
+		
+		@Override public void addPostAction(DeciActionHandler<EmpInfo> actionHandler) {
+			//Dummy
 		}
 		
 		

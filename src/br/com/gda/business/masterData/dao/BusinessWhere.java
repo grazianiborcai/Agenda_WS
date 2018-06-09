@@ -26,7 +26,7 @@ public final class BusinessWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "Cod_business" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codBusiness));
+					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codBusiness));
 					break;
 			}
 		}		

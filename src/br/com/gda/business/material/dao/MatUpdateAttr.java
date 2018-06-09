@@ -19,8 +19,7 @@ public final class MatUpdateAttr implements SqlStmtExec<MatInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

@@ -3,8 +3,8 @@ package br.com.gda.business.materialEmployee.model.chekcer;
 import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.business.store.info.StoreEmpInfo;
-import br.com.gda.business.store.model.checker.StoreEmpCheckExist;
+import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
+import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 

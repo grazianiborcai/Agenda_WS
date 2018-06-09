@@ -6,7 +6,8 @@ import java.util.List;
 import br.com.gda.business.owner.dao.OwnerSelectExec;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciActionHandler;
+import br.com.gda.model.decisionTree.DeciActionHelper;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
@@ -18,7 +19,7 @@ public final class ActionOwnerSelect implements DeciAction<OwnerInfo> {
 	
 	public ActionOwnerSelect(DeciTreeOption<OwnerInfo> option) {
 		SqlStmtExec<OwnerInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
 	}
 	
 	
@@ -35,6 +36,12 @@ public final class ActionOwnerSelect implements DeciAction<OwnerInfo> {
 		}
 		
 		return new OwnerSelectExec(stmtExecOptions);
+	}
+	
+	
+	
+	@Override public void addPostAction(DeciActionHandler<OwnerInfo> actionHandler) {
+		actionHelper.addPostAction(actionHandler);
 	}
 	
 	

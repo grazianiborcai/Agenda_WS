@@ -50,8 +50,7 @@ public final class SystemMessage {
 	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
 	public static final String EMPLOYEE_DATA_NOT_FOUND = "Employee's data not found";	
 	public static final String MATERIAL_TEXT_NOT_FOUND = "Material text data not found on DB";	
-	public static final String RESULTSET_NOT_APPLICABLE = "Resultset is either not applicable or is empty";			
-	public static final String NO_TEMPLATE_IMPLEMENTATION = "Template method not overwritten by subclass";
+	public static final String RESULTSET_NOT_APPLICABLE = "Resultset is either not applicable or is empty";		
 	public static final String EMPLOYEE_CPF_ALREADY_EXIST = "Employee's CPF already exist on DB";		
 	public static final String EMPLOYEE_SINGLE_ENTRY_FOUND = "Single entry found for Employee's data selection";
 	public static final String EMPLOYEE_FLAGGED_AS_DELETED = "Employee's data is flagged as deleted on DB";	
@@ -64,7 +63,11 @@ public final class SystemMessage {
 	public static final String AUTO_GENERATED_FIELD_IS_NOT_EMPTY = "Auto generated fields should not be passed";
 	public static final String ERROR_CREATING_SKELETON_STATEMENT = "Not possible to create skeleton statment";		
 	public static final String EMPLOYEE_WORKING_FLAGGED_AS_DELETED = "Employee's working time data is flagged as deleted on DB";	
-	public static final String EMPLOYEE_WORKING_TIME_ALREALDY_EXIST = "Employee's working time data already exist on DB";		
+	public static final String EMPLOYEE_WORKING_TIME_ALREALDY_EXIST = "Employee's working time data already exist on DB";	
+	
+	//System
+	public static final String NO_IMPLEMENTATION = "There is no implementation for this method";
+	public static final String NO_TEMPLATE_IMPLEMENTATION = "Template method not overwritten by subclass";
 	
 	//Store
 	public static final String STORE_CNPJ_NOT_FOUND = "Store's CNPJ not found on DB";	

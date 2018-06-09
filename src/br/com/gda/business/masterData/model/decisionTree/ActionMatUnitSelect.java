@@ -6,7 +6,8 @@ import java.util.List;
 import br.com.gda.business.masterData.dao.MatUnitSelectExec;
 import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionStmtHelper;
+import br.com.gda.model.decisionTree.DeciActionHandler;
+import br.com.gda.model.decisionTree.DeciActionHelper;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
@@ -18,7 +19,7 @@ public final class ActionMatUnitSelect implements DeciAction<MatUnitInfo> {
 	
 	public ActionMatUnitSelect(DeciTreeOption<MatUnitInfo> option) {
 		SqlStmtExec<MatUnitInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionStmtHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
 	}
 	
 	
@@ -35,6 +36,12 @@ public final class ActionMatUnitSelect implements DeciAction<MatUnitInfo> {
 		}
 		
 		return new MatUnitSelectExec(stmtExecOptions);
+	}
+	
+	
+	
+	@Override public void addPostAction(DeciActionHandler<MatUnitInfo> actionHandler) {
+		actionHelper.addPostAction(actionHandler);
 	}
 	
 	

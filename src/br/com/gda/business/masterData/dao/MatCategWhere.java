@@ -26,7 +26,7 @@ public final class MatCategWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "Cod_category" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codCategory));
+					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codCategory));
 					break;
 			}
 		}		

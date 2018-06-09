@@ -100,7 +100,7 @@ public final class RootMatEmpInsert implements DeciTree<MatEmpInfo> {
 	private List<DeciAction<MatEmpInfo>> buildActionsOnPassed(DeciTreeOption<MatEmpInfo> option) {
 		List<DeciAction<MatEmpInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionNodeInsert(option));	
+		actions.add(new NodeMatEmpInsert(option).getAsAction());	
 		return actions;
 	}
 	
@@ -124,30 +124,7 @@ public final class RootMatEmpInsert implements DeciTree<MatEmpInfo> {
 	
 	
 	
-
-	
-	
-	
-	private static class ActionNodeInsert implements DeciAction<MatEmpInfo> {
-		DeciTree<MatEmpInfo> treeHelper;
-		
-		
-		public ActionNodeInsert(DeciTreeOption<MatEmpInfo> option) {
-			treeHelper = new NodeMatEmpInsert(option);
-		}
-		
-		
-		
-		@Override public boolean executeAction() {			
-			  treeHelper.makeDecision();
-			  DeciResult<MatEmpInfo> treeResult = treeHelper.getDecisionResult();
-			  return treeResult.hasSuccessfullyFinished();
-		}
-		
-		
-		
-		@Override public DeciResult<MatEmpInfo> getDecisionResult() {
-			return treeHelper.getDecisionResult();
-		}
+	@Override public DeciAction<MatEmpInfo> getAsAction() {
+		return tree.getAsAction();
 	}
 }

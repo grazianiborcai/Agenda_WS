@@ -37,7 +37,7 @@ class SqlWhereBuilderConcrete implements SqlWhereBuilder {
 	
 	
 	
-	public void addClauseEqualAnd(SqlColumn column, String value) {
+	public void addClause(SqlColumn column, String value) {
 		appendClause(column, value, SqlDictionary.AND);
 	}
 	
