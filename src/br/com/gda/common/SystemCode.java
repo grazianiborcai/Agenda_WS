@@ -8,6 +8,7 @@ public final class SystemCode {
 	public static final int CNPJ_INVALID 								= 4;
 	public static final int KEY_FIELD_NOT_NULL							= 5;
 	public static final int KEY_FIELD_IS_EMPTY							= 6;
+	public static final int BAD_TIME_RANGE								= 7;
 	public static final int SUCCESS 									= 200;
 	public static final int INTERNAL_ERROR 								= 500;
 	
@@ -37,6 +38,12 @@ public final class SystemCode {
 	public static final int STORE_MAT_EMP_ALREALDY_EXIST 				= 1107;
 	public static final int STORE_MAT_EMP_NOT_FOUND 					= 1108;
 	public static final int STORE_MAT_EMP_FLAGGED_AS_DELETED 			= 1109;
+	public static final int STORE_WORK_TIME_NOT_FOUND 					= 1110;
+	public static final int STORE_WORK_TIME_ALREALDY_EXIST				= 1111;
+	public static final int STORE_WORK_TIME_FLAGGED_AS_DELETED 			= 1112;		
+	public static final int STORE_LEAVE_DATE_NOT_FOUND 					= 1113;
+	public static final int STORE_LEAVE_DATE_ALREALDY_EXIST				= 1114;
+	public static final int STORE_LEAVE_DATE_FLAGGED_AS_DELETED 		= 1115;	
 	
 	// Master Data
 	public static final int EMP_POS_ALREADY_EXIST						= 1150;
@@ -53,6 +60,8 @@ public final class SystemCode {
 	public static final int MAT_GROUP_NOT_FOUND							= 1161;
 	public static final int MAT_TYPE_ALREADY_EXIST						= 1162;
 	public static final int MAT_TYPE_NOT_FOUND							= 1163;
+	public static final int WEEKDAY_ALREADY_EXIST						= 1164;
+	public static final int WEEKDAY_NOT_FOUND							= 1165;
 	
 	//Material
 	public static final int MATERIAL_ALREADY_EXIST						= 1200;

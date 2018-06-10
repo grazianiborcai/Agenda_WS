@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.LanguSelectExec;
+import br.com.gda.business.masterData.dao.LanguSelect;
 import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
@@ -35,7 +35,7 @@ public final class ActionLanguSelect implements DeciAction<LanguInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new LanguSelectExec(stmtExecOptions);
+		return new LanguSelect(stmtExecOptions);
 	}
 	
 	

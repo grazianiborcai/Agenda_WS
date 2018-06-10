@@ -2,16 +2,13 @@ package br.com.gda.business.storeEmployee.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
@@ -39,7 +36,7 @@ public final class StoreEmpUpdateSingle implements SqlStmt<StoreEmpInfo> {
 		this.stmtOption.tableName = SqlDbTable.STORE_EMPLOYEE_TABLE;
 		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser();
+		this.stmtOption.resultParser = null; //new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
 	}
 	
@@ -105,16 +102,5 @@ public final class StoreEmpUpdateSingle implements SqlStmt<StoreEmpInfo> {
 			
 			return stmt;
 		}		
-	}
-	
-	
-	
-	private class ResultParser implements SqlResultParser<StoreEmpInfo> {
-		@Override public List<StoreEmpInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<StoreEmpInfo> finalResult = new ArrayList<>();
-			StoreEmpInfo emptyInfo = new StoreEmpInfo();
-			finalResult.add(emptyInfo);			
-			return finalResult;
-		}
 	}
 }

@@ -11,10 +11,11 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
 public final class StoreEmpCheckExist extends ModelCheckerTemplate<StoreEmpInfo> {
-	private final boolean STORE_EMP_EXIST = true;
+	private final boolean RECORD_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	
 	
@@ -31,7 +32,7 @@ public final class StoreEmpCheckExist extends ModelCheckerTemplate<StoreEmpInfo>
 			if (resultset == null || resultset.isEmpty())
 				return NO_ENTRY_FOUND_ON_DB;
 			
-			return STORE_EMP_EXIST;
+			return RECORD_EXIST;
 			
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
@@ -41,7 +42,7 @@ public final class StoreEmpCheckExist extends ModelCheckerTemplate<StoreEmpInfo>
 	
 	
 	private List<StoreEmpInfo> executeStmt(StoreEmpInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		StoreEmpSelect stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+		SqlStmtExec<StoreEmpInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
 		
 		stmtExecutor.executeStmt();
 		return stmtExecutor.getResultset();
@@ -49,7 +50,7 @@ public final class StoreEmpCheckExist extends ModelCheckerTemplate<StoreEmpInfo>
 	
 	
 	
-	private StoreEmpSelect buildStmtExecutor(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
+	private SqlStmtExec<StoreEmpInfo> buildStmtExecutor(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
 		SqlStmtExecOption<StoreEmpInfo> stmtExecOption = new SqlStmtExecOption<>();
 		stmtExecOption.conn = conn;
 		stmtExecOption.recordInfo = recordInfo;
@@ -73,7 +74,7 @@ public final class StoreEmpCheckExist extends ModelCheckerTemplate<StoreEmpInfo>
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == STORE_EMP_EXIST)
+		if (checkerResult == RECORD_EXIST)
 			return SystemCode.STORE_EMP_ALREALDY_EXIST;	
 			
 		return SystemCode.STORE_EMP_NOT_FOUND;

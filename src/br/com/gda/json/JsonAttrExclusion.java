@@ -12,6 +12,12 @@ public final class JsonAttrExclusion implements ExclusionStrategy {
 		if (f.getName().equals("recordMode"))
 			return SKIP;
 		
+		if (f.getName().equals("second"))
+			return SKIP;
+		
+		if (f.getName().equals("nano"))
+			return SKIP;
+		
 		return DONT_SKIP;
 	}
 

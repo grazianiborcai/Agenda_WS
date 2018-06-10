@@ -28,4 +28,8 @@ public final class SqlDbTable {
 	public static final String LANGUAGE_TABLE = "language";
 	public static final String OWNER_TABLE = "owner";
 	public static final String MAT_EMP_TABLE = "employee_material";
+	public static final String WEEKDAY_TABLE = "weekday";
+	public static final String WEEKDAY_TEXT_TABLE = "weekday_text";
+	public static final String STORE_WORK_TIME_TABLE = "store_working_time";
+	public static final String STORE_LEAVE_DATE_TABLE = "store_leave_time";
 }

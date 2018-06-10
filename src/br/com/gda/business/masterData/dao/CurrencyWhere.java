@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.sql.SqlColumn;
+import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilder;
 import br.com.gda.sql.SqlWhereBuilderOption;
@@ -20,7 +21,7 @@ public final class CurrencyWhere implements SqlStmtWhere {
 	
 	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, CurrencyInfo recordInfo) {
 		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);		
-		List<SqlColumn> columns = MasterDataDbTableColumn.getTableColumnsAsList(tableName);
+		List<SqlColumn> columns = SqlDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {

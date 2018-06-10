@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.EmpPosSelectExec;
+import br.com.gda.business.masterData.dao.EmpPosSelect;
 import br.com.gda.business.masterData.info.EmpPosInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
@@ -35,7 +35,7 @@ public final class ActionEmpPosSelect implements DeciAction<EmpPosInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new EmpPosSelectExec(stmtExecOptions);
+		return new EmpPosSelect(stmtExecOptions);
 	}
 	
 	

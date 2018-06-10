@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.BusinessSelectExec;
+import br.com.gda.business.masterData.dao.BusinessSelect;
 import br.com.gda.business.masterData.info.BusinessInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
@@ -35,7 +35,7 @@ public final class ActionBusinessSelect implements DeciAction<BusinessInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new BusinessSelectExec(stmtExecOptions);
+		return new BusinessSelect(stmtExecOptions);
 	}
 	
 	

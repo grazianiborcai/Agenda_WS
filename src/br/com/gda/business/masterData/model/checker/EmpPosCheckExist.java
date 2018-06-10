@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.EmpPosSelectExec;
+import br.com.gda.business.masterData.dao.EmpPosSelect;
 import br.com.gda.business.masterData.info.EmpPosInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -59,7 +59,7 @@ public final class EmpPosCheckExist extends ModelCheckerTemplate<EmpPosInfo> {
 		List<SqlStmtExecOption<EmpPosInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new EmpPosSelectExec(stmtExecOptions);
+		return new EmpPosSelect(stmtExecOptions);
 	}
 	
 	

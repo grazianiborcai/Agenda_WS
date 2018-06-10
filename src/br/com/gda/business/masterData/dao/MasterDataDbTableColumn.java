@@ -4,43 +4,22 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.common.SystemMessage;
-import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlColumn;
+import br.com.gda.sql.SqlDbTable;
+import br.com.gda.sql.SqlDbTableColumnTemplate;
 
-public final class MasterDataDbTableColumn {
-	private static final boolean IS_PRIMARY_KEY = true;	
-	private static final boolean IS_LOOKUP_COLUMN = true;
-	private static final boolean NEGATIVE = false;
+public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
+	private Hashtable<String, List<SqlColumn>> tableColumns;	
 	
-	private static final Hashtable<String, List<SqlColumn>> tableColumns = new Hashtable<>();	
-	
-	
-	
-	static {
-		buildTableColumns();
-	}
-
-	
-	public static List<SqlColumn> getTableColumnsAsList(String tableName) {
-		List<SqlColumn> columns = tableColumns.get(tableName);
-		
-		if (columns == null)
-			throw new IllegalArgumentException(tableName + " " + SystemMessage.TABLE_NOT_FOUND);
-		
-		
-		List<SqlColumn> resultColumns = new ArrayList<>();
-		
-		for (SqlColumn eachColumn : columns) {
-			resultColumns.add(eachColumn);
-		}
-		
-		return resultColumns;
+	public MasterDataDbTableColumn() {
+		super();
 	}
 	
 	
 	
-	private static void buildTableColumns() {
+	@Override protected Hashtable<String, List<SqlColumn>> buildTableColumnsHook() {
+		tableColumns = new Hashtable<>();
+		
 		positionTable();	
 		materialUnitTable();
 		materialTypeTable();
@@ -48,12 +27,15 @@ public final class MasterDataDbTableColumn {
 		materialGroupTable();
 		businessAreaTable();
 		currencyTable();
+		weekdayTable();
 		languageTable();
+		
+		return tableColumns;
 	}
 	
 	
 	
-	private static void positionTable() {
+	private void positionTable() {
 		final String TABLE_NAME = SqlDbTable.POSITION_TABLE;
 		
 		SqlColumn oneColumn;
@@ -88,7 +70,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	
-	private static void materialUnitTable() {
+	private void materialUnitTable() {
 		final String TABLE_NAME = SqlDbTable.MATERIAL_UNIT_TABLE;
 		
 		SqlColumn oneColumn;
@@ -123,7 +105,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	
-	private static void materialTypeTable() {
+	private void materialTypeTable() {
 		final String TABLE_NAME = SqlDbTable.MATERIAL_TYPE_TABLE;
 		
 		SqlColumn oneColumn;
@@ -158,7 +140,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	
-	private static void materialCategTable() {
+	private void materialCategTable() {
 		final String TABLE_NAME = SqlDbTable.MATERIAL_CATEGORY_TABLE;
 		
 		SqlColumn oneColumn;
@@ -193,7 +175,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	
-	private static void materialGroupTable() {
+	private void materialGroupTable() {
 		final String TABLE_NAME = SqlDbTable.MATERIAL_GROUP_TABLE;
 		
 		SqlColumn oneColumn;
@@ -244,7 +226,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	
-	private static void businessAreaTable() {
+	private void businessAreaTable() {
 		final String TABLE_NAME = SqlDbTable.BUSINESS_AREA_TABLE;
 		
 		SqlColumn oneColumn;
@@ -279,7 +261,7 @@ public final class MasterDataDbTableColumn {
 	
 	
 	
-	private static void currencyTable() {
+	private void currencyTable() {
 		final String TABLE_NAME = SqlDbTable.CURRENCY_TABLE;
 		
 		SqlColumn oneColumn;
@@ -322,7 +304,42 @@ public final class MasterDataDbTableColumn {
 	
 	
 	
-	private static void languageTable() {
+	private void weekdayTable() {
+		final String TABLE_NAME = SqlDbTable.WEEKDAY_TABLE;
+		
+		SqlColumn oneColumn;
+		List<SqlColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Weekday";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = SqlDbTable.WEEKDAY_TEXT_TABLE;
+		oneColumn.columnName = "Language";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = SqlDbTable.WEEKDAY_TEXT_TABLE;
+		oneColumn.columnName = "Name";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private void languageTable() {
 		final String TABLE_NAME = SqlDbTable.LANGUAGE_TABLE;
 		
 		SqlColumn oneColumn;

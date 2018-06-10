@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.MatCategSelectExec;
+import br.com.gda.business.masterData.dao.MatCategSelect;
 import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
@@ -35,7 +35,7 @@ public final class ActionMatCategSelect implements DeciAction<MatCategInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new MatCategSelectExec(stmtExecOptions);
+		return new MatCategSelect(stmtExecOptions);
 	}
 	
 	

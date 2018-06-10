@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.MatGroupSelectExec;
+import br.com.gda.business.masterData.dao.MatGroupSelect;
 import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -59,7 +59,7 @@ public final class MatGroupCheckExist extends ModelCheckerTemplate<MatGroupInfo>
 		List<SqlStmtExecOption<MatGroupInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new MatGroupSelectExec(stmtExecOptions);
+		return new MatGroupSelect(stmtExecOptions);
 	}
 	
 	

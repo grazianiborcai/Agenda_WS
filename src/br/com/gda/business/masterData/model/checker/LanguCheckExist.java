@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.LanguSelectExec;
+import br.com.gda.business.masterData.dao.LanguSelect;
 import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -59,7 +59,7 @@ public final class LanguCheckExist extends ModelCheckerTemplate<LanguInfo> {
 		List<SqlStmtExecOption<LanguInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new LanguSelectExec(stmtExecOptions);
+		return new LanguSelect(stmtExecOptions);
 	}
 	
 	

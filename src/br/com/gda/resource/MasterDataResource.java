@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.masterData.info.MatUnitInfo;
+import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.masterData.info.BusinessInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.EmpPosInfo;
@@ -17,6 +18,7 @@ import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.model.MatUnitModelSelect;
+import br.com.gda.business.masterData.model.WeekdayModelSelect;
 import br.com.gda.business.masterData.model.BusinessModelSelect;
 import br.com.gda.business.masterData.model.CurrencyModelSelect;
 import br.com.gda.business.masterData.model.EmpPosModelSelect;
@@ -37,6 +39,7 @@ public final class MasterDataResource {
 	private static final String SELECT_BUSINESS_AREA = "/selectBusinessArea";
 	private static final String SELECT_CURRENCY = "/selectCurrency";
 	private static final String SELECT_LANGUAGE = "/selectLanguage";
+	private static final String SELECT_WEEKDAY = "/selectWeekday";
 	
 	
 	@GET
@@ -169,6 +172,23 @@ public final class MasterDataResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		Model modelSelect = new LanguModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_WEEKDAY)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectWeekday(@HeaderParam("codLanguage") String codLanguage,
+			                      @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday){
+		
+		WeekdayInfo recordInfo = new WeekdayInfo();
+		recordInfo.codWeekday = codWeekday;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model modelSelect = new WeekdayModelSelect(recordInfo);
 		modelSelect.executeRequest();
 		return modelSelect.getResponse();
 	}

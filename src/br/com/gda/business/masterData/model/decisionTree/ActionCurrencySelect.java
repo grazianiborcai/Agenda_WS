@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.CurrencySelectExec;
+import br.com.gda.business.masterData.dao.CurrencySelect;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
@@ -35,7 +35,7 @@ public final class ActionCurrencySelect implements DeciAction<CurrencyInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new CurrencySelectExec(stmtExecOptions);
+		return new CurrencySelect(stmtExecOptions);
 	}
 	
 	

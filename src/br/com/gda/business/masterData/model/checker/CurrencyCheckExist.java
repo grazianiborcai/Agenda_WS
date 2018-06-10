@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.CurrencySelectExec;
+import br.com.gda.business.masterData.dao.CurrencySelect;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -59,7 +59,7 @@ public final class CurrencyCheckExist extends ModelCheckerTemplate<CurrencyInfo>
 		List<SqlStmtExecOption<CurrencyInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new CurrencySelectExec(stmtExecOptions);
+		return new CurrencySelect(stmtExecOptions);
 	}
 	
 	

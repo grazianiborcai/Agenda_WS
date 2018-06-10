@@ -1,36 +1,15 @@
 package br.com.gda.common;
 
 public final class SystemMessage {
-	public static final String SUCCESS = "Success";
-	public static final String NULL_CONN = "Conn is null";
-	public static final String NULL_SCHEMA = "Schema name is null";
-	public static final String NO_RESPONSE = "Main operation was not executed";
 	public static final String CPF_INVALID = "CPF is invalid";
-	public static final String CNPJ_INVALID = "CNPJ is invalid";
-	public static final String NULL_COLUMNS = "Columns for this given builder were passed null";
-	public static final String EMPTY_COLUMNS = "No columns for this given builder were passed";
-	public static final String NULL_ARGUMENT = " argument is null";
-	public static final String UNIT_NOT_FOUND = "Unit not found on DB";
-	public static final String EMPTY_ARGUMENT = " argument is empty";
-	public static final String REQUEST_FAILED = "It was not possible to complete your request";
-	public static final String NO_ERROR_FOUND = "No error was found";
-	public static final String DATA_NOT_FOUND = "Data not found";
-	public static final String INTERNAL_ERROR = "Ops... something went wrong";
+	public static final String CNPJ_INVALID = "CNPJ is invalid";	
 	public static final String OWNER_NOT_FOUND = "Owner data not found on DB";
 	public static final String NULL_TABLE_NAME = "Table name is null";
-	public static final String TABLE_NOT_FOUND = "table was not found";	
-	public static final String STORE_NOT_FOUND = "Store's data not found on DB";	
+	public static final String TABLE_NOT_FOUND = "table was not found";			
 	public static final String ILLEGAL_ARGUMENT = "IllegalArgument: mandatory argument might be missing or invalid value was passed";	
 	public static final String NULL_WHERE_CLAUSE = "where clause is null";	
 	public static final String EMP_POS_NOT_FOUND = "Position not found on DB";	
-	public static final String MATERIAL_NOT_FOUND = "Material data not found on DB";		
-	public static final String NO_CHECK_PERFORMED = "Check operation was not performed";
-	public static final String KEY_FIELD_IS_EMPTY = "Key field should not be null";
-	public static final String KEY_FIELD_NOT_NULL = "Key field should not be passed";		
-	public static final String LANGUAGE_NOT_FOUND = "Language not found on DB";
-	public static final String CURRENCY_NOT_FOUND = "Currency not found on DB";	
-	public static final String MAT_TYPE_NOT_FOUND = "Type not found on DB";	
-	public static final String UNIT_ALREADY_EXIST = "Unit already exist on DB";
+	public static final String MATERIAL_NOT_FOUND = "Material data not found on DB";			
 	public static final String EMPLOYEE_NOT_FOUND = "Employee's data not found on DB";	
 	public static final String MAT_CATEG_NOT_FOUND = "Category not found on DB";
 	public static final String MAT_GROUP_NOT_FOUND = "Group not found on DB";
@@ -39,10 +18,7 @@ public final class SystemMessage {
 	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";			
 	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";
 	public static final String EMP_POS_ALREADY_EXIST = "Position already exist on DB";		
-	public static final String EMPLOYEE_CPF_NOT_FOUND = "Employee's CPF not found on DB";		
-	public static final String LANGUAGE_ALREADY_EXIST = "Language already exist on DB";
-	public static final String CURRENCY_ALREADY_EXIST = "Currency already exist on DB";
-	public static final String MAT_TYPE_ALREADY_EXIST = "Type already exist on DB";		
+	public static final String EMPLOYEE_CPF_NOT_FOUND = "Employee's CPF not found on DB";			
 	public static final String MATERIAL_ALREALDY_EXIST = "Material data already exist on DB";	
 	public static final String EMPLOYEE_ALREALDY_EXIST = "Employee's data already exist on DB";		
 	public static final String MAT_CATEG_ALREADY_EXIST = "Category already exist on DB";
@@ -65,18 +41,57 @@ public final class SystemMessage {
 	public static final String EMPLOYEE_WORKING_FLAGGED_AS_DELETED = "Employee's working time data is flagged as deleted on DB";	
 	public static final String EMPLOYEE_WORKING_TIME_ALREALDY_EXIST = "Employee's working time data already exist on DB";	
 	
-	//System
-	public static final String NO_IMPLEMENTATION = "There is no implementation for this method";
-	public static final String NO_TEMPLATE_IMPLEMENTATION = "Template method not overwritten by subclass";
 	
-	//Store
-	public static final String STORE_CNPJ_NOT_FOUND = "Store's CNPJ not found on DB";	
+	//System
+	public static final String BAD_TIME_RANGE = "Invalid time range";	
+	public static final String DATA_NOT_FOUND = "Data not found";
+	public static final String EMPTY_ARGUMENT = " argument is empty";
+	public static final String EMPTY_COLUMNS = "No columns for this given builder were passed";
+	public static final String INTERNAL_ERROR = "Ops... something went wrong";
+	public static final String KEY_FIELD_IS_EMPTY = "Key field should not be null";
+	public static final String KEY_FIELD_NOT_NULL = "Key field should not be passed";
+	public static final String NO_CHECK_PERFORMED = "Check operation was not performed";
+	public static final String NO_ERROR_FOUND = "No error was found";
+	public static final String NO_IMPLEMENTATION = "There is no implementation for this method";	
+	public static final String NO_RESPONSE = "Main operation was not executed";
+	public static final String NO_TEMPLATE_IMPLEMENTATION = "Template method not overwritten by subclass";
+	public static final String NULL_ARGUMENT = " argument is null";
+	public static final String NULL_COLUMNS = "Columns for this given builder were passed null";
+	public static final String NULL_CONN = "Conn is null";
+	public static final String NULL_SCHEMA = "Schema name is null";	
+	public static final String REQUEST_FAILED = "It was not possible to complete your request";
+	public static final String SUCCESS = "Success";			
+		
+	
+	//Master Data
+	public static final String CURRENCY_ALREADY_EXIST = "Currency already exist on DB";
+	public static final String CURRENCY_NOT_FOUND = "Currency not found on DB";	
+	public static final String LANGUAGE_ALREADY_EXIST = "Language already exist on DB";
+	public static final String LANGUAGE_NOT_FOUND = "Language not found on DB";
+	public static final String MAT_TYPE_ALREADY_EXIST = "Type already exist on DB";	
+	public static final String MAT_TYPE_NOT_FOUND = "Type not found on DB";	
+	public static final String UNIT_ALREADY_EXIST = "Unit already exist on DB";
+	public static final String UNIT_NOT_FOUND = "Unit not found on DB";
+	public static final String WEEKDAY_ALREADY_EXIST = "Weekday already exist on DB";
+	public static final String WEEKDAY_NOT_FOUND = "Weekday not found on DB";
+	
+	
+	//Store		
 	public static final String STORE_ALREALDY_EXIST = "Store's data already exist on DB";	
-	public static final String STORE_MAT_EMP_NOT_FOUND = "Employee's material data not found on DB";
-	public static final String STORE_EMP_ALREALDY_EXIST = "Store-Employee's data already exist on DB";
-	public static final String STORE_EMP_DATA_NOT_FOUND = "Store-Employee's data not found on DB";
+	public static final String STORE_NOT_FOUND = "Store's data not found on DB";
 	public static final String STORE_CNPJ_ALREADY_EXIST = "Store's CNPJ already exist on DB";	
-	public static final String STORE_MAT_EMP_ALREALDY_EXIST = "Employee's material data already exist on DB";
+	public static final String STORE_CNPJ_NOT_FOUND = "Store's CNPJ not found on DB";
+	public static final String STORE_EMP_ALREALDY_EXIST = "Store-Employee's data already exist on DB";
 	public static final String STORE_EMP_FLAGGED_AS_DELETED = "Store-Employee's data is flagged as deleted on DB";	
+	public static final String STORE_EMP_DATA_NOT_FOUND = "Store-Employee's data not found on DB";
+	public static final String STORE_MAT_EMP_ALREALDY_EXIST = "Employee's material data already exist on DB";
 	public static final String STORE_MAT_EMP_FLAGGED_AS_DELETED = "Employee's material data is flagged as deleted on DB";
+	public static final String STORE_MAT_EMP_NOT_FOUND = "Employee's material data not found on DB";		
+	public static final String STORE_LEAVE_DATE_ALREADY_EXIST = "Store's leave date already exist on DB";
+	public static final String STORE_LEAVE_DATE_FLAGGED_AS_DELETED = "Store leave date data is flagged as deleted on DB";	
+	public static final String STORE_LEAVE_DATE_NOT_FOUND = "Store's leave date not found on DB";	
+	public static final String STORE_WORK_TIME_ALREADY_EXIST = "Store's working time already exist on DB";
+	public static final String STORE_WORK_TIME_FLAGGED_AS_DELETED = "Store working time data is flagged as deleted on DB";	
+	public static final String STORE_WORK_TIME_NOT_FOUND = "Store's working time not found on DB";
+	
 }

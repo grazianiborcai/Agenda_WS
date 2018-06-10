@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.material.dao.MatDbTableColumn;
 import br.com.gda.business.materialEmployee.dao.MatEmpDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.business.storeEmployee.dao.StoreEmpDbTableColumn;
+import br.com.gda.business.storeLeaveDate.dao.StoreLDateDbTableColumn;
+import br.com.gda.business.storeWorkTime.dao.StoreWTimeDbTableColumn;
 import br.com.gda.common.SystemMessage;
 
 public final class SqlDbTableColumnAll {
@@ -28,6 +31,9 @@ public final class SqlDbTableColumnAll {
 		addTable(new MatEmpDbTableColumn());
 		addTable(new StoreDbTableColumn());
 		addTable(new StoreEmpDbTableColumn());
+		addTable(new MasterDataDbTableColumn());
+		addTable(new StoreWTimeDbTableColumn());
+		addTable(new StoreLDateDbTableColumn());
 	}
 	
 	

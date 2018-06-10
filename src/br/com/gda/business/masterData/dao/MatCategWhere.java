@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.sql.SqlColumn;
+import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilder;
@@ -21,7 +22,7 @@ public final class MatCategWhere implements SqlStmtWhere {
 	
 	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, MatCategInfo recordInfo) {
 		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);		
-		List<SqlColumn> columns = MasterDataDbTableColumn.getTableColumnsAsList(tableName);
+		List<SqlColumn> columns = SqlDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {

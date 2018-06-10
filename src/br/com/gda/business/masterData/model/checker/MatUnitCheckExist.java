@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.MatUnitSelectExec;
+import br.com.gda.business.masterData.dao.MatUnitSelect;
 import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -59,7 +59,7 @@ public final class MatUnitCheckExist extends ModelCheckerTemplate<MatUnitInfo> {
 		List<SqlStmtExecOption<MatUnitInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new MatUnitSelectExec(stmtExecOptions);
+		return new MatUnitSelect(stmtExecOptions);
 	}
 	
 	

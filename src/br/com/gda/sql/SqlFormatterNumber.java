@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public final class SqlFormatterNumber {
 	public static String numberToString(long number) {
@@ -42,5 +43,23 @@ public final class SqlFormatterNumber {
 			resultDate = Date.valueOf(localDate);		
 		
 		return resultDate;
+	}
+	
+	
+	
+	public static String dateToString(LocalDate localDate) {		
+		if (localDate == null)
+			return null;
+		
+		return localDate.format(DateTimeFormatter.BASIC_ISO_DATE);
+	}
+	
+	
+	
+	public static String timeToString(LocalTime localTime) {	
+		if (localTime == null)
+			return null;
+		
+		return localTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
 	}
 }

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.MatCategSelectExec;
+import br.com.gda.business.masterData.dao.MatCategSelect;
 import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -59,7 +59,7 @@ public final class MatCategCheckExist extends ModelCheckerTemplate<MatCategInfo>
 		List<SqlStmtExecOption<MatCategInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new MatCategSelectExec(stmtExecOptions);
+		return new MatCategSelect(stmtExecOptions);
 	}
 	
 	

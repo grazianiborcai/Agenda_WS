@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.MatGroupSelectExec;
+import br.com.gda.business.masterData.dao.MatGroupSelect;
 import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
@@ -35,7 +35,7 @@ public final class ActionMatGroupSelect implements DeciAction<MatGroupInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new MatGroupSelectExec(stmtExecOptions);
+		return new MatGroupSelect(stmtExecOptions);
 	}
 	
 	

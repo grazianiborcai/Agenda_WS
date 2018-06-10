@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckSoftDelete;
-import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -40,10 +39,7 @@ public final class NodeStoreEmpInsert implements DeciTree<StoreEmpInfo> {
 		
 		List<ModelChecker<StoreEmpInfo>> stack = new ArrayList<>();		
 		ModelChecker<StoreEmpInfo> checker;
-		ModelCheckerOption checkerOption;		
-		
-		checker = new StoreEmpCheckWrite();
-		stack.add(checker);
+		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

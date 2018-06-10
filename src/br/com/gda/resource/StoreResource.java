@@ -1,5 +1,8 @@
 package br.com.gda.resource;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -28,6 +31,16 @@ import br.com.gda.business.storeEmployee.model.StoreEmpModelDelete;
 import br.com.gda.business.storeEmployee.model.StoreEmpModelInsert;
 import br.com.gda.business.storeEmployee.model.StoreEmpModelSelect;
 import br.com.gda.business.storeEmployee.model.StoreEmpModelUpdate;
+import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
+import br.com.gda.business.storeLeaveDate.model.StoreLDateModelDelete;
+import br.com.gda.business.storeLeaveDate.model.StoreLDateModelInsert;
+import br.com.gda.business.storeLeaveDate.model.StoreLDateModelSelect;
+import br.com.gda.business.storeLeaveDate.model.StoreLDateModelUpdate;
+import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
+import br.com.gda.business.storeWorkTime.model.StoreWTimeModelDelete;
+import br.com.gda.business.storeWorkTime.model.StoreWTimeModelInsert;
+import br.com.gda.business.storeWorkTime.model.StoreWTimeModelSelect;
+import br.com.gda.business.storeWorkTime.model.StoreWTimeModelUpdate;
 import br.com.gda.model.Model;
 import br.com.gda.model.legacy.StoreModel;
 
@@ -45,6 +58,14 @@ public class StoreResource {
 	private static final String INSERT_STORE_EMPLOYEE = "/insertStoreEmployee";
 	private static final String UPDATE_STORE_EMPLOYEE = "/updateStoreEmployee";
 	private static final String DELETE_STORE_EMPLOYEE = "/deleteStoreEmployee";
+	private static final String SELECT_STORE_WORK_TIME = "/selectStoreWorkTime";
+	private static final String INSERT_STORE_WORK_TIME = "/insertStoreWorkTime";
+	private static final String DELETE_STORE_WORK_TIME = "/deleteStoreWorkTime";
+	private static final String UPDATE_STORE_WORK_TIME = "/updateStoreWorkTime";
+	private static final String SELECT_STORE_LEAVE_DATE = "/selectStoreLeaveDate";
+	private static final String INSERT_STORE_LEAVE_DATE = "/insertStoreLeaveDate";
+	private static final String UPDATE_STORE_LEAVE_DATE = "/updateStoreLeaveDate";
+	private static final String DELETE_STORE_LEAVE_DATE = "/deleteStoreLeaveDate";
 	private static final String SELECT_STORE_LOCATION = "/selectStoreLoc";
 
 	
@@ -55,9 +76,9 @@ public class StoreResource {
 		//TODO: verificar fluxo: Store com status inativo/eliminado
 		//TODO: campos latitude e longitude não setão sendo preenchidos
 		//TODO: não tem campos de horário de funcionamento
-		Model storeInsert = new StoreModelInsert(incomingData);
-		storeInsert.executeRequest();
-		return storeInsert.getResponse();
+		Model modelInsert = new StoreModelInsert(incomingData);
+		modelInsert.executeRequest();
+		return modelInsert.getResponse();
 	}
 	
 	
@@ -67,9 +88,9 @@ public class StoreResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateStore(String incomingData) {
 		//TODO: falta inativar/ativar um Store
-		Model storeUpdate = new StoreModelUpdate(incomingData);
-		storeUpdate.executeRequest();
-		return storeUpdate.getResponse();
+		Model modelUpdate = new StoreModelUpdate(incomingData);
+		modelUpdate.executeRequest();
+		return modelUpdate.getResponse();
 	}
 	
 
@@ -78,11 +99,11 @@ public class StoreResource {
 	@Path(DELETE_STORE)
 	public Response deleteStore(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 			                    @HeaderParam("codStore") @DefaultValue("-1") int codStore) {
-		StoreInfo store = new StoreInfo();
-		store.codOwner = codOwner;
-		store.codStore = codStore;
+		StoreInfo recordInfo = new StoreInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
 		
-		Model modelDelete = new StoreModelDelete(store);
+		Model modelDelete = new StoreModelDelete(recordInfo);
 		modelDelete.executeRequest();
 		return modelDelete.getResponse();
 	}
@@ -246,6 +267,129 @@ public class StoreResource {
 		recordInfo.codMat = codMat;
 		
 		Model modelDelete = new MatEmpModelDelete(recordInfo);
+		modelDelete.executeRequest();
+		return modelDelete.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STORE_WORK_TIME)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStoreWTime(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore") @DefaultValue("-1") int codStore,
+			                         @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday) {
+
+		StoreWTimeInfo recordInfo = new StoreWTimeInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codWeekday = codWeekday;
+		
+		Model storeSelect = new StoreWTimeModelSelect(recordInfo);
+		storeSelect.executeRequest();
+		return storeSelect.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_STORE_WORK_TIME)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response insertStoreWTime(String incomingData) {
+		
+		Model modelInsert = new StoreWTimeModelInsert(incomingData);
+		modelInsert.executeRequest();
+		return modelInsert.getResponse();
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_STORE_WORK_TIME)
+	public Response deleteStoreWTime(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore") @DefaultValue("-1") int codStore,
+			                         @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday) {
+		
+		StoreWTimeInfo recordInfo = new StoreWTimeInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codWeekday = codWeekday;
+		
+		Model modelDelete = new StoreWTimeModelDelete(recordInfo);
+		modelDelete.executeRequest();
+		return modelDelete.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(UPDATE_STORE_WORK_TIME)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateStoreWTime(String incomingData) {
+
+		Model modelUpdate = new StoreWTimeModelUpdate(incomingData);
+		modelUpdate.executeRequest();
+		return modelUpdate.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STORE_LEAVE_DATE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStoreLDate(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore") @DefaultValue("-1") int codStore) {
+
+		StoreLDateInfo recordInfo = new StoreLDateInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		
+		Model storeSelect = new StoreLDateModelSelect(recordInfo);
+		storeSelect.executeRequest();
+		return storeSelect.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_STORE_LEAVE_DATE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response insertStoreLDate(String incomingData) {
+		
+		Model modelInsert = new StoreLDateModelInsert(incomingData);
+		modelInsert.executeRequest();
+		return modelInsert.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(UPDATE_STORE_LEAVE_DATE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateStoreLDate(String incomingData) {
+
+		Model modelUpdate = new StoreLDateModelUpdate(incomingData);
+		modelUpdate.executeRequest();
+		return modelUpdate.getResponse();
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_STORE_LEAVE_DATE)
+	public Response deleteStoreLDate(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore") @DefaultValue("-1") int codStore,
+			                         @HeaderParam("dateValidFrom") @DefaultValue("1900-01-01") String dateValidFrom,
+			                         @HeaderParam("timeValidFrom") @DefaultValue("12:00") String timeValidFrom) {
+		
+		//TODO: adicionar filtros para dar um parse nas datas
+		StoreLDateInfo recordInfo = new StoreLDateInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.dateValidFrom = LocalDate.parse(dateValidFrom, DateTimeFormatter.ISO_LOCAL_DATE);
+		recordInfo.timeValidFrom = LocalTime.parse(timeValidFrom, DateTimeFormatter.ISO_LOCAL_TIME);
+		
+		Model modelDelete = new StoreLDateModelDelete(recordInfo);
 		modelDelete.executeRequest();
 		return modelDelete.getResponse();
 	}
