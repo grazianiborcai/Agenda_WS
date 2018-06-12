@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.gda.business.employeeWorkTime.dao.EmpWTimeDbTableColumn;
 import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.material.dao.MatDbTableColumn;
 import br.com.gda.business.materialEmployee.dao.MatEmpDbTableColumn;
@@ -34,6 +35,7 @@ public final class SqlDbTableColumnAll {
 		addTable(new MasterDataDbTableColumn());
 		addTable(new StoreWTimeDbTableColumn());
 		addTable(new StoreLDateDbTableColumn());
+		addTable(new EmpWTimeDbTableColumn());
 	}
 	
 	

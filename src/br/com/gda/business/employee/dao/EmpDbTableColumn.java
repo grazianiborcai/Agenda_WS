@@ -42,8 +42,7 @@ public final class EmpDbTableColumn {
 	
 	
 	private static void buildTableColumns() {
-		employeeTable();
-		employeeWoerkingTimeTable();		
+		employeeTable();		
 	}
 	
 	
@@ -219,73 +218,6 @@ public final class EmpDbTableColumn {
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private static void employeeWoerkingTimeTable() {
-		final String TABLE_NAME = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;
-		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();	
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_owner";
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_store";
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_employee";
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "weekday";
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "begin_time";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "end_time";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "record_mode";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

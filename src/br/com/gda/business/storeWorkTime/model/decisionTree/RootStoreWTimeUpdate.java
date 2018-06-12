@@ -8,6 +8,7 @@ import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckExist;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckOwner;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckStore;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckTime;
+import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckTimezone;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckWeekday;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
@@ -69,6 +70,13 @@ public final class RootStoreWTimeUpdate implements DeciTree<StoreWTimeInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreWTimeCheckWeekday(checkerOption);
+		stack.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new StoreWTimeCheckTimezone(checkerOption);
 		stack.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();

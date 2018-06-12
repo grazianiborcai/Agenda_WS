@@ -1,25 +1,26 @@
-package br.com.gda.business.storeWorkTime.model.checker;
+package br.com.gda.business.employeeWorkTime.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
+import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class StoreWTimeCheckKey extends ModelCheckerTemplate<StoreWTimeInfo> {
+public class EmpWTimeCheckKey extends ModelCheckerTemplate<EmpWTimeInfo> {
 	private final boolean KEY_NOT_NULL = true;
 	private final boolean EMPTY_KEY = false;
 	
-	public StoreWTimeCheckKey() {
+	public EmpWTimeCheckKey() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(StoreWTimeInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {	
 		if (    recordInfo.codOwner 	<= 0 
 			 || recordInfo.codStore  	<= 0 
+			 || recordInfo.codEmployee 	<= 0 
 			 || recordInfo.codWeekday	<= 0)			
 			return EMPTY_KEY;		
 		

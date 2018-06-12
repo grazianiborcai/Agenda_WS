@@ -13,9 +13,9 @@ public final class SystemCode {
 	public static final int INTERNAL_ERROR 								= 500;
 	
 	// Employee Working Time
-	public static final int EMPLOYEE_WORKING_TIME_ALREADY_EXIST 		= 1000;
-	public static final int EMPLOYEE_WORKING_TIME_NOT_FOUND 			= 1001;
-	public static final int EMPLOYEE_WORKING_FLAGGED_AS_DELETED 		= 1002;
+	public static final int EMPLOYEE_WORK_TIME_ALREADY_EXIST 			= 1000;
+	public static final int EMPLOYEE_WORK_TIME_NOT_FOUND 				= 1001;
+	public static final int EMPLOYEE_WORK_FLAGGED_AS_DELETED 			= 1002;
 	
 	// Employee
 	public static final int EMPLOYEE_ALREALDY_EXIST 					= 1050;
@@ -62,6 +62,8 @@ public final class SystemCode {
 	public static final int MAT_TYPE_NOT_FOUND							= 1163;
 	public static final int WEEKDAY_ALREADY_EXIST						= 1164;
 	public static final int WEEKDAY_NOT_FOUND							= 1165;
+	public static final int TIMEZONE_ALREADY_EXIST						= 1166;
+	public static final int TIMEZONE_NOT_FOUND							= 1167;
 	
 	//Material
 	public static final int MATERIAL_ALREADY_EXIST						= 1200;

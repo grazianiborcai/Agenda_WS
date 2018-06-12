@@ -56,8 +56,7 @@ public final class NodeStoreWTimeInsert implements DeciTree<StoreWTimeInfo> {
 	private List<DeciAction<StoreWTimeInfo>> buildActionsOnPassed(DeciTreeOption<StoreWTimeInfo> option) {
 		List<DeciAction<StoreWTimeInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionStoreWTimeInsert(option));
-		actions.add(new ActionStoreWTimeSelect(option));		
+		actions.add(new ActionStoreWTimeInsert(option));				
 		return actions;
 	}
 	
@@ -66,8 +65,7 @@ public final class NodeStoreWTimeInsert implements DeciTree<StoreWTimeInfo> {
 	private List<DeciAction<StoreWTimeInfo>> buildActionsOnFailed(DeciTreeOption<StoreWTimeInfo> option) {
 		List<DeciAction<StoreWTimeInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionStoreWTimeUpdate(option));
-		actions.add(new ActionStoreWTimeSelect(option));		
+		actions.add(new ActionStoreWTimeUpdate(option));	
 		return actions;
 	}
 	

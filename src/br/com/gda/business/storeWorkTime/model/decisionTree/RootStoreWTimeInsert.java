@@ -8,6 +8,7 @@ import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckExist;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckOwner;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckStore;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckTime;
+import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckTimezone;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckWeekday;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
@@ -76,6 +77,13 @@ public final class RootStoreWTimeInsert implements DeciTree<StoreWTimeInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new StoreWTimeCheckTimezone(checkerOption);
+		stack.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
 		checker = new StoreWTimeCheckExist(checkerOption);
 		stack.add(checker);	
@@ -88,7 +96,8 @@ public final class RootStoreWTimeInsert implements DeciTree<StoreWTimeInfo> {
 	private List<DeciAction<StoreWTimeInfo>> buildActionsOnPassed(DeciTreeOption<StoreWTimeInfo> option) {
 		List<DeciAction<StoreWTimeInfo>> actions = new ArrayList<>();
 		
-		actions.add(new NodeStoreWTimeInsert(option).getAsAction());	
+		actions.add(new NodeStoreWTimeInsert(option).getAsAction());
+		actions.add(new ActionStoreWTimeSelect(option));
 		return actions;
 	}
 	

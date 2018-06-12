@@ -3,6 +3,7 @@ package br.com.gda.business.storeLeaveDate.info;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.DefaultValue;
@@ -41,6 +42,14 @@ public final class StoreLDateInfo implements Cloneable {
 		store.codOwner = codOwner;
 		store.codStore = codStore;
 		return store;
+	}
+	
+	
+	
+	public TimezoneInfo toTimezoneInfo() {
+		TimezoneInfo timezone = new TimezoneInfo();
+		timezone.codTimezone = codTimezone;
+		return timezone;
 	}
 	
 	
