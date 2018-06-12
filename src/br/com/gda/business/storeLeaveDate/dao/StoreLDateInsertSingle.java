@@ -90,6 +90,7 @@ public final class StoreLDateInsertSingle implements SqlStmt<StoreLDateInfo> {
 			stmt.setDate(i++, endDate);
 			stmt.setTime(i++, endTime);
 			stmt.setString(i++, recordInfo.description);
+			stmt.setString(i++, recordInfo.codTimezone);
 			stmt.setString(i++, recordInfo.recordMode);
 			
 			return stmt;

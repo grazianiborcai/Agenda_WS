@@ -16,6 +16,7 @@ public final class StoreWTimeInfo implements Cloneable {
 	public String txtWeekday;
 	public LocalTime beginTime;
 	public LocalTime endTime;
+	public String codTimezone;
 	public String codLanguage;
 	public String recordMode;
 	

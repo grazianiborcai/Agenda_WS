@@ -1,13 +1,11 @@
-package br.com.gda.business.storeWorkTime.dao;
+package br.com.gda.business.masterData.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-
-import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
+import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlDictionary;
@@ -22,29 +20,29 @@ import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-public final class StoreWTimeSelectSingle implements SqlStmt<StoreWTimeInfo> {	
-	private final String LEFT_TABLE_STORE_WORK_TIME = SqlDbTable.STORE_WORK_TIME_TABLE;	
-	private final String RIGHT_TABLE_WEEKDAY_TEXT = SqlDbTable.WEEKDAY_TEXT_TABLE;
+public final class TimezoneSelectSingle implements SqlStmt<TimezoneInfo> {
+	private final String LEFT_TABLE = SqlDbTable.TIMEZONE_TABLE;
+	private final String RIGHT_TABLE = SqlDbTable.TIMEZONE_TEXT_TABLE;
 	
-	private SqlStmt<StoreWTimeInfo> stmtSql;
-	private SqlStmtOption<StoreWTimeInfo> stmtOption;
+	private SqlStmt<TimezoneInfo> stmtSql;
+	private SqlStmtOption<TimezoneInfo> stmtOption;
 	
 	
 	
-	public StoreWTimeSelectSingle(Connection conn, StoreWTimeInfo recordInfo, String schemaName) {
+	public TimezoneSelectSingle(Connection conn, TimezoneInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, StoreWTimeInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, TimezoneInfo recordInfo, String schemaName) {
 		this.stmtOption = new SqlStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LEFT_TABLE_STORE_WORK_TIME;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(LEFT_TABLE_STORE_WORK_TIME);
+		this.stmtOption.tableName = LEFT_TABLE;
+		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -55,13 +53,15 @@ public final class StoreWTimeSelectSingle implements SqlStmt<StoreWTimeInfo> {
 	
 	private String buildWhereClause() {
 		final boolean IGNORE_NULL = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
+		final boolean IGNORE_RECORD_MODE = true;
+		final boolean DUMMY_CLAUSE_ALLOWED = true;
 		
 		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
 		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;	
+		whereOption.dummyClauseWhenEmpty = DUMMY_CLAUSE_ALLOWED;
 		
-		SqlStmtWhere whereClause = new StoreWTimeWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		SqlStmtWhere whereClause = new TimezoneWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -69,27 +69,27 @@ public final class StoreWTimeSelectSingle implements SqlStmt<StoreWTimeInfo> {
 	
 	private List<SqlJoin> buildJoins() {
 		List<SqlJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinWeekdayText());
+		joins.add(buildJoinUnitText());
 		return joins;
 	}
 	
 	
 	
-	private SqlJoin buildJoinWeekdayText() {
+	private SqlJoin buildJoinUnitText() {
 		List<SqlJoinColumn> joinColumns = new ArrayList<>();
 		
 		SqlJoinColumn oneColumn = new SqlJoinColumn();
-		oneColumn.leftTableName = LEFT_TABLE_STORE_WORK_TIME;
-		oneColumn.leftColumnName = "weekday";
-		oneColumn.rightColumnName = "Weekday";
+		oneColumn.leftTableName = LEFT_TABLE;
+		oneColumn.leftColumnName = "cod_timezone";
+		oneColumn.rightColumnName = "cod_timezone";
 		joinColumns.add(oneColumn);
 		
 		
 		SqlJoin join = new SqlJoin();
-		join.rightTableName = RIGHT_TABLE_WEEKDAY_TEXT;
+		join.rightTableName = RIGHT_TABLE;
 		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE_WEEKDAY_TEXT);
+		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE);
 		
 		return join;
 	}
@@ -138,52 +138,39 @@ public final class StoreWTimeSelectSingle implements SqlStmt<StoreWTimeInfo> {
 
 	
 	
-	@Override public List<StoreWTimeInfo> getResultset() {
+	@Override public List<TimezoneInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public SqlStmt<StoreWTimeInfo> getNewInstance() {
-		return new StoreWTimeSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public SqlStmt<TimezoneInfo> getNewInstance() {
+		return new TimezoneSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	
-	
-	
-	private static class ResultParser implements SqlResultParser<StoreWTimeInfo> {
+	private class ResultParser implements SqlResultParser<TimezoneInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String WEEKDAY_TEXT_COL = SqlDbTable.WEEKDAY_TEXT_TABLE + "." + "Name";
+		private final String TEXT_COL = RIGHT_TABLE + "." + "name";
+		private final String LANGU_COL = RIGHT_TABLE + "." + "language";
 		
-		@Override public List<StoreWTimeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<StoreWTimeInfo> finalResult = new ArrayList<>();
+		@Override public List<TimezoneInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<TimezoneInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
-			
-			do {
-				StoreWTimeInfo dataInfo = new StoreWTimeInfo();
-				dataInfo.codOwner = stmtResult.getLong("cod_owner");
-				dataInfo.codStore = stmtResult.getLong("cod_store");
-				dataInfo.codWeekday = stmtResult.getInt("weekday");
-				dataInfo.txtWeekday = stmtResult.getString(WEEKDAY_TEXT_COL);
+				return finalResult;
+		
+			do {				
+				TimezoneInfo dataInfo = new TimezoneInfo();
 				dataInfo.codTimezone = stmtResult.getString("cod_timezone");
-				dataInfo.recordMode = stmtResult.getString("record_mode");		
+				dataInfo.txtTimezone = stmtResult.getString(TEXT_COL);
+				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				
-				Time tempTime = stmtResult.getTime("begin_time");
-				if (tempTime != null)
-					dataInfo.beginTime = tempTime.toLocalTime();
-				
-				tempTime = stmtResult.getTime("end_time");
-				if (tempTime != null)
-					dataInfo.endTime = tempTime.toLocalTime();		
-				
-				finalResult.add(dataInfo);
+				finalResult.add(dataInfo);				
 			} while (stmtResult.next());
 			
 			return finalResult;
 		}
-	}
+	} 
 }

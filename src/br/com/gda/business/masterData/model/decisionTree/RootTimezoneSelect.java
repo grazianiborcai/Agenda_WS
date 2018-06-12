@@ -1,0 +1,77 @@
+package br.com.gda.business.masterData.model.decisionTree;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.gda.business.masterData.info.TimezoneInfo;
+import br.com.gda.business.masterData.model.checker.TimezoneCheckRead;
+import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciChoice;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeHelper;
+import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeOption;
+
+public final class RootTimezoneSelect implements DeciTree<TimezoneInfo> {
+	private DeciTree<TimezoneInfo> tree;
+	
+	
+	public RootTimezoneSelect(DeciTreeOption<TimezoneInfo> option) {
+		DeciTreeHelperOption<TimezoneInfo> helperOption = new DeciTreeHelperOption<>();
+		
+		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.recordInfos = option.recordInfos;
+		helperOption.conn = option.conn;
+		helperOption.actionsOnPassed = buildActionsOnPassed(option);
+		
+		tree = new DeciTreeHelper<>(helperOption);
+	}
+	
+	
+	
+	private ModelChecker<TimezoneInfo> buildDecisionChecker() {
+		List<ModelChecker<TimezoneInfo>> stack = new ArrayList<>();		
+		ModelChecker<TimezoneInfo> checker;
+		
+		checker = new TimezoneCheckRead();
+		stack.add(checker);
+		
+		return new ModelCheckerStack<>(stack);
+	}
+
+		
+	
+	private List<DeciAction<TimezoneInfo>> buildActionsOnPassed(DeciTreeOption<TimezoneInfo> option) {
+		List<DeciAction<TimezoneInfo>> actions = new ArrayList<>();
+		
+		actions.add(new ActionTimezoneSelect(option));
+		return actions;
+	}
+	
+	
+	
+	@Override public void makeDecision() {
+		tree.makeDecision();
+	}
+		
+
+	
+	@Override public DeciChoice getDecisionMade() {
+		return tree.getDecisionMade();
+	}
+	
+	
+	
+	@Override public DeciResult<TimezoneInfo> getDecisionResult() {
+		return tree.getDecisionResult();
+	}
+	
+	
+	
+	@Override public DeciAction<TimezoneInfo> getAsAction() {
+		return tree.getAsAction();
+	}
+}

@@ -91,6 +91,14 @@ public final class StoreLDateDbTableColumn extends SqlDbTableColumnTemplate {
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "cod_timezone";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "record_mode";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;

@@ -4,8 +4,8 @@ import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.masterData.info.WeekdayInfo;
-import br.com.gda.business.masterData.model.decisionTree.RootWeekdaySelect;
+import br.com.gda.business.masterData.info.TimezoneInfo;
+import br.com.gda.business.masterData.model.decisionTree.RootTimezoneSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class WeekdayModelSelect implements Model {
+public final class TimezoneModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public WeekdayModelSelect(WeekdayInfo recordInfo) {
+	public TimezoneModelSelect(TimezoneInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class WeekdayModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(WeekdayInfo recordInfo) {
-		ModelOption<WeekdayInfo> helperOption = new ModelOption<>();
+	private void buildHelper(TimezoneInfo recordInfo) {
+		ModelOption<TimezoneInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = WeekdayInfo.class;
+		helperOption.infoRecordClass = TimezoneInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class WeekdayModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<WeekdayInfo> {		
-		@Override public DeciTree<WeekdayInfo> getInstance(DeciTreeOption<WeekdayInfo> option) {
-			return new RootWeekdaySelect(option);
+	private static class TreeFactory implements DeciTreeFactory<TimezoneInfo> {		
+		@Override public DeciTree<TimezoneInfo> getInstance(DeciTreeOption<TimezoneInfo> option) {
+			return new RootTimezoneSelect(option);
 		}			
 	}
 }

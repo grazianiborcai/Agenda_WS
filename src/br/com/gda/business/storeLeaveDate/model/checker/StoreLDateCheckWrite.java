@@ -21,7 +21,8 @@ public final class StoreLDateCheckWrite extends ModelCheckerTemplate<StoreLDateI
 			|| recordInfo.dateValidFrom		== null
 			|| recordInfo.dateValidTo		== null
 			|| recordInfo.timeValidFrom		== null
-			|| recordInfo.timeValidTo		== null)
+			|| recordInfo.timeValidTo		== null	
+			|| recordInfo.codTimezone			== null		)
 			
 			return RESULT_FAILED;
 		

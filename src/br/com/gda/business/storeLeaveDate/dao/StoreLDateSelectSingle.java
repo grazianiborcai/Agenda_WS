@@ -116,6 +116,7 @@ public final class StoreLDateSelectSingle implements SqlStmt<StoreLDateInfo> {
 				dataInfo.codOwner = stmtResult.getLong("cod_owner");
 				dataInfo.codStore = stmtResult.getLong("cod_store");
 				dataInfo.description = stmtResult.getString("description");	
+				dataInfo.codTimezone = stmtResult.getString("cod_timezone");
 				dataInfo.recordMode = stmtResult.getString("record_mode");		
 				
 				Time tempTime = stmtResult.getTime("time_valid_from");

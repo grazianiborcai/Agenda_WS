@@ -26,6 +26,8 @@ public final class SqlDbTable {
 	public static final String BUSINESS_AREA_TABLE = "business_area";
 	public static final String BUSINESS_AREA_TEXT_TABLE = "business_area_text";
 	public static final String LANGUAGE_TABLE = "language";
+	public static final String TIMEZONE_TABLE = "timezone";
+	public static final String TIMEZONE_TEXT_TABLE = "timezone_text";
 	public static final String OWNER_TABLE = "owner";
 	public static final String MAT_EMP_TABLE = "employee_material";
 	public static final String WEEKDAY_TABLE = "weekday";

@@ -85,6 +85,7 @@ public final class StoreWTimeInsertSingle implements SqlStmt<StoreWTimeInfo> {
 			stmt.setLong(i++, recordInfo.codWeekday);
 			stmt.setTime(i++, beginTime);
 			stmt.setTime(i++, endTime);
+			stmt.setString(i++, recordInfo.codTimezone);
 			stmt.setString(i++, recordInfo.recordMode);
 			
 			return stmt;

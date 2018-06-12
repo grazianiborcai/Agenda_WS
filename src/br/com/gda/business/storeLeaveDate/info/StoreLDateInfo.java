@@ -15,6 +15,7 @@ public final class StoreLDateInfo implements Cloneable {
 	public LocalDate dateValidTo;
 	public LocalTime timeValidFrom;
 	public LocalTime timeValidTo;
+	public String codTimezone;
 	public String description;
 	public String recordMode;
 	

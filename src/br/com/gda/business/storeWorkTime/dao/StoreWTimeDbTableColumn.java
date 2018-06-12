@@ -71,6 +71,14 @@ public final class StoreWTimeDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "cod_timezone";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
