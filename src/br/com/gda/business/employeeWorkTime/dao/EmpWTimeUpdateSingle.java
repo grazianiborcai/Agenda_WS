@@ -106,7 +106,6 @@ public final class EmpWTimeUpdateSingle implements SqlStmt<EmpWTimeInfo> {
 			int i = 1;
 			stmt.setTime(i++, beginTime);
 			stmt.setTime(i++, endTime);
-			stmt.setString(i++, recordInfo.codTimezone);
 			stmt.setString(i++, recordInfo.recordMode);
 			
 			return stmt;

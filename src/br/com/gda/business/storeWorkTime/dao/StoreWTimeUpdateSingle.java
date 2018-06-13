@@ -103,7 +103,6 @@ public final class StoreWTimeUpdateSingle implements SqlStmt<StoreWTimeInfo> {
 			int i = 1;
 			stmt.setTime(i++, beginTime);
 			stmt.setTime(i++, endTime);
-			stmt.setString(i++, recordInfo.codTimezone);
 			stmt.setString(i++, recordInfo.recordMode);
 			
 			return stmt;

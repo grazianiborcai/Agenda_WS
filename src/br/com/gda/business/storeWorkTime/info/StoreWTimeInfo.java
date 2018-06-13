@@ -2,7 +2,6 @@ package br.com.gda.business.storeWorkTime.info;
 
 import java.time.LocalTime;
 
-import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
@@ -57,14 +56,6 @@ public final class StoreWTimeInfo implements Cloneable {
 		store.txtWeekday = txtWeekday;
 		store.codLanguage = codLanguage;
 		return store;
-	}
-	
-	
-	
-	public TimezoneInfo toTimezoneInfo() {
-		TimezoneInfo timezone = new TimezoneInfo();
-		timezone.codTimezone = codTimezone;
-		return timezone;
 	}
 	
 	

@@ -82,13 +82,6 @@ public final class RootEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpWTimeCheckTimezone(checkerOption);
-		stack.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckStoreEmp(checkerOption);
 		stack.add(checker);			
 		

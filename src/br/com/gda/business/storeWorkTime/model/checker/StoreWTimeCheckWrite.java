@@ -19,7 +19,6 @@ public final class StoreWTimeCheckWrite extends ModelCheckerTemplate<StoreWTimeI
 		if (   recordInfo.codOwner 			<= 0 	
 			|| recordInfo.codStore 			<= 0
 			|| recordInfo.codWeekday		<= 0
-			|| recordInfo.codTimezone		== null
 			|| recordInfo.beginTime			== null
 			|| recordInfo.endTime			== null	)
 			

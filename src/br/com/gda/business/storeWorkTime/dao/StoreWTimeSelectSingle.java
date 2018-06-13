@@ -23,8 +23,9 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class StoreWTimeSelectSingle implements SqlStmt<StoreWTimeInfo> {	
-	private final String LEFT_TABLE_STORE_WORK_TIME = SqlDbTable.STORE_WORK_TIME_TABLE;	
-	private final String RIGHT_TABLE_WEEKDAY_TEXT = SqlDbTable.WEEKDAY_TEXT_TABLE;
+	private final String LT_STORE_WORK_TIME = SqlDbTable.STORE_WORK_TIME_TABLE;	
+	private final String RT_WEEKDAY_TEXT = SqlDbTable.WEEKDAY_TEXT_TABLE;
+	private final String RT_STORE = SqlDbTable.STORE_TABLE;
 	
 	private SqlStmt<StoreWTimeInfo> stmtSql;
 	private SqlStmtOption<StoreWTimeInfo> stmtOption;
@@ -43,8 +44,8 @@ public final class StoreWTimeSelectSingle implements SqlStmt<StoreWTimeInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LEFT_TABLE_STORE_WORK_TIME;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(LEFT_TABLE_STORE_WORK_TIME);
+		this.stmtOption.tableName = LT_STORE_WORK_TIME;
+		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(LT_STORE_WORK_TIME);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -69,8 +70,30 @@ public final class StoreWTimeSelectSingle implements SqlStmt<StoreWTimeInfo> {
 	
 	private List<SqlJoin> buildJoins() {
 		List<SqlJoin> joins = new ArrayList<>();		
+		joins.add(buildJoinStore());
 		joins.add(buildJoinWeekdayText());
 		return joins;
+	}
+	
+	
+	
+	private SqlJoin buildJoinStore() {
+		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+		
+		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		oneColumn.leftTableName = LT_STORE_WORK_TIME;
+		oneColumn.leftColumnName = "Cod_store";
+		oneColumn.rightColumnName = "Cod_store";
+		joinColumns.add(oneColumn);
+		
+		
+		SqlJoin join = new SqlJoin();
+		join.rightTableName = RT_STORE;
+		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinColumns = joinColumns;
+		join.constraintClause = null;
+		
+		return join;
 	}
 	
 	
@@ -79,17 +102,17 @@ public final class StoreWTimeSelectSingle implements SqlStmt<StoreWTimeInfo> {
 		List<SqlJoinColumn> joinColumns = new ArrayList<>();
 		
 		SqlJoinColumn oneColumn = new SqlJoinColumn();
-		oneColumn.leftTableName = LEFT_TABLE_STORE_WORK_TIME;
+		oneColumn.leftTableName = LT_STORE_WORK_TIME;
 		oneColumn.leftColumnName = "weekday";
 		oneColumn.rightColumnName = "Weekday";
 		joinColumns.add(oneColumn);
 		
 		
 		SqlJoin join = new SqlJoin();
-		join.rightTableName = RIGHT_TABLE_WEEKDAY_TEXT;
+		join.rightTableName = RT_WEEKDAY_TEXT;
 		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE_WEEKDAY_TEXT);
+		join.constraintClause = buildJoinConstraintText(RT_WEEKDAY_TEXT);
 		
 		return join;
 	}
@@ -156,6 +179,7 @@ public final class StoreWTimeSelectSingle implements SqlStmt<StoreWTimeInfo> {
 	private static class ResultParser implements SqlResultParser<StoreWTimeInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		private final String WEEKDAY_TEXT_COL = SqlDbTable.WEEKDAY_TEXT_TABLE + "." + "Name";
+		private final String TIMEZONE_COL = SqlDbTable.STORE_TABLE + "." + "Cod_timezone";
 		
 		@Override public List<StoreWTimeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreWTimeInfo> finalResult = new ArrayList<>();
@@ -169,7 +193,7 @@ public final class StoreWTimeSelectSingle implements SqlStmt<StoreWTimeInfo> {
 				dataInfo.codStore = stmtResult.getLong("cod_store");
 				dataInfo.codWeekday = stmtResult.getInt("weekday");
 				dataInfo.txtWeekday = stmtResult.getString(WEEKDAY_TEXT_COL);
-				dataInfo.codTimezone = stmtResult.getString("cod_timezone");
+				dataInfo.codTimezone = stmtResult.getString(TIMEZONE_COL);
 				dataInfo.recordMode = stmtResult.getString("record_mode");		
 				
 				Time tempTime = stmtResult.getTime("begin_time");

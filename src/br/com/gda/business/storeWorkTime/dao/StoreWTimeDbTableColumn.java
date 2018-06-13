@@ -71,15 +71,7 @@ public final class StoreWTimeDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_timezone";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
+		columns.add(oneColumn);	
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = TABLE_NAME;
@@ -96,6 +88,14 @@ public final class StoreWTimeDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = SqlDbTable.STORE_TABLE;
+		oneColumn.columnName = "Cod_timezone";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

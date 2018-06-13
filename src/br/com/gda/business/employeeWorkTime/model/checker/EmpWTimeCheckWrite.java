@@ -20,7 +20,6 @@ public final class EmpWTimeCheckWrite extends ModelCheckerTemplate<EmpWTimeInfo>
 			recordInfo.codStore    	<= 0 	||
 			recordInfo.codEmployee 	<= 0 	||
 			recordInfo.codWeekday	<= 0 	|| 
-			recordInfo.codTimezone	== null	||
 			recordInfo.beginTime	== null	||
 			recordInfo.endTime		== null		)
 			

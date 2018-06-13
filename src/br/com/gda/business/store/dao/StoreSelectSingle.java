@@ -183,6 +183,7 @@ public final class StoreSelectSingle implements SqlStmt<StoreInfo> {
 				dataInfo.codPayment = stmtResult.getString("Cod_payment");					
 				dataInfo.latitude = stmtResult.getDouble("Latitude");	
 				dataInfo.longitude = stmtResult.getDouble("Longitude");	
+				dataInfo.codTimezone = stmtResult.getString("Cod_timezone");
 				dataInfo.recordMode = stmtResult.getString("record_mode");			
 				
 				finalResult.add(dataInfo);

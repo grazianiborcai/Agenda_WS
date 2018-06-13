@@ -83,14 +83,6 @@ public final class EmpWTimeDbTableColumn extends SqlDbTableColumnTemplate {
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_timezone";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "record_mode";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
@@ -100,6 +92,14 @@ public final class EmpWTimeDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = SqlDbTable.WEEKDAY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = SqlDbTable.STORE_TABLE;
+		oneColumn.columnName = "Cod_timezone";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -127,6 +127,7 @@ public final class StoreUpdateSingle implements SqlStmt<StoreInfo> {
 			stmt.setString(i++, recordInfo.codPayment);
 			stmt.setDouble(i++, recordInfo.latitude);
 			stmt.setDouble(i++, recordInfo.longitude);
+			stmt.setString(i++, recordInfo.codTimezone);
 			stmt.setString(i++, recordInfo.recordMode);
 			
 			return stmt;

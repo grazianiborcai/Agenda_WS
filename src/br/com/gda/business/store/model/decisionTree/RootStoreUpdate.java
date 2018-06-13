@@ -7,6 +7,8 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.checker.StoreCheckCnpj;
 import br.com.gda.business.store.model.checker.StoreCheckExist;
 import br.com.gda.business.store.model.checker.StoreCheckKey;
+import br.com.gda.business.store.model.checker.StoreCheckOwner;
+import br.com.gda.business.store.model.checker.StoreCheckTimezone;
 import br.com.gda.business.store.model.checker.StoreCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -55,6 +57,20 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 		
 		checker = new StoreCheckCnpj();
 		stack.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new StoreCheckOwner(checkerOption);
+		stack.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new StoreCheckTimezone(checkerOption);
+		stack.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

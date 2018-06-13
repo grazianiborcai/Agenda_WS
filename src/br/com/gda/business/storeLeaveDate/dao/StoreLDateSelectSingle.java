@@ -11,6 +11,9 @@ import java.util.List;
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDbTableColumnAll;
+import br.com.gda.sql.SqlJoin;
+import br.com.gda.sql.SqlJoinColumn;
+import br.com.gda.sql.SqlJoinType;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
@@ -20,7 +23,8 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class StoreLDateSelectSingle implements SqlStmt<StoreLDateInfo> {	
-	private final String LEFT_TABLE = SqlDbTable.STORE_LEAVE_DATE_TABLE;
+	private final String LT_STORE_LEAVE_DATE = SqlDbTable.STORE_LEAVE_DATE_TABLE;
+	private final String RT_STORE = SqlDbTable.STORE_TABLE;
 	
 	private SqlStmt<StoreLDateInfo> stmtSql;
 	private SqlStmtOption<StoreLDateInfo> stmtOption;
@@ -39,12 +43,12 @@ public final class StoreLDateSelectSingle implements SqlStmt<StoreLDateInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LEFT_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(LEFT_TABLE);
+		this.stmtOption.tableName = LT_STORE_LEAVE_DATE;
+		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(LT_STORE_LEAVE_DATE);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+		this.stmtOption.joins = buildJoins();
 	}
 	
 	
@@ -59,6 +63,35 @@ public final class StoreLDateSelectSingle implements SqlStmt<StoreLDateInfo> {
 		
 		SqlStmtWhere whereClause = new StoreLDateWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
+	}
+	
+	
+	
+	private List<SqlJoin> buildJoins() {
+		List<SqlJoin> joins = new ArrayList<>();		
+		joins.add(buildJoinStore());
+		return joins;
+	}
+	
+	
+	
+	private SqlJoin buildJoinStore() {
+		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+		
+		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		oneColumn.leftTableName = LT_STORE_LEAVE_DATE;
+		oneColumn.leftColumnName = "Cod_store";
+		oneColumn.rightColumnName = "Cod_store";
+		joinColumns.add(oneColumn);
+		
+		
+		SqlJoin join = new SqlJoin();
+		join.rightTableName = RT_STORE;
+		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinColumns = joinColumns;
+		join.constraintClause = null;
+		
+		return join;
 	}
 	
 	
@@ -104,6 +137,7 @@ public final class StoreLDateSelectSingle implements SqlStmt<StoreLDateInfo> {
 	
 	private static class ResultParser implements SqlResultParser<StoreLDateInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
+		private final String TIMEZONE_COL = SqlDbTable.STORE_TABLE + "." + "Cod_timezone";
 		
 		@Override public List<StoreLDateInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreLDateInfo> finalResult = new ArrayList<>();
@@ -116,7 +150,7 @@ public final class StoreLDateSelectSingle implements SqlStmt<StoreLDateInfo> {
 				dataInfo.codOwner = stmtResult.getLong("cod_owner");
 				dataInfo.codStore = stmtResult.getLong("cod_store");
 				dataInfo.description = stmtResult.getString("description");	
-				dataInfo.codTimezone = stmtResult.getString("cod_timezone");
+				dataInfo.codTimezone = stmtResult.getString(TIMEZONE_COL);
 				dataInfo.recordMode = stmtResult.getString("record_mode");		
 				
 				Time tempTime = stmtResult.getTime("time_valid_from");

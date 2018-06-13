@@ -92,7 +92,6 @@ public final class EmpWTimeInsertSingle implements SqlStmt<EmpWTimeInfo> {
 			stmt.setInt(i++, recordInfo.codWeekday);
 			stmt.setTime(i++, beginTime);
 			stmt.setTime(i++, endTime);
-			stmt.setString(i++, recordInfo.codTimezone);
 			stmt.setString(i++, recordInfo.recordMode);
 			
 			return stmt;

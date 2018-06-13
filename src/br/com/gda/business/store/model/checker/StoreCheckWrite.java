@@ -16,9 +16,10 @@ public final class StoreCheckWrite extends ModelCheckerTemplate<StoreInfo> {
 	
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 	<= 0 	
-			|| recordInfo.cnpj 		== null 	
-			|| recordInfo.name 		== null	)
+		if (   recordInfo.codOwner 		<= 0 	
+			|| recordInfo.cnpj 			== null 	
+			|| recordInfo.name 			== null
+			|| recordInfo.codTimezone	== null	)
 			
 			return RESULT_FAILED;
 		

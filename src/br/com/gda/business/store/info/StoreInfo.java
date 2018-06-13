@@ -1,5 +1,7 @@
 package br.com.gda.business.store.info;
 
+import br.com.gda.business.masterData.info.TimezoneInfo;
+import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
@@ -25,6 +27,7 @@ public final class StoreInfo implements Cloneable {
 	public String codPayment;
 	public double latitude;
 	public double longitude;
+	public String codTimezone;
 	public String codLanguage;
 	public String recordMode;
 	
@@ -35,6 +38,23 @@ public final class StoreInfo implements Cloneable {
 		this.postalCode = DefaultValue.number();
 		this.codLanguage = Language.getDefaultLanguage();
 		this.recordMode = RecordMode.RECORD_OK;		
+	}
+	
+	
+	
+	public OwnerInfo toOwnerInfo() {
+		OwnerInfo owner = new OwnerInfo();
+		owner.codOwner = codOwner;
+		owner.codLanguage = codLanguage;
+		return owner;
+	}
+	
+	
+	
+	public TimezoneInfo toTimezoneInfo() {
+		TimezoneInfo timezone = new TimezoneInfo();
+		timezone.codTimezone = codTimezone;
+		return timezone;
 	}
 	
 	
