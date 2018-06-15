@@ -65,7 +65,7 @@ public final class MatEmpCheckExist extends ModelCheckerTemplate<MatEmpInfo> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_MAT_EMP_ALREALDY_EXIST)
+		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_MAT_EMP_ALREADY_EXIST)
 			return SystemMessage.STORE_MAT_EMP_ALREALDY_EXIST;
 		
 		return SystemMessage.STORE_MAT_EMP_NOT_FOUND;
@@ -75,7 +75,7 @@ public final class MatEmpCheckExist extends ModelCheckerTemplate<MatEmpInfo> {
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == RECORD_EXIST)
-			return SystemCode.STORE_MAT_EMP_ALREALDY_EXIST;	
+			return SystemCode.STORE_MAT_EMP_ALREADY_EXIST;	
 			
 		return SystemCode.STORE_MAT_EMP_NOT_FOUND;
 	}

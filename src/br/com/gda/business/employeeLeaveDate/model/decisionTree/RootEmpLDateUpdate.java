@@ -1,17 +1,16 @@
-package br.com.gda.business.employeeWorkTime.model.decisionTree;
+package br.com.gda.business.employeeLeaveDate.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEmp;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckExist;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckKey;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckOwner;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStore;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStoreEmp;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWeekday;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWrite;
+import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
+import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckEmp;
+import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckExist;
+import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckKey;
+import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckOwner;
+import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckStore;
+import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckStoreEmp;
+import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
@@ -23,12 +22,12 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootEmpWTimeUpdate implements DeciTree<EmpWTimeInfo> {
-	private DeciTree<EmpWTimeInfo> tree;
+public final class RootEmpLDateUpdate implements DeciTree<EmpLDateInfo> {
+	private DeciTree<EmpLDateInfo> tree;
 	
 	
-	public RootEmpWTimeUpdate(DeciTreeOption<EmpWTimeInfo> option) {
-		DeciTreeHelperOption<EmpWTimeInfo> helperOption = new DeciTreeHelperOption<>();
+	public RootEmpLDateUpdate(DeciTreeOption<EmpLDateInfo> option) {
+		DeciTreeHelperOption<EmpLDateInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
@@ -40,59 +39,52 @@ public final class RootEmpWTimeUpdate implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
-	private ModelChecker<EmpWTimeInfo> buildDecisionChecker(DeciTreeOption<EmpWTimeInfo> option) {
+	private ModelChecker<EmpLDateInfo> buildDecisionChecker(DeciTreeOption<EmpLDateInfo> option) {
 		final boolean EXIST_ON_DB = true;	
 		
-		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
-		ModelChecker<EmpWTimeInfo> checker;			
+		List<ModelChecker<EmpLDateInfo>> stack = new ArrayList<>();		
+		ModelChecker<EmpLDateInfo> checker;			
 		ModelCheckerOption checkerOption;
 		
-		checker = new EmpWTimeCheckWrite();
+		checker = new EmpLDateCheckWrite();
 		stack.add(checker);
 		
-		checker = new EmpWTimeCheckKey();
+		checker = new EmpLDateCheckKey();
 		stack.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpWTimeCheckOwner(checkerOption);
+		checker = new EmpLDateCheckOwner(checkerOption);
 		stack.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpWTimeCheckEmp(checkerOption);
+		checker = new EmpLDateCheckStore(checkerOption);
 		stack.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpWTimeCheckStore(checkerOption);
+		checker = new EmpLDateCheckEmp(checkerOption);
 		stack.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpWTimeCheckWeekday(checkerOption);
+		checker = new EmpLDateCheckStoreEmp(checkerOption);
 		stack.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpWTimeCheckStoreEmp(checkerOption);
-		stack.add(checker);			
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpWTimeCheckExist(checkerOption);
+		checker = new EmpLDateCheckExist(checkerOption);
 		stack.add(checker);	
 		
 		return new ModelCheckerStack<>(stack);
@@ -100,11 +92,11 @@ public final class RootEmpWTimeUpdate implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
-	private List<DeciAction<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
-		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
+	private List<DeciAction<EmpLDateInfo>> buildActionsOnPassed(DeciTreeOption<EmpLDateInfo> option) {
+		List<DeciAction<EmpLDateInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionEmpWTimeUpdate(option));
-		actions.add(new ActionEmpWTimeSelect(option));
+		actions.add(new ActionEmpLDateUpdate(option));
+		actions.add(new ActionEmpLDateSelect(option));
 		return actions;
 	}
 	
@@ -122,13 +114,13 @@ public final class RootEmpWTimeUpdate implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
-	@Override public DeciResult<EmpWTimeInfo> getDecisionResult() {
+	@Override public DeciResult<EmpLDateInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
 	
 	
-	@Override public DeciAction<EmpWTimeInfo> getAsAction() {
+	@Override public DeciAction<EmpLDateInfo> getAsAction() {
 		return tree.getAsAction();
 	}
 }

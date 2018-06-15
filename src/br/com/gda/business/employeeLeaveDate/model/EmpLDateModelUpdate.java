@@ -1,11 +1,11 @@
-package br.com.gda.business.employeeWorkTime.model;
+package br.com.gda.business.employeeLeaveDate.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.business.employeeWorkTime.model.decisionTree.RootEmpWTimeSelect;
+import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
+import br.com.gda.business.employeeLeaveDate.model.decisionTree.RootEmpLDateUpdate;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,15 +15,15 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpWTimeModelSelect implements Model {
+public final class EmpLDateModelUpdate implements Model {	
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public EmpWTimeModelSelect(EmpWTimeInfo recordInfo) {
+	public EmpLDateModelUpdate(String incomingData) {
 		initialize();
-		buildHelper(recordInfo);
+		buildHelper(incomingData);
 	}
 	
 	
@@ -35,15 +35,15 @@ public final class EmpWTimeModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(EmpWTimeInfo recordInfo) {
-		ModelOption<EmpWTimeInfo> helperOption = new ModelOption<>();
+	private void buildHelper(String incomingData) {
+		ModelOption<EmpLDateInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpWTimeInfo.class;
+		helperOption.infoRecordClass = EmpLDateInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper.factory(helperOption, recordInfo);
+		helper = ModelHelper.factory(helperOption, incomingData);
 	}
 
 
@@ -63,9 +63,9 @@ public final class EmpWTimeModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<EmpWTimeInfo> {		
-		@Override public DeciTree<EmpWTimeInfo> getInstance(DeciTreeOption<EmpWTimeInfo> option) {
-			return new RootEmpWTimeSelect(option);
+	private static class TreeFactory implements DeciTreeFactory<EmpLDateInfo> {		
+		@Override public DeciTree<EmpLDateInfo> getInstance(DeciTreeOption<EmpLDateInfo> option) {
+			return new RootEmpLDateUpdate(option);
 		}			
 	}
 }

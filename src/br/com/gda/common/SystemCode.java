@@ -18,7 +18,7 @@ public final class SystemCode {
 	public static final int EMPLOYEE_WORK_FLAGGED_AS_DELETED 			= 1002;
 	
 	// Employee
-	public static final int EMPLOYEE_ALREALDY_EXIST 					= 1050;
+	public static final int EMPLOYEE_ALREADY_EXIST 						= 1050;
 	public static final int EMPLOYEE_NOT_FOUND 							= 1051;
 	public static final int EMPLOYEE_FLAGGED_AS_DELETED 				= 1052;
 	public static final int EMPLOYEE_MULTIPLE_ENTRIES_FOUND				= 1053;
@@ -30,19 +30,19 @@ public final class SystemCode {
 	// Store
 	public static final int STORE_CNPJ_ALREADY_EXIST					= 1100;
 	public static final int STORE_CNPJ_NOT_FOUND						= 1101;
-	public static final int STORE_ALREALDY_EXIST 						= 1102;
+	public static final int STORE_ALREADY_EXIST 						= 1102;
 	public static final int STORE_NOT_FOUND 							= 1103;
-	public static final int STORE_EMP_ALREALDY_EXIST 					= 1104;
+	public static final int STORE_EMP_ALREADY_EXIST 					= 1104;
 	public static final int STORE_EMP_NOT_FOUND 						= 1105;
 	public static final int STORE_EMP_FLAGGED_AS_DELETED 				= 1106;	
-	public static final int STORE_MAT_EMP_ALREALDY_EXIST 				= 1107;
+	public static final int STORE_MAT_EMP_ALREADY_EXIST 				= 1107;
 	public static final int STORE_MAT_EMP_NOT_FOUND 					= 1108;
 	public static final int STORE_MAT_EMP_FLAGGED_AS_DELETED 			= 1109;
 	public static final int STORE_WORK_TIME_NOT_FOUND 					= 1110;
-	public static final int STORE_WORK_TIME_ALREALDY_EXIST				= 1111;
+	public static final int STORE_WORK_TIME_ALREADY_EXIST				= 1111;
 	public static final int STORE_WORK_TIME_FLAGGED_AS_DELETED 			= 1112;		
 	public static final int STORE_LEAVE_DATE_NOT_FOUND 					= 1113;
-	public static final int STORE_LEAVE_DATE_ALREALDY_EXIST				= 1114;
+	public static final int STORE_LEAVE_DATE_ALREADY_EXIST				= 1114;
 	public static final int STORE_LEAVE_DATE_FLAGGED_AS_DELETED 		= 1115;	
 	
 	// Master Data
@@ -74,4 +74,9 @@ public final class SystemCode {
 	//Owner
 	public static final int OWNER_ALREADY_EXIST							= 1250;
 	public static final int OWNER_NOT_FOUND								= 1251;
+	
+	// Employee Leave Date
+	public static final int EMPLOYEE_LEAVE_DATE_ALREADY_EXIST 			= 1300;
+	public static final int EMPLOYEE_LEAVE_DATE_NOT_FOUND 				= 1301;
+	public static final int EMPLOYEE_LEAVE_DATE_FLAGGED_AS_DELETED 		= 1302;
 }

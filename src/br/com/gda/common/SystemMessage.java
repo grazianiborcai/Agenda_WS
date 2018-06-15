@@ -76,6 +76,9 @@ public final class SystemMessage {
 	public static final String EMPLOYEE_DATA_ALREADY_EXIST = "Employee's data already exist";
 	public static final String EMPLOYEE_DATA_NOT_FOUND = "Employee's data not found";
 	public static final String EMPLOYEE_FLAGGED_AS_DELETED = "Employee's data is flagged as deleted on DB";	
+	public static final String EMPLOYEE_LEAVE_DATE_ALREADY_EXIST = "Employee's leave date already exist on DB";
+	public static final String EMPLOYEE_LEAVE_DATE_FLAGGED_AS_DELETED = "Employee leave date data is flagged as deleted on DB";	
+	public static final String EMPLOYEE_LEAVE_DATE_NOT_FOUND = "Employee's leave date not found on DB";	
 	public static final String EMPLOYEE_MULTIPLE_ENTRIES_FOUND = "Multiple entries found for Employee's data selection";	
 	public static final String EMPLOYEE_NOT_FOUND = "Employee's data not found on DB";	
 	public static final String EMPLOYEE_SINGLE_ENTRY_FOUND = "Single entry found for Employee's data selection";
@@ -83,8 +86,8 @@ public final class SystemMessage {
 	public static final String EMPLOYEE_WORK_TIME_NOT_FOUND = "Employee's working time data not found on DB";		
 	public static final String EMPLOYEE_WORK_TIME_ALREALDY_EXIST = "Employee's working time data already exist on DB";	
 	
-	
-		
+
+			
 	//Store		
 	public static final String STORE_ALREALDY_EXIST = "Store's data already exist on DB";	
 	public static final String STORE_NOT_FOUND = "Store's data not found on DB";

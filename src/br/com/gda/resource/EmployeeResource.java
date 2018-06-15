@@ -1,7 +1,12 @@
 package br.com.gda.resource;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -15,6 +20,11 @@ import br.com.gda.business.employee.model.EmpModelDelete;
 import br.com.gda.business.employee.model.EmpModelInsert;
 import br.com.gda.business.employee.model.EmpModelSelect;
 import br.com.gda.business.employee.model.EmpModelUpdate;
+import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
+import br.com.gda.business.employeeLeaveDate.model.EmpLDateModelDelete;
+import br.com.gda.business.employeeLeaveDate.model.EmpLDateModelInsert;
+import br.com.gda.business.employeeLeaveDate.model.EmpLDateModelSelect;
+import br.com.gda.business.employeeLeaveDate.model.EmpLDateModelUpdate;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelDelete;
 import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelInsert;
@@ -33,7 +43,11 @@ public class EmployeeResource {
 	private static final String INSERT_WORK_TIME = "/insertWorkTime";
 	private static final String UPDATE_WORK_TIME = "/updateWorkTime";
 	private static final String SELECT_WORK_TIME = "/selectWorkTime";
-	private static final String DELETE_WORK_TIME = "/deleteWorkTime";
+	private static final String DELETE_WORK_TIME = "/deleteWorkTime";	
+	private static final String INSERT_LEAVE_DATE = "/insertLeaveDate";
+	private static final String UPDATE_LEAVE_DATE = "/updateLeaveDate";
+	private static final String SELECT_LEAVE_DATE = "/selectLeaveDate";
+	private static final String DELETE_LEAVE_DATE = "/deleteLeaveDate";
 	
 	
 	@GET
@@ -43,14 +57,14 @@ public class EmployeeResource {
 								   @HeaderParam("codStore") long codStore,
 								   @HeaderParam("codEmployee") int codEmployee) {
 		
-		EmpWTimeInfo workingTimeInfo = new EmpWTimeInfo();
-		workingTimeInfo.codOwner = codOwner;
-		workingTimeInfo.codStore = codStore;
-		workingTimeInfo.codEmployee = codEmployee;
+		EmpWTimeInfo recordInfo = new EmpWTimeInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
 		
-		Model workingTimeSelect = new EmpWTimeModelSelect(workingTimeInfo);
-		workingTimeSelect.executeRequest();
-		return workingTimeSelect.getResponse();
+		Model modelSelect = new EmpWTimeModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
 	}
 	
 	
@@ -59,9 +73,10 @@ public class EmployeeResource {
 	@Path(INSERT_WORK_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertWorkTime(String incomingData) {
-		Model workingTimeInsert = new EmpWTimeModelInsert(incomingData);
-		workingTimeInsert.executeRequest();
-		return workingTimeInsert.getResponse();
+		
+		Model modelInsert = new EmpWTimeModelInsert(incomingData);
+		modelInsert.executeRequest();
+		return modelInsert.getResponse();
 	}
 	
 	
@@ -70,31 +85,99 @@ public class EmployeeResource {
 	@Path(UPDATE_WORK_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateWorkTime(String incomingData) {
-		Model workingTimeUpdate = new EmpWTimeModelUpdate(incomingData);
-		workingTimeUpdate.executeRequest();
-		return workingTimeUpdate.getResponse();
+		
+		Model modelUpdate = new EmpWTimeModelUpdate(incomingData);
+		modelUpdate.executeRequest();
+		return modelUpdate.getResponse();
 	}
 	
 	
 	
 	@DELETE
 	@Path(DELETE_WORK_TIME)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteWorkTime(@HeaderParam("codOwner") long codOwner,
-								   @HeaderParam("codStore") long codStore,
-								   @HeaderParam("codEmployee") int codEmployee,
-								   @HeaderParam("weekday") int weekday) {
+	@Consumes(MediaType.APPLICATION_JSON)	
+	public Response deleteWorkTime(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+								   @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
+								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
+								   @HeaderParam("weekday")     @DefaultValue("-1") int weekday) {
 		
-		EmpWTimeInfo workingTimeInfo = new EmpWTimeInfo();
-		workingTimeInfo.codOwner = codOwner;
-		workingTimeInfo.codStore = codStore;
-		workingTimeInfo.codEmployee = codEmployee;
-		workingTimeInfo.codWeekday = weekday;
+		EmpWTimeInfo recordInfo = new EmpWTimeInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codWeekday = weekday;
 		
-		Model workingTimeInsert = new EmpWTimeModelDelete(workingTimeInfo);
-		workingTimeInsert.executeRequest();
-		return workingTimeInsert.getResponse();
+		Model modelDelete = new EmpWTimeModelDelete(recordInfo);
+		modelDelete.executeRequest();
+		return modelDelete.getResponse();
 	}
+	
+	
+	
+	@GET
+	@Path(SELECT_LEAVE_DATE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response selectLeaveDate(@HeaderParam("codOwner") long codOwner,
+								    @HeaderParam("codStore") long codStore,
+								    @HeaderParam("codEmployee") int codEmployee) {
+		
+		EmpLDateInfo recordInfo = new EmpLDateInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		
+		Model modelSelect = new EmpLDateModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_LEAVE_DATE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response insertLeaveDate(String incomingData) {
+		
+		Model modelInsert = new EmpLDateModelInsert(incomingData);
+		modelInsert.executeRequest();
+		return modelInsert.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(UPDATE_LEAVE_DATE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateLeaveDate(String incomingData) {
+		
+		Model modelUpdate = new EmpLDateModelUpdate(incomingData);
+		modelUpdate.executeRequest();
+		return modelUpdate.getResponse();
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_LEAVE_DATE)
+	@Consumes(MediaType.APPLICATION_JSON)	
+	public Response deleteLeaveDate(@HeaderParam("codOwner")      @DefaultValue("-1") long codOwner,
+								    @HeaderParam("codStore")      @DefaultValue("-1") long codStore,
+								    @HeaderParam("codEmployee")   @DefaultValue("-1") int codEmployee,
+								    @HeaderParam("dateValidFrom") @DefaultValue("1900-01-01") String dateValidFrom,
+			                        @HeaderParam("timeValidFrom") @DefaultValue("12:00") String timeValidFrom) {
+		
+		EmpLDateInfo recordInfo = new EmpLDateInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.dateValidFrom = LocalDate.parse(dateValidFrom, DateTimeFormatter.ISO_LOCAL_DATE);
+		recordInfo.timeValidFrom = LocalTime.parse(timeValidFrom, DateTimeFormatter.ISO_LOCAL_TIME);
+		
+		Model modelDelete = new EmpLDateModelDelete(recordInfo);
+		modelDelete.executeRequest();
+		return modelDelete.getResponse();
+	}
+	
 	
 	
 
@@ -132,9 +215,9 @@ public class EmployeeResource {
 		employeeInfo.codOwner = codOwner;
 		employeeInfo.codEmployee = codEmployee;
 		
-		Model workingTimeInsert = new EmpModelDelete(employeeInfo);
-		workingTimeInsert.executeRequest();
-		return workingTimeInsert.getResponse();
+		Model modelDelete = new EmpModelDelete(employeeInfo);
+		modelDelete.executeRequest();
+		return modelDelete.getResponse();
 	}
 	
 	

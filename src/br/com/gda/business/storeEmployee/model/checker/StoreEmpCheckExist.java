@@ -65,7 +65,7 @@ public final class StoreEmpCheckExist extends ModelCheckerTemplate<StoreEmpInfo>
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_EMP_ALREALDY_EXIST)
+		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_EMP_ALREADY_EXIST)
 			return SystemMessage.STORE_EMP_ALREALDY_EXIST;
 		
 		return SystemMessage.STORE_EMP_DATA_NOT_FOUND;
@@ -75,7 +75,7 @@ public final class StoreEmpCheckExist extends ModelCheckerTemplate<StoreEmpInfo>
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == RECORD_EXIST)
-			return SystemCode.STORE_EMP_ALREALDY_EXIST;	
+			return SystemCode.STORE_EMP_ALREADY_EXIST;	
 			
 		return SystemCode.STORE_EMP_NOT_FOUND;
 	}

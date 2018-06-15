@@ -1,20 +1,27 @@
-package br.com.gda.business.employee.info;
+package br.com.gda.business.employeeLeaveDate.info;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.common.DefaultValue;
+import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
 
 public final class EmpLDateInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codEmployee;
-	public int lineCount;
 	public LocalDate dateValidFrom;
 	public LocalDate dateValidTo;
 	public LocalTime timeValidFrom;
 	public LocalTime timeValidTo;
+	public String codTimezone;
+	public String description;
+	public String codLanguage;
 	public String recordMode;
 	
 	
@@ -22,8 +29,47 @@ public final class EmpLDateInfo implements Cloneable {
 		this.codOwner = DefaultValue.number();
 		this.codStore = DefaultValue.number();
 		this.codEmployee = DefaultValue.number();
-		this.lineCount = DefaultValue.number();
+		this.codLanguage = Language.getDefaultLanguage();
 		this.recordMode = RecordMode.RECORD_OK;
+	}
+	
+	
+	
+	public OwnerInfo toOwnerInfo() {
+		OwnerInfo owner = new OwnerInfo();
+		owner.codOwner = codOwner;
+		return owner;
+	}
+	
+	
+	
+	public StoreInfo toStoreInfo() {
+		StoreInfo store = new StoreInfo();
+		store.codOwner = codOwner;
+		store.codStore = codStore;
+		store.codLanguage = codLanguage;
+		return store;
+	}
+	
+	
+	
+	public EmpInfo toEmpInfo() {
+		EmpInfo emp = new EmpInfo();
+		emp.codOwner = codOwner;
+		emp.codEmployee = codEmployee;
+		emp.codLanguage = codLanguage;
+		return emp;
+	}
+	
+	
+	
+	public StoreEmpInfo toStoreEmpInfo() {
+		StoreEmpInfo storeEmp = new StoreEmpInfo();
+		storeEmp.codOwner = codOwner;
+		storeEmp.codStore = codStore;
+		storeEmp.codEmployee = codEmployee;
+		storeEmp.codLanguage = codLanguage;
+		return storeEmp;
 	}
 	
 	

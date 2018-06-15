@@ -65,7 +65,7 @@ public final class StoreWTimeCheckExist extends ModelCheckerTemplate<StoreWTimeI
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_WORK_TIME_ALREALDY_EXIST)
+		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_WORK_TIME_ALREADY_EXIST)
 			return SystemMessage.STORE_WORK_TIME_ALREADY_EXIST;
 		
 		return SystemMessage.STORE_WORK_TIME_NOT_FOUND;
@@ -75,7 +75,7 @@ public final class StoreWTimeCheckExist extends ModelCheckerTemplate<StoreWTimeI
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == RECORD_EXIST)
-			return SystemCode.STORE_WORK_TIME_ALREALDY_EXIST;	
+			return SystemCode.STORE_WORK_TIME_ALREADY_EXIST;	
 			
 		return SystemCode.STORE_WORK_TIME_NOT_FOUND;
 	}

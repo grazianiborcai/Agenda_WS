@@ -54,10 +54,10 @@ public class StoreResource {
 	private static final String SELECT_STORE_MAT_EMP = "/selectStoreMatEmp";
 	private static final String INSERT_STORE_MAT_EMP = "/insertStoreMatEmp";
 	private static final String DELETE_STORE_MAT_EMP = "/deleteStoreMatEmp";
-	private static final String SELECT_STORE_EMPLOYEE = "/selectStoreEmployee";
-	private static final String INSERT_STORE_EMPLOYEE = "/insertStoreEmployee";
-	private static final String UPDATE_STORE_EMPLOYEE = "/updateStoreEmployee";
-	private static final String DELETE_STORE_EMPLOYEE = "/deleteStoreEmployee";
+	private static final String SELECT_STORE_EMP = "/selectStoreEmployee";
+	private static final String INSERT_STORE_EMP = "/insertStoreEmployee";
+	private static final String UPDATE_STORE_EMP = "/updateStoreEmployee";
+	private static final String DELETE_STORE_EMP = "/deleteStoreEmployee";
 	private static final String SELECT_STORE_WORK_TIME = "/selectStoreWorkTime";
 	private static final String INSERT_STORE_WORK_TIME = "/insertStoreWorkTime";
 	private static final String DELETE_STORE_WORK_TIME = "/deleteStoreWorkTime";
@@ -129,7 +129,7 @@ public class StoreResource {
 	
 	
 	@GET
-	@Path(SELECT_STORE_EMPLOYEE)
+	@Path(SELECT_STORE_EMP)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectStoreEmp(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 			                       @HeaderParam("codStore") @DefaultValue("-1") int codStore) {
@@ -145,7 +145,7 @@ public class StoreResource {
 	
 	
 	@POST
-	@Path(INSERT_STORE_EMPLOYEE)
+	@Path(INSERT_STORE_EMP)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStoreEmp(String incomingData) {
 		
@@ -157,7 +157,7 @@ public class StoreResource {
 	
 	
 	@POST
-	@Path(UPDATE_STORE_EMPLOYEE)
+	@Path(UPDATE_STORE_EMP)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateStoreEmp(String incomingData) {
 		Model storeEmpUpdate = new StoreEmpModelUpdate(incomingData);
@@ -168,7 +168,7 @@ public class StoreResource {
 	
 	
 	@DELETE
-	@Path(DELETE_STORE_EMPLOYEE)
+	@Path(DELETE_STORE_EMP)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteStoreEmp(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 			                       @HeaderParam("codStore") @DefaultValue("-1") int codStore,
