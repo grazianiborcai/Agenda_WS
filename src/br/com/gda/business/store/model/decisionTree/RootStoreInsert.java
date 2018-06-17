@@ -14,6 +14,7 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerStack;
 import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -84,8 +85,11 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 	private List<DeciAction<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
 		List<DeciAction<StoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionStoreInsert(option));
-		actions.add(new ActionStoreSelect(option));		
+		DeciAction<StoreInfo> actionInsert = new ActionStoreInsert(option);
+		DeciActionHandler<StoreInfo> selectStore = new HandlerStoreSelect(option.conn, option.schemaName);		
+		actionInsert.addPostAction(selectStore);	
+		
+		actions.add(actionInsert);		
 		return actions;
 	}
 	

@@ -56,8 +56,7 @@ public final class NodeStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 	private List<DeciAction<StoreLDateInfo>> buildActionsOnPassed(DeciTreeOption<StoreLDateInfo> option) {
 		List<DeciAction<StoreLDateInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionStoreLDateInsert(option));
-		actions.add(new ActionStoreLDateSelect(option));		
+		actions.add(new ActionStoreLDateInsert(option));				
 		return actions;
 	}
 	
@@ -66,8 +65,7 @@ public final class NodeStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 	private List<DeciAction<StoreLDateInfo>> buildActionsOnFailed(DeciTreeOption<StoreLDateInfo> option) {
 		List<DeciAction<StoreLDateInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionStoreLDateUpdate(option));
-		actions.add(new ActionStoreLDateSelect(option));		
+		actions.add(new ActionStoreLDateUpdate(option));		
 		return actions;
 	}
 	

@@ -2,16 +2,13 @@ package br.com.gda.business.store.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
@@ -39,7 +36,7 @@ public final class StoreUpdateSingle implements SqlStmt<StoreInfo> {
 		this.stmtOption.tableName = SqlDbTable.STORE_TABLE;
 		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser();
+		this.stmtOption.resultParser = null;
 		this.stmtOption.whereClause = buildWhereClause();
 	}
 	
@@ -132,16 +129,5 @@ public final class StoreUpdateSingle implements SqlStmt<StoreInfo> {
 			
 			return stmt;
 		}		
-	}
-	
-	
-	
-	private class ResultParser implements SqlResultParser<StoreInfo> {
-		@Override public List<StoreInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<StoreInfo> finalResult = new ArrayList<>();
-			StoreInfo emptyInfo = new StoreInfo();
-			finalResult.add(emptyInfo);			
-			return finalResult;
-		}
 	}
 }

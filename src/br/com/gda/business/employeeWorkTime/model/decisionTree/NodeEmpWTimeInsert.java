@@ -61,17 +61,17 @@ final class NodeEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpWTimeInfo> getAsAction() {
-		return tree.getAsAction();
-	}
-	
-	
-	
 	private List<DeciAction<EmpWTimeInfo>> buildActionsOnFailed(DeciTreeOption<EmpWTimeInfo> option) {
 		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionEmpWTimeUpdate(option));
 		return actions;
+	}
+	
+	
+	
+	@Override public DeciAction<EmpWTimeInfo> getAsAction() {
+		return tree.getAsAction();
 	}
 	
 	

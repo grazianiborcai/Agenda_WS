@@ -7,6 +7,7 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
+import br.com.gda.business.timeRange.info.TimeRangeInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
@@ -70,6 +71,26 @@ public final class EmpLDateInfo implements Cloneable {
 		storeEmp.codEmployee = codEmployee;
 		storeEmp.codLanguage = codLanguage;
 		return storeEmp;
+	}
+	
+	
+	
+	public TimeRangeInfo toTimeRangeInfo() {
+		TimeRangeInfo timeRange = new TimeRangeInfo();
+		
+		if (dateValidFrom != null)
+			timeRange.dateValidFrom = LocalDate.of(dateValidFrom.getYear(), dateValidFrom.getMonth(), dateValidFrom.getDayOfMonth());
+		
+		if (dateValidTo != null)
+			timeRange.dateValidTo = LocalDate.of(dateValidTo.getYear(), dateValidTo.getMonth(), dateValidTo.getDayOfMonth());
+		
+		if (timeValidFrom != null)
+			timeRange.timeValidFrom = LocalTime.of(timeValidFrom.getHour(), timeValidFrom.getMinute(), timeValidFrom.getSecond());
+		
+		if (timeValidTo != null)
+			timeRange.timeValidTo = LocalTime.of(timeValidTo.getHour(), timeValidTo.getMinute(), timeValidTo.getSecond());
+		
+		return timeRange;
 	}
 	
 	

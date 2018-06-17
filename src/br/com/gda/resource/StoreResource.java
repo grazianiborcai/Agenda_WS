@@ -75,7 +75,7 @@ public class StoreResource {
 	public Response insertStore(String incomingData) {
 		//TODO: verificar fluxo: Store com status inativo/eliminado
 		//TODO: campos latitude e longitude não setão sendo preenchidos
-		//TODO: não tem campos de horário de funcionamento
+		//TODO: n�o tem campos de hor�rio de funcionamento
 		Model modelInsert = new StoreModelInsert(incomingData);
 		modelInsert.executeRequest();
 		return modelInsert.getResponse();

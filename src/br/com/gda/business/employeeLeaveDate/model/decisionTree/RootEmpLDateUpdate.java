@@ -10,6 +10,7 @@ import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckKey;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckOwner;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckStore;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckStoreEmp;
+import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckTimeRange;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -52,6 +53,9 @@ public final class RootEmpLDateUpdate implements DeciTree<EmpLDateInfo> {
 		checker = new EmpLDateCheckKey();
 		stack.add(checker);
 		
+		checker = new EmpLDateCheckTimeRange();
+		stack.add(checker);
+		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
@@ -63,14 +67,14 @@ public final class RootEmpLDateUpdate implements DeciTree<EmpLDateInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpLDateCheckStore(checkerOption);
+		checker = new EmpLDateCheckEmp(checkerOption);
 		stack.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpLDateCheckEmp(checkerOption);
+		checker = new EmpLDateCheckStore(checkerOption);
 		stack.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();

@@ -9,7 +9,7 @@ import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckExist;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckOwner;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckStore;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckStoreEmp;
-import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckTime;
+import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckTimeRange;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -50,7 +50,7 @@ public final class RootEmpLDateInsert implements DeciTree<EmpLDateInfo> {
 		checker = new EmpLDateCheckWrite();
 		stack.add(checker);
 		
-		checker = new EmpLDateCheckTime();
+		checker = new EmpLDateCheckTimeRange();
 		stack.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -64,14 +64,14 @@ public final class RootEmpLDateInsert implements DeciTree<EmpLDateInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpLDateCheckStore(checkerOption);
+		checker = new EmpLDateCheckEmp(checkerOption);
 		stack.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpLDateCheckEmp(checkerOption);
+		checker = new EmpLDateCheckStore(checkerOption);
 		stack.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
@@ -94,9 +94,9 @@ public final class RootEmpLDateInsert implements DeciTree<EmpLDateInfo> {
 	
 	
 	private List<DeciAction<EmpLDateInfo>> buildActionsOnPassed(DeciTreeOption<EmpLDateInfo> option) {
-		List<DeciAction<EmpLDateInfo>> actions = new ArrayList<>();
-		
+		List<DeciAction<EmpLDateInfo>> actions = new ArrayList<>();		
 		actions.add(new NodeEmpLDateInsert(option).getAsAction());	
+		actions.add(new ActionEmpLDateSelect(option));
 		return actions;
 	}
 	

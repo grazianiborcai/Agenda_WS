@@ -1,28 +1,36 @@
-package br.com.gda.business.storeLeaveDate.model.checker;
+package br.com.gda.business.timeRange.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
+import br.com.gda.business.timeRange.info.TimeRangeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
-public final class StoreLDateCheckTime extends ModelCheckerTemplate<StoreLDateInfo> {
+public final class TimeRangeCheckRange extends ModelCheckerTemplate<TimeRangeInfo> {
 	private final boolean OK = true;
 	private final boolean BAD_RANGE = false;
 	
-	public StoreLDateCheckTime() {
+	public TimeRangeCheckRange() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(StoreLDateInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(TimeRangeInfo recordInfo, Connection conn, String schemaName) {	
+		if (recordInfo.dateValidFrom == null || recordInfo.dateValidTo == null ||
+			recordInfo.timeValidFrom == null || recordInfo.timeValidTo == null	)
+			return BAD_RANGE;	
+		
 		if (recordInfo.dateValidFrom.isAfter(recordInfo.dateValidTo))			
 			return BAD_RANGE;		
 		
 		if (recordInfo.dateValidFrom.isEqual(recordInfo.dateValidTo) &&
 			recordInfo.timeValidFrom.isAfter(recordInfo.timeValidTo))			
+			return BAD_RANGE;	
+		
+		if (recordInfo.dateValidFrom.isEqual(recordInfo.dateValidTo) &&
+			recordInfo.timeValidFrom.equals(recordInfo.timeValidTo))			
 			return BAD_RANGE;	
 		
 		return OK;

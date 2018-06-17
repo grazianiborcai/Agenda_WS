@@ -56,8 +56,7 @@ public final class NodeEmpLDateInsert implements DeciTree<EmpLDateInfo> {
 	private List<DeciAction<EmpLDateInfo>> buildActionsOnPassed(DeciTreeOption<EmpLDateInfo> option) {
 		List<DeciAction<EmpLDateInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionEmpLDateInsert(option));
-		actions.add(new ActionEmpLDateSelect(option));		
+		actions.add(new ActionEmpLDateInsert(option));				
 		return actions;
 	}
 	
@@ -66,8 +65,7 @@ public final class NodeEmpLDateInsert implements DeciTree<EmpLDateInfo> {
 	private List<DeciAction<EmpLDateInfo>> buildActionsOnFailed(DeciTreeOption<EmpLDateInfo> option) {
 		List<DeciAction<EmpLDateInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionEmpLDateUpdate(option));
-		actions.add(new ActionEmpLDateSelect(option));		
+		actions.add(new ActionEmpLDateUpdate(option));	
 		return actions;
 	}
 	

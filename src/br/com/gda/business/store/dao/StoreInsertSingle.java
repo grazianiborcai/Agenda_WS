@@ -25,8 +25,7 @@ public final class StoreInsertSingle implements SqlStmt<StoreInfo> {
 	
 	public StoreInsertSingle(Connection conn, StoreInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
-		
+		buildStmt();		
 	}
 	
 	
@@ -39,7 +38,7 @@ public final class StoreInsertSingle implements SqlStmt<StoreInfo> {
 		this.stmtOption.tableName = SqlDbTable.STORE_TABLE;
 		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser();
+		this.stmtOption.resultParser = new ResultParser(recordInfo);
 		this.stmtOption.whereClause = null;
 	}
 	
@@ -52,8 +51,7 @@ public final class StoreInsertSingle implements SqlStmt<StoreInfo> {
 	
 	
 	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
+		stmtSql.generateStmt();		
 	}
 
 	
@@ -113,9 +111,17 @@ public final class StoreInsertSingle implements SqlStmt<StoreInfo> {
 	
 	
 	private class ResultParser implements SqlResultParser<StoreInfo> {
+		private StoreInfo recordInfo;
+		
+		public ResultParser(StoreInfo recordToParse) {
+			recordInfo = recordToParse;
+		}
+		
+		
+		
 		@Override public List<StoreInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreInfo> finalResult = new ArrayList<>();
-			StoreInfo recordInfo = new StoreInfo();
+			recordInfo.codStore = lastId;
 			finalResult.add(recordInfo);			
 			return finalResult;
 		}

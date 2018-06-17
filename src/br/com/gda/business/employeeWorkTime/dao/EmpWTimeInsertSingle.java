@@ -2,10 +2,8 @@ package br.com.gda.business.employeeWorkTime.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.sql.SqlStmtOption;
@@ -15,7 +13,6 @@ import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 
@@ -43,7 +40,7 @@ public final class EmpWTimeInsertSingle implements SqlStmt<EmpWTimeInfo> {
 		this.stmtOption.tableName = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;
 		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser();
+		this.stmtOption.resultParser = null;
 		this.stmtOption.whereClause = null;
 	}
 	
@@ -101,16 +98,5 @@ public final class EmpWTimeInsertSingle implements SqlStmt<EmpWTimeInfo> {
 	
 	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
 		return new EmpWTimeInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	private class ResultParser implements SqlResultParser<EmpWTimeInfo> {
-		@Override public List<EmpWTimeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<EmpWTimeInfo> finalResult = new ArrayList<>();
-			EmpWTimeInfo emptyInfo = new EmpWTimeInfo();
-			finalResult.add(emptyInfo);			
-			return finalResult;
-		}
 	}
 }

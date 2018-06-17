@@ -7,7 +7,7 @@ import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckExist;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckOwner;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckStore;
-import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckTime;
+import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckTimeRange;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -46,7 +46,7 @@ public final class RootStoreLDateUpdate implements DeciTree<StoreLDateInfo> {
 		checker = new StoreLDateCheckWrite();
 		stack.add(checker);
 		
-		checker = new StoreLDateCheckTime();
+		checker = new StoreLDateCheckTimeRange();
 		stack.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

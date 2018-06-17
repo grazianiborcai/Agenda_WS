@@ -77,6 +77,6 @@ public final class EmpLDateCheckExist extends ModelCheckerTemplate<EmpLDateInfo>
 		if (checkerResult == RECORD_EXIST)
 			return SystemCode.EMPLOYEE_LEAVE_DATE_ALREADY_EXIST;
 			
-		return SystemCode.STORE_LEAVE_DATE_NOT_FOUND;
+		return SystemCode.EMPLOYEE_LEAVE_DATE_NOT_FOUND;
 	}
 }
