@@ -27,11 +27,11 @@ public final class MatGroupWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "Cod_group" :
-					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codGroup));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codGroup));
 					break;
 					
 				case "Cod_business" :
-					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codBusiness));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codBusiness));
 					break;
 			}
 		}		

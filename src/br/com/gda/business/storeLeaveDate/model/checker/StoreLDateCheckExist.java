@@ -65,18 +65,18 @@ public final class StoreLDateCheckExist extends ModelCheckerTemplate<StoreLDateI
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_LEAVE_DATE_ALREADY_EXIST)
-			return SystemMessage.STORE_LEAVE_DATE_ALREADY_EXIST;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_LDATE_ALREADY_EXIST)
+			return SystemMessage.STORE_LDATE_ALREADY_EXIST;
 		
-		return SystemMessage.STORE_LEAVE_DATE_NOT_FOUND;
+		return SystemMessage.STORE_LDATE_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == RECORD_EXIST)
-			return SystemCode.STORE_LEAVE_DATE_ALREADY_EXIST;	
+			return SystemCode.STORE_LDATE_ALREADY_EXIST;	
 			
-		return SystemCode.STORE_LEAVE_DATE_NOT_FOUND;
+		return SystemCode.STORE_LDATE_NOT_FOUND;
 	}
 }

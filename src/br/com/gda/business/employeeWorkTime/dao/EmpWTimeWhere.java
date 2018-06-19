@@ -27,23 +27,23 @@ final class EmpWTimeWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "cod_owner" :
-					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
 					break;
 				
 				case "cod_store" :
-					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codStore));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codStore));
 					break;
 					
 				case "cod_employee" :
-					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
 					break;
 					
 				case "weekday" :
-					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codWeekday));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codWeekday));
 					break;
 					
 				case "record_mode" :
-					builder.addClause(eachColumn, recordInfo.recordMode);
+					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
 		}

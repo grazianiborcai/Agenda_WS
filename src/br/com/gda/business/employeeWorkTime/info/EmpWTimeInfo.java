@@ -7,6 +7,7 @@ import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
+import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
@@ -81,6 +82,26 @@ public class EmpWTimeInfo implements Cloneable {
 		store.txtWeekday = txtWeekday;
 		store.codLanguage = codLanguage;
 		return store;
+	}
+	
+	
+	
+	public StoreWTimeInfo toStoreWTimeInfo() {
+		StoreWTimeInfo storeWTime = new StoreWTimeInfo();
+		storeWTime.codOwner = codOwner;
+		storeWTime.codStore = codStore;
+		storeWTime.codWeekday = codWeekday;
+		storeWTime.txtWeekday = txtWeekday;
+		storeWTime.codTimezone = codTimezone;
+		storeWTime.codLanguage = codLanguage;		
+		
+		if (beginTime != null) 
+			storeWTime.beginTime = LocalTime.of(beginTime.getHour(), beginTime.getMinute(), beginTime.getSecond());
+			
+		if (endTime != null) 
+			storeWTime.endTime = LocalTime.of(endTime.getHour(), endTime.getMinute(), endTime.getSecond());
+		
+		return storeWTime;
 	}
 	
 	

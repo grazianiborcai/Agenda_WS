@@ -26,7 +26,7 @@ public final class CurrencyWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "Cod_curr" :
-					builder.addClause(eachColumn, recordInfo.codCurr);
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codCurr);
 					break;
 			}
 		}		

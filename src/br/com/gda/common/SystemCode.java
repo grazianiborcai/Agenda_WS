@@ -13,9 +13,11 @@ public final class SystemCode {
 	public static final int INTERNAL_ERROR 								= 500;
 	
 	// Employee Working Time
-	public static final int EMPLOYEE_WORK_TIME_ALREADY_EXIST 			= 1000;
-	public static final int EMPLOYEE_WORK_TIME_NOT_FOUND 				= 1001;
-	public static final int EMPLOYEE_WORK_FLAGGED_AS_DELETED 			= 1002;
+	public static final int EMP_WTIME_ALREADY_EXIST 					= 1000;
+	public static final int EMP_WTIME_NOT_FOUND 						= 1001;
+	public static final int EMP_WTIME_FLAGGED_AS_DELETED 				= 1002;
+	public static final int EMP_WTIME_RANGE_CONFLICT 					= 1003;
+	public static final int EMP_WTIME_NO_RANGE_FOUND 					= 1004;
 	
 	// Employee
 	public static final int EMPLOYEE_ALREADY_EXIST 						= 1050;
@@ -38,12 +40,14 @@ public final class SystemCode {
 	public static final int STORE_MAT_EMP_ALREADY_EXIST 				= 1107;
 	public static final int STORE_MAT_EMP_NOT_FOUND 					= 1108;
 	public static final int STORE_MAT_EMP_FLAGGED_AS_DELETED 			= 1109;
-	public static final int STORE_WORK_TIME_NOT_FOUND 					= 1110;
-	public static final int STORE_WORK_TIME_ALREADY_EXIST				= 1111;
-	public static final int STORE_WORK_TIME_FLAGGED_AS_DELETED 			= 1112;		
-	public static final int STORE_LEAVE_DATE_NOT_FOUND 					= 1113;
-	public static final int STORE_LEAVE_DATE_ALREADY_EXIST				= 1114;
-	public static final int STORE_LEAVE_DATE_FLAGGED_AS_DELETED 		= 1115;	
+	public static final int STORE_WTIME_NOT_FOUND 						= 1110;
+	public static final int STORE_WTIME_ALREADY_EXIST					= 1111;
+	public static final int STORE_WTIME_FLAGGED_AS_DELETED 				= 1112;		
+	public static final int STORE_LDATE_NOT_FOUND 						= 1113;
+	public static final int STORE_LDATE_ALREADY_EXIST					= 1114;
+	public static final int STORE_LDATE_FLAGGED_AS_DELETED 				= 1115;	
+	public static final int STORE_WTIME_VALID_WORKHOUR					= 1116;
+	public static final int STORE_WTIME_WORKHOUR_OUT_OF_RANGE			= 1117;
 	
 	// Master Data
 	public static final int EMP_POS_ALREADY_EXIST						= 1150;

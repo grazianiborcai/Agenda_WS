@@ -82,10 +82,12 @@ public final class SystemMessage {
 	public static final String EMPLOYEE_MULTIPLE_ENTRIES_FOUND = "Multiple entries found for Employee's data selection";	
 	public static final String EMPLOYEE_NOT_FOUND = "Employee's data not found on DB";	
 	public static final String EMPLOYEE_SINGLE_ENTRY_FOUND = "Single entry found for Employee's data selection";
-	public static final String EMPLOYEE_WORK_FLAGGED_AS_DELETED = "Employee's working time data is flagged as deleted on DB";
-	public static final String EMPLOYEE_WORK_TIME_NOT_FOUND = "Employee's working time data not found on DB";		
-	public static final String EMPLOYEE_WORK_TIME_ALREALDY_EXIST = "Employee's working time data already exist on DB";	
-	
+	public static final String EMP_WTIME_ALREALDY_EXIST = "Employee's working time data already exist on DB";
+	public static final String EMP_WTIME_FLAGGED_AS_DELETED = "Employee's working time data is flagged as deleted on DB";			
+	public static final String EMP_WTIME_NO_RANGE_FOUND = "Employee's working time range not found on DB";	
+	public static final String EMP_WTIME_NOT_FOUND = "Employee's working time data not found on DB";	
+	public static final String EMP_WTIME_RANGE_CONFLICT = "Employee's working time range conflict";		
+		
 
 			
 	//Store		
@@ -99,10 +101,12 @@ public final class SystemMessage {
 	public static final String STORE_MAT_EMP_ALREALDY_EXIST = "Employee's material data already exist on DB";
 	public static final String STORE_MAT_EMP_FLAGGED_AS_DELETED = "Employee's material data is flagged as deleted on DB";
 	public static final String STORE_MAT_EMP_NOT_FOUND = "Employee's material data not found on DB";		
-	public static final String STORE_LEAVE_DATE_ALREADY_EXIST = "Store's leave date already exist on DB";
-	public static final String STORE_LEAVE_DATE_FLAGGED_AS_DELETED = "Store leave date data is flagged as deleted on DB";	
-	public static final String STORE_LEAVE_DATE_NOT_FOUND = "Store's leave date not found on DB";	
-	public static final String STORE_WORK_TIME_ALREADY_EXIST = "Store's working time already exist on DB";
-	public static final String STORE_WORK_TIME_FLAGGED_AS_DELETED = "Store working time data is flagged as deleted on DB";	
-	public static final String STORE_WORK_TIME_NOT_FOUND = "Store's working time not found on DB";
+	public static final String STORE_LDATE_ALREADY_EXIST = "Store's leave date already exist on DB";
+	public static final String STORE_LDATE_FLAGGED_AS_DELETED = "Store leave date data is flagged as deleted on DB";	
+	public static final String STORE_LDATE_NOT_FOUND = "Store's leave date not found on DB";	
+	public static final String STORE_WTIME_ALREADY_EXIST = "Store's working time already exist on DB";
+	public static final String STORE_WTIME_FLAGGED_AS_DELETED = "Store working time data is flagged as deleted on DB";	
+	public static final String STORE_WTIME_NOT_FOUND = "Store's working time not found on DB";
+	public static final String STORE_WTIME_VALID_WORKHOUR = "Selected time is valid for Store working time range";	
+	public static final String STORE_WTIME_WORKHOUR_OUT_OF_RANGE = "Selected time is out of range of Store working time";
 }

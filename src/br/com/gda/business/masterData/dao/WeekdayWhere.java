@@ -27,7 +27,7 @@ public final class WeekdayWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "Weekday" :
-					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codWeekday));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codWeekday));
 					break;
 			}
 		}		

@@ -79,12 +79,12 @@ public final class StoreWTimeCheckSoftDelete extends ModelCheckerTemplate<StoreW
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {	
-		return SystemMessage.STORE_WORK_TIME_FLAGGED_AS_DELETED;
+		return SystemMessage.STORE_WTIME_FLAGGED_AS_DELETED;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.STORE_WORK_TIME_FLAGGED_AS_DELETED;	
+		return SystemCode.STORE_WTIME_FLAGGED_AS_DELETED;	
 	}
 }

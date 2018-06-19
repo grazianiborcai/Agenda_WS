@@ -26,7 +26,7 @@ public final class TimezoneWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "cod_timezone" :
-					builder.addClause(eachColumn, recordInfo.codTimezone);
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codTimezone);
 					break;
 			}
 		}		

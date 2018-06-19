@@ -10,6 +10,7 @@ import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckKey;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckOwner;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStore;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStoreEmp;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStoreTime;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWeekday;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
@@ -94,6 +95,13 @@ public final class RootEmpWTimeUpdate implements DeciTree<EmpWTimeInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckExist(checkerOption);
 		stack.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpWTimeCheckStoreTime(checkerOption);
+		stack.add(checker);		
 		
 		return new ModelCheckerStack<>(stack);
 	}

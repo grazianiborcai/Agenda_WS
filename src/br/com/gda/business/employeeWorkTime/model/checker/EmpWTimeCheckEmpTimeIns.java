@@ -5,8 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employeeWorkTime.dao.EmpWTimeSelect;
+import br.com.gda.business.employeeWorkTime.dao.EmpWTimeSelectTRangeIns;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
+import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -14,12 +15,12 @@ import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public class EmpWTimeCheckExist extends ModelCheckerTemplate<EmpWTimeInfo> {
+public final class EmpWTimeCheckEmpTimeIns extends ModelCheckerTemplate<EmpWTimeInfo> {
 	private final boolean RECORD_EXIST = true;
 	private final boolean NO_ENTRY_FOUND = false;
 	
 	
-	public EmpWTimeCheckExist(ModelCheckerOption option) {
+	public EmpWTimeCheckEmpTimeIns(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -27,7 +28,9 @@ public class EmpWTimeCheckExist extends ModelCheckerTemplate<EmpWTimeInfo> {
 	
 	@Override protected boolean checkHook(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {	
 		try {
-			List<EmpWTimeInfo> resultset = executeStmt(recordInfo, conn, schemaName);
+			
+			EmpWTimeInfo enforcedInfo = enforceNoStore(recordInfo);
+			List<EmpWTimeInfo> resultset = executeStmt(enforcedInfo, conn, schemaName);
 			
 			if (resultset == null || resultset.isEmpty())
 				return NO_ENTRY_FOUND;
@@ -37,6 +40,13 @@ public class EmpWTimeCheckExist extends ModelCheckerTemplate<EmpWTimeInfo> {
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
 		}
+	}
+	
+	
+	private EmpWTimeInfo enforceNoStore(EmpWTimeInfo recordInfo) throws CloneNotSupportedException {
+		EmpWTimeInfo clonedInfo = (EmpWTimeInfo) recordInfo.clone();
+		clonedInfo.codStore = DefaultValue.number();
+		return clonedInfo;
 	}
 	
 	
@@ -59,24 +69,24 @@ public class EmpWTimeCheckExist extends ModelCheckerTemplate<EmpWTimeInfo> {
 		List<SqlStmtExecOption<EmpWTimeInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new EmpWTimeSelect(stmtExecOptions);
+		return new EmpWTimeSelectTRangeIns(stmtExecOptions);
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMP_WTIME_ALREADY_EXIST)
-			return SystemMessage.EMP_WTIME_ALREALDY_EXIST;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.EMP_WTIME_RANGE_CONFLICT)
+			return SystemMessage.EMP_WTIME_RANGE_CONFLICT;
 		
-		return SystemMessage.EMP_WTIME_NOT_FOUND;
+		return SystemMessage.EMP_WTIME_NO_RANGE_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == RECORD_EXIST)
-			return SystemCode.EMP_WTIME_ALREADY_EXIST;	
+			return SystemCode.EMP_WTIME_RANGE_CONFLICT;	
 			
-		return SystemCode.EMP_WTIME_NOT_FOUND;
+		return SystemCode.EMP_WTIME_NO_RANGE_FOUND;
 	}
 }

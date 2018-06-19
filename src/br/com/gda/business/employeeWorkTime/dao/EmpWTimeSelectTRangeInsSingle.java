@@ -1,14 +1,14 @@
 package br.com.gda.business.employeeWorkTime.dao;
 
 import java.sql.Connection;
+
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-
-public final class EmpWTimeSelectSingle extends EmpWTimeSelectTemplate {
+public final class EmpWTimeSelectTRangeInsSingle extends EmpWTimeSelectTemplate {
 	
-	public EmpWTimeSelectSingle(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
+	public EmpWTimeSelectTRangeInsSingle(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -22,7 +22,7 @@ public final class EmpWTimeSelectSingle extends EmpWTimeSelectTemplate {
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		SqlStmtWhere whereClause = new EmpWTimeWhere(whereOption, tableName, recordInfo);
+		SqlStmtWhere whereClause = new EmpWTimeWhereTRangeIns(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 }

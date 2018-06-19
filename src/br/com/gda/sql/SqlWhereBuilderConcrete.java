@@ -19,6 +19,7 @@ class SqlWhereBuilderConcrete implements SqlWhereBuilder {
 	
 	private SqlWhereBuilderOption option;
 	private List<DataClause> dataClauses = new ArrayList<>();
+	private List<BuilderToMerger> builders = new ArrayList<>();
 	
 	
 	
@@ -29,22 +30,39 @@ class SqlWhereBuilderConcrete implements SqlWhereBuilder {
 	
 	
 	public SqlWhereBuilderConcrete(SqlWhereBuilderOption option) {
-		if (option == null)
-			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
-		
+		checkArgument(option);		
 		this.option = option;
 	}
 	
 	
 	
-	public void addClause(SqlColumn column, String value) {
-		appendClause(column, value, SqlDictionary.AND);
+	private void checkArgument(SqlWhereBuilderOption option) {
+		if (option == null)
+			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
 	}
 	
 	
 	
-	private void appendClause(SqlColumn column, String value, String operator) {
-		if (shouldSkipColumn(column, value) == SKIP)
+	public void addClauseEqualAnd(SqlColumn column, String value) {
+		addClauseAnd(column, value, SqlWhereCondition.EQUAL);
+	}
+	
+	
+	
+	public void addClauseAnd(SqlColumn column, String value, SqlWhereCondition condition) {
+		appendClause(column, value, SqlWhereOperator.AND.getSymbol(), condition);
+	}
+	
+	
+	
+	public void addClauseOr(SqlColumn column, String value, SqlWhereCondition condition) {
+		appendClause(column, value, SqlWhereOperator.OR.getSymbol(), condition);
+	}
+	
+	
+	
+	private void appendClause(SqlColumn column, String value, String operator, SqlWhereCondition condition) {
+		if (shouldSkipColumn(column, value))
 			return;
 
 		DataClause clause = new DataClause();
@@ -52,6 +70,7 @@ class SqlWhereBuilderConcrete implements SqlWhereBuilder {
 		clause.columnName = column.columnName;
 		clause.columnValue = value;
 		clause.operator = operator;
+		clause.condition = condition.getSymbol();
 		this.dataClauses.add(clause);
 	}
 	
@@ -72,30 +91,35 @@ class SqlWhereBuilderConcrete implements SqlWhereBuilder {
 	
 	
 	
+	public void mergeBuilder(SqlWhereBuilder builder, SqlWhereOperator operator) {
+		checkArgument(builder, operator);
+		
+		BuilderToMerger builderToMerge = new BuilderToMerger();
+		builderToMerge.builder = builder;
+		builderToMerge.operator = operator;
+		
+		builders.add(builderToMerge);
+	}
+	
+	
+	
+	private void checkArgument(SqlWhereBuilder builder, SqlWhereOperator operator) {
+		if (builder == null)
+			throw new NullPointerException("builder" + SystemMessage.NULL_ARGUMENT);
+		
+		if (operator == null)
+			throw new NullPointerException("operator" + SystemMessage.NULL_ARGUMENT);
+	}
+	
+	
+	
 	public String generateClause() {		
 		tryToCheckBeforeGeneration();		
 		
-		if (isDataClauseEmpty() == IS_EMPTY && option.dummyClauseWhenEmpty == DUMMY_CLAUSE_REQUESTED)
+		if (shouldReturnDummy())
 			return dummyClause();
 		
-		
-		StringBuilder resultClause = new StringBuilder();
-		Iterator<DataClause> dataClauseItr = this.dataClauses.iterator();
-		
-		while (dataClauseItr.hasNext()) {
-			DataClause eachData = dataClauseItr.next();
-			String clause = buildWhereClause(eachData.tableName, eachData.columnName, eachData.columnValue);
-			
-			resultClause.append(clause);
-			
-			if (dataClauseItr.hasNext()) {
-				resultClause.append(SqlDictionary.SPACE);
-				resultClause.append(eachData.operator);
-				resultClause.append(SqlDictionary.SPACE);
-			}
-		}
-		
-		return resultClause.toString();
+		return generate();
 	}
 	
 	
@@ -119,6 +143,15 @@ class SqlWhereBuilderConcrete implements SqlWhereBuilder {
 	
 	
 	
+	private boolean shouldReturnDummy() {
+		if (isDataClauseEmpty() == IS_EMPTY && option.dummyClauseWhenEmpty == DUMMY_CLAUSE_REQUESTED)
+			return true;
+		
+		return false;
+	}
+	
+	
+	
 	private boolean isDataClauseEmpty() {
 		if (this.dataClauses == null || this.dataClauses.isEmpty())
 			return IS_EMPTY;
@@ -134,7 +167,55 @@ class SqlWhereBuilderConcrete implements SqlWhereBuilder {
 	
 	
 	
-	private String buildWhereClause(String tableName, String columnName, String value) {		
+	private String generate() {	
+		StringBuilder resultClause = new StringBuilder();
+		Iterator<DataClause> dataClauseItr = this.dataClauses.iterator();
+		
+		while (dataClauseItr.hasNext()) {
+			DataClause eachData = dataClauseItr.next();
+			String clause = buildWhereClause(eachData.tableName, eachData.columnName, eachData.columnValue, eachData.condition);
+			
+			resultClause.append(clause);
+			
+			if (dataClauseItr.hasNext()) {
+				resultClause.append(SqlDictionary.SPACE);
+				resultClause.append(eachData.operator);
+				resultClause.append(SqlDictionary.SPACE);
+			}
+		}
+		
+		
+		return mergeResult(resultClause.toString());
+	}
+	
+	
+	
+	private String mergeResult(String resultToMerge) {
+		if (builders.isEmpty())
+			return resultToMerge;
+		
+		StringBuilder result = new StringBuilder();
+		result.append(SqlDictionary.PARENTHESIS_OPENING);
+		result.append(resultToMerge);
+		result.append(SqlDictionary.PARENTHESIS_CLOSING);
+		
+		
+		for (BuilderToMerger eachBuilder : builders) {
+			result.append(SqlDictionary.SPACE);
+			result.append(eachBuilder.operator.getSymbol());
+			result.append(SqlDictionary.SPACE);
+			result.append(SqlDictionary.PARENTHESIS_OPENING);
+			result.append(eachBuilder.builder.generateClause());
+			result.append(SqlDictionary.PARENTHESIS_CLOSING);
+		}
+		
+		
+		return result.toString();
+	}
+	
+	
+	
+	private String buildWhereClause(String tableName, String columnName, String value, String condition) {		
 		if (value == null)
 			return buildClauseIsNull(tableName, columnName);
 		
@@ -143,7 +224,7 @@ class SqlWhereBuilderConcrete implements SqlWhereBuilder {
 		resultClause.append(SqlDictionary.PERIOD);
 		resultClause.append(columnName);
 		resultClause.append(SqlDictionary.SPACE);
-		resultClause.append(SqlDictionary.EQUAL);
+		resultClause.append(condition);
 		resultClause.append(SqlDictionary.SPACE);
 		resultClause.append(SqlDictionary.QUOTE);
 		resultClause.append(value);
@@ -174,6 +255,15 @@ class SqlWhereBuilderConcrete implements SqlWhereBuilder {
 		private String tableName;
 		private String columnName; 
 		private String columnValue; 
-		private String operator;		
+		private String operator;
+		private String condition;
+	}
+	
+	
+	
+	
+	private static class BuilderToMerger {
+		private SqlWhereBuilder builder;
+		private SqlWhereOperator operator;		
 	}
 }

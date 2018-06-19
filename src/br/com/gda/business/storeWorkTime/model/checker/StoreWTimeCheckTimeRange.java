@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.storeWorkTime.dao.StoreWTimeSelect;
+import br.com.gda.business.storeWorkTime.dao.StoreWTimeSelectTRange;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -14,12 +14,12 @@ import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class StoreWTimeCheckExist extends ModelCheckerTemplate<StoreWTimeInfo> {
+public final class StoreWTimeCheckTimeRange extends ModelCheckerTemplate<StoreWTimeInfo> {
 	private final boolean RECORD_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	
 	
-	public StoreWTimeCheckExist(ModelCheckerOption option) {
+	public StoreWTimeCheckTimeRange(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -59,23 +59,23 @@ public final class StoreWTimeCheckExist extends ModelCheckerTemplate<StoreWTimeI
 		List<SqlStmtExecOption<StoreWTimeInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new StoreWTimeSelect(stmtExecOptions);
+		return new StoreWTimeSelectTRange(stmtExecOptions);
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_WTIME_ALREADY_EXIST)
-			return SystemMessage.STORE_WTIME_ALREADY_EXIST;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_WTIME_VALID_WORKHOUR)
+			return SystemMessage.STORE_WTIME_VALID_WORKHOUR;
 		
-		return SystemMessage.STORE_WTIME_NOT_FOUND;
+		return SystemMessage.STORE_WTIME_WORKHOUR_OUT_OF_RANGE;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == RECORD_EXIST)
-			return SystemCode.STORE_WTIME_ALREADY_EXIST;	
+			return SystemCode.STORE_WTIME_WORKHOUR_OUT_OF_RANGE;	
 			
 		return SystemCode.STORE_WTIME_NOT_FOUND;
 	}

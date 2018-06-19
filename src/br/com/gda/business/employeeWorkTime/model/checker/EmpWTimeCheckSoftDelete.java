@@ -78,12 +78,12 @@ public final class EmpWTimeCheckSoftDelete extends ModelCheckerTemplate<EmpWTime
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {	
-		return SystemMessage.EMPLOYEE_WORK_FLAGGED_AS_DELETED;
+		return SystemMessage.EMP_WTIME_FLAGGED_AS_DELETED;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.EMPLOYEE_WORK_FLAGGED_AS_DELETED;	
+		return SystemCode.EMP_WTIME_FLAGGED_AS_DELETED;	
 	}
 }

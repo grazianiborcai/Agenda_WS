@@ -79,12 +79,12 @@ public final class StoreLDateCheckSoftDelete extends ModelCheckerTemplate<StoreL
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {	
-		return SystemMessage.STORE_LEAVE_DATE_FLAGGED_AS_DELETED;
+		return SystemMessage.STORE_LDATE_FLAGGED_AS_DELETED;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.STORE_LEAVE_DATE_FLAGGED_AS_DELETED;	
+		return SystemCode.STORE_LDATE_FLAGGED_AS_DELETED;	
 	}
 }

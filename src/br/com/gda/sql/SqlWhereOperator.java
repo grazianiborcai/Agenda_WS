@@ -1,12 +1,12 @@
 package br.com.gda.sql;
 
-public enum SqlWhereCondition {
-EQUAL("="), NOT_EQUAL("<>"), GREATER_OR_EQUAL(">="), LESS_OR_EQUAL("<=");
+public enum SqlWhereOperator {
+AND("AND"), OR("OR");
 	
 	private final String symbol;
 	
 	
-	private SqlWhereCondition(String condSymbol) {
+	private SqlWhereOperator(String condSymbol) {
 		symbol = condSymbol;
 	}
 	

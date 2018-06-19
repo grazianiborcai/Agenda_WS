@@ -29,28 +29,28 @@ public final class MatWhere implements SqlStmtWhere {
 		for (SqlColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
 				case "Cod_owner" :
-					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
 					break;
 					
 				case "Cod_material" :
-					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codMat));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codMat));
 					break;
 					
 				case "Cod_type" :
-					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codType));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codType));
 					break;
 					
 				case "Cod_group" :
-					builder.addClause(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codGroup));
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codGroup));
 					break;
 					
 				case "Language":
 					if (tableName == SqlDbTable.MATERIAL_TEXT_TABLE)
-						builder.addClause(eachColumn, recordInfo.codLanguage);
+						builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 					
 				case "record_mode" :
-					builder.addClause(eachColumn, recordInfo.recordMode);
+					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
 		}		
