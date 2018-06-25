@@ -7,7 +7,7 @@ import br.com.gda.business.materialEmployee.dao.MatEmpSelect;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelper;
+import br.com.gda.model.decisionTree.DeciActionHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
@@ -19,7 +19,7 @@ public final class ActionMatEmpSelect implements DeciAction<MatEmpInfo> {
 	
 	public ActionMatEmpSelect(DeciTreeOption<MatEmpInfo> option) {
 		SqlStmtExec<MatEmpInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	

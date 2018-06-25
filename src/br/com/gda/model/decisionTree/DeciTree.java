@@ -7,5 +7,5 @@ public interface DeciTree<T> {
 	
 	public DeciResult<T> getDecisionResult();
 	
-	public DeciAction<T> getAsAction();
+	public DeciAction<T> toAction();
 }

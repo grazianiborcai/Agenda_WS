@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.masterData.model.checker.WeekdayCheckRead;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -39,7 +39,7 @@ public final class RootWeekdaySelect implements DeciTree<WeekdayInfo> {
 		checker = new WeekdayCheckRead();
 		stack.add(checker);
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 
 		
@@ -71,7 +71,7 @@ public final class RootWeekdaySelect implements DeciTree<WeekdayInfo> {
 	
 	
 	
-	@Override public DeciAction<WeekdayInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<WeekdayInfo> toAction() {
+		return tree.toAction();
 	}
 }

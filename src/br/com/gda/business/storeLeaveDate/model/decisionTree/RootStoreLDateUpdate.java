@@ -11,7 +11,7 @@ import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckTimeRange
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -70,7 +70,7 @@ public final class RootStoreLDateUpdate implements DeciTree<StoreLDateInfo> {
 		checker = new StoreLDateCheckExist(checkerOption);
 		stack.add(checker);	
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -103,7 +103,7 @@ public final class RootStoreLDateUpdate implements DeciTree<StoreLDateInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreLDateInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<StoreLDateInfo> toAction() {
+		return tree.toAction();
 	}
 }

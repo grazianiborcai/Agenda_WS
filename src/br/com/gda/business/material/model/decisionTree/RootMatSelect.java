@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.checker.MatCheckRead;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -39,7 +39,7 @@ public final class RootMatSelect implements DeciTree<MatInfo> {
 		checker = new MatCheckRead();
 		stack.add(checker);
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -71,7 +71,7 @@ public final class RootMatSelect implements DeciTree<MatInfo> {
 	
 	
 	
-	@Override public DeciAction<MatInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<MatInfo> toAction() {
+		return tree.toAction();
 	}
 }

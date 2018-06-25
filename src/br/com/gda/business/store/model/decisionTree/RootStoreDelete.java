@@ -8,7 +8,7 @@ import br.com.gda.business.store.model.checker.StoreCheckExist;
 import br.com.gda.business.store.model.checker.StoreCheckKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -55,7 +55,7 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 		checker = new StoreCheckExist(checkerOption);
 		stack.add(checker);		
 		
-		 return new ModelCheckerStack<StoreInfo>(stack);
+		 return new ModelCheckerQueue<StoreInfo>(stack);
 	}
 	
 	
@@ -87,7 +87,7 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<StoreInfo> toAction() {
+		return tree.toAction();
 	}
 }

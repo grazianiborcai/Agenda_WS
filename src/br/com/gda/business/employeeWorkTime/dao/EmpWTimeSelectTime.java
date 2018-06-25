@@ -8,12 +8,12 @@ import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecHelper;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class EmpWTimeSelectTRangeIns implements SqlStmtExec<EmpWTimeInfo> {
+public final class EmpWTimeSelectTime implements SqlStmtExec<EmpWTimeInfo> {
 	private SqlStmtExec<EmpWTimeInfo> helper;
 	
 	
-	public EmpWTimeSelectTRangeIns(List<SqlStmtExecOption<EmpWTimeInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, EmpWTimeSelectTRangeInsSingle.class, EmpWTimeInfo.class);
+	public EmpWTimeSelectTime(List<SqlStmtExecOption<EmpWTimeInfo>> options) {
+		helper = new SqlStmtExecHelper<>(options, EmpWTimeSelectTimeSingle.class, EmpWTimeInfo.class);
 	}
 	
 	

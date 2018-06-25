@@ -7,7 +7,7 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.checker.StoreCheckKeyCnpj;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -49,7 +49,7 @@ public final class NodeStoreUpdateL1 implements DeciTree<StoreInfo> {
 		checker = new StoreCheckKeyCnpj(checkerOption);
 		stack.add(checker);	
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -67,7 +67,7 @@ public final class NodeStoreUpdateL1 implements DeciTree<StoreInfo> {
 	private List<DeciAction<StoreInfo>> buildActionsOnFailed(DeciTreeOption<StoreInfo> option) {
 		List<DeciAction<StoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new NodeStoreUpdateL2(option).getAsAction());	
+		actions.add(new NodeStoreUpdateL2(option).toAction());	
 		return actions;
 	}
 	
@@ -91,7 +91,7 @@ public final class NodeStoreUpdateL1 implements DeciTree<StoreInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<StoreInfo> toAction() {
+		return tree.toAction();
 	}
 }

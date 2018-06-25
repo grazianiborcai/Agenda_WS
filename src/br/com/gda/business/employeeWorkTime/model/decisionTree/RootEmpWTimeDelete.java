@@ -8,7 +8,7 @@ import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckExist;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -50,13 +50,13 @@ public final class RootEmpWTimeDelete implements DeciTree<EmpWTimeInfo> {
 		checker = new EmpWTimeCheckExist(checkerOption);
 		stack.add(checker);		
 		
-		 return new ModelCheckerStack<EmpWTimeInfo>(stack);
+		 return new ModelCheckerQueue<EmpWTimeInfo>(stack);
 	}
 	
 	
 	
-	@Override public DeciAction<EmpWTimeInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<EmpWTimeInfo> toAction() {
+		return tree.toAction();
 	}
 	
 	

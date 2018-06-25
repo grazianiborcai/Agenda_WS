@@ -12,7 +12,7 @@ import br.com.gda.business.store.model.checker.StoreCheckTimezone;
 import br.com.gda.business.store.model.checker.StoreCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
@@ -77,7 +77,7 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 		checker = new StoreCheckCnpjExist(checkerOption);
 		stack.add(checker);	
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -113,7 +113,7 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 		
 	
 	
-	@Override public DeciAction<StoreInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<StoreInfo> toAction() {
+		return tree.toAction();
 	}
 }

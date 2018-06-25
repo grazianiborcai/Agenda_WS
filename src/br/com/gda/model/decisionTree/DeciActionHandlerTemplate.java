@@ -6,7 +6,7 @@ import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 
-public class DeciActionHandlerTemplate<T,S> implements DeciActionHandler<T> {
+public abstract class DeciActionHandlerTemplate<T,S> implements DeciActionHandler<T> {
 	private final boolean SUCCESS = true;
 	private final boolean FAIL = false;
 	

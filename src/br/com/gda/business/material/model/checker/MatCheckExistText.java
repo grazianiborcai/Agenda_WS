@@ -84,9 +84,9 @@ public final class MatCheckExistText extends ModelCheckerTemplate<MatInfo> {
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
 		if (makeFailureCodeHook(checkerResult) == SystemCode.MATERIAL_TEXT_ALREADY_EXIST)
-			return SystemMessage.MATERIAL_TEXT_ALREALDY_EXIST;
+			return SystemMessage.MAT_TEXT_ALREALDY_EXIST;
 		
-		return SystemMessage.MATERIAL_TEXT_NOT_FOUND;
+		return SystemMessage.MAT_TEXT_NOT_FOUND;
 	}
 	
 	

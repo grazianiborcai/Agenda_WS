@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckRead;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -39,13 +39,13 @@ public class RootEmpLDateSelect implements DeciTree<EmpLDateInfo> {
 		checker = new EmpLDateCheckRead();
 		stack.add(checker);
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
 	
-	@Override public DeciAction<EmpLDateInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<EmpLDateInfo> toAction() {
+		return tree.toAction();
 	}
 	
 	

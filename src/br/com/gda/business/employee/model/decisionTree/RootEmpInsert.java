@@ -10,7 +10,7 @@ import br.com.gda.business.employee.model.checker.EmpCheckGenField;
 import br.com.gda.business.employee.model.checker.EmpCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -59,13 +59,13 @@ public final class RootEmpInsert implements DeciTree<EmpInfo> {
 		checker = new EmpCheckExistCpf(checkerOption);
 		stack.add(checker);	
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
 	
-	@Override public DeciAction<EmpInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<EmpInfo> toAction() {
+		return tree.toAction();
 	}
 	
 	

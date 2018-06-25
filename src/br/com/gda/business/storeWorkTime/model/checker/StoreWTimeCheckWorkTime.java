@@ -14,12 +14,12 @@ import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class StoreWTimeCheckTimeRange extends ModelCheckerTemplate<StoreWTimeInfo> {
+public final class StoreWTimeCheckWorkTime extends ModelCheckerTemplate<StoreWTimeInfo> {
 	private final boolean RECORD_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	
 	
-	public StoreWTimeCheckTimeRange(ModelCheckerOption option) {
+	public StoreWTimeCheckWorkTime(ModelCheckerOption option) {
 		super(option);
 	}
 	

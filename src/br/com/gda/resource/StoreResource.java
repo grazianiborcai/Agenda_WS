@@ -41,6 +41,8 @@ import br.com.gda.business.storeWorkTime.model.StoreWTimeModelDelete;
 import br.com.gda.business.storeWorkTime.model.StoreWTimeModelInsert;
 import br.com.gda.business.storeWorkTime.model.StoreWTimeModelSelect;
 import br.com.gda.business.storeWorkTime.model.StoreWTimeModelUpdate;
+import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
+import br.com.gda.business.storeWorkTimeConflict.model.StoreCoModelSelect;
 import br.com.gda.model.Model;
 import br.com.gda.model.legacy.StoreModel;
 
@@ -67,6 +69,7 @@ public class StoreResource {
 	private static final String UPDATE_STORE_LEAVE_DATE = "/updateStoreLeaveDate";
 	private static final String DELETE_STORE_LEAVE_DATE = "/deleteStoreLeaveDate";
 	private static final String SELECT_STORE_LOCATION = "/selectStoreLoc";
+	private static final String SELECT_STORE_WORK_TIME_CONFLICT = "/selectStoreWorkTimeConflict";
 
 	
 	@POST
@@ -392,5 +395,28 @@ public class StoreResource {
 		Model modelDelete = new StoreLDateModelDelete(recordInfo);
 		modelDelete.executeRequest();
 		return modelDelete.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STORE_WORK_TIME_CONFLICT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStoreWTimeConflict(@HeaderParam("codOwner")   @DefaultValue("-1") long codOwner, 
+			                                 @HeaderParam("codStore")   @DefaultValue("-1") int codStore,
+			                                 @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday,
+			                                 @HeaderParam("beginTime")  @DefaultValue("12:00") String beginTime,
+			                                 @HeaderParam("endTime")    @DefaultValue("12:00") String endTime) {
+
+		StoreCoInfo recordInfo = new StoreCoInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codWeekday = codWeekday;
+		recordInfo.beginTime = LocalTime.parse(beginTime, DateTimeFormatter.ISO_LOCAL_TIME);
+		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
+		
+		Model storeSelect = new StoreCoModelSelect(recordInfo);
+		storeSelect.executeRequest();
+		return storeSelect.getResponse();
 	}
 }

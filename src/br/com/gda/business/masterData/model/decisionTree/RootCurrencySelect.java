@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.model.checker.CurrencyCheckRead;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -39,7 +39,7 @@ public final class RootCurrencySelect implements DeciTree<CurrencyInfo> {
 		checker = new CurrencyCheckRead();
 		stack.add(checker);
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -71,7 +71,7 @@ public final class RootCurrencySelect implements DeciTree<CurrencyInfo> {
 	
 	
 	
-	@Override public DeciAction<CurrencyInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<CurrencyInfo> toAction() {
+		return tree.toAction();
 	}
 }

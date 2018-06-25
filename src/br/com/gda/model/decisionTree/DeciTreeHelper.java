@@ -153,7 +153,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	
-	@Override public DeciAction<T> getAsAction() {
+	@Override public DeciAction<T> toAction() {
 		return new DeciTreeAdapter<>(this);
 	}
 }

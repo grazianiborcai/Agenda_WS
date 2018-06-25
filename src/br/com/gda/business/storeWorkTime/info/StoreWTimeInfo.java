@@ -5,6 +5,8 @@ import java.time.LocalTime;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
+import br.com.gda.business.timeRange.info.TimeRangeInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
@@ -56,6 +58,42 @@ public final class StoreWTimeInfo implements Cloneable {
 		store.txtWeekday = txtWeekday;
 		store.codLanguage = codLanguage;
 		return store;
+	}
+	
+	
+	
+	public TimeRangeInfo toTimeRangeInfo() {
+		TimeRangeInfo timeRange = new TimeRangeInfo();
+		
+		if (beginTime != null)
+			timeRange.beginTime = LocalTime.of(beginTime.getHour(), beginTime.getMinute(), beginTime.getSecond());
+		
+		if (endTime != null)
+			timeRange.endTime = LocalTime.of(endTime.getHour(), endTime.getMinute(), endTime.getSecond());
+		
+		return timeRange;
+	} 
+	
+	
+	
+	public StoreCoInfo toStoreCoInfo() {
+		StoreCoInfo storeCo = new StoreCoInfo();
+		storeCo.codOwner = codOwner;
+		storeCo.codStore = codStore;
+		storeCo.codWeekday = codWeekday;
+		storeCo.txtWeekday = txtWeekday;		
+		storeCo.codTimezone = codTimezone;
+		storeCo.codLanguage = codLanguage;
+		storeCo.recordMode = recordMode;	
+		
+		if (beginTime != null)
+			storeCo.beginTime = LocalTime.of(beginTime.getHour(), beginTime.getMinute(), beginTime.getSecond());
+		
+		if (endTime != null)
+			storeCo.endTime = LocalTime.of(endTime.getHour(), endTime.getMinute(), endTime.getSecond());
+		
+		
+		return storeCo;
 	}
 	
 	

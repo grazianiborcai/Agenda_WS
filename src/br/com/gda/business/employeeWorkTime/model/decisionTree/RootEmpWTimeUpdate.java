@@ -15,7 +15,7 @@ import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWeekday;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -103,7 +103,7 @@ public final class RootEmpWTimeUpdate implements DeciTree<EmpWTimeInfo> {
 		checker = new EmpWTimeCheckStoreTime(checkerOption);
 		stack.add(checker);		
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -111,8 +111,8 @@ public final class RootEmpWTimeUpdate implements DeciTree<EmpWTimeInfo> {
 	private List<DeciAction<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
 		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionEmpWTimeUpdate(option));
-		actions.add(new ActionEmpWTimeSelect(option));
+		actions.add(new ActionEmpWTimeDelete(option));
+		actions.add(new NodeEmpWTimeUpdate(option).toAction());
 		return actions;
 	}
 	
@@ -136,7 +136,7 @@ public final class RootEmpWTimeUpdate implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpWTimeInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<EmpWTimeInfo> toAction() {
+		return tree.toAction();
 	}
 }

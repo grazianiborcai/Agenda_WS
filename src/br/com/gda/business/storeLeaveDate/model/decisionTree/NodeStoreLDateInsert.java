@@ -7,7 +7,7 @@ import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckSoftDelete;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -48,7 +48,7 @@ public final class NodeStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 		checker = new StoreLDateCheckSoftDelete(checkerOption);
 		stack.add(checker);	
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -89,7 +89,7 @@ public final class NodeStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreLDateInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<StoreLDateInfo> toAction() {
+		return tree.toAction();
 	}
 }

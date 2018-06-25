@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckExist;
+import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckHasCo;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckOwner;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckStore;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckTime;
@@ -12,7 +13,7 @@ import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckWeekday;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -43,6 +44,7 @@ public final class RootStoreWTimeUpdate implements DeciTree<StoreWTimeInfo> {
 		ModelChecker<StoreWTimeInfo> checker;
 		ModelCheckerOption checkerOption;
 		final boolean EXIST_ON_DB = true;
+		final boolean DONT_EXIST_ON_DB = false;
 		
 		checker = new StoreWTimeCheckWrite();
 		stack.add(checker);
@@ -78,7 +80,14 @@ public final class RootStoreWTimeUpdate implements DeciTree<StoreWTimeInfo> {
 		checker = new StoreWTimeCheckExist(checkerOption);
 		stack.add(checker);	
 		
-		return new ModelCheckerStack<>(stack);
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
+		checker = new StoreWTimeCheckHasCo(checkerOption);
+		stack.add(checker);	
+		
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -111,7 +120,7 @@ public final class RootStoreWTimeUpdate implements DeciTree<StoreWTimeInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreWTimeInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<StoreWTimeInfo> toAction() {
+		return tree.toAction();
 	}
 }

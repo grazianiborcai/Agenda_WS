@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckRead;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -39,7 +39,7 @@ public final class RootStoreLDateSelect implements DeciTree<StoreLDateInfo> {
 		checker = new StoreLDateCheckRead();
 		stack.add(checker);
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -71,7 +71,7 @@ public final class RootStoreLDateSelect implements DeciTree<StoreLDateInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreLDateInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<StoreLDateInfo> toAction() {
+		return tree.toAction();
 	}
 }

@@ -11,11 +11,11 @@ import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStoreEmp;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStoreTime;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWeekday;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEmp;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEmpTimeIns;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEmpTime;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -105,16 +105,16 @@ public final class RootEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new EmpWTimeCheckEmpTimeIns(checkerOption);
+		checker = new EmpWTimeCheckEmpTime(checkerOption);
 		stack.add(checker);	
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
 	
-	@Override public DeciAction<EmpWTimeInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<EmpWTimeInfo> toAction() {
+		return tree.toAction();
 	}
 	
 	
@@ -122,7 +122,7 @@ public final class RootEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 	private List<DeciAction<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
 		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		
-		actions.add(new NodeEmpWTimeInsert(option).getAsAction());	
+		actions.add(new NodeEmpWTimeInsert(option).toAction());	
 		actions.add(new ActionEmpWTimeSelect(option));
 		return actions;
 	}

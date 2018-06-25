@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckRead;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -39,13 +39,13 @@ public final class RootEmpWTimeSelect implements DeciTree<EmpWTimeInfo> {
 		checker = new EmpWTimeCheckRead();
 		stack.add(checker);
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
 	
-	@Override public DeciAction<EmpWTimeInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<EmpWTimeInfo> toAction() {
+		return tree.toAction();
 	}
 	
 	

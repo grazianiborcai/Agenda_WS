@@ -7,7 +7,7 @@ import br.com.gda.business.masterData.dao.BusinessSelect;
 import br.com.gda.business.masterData.info.BusinessInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelper;
+import br.com.gda.model.decisionTree.DeciActionHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
@@ -19,7 +19,7 @@ public final class ActionBusinessSelect implements DeciAction<BusinessInfo> {
 	
 	public ActionBusinessSelect(DeciTreeOption<BusinessInfo> option) {
 		SqlStmtExec<BusinessInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	

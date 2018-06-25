@@ -7,7 +7,7 @@ import br.com.gda.business.masterData.dao.WeekdaySelect;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelper;
+import br.com.gda.model.decisionTree.DeciActionHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
@@ -19,7 +19,7 @@ public final class ActionWeekdaySelect implements DeciAction<WeekdayInfo> {
 	
 	public ActionWeekdaySelect(DeciTreeOption<WeekdayInfo> option) {
 		SqlStmtExec<WeekdayInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	

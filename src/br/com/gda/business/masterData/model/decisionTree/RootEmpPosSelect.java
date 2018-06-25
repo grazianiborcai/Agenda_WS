@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.masterData.info.EmpPosInfo;
 import br.com.gda.business.masterData.model.checker.EmpPosCheckRead;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -39,7 +39,7 @@ public final class RootEmpPosSelect implements DeciTree<EmpPosInfo> {
 		checker = new EmpPosCheckRead();
 		stack.add(checker);
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -71,7 +71,7 @@ public final class RootEmpPosSelect implements DeciTree<EmpPosInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpPosInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<EmpPosInfo> toAction() {
+		return tree.toAction();
 	}
 }

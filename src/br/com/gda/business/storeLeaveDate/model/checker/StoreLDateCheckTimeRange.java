@@ -3,8 +3,8 @@ package br.com.gda.business.storeLeaveDate.model.checker;
 import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
-import br.com.gda.business.timeRange.info.TimeRangeInfo;
-import br.com.gda.business.timeRange.model.checker.TimeRangeCheckRange;
+import br.com.gda.business.timeRange.info.DateTimeRangeInfo;
+import br.com.gda.business.timeRange.model.checker.DateTimeRangeCheckRange;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
@@ -12,11 +12,11 @@ public final class StoreLDateCheckTimeRange extends ModelCheckerTemplate<StoreLD
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<TimeRangeInfo> checker;
+	private ModelChecker<DateTimeRangeInfo> checker;
 	
 	
 	public StoreLDateCheckTimeRange() {
-		checker = new TimeRangeCheckRange();
+		checker = new DateTimeRangeCheckRange();
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class StoreLDateCheckTimeRange extends ModelCheckerTemplate<StoreLD
 	
 	
 	@Override public boolean check(StoreLDateInfo recordInfo) {
-		return checker.check(recordInfo.toTimeRangeInfo());
+		return checker.check(recordInfo.toDateTimeRangeInfo());
 	}
 
 	

@@ -8,7 +8,7 @@ import br.com.gda.business.employee.model.checker.EmpCheckExistKey;
 import br.com.gda.business.employee.model.checker.EmpCheckKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -55,13 +55,13 @@ public final class RootEmpDelete implements DeciTree<EmpInfo> {
 		checker = new EmpCheckExistKey(checkerOption);
 		stack.add(checker);		
 		
-		 return new ModelCheckerStack<EmpInfo>(stack);
+		 return new ModelCheckerQueue<EmpInfo>(stack);
 	}
 	
 	
 	
-	@Override public DeciAction<EmpInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<EmpInfo> toAction() {
+		return tree.toAction();
 	}
 	
 	

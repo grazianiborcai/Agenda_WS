@@ -12,7 +12,7 @@ import br.com.gda.business.store.model.checker.StoreCheckTimezone;
 import br.com.gda.business.store.model.checker.StoreCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -79,7 +79,7 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 		checker = new StoreCheckExist(checkerOption);
 		stack.add(checker);	
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -87,7 +87,7 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 	private List<DeciAction<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
 		List<DeciAction<StoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new NodeStoreUpdateL1(option).getAsAction());	
+		actions.add(new NodeStoreUpdateL1(option).toAction());	
 		return actions;
 	}
 	
@@ -111,7 +111,7 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<StoreInfo> toAction() {
+		return tree.toAction();
 	}
 }

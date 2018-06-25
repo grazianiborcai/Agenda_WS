@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employeeWorkTime.dao.EmpWTimeSelectTRangeIns;
+import br.com.gda.business.employeeWorkTime.dao.EmpWTimeSelectTime;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemCode;
@@ -15,12 +15,12 @@ import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class EmpWTimeCheckEmpTimeIns extends ModelCheckerTemplate<EmpWTimeInfo> {
+public final class EmpWTimeCheckEmpTime extends ModelCheckerTemplate<EmpWTimeInfo> {
 	private final boolean RECORD_EXIST = true;
 	private final boolean NO_ENTRY_FOUND = false;
 	
 	
-	public EmpWTimeCheckEmpTimeIns(ModelCheckerOption option) {
+	public EmpWTimeCheckEmpTime(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -69,7 +69,7 @@ public final class EmpWTimeCheckEmpTimeIns extends ModelCheckerTemplate<EmpWTime
 		List<SqlStmtExecOption<EmpWTimeInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new EmpWTimeSelectTRangeIns(stmtExecOptions);
+		return new EmpWTimeSelectTime(stmtExecOptions);
 	}
 	
 	

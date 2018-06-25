@@ -8,7 +8,7 @@ import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckExist;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -51,13 +51,13 @@ public final class RootEmpLDateDelete implements DeciTree<EmpLDateInfo> {
 		checker = new EmpLDateCheckExist(checkerOption);
 		stack.add(checker);		
 		
-		 return new ModelCheckerStack<EmpLDateInfo>(stack);
+		 return new ModelCheckerQueue<EmpLDateInfo>(stack);
 	}
 	
 	
 	
-	@Override public DeciAction<EmpLDateInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<EmpLDateInfo> toAction() {
+		return tree.toAction();
 	}
 	
 	

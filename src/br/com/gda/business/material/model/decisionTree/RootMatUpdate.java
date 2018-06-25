@@ -16,7 +16,7 @@ import br.com.gda.business.material.model.checker.MatCheckUnit;
 import br.com.gda.business.material.model.checker.MatCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -111,7 +111,7 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 		checker = new MatCheckExistKey(checkerOption);
 		stack.add(checker);		
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -120,7 +120,7 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 		List<DeciAction<MatInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionMatUpdateAttr(option));
-		actions.add(new NodeMatUpdateText(option).getAsAction());
+		actions.add(new NodeMatUpdateText(option).toAction());
 		actions.add(new ActionMatSelect(option));
 		return actions;
 	}
@@ -145,7 +145,7 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 	
 	
 	
-	@Override public DeciAction<MatInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<MatInfo> toAction() {
+		return tree.toAction();
 	}
 }

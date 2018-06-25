@@ -4,19 +4,19 @@ import java.sql.Connection;
 import java.util.List;
 
 
-public final class ModelCheckerStack<T> extends ModelCheckerTemplate<T>{
-	private List<ModelChecker<T>> stackChecker;
+public final class ModelCheckerQueue<T> extends ModelCheckerTemplate<T>{
+	private List<ModelChecker<T>> queueChecker; //TODO: renomear variáveis de Stack para Queue nas subclasses
 	private ModelChecker<T> failedChecker;
 	
-	public ModelCheckerStack(List<ModelChecker<T>> stack) {
+	public ModelCheckerQueue(List<ModelChecker<T>> stack) {
 		super();	
-		stackChecker = stack;
+		queueChecker = stack;
 	}
 	
 	
 	
 	@Override protected boolean checkHook(T recordInfo, Connection conn, String schemaName) {		
-		for (ModelChecker<T> eachChecker : this.stackChecker) {
+		for (ModelChecker<T> eachChecker : this.queueChecker) {
 			boolean resultChecker = eachChecker.check(recordInfo);
 			
 			if (resultChecker == RESULT_FAILED) {

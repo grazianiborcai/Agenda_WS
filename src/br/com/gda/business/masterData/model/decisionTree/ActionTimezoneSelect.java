@@ -7,7 +7,7 @@ import br.com.gda.business.masterData.dao.TimezoneSelect;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelper;
+import br.com.gda.model.decisionTree.DeciActionHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
@@ -19,7 +19,7 @@ public final class ActionTimezoneSelect implements DeciAction<TimezoneInfo> {
 	
 	public ActionTimezoneSelect(DeciTreeOption<TimezoneInfo> option) {
 		SqlStmtExec<TimezoneInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelper<>(sqlStmtExecutor);
+		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	

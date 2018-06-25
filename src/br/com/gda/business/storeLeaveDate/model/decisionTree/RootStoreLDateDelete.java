@@ -8,7 +8,7 @@ import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckExist;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -54,7 +54,7 @@ public final class RootStoreLDateDelete implements DeciTree<StoreLDateInfo> {
 		checker = new StoreLDateCheckExist(checkerOption);
 		stack.add(checker);		
 		
-		 return new ModelCheckerStack<StoreLDateInfo>(stack);
+		 return new ModelCheckerQueue<StoreLDateInfo>(stack);
 	}
 	
 	
@@ -86,7 +86,7 @@ public final class RootStoreLDateDelete implements DeciTree<StoreLDateInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreLDateInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<StoreLDateInfo> toAction() {
+		return tree.toAction();
 	}
 }

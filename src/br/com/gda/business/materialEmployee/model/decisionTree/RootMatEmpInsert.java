@@ -13,7 +13,7 @@ import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckStoreEmp;
 import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -92,7 +92,7 @@ public final class RootMatEmpInsert implements DeciTree<MatEmpInfo> {
 		checker = new MatEmpCheckExist(checkerOption);
 		stack.add(checker);	
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -100,7 +100,7 @@ public final class RootMatEmpInsert implements DeciTree<MatEmpInfo> {
 	private List<DeciAction<MatEmpInfo>> buildActionsOnPassed(DeciTreeOption<MatEmpInfo> option) {
 		List<DeciAction<MatEmpInfo>> actions = new ArrayList<>();
 		
-		actions.add(new NodeMatEmpInsert(option).getAsAction());	
+		actions.add(new NodeMatEmpInsert(option).toAction());	
 		return actions;
 	}
 	
@@ -124,7 +124,7 @@ public final class RootMatEmpInsert implements DeciTree<MatEmpInfo> {
 	
 	
 	
-	@Override public DeciAction<MatEmpInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<MatEmpInfo> toAction() {
+		return tree.toAction();
 	}
 }

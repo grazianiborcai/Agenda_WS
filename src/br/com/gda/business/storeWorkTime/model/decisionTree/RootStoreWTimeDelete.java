@@ -8,7 +8,7 @@ import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckExist;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -51,7 +51,7 @@ public final class RootStoreWTimeDelete implements DeciTree<StoreWTimeInfo> {
 		checker = new StoreWTimeCheckExist(checkerOption);
 		stack.add(checker);		
 		
-		 return new ModelCheckerStack<StoreWTimeInfo>(stack);
+		 return new ModelCheckerQueue<StoreWTimeInfo>(stack);
 	}
 	
 	
@@ -83,7 +83,7 @@ public final class RootStoreWTimeDelete implements DeciTree<StoreWTimeInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreWTimeInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<StoreWTimeInfo> toAction() {
+		return tree.toAction();
 	}
 }

@@ -13,7 +13,7 @@ import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckTimeRang
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -88,14 +88,14 @@ public final class RootEmpLDateInsert implements DeciTree<EmpLDateInfo> {
 		checker = new EmpLDateCheckExist(checkerOption);
 		stack.add(checker);	
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
 	
 	private List<DeciAction<EmpLDateInfo>> buildActionsOnPassed(DeciTreeOption<EmpLDateInfo> option) {
 		List<DeciAction<EmpLDateInfo>> actions = new ArrayList<>();		
-		actions.add(new NodeEmpLDateInsert(option).getAsAction());	
+		actions.add(new NodeEmpLDateInsert(option).toAction());	
 		actions.add(new ActionEmpLDateSelect(option));
 		return actions;
 	}
@@ -120,7 +120,7 @@ public final class RootEmpLDateInsert implements DeciTree<EmpLDateInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpLDateInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<EmpLDateInfo> toAction() {
+		return tree.toAction();
 	}
 }

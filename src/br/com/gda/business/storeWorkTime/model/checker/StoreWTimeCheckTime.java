@@ -1,38 +1,56 @@
 package br.com.gda.business.storeWorkTime.model.checker;
 
-import java.sql.Connection;
+import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
+import br.com.gda.business.timeRange.info.TimeRangeInfo;
+import br.com.gda.business.timeRange.model.checker.TimeRangeCheckRange;
+import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerTemplate;
 
 public final class StoreWTimeCheckTime extends ModelCheckerTemplate<StoreWTimeInfo> {
-	private final boolean OK = true;
-	private final boolean BAD_RANGE = false;
+	private final boolean RESULT_FAILED = false;
+	private final boolean RESULT_SUCCESS = true;
+	
+	private ModelChecker<TimeRangeInfo> checker;
+	
 	
 	public StoreWTimeCheckTime() {
-		super();
+		checker = new TimeRangeCheckRange();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(StoreWTimeInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.beginTime.isAfter(recordInfo.endTime))			
-			return BAD_RANGE;		
+	@Override public boolean check(List<StoreWTimeInfo> recordInfos) {
+		for (StoreWTimeInfo eachInfo : recordInfos) {
+			if (check(eachInfo) == RESULT_FAILED)
+				return RESULT_FAILED;
+		}
 		
-		return OK;
+		return RESULT_SUCCESS;
 	}
+
 	
 	
-	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.BAD_TIME_RANGE;
+	@Override public boolean check(StoreWTimeInfo recordInfo) {
+		return checker.check(recordInfo.toTimeRangeInfo());
 	}
+
 	
 	
+	@Override public boolean getResult() {
+		return checker.getResult();
+	}
+
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.BAD_TIME_RANGE;
+	
+	@Override public String getFailureExplanation() {
+		return checker.getFailureExplanation();
+	}
+
+	
+	
+	@Override public int getFailureCode() {
+		return checker.getFailureCode();
 	}
 }

@@ -6,9 +6,9 @@ import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-public final class EmpWTimeSelectTRangeInsSingle extends EmpWTimeSelectTemplate {
+public final class EmpWTimeSelectTimeSingle extends EmpWTimeSelectTemplate {
 	
-	public EmpWTimeSelectTRangeInsSingle(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
+	public EmpWTimeSelectTimeSingle(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -22,7 +22,7 @@ public final class EmpWTimeSelectTRangeInsSingle extends EmpWTimeSelectTemplate 
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		SqlStmtWhere whereClause = new EmpWTimeWhereTRangeIns(whereOption, tableName, recordInfo);
+		SqlStmtWhere whereClause = new EmpWTimeWhereTime(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 }

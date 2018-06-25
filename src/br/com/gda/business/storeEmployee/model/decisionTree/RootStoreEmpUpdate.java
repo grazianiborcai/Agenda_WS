@@ -11,7 +11,7 @@ import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckStore;
 import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -74,7 +74,7 @@ public final class RootStoreEmpUpdate implements DeciTree<StoreEmpInfo> {
 		checker = new StoreEmpCheckExist(checkerOption);
 		stack.add(checker);		
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -107,7 +107,7 @@ public final class RootStoreEmpUpdate implements DeciTree<StoreEmpInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreEmpInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<StoreEmpInfo> toAction() {
+		return tree.toAction();
 	}
 }

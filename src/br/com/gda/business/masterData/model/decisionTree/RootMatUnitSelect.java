@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.business.masterData.model.checker.MatUnitCheckRead;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -39,7 +39,7 @@ public final class RootMatUnitSelect implements DeciTree<MatUnitInfo> {
 		checker = new MatUnitCheckRead();
 		stack.add(checker);
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -71,7 +71,7 @@ public final class RootMatUnitSelect implements DeciTree<MatUnitInfo> {
 	
 	
 	
-	@Override public DeciAction<MatUnitInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<MatUnitInfo> toAction() {
+		return tree.toAction();
 	}
 }

@@ -1,35 +1,37 @@
 package br.com.gda.model.decisionTree;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.sql.SqlStmtExec;
 
-public final class DeciActionHelper<T> implements DeciAction<T> {
+abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	private final boolean SUCCESS = true;
 	private final boolean FAILED = false;	
 	
-	private SqlStmtExec<T> stmtExec;
+	//private SqlStmtExec<T> stmtExec;
 	private DeciResultHelper<T> deciResult;
 	private List<DeciActionHandler<T>> postActions;
+	private List<T> resultset = Collections.emptyList();
 	
 	
-	public DeciActionHelper(SqlStmtExec<T> sqlStmtExecutor) {
-		checkArgument(sqlStmtExecutor);
+	public DeciActionHelperTemplate() {
+	//	checkArgument(sqlStmtExecutor);
 		
-		stmtExec = sqlStmtExecutor;
+		//stmtExec = sqlStmtExecutor;
 		deciResult = new DeciResultHelper<>();
 		postActions = new ArrayList<>();
 	}
 	
 	
-	
+	/*
 	private void checkArgument(SqlStmtExec<T> sqlStmtExecutor) {
 		if (sqlStmtExecutor == null)
 			throw new NullPointerException("sqlStmtExecutor" + SystemMessage.NULL_ARGUMENT);
-	}
+	} */
 	
 	
 	
@@ -55,7 +57,7 @@ public final class DeciActionHelper<T> implements DeciAction<T> {
 	
 	private boolean tryToExecuteAction() {
 		try {
-			stmtExec.executeStmt();
+			resultset = tryToExecuteActionHook();
 			buildResultSuccess();
 			return SUCCESS;
 		
@@ -63,6 +65,13 @@ public final class DeciActionHelper<T> implements DeciAction<T> {
 			buildResultFailed();
 			return FAILED;
 		}			
+	}
+	
+	
+	
+	protected List<T> tryToExecuteActionHook() throws SQLException {
+		//Template method to be overridden by subclasses
+		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	
@@ -84,7 +93,7 @@ public final class DeciActionHelper<T> implements DeciAction<T> {
 	
 	private boolean tryToExecutePostActions(DeciActionHandler<T> postAction) {				
 		try {
-			postAction.executeAction(stmtExec.getResultset());
+			postAction.executeAction(resultset);
 			deciResult.copyFrom(postAction.getDecisionResult());
 			return SUCCESS;
 		
@@ -99,7 +108,7 @@ public final class DeciActionHelper<T> implements DeciAction<T> {
 	private void buildResultSuccess() {
 		this.deciResult.finishedWithSuccess = true;
 		this.deciResult.hasResultset = true;
-		this.deciResult.resultset = stmtExec.getResultset();
+		this.deciResult.resultset = resultset;
 	}
 	
 	

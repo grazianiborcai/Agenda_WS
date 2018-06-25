@@ -21,7 +21,7 @@ import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
 
-class EmpWTimeSelectTemplate implements SqlStmt<EmpWTimeInfo> {
+abstract class EmpWTimeSelectTemplate implements SqlStmt<EmpWTimeInfo> {
 	private final String LT_EMPLOYEE_WORK_TIME = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;	
 	private final String RT_WEEKDAY_TEXT = SqlDbTable.WEEKDAY_TEXT_TABLE;
 	private final String RT_STORE = SqlDbTable.STORE_TABLE;

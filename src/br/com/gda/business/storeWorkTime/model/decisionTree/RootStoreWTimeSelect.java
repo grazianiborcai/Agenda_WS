@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckRead;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -39,7 +39,7 @@ public final class RootStoreWTimeSelect implements DeciTree<StoreWTimeInfo> {
 		checker = new StoreWTimeCheckRead();
 		stack.add(checker);
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -71,7 +71,7 @@ public final class RootStoreWTimeSelect implements DeciTree<StoreWTimeInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreWTimeInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<StoreWTimeInfo> toAction() {
+		return tree.toAction();
 	}
 }

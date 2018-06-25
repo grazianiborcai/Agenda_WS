@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.checker.ModelCherckerTrue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
@@ -39,7 +39,7 @@ public final class RootLanguSelect implements DeciTree<LanguInfo> {
 		checker = new ModelCherckerTrue<>();
 		stack.add(checker);
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -71,7 +71,7 @@ public final class RootLanguSelect implements DeciTree<LanguInfo> {
 	
 	
 	
-	@Override public DeciAction<LanguInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<LanguInfo> toAction() {
+		return tree.toAction();
 	}
 }

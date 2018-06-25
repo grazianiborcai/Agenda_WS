@@ -7,22 +7,16 @@ public final class SystemMessage {
 	public static final String NULL_TABLE_NAME = "Table name is null";
 	public static final String TABLE_NOT_FOUND = "table was not found";			
 	public static final String ILLEGAL_ARGUMENT = "IllegalArgument: mandatory argument might be missing or invalid value was passed";	
-	public static final String NULL_WHERE_CLAUSE = "where clause is null";		
-	public static final String MATERIAL_NOT_FOUND = "Material data not found on DB";
+	public static final String NULL_WHERE_CLAUSE = "where clause is null";			
 	public static final String OWNER_ALREALDY_EXIST = "Owner data already exist on DB";		
 	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";				
 	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";			
 	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";
 	public static final String EMP_POS_ALREADY_EXIST = "Position already exist on DB";	
-	public static final String MATERIAL_ALREALDY_EXIST = "Material data already exist on DB";	
-	public static final String EMPLOYEE_ALREALDY_EXIST = "Employee's data already exist on DB";		
-	public static final String MAT_CATEG_ALREADY_EXIST = "Category already exist on DB";
-	public static final String MAT_GROUP_ALREADY_EXIST = "Group already exist on DB";
+	public static final String EMPLOYEE_ALREALDY_EXIST = "Employee's data already exist on DB";	
 	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
-	public static final String MATERIAL_TEXT_NOT_FOUND = "Material text data not found on DB";	
 	public static final String RESULTSET_NOT_APPLICABLE = "Resultset is either not applicable or is empty";		
 	public static final String OPERATION_CANT_BE_PROCESSED = "Not possible to process this operation";	
-	public static final String MATERIAL_TEXT_ALREALDY_EXIST = "Material text data already exist on DB";	
 	public static final String SQL_WHERE_CLAUSE_HAS_NO_COLUMN = "SQL Where clause has no column";	
 	public static final String AUTO_GENERATED_FIELD_IS_NOT_EMPTY = "Auto generated fields should not be passed";
 	public static final String ERROR_CREATING_SKELETON_STATEMENT = "Not possible to create skeleton statment";	
@@ -30,6 +24,7 @@ public final class SystemMessage {
 	
 	
 	//System
+	public static final String CONFLICT = "Conflict detected";
 	public static final String BAD_TIME_RANGE = "Invalid time range";	
 	public static final String DATA_NOT_FOUND = "Data not found";
 	public static final String EMPTY_ARGUMENT = " argument is empty";
@@ -37,7 +32,9 @@ public final class SystemMessage {
 	public static final String INTERNAL_ERROR = "Ops... something went wrong";
 	public static final String KEY_FIELD_IS_EMPTY = "Key field should not be null";
 	public static final String KEY_FIELD_NOT_NULL = "Key field should not be passed";
+	public static final String MULTIPLE_RECORDS = "Multiple records found on DB";
 	public static final String NO_CHECK_PERFORMED = "Check operation was not performed";
+	public static final String NO_CONFLICT = "No conflict detected";
 	public static final String NO_ERROR_FOUND = "No error was found";
 	public static final String NO_IMPLEMENTATION = "There is no implementation for this method";	
 	public static final String NO_RESPONSE = "Main operation was not executed";
@@ -47,9 +44,9 @@ public final class SystemMessage {
 	public static final String NULL_CONN = "Conn is null";
 	public static final String NULL_SCHEMA = "Schema name is null";	
 	public static final String REQUEST_FAILED = "It was not possible to complete your request";
-	public static final String SUCCESS = "Success";			
-		
+	public static final String SUCCESS = "Success";				
 	
+		
 	
 	//Master Data
 	public static final String CURRENCY_ALREADY_EXIST = "Currency already exist on DB";
@@ -57,8 +54,10 @@ public final class SystemMessage {
 	public static final String EMP_POS_NOT_FOUND = "Position not found on DB";	
 	public static final String LANGUAGE_ALREADY_EXIST = "Language already exist on DB";
 	public static final String LANGUAGE_NOT_FOUND = "Language not found on DB";
+	public static final String MAT_CATEG_ALREADY_EXIST = "Category already exist on DB";
 	public static final String MAT_CATEG_NOT_FOUND = "Category not found on DB";
-	public static final String MAT_GROUP_NOT_FOUND = "Group not found on DB";
+	public static final String MAT_GROUP_ALREADY_EXIST = "Group already exist on DB";
+	public static final String MAT_GROUP_NOT_FOUND = "Group not found on DB";	
 	public static final String MAT_TYPE_ALREADY_EXIST = "Type already exist on DB";	
 	public static final String MAT_TYPE_NOT_FOUND = "Type not found on DB";	
 	public static final String UNIT_ALREADY_EXIST = "Unit already exist on DB";
@@ -67,7 +66,15 @@ public final class SystemMessage {
 	public static final String WEEKDAY_NOT_FOUND = "Weekday not found on DB";
 	public static final String TIMEZONE_ALREADY_EXIST = "Timezone already exist on DB";
 	public static final String TIMEZONE_NOT_FOUND = "Timezone not found on DB";
-
+	
+	
+	
+	//Material
+	public static final String MAT_ALREALDY_EXIST = "Material data already exist on DB";	
+	public static final String MAT_NOT_FOUND = "Material data not found on DB";
+	public static final String MAT_TEXT_ALREALDY_EXIST = "Material text data already exist on DB";
+	public static final String MAT_TEXT_NOT_FOUND = "Material text data not found on DB";
+		
 	
 	
 	//Employee

@@ -7,7 +7,7 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.checker.EmpCheckExistKeyCpf;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
@@ -50,7 +50,7 @@ final class NodeEmpUpdateL1 implements DeciTree<EmpInfo> {
 		checker = new EmpCheckExistKeyCpf(checkerOption);
 		stack.add(checker);	
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -92,8 +92,8 @@ final class NodeEmpUpdateL1 implements DeciTree<EmpInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<EmpInfo> toAction() {
+		return tree.toAction();
 	}
 	
 	

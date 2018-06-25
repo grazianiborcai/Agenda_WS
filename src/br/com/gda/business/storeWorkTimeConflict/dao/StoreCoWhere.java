@@ -1,8 +1,8 @@
-package br.com.gda.business.employeeWorkTime.dao;
+package br.com.gda.business.storeWorkTimeConflict.dao;
 
 import java.util.List;
 
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
+import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlFormatterNumber;
@@ -12,20 +12,20 @@ import br.com.gda.sql.SqlWhereBuilderOption;
 import br.com.gda.sql.SqlWhereCondition;
 import br.com.gda.sql.SqlWhereOperator;
 
-public final class EmpWTimeWhereTRangeIns implements SqlStmtWhere {
+public final class StoreCoWhere implements SqlStmtWhere {
 	private String whereClause;	
 	private SqlWhereBuilder builderKey;
 	private SqlWhereBuilder builderBeginTime;
 	private SqlWhereBuilder builderEndTime;
 	
 	
-	public EmpWTimeWhereTRangeIns(SqlWhereBuilderOption whereOption, String tableName, EmpWTimeInfo recordInfo) {
+	public StoreCoWhere(SqlWhereBuilderOption whereOption, String tableName, StoreCoInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, EmpWTimeInfo recordInfo) {
+	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, StoreCoInfo recordInfo) {
 		builderKey = SqlWhereBuilder.factory(whereOption);		
 		builderBeginTime = SqlWhereBuilder.factory(whereOption);
 		builderEndTime = SqlWhereBuilder.factory(whereOption);		
@@ -47,18 +47,14 @@ public final class EmpWTimeWhereTRangeIns implements SqlStmtWhere {
 	
 	
 	
-	private void generateKey(SqlColumn column, EmpWTimeInfo recordInfo) {
+	private void generateKey(SqlColumn column, StoreCoInfo recordInfo) {
 		switch(column.columnName) {
 		case "cod_owner" :
 			builderKey.addClauseEqualAnd(column, SqlFormatterNumber.numberToString(recordInfo.codOwner));
 			break;
-		/*
+			
 		case "cod_store" :
-			builderOne.addClauseEqualAnd(column, SqlFormatterNumber.numberToString(recordInfo.codStore));
-			break;
-		*/
-		case "cod_employee" :
-			builderKey.addClauseEqualAnd(column, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
+			builderKey.addClauseEqualAnd(column, SqlFormatterNumber.numberToString(recordInfo.codStore));
 			break;
 			
 		case "weekday" :
@@ -73,7 +69,7 @@ public final class EmpWTimeWhereTRangeIns implements SqlStmtWhere {
 	
 	
 	
-	private void generateBeginTime(SqlColumn column, EmpWTimeInfo recordInfo) {
+	private void generateBeginTime(SqlColumn column, StoreCoInfo recordInfo) {
 		switch(column.columnName) {
 		case "begin_time" :
 			builderBeginTime.addClauseAnd(column, SqlFormatterNumber.timeToString(recordInfo.beginTime), SqlWhereCondition.LESS_OR_EQUAL);
@@ -87,7 +83,7 @@ public final class EmpWTimeWhereTRangeIns implements SqlStmtWhere {
 	
 	
 	
-	private void generateEndTime(SqlColumn column, EmpWTimeInfo recordInfo) {
+	private void generateEndTime(SqlColumn column, StoreCoInfo recordInfo) {
 		switch(column.columnName) {
 		case "begin_time" :
 			builderEndTime.addClauseAnd(column, SqlFormatterNumber.timeToString(recordInfo.endTime), SqlWhereCondition.LESS_OR_EQUAL);

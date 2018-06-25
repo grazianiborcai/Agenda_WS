@@ -15,7 +15,7 @@ import br.com.gda.business.material.model.checker.MatCheckUnit;
 import br.com.gda.business.material.model.checker.MatCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
@@ -106,7 +106,7 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 		
 		//TODO: verificar se barcode ou código do fornecedor já existe  no banco
 		
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -145,7 +145,7 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 	
 	
 	
-	@Override public DeciAction<MatInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<MatInfo> toAction() {
+		return tree.toAction();
 	}
 }

@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.timeRange.info.TimeRangeInfo;
+import br.com.gda.business.timeRange.info.DateTimeRangeInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.helper.RecordMode;
 
@@ -46,8 +46,8 @@ public final class StoreLDateInfo implements Cloneable {
 	
 	
 	
-	public TimeRangeInfo toTimeRangeInfo() {
-		TimeRangeInfo timeRange = new TimeRangeInfo();
+	public DateTimeRangeInfo toDateTimeRangeInfo() {
+		DateTimeRangeInfo timeRange = new DateTimeRangeInfo();
 		
 		if (dateValidFrom != null)
 			timeRange.dateValidFrom = LocalDate.of(dateValidFrom.getYear(), dateValidFrom.getMonth(), dateValidFrom.getDayOfMonth());

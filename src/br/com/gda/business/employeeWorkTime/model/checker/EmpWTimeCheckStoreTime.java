@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckTimeRange;
+import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckWorkTime;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
@@ -16,7 +16,7 @@ public final class EmpWTimeCheckStoreTime implements ModelChecker<EmpWTimeInfo> 
 	
 	
 	public EmpWTimeCheckStoreTime(ModelCheckerOption option) {
-		checker = new StoreWTimeCheckTimeRange(option);
+		checker = new StoreWTimeCheckWorkTime(option);
 	}
 	
 	

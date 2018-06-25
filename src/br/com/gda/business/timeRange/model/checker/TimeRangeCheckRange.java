@@ -18,19 +18,13 @@ public final class TimeRangeCheckRange extends ModelCheckerTemplate<TimeRangeInf
 	
 	
 	@Override protected boolean checkHook(TimeRangeInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.dateValidFrom == null || recordInfo.dateValidTo == null ||
-			recordInfo.timeValidFrom == null || recordInfo.timeValidTo == null	)
+		if (recordInfo.beginTime == null || recordInfo.endTime == null	)
 			return BAD_RANGE;	
 		
-		if (recordInfo.dateValidFrom.isAfter(recordInfo.dateValidTo))			
-			return BAD_RANGE;		
-		
-		if (recordInfo.dateValidFrom.isEqual(recordInfo.dateValidTo) &&
-			recordInfo.timeValidFrom.isAfter(recordInfo.timeValidTo))			
+		if (recordInfo.beginTime.isAfter(recordInfo.endTime))			
 			return BAD_RANGE;	
 		
-		if (recordInfo.dateValidFrom.isEqual(recordInfo.dateValidTo) &&
-			recordInfo.timeValidFrom.equals(recordInfo.timeValidTo))			
+		if (recordInfo.beginTime.equals(recordInfo.endTime))			
 			return BAD_RANGE;	
 		
 		return OK;

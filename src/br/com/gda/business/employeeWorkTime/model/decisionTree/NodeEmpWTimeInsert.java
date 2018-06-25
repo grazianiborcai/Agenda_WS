@@ -7,7 +7,7 @@ import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckSoftDelete;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerStack;
+import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -47,7 +47,7 @@ final class NodeEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 		checker = new EmpWTimeCheckSoftDelete(checkerOption);
 		stack.add(checker);
 
-		return new ModelCheckerStack<>(stack);
+		return new ModelCheckerQueue<>(stack);
 	}
 	
 	
@@ -70,8 +70,8 @@ final class NodeEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpWTimeInfo> getAsAction() {
-		return tree.getAsAction();
+	@Override public DeciAction<EmpWTimeInfo> toAction() {
+		return tree.toAction();
 	}
 	
 	
