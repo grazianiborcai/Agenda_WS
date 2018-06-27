@@ -37,7 +37,7 @@ public final class NodeMatUpdateText implements DeciTree<MatInfo> {
 	private ModelChecker<MatInfo> buildDecisionChecker(DeciTreeOption<MatInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
-		List<ModelChecker<MatInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
@@ -46,9 +46,9 @@ public final class NodeMatUpdateText implements DeciTree<MatInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new MatCheckExistText(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

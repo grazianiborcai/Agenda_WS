@@ -33,13 +33,13 @@ public final class RootMatEmpSelect implements DeciTree<MatEmpInfo> {
 	
 	
 	private ModelChecker<MatEmpInfo> buildDecisionChecker() {
-		List<ModelChecker<MatEmpInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<MatEmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatEmpInfo> checker;
 		
 		checker = new MatEmpCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

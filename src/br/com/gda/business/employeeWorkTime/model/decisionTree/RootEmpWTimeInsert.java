@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckExist;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckHasCo;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckOwner;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStore;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStoreEmp;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStoreTime;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWeekday;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEmp;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEmpTime;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -45,70 +45,70 @@ public final class RootEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 		final boolean EXIST_ON_DB = true;	
 		final boolean DONT_EXIST_ON_DB = false;
 		
-		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<EmpWTimeInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpWTimeInfo> checker;			
 		ModelCheckerOption checkerOption;
 		
 		checker = new EmpWTimeCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckOwner(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckEmp(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckStore(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckWeekday(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckStoreEmp(checkerOption);
-		stack.add(checker);		
+		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
 		checker = new EmpWTimeCheckExist(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckStoreTime(checkerOption);
-		stack.add(checker);		
+		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new EmpWTimeCheckEmpTime(checkerOption);
-		stack.add(checker);	
+		checker = new EmpWTimeCheckHasCo(checkerOption);
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

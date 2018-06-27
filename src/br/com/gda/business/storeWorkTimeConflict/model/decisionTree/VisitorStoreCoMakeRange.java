@@ -13,13 +13,13 @@ import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionTransVisitor;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class VisitorStoreCoRange implements DeciActionTransVisitor<StoreCoInfo> {
+public final class VisitorStoreCoMakeRange implements DeciActionTransVisitor<StoreCoInfo> {
 	private Connection conn; 
 	private String schemaName;
 	private List<StoreCoInfo> storeWTRanges = new ArrayList<>();
 	
 	
-	public VisitorStoreCoRange(Connection conn, String schemaName) {
+	public VisitorStoreCoMakeRange(Connection conn, String schemaName) {
 		checkArgument(conn, schemaName);
 		
 		this.conn = conn;

@@ -39,27 +39,27 @@ public final class RootEmpInsert implements DeciTree<EmpInfo> {
 	private ModelChecker<EmpInfo> buildDecisionChecker(DeciTreeOption<EmpInfo> option) {
 		final boolean DONT_EXIST_ON_DB = false;	
 		
-		List<ModelChecker<EmpInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checker = new EmpCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checker = new EmpCheckGenField();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checker = new EmpCheckCpf();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
 		checker = new EmpCheckExistCpf(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

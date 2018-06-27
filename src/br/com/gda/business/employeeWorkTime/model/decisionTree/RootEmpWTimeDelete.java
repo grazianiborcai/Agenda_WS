@@ -36,11 +36,11 @@ public final class RootEmpWTimeDelete implements DeciTree<EmpWTimeInfo> {
 	
 	
 	private ModelChecker<EmpWTimeInfo> buildDecisionChecker(DeciTreeOption<EmpWTimeInfo> option) {
-		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<EmpWTimeInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpWTimeInfo> checker;
 		
 		checker = new EmpWTimeCheckKey();
-		stack.add(checker);
+		queue.add(checker);
 		
 		final boolean EXIST_ON_DB = true;	
 		ModelCheckerOption checkerOption = new ModelCheckerOption();
@@ -48,9 +48,9 @@ public final class RootEmpWTimeDelete implements DeciTree<EmpWTimeInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckExist(checkerOption);
-		stack.add(checker);		
+		queue.add(checker);		
 		
-		 return new ModelCheckerQueue<EmpWTimeInfo>(stack);
+		 return new ModelCheckerQueue<EmpWTimeInfo>(queue);
 	}
 	
 	

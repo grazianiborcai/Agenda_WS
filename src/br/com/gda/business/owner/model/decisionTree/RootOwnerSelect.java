@@ -33,13 +33,13 @@ public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 	
 	
 	private ModelChecker<OwnerInfo> buildDecisionChecker() {
-		List<ModelChecker<OwnerInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
 		
 		checker = new OwnerCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

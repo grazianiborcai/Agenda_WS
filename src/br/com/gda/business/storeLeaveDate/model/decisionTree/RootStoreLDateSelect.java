@@ -33,13 +33,13 @@ public final class RootStoreLDateSelect implements DeciTree<StoreLDateInfo> {
 	
 	
 	private ModelChecker<StoreLDateInfo> buildDecisionChecker() {
-		List<ModelChecker<StoreLDateInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreLDateInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreLDateInfo> checker;
 		
 		checker = new StoreLDateCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

@@ -33,13 +33,13 @@ public final class RootMatUnitSelect implements DeciTree<MatUnitInfo> {
 	
 	
 	private ModelChecker<MatUnitInfo> buildDecisionChecker() {
-		List<ModelChecker<MatUnitInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<MatUnitInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatUnitInfo> checker;
 		
 		checker = new MatUnitCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

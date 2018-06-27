@@ -36,12 +36,12 @@ public final class RootStoreWTimeDelete implements DeciTree<StoreWTimeInfo> {
 	
 	
 	private ModelChecker<StoreWTimeInfo> buildDecisionChecker(DeciTreeOption<StoreWTimeInfo> option) {
-		List<ModelChecker<StoreWTimeInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreWTimeInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreWTimeInfo> checker;
 		ModelCheckerOption checkerOption;
 			
 		checker = new StoreWTimeCheckKey();
-		stack.add(checker);
+		queue.add(checker);
 		
 		final boolean EXIST_ON_DB = true;	
 		checkerOption = new ModelCheckerOption();
@@ -49,9 +49,9 @@ public final class RootStoreWTimeDelete implements DeciTree<StoreWTimeInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreWTimeCheckExist(checkerOption);
-		stack.add(checker);		
+		queue.add(checker);		
 		
-		 return new ModelCheckerQueue<StoreWTimeInfo>(stack);
+		 return new ModelCheckerQueue<StoreWTimeInfo>(queue);
 	}
 	
 	

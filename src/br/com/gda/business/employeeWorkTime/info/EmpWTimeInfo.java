@@ -2,6 +2,7 @@ package br.com.gda.business.employeeWorkTime.info;
 
 import java.time.LocalTime;
 
+import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
@@ -82,6 +83,24 @@ public class EmpWTimeInfo implements Cloneable {
 		store.txtWeekday = txtWeekday;
 		store.codLanguage = codLanguage;
 		return store;
+	}
+	
+	
+	
+	public EmpCoInfo toEmpCoInfo() {
+		EmpCoInfo empCoInfo = new EmpCoInfo();
+		empCoInfo.codOwner = codOwner;
+		empCoInfo.codStore = codStore;
+		empCoInfo.codEmployee = codEmployee;
+		empCoInfo.codWeekday = codWeekday;
+		empCoInfo.txtWeekday = txtWeekday;
+		empCoInfo.beginTime = LocalTime.of(beginTime.getHour(), beginTime.getMinute(), beginTime.getSecond());
+		empCoInfo.endTime = LocalTime.of(endTime.getHour(), endTime.getMinute(), endTime.getSecond());
+		empCoInfo.codTimezone = codTimezone;
+		empCoInfo.codLanguage = codLanguage;
+		empCoInfo.recordMode = recordMode;
+		
+		return empCoInfo;
 	}
 	
 	

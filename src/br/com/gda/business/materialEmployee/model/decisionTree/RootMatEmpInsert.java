@@ -43,56 +43,56 @@ public final class RootMatEmpInsert implements DeciTree<MatEmpInfo> {
 		final boolean EXIST_ON_DB = true;	
 		final boolean DONT_EXIST_ON_DB = false;
 		
-		List<ModelChecker<MatEmpInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<MatEmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatEmpInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checker = new MatEmpCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new MatEmpCheckOwner(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new MatEmpCheckStore(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new MatEmpCheckEmp(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new MatEmpCheckMat(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new MatEmpCheckStoreEmp(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
 		checker = new MatEmpCheckExist(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

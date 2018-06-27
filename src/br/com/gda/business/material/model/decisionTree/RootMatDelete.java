@@ -38,22 +38,22 @@ public final class RootMatDelete implements DeciTree<MatInfo> {
 	private ModelChecker<MatInfo> buildDecisionChecker(DeciTreeOption<MatInfo> option) {
 		final boolean EXIST_ON_DB = true;	
 		
-		List<ModelChecker<MatInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checker = new MatCheckKey();
-		stack.add(checker);
+		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new MatCheckExistKey(checkerOption);
-		stack.add(checker);		
+		queue.add(checker);		
 		
-		 return new ModelCheckerQueue<MatInfo>(stack);
+		 return new ModelCheckerQueue<MatInfo>(queue);
 	}
 	
 	

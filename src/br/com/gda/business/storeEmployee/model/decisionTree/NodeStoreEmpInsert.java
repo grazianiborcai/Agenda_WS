@@ -37,7 +37,7 @@ public final class NodeStoreEmpInsert implements DeciTree<StoreEmpInfo> {
 	private ModelChecker<StoreEmpInfo> buildDecisionChecker(DeciTreeOption<StoreEmpInfo> option) {
 		final boolean NOT_DELETED = false;	
 		
-		List<ModelChecker<StoreEmpInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreEmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreEmpInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
@@ -46,9 +46,9 @@ public final class NodeStoreEmpInsert implements DeciTree<StoreEmpInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = NOT_DELETED;		
 		checker = new StoreEmpCheckSoftDelete(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

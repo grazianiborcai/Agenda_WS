@@ -1,4 +1,4 @@
-package br.com.gda.business.storeWorkTimeConflict.dao;
+package br.com.gda.business.employeWorkTimeConflict.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -8,10 +8,10 @@ import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDbTableColumnTemplate;
 
-public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
+public final class EmpCoDbTableColumn extends SqlDbTableColumnTemplate {
 	private Hashtable<String, List<SqlColumn>> tableColumns;	
 	
-	public StoreCoDbTableColumn() {
+	public EmpCoDbTableColumn() {
 		super();
 	}
 	
@@ -20,14 +20,14 @@ public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
 	@Override protected Hashtable<String, List<SqlColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();
 		
-		storeWorkTimeConflictTable();
+		employeeWorkTimeTable();
 		
 		return tableColumns;
 	}
 	
 	
 	
-	private void storeWorkTimeConflictTable() {
+	private void employeeWorkTimeTable() {
 		final String TABLE_NAME = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;
 		
 		SqlColumn oneColumn;
@@ -105,6 +105,6 @@ public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(SqlDbTable.STORE_WT_CONFLICT_VIEW, columns);
+		tableColumns.put(SqlDbTable.EMP_WT_CONFLICT_VIEW, columns);
 	}
 }

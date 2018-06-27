@@ -36,11 +36,11 @@ public final class RootMatEmpDelete implements DeciTree<MatEmpInfo> {
 	
 	
 	private ModelChecker<MatEmpInfo> buildDecisionChecker(DeciTreeOption<MatEmpInfo> option) {
-		List<ModelChecker<MatEmpInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<MatEmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatEmpInfo> checker;
 		
 		checker = new MatEmpCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		final boolean EXIST_ON_DB = true;	
 		ModelCheckerOption checkerOption = new ModelCheckerOption();
@@ -49,9 +49,9 @@ public final class RootMatEmpDelete implements DeciTree<MatEmpInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;
 		
 		checker = new MatEmpCheckExist(checkerOption);
-		stack.add(checker);		
+		queue.add(checker);		
 		
-		 return new ModelCheckerQueue<MatEmpInfo>(stack);
+		 return new ModelCheckerQueue<MatEmpInfo>(queue);
 	}
 	
 	

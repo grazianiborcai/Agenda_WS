@@ -37,7 +37,7 @@ public final class NodeStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 	private ModelChecker<StoreLDateInfo> buildDecisionChecker(DeciTreeOption<StoreLDateInfo> option) {
 		final boolean NOT_DELETED = false;	
 		
-		List<ModelChecker<StoreLDateInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreLDateInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreLDateInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
@@ -46,9 +46,9 @@ public final class NodeStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = NOT_DELETED;		
 		checker = new StoreLDateCheckSoftDelete(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

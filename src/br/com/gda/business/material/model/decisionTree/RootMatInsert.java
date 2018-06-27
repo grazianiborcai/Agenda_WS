@@ -45,68 +45,68 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 	private ModelChecker<MatInfo> buildDecisionChecker(DeciTreeOption<MatInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
-		List<ModelChecker<MatInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checker = new MatCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checker = new MatCheckGenField();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new MatCheckOwner(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new MatCheckLangu(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new MatCheckCurrency(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new MatCheckUnit(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new MatCheckCateg(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new MatCheckGroup(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new MatCheckType(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
 		//TODO: verificar se barcode ou código do fornecedor já existe  no banco
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

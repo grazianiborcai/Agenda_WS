@@ -1,6 +1,7 @@
 package br.com.gda.sql;
 
 public final class SqlDbTable {	
+    //Tables
 	public static final String COUNTRY_TEXT_TABLE = "country_text";
 	public static final String EMPLOYEE_TABLE = "employee";	
 	public static final String EMPLOYEE_WORKING_TIME_TABLE = "employee_working_time";
@@ -35,4 +36,10 @@ public final class SqlDbTable {
 	public static final String WEEKDAY_TEXT_TABLE = "weekday_text";
 	public static final String STORE_WORK_TIME_TABLE = "store_working_time";
 	public static final String STORE_LEAVE_DATE_TABLE = "store_leave_time";
+	
+	
+	
+    //Views
+	public static final String EMP_WT_CONFLICT_VIEW = "view_employee_working_time";
+	public static final String STORE_WT_CONFLICT_VIEW = "view_store_working_time";
 }

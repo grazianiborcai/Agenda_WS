@@ -38,39 +38,39 @@ public final class RootStoreLDateUpdate implements DeciTree<StoreLDateInfo> {
 	
 	
 	private ModelChecker<StoreLDateInfo> buildDecisionChecker(DeciTreeOption<StoreLDateInfo> option) {
-		List<ModelChecker<StoreLDateInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreLDateInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreLDateInfo> checker;
 		ModelCheckerOption checkerOption;
 		final boolean EXIST_ON_DB = true;
 		
 		checker = new StoreLDateCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checker = new StoreLDateCheckTimeRange();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreLDateCheckOwner(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreLDateCheckStore(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreLDateCheckExist(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

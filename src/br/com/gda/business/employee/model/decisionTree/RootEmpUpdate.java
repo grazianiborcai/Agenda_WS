@@ -42,29 +42,29 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 		final boolean EXIST_ON_DB = true;			
 		final boolean KEY_NOT_NULL = true;	
 		
-		List<ModelChecker<EmpInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checker = new EmpCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.expectedResult = KEY_NOT_NULL;
 		checker = new EmpCheckKey(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
 		checker = new EmpCheckCpf();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpCheckExistKey(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

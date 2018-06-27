@@ -33,13 +33,13 @@ public final class RootTimezoneSelect implements DeciTree<TimezoneInfo> {
 	
 	
 	private ModelChecker<TimezoneInfo> buildDecisionChecker() {
-		List<ModelChecker<TimezoneInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<TimezoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<TimezoneInfo> checker;
 		
 		checker = new TimezoneCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 
 		

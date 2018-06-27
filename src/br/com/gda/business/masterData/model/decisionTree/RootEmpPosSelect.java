@@ -33,13 +33,13 @@ public final class RootEmpPosSelect implements DeciTree<EmpPosInfo> {
 	
 	
 	private ModelChecker<EmpPosInfo> buildDecisionChecker() {
-		List<ModelChecker<EmpPosInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<EmpPosInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpPosInfo> checker;
 		
 		checker = new EmpPosCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

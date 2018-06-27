@@ -1,8 +1,8 @@
-package br.com.gda.business.employeeWorkTime.dao;
+package br.com.gda.business.employeWorkTimeConflict.dao;
 
 import java.util.List;
 
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
+import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlFormatterNumber;
@@ -12,23 +12,25 @@ import br.com.gda.sql.SqlWhereBuilderOption;
 import br.com.gda.sql.SqlWhereCondition;
 import br.com.gda.sql.SqlWhereOperator;
 
-public final class EmpWTimeWhereTime implements SqlStmtWhere {
+final class EmpCoWhere implements SqlStmtWhere {
 	private String whereClause;	
 	private SqlWhereBuilder builderKey;
 	private SqlWhereBuilder builderBeginTime;
 	private SqlWhereBuilder builderEndTime;
+	private SqlWhereBuilder builderBeginEndTime;
 	
 	
-	public EmpWTimeWhereTime(SqlWhereBuilderOption whereOption, String tableName, EmpWTimeInfo recordInfo) {
+	public EmpCoWhere(SqlWhereBuilderOption whereOption, String tableName, EmpCoInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, EmpWTimeInfo recordInfo) {
+	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, EmpCoInfo recordInfo) {
 		builderKey = SqlWhereBuilder.factory(whereOption);		
 		builderBeginTime = SqlWhereBuilder.factory(whereOption);
 		builderEndTime = SqlWhereBuilder.factory(whereOption);		
+		builderBeginEndTime = SqlWhereBuilder.factory(whereOption);	
 		
 		List<SqlColumn> columns = SqlDbTableColumnAll.getTableColumnsAsList(tableName);
 		
@@ -36,22 +38,28 @@ public final class EmpWTimeWhereTime implements SqlStmtWhere {
 			generateKey(eachColumn, recordInfo);
 			generateBeginTime(eachColumn, recordInfo);
 			generateEndTime(eachColumn, recordInfo);
+			generateBeginEndTime(eachColumn, recordInfo);
 		}
 		
 		
-		builderBeginTime.mergeBuilder(builderEndTime, SqlWhereOperator.OR);
-		builderKey.mergeBuilder(builderBeginTime, SqlWhereOperator.AND);
+		builderBeginEndTime.mergeBuilder(builderBeginTime, SqlWhereOperator.OR);
+		builderBeginEndTime.mergeBuilder(builderEndTime, SqlWhereOperator.OR);
+		builderKey.mergeBuilder(builderBeginEndTime, SqlWhereOperator.AND);
 		
 		whereClause = builderKey.generateClause();
 	}
 	
 	
 	
-	private void generateKey(SqlColumn column, EmpWTimeInfo recordInfo) {
+	private void generateKey(SqlColumn column, EmpCoInfo recordInfo) {
 		switch(column.columnName) {
 		case "cod_owner" :
 			builderKey.addClauseEqualAnd(column, SqlFormatterNumber.numberToString(recordInfo.codOwner));
 			break;
+			
+		case "cod_store" :
+			builderKey.addClauseAnd(column, SqlFormatterNumber.numberToString(recordInfo.codStore), SqlWhereCondition.NOT_EQUAL);
+			break;			
 
 		case "cod_employee" :
 			builderKey.addClauseEqualAnd(column, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
@@ -69,7 +77,7 @@ public final class EmpWTimeWhereTime implements SqlStmtWhere {
 	
 	
 	
-	private void generateBeginTime(SqlColumn column, EmpWTimeInfo recordInfo) {
+	private void generateBeginTime(SqlColumn column, EmpCoInfo recordInfo) {
 		switch(column.columnName) {
 		case "begin_time" :
 			builderBeginTime.addClauseAnd(column, SqlFormatterNumber.timeToString(recordInfo.beginTime), SqlWhereCondition.LESS_OR_EQUAL);
@@ -83,7 +91,7 @@ public final class EmpWTimeWhereTime implements SqlStmtWhere {
 	
 	
 	
-	private void generateEndTime(SqlColumn column, EmpWTimeInfo recordInfo) {
+	private void generateEndTime(SqlColumn column, EmpCoInfo recordInfo) {
 		switch(column.columnName) {
 		case "begin_time" :
 			builderEndTime.addClauseAnd(column, SqlFormatterNumber.timeToString(recordInfo.endTime), SqlWhereCondition.LESS_OR_EQUAL);
@@ -91,6 +99,20 @@ public final class EmpWTimeWhereTime implements SqlStmtWhere {
 			
 		case "end_time" :
 			builderEndTime.addClauseAnd(column, SqlFormatterNumber.timeToString(recordInfo.endTime), SqlWhereCondition.GREATER_OR_EQUAL);
+			break;
+		}
+	}	
+	
+	
+	
+	private void generateBeginEndTime(SqlColumn column, EmpCoInfo recordInfo) {
+		switch(column.columnName) {
+		case "begin_time" :
+			builderBeginEndTime.addClauseAnd(column, SqlFormatterNumber.timeToString(recordInfo.beginTime), SqlWhereCondition.GREATER_OR_EQUAL);
+			break;
+			
+		case "end_time" :
+			builderBeginEndTime.addClauseAnd(column, SqlFormatterNumber.timeToString(recordInfo.endTime), SqlWhereCondition.LESS_OR_EQUAL);
 			break;
 		}
 	}	

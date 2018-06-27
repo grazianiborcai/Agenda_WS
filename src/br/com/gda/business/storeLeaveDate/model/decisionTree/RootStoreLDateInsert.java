@@ -41,38 +41,38 @@ public final class RootStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 		final boolean EXIST_ON_DB = true;	
 		final boolean DONT_EXIST_ON_DB = false;
 		
-		List<ModelChecker<StoreLDateInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreLDateInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreLDateInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checker = new StoreLDateCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checker = new StoreLDateCheckTimeRange();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreLDateCheckOwner(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreLDateCheckStore(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
 		checker = new StoreLDateCheckExist(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

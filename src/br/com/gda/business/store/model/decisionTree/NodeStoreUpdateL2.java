@@ -37,7 +37,7 @@ final class NodeStoreUpdateL2 implements DeciTree<StoreInfo> {
 	private ModelChecker<StoreInfo> buildDecisionChecker(DeciTreeOption<StoreInfo> option) {
 		final boolean DONT_EXIST_ON_DB = false;
 		
-		List<ModelChecker<StoreInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;
 		
@@ -46,9 +46,9 @@ final class NodeStoreUpdateL2 implements DeciTree<StoreInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;		
 		checker = new StoreCheckCnpjExist(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

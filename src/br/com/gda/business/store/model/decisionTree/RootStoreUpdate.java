@@ -43,43 +43,43 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 		final boolean EXIST_ON_DB = true;			
 		final boolean KEY_NOT_NULL = true;	
 		
-		List<ModelChecker<StoreInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checker = new StoreCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.expectedResult = KEY_NOT_NULL;
 		checker = new StoreCheckKey(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
 		checker = new StoreCheckCnpj();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreCheckOwner(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreCheckTimezone(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreCheckExist(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

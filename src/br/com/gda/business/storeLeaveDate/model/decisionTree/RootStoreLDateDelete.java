@@ -36,7 +36,7 @@ public final class RootStoreLDateDelete implements DeciTree<StoreLDateInfo> {
 	
 	
 	private ModelChecker<StoreLDateInfo> buildDecisionChecker(DeciTreeOption<StoreLDateInfo> option) {
-		List<ModelChecker<StoreLDateInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreLDateInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreLDateInfo> checker;
 		ModelCheckerOption checkerOption;
 		
@@ -44,7 +44,7 @@ public final class RootStoreLDateDelete implements DeciTree<StoreLDateInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.expectedResult = KEY_NOT_NULL;		
 		checker = new StoreLDateCheckKey(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
 		final boolean EXIST_ON_DB = true;	
 		checkerOption = new ModelCheckerOption();
@@ -52,9 +52,9 @@ public final class RootStoreLDateDelete implements DeciTree<StoreLDateInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreLDateCheckExist(checkerOption);
-		stack.add(checker);		
+		queue.add(checker);		
 		
-		 return new ModelCheckerQueue<StoreLDateInfo>(stack);
+		 return new ModelCheckerQueue<StoreLDateInfo>(queue);
 	}
 	
 	

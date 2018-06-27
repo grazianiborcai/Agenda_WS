@@ -38,7 +38,7 @@ public final class NodeStoreUpdateL1 implements DeciTree<StoreInfo> {
 	private ModelChecker<StoreInfo> buildDecisionChecker(DeciTreeOption<StoreInfo> option) {
 		final boolean EXIST_WITH_CONSTRAINT_ON_DB = true;
 		
-		List<ModelChecker<StoreInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;
 		
@@ -47,9 +47,9 @@ public final class NodeStoreUpdateL1 implements DeciTree<StoreInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_WITH_CONSTRAINT_ON_DB;		
 		checker = new StoreCheckKeyCnpj(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

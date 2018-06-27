@@ -37,7 +37,7 @@ public final class NodeEmpLDateInsert implements DeciTree<EmpLDateInfo> {
 	private ModelChecker<EmpLDateInfo> buildDecisionChecker(DeciTreeOption<EmpLDateInfo> option) {
 		final boolean NOT_DELETED = false;	
 		
-		List<ModelChecker<EmpLDateInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<EmpLDateInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpLDateInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
@@ -46,9 +46,9 @@ public final class NodeEmpLDateInsert implements DeciTree<EmpLDateInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = NOT_DELETED;		
 		checker = new EmpLDateCheckSoftDelete(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

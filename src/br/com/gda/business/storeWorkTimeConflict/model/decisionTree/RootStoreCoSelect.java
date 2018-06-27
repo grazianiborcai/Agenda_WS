@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
-import br.com.gda.business.storeWorkTimeConflict.model.checker.StoreCoCheckHasCoDb;
+import br.com.gda.business.storeWorkTimeConflict.model.checker.StoreCoCheckHasCo;
 import br.com.gda.business.storeWorkTimeConflict.model.checker.StoreCoCheckRead;
 import br.com.gda.business.storeWorkTimeConflict.model.checker.StoreCoCheckWTime;
 import br.com.gda.model.checker.ModelChecker;
@@ -40,28 +40,28 @@ public final class RootStoreCoSelect implements DeciTree<StoreCoInfo> {
 	private ModelChecker<StoreCoInfo> buildDecisionChecker(DeciTreeOption<StoreCoInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
-		List<ModelChecker<StoreCoInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreCoInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreCoInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checker = new StoreCoCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreCoCheckWTime(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new StoreCoCheckHasCoDb(checkerOption);
-		stack.add(checker);	
+		checker = new StoreCoCheckHasCo(checkerOption);
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
@@ -75,7 +75,7 @@ public final class RootStoreCoSelect implements DeciTree<StoreCoInfo> {
 	private List<DeciAction<StoreCoInfo>> buildActionsOnPassed(DeciTreeOption<StoreCoInfo> option) {
 		List<DeciAction<StoreCoInfo>> actions = new ArrayList<>();
 		
-		DeciAction<StoreCoInfo> actionRange = new ActionStoreCoRange(option);
+		DeciAction<StoreCoInfo> actionRange = new ActionStoreCoMakeRange(option);
 		DeciActionHandler<StoreCoInfo> actionSelect = new HandlerStoreCoSelect(option.conn, option.schemaName);
 		actionRange.addPostAction(actionSelect);
 		

@@ -33,13 +33,13 @@ public final class RootMatGroupSelect implements DeciTree<MatGroupInfo> {
 	
 	
 	private ModelChecker<MatGroupInfo> buildDecisionChecker() {
-		List<ModelChecker<MatGroupInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<MatGroupInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatGroupInfo> checker;
 		
 		checker = new MatGroupCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

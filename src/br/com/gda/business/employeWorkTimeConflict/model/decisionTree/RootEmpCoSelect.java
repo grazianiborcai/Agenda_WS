@@ -1,10 +1,10 @@
-package br.com.gda.business.employeeWorkTime.model.decisionTree;
+package br.com.gda.business.employeWorkTimeConflict.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckRead;
+import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
+import br.com.gda.business.employeWorkTimeConflict.model.checker.EmpCoCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
@@ -15,28 +15,29 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootEmpWTimeSelect implements DeciTree<EmpWTimeInfo> {
-	private DeciTree<EmpWTimeInfo> tree;
+public final class RootEmpCoSelect implements DeciTree<EmpCoInfo> {
+	private DeciTree<EmpCoInfo> tree;
 	
 	
-	public RootEmpWTimeSelect(DeciTreeOption<EmpWTimeInfo> option) {
-		DeciTreeHelperOption<EmpWTimeInfo> helperOption = new DeciTreeHelperOption<>();
+	public RootEmpCoSelect(DeciTreeOption<EmpCoInfo> option) {
+		DeciTreeHelperOption<EmpCoInfo> helperOption = new DeciTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
+		helperOption.actionsOnFailed = null;
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
 	
-	private ModelChecker<EmpWTimeInfo> buildDecisionChecker() {
-		List<ModelChecker<EmpWTimeInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmpWTimeInfo> checker;
+	private ModelChecker<EmpCoInfo> buildDecisionChecker(DeciTreeOption<EmpCoInfo> option) {
+		List<ModelChecker<EmpCoInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmpCoInfo> checker;
 		
-		checker = new EmpWTimeCheckRead();
+		checker = new EmpCoCheckRead();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -44,16 +45,15 @@ public final class RootEmpWTimeSelect implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpWTimeInfo> toAction() {
+	@Override public DeciAction<EmpCoInfo> toAction() {
 		return tree.toAction();
 	}
 	
 	
 	
-	private List<DeciAction<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
-		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
-		
-		actions.add(new ActionEmpWTimeSelect(option));
+	private List<DeciAction<EmpCoInfo>> buildActionsOnPassed(DeciTreeOption<EmpCoInfo> option) {
+		List<DeciAction<EmpCoInfo>> actions = new ArrayList<>();		
+		actions.add(new ActionEmpCoSelect(option));
 		return actions;
 	}
 	
@@ -71,7 +71,7 @@ public final class RootEmpWTimeSelect implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
-	@Override public DeciResult<EmpWTimeInfo> getDecisionResult() {
+	@Override public DeciResult<EmpCoInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 }

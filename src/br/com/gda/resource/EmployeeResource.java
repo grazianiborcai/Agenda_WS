@@ -15,6 +15,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
+import br.com.gda.business.employeWorkTimeConflict.model.EmpCoModelSelect;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.EmpModelDelete;
 import br.com.gda.business.employee.model.EmpModelInsert;
@@ -35,27 +37,29 @@ import br.com.gda.model.legacy.EmployeeModel;
 
 @Path("/Employee")
 public class EmployeeResource {
-	private static final String INSERT_EMPLOYEE = "/insertEmployee";
-	private static final String UPDATE_EMPLOYEE = "/updateEmployee";
-	private static final String DELETE_EMPLOYEE = "/deleteEmployee";
-	private static final String SELECT_EMPLOYEE = "/selectEmployee";
-	private static final String LOGIN_EMPLOYEE = "/loginEmployee";
+	private static final String INSERT_EMP = "/insertEmployee";
+	private static final String UPDATE_EMP = "/updateEmployee";
+	private static final String DELETE_EMP = "/deleteEmployee";
+	private static final String SELECT_EMP = "/selectEmployee";
+	private static final String LOGIN_EMP = "/loginEmployee";
 	private static final String INSERT_WORK_TIME = "/insertWorkTime";
 	private static final String UPDATE_WORK_TIME = "/updateWorkTime";
 	private static final String SELECT_WORK_TIME = "/selectWorkTime";
 	private static final String DELETE_WORK_TIME = "/deleteWorkTime";	
+	private static final String SELECT_WT_CONFLICT = "/selectWorkTimeConflict";
 	private static final String INSERT_LEAVE_DATE = "/insertLeaveDate";
 	private static final String UPDATE_LEAVE_DATE = "/updateLeaveDate";
 	private static final String SELECT_LEAVE_DATE = "/selectLeaveDate";
 	private static final String DELETE_LEAVE_DATE = "/deleteLeaveDate";
 	
 	
+	
 	@GET
 	@Path(SELECT_WORK_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response selectWorkTime(@HeaderParam("codOwner") long codOwner,
-								   @HeaderParam("codStore") long codStore,
-								   @HeaderParam("codEmployee") int codEmployee) {
+	public Response selectWorkTime(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+								   @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
+								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee) {
 		
 		EmpWTimeInfo recordInfo = new EmpWTimeInfo();
 		recordInfo.codOwner = codOwner;
@@ -99,13 +103,13 @@ public class EmployeeResource {
 	public Response deleteWorkTime(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
 								   @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
 								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
-								   @HeaderParam("weekday")     @DefaultValue("-1") int weekday) {
+								   @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday) {
 		
 		EmpWTimeInfo recordInfo = new EmpWTimeInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
-		recordInfo.codWeekday = weekday;
+		recordInfo.codWeekday = codWeekday;
 		
 		Model modelDelete = new EmpWTimeModelDelete(recordInfo);
 		modelDelete.executeRequest();
@@ -115,11 +119,36 @@ public class EmployeeResource {
 	
 	
 	@GET
+	@Path(SELECT_WT_CONFLICT)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response selectWTConflict(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+								     @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
+								     @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
+								     @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday,
+								     @HeaderParam("beginTime")   @DefaultValue("12:00") String beginTime,
+	                                 @HeaderParam("endTime")     @DefaultValue("12:00") String endTime) {
+		
+		EmpCoInfo recordInfo = new EmpCoInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codWeekday = codWeekday;
+		recordInfo.beginTime = LocalTime.parse(beginTime, DateTimeFormatter.ISO_LOCAL_TIME);
+		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
+		
+		Model modelSelect = new EmpCoModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
+	}
+	
+	
+	
+	@GET
 	@Path(SELECT_LEAVE_DATE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response selectLeaveDate(@HeaderParam("codOwner") long codOwner,
-								    @HeaderParam("codStore") long codStore,
-								    @HeaderParam("codEmployee") int codEmployee) {
+	public Response selectLeaveDate(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+								    @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
+								    @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee) {
 		
 		EmpLDateInfo recordInfo = new EmpLDateInfo();
 		recordInfo.codOwner = codOwner;
@@ -182,7 +211,7 @@ public class EmployeeResource {
 	
 
 	@POST
-	@Path(INSERT_EMPLOYEE)
+	@Path(INSERT_EMP)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertEmployee(String incomingData) {
 		//TODO: horário do empregado. Se nulo, então pegar da Store	
@@ -194,7 +223,7 @@ public class EmployeeResource {
 
 	
 	@POST
-	@Path(UPDATE_EMPLOYEE)
+	@Path(UPDATE_EMP)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateOwner(String incomingData) {
 		//TODO: mudanã de password não pode ser por esse serviço
@@ -206,9 +235,9 @@ public class EmployeeResource {
 	
 	
 	@DELETE
-	@Path(DELETE_EMPLOYEE)
-	public Response deleteEmployee(@HeaderParam("codOwner")    long codOwner,
-								   @HeaderParam("codEmployee") int codEmployee) {
+	@Path(DELETE_EMP)
+	public Response deleteEmployee(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee) {
 		
 		//TODO: atualizar StoreEmployee
 		EmpInfo employeeInfo = new EmpInfo();
@@ -223,7 +252,7 @@ public class EmployeeResource {
 	
 	
 	@GET																										
-	@Path(LOGIN_EMPLOYEE)																							
+	@Path(LOGIN_EMP)																							
 	@Produces(MediaType.APPLICATION_JSON)																		
 	public Response loginOwner(@HeaderParam("codOwner") long codOwner, @HeaderParam("email") String email, @HeaderParam("password") String password) {
 		//TODO: um mesmo empregado pode estar em mais de um estabelecimento. Retornar uma lista com todos os Owner para seleção
@@ -234,10 +263,10 @@ public class EmployeeResource {
 	
 	
 	@GET
-	@Path(SELECT_EMPLOYEE)
+	@Path(SELECT_EMP)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectEmployee(@HeaderParam("codOwner")    long codOwner,
-								   @HeaderParam("codEmployee") int codEmployee) {
+	public Response selectEmployee(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee) {
 		
 		//TODO: O Android est� chamando esse m�todo para obter os empregados. Verificar se StoreEmployee � mais apropriado
 		//TODO: Convertido de QueryParam para headerParam

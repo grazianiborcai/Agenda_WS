@@ -33,13 +33,13 @@ public final class RootStoreWTimeSelect implements DeciTree<StoreWTimeInfo> {
 	
 	
 	private ModelChecker<StoreWTimeInfo> buildDecisionChecker() {
-		List<ModelChecker<StoreWTimeInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreWTimeInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreWTimeInfo> checker;
 		
 		checker = new StoreWTimeCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

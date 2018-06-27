@@ -37,7 +37,7 @@ public final class NodeStoreWTimeInsert implements DeciTree<StoreWTimeInfo> {
 	private ModelChecker<StoreWTimeInfo> buildDecisionChecker(DeciTreeOption<StoreWTimeInfo> option) {
 		final boolean NOT_DELETED = false;	
 		
-		List<ModelChecker<StoreWTimeInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreWTimeInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreWTimeInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
@@ -46,9 +46,9 @@ public final class NodeStoreWTimeInsert implements DeciTree<StoreWTimeInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = NOT_DELETED;		
 		checker = new StoreWTimeCheckSoftDelete(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

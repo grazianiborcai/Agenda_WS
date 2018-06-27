@@ -33,13 +33,13 @@ public class RootEmpLDateSelect implements DeciTree<EmpLDateInfo> {
 	
 	
 	private ModelChecker<EmpLDateInfo> buildDecisionChecker() {
-		List<ModelChecker<EmpLDateInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<EmpLDateInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpLDateInfo> checker;
 		
 		checker = new EmpLDateCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

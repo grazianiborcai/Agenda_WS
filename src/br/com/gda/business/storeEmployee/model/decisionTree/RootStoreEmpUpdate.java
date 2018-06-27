@@ -38,43 +38,43 @@ public final class RootStoreEmpUpdate implements DeciTree<StoreEmpInfo> {
 	
 	
 	private ModelChecker<StoreEmpInfo> buildDecisionChecker(DeciTreeOption<StoreEmpInfo> option) {
-		List<ModelChecker<StoreEmpInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreEmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreEmpInfo> checker;
 		ModelCheckerOption checkerOption;
 		final boolean EXIST_ON_DB = true;
 		
 		checker = new StoreEmpCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreEmpCheckEmpPos(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreEmpCheckStore(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreEmpCheckEmp(checkerOption);
-		stack.add(checker);			
+		queue.add(checker);			
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreEmpCheckExist(checkerOption);
-		stack.add(checker);		
+		queue.add(checker);		
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

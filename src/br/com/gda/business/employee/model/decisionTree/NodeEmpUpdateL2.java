@@ -37,7 +37,7 @@ public final class NodeEmpUpdateL2 implements DeciTree<EmpInfo> {
 	private ModelChecker<EmpInfo> buildDecisionChecker(DeciTreeOption<EmpInfo> option) {
 		final boolean DONT_EXIST_ON_DB = false;
 		
-		List<ModelChecker<EmpInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
 		ModelCheckerOption checkerOption;
 		
@@ -46,9 +46,9 @@ public final class NodeEmpUpdateL2 implements DeciTree<EmpInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;		
 		checker = new EmpCheckExistCpf(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

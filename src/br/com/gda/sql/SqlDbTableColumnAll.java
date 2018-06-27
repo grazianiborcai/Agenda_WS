@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.gda.business.employeWorkTimeConflict.dao.EmpCoDbTableColumn;
 import br.com.gda.business.employeeLeaveDate.dao.EmpLDateDbTableColumn;
 import br.com.gda.business.employeeWorkTime.dao.EmpWTimeDbTableColumn;
 import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
@@ -13,6 +14,7 @@ import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.business.storeEmployee.dao.StoreEmpDbTableColumn;
 import br.com.gda.business.storeLeaveDate.dao.StoreLDateDbTableColumn;
 import br.com.gda.business.storeWorkTime.dao.StoreWTimeDbTableColumn;
+import br.com.gda.business.storeWorkTimeConflict.dao.StoreCoDbTableColumn;
 import br.com.gda.common.SystemMessage;
 
 public final class SqlDbTableColumnAll {
@@ -38,6 +40,8 @@ public final class SqlDbTableColumnAll {
 		addTable(new StoreLDateDbTableColumn());
 		addTable(new EmpWTimeDbTableColumn());
 		addTable(new EmpLDateDbTableColumn());
+		addTable(new EmpCoDbTableColumn());
+		addTable(new StoreCoDbTableColumn());
 	}
 	
 	

@@ -39,23 +39,23 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 		final boolean EXIST_ON_DB = true;
 		final boolean KEY_NOT_NULL = true;	
 		
-		List<ModelChecker<StoreInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.expectedResult = KEY_NOT_NULL;
 		checker = new StoreCheckKey(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreCheckExist(checkerOption);
-		stack.add(checker);		
+		queue.add(checker);		
 		
-		 return new ModelCheckerQueue<StoreInfo>(stack);
+		 return new ModelCheckerQueue<StoreInfo>(queue);
 	}
 	
 	

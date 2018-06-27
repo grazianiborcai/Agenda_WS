@@ -33,13 +33,13 @@ public final class RootLanguSelect implements DeciTree<LanguInfo> {
 	
 	
 	private ModelChecker<LanguInfo> buildDecisionChecker() {
-		List<ModelChecker<LanguInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<LanguInfo>> queue = new ArrayList<>();		
 		ModelChecker<LanguInfo> checker;
 		
 		checker = new ModelCherckerTrue<>();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

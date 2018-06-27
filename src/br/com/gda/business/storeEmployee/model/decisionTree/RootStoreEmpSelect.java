@@ -33,13 +33,13 @@ public final class RootStoreEmpSelect implements DeciTree<StoreEmpInfo> {
 	
 	
 	private ModelChecker<StoreEmpInfo> buildDecisionChecker() {
-		List<ModelChecker<StoreEmpInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreEmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreEmpInfo> checker;
 		
 		checker = new StoreEmpCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

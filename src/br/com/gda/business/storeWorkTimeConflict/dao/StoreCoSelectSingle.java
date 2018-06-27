@@ -45,7 +45,7 @@ public final class StoreCoSelectSingle implements SqlStmt<StoreCoInfo> {
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LT_EMPLOYEE_WORK_TIME;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(SqlDbTable.STORE_WT_CONFLICT_VIEW);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause(stmtOption.tableName, stmtOption.recordInfo);

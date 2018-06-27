@@ -36,11 +36,11 @@ public final class RootEmpLDateDelete implements DeciTree<EmpLDateInfo> {
 	
 	
 	private ModelChecker<EmpLDateInfo> buildDecisionChecker(DeciTreeOption<EmpLDateInfo> option) {
-		List<ModelChecker<EmpLDateInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<EmpLDateInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpLDateInfo> checker;
 		
 		checker = new EmpLDateCheckKey();
-		stack.add(checker);
+		queue.add(checker);
 		
 		final boolean EXIST_ON_DB = true;	
 		ModelCheckerOption checkerOption = new ModelCheckerOption();
@@ -49,9 +49,9 @@ public final class RootEmpLDateDelete implements DeciTree<EmpLDateInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;
 		
 		checker = new EmpLDateCheckExist(checkerOption);
-		stack.add(checker);		
+		queue.add(checker);		
 		
-		 return new ModelCheckerQueue<EmpLDateInfo>(stack);
+		 return new ModelCheckerQueue<EmpLDateInfo>(queue);
 	}
 	
 	

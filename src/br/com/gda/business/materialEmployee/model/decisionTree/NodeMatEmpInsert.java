@@ -38,21 +38,21 @@ public final class NodeMatEmpInsert implements DeciTree<MatEmpInfo> {
 	private ModelChecker<MatEmpInfo> buildDecisionChecker(DeciTreeOption<MatEmpInfo> option) {
 		final boolean NOT_DELETED = false;	
 		
-		List<ModelChecker<MatEmpInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<MatEmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatEmpInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checker = new MatEmpCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = NOT_DELETED;		
 		checker = new MatEmpCheckSoftDelete(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

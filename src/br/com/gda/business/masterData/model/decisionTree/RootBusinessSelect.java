@@ -33,13 +33,13 @@ public final class RootBusinessSelect implements DeciTree<BusinessInfo> {
 	
 	
 	private ModelChecker<BusinessInfo> buildDecisionChecker() {
-		List<ModelChecker<BusinessInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<BusinessInfo>> queue = new ArrayList<>();		
 		ModelChecker<BusinessInfo> checker;
 		
 		checker = new BusinessCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 
 		

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
-import br.com.gda.business.storeWorkTimeConflict.model.decisionTree.ActionStoreCoRange;
+import br.com.gda.business.storeWorkTimeConflict.model.decisionTree.ActionStoreCoMakeRange;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelChecker;
@@ -14,7 +14,7 @@ import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StoreCoCheckHasCoDb implements ModelChecker<StoreCoInfo> {
+public final class StoreCoCheckHasCo implements ModelChecker<StoreCoInfo> {
 	private final boolean RESULT_FAILED = false;	
 	private final boolean RESULT_SUCCESS = true;
 	private final boolean NO_RESULTSET = false;
@@ -28,7 +28,7 @@ public final class StoreCoCheckHasCoDb implements ModelChecker<StoreCoInfo> {
 	private String checkerFailureExplanation;
 	
 	
-	public StoreCoCheckHasCoDb(ModelCheckerOption option) {
+	public StoreCoCheckHasCo(ModelCheckerOption option) {
 		checkArgument(option);
 		
 		conn = option.conn;
@@ -60,7 +60,7 @@ public final class StoreCoCheckHasCoDb implements ModelChecker<StoreCoInfo> {
 	
 	
 	@Override public boolean check(List<StoreCoInfo> recordInfos) {
-		actionRange = new ActionStoreCoRange(buildActionOption(recordInfos));
+		actionRange = new ActionStoreCoMakeRange(buildActionOption(recordInfos));
 		actionRange.executeAction();
 		buildResult();
 		return checkerResult;

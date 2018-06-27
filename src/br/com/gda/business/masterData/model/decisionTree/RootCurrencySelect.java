@@ -33,13 +33,13 @@ public final class RootCurrencySelect implements DeciTree<CurrencyInfo> {
 	
 	
 	private ModelChecker<CurrencyInfo> buildDecisionChecker() {
-		List<ModelChecker<CurrencyInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<CurrencyInfo>> queue = new ArrayList<>();		
 		ModelChecker<CurrencyInfo> checker;
 		
 		checker = new CurrencyCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

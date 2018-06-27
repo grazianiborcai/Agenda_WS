@@ -33,13 +33,13 @@ public final class RootMatTypeSelect implements DeciTree<MatTypeInfo> {
 	
 	
 	private ModelChecker<MatTypeInfo> buildDecisionChecker() {
-		List<ModelChecker<MatTypeInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<MatTypeInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatTypeInfo> checker;
 		
 		checker = new MatTypeCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

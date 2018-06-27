@@ -7,12 +7,12 @@ import br.com.gda.model.decisionTree.DeciActionHelperTrans;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionStoreCoRange implements DeciAction<StoreCoInfo> {
+public final class ActionStoreCoMakeRange implements DeciAction<StoreCoInfo> {
 	private DeciAction<StoreCoInfo> actionHelper;	
 	
 	
-	public ActionStoreCoRange(DeciTreeOption<StoreCoInfo> option) {			
-		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorStoreCoRange(option.conn, option.schemaName));
+	public ActionStoreCoMakeRange(DeciTreeOption<StoreCoInfo> option) {			
+		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorStoreCoMakeRange(option.conn, option.schemaName));
 	}
 	
 	

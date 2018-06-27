@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEmp;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckExist;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckHasCo;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckKey;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckOwner;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStore;
@@ -43,67 +44,75 @@ public final class RootEmpWTimeUpdate implements DeciTree<EmpWTimeInfo> {
 	
 	private ModelChecker<EmpWTimeInfo> buildDecisionChecker(DeciTreeOption<EmpWTimeInfo> option) {
 		final boolean EXIST_ON_DB = true;	
+		final boolean DONT_EXIST_ON_DB = false;
 		
-		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<EmpWTimeInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpWTimeInfo> checker;			
 		ModelCheckerOption checkerOption;
 		
 		checker = new EmpWTimeCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checker = new EmpWTimeCheckKey();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckOwner(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckEmp(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckStore(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckWeekday(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckStoreEmp(checkerOption);
-		stack.add(checker);			
+		queue.add(checker);			
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckExist(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpWTimeCheckStoreTime(checkerOption);
-		stack.add(checker);		
+		queue.add(checker);		
 		
-		return new ModelCheckerQueue<>(stack);
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
+		checker = new EmpWTimeCheckHasCo(checkerOption);
+		queue.add(checker);	
+		
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
@@ -111,8 +120,8 @@ public final class RootEmpWTimeUpdate implements DeciTree<EmpWTimeInfo> {
 	private List<DeciAction<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
 		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionEmpWTimeDelete(option));
-		actions.add(new NodeEmpWTimeUpdate(option).toAction());
+		actions.add(new ActionEmpWTimeUpdate(option));
+		actions.add(new ActionEmpWTimeSelect(option));
 		return actions;
 	}
 	

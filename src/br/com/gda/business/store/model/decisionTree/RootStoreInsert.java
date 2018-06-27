@@ -43,41 +43,41 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 		final boolean DONT_EXIST_ON_DB = false;	
 		final boolean EXIST_ON_DB = true;
 		
-		List<ModelChecker<StoreInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checker = new StoreCheckWrite();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checker = new StoreCheckGenField();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checker = new StoreCheckCnpj();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreCheckOwner(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreCheckTimezone(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
 		checker = new StoreCheckCnpjExist(checkerOption);
-		stack.add(checker);	
+		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

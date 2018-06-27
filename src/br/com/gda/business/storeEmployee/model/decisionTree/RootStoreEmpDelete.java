@@ -36,7 +36,7 @@ public final class RootStoreEmpDelete implements DeciTree<StoreEmpInfo> {
 	
 	
 	private ModelChecker<StoreEmpInfo> buildDecisionChecker(DeciTreeOption<StoreEmpInfo> option) {
-		List<ModelChecker<StoreEmpInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreEmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreEmpInfo> checker;
 		ModelCheckerOption checkerOption;
 		
@@ -44,7 +44,7 @@ public final class RootStoreEmpDelete implements DeciTree<StoreEmpInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.expectedResult = KEY_NOT_NULL;		
 		checker = new StoreEmpCheckKey(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 		
 		final boolean EXIST_ON_DB = true;	
 		checkerOption = new ModelCheckerOption();
@@ -52,9 +52,9 @@ public final class RootStoreEmpDelete implements DeciTree<StoreEmpInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreEmpCheckExist(checkerOption);
-		stack.add(checker);		
+		queue.add(checker);		
 		
-		 return new ModelCheckerQueue<StoreEmpInfo>(stack);
+		 return new ModelCheckerQueue<StoreEmpInfo>(queue);
 	}
 	
 	

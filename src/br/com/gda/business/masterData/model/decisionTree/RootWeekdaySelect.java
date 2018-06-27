@@ -33,13 +33,13 @@ public final class RootWeekdaySelect implements DeciTree<WeekdayInfo> {
 	
 	
 	private ModelChecker<WeekdayInfo> buildDecisionChecker() {
-		List<ModelChecker<WeekdayInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<WeekdayInfo>> queue = new ArrayList<>();		
 		ModelChecker<WeekdayInfo> checker;
 		
 		checker = new WeekdayCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 
 		

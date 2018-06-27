@@ -33,13 +33,13 @@ public final class RootMatCategSelect implements DeciTree<MatCategInfo> {
 	
 	
 	private ModelChecker<MatCategInfo> buildDecisionChecker() {
-		List<ModelChecker<MatCategInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<MatCategInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatCategInfo> checker;
 		
 		checker = new MatCategCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

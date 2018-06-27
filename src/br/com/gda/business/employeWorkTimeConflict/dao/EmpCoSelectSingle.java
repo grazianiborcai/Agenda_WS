@@ -1,4 +1,4 @@
-package br.com.gda.business.employeeWorkTime.dao;
+package br.com.gda.business.employeWorkTimeConflict.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,8 +7,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.common.SystemMessage;
+import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlDictionary;
@@ -20,31 +19,34 @@ import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
 import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
+import br.com.gda.sql.SqlStmtWhere;
+import br.com.gda.sql.SqlWhereBuilderOption;
 
-abstract class EmpWTimeSelectTemplate implements SqlStmt<EmpWTimeInfo> {
-	private final String LT_EMPLOYEE_WORK_TIME = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;	
+
+public final class EmpCoSelectSingle implements SqlStmt<EmpCoInfo> {
+	private final String LT_EMP_WT = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;	
 	private final String RT_WEEKDAY_TEXT = SqlDbTable.WEEKDAY_TEXT_TABLE;
 	private final String RT_STORE = SqlDbTable.STORE_TABLE;
 	
-	private SqlStmt<EmpWTimeInfo> stmtSql;
-	private SqlStmtOption<EmpWTimeInfo> stmtOption;
+	private SqlStmt<EmpCoInfo> stmtSql;
+	private SqlStmtOption<EmpCoInfo> stmtOption;
 	
 	
 	
-	public EmpWTimeSelectTemplate(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
+	public EmpCoSelectSingle(Connection conn, EmpCoInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, EmpCoInfo recordInfo, String schemaName) {
 		this.stmtOption = new SqlStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_EMPLOYEE_WORK_TIME;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.tableName = LT_EMP_WT;
+		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(SqlDbTable.EMP_WT_CONFLICT_VIEW);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClauseHook(stmtOption.tableName, stmtOption.recordInfo);
@@ -53,10 +55,7 @@ abstract class EmpWTimeSelectTemplate implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	
-	protected String buildWhereClauseHook(String tableName, EmpWTimeInfo recordInfo) {
-		//Template method to be overridden by subclasses
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
-		/*
+	protected String buildWhereClauseHook(String tableName, EmpCoInfo recordInfo) {
 		final boolean IGNORE_NULL = true;
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
@@ -64,9 +63,8 @@ abstract class EmpWTimeSelectTemplate implements SqlStmt<EmpWTimeInfo> {
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		SqlStmtWhere whereClause = new EmpWTimeWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		SqlStmtWhere whereClause = new EmpCoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-		*/
 	}
 	
 	
@@ -84,7 +82,7 @@ abstract class EmpWTimeSelectTemplate implements SqlStmt<EmpWTimeInfo> {
 		List<SqlJoinColumn> joinColumns = new ArrayList<>();
 		
 		SqlJoinColumn oneColumn = new SqlJoinColumn();
-		oneColumn.leftTableName = LT_EMPLOYEE_WORK_TIME;
+		oneColumn.leftTableName = LT_EMP_WT;
 		oneColumn.leftColumnName = "cod_store";
 		oneColumn.rightColumnName = "Cod_store";
 		joinColumns.add(oneColumn);
@@ -105,7 +103,7 @@ abstract class EmpWTimeSelectTemplate implements SqlStmt<EmpWTimeInfo> {
 		List<SqlJoinColumn> joinColumns = new ArrayList<>();
 		
 		SqlJoinColumn oneColumn = new SqlJoinColumn();
-		oneColumn.leftTableName = LT_EMPLOYEE_WORK_TIME;
+		oneColumn.leftTableName = LT_EMP_WT;
 		oneColumn.leftColumnName = "weekday";
 		oneColumn.rightColumnName = "Weekday";
 		joinColumns.add(oneColumn);
@@ -164,31 +162,31 @@ abstract class EmpWTimeSelectTemplate implements SqlStmt<EmpWTimeInfo> {
 
 	
 	
-	@Override public List<EmpWTimeInfo> getResultset() {
+	@Override public List<EmpCoInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
-		return new EmpWTimeSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public SqlStmt<EmpCoInfo> getNewInstance() {
+		return new EmpCoSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements SqlResultParser<EmpWTimeInfo> {
+	private class ResultParser implements SqlResultParser<EmpCoInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		private final String WEEKDAY_TEXT_COL = SqlDbTable.WEEKDAY_TEXT_TABLE + "." + "Name";
 		private final String TIMEZONE_COL = SqlDbTable.STORE_TABLE + "." + "Cod_timezone";
 		
-		@Override public List<EmpWTimeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<EmpWTimeInfo> finalResult = new ArrayList<>();
+		@Override public List<EmpCoInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<EmpCoInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 				return finalResult;
 		
 			do {				
-				EmpWTimeInfo dataInfo = new EmpWTimeInfo();
+				EmpCoInfo dataInfo = new EmpCoInfo();
 				dataInfo.codOwner = stmtResult.getLong("cod_owner");
 				dataInfo.codStore = stmtResult.getLong("cod_store");
 				dataInfo.codEmployee = stmtResult.getLong("cod_employee");

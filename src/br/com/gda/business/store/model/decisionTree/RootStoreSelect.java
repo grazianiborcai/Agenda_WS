@@ -35,16 +35,16 @@ public final class RootStoreSelect implements DeciTree<StoreInfo> {
 	
 	
 	private ModelChecker<StoreInfo> buildDecisionChecker() {
-		List<ModelChecker<StoreInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		
 		checker = new StoreCheckRead();
-		stack.add(checker);
+		queue.add(checker);
 		
 		checker = new StoreCheckCnpj();
-		stack.add(checker);
+		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	

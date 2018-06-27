@@ -173,9 +173,9 @@ public class StoreResource {
 	@DELETE
 	@Path(DELETE_STORE_EMP)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteStoreEmp(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-			                       @HeaderParam("codStore") @DefaultValue("-1") int codStore,
-			                       @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
+	public Response deleteStoreEmp(@HeaderParam("codOwner")         @DefaultValue("-1") long codOwner, 
+			                       @HeaderParam("codStore")         @DefaultValue("-1") int codStore,
+			                       @HeaderParam("codEmployee")      @DefaultValue("-1") long codEmployee,
 			                       @HeaderParam("codPositionStore") @DefaultValue("-1") long codPositionStore) {
 		
 		StoreEmpInfo recordInfo = new StoreEmpInfo();
@@ -279,8 +279,8 @@ public class StoreResource {
 	@GET
 	@Path(SELECT_STORE_WORK_TIME)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectStoreWTime(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-			                         @HeaderParam("codStore") @DefaultValue("-1") int codStore,
+	public Response selectStoreWTime(@HeaderParam("codOwner")   @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore")   @DefaultValue("-1") int codStore,
 			                         @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday) {
 
 		StoreWTimeInfo recordInfo = new StoreWTimeInfo();
@@ -309,8 +309,8 @@ public class StoreResource {
 	
 	@DELETE
 	@Path(DELETE_STORE_WORK_TIME)
-	public Response deleteStoreWTime(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-			                         @HeaderParam("codStore") @DefaultValue("-1") int codStore,
+	public Response deleteStoreWTime(@HeaderParam("codOwner")   @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore")   @DefaultValue("-1") int codStore,
 			                         @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday) {
 		
 		StoreWTimeInfo recordInfo = new StoreWTimeInfo();
@@ -380,8 +380,8 @@ public class StoreResource {
 	
 	@DELETE
 	@Path(DELETE_STORE_LEAVE_DATE)
-	public Response deleteStoreLDate(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-			                         @HeaderParam("codStore") @DefaultValue("-1") int codStore,
+	public Response deleteStoreLDate(@HeaderParam("codOwner")      @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore")      @DefaultValue("-1") int codStore,
 			                         @HeaderParam("dateValidFrom") @DefaultValue("1900-01-01") String dateValidFrom,
 			                         @HeaderParam("timeValidFrom") @DefaultValue("12:00") String timeValidFrom) {
 		
