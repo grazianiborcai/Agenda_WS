@@ -22,8 +22,8 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class StoreEmpSelectSingle implements SqlStmt<StoreEmpInfo> {	
-	private final String LEFT_TABLE_STORE_EMPLOYEE = SqlDbTable.STORE_EMPLOYEE_TABLE;	
-	private final String RIGHT_TABLE_EMPLOYEE = SqlDbTable.EMPLOYEE_TABLE;	
+	private final String LEFT_TABLE_STORE_EMPLOYEE = SqlDbTable.STORE_EMP_TABLE;	
+	private final String RIGHT_TABLE_EMPLOYEE = SqlDbTable.EMP_TABLE;	
 	private final String RIGHT_TABLE_STORE = SqlDbTable.STORE_TABLE;	
 	private final String RIGHT_TABLE_POSITION_TEXT = SqlDbTable.POSITION_TEXT_TABLE;
 	
@@ -215,7 +215,7 @@ public final class StoreEmpSelectSingle implements SqlStmt<StoreEmpInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		private final String POSITION_TEXT_COLUMN = SqlDbTable.POSITION_TEXT_TABLE + "." + "Name";
 		private final String STORE_NAME_COLUMN = SqlDbTable.STORE_TABLE + "." + "Name";
-		private final String EMPLOYEE_NAME_COLUMN = SqlDbTable.EMPLOYEE_TABLE + "." + "Name";
+		private final String EMPLOYEE_NAME_COLUMN = SqlDbTable.EMP_TABLE + "." + "Name";
 		
 		@Override public List<StoreEmpInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreEmpInfo> finalResult = new ArrayList<>();

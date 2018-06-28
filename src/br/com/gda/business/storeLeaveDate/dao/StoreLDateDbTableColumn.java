@@ -28,7 +28,7 @@ public final class StoreLDateDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void buildStoreLDateTable() {
-		final String TABLE_NAME = SqlDbTable.STORE_LEAVE_DATE_TABLE;
+		final String TABLE_NAME = SqlDbTable.STORE_LD_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	

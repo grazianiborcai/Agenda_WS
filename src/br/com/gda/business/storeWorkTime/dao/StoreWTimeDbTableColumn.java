@@ -28,7 +28,7 @@ public final class StoreWTimeDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void buildStoreWTimeTable() {
-		final String TABLE_NAME = SqlDbTable.STORE_WORK_TIME_TABLE;
+		final String TABLE_NAME = SqlDbTable.STORE_WT_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	

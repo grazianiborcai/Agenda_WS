@@ -34,7 +34,7 @@ public final class StoreWTimeInsertSingle implements SqlStmt<StoreWTimeInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.STORE_WORK_TIME_TABLE;
+		this.stmtOption.tableName = SqlDbTable.STORE_WT_TABLE;
 		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;

@@ -35,7 +35,7 @@ public final class EmpWTimeUpdateSingle implements SqlStmt<EmpWTimeInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;
+		this.stmtOption.tableName = SqlDbTable.EMP_WT_TABLE;
 		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;

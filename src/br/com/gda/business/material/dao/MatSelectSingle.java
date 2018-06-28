@@ -22,12 +22,12 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class MatSelectSingle implements SqlStmt<MatInfo> {
-	private final String LT_MAT = SqlDbTable.MATERIAL_TABLE;	
-	private final String RT_MAT_TEXT = SqlDbTable.MATERIAL_TEXT_TABLE;
-	private final String RT_MAT_TYPE_TEXT = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE;
-	private final String RT_MAT_CATEGORY_TEXT = SqlDbTable.MATERIAL_CATEGORY_TEXT_TABLE;
-	private final String RT_MAT_GROUP_TEXT = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE;
-	private final String RT_MAT_GROUP = SqlDbTable.MATERIAL_GROUP_TABLE;
+	private final String LT_MAT = SqlDbTable.MAT_TABLE;	
+	private final String RT_MAT_TEXT = SqlDbTable.MAT_TEXT_TABLE;
+	private final String RT_MAT_TYPE_TEXT = SqlDbTable.MAT_TYPE_TEXT_TABLE;
+	private final String RT_MAT_CATEGORY_TEXT = SqlDbTable.MAT_CATEG_TEXT_TABLE;
+	private final String RT_MAT_GROUP_TEXT = SqlDbTable.MAT_GROUP_TEXT_TABLE;
+	private final String RT_MAT_GROUP = SqlDbTable.MAT_GROUP_TABLE;
 	private final String RT_CURRENCY_TEXT = SqlDbTable.CURRENCY_TEXT_TABLE;
 	private final String RT_UNIT_TEXT = SqlDbTable.UNIT_TEXT_TABLE;
 	private final String RT_BUSINESS_TEXT = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
@@ -319,13 +319,13 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	private static class ResultParser implements SqlResultParser<MatInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String MAT_TEXT_COL = SqlDbTable.MATERIAL_TEXT_TABLE + "." + "Name";
-		private final String MAT_LANGU_COL = SqlDbTable.MATERIAL_TEXT_TABLE + "." + "Language";
-		private final String MAT_DESCR_COL = SqlDbTable.MATERIAL_TEXT_TABLE + "." + "Description";
-		private final String MAT_TYPE_TEXT_COL = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE + "." + "Name";
-		private final String MAT_CATEGORY_TEXT_COL = SqlDbTable.MATERIAL_CATEGORY_TEXT_TABLE + "." + "Name";
-		private final String MAT_GROUP_TEXT_COL = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE + "." + "Name";
-		private final String MAT_BUSINESS_COL = SqlDbTable.MATERIAL_GROUP_TABLE + "." + "Cod_business";
+		private final String MAT_TEXT_COL = SqlDbTable.MAT_TEXT_TABLE + "." + "Name";
+		private final String MAT_LANGU_COL = SqlDbTable.MAT_TEXT_TABLE + "." + "Language";
+		private final String MAT_DESCR_COL = SqlDbTable.MAT_TEXT_TABLE + "." + "Description";
+		private final String MAT_TYPE_TEXT_COL = SqlDbTable.MAT_TYPE_TEXT_TABLE + "." + "Name";
+		private final String MAT_CATEGORY_TEXT_COL = SqlDbTable.MAT_CATEG_TEXT_TABLE + "." + "Name";
+		private final String MAT_GROUP_TEXT_COL = SqlDbTable.MAT_GROUP_TEXT_TABLE + "." + "Name";
+		private final String MAT_BUSINESS_COL = SqlDbTable.MAT_GROUP_TABLE + "." + "Cod_business";
 		private final String MAT_BUSINESS_TEXT_COL = SqlDbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
 		private final String CURRENCY_TEXT_COL = SqlDbTable.CURRENCY_TEXT_TABLE + "." + "Name";
 		private final String UNIT_TEXT_COL = SqlDbTable.UNIT_TEXT_TABLE + "." + "Name";

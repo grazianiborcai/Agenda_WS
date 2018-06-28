@@ -3,7 +3,7 @@ package br.com.gda.business.employee.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employee.dao.EmpDeleteExec;
+import br.com.gda.business.employee.dao.EmpDelete;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
@@ -35,7 +35,7 @@ public final class ActionEmpDelete implements DeciAction<EmpInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new EmpDeleteExec(stmtExecOptions);
+		return new EmpDelete(stmtExecOptions);
 	}
 	
 	

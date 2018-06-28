@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employee.dao.EmpSelectExec;
+import br.com.gda.business.employee.dao.EmpSelect;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -53,7 +53,7 @@ public final class EmpCheckExistKeyCpf extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	private List<EmpInfo> executeStmt(EmpInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		EmpSelectExec stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+		EmpSelect stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
 		
 		stmtExecutor.executeStmt();
 		return stmtExecutor.getResultset();
@@ -61,7 +61,7 @@ public final class EmpCheckExistKeyCpf extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	
-	private EmpSelectExec buildStmtExecutor(EmpInfo recordInfo, Connection conn, String schemaName) {
+	private EmpSelect buildStmtExecutor(EmpInfo recordInfo, Connection conn, String schemaName) {
 		SqlStmtExecOption<EmpInfo> stmtExecOption = new SqlStmtExecOption<>();
 		stmtExecOption.conn = conn;
 		stmtExecOption.recordInfo = recordInfo;
@@ -70,7 +70,7 @@ public final class EmpCheckExistKeyCpf extends ModelCheckerTemplate<EmpInfo> {
 		List<SqlStmtExecOption<EmpInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
-		return new EmpSelectExec(stmtExecOptions);
+		return new EmpSelect(stmtExecOptions);
 	}
 	
 	

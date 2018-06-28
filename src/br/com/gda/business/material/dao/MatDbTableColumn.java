@@ -29,7 +29,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void buildMatTable() {
-		final String TABLE_NAME = SqlDbTable.MATERIAL_TABLE;
+		final String TABLE_NAME = SqlDbTable.MAT_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	
@@ -123,7 +123,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -131,7 +131,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_TEXT_TABLE;
 		oneColumn.columnName = "Description";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -139,7 +139,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -147,7 +147,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_TYPE_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -155,7 +155,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_CATEGORY_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_CATEG_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -179,7 +179,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_GROUP_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -187,7 +187,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_GROUP_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_GROUP_TABLE;
 		oneColumn.columnName = "Cod_business";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -208,7 +208,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void buildMatTextTable() {
-		final String TABLE_NAME = SqlDbTable.MATERIAL_TEXT_TABLE;
+		final String TABLE_NAME = SqlDbTable.MAT_TEXT_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	

@@ -28,7 +28,7 @@ public final class StoreEmpDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void buildStoreEmployeeTable() {
-		final String TABLE_NAME = SqlDbTable.STORE_EMPLOYEE_TABLE;
+		final String TABLE_NAME = SqlDbTable.STORE_EMP_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	
@@ -90,7 +90,7 @@ public final class StoreEmpDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.EMPLOYEE_TABLE;
+		oneColumn.tableName = SqlDbTable.EMP_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

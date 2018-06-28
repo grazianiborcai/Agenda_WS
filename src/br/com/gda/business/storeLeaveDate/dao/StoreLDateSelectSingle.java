@@ -23,7 +23,7 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class StoreLDateSelectSingle implements SqlStmt<StoreLDateInfo> {	
-	private final String LT_STORE_LEAVE_DATE = SqlDbTable.STORE_LEAVE_DATE_TABLE;
+	private final String LT_STORE_LEAVE_DATE = SqlDbTable.STORE_LD_TABLE;
 	private final String RT_STORE = SqlDbTable.STORE_TABLE;
 	
 	private SqlStmt<StoreLDateInfo> stmtSql;

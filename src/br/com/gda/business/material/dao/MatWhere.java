@@ -45,7 +45,7 @@ public final class MatWhere implements SqlStmtWhere {
 					break;
 					
 				case "Language":
-					if (tableName == SqlDbTable.MATERIAL_TEXT_TABLE)
+					if (tableName == SqlDbTable.MAT_TEXT_TABLE)
 						builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 					

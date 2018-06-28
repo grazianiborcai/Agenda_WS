@@ -35,7 +35,7 @@ public final class EmpLDateInsertSingle implements SqlStmt<EmpLDateInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.EMPLOYEE_LEAVE_DATE_TABLE;
+		this.stmtOption.tableName = SqlDbTable.EMP_LD_TABLE;
 		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;

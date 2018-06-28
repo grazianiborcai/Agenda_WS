@@ -22,8 +22,8 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class MatGroupSelectSingle implements SqlStmt<MatGroupInfo> {
-	private final String LT_MAT_GROUP = SqlDbTable.MATERIAL_GROUP_TABLE;
-	private final String RT_MAT_GROUP_TEXT = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE;
+	private final String LT_MAT_GROUP = SqlDbTable.MAT_GROUP_TABLE;
+	private final String RT_MAT_GROUP_TEXT = SqlDbTable.MAT_GROUP_TEXT_TABLE;
 	private final String RT_BUSINESS_TEXT = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
 	
 	private SqlStmt<MatGroupInfo> stmtSql;
@@ -177,9 +177,9 @@ public final class MatGroupSelectSingle implements SqlStmt<MatGroupInfo> {
 	
 	private class ResultParser implements SqlResultParser<MatGroupInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String GROUP_TEXT_COL = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE + "." + "Name";
+		private final String GROUP_TEXT_COL = SqlDbTable.MAT_GROUP_TEXT_TABLE + "." + "Name";
 		private final String BUSINESS_TEXT_COL = SqlDbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE + "." + "Language";
+		private final String LANGU_COL = SqlDbTable.MAT_GROUP_TEXT_TABLE + "." + "Language";
 		
 		@Override public List<MatGroupInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatGroupInfo> finalResult = new ArrayList<>();

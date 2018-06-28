@@ -1,8 +1,8 @@
-package br.com.gda.business.employee.dao;
+package br.com.gda.business.customer.dao;
 
 import java.util.List;
 
-import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlFormatterNumber;
@@ -10,17 +10,17 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilder;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-final class EmpWhere implements SqlStmtWhere {	
+public final class CusWhere implements SqlStmtWhere {	
 	private String whereClause;	
 	
 	
-	public EmpWhere(SqlWhereBuilderOption whereOption, String tableName, EmpInfo recordInfo) {
+	public CusWhere(SqlWhereBuilderOption whereOption, String tableName, CusInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, EmpInfo recordInfo) {
+	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, CusInfo recordInfo) {
 		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);
 		
 		List<SqlColumn> columns = SqlDbTableColumnAll.getTableColumnsAsList(tableName);
@@ -31,8 +31,8 @@ final class EmpWhere implements SqlStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
 					break;
 					
-				case "cod_employee" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
+				case "Cod_customer" :
+					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codCustomer));
 					break;
 					
 				case "CPF" :

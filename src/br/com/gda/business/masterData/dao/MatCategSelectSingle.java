@@ -22,8 +22,8 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class MatCategSelectSingle implements SqlStmt<MatCategInfo> {
-	private final String LT_MAT_CATEG = SqlDbTable.MATERIAL_CATEGORY_TABLE;
-	private final String RT_MAT_CATEG_TEXT = SqlDbTable.MATERIAL_CATEGORY_TEXT_TABLE;
+	private final String LT_MAT_CATEG = SqlDbTable.MAT_CATEG_TABLE;
+	private final String RT_MAT_CATEG_TEXT = SqlDbTable.MAT_CATEG_TEXT_TABLE;
 	
 	private SqlStmt<MatCategInfo> stmtSql;
 	private SqlStmtOption<MatCategInfo> stmtOption;
@@ -153,8 +153,8 @@ public final class MatCategSelectSingle implements SqlStmt<MatCategInfo> {
 	
 	private class ResultParser implements SqlResultParser<MatCategInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String CATEG_TEXT_COL = SqlDbTable.MATERIAL_CATEGORY_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = SqlDbTable.MATERIAL_CATEGORY_TEXT_TABLE + "." + "Language";
+		private final String CATEG_TEXT_COL = SqlDbTable.MAT_CATEG_TEXT_TABLE + "." + "Name";
+		private final String LANGU_COL = SqlDbTable.MAT_CATEG_TEXT_TABLE + "." + "Language";
 		
 		@Override public List<MatCategInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatCategInfo> finalResult = new ArrayList<>();

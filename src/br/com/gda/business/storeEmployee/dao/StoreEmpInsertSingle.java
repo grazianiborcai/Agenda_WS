@@ -36,7 +36,7 @@ public final class StoreEmpInsertSingle implements SqlStmt<StoreEmpInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.STORE_EMPLOYEE_TABLE;
+		this.stmtOption.tableName = SqlDbTable.STORE_EMP_TABLE;
 		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser();

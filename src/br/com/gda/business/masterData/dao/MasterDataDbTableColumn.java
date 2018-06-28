@@ -72,7 +72,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void materialUnitTable() {
-		final String TABLE_NAME = SqlDbTable.MATERIAL_UNIT_TABLE;
+		final String TABLE_NAME = SqlDbTable.MAT_UNIT_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();			
@@ -86,7 +86,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_UNIT_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_UNIT_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -94,7 +94,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_UNIT_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_UNIT_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -107,7 +107,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void materialTypeTable() {
-		final String TABLE_NAME = SqlDbTable.MATERIAL_TYPE_TABLE;
+		final String TABLE_NAME = SqlDbTable.MAT_TYPE_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();			
@@ -121,7 +121,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_TYPE_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -129,7 +129,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_TYPE_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -142,7 +142,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void materialCategTable() {
-		final String TABLE_NAME = SqlDbTable.MATERIAL_CATEGORY_TABLE;
+		final String TABLE_NAME = SqlDbTable.MAT_CATEG_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();			
@@ -156,7 +156,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_CATEGORY_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_CATEG_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -164,7 +164,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_CATEGORY_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_CATEG_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -177,7 +177,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void materialGroupTable() {
-		final String TABLE_NAME = SqlDbTable.MATERIAL_GROUP_TABLE;
+		final String TABLE_NAME = SqlDbTable.MAT_GROUP_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();			
@@ -199,7 +199,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);		
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_GROUP_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -207,7 +207,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MATERIAL_GROUP_TEXT_TABLE;
+		oneColumn.tableName = SqlDbTable.MAT_GROUP_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

@@ -28,7 +28,7 @@ public final class EmpCoDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void employeeWorkTimeTable() {
-		final String TABLE_NAME = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;
+		final String TABLE_NAME = SqlDbTable.EMP_WT_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	

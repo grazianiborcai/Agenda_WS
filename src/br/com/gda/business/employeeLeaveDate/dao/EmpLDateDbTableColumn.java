@@ -18,17 +18,15 @@ public final class EmpLDateDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	@Override protected Hashtable<String, List<SqlColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildEmpLDateTable();
-		
+		tableColumns = new Hashtable<>();		
+		buildEmpLDateTable();		
 		return tableColumns;
 	}
 	
 	
 	
 	private void buildEmpLDateTable() {
-		final String TABLE_NAME = SqlDbTable.EMPLOYEE_LEAVE_DATE_TABLE;
+		final String TABLE_NAME = SqlDbTable.EMP_LD_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	

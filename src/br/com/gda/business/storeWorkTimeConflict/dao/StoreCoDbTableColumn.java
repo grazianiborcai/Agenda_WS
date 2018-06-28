@@ -28,7 +28,7 @@ public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void storeWorkTimeConflictTable() {
-		final String TABLE_NAME = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;
+		final String TABLE_NAME = SqlDbTable.EMP_WT_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	

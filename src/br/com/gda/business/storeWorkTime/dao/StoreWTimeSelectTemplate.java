@@ -22,7 +22,7 @@ import br.com.gda.sql.SqlStmtHelper;
 import br.com.gda.sql.SqlStmtOption;
 
 class StoreWTimeSelectTemplate implements SqlStmt<StoreWTimeInfo> {
-	private final String LT_STORE_WORK_TIME = SqlDbTable.STORE_WORK_TIME_TABLE;	
+	private final String LT_STORE_WORK_TIME = SqlDbTable.STORE_WT_TABLE;	
 	private final String RT_WEEKDAY_TEXT = SqlDbTable.WEEKDAY_TEXT_TABLE;
 	private final String RT_STORE = SqlDbTable.STORE_TABLE;
 	

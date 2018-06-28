@@ -18,7 +18,7 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class EmpWTimeDeleteSingle implements SqlStmt<EmpWTimeInfo> {
-	private final String LT_EMPLOYEE_WORK_TIME = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;	
+	private final String LT_EMPLOYEE_WORK_TIME = SqlDbTable.EMP_WT_TABLE;	
 	
 	private SqlStmt<EmpWTimeInfo> stmtSql;
 	private SqlStmtOption<EmpWTimeInfo> stmtOption;	

@@ -1,4 +1,4 @@
-package br.com.gda.business.material.dao;
+package br.com.gda.business.employee.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlOperation;
@@ -17,24 +17,24 @@ import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-public final class MatDeleteSingle implements SqlStmt<MatInfo> {
-	private SqlStmt<MatInfo> stmtSql;
-	private SqlStmtOption<MatInfo> stmtOption;	
+public final class EmpDeleteSingle implements SqlStmt<EmpInfo> {
+	private SqlStmt<EmpInfo> stmtSql;
+	private SqlStmtOption<EmpInfo> stmtOption;	
 	
 	
-	public MatDeleteSingle(Connection conn, MatInfo recordInfo, String schemaName) {
+	public EmpDeleteSingle(Connection conn, EmpInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, MatInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, EmpInfo recordInfo, String schemaName) {
 		this.stmtOption = new SqlStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.MAT_TABLE;
+		this.stmtOption.tableName = SqlDbTable.EMP_TABLE;
 		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -53,7 +53,7 @@ public final class MatDeleteSingle implements SqlStmt<MatInfo> {
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;		
 		
-		SqlStmtWhere whereClause = new MatWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		SqlStmtWhere whereClause = new EmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -84,22 +84,22 @@ public final class MatDeleteSingle implements SqlStmt<MatInfo> {
 
 	
 	
-	@Override public List<MatInfo> getResultset() {
+	@Override public List<EmpInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public SqlStmt<MatInfo> getNewInstance() {
-		return new MatDeleteSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public SqlStmt<EmpInfo> getNewInstance() {
+		return new EmpDeleteSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements SqlResultParser<MatInfo> {
-		@Override public List<MatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<MatInfo> finalResult = new ArrayList<>();
-			MatInfo emptyInfo = new MatInfo();
+	private class ResultParser implements SqlResultParser<EmpInfo> {
+		@Override public List<EmpInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<EmpInfo> finalResult = new ArrayList<>();
+			EmpInfo emptyInfo = new EmpInfo();
 			finalResult.add(emptyInfo);			
 			return finalResult;
 		}

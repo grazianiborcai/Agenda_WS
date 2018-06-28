@@ -24,7 +24,7 @@ import br.com.gda.sql.SqlWhereBuilderOption;
 
 
 public final class EmpCoSelectSingle implements SqlStmt<EmpCoInfo> {
-	private final String LT_EMP_WT = SqlDbTable.EMPLOYEE_WORKING_TIME_TABLE;	
+	private final String LT_EMP_WT = SqlDbTable.EMP_WT_TABLE;	
 	private final String RT_WEEKDAY_TEXT = SqlDbTable.WEEKDAY_TEXT_TABLE;
 	private final String RT_STORE = SqlDbTable.STORE_TABLE;
 	
@@ -49,18 +49,18 @@ public final class EmpCoSelectSingle implements SqlStmt<EmpCoInfo> {
 		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(SqlDbTable.EMP_WT_CONFLICT_VIEW);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClauseHook(stmtOption.tableName, stmtOption.recordInfo);
+		this.stmtOption.whereClause = buildWhereClause(stmtOption.tableName, stmtOption.recordInfo);
 		this.stmtOption.joins = buildJoins();
 	}
 	
 	
 	
-	protected String buildWhereClauseHook(String tableName, EmpCoInfo recordInfo) {
-		final boolean IGNORE_NULL = true;
+	private String buildWhereClause(String tableName, EmpCoInfo recordInfo) {
+		final boolean DONT_IGNORE_NULL = false;
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
 		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
+		whereOption.ignoreNull = DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
 		SqlStmtWhere whereClause = new EmpCoWhere(whereOption, tableName, recordInfo);

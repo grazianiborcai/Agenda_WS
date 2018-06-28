@@ -22,8 +22,8 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class MatTypeSelectSingle implements SqlStmt<MatTypeInfo> {
-	private final String LT_MAT_TYPE = SqlDbTable.MATERIAL_TYPE_TABLE;
-	private final String RT_MAT_TYPE_TEXT = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE;
+	private final String LT_MAT_TYPE = SqlDbTable.MAT_TYPE_TABLE;
+	private final String RT_MAT_TYPE_TEXT = SqlDbTable.MAT_TYPE_TEXT_TABLE;
 	
 	private SqlStmt<MatTypeInfo> stmtSql;
 	private SqlStmtOption<MatTypeInfo> stmtOption;
@@ -153,8 +153,8 @@ public final class MatTypeSelectSingle implements SqlStmt<MatTypeInfo> {
 	
 	private class ResultParser implements SqlResultParser<MatTypeInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TYPE_TEXT_COL = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = SqlDbTable.MATERIAL_TYPE_TEXT_TABLE + "." + "Language";
+		private final String TYPE_TEXT_COL = SqlDbTable.MAT_TYPE_TEXT_TABLE + "." + "Name";
+		private final String LANGU_COL = SqlDbTable.MAT_TYPE_TEXT_TABLE + "." + "Language";
 		
 		@Override public List<MatTypeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatTypeInfo> finalResult = new ArrayList<>();

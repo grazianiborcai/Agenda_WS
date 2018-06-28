@@ -1,4 +1,4 @@
-package br.com.gda.resource.legacy;
+package br.com.gda.resource;
 
 import java.io.IOException;
 import java.io.StringReader;

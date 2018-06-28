@@ -23,7 +23,7 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class EmpLDateSelectSingle implements SqlStmt<EmpLDateInfo> {
-	private final String LT_EMPLOYEE_LEAVE_DATE = SqlDbTable.EMPLOYEE_LEAVE_DATE_TABLE;	
+	private final String LT_EMPLOYEE_LEAVE_DATE = SqlDbTable.EMP_LD_TABLE;	
 	private final String RT_STORE = SqlDbTable.STORE_TABLE;
 	
 	private SqlStmt<EmpLDateInfo> stmtSql;

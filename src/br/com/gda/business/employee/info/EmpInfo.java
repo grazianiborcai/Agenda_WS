@@ -13,7 +13,7 @@ import br.com.gda.helper.RecordMode;
 public final class EmpInfo implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
-	public List<Long> stores;
+	public List<Long> stores; //TODO: remover esse campo
 	public String cpf;
 	public String name;
 	public int codGender;
@@ -28,10 +28,10 @@ public final class EmpInfo implements Cloneable {
 	public String txtCountry;
 	public String stateProvince;
 	public String phone;
-	public LocalTime beginTime;
-	public LocalTime endTime;
-	public long codPosition;	
-	public String txtPosition;
+	public LocalTime beginTime;	 //TODO: remover esse campo
+	public LocalTime endTime;	 //TODO: remover esse campo
+	public long codPosition;	 //TODO: remover esse campo
+	public String txtPosition;	 //TODO: remover esse campo
 	public String codLanguage;
 	public String recordMode;
 	
@@ -59,7 +59,7 @@ public final class EmpInfo implements Cloneable {
 	
 	
 	
-	@Override public Object clone()throws CloneNotSupportedException {  
+	@Override public Object clone() throws CloneNotSupportedException {  
 		EmpInfo deepCopy = (EmpInfo) super.clone();  		
 		
 		LocalTime cloneBeginTime = null;		
