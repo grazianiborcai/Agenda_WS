@@ -1,11 +1,11 @@
-package br.com.gda.business.employee.model;
+package br.com.gda.business.customer.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.decisionTree.RootEmpSelect;
+import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.business.customer.model.decisionTree.RootCusSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpModelSelect implements Model {
+public final class CusModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public EmpModelSelect(EmpInfo employeeInfo) {
+	public CusModelSelect(CusInfo employeeInfo) {
 		initialize();
 		buildHelper(employeeInfo);
 	}
@@ -35,10 +35,10 @@ public final class EmpModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(EmpInfo employeeInfo) {
-		ModelOption<EmpInfo> helperOption = new ModelOption<>();
+	private void buildHelper(CusInfo employeeInfo) {
+		ModelOption<CusInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpInfo.class;
+		helperOption.infoRecordClass = CusInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class EmpModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<EmpInfo> {		
-		@Override public DeciTree<EmpInfo> getInstance(DeciTreeOption<EmpInfo> option) {
-			return new RootEmpSelect(option);
+	private static class TreeFactory implements DeciTreeFactory<CusInfo> {		
+		@Override public DeciTree<CusInfo> getInstance(DeciTreeOption<CusInfo> option) {
+			return new RootCusSelect(option);
 		}		
 	}
 }

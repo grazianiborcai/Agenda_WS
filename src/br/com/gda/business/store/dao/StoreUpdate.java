@@ -19,8 +19,7 @@ public final class StoreUpdate implements SqlStmtExec<StoreInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

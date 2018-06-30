@@ -81,7 +81,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Email";
+		oneColumn.columnName = "email";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -153,14 +153,6 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = SqlDbTable.GENDER_TEXT_TABLE;
-		oneColumn.columnName = "Name";
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.POSITION_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

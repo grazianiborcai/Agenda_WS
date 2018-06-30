@@ -74,18 +74,18 @@ public final class EmpCheckExistCpf extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_CPF_ALREADY_EXIST)
-			return SystemMessage.EMPLOYEE_CPF_ALREADY_EXIST;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.EMP_CPF_ALREADY_EXIST)
+			return SystemMessage.EMP_CPF_ALREADY_EXIST;
 		
-		return SystemMessage.EMPLOYEE_CPF_NOT_FOUND;
+		return SystemMessage.EMP_CPF_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == CPF_ALREADY_EXIST_ON_DB)
-			return SystemCode.EMPLOYEE_CPF_ALREADY_EXIST;	
+			return SystemCode.EMP_CPF_ALREADY_EXIST;	
 			
-		return SystemCode.EMPLOYEE_CPF_NOT_FOUND;
+		return SystemCode.EMP_CPF_NOT_FOUND;
 	}
 }

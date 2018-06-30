@@ -120,8 +120,9 @@ public class AuthFilter implements ContainerRequestFilter {
 	
 	
 	private boolean isHtmlRequestFreeOfAuthentication() {
-		String uriPath = this.headerAttr.getUriPath();
-		return AuthFilter.requestAuthNotRequired.contains(uriPath);
+		return true;
+		//String uriPath = this.headerAttr.getUriPath();
+		//return AuthFilter.requestAuthNotRequired.contains(uriPath);
 	}
 	
 	

@@ -12,8 +12,7 @@ public final class SystemMessage {
 	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";				
 	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";			
 	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";
-	public static final String EMP_POS_ALREADY_EXIST = "Position already exist on DB";	
-	public static final String EMPLOYEE_ALREALDY_EXIST = "Employee's data already exist on DB";	
+	public static final String EMP_POS_ALREADY_EXIST = "Position already exist on DB";		
 	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
 	public static final String RESULTSET_NOT_APPLICABLE = "Resultset is either not applicable or is empty";		
 	public static final String OPERATION_CANT_BE_PROCESSED = "Not possible to process this operation";	
@@ -78,23 +77,24 @@ public final class SystemMessage {
 	
 	
 	//Employee
-	public static final String EMPLOYEE_CPF_ALREADY_EXIST = "Employee's CPF already exist on DB";	
-	public static final String EMPLOYEE_CPF_NOT_FOUND = "Employee's CPF not found on DB";	
-	public static final String EMPLOYEE_DATA_ALREADY_EXIST = "Employee's data already exist";
-	public static final String EMPLOYEE_DATA_NOT_FOUND = "Employee's data not found";
-	public static final String EMPLOYEE_FLAGGED_AS_DELETED = "Employee's data is flagged as deleted on DB";	
-	public static final String EMPLOYEE_LEAVE_DATE_ALREADY_EXIST = "Employee's leave date already exist on DB";
-	public static final String EMPLOYEE_LEAVE_DATE_FLAGGED_AS_DELETED = "Employee leave date data is flagged as deleted on DB";	
-	public static final String EMPLOYEE_LEAVE_DATE_NOT_FOUND = "Employee's leave date not found on DB";	
-	public static final String EMPLOYEE_MULTIPLE_ENTRIES_FOUND = "Multiple entries found for Employee's data selection";	
-	public static final String EMPLOYEE_NOT_FOUND = "Employee's data not found on DB";	
-	public static final String EMPLOYEE_SINGLE_ENTRY_FOUND = "Single entry found for Employee's data selection";
+	public static final String EMP_ALREALDY_EXIST = "Employee's data already exist on DB";	
+	public static final String EMP_CPF_ALREADY_EXIST = "Employee's CPF already exist on DB";	
+	public static final String EMP_CPF_NOT_FOUND = "Employee's CPF not found on DB";	
+	public static final String EMP_DATA_ALREADY_EXIST = "Employee's data already exist";
+	public static final String EMP_DATA_NOT_FOUND = "Employee's data not found";
+	public static final String EMP_FLAGGED_AS_DELETED = "Employee's data is flagged as deleted on DB";	
+	public static final String EMP_LD_ALREADY_EXIST = "Employee's leave date already exist on DB";
+	public static final String EMP_LD_FLAGGED_AS_DELETED = "Employee leave date data is flagged as deleted on DB";	
+	public static final String EMP_LD_NOT_FOUND = "Employee's leave date not found on DB";	
+	public static final String EMP_MULTIPLE_ENTRIES_FOUND = "Multiple entries found for Employee's data selection";	
+	public static final String EMP_NOT_FOUND = "Employee's data not found on DB";	
+	public static final String EMP_SINGLE_ENTRY_FOUND = "Single entry found for Employee's data selection";
 	public static final String EMP_WTIME_ALREALDY_EXIST = "Employee's working time data already exist on DB";
 	public static final String EMP_WTIME_FLAGGED_AS_DELETED = "Employee's working time data is flagged as deleted on DB";			
 	public static final String EMP_WTIME_NO_RANGE_FOUND = "Employee's working time range not found on DB";	
 	public static final String EMP_WTIME_NOT_FOUND = "Employee's working time data not found on DB";	
 	public static final String EMP_WTIME_RANGE_CONFLICT = "Employee's working time range conflict";		
-		
+	
 
 			
 	//Store		
@@ -116,4 +116,16 @@ public final class SystemMessage {
 	public static final String STORE_WTIME_NOT_FOUND = "Store's working time not found on DB";
 	public static final String STORE_WTIME_VALID_WORKHOUR = "Selected time is valid for Store working time range";	
 	public static final String STORE_WTIME_WORKHOUR_OUT_OF_RANGE = "Selected time is out of range of Store working time";
+	
+		
+	
+	//Customer
+	public static final String CUS_ALREALDY_EXIST = "Customer's data already exist on DB";	
+	public static final String CUS_CPF_ALREADY_EXIST = "Customer's CPF already exist on DB";	
+	public static final String CUS_CPF_NOT_FOUND = "Customer's CPF not found on DB";	
+	public static final String CUS_EMAIL_ALREADY_EXIST = "Customer's e-email already exist on DB";	
+	public static final String CUS_EMAIL_CHANGED = "Customer's e-mail changed";	
+	public static final String CUS_EMAIL_NOT_FOUND = "Customer's e-email not found on DB";	
+	public static final String CUS_EMAIL_NOT_CHANGED = "Customer's e-mail not changed";	
+	public static final String CUS_NOT_FOUND = "Customer's data not found on DB";	
 }

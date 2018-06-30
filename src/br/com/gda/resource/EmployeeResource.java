@@ -240,11 +240,11 @@ public class EmployeeResource {
 								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee) {
 		
 		//TODO: atualizar StoreEmployee
-		EmpInfo employeeInfo = new EmpInfo();
-		employeeInfo.codOwner = codOwner;
-		employeeInfo.codEmployee = codEmployee;
+		EmpInfo recordInfo = new EmpInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codEmployee = codEmployee;
 		
-		Model modelDelete = new EmpModelDelete(employeeInfo);
+		Model modelDelete = new EmpModelDelete(recordInfo);
 		modelDelete.executeRequest();
 		return modelDelete.getResponse();
 	}
@@ -268,16 +268,15 @@ public class EmployeeResource {
 	public Response selectEmployee(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
 								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee) {
 		
-		//TODO: O Android estï¿½ chamando esse mï¿½todo para obter os empregados. Verificar se StoreEmployee ï¿½ mais apropriado
-		//TODO: Convertido de QueryParam para headerParam
+		//TODO: O Android está chamando esse método para obter os empregados. Verificar se StoreEmployee é mais apropriado
 		
 		
-		EmpInfo employeeInfo = new EmpInfo();
-		employeeInfo.codOwner = codOwner;
-		employeeInfo.codEmployee = codEmployee;
+		EmpInfo recordInfo = new EmpInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codEmployee = codEmployee;
 		
-		Model employeeSelect = new EmpModelSelect(employeeInfo);
-		employeeSelect.executeRequest();
-		return employeeSelect.getResponse();
+		Model modelSelect = new EmpModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
 	}
 }

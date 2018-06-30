@@ -1,6 +1,8 @@
 package br.com.gda.business.customer.info;
 
 import java.time.LocalDate;
+
+import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
@@ -33,6 +35,14 @@ public final class CusInfo implements Cloneable {
 		this.postalCode = DefaultValue.number();
 		this.codLanguage = Language.getDefaultLanguage();
 		this.recordMode = RecordMode.RECORD_OK;		
+	}
+	
+	
+	
+	public OwnerInfo toOwnerInfo() {
+		OwnerInfo owner = new OwnerInfo();
+		owner.codOwner = codOwner;
+		return owner;
 	}
 	
 	

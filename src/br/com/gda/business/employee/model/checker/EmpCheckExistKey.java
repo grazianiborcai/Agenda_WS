@@ -75,18 +75,18 @@ public final class EmpCheckExistKey extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_ALREADY_EXIST)
-			return SystemMessage.EMPLOYEE_ALREALDY_EXIST;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.EMP_ALREADY_EXIST)
+			return SystemMessage.EMP_ALREALDY_EXIST;
 		
-		return SystemMessage.EMPLOYEE_NOT_FOUND;
+		return SystemMessage.EMP_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == EMPLOYEE_EXIST)
-			return SystemCode.EMPLOYEE_ALREADY_EXIST;	
+			return SystemCode.EMP_ALREADY_EXIST;	
 			
-		return SystemCode.EMPLOYEE_NOT_FOUND;
+		return SystemCode.EMP_NOT_FOUND;
 	}
 }

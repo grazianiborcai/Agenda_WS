@@ -79,7 +79,7 @@ public final class EmpLDateCheckSoftDelete extends ModelCheckerTemplate<EmpLDate
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {	
-		return SystemMessage.EMPLOYEE_LEAVE_DATE_FLAGGED_AS_DELETED;
+		return SystemMessage.EMP_LD_FLAGGED_AS_DELETED;
 	}
 	
 	

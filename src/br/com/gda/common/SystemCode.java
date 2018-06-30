@@ -22,13 +22,13 @@ public final class SystemCode {
 	public static final int EMP_WTIME_NO_RANGE_FOUND 					= 1004;
 	
 	// Employee
-	public static final int EMPLOYEE_ALREADY_EXIST 						= 1050;
-	public static final int EMPLOYEE_NOT_FOUND 							= 1051;
-	public static final int EMPLOYEE_FLAGGED_AS_DELETED 				= 1052;
-	public static final int EMPLOYEE_MULTIPLE_ENTRIES_FOUND				= 1053;
-	public static final int EMPLOYEE_SINGLE_ENTRY_FOUND					= 1054;
-	public static final int EMPLOYEE_CPF_ALREADY_EXIST					= 1055;
-	public static final int EMPLOYEE_CPF_NOT_FOUND						= 1056;	
+	public static final int EMP_ALREADY_EXIST 							= 1050;
+	public static final int EMP_NOT_FOUND 								= 1051;
+	public static final int EMP_FLAGGED_AS_DELETED 						= 1052;
+	public static final int EMP_MULTIPLE_ENTRIES_FOUND					= 1053;
+	public static final int EMP_SINGLE_ENTRY_FOUND						= 1054;
+	public static final int EMP_CPF_ALREADY_EXIST						= 1055;
+	public static final int EMP_CPF_NOT_FOUND							= 1056;	
 	public static final int AUTO_GENERATED_FIELD_IS_NOT_EMPTY			= 1057;
 	
 	// Store
@@ -85,4 +85,14 @@ public final class SystemCode {
 	public static final int EMPLOYEE_LEAVE_DATE_ALREADY_EXIST 			= 1300;
 	public static final int EMPLOYEE_LEAVE_DATE_NOT_FOUND 				= 1301;
 	public static final int EMPLOYEE_LEAVE_DATE_FLAGGED_AS_DELETED 		= 1302;
+	
+	//Customer
+	public static final int CUS_CPF_ALREADY_EXIST						= 1350;
+	public static final int CUS_CPF_NOT_FOUND							= 1351;	
+	public static final int CUS_EMAIL_ALREADY_EXIST						= 1352;
+	public static final int CUS_EMAIL_NOT_FOUND							= 1353;	
+	public static final int CUS_ALREADY_EXIST 							= 1354;
+	public static final int CUS_NOT_FOUND 								= 1355;
+	public static final int CUS_EMAIL_CHANGED 							= 1356;
+	public static final int CUS_EMAIL_NOT_CHANGED						= 1357;
 }

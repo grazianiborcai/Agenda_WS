@@ -39,6 +39,10 @@ public final class CusWhere implements SqlStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, recordInfo.cpf);
 					break;
 					
+				case "email" :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.email);
+					break;
+					
 				case "record_mode" :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;

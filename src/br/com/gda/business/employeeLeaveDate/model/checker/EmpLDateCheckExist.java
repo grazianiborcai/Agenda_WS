@@ -66,9 +66,9 @@ public final class EmpLDateCheckExist extends ModelCheckerTemplate<EmpLDateInfo>
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
 		if (makeFailureCodeHook(checkerResult) == SystemCode.EMPLOYEE_LEAVE_DATE_ALREADY_EXIST)
-			return SystemMessage.EMPLOYEE_LEAVE_DATE_ALREADY_EXIST;
+			return SystemMessage.EMP_LD_ALREADY_EXIST;
 		
-		return SystemMessage.EMPLOYEE_LEAVE_DATE_NOT_FOUND;
+		return SystemMessage.EMP_LD_NOT_FOUND;
 	}
 	
 	
