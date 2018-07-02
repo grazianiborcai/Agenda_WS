@@ -1,9 +1,9 @@
-package br.com.gda.business.employeWorkTimeConflict.dao;
+package br.com.gda.business.employeeWorkTimeConflict.dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecHelper;
 import br.com.gda.sql.SqlStmtExecOption;

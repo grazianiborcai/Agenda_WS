@@ -1,10 +1,10 @@
-package br.com.gda.business.employeWorkTimeConflict.model.checker;
+package br.com.gda.business.employeeWorkTimeConflict.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckExist;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 

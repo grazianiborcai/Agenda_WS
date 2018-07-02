@@ -2,8 +2,8 @@ package br.com.gda.business.employeeWorkTime.info;
 
 import java.time.LocalTime;
 
-import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;

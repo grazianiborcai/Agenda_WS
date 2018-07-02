@@ -7,12 +7,12 @@ import br.com.gda.model.decisionTree.DeciActionHelperTrans;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionCusEnforceKeyCE implements DeciAction<CusInfo> {
+public final class ActionCusEnforceKeyCpf implements DeciAction<CusInfo> {
 	private DeciAction<CusInfo> actionHelper;	
 	
 	
-	public ActionCusEnforceKeyCE(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorCusEnforceKeyCE());
+	public ActionCusEnforceKeyCpf(DeciTreeOption<CusInfo> option) {			
+		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorCusEnforceKeyCpf());
 	}
 	
 	

@@ -15,8 +15,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
-import br.com.gda.business.employeWorkTimeConflict.model.EmpCoModelSelect;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.EmpModelDelete;
 import br.com.gda.business.employee.model.EmpModelInsert;
@@ -32,6 +30,8 @@ import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelDelete;
 import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelInsert;
 import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelSelect;
 import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelUpdate;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
+import br.com.gda.business.employeeWorkTimeConflict.model.EmpCoModelSelect;
 import br.com.gda.model.Model;
 import br.com.gda.model.legacy.EmployeeModel;
 

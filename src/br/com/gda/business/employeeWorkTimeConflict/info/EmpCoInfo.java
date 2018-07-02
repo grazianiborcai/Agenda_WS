@@ -1,4 +1,4 @@
-package br.com.gda.business.employeWorkTimeConflict.info;
+package br.com.gda.business.employeeWorkTimeConflict.info;
 
 import java.time.LocalTime;
 

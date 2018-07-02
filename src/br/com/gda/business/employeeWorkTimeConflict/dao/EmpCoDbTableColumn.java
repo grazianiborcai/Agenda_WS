@@ -1,4 +1,4 @@
-package br.com.gda.business.employeWorkTimeConflict.dao;
+package br.com.gda.business.employeeWorkTimeConflict.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

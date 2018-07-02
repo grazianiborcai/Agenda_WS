@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.checker.CusCheckEmailChange;
 import br.com.gda.business.customer.model.checker.CusCheckExistCpf;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -35,20 +34,12 @@ public final class NodeCusUpdateL2 implements DeciTree<CusInfo> {
 	
 	
 	
-	private ModelChecker<CusInfo> buildDecisionChecker(DeciTreeOption<CusInfo> option) {
-		final boolean NOT_CHANGED = true;
+	private ModelChecker<CusInfo> buildDecisionChecker(DeciTreeOption<CusInfo> option) {		
 		final boolean DONT_EXIST_ON_DB = false;
 		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
 		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = NOT_CHANGED;		
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;		
-		checker = new CusCheckEmailChange(checkerOption);
-		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		

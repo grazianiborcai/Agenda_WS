@@ -1,10 +1,10 @@
-package br.com.gda.business.employeWorkTimeConflict.model.decisionTree;
+package br.com.gda.business.employeeWorkTimeConflict.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employeWorkTimeConflict.dao.EmpCoSelect;
-import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
+import br.com.gda.business.employeeWorkTimeConflict.dao.EmpCoSelect;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciActionHelperStmt;

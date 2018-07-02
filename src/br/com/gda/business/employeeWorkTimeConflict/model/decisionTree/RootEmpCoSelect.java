@@ -1,10 +1,10 @@
-package br.com.gda.business.employeWorkTimeConflict.model.decisionTree;
+package br.com.gda.business.employeeWorkTimeConflict.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
-import br.com.gda.business.employeWorkTimeConflict.model.checker.EmpCoCheckRead;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
+import br.com.gda.business.employeeWorkTimeConflict.model.checker.EmpCoCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;

@@ -85,6 +85,8 @@ public final class RootMatEmpInsert implements DeciTree<MatEmpInfo> {
 		checker = new MatEmpCheckStoreEmp(checkerOption);
 		queue.add(checker);	
 		
+		//StoreMat
+		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.decisionTree.ActionCusEnforceKeyCE;
+import br.com.gda.business.customer.model.decisionTree.ActionCusEnforceKeyCpf;
 import br.com.gda.business.customer.model.decisionTree.HandlerCusSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -14,7 +14,7 @@ import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class CusCheckExistKeyCE extends ModelCheckerTemplate<CusInfo> {
+public final class CusCheckCpfChange extends ModelCheckerTemplate<CusInfo> {
 	private final boolean ALREADY_EXIST = true;
 	private final boolean NOT_FOUND = false;
 	private final boolean FAILED = false;
@@ -24,7 +24,7 @@ public final class CusCheckExistKeyCE extends ModelCheckerTemplate<CusInfo> {
 	private DeciResult<CusInfo> actionResult;
 	
 	
-	public CusCheckExistKeyCE(ModelCheckerOption option) {
+	public CusCheckCpfChange(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -57,7 +57,7 @@ public final class CusCheckExistKeyCE extends ModelCheckerTemplate<CusInfo> {
 	
 	private void buildAction(CusInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CusInfo> option = buildActionOption(recordInfo, conn, schemaName);
-		actionSelect = new ActionCusEnforceKeyCE(option);
+		actionSelect = new ActionCusEnforceKeyCpf(option);
 		actionSelect.addPostAction(new HandlerCusSelect(conn, schemaName));
 	}
 	

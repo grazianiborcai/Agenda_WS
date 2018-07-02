@@ -33,7 +33,7 @@ public final class MatInfo implements Cloneable {
 	public String codLanguage;
 	public boolean isLocked;
 	public String recordMode;
-	//TODO: testar material com pre√ßo com mais de 2 casas decimais
+	//TODO: testar material precis„o com mais de 2 casas decimais
 	
 	
 	public MatInfo() {

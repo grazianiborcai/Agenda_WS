@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.checker.CusCheckCpf;
+import br.com.gda.business.customer.model.checker.CusCheckEmailChange;
 import br.com.gda.business.customer.model.checker.CusCheckExistKey;
 import br.com.gda.business.customer.model.checker.CusCheckKey;
 import br.com.gda.business.customer.model.checker.CusCheckOwner;
@@ -32,6 +33,7 @@ public final class RootCusUpdate implements DeciTree<CusInfo> {
 		helperOption.conn = option.conn;
 		helperOption.schemaName = option.schemaName;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
+		helperOption.actionsOnFailed = null;
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -39,6 +41,7 @@ public final class RootCusUpdate implements DeciTree<CusInfo> {
 	
 	
 	private ModelChecker<CusInfo> buildDecisionChecker(DeciTreeOption<CusInfo> option) {
+		final boolean NOT_CHANGED = true;
 		final boolean EXIST_ON_DB = true;			
 		final boolean KEY_NOT_NULL = true;	
 		
@@ -70,6 +73,13 @@ public final class RootCusUpdate implements DeciTree<CusInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new CusCheckExistKey(checkerOption);
 		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.expectedResult = NOT_CHANGED;		
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;		
+		checker = new CusCheckEmailChange(checkerOption);
+		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
 	}

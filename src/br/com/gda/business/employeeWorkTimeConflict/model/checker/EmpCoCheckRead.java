@@ -1,8 +1,8 @@
-package br.com.gda.business.employeWorkTimeConflict.model.checker;
+package br.com.gda.business.employeeWorkTimeConflict.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplate;

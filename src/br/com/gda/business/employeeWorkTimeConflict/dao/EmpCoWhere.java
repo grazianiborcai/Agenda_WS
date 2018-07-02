@@ -1,8 +1,8 @@
-package br.com.gda.business.employeWorkTimeConflict.dao;
+package br.com.gda.business.employeeWorkTimeConflict.dao;
 
 import java.util.List;
 
-import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.sql.SqlColumn;
 import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlFormatterNumber;

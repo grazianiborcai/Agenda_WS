@@ -1,11 +1,11 @@
-package br.com.gda.business.employeWorkTimeConflict.model;
+package br.com.gda.business.employeeWorkTimeConflict.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.employeWorkTimeConflict.info.EmpCoInfo;
-import br.com.gda.business.employeWorkTimeConflict.model.decisionTree.RootEmpCoSelect;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
+import br.com.gda.business.employeeWorkTimeConflict.model.decisionTree.RootEmpCoSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
