@@ -7,12 +7,12 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.checker.EmpCheckCpf;
 import br.com.gda.business.employee.model.checker.EmpCheckExistKey;
 import br.com.gda.business.employee.model.checker.EmpCheckKey;
+import br.com.gda.business.employee.model.checker.EmpCheckOwner;
 import br.com.gda.business.employee.model.checker.EmpCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -61,6 +61,13 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpCheckOwner(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpCheckExistKey(checkerOption);
 		queue.add(checker);	
 		
@@ -72,7 +79,7 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 	private List<DeciAction<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
 		List<DeciAction<EmpInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionNodeUpdateL1(option));	
+		actions.add(new NodeEmpUpdateL1(option).toAction());	
 		return actions;
 	}
 	
@@ -98,39 +105,5 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 	
 	@Override public DeciAction<EmpInfo> toAction() {
 		return tree.toAction();
-	}
-	
-	
-	
-	
-	
-	
-	private static class ActionNodeUpdateL1 implements DeciAction<EmpInfo> {
-		DeciTree<EmpInfo> treeHelper;
-		
-		
-		public ActionNodeUpdateL1(DeciTreeOption<EmpInfo> option) {
-			treeHelper = new NodeEmpUpdateL1(option);
-		}
-		
-		
-		
-		@Override public void addPostAction(DeciActionHandler<EmpInfo> actionHandler) {
-			//Dummy
-		}
-		
-		
-		
-		@Override public boolean executeAction() {			
-			  treeHelper.makeDecision();
-			  DeciResult<EmpInfo> treeResult = treeHelper.getDecisionResult();
-			  return treeResult.hasSuccessfullyFinished();
-		}
-		
-		
-		
-		@Override public DeciResult<EmpInfo> getDecisionResult() {
-			return treeHelper.getDecisionResult();
-		}
 	}
 }

@@ -1,21 +1,26 @@
 package br.com.gda.business.employee.model.checker;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-import br.com.gda.business.employee.dao.EmpSelect;
 import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employee.model.decisionTree.ActionEmpEnforceKey;
+import br.com.gda.business.employee.model.decisionTree.HandlerEmpSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplate;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class EmpCheckExistKey extends ModelCheckerTemplate<EmpInfo> {
-	private final boolean EMPLOYEE_EXIST = true;
-	private final boolean NO_ENTRY_FOUND = false;
+	private final boolean ALREADY_EXIST = true;
+	private final boolean NOT_FOUND = false;
+	private final boolean FAILED = false;
+	private final boolean EMPTY_RESULTSET = false;
+	
+	private DeciAction<EmpInfo> actionSelect;
+	private DeciResult<EmpInfo> actionResult;
 	
 	
 	public EmpCheckExistKey(ModelCheckerOption option) {
@@ -25,51 +30,46 @@ public final class EmpCheckExistKey extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
-		try {
-			EmpInfo enforcedInfo = enforcePrimaryKey(recordInfo);
-			
-			List<EmpInfo> resultset = executeStmt(enforcedInfo, conn, schemaName);
-			
-			if (resultset == null || resultset.isEmpty())
-				return NO_ENTRY_FOUND;
-			
-			return EMPLOYEE_EXIST;
-			
-		} catch (Exception e) {
+		executeAction(recordInfo, conn, schemaName);
+		
+		if (actionResult.hasSuccessfullyFinished() == FAILED)
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
-		}
+		
+		if (actionResult.hasResultset() == EMPTY_RESULTSET)
+			return NOT_FOUND;
+		
+		if (actionResult.getResultset().isEmpty())
+			return NOT_FOUND;
+		
+		return ALREADY_EXIST;
 	}
 	
 	
 	
-	private EmpInfo enforcePrimaryKey(EmpInfo recordInfo) {
-		EmpInfo keyInfo = new EmpInfo();
-		keyInfo.codOwner = recordInfo.codOwner;
-		keyInfo.codEmployee = recordInfo.codEmployee;		
-		return keyInfo;
+	private void executeAction(EmpInfo recordInfo, Connection conn, String schemaName) {
+		buildAction(recordInfo, conn, schemaName);
+		actionSelect.executeAction();
+		actionResult = actionSelect.getDecisionResult();
 	}
 	
 	
 	
-	private List<EmpInfo> executeStmt(EmpInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		EmpSelect stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
-		
-		stmtExecutor.executeStmt();
-		return stmtExecutor.getResultset();
+	private void buildAction(EmpInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<EmpInfo> option = buildActionOption(recordInfo, conn, schemaName);
+		actionSelect = new ActionEmpEnforceKey(option);
+		actionSelect.addPostAction(new HandlerEmpSelect(conn, schemaName));
 	}
 	
 	
 	
-	private EmpSelect buildStmtExecutor(EmpInfo recordInfo, Connection conn, String schemaName) {
-		SqlStmtExecOption<EmpInfo> stmtExecOption = new SqlStmtExecOption<>();
-		stmtExecOption.conn = conn;
-		stmtExecOption.recordInfo = recordInfo;
-		stmtExecOption.schemaName = schemaName;
+	private DeciTreeOption<EmpInfo> buildActionOption(EmpInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<EmpInfo> option = new DeciTreeOption<>();
+		option.recordInfos = new ArrayList<>();
+		option.recordInfos.add(recordInfo);
+		option.conn = conn;
+		option.schemaName = schemaName;
 		
-		List<SqlStmtExecOption<EmpInfo>> stmtExecOptions = new ArrayList<>();
-		stmtExecOptions.add(stmtExecOption);
-		
-		return new EmpSelect(stmtExecOptions);
+		return option;
 	}
 	
 	
@@ -84,7 +84,7 @@ public final class EmpCheckExistKey extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == EMPLOYEE_EXIST)
+		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.EMP_ALREADY_EXIST;	
 			
 		return SystemCode.EMP_NOT_FOUND;

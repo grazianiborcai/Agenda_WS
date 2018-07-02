@@ -30,6 +30,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		weekdayTable();
 		languageTable();
 		timezoneTable();
+		genderTable();
 		
 		return tableColumns;
 	}
@@ -391,6 +392,41 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = SqlDbTable.TIMEZONE_TEXT_TABLE;
+		oneColumn.columnName = "name";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private void genderTable() {
+		final String TABLE_NAME = SqlDbTable.GENDER_TABLE;
+		
+		SqlColumn oneColumn;
+		List<SqlColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "cod_gender";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = SqlDbTable.GENDER_TEXT_TABLE;
+		oneColumn.columnName = "language";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = SqlDbTable.GENDER_TEXT_TABLE;
 		oneColumn.columnName = "name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

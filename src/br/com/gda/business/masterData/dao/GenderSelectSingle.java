@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.EmpPosInfo;
+import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlDictionary;
@@ -21,28 +21,28 @@ import br.com.gda.sql.SqlStmtOption;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-public final class EmpPosSelectSingle implements SqlStmt<EmpPosInfo> {
-	private final String LT_POSITION = SqlDbTable.POSITION_TABLE;
-	private final String RT_TEXT = SqlDbTable.POSITION_TEXT_TABLE;
+public final class GenderSelectSingle implements SqlStmt<GenderInfo> {
+	private final String LT_GENDER = SqlDbTable.GENDER_TABLE;
+	private final String RT_TEXT = SqlDbTable.GENDER_TEXT_TABLE;
 	
-	private SqlStmt<EmpPosInfo> stmtSql;
-	private SqlStmtOption<EmpPosInfo> stmtOption;
+	private SqlStmt<GenderInfo> stmtSql;
+	private SqlStmtOption<GenderInfo> stmtOption;
 	
 	
 	
-	public EmpPosSelectSingle(Connection conn, EmpPosInfo recordInfo, String schemaName) {
+	public GenderSelectSingle(Connection conn, GenderInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, EmpPosInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, GenderInfo recordInfo, String schemaName) {
 		this.stmtOption = new SqlStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_POSITION;
+		this.stmtOption.tableName = LT_GENDER;
 		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -62,7 +62,7 @@ public final class EmpPosSelectSingle implements SqlStmt<EmpPosInfo> {
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DUMMY_CLAUSE_ALLOWED;
 		
-		SqlStmtWhere whereClause = new EmpPosWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		SqlStmtWhere whereClause = new GenderWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -80,9 +80,9 @@ public final class EmpPosSelectSingle implements SqlStmt<EmpPosInfo> {
 		List<SqlJoinColumn> joinColumns = new ArrayList<>();
 		
 		SqlJoinColumn oneColumn = new SqlJoinColumn();
-		oneColumn.leftTableName = LT_POSITION;
-		oneColumn.leftColumnName = "Cod_position";
-		oneColumn.rightColumnName = "Cod_position";
+		oneColumn.leftTableName = LT_GENDER;
+		oneColumn.leftColumnName = "cod_gender";
+		oneColumn.rightColumnName = "cod_gender";
 		joinColumns.add(oneColumn);
 		
 		
@@ -102,7 +102,7 @@ public final class EmpPosSelectSingle implements SqlStmt<EmpPosInfo> {
 		
 		constrainClause.append(rightTableName);
 		constrainClause.append(SqlDictionary.PERIOD);
-		constrainClause.append("Language");
+		constrainClause.append("language");
 		constrainClause.append(SqlDictionary.SPACE);
 		constrainClause.append(SqlDictionary.EQUAL);
 		constrainClause.append(SqlDictionary.SPACE);
@@ -139,34 +139,34 @@ public final class EmpPosSelectSingle implements SqlStmt<EmpPosInfo> {
 
 	
 	
-	@Override public List<EmpPosInfo> getResultset() {
+	@Override public List<GenderInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public SqlStmt<EmpPosInfo> getNewInstance() {
-		return new EmpPosSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public SqlStmt<GenderInfo> getNewInstance() {
+		return new GenderSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements SqlResultParser<EmpPosInfo> {
+	private class ResultParser implements SqlResultParser<GenderInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String POSITION_TEXT_COLUMN = SqlDbTable.POSITION_TEXT_TABLE + "." + "Name";
-		private final String POSITION_LANGU_COLUMN = SqlDbTable.POSITION_TEXT_TABLE + "." + "Language";
+		private final String TEXT_COL = SqlDbTable.GENDER_TEXT_TABLE + "." + "name";
+		private final String LANGU_COL = SqlDbTable.GENDER_TEXT_TABLE + "." + "language";
 		
-		@Override public List<EmpPosInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<EmpPosInfo> finalResult = new ArrayList<>();
+		@Override public List<GenderInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<GenderInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 				return finalResult;
 		
 			do {				
-				EmpPosInfo dataInfo = new EmpPosInfo();
-				dataInfo.codPosition = stmtResult.getLong("Cod_position");
-				dataInfo.txtPosition = stmtResult.getString(POSITION_TEXT_COLUMN);
-				dataInfo.codLanguage = stmtResult.getString(POSITION_LANGU_COLUMN);		
+				GenderInfo dataInfo = new GenderInfo();
+				dataInfo.codGender = stmtResult.getInt("cod_gender");
+				dataInfo.txtGender = stmtResult.getString(TEXT_COL);
+				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

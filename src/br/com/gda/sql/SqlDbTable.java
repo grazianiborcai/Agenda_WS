@@ -11,6 +11,7 @@ public final class SqlDbTable {
 	public static final String EMP_TABLE = "employee";	
 	public static final String EMP_WT_TABLE = "employee_working_time";
 	public static final String EMP_LD_TABLE = "employee_leave_time";
+	public static final String GENDER_TABLE = "gender";
 	public static final String GENDER_TEXT_TABLE = "gender_text";
 	public static final String LANGUAGE_TABLE = "language";
 	public static final String MAT_CATEG_TABLE = "category";

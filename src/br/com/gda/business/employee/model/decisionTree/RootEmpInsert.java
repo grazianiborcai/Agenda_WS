@@ -7,6 +7,7 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.checker.EmpCheckCpf;
 import br.com.gda.business.employee.model.checker.EmpCheckExistCpf;
 import br.com.gda.business.employee.model.checker.EmpCheckGenField;
+import br.com.gda.business.employee.model.checker.EmpCheckOwner;
 import br.com.gda.business.employee.model.checker.EmpCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -37,6 +38,7 @@ public final class RootEmpInsert implements DeciTree<EmpInfo> {
 	
 	
 	private ModelChecker<EmpInfo> buildDecisionChecker(DeciTreeOption<EmpInfo> option) {
+		final boolean EXIST_ON_DB = true;
 		final boolean DONT_EXIST_ON_DB = false;	
 		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
@@ -51,6 +53,13 @@ public final class RootEmpInsert implements DeciTree<EmpInfo> {
 		
 		checker = new EmpCheckCpf();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpCheckOwner(checkerOption);
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

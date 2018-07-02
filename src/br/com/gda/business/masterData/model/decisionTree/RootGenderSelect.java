@@ -1,10 +1,10 @@
-package br.com.gda.business.employee.model.decisionTree;
+package br.com.gda.business.masterData.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.checker.EmpCheckRead;
+import br.com.gda.business.masterData.info.GenderInfo;
+import br.com.gda.business.masterData.model.checker.GenderCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
@@ -15,12 +15,12 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootEmpSelect implements DeciTree<EmpInfo> {
-	private DeciTree<EmpInfo> tree;
+public final class RootGenderSelect implements DeciTree<GenderInfo> {
+	private DeciTree<GenderInfo> tree;
 	
 	
-	public RootEmpSelect(DeciTreeOption<EmpInfo> option) {
-		DeciTreeHelperOption<EmpInfo> helperOption = new DeciTreeHelperOption<>();
+	public RootGenderSelect(DeciTreeOption<GenderInfo> option) {
+		DeciTreeHelperOption<GenderInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker();
 		helperOption.recordInfos = option.recordInfos;
@@ -32,11 +32,11 @@ public final class RootEmpSelect implements DeciTree<EmpInfo> {
 	
 	
 	
-	private ModelChecker<EmpInfo> buildDecisionChecker() {
-		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmpInfo> checker;
+	private ModelChecker<GenderInfo> buildDecisionChecker() {
+		List<ModelChecker<GenderInfo>> queue = new ArrayList<>();		
+		ModelChecker<GenderInfo> checker;
 		
-		checker = new EmpCheckRead();
+		checker = new GenderCheckRead();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -44,16 +44,10 @@ public final class RootEmpSelect implements DeciTree<EmpInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<DeciAction<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
-		List<DeciAction<EmpInfo>> actions = new ArrayList<>();
+	private List<DeciAction<GenderInfo>> buildActionsOnPassed(DeciTreeOption<GenderInfo> option) {
+		List<DeciAction<GenderInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionEmpSelect(option));
+		actions.add(new ActionGenderSelect(option));
 		return actions;
 	}
 	
@@ -71,7 +65,13 @@ public final class RootEmpSelect implements DeciTree<EmpInfo> {
 	
 	
 	
-	@Override public DeciResult<EmpInfo> getDecisionResult() {
+	@Override public DeciResult<GenderInfo> getDecisionResult() {
 		return tree.getDecisionResult();
+	}
+	
+	
+	
+	@Override public DeciAction<GenderInfo> toAction() {
+		return tree.toAction();
 	}
 }

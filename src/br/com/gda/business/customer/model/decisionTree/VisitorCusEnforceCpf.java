@@ -12,7 +12,7 @@ public final class VisitorCusEnforceCpf implements DeciActionTransVisitor<CusInf
 		List<CusInfo> resultRecords = new ArrayList<>();		
 		
 		for (CusInfo eachRecord : recordInfos) {
-			resultRecords.add(enforceCpf(eachRecord));
+			resultRecords.add(enforce(eachRecord));
 		}
 		
 		return resultRecords;
@@ -20,7 +20,7 @@ public final class VisitorCusEnforceCpf implements DeciActionTransVisitor<CusInf
 	
 	
 	
-	private CusInfo enforceCpf(CusInfo recordInfo) {
+	private CusInfo enforce(CusInfo recordInfo) {
 		CusInfo enforcedRecord = new CusInfo();
 		enforcedRecord.codOwner = recordInfo.codOwner;
 		enforcedRecord.cpf = recordInfo.cpf;

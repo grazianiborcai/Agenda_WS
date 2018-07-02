@@ -12,7 +12,7 @@ public final class SystemMessage {
 	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";				
 	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";			
 	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";
-	public static final String EMP_POS_ALREADY_EXIST = "Position already exist on DB";		
+			
 	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
 	public static final String RESULTSET_NOT_APPLICABLE = "Resultset is either not applicable or is empty";		
 	public static final String OPERATION_CANT_BE_PROCESSED = "Not possible to process this operation";	
@@ -50,7 +50,10 @@ public final class SystemMessage {
 	//Master Data
 	public static final String CURRENCY_ALREADY_EXIST = "Currency already exist on DB";
 	public static final String CURRENCY_NOT_FOUND = "Currency not found on DB";	
-	public static final String EMP_POS_NOT_FOUND = "Position not found on DB";	
+	public static final String EMP_POS_ALREADY_EXIST = "Position already exist on DB";
+	public static final String EMP_POS_NOT_FOUND = "Position not found on DB";	;	
+	public static final String GENDER_ALREADY_EXIST = "Gender already exist on DB";
+	public static final String GENDER_NOT_FOUND = "Gender not found on DB";		
 	public static final String LANGUAGE_ALREADY_EXIST = "Language already exist on DB";
 	public static final String LANGUAGE_NOT_FOUND = "Language not found on DB";
 	public static final String MAT_CATEG_ALREADY_EXIST = "Category already exist on DB";

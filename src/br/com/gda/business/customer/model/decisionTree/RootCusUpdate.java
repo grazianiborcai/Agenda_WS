@@ -7,6 +7,7 @@ import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.checker.CusCheckCpf;
 import br.com.gda.business.customer.model.checker.CusCheckEmailChange;
 import br.com.gda.business.customer.model.checker.CusCheckExistKey;
+import br.com.gda.business.customer.model.checker.CusCheckGender;
 import br.com.gda.business.customer.model.checker.CusCheckKey;
 import br.com.gda.business.customer.model.checker.CusCheckOwner;
 import br.com.gda.business.customer.model.checker.CusCheckWrite;
@@ -65,6 +66,13 @@ public final class RootCusUpdate implements DeciTree<CusInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new CusCheckOwner(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new CusCheckGender(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();

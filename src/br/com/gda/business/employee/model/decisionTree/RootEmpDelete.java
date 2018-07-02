@@ -68,9 +68,6 @@ public final class RootEmpDelete implements DeciTree<EmpInfo> {
 	
 	private List<DeciAction<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
 		List<DeciAction<EmpInfo>> actions = new ArrayList<>();
-		
-		//TODO: Rever onde deve ficar a eliminação em cascata de depências
-		//actions.add(new EmpActionDeleteStoreEmp(option));
 		actions.add(new ActionEmpDelete(option));
 		return actions;
 	}

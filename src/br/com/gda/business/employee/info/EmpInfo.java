@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
@@ -55,6 +56,14 @@ public final class EmpInfo implements Cloneable {
 		storeEmp.codEmployee = codEmployee;
 		
 		return storeEmp;
+	}
+	
+	
+	
+	public OwnerInfo toOwnerInfo() {
+		OwnerInfo owner = new OwnerInfo();
+		owner.codOwner = codOwner;
+		return owner;
 	}
 	
 	

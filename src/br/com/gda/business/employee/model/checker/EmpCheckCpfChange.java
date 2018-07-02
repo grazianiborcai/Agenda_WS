@@ -3,7 +3,7 @@ package br.com.gda.business.employee.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.decisionTree.ActionEmpEnforceCpf;
+import br.com.gda.business.employee.model.decisionTree.ActionEmpEnforceKeyCpf;
 import br.com.gda.business.employee.model.decisionTree.HandlerEmpSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -13,7 +13,7 @@ import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpCheckExistCpf extends ModelCheckerTemplate<EmpInfo> {
+public final class EmpCheckCpfChange extends ModelCheckerTemplate<EmpInfo> {
 	private final boolean ALREADY_EXIST = true;
 	private final boolean NOT_FOUND = false;
 	private final boolean FAILED = false;
@@ -23,7 +23,7 @@ public final class EmpCheckExistCpf extends ModelCheckerTemplate<EmpInfo> {
 	private DeciResult<EmpInfo> actionResult;
 	
 	
-	public EmpCheckExistCpf(ModelCheckerOption option) {
+	public EmpCheckCpfChange(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -56,7 +56,7 @@ public final class EmpCheckExistCpf extends ModelCheckerTemplate<EmpInfo> {
 	
 	private void buildAction(EmpInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<EmpInfo> option = buildActionOption(recordInfo, conn, schemaName);
-		actionSelect = new ActionEmpEnforceCpf(option);
+		actionSelect = new ActionEmpEnforceKeyCpf(option);
 		actionSelect.addPostAction(new HandlerEmpSelect(conn, schemaName));
 	}
 	
@@ -75,18 +75,18 @@ public final class EmpCheckExistCpf extends ModelCheckerTemplate<EmpInfo> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMP_CPF_ALREADY_EXIST)
-			return SystemMessage.EMP_CPF_ALREADY_EXIST;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.EMP_ALREADY_EXIST)
+			return SystemMessage.EMP_ALREALDY_EXIST;
 		
-		return SystemMessage.EMP_CPF_NOT_FOUND;
+		return SystemMessage.EMP_DATA_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
-			return SystemCode.EMP_CPF_ALREADY_EXIST;	
+			return SystemCode.EMP_ALREADY_EXIST;	
 			
-		return SystemCode.EMP_CPF_NOT_FOUND;
+		return SystemCode.EMP_NOT_FOUND;
 	}
 }

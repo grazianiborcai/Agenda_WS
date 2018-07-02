@@ -70,6 +70,8 @@ public final class SystemCode {
 	public static final int WEEKDAY_NOT_FOUND							= 1165;
 	public static final int TIMEZONE_ALREADY_EXIST						= 1166;
 	public static final int TIMEZONE_NOT_FOUND							= 1167;
+	public static final int GENDER_ALREADY_EXIST						= 1168;
+	public static final int GENDER_NOT_FOUND							= 1169;
 	
 	//Material
 	public static final int MATERIAL_ALREADY_EXIST						= 1200;

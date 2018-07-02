@@ -14,6 +14,7 @@ import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.masterData.info.BusinessInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.EmpPosInfo;
+import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.business.masterData.info.MatGroupInfo;
@@ -24,6 +25,7 @@ import br.com.gda.business.masterData.model.WeekdayModelSelect;
 import br.com.gda.business.masterData.model.BusinessModelSelect;
 import br.com.gda.business.masterData.model.CurrencyModelSelect;
 import br.com.gda.business.masterData.model.EmpPosModelSelect;
+import br.com.gda.business.masterData.model.GenderModelSelect;
 import br.com.gda.business.masterData.model.LanguModelSelect;
 import br.com.gda.business.masterData.model.MatCategModelSelect;
 import br.com.gda.business.masterData.model.MatGroupModelSelect;
@@ -43,12 +45,13 @@ public final class MasterDataResource {
 	private static final String SELECT_LANGUAGE = "/selectLanguage";
 	private static final String SELECT_WEEKDAY = "/selectWeekday";
 	private static final String SELECT_TIMEZONE = "/selectTimezone";
+	private static final String SELECT_GENDER = "/selectGender";
 	
 	
 	@GET
 	@Path(SELECT_EMPLOYEE_POSTION)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectEmpPosition(@HeaderParam("codLanguage") String codLanguage, 
+	public Response selectEmpPosition(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
 			                          @HeaderParam("codPosition") @DefaultValue("-1") long codPosition) {
 		
 		EmpPosInfo recordInfo = new EmpPosInfo();
@@ -65,7 +68,7 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_MATERIAL_UNIT)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMatUnit(@HeaderParam("codLanguage") String codLanguage, 
+	public Response selectMatUnit(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
 			                      @HeaderParam("codUnit") String codUnit) {
 		
 		MatUnitInfo recordInfo = new MatUnitInfo();
@@ -82,8 +85,8 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_MATERIAL_TYPE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMatType(@HeaderParam("codLanguage") String codLanguage, 
-			                      @HeaderParam("codType") @DefaultValue("-1") int codType) {
+	public Response selectMatType(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                      @HeaderParam("codType")     @DefaultValue("-1") int codType) {
 		
 		MatTypeInfo recordInfo = new MatTypeInfo();
 		recordInfo.codLanguage = codLanguage;
@@ -99,8 +102,8 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_MATERIAL_CATEG)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMatCateg(@HeaderParam("codLanguage") String codLanguage, 
-			                      @HeaderParam("codCateg") @DefaultValue("-1") int codCategory) {
+	public Response selectMatCateg(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                      @HeaderParam("codCateg")     @DefaultValue("-1") int codCategory) {
 		
 		MatCategInfo recordInfo = new MatCategInfo();
 		recordInfo.codLanguage = codLanguage;
@@ -116,8 +119,8 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_MATERIAL_GROUP)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMatGroup(@HeaderParam("codLanguage") String codLanguage, 
-			                       @HeaderParam("codGroup") @DefaultValue("-1") int codGroup,
+	public Response selectMatGroup(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                       @HeaderParam("codGroup")    @DefaultValue("-1") int codGroup,
 								   @HeaderParam("codBusiness") @DefaultValue("-1") int codBusiness){
 		
 		MatGroupInfo recordInfo = new MatGroupInfo();
@@ -135,7 +138,7 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_BUSINESS_AREA)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectBusinessArea(@HeaderParam("codLanguage") String codLanguage,
+	public Response selectBusinessArea(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                       	   @HeaderParam("codBusiness") @DefaultValue("-1") int codBusiness){
 		
 		BusinessInfo recordInfo = new BusinessInfo();
@@ -152,7 +155,7 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_CURRENCY)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectCurrency(@HeaderParam("codLanguage") String codLanguage,
+	public Response selectCurrency(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                       @HeaderParam("codCurr") String codCurr){
 		
 		CurrencyInfo recordInfo = new CurrencyInfo();
@@ -169,7 +172,7 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_LANGUAGE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectLangu(@HeaderParam("codLanguage") String codLanguage){
+	public Response selectLangu(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage){
 		
 		LanguInfo recordInfo = new LanguInfo();
 		recordInfo.codLanguage = codLanguage;
@@ -184,8 +187,8 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_WEEKDAY)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectWeekday(@HeaderParam("codLanguage") String codLanguage,
-			                      @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday){
+	public Response selectWeekday(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                      @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday){
 		
 		WeekdayInfo recordInfo = new WeekdayInfo();
 		recordInfo.codWeekday = codWeekday;
@@ -201,7 +204,7 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_TIMEZONE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectTimezone(@HeaderParam("codLanguage") String codLanguage,
+	public Response selectTimezone(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                       @HeaderParam("codTimezone") String codTimezone){
 		
 		TimezoneInfo recordInfo = new TimezoneInfo();
@@ -209,6 +212,23 @@ public final class MasterDataResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		Model modelSelect = new TimezoneModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_GENDER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectTGender(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                      @HeaderParam("codGender")   @DefaultValue("-1") int codGender){
+		
+		GenderInfo recordInfo = new GenderInfo();
+		recordInfo.codGender = codGender;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model modelSelect = new GenderModelSelect(recordInfo);
 		modelSelect.executeRequest();
 		return modelSelect.getResponse();
 	}
