@@ -14,12 +14,12 @@ import br.com.gda.model.checker.ModelCheckerTemplate;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class OwnerCheckExistKey extends ModelCheckerTemplate<OwnerInfo> {
+public final class OwnerCheckExist extends ModelCheckerTemplate<OwnerInfo> {
 	private final boolean OWNER_EXIST = true;
 	private final boolean NO_ENTRY_FOUND = false;
 	
 	
-	public OwnerCheckExistKey(ModelCheckerOption option) {
+	public OwnerCheckExist(ModelCheckerOption option) {
 		super(option);
 	}
 	

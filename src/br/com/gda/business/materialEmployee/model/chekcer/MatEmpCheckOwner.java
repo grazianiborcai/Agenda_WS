@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.checker.OwnerCheckExistKey;
+import br.com.gda.business.owner.model.checker.OwnerCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
@@ -16,7 +16,7 @@ public final class MatEmpCheckOwner implements ModelChecker<MatEmpInfo> {
 	
 	
 	public MatEmpCheckOwner(ModelCheckerOption option) {
-		checker = new OwnerCheckExistKey(option);
+		checker = new OwnerCheckExist(option);
 	}
 	
 	

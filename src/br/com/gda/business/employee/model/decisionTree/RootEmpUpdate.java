@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.checker.EmpCheckCpf;
 import br.com.gda.business.employee.model.checker.EmpCheckExistKey;
+import br.com.gda.business.employee.model.checker.EmpCheckGender;
 import br.com.gda.business.employee.model.checker.EmpCheckKey;
 import br.com.gda.business.employee.model.checker.EmpCheckOwner;
 import br.com.gda.business.employee.model.checker.EmpCheckWrite;
@@ -62,6 +63,13 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpCheckOwner(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpCheckGender(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();

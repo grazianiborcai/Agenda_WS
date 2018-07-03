@@ -3,20 +3,20 @@ package br.com.gda.business.employee.model.checker;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.checker.OwnerCheckExist;
+import br.com.gda.business.masterData.info.GenderInfo;
+import br.com.gda.business.masterData.model.checker.GenderCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class EmpCheckOwner implements ModelChecker<EmpInfo> {
+public final class EmpCheckGender implements ModelChecker<EmpInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<OwnerInfo> checker;
+	private ModelChecker<GenderInfo> checker;
 	
 	
-	public EmpCheckOwner(ModelCheckerOption option) {
-		checker = new OwnerCheckExist(option);
+	public EmpCheckGender(ModelCheckerOption option) {
+		checker = new GenderCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class EmpCheckOwner implements ModelChecker<EmpInfo> {
 	
 	
 	@Override public boolean check(EmpInfo recordInfo) {
-		return checker.check(recordInfo.toOwnerInfo());
+		return checker.check(recordInfo.toGenderInfo());
 	}
 
 	

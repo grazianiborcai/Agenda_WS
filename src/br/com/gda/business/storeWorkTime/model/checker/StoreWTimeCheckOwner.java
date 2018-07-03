@@ -3,7 +3,7 @@ package br.com.gda.business.storeWorkTime.model.checker;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.checker.OwnerCheckExistKey;
+import br.com.gda.business.owner.model.checker.OwnerCheckExist;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -16,7 +16,7 @@ public final class StoreWTimeCheckOwner implements ModelChecker<StoreWTimeInfo> 
 	
 	
 	public StoreWTimeCheckOwner(ModelCheckerOption option) {
-		checker = new OwnerCheckExistKey(option);
+		checker = new OwnerCheckExist(option);
 	}
 	
 	
