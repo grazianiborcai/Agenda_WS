@@ -1,10 +1,10 @@
-package br.com.gda.business.materialEmployee.model.chekcer;
+package br.com.gda.business.materialStore.model.checker;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.business.materialEmployee.model.decisionTree.ActionMatEmpEnforceDel;
-import br.com.gda.business.materialEmployee.model.decisionTree.HandlerMatEmpSelect;
+import br.com.gda.business.materialStore.info.MatStoreInfo;
+import br.com.gda.business.materialStore.model.decisionTree.ActionMatStoreEnforceDel;
+import br.com.gda.business.materialStore.model.decisionTree.HandlerMatStoreSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -13,23 +13,23 @@ import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class MatEmpCheckSoftDelete extends ModelCheckerTemplate<MatEmpInfo> {
+public final class MatStoreCheckSoftDelete extends ModelCheckerTemplate<MatStoreInfo> {
 	private final boolean ALREADY_EXIST = true;
 	private final boolean NOT_FOUND = false;
 	private final boolean FAILED = false;
 	private final boolean EMPTY_RESULTSET = false;
 	
-	private DeciAction<MatEmpInfo> actionSelect;
-	private DeciResult<MatEmpInfo> actionResult;
+	private DeciAction<MatStoreInfo> actionSelect;
+	private DeciResult<MatStoreInfo> actionResult;
 	
 	
-	public MatEmpCheckSoftDelete(ModelCheckerOption option) {
+	public MatStoreCheckSoftDelete(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(MatEmpInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(MatStoreInfo recordInfo, Connection conn, String schemaName) {	
 		executeAction(recordInfo, conn, schemaName);
 		
 		if (actionResult.hasSuccessfullyFinished() == FAILED)
@@ -46,7 +46,7 @@ public final class MatEmpCheckSoftDelete extends ModelCheckerTemplate<MatEmpInfo
 	
 	
 	
-	private void executeAction(MatEmpInfo recordInfo, Connection conn, String schemaName) {
+	private void executeAction(MatStoreInfo recordInfo, Connection conn, String schemaName) {
 		buildAction(recordInfo, conn, schemaName);
 		actionSelect.executeAction();
 		actionResult = actionSelect.getDecisionResult();
@@ -54,16 +54,16 @@ public final class MatEmpCheckSoftDelete extends ModelCheckerTemplate<MatEmpInfo
 	
 	
 	
-	private void buildAction(MatEmpInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<MatEmpInfo> option = buildActionOption(recordInfo, conn, schemaName);
-		actionSelect = new ActionMatEmpEnforceDel(option);
-		actionSelect.addPostAction(new HandlerMatEmpSelect(conn, schemaName));
+	private void buildAction(MatStoreInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<MatStoreInfo> option = buildActionOption(recordInfo, conn, schemaName);
+		actionSelect = new ActionMatStoreEnforceDel(option);
+		actionSelect.addPostAction(new HandlerMatStoreSelect(conn, schemaName));
 	}
 	
 	
 	
-	private DeciTreeOption<MatEmpInfo> buildActionOption(MatEmpInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<MatEmpInfo> option = new DeciTreeOption<>();
+	private DeciTreeOption<MatStoreInfo> buildActionOption(MatStoreInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<MatStoreInfo> option = new DeciTreeOption<>();
 		option.recordInfos = new ArrayList<>();
 		option.recordInfos.add(recordInfo);
 		option.conn = conn;
@@ -75,12 +75,12 @@ public final class MatEmpCheckSoftDelete extends ModelCheckerTemplate<MatEmpInfo
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {	
-		return SystemMessage.STORE_MAT_EMP_FLAGGED_AS_DELETED;
+		return SystemMessage.STORE_MAT_FLAGGED_AS_DELETED;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.STORE_MAT_EMP_FLAGGED_AS_DELETED;	
+		return SystemCode.STORE_MAT_FLAGGED_AS_DELETED;	
 	}
 }

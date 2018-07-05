@@ -14,7 +14,7 @@ import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
 public final class ActionMatEmpInsert implements DeciAction<MatEmpInfo> {
-	DeciAction<MatEmpInfo> actionHelper;
+	private DeciAction<MatEmpInfo> actionHelper;
 	
 	
 	public ActionMatEmpInsert(DeciTreeOption<MatEmpInfo> option) {

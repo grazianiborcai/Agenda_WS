@@ -1,11 +1,11 @@
-package br.com.gda.business.materialEmployee.model;
+package br.com.gda.business.materialStore.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.business.materialEmployee.model.decisionTree.RootMatEmpSelect;
+import br.com.gda.business.materialStore.info.MatStoreInfo;
+import br.com.gda.business.materialStore.model.decisionTree.RootMatStoreInsert;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,15 +15,15 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class MatEmpModelSelect implements Model {
+public final class MatStoreModelInsert implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public MatEmpModelSelect(MatEmpInfo recordInfo) {
+	public MatStoreModelInsert(String incomingData) {
 		initialize();
-		buildHelper(recordInfo);
+		buildHelper(incomingData);
 	}
 	
 	
@@ -35,18 +35,18 @@ public final class MatEmpModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(MatEmpInfo recordInfo) {
-		ModelOption<MatEmpInfo> helperOption = new ModelOption<>();
+	private void buildHelper(String incomingData) {
+		ModelOption<MatStoreInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = MatEmpInfo.class;
+		helperOption.infoRecordClass = MatStoreInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper.factory(helperOption, recordInfo);
+		helper = ModelHelper.factory(helperOption, incomingData);
 	}
-	
-	
+
+
 	
 	@Override public boolean executeRequest() {
 		return helper.executeRequest();
@@ -63,9 +63,9 @@ public final class MatEmpModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<MatEmpInfo> {		
-		@Override public DeciTree<MatEmpInfo> getInstance(DeciTreeOption<MatEmpInfo> option) {
-			return new RootMatEmpSelect(option);
-		}	
+	private static class TreeFactory implements DeciTreeFactory<MatStoreInfo> {		
+		@Override public DeciTree<MatStoreInfo> getInstance(DeciTreeOption<MatStoreInfo> option) {
+			return new RootMatStoreInsert(option);
+		}			
 	}
 }

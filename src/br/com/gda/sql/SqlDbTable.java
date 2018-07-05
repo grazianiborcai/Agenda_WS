@@ -18,7 +18,8 @@ public final class SqlDbTable {
 	public static final String MAT_CATEG_TEXT_TABLE = "category_text";
 	public static final String MAT_EMP_TABLE = "employee_material";
 	public static final String MAT_GROUP_TABLE = "material_group";
-	public static final String MAT_GROUP_TEXT_TABLE = "material_group_text";	
+	public static final String MAT_GROUP_TEXT_TABLE = "material_group_text";
+	public static final String MAT_STORE_TABLE = "material_store";
 	public static final String MAT_TABLE = "material";
 	public static final String MAT_TEXT_TABLE = "material_text";
 	public static final String MAT_TYPE_TABLE = "type";

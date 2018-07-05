@@ -19,8 +19,7 @@ public final class MatEmpInsert implements SqlStmtExec<MatEmpInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

@@ -68,7 +68,7 @@ public final class StoreEmpCheckExist extends ModelCheckerTemplate<StoreEmpInfo>
 		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_EMP_ALREADY_EXIST)
 			return SystemMessage.STORE_EMP_ALREALDY_EXIST;
 		
-		return SystemMessage.STORE_EMP_DATA_NOT_FOUND;
+		return SystemMessage.STORE_EMP_NOT_FOUND;
 	}
 	
 	

@@ -18,6 +18,10 @@ import br.com.gda.business.material.model.MatModelDelete;
 import br.com.gda.business.material.model.MatModelInsert;
 import br.com.gda.business.material.model.MatModelSelect;
 import br.com.gda.business.material.model.MatModelUpdate;
+import br.com.gda.business.materialStore.info.MatStoreInfo;
+import br.com.gda.business.materialStore.model.MatStoreModelDelete;
+import br.com.gda.business.materialStore.model.MatStoreModelInsert;
+import br.com.gda.business.materialStore.model.MatStoreModelSelect;
 import br.com.gda.model.Model;
 import br.com.gda.model.legacy.MaterialModel;
 
@@ -27,6 +31,9 @@ public class MaterialResource {
 	private static final String UPDATE_MATERIAL = "/updateMaterial";
 	private static final String DELETE_MATERIAL = "/deleteMaterial";
 	private static final String SELECT_MATERIAL = "/selectMaterial";	
+	private static final String SELECT_MAT_STORE = "/selectMatStore";
+	private static final String INSERT_MAT_STORE = "/insertMatStore";
+	private static final String DELETE_MAT_STORE = "/deleteMatStore";	
 	private static final String INSERT_MATERIAL_WITH_IMAGE = "/insertMaterialWithImage";
 	private static final String UPDATE_MATERIAL_WITH_IMAGE = "/updateMaterialWithImage";
 
@@ -87,6 +94,62 @@ public class MaterialResource {
 		
 		
 		Model modelSelect = new MatModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_MAT_STORE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectMatStore(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+			                       @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
+								   @HeaderParam("codMaterial") @DefaultValue("-1") long codMat, 
+								   @HeaderParam("codLanguage") @DefaultValue("PT") String codLanguage) {
+
+
+		MatStoreInfo recordInfo = new MatStoreInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codMat = codMat;
+		recordInfo.codLanguage = codLanguage;
+		
+		
+		Model modelSelect = new MatStoreModelSelect(recordInfo);
+		modelSelect.executeRequest();
+		return modelSelect.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_MAT_STORE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response insertMatStore(String incomingData) {
+		
+		Model modelInsert = new MatStoreModelInsert(incomingData);
+		modelInsert.executeRequest();
+		return modelInsert.getResponse();
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_MAT_STORE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteMatStore(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+			                       @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
+								   @HeaderParam("codMaterial") @DefaultValue("-1") long codMat) {
+
+
+		MatStoreInfo recordInfo = new MatStoreInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codMat = codMat;
+		
+		
+		Model modelSelect = new MatStoreModelDelete(recordInfo);
 		modelSelect.executeRequest();
 		return modelSelect.getResponse();
 	}

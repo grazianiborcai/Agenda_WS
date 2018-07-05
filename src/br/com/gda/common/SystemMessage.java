@@ -107,10 +107,13 @@ public final class SystemMessage {
 	public static final String STORE_CNPJ_NOT_FOUND = "Store's CNPJ not found on DB";
 	public static final String STORE_EMP_ALREALDY_EXIST = "Store-Employee's data already exist on DB";
 	public static final String STORE_EMP_FLAGGED_AS_DELETED = "Store-Employee's data is flagged as deleted on DB";	
-	public static final String STORE_EMP_DATA_NOT_FOUND = "Store-Employee's data not found on DB";
-	public static final String STORE_MAT_EMP_ALREALDY_EXIST = "Employee's material data already exist on DB";
+	public static final String STORE_EMP_NOT_FOUND = "Store-Employee's data not found on DB";
+	public static final String STORE_MAT_ALREALDY_EXIST = "Store's material data already exist on DB";
+	public static final String STORE_MAT_EMP_ALREALDY_EXIST = "Employee's material data already exist on DB";	
 	public static final String STORE_MAT_EMP_FLAGGED_AS_DELETED = "Employee's material data is flagged as deleted on DB";
-	public static final String STORE_MAT_EMP_NOT_FOUND = "Employee's material data not found on DB";		
+	public static final String STORE_MAT_EMP_NOT_FOUND = "Employee's material data not found on DB";	
+	public static final String STORE_MAT_FLAGGED_AS_DELETED = "Store's material data is flagged as deleted on DB";
+	public static final String STORE_MAT_NOT_FOUND = "Store's material data not found on DB";
 	public static final String STORE_LDATE_ALREADY_EXIST = "Store's leave date already exist on DB";
 	public static final String STORE_LDATE_FLAGGED_AS_DELETED = "Store leave date data is flagged as deleted on DB";	
 	public static final String STORE_LDATE_NOT_FOUND = "Store's leave date not found on DB";	
@@ -120,7 +123,7 @@ public final class SystemMessage {
 	public static final String STORE_WTIME_VALID_WORKHOUR = "Selected time is valid for Store working time range";	
 	public static final String STORE_WTIME_WORKHOUR_OUT_OF_RANGE = "Selected time is out of range of Store working time";
 	
-		
+			
 	
 	//Customer
 	public static final String CUS_ALREALDY_EXIST = "Customer's data already exist on DB";	

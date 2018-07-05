@@ -50,6 +50,9 @@ public final class SystemCode {
 	public static final int STORE_LDATE_FLAGGED_AS_DELETED 				= 1115;	
 	public static final int STORE_WTIME_VALID_WORKHOUR					= 1116;
 	public static final int STORE_WTIME_WORKHOUR_OUT_OF_RANGE			= 1117;
+	public static final int STORE_MAT_ALREADY_EXIST 					= 1118;
+	public static final int STORE_MAT_NOT_FOUND 						= 1119;
+	public static final int STORE_MAT_FLAGGED_AS_DELETED 				= 1120;
 	
 	// Master Data
 	public static final int EMP_POS_ALREADY_EXIST						= 1150;
