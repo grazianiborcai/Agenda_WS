@@ -12,26 +12,15 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	private final boolean SUCCESS = true;
 	private final boolean FAILED = false;	
 	
-	//private SqlStmtExec<T> stmtExec;
 	private DeciResultHelper<T> deciResult;
 	private List<DeciActionHandler<T>> postActions;
 	private List<T> resultset = Collections.emptyList();
 	
 	
 	public DeciActionHelperTemplate() {
-	//	checkArgument(sqlStmtExecutor);
-		
-		//stmtExec = sqlStmtExecutor;
 		deciResult = new DeciResultHelper<>();
 		postActions = new ArrayList<>();
 	}
-	
-	
-	/*
-	private void checkArgument(SqlStmtExec<T> sqlStmtExecutor) {
-		if (sqlStmtExecutor == null)
-			throw new NullPointerException("sqlStmtExecutor" + SystemMessage.NULL_ARGUMENT);
-	} */
 	
 	
 	

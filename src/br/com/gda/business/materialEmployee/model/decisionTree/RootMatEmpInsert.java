@@ -7,6 +7,7 @@ import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckEmp;
 import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckExist;
 import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckMat;
+import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckMatStore;
 import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckOwner;
 import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckStore;
 import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckStoreEmp;
@@ -85,7 +86,12 @@ public final class RootMatEmpInsert implements DeciTree<MatEmpInfo> {
 		checker = new MatEmpCheckStoreEmp(checkerOption);
 		queue.add(checker);	
 		
-		//StoreMat
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new MatEmpCheckMatStore(checkerOption);
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

@@ -1,6 +1,7 @@
 package br.com.gda.business.storeWorkTime.info;
 
 import java.time.LocalTime;
+import java.util.List;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
@@ -10,8 +11,9 @@ import br.com.gda.business.timeRange.info.TimeRangeInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
+import br.com.gda.info.RecordInfo;
 
-public final class StoreWTimeInfo implements Cloneable {
+public final class StoreWTimeInfo extends RecordInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public int codWeekday;
@@ -29,6 +31,18 @@ public final class StoreWTimeInfo implements Cloneable {
 		this.codWeekday = DefaultValue.number();
 		this.codLanguage = Language.getDefaultLanguage();
 		this.recordMode = RecordMode.RECORD_OK;
+	}
+	
+	
+	
+	public static StoreWTimeInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, StoreWTimeInfo.class);
+	}
+	
+	
+	
+	public static List<StoreWTimeInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, StoreWTimeInfo.class);
 	}
 	
 	

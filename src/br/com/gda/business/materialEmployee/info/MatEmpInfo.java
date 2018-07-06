@@ -2,6 +2,7 @@ package br.com.gda.business.materialEmployee.info;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.materialStore.info.MatStoreInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
@@ -76,6 +77,17 @@ public final class MatEmpInfo implements Cloneable {
 		storeEmp.codEmployee = codEmployee;
 		storeEmp.codLanguage = codLanguage;
 		return storeEmp;
+	}
+	
+	
+	
+	public MatStoreInfo toMatStoreInfo() {
+		MatStoreInfo matStore = new MatStoreInfo();
+		matStore.codOwner = codOwner;
+		matStore.codStore = codStore;
+		matStore.codMat = codMat;
+		matStore.codLanguage = codLanguage;
+		return matStore;
 	}
 	
 	

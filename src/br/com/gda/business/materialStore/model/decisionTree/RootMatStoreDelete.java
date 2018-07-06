@@ -61,6 +61,8 @@ public final class RootMatStoreDelete implements DeciTree<MatStoreInfo> {
 		
 		actions.add(new ActionMatStoreDelete(option));
 		return actions;
+		
+		//TODO: Verificar conflito com MatEmp ou eliminar MatEmp impactados
 	}
 	
 	

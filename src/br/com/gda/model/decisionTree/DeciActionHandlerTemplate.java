@@ -119,4 +119,10 @@ public abstract class DeciActionHandlerTemplate<T,S> implements DeciActionHandle
 		
 		return resultHandler;
 	}
+	
+	
+	
+	@Override public DeciAction<T> toAction(List<T> recordInfos) {
+		return new DeciActionHandlerAdapter<>(this, recordInfos);
+	}
 }

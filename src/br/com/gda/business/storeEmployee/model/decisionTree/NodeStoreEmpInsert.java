@@ -57,7 +57,6 @@ public final class NodeStoreEmpInsert implements DeciTree<StoreEmpInfo> {
 		List<DeciAction<StoreEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionStoreEmpInsert(option));
-		actions.add(new ActionStoreEmpSelect(option));		
 		return actions;
 	}
 	
@@ -66,8 +65,7 @@ public final class NodeStoreEmpInsert implements DeciTree<StoreEmpInfo> {
 	private List<DeciAction<StoreEmpInfo>> buildActionsOnFailed(DeciTreeOption<StoreEmpInfo> option) {
 		List<DeciAction<StoreEmpInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionStoreEmpUpdate(option));
-		actions.add(new ActionStoreEmpSelect(option));		
+		actions.add(new ActionStoreEmpUpdate(option));	
 		return actions;
 	}
 	

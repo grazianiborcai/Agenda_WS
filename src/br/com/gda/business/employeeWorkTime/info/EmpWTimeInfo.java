@@ -12,8 +12,9 @@ import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
+import br.com.gda.info.RecordInfo;
 
-public class EmpWTimeInfo implements Cloneable {
+public class EmpWTimeInfo extends RecordInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codEmployee;
@@ -33,6 +34,12 @@ public class EmpWTimeInfo implements Cloneable {
 		this.codWeekday = DefaultValue.number();
 		this.codLanguage = Language.getDefaultLanguage();
 		this.recordMode = RecordMode.RECORD_OK;
+	}
+	
+	
+	
+	public static EmpWTimeInfo copyFrom (Object sourceObj) {
+		return copyFrom(sourceObj, EmpWTimeInfo.class);
 	}
 	
 	

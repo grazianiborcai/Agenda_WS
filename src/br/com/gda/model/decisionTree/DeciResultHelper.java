@@ -2,7 +2,11 @@ package br.com.gda.model.decisionTree;
 
 import java.util.List;
 
+import br.com.gda.common.DefaultValue;
+
 public final class DeciResultHelper<T> implements DeciResult<T> {
+	private final boolean FAILED = false;
+	
 	public List<T> resultset;
 	public String failureMessage;
 	public int failureCode;
@@ -16,10 +20,27 @@ public final class DeciResultHelper<T> implements DeciResult<T> {
 	
 	
 	
+	public void copyWithoutResultset(DeciResult<?> deciResult) {
+		if (deciResult == null)
+			return;		
+		
+		clear();
+		
+		if (deciResult.hasSuccessfullyFinished() == FAILED) {
+			failureMessage = deciResult.getFailureMessage();
+			failureCode = deciResult.getFailureCode();
+		}
+		
+		finishedWithSuccess = deciResult.hasSuccessfullyFinished();
+		hasResultset = deciResult.hasResultset();
+	}
+	
+	
+	
 	private void clear() {
 		resultset = null;
 		failureMessage = null;
-		failureCode = -1;
+		failureCode = DefaultValue.number();
 		finishedWithSuccess = null;
 		hasResultset = false;
 	}
