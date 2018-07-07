@@ -1,10 +1,25 @@
 package br.com.gda.business.timeRange.info;
 
 import java.time.LocalTime;
+import java.util.List;
 
-public final class TimeRangeInfo implements Cloneable {
+import br.com.gda.info.RecordInfo;
+
+public final class TimeRangeInfo extends RecordInfo implements Cloneable {
 	public LocalTime beginTime;
 	public LocalTime endTime;
+	
+	
+	
+	public static TimeRangeInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, TimeRangeInfo.class);
+	}
+	
+	
+	
+	public static List<TimeRangeInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, TimeRangeInfo.class);
+	}
 	
 	
 	

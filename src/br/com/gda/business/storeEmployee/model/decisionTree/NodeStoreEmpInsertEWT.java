@@ -27,7 +27,7 @@ public final class NodeStoreEmpInsertEWT implements DeciTree<StoreEmpInfo> {
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = null;
+		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -54,9 +54,16 @@ public final class NodeStoreEmpInsertEWT implements DeciTree<StoreEmpInfo> {
 	
 	
 	private List<DeciAction<StoreEmpInfo>> buildActionsOnPassed(DeciTreeOption<StoreEmpInfo> option) {
-		List<DeciAction<StoreEmpInfo>> actions = new ArrayList<>();
-		
+		List<DeciAction<StoreEmpInfo>> actions = new ArrayList<>();		
 		actions.add(new HandlerStoreEmpInsertEWT(option.conn, option.schemaName).toAction(option.recordInfos));
+		return actions;
+	}
+	
+	
+	
+	private List<DeciAction<StoreEmpInfo>> buildActionsOnFailed(DeciTreeOption<StoreEmpInfo> option) {
+		List<DeciAction<StoreEmpInfo>> actions = new ArrayList<>();		
+		actions.add(new ActionStoreEmpSuccess(option));
 		return actions;
 	}
 	

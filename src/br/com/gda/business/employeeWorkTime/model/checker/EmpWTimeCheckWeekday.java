@@ -33,7 +33,7 @@ public final class EmpWTimeCheckWeekday implements ModelChecker<EmpWTimeInfo> {
 	
 	
 	@Override public boolean check(EmpWTimeInfo recordInfo) {
-		return checker.check(recordInfo.toWeekdayInfo());
+		return checker.check(WeekdayInfo.copyFrom(recordInfo));
 	}
 
 	

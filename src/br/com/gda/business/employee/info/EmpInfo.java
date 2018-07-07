@@ -5,14 +5,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.GenderInfo;
-import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
+import br.com.gda.info.RecordInfo;
 
-public final class EmpInfo implements Cloneable {
+public final class EmpInfo extends RecordInfo implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
 	public List<Long> stores; //TODO: remover esse campo
@@ -51,30 +49,14 @@ public final class EmpInfo implements Cloneable {
 	
 	
 	
-	public StoreEmpInfo toStoreEmpInfo() {
-		StoreEmpInfo storeEmp = new StoreEmpInfo();
-		storeEmp.codOwner = codOwner;
-		storeEmp.codEmployee = codEmployee;
-		
-		return storeEmp;
+	public static EmpInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, EmpInfo.class);
 	}
 	
 	
 	
-	public OwnerInfo toOwnerInfo() {
-		OwnerInfo owner = new OwnerInfo();
-		owner.codOwner = codOwner;
-		return owner;
-	}
-	
-	
-	
-	public GenderInfo toGenderInfo() {
-		GenderInfo gender = new GenderInfo();
-		gender.codGender = codGender;
-		gender.txtGender = txtGender;
-		gender.codLanguage = codLanguage;
-		return gender;
+	public static List<EmpInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, EmpInfo.class);
 	}
 	
 	

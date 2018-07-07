@@ -1,9 +1,12 @@
 package br.com.gda.business.masterData.info;
 
+import java.util.List;
+
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
+import br.com.gda.info.RecordInfo;
 
-public class MatGroupInfo implements Cloneable {
+public class MatGroupInfo extends RecordInfo implements Cloneable {
 	public int codGroup;
 	public String txtGroup;
 	public int codBusiness;
@@ -15,6 +18,18 @@ public class MatGroupInfo implements Cloneable {
 		this.codGroup = DefaultValue.number();
 		this.codBusiness = DefaultValue.number();
 		this.codLanguage = Language.getDefaultLanguage();
+	}
+	
+	
+	
+	public static MatGroupInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, MatGroupInfo.class);
+	}
+	
+	
+	
+	public static List<MatGroupInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, MatGroupInfo.class);
 	}
 	
 	

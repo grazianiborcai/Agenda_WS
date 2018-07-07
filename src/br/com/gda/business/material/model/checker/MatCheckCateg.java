@@ -33,7 +33,7 @@ public final class MatCheckCateg implements ModelChecker<MatInfo> {
 	
 	
 	@Override public boolean check(MatInfo recordInfo) {
-		return checker.check(recordInfo.toMatCategInfo());
+		return checker.check(MatCategInfo.copyFrom(recordInfo));
 	}
 
 	

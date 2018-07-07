@@ -33,7 +33,7 @@ public final class MatEmpCheckEmp implements ModelChecker<MatEmpInfo> {
 	
 	
 	@Override public boolean check(MatEmpInfo recordInfo) {
-		return checker.check(recordInfo.toEmpInfo());
+		return checker.check(EmpInfo.copyFrom(recordInfo));
 	}
 
 	

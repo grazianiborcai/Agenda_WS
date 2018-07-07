@@ -33,7 +33,7 @@ public final class MatCheckCurrency implements ModelChecker<MatInfo> {
 	
 	
 	@Override public boolean check(MatInfo recordInfo) {
-		return checker.check(recordInfo.toCurrencyInfo());
+		return checker.check(CurrencyInfo.copyFrom(recordInfo));
 	}
 
 	

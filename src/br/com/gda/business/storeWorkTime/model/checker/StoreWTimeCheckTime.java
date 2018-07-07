@@ -33,7 +33,7 @@ public final class StoreWTimeCheckTime extends ModelCheckerTemplate<StoreWTimeIn
 	
 	
 	@Override public boolean check(StoreWTimeInfo recordInfo) {
-		return checker.check(recordInfo.toTimeRangeInfo());
+		return checker.check(TimeRangeInfo.copyFrom(recordInfo));
 	}
 
 	

@@ -23,8 +23,9 @@ public final class SystemMessage {
 	
 	
 	//System
-	public static final String CONFLICT = "Conflict detected";
+	public static final String ARGUMENT_DONT_MATCH = " arguments don't match";
 	public static final String BAD_TIME_RANGE = "Invalid time range";	
+	public static final String CONFLICT = "Conflict detected";
 	public static final String DATA_NOT_FOUND = "Data not found";
 	public static final String EMPTY_ARGUMENT = " argument is empty";
 	public static final String EMPTY_COLUMNS = "No columns for this given builder were passed";

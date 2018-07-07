@@ -22,8 +22,8 @@ import br.com.gda.business.materialStore.info.MatStoreInfo;
 import br.com.gda.business.materialStore.model.MatStoreModelDelete;
 import br.com.gda.business.materialStore.model.MatStoreModelInsert;
 import br.com.gda.business.materialStore.model.MatStoreModelSelect;
+import br.com.gda.legacy.model.MaterialModel;
 import br.com.gda.model.Model;
-import br.com.gda.model.legacy.MaterialModel;
 
 @Path("/Material")
 public class MaterialResource {

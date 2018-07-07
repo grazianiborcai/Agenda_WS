@@ -33,7 +33,7 @@ public final class StoreCheckTimezone implements ModelChecker<StoreInfo> {
 	
 	
 	@Override public boolean check(StoreInfo recordInfo) {
-		return checker.check(recordInfo.toTimezoneInfo());
+		return checker.check(TimezoneInfo.copyFrom(recordInfo));
 	}
 
 	

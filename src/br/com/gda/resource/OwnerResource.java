@@ -16,8 +16,8 @@ import javax.ws.rs.core.Response;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.OwnerModelSelect;
+import br.com.gda.legacy.model.OwnerModel;
 import br.com.gda.model.Model;
-import br.com.gda.model.legacy.OwnerModel;
 
 @Path("/Owner")
 public class OwnerResource {

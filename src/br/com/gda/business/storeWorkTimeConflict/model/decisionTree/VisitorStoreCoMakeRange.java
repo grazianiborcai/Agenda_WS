@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.business.storeWorkTime.model.decisionTree.ActionStoreWTimeSelect;
+import br.com.gda.business.storeWorkTime.model.decisionTree.RootStoreWTimeSelect;
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.common.TimeRange;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class VisitorStoreCoMakeRange implements DeciActionTransVisitor<StoreCoInfo> {
@@ -79,10 +79,10 @@ public final class VisitorStoreCoMakeRange implements DeciActionTransVisitor<Sto
 		option.conn = conn;
 		option.schemaName = schemaName;
 		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo.toStoreWTimeInfo());
+		option.recordInfos.add(StoreWTimeInfo.copyFrom(recordInfo));
 		
-		DeciAction<StoreWTimeInfo> select = new ActionStoreWTimeSelect(option);	
-		select.executeAction();
+		DeciTree<StoreWTimeInfo> select = new RootStoreWTimeSelect(option);	
+		select.makeDecision();
 		List<StoreWTimeInfo> resultset = select.getDecisionResult().getResultset();
 		
 		checkResultset(resultset);		

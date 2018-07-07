@@ -33,7 +33,7 @@ public final class StoreLDateCheckOwner implements ModelChecker<StoreLDateInfo> 
 	
 	
 	@Override public boolean check(StoreLDateInfo recordInfo) {
-		return checker.check(recordInfo.toOwnerInfo());
+		return checker.check(OwnerInfo.copyFrom(recordInfo));
 	}
 
 	

@@ -33,7 +33,7 @@ public final class StoreLDateCheckTimeRange extends ModelCheckerTemplate<StoreLD
 	
 	
 	@Override public boolean check(StoreLDateInfo recordInfo) {
-		return checker.check(recordInfo.toDateTimeRangeInfo());
+		return checker.check(DateTimeRangeInfo.copyFrom(recordInfo));
 	}
 
 	

@@ -2,17 +2,14 @@ package br.com.gda.business.employeeLeaveDate.info;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
-import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
-import br.com.gda.business.timeRange.info.DateTimeRangeInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
+import br.com.gda.info.RecordInfo;
 
-public final class EmpLDateInfo implements Cloneable {
+public final class EmpLDateInfo extends RecordInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codEmployee;
@@ -36,61 +33,14 @@ public final class EmpLDateInfo implements Cloneable {
 	
 	
 	
-	public OwnerInfo toOwnerInfo() {
-		OwnerInfo owner = new OwnerInfo();
-		owner.codOwner = codOwner;
-		return owner;
+	public static EmpLDateInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, EmpLDateInfo.class);
 	}
 	
 	
 	
-	public StoreInfo toStoreInfo() {
-		StoreInfo store = new StoreInfo();
-		store.codOwner = codOwner;
-		store.codStore = codStore;
-		store.codLanguage = codLanguage;
-		return store;
-	}
-	
-	
-	
-	public EmpInfo toEmpInfo() {
-		EmpInfo emp = new EmpInfo();
-		emp.codOwner = codOwner;
-		emp.codEmployee = codEmployee;
-		emp.codLanguage = codLanguage;
-		return emp;
-	}
-	
-	
-	
-	public StoreEmpInfo toStoreEmpInfo() {
-		StoreEmpInfo storeEmp = new StoreEmpInfo();
-		storeEmp.codOwner = codOwner;
-		storeEmp.codStore = codStore;
-		storeEmp.codEmployee = codEmployee;
-		storeEmp.codLanguage = codLanguage;
-		return storeEmp;
-	}
-	
-	
-	
-	public DateTimeRangeInfo toDateTimeRangeInfo() {
-		DateTimeRangeInfo timeRange = new DateTimeRangeInfo();
-		
-		if (dateValidFrom != null)
-			timeRange.dateValidFrom = LocalDate.of(dateValidFrom.getYear(), dateValidFrom.getMonth(), dateValidFrom.getDayOfMonth());
-		
-		if (dateValidTo != null)
-			timeRange.dateValidTo = LocalDate.of(dateValidTo.getYear(), dateValidTo.getMonth(), dateValidTo.getDayOfMonth());
-		
-		if (timeValidFrom != null)
-			timeRange.timeValidFrom = LocalTime.of(timeValidFrom.getHour(), timeValidFrom.getMinute(), timeValidFrom.getSecond());
-		
-		if (timeValidTo != null)
-			timeRange.timeValidTo = LocalTime.of(timeValidTo.getHour(), timeValidTo.getMinute(), timeValidTo.getSecond());
-		
-		return timeRange;
+	public static List<EmpLDateInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, EmpLDateInfo.class);
 	}
 	
 	

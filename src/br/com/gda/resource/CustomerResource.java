@@ -16,8 +16,8 @@ import br.com.gda.business.customer.model.CusModelDelete;
 import br.com.gda.business.customer.model.CusModelInsert;
 import br.com.gda.business.customer.model.CusModelSelect;
 import br.com.gda.business.customer.model.CusModelUpdate;
+import br.com.gda.legacy.model.CustomerModel;
 import br.com.gda.model.Model;
-import br.com.gda.model.legacy.CustomerModel;
 
 @Path("/Customer")
 public class CustomerResource {

@@ -2,14 +2,13 @@ package br.com.gda.business.storeLeaveDate.info;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
-import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.timeRange.info.DateTimeRangeInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.helper.RecordMode;
+import br.com.gda.info.RecordInfo;
 
-public final class StoreLDateInfo implements Cloneable {
+public final class StoreLDateInfo extends RecordInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public LocalDate dateValidFrom;
@@ -29,39 +28,14 @@ public final class StoreLDateInfo implements Cloneable {
 	
 	
 	
-	public OwnerInfo toOwnerInfo() {
-		OwnerInfo owner = new OwnerInfo();
-		owner.codOwner = codOwner;
-		return owner;
+	public static StoreLDateInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, StoreLDateInfo.class);
 	}
 	
 	
 	
-	public StoreInfo toStoreInfo() {
-		StoreInfo store = new StoreInfo();
-		store.codOwner = codOwner;
-		store.codStore = codStore;
-		return store;
-	}
-	
-	
-	
-	public DateTimeRangeInfo toDateTimeRangeInfo() {
-		DateTimeRangeInfo timeRange = new DateTimeRangeInfo();
-		
-		if (dateValidFrom != null)
-			timeRange.dateValidFrom = LocalDate.of(dateValidFrom.getYear(), dateValidFrom.getMonth(), dateValidFrom.getDayOfMonth());
-		
-		if (dateValidTo != null)
-			timeRange.dateValidTo = LocalDate.of(dateValidTo.getYear(), dateValidTo.getMonth(), dateValidTo.getDayOfMonth());
-		
-		if (timeValidFrom != null)
-			timeRange.timeValidFrom = LocalTime.of(timeValidFrom.getHour(), timeValidFrom.getMinute(), timeValidFrom.getSecond());
-		
-		if (timeValidTo != null)
-			timeRange.timeValidTo = LocalTime.of(timeValidTo.getHour(), timeValidTo.getMinute(), timeValidTo.getSecond());
-		
-		return timeRange;
+	public static List<StoreLDateInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, StoreLDateInfo.class);
 	}
 	
 	

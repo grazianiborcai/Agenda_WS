@@ -1,13 +1,13 @@
 package br.com.gda.business.storeEmployee.info;
 
-import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.masterData.info.EmpPosInfo;
-import br.com.gda.business.store.info.StoreInfo;
+import java.util.List;
+
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
+import br.com.gda.info.RecordInfo;
 
-public final class StoreEmpInfo implements Cloneable {
+public final class StoreEmpInfo extends RecordInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;	
 	public String nameStore;	
@@ -30,38 +30,14 @@ public final class StoreEmpInfo implements Cloneable {
 	
 	
 	
-	public EmpPosInfo toEmpPosInfo() {
-		EmpPosInfo empPosInfo = new EmpPosInfo();
-		
-		empPosInfo.codPosition = codPositionStore;
-		empPosInfo.txtPosition = txtPositionStore;
-		empPosInfo.codLanguage = codLanguage;
-		
-		return empPosInfo;
+	public static StoreEmpInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, StoreEmpInfo.class);
 	}
 	
 	
 	
-	public StoreInfo toStoreInfo() {
-		StoreInfo storeInfo = new StoreInfo();
-		
-		storeInfo.codOwner = codOwner;
-		storeInfo.codStore = codStore;
-		storeInfo.codLanguage = codLanguage;
-		
-		return storeInfo;
-	}
-	
-	
-	
-	public EmpInfo toEmpInfo() {
-		EmpInfo empInfo = new EmpInfo();
-		
-		empInfo.codOwner = codOwner;
-		empInfo.codEmployee = codEmployee;
-		empInfo.codLanguage = codLanguage;
-		
-		return empInfo;
+	public static List<StoreEmpInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, StoreEmpInfo.class);
 	}
 	
 	

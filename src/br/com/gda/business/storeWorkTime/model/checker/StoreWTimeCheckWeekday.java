@@ -33,7 +33,7 @@ public final class StoreWTimeCheckWeekday implements ModelChecker<StoreWTimeInfo
 	
 	
 	@Override public boolean check(StoreWTimeInfo recordInfo) {
-		return checker.check(recordInfo.toWeekdayInfo());
+		return checker.check(WeekdayInfo.copyFrom(recordInfo));
 	}
 
 	

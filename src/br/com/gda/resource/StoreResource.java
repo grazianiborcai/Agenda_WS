@@ -43,8 +43,8 @@ import br.com.gda.business.storeWorkTime.model.StoreWTimeModelSelect;
 import br.com.gda.business.storeWorkTime.model.StoreWTimeModelUpdate;
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.business.storeWorkTimeConflict.model.StoreCoModelSelect;
+import br.com.gda.legacy.model.StoreModel;
 import br.com.gda.model.Model;
-import br.com.gda.model.legacy.StoreModel;
 
 @Path("/Store")
 public class StoreResource {

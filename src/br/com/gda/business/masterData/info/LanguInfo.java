@@ -1,14 +1,29 @@
 package br.com.gda.business.masterData.info;
 
-import br.com.gda.common.Language;
+import java.util.List;
 
-public final class LanguInfo implements Cloneable {
+import br.com.gda.common.Language;
+import br.com.gda.info.RecordInfo;
+
+public final class LanguInfo extends RecordInfo implements Cloneable {
 	public String codLanguage;
 	public String txtLanguage;
 	
 	
 	public LanguInfo() {
 		this.codLanguage = Language.getDefaultLanguage();
+	}
+	
+	
+	
+	public static LanguInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, LanguInfo.class);
+	}
+	
+	
+	
+	public static List<LanguInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, LanguInfo.class);
 	}
 	
 	

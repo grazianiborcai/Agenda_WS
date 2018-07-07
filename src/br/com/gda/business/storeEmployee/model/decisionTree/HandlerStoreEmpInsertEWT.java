@@ -5,14 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
+import br.com.gda.business.employeeWorkTime.info.EmpWTimeMergerSTW;
 import br.com.gda.business.employeeWorkTime.model.decisionTree.RootEmpWTimeInsert;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.business.storeWorkTime.model.decisionTree.ActionStoreWTimeSelect;
+import br.com.gda.business.storeWorkTime.model.decisionTree.RootStoreWTimeSelect;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
+import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class HandlerStoreEmpInsertEWT extends DeciActionHandlerTemplate<StoreEmpInfo, EmpWTimeInfo> {
@@ -36,9 +38,9 @@ public final class HandlerStoreEmpInsertEWT extends DeciActionHandlerTemplate<St
 	
 	
 	private List<StoreWTimeInfo> getStoreWTime(List<StoreEmpInfo> recordInfos) {
-		DeciAction<StoreWTimeInfo> actionSelect = new ActionStoreWTimeSelect(makeStoreWTOption(recordInfos));
-		actionSelect.executeAction();
-		return actionSelect.getDecisionResult().getResultset();
+		DeciTree<StoreWTimeInfo> treeSelect = new RootStoreWTimeSelect(makeStoreWTOption(recordInfos));
+		treeSelect.makeDecision();
+		return treeSelect.getDecisionResult().getResultset();
 	}
 	
 	
@@ -54,22 +56,8 @@ public final class HandlerStoreEmpInsertEWT extends DeciActionHandlerTemplate<St
 	
 	
 	private List<EmpWTimeInfo> merge(List<StoreEmpInfo> storeEmps, List<StoreWTimeInfo> storeWTs) {
-		List<EmpWTimeInfo> mergedRecord = new ArrayList<>();
-		
-		for (StoreWTimeInfo eachStoreWT : storeWTs) {
-			EmpWTimeInfo target = EmpWTimeInfo.copyFrom(eachStoreWT);
-			
-			for (StoreEmpInfo eachStoreEmp : storeEmps) {
-				if (eachStoreWT.codOwner == eachStoreEmp.codOwner &&
-					eachStoreWT.codStore == eachStoreEmp.codStore) {
-					
-					target.codEmployee = eachStoreEmp.codEmployee;
-					mergedRecord.add(target);
-				}
-			}
-		}
-		
-		return mergedRecord;
+		EmpWTimeMergerSTW merger = new EmpWTimeMergerSTW();
+		return merger.merge(storeEmps, storeWTs);
 	}
 	
 	

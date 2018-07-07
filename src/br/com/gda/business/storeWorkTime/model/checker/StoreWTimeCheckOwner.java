@@ -33,7 +33,7 @@ public final class StoreWTimeCheckOwner implements ModelChecker<StoreWTimeInfo> 
 	
 	
 	@Override public boolean check(StoreWTimeInfo recordInfo) {
-		return checker.check(recordInfo.toOwnerInfo());
+		return checker.check(OwnerInfo.copyFrom(recordInfo));
 	}
 
 	

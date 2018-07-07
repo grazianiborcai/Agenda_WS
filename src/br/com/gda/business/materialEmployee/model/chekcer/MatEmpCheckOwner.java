@@ -33,7 +33,7 @@ public final class MatEmpCheckOwner implements ModelChecker<MatEmpInfo> {
 	
 	
 	@Override public boolean check(MatEmpInfo recordInfo) {
-		return checker.check(recordInfo.toOwnerInfo());
+		return checker.check(OwnerInfo.copyFrom(recordInfo));
 	}
 
 	

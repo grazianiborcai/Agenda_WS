@@ -2,12 +2,27 @@ package br.com.gda.business.timeRange.info;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
-public final class DateTimeRangeInfo implements Cloneable {
+import br.com.gda.info.RecordInfo;
+
+public final class DateTimeRangeInfo extends RecordInfo implements Cloneable {
 	public LocalDate dateValidFrom;
 	public LocalDate dateValidTo;
 	public LocalTime timeValidFrom;
 	public LocalTime timeValidTo;
+	
+	
+	
+	public static DateTimeRangeInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, DateTimeRangeInfo.class);
+	}
+	
+	
+	
+	public static List<DateTimeRangeInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, DateTimeRangeInfo.class);
+	}	
 	
 	
 	

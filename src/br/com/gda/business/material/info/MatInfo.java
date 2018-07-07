@@ -1,17 +1,13 @@
 package br.com.gda.business.material.info;
 
-import br.com.gda.business.masterData.info.CurrencyInfo;
-import br.com.gda.business.masterData.info.LanguInfo;
-import br.com.gda.business.masterData.info.MatCategInfo;
-import br.com.gda.business.masterData.info.MatGroupInfo;
-import br.com.gda.business.masterData.info.MatTypeInfo;
-import br.com.gda.business.masterData.info.MatUnitInfo;
-import br.com.gda.business.owner.info.OwnerInfo;
+import java.util.List;
+
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
+import br.com.gda.info.RecordInfo;
 
-public final class MatInfo implements Cloneable {
+public final class MatInfo extends RecordInfo implements Cloneable {
 	public long codOwner;
 	public long codMat;
 	public String txtMat;
@@ -52,71 +48,14 @@ public final class MatInfo implements Cloneable {
 	
 	
 	
-	public LanguInfo toLanguInfo() {
-		LanguInfo langu = new LanguInfo();
-		langu.codLanguage = this.codLanguage;
-		return langu;
+	public static MatInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, MatInfo.class);
 	}
 	
 	
 	
-	public CurrencyInfo toCurrencyInfo() {
-		CurrencyInfo currency = new CurrencyInfo();		
-		currency.codCurr = this.codCurr;
-		currency.txtCurr = this.txtCurr;
-		currency.codLanguage = this.codLanguage;
-		return currency;
-	}
-	
-	
-	
-	public MatUnitInfo toMatUnitInfo() {
-		MatUnitInfo unit = new MatUnitInfo();		
-		unit.codUnit = this.codUnit;
-		unit.txtUnit = this.txtUnit;
-		unit.codLanguage = this.codLanguage;
-		return unit;
-	}
-	
-	
-	
-	public MatCategInfo toMatCategInfo() {
-		MatCategInfo categ = new MatCategInfo();		
-		categ.codCategory = this.codCategory;
-		categ.txtCategory = this.txtCategory;
-		categ.codLanguage = this.codLanguage;
-		return categ;
-	}
-	
-	
-	
-	public MatGroupInfo toMatGroupInfo() {
-		MatGroupInfo group = new MatGroupInfo();		
-		group.codGroup = this.codGroup;
-		group.txtGroup = this.txtGroup;		
-		group.codBusiness = this.codBusiness;
-		group.txtBusiness = this.txtBusiness;
-		group.codLanguage = this.codLanguage;
-		return group;
-	}
-	
-	
-	
-	public MatTypeInfo toMatTypeInfo() {
-		MatTypeInfo categ = new MatTypeInfo();		
-		categ.codType = this.codType;
-		categ.txtType = this.txtType;
-		categ.codLanguage = this.codLanguage;
-		return categ;
-	}
-	
-	
-	
-	public OwnerInfo toOwnerInfo() {
-		OwnerInfo owner = new OwnerInfo();		
-		owner.codOwner = this.codOwner;
-		owner.codLanguage = this.codLanguage;
-		return owner;
+	public static List<MatInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, MatInfo.class);
 	}
 	
 	

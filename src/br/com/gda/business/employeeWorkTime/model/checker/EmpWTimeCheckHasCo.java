@@ -47,7 +47,7 @@ public final class EmpWTimeCheckHasCo extends ModelCheckerTemplate<EmpWTimeInfo>
 		DeciTreeOption<EmpCoInfo> option = new DeciTreeOption<>();
 		
 		List<EmpCoInfo> recordInfos = new ArrayList<>();
-		recordInfos.add(recordInfo.toEmpCoInfo());
+		recordInfos.add(EmpCoInfo.copyFrom(recordInfo));
 		option.recordInfos = recordInfos;
 		
 		option.conn = conn;

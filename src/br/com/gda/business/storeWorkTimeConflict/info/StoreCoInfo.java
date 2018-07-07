@@ -1,13 +1,14 @@
 package br.com.gda.business.storeWorkTimeConflict.info;
 
 import java.time.LocalTime;
+import java.util.List;
 
-import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
+import br.com.gda.info.RecordInfo;
 
-public final class StoreCoInfo implements Cloneable {
+public final class StoreCoInfo extends RecordInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codEmployee;
@@ -31,19 +32,14 @@ public final class StoreCoInfo implements Cloneable {
 	
 	
 	
-	public StoreWTimeInfo toStoreWTimeInfo() {
-		StoreWTimeInfo storeWTimeInfo = new StoreWTimeInfo();
-		storeWTimeInfo.codOwner = codOwner;
-		storeWTimeInfo.codStore = codStore;
-		storeWTimeInfo.codWeekday = codWeekday;
-		storeWTimeInfo.txtWeekday = txtWeekday;
-		storeWTimeInfo.beginTime = LocalTime.of(beginTime.getHour(), beginTime.getMinute());
-		storeWTimeInfo.endTime = LocalTime.of(endTime.getHour(), endTime.getMinute());
-		storeWTimeInfo.codTimezone = codTimezone;
-		storeWTimeInfo.codLanguage = codLanguage; 
-		storeWTimeInfo.recordMode = recordMode;
-		
-		return storeWTimeInfo;
+	public static StoreCoInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, StoreCoInfo.class);
+	}
+	
+	
+	
+	public static List<StoreCoInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, StoreCoInfo.class);
 	}
 	
 	

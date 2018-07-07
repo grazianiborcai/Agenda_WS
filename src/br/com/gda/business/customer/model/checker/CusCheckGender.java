@@ -33,7 +33,7 @@ public final class CusCheckGender implements ModelChecker<CusInfo> {
 	
 	
 	@Override public boolean check(CusInfo recordInfo) {
-		return checker.check(recordInfo.toGenderInfo());
+		return checker.check(GenderInfo.copyFrom(recordInfo));
 	}
 
 	

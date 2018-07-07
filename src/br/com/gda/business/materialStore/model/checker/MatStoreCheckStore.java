@@ -33,7 +33,7 @@ public final class MatStoreCheckStore implements ModelChecker<MatStoreInfo> {
 	
 	
 	@Override public boolean check(MatStoreInfo recordInfo) {
-		return checker.check(recordInfo.toStoreInfo());
+		return checker.check(StoreInfo.copyFrom(recordInfo));
 	}
 
 	

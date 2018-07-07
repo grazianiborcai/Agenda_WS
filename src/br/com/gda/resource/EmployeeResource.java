@@ -32,8 +32,8 @@ import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelSelect;
 import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelUpdate;
 import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.business.employeeWorkTimeConflict.model.EmpCoModelSelect;
+import br.com.gda.legacy.model.EmployeeModel;
 import br.com.gda.model.Model;
-import br.com.gda.model.legacy.EmployeeModel;
 
 @Path("/Employee")
 public class EmployeeResource {

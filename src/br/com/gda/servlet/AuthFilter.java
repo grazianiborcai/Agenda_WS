@@ -17,13 +17,13 @@ import com.sun.jersey.core.header.InBoundHeaders;
 import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 
-import br.com.gda.dao.CustomerDAO;
 import br.com.gda.helper.Customer;
 import br.com.gda.helper.Employee;
 import br.com.gda.helper.Owner;
 import br.com.gda.helper.RecordMode;
-import br.com.gda.model.legacy.EmployeeModel;
-import br.com.gda.model.legacy.OwnerModel;
+import br.com.gda.legacy.dao.CustomerDAO;
+import br.com.gda.legacy.model.EmployeeModel;
+import br.com.gda.legacy.model.OwnerModel;
 
 //TODO: melhorar as mensagens de resposta para ficar no mesmo padr�o (makeResponse)
 public class AuthFilter implements ContainerRequestFilter {

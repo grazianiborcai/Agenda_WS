@@ -61,8 +61,8 @@ public final class RootStoreEmpDelete implements DeciTree<StoreEmpInfo> {
 	
 	private List<DeciAction<StoreEmpInfo>> buildActionsOnPassed(DeciTreeOption<StoreEmpInfo> option) {
 		List<DeciAction<StoreEmpInfo>> actions = new ArrayList<>();
-		
 		actions.add(new ActionStoreEmpDelete(option));
+		actions.add(new NodeStoreEmpDeleteEWT(option).toAction());
 		return actions;
 	}
 	

@@ -33,7 +33,7 @@ public final class MatCheckType implements ModelChecker<MatInfo> {
 	
 	
 	@Override public boolean check(MatInfo recordInfo) {
-		return checker.check(recordInfo.toMatTypeInfo());
+		return checker.check(MatTypeInfo.copyFrom(recordInfo));
 	}
 
 	

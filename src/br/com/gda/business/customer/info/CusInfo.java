@@ -1,14 +1,14 @@
 package br.com.gda.business.customer.info;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import br.com.gda.business.masterData.info.GenderInfo;
-import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
+import br.com.gda.info.RecordInfo;
 
-public final class CusInfo implements Cloneable {
+public final class CusInfo extends RecordInfo implements Cloneable {
 	public long codOwner;
 	public long codCustomer;
 	public String cpf;
@@ -40,20 +40,14 @@ public final class CusInfo implements Cloneable {
 	
 	
 	
-	public OwnerInfo toOwnerInfo() {
-		OwnerInfo owner = new OwnerInfo();
-		owner.codOwner = codOwner;
-		return owner;
+	public static CusInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, CusInfo.class);
 	}
 	
 	
 	
-	public GenderInfo toGenderInfo() {
-		GenderInfo gender = new GenderInfo();
-		gender.codGender = codGender;
-		gender.txtGender = txtGender;
-		gender.codLanguage = codLanguage;
-		return gender;
+	public static List<CusInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, CusInfo.class);
 	}
 	
 	

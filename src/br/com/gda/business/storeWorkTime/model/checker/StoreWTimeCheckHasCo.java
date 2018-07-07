@@ -47,7 +47,7 @@ public class StoreWTimeCheckHasCo extends ModelCheckerTemplate<StoreWTimeInfo> {
 		DeciTreeOption<StoreCoInfo> option = new DeciTreeOption<>();
 		
 		List<StoreCoInfo> recordInfos = new ArrayList<>();
-		recordInfos.add(recordInfo.toStoreCoInfo());
+		recordInfos.add(StoreCoInfo.copyFrom(recordInfo));
 		option.recordInfos = recordInfos;
 		
 		option.conn = conn;

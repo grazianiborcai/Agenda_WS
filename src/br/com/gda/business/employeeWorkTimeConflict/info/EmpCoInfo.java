@@ -1,13 +1,14 @@
 package br.com.gda.business.employeeWorkTimeConflict.info;
 
 import java.time.LocalTime;
+import java.util.List;
 
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
+import br.com.gda.info.RecordInfo;
 
-public final class EmpCoInfo implements Cloneable {
+public final class EmpCoInfo extends RecordInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codEmployee;
@@ -31,20 +32,14 @@ public final class EmpCoInfo implements Cloneable {
 	
 	
 	
-	public EmpWTimeInfo toEmpWTimeInfo() {
-		EmpWTimeInfo empWTimeInfo = new EmpWTimeInfo();
-		empWTimeInfo.codOwner = codOwner;
-		empWTimeInfo.codStore = codStore;
-		empWTimeInfo.codEmployee = codEmployee;
-		empWTimeInfo.codWeekday = codWeekday;
-		empWTimeInfo.txtWeekday = txtWeekday;
-		empWTimeInfo.beginTime = LocalTime.of(beginTime.getHour(), beginTime.getMinute(), beginTime.getSecond());
-		empWTimeInfo.endTime = LocalTime.of(endTime.getHour(), endTime.getMinute(), endTime.getSecond());
-		empWTimeInfo.codTimezone = codTimezone;
-		empWTimeInfo.codLanguage = codLanguage;
-		empWTimeInfo.recordMode = recordMode;
-		
-		return empWTimeInfo;
+	public static EmpCoInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, EmpCoInfo.class);
+	}
+	
+	
+	
+	public static List<EmpCoInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, EmpCoInfo.class);
 	}
 	
 	

@@ -16,7 +16,7 @@ import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 import com.sun.jersey.spi.container.servlet.ServletContainer;
 
-import br.com.gda.mqtt.Publisher;
+import br.com.gda.legacy.mqtt.Publisher;
 
 public class ServletContainerGDA extends ServletContainer {
 

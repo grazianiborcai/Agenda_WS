@@ -1,12 +1,13 @@
 package br.com.gda.business.store.info;
 
-import br.com.gda.business.masterData.info.TimezoneInfo;
-import br.com.gda.business.owner.info.OwnerInfo;
+import java.util.List;
+
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
+import br.com.gda.info.RecordInfo;
 
-public final class StoreInfo implements Cloneable {
+public final class StoreInfo extends RecordInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;	
 	public String cnpj;
@@ -42,19 +43,14 @@ public final class StoreInfo implements Cloneable {
 	
 	
 	
-	public OwnerInfo toOwnerInfo() {
-		OwnerInfo owner = new OwnerInfo();
-		owner.codOwner = codOwner;
-		owner.codLanguage = codLanguage;
-		return owner;
+	public static StoreInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, StoreInfo.class);
 	}
 	
 	
 	
-	public TimezoneInfo toTimezoneInfo() {
-		TimezoneInfo timezone = new TimezoneInfo();
-		timezone.codTimezone = codTimezone;
-		return timezone;
+	public static List<StoreInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, StoreInfo.class);
 	}
 	
 	

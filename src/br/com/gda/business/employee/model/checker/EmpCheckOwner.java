@@ -33,7 +33,7 @@ public final class EmpCheckOwner implements ModelChecker<EmpInfo> {
 	
 	
 	@Override public boolean check(EmpInfo recordInfo) {
-		return checker.check(recordInfo.toOwnerInfo());
+		return checker.check(OwnerInfo.copyFrom(recordInfo));
 	}
 
 	

@@ -1,8 +1,11 @@
 package br.com.gda.business.masterData.info;
 
-import br.com.gda.common.Language;
+import java.util.List;
 
-public final class MatUnitInfo implements Cloneable {
+import br.com.gda.common.Language;
+import br.com.gda.info.RecordInfo;
+
+public final class MatUnitInfo extends RecordInfo implements Cloneable {
 	public String codUnit;
 	public String txtUnit;
 	public String codLanguage;
@@ -10,6 +13,18 @@ public final class MatUnitInfo implements Cloneable {
 	
 	public MatUnitInfo() {
 		this.codLanguage = Language.getDefaultLanguage();
+	}
+	
+	
+	
+	public static MatUnitInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, MatUnitInfo.class);
+	}
+	
+	
+	
+	public static List<MatUnitInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, MatUnitInfo.class);
 	}
 	
 	

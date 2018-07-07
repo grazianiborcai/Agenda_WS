@@ -33,7 +33,7 @@ public final class MatCheckGroup implements ModelChecker<MatInfo> {
 	
 	
 	@Override public boolean check(MatInfo recordInfo) {
-		return checker.check(recordInfo.toMatGroupInfo());
+		return checker.check(MatGroupInfo.copyFrom(recordInfo));
 	}
 
 	

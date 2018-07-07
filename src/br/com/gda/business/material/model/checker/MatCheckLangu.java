@@ -33,7 +33,7 @@ public final class MatCheckLangu implements ModelChecker<MatInfo> {
 	
 	
 	@Override public boolean check(MatInfo recordInfo) {
-		return checker.check(recordInfo.toLanguInfo());
+		return checker.check(LanguInfo.copyFrom(recordInfo));
 	}
 
 	

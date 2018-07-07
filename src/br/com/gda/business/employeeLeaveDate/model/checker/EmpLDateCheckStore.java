@@ -33,7 +33,7 @@ public final class EmpLDateCheckStore implements ModelChecker<EmpLDateInfo> {
 	
 	
 	@Override public boolean check(EmpLDateInfo recordInfo) {
-		return checker.check(recordInfo.toStoreInfo());
+		return checker.check(StoreInfo.copyFrom(recordInfo));
 	}
 
 	

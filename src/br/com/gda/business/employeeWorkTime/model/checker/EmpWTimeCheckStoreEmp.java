@@ -33,7 +33,7 @@ public final class EmpWTimeCheckStoreEmp implements ModelChecker<EmpWTimeInfo> {
 	
 	
 	@Override public boolean check(EmpWTimeInfo recordInfo) {
-		return checker.check(recordInfo.toStoreEmpInfo());
+		return checker.check(StoreEmpInfo.copyFrom(recordInfo));
 	}
 
 	

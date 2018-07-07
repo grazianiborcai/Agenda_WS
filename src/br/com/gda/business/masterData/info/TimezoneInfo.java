@@ -1,8 +1,11 @@
 package br.com.gda.business.masterData.info;
 
-import br.com.gda.common.Language;
+import java.util.List;
 
-public final class TimezoneInfo implements Cloneable {
+import br.com.gda.common.Language;
+import br.com.gda.info.RecordInfo;
+
+public final class TimezoneInfo extends RecordInfo implements Cloneable {
 	public String codTimezone;
 	public String txtTimezone;
 	public String codLanguage;
@@ -10,6 +13,18 @@ public final class TimezoneInfo implements Cloneable {
 	
 	public TimezoneInfo() {
 		this.codLanguage = Language.getDefaultLanguage();
+	}
+	
+	
+	
+	public static TimezoneInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, TimezoneInfo.class);
+	}
+	
+	
+	
+	public static List<TimezoneInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, TimezoneInfo.class);
 	}
 	
 	

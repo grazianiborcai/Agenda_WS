@@ -33,7 +33,7 @@ public final class EmpLDateCheckTimeRange extends ModelCheckerTemplate<EmpLDateI
 	
 	
 	@Override public boolean check(EmpLDateInfo recordInfo) {
-		return checker.check(recordInfo.toDateTimeRangeInfo());
+		return checker.check(DateTimeRangeInfo.copyFrom(recordInfo));
 	}
 
 	

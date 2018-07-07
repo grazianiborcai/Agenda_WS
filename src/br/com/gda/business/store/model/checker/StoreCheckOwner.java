@@ -33,7 +33,7 @@ public final class StoreCheckOwner implements ModelChecker<StoreInfo> {
 	
 	
 	@Override public boolean check(StoreInfo recordInfo) {
-		return checker.check(recordInfo.toOwnerInfo());
+		return checker.check(OwnerInfo.copyFrom(recordInfo));
 	}
 
 	

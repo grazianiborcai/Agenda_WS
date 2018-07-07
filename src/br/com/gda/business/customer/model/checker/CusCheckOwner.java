@@ -33,7 +33,7 @@ public final class CusCheckOwner implements ModelChecker<CusInfo> {
 	
 	
 	@Override public boolean check(CusInfo recordInfo) {
-		return checker.check(recordInfo.toOwnerInfo());
+		return checker.check(OwnerInfo.copyFrom(recordInfo));
 	}
 
 	

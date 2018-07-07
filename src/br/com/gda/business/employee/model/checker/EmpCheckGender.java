@@ -33,7 +33,7 @@ public final class EmpCheckGender implements ModelChecker<EmpInfo> {
 	
 	
 	@Override public boolean check(EmpInfo recordInfo) {
-		return checker.check(recordInfo.toGenderInfo());
+		return checker.check(GenderInfo.copyFrom(recordInfo));
 	}
 
 	
