@@ -105,7 +105,7 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 		queue.add(checker);
 		
 		//TODO: verificar se barcode ou código do fornecedor já existe  no banco
-		
+		//TODO: verificar a unidade de medida. Servi�o somente pode ter tempo e produto somente pode ter unidade
 		return new ModelCheckerQueue<>(queue);
 	}
 	

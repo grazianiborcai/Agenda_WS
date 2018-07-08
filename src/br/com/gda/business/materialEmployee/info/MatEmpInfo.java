@@ -11,7 +11,16 @@ public final class MatEmpInfo extends RecordInfo implements Cloneable {
 	public long codOwner;
 	public long codStore;		
 	public long codEmployee;
+	public String nameEmployee;
 	public long codMat;
+	public String txtMat;
+	public int codType;
+	public String txtType;
+	public int codCategory;
+	public String txtCategory;
+	public int priceUnit;
+	public String codUnit;
+	public String txtUnit;
 	public String codLanguage;
 	public String recordMode;
 	
@@ -22,6 +31,10 @@ public final class MatEmpInfo extends RecordInfo implements Cloneable {
 		codStore = DefaultValue.number();		
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
+		codMat = DefaultValue.number();
+		codType = DefaultValue.number();
+		codCategory = DefaultValue.number();
+		priceUnit = DefaultValue.number();
 		codLanguage = Language.getDefaultLanguage();
 		recordMode = RecordMode.RECORD_OK;
 	}

@@ -1,0 +1,18 @@
+package br.com.gda.business.materialStore.info;
+
+import java.util.List;
+
+import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.info.RecordMerger;
+
+final class MatStoreMergerMat extends RecordMerger<MatStoreInfo, MatInfo, MatStoreInfo> {
+	public MatStoreInfo merge(MatInfo sourceOne, MatStoreInfo sourceTwo) {
+		return super.merge(sourceOne, sourceTwo, new MatStoreVisitorMat());
+	}
+	
+	
+	
+	public List<MatStoreInfo> merge(List<MatInfo> sourceOnes, List<MatStoreInfo> sourceTwos) {		
+		return super.merge(sourceOnes, sourceTwos, new MatStoreVisitorMat());
+	}
+}

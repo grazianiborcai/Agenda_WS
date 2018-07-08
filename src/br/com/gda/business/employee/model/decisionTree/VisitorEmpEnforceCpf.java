@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.model.decisionTree.DeciActionTransVisitor;
 
-public final class VisitorEmpEnforceCpf implements DeciActionTransVisitor<EmpInfo> {
+final class VisitorEmpEnforceCpf implements DeciActionTransVisitor<EmpInfo> {
 	
 	@Override public List<EmpInfo> executeTransformation(List<EmpInfo> recordInfos) {
 		List<EmpInfo> resultRecords = new ArrayList<>();		

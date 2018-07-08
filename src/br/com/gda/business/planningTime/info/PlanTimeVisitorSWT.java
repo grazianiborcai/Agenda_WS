@@ -1,24 +1,24 @@
-package br.com.gda.business.employeeWorkTime.info;
+package br.com.gda.business.planningTime.info;
 
-import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
+import br.com.gda.business.materialStore.info.MatStoreInfo;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.VisitorMerger;
 
-final class EmpWTimeVisitorSTW implements VisitorMerger<EmpWTimeInfo, StoreEmpInfo, StoreWTimeInfo> {
+final class PlanTimeVisitorSWT implements VisitorMerger<PlanTimeInfo, MatStoreInfo, StoreWTimeInfo> {
 
-	@Override public EmpWTimeInfo mergeRecord(StoreEmpInfo sourceOne, StoreWTimeInfo sourceTwo) {
+	@Override public PlanTimeInfo mergeRecord(MatStoreInfo sourceOne, StoreWTimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		EmpWTimeInfo resultInfo = EmpWTimeInfo.copyFrom(sourceTwo);
-		resultInfo.codEmployee = sourceOne.codEmployee;		
+		PlanTimeInfo resultInfo = PlanTimeInfo.copyFrom(sourceTwo);
+		//resultInfo.codEmployee = sourceOne.codEmployee;		
 
 		return resultInfo;
 	}
 	
 	
 	
-	private void checkArgument(StoreEmpInfo sourceOne, StoreWTimeInfo sourceTwo) {
+	private void checkArgument(MatStoreInfo sourceOne, StoreWTimeInfo sourceTwo) {
 		if (sourceOne.codOwner != sourceTwo.codOwner)
 			throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
 		

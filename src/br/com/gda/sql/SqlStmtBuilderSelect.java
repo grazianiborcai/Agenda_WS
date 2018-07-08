@@ -55,6 +55,7 @@ final class SqlStmtBuilderSelect extends SqlStmtBuilderTemplate {
 		resultStatement.append(SqlDictionary.SPACE);
 		
 		//### join
+		//TODO: organizar esse código em métodos
 		if (joins != null) {		
 			for (SqlJoin eachJoin : joins) {
 				resultStatement.append(eachJoin.joinType.toString());
@@ -66,7 +67,7 @@ final class SqlStmtBuilderSelect extends SqlStmtBuilderTemplate {
 				resultStatement.append(SqlDictionary.ON);
 				resultStatement.append(SqlDictionary.SPACE);
 				
-				Iterator<SqlJoinColumn> joinColumnItr = eachJoin.joinColumns.iterator();
+				Iterator<SqlJoinColumn> joinColumnItr = eachJoin.joinColumns.iterator();				
 				
 				while (joinColumnItr.hasNext()) {
 					SqlJoinColumn eachJoinColumn = joinColumnItr.next();
@@ -89,8 +90,10 @@ final class SqlStmtBuilderSelect extends SqlStmtBuilderTemplate {
 				
 				
 				if (eachJoin.constraintClause != null) {
-					resultStatement.append(SqlDictionary.AND);
-					resultStatement.append(SqlDictionary.SPACE);
+					if (!eachJoin.joinColumns.isEmpty()) {
+						resultStatement.append(SqlDictionary.AND);
+						resultStatement.append(SqlDictionary.SPACE);
+					}
 					resultStatement.append(eachJoin.constraintClause);
 					resultStatement.append(SqlDictionary.SPACE);
 				}

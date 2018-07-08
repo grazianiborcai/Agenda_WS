@@ -13,8 +13,8 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class ActionMatStoreDelete implements DeciAction<MatStoreInfo> {
-	DeciAction<MatStoreInfo> actionHelper;
+final class ActionMatStoreDelete implements DeciAction<MatStoreInfo> {
+	private DeciAction<MatStoreInfo> actionHelper;
 	
 	
 	public ActionMatStoreDelete(DeciTreeOption<MatStoreInfo> option) {

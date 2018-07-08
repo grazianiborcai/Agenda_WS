@@ -13,8 +13,8 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class ActionMatEmpDelete implements DeciAction<MatEmpInfo> {
-	DeciAction<MatEmpInfo> actionHelper;
+final class ActionMatEmpDelete implements DeciAction<MatEmpInfo> {
+	private DeciAction<MatEmpInfo> actionHelper;
 	
 	
 	public ActionMatEmpDelete(DeciTreeOption<MatEmpInfo> option) {

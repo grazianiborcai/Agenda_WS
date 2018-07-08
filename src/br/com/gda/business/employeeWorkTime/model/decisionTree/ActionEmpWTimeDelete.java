@@ -13,8 +13,8 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class ActionEmpWTimeDelete implements DeciAction<EmpWTimeInfo> {
-	DeciAction<EmpWTimeInfo> actionHelper;
+final class ActionEmpWTimeDelete implements DeciAction<EmpWTimeInfo> {
+	private DeciAction<EmpWTimeInfo> actionHelper;
 	
 	
 	public ActionEmpWTimeDelete(DeciTreeOption<EmpWTimeInfo> option) {

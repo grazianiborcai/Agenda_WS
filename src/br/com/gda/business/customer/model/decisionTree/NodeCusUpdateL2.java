@@ -16,7 +16,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeCusUpdateL2 implements DeciTree<CusInfo> {
+final class NodeCusUpdateL2 implements DeciTree<CusInfo> {
 	private DeciTree<CusInfo> tree;
 	
 	

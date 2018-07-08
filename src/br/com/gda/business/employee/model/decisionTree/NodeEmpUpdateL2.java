@@ -16,7 +16,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeEmpUpdateL2 implements DeciTree<EmpInfo> {
+final class NodeEmpUpdateL2 implements DeciTree<EmpInfo> {
 	private DeciTree<EmpInfo> tree;
 	
 	

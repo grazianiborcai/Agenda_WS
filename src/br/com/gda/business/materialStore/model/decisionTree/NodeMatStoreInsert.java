@@ -17,7 +17,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeMatStoreInsert implements DeciTree<MatStoreInfo> {
+final class NodeMatStoreInsert implements DeciTree<MatStoreInfo> {
 	private DeciTree<MatStoreInfo> tree;
 	
 	

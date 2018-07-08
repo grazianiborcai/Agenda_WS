@@ -13,12 +13,25 @@ public abstract class RecordMerger<T,K,S> {
 		
 		for (K eachSourceOne : sourceOnes) {			
 			for (S eachSourceTwo : sourceTwos) {
-				T oneResult = merge(eachSourceOne, eachSourceTwo, visitor);
-				results.add(oneResult);
+				T oneResult = tryToMerge(eachSourceOne, eachSourceTwo, visitor);
+				
+				if (oneResult != null)
+					results.add(oneResult);
 			}
 		}			
 			
 		return results;
+	}
+	
+	
+	
+	private T tryToMerge(K sourceOne, S sourceTwo, VisitorMerger<T,K,S> visitor) {
+		try {
+			return merge(sourceOne, sourceTwo, visitor);
+			
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	

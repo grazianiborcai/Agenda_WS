@@ -7,8 +7,9 @@ public interface DeciActionHandler<T> {
 	
 	public boolean executeAction(T infoRecord);
 	
-	public DeciResult<T> getDecisionResult(); 
-	
+	public DeciResult<T> getDecisionResult(); 	
 	
 	public DeciAction<T> toAction(List<T> recordInfos);
+	
+	public void addPostAction(DeciActionHandler<T> actionHandler);
 }

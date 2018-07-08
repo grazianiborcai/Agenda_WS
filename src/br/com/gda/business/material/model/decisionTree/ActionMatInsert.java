@@ -6,7 +6,7 @@ import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionMatInsert implements DeciAction<MatInfo> {
+final class ActionMatInsert implements DeciAction<MatInfo> {
 	private final boolean SUCCESS = true;
 	
 	DeciAction<MatInfo> actionOneAttr;	

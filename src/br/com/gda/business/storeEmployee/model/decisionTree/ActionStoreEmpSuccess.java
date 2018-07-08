@@ -12,7 +12,7 @@ import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 final class ActionStoreEmpSuccess implements DeciAction<StoreEmpInfo> {
-	DeciAction<StoreEmpInfo> actionHelper;
+	private DeciAction<StoreEmpInfo> actionHelper;
 	
 	
 	public ActionStoreEmpSuccess(DeciTreeOption<StoreEmpInfo> option) {

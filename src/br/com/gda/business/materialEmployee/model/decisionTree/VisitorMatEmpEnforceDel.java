@@ -7,7 +7,7 @@ import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.model.decisionTree.DeciActionTransVisitor;
 
-public final class VisitorMatEmpEnforceDel implements DeciActionTransVisitor<MatEmpInfo> {
+final class VisitorMatEmpEnforceDel implements DeciActionTransVisitor<MatEmpInfo> {
 	
 	@Override public List<MatEmpInfo> executeTransformation(List<MatEmpInfo> recordInfos) {
 		List<MatEmpInfo> resultRecords = new ArrayList<>();		

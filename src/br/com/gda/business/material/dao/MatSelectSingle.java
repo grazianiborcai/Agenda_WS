@@ -102,7 +102,7 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 		join.rightTableName = RT_MAT_TEXT;
 		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RT_MAT_TEXT);
+		join.constraintClause = buildJoinConstraintText(join.rightTableName);
 		
 		return join;
 	}
@@ -123,7 +123,7 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 		join.rightTableName = RT_MAT_TYPE_TEXT;
 		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RT_MAT_TYPE_TEXT);
+		join.constraintClause = buildJoinConstraintText(join.rightTableName);
 		
 		return join;
 	}
@@ -144,7 +144,7 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 		join.rightTableName = RT_MAT_CATEGORY_TEXT;
 		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RT_MAT_CATEGORY_TEXT);
+		join.constraintClause = buildJoinConstraintText(join.rightTableName);
 		
 		return join;
 	}
@@ -165,7 +165,7 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 		join.rightTableName = RT_CURRENCY_TEXT;
 		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RT_CURRENCY_TEXT);
+		join.constraintClause = buildJoinConstraintText(join.rightTableName);
 		
 		return join;
 	}

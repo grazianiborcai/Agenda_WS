@@ -14,7 +14,7 @@ import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
 final class ActionStoreWTimeSelect implements DeciAction<StoreWTimeInfo> {
-	DeciAction<StoreWTimeInfo> actionHelper;
+	private DeciAction<StoreWTimeInfo> actionHelper;
 	
 	
 	public ActionStoreWTimeSelect(DeciTreeOption<StoreWTimeInfo> option) {

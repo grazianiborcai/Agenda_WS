@@ -47,6 +47,7 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	private boolean tryToExecuteAction() {
 		try {
 			resultset = tryToExecuteActionHook();
+			//TODO: verificar resultset dummy. Caso positivo, retornar erro de data not found
 			buildResultSuccess();
 			return SUCCESS;
 		
@@ -95,19 +96,19 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	
 	
 	private void buildResultSuccess() {
-		this.deciResult.finishedWithSuccess = true;
-		this.deciResult.hasResultset = true;
-		this.deciResult.resultset = resultset;
+		deciResult.finishedWithSuccess = true;
+		deciResult.hasResultset = true;
+		deciResult.resultset = resultset;
 	}
 	
 	
 	
 	private void buildResultFailed() {
-		this.deciResult.finishedWithSuccess = false;
-		this.deciResult.failureCode = SystemCode.INTERNAL_ERROR;
-		this.deciResult.failureMessage = SystemMessage.INTERNAL_ERROR;
-		this.deciResult.hasResultset = false;
-		this.deciResult.resultset = null;
+		deciResult.finishedWithSuccess = false;
+		deciResult.failureCode = SystemCode.INTERNAL_ERROR;
+		deciResult.failureMessage = SystemMessage.INTERNAL_ERROR;
+		deciResult.hasResultset = false;
+		deciResult.resultset = null;
 	}
 	
 	

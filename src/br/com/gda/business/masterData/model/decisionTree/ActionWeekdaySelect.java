@@ -13,7 +13,7 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class ActionWeekdaySelect implements DeciAction<WeekdayInfo> {
+final class ActionWeekdaySelect implements DeciAction<WeekdayInfo> {
 	private DeciAction<WeekdayInfo> actionHelper;
 	
 	

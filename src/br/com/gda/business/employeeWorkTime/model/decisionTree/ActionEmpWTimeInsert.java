@@ -13,8 +13,8 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class ActionEmpWTimeInsert implements DeciAction<EmpWTimeInfo> {
-	DeciAction<EmpWTimeInfo> actionHelper;
+final class ActionEmpWTimeInsert implements DeciAction<EmpWTimeInfo> {
+	private DeciAction<EmpWTimeInfo> actionHelper;
 	
 	
 	public ActionEmpWTimeInsert(DeciTreeOption<EmpWTimeInfo> option) {

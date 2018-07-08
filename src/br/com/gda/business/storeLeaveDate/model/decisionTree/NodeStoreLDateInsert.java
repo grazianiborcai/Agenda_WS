@@ -16,7 +16,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeStoreLDateInsert implements DeciTree<StoreLDateInfo> {
+final class NodeStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 	private DeciTree<StoreLDateInfo> tree;
 	
 	

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeMergerSTW;
+import br.com.gda.business.employeeWorkTime.info.EmpWTimeMergerSWT;
 import br.com.gda.business.employeeWorkTime.model.decisionTree.RootEmpWTimeInsert;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
@@ -17,7 +17,7 @@ import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerStoreEmpInsertEWT extends DeciActionHandlerTemplate<StoreEmpInfo, EmpWTimeInfo> {
+final class HandlerStoreEmpInsertEWT extends DeciActionHandlerTemplate<StoreEmpInfo, EmpWTimeInfo> {
 	private Connection conn;
 	private String schemaName;
 	
@@ -56,7 +56,7 @@ public final class HandlerStoreEmpInsertEWT extends DeciActionHandlerTemplate<St
 	
 	
 	private List<EmpWTimeInfo> merge(List<StoreEmpInfo> storeEmps, List<StoreWTimeInfo> storeWTs) {
-		EmpWTimeMergerSTW merger = new EmpWTimeMergerSTW();
+		EmpWTimeMergerSWT merger = new EmpWTimeMergerSWT();
 		return merger.merge(storeEmps, storeWTs);
 	}
 	

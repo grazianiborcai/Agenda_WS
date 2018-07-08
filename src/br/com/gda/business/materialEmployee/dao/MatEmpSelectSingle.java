@@ -9,6 +9,10 @@ import java.util.List;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.sql.SqlDbTable;
 import br.com.gda.sql.SqlDbTableColumnAll;
+import br.com.gda.sql.SqlDictionary;
+import br.com.gda.sql.SqlJoin;
+import br.com.gda.sql.SqlJoinColumn;
+import br.com.gda.sql.SqlJoinType;
 import br.com.gda.sql.SqlOperation;
 import br.com.gda.sql.SqlResultParser;
 import br.com.gda.sql.SqlStmt;
@@ -18,9 +22,11 @@ import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
 public final class MatEmpSelectSingle implements SqlStmt<MatEmpInfo> {
-	private SqlStmt<MatEmpInfo> stmtSql;
-	private SqlStmtOption<MatEmpInfo> stmtOption;
+	static private final String LT_MAT_EMP = SqlDbTable.MAT_EMP_TABLE;
+	static private final String RT_LANGU = SqlDbTable.LANGUAGE_TABLE;
 	
+	private SqlStmt<MatEmpInfo> stmtSql;
+	private SqlStmtOption<MatEmpInfo> stmtOption;	
 	
 	
 	public MatEmpSelectSingle(Connection conn, MatEmpInfo recordInfo, String schemaName) {
@@ -35,12 +41,12 @@ public final class MatEmpSelectSingle implements SqlStmt<MatEmpInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.MAT_EMP_TABLE;
+		this.stmtOption.tableName = LT_MAT_EMP;
 		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+		this.stmtOption.joins = buildJoins();
 	}
 	
 	
@@ -55,6 +61,46 @@ public final class MatEmpSelectSingle implements SqlStmt<MatEmpInfo> {
 		
 		SqlStmtWhere whereClause = new MatEmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
+	}
+	
+	
+	
+	private List<SqlJoin> buildJoins() {
+		List<SqlJoin> joins = new ArrayList<>();		
+		joins.add(buildJoinLanguage());	
+		return joins;
+	}
+	
+	
+	
+	private SqlJoin buildJoinLanguage() {
+		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+		
+		SqlJoin join = new SqlJoin();
+		join.rightTableName = RT_LANGU;
+		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinColumns = joinColumns;
+		join.constraintClause = buildJoinConstraintText(join.rightTableName);
+		
+		return join;
+	}
+	
+	
+	
+	private String buildJoinConstraintText(String rightTableName) {
+		StringBuilder constrainClause = new StringBuilder(); 
+		
+		constrainClause.append(rightTableName);
+		constrainClause.append(SqlDictionary.PERIOD);
+		constrainClause.append("Language");
+		constrainClause.append(SqlDictionary.SPACE);
+		constrainClause.append(SqlDictionary.EQUAL);
+		constrainClause.append(SqlDictionary.SPACE);
+		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(this.stmtOption.recordInfo.codLanguage);
+		constrainClause.append(SqlDictionary.QUOTE);
+		
+		return constrainClause.toString();
 	}
 	
 	
@@ -100,6 +146,7 @@ public final class MatEmpSelectSingle implements SqlStmt<MatEmpInfo> {
 	
 	private static class ResultParser implements SqlResultParser<MatEmpInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
+		private final String LANGU_COL = RT_LANGU + "." + "Language";
 		
 		@Override public List<MatEmpInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatEmpInfo> finalResult = new ArrayList<>();
@@ -113,7 +160,8 @@ public final class MatEmpSelectSingle implements SqlStmt<MatEmpInfo> {
 				dataInfo.codStore = stmtResult.getLong("Cod_store");
 				dataInfo.codEmployee = stmtResult.getLong("Cod_employee");
 				dataInfo.codMat = stmtResult.getLong("Cod_material");
-				dataInfo.recordMode = stmtResult.getString("Record_mode");							
+				dataInfo.recordMode = stmtResult.getString("Record_mode");	
+				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);	
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

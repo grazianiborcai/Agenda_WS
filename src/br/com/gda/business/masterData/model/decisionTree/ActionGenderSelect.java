@@ -13,8 +13,8 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class ActionGenderSelect implements DeciAction<GenderInfo> {
-	DeciAction<GenderInfo> actionHelper;
+final class ActionGenderSelect implements DeciAction<GenderInfo> {
+	private DeciAction<GenderInfo> actionHelper;
 	
 	
 	public ActionGenderSelect(DeciTreeOption<GenderInfo> option) {

@@ -16,7 +16,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class NodeEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
+class NodeEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 	private DeciTree<EmpWTimeInfo> tree;
 	
 	

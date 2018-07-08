@@ -9,7 +9,7 @@ import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerStoreSelect extends DeciActionHandlerTemplate<StoreInfo, StoreInfo> {
+final class HandlerStoreSelect extends DeciActionHandlerTemplate<StoreInfo, StoreInfo> {
 
 	public HandlerStoreSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -13,7 +13,7 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class ActionEmpDelete implements DeciAction<EmpInfo> {
+final class ActionEmpDelete implements DeciAction<EmpInfo> {
 	DeciAction<EmpInfo> actionHelper;
 	
 	

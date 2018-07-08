@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
+import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckExist;
 import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckRead;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
@@ -22,7 +24,7 @@ public final class RootMatEmpSelect implements DeciTree<MatEmpInfo> {
 	public RootMatEmpSelect(DeciTreeOption<MatEmpInfo> option) {
 		DeciTreeHelperOption<MatEmpInfo> helperOption = new DeciTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
@@ -32,12 +34,22 @@ public final class RootMatEmpSelect implements DeciTree<MatEmpInfo> {
 	
 	
 	
-	private ModelChecker<MatEmpInfo> buildDecisionChecker() {
+	private ModelChecker<MatEmpInfo> buildDecisionChecker(DeciTreeOption<MatEmpInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<MatEmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatEmpInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
 		checker = new MatEmpCheckRead();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new MatEmpCheckExist(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -47,7 +59,14 @@ public final class RootMatEmpSelect implements DeciTree<MatEmpInfo> {
 	private List<DeciAction<MatEmpInfo>> buildActionsOnPassed(DeciTreeOption<MatEmpInfo> option) {
 		List<DeciAction<MatEmpInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionMatEmpSelect(option));
+		DeciAction<MatEmpInfo> starter = new ActionMatEmpSelect(option);
+		HandlerMatEmpMergeMat mergeMaterial = new HandlerMatEmpMergeMat(option.conn, option.schemaName);
+		HandlerMatEmpMergeEmp mergeEmployee = new HandlerMatEmpMergeEmp(option.conn, option.schemaName);		
+		
+		actions.add(starter);
+		starter.addPostAction(mergeMaterial);
+		mergeMaterial.addPostAction(mergeEmployee);
+		
 		return actions;
 	}
 	

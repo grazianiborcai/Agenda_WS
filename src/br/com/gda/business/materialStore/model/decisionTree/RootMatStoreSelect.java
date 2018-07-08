@@ -47,7 +47,9 @@ public final class RootMatStoreSelect implements DeciTree<MatStoreInfo> {
 	private List<DeciAction<MatStoreInfo>> buildActionsOnPassed(DeciTreeOption<MatStoreInfo> option) {
 		List<DeciAction<MatStoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionMatStoreSelect(option));
+		DeciAction<MatStoreInfo> starter = new ActionMatStoreSelect(option);
+		starter.addPostAction(new HandlerMatStoreMergeMat(option.conn, option.schemaName));
+		actions.add(starter);
 		return actions;
 	}
 	

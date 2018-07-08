@@ -4,17 +4,20 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 
 public abstract class DeciActionHandlerTemplate<T,S> implements DeciActionHandler<T> {
 	private final boolean SUCCESS = true;
-	private final boolean FAIL = false;
+	private final boolean FAILED = false;
 	
 	private DeciTreeOption<S> option;
 	private Connection conn; 
 	private String schemaName;
 	private DeciAction<S> actionHandler;
 	private DeciResult<T> resultHandler;
+	private DeciResult<T> resultPostAction;
+	private List<DeciActionHandler<T>> postActions;
 	
 	
 	public DeciActionHandlerTemplate(Connection conn, String schemaName) {
@@ -22,6 +25,7 @@ public abstract class DeciActionHandlerTemplate<T,S> implements DeciActionHandle
 		
 		this.conn = conn;
 		this.schemaName = schemaName;
+		this.postActions = new ArrayList<>();
 	}
 	
 	
@@ -35,16 +39,33 @@ public abstract class DeciActionHandlerTemplate<T,S> implements DeciActionHandle
 	}
 	
 	
+		
+	@Override public boolean executeAction(T infoRecord) {
+		checkArgument(infoRecord);
+		
+		List<T> infoRecords = new ArrayList<>();
+		infoRecords.add(infoRecord);
+		
+		return executeAction(infoRecords);
+	}
+	
+	
+	
+	private void checkArgument(T infoRecord) {
+		if (infoRecord == null)
+			throw new NullPointerException("infoRecord" + SystemMessage.NULL_ARGUMENT);
+	}
+	
+	
 	
 	@Override public boolean executeAction(List<T> infoRecords) {
 		checkArgument(infoRecords);		
+		boolean result = tryToExecuteAction(infoRecords);
 		
-		for(T eachRecord: infoRecords) {
-			if (executeAction(eachRecord) == FAIL)
-				return FAIL;
-		}		
+		if (result == SUCCESS) 
+			result = executePostActions();				
 		
-		return SUCCESS;
+		return result;
 	}
 	
 	
@@ -59,25 +80,7 @@ public abstract class DeciActionHandlerTemplate<T,S> implements DeciActionHandle
 	
 	
 	
-	
-	@Override public boolean executeAction(T infoRecord) {
-		checkArgument(infoRecord);
-		return tryToExecuteAction(infoRecord);
-	}
-	
-	
-	
-	private void checkArgument(T infoRecord) {
-		if (infoRecord == null)
-			throw new NullPointerException("infoRecord" + SystemMessage.NULL_ARGUMENT);
-	}
-	
-	
-	
-	private boolean tryToExecuteAction(T infoRecord) {
-		List<T> infoRecords = new ArrayList<>();
-		infoRecords.add(infoRecord);
-		
+	private boolean tryToExecuteAction(List<T> infoRecords) {
 		option = new DeciTreeOption<>();
 		option.conn = conn;
 		option.schemaName = schemaName;
@@ -110,12 +113,56 @@ public abstract class DeciActionHandlerTemplate<T,S> implements DeciActionHandle
 		//Template method to be overridden by subclasses
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
+	
+	
+	
+	private boolean executePostActions() {				
+		boolean result = true;
+		
+		for (DeciActionHandler<T> eachAction : postActions) {
+			result = tryToExecutePostActions(eachAction);
+			
+			if (result == FAILED)
+				return result;
+		}
+				
+		return result;
+	}
+	
+	
+	
+	private boolean tryToExecutePostActions(DeciActionHandler<T> postAction) {				
+		try {
+			postAction.executeAction(resultHandler.getResultset());
+			resultPostAction = postAction.getDecisionResult();
+			return SUCCESS;
+		
+		} catch (Exception e) {
+			buildResultFailed();
+			return FAILED;
+		}		
+	}
+	
+	
+	
+	private void buildResultFailed() {
+		DeciResultHelper<T> deciResult = new DeciResultHelper<>();		
+		deciResult.finishedWithSuccess = false;
+		deciResult.failureCode = SystemCode.INTERNAL_ERROR;
+		deciResult.failureMessage = SystemMessage.INTERNAL_ERROR;
+		deciResult.hasResultset = false;
+		deciResult.resultset = null;
+		resultPostAction = deciResult;
+	}
 
 	
 	
 	@Override public DeciResult<T> getDecisionResult() {
 		if (resultHandler == null)
 			throw new IllegalStateException();
+		
+		if (resultPostAction != null)
+			return resultPostAction;
 		
 		return resultHandler;
 	}
@@ -124,5 +171,14 @@ public abstract class DeciActionHandlerTemplate<T,S> implements DeciActionHandle
 	
 	@Override public DeciAction<T> toAction(List<T> recordInfos) {
 		return new DeciActionHandlerAdapter<>(this, recordInfos);
+	}
+	
+	
+	
+	@Override public void addPostAction(DeciActionHandler<T> actionHandler) {
+		if (actionHandler == null)
+			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
+		
+		postActions.add(actionHandler);
 	}
 }

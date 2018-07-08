@@ -20,15 +20,15 @@ public final class MatEmpDbTableColumn extends SqlDbTableColumnTemplate {
 	@Override protected Hashtable<String, List<SqlColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();
 		
-		buildMatStoreTable();
+		buildMatEmpTable();
 		
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildMatStoreTable() {
-		final String TABLE_NAME = SqlDbTable.MAT_STORE_TABLE;
+	private void buildMatEmpTable() {
+		final String TABLE_NAME = SqlDbTable.MAT_EMP_TABLE;
 		
 		SqlColumn oneColumn;
 		List<SqlColumn> columns = new ArrayList<>();	
@@ -51,6 +51,14 @@ public final class MatEmpDbTableColumn extends SqlDbTableColumnTemplate {
 		
 		oneColumn = new SqlColumn();
 		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = "Cod_employee";
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_material";
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
@@ -62,6 +70,14 @@ public final class MatEmpDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.columnName = "record_mode";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new SqlColumn();
+		oneColumn.tableName = SqlDbTable.LANGUAGE_TABLE;
+		oneColumn.columnName = "Language";
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

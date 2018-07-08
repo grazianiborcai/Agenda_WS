@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.model.decisionTree.DeciActionTransVisitor;
 
-public final class VisitorCusEnforceKeyCpf implements DeciActionTransVisitor<CusInfo> {
+final class VisitorCusEnforceKeyCpf implements DeciActionTransVisitor<CusInfo> {
 	
 	@Override public List<CusInfo> executeTransformation(List<CusInfo> recordInfos) {
 		List<CusInfo> resultRecords = new ArrayList<>();		

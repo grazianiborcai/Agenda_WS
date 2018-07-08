@@ -13,8 +13,8 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class ActionStoreEmpSelect implements DeciAction<StoreEmpInfo> {
-	DeciAction<StoreEmpInfo> actionHelper;
+final class ActionStoreEmpSelect implements DeciAction<StoreEmpInfo> {
+	private DeciAction<StoreEmpInfo> actionHelper;
 	
 	
 	public ActionStoreEmpSelect(DeciTreeOption<StoreEmpInfo> option) {

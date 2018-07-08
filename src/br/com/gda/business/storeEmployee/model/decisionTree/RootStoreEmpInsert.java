@@ -88,6 +88,8 @@ public final class RootStoreEmpInsert implements DeciTree<StoreEmpInfo> {
 		actions.add(new NodeStoreEmpInsertEWT(option).toAction());
 		actions.add(new ActionStoreEmpSelect(option));
 		return actions;
+		
+		//TODO: O InsertEWT pode gerar conflitos. Imagine que um empregado já esteja lotado em uma outra loja.
 	}
 	
 	

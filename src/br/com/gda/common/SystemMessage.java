@@ -32,6 +32,7 @@ public final class SystemMessage {
 	public static final String INTERNAL_ERROR = "Ops... something went wrong";
 	public static final String KEY_FIELD_IS_EMPTY = "Key field should not be null";
 	public static final String KEY_FIELD_NOT_NULL = "Key field should not be passed";
+	public static final String MERGE_NOT_POSSIBLE = "Merge operation not possible";	
 	public static final String MULTIPLE_RECORDS = "Multiple records found on DB";
 	public static final String NO_CHECK_PERFORMED = "Check operation was not performed";
 	public static final String NO_CONFLICT = "No conflict detected";
@@ -44,7 +45,7 @@ public final class SystemMessage {
 	public static final String NULL_CONN = "Conn is null";
 	public static final String NULL_SCHEMA = "Schema name is null";	
 	public static final String REQUEST_FAILED = "It was not possible to complete your request";
-	public static final String SUCCESS = "Success";				
+	public static final String SUCCESS = "Success";					
 	
 		
 	

@@ -13,7 +13,7 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class ActionTimezoneSelect implements DeciAction<TimezoneInfo> {
+final class ActionTimezoneSelect implements DeciAction<TimezoneInfo> {
 	private DeciAction<TimezoneInfo> actionHelper;
 	
 	

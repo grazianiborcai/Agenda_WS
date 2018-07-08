@@ -17,7 +17,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeMatEmpInsert implements DeciTree<MatEmpInfo> {
+final class NodeMatEmpInsert implements DeciTree<MatEmpInfo> {
 	private DeciTree<MatEmpInfo> tree;
 	
 	

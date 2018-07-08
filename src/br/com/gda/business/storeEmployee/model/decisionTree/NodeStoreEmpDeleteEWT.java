@@ -16,7 +16,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeStoreEmpDeleteEWT implements DeciTree<StoreEmpInfo> {
+final class NodeStoreEmpDeleteEWT implements DeciTree<StoreEmpInfo> {
 	private DeciTree<StoreEmpInfo> tree;
 	
 	
