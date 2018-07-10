@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public class CurrencyCheckRead extends ModelCheckerTemplate<CurrencyInfo> {
+public class CurrencyCheckRead extends ModelCheckerTemplateSimple<CurrencyInfo> {
 
 	public CurrencyCheckRead() {
 		super();
@@ -17,10 +17,10 @@ public class CurrencyCheckRead extends ModelCheckerTemplate<CurrencyInfo> {
 	
 	@Override protected boolean checkHook(CurrencyInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codLanguage == null )			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

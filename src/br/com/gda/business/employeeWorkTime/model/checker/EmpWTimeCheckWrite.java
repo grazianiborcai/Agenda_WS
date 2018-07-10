@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmpWTimeCheckWrite extends ModelCheckerTemplate<EmpWTimeInfo> {
+public final class EmpWTimeCheckWrite extends ModelCheckerTemplateSimple<EmpWTimeInfo> {
 
 	public EmpWTimeCheckWrite() {
 		super();
@@ -23,10 +23,10 @@ public final class EmpWTimeCheckWrite extends ModelCheckerTemplate<EmpWTimeInfo>
 			recordInfo.beginTime	== null	||
 			recordInfo.endTime		== null		)
 			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 
-public final class ModelCheckerQueue<T> extends ModelCheckerTemplate<T>{
+public final class ModelCheckerQueue<T> extends ModelCheckerTemplateSimple<T>{
 	private List<ModelChecker<T>> queueChecker; //TODO: renomear variáveis de Stack para Queue nas subclasses
 	private ModelChecker<T> failedChecker;
 	
@@ -19,13 +19,13 @@ public final class ModelCheckerQueue<T> extends ModelCheckerTemplate<T>{
 		for (ModelChecker<T> eachChecker : this.queueChecker) {
 			boolean resultChecker = eachChecker.check(recordInfo);
 			
-			if (resultChecker == RESULT_FAILED) {
+			if (resultChecker == FAILED) {
 				failedChecker = eachChecker;
-				return RESULT_FAILED;
+				return FAILED;
 			}
 		}
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

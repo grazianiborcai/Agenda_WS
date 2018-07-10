@@ -11,11 +11,11 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class EmpLDateCheckSoftDelete extends ModelCheckerTemplate<EmpLDateInfo> {
+public final class EmpLDateCheckSoftDelete extends ModelCheckerTemplateSimple<EmpLDateInfo> {
 	private final boolean RECORD_IS_DELETED = true;
 	private final boolean NOT_FOUND_OR_NOT_DELETED = false;	
 	

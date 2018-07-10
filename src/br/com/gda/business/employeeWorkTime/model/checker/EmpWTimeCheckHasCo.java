@@ -10,11 +10,11 @@ import br.com.gda.business.employeeWorkTimeConflict.model.decisionTree.RootEmpCo
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpWTimeCheckHasCo extends ModelCheckerTemplate<EmpWTimeInfo> {
+public final class EmpWTimeCheckHasCo extends ModelCheckerTemplateSimple<EmpWTimeInfo> {
 	private final boolean NO_CONFLICT = false;
 	private final boolean HAS_CONFLICT = true;
 	

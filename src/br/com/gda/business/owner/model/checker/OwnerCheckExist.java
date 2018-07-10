@@ -10,11 +10,11 @@ import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class OwnerCheckExist extends ModelCheckerTemplate<OwnerInfo> {
+public final class OwnerCheckExist extends ModelCheckerTemplateSimple<OwnerInfo> {
 	private final boolean OWNER_EXIST = true;
 	private final boolean NO_ENTRY_FOUND = false;
 	

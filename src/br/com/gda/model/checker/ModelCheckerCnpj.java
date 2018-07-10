@@ -5,7 +5,7 @@ import java.sql.Connection;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 
-public final class ModelCheckerCnpj extends ModelCheckerTemplate<String> {
+public final class ModelCheckerCnpj extends ModelCheckerTemplateSimple<String> {
 
 	public ModelCheckerCnpj() {
 		super();
@@ -15,22 +15,22 @@ public final class ModelCheckerCnpj extends ModelCheckerTemplate<String> {
 	
 	@Override protected boolean checkHook(String cnpj, Connection conn, String schemaName) {	
 		if (cnpj == null)
-			return RESULT_SUCCESS;
+			return SUCCESS;
 		
-		if (checkOnlyNumber(cnpj) == RESULT_FAILED)			
-			return RESULT_FAILED;
+		if (checkOnlyNumber(cnpj) == FAILED)			
+			return FAILED;
 		
-		if (checkLength(cnpj) == RESULT_FAILED)			
-			return RESULT_FAILED;
+		if (checkLength(cnpj) == FAILED)			
+			return FAILED;
 		
-		if (checkSequence(cnpj) == RESULT_FAILED)			
-			return RESULT_FAILED;
+		if (checkSequence(cnpj) == FAILED)			
+			return FAILED;
 		
-		if (checkNumberVerification(cnpj) == RESULT_FAILED)
-			return RESULT_FAILED;
+		if (checkNumberVerification(cnpj) == FAILED)
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	
@@ -43,9 +43,9 @@ public final class ModelCheckerCnpj extends ModelCheckerTemplate<String> {
 	
 	private boolean checkLength(String cnpj) {
 	    if (cnpj.length() != 14)
-	           return RESULT_FAILED;
+	           return FAILED;
 	    
-	    return RESULT_SUCCESS;
+	    return SUCCESS;
 	}
 	
 	
@@ -54,10 +54,10 @@ public final class ModelCheckerCnpj extends ModelCheckerTemplate<String> {
 		boolean IS_MONODIGIT = true;
 		
 		if (cnpj.matches("^(\\d)\\1+$") == IS_MONODIGIT) 
-			return RESULT_FAILED;		
+			return FAILED;		
 
 	    
-	    return RESULT_SUCCESS;
+	    return SUCCESS;
 	}
 	
 	
@@ -67,9 +67,9 @@ public final class ModelCheckerCnpj extends ModelCheckerTemplate<String> {
 	    char dig14 = getNumberVerificationDig14(cnpj);
 	    
 	    if (cnpj.charAt(12) == dig13 && cnpj.charAt(13) == dig14)
-	    	return RESULT_SUCCESS;
+	    	return SUCCESS;
 	    
-	    return RESULT_FAILED;
+	    return FAILED;
 	}
 	
 	

@@ -10,10 +10,10 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class StoreCheckCnpjExist extends ModelCheckerTemplate<StoreInfo> {
+public final class StoreCheckCnpjExist extends ModelCheckerTemplateSimple<StoreInfo> {
 	private final boolean CNPJ_ALREADY_EXIST_ON_DB = true;
 	private final boolean CNPJ_NOT_FOUND_ON_DB = false;
 	

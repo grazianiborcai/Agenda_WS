@@ -28,5 +28,4 @@ public final class ModelDummyFailed implements Model {
 	@Override public Response getResponse() {
 		return response;
 	}
-
 }

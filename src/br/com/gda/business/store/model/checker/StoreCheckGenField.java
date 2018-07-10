@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreCheckGenField extends ModelCheckerTemplate<StoreInfo> {
+public final class StoreCheckGenField extends ModelCheckerTemplateSimple<StoreInfo> {
 	private final boolean AUTO_GEN_FIELD_NOT_NULL = false;
 	private final boolean EMPTY_AUTO_GEN_FIELD = true;
 	

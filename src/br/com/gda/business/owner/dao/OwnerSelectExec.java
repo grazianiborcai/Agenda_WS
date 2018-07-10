@@ -19,8 +19,7 @@ public final class OwnerSelectExec implements SqlStmtExec<OwnerInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

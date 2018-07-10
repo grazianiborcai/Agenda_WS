@@ -6,9 +6,9 @@ import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.business.timeRange.info.DateTimeRangeInfo;
 import br.com.gda.business.timeRange.model.checker.DateTimeRangeCheckRange;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreLDateCheckTimeRange extends ModelCheckerTemplate<StoreLDateInfo> {
+public final class StoreLDateCheckTimeRange extends ModelCheckerTemplateSimple<StoreLDateInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	

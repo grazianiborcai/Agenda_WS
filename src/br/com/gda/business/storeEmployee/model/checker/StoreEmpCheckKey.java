@@ -6,9 +6,9 @@ import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreEmpCheckKey extends ModelCheckerTemplate<StoreEmpInfo> {
+public final class StoreEmpCheckKey extends ModelCheckerTemplateSimple<StoreEmpInfo> {
 	private final boolean KEY_NOT_NULL = true;
 	private final boolean EMPTY_KEY = false;
 	

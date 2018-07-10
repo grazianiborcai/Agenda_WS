@@ -6,9 +6,9 @@ import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
 import br.com.gda.business.timeRange.info.DateTimeRangeInfo;
 import br.com.gda.business.timeRange.model.checker.DateTimeRangeCheckRange;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmpLDateCheckTimeRange extends ModelCheckerTemplate<EmpLDateInfo> {
+public final class EmpLDateCheckTimeRange extends ModelCheckerTemplateSimple<EmpLDateInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	

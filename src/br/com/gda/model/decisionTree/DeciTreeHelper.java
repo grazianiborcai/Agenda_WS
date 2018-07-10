@@ -2,8 +2,7 @@ package br.com.gda.model.decisionTree;
 
 import java.util.List;
 
-import javax.ws.rs.core.Response;
-
+import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelChecker;
 
@@ -14,7 +13,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	private List<T> recordInfos;
 	private ModelChecker<T> checker;
 	private DeciChoice decisionChoice;
-	private DeciResultHelper<T> decisionResult;
+	private DeciResultHelper<T> deciResult;
 	private List<DeciAction<T>> actionsOnPassed;
 	private List<DeciAction<T>> actionsOnFailed;
 	
@@ -27,7 +26,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 		this.actionsOnPassed = option.actionsOnPassed;
 		this.actionsOnFailed = option.actionsOnFailed;
 		this.decisionChoice = null;
-		this.decisionResult = new DeciResultHelper<>();
+		this.deciResult = new DeciResultHelper<>();
 	}
 	
 	
@@ -78,7 +77,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 		
 	private void onPassed() {
 		this.decisionChoice = DeciChoice.PASSED;		
-		this.decisionResult.finishedWithSuccess = RESULT_SUCCESS;
+		this.deciResult.finishedWithSuccess = RESULT_SUCCESS;
 		executeDecisionActions(this.actionsOnPassed);
 	}
 	
@@ -86,7 +85,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	private void onFailed() {
 		this.decisionChoice = DeciChoice.FAILED;
-		this.decisionResult.finishedWithSuccess = RESULT_FAILED;
+		this.deciResult.finishedWithSuccess = RESULT_FAILED;
 		buildFailureMessage();
 		executeDecisionActions(this.actionsOnFailed);		
 	}
@@ -94,8 +93,8 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	private void buildFailureMessage() {		
-		this.decisionResult.failureCode = this.checker.getFailureCode();
-		this.decisionResult.failureMessage = this.checker.getFailureExplanation();
+		this.deciResult.failureCode = this.checker.getFailureCode();
+		this.deciResult.failureMessage = this.checker.getFailureExplanation();
 	}
 	
 	
@@ -116,25 +115,25 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	
-	private void buildResultFromAction(DeciResult<T> decisionActionResult) {
-		this.decisionResult.finishedWithSuccess = decisionActionResult.hasSuccessfullyFinished();
-		if (this.decisionResult.finishedWithSuccess == RESULT_FAILED) {
-			this.decisionResult.failureCode = decisionActionResult.getFailureCode();
-			this.decisionResult.failureMessage = decisionActionResult.getFailureMessage();
+	private void buildResultFromAction(DeciResult<T> actionResult) {
+		this.deciResult.finishedWithSuccess = actionResult.hasSuccessfullyFinished();
+		if (this.deciResult.finishedWithSuccess == RESULT_FAILED) {
+			this.deciResult.failureCode = actionResult.getFailureCode();
+			this.deciResult.failureMessage = actionResult.getFailureMessage();
 		}
 		
 		
-		this.decisionResult.hasResultset = decisionActionResult.hasResultset();
-		if (decisionActionResult.hasResultset()) {
-			this.decisionResult.resultset = decisionActionResult.getResultset();
+		this.deciResult.hasResultset = actionResult.hasResultset();
+		if (actionResult.hasResultset()) {
+			this.deciResult.resultset = actionResult.getResultset();
 		}
 		
 		
-		if (this.decisionResult.hasResultset()) {
-			if (this.decisionResult.resultset == null || this.decisionResult.resultset.isEmpty()) {
-				this.decisionResult.finishedWithSuccess = RESULT_FAILED;
-				this.decisionResult.failureCode = Response.Status.BAD_REQUEST.getStatusCode();
-				this.decisionResult.failureMessage = SystemMessage.DATA_NOT_FOUND;
+		if (this.deciResult.hasResultset()) {
+			if (this.deciResult.resultset == null || this.deciResult.resultset.isEmpty()) {
+				this.deciResult.finishedWithSuccess = RESULT_FAILED;
+				this.deciResult.failureCode = SystemCode.DATA_NOT_FOUND;
+				this.deciResult.failureMessage = SystemMessage.DATA_NOT_FOUND;
 			}
 		}
 	}
@@ -148,7 +147,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 
 	
 	public DeciResult<T> getDecisionResult() {
-		return this.decisionResult;
+		return this.deciResult;
 	}
 	
 	

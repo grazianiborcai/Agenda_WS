@@ -19,8 +19,7 @@ public final class StoreWTimeSelect implements SqlStmtExec<StoreWTimeInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

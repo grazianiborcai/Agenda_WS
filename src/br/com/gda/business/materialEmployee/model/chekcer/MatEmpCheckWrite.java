@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatEmpCheckWrite extends ModelCheckerTemplate<MatEmpInfo> {
+public final class MatEmpCheckWrite extends ModelCheckerTemplateSimple<MatEmpInfo> {
 
 	public MatEmpCheckWrite() {
 		super();
@@ -21,10 +21,10 @@ public final class MatEmpCheckWrite extends ModelCheckerTemplate<MatEmpInfo> {
 			|| recordInfo.codEmployee		<= 0  	
 			|| recordInfo.codMat			<= 0	)
 			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

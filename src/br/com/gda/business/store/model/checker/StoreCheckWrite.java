@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreCheckWrite extends ModelCheckerTemplate<StoreInfo> {
+public final class StoreCheckWrite extends ModelCheckerTemplateSimple<StoreInfo> {
 
 	public StoreCheckWrite() {
 		super();
@@ -21,10 +21,10 @@ public final class StoreCheckWrite extends ModelCheckerTemplate<StoreInfo> {
 			|| recordInfo.name 			== null
 			|| recordInfo.codTimezone	== null	)
 			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

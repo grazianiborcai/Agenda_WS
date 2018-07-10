@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmpCheckWrite extends ModelCheckerTemplate<EmpInfo> {
+public final class EmpCheckWrite extends ModelCheckerTemplateSimple<EmpInfo> {
 
 	public EmpCheckWrite() {
 		super();
@@ -20,10 +20,10 @@ public final class EmpCheckWrite extends ModelCheckerTemplate<EmpInfo> {
 			|| recordInfo.cpf 		== null 	
 			|| recordInfo.name 		== null	)
 			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

@@ -11,6 +11,7 @@ import br.com.gda.business.materialEmployee.info.MatEmpMerger;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciResultDataNotFound;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -38,17 +39,13 @@ final class HandlerMatEmpMergeMat extends DeciActionHandlerTemplate<MatEmpInfo, 
 	
 	
 	@Override protected DeciResult<MatEmpInfo> translateResultHook(DeciResult<MatInfo> result) {
+		if (result.hasResultset() == EMPTY)
+			return new DeciResultDataNotFound<>();		
+		
+		
 		DeciResultHelper<MatEmpInfo> resultHelper = new DeciResultHelper<>();
 		resultHelper.copyWithoutResultset(result);
-		
-		if (result.hasResultset()) {
-			resultHelper.resultset = new MatEmpMerger().merge(result.getResultset(), originalInfos);
-		
-		} else {		
-			List<MatEmpInfo> dummyResultset = new ArrayList<>();
-			dummyResultset.add(new MatEmpInfo());		
-			resultHelper.resultset = dummyResultset;
-		}
+		resultHelper.resultset = new MatEmpMerger().merge(result.getResultset(), originalInfos);
 		
 		return resultHelper;
 	}

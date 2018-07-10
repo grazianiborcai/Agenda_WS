@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class CusCheckWrite extends ModelCheckerTemplate<CusInfo> {
+public final class CusCheckWrite extends ModelCheckerTemplateSimple<CusInfo> {
 
 	public CusCheckWrite() {
 		super();
@@ -21,10 +21,10 @@ public final class CusCheckWrite extends ModelCheckerTemplate<CusInfo> {
 			|| recordInfo.name 		== null
 			|| recordInfo.email 	== null)
 			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

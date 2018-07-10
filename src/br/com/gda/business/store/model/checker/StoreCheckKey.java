@@ -6,9 +6,9 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreCheckKey extends ModelCheckerTemplate<StoreInfo> {
+public final class StoreCheckKey extends ModelCheckerTemplateSimple<StoreInfo> {
 	private final boolean KEY_NOT_NULL = true;
 	private final boolean EMPTY_KEY = false;
 	

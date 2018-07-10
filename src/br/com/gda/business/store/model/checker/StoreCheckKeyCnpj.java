@@ -11,10 +11,10 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class StoreCheckKeyCnpj extends ModelCheckerTemplate<StoreInfo> {
+public final class StoreCheckKeyCnpj extends ModelCheckerTemplateSimple<StoreInfo> {
 	private final boolean STORE_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	

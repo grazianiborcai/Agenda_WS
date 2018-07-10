@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public class EmpWTimeCheckKey extends ModelCheckerTemplate<EmpWTimeInfo> {
+public class EmpWTimeCheckKey extends ModelCheckerTemplateSimple<EmpWTimeInfo> {
 	private final boolean KEY_NOT_NULL = true;
 	private final boolean EMPTY_KEY = false;
 	

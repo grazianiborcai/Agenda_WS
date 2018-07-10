@@ -10,11 +10,11 @@ import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class StoreLDateCheckExist extends ModelCheckerTemplate<StoreLDateInfo> {
+public final class StoreLDateCheckExist extends ModelCheckerTemplateSimple<StoreLDateInfo> {
 	private final boolean RECORD_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	

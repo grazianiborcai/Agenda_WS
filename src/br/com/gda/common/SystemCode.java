@@ -11,6 +11,7 @@ public final class SystemCode {
 	public static final int BAD_TIME_RANGE								= 7;
 	public static final int NO_CONFLICT									= 8;
 	public static final int CONFLICT									= 9;
+	public static final int DATA_NOT_FOUND								= 10;
 	public static final int SUCCESS 									= 200;
 	public static final int INTERNAL_ERROR 								= 500;
 	

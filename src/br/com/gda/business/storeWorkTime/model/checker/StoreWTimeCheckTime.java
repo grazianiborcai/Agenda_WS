@@ -6,9 +6,9 @@ import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.business.timeRange.info.TimeRangeInfo;
 import br.com.gda.business.timeRange.model.checker.TimeRangeCheckRange;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreWTimeCheckTime extends ModelCheckerTemplate<StoreWTimeInfo> {
+public final class StoreWTimeCheckTime extends ModelCheckerTemplateSimple<StoreWTimeInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	

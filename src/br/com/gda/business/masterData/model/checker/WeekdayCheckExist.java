@@ -10,11 +10,11 @@ import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class WeekdayCheckExist extends ModelCheckerTemplate<WeekdayInfo> {
+public final class WeekdayCheckExist extends ModelCheckerTemplateSimple<WeekdayInfo> {
 	private final boolean EXIST_ON_DB = true;
 	private final boolean NOT_FOUND_ON_DB = false;
 	

@@ -14,12 +14,13 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	
 	private DeciResultHelper<T> deciResult;
 	private List<DeciActionHandler<T>> postActions;
-	private List<T> resultset = Collections.emptyList();
+	private List<T> resultset;
 	
 	
 	public DeciActionHelperTemplate() {
 		deciResult = new DeciResultHelper<>();
 		postActions = new ArrayList<>();
+		resultset = Collections.emptyList();
 	}
 	
 	
@@ -47,7 +48,12 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	private boolean tryToExecuteAction() {
 		try {
 			resultset = tryToExecuteActionHook();
-			//TODO: verificar resultset dummy. Caso positivo, retornar erro de data not found
+			
+			if (checkResultset(resultset) == FAILED) {
+				buildResultDataNotFound();
+				return FAILED;
+			}
+			
 			buildResultSuccess();
 			return SUCCESS;
 		
@@ -62,6 +68,16 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	protected List<T> tryToExecuteActionHook() throws SQLException {
 		//Template method to be overridden by subclasses
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	}
+	
+	
+	
+	private boolean checkResultset(List<T> recordInfos) {
+		if (recordInfos == null || recordInfos.isEmpty()) {
+			return FAILED;
+		}
+		
+		return SUCCESS;
 	}
 	
 	
@@ -96,7 +112,7 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	
 	
 	private void buildResultSuccess() {
-		deciResult.finishedWithSuccess = true;
+		deciResult.finishedWithSuccess = SUCCESS;
 		deciResult.hasResultset = true;
 		deciResult.resultset = resultset;
 	}
@@ -104,9 +120,18 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	
 	
 	private void buildResultFailed() {
-		deciResult.finishedWithSuccess = false;
+		deciResult.finishedWithSuccess = FAILED;
 		deciResult.failureCode = SystemCode.INTERNAL_ERROR;
 		deciResult.failureMessage = SystemMessage.INTERNAL_ERROR;
+		deciResult.hasResultset = false;
+		deciResult.resultset = null;
+	}
+	
+	
+	private void buildResultDataNotFound() {
+		deciResult.finishedWithSuccess = FAILED;
+		deciResult.failureCode = SystemCode.DATA_NOT_FOUND;
+		deciResult.failureMessage = SystemMessage.DATA_NOT_FOUND;
 		deciResult.hasResultset = false;
 		deciResult.resultset = null;
 	}

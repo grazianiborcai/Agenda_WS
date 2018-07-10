@@ -23,7 +23,7 @@ public final class HandlerEmpSelect extends DeciActionHandlerTemplate<EmpInfo, E
 	
 	
 	
-	@Override protected  DeciAction<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
+	@Override protected DeciAction<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
 		return new ActionEmpSelect(option);
 	}
 	

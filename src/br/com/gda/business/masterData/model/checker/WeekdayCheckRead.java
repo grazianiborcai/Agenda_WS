@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class WeekdayCheckRead extends ModelCheckerTemplate<WeekdayInfo> {
+public final class WeekdayCheckRead extends ModelCheckerTemplateSimple<WeekdayInfo> {
 	
 	public WeekdayCheckRead() {
 		super();
@@ -17,10 +17,10 @@ public final class WeekdayCheckRead extends ModelCheckerTemplate<WeekdayInfo> {
 	
 	@Override protected boolean checkHook(WeekdayInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codLanguage == null )			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

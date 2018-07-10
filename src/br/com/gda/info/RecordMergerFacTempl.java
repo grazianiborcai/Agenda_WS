@@ -15,7 +15,7 @@ public abstract class RecordMergerFacTempl<T> {
 		
 		List<T> result = mergeHook(sourceOnes, sourceTwos);
 		
-		if (result == null) 
+		if (result == null || result.isEmpty()) 
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_POSSIBLE);		
 		
 		return result;

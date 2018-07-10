@@ -10,11 +10,11 @@ import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public class EmpWTimeCheckExist extends ModelCheckerTemplate<EmpWTimeInfo> {
+public class EmpWTimeCheckExist extends ModelCheckerTemplateSimple<EmpWTimeInfo> {
 	private final boolean RECORD_EXIST = true;
 	private final boolean NO_ENTRY_FOUND = false;
 	

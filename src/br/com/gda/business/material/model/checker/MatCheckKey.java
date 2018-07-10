@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatCheckKey extends ModelCheckerTemplate<MatInfo> {
+public final class MatCheckKey extends ModelCheckerTemplateSimple<MatInfo> {
 
 	public MatCheckKey() {
 		super();
@@ -19,10 +19,10 @@ public final class MatCheckKey extends ModelCheckerTemplate<MatInfo> {
 		if (   recordInfo.codOwner 		<= 0 	
 			|| recordInfo.codMat 		<= 0	)
 			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreCheckRead extends ModelCheckerTemplate<StoreInfo> {
+public final class StoreCheckRead extends ModelCheckerTemplateSimple<StoreInfo> {
 
 	public StoreCheckRead() {
 		super();
@@ -17,10 +17,10 @@ public final class StoreCheckRead extends ModelCheckerTemplate<StoreInfo> {
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner <= 0 )			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

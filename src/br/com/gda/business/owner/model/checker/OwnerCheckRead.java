@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class OwnerCheckRead extends ModelCheckerTemplate<OwnerInfo> {
+public final class OwnerCheckRead extends ModelCheckerTemplateSimple<OwnerInfo> {
 
 	public OwnerCheckRead() {
 		super();
@@ -19,10 +19,10 @@ public final class OwnerCheckRead extends ModelCheckerTemplate<OwnerInfo> {
 		if (   recordInfo.codOwner 	  <= 0
 			|| recordInfo.codLanguage == null)
 			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

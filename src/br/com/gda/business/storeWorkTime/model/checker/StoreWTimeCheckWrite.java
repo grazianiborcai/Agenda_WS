@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreWTimeCheckWrite extends ModelCheckerTemplate<StoreWTimeInfo> {
+public final class StoreWTimeCheckWrite extends ModelCheckerTemplateSimple<StoreWTimeInfo> {
 
 	public StoreWTimeCheckWrite() {
 		super();
@@ -22,10 +22,10 @@ public final class StoreWTimeCheckWrite extends ModelCheckerTemplate<StoreWTimeI
 			|| recordInfo.beginTime			== null
 			|| recordInfo.endTime			== null	)
 			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class TimezoneCheckRead extends ModelCheckerTemplate<TimezoneInfo> {
+public final class TimezoneCheckRead extends ModelCheckerTemplateSimple<TimezoneInfo> {
 
 	public TimezoneCheckRead() {
 		super();
@@ -17,10 +17,10 @@ public final class TimezoneCheckRead extends ModelCheckerTemplate<TimezoneInfo> 
 	
 	@Override protected boolean checkHook(TimezoneInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codLanguage == null )			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

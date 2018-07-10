@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckExist;
 import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckRead;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
@@ -35,22 +33,12 @@ public final class RootMatEmpSelect implements DeciTree<MatEmpInfo> {
 	
 	
 	private ModelChecker<MatEmpInfo> buildDecisionChecker(DeciTreeOption<MatEmpInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<MatEmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatEmpInfo> checker;
-		ModelCheckerOption checkerOption;	
 		
 		checker = new MatEmpCheckRead();
 		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new MatEmpCheckExist(checkerOption);
-		queue.add(checker);	
-		
+
 		return new ModelCheckerQueue<>(queue);
 	}
 	

@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 
-public abstract class ModelCheckerTemplate<T> implements ModelChecker<T> {
-	protected final boolean RESULT_SUCCESS = true;
-	protected final boolean RESULT_FAILED = false;
+public abstract class ModelCheckerTemplateSimple<T> implements ModelChecker<T> {
+	protected final boolean SUCCESS = true;
+	protected final boolean FAILED = false;
 	protected final String NO_FAIL_MSG = null;
 	protected final int NO_FAIL_CODE = -1;
 	
@@ -20,13 +20,13 @@ public abstract class ModelCheckerTemplate<T> implements ModelChecker<T> {
 	
 	
 	
-	protected ModelCheckerTemplate() {
+	protected ModelCheckerTemplateSimple() {
 		this(new ModelCheckerOption());
 	}
 	
 	
 	
-	protected ModelCheckerTemplate(ModelCheckerOption option) {
+	protected ModelCheckerTemplateSimple(ModelCheckerOption option) {
 		this.failMsg = NO_FAIL_MSG;
 		this.failCode = NO_FAIL_CODE;
 		this.expectedResult = option.expectedResult;
@@ -47,23 +47,23 @@ public abstract class ModelCheckerTemplate<T> implements ModelChecker<T> {
 		for (T eachRecordInfo : recordInfos) {
 			boolean checkerResult = check(eachRecordInfo);
 			
-			if (checkerResult == RESULT_FAILED)
+			if (checkerResult == FAILED)
 				return checkerResult;
 		}
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	
 	
 	@Override public boolean check(T recordInfo) {
 		boolean checkerResult = checkHook(recordInfo, this.conn, this.schemaName);
-		actualResult = RESULT_SUCCESS;
+		actualResult = SUCCESS;
 		
 		if (checkerResult != this.expectedResult) {
 			this.failMsg = makeFailureExplanationHook(checkerResult);
 			this.failCode = makeFailureCodeHook(checkerResult);
-			actualResult = RESULT_FAILED;
+			actualResult = FAILED;
 		}
 		
 		return getResult();

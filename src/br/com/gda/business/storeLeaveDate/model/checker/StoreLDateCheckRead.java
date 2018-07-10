@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreLDateCheckRead extends ModelCheckerTemplate<StoreLDateInfo> {
+public final class StoreLDateCheckRead extends ModelCheckerTemplateSimple<StoreLDateInfo> {
 
 	public StoreLDateCheckRead() {
 		super();
@@ -18,10 +18,10 @@ public final class StoreLDateCheckRead extends ModelCheckerTemplate<StoreLDateIn
 	@Override protected boolean checkHook(StoreLDateInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner <= 0 ||
 			recordInfo.codStore <= 0)			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

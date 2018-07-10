@@ -8,8 +8,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 
 public abstract class DeciActionHandlerTemplate<T,S> implements DeciActionHandler<T> {
-	private final boolean SUCCESS = true;
-	private final boolean FAILED = false;
+	protected final boolean SUCCESS = true;
+	protected final boolean FAILED = false;
+	protected final boolean EMPTY = false;
 	
 	private DeciTreeOption<S> option;
 	private Connection conn; 
@@ -59,7 +60,7 @@ public abstract class DeciActionHandlerTemplate<T,S> implements DeciActionHandle
 	
 	
 	@Override public boolean executeAction(List<T> infoRecords) {
-		checkArgument(infoRecords);		
+		checkArgument(infoRecords);	
 		boolean result = tryToExecuteAction(infoRecords);
 		
 		if (result == SUCCESS) 

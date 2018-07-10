@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.materialStore.info.MatStoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatStoreCheckWrite extends ModelCheckerTemplate<MatStoreInfo> {
+public final class MatStoreCheckWrite extends ModelCheckerTemplateSimple<MatStoreInfo> {
 
 	public MatStoreCheckWrite() {
 		super();
@@ -20,10 +20,10 @@ public final class MatStoreCheckWrite extends ModelCheckerTemplate<MatStoreInfo>
 			|| recordInfo.codStore 			<= 0	
 			|| recordInfo.codMat			<= 0	)
 			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

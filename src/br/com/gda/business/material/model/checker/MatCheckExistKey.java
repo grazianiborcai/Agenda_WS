@@ -10,11 +10,11 @@ import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class MatCheckExistKey extends ModelCheckerTemplate<MatInfo> {
+public final class MatCheckExistKey extends ModelCheckerTemplateSimple<MatInfo> {
 	private final boolean MATERIAL_EXIST = true;
 	private final boolean NO_ENTRY_FOUND = false;
 	

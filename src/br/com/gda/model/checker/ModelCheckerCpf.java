@@ -5,7 +5,7 @@ import java.sql.Connection;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 
-public final class ModelCheckerCpf extends ModelCheckerTemplate<String> {
+public final class ModelCheckerCpf extends ModelCheckerTemplateSimple<String> {
 
 	public ModelCheckerCpf() {
 		super();
@@ -15,22 +15,22 @@ public final class ModelCheckerCpf extends ModelCheckerTemplate<String> {
 	
 	@Override protected boolean checkHook(String cpf, Connection conn, String schemaName) {	
 		if (cpf == null)
-			return RESULT_SUCCESS;
+			return SUCCESS;
 		
-		if (checkOnlyNumber(cpf) == RESULT_FAILED)			
-			return RESULT_FAILED;
+		if (checkOnlyNumber(cpf) == FAILED)			
+			return FAILED;
 		
-		if (checkLength(cpf) == RESULT_FAILED)			
-			return RESULT_FAILED;
+		if (checkLength(cpf) == FAILED)			
+			return FAILED;
 		
-		if (checkSequence(cpf) == RESULT_FAILED)			
-			return RESULT_FAILED;
+		if (checkSequence(cpf) == FAILED)			
+			return FAILED;
 		
-		if (checkNumberVerification(cpf) == RESULT_FAILED)
-			return RESULT_FAILED;
+		if (checkNumberVerification(cpf) == FAILED)
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	
@@ -43,9 +43,9 @@ public final class ModelCheckerCpf extends ModelCheckerTemplate<String> {
 	
 	private boolean checkLength(String cpf) {
 	    if (cpf.length() != 11)
-	           return RESULT_FAILED;
+	           return FAILED;
 	    
-	    return RESULT_SUCCESS;
+	    return SUCCESS;
 	}
 	
 	
@@ -56,9 +56,9 @@ public final class ModelCheckerCpf extends ModelCheckerTemplate<String> {
             cpf.equals("44444444444") || cpf.equals("55555555555") ||
             cpf.equals("66666666666") || cpf.equals("77777777777") ||
             cpf.equals("88888888888") || cpf.equals("99999999999") 	  )
-	           return RESULT_FAILED;
+	           return FAILED;
 	    
-	    return RESULT_SUCCESS;
+	    return SUCCESS;
 	}
 	
 	
@@ -68,9 +68,9 @@ public final class ModelCheckerCpf extends ModelCheckerTemplate<String> {
 	    char dig11 = getNumberVerificationDig11(cpf);
 	    
 	    if (cpf.charAt(9) == dig10 && cpf.charAt(10) == dig11)
-	    	return RESULT_SUCCESS;
+	    	return SUCCESS;
 	    
-	    return RESULT_FAILED;
+	    return FAILED;
 	}
 	
 	

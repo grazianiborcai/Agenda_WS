@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmpLDateCheckRead extends ModelCheckerTemplate<EmpLDateInfo> {
+public final class EmpLDateCheckRead extends ModelCheckerTemplateSimple<EmpLDateInfo> {
 
 	public EmpLDateCheckRead() {
 		super();
@@ -20,10 +20,10 @@ public final class EmpLDateCheckRead extends ModelCheckerTemplate<EmpLDateInfo> 
 			recordInfo.codStore    	<= 0 ||
 			recordInfo.codEmployee 	<= 0 	)
 			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

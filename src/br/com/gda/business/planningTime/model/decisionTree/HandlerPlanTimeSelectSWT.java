@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeMergerSWT;
+import br.com.gda.business.employeeWorkTime.info.EmpWTimeMerger;
 import br.com.gda.business.planningTime.info.PlanTimeInfo;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
@@ -56,8 +56,7 @@ final class HandlerPlanTimeSelectSWT extends DeciActionHandlerTemplate<PlanTimeI
 	
 	
 	private List<EmpWTimeInfo> merge(List<StoreEmpInfo> storeEmps, List<StoreWTimeInfo> storeWTs) {
-		EmpWTimeMergerSWT merger = new EmpWTimeMergerSWT();
-		return merger.merge(storeEmps, storeWTs);
+		return new EmpWTimeMerger().merge(storeEmps, storeWTs);
 	}
 	
 	

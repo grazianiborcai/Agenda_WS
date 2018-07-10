@@ -10,11 +10,11 @@ import br.com.gda.business.materialStore.info.MatStoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class MatStoreCheckExist extends ModelCheckerTemplate<MatStoreInfo> {
+public final class MatStoreCheckExist extends ModelCheckerTemplateSimple<MatStoreInfo> {
 	private final boolean RECORD_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	

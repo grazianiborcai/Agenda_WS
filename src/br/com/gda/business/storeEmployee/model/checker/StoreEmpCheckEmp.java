@@ -3,7 +3,7 @@ package br.com.gda.business.storeEmployee.model.checker;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.checker.EmpCheckExistKey;
+import br.com.gda.business.employee.model.checker.EmpCheckExist;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -16,7 +16,7 @@ public final class StoreEmpCheckEmp implements ModelChecker<StoreEmpInfo> {
 	
 	
 	public StoreEmpCheckEmp(ModelCheckerOption option) {
-		checker = new EmpCheckExistKey(option);
+		checker = new EmpCheckExist(option);
 	}
 	
 	

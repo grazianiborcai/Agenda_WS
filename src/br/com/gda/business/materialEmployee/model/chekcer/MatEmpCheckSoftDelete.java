@@ -8,12 +8,12 @@ import br.com.gda.business.materialEmployee.model.decisionTree.HandlerMatEmpSele
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class MatEmpCheckSoftDelete extends ModelCheckerTemplate<MatEmpInfo> {
+public final class MatEmpCheckSoftDelete extends ModelCheckerTemplateSimple<MatEmpInfo> {
 	private final boolean ALREADY_EXIST = true;
 	private final boolean NOT_FOUND = false;
 	private final boolean FAILED = false;

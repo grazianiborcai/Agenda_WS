@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmpWTimeCheckRead extends ModelCheckerTemplate<EmpWTimeInfo> {
+public final class EmpWTimeCheckRead extends ModelCheckerTemplateSimple<EmpWTimeInfo> {
 
 	public EmpWTimeCheckRead() {
 		super();
@@ -20,10 +20,10 @@ public final class EmpWTimeCheckRead extends ModelCheckerTemplate<EmpWTimeInfo> 
 			recordInfo.codStore    	<= 0 ||
 			recordInfo.codEmployee 	<= 0 	)
 			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

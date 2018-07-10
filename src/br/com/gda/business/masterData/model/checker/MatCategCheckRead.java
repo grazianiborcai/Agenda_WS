@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatCategCheckRead extends ModelCheckerTemplate<MatCategInfo> {
+public final class MatCategCheckRead extends ModelCheckerTemplateSimple<MatCategInfo> {
 	
 	public MatCategCheckRead() {
 		super();
@@ -17,10 +17,10 @@ public final class MatCategCheckRead extends ModelCheckerTemplate<MatCategInfo> 
 	
 	@Override protected boolean checkHook(MatCategInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codLanguage == null )			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

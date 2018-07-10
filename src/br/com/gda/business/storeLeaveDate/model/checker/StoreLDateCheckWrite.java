@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreLDateCheckWrite extends ModelCheckerTemplate<StoreLDateInfo> {
+public final class StoreLDateCheckWrite extends ModelCheckerTemplateSimple<StoreLDateInfo> {
 
 	public StoreLDateCheckWrite() {
 		super();
@@ -23,10 +23,10 @@ public final class StoreLDateCheckWrite extends ModelCheckerTemplate<StoreLDateI
 			|| recordInfo.timeValidFrom		== null
 			|| recordInfo.timeValidTo		== null		)
 			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

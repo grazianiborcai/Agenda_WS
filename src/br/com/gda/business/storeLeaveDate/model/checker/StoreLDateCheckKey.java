@@ -6,9 +6,9 @@ import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreLDateCheckKey extends ModelCheckerTemplate<StoreLDateInfo> {
+public final class StoreLDateCheckKey extends ModelCheckerTemplateSimple<StoreLDateInfo> {
 	private final boolean KEY_NOT_NULL = true;
 	private final boolean EMPTY_KEY = false;
 	

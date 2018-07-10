@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreWTimeCheckRead extends ModelCheckerTemplate<StoreWTimeInfo> {
+public final class StoreWTimeCheckRead extends ModelCheckerTemplateSimple<StoreWTimeInfo> {
 
 	public StoreWTimeCheckRead() {
 		super();
@@ -18,10 +18,10 @@ public final class StoreWTimeCheckRead extends ModelCheckerTemplate<StoreWTimeIn
 	@Override protected boolean checkHook(StoreWTimeInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner <= 0 ||
 			recordInfo.codStore <= 0)			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	

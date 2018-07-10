@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.checker.EmpCheckExistKey;
+import br.com.gda.business.employee.model.checker.EmpCheckExist;
 import br.com.gda.business.employee.model.checker.EmpCheckKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootEmpDelete implements DeciTree<EmpInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpCheckExistKey(checkerOption);
+		checker = new EmpCheckExist(checkerOption);
 		queue.add(checker);		
 		
 		 return new ModelCheckerQueue<EmpInfo>(queue);

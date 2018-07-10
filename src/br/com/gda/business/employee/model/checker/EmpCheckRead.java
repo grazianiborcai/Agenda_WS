@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplate;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmpCheckRead extends ModelCheckerTemplate<EmpInfo> {
+public final class EmpCheckRead extends ModelCheckerTemplateSimple<EmpInfo> {
 
 	public EmpCheckRead() {
 		super();
@@ -17,10 +17,10 @@ public final class EmpCheckRead extends ModelCheckerTemplate<EmpInfo> {
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner <= 0 )			
-			return RESULT_FAILED;
+			return FAILED;
 		
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 	
 	
