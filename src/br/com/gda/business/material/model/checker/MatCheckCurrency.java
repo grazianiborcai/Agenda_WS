@@ -9,8 +9,8 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
 public final class MatCheckCurrency implements ModelChecker<MatInfo> {
-	private final boolean RESULT_FAILED = false;
-	private final boolean RESULT_SUCCESS = true;
+	private final boolean FAILED = false;
+	private final boolean SUCCESS = true;
 	
 	private ModelChecker<CurrencyInfo> checker;
 	
@@ -23,11 +23,11 @@ public final class MatCheckCurrency implements ModelChecker<MatInfo> {
 	
 	@Override public boolean check(List<MatInfo> recordInfos) {
 		for (MatInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == RESULT_FAILED)
-				return RESULT_FAILED;
+			if (check(eachInfo) == FAILED)
+				return FAILED;
 		}
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 
 	

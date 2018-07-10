@@ -1,79 +1,43 @@
 package br.com.gda.business.storeWorkTime.model.checker;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-import br.com.gda.business.storeWorkTime.dao.StoreWTimeSelect;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
+import br.com.gda.business.storeWorkTime.model.decisionTree.ActionStoreWTimeEnforceDel;
+import br.com.gda.business.storeWorkTime.model.decisionTree.HandlerStoreWTimeSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StoreWTimeCheckSoftDelete extends ModelCheckerTemplateSimple<StoreWTimeInfo> {
-	private final boolean RECORD_IS_DELETED = true;
-	private final boolean NOT_FOUND_OR_NOT_DELETED = false;	
-	
-	
+public final class StoreWTimeCheckSoftDelete extends ModelCheckerTemplateAction<StoreWTimeInfo> {
+
 	public StoreWTimeCheckSoftDelete(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(StoreWTimeInfo recordInfo, Connection conn, String schemaName) {
-		StoreWTimeInfo clonedInfo = makeClone(recordInfo);
-		clonedInfo.recordMode = RecordMode.RECORD_DELETED;
+	@Override protected DeciAction<StoreWTimeInfo> buildActionHook(StoreWTimeInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<StoreWTimeInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		try {
-			List<StoreWTimeInfo> resultset = executeStmt(clonedInfo, conn, schemaName);
-			
-			if (resultset == null || resultset.isEmpty())
-				return NOT_FOUND_OR_NOT_DELETED;
-			
-			return RECORD_IS_DELETED;
-			
-		} catch (Exception e) {
-			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
-		}
+		DeciAction<StoreWTimeInfo> actionSelect = new ActionStoreWTimeEnforceDel(option);
+		actionSelect.addPostAction(new HandlerStoreWTimeSelect(conn, schemaName));		
+		return actionSelect;
 	}
 	
 	
 	
-	private StoreWTimeInfo makeClone(StoreWTimeInfo recordInfo) {
-		try {
-			return (StoreWTimeInfo) recordInfo.clone();
-		} catch (CloneNotSupportedException e) {
-			throw new IllegalStateException(e);
-		}
-	}
-	
-	
-	
-	private List<StoreWTimeInfo> executeStmt(StoreWTimeInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		SqlStmtExec<StoreWTimeInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+	private DeciTreeOption<StoreWTimeInfo> buildActionOption(StoreWTimeInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<StoreWTimeInfo> option = new DeciTreeOption<>();
+		option.recordInfos = new ArrayList<>();
+		option.recordInfos.add(recordInfo);
+		option.conn = conn;
+		option.schemaName = schemaName;
 		
-		stmtExecutor.executeStmt();
-		return stmtExecutor.getResultset();
-	}
-	
-	
-	
-	private SqlStmtExec<StoreWTimeInfo> buildStmtExecutor(StoreWTimeInfo recordInfo, Connection conn, String schemaName) {
-		SqlStmtExecOption<StoreWTimeInfo> stmtExecOption = new SqlStmtExecOption<>();
-		stmtExecOption.conn = conn;
-		stmtExecOption.recordInfo = recordInfo;
-		stmtExecOption.schemaName = schemaName;
-		
-		List<SqlStmtExecOption<StoreWTimeInfo>> stmtExecOptions = new ArrayList<>();
-		stmtExecOptions.add(stmtExecOption);
-		
-		return new StoreWTimeSelect(stmtExecOptions);
+		return option;
 	}
 	
 	

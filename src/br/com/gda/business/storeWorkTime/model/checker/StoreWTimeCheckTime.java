@@ -9,8 +9,8 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
 public final class StoreWTimeCheckTime extends ModelCheckerTemplateSimple<StoreWTimeInfo> {
-	private final boolean RESULT_FAILED = false;
-	private final boolean RESULT_SUCCESS = true;
+	private final boolean FAILED = false;
+	private final boolean SUCCESS = true;
 	
 	private ModelChecker<TimeRangeInfo> checker;
 	
@@ -23,11 +23,11 @@ public final class StoreWTimeCheckTime extends ModelCheckerTemplateSimple<StoreW
 	
 	@Override public boolean check(List<StoreWTimeInfo> recordInfos) {
 		for (StoreWTimeInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == RESULT_FAILED)
-				return RESULT_FAILED;
+			if (check(eachInfo) == FAILED)
+				return FAILED;
 		}
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 
 	

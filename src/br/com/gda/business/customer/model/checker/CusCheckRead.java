@@ -17,8 +17,7 @@ public final class CusCheckRead extends ModelCheckerTemplateSimple<CusInfo> {
 	
 	@Override protected boolean checkHook(CusInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner <= 0 )			
-			return FAILED;
-		
+			return FAILED;		
 		
 		return SUCCESS;
 	}

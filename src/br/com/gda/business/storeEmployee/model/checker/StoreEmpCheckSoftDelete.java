@@ -1,24 +1,18 @@
 package br.com.gda.business.storeEmployee.model.checker;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-import br.com.gda.business.storeEmployee.dao.StoreEmpSelect;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
+import br.com.gda.business.storeEmployee.model.decisionTree.ActionStoreEmpEnforceDel;
+import br.com.gda.business.storeEmployee.model.decisionTree.HandlerStoreEmpSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StoreEmpCheckSoftDelete extends ModelCheckerTemplateSimple<StoreEmpInfo> {
-	private final boolean RECORD_IS_DELETED = true;
-	private final boolean NOT_FOUND_OR_NOT_DELETED = false;	
-	
+public final class StoreEmpCheckSoftDelete extends ModelCheckerTemplateAction<StoreEmpInfo> {
 	
 	public StoreEmpCheckSoftDelete(ModelCheckerOption option) {
 		super(option);
@@ -26,54 +20,24 @@ public final class StoreEmpCheckSoftDelete extends ModelCheckerTemplateSimple<St
 	
 	
 	
-	@Override protected boolean checkHook(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
-		StoreEmpInfo clonedInfo = makeClone(recordInfo);
-		clonedInfo.recordMode = RecordMode.RECORD_DELETED;
+	@Override protected DeciAction<StoreEmpInfo> buildActionHook(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<StoreEmpInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		try {
-			List<StoreEmpInfo> resultset = executeStmt(clonedInfo, conn, schemaName);
-			
-			if (resultset == null || resultset.isEmpty())
-				return NOT_FOUND_OR_NOT_DELETED;
-			
-			return RECORD_IS_DELETED;
-			
-		} catch (Exception e) {
-			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
-		}
+		DeciAction<StoreEmpInfo> actionSelect = new ActionStoreEmpEnforceDel(option);
+		actionSelect.addPostAction(new HandlerStoreEmpSelect(conn, schemaName));		
+		return actionSelect;
 	}
 	
 	
 	
-	private StoreEmpInfo makeClone(StoreEmpInfo recordInfo) {
-		try {
-			return (StoreEmpInfo) recordInfo.clone();
-		} catch (CloneNotSupportedException e) {
-			throw new IllegalStateException(e);
-		}
-	}
-	
-	
-	
-	private List<StoreEmpInfo> executeStmt(StoreEmpInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		SqlStmtExec<StoreEmpInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+	private DeciTreeOption<StoreEmpInfo> buildActionOption(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<StoreEmpInfo> option = new DeciTreeOption<>();
+		option.recordInfos = new ArrayList<>();
+		option.recordInfos.add(recordInfo);
+		option.conn = conn;
+		option.schemaName = schemaName;
 		
-		stmtExecutor.executeStmt();
-		return stmtExecutor.getResultset();
-	}
-	
-	
-	
-	private SqlStmtExec<StoreEmpInfo> buildStmtExecutor(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
-		SqlStmtExecOption<StoreEmpInfo> stmtExecOption = new SqlStmtExecOption<>();
-		stmtExecOption.conn = conn;
-		stmtExecOption.recordInfo = recordInfo;
-		stmtExecOption.schemaName = schemaName;
-		
-		List<SqlStmtExecOption<StoreEmpInfo>> stmtExecOptions = new ArrayList<>();
-		stmtExecOptions.add(stmtExecOption);
-		
-		return new StoreEmpSelect(stmtExecOptions);
+		return option;
 	}
 	
 	

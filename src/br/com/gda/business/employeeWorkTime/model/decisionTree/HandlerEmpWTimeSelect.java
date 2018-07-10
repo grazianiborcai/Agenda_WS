@@ -9,7 +9,7 @@ import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerEmpWTimeSelect extends DeciActionHandlerTemplate<EmpWTimeInfo, EmpWTimeInfo> {
+public final class HandlerEmpWTimeSelect extends DeciActionHandlerTemplate<EmpWTimeInfo, EmpWTimeInfo> {
 	
 	public HandlerEmpWTimeSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

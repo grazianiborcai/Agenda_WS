@@ -9,7 +9,7 @@ import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerMatSelect extends DeciActionHandlerTemplate<MatInfo, MatInfo> {
+public final class HandlerMatSelect extends DeciActionHandlerTemplate<MatInfo, MatInfo> {
 
 	public HandlerMatSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
@@ -23,7 +23,7 @@ final class HandlerMatSelect extends DeciActionHandlerTemplate<MatInfo, MatInfo>
 	
 	
 	
-	@Override protected  DeciAction<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
+	@Override protected DeciAction<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
 		return new ActionMatSelect(option);
 	}
 	

@@ -7,8 +7,8 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerCnpj;
 
 public final class StoreCheckCnpj implements ModelChecker<StoreInfo> {
-	private final boolean RESULT_SUCCESS = true;
-	private final boolean RESULT_FAILED = false;
+	private final boolean SUCCESS = true;
+	private final boolean FAILED = false;
 	
 	private ModelChecker<String> checkerCnpj;
 	
@@ -20,11 +20,11 @@ public final class StoreCheckCnpj implements ModelChecker<StoreInfo> {
 	
 	@Override public boolean check(List<StoreInfo> recordInfos) {
 		for (StoreInfo eachStoreInfo : recordInfos) {
-			if (check(eachStoreInfo) == RESULT_FAILED)
-				return RESULT_FAILED;
+			if (check(eachStoreInfo) == FAILED)
+				return FAILED;
 		}
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 
 	

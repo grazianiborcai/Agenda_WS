@@ -7,8 +7,8 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerCpf;
 
 public final class CusCheckCpf implements ModelChecker<CusInfo> {
-	private final boolean RESULT_SUCCESS = true;
-	private final boolean RESULT_FAILED = false;
+	private final boolean SUCCESS = true;
+	private final boolean FAILED = false;
 	
 	private ModelChecker<String> checkerCpf;
 	
@@ -20,11 +20,11 @@ public final class CusCheckCpf implements ModelChecker<CusInfo> {
 	
 	@Override public boolean check(List<CusInfo> recordInfos) {
 		for (CusInfo eachCusInfo : recordInfos) {
-			if (check(eachCusInfo) == RESULT_FAILED)
-				return RESULT_FAILED;
+			if (check(eachCusInfo) == FAILED)
+				return FAILED;
 		}
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 
 	

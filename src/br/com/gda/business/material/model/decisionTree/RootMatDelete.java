@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.checker.MatCheckExistKey;
+import br.com.gda.business.material.model.checker.MatCheckExist;
 import br.com.gda.business.material.model.checker.MatCheckKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -50,7 +50,7 @@ public final class RootMatDelete implements DeciTree<MatInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new MatCheckExistKey(checkerOption);
+		checker = new MatCheckExist(checkerOption);
 		queue.add(checker);		
 		
 		 return new ModelCheckerQueue<MatInfo>(queue);

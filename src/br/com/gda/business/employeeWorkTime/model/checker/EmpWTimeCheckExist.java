@@ -1,23 +1,17 @@
 package br.com.gda.business.employeeWorkTime.model.checker;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-import br.com.gda.business.employeeWorkTime.dao.EmpWTimeSelect;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
+import br.com.gda.business.employeeWorkTime.model.decisionTree.ActionEmpWTimeSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public class EmpWTimeCheckExist extends ModelCheckerTemplateSimple<EmpWTimeInfo> {
-	private final boolean RECORD_EXIST = true;
-	private final boolean NO_ENTRY_FOUND = false;
-	
+public class EmpWTimeCheckExist extends ModelCheckerTemplateAction<EmpWTimeInfo> {
 	
 	public EmpWTimeCheckExist(ModelCheckerOption option) {
 		super(option);
@@ -25,41 +19,23 @@ public class EmpWTimeCheckExist extends ModelCheckerTemplateSimple<EmpWTimeInfo>
 	
 	
 	
-	@Override protected boolean checkHook(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {	
-		try {
-			List<EmpWTimeInfo> resultset = executeStmt(recordInfo, conn, schemaName);
-			
-			if (resultset == null || resultset.isEmpty())
-				return NO_ENTRY_FOUND;
-			
-			return RECORD_EXIST;
-			
-		} catch (Exception e) {
-			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
-		}
+	@Override protected DeciAction<EmpWTimeInfo> buildActionHook(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<EmpWTimeInfo> option = buildOption(recordInfo, conn, schemaName);
+		
+		DeciAction<EmpWTimeInfo> actionSelect = new ActionEmpWTimeSelect(option);
+		return actionSelect;
 	}
 	
 	
 	
-	private List<EmpWTimeInfo> executeStmt(EmpWTimeInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		SqlStmtExec<EmpWTimeInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+	private DeciTreeOption<EmpWTimeInfo> buildOption(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<EmpWTimeInfo> option = new DeciTreeOption<>();
+		option.recordInfos = new ArrayList<>();
+		option.recordInfos.add(recordInfo);
+		option.conn = conn;
+		option.schemaName = schemaName;
 		
-		stmtExecutor.executeStmt();
-		return stmtExecutor.getResultset();
-	}
-	
-	
-	
-	private SqlStmtExec<EmpWTimeInfo> buildStmtExecutor(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {
-		SqlStmtExecOption<EmpWTimeInfo> stmtExecOption = new SqlStmtExecOption<>();
-		stmtExecOption.conn = conn;
-		stmtExecOption.recordInfo = recordInfo;
-		stmtExecOption.schemaName = schemaName;
-		
-		List<SqlStmtExecOption<EmpWTimeInfo>> stmtExecOptions = new ArrayList<>();
-		stmtExecOptions.add(stmtExecOption);
-		
-		return new EmpWTimeSelect(stmtExecOptions);
+		return option;
 	}
 	
 	
@@ -74,7 +50,7 @@ public class EmpWTimeCheckExist extends ModelCheckerTemplateSimple<EmpWTimeInfo>
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == RECORD_EXIST)
+		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.EMP_WTIME_ALREADY_EXIST;	
 			
 		return SystemCode.EMP_WTIME_NOT_FOUND;

@@ -9,9 +9,6 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
 public final class EmpLDateCheckTimeRange extends ModelCheckerTemplateSimple<EmpLDateInfo> {
-	private final boolean RESULT_FAILED = false;
-	private final boolean RESULT_SUCCESS = true;
-	
 	private ModelChecker<DateTimeRangeInfo> checker;
 	
 	
@@ -23,11 +20,11 @@ public final class EmpLDateCheckTimeRange extends ModelCheckerTemplateSimple<Emp
 	
 	@Override public boolean check(List<EmpLDateInfo> recordInfos) {
 		for (EmpLDateInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == RESULT_FAILED)
-				return RESULT_FAILED;
+			if (check(eachInfo) == FAILED)
+				return FAILED;
 		}
 		
-		return RESULT_SUCCESS;
+		return SUCCESS;
 	}
 
 	
