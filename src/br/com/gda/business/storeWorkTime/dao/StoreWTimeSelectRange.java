@@ -8,12 +8,12 @@ import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecHelper;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public class StoreWTimeSelectTRange implements SqlStmtExec<StoreWTimeInfo> {
+public class StoreWTimeSelectRange implements SqlStmtExec<StoreWTimeInfo> {
 	private SqlStmtExec<StoreWTimeInfo> helper;
 	
 	
-	public StoreWTimeSelectTRange(List<SqlStmtExecOption<StoreWTimeInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, StoreWTimeSelectTRangeSingle.class, StoreWTimeInfo.class);
+	public StoreWTimeSelectRange(List<SqlStmtExecOption<StoreWTimeInfo>> options) {
+		helper = new SqlStmtExecHelper<>(options, StoreWTimeSelectRangeSingle.class, StoreWTimeInfo.class);
 	}
 	
 	

@@ -11,11 +11,11 @@ import br.com.gda.sql.SqlWhereBuilder;
 import br.com.gda.sql.SqlWhereBuilderOption;
 import br.com.gda.sql.SqlWhereCondition;
 
-public final class StoreWTimeWhereTRange implements SqlStmtWhere {
+public final class StoreWTimeWhereRange implements SqlStmtWhere {
 	private String whereClause;	
 	
 	
-	public StoreWTimeWhereTRange(SqlWhereBuilderOption whereOption, String tableName, StoreWTimeInfo recordInfo) {
+	public StoreWTimeWhereRange(SqlWhereBuilderOption whereOption, String tableName, StoreWTimeInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	

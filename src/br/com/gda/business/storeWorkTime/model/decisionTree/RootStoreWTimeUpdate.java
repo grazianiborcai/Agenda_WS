@@ -8,7 +8,7 @@ import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckExist;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckHasCo;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckOwner;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckStore;
-import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckTime;
+import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckRange;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckWeekday;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
@@ -49,7 +49,7 @@ public final class RootStoreWTimeUpdate implements DeciTree<StoreWTimeInfo> {
 		checker = new StoreWTimeCheckWrite();
 		queue.add(checker);
 		
-		checker = new StoreWTimeCheckTime();
+		checker = new StoreWTimeCheckRange();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

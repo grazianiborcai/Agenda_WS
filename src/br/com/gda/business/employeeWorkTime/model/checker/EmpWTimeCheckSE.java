@@ -3,20 +3,20 @@ package br.com.gda.business.employeeWorkTime.model.checker;
 import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckWorkTime;
+import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
+import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class EmpWTimeCheckStoreTime implements ModelChecker<EmpWTimeInfo> {
+public final class EmpWTimeCheckSE implements ModelChecker<EmpWTimeInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoreWTimeInfo> checker;
+	private ModelChecker<StoreEmpInfo> checker;
 	
 	
-	public EmpWTimeCheckStoreTime(ModelCheckerOption option) {
-		checker = new StoreWTimeCheckWorkTime(option);
+	public EmpWTimeCheckSE(ModelCheckerOption option) {
+		checker = new StoreEmpCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class EmpWTimeCheckStoreTime implements ModelChecker<EmpWTimeInfo> 
 	
 	
 	@Override public boolean check(EmpWTimeInfo recordInfo) {
-		return checker.check(StoreWTimeInfo.copyFrom(recordInfo));
+		return checker.check(StoreEmpInfo.copyFrom(recordInfo));
 	}
 
 	

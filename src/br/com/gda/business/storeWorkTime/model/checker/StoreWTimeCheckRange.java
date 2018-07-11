@@ -8,14 +8,14 @@ import br.com.gda.business.timeRange.model.checker.TimeRangeCheckRange;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreWTimeCheckTime extends ModelCheckerTemplateSimple<StoreWTimeInfo> {
+public final class StoreWTimeCheckRange extends ModelCheckerTemplateSimple<StoreWTimeInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<TimeRangeInfo> checker;
 	
 	
-	public StoreWTimeCheckTime() {
+	public StoreWTimeCheckRange() {
 		checker = new TimeRangeCheckRange();
 	}
 	

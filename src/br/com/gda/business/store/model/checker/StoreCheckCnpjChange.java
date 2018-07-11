@@ -3,7 +3,7 @@ package br.com.gda.business.store.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.decisionTree.ActionStoreEnforceKey;
+import br.com.gda.business.store.model.decisionTree.ActionStoreEnforceKeyCnpj;
 import br.com.gda.business.store.model.decisionTree.HandlerStoreSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -12,9 +12,9 @@ import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StoreCheckExist extends ModelCheckerTemplateAction<StoreInfo> {
+public final class StoreCheckCnpjChange extends ModelCheckerTemplateAction<StoreInfo> {
 	
-	public StoreCheckExist(ModelCheckerOption option) {
+	public StoreCheckCnpjChange(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -23,7 +23,7 @@ public final class StoreCheckExist extends ModelCheckerTemplateAction<StoreInfo>
 	@Override protected DeciAction<StoreInfo> buildActionHook(StoreInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<StoreInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		DeciAction<StoreInfo> actionSelect = new ActionStoreEnforceKey(option);
+		DeciAction<StoreInfo> actionSelect = new ActionStoreEnforceKeyCnpj(option);
 		actionSelect.addPostAction(new HandlerStoreSelect(conn, schemaName));
 		return actionSelect;
 	}

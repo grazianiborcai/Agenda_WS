@@ -50,7 +50,7 @@ public final class HandlerMatEmpMergeEmp extends DeciActionHandlerTemplate<MatEm
 	@Override protected DeciResult<MatEmpInfo> translateResultHook(DeciResult<EmpInfo> result) {
 		if (result.hasResultset() == EMPTY)
 			return new DeciResultDataNotFound<>();		
-		
+		//TODO: Rever - não utilizar a classe acima
 		
 		DeciResultHelper<MatEmpInfo> resultHelper = new DeciResultHelper<>();
 		resultHelper.copyWithoutResultset(result);

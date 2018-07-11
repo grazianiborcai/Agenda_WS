@@ -1,23 +1,17 @@
 package br.com.gda.business.materialEmployee.model.chekcer;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-import br.com.gda.business.materialEmployee.dao.MatEmpSelect;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
+import br.com.gda.business.materialEmployee.model.decisionTree.ActionMatEmpSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class MatEmpCheckExist extends ModelCheckerTemplateSimple<MatEmpInfo> {
-	private final boolean RECORD_EXIST = true;
-	private final boolean NO_ENTRY_FOUND_ON_DB = false;
-	
+public final class MatEmpCheckExist extends ModelCheckerTemplateAction<MatEmpInfo> {
 	
 	public MatEmpCheckExist(ModelCheckerOption option) {
 		super(option);
@@ -25,41 +19,23 @@ public final class MatEmpCheckExist extends ModelCheckerTemplateSimple<MatEmpInf
 	
 	
 	
-	@Override protected boolean checkHook(MatEmpInfo recordInfo, Connection conn, String schemaName) {	
-		try {
-			List<MatEmpInfo> resultset = executeStmt(recordInfo, conn, schemaName);
-			
-			if (resultset == null || resultset.isEmpty())
-				return NO_ENTRY_FOUND_ON_DB;
-			
-			return RECORD_EXIST;
-			
-		} catch (Exception e) {
-			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
-		}
+	@Override protected DeciAction<MatEmpInfo> buildActionHook(MatEmpInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<MatEmpInfo> option = buildOption(recordInfo, conn, schemaName);
+		
+		DeciAction<MatEmpInfo> actionSelect = new ActionMatEmpSelect(option);
+		return actionSelect;
 	}
 	
 	
 	
-	private List<MatEmpInfo> executeStmt(MatEmpInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		SqlStmtExec<MatEmpInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+	private DeciTreeOption<MatEmpInfo> buildOption(MatEmpInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<MatEmpInfo> option = new DeciTreeOption<>();
+		option.recordInfos = new ArrayList<>();
+		option.recordInfos.add(recordInfo);
+		option.conn = conn;
+		option.schemaName = schemaName;
 		
-		stmtExecutor.executeStmt();
-		return stmtExecutor.getResultset();
-	}
-	
-	
-	
-	private SqlStmtExec<MatEmpInfo> buildStmtExecutor(MatEmpInfo recordInfo, Connection conn, String schemaName) {
-		SqlStmtExecOption<MatEmpInfo> stmtExecOption = new SqlStmtExecOption<>();
-		stmtExecOption.conn = conn;
-		stmtExecOption.recordInfo = recordInfo;
-		stmtExecOption.schemaName = schemaName;
-		
-		List<SqlStmtExecOption<MatEmpInfo>> stmtExecOptions = new ArrayList<>();
-		stmtExecOptions.add(stmtExecOption);
-		
-		return new MatEmpSelect(stmtExecOptions);
+		return option;
 	}
 	
 	
@@ -74,7 +50,7 @@ public final class MatEmpCheckExist extends ModelCheckerTemplateSimple<MatEmpInf
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == RECORD_EXIST)
+		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.STORE_MAT_EMP_ALREADY_EXIST;	
 			
 		return SystemCode.STORE_MAT_EMP_NOT_FOUND;

@@ -115,7 +115,7 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 		List<DeciAction<MatInfo>> actions = new ArrayList<>();		
 		DeciAction<MatInfo> actionInsertAttr = new ActionMatInsertAttr(option);
 		
-		DeciActionHandler<MatInfo> insertTxt = new HandlerMatInsertTxt(option.conn, option.schemaName);		
+		DeciActionHandler<MatInfo> insertTxt = new HandlerMatInsertText(option.conn, option.schemaName);		
 		actionInsertAttr.addPostAction(insertTxt);		
 		
 		DeciActionHandler<MatInfo> selectMat = new HandlerMatSelect(option.conn, option.schemaName);		

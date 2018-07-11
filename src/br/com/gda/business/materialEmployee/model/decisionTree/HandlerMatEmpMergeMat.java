@@ -1,7 +1,6 @@
 package br.com.gda.business.materialEmployee.model.decisionTree;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
@@ -41,7 +40,7 @@ final class HandlerMatEmpMergeMat extends DeciActionHandlerTemplate<MatEmpInfo, 
 	@Override protected DeciResult<MatEmpInfo> translateResultHook(DeciResult<MatInfo> result) {
 		if (result.hasResultset() == EMPTY)
 			return new DeciResultDataNotFound<>();		
-		
+		//TODO: Rever - não utilizar a classe acima
 		
 		DeciResultHelper<MatEmpInfo> resultHelper = new DeciResultHelper<>();
 		resultHelper.copyWithoutResultset(result);

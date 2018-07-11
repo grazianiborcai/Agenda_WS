@@ -7,6 +7,7 @@ import javax.ws.rs.core.Response;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 
+//TODO: Rever - não utilizar essa classe
 public final class DeciResultDataNotFound<T> implements DeciResult<T> {
 	private final boolean FAILED = false;
 	

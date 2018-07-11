@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.checker.StoreCheckKeyCnpj;
+import br.com.gda.business.store.model.checker.StoreCheckCnpjChange;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -46,7 +46,7 @@ final class NodeStoreUpdateL1 implements DeciTree<StoreInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_WITH_CONSTRAINT_ON_DB;		
-		checker = new StoreCheckKeyCnpj(checkerOption);
+		checker = new StoreCheckCnpjChange(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

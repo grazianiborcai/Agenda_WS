@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.checker.StoreCheckCnpj;
-import br.com.gda.business.store.model.checker.StoreCheckCnpjExist;
+import br.com.gda.business.store.model.checker.StoreCheckExistCnpj;
 import br.com.gda.business.store.model.checker.StoreCheckGenField;
 import br.com.gda.business.store.model.checker.StoreCheckOwner;
 import br.com.gda.business.store.model.checker.StoreCheckTimezone;
@@ -74,7 +74,7 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new StoreCheckCnpjExist(checkerOption);
+		checker = new StoreCheckExistCnpj(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

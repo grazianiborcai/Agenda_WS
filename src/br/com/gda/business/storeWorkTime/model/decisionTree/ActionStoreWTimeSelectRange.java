@@ -3,7 +3,7 @@ package br.com.gda.business.storeWorkTime.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.storeWorkTime.dao.StoreWTimeSelect;
+import br.com.gda.business.storeWorkTime.dao.StoreWTimeSelectRange;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
@@ -13,11 +13,11 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-public final class ActionStoreWTimeSelect implements DeciAction<StoreWTimeInfo> {
+public final class ActionStoreWTimeSelectRange implements DeciAction<StoreWTimeInfo> {
 	private DeciAction<StoreWTimeInfo> actionHelper;
 	
 	
-	public ActionStoreWTimeSelect(DeciTreeOption<StoreWTimeInfo> option) {
+	public ActionStoreWTimeSelectRange(DeciTreeOption<StoreWTimeInfo> option) {
 		SqlStmtExec<StoreWTimeInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
 	}
@@ -35,7 +35,7 @@ public final class ActionStoreWTimeSelect implements DeciAction<StoreWTimeInfo> 
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new StoreWTimeSelect(stmtExecOptions);
+		return new StoreWTimeSelectRange(stmtExecOptions);
 	}
 	
 	

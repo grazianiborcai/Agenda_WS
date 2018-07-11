@@ -9,9 +9,9 @@ import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerMatInsertTxt extends DeciActionHandlerTemplate<MatInfo, MatInfo> {
+public final class HandlerMatFilterText extends DeciActionHandlerTemplate<MatInfo, MatInfo> {
 	
-	public HandlerMatInsertTxt(Connection conn, String schemaName) {
+	public HandlerMatFilterText(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ final class HandlerMatInsertTxt extends DeciActionHandlerTemplate<MatInfo, MatIn
 	
 	
 	@Override protected  DeciAction<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
-		return new ActionMatInsertText(option);
+		return new ActionMatFilterText(option);
 	}
 	
 	

@@ -8,8 +8,8 @@ import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckExist;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckHasCo;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckOwner;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStore;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStoreEmp;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStoreTime;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckSE;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckSWT;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWeekday;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEmp;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWrite;
@@ -84,7 +84,7 @@ public final class RootEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpWTimeCheckStoreEmp(checkerOption);
+		checker = new EmpWTimeCheckSE(checkerOption);
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
@@ -98,7 +98,7 @@ public final class RootEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpWTimeCheckStoreTime(checkerOption);
+		checker = new EmpWTimeCheckSWT(checkerOption);
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();

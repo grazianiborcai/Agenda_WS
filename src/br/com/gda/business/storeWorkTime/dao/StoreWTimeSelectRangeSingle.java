@@ -6,9 +6,9 @@ import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilderOption;
 
-public final class StoreWTimeSelectTRangeSingle extends StoreWTimeSelectTemplate {
+public final class StoreWTimeSelectRangeSingle extends StoreWTimeSelectTemplate {
 
-	public StoreWTimeSelectTRangeSingle(Connection conn, StoreWTimeInfo recordInfo, String schemaName) {
+	public StoreWTimeSelectRangeSingle(Connection conn, StoreWTimeInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -22,7 +22,7 @@ public final class StoreWTimeSelectTRangeSingle extends StoreWTimeSelectTemplate
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		SqlStmtWhere whereClause = new StoreWTimeWhereTRange(whereOption, tableName, recordInfo);
+		SqlStmtWhere whereClause = new StoreWTimeWhereRange(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 }
