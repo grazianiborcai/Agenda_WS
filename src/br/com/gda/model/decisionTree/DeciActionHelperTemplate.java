@@ -49,8 +49,8 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 		try {
 			resultset = tryToExecuteActionHook();
 			
-			if (checkResultset(resultset) == FAILED) {
-				buildResultDataNotFound();
+			if (isResultsetEmpty()) {
+				tryToBuildResultFailed();
 				return FAILED;
 			}
 			
@@ -72,12 +72,22 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	
 	
 	
-	private boolean checkResultset(List<T> recordInfos) {
-		if (recordInfos == null || recordInfos.isEmpty()) {
-			return FAILED;
+	private boolean isResultsetEmpty() {
+		if (resultset == null || resultset.isEmpty()) {
+			return true;
 		}
 		
-		return SUCCESS;
+		return false;
+	}
+	
+	
+	
+	private void tryToBuildResultFailed() {
+		DeciResult<T> failedResult = buildResultFailedHook();		
+		deciResult.copyWithoutResultset(failedResult);
+		
+		if (failedResult.hasResultset()) 
+			deciResult.resultset = failedResult.getResultset();
 	}
 	
 	
@@ -128,12 +138,23 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	}
 	
 	
-	private void buildResultDataNotFound() {
-		deciResult.finishedWithSuccess = FAILED;
-		deciResult.failureCode = SystemCode.DATA_NOT_FOUND;
-		deciResult.failureMessage = SystemMessage.DATA_NOT_FOUND;
-		deciResult.hasResultset = false;
-		deciResult.resultset = null;
+	
+	protected DeciResult<T> buildResultFailedHook() {
+		//Template Method: Default behavior
+		return buildResultDataNotFound();
+	}
+	
+	
+	private DeciResult<T> buildResultDataNotFound() {
+		DeciResultHelper<T> result = new DeciResultHelper<>();
+		
+		result.finishedWithSuccess = FAILED;
+		result.failureCode = SystemCode.DATA_NOT_FOUND;
+		result.failureMessage = SystemMessage.DATA_NOT_FOUND;
+		result.hasResultset = false;
+		result.resultset = null;
+		
+		return result;
 	}
 	
 	

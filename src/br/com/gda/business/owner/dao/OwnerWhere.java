@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.sql.SqlColumn;
+import br.com.gda.sql.SqlDbTableColumnAll;
 import br.com.gda.sql.SqlFormatterNumber;
 import br.com.gda.sql.SqlStmtWhere;
 import br.com.gda.sql.SqlWhereBuilder;
@@ -22,7 +23,7 @@ public final class OwnerWhere implements SqlStmtWhere {
 	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, OwnerInfo recordInfo) {
 		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);
 		
-		List<SqlColumn> columns = OwnerDbTableColumn.getTableColumnsAsList(tableName);
+		List<SqlColumn> columns = SqlDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (SqlColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {

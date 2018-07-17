@@ -4,51 +4,28 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.common.SystemMessage;
 import br.com.gda.sql.SqlDbTable;
+import br.com.gda.sql.SqlDbTableColumnTemplate;
 import br.com.gda.sql.SqlColumn;
 
-public final class OwnerDbTableColumn {
-	private static final boolean IS_PRIMARY_KEY = true;	
-	//private static final boolean IS_LOOKUP_COLUMN = true;
-	private static final boolean IS_AUTO_INCREMENTED = true;
-	private static final boolean NEGATIVE = false;
+public final class OwnerDbTableColumn extends SqlDbTableColumnTemplate {
+	private Hashtable<String, List<SqlColumn>> tableColumns;	
 	
-	private static final Hashtable<String, List<SqlColumn>> tableColumns = new Hashtable<>();	
-	
-	
-	
-	static {
-		buildTableColumns();
+	public OwnerDbTableColumn() {
+		super();
 	}
 	
 	
 	
-	private static void buildTableColumns() {
-		buildMatTable();	
+	@Override protected Hashtable<String, List<SqlColumn>> buildTableColumnsHook() {
+		tableColumns = new Hashtable<>();		
+		buildOwnerTable();		
+		return tableColumns;
 	}
 	
 	
 	
-	public static List<SqlColumn> getTableColumnsAsList(String tableName) {
-		List<SqlColumn> columns = tableColumns.get(tableName);
-		
-		if (columns == null)
-			throw new IllegalArgumentException(tableName + " " + SystemMessage.TABLE_NOT_FOUND);
-		
-		
-		List<SqlColumn> resultColumns = new ArrayList<>();
-		
-		for (SqlColumn eachColumn : columns) {
-			resultColumns.add(eachColumn);
-		}
-		
-		return resultColumns;
-	}
-	
-	
-	
-	private static void buildMatTable() {
+	private void buildOwnerTable() {
 		final String TABLE_NAME = SqlDbTable.OWNER_TABLE;
 		
 		SqlColumn oneColumn;

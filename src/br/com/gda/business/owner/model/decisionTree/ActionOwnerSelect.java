@@ -3,7 +3,7 @@ package br.com.gda.business.owner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.owner.dao.OwnerSelectExec;
+import br.com.gda.business.owner.dao.OwnerSelect;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
@@ -35,7 +35,7 @@ final class ActionOwnerSelect implements DeciAction<OwnerInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new OwnerSelectExec(stmtExecOptions);
+		return new OwnerSelect(stmtExecOptions);
 	}
 	
 	

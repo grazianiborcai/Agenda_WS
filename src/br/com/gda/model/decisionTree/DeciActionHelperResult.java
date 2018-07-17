@@ -2,10 +2,10 @@ package br.com.gda.model.decisionTree;
 
 import br.com.gda.common.SystemMessage;
 
-public final class DeciActionHelperDummy<T> implements DeciAction<T> {
+public final class DeciActionHelperResult<T> implements DeciAction<T> {
 	private DeciResult<T> deciResult;
 	
-	public DeciActionHelperDummy(DeciResult<T> decisionResult) {
+	public DeciActionHelperResult(DeciResult<T> decisionResult) {
 		checkArgument(decisionResult);
 		deciResult = decisionResult;
 	}

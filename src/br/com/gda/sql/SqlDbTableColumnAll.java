@@ -13,6 +13,7 @@ import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.material.dao.MatDbTableColumn;
 import br.com.gda.business.materialEmployee.dao.MatEmpDbTableColumn;
 import br.com.gda.business.materialStore.dao.MatStoreDbTableColumn;
+import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.business.storeEmployee.dao.StoreEmpDbTableColumn;
 import br.com.gda.business.storeLeaveDate.dao.StoreLDateDbTableColumn;
@@ -47,6 +48,7 @@ public final class SqlDbTableColumnAll {
 		addTable(new StoreCoDbTableColumn());
 		addTable(new EmpDbTableColumn());
 		addTable(new CusDbTableColumn());
+		addTable(new OwnerDbTableColumn());
 		addTable(new MatStoreDbTableColumn());
 	}
 	

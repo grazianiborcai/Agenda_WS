@@ -45,7 +45,8 @@ public final class SystemMessage {
 	public static final String NULL_CONN = "Conn is null";
 	public static final String NULL_SCHEMA = "Schema name is null";	
 	public static final String REQUEST_FAILED = "It was not possible to complete your request";
-	public static final String SUCCESS = "Success";					
+	public static final String SUCCESS = "Success";			
+	public static final String WRONG_DATA_TYPE = "Wrong data type";		
 	
 		
 	

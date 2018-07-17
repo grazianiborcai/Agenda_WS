@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckExist;
-import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckHasCo;
+import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckExistCo;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckOwner;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckStore;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckRange;
@@ -84,7 +84,7 @@ public final class RootStoreWTimeUpdate implements DeciTree<StoreWTimeInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new StoreWTimeCheckHasCo(checkerOption);
+		checker = new StoreWTimeCheckExistCo(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

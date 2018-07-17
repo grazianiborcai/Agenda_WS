@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperDummy;
+import br.com.gda.model.decisionTree.DeciActionHelperResult;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -16,7 +16,7 @@ final class ActionStoreEmpSuccess implements DeciAction<StoreEmpInfo> {
 	
 	
 	public ActionStoreEmpSuccess(DeciTreeOption<StoreEmpInfo> option) {
-		actionHelper = new DeciActionHelperDummy<>(buildDeciResult());
+		actionHelper = new DeciActionHelperResult<>(buildDeciResult());
 	}
 	
 	

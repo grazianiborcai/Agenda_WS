@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.checker.CusCheckExistKey;
+import br.com.gda.business.customer.model.checker.CusCheckExist;
 import br.com.gda.business.customer.model.checker.CusCheckKey;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -52,7 +52,7 @@ public final class RootCusDelete implements DeciTree<CusInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new CusCheckExistKey(checkerOption);
+		checker = new CusCheckExist(checkerOption);
 		queue.add(checker);		
 		
 		 return new ModelCheckerQueue<CusInfo>(queue);

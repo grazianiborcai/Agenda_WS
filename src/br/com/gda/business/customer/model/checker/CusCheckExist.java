@@ -13,9 +13,9 @@ import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class CusCheckExistKey extends ModelCheckerTemplateAction<CusInfo> {
+public final class CusCheckExist extends ModelCheckerTemplateAction<CusInfo> {
 	
-	public CusCheckExistKey(ModelCheckerOption option) {
+	public CusCheckExist(ModelCheckerOption option) {
 		super(option);
 	}
 	

@@ -1,6 +1,7 @@
 package br.com.gda.business.materialEmployee.model.decisionTree;
 
 import java.sql.Connection;
+import java.util.Collections;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
@@ -10,7 +11,6 @@ import br.com.gda.business.materialEmployee.info.MatEmpMerger;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciResultDataNotFound;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -37,14 +37,13 @@ final class HandlerMatEmpMergeMat extends DeciActionHandlerTemplate<MatEmpInfo, 
 	
 	
 	
-	@Override protected DeciResult<MatEmpInfo> translateResultHook(DeciResult<MatInfo> result) {
-		if (result.hasResultset() == EMPTY)
-			return new DeciResultDataNotFound<>();		
-		//TODO: Rever - não utilizar a classe acima
-		
+	@Override protected DeciResult<MatEmpInfo> translateResultHook(DeciResult<MatInfo> result) {		
 		DeciResultHelper<MatEmpInfo> resultHelper = new DeciResultHelper<>();
 		resultHelper.copyWithoutResultset(result);
-		resultHelper.resultset = new MatEmpMerger().merge(result.getResultset(), originalInfos);
+		resultHelper.resultset = Collections.emptyList();
+		
+		if (result.hasResultset())
+			resultHelper.resultset = new MatEmpMerger().merge(result.getResultset(), originalInfos);
 		
 		return resultHelper;
 	}

@@ -1,11 +1,16 @@
 package br.com.gda.model.decisionTree;
 
+import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
+
 import br.com.gda.common.SystemMessage;
 
-public final class DeciTreeAdapter<T> implements DeciAction<T> {
+public final class DeciTreeAdapter<T> extends DeciActionHelperTemplate<T> {
 	private DeciTree<T> deciTree;
 	
 	public DeciTreeAdapter(DeciTree<T> tree) {
+		super();
 		checkArgument(tree);
 		
 		deciTree = tree;
@@ -20,22 +25,19 @@ public final class DeciTreeAdapter<T> implements DeciAction<T> {
 	
 	
 	
-
-	@Override public boolean executeAction() {			
+	@Override protected List<T> tryToExecuteActionHook() throws SQLException {
 		  deciTree.makeDecision();
 		  DeciResult<T> treeResult = deciTree.getDecisionResult();
-		  return treeResult.hasSuccessfullyFinished();
+		  
+		  if (treeResult.hasResultset()) 
+			  return treeResult.getResultset();		  
+		  
+		  return Collections.emptyList();		  
 	}
 	
 	
 	
-	@Override public DeciResult<T> getDecisionResult() {
+	@Override protected DeciResult<T> buildResultFailedHook() {
 		return deciTree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public void addPostAction(DeciActionHandler<T> actionHandler) {
-		throw new IllegalStateException(SystemMessage.NO_IMPLEMENTATION);
 	}
 }

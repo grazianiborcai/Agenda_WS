@@ -13,7 +13,7 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-final class ActionCurrencySelect implements DeciAction<CurrencyInfo> {
+public final class ActionCurrencySelect implements DeciAction<CurrencyInfo> {
 	private DeciAction<CurrencyInfo> actionHelper;
 	
 	

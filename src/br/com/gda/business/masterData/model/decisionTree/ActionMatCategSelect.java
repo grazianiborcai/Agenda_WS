@@ -13,7 +13,7 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.sql.SqlStmtExec;
 import br.com.gda.sql.SqlStmtExecOption;
 
-final class ActionMatCategSelect implements DeciAction<MatCategInfo> {
+public final class ActionMatCategSelect implements DeciAction<MatCategInfo> {
 	private DeciAction<MatCategInfo> actionHelper;
 	
 	

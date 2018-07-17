@@ -47,14 +47,7 @@ public final class RootMatEmpSelect implements DeciTree<MatEmpInfo> {
 	private List<DeciAction<MatEmpInfo>> buildActionsOnPassed(DeciTreeOption<MatEmpInfo> option) {
 		List<DeciAction<MatEmpInfo>> actions = new ArrayList<>();
 		
-		DeciAction<MatEmpInfo> starter = new ActionMatEmpSelect(option);
-		HandlerMatEmpMergeMat mergeMaterial = new HandlerMatEmpMergeMat(option.conn, option.schemaName);
-		HandlerMatEmpMergeEmp mergeEmployee = new HandlerMatEmpMergeEmp(option.conn, option.schemaName);		
-		
-		actions.add(starter);
-		starter.addPostAction(mergeMaterial);
-		mergeMaterial.addPostAction(mergeEmployee);
-		
+		actions.add(new ActionMatEmpSelectAll(option));
 		return actions;
 	}
 	

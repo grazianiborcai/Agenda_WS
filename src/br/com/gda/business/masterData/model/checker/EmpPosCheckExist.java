@@ -1,23 +1,17 @@
 package br.com.gda.business.masterData.model.checker;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-import br.com.gda.business.masterData.dao.EmpPosSelect;
 import br.com.gda.business.masterData.info.EmpPosInfo;
+import br.com.gda.business.masterData.model.decisionTree.ActionEmpPosSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpPosCheckExist extends ModelCheckerTemplateSimple<EmpPosInfo> {
-	private final boolean EXIST_ON_DB = true;
-	private final boolean NOT_FOUND_ON_DB = false;
-	
+public final class EmpPosCheckExist extends ModelCheckerTemplateAction<EmpPosInfo> {
 	
 	public EmpPosCheckExist(ModelCheckerOption option) {
 		super(option);
@@ -25,41 +19,23 @@ public final class EmpPosCheckExist extends ModelCheckerTemplateSimple<EmpPosInf
 	
 	
 	
-	@Override protected boolean checkHook(EmpPosInfo recordInfo, Connection conn, String schemaName) {	
-		try {		
-			List<EmpPosInfo> resultset = executeStmt(recordInfo, conn, schemaName);
-			
-			if (resultset == null || resultset.isEmpty())
-				return NOT_FOUND_ON_DB;
-			
-			return EXIST_ON_DB;
-			
-		} catch (Exception e) {
-			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
-		}
+	@Override protected DeciAction<EmpPosInfo> buildActionHook(EmpPosInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<EmpPosInfo> option = buildActionOption(recordInfo, conn, schemaName);
+		
+		DeciAction<EmpPosInfo> actionSelect = new ActionEmpPosSelect(option);
+		return actionSelect;
 	}
 	
 	
 	
-	private List<EmpPosInfo> executeStmt(EmpPosInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		SqlStmtExec<EmpPosInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+	private DeciTreeOption<EmpPosInfo> buildActionOption(EmpPosInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<EmpPosInfo> option = new DeciTreeOption<>();
+		option.recordInfos = new ArrayList<>();
+		option.recordInfos.add(recordInfo);
+		option.conn = conn;
+		option.schemaName = schemaName;
 		
-		stmtExecutor.executeStmt();
-		return stmtExecutor.getResultset();
-	}
-	
-	
-	
-	private SqlStmtExec<EmpPosInfo> buildStmtExecutor(EmpPosInfo recordInfo, Connection conn, String schemaName) {
-		SqlStmtExecOption<EmpPosInfo> stmtExecOption = new SqlStmtExecOption<>();
-		stmtExecOption.conn = conn;
-		stmtExecOption.recordInfo = recordInfo;
-		stmtExecOption.schemaName = schemaName;
-		
-		List<SqlStmtExecOption<EmpPosInfo>> stmtExecOptions = new ArrayList<>();
-		stmtExecOptions.add(stmtExecOption);
-		
-		return new EmpPosSelect(stmtExecOptions);
+		return option;
 	}
 	
 	
@@ -74,7 +50,7 @@ public final class EmpPosCheckExist extends ModelCheckerTemplateSimple<EmpPosInf
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == EXIST_ON_DB)
+		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.EMP_POS_ALREADY_EXIST;	
 			
 		return SystemCode.EMP_POS_NOT_FOUND;

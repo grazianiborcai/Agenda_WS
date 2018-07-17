@@ -61,7 +61,7 @@ final class NodeMatEmpInsert implements DeciTree<MatEmpInfo> {
 		List<DeciAction<MatEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionMatEmpInsert(option));
-		actions.add(new ActionMatEmpSelect(option));		
+		actions.add(new ActionMatEmpSelectAll(option));
 		return actions;
 	}
 	
@@ -71,7 +71,7 @@ final class NodeMatEmpInsert implements DeciTree<MatEmpInfo> {
 		List<DeciAction<MatEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionMatEmpUpdate(option));
-		actions.add(new ActionMatEmpSelect(option));		
+		actions.add(new ActionMatEmpSelectAll(option));
 		return actions;
 	}
 	

@@ -9,7 +9,7 @@ import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerStoreCoSelect extends DeciActionHandlerTemplate<StoreCoInfo, StoreCoInfo> {
+public final class HandlerStoreCoSelect extends DeciActionHandlerTemplate<StoreCoInfo, StoreCoInfo> {
 	
 	public HandlerStoreCoSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
@@ -23,7 +23,7 @@ final class HandlerStoreCoSelect extends DeciActionHandlerTemplate<StoreCoInfo, 
 	
 	
 	
-	@Override protected  DeciAction<StoreCoInfo> getInstanceOfActionHook(DeciTreeOption<StoreCoInfo> option) {
+	@Override protected DeciAction<StoreCoInfo> getInstanceOfActionHook(DeciTreeOption<StoreCoInfo> option) {
 		return new ActionStoreCoSelect(option);
 	}
 	
