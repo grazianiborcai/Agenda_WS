@@ -31,7 +31,7 @@ final class HandlerMatStoreMergeMat extends DeciActionHandlerTemplate<MatStoreIn
 	
 	
 	
-	@Override protected  DeciAction<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
+	@Override protected DeciAction<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
 		return new RootMatSelect(option).toAction();
 	}
 	
@@ -45,9 +45,9 @@ final class HandlerMatStoreMergeMat extends DeciActionHandlerTemplate<MatStoreIn
 			resultHelper.resultset = MatStoreMerger.merge(result.getResultset(), originalInfos);
 		
 		} else {		
-			List<MatStoreInfo> dummyResultset = new ArrayList<>();
-			dummyResultset.add(new MatStoreInfo());		
-			resultHelper.resultset = dummyResultset;
+			List<MatStoreInfo> dummy = new ArrayList<>();
+			dummy.add(new MatStoreInfo());		
+			resultHelper.resultset = dummy;
 		}
 		
 		return resultHelper;

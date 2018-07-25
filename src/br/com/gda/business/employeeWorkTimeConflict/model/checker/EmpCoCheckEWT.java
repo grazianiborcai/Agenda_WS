@@ -8,14 +8,14 @@ import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class EmpCoCheckWTime implements ModelChecker<EmpCoInfo> {
+public final class EmpCoCheckEWT implements ModelChecker<EmpCoInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<EmpWTimeInfo> checker;
 	
 	
-	public EmpCoCheckWTime(ModelCheckerOption option) {
+	public EmpCoCheckEWT(ModelCheckerOption option) {
 		checker = new EmpWTimeCheckExist(option);
 	}
 	

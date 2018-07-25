@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEmp;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckExist;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckHasCo;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEWTC;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckKey;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckOwner;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckStore;
@@ -109,7 +109,7 @@ public final class RootEmpWTimeUpdate implements DeciTree<EmpWTimeInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new EmpWTimeCheckHasCo(checkerOption);
+		checker = new EmpWTimeCheckEWTC(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

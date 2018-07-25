@@ -15,12 +15,14 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	private DeciResultHelper<T> deciResult;
 	private List<DeciActionHandler<T>> postActions;
 	private List<T> resultset;
+	private boolean hasExecuted;
 	
 	
 	public DeciActionHelperTemplate() {
 		deciResult = new DeciResultHelper<>();
 		postActions = new ArrayList<>();
 		resultset = Collections.emptyList();
+		hasExecuted = false;
 	}
 	
 	
@@ -35,6 +37,7 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	
 	
 	public boolean executeAction() {
+		hasExecuted = true;
 		boolean result = tryToExecuteAction();
 		
 		if (result == SUCCESS) 
@@ -160,6 +163,14 @@ abstract class DeciActionHelperTemplate<T> implements DeciAction<T> {
 	
 	
 	public DeciResult<T> getDecisionResult() {
+		checkState();
 		return this.deciResult;
+	}
+	
+	
+	
+	private void checkState() {
+		if (hasExecuted == false)
+			throw new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED);
 	}
 }

@@ -1,28 +1,28 @@
-package br.com.gda.business.storeWorkTimeConflict.model.checker;
+package br.com.gda.business.storeWorkTime.model.checker;
 
 import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckExist;
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
+import br.com.gda.business.storeWorkTimeConflict.model.checker.StoreCoCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class StoreCoCheckWTime implements ModelChecker<StoreCoInfo> {
+public class StoreWTimeCheckSWTC implements ModelChecker<StoreWTimeInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoreWTimeInfo> checker;
+	private ModelChecker<StoreCoInfo> checker;
 	
 	
-	public StoreCoCheckWTime(ModelCheckerOption option) {
-		checker = new StoreWTimeCheckExist(option);
+	public StoreWTimeCheckSWTC(ModelCheckerOption option) {
+		checker = new StoreCoCheckExist(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<StoreCoInfo> recordInfos) {
-		for (StoreCoInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<StoreWTimeInfo> recordInfos) {
+		for (StoreWTimeInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -32,8 +32,8 @@ public final class StoreCoCheckWTime implements ModelChecker<StoreCoInfo> {
 
 	
 	
-	@Override public boolean check(StoreCoInfo recordInfo) {
-		return checker.check(StoreWTimeInfo.copyFrom(recordInfo));
+	@Override public boolean check(StoreWTimeInfo recordInfo) {
+		return checker.check(StoreCoInfo.copyFrom(recordInfo));
 	}
 
 	
@@ -52,5 +52,5 @@ public final class StoreCoCheckWTime implements ModelChecker<StoreCoInfo> {
 	
 	@Override public int getFailureCode() {
 		return checker.getFailureCode();
-	}
+	}	
 }

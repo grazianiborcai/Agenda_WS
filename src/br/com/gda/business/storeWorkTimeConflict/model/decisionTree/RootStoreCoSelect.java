@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.business.storeWorkTimeConflict.model.checker.StoreCoCheckRead;
-import br.com.gda.business.storeWorkTimeConflict.model.checker.StoreCoCheckWTime;
+import br.com.gda.business.storeWorkTimeConflict.model.checker.StoreCoCheckSWT;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -50,7 +50,7 @@ public final class RootStoreCoSelect implements DeciTree<StoreCoInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new StoreCoCheckWTime(checkerOption);
+		checker = new StoreCoCheckSWT(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
