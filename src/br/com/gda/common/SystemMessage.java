@@ -49,6 +49,7 @@ public final class SystemMessage {
 	public static final String REQUEST_NOT_EXECUTED = "Request has not been executed";
 	public static final String SUCCESS = "Success";			
 	public static final String WRONG_DATA_TYPE = "Wrong data type";		
+	public static final String CLASS_MISMATCH = "Class type mismatch";		
 	
 		
 	

@@ -23,7 +23,7 @@ public final class HandlerEmpWTimeSelect extends DeciActionHandlerTemplate<EmpWT
 	
 	
 	
-	@Override protected  DeciAction<EmpWTimeInfo> getInstanceOfActionHook(DeciTreeOption<EmpWTimeInfo> option) {
+	@Override protected DeciAction<EmpWTimeInfo> getInstanceOfActionHook(DeciTreeOption<EmpWTimeInfo> option) {
 		return new ActionEmpWTimeSelect(option);
 	}
 	

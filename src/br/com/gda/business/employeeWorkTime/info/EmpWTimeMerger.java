@@ -11,14 +11,13 @@ public final class EmpWTimeMerger extends RecordMergerFacTempl<EmpWTimeInfo> {
 		return new EmpWTimeMergerSWT().merge(sourceOne, sourceTwo);
 	}
 	
-	
-	
+		
 	
 	@SuppressWarnings("unchecked")
 	@Override protected List<EmpWTimeInfo> mergeHook(List<?> sourceOnes, List<?> sourceTwos) {		
 		if (sourceOnes.get(0) instanceof StoreEmpInfo 	&&
 			sourceTwos.get(0) instanceof StoreWTimeInfo		)
-			return new EmpWTimeMergerSWT().merge((List<StoreEmpInfo>) sourceOnes, (List<StoreWTimeInfo>) sourceTwos);		
+			return new EmpWTimeMergerSWT().merge((List<StoreEmpInfo>) sourceOnes, (List<StoreWTimeInfo>) sourceTwos);
 		
 		return null;
 	} 
