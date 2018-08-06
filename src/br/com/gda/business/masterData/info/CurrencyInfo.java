@@ -34,4 +34,43 @@ public final class CurrencyInfo extends RecordInfo implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		if (codCurr != null) {
+			char[] chars = codCurr.toCharArray();
+			
+			for (char eachChar : chars) {
+				result = result * (int) eachChar;
+			}
+		}		
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof CurrencyInfo))
+			return false;
+		
+		
+		CurrencyInfo obj = (CurrencyInfo) o;		
+		
+		
+		if (codCurr == null && obj.codCurr == null)
+			return true;
+		
+		if (codCurr == null || obj.codCurr == null)
+			return false;
+		
+		return codCurr.equals(obj.codCurr);
+	}
 }

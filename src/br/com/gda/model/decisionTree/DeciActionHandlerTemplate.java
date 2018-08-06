@@ -1,5 +1,6 @@
 package br.com.gda.model.decisionTree;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,13 +86,41 @@ public abstract class DeciActionHandlerTemplate<T,S> implements DeciActionHandle
 		option = new DeciTreeOption<>();
 		option.conn = conn;
 		option.schemaName = schemaName;
-		option.recordInfos = translateRecordInfosHook(infoRecords);
+		option.recordInfos = translateRecordInfosHook(makeDefensiveCopy(infoRecords));
 		
 		actionHandler = getInstanceOfActionHook(option);
 		boolean result = actionHandler.executeAction();
 		resultHandler = translateResultHook(actionHandler.getDecisionResult());
 		
 		return result;
+	}
+	
+	
+	
+	private List<T> makeDefensiveCopy(List<T> recordInfos) {
+		try {
+			return tryToMakeDefensiveCopy(recordInfos);
+			
+		} catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private List<T> tryToMakeDefensiveCopy(List<T> recordInfos) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		if (recordInfos == null || recordInfos.isEmpty())
+			return recordInfos;
+		
+		List<T> clonedRecords = new ArrayList<>();
+		
+		for (T eachRecord: recordInfos) {
+			T cloned = (T) eachRecord.getClass().getMethod("clone").invoke(eachRecord);
+			clonedRecords.add(cloned);
+		}
+	
+		return clonedRecords;
 	}
 	
 	

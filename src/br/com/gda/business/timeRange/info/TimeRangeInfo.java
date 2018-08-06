@@ -1,6 +1,7 @@
 package br.com.gda.business.timeRange.info;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import br.com.gda.info.RecordInfo;
@@ -41,4 +42,36 @@ public final class TimeRangeInfo extends RecordInfo implements Cloneable {
 				
 		return deepCopy;	
 	}  
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		if (beginTime != null) {			
+			int numTime = Integer.valueOf(beginTime.format(DateTimeFormatter.BASIC_ISO_DATE));
+			result = result * (int) numTime;
+		}
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof TimeRangeInfo))
+			return false;
+		
+		
+		TimeRangeInfo obj = (TimeRangeInfo) o;	
+		
+		if (beginTime == null || obj.beginTime == null)
+			return false;
+		
+		return (beginTime.equals(obj.beginTime));
+	}		
 }

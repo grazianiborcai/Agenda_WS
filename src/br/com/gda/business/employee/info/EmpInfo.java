@@ -106,7 +106,7 @@ public final class EmpInfo extends RecordInfo implements Cloneable {
 			return false;
 		
 		
-		EmpInfo emp = (EmpInfo) o;		
-		return (codOwner == emp.codOwner && codEmployee == emp.codEmployee);
+		EmpInfo obj = (EmpInfo) o;		
+		return (codOwner == obj.codOwner && codEmployee == obj.codEmployee);
 	}
 }

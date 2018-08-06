@@ -34,4 +34,29 @@ public final class MatCategInfo extends RecordInfo implements Cloneable {
 	@Override public Object clone()throws CloneNotSupportedException {
 		return super.clone();
 	}
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		result = result * codCategory;
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof MatCategInfo))
+			return false;
+		
+		
+		MatCategInfo obj = (MatCategInfo) o;		
+		return (codCategory == obj.codCategory);
+	}
 }

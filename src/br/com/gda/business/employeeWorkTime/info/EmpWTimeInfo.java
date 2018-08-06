@@ -61,4 +61,35 @@ public class EmpWTimeInfo extends RecordInfo implements Cloneable {
 				
 		return deepCopy;	
 	}  
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		result = result * (int) (codOwner    ^ (codOwner    >>> 32));
+		result = result * (int) (codStore    ^ (codStore    >>> 32));
+		result = result * (int) (codEmployee ^ (codEmployee >>> 32));
+		result = result * codWeekday;
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof EmpWTimeInfo))
+			return false;
+		
+		
+		EmpWTimeInfo obj = (EmpWTimeInfo) o;		
+		return (codOwner 	== obj.codOwner 	&& 
+				codStore 	== obj.codStore 	&&
+				codEmployee == obj.codEmployee 	&&
+				codWeekday 	== obj.codWeekday);
+	}
 }

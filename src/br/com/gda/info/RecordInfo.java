@@ -1,11 +1,13 @@
 package br.com.gda.info;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
 
-public abstract class RecordInfo {
+public abstract class RecordInfo implements Cloneable {
 	
 	protected static <T> List<T> copyFrom(List<?> sourceObjs, Class<T> targetClass) {
 		if (sourceObjs == null)
@@ -26,5 +28,39 @@ public abstract class RecordInfo {
 		Gson gson = new Gson();
 		String sourceStr = gson.toJson(sourceObj);		
 		return gson.fromJson(sourceStr, targetClass);
+	}
+	
+	
+	
+	@Override public Object clone()throws CloneNotSupportedException {
+		return super.clone();
+	}
+	
+	
+	
+	protected boolean isDateEqual(LocalDate dateOne, LocalDate dateTwo) {
+		try {
+			if (dateOne == null && dateTwo == null)
+				return true;
+			
+			return dateOne.isEqual(dateTwo);
+			
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	
+	
+	protected boolean isTimeEqual(LocalTime timeOne, LocalTime timeTwo) {
+		try {
+			if (timeOne == null && timeTwo == null)
+				return true;
+			
+			return timeOne.equals(timeTwo);
+			
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

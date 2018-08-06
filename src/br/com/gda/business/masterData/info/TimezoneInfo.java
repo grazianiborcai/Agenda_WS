@@ -32,4 +32,43 @@ public final class TimezoneInfo extends RecordInfo implements Cloneable {
 	@Override public Object clone()throws CloneNotSupportedException {
 		return super.clone();
 	}
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		if (codTimezone != null) {
+			char[] chars = codTimezone.toCharArray();
+			
+			for (char eachChar : chars) {
+				result = result * (int) eachChar;
+			}
+		}		
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof TimezoneInfo))
+			return false;
+		
+		
+		TimezoneInfo obj = (TimezoneInfo) o;		
+		
+		
+		if (codTimezone == null && obj.codTimezone == null)
+			return true;
+		
+		if (codTimezone == null || obj.codTimezone == null)
+			return false;
+		
+		return codTimezone.equals(obj.codTimezone);
+	}
 }

@@ -20,7 +20,7 @@ import com.google.gson.JsonObject;
 import br.com.gda.legacy.model.JsonBuilder;
 import br.com.gda.legacy.model.PlanningTimeModel;
 
-@Path("/PlanningTime")
+@Path("/PlanningTime_old")
 public class PlanningTimeResource extends JsonBuilder {
 
 	private static final String INSERT_PLANNINGTIME = "/insertPlanningTime";

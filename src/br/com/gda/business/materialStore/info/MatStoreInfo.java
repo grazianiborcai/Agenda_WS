@@ -52,4 +52,33 @@ public final class MatStoreInfo extends RecordInfo implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		result = result * (int) (codOwner   ^ (codOwner  >>> 32));
+		result = result * (int) (codStore 	^ (codStore	 >>> 32));
+		result = result * (int) (codMat 	^ (codMat	 >>> 32));
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof MatStoreInfo))
+			return false;
+		
+		
+		MatStoreInfo obj = (MatStoreInfo) o;		
+		return (codOwner == obj.codOwner && 
+				codStore == obj.codStore &&
+				codMat   == obj.codMat);
+	}
 }

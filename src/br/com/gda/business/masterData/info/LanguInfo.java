@@ -31,4 +31,43 @@ public final class LanguInfo extends RecordInfo implements Cloneable {
 	@Override public Object clone()throws CloneNotSupportedException {
 		return super.clone();
 	}
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		if (codLanguage != null) {
+			char[] chars = codLanguage.toCharArray();
+			
+			for (char eachChar : chars) {
+				result = result * (int) eachChar;
+			}
+		}		
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof LanguInfo))
+			return false;
+		
+		
+		LanguInfo obj = (LanguInfo) o;		
+		
+		
+		if (codLanguage == null && obj.codLanguage == null)
+			return true;
+		
+		if (codLanguage == null || obj.codLanguage == null)
+			return false;
+		
+		return codLanguage.equals(obj.codLanguage);
+	}
 }

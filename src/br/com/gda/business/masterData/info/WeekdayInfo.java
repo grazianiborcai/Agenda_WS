@@ -34,4 +34,29 @@ public final class WeekdayInfo extends RecordInfo implements Cloneable {
 	@Override public Object clone()throws CloneNotSupportedException {
 		return super.clone();
 	}
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		result = result * codWeekday;
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof WeekdayInfo))
+			return false;
+		
+		
+		WeekdayInfo obj = (WeekdayInfo) o;		
+		return (codWeekday == obj.codWeekday);
+	}
 }

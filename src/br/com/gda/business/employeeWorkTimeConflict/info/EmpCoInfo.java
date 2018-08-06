@@ -61,4 +61,35 @@ public final class EmpCoInfo extends RecordInfo implements Cloneable {
 				
 		return deepCopy;	
 	}  
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		result = result * (int) (codOwner    ^ (codOwner    >>> 32));
+		result = result * (int) (codStore    ^ (codStore    >>> 32));
+		result = result * (int) (codEmployee ^ (codEmployee >>> 32));
+		result = result * (int) (codWeekday);
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof EmpCoInfo))
+			return false;
+		
+		
+		EmpCoInfo obj = (EmpCoInfo) o;		
+		return (codOwner 	== obj.codOwner 	&& 
+				codStore 	== obj.codStore 	&&
+				codEmployee == obj.codEmployee 	&&
+				codWeekday 	== obj.codWeekday);
+	}
 }

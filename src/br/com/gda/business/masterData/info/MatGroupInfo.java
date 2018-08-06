@@ -37,4 +37,29 @@ public class MatGroupInfo extends RecordInfo implements Cloneable {
 	@Override public Object clone()throws CloneNotSupportedException {
 		return super.clone();
 	}
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		result = result * codGroup;
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof MatGroupInfo))
+			return false;
+		
+		
+		MatGroupInfo obj = (MatGroupInfo) o;		
+		return (codGroup == obj.codGroup);
+	}
 }

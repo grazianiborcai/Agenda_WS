@@ -37,4 +37,29 @@ public final class OwnerInfo extends RecordInfo implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		result = result * (int) (codOwner    ^ (codOwner    >>> 32));
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof OwnerInfo))
+			return false;
+		
+		
+		OwnerInfo obj = (OwnerInfo) o;		
+		return (codOwner == obj.codOwner);
+	}	
 }

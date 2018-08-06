@@ -2,6 +2,7 @@ package br.com.gda.business.timeRange.info;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import br.com.gda.info.RecordInfo;
@@ -56,4 +57,43 @@ public final class DateTimeRangeInfo extends RecordInfo implements Cloneable {
 				
 		return deepCopy;	
 	}  
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		if (dateValidFrom != null) {			
+			int numDate = Integer.valueOf(dateValidFrom.format(DateTimeFormatter.BASIC_ISO_DATE));
+			result = result * (int) numDate;
+		}
+		
+		if (timeValidFrom != null) {			
+			int numTime = Integer.valueOf(timeValidFrom.format(DateTimeFormatter.BASIC_ISO_DATE));
+			result = result * (int) numTime;
+		}
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof DateTimeRangeInfo))
+			return false;
+		
+		
+		DateTimeRangeInfo obj = (DateTimeRangeInfo) o;	
+		
+		if (dateValidFrom == null || obj.dateValidFrom == null ||
+			timeValidFrom == null || obj.timeValidFrom == null)
+			return false;
+		
+		return (dateValidFrom.isEqual(obj.dateValidFrom) && 
+				timeValidFrom.equals(obj.timeValidFrom));
+	}	
 }

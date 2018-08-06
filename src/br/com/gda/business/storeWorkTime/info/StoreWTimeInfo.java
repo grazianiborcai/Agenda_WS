@@ -59,4 +59,33 @@ public final class StoreWTimeInfo extends RecordInfo implements Cloneable {
 				
 		return deepCopy;	
 	} 
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		result = result * (int) (codOwner    ^ (codOwner    >>> 32));
+		result = result * (int) (codStore    ^ (codStore    >>> 32));
+		result = result * codWeekday;
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof StoreWTimeInfo))
+			return false;
+		
+		
+		StoreWTimeInfo obj = (StoreWTimeInfo) o;		
+		return (codOwner 	== obj.codOwner 	&& 
+				codStore 	== obj.codStore 	&&
+				codWeekday 	== obj.codWeekday);
+	}	
 }

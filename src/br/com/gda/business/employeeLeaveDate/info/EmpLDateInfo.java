@@ -2,6 +2,7 @@ package br.com.gda.business.employeeLeaveDate.info;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
@@ -75,4 +76,43 @@ public final class EmpLDateInfo extends RecordInfo implements Cloneable {
 				
 		return deepCopy;	
 	}  
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		result = result * (int) (codOwner    ^ (codOwner    >>> 32));
+		result = result * (int) (codStore 	 ^ (codStore 	>>> 32));
+		result = result * (int) (codEmployee ^ (codEmployee >>> 32));
+		
+		if (dateValidFrom != null) {			
+			int numDate = Integer.valueOf(dateValidFrom.format(DateTimeFormatter.BASIC_ISO_DATE));
+			result = result * (int) numDate;
+		}
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof EmpLDateInfo))
+			return false;
+		
+		
+		EmpLDateInfo obj = (EmpLDateInfo) o;	
+		
+		if (dateValidFrom == null || obj.dateValidFrom == null)
+			return false;
+		
+		return (codOwner    == obj.codOwner 	&& 
+				codStore    == obj.codStore 	&&
+				codEmployee == obj.codEmployee 	&&
+				dateValidFrom.isEqual(obj.dateValidFrom));
+	}
 }

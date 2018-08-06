@@ -32,6 +32,7 @@ final class VisitorEmpEnforceDel implements DeciActionTransVisitor<EmpInfo> {
 	private EmpInfo makeClone(EmpInfo recordInfo) {
 		try {
 			return (EmpInfo) recordInfo.clone();
+			
 		} catch (CloneNotSupportedException e) {
 			throw new IllegalStateException(e);
 		}

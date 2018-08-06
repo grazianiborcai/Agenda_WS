@@ -32,4 +32,43 @@ public final class MatUnitInfo extends RecordInfo implements Cloneable {
 	@Override public Object clone()throws CloneNotSupportedException {
 		return super.clone();
 	}
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		if (codUnit != null) {
+			char[] chars = codUnit.toCharArray();
+			
+			for (char eachChar : chars) {
+				result = result * (int) eachChar;
+			}
+		}		
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof MatUnitInfo))
+			return false;
+		
+		
+		MatUnitInfo obj = (MatUnitInfo) o;		
+		
+		
+		if (codUnit == null && obj.codUnit == null)
+			return true;
+		
+		if (codUnit == null || obj.codUnit == null)
+			return false;
+		
+		return codUnit.equals(obj.codUnit);
+	}
 }
