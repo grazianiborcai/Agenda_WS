@@ -40,7 +40,7 @@ public final class WeekdayInfo extends RecordInfo implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * codWeekday;
+		result = result * 31 + codWeekday;
 		
 		return result;
 	}

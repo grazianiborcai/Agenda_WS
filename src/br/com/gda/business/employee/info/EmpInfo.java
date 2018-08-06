@@ -89,8 +89,8 @@ public final class EmpInfo extends RecordInfo implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * (int) (codOwner    ^ (codOwner    >>> 32));
-		result = result * (int) (codEmployee ^ (codEmployee >>> 32));
+		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
+		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
 		
 		return result;
 	}
