@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecHelper;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecHelper;
+import br.com.gda.dao.DaoStmtExecOption;
 
-public final class MatEmpDelete implements SqlStmtExec<MatEmpInfo> {
-	private SqlStmtExec<MatEmpInfo> helper;
+public final class MatEmpDelete implements DaoStmtExec<MatEmpInfo> {
+	private DaoStmtExec<MatEmpInfo> helper;
 	
 	
-	public MatEmpDelete(List<SqlStmtExecOption<MatEmpInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, MatEmpDeleteSingle.class, MatEmpInfo.class);
+	public MatEmpDelete(List<DaoStmtExecOption<MatEmpInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MatEmpDeleteSingle.class, MatEmpInfo.class);
 	}
 	
 	

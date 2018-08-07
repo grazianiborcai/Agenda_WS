@@ -7,21 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class OwnerSelectSingle implements SqlStmt<OwnerInfo> {
-	private final String LEFT_TABLE = SqlDbTable.OWNER_TABLE;	
+public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
+	private final String LEFT_TABLE = DaoDbTable.OWNER_TABLE;	
 	
-	private SqlStmt<OwnerInfo> stmtSql;
-	private SqlStmtOption<OwnerInfo> stmtOption;
+	private DaoStmt<OwnerInfo> stmtSql;
+	private DaoStmtOption<OwnerInfo> stmtOption;
 	
 	
 	
@@ -33,12 +33,12 @@ public final class OwnerSelectSingle implements SqlStmt<OwnerInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, OwnerInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LEFT_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(LEFT_TABLE);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LEFT_TABLE);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -51,18 +51,18 @@ public final class OwnerSelectSingle implements SqlStmt<OwnerInfo> {
 		final boolean DONT_IGNORE_NULL = false;
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		SqlStmtWhere whereClause = new OwnerWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new OwnerWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
 	
 	
@@ -91,7 +91,7 @@ public final class OwnerSelectSingle implements SqlStmt<OwnerInfo> {
 	
 	
 	
-	@Override public SqlStmt<OwnerInfo> getNewInstance() {
+	@Override public DaoStmt<OwnerInfo> getNewInstance() {
 		return new OwnerSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
@@ -100,7 +100,7 @@ public final class OwnerSelectSingle implements SqlStmt<OwnerInfo> {
 	
 	
 	
-	private static class ResultParser implements SqlResultParser<OwnerInfo> {
+	private static class ResultParser implements DaoResultParser<OwnerInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<OwnerInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

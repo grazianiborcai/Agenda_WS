@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecHelper;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecHelper;
+import br.com.gda.dao.DaoStmtExecOption;
 
-public final class EmpWTimeSelect implements SqlStmtExec<EmpWTimeInfo> {
-	private SqlStmtExec<EmpWTimeInfo> helper;
+public final class EmpWTimeSelect implements DaoStmtExec<EmpWTimeInfo> {
+	private DaoStmtExec<EmpWTimeInfo> helper;
 	
 	
-	public EmpWTimeSelect(List<SqlStmtExecOption<EmpWTimeInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, EmpWTimeSelectSingle.class, EmpWTimeInfo.class);
+	public EmpWTimeSelect(List<DaoStmtExecOption<EmpWTimeInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, EmpWTimeSelectSingle.class, EmpWTimeInfo.class);
 	}
 	
 	

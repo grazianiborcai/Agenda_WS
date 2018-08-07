@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.GenderInfo;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecHelper;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecHelper;
+import br.com.gda.dao.DaoStmtExecOption;
 
-public final class GenderSelect implements SqlStmtExec<GenderInfo> {
-	private SqlStmtExec<GenderInfo> helper;
+public final class GenderSelect implements DaoStmtExec<GenderInfo> {
+	private DaoStmtExec<GenderInfo> helper;
 	
 	
-	public GenderSelect(List<SqlStmtExecOption<GenderInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, GenderSelectSingle.class, GenderInfo.class);
+	public GenderSelect(List<DaoStmtExecOption<GenderInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, GenderSelectSingle.class, GenderInfo.class);
 	}
 	
 	

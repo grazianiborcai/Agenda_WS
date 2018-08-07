@@ -3,35 +3,35 @@ package br.com.gda.business.masterData.dao;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.MatGroupInfo;
-import br.com.gda.sql.SqlColumn;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlFormatterNumber;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilder;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilder;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class MatGroupWhere implements SqlStmtWhere {
+public final class MatGroupWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public MatGroupWhere(SqlWhereBuilderOption whereOption, String tableName, MatGroupInfo recordInfo) {
+	public MatGroupWhere(DaoWhereBuilderOption whereOption, String tableName, MatGroupInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, MatGroupInfo recordInfo) {
-		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);		
-		List<SqlColumn> columns = SqlDbTableColumnAll.getTableColumnsAsList(tableName);
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, MatGroupInfo recordInfo) {
+		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);		
+		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
-		for (SqlColumn eachColumn : columns) {
+		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "Cod_group" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codGroup));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codGroup));
 					break;
 					
 				case "Cod_business" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codBusiness));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codBusiness));
 					break;
 			}
 		}		

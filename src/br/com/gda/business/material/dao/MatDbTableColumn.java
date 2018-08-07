@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.sql.SqlColumn;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnTemplate;
+import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnTemplate;
 
-public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
-	private Hashtable<String, List<SqlColumn>> tableColumns;	
+public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
+	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public MatDbTableColumn() {
 		super();
@@ -17,7 +17,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	
-	@Override protected Hashtable<String, List<SqlColumn>> buildTableColumnsHook() {
+	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();
 		
 		buildMatTable();	
@@ -29,12 +29,12 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void buildMatTable() {
-		final String TABLE_NAME = SqlDbTable.MAT_TABLE;
+		final String TABLE_NAME = DaoDbTable.MAT_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();	
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();	
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_owner";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -42,7 +42,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_material";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -50,7 +50,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Price";
 		oneColumn.isPK = NEGATIVE;
@@ -58,7 +58,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_type";
 		oneColumn.isPK = NEGATIVE;
@@ -66,7 +66,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_category";
 		oneColumn.isPK = NEGATIVE;
@@ -74,7 +74,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_curr";
 		oneColumn.isPK = NEGATIVE;
@@ -82,7 +82,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Unit";
 		oneColumn.isPK = NEGATIVE;
@@ -90,7 +90,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Price_unit";
 		oneColumn.isPK = NEGATIVE;
@@ -98,7 +98,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_group";
 		oneColumn.isPK = NEGATIVE;
@@ -106,7 +106,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Is_locked";
 		oneColumn.isPK = NEGATIVE;
@@ -114,7 +114,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "record_mode";
 		oneColumn.isPK = NEGATIVE;
@@ -122,80 +122,80 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_TEXT_TABLE;
 		oneColumn.columnName = "Description";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_TYPE_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_TYPE_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_CATEG_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_CATEG_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.CURRENCY_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.CURRENCY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.UNIT_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.UNIT_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_GROUP_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_GROUP_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_GROUP_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_GROUP_TABLE;
 		oneColumn.columnName = "Cod_business";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -208,12 +208,12 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void buildMatTextTable() {
-		final String TABLE_NAME = SqlDbTable.MAT_TEXT_TABLE;
+		final String TABLE_NAME = DaoDbTable.MAT_TEXT_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();	
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();	
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_owner";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -221,7 +221,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_material";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -229,7 +229,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -237,7 +237,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
@@ -245,7 +245,7 @@ public final class MatDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Description";
 		oneColumn.isPK = NEGATIVE;

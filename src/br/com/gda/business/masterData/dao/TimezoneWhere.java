@@ -3,27 +3,27 @@ package br.com.gda.business.masterData.dao;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.TimezoneInfo;
-import br.com.gda.sql.SqlColumn;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilder;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilder;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class TimezoneWhere implements SqlStmtWhere {
+public final class TimezoneWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public TimezoneWhere(SqlWhereBuilderOption whereOption, String tableName, TimezoneInfo recordInfo) {
+	public TimezoneWhere(DaoWhereBuilderOption whereOption, String tableName, TimezoneInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, TimezoneInfo recordInfo) {
-		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);		
-		List<SqlColumn> columns = SqlDbTableColumnAll.getTableColumnsAsList(tableName);
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, TimezoneInfo recordInfo) {
+		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);		
+		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
-		for (SqlColumn eachColumn : columns) {
+		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "cod_timezone" :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codTimezone);

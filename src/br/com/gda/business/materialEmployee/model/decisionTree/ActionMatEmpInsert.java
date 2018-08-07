@@ -5,30 +5,30 @@ import java.util.List;
 
 import br.com.gda.business.materialEmployee.dao.MatEmpInsert;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciActionHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
 
 final class ActionMatEmpInsert implements DeciAction<MatEmpInfo> {
 	private DeciAction<MatEmpInfo> actionHelper;
 	
 	
 	public ActionMatEmpInsert(DeciTreeOption<MatEmpInfo> option) {
-		SqlStmtExec<MatEmpInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec<MatEmpInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private SqlStmtExec<MatEmpInfo> buildStmtExec(DeciTreeOption<MatEmpInfo> option) {
-		List<SqlStmtExecOption<MatEmpInfo>> stmtExecOptions = new ArrayList<>();			
+	private DaoStmtExec<MatEmpInfo> buildStmtExec(DeciTreeOption<MatEmpInfo> option) {
+		List<DaoStmtExecOption<MatEmpInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatEmpInfo eachRecord : option.recordInfos) {
-			SqlStmtExecOption<MatEmpInfo> stmtExecOption = new SqlStmtExecOption<>();
+			DaoStmtExecOption<MatEmpInfo> stmtExecOption = new DaoStmtExecOption<>();
 			stmtExecOption.conn = option.conn;
 			stmtExecOption.recordInfo = eachRecord;
 			stmtExecOption.schemaName = option.schemaName;

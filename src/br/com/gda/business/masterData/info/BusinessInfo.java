@@ -40,7 +40,7 @@ public final class BusinessInfo extends RecordInfo implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * (int) (codBusiness    ^ (codBusiness    >>> 32));
+		result = result * 31 + (int) (codBusiness    ^ (codBusiness    >>> 32));
 		
 		return result;
 	}

@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecHelper;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecHelper;
+import br.com.gda.dao.DaoStmtExecOption;
 
-public final class StoreUpdate implements SqlStmtExec<StoreInfo> {
-	private SqlStmtExec<StoreInfo> helper;
+public final class StoreUpdate implements DaoStmtExec<StoreInfo> {
+	private DaoStmtExec<StoreInfo> helper;
 	
 	
-	public StoreUpdate(List<SqlStmtExecOption<StoreInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, StoreUpdateSingle.class, StoreInfo.class);
+	public StoreUpdate(List<DaoStmtExecOption<StoreInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StoreUpdateSingle.class, StoreInfo.class);
 	}
 	
 	

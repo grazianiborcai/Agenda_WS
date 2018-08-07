@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecHelper;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecHelper;
+import br.com.gda.dao.DaoStmtExecOption;
 
-public final class CusInsert implements SqlStmtExec<CusInfo> {
-	private SqlStmtExec<CusInfo> helper;
+public final class CusInsert implements DaoStmtExec<CusInfo> {
+	private DaoStmtExec<CusInfo> helper;
 	
 	
-	public CusInsert(List<SqlStmtExecOption<CusInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, CusInsertSingle.class, CusInfo.class);
+	public CusInsert(List<DaoStmtExecOption<CusInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CusInsertSingle.class, CusInfo.class);
 	}
 	
 	

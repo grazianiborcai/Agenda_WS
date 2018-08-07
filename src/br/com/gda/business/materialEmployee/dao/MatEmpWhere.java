@@ -3,44 +3,44 @@ package br.com.gda.business.materialEmployee.dao;
 import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.sql.SqlColumn;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlFormatterNumber;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilder;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilder;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class MatEmpWhere implements SqlStmtWhere {
+public final class MatEmpWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public MatEmpWhere(SqlWhereBuilderOption whereOption, String tableName, MatEmpInfo recordInfo) {
+	public MatEmpWhere(DaoWhereBuilderOption whereOption, String tableName, MatEmpInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, MatEmpInfo recordInfo) {
-		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, MatEmpInfo recordInfo) {
+		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);
 		
-		List<SqlColumn> columns = SqlDbTableColumnAll.getTableColumnsAsList(tableName);
+		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
-		for (SqlColumn eachColumn : columns) {			
+		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
 				case "Cod_owner" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codOwner));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codOwner));
 					break;
 					
 				case "Cod_store" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codStore));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codStore));
 					break;
 					
 				case "Cod_employee" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codEmployee));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codEmployee));
 					break;
 					
 				case "Cod_material" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codMat));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codMat));
 					break;
 					
 				case "record_mode" :

@@ -10,19 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlFormatterNumber;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtParamTranslator;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtParamTranslator;
 
-public final class EmpInsertSingle implements SqlStmt<EmpInfo> {	
-	private SqlStmt<EmpInfo> stmtSql;
-	private SqlStmtOption<EmpInfo> stmtOption;
+public final class EmpInsertSingle implements DaoStmt<EmpInfo> {	
+	private DaoStmt<EmpInfo> stmtSql;
+	private DaoStmtOption<EmpInfo> stmtOption;
 	
 	
 	
@@ -35,12 +35,12 @@ public final class EmpInsertSingle implements SqlStmt<EmpInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, EmpInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.EMP_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.tableName = DaoDbTable.EMP_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser(recordInfo);
 		this.stmtOption.whereClause = null;
@@ -49,7 +49,7 @@ public final class EmpInsertSingle implements SqlStmt<EmpInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.INSERT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
 	}
 		
 	
@@ -79,11 +79,11 @@ public final class EmpInsertSingle implements SqlStmt<EmpInfo> {
 	
 	
 	
-	private class ParamTranslator implements SqlStmtParamTranslator<EmpInfo> {		
+	private class ParamTranslator implements DaoStmtParamTranslator<EmpInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpInfo recordInfo) throws SQLException {
-			Time beginTime = SqlFormatterNumber.localToSqlTime(recordInfo.beginTime);
-			Time endTime = SqlFormatterNumber.localToSqlTime(recordInfo.endTime);	
-			Date birthDate = SqlFormatterNumber.localToSqlDate(recordInfo.birthDate);
+			Time beginTime = DaoFormatterNumber.localToSqlTime(recordInfo.beginTime);
+			Time endTime = DaoFormatterNumber.localToSqlTime(recordInfo.endTime);	
+			Date birthDate = DaoFormatterNumber.localToSqlDate(recordInfo.birthDate);
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
@@ -110,7 +110,7 @@ public final class EmpInsertSingle implements SqlStmt<EmpInfo> {
 	
 	
 	
-	@Override public SqlStmt<EmpInfo> getNewInstance() {
+	@Override public DaoStmt<EmpInfo> getNewInstance() {
 		return new EmpInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
@@ -118,7 +118,7 @@ public final class EmpInsertSingle implements SqlStmt<EmpInfo> {
 	
 	
 	
-	private static class ResultParser implements SqlResultParser<EmpInfo> {
+	private static class ResultParser implements DaoResultParser<EmpInfo> {
 		private EmpInfo recordInfo;
 		
 		public ResultParser(EmpInfo recordToParse) {

@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecHelper;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecHelper;
+import br.com.gda.dao.DaoStmtExecOption;
 
-public final class WeekdaySelect implements SqlStmtExec<WeekdayInfo> {
-	private SqlStmtExec<WeekdayInfo> helper;
+public final class WeekdaySelect implements DaoStmtExec<WeekdayInfo> {
+	private DaoStmtExec<WeekdayInfo> helper;
 	
 	
-	public WeekdaySelect(List<SqlStmtExecOption<WeekdayInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, WeekdaySelectSingle.class, WeekdayInfo.class);
+	public WeekdaySelect(List<DaoStmtExecOption<WeekdayInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, WeekdaySelectSingle.class, WeekdayInfo.class);
 	}
 	
 	

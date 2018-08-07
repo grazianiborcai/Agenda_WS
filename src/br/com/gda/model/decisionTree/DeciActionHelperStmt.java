@@ -4,13 +4,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.sql.SqlStmtExec;
+import br.com.gda.dao.DaoStmtExec;
 
 public final class DeciActionHelperStmt<T> extends DeciActionHelperTemplate<T> {
-	private SqlStmtExec<T> stmtExec;
+	private DaoStmtExec<T> stmtExec;
 	
 	
-	public DeciActionHelperStmt(SqlStmtExec<T> sqlStmtExecutor) {
+	public DeciActionHelperStmt(DaoStmtExec<T> sqlStmtExecutor) {
 		super();
 		checkArgument(sqlStmtExecutor);		
 		stmtExec = sqlStmtExecutor;
@@ -18,7 +18,7 @@ public final class DeciActionHelperStmt<T> extends DeciActionHelperTemplate<T> {
 	
 	
 	
-	private void checkArgument(SqlStmtExec<T> sqlStmtExecutor) {
+	private void checkArgument(DaoStmtExec<T> sqlStmtExecutor) {
 		if (sqlStmtExecutor == null)
 			throw new NullPointerException("sqlStmtExecutor" + SystemMessage.NULL_ARGUMENT);
 	}

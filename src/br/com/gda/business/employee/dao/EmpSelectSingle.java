@@ -9,28 +9,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlDictionary;
-import br.com.gda.sql.SqlJoin;
-import br.com.gda.sql.SqlJoinColumn;
-import br.com.gda.sql.SqlJoinType;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoDictionary;
+import br.com.gda.dao.DaoJoin;
+import br.com.gda.dao.DaoJoinColumn;
+import br.com.gda.dao.DaoJoinType;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class EmpSelectSingle implements SqlStmt<EmpInfo> {
-	private final String LEFT_TABLE_EMPLOYEE = SqlDbTable.EMP_TABLE;	
-	private final String RIGHT_TABLE_GENDER_TEXT = SqlDbTable.GENDER_TEXT_TABLE;
-	private final String RIGHT_TABLE_POSITION_TEXT = SqlDbTable.POSITION_TEXT_TABLE;
-	private final String RIGHT_TABLE_COUNTRY_TEXT = SqlDbTable.COUNTRY_TEXT_TABLE;
+public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
+	private final String LEFT_TABLE_EMPLOYEE = DaoDbTable.EMP_TABLE;	
+	private final String RIGHT_TABLE_GENDER_TEXT = DaoDbTable.GENDER_TEXT_TABLE;
+	private final String RIGHT_TABLE_POSITION_TEXT = DaoDbTable.POSITION_TEXT_TABLE;
+	private final String RIGHT_TABLE_COUNTRY_TEXT = DaoDbTable.COUNTRY_TEXT_TABLE;
 	
-	private SqlStmt<EmpInfo> stmtSql;
-	private SqlStmtOption<EmpInfo> stmtOption;
+	private DaoStmt<EmpInfo> stmtSql;
+	private DaoStmtOption<EmpInfo> stmtOption;
 	
 	
 	
@@ -42,12 +42,12 @@ public final class EmpSelectSingle implements SqlStmt<EmpInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, EmpInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LEFT_TABLE_EMPLOYEE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(LEFT_TABLE_EMPLOYEE);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LEFT_TABLE_EMPLOYEE);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -60,18 +60,18 @@ public final class EmpSelectSingle implements SqlStmt<EmpInfo> {
 		final boolean IGNORE_NULL = true;
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		SqlStmtWhere whereClause = new EmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new EmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private List<SqlJoin> buildJoins() {
-		List<SqlJoin> joins = new ArrayList<>();
+	private List<DaoJoin> buildJoins() {
+		List<DaoJoin> joins = new ArrayList<>();
 		
 		joins.add(buildJoinGenderText());
 		joins.add(buildJoinPositionText());
@@ -82,19 +82,19 @@ public final class EmpSelectSingle implements SqlStmt<EmpInfo> {
 	
 	
 	
-	private SqlJoin buildJoinGenderText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinGenderText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LEFT_TABLE_EMPLOYEE;
 		oneColumn.leftColumnName = "Cod_gender";
 		oneColumn.rightColumnName = "Cod_gender";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RIGHT_TABLE_GENDER_TEXT;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE_GENDER_TEXT);
 		
@@ -103,19 +103,19 @@ public final class EmpSelectSingle implements SqlStmt<EmpInfo> {
 	
 	
 	
-	private SqlJoin buildJoinPositionText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinPositionText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LEFT_TABLE_EMPLOYEE;
 		oneColumn.leftColumnName = "Cod_position";
 		oneColumn.rightColumnName = "Cod_position";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RIGHT_TABLE_POSITION_TEXT;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE_POSITION_TEXT);
 		
@@ -124,19 +124,19 @@ public final class EmpSelectSingle implements SqlStmt<EmpInfo> {
 	
 	
 	
-	private SqlJoin buildJoinCountryText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinCountryText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LEFT_TABLE_EMPLOYEE;
 		oneColumn.leftColumnName = "Country";
 		oneColumn.rightColumnName = "Country";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RIGHT_TABLE_COUNTRY_TEXT;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE_COUNTRY_TEXT);
 		
@@ -149,14 +149,14 @@ public final class EmpSelectSingle implements SqlStmt<EmpInfo> {
 		StringBuilder constrainClause = new StringBuilder(); 
 		
 		constrainClause.append(rightTableName);
-		constrainClause.append(SqlDictionary.PERIOD);
+		constrainClause.append(DaoDictionary.PERIOD);
 		constrainClause.append("Language");
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.EQUAL);
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.EQUAL);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		constrainClause.append(this.stmtOption.recordInfo.codLanguage);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		
 		return constrainClause.toString();
 	}
@@ -164,7 +164,7 @@ public final class EmpSelectSingle implements SqlStmt<EmpInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
 	
 	
@@ -193,7 +193,7 @@ public final class EmpSelectSingle implements SqlStmt<EmpInfo> {
 	
 	
 	
-	@Override public SqlStmt<EmpInfo> getNewInstance() {
+	@Override public DaoStmt<EmpInfo> getNewInstance() {
 		return new EmpSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
@@ -202,11 +202,11 @@ public final class EmpSelectSingle implements SqlStmt<EmpInfo> {
 	
 	
 	
-	private static class ResultParser implements SqlResultParser<EmpInfo> {
+	private static class ResultParser implements DaoResultParser<EmpInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String GENDER_TEXT_COLUMN = SqlDbTable.GENDER_TEXT_TABLE + "." + "Name";
-		private final String POSITION_TEXT_COLUMN = SqlDbTable.POSITION_TEXT_TABLE + "." + "Name";
-		private final String COUNTRY_TEXT_COLUMN = SqlDbTable.COUNTRY_TEXT_TABLE + "." + "Name";
+		private final String GENDER_TEXT_COLUMN = DaoDbTable.GENDER_TEXT_TABLE + "." + "Name";
+		private final String POSITION_TEXT_COLUMN = DaoDbTable.POSITION_TEXT_TABLE + "." + "Name";
+		private final String COUNTRY_TEXT_COLUMN = DaoDbTable.COUNTRY_TEXT_TABLE + "." + "Name";
 		
 		@Override public List<EmpInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpInfo> finalResult = new ArrayList<>();

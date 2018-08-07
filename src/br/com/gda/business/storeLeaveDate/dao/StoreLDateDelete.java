@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecHelper;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecHelper;
+import br.com.gda.dao.DaoStmtExecOption;
 
-public final class StoreLDateDelete implements SqlStmtExec<StoreLDateInfo> {
-	private SqlStmtExec<StoreLDateInfo> helper;
+public final class StoreLDateDelete implements DaoStmtExec<StoreLDateInfo> {
+	private DaoStmtExec<StoreLDateInfo> helper;
 	
 	
-	public StoreLDateDelete(List<SqlStmtExecOption<StoreLDateInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, StoreLDateDeleteSingle.class, StoreLDateInfo.class);
+	public StoreLDateDelete(List<DaoStmtExecOption<StoreLDateInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StoreLDateDeleteSingle.class, StoreLDateInfo.class);
 	}
 	
 	

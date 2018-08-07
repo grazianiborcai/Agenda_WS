@@ -40,7 +40,7 @@ public final class GenderInfo extends RecordInfo implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * (int) (codGender    ^ (codGender    >>> 32));
+		result = result * 31 + codGender;
 		
 		return result;
 	}

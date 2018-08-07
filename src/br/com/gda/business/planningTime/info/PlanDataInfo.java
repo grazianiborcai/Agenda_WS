@@ -71,25 +71,25 @@ public final class PlanDataInfo extends RecordInfo implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * (int) (codOwner    ^ (codOwner    >>> 32));
-		result = result * (int) (codEmployee ^ (codEmployee >>> 32));
-		result = result * (int) (codStore 	 ^ (codStore 	>>> 32));
-		result = result * (int) (codMat 	 ^ (codMat 		>>> 32));
-		result = result * codWeekday;
+		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
+		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
+		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
+		result = result * 31 + (int) (codMat 	  ^ (codMat 	 >>> 32));
+		result = result * 31 + codWeekday;
 		
 		if (date != null) {			
 			int numDate = Integer.valueOf(date.format(DateTimeFormatter.BASIC_ISO_DATE));
-			result = result * (int) numDate;
+			result = result * 31 + numDate;
 		}
 		
 		if (beginTime != null) {			
 			int numTime = Integer.valueOf(beginTime.format(DateTimeFormatter.ofPattern("HHmm")));
-			result = result * (int) numTime;
+			result = result * 31 + numTime;
 		}
 		
 		if (endTime != null) {			
 			int numTime = Integer.valueOf(endTime.format(DateTimeFormatter.ofPattern("HHmm")));
-			result = result * (int) numTime;
+			result = result * 31 + numTime;
 		}
 		
 		return result;
@@ -107,6 +107,7 @@ public final class PlanDataInfo extends RecordInfo implements Cloneable {
 		
 		
 		PlanDataInfo obj = (PlanDataInfo) o;		
+		
 		return (codOwner 	== obj.codOwner 		  && 
 				codEmployee == obj.codEmployee 		  &&
 				codStore 	== obj.codStore 		  && 

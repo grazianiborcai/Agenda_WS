@@ -3,31 +3,31 @@ package br.com.gda.business.masterData.dao;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
-import br.com.gda.sql.SqlColumn;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlFormatterNumber;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilder;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilder;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class WeekdayWhere implements SqlStmtWhere {
+public final class WeekdayWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public WeekdayWhere(SqlWhereBuilderOption whereOption, String tableName, WeekdayInfo recordInfo) {
+	public WeekdayWhere(DaoWhereBuilderOption whereOption, String tableName, WeekdayInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, WeekdayInfo recordInfo) {
-		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);		
-		List<SqlColumn> columns = SqlDbTableColumnAll.getTableColumnsAsList(tableName);
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, WeekdayInfo recordInfo) {
+		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);		
+		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
-		for (SqlColumn eachColumn : columns) {
+		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "Weekday" :
-					builder.addClauseEqualAnd(eachColumn, SqlFormatterNumber.numberToString(recordInfo.codWeekday));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codWeekday));
 					break;
 			}
 		}		

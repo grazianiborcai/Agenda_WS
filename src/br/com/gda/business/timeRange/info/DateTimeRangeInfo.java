@@ -65,12 +65,12 @@ public final class DateTimeRangeInfo extends RecordInfo implements Cloneable {
 		
 		if (dateValidFrom != null) {			
 			int numDate = Integer.valueOf(dateValidFrom.format(DateTimeFormatter.BASIC_ISO_DATE));
-			result = result * (int) numDate;
+			result = result * 31 + numDate;
 		}
 		
 		if (timeValidFrom != null) {			
 			int numTime = Integer.valueOf(timeValidFrom.format(DateTimeFormatter.BASIC_ISO_DATE));
-			result = result * (int) numTime;
+			result = result * 31 + numTime;
 		}
 		
 		return result;
@@ -87,13 +87,9 @@ public final class DateTimeRangeInfo extends RecordInfo implements Cloneable {
 			return false;
 		
 		
-		DateTimeRangeInfo obj = (DateTimeRangeInfo) o;	
+		DateTimeRangeInfo obj = (DateTimeRangeInfo) o;
 		
-		if (dateValidFrom == null || obj.dateValidFrom == null ||
-			timeValidFrom == null || obj.timeValidFrom == null)
-			return false;
-		
-		return (dateValidFrom.isEqual(obj.dateValidFrom) && 
-				timeValidFrom.equals(obj.timeValidFrom));
+		return (isDateEqual(dateValidFrom, obj.dateValidFrom) && 
+				isTimeEqual(timeValidFrom, obj.timeValidFrom));
 	}	
 }

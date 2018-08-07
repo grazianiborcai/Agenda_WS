@@ -7,21 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.LanguInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class LanguSelectSingle implements SqlStmt<LanguInfo> {
-	private final String LT_LANGU = SqlDbTable.LANGUAGE_TABLE;
+public final class LanguSelectSingle implements DaoStmt<LanguInfo> {
+	private final String LT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
-	private SqlStmt<LanguInfo> stmtSql;
-	private SqlStmtOption<LanguInfo> stmtOption;
+	private DaoStmt<LanguInfo> stmtSql;
+	private DaoStmtOption<LanguInfo> stmtOption;
 	
 	
 	
@@ -33,12 +33,12 @@ public final class LanguSelectSingle implements SqlStmt<LanguInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, LanguInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LT_LANGU;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -52,19 +52,19 @@ public final class LanguSelectSingle implements SqlStmt<LanguInfo> {
 		final boolean IGNORE_RECORD_MODE = true;
 		final boolean DUMMY_CLAUSE_ALLOWED = true;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DUMMY_CLAUSE_ALLOWED;
 		
-		SqlStmtWhere whereClause = new LanguWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new LanguWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
 	
 	
@@ -93,13 +93,13 @@ public final class LanguSelectSingle implements SqlStmt<LanguInfo> {
 	
 	
 	
-	@Override public SqlStmt<LanguInfo> getNewInstance() {
+	@Override public DaoStmt<LanguInfo> getNewInstance() {
 		return new LanguSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements SqlResultParser<LanguInfo> {
+	private class ResultParser implements DaoResultParser<LanguInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<LanguInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

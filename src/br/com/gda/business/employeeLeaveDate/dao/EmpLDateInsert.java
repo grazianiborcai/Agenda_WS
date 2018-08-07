@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecHelper;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecHelper;
+import br.com.gda.dao.DaoStmtExecOption;
 
-public final class EmpLDateInsert implements SqlStmtExec<EmpLDateInfo> {
-	private SqlStmtExec<EmpLDateInfo> helper;
+public final class EmpLDateInsert implements DaoStmtExec<EmpLDateInfo> {
+	private DaoStmtExec<EmpLDateInfo> helper;
 	
 	
-	public EmpLDateInsert(List<SqlStmtExecOption<EmpLDateInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, EmpLDateInsertSingle.class, EmpLDateInfo.class);
+	public EmpLDateInsert(List<DaoStmtExecOption<EmpLDateInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, EmpLDateInsertSingle.class, EmpLDateInfo.class);
 	}
 	
 	

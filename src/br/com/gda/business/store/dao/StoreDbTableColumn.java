@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.sql.SqlColumn;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnTemplate;
+import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnTemplate;
 
-public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
-	private Hashtable<String, List<SqlColumn>> tableColumns;	
+public final class StoreDbTableColumn extends DaoDbTableColumnTemplate {
+	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public StoreDbTableColumn() {
 		super();
@@ -17,7 +17,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	
-	@Override protected Hashtable<String, List<SqlColumn>> buildTableColumnsHook() {
+	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();
 		
 		buildStoreTable();
@@ -28,12 +28,12 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void buildStoreTable() {
-		final String TABLE_NAME = SqlDbTable.STORE_TABLE;
+		final String TABLE_NAME = DaoDbTable.STORE_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();	
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();	
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_owner";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -41,7 +41,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_store";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -49,7 +49,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "CNPJ";
 		oneColumn.isPK = NEGATIVE;
@@ -57,7 +57,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Inscricao_municipal";
 		oneColumn.isPK = NEGATIVE;
@@ -65,7 +65,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Inscricao_estadual";
 		oneColumn.isPK = NEGATIVE;
@@ -73,7 +73,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Razao_social";
 		oneColumn.isPK = NEGATIVE;
@@ -81,7 +81,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
@@ -89,7 +89,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Address1";
 		oneColumn.isPK = NEGATIVE;
@@ -97,7 +97,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Address2";
 		oneColumn.isPK = NEGATIVE;
@@ -105,7 +105,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Postalcode";
 		oneColumn.isPK = NEGATIVE;
@@ -113,7 +113,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "City";
 		oneColumn.isPK = NEGATIVE;
@@ -121,7 +121,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Country";
 		oneColumn.isPK = NEGATIVE;
@@ -129,7 +129,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "State_province";
 		oneColumn.isPK = NEGATIVE;
@@ -137,7 +137,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Phone";
 		oneColumn.isPK = NEGATIVE;
@@ -145,7 +145,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_curr";
 		oneColumn.isPK = NEGATIVE;
@@ -153,7 +153,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_payment";
 		oneColumn.isPK = NEGATIVE;
@@ -161,7 +161,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Latitude";
 		oneColumn.isPK = NEGATIVE;
@@ -169,7 +169,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Longitude";
 		oneColumn.isPK = NEGATIVE;
@@ -177,7 +177,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_timezone";
 		oneColumn.isPK = NEGATIVE;
@@ -185,7 +185,7 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "record_mode";
 		oneColumn.isPK = NEGATIVE;
@@ -193,8 +193,8 @@ public final class StoreDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.COUNTRY_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.COUNTRY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

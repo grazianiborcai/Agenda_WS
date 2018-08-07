@@ -41,7 +41,7 @@ public final class LanguInfo extends RecordInfo implements Cloneable {
 			char[] chars = codLanguage.toCharArray();
 			
 			for (char eachChar : chars) {
-				result = result * (int) eachChar;
+				result = result * 31 + (int) eachChar;
 			}
 		}		
 		
@@ -60,14 +60,6 @@ public final class LanguInfo extends RecordInfo implements Cloneable {
 		
 		
 		LanguInfo obj = (LanguInfo) o;		
-		
-		
-		if (codLanguage == null && obj.codLanguage == null)
-			return true;
-		
-		if (codLanguage == null || obj.codLanguage == null)
-			return false;
-		
-		return codLanguage.equals(obj.codLanguage);
+		return isStringEqual(codLanguage, obj.codLanguage);
 	}
 }

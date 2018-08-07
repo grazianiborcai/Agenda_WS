@@ -7,33 +7,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlDictionary;
-import br.com.gda.sql.SqlJoin;
-import br.com.gda.sql.SqlJoinColumn;
-import br.com.gda.sql.SqlJoinType;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoDictionary;
+import br.com.gda.dao.DaoJoin;
+import br.com.gda.dao.DaoJoinColumn;
+import br.com.gda.dao.DaoJoinType;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class MatSelectSingle implements SqlStmt<MatInfo> {
-	private final String LT_MAT = SqlDbTable.MAT_TABLE;	
-	private final String RT_MAT_TEXT = SqlDbTable.MAT_TEXT_TABLE;
-	private final String RT_MAT_TYPE_TEXT = SqlDbTable.MAT_TYPE_TEXT_TABLE;
-	private final String RT_MAT_CATEGORY_TEXT = SqlDbTable.MAT_CATEG_TEXT_TABLE;
-	private final String RT_MAT_GROUP_TEXT = SqlDbTable.MAT_GROUP_TEXT_TABLE;
-	private final String RT_MAT_GROUP = SqlDbTable.MAT_GROUP_TABLE;
-	private final String RT_CURRENCY_TEXT = SqlDbTable.CURRENCY_TEXT_TABLE;
-	private final String RT_UNIT_TEXT = SqlDbTable.UNIT_TEXT_TABLE;
-	private final String RT_BUSINESS_TEXT = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
+public final class MatSelectSingle implements DaoStmt<MatInfo> {
+	private final String LT_MAT = DaoDbTable.MAT_TABLE;	
+	private final String RT_MAT_TEXT = DaoDbTable.MAT_TEXT_TABLE;
+	private final String RT_MAT_TYPE_TEXT = DaoDbTable.MAT_TYPE_TEXT_TABLE;
+	private final String RT_MAT_CATEGORY_TEXT = DaoDbTable.MAT_CATEG_TEXT_TABLE;
+	private final String RT_MAT_GROUP_TEXT = DaoDbTable.MAT_GROUP_TEXT_TABLE;
+	private final String RT_MAT_GROUP = DaoDbTable.MAT_GROUP_TABLE;
+	private final String RT_CURRENCY_TEXT = DaoDbTable.CURRENCY_TEXT_TABLE;
+	private final String RT_UNIT_TEXT = DaoDbTable.UNIT_TEXT_TABLE;
+	private final String RT_BUSINESS_TEXT = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
 	
-	private SqlStmt<MatInfo> stmtSql;
-	private SqlStmtOption<MatInfo> stmtOption;
+	private DaoStmt<MatInfo> stmtSql;
+	private DaoStmtOption<MatInfo> stmtOption;
 	
 	
 	
@@ -45,12 +45,12 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, MatInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LT_MAT;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(LT_MAT);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_MAT);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -63,18 +63,18 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 		final boolean IGNORE_NULL = true;
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		SqlStmtWhere whereClause = new MatWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new MatWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private List<SqlJoin> buildJoins() {
-		List<SqlJoin> joins = new ArrayList<>();		
+	private List<DaoJoin> buildJoins() {
+		List<DaoJoin> joins = new ArrayList<>();		
 		joins.add(buildJoinMatText());		
 		joins.add(buildJoinTypeText());
 		joins.add(buildJoinCategoryText());
@@ -88,19 +88,19 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	private SqlJoin buildJoinMatText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinMatText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT;
 		oneColumn.leftColumnName = "Cod_material";
 		oneColumn.rightColumnName = "Cod_material";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_MAT_TEXT;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(join.rightTableName);
 		
@@ -109,19 +109,19 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	private SqlJoin buildJoinTypeText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinTypeText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT;
 		oneColumn.leftColumnName = "Cod_type";
 		oneColumn.rightColumnName = "Cod_type";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_MAT_TYPE_TEXT;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(join.rightTableName);
 		
@@ -130,19 +130,19 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	private SqlJoin buildJoinCategoryText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinCategoryText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT;
 		oneColumn.leftColumnName = "Cod_category";
 		oneColumn.rightColumnName = "Cod_category";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_MAT_CATEGORY_TEXT;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(join.rightTableName);
 		
@@ -151,19 +151,19 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	private SqlJoin buildJoinCurrencyText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinCurrencyText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT;
 		oneColumn.leftColumnName = "Cod_curr";
 		oneColumn.rightColumnName = "Cod_curr";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_CURRENCY_TEXT;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(join.rightTableName);
 		
@@ -172,20 +172,20 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	private SqlJoin buildJoinUnitText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinUnitText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT;
 		oneColumn.leftColumnName = "Unit";
 		oneColumn.rightColumnName = "Unit";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		String rightTableName = RT_UNIT_TEXT;
 		join.rightTableName = rightTableName;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(rightTableName);
 		
@@ -194,20 +194,20 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	private SqlJoin buildJoinGroupText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinGroupText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT;
 		oneColumn.leftColumnName = "Cod_group";
 		oneColumn.rightColumnName = "Cod_group";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		String rightTableName = RT_MAT_GROUP_TEXT;
 		join.rightTableName = rightTableName;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(rightTableName);
 		
@@ -216,20 +216,20 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	private SqlJoin buildJoinBusinessCod() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinBusinessCod() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT;
 		oneColumn.leftColumnName = "Cod_group";
 		oneColumn.rightColumnName = "Cod_group";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		String rightTableName = RT_MAT_GROUP;
 		join.rightTableName = rightTableName;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = null;
 		
@@ -238,20 +238,20 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	private SqlJoin buildJoinBusinessText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinBusinessText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = RT_MAT_GROUP;
 		oneColumn.leftColumnName = "Cod_business";
 		oneColumn.rightColumnName = "Cod_business";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		String rightTableName = RT_BUSINESS_TEXT;
 		join.rightTableName = rightTableName;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(rightTableName);
 		
@@ -264,14 +264,14 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 		StringBuilder constrainClause = new StringBuilder(); 
 		
 		constrainClause.append(rightTableName);
-		constrainClause.append(SqlDictionary.PERIOD);
+		constrainClause.append(DaoDictionary.PERIOD);
 		constrainClause.append("Language");
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.EQUAL);
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.EQUAL);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		constrainClause.append(this.stmtOption.recordInfo.codLanguage);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		
 		return constrainClause.toString();
 	}
@@ -279,7 +279,7 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
 	
 	
@@ -308,7 +308,7 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	@Override public SqlStmt<MatInfo> getNewInstance() {
+	@Override public DaoStmt<MatInfo> getNewInstance() {
 		return new MatSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
@@ -317,18 +317,18 @@ public final class MatSelectSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	private static class ResultParser implements SqlResultParser<MatInfo> {
+	private static class ResultParser implements DaoResultParser<MatInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String MAT_TEXT_COL = SqlDbTable.MAT_TEXT_TABLE + "." + "Name";
-		private final String MAT_LANGU_COL = SqlDbTable.MAT_TEXT_TABLE + "." + "Language";
-		private final String MAT_DESCR_COL = SqlDbTable.MAT_TEXT_TABLE + "." + "Description";
-		private final String MAT_TYPE_TEXT_COL = SqlDbTable.MAT_TYPE_TEXT_TABLE + "." + "Name";
-		private final String MAT_CATEGORY_TEXT_COL = SqlDbTable.MAT_CATEG_TEXT_TABLE + "." + "Name";
-		private final String MAT_GROUP_TEXT_COL = SqlDbTable.MAT_GROUP_TEXT_TABLE + "." + "Name";
-		private final String MAT_BUSINESS_COL = SqlDbTable.MAT_GROUP_TABLE + "." + "Cod_business";
-		private final String MAT_BUSINESS_TEXT_COL = SqlDbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
-		private final String CURRENCY_TEXT_COL = SqlDbTable.CURRENCY_TEXT_TABLE + "." + "Name";
-		private final String UNIT_TEXT_COL = SqlDbTable.UNIT_TEXT_TABLE + "." + "Name";
+		private final String MAT_TEXT_COL = DaoDbTable.MAT_TEXT_TABLE + "." + "Name";
+		private final String MAT_LANGU_COL = DaoDbTable.MAT_TEXT_TABLE + "." + "Language";
+		private final String MAT_DESCR_COL = DaoDbTable.MAT_TEXT_TABLE + "." + "Description";
+		private final String MAT_TYPE_TEXT_COL = DaoDbTable.MAT_TYPE_TEXT_TABLE + "." + "Name";
+		private final String MAT_CATEGORY_TEXT_COL = DaoDbTable.MAT_CATEG_TEXT_TABLE + "." + "Name";
+		private final String MAT_GROUP_TEXT_COL = DaoDbTable.MAT_GROUP_TEXT_TABLE + "." + "Name";
+		private final String MAT_BUSINESS_COL = DaoDbTable.MAT_GROUP_TABLE + "." + "Cod_business";
+		private final String MAT_BUSINESS_TEXT_COL = DaoDbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
+		private final String CURRENCY_TEXT_COL = DaoDbTable.CURRENCY_TEXT_TABLE + "." + "Name";
+		private final String UNIT_TEXT_COL = DaoDbTable.UNIT_TEXT_TABLE + "." + "Name";
 		
 		@Override public List<MatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatInfo> finalResult = new ArrayList<>();

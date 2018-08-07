@@ -7,27 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.MatGroupInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlDictionary;
-import br.com.gda.sql.SqlJoin;
-import br.com.gda.sql.SqlJoinColumn;
-import br.com.gda.sql.SqlJoinType;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoDictionary;
+import br.com.gda.dao.DaoJoin;
+import br.com.gda.dao.DaoJoinColumn;
+import br.com.gda.dao.DaoJoinType;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class MatGroupSelectSingle implements SqlStmt<MatGroupInfo> {
-	private final String LT_MAT_GROUP = SqlDbTable.MAT_GROUP_TABLE;
-	private final String RT_MAT_GROUP_TEXT = SqlDbTable.MAT_GROUP_TEXT_TABLE;
-	private final String RT_BUSINESS_TEXT = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
+public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
+	private final String LT_MAT_GROUP = DaoDbTable.MAT_GROUP_TABLE;
+	private final String RT_MAT_GROUP_TEXT = DaoDbTable.MAT_GROUP_TEXT_TABLE;
+	private final String RT_BUSINESS_TEXT = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
 	
-	private SqlStmt<MatGroupInfo> stmtSql;
-	private SqlStmtOption<MatGroupInfo> stmtOption;
+	private DaoStmt<MatGroupInfo> stmtSql;
+	private DaoStmtOption<MatGroupInfo> stmtOption;
 	
 	
 	
@@ -39,12 +39,12 @@ public final class MatGroupSelectSingle implements SqlStmt<MatGroupInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, MatGroupInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LT_MAT_GROUP;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -58,19 +58,19 @@ public final class MatGroupSelectSingle implements SqlStmt<MatGroupInfo> {
 		final boolean IGNORE_RECORD_MODE = true;
 		final boolean DUMMY_CLAUSE_ALLOWED = true;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DUMMY_CLAUSE_ALLOWED;
 		
-		SqlStmtWhere whereClause = new MatGroupWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new MatGroupWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private List<SqlJoin> buildJoins() {
-		List<SqlJoin> joins = new ArrayList<>();		
+	private List<DaoJoin> buildJoins() {
+		List<DaoJoin> joins = new ArrayList<>();		
 		joins.add(buildJoinUnitText());
 		joins.add(buildJoinBusinessText());
 		return joins;
@@ -78,19 +78,19 @@ public final class MatGroupSelectSingle implements SqlStmt<MatGroupInfo> {
 	
 	
 	
-	private SqlJoin buildJoinUnitText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinUnitText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT_GROUP;
 		oneColumn.leftColumnName = "Cod_group";
 		oneColumn.rightColumnName = "Cod_group";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_MAT_GROUP_TEXT;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(RT_MAT_GROUP_TEXT);
 		
@@ -99,20 +99,20 @@ public final class MatGroupSelectSingle implements SqlStmt<MatGroupInfo> {
 	
 	
 	
-	private SqlJoin buildJoinBusinessText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinBusinessText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT_GROUP;
 		oneColumn.leftColumnName = "Cod_business";
 		oneColumn.rightColumnName = "Cod_business";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		String rightTable = RT_BUSINESS_TEXT;
 		join.rightTableName = rightTable;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(rightTable);
 		
@@ -125,14 +125,14 @@ public final class MatGroupSelectSingle implements SqlStmt<MatGroupInfo> {
 		StringBuilder constrainClause = new StringBuilder(); 
 		
 		constrainClause.append(rightTableName);
-		constrainClause.append(SqlDictionary.PERIOD);
+		constrainClause.append(DaoDictionary.PERIOD);
 		constrainClause.append("Language");
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.EQUAL);
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.EQUAL);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		constrainClause.append(this.stmtOption.recordInfo.codLanguage);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		
 		return constrainClause.toString();
 	}
@@ -140,7 +140,7 @@ public final class MatGroupSelectSingle implements SqlStmt<MatGroupInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
 	
 	
@@ -169,17 +169,17 @@ public final class MatGroupSelectSingle implements SqlStmt<MatGroupInfo> {
 	
 	
 	
-	@Override public SqlStmt<MatGroupInfo> getNewInstance() {
+	@Override public DaoStmt<MatGroupInfo> getNewInstance() {
 		return new MatGroupSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements SqlResultParser<MatGroupInfo> {
+	private class ResultParser implements DaoResultParser<MatGroupInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String GROUP_TEXT_COL = SqlDbTable.MAT_GROUP_TEXT_TABLE + "." + "Name";
-		private final String BUSINESS_TEXT_COL = SqlDbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = SqlDbTable.MAT_GROUP_TEXT_TABLE + "." + "Language";
+		private final String GROUP_TEXT_COL = DaoDbTable.MAT_GROUP_TEXT_TABLE + "." + "Name";
+		private final String BUSINESS_TEXT_COL = DaoDbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
+		private final String LANGU_COL = DaoDbTable.MAT_GROUP_TEXT_TABLE + "." + "Language";
 		
 		@Override public List<MatGroupInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatGroupInfo> finalResult = new ArrayList<>();

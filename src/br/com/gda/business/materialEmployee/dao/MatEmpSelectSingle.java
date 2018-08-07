@@ -7,26 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlDictionary;
-import br.com.gda.sql.SqlJoin;
-import br.com.gda.sql.SqlJoinColumn;
-import br.com.gda.sql.SqlJoinType;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoDictionary;
+import br.com.gda.dao.DaoJoin;
+import br.com.gda.dao.DaoJoinColumn;
+import br.com.gda.dao.DaoJoinType;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class MatEmpSelectSingle implements SqlStmt<MatEmpInfo> {
-	static private final String LT_MAT_EMP = SqlDbTable.MAT_EMP_TABLE;
-	static private final String RT_LANGU = SqlDbTable.LANGUAGE_TABLE;
+public final class MatEmpSelectSingle implements DaoStmt<MatEmpInfo> {
+	static private final String LT_MAT_EMP = DaoDbTable.MAT_EMP_TABLE;
+	static private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
-	private SqlStmt<MatEmpInfo> stmtSql;
-	private SqlStmtOption<MatEmpInfo> stmtOption;	
+	private DaoStmt<MatEmpInfo> stmtSql;
+	private DaoStmtOption<MatEmpInfo> stmtOption;	
 	
 	
 	public MatEmpSelectSingle(Connection conn, MatEmpInfo recordInfo, String schemaName) {
@@ -37,12 +37,12 @@ public final class MatEmpSelectSingle implements SqlStmt<MatEmpInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, MatEmpInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LT_MAT_EMP;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -55,30 +55,30 @@ public final class MatEmpSelectSingle implements SqlStmt<MatEmpInfo> {
 		final boolean IGNORE_NULL = true;
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		SqlStmtWhere whereClause = new MatEmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new MatEmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private List<SqlJoin> buildJoins() {
-		List<SqlJoin> joins = new ArrayList<>();		
+	private List<DaoJoin> buildJoins() {
+		List<DaoJoin> joins = new ArrayList<>();		
 		joins.add(buildJoinLanguage());	
 		return joins;
 	}
 	
 	
 	
-	private SqlJoin buildJoinLanguage() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinLanguage() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_LANGU;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(join.rightTableName);
 		
@@ -91,14 +91,14 @@ public final class MatEmpSelectSingle implements SqlStmt<MatEmpInfo> {
 		StringBuilder constrainClause = new StringBuilder(); 
 		
 		constrainClause.append(rightTableName);
-		constrainClause.append(SqlDictionary.PERIOD);
+		constrainClause.append(DaoDictionary.PERIOD);
 		constrainClause.append("Language");
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.EQUAL);
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.EQUAL);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		constrainClause.append(this.stmtOption.recordInfo.codLanguage);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		
 		return constrainClause.toString();
 	}
@@ -106,7 +106,7 @@ public final class MatEmpSelectSingle implements SqlStmt<MatEmpInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
 	
 	
@@ -135,7 +135,7 @@ public final class MatEmpSelectSingle implements SqlStmt<MatEmpInfo> {
 	
 	
 	
-	@Override public SqlStmt<MatEmpInfo> getNewInstance() {
+	@Override public DaoStmt<MatEmpInfo> getNewInstance() {
 		return new MatEmpSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
@@ -144,7 +144,7 @@ public final class MatEmpSelectSingle implements SqlStmt<MatEmpInfo> {
 	
 	
 	
-	private static class ResultParser implements SqlResultParser<MatEmpInfo> {
+	private static class ResultParser implements DaoResultParser<MatEmpInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		private final String LANGU_COL = RT_LANGU + "." + "Language";
 		

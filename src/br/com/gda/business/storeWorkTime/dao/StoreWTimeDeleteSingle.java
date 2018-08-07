@@ -7,19 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class StoreWTimeDeleteSingle implements SqlStmt<StoreWTimeInfo> {
-	private SqlStmt<StoreWTimeInfo> stmtSql;
-	private SqlStmtOption<StoreWTimeInfo> stmtOption;	
+public final class StoreWTimeDeleteSingle implements DaoStmt<StoreWTimeInfo> {
+	private DaoStmt<StoreWTimeInfo> stmtSql;
+	private DaoStmtOption<StoreWTimeInfo> stmtOption;	
 	
 	
 	public StoreWTimeDeleteSingle(Connection conn, StoreWTimeInfo recordInfo, String schemaName) {
@@ -30,12 +30,12 @@ public final class StoreWTimeDeleteSingle implements SqlStmt<StoreWTimeInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, StoreWTimeInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.STORE_WT_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.tableName = DaoDbTable.STORE_WT_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -47,19 +47,19 @@ public final class StoreWTimeDeleteSingle implements SqlStmt<StoreWTimeInfo> {
 		final boolean DONT_IGNORE_NULL = false;
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;	
 		
 		
-		SqlStmtWhere whereClause = new StoreWTimeWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new StoreWTimeWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SOFT_DELETE, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SOFT_DELETE, this.stmtOption);
 	}
 	
 	
@@ -89,13 +89,13 @@ public final class StoreWTimeDeleteSingle implements SqlStmt<StoreWTimeInfo> {
 	
 	
 	
-	@Override public SqlStmt<StoreWTimeInfo> getNewInstance() {
+	@Override public DaoStmt<StoreWTimeInfo> getNewInstance() {
 		return new StoreWTimeDeleteSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements SqlResultParser<StoreWTimeInfo> {
+	private class ResultParser implements DaoResultParser<StoreWTimeInfo> {
 		@Override public List<StoreWTimeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreWTimeInfo> finalResult = new ArrayList<>();
 			StoreWTimeInfo emptyInfo = new StoreWTimeInfo();

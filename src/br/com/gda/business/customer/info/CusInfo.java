@@ -61,8 +61,8 @@ public final class CusInfo extends RecordInfo implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * (int) (codOwner    ^ (codOwner    >>> 32));
-		result = result * (int) (codCustomer ^ (codCustomer >>> 32));
+		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
+		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
 		
 		return result;
 	}

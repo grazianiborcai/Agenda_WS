@@ -42,7 +42,7 @@ public final class TimezoneInfo extends RecordInfo implements Cloneable {
 			char[] chars = codTimezone.toCharArray();
 			
 			for (char eachChar : chars) {
-				result = result * (int) eachChar;
+				result = result * 31 + (int) eachChar;
 			}
 		}		
 		
@@ -60,15 +60,7 @@ public final class TimezoneInfo extends RecordInfo implements Cloneable {
 			return false;
 		
 		
-		TimezoneInfo obj = (TimezoneInfo) o;		
-		
-		
-		if (codTimezone == null && obj.codTimezone == null)
-			return true;
-		
-		if (codTimezone == null || obj.codTimezone == null)
-			return false;
-		
-		return codTimezone.equals(obj.codTimezone);
+		TimezoneInfo obj = (TimezoneInfo) o;	
+		return isStringEqual(codTimezone, obj.codTimezone);
 	}
 }

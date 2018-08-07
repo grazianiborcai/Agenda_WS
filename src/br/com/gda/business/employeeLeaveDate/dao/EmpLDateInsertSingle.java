@@ -8,18 +8,18 @@ import java.sql.Time;
 import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlFormatterNumber;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtParamTranslator;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtParamTranslator;
 
-public final class EmpLDateInsertSingle implements SqlStmt<EmpLDateInfo> {
-	private SqlStmt<EmpLDateInfo> stmtSql;
-	private SqlStmtOption<EmpLDateInfo> stmtOption;
+public final class EmpLDateInsertSingle implements DaoStmt<EmpLDateInfo> {
+	private DaoStmt<EmpLDateInfo> stmtSql;
+	private DaoStmtOption<EmpLDateInfo> stmtOption;
 	
 	
 	
@@ -31,12 +31,12 @@ public final class EmpLDateInsertSingle implements SqlStmt<EmpLDateInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, EmpLDateInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.EMP_LD_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.tableName = DaoDbTable.EMP_LD_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;
 		this.stmtOption.whereClause = null;
@@ -45,7 +45,7 @@ public final class EmpLDateInsertSingle implements SqlStmt<EmpLDateInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.INSERT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
 	}
 		
 	
@@ -75,12 +75,12 @@ public final class EmpLDateInsertSingle implements SqlStmt<EmpLDateInfo> {
 	
 	
 	
-	private class ParamTranslator implements SqlStmtParamTranslator<EmpLDateInfo> {		
+	private class ParamTranslator implements DaoStmtParamTranslator<EmpLDateInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpLDateInfo recordInfo) throws SQLException {
-			Time beginTime = SqlFormatterNumber.localToSqlTime(recordInfo.timeValidFrom);
-			Time endTime = SqlFormatterNumber.localToSqlTime(recordInfo.timeValidTo);				
-			Date beginDate = SqlFormatterNumber.localToSqlDate(recordInfo.dateValidFrom);
-			Date endDate = SqlFormatterNumber.localToSqlDate(recordInfo.dateValidTo);	
+			Time beginTime = DaoFormatterNumber.localToSqlTime(recordInfo.timeValidFrom);
+			Time endTime = DaoFormatterNumber.localToSqlTime(recordInfo.timeValidTo);				
+			Date beginDate = DaoFormatterNumber.localToSqlDate(recordInfo.dateValidFrom);
+			Date endDate = DaoFormatterNumber.localToSqlDate(recordInfo.dateValidTo);	
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
@@ -99,7 +99,7 @@ public final class EmpLDateInsertSingle implements SqlStmt<EmpLDateInfo> {
 	
 	
 	
-	@Override public SqlStmt<EmpLDateInfo> getNewInstance() {
+	@Override public DaoStmt<EmpLDateInfo> getNewInstance() {
 		return new EmpLDateInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 }

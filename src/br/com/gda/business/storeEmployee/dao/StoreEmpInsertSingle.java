@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtParamTranslator;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtParamTranslator;
 
-public final class StoreEmpInsertSingle implements SqlStmt<StoreEmpInfo> {
-	private SqlStmt<StoreEmpInfo> stmtSql;
-	private SqlStmtOption<StoreEmpInfo> stmtOption;
+public final class StoreEmpInsertSingle implements DaoStmt<StoreEmpInfo> {
+	private DaoStmt<StoreEmpInfo> stmtSql;
+	private DaoStmtOption<StoreEmpInfo> stmtOption;
 	
 	
 	
@@ -32,12 +32,12 @@ public final class StoreEmpInsertSingle implements SqlStmt<StoreEmpInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, StoreEmpInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.STORE_EMP_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.tableName = DaoDbTable.STORE_EMP_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = null;
@@ -46,7 +46,7 @@ public final class StoreEmpInsertSingle implements SqlStmt<StoreEmpInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.INSERT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
 	}
 		
 	
@@ -76,7 +76,7 @@ public final class StoreEmpInsertSingle implements SqlStmt<StoreEmpInfo> {
 	
 	
 	
-	private class ParamTranslator implements SqlStmtParamTranslator<StoreEmpInfo> {		
+	private class ParamTranslator implements DaoStmtParamTranslator<StoreEmpInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreEmpInfo recordInfo) throws SQLException {
 			
 			int i = 1;
@@ -92,13 +92,13 @@ public final class StoreEmpInsertSingle implements SqlStmt<StoreEmpInfo> {
 	
 	
 	
-	@Override public SqlStmt<StoreEmpInfo> getNewInstance() {
+	@Override public DaoStmt<StoreEmpInfo> getNewInstance() {
 		return new StoreEmpInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements SqlResultParser<StoreEmpInfo> {
+	private class ResultParser implements DaoResultParser<StoreEmpInfo> {
 		@Override public List<StoreEmpInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreEmpInfo> finalResult = new ArrayList<>();
 			StoreEmpInfo recordInfo = new StoreEmpInfo();

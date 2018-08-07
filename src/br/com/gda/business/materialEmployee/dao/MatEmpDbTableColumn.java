@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.sql.SqlColumn;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnTemplate;
+import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnTemplate;
 
-public final class MatEmpDbTableColumn extends SqlDbTableColumnTemplate {
-	private Hashtable<String, List<SqlColumn>> tableColumns;	
+public final class MatEmpDbTableColumn extends DaoDbTableColumnTemplate {
+	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public MatEmpDbTableColumn() {
 		super();
@@ -17,7 +17,7 @@ public final class MatEmpDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	
-	@Override protected Hashtable<String, List<SqlColumn>> buildTableColumnsHook() {
+	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();
 		
 		buildMatEmpTable();
@@ -28,12 +28,12 @@ public final class MatEmpDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void buildMatEmpTable() {
-		final String TABLE_NAME = SqlDbTable.MAT_EMP_TABLE;
+		final String TABLE_NAME = DaoDbTable.MAT_EMP_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();	
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();	
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_owner";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -41,7 +41,7 @@ public final class MatEmpDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_store";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -49,7 +49,7 @@ public final class MatEmpDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_employee";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -57,7 +57,7 @@ public final class MatEmpDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_material";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -65,7 +65,7 @@ public final class MatEmpDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "record_mode";
 		oneColumn.isPK = NEGATIVE;
@@ -73,8 +73,8 @@ public final class MatEmpDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.LANGUAGE_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

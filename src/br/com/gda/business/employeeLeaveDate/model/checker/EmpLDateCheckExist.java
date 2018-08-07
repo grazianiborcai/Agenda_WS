@@ -9,10 +9,10 @@ import br.com.gda.business.employeeLeaveDate.dao.EmpLDateSelect;
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
 
 public final class EmpLDateCheckExist extends ModelCheckerTemplateSimple<EmpLDateInfo> {
 	private final boolean RECORD_EXIST = true;
@@ -42,7 +42,7 @@ public final class EmpLDateCheckExist extends ModelCheckerTemplateSimple<EmpLDat
 	
 	
 	private List<EmpLDateInfo> executeStmt(EmpLDateInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		SqlStmtExec<EmpLDateInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+		DaoStmtExec<EmpLDateInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
 		
 		stmtExecutor.executeStmt();
 		return stmtExecutor.getResultset();
@@ -50,13 +50,13 @@ public final class EmpLDateCheckExist extends ModelCheckerTemplateSimple<EmpLDat
 	
 	
 	
-	private SqlStmtExec<EmpLDateInfo> buildStmtExecutor(EmpLDateInfo recordInfo, Connection conn, String schemaName) {
-		SqlStmtExecOption<EmpLDateInfo> stmtExecOption = new SqlStmtExecOption<>();
+	private DaoStmtExec<EmpLDateInfo> buildStmtExecutor(EmpLDateInfo recordInfo, Connection conn, String schemaName) {
+		DaoStmtExecOption<EmpLDateInfo> stmtExecOption = new DaoStmtExecOption<>();
 		stmtExecOption.conn = conn;
 		stmtExecOption.recordInfo = recordInfo;
 		stmtExecOption.schemaName = schemaName;
 		
-		List<SqlStmtExecOption<EmpLDateInfo>> stmtExecOptions = new ArrayList<>();
+		List<DaoStmtExecOption<EmpLDateInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
 		return new EmpLDateSelect(stmtExecOptions);

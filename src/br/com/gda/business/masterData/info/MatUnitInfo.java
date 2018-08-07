@@ -42,7 +42,7 @@ public final class MatUnitInfo extends RecordInfo implements Cloneable {
 			char[] chars = codUnit.toCharArray();
 			
 			for (char eachChar : chars) {
-				result = result * (int) eachChar;
+				result = result * 31 + (int) eachChar;
 			}
 		}		
 		
@@ -60,15 +60,7 @@ public final class MatUnitInfo extends RecordInfo implements Cloneable {
 			return false;
 		
 		
-		MatUnitInfo obj = (MatUnitInfo) o;		
-		
-		
-		if (codUnit == null && obj.codUnit == null)
-			return true;
-		
-		if (codUnit == null || obj.codUnit == null)
-			return false;
-		
-		return codUnit.equals(obj.codUnit);
+		MatUnitInfo obj = (MatUnitInfo) o;
+		return isStringEqual(codUnit, obj.codUnit);
 	}
 }

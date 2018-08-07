@@ -40,7 +40,7 @@ public final class EmpPosInfo extends RecordInfo implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * (int) (codPosition    ^ (codPosition    >>> 32));
+		result = result * 31 + (int) (codPosition ^ (codPosition >>> 32));
 		
 		return result;
 	}

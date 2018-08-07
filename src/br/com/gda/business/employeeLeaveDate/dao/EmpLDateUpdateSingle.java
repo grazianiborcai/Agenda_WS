@@ -8,20 +8,20 @@ import java.sql.Time;
 import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlFormatterNumber;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtParamTranslator;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtParamTranslator;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class EmpLDateUpdateSingle implements SqlStmt<EmpLDateInfo> {
-	private SqlStmt<EmpLDateInfo> stmtSql;
-	private SqlStmtOption<EmpLDateInfo> stmtOption;
+public final class EmpLDateUpdateSingle implements DaoStmt<EmpLDateInfo> {
+	private DaoStmt<EmpLDateInfo> stmtSql;
+	private DaoStmtOption<EmpLDateInfo> stmtOption;
 	
 	
 	public EmpLDateUpdateSingle(Connection conn, EmpLDateInfo recordInfo, String schemaName) {
@@ -32,12 +32,12 @@ public final class EmpLDateUpdateSingle implements SqlStmt<EmpLDateInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, EmpLDateInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.EMP_LD_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.tableName = DaoDbTable.EMP_LD_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;
 		this.stmtOption.whereClause = buildWhereClause();
@@ -49,18 +49,18 @@ public final class EmpLDateUpdateSingle implements SqlStmt<EmpLDateInfo> {
 		final boolean DONT_IGNORE_NULL = false;
 		final boolean IGNORE_RECORD_MODE = true;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
 		
-		SqlStmtWhere whereClause = new EmpLDateWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new EmpLDateWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.UPDATE, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption);
 	}
 	
 	
@@ -90,16 +90,16 @@ public final class EmpLDateUpdateSingle implements SqlStmt<EmpLDateInfo> {
 	
 	
 	
-	@Override public SqlStmt<EmpLDateInfo> getNewInstance() {
+	@Override public DaoStmt<EmpLDateInfo> getNewInstance() {
 		return new EmpLDateUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ParamTranslator implements SqlStmtParamTranslator<EmpLDateInfo> {		
+	private class ParamTranslator implements DaoStmtParamTranslator<EmpLDateInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpLDateInfo recordInfo) throws SQLException {			
-			Time endTime = SqlFormatterNumber.localToSqlTime(recordInfo.timeValidTo);	
-			Date endDate = SqlFormatterNumber.localToSqlDate(recordInfo.dateValidTo);	
+			Time endTime = DaoFormatterNumber.localToSqlTime(recordInfo.timeValidTo);	
+			Date endDate = DaoFormatterNumber.localToSqlDate(recordInfo.dateValidTo);	
 			
 			int i = 1;
 			stmt.setDate(i++, endDate);

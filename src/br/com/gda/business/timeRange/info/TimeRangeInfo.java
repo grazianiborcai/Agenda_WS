@@ -50,7 +50,7 @@ public final class TimeRangeInfo extends RecordInfo implements Cloneable {
 		
 		if (beginTime != null) {			
 			int numTime = Integer.valueOf(beginTime.format(DateTimeFormatter.BASIC_ISO_DATE));
-			result = result * (int) numTime;
+			result = result * 31 + numTime;
 		}
 		
 		return result;
@@ -68,10 +68,6 @@ public final class TimeRangeInfo extends RecordInfo implements Cloneable {
 		
 		
 		TimeRangeInfo obj = (TimeRangeInfo) o;	
-		
-		if (beginTime == null || obj.beginTime == null)
-			return false;
-		
-		return (beginTime.equals(obj.beginTime));
+		return (isTimeEqual(beginTime, obj.beginTime));
 	}		
 }

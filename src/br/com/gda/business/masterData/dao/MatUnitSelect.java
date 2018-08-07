@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.MatUnitInfo;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecHelper;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecHelper;
+import br.com.gda.dao.DaoStmtExecOption;
 
-public final class MatUnitSelect implements SqlStmtExec<MatUnitInfo> {
-	private SqlStmtExec<MatUnitInfo> helper;
+public final class MatUnitSelect implements DaoStmtExec<MatUnitInfo> {
+	private DaoStmtExec<MatUnitInfo> helper;
 	
 	
-	public MatUnitSelect(List<SqlStmtExecOption<MatUnitInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, MatUnitSelectSingle.class, MatUnitInfo.class);
+	public MatUnitSelect(List<DaoStmtExecOption<MatUnitInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MatUnitSelectSingle.class, MatUnitInfo.class);
 	}
 	
 	

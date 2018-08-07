@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.sql.SqlColumn;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnTemplate;
+import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnTemplate;
 
-public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
-	private Hashtable<String, List<SqlColumn>> tableColumns;	
+public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
+	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public MasterDataDbTableColumn() {
 		super();
@@ -17,7 +17,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	
-	@Override protected Hashtable<String, List<SqlColumn>> buildTableColumnsHook() {
+	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();
 		
 		positionTable();	
@@ -38,12 +38,12 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void positionTable() {
-		final String TABLE_NAME = SqlDbTable.POSITION_TABLE;
+		final String TABLE_NAME = DaoDbTable.POSITION_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_position";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -51,16 +51,16 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.POSITION_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.POSITION_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.POSITION_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.POSITION_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -73,12 +73,12 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void materialUnitTable() {
-		final String TABLE_NAME = SqlDbTable.MAT_UNIT_TABLE;
+		final String TABLE_NAME = DaoDbTable.MAT_UNIT_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Unit";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -86,16 +86,16 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_UNIT_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_UNIT_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_UNIT_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_UNIT_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -108,12 +108,12 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void materialTypeTable() {
-		final String TABLE_NAME = SqlDbTable.MAT_TYPE_TABLE;
+		final String TABLE_NAME = DaoDbTable.MAT_TYPE_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_type";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -121,16 +121,16 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_TYPE_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_TYPE_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_TYPE_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_TYPE_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -143,12 +143,12 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void materialCategTable() {
-		final String TABLE_NAME = SqlDbTable.MAT_CATEG_TABLE;
+		final String TABLE_NAME = DaoDbTable.MAT_CATEG_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_category";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -156,16 +156,16 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_CATEG_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_CATEG_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_CATEG_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_CATEG_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -178,12 +178,12 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void materialGroupTable() {
-		final String TABLE_NAME = SqlDbTable.MAT_GROUP_TABLE;
+		final String TABLE_NAME = DaoDbTable.MAT_GROUP_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_group";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -191,7 +191,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_business";
 		oneColumn.isPK = NEGATIVE;
@@ -199,24 +199,24 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_GROUP_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_GROUP_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.MAT_GROUP_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.MAT_GROUP_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -229,12 +229,12 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void businessAreaTable() {
-		final String TABLE_NAME = SqlDbTable.BUSINESS_AREA_TABLE;
+		final String TABLE_NAME = DaoDbTable.BUSINESS_AREA_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_business";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -242,16 +242,16 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.BUSINESS_AREA_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -264,12 +264,12 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void currencyTable() {
-		final String TABLE_NAME = SqlDbTable.CURRENCY_TABLE;
+		final String TABLE_NAME = DaoDbTable.CURRENCY_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_curr";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -277,7 +277,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Symbol";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -285,16 +285,16 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.CURRENCY_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.CURRENCY_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.CURRENCY_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.CURRENCY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -307,12 +307,12 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void weekdayTable() {
-		final String TABLE_NAME = SqlDbTable.WEEKDAY_TABLE;
+		final String TABLE_NAME = DaoDbTable.WEEKDAY_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Weekday";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -320,16 +320,16 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.WEEKDAY_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.WEEKDAY_TEXT_TABLE;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.WEEKDAY_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.WEEKDAY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -342,12 +342,12 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void languageTable() {
-		final String TABLE_NAME = SqlDbTable.LANGUAGE_TABLE;
+		final String TABLE_NAME = DaoDbTable.LANGUAGE_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Language";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -355,7 +355,7 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -369,12 +369,12 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void timezoneTable() {
-		final String TABLE_NAME = SqlDbTable.TIMEZONE_TABLE;
+		final String TABLE_NAME = DaoDbTable.TIMEZONE_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "cod_timezone";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -382,16 +382,16 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.TIMEZONE_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.TIMEZONE_TEXT_TABLE;
 		oneColumn.columnName = "language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.TIMEZONE_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.TIMEZONE_TEXT_TABLE;
 		oneColumn.columnName = "name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
@@ -404,12 +404,12 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void genderTable() {
-		final String TABLE_NAME = SqlDbTable.GENDER_TABLE;
+		final String TABLE_NAME = DaoDbTable.GENDER_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();			
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "cod_gender";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -417,16 +417,16 @@ public final class MasterDataDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.GENDER_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.GENDER_TEXT_TABLE;
 		oneColumn.columnName = "language";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.GENDER_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.GENDER_TEXT_TABLE;
 		oneColumn.columnName = "name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

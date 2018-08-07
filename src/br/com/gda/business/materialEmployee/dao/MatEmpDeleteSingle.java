@@ -7,19 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class MatEmpDeleteSingle implements SqlStmt<MatEmpInfo> {
-	private SqlStmt<MatEmpInfo> stmtSql;
-	private SqlStmtOption<MatEmpInfo> stmtOption;	
+public final class MatEmpDeleteSingle implements DaoStmt<MatEmpInfo> {
+	private DaoStmt<MatEmpInfo> stmtSql;
+	private DaoStmtOption<MatEmpInfo> stmtOption;	
 	
 	
 	public MatEmpDeleteSingle(Connection conn, MatEmpInfo recordInfo, String schemaName) {
@@ -30,12 +30,12 @@ public final class MatEmpDeleteSingle implements SqlStmt<MatEmpInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, MatEmpInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.MAT_EMP_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.tableName = DaoDbTable.MAT_EMP_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -47,19 +47,19 @@ public final class MatEmpDeleteSingle implements SqlStmt<MatEmpInfo> {
 		final boolean DONT_IGNORE_NULL = false;
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;	
 		
 		
-		SqlStmtWhere whereClause = new MatEmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new MatEmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SOFT_DELETE, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SOFT_DELETE, this.stmtOption);
 	}
 	
 	
@@ -89,7 +89,7 @@ public final class MatEmpDeleteSingle implements SqlStmt<MatEmpInfo> {
 	
 	
 	
-	@Override public SqlStmt<MatEmpInfo> getNewInstance() {
+	@Override public DaoStmt<MatEmpInfo> getNewInstance() {
 		return new MatEmpDeleteSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
@@ -97,7 +97,7 @@ public final class MatEmpDeleteSingle implements SqlStmt<MatEmpInfo> {
 	
 	
 	
-	private class ResultParser implements SqlResultParser<MatEmpInfo> {
+	private class ResultParser implements DaoResultParser<MatEmpInfo> {
 		@Override public List<MatEmpInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatEmpInfo> finalResult = new ArrayList<>();
 			MatEmpInfo emptyInfo = new MatEmpInfo();

@@ -5,30 +5,30 @@ import java.util.List;
 
 import br.com.gda.business.masterData.dao.EmpPosSelect;
 import br.com.gda.business.masterData.info.EmpPosInfo;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciActionHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
 
 public final class ActionEmpPosSelect implements DeciAction<EmpPosInfo> {
 	private DeciAction<EmpPosInfo> actionHelper;
 	
 	
 	public ActionEmpPosSelect(DeciTreeOption<EmpPosInfo> option) {
-		SqlStmtExec<EmpPosInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec<EmpPosInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private SqlStmtExec<EmpPosInfo> buildStmtExec(DeciTreeOption<EmpPosInfo> option) {
-		List<SqlStmtExecOption<EmpPosInfo>> stmtExecOptions = new ArrayList<>();			
+	private DaoStmtExec<EmpPosInfo> buildStmtExec(DeciTreeOption<EmpPosInfo> option) {
+		List<DaoStmtExecOption<EmpPosInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EmpPosInfo eachRecord : option.recordInfos) {
-			SqlStmtExecOption<EmpPosInfo> stmtExecOption = new SqlStmtExecOption<>();
+			DaoStmtExecOption<EmpPosInfo> stmtExecOption = new DaoStmtExecOption<>();
 			stmtExecOption.conn = option.conn;
 			stmtExecOption.recordInfo = eachRecord;
 			stmtExecOption.schemaName = option.schemaName;

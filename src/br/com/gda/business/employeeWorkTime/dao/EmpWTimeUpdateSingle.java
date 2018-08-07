@@ -6,21 +6,21 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.List;
 
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtParamTranslator;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlFormatterNumber;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtParamTranslator;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class EmpWTimeUpdateSingle implements SqlStmt<EmpWTimeInfo> {
-	private SqlStmt<EmpWTimeInfo> stmtSql;
-	private SqlStmtOption<EmpWTimeInfo> stmtOption;
+public final class EmpWTimeUpdateSingle implements DaoStmt<EmpWTimeInfo> {
+	private DaoStmt<EmpWTimeInfo> stmtSql;
+	private DaoStmtOption<EmpWTimeInfo> stmtOption;
 	
 	
 	public EmpWTimeUpdateSingle(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
@@ -31,12 +31,12 @@ public final class EmpWTimeUpdateSingle implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, EmpWTimeInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.EMP_WT_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.tableName = DaoDbTable.EMP_WT_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;
 		this.stmtOption.whereClause = buildWhereClause();
@@ -48,18 +48,18 @@ public final class EmpWTimeUpdateSingle implements SqlStmt<EmpWTimeInfo> {
 		final boolean DONT_IGNORE_NULL = false;
 		final boolean IGNORE_RECORD_MODE = true;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
 		
-		SqlStmtWhere whereClause = new EmpWTimeWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new EmpWTimeWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.UPDATE, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption);
 	}
 	
 	
@@ -89,16 +89,16 @@ public final class EmpWTimeUpdateSingle implements SqlStmt<EmpWTimeInfo> {
 	
 	
 	
-	@Override public SqlStmt<EmpWTimeInfo> getNewInstance() {
+	@Override public DaoStmt<EmpWTimeInfo> getNewInstance() {
 		return new EmpWTimeUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ParamTranslator implements SqlStmtParamTranslator<EmpWTimeInfo> {		
+	private class ParamTranslator implements DaoStmtParamTranslator<EmpWTimeInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpWTimeInfo recordInfo) throws SQLException {
-			Time beginTime = SqlFormatterNumber.localToSqlTime(recordInfo.beginTime);
-			Time endTime = SqlFormatterNumber.localToSqlTime(recordInfo.endTime);				
+			Time beginTime = DaoFormatterNumber.localToSqlTime(recordInfo.beginTime);
+			Time endTime = DaoFormatterNumber.localToSqlTime(recordInfo.endTime);				
 			
 			int i = 1;
 			stmt.setTime(i++, beginTime);

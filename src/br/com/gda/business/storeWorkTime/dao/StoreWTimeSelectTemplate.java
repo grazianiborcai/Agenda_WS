@@ -9,25 +9,25 @@ import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlDictionary;
-import br.com.gda.sql.SqlJoin;
-import br.com.gda.sql.SqlJoinColumn;
-import br.com.gda.sql.SqlJoinType;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoDictionary;
+import br.com.gda.dao.DaoJoin;
+import br.com.gda.dao.DaoJoinColumn;
+import br.com.gda.dao.DaoJoinType;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
 
-class StoreWTimeSelectTemplate implements SqlStmt<StoreWTimeInfo> {
-	private final String LT_STORE_WORK_TIME = SqlDbTable.STORE_WT_TABLE;	
-	private final String RT_WEEKDAY_TEXT = SqlDbTable.WEEKDAY_TEXT_TABLE;
-	private final String RT_STORE = SqlDbTable.STORE_TABLE;
+class StoreWTimeSelectTemplate implements DaoStmt<StoreWTimeInfo> {
+	private final String LT_STORE_WORK_TIME = DaoDbTable.STORE_WT_TABLE;	
+	private final String RT_WEEKDAY_TEXT = DaoDbTable.WEEKDAY_TEXT_TABLE;
+	private final String RT_STORE = DaoDbTable.STORE_TABLE;
 	
-	private SqlStmt<StoreWTimeInfo> stmtSql;
-	private SqlStmtOption<StoreWTimeInfo> stmtOption;
+	private DaoStmt<StoreWTimeInfo> stmtSql;
+	private DaoStmtOption<StoreWTimeInfo> stmtOption;
 	
 	
 	
@@ -39,12 +39,12 @@ class StoreWTimeSelectTemplate implements SqlStmt<StoreWTimeInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, StoreWTimeInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LT_STORE_WORK_TIME;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(LT_STORE_WORK_TIME);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_STORE_WORK_TIME);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClauseHook(stmtOption.tableName, stmtOption.recordInfo);
@@ -60,8 +60,8 @@ class StoreWTimeSelectTemplate implements SqlStmt<StoreWTimeInfo> {
 	
 	
 	
-	private List<SqlJoin> buildJoins() {
-		List<SqlJoin> joins = new ArrayList<>();		
+	private List<DaoJoin> buildJoins() {
+		List<DaoJoin> joins = new ArrayList<>();		
 		joins.add(buildJoinStore());
 		joins.add(buildJoinWeekdayText());
 		return joins;
@@ -69,19 +69,19 @@ class StoreWTimeSelectTemplate implements SqlStmt<StoreWTimeInfo> {
 	
 	
 	
-	private SqlJoin buildJoinStore() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinStore() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_STORE_WORK_TIME;
 		oneColumn.leftColumnName = "Cod_store";
 		oneColumn.rightColumnName = "Cod_store";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_STORE;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = null;
 		
@@ -90,19 +90,19 @@ class StoreWTimeSelectTemplate implements SqlStmt<StoreWTimeInfo> {
 	
 	
 	
-	private SqlJoin buildJoinWeekdayText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinWeekdayText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_STORE_WORK_TIME;
 		oneColumn.leftColumnName = "weekday";
 		oneColumn.rightColumnName = "Weekday";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_WEEKDAY_TEXT;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(RT_WEEKDAY_TEXT);
 		
@@ -115,14 +115,14 @@ class StoreWTimeSelectTemplate implements SqlStmt<StoreWTimeInfo> {
 		StringBuilder constrainClause = new StringBuilder(); 
 		
 		constrainClause.append(rightTableName);
-		constrainClause.append(SqlDictionary.PERIOD);
+		constrainClause.append(DaoDictionary.PERIOD);
 		constrainClause.append("Language");
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.EQUAL);
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.EQUAL);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		constrainClause.append(this.stmtOption.recordInfo.codLanguage);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		
 		return constrainClause.toString();
 	}
@@ -130,7 +130,7 @@ class StoreWTimeSelectTemplate implements SqlStmt<StoreWTimeInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
 	
 	
@@ -159,7 +159,7 @@ class StoreWTimeSelectTemplate implements SqlStmt<StoreWTimeInfo> {
 	
 	
 	
-	@Override public SqlStmt<StoreWTimeInfo> getNewInstance() {
+	@Override public DaoStmt<StoreWTimeInfo> getNewInstance() {
 		return new StoreWTimeSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
@@ -168,10 +168,10 @@ class StoreWTimeSelectTemplate implements SqlStmt<StoreWTimeInfo> {
 	
 	
 	
-	private static class ResultParser implements SqlResultParser<StoreWTimeInfo> {
+	private static class ResultParser implements DaoResultParser<StoreWTimeInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String WEEKDAY_TEXT_COL = SqlDbTable.WEEKDAY_TEXT_TABLE + "." + "Name";
-		private final String TIMEZONE_COL = SqlDbTable.STORE_TABLE + "." + "Cod_timezone";
+		private final String WEEKDAY_TEXT_COL = DaoDbTable.WEEKDAY_TEXT_TABLE + "." + "Name";
+		private final String TIMEZONE_COL = DaoDbTable.STORE_TABLE + "." + "Cod_timezone";
 		
 		@Override public List<StoreWTimeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreWTimeInfo> finalResult = new ArrayList<>();

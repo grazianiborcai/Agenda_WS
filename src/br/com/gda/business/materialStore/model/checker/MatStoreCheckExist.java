@@ -9,10 +9,10 @@ import br.com.gda.business.materialStore.dao.MatStoreSelect;
 import br.com.gda.business.materialStore.info.MatStoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
 
 public final class MatStoreCheckExist extends ModelCheckerTemplateSimple<MatStoreInfo> {
 	private final boolean RECORD_EXIST = true;
@@ -42,7 +42,7 @@ public final class MatStoreCheckExist extends ModelCheckerTemplateSimple<MatStor
 	
 	
 	private List<MatStoreInfo> executeStmt(MatStoreInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		SqlStmtExec<MatStoreInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+		DaoStmtExec<MatStoreInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
 		
 		stmtExecutor.executeStmt();
 		return stmtExecutor.getResultset();
@@ -50,13 +50,13 @@ public final class MatStoreCheckExist extends ModelCheckerTemplateSimple<MatStor
 	
 	
 	
-	private SqlStmtExec<MatStoreInfo> buildStmtExecutor(MatStoreInfo recordInfo, Connection conn, String schemaName) {
-		SqlStmtExecOption<MatStoreInfo> stmtExecOption = new SqlStmtExecOption<>();
+	private DaoStmtExec<MatStoreInfo> buildStmtExecutor(MatStoreInfo recordInfo, Connection conn, String schemaName) {
+		DaoStmtExecOption<MatStoreInfo> stmtExecOption = new DaoStmtExecOption<>();
 		stmtExecOption.conn = conn;
 		stmtExecOption.recordInfo = recordInfo;
 		stmtExecOption.schemaName = schemaName;
 		
-		List<SqlStmtExecOption<MatStoreInfo>> stmtExecOptions = new ArrayList<>();
+		List<DaoStmtExecOption<MatStoreInfo>> stmtExecOptions = new ArrayList<>();
 		stmtExecOptions.add(stmtExecOption);
 		
 		return new MatStoreSelect(stmtExecOptions);

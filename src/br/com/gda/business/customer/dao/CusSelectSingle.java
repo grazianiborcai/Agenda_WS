@@ -8,27 +8,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlDictionary;
-import br.com.gda.sql.SqlJoin;
-import br.com.gda.sql.SqlJoinColumn;
-import br.com.gda.sql.SqlJoinType;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoDictionary;
+import br.com.gda.dao.DaoJoin;
+import br.com.gda.dao.DaoJoinColumn;
+import br.com.gda.dao.DaoJoinType;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class CusSelectSingle implements SqlStmt<CusInfo> {
-	private final String LEFT_TABLE_EMPLOYEE = SqlDbTable.CUS_TABLE;	
-	private final String RIGHT_TABLE_GENDER_TEXT = SqlDbTable.GENDER_TEXT_TABLE;
-	private final String RIGHT_TABLE_COUNTRY_TEXT = SqlDbTable.COUNTRY_TEXT_TABLE;
+public final class CusSelectSingle implements DaoStmt<CusInfo> {
+	private final String LEFT_TABLE_EMPLOYEE = DaoDbTable.CUS_TABLE;	
+	private final String RIGHT_TABLE_GENDER_TEXT = DaoDbTable.GENDER_TEXT_TABLE;
+	private final String RIGHT_TABLE_COUNTRY_TEXT = DaoDbTable.COUNTRY_TEXT_TABLE;
 	
-	private SqlStmt<CusInfo> stmtSql;
-	private SqlStmtOption<CusInfo> stmtOption;
+	private DaoStmt<CusInfo> stmtSql;
+	private DaoStmtOption<CusInfo> stmtOption;
 	
 	
 	
@@ -40,12 +40,12 @@ public final class CusSelectSingle implements SqlStmt<CusInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, CusInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LEFT_TABLE_EMPLOYEE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(LEFT_TABLE_EMPLOYEE);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LEFT_TABLE_EMPLOYEE);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -58,18 +58,18 @@ public final class CusSelectSingle implements SqlStmt<CusInfo> {
 		final boolean IGNORE_NULL = true;
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		SqlStmtWhere whereClause = new CusWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new CusWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private List<SqlJoin> buildJoins() {
-		List<SqlJoin> joins = new ArrayList<>();
+	private List<DaoJoin> buildJoins() {
+		List<DaoJoin> joins = new ArrayList<>();
 		
 		joins.add(buildJoinGenderText());
 		joins.add(buildJoinCountryText());
@@ -79,19 +79,19 @@ public final class CusSelectSingle implements SqlStmt<CusInfo> {
 	
 	
 	
-	private SqlJoin buildJoinGenderText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinGenderText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LEFT_TABLE_EMPLOYEE;
 		oneColumn.leftColumnName = "Cod_gender";
 		oneColumn.rightColumnName = "Cod_gender";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RIGHT_TABLE_GENDER_TEXT;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE_GENDER_TEXT);
 		
@@ -100,19 +100,19 @@ public final class CusSelectSingle implements SqlStmt<CusInfo> {
 	
 	
 	
-	private SqlJoin buildJoinCountryText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinCountryText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LEFT_TABLE_EMPLOYEE;
 		oneColumn.leftColumnName = "Country";
 		oneColumn.rightColumnName = "Country";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RIGHT_TABLE_COUNTRY_TEXT;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE_COUNTRY_TEXT);
 		
@@ -125,14 +125,14 @@ public final class CusSelectSingle implements SqlStmt<CusInfo> {
 		StringBuilder constrainClause = new StringBuilder(); 
 		
 		constrainClause.append(rightTableName);
-		constrainClause.append(SqlDictionary.PERIOD);
+		constrainClause.append(DaoDictionary.PERIOD);
 		constrainClause.append("Language");
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.EQUAL);
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.EQUAL);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		constrainClause.append(this.stmtOption.recordInfo.codLanguage);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		
 		return constrainClause.toString();
 	}
@@ -140,7 +140,7 @@ public final class CusSelectSingle implements SqlStmt<CusInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
 	
 	
@@ -169,7 +169,7 @@ public final class CusSelectSingle implements SqlStmt<CusInfo> {
 	
 	
 	
-	@Override public SqlStmt<CusInfo> getNewInstance() {
+	@Override public DaoStmt<CusInfo> getNewInstance() {
 		return new CusSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
@@ -178,10 +178,10 @@ public final class CusSelectSingle implements SqlStmt<CusInfo> {
 	
 	
 	
-	private static class ResultParser implements SqlResultParser<CusInfo> {
+	private static class ResultParser implements DaoResultParser<CusInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String GENDER_TEXT_COLUMN = SqlDbTable.GENDER_TEXT_TABLE + "." + "Name";
-		private final String COUNTRY_TEXT_COLUMN = SqlDbTable.COUNTRY_TEXT_TABLE + "." + "Name";
+		private final String GENDER_TEXT_COLUMN = DaoDbTable.GENDER_TEXT_TABLE + "." + "Name";
+		private final String COUNTRY_TEXT_COLUMN = DaoDbTable.COUNTRY_TEXT_TABLE + "." + "Name";
 		
 		@Override public List<CusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CusInfo> finalResult = new ArrayList<>();

@@ -83,11 +83,20 @@ public final class PlanInfo extends RecordInfo implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 
-		result = result + stores.hashCode();
-		result = result + materials.hashCode();
-		result = result + employees.hashCode();
-		result = result + weekdays.hashCode();
-		result = result + datas.hashCode();
+		if (stores != null)
+			result = result * 31 + stores.hashCode();
+		
+		if (materials != null)
+			result = result * 31 + materials.hashCode();
+		
+		if (employees != null)
+			result = result * 31 + employees.hashCode();
+		
+		if (weekdays != null)
+			result = result * 31 + weekdays.hashCode();
+		
+		if (datas != null)
+			result = result * 31 + datas.hashCode();
 		
 		return result;
 	}
@@ -103,12 +112,82 @@ public final class PlanInfo extends RecordInfo implements Cloneable {
 			return false;
 		
 		
-		PlanInfo obj = (PlanInfo) o;	
+		PlanInfo obj = (PlanInfo) o;
 		
-		return (stores.equals(obj.stores) &&
-				materials.equals(obj.materials) &&
-				employees.equals(obj.employees) &&
-				weekdays.equals(obj.weekdays) &&
-				datas.equals(obj.datas));
+		return (isStoresEqual(stores, obj.stores)			&&
+				isMaterialsEqual(materials, obj.materials) 	&&
+				isEmployeesEqual(employees, obj.employees) 	&&
+				isWeekdaysEqual(weekdays, obj.weekdays) 	&&
+				isDatasEqual(datas, obj.datas));
 	}
+	
+	
+	
+	private boolean isStoresEqual(List<StoreInfo> storesOne, List<StoreInfo> storesTwo) {
+		try {
+			if (storesOne == null && storesTwo == null)
+				return true;
+			
+			return storesOne.equals(storesTwo);
+			
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	
+	
+	private boolean isMaterialsEqual(List<MatInfo> materialsOne, List<MatInfo> materialsTwo) {
+		try {
+			if (materialsOne == null && materialsTwo == null)
+				return true;
+			
+			return materialsOne.equals(materialsTwo);
+			
+		} catch (Exception e) {
+			return false;
+		}
+	}	
+	
+	
+	
+	private boolean isEmployeesEqual(List<EmpInfo> employeesOne, List<EmpInfo> employeesTwo) {
+		try {
+			if (employeesOne == null && employeesTwo == null)
+				return true;
+			
+			return employeesOne.equals(employeesTwo);
+			
+		} catch (Exception e) {
+			return false;
+		}
+	}	
+	
+	
+	
+	private boolean isWeekdaysEqual(List<WeekdayInfo> weekdaysOne, List<WeekdayInfo> weekdaysTwo) {
+		try {
+			if (weekdaysOne == null && weekdaysTwo == null)
+				return true;
+			
+			return weekdaysOne.equals(weekdaysTwo);
+			
+		} catch (Exception e) {
+			return false;
+		}
+	}	
+	
+	
+	
+	private boolean isDatasEqual(List<PlanDataInfo> datasOne, List<PlanDataInfo> datasTwo) {
+		try {
+			if (datasOne == null && datasTwo == null)
+				return true;
+			
+			return datasOne.equals(datasTwo);
+			
+		} catch (Exception e) {
+			return false;
+		}
+	}	
 }

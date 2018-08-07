@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecHelper;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecHelper;
+import br.com.gda.dao.DaoStmtExecOption;
 
-public class StoreWTimeSelectRange implements SqlStmtExec<StoreWTimeInfo> {
-	private SqlStmtExec<StoreWTimeInfo> helper;
+public class StoreWTimeSelectRange implements DaoStmtExec<StoreWTimeInfo> {
+	private DaoStmtExec<StoreWTimeInfo> helper;
 	
 	
-	public StoreWTimeSelectRange(List<SqlStmtExecOption<StoreWTimeInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, StoreWTimeSelectRangeSingle.class, StoreWTimeInfo.class);
+	public StoreWTimeSelectRange(List<DaoStmtExecOption<StoreWTimeInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, StoreWTimeSelectRangeSingle.class, StoreWTimeInfo.class);
 	}
 	
 	

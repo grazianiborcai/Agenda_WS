@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlFormatterNumber;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtParamTranslator;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtParamTranslator;
 
-public final class CusInsertSingle implements SqlStmt<CusInfo> {	
-	private SqlStmt<CusInfo> stmtSql;
-	private SqlStmtOption<CusInfo> stmtOption;
+public final class CusInsertSingle implements DaoStmt<CusInfo> {	
+	private DaoStmt<CusInfo> stmtSql;
+	private DaoStmtOption<CusInfo> stmtOption;
 	
 	
 	
@@ -34,12 +34,12 @@ public final class CusInsertSingle implements SqlStmt<CusInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, CusInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.CUS_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.tableName = DaoDbTable.CUS_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser(recordInfo);
 		this.stmtOption.whereClause = null;
@@ -48,7 +48,7 @@ public final class CusInsertSingle implements SqlStmt<CusInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.INSERT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
 	}
 		
 	
@@ -78,9 +78,9 @@ public final class CusInsertSingle implements SqlStmt<CusInfo> {
 	
 	
 	
-	private class ParamTranslator implements SqlStmtParamTranslator<CusInfo> {		
+	private class ParamTranslator implements DaoStmtParamTranslator<CusInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusInfo recordInfo) throws SQLException {
-			Date birthDate = SqlFormatterNumber.localToSqlDate(recordInfo.birthDate);
+			Date birthDate = DaoFormatterNumber.localToSqlDate(recordInfo.birthDate);
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
@@ -104,7 +104,7 @@ public final class CusInsertSingle implements SqlStmt<CusInfo> {
 	
 	
 	
-	@Override public SqlStmt<CusInfo> getNewInstance() {
+	@Override public DaoStmt<CusInfo> getNewInstance() {
 		return new CusInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
@@ -112,7 +112,7 @@ public final class CusInsertSingle implements SqlStmt<CusInfo> {
 	
 	
 	
-	private static class ResultParser implements SqlResultParser<CusInfo> {
+	private static class ResultParser implements DaoResultParser<CusInfo> {
 		private CusInfo recordInfo;
 		
 		public ResultParser(CusInfo recordToParse) {

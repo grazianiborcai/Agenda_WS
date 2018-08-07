@@ -3,27 +3,27 @@ package br.com.gda.business.masterData.dao;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.MatUnitInfo;
-import br.com.gda.sql.SqlColumn;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilder;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilder;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class MatUnitWhere implements SqlStmtWhere {
+public final class MatUnitWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public MatUnitWhere(SqlWhereBuilderOption whereOption, String tableName, MatUnitInfo recordInfo) {
+	public MatUnitWhere(DaoWhereBuilderOption whereOption, String tableName, MatUnitInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(SqlWhereBuilderOption whereOption, String tableName, MatUnitInfo recordInfo) {
-		SqlWhereBuilder builder = SqlWhereBuilder.factory(whereOption);		
-		List<SqlColumn> columns = SqlDbTableColumnAll.getTableColumnsAsList(tableName);
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, MatUnitInfo recordInfo) {
+		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);		
+		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
-		for (SqlColumn eachColumn : columns) {
+		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case "Unit" :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codUnit);

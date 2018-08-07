@@ -6,19 +6,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtParamTranslator;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtParamTranslator;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class StoreEmpUpdateSingle implements SqlStmt<StoreEmpInfo> {
-	private SqlStmt<StoreEmpInfo> stmtSql;
-	private SqlStmtOption<StoreEmpInfo> stmtOption;
+public final class StoreEmpUpdateSingle implements DaoStmt<StoreEmpInfo> {
+	private DaoStmt<StoreEmpInfo> stmtSql;
+	private DaoStmtOption<StoreEmpInfo> stmtOption;
 	
 	
 	public StoreEmpUpdateSingle(Connection conn, StoreEmpInfo recordInfo, String schemaName) {
@@ -29,12 +29,12 @@ public final class StoreEmpUpdateSingle implements SqlStmt<StoreEmpInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, StoreEmpInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.STORE_EMP_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.tableName = DaoDbTable.STORE_EMP_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null; //new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -46,18 +46,18 @@ public final class StoreEmpUpdateSingle implements SqlStmt<StoreEmpInfo> {
 		final boolean DONT_IGNORE_NULL = false;
 		final boolean IGNORE_RECORD_MODE = true;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
 		
-		SqlStmtWhere whereClause = new StoreEmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new StoreEmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.UPDATE, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption);
 	}
 	
 	
@@ -87,13 +87,13 @@ public final class StoreEmpUpdateSingle implements SqlStmt<StoreEmpInfo> {
 	
 	
 	
-	@Override public SqlStmt<StoreEmpInfo> getNewInstance() {
+	@Override public DaoStmt<StoreEmpInfo> getNewInstance() {
 		return new StoreEmpUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ParamTranslator implements SqlStmtParamTranslator<StoreEmpInfo> {		
+	private class ParamTranslator implements DaoStmtParamTranslator<StoreEmpInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreEmpInfo recordInfo) throws SQLException {
 			
 			int i = 1;

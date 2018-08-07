@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.sql.SqlColumn;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnTemplate;
+import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnTemplate;
 
-public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
-	private Hashtable<String, List<SqlColumn>> tableColumns;	
+public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
+	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public CusDbTableColumn() {
 		super();
@@ -17,7 +17,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	
-	@Override protected Hashtable<String, List<SqlColumn>> buildTableColumnsHook() {
+	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
 		buildCustomerTable();		
 		return tableColumns;
@@ -26,12 +26,12 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void buildCustomerTable() {
-		final String TABLE_NAME = SqlDbTable.CUS_TABLE;
+		final String TABLE_NAME = DaoDbTable.CUS_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();	
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();	
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "cod_owner";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -39,7 +39,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_customer";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -47,7 +47,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "CPF";
 		oneColumn.isPK = NEGATIVE;
@@ -55,7 +55,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
@@ -63,7 +63,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Cod_gender";
 		oneColumn.isPK = NEGATIVE;
@@ -71,7 +71,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Born_date";
 		oneColumn.isPK = NEGATIVE;
@@ -79,7 +79,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "email";
 		oneColumn.isPK = NEGATIVE;
@@ -87,7 +87,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Address1";
 		oneColumn.isPK = NEGATIVE;
@@ -95,7 +95,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Address2";
 		oneColumn.isPK = NEGATIVE;
@@ -103,7 +103,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Postalcode";
 		oneColumn.isPK = NEGATIVE;
@@ -111,7 +111,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "City";
 		oneColumn.isPK = NEGATIVE;
@@ -119,7 +119,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Country";
 		oneColumn.isPK = NEGATIVE;
@@ -127,7 +127,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "State_province";
 		oneColumn.isPK = NEGATIVE;
@@ -135,7 +135,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "Phone";
 		oneColumn.isPK = NEGATIVE;
@@ -143,7 +143,7 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "record_mode";
 		oneColumn.isPK = NEGATIVE;
@@ -151,16 +151,16 @@ public final class CusDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.GENDER_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.GENDER_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.COUNTRY_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.COUNTRY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

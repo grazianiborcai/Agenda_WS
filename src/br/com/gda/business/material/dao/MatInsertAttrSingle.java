@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtParamTranslator;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtParamTranslator;
 
-public final class MatInsertAttrSingle implements SqlStmt<MatInfo> {
-	private SqlStmt<MatInfo> stmtSql;
-	private SqlStmtOption<MatInfo> stmtOption;
+public final class MatInsertAttrSingle implements DaoStmt<MatInfo> {
+	private DaoStmt<MatInfo> stmtSql;
+	private DaoStmtOption<MatInfo> stmtOption;
 	
 	
 	
@@ -32,12 +32,12 @@ public final class MatInsertAttrSingle implements SqlStmt<MatInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, MatInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.MAT_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.tableName = DaoDbTable.MAT_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser(recordInfo);
 		this.stmtOption.whereClause = null;
@@ -46,7 +46,7 @@ public final class MatInsertAttrSingle implements SqlStmt<MatInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.INSERT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
 	}
 		
 	
@@ -76,7 +76,7 @@ public final class MatInsertAttrSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	private class ParamTranslator implements SqlStmtParamTranslator<MatInfo> {		
+	private class ParamTranslator implements DaoStmtParamTranslator<MatInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatInfo recordInfo) throws SQLException {
 			
 			int i = 1;
@@ -97,7 +97,7 @@ public final class MatInsertAttrSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	@Override public SqlStmt<MatInfo> getNewInstance() {
+	@Override public DaoStmt<MatInfo> getNewInstance() {
 		return new MatInsertAttrSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
@@ -105,7 +105,7 @@ public final class MatInsertAttrSingle implements SqlStmt<MatInfo> {
 	
 	
 	
-	private static class ResultParser implements SqlResultParser<MatInfo> {
+	private static class ResultParser implements DaoResultParser<MatInfo> {
 		private MatInfo recordInfo;
 		
 		public ResultParser(MatInfo recordToParse) {

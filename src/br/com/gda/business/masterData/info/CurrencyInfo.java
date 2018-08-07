@@ -44,7 +44,7 @@ public final class CurrencyInfo extends RecordInfo implements Cloneable {
 			char[] chars = codCurr.toCharArray();
 			
 			for (char eachChar : chars) {
-				result = result * (int) eachChar;
+				result = result * 31 + (int) eachChar;
 			}
 		}		
 		
@@ -63,14 +63,6 @@ public final class CurrencyInfo extends RecordInfo implements Cloneable {
 		
 		
 		CurrencyInfo obj = (CurrencyInfo) o;		
-		
-		
-		if (codCurr == null && obj.codCurr == null)
-			return true;
-		
-		if (codCurr == null || obj.codCurr == null)
-			return false;
-		
-		return codCurr.equals(obj.codCurr);
+		return isStringEqual(codCurr, obj.codCurr);
 	}
 }

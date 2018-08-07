@@ -43,7 +43,7 @@ public class MatGroupInfo extends RecordInfo implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * codGroup;
+		result = result * 31 + codGroup;
 		
 		return result;
 	}

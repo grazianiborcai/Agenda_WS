@@ -5,30 +5,30 @@ import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.dao.EmpWTimeInsert;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciActionHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
 
 final class ActionEmpWTimeInsert implements DeciAction<EmpWTimeInfo> {
 	private DeciAction<EmpWTimeInfo> actionHelper;
 	
 	
 	public ActionEmpWTimeInsert(DeciTreeOption<EmpWTimeInfo> option) {
-		SqlStmtExec<EmpWTimeInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec<EmpWTimeInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private SqlStmtExec<EmpWTimeInfo> buildStmtExec(DeciTreeOption<EmpWTimeInfo> option) {
-		List<SqlStmtExecOption<EmpWTimeInfo>> stmtExecOptions = new ArrayList<>();			
+	private DaoStmtExec<EmpWTimeInfo> buildStmtExec(DeciTreeOption<EmpWTimeInfo> option) {
+		List<DaoStmtExecOption<EmpWTimeInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EmpWTimeInfo eachRecord : option.recordInfos) {
-			SqlStmtExecOption<EmpWTimeInfo> stmtExecOption = new SqlStmtExecOption<>();
+			DaoStmtExecOption<EmpWTimeInfo> stmtExecOption = new DaoStmtExecOption<>();
 			stmtExecOption.conn = option.conn;
 			stmtExecOption.recordInfo = eachRecord;
 			stmtExecOption.schemaName = option.schemaName;

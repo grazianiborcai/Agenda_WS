@@ -5,30 +5,30 @@ import java.util.List;
 
 import br.com.gda.business.owner.dao.OwnerSelect;
 import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciActionHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
 
 final class ActionOwnerSelect implements DeciAction<OwnerInfo> {
 	private DeciAction<OwnerInfo> actionHelper;
 	
 	
 	public ActionOwnerSelect(DeciTreeOption<OwnerInfo> option) {
-		SqlStmtExec<OwnerInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec<OwnerInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private SqlStmtExec<OwnerInfo> buildStmtExec(DeciTreeOption<OwnerInfo> option) {
-		List<SqlStmtExecOption<OwnerInfo>> stmtExecOptions = new ArrayList<>();			
+	private DaoStmtExec<OwnerInfo> buildStmtExec(DeciTreeOption<OwnerInfo> option) {
+		List<DaoStmtExecOption<OwnerInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(OwnerInfo eachRecord : option.recordInfos) {
-			SqlStmtExecOption<OwnerInfo> stmtExecOption = new SqlStmtExecOption<>();
+			DaoStmtExecOption<OwnerInfo> stmtExecOption = new DaoStmtExecOption<>();
 			stmtExecOption.conn = option.conn;
 			stmtExecOption.recordInfo = eachRecord;
 			stmtExecOption.schemaName = option.schemaName;

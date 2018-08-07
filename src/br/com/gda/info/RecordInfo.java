@@ -63,4 +63,18 @@ public abstract class RecordInfo implements Cloneable {
 			return false;
 		}
 	}
+	
+	
+	
+	protected boolean isStringEqual(String stringOne, String stringTwo) {
+		try {
+			if (stringOne == null && stringTwo == null)
+				return true;
+			
+			return stringOne.equals(stringTwo);
+			
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }

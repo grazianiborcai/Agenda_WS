@@ -40,7 +40,7 @@ public final class MatTypeInfo extends RecordInfo implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * codType;
+		result = result * 31 + codType;
 		
 		return result;
 	}

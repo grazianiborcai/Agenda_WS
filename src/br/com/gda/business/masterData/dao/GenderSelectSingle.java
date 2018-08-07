@@ -7,26 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.GenderInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlDictionary;
-import br.com.gda.sql.SqlJoin;
-import br.com.gda.sql.SqlJoinColumn;
-import br.com.gda.sql.SqlJoinType;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlResultParser;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoDictionary;
+import br.com.gda.dao.DaoJoin;
+import br.com.gda.dao.DaoJoinColumn;
+import br.com.gda.dao.DaoJoinType;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class GenderSelectSingle implements SqlStmt<GenderInfo> {
-	private final String LT_GENDER = SqlDbTable.GENDER_TABLE;
-	private final String RT_TEXT = SqlDbTable.GENDER_TEXT_TABLE;
+public final class GenderSelectSingle implements DaoStmt<GenderInfo> {
+	private final String LT_GENDER = DaoDbTable.GENDER_TABLE;
+	private final String RT_TEXT = DaoDbTable.GENDER_TEXT_TABLE;
 	
-	private SqlStmt<GenderInfo> stmtSql;
-	private SqlStmtOption<GenderInfo> stmtOption;
+	private DaoStmt<GenderInfo> stmtSql;
+	private DaoStmtOption<GenderInfo> stmtOption;
 	
 	
 	
@@ -38,12 +38,12 @@ public final class GenderSelectSingle implements SqlStmt<GenderInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, GenderInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LT_GENDER;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -57,38 +57,38 @@ public final class GenderSelectSingle implements SqlStmt<GenderInfo> {
 		final boolean IGNORE_RECORD_MODE = true;
 		final boolean DUMMY_CLAUSE_ALLOWED = true;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DUMMY_CLAUSE_ALLOWED;
 		
-		SqlStmtWhere whereClause = new GenderWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new GenderWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private List<SqlJoin> buildJoins() {
-		List<SqlJoin> joins = new ArrayList<>();		
+	private List<DaoJoin> buildJoins() {
+		List<DaoJoin> joins = new ArrayList<>();		
 		joins.add(buildJoinPositionText());
 		return joins;
 	}
 	
 	
 	
-	private SqlJoin buildJoinPositionText() {
-		List<SqlJoinColumn> joinColumns = new ArrayList<>();
+	private DaoJoin buildJoinPositionText() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
-		SqlJoinColumn oneColumn = new SqlJoinColumn();
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_GENDER;
 		oneColumn.leftColumnName = "cod_gender";
 		oneColumn.rightColumnName = "cod_gender";
 		joinColumns.add(oneColumn);
 		
 		
-		SqlJoin join = new SqlJoin();
+		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_TEXT;
-		join.joinType = SqlJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = buildJoinConstraintText(RT_TEXT);
 		
@@ -101,14 +101,14 @@ public final class GenderSelectSingle implements SqlStmt<GenderInfo> {
 		StringBuilder constrainClause = new StringBuilder(); 
 		
 		constrainClause.append(rightTableName);
-		constrainClause.append(SqlDictionary.PERIOD);
+		constrainClause.append(DaoDictionary.PERIOD);
 		constrainClause.append("language");
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.EQUAL);
-		constrainClause.append(SqlDictionary.SPACE);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.EQUAL);
+		constrainClause.append(DaoDictionary.SPACE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		constrainClause.append(this.stmtOption.recordInfo.codLanguage);
-		constrainClause.append(SqlDictionary.QUOTE);
+		constrainClause.append(DaoDictionary.QUOTE);
 		
 		return constrainClause.toString();
 	}
@@ -116,7 +116,7 @@ public final class GenderSelectSingle implements SqlStmt<GenderInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
 	
 	
@@ -145,16 +145,16 @@ public final class GenderSelectSingle implements SqlStmt<GenderInfo> {
 	
 	
 	
-	@Override public SqlStmt<GenderInfo> getNewInstance() {
+	@Override public DaoStmt<GenderInfo> getNewInstance() {
 		return new GenderSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements SqlResultParser<GenderInfo> {
+	private class ResultParser implements DaoResultParser<GenderInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = SqlDbTable.GENDER_TEXT_TABLE + "." + "name";
-		private final String LANGU_COL = SqlDbTable.GENDER_TEXT_TABLE + "." + "language";
+		private final String TEXT_COL = DaoDbTable.GENDER_TEXT_TABLE + "." + "name";
+		private final String LANGU_COL = DaoDbTable.GENDER_TEXT_TABLE + "." + "language";
 		
 		@Override public List<GenderInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<GenderInfo> finalResult = new ArrayList<>();

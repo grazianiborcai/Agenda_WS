@@ -2,8 +2,8 @@ package br.com.gda.business.storeWorkTime.dao;
 
 import java.sql.Connection;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class StoreWTimeSelectSingle extends StoreWTimeSelectTemplate {	
 
@@ -17,11 +17,11 @@ public final class StoreWTimeSelectSingle extends StoreWTimeSelectTemplate {
 		final boolean IGNORE_NULL = true;
 		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		SqlStmtWhere whereClause = new StoreWTimeWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StoreWTimeWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 }

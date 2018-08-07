@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.CurrencyInfo;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecHelper;
-import br.com.gda.sql.SqlStmtExecOption;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecHelper;
+import br.com.gda.dao.DaoStmtExecOption;
 
-public final class CurrencySelect implements SqlStmtExec<CurrencyInfo> {
-	private SqlStmtExec<CurrencyInfo> helper;
+public final class CurrencySelect implements DaoStmtExec<CurrencyInfo> {
+	private DaoStmtExec<CurrencyInfo> helper;
 	
 	
-	public CurrencySelect(List<SqlStmtExecOption<CurrencyInfo>> options) {
-		helper = new SqlStmtExecHelper<>(options, CurrencySelectSingle.class, CurrencyInfo.class);
+	public CurrencySelect(List<DaoStmtExecOption<CurrencyInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CurrencySelectSingle.class, CurrencyInfo.class);
 	}
 	
 	

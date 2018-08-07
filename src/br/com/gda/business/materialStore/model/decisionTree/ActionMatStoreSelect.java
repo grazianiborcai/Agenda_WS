@@ -5,30 +5,30 @@ import java.util.List;
 
 import br.com.gda.business.materialStore.dao.MatStoreSelect;
 import br.com.gda.business.materialStore.info.MatStoreInfo;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciActionHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
 
 final class ActionMatStoreSelect implements DeciAction<MatStoreInfo> {
 	private DeciAction<MatStoreInfo> actionHelper;
 	
 	
 	public ActionMatStoreSelect(DeciTreeOption<MatStoreInfo> option) {
-		SqlStmtExec<MatStoreInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec<MatStoreInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private SqlStmtExec<MatStoreInfo> buildStmtExec(DeciTreeOption<MatStoreInfo> option) {
-		List<SqlStmtExecOption<MatStoreInfo>> stmtExecOptions = new ArrayList<>();			
+	private DaoStmtExec<MatStoreInfo> buildStmtExec(DeciTreeOption<MatStoreInfo> option) {
+		List<DaoStmtExecOption<MatStoreInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatStoreInfo eachRecord : option.recordInfos) {
-			SqlStmtExecOption<MatStoreInfo> stmtExecOption = new SqlStmtExecOption<>();
+			DaoStmtExecOption<MatStoreInfo> stmtExecOption = new DaoStmtExecOption<>();
 			stmtExecOption.conn = option.conn;
 			stmtExecOption.recordInfo = eachRecord;
 			stmtExecOption.schemaName = option.schemaName;

@@ -5,30 +5,30 @@ import java.util.List;
 
 import br.com.gda.business.employeeWorkTimeConflict.dao.EmpCoSelect;
 import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciActionHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
 
 final class ActionEmpCoSelect implements DeciAction<EmpCoInfo> {
 	private DeciAction<EmpCoInfo> actionHelper;
 	
 	
 	public ActionEmpCoSelect(DeciTreeOption<EmpCoInfo> option) {
-		SqlStmtExec<EmpCoInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec<EmpCoInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private SqlStmtExec<EmpCoInfo> buildStmtExec(DeciTreeOption<EmpCoInfo> option) {
-		List<SqlStmtExecOption<EmpCoInfo>> stmtExecOptions = new ArrayList<>();			
+	private DaoStmtExec<EmpCoInfo> buildStmtExec(DeciTreeOption<EmpCoInfo> option) {
+		List<DaoStmtExecOption<EmpCoInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EmpCoInfo eachRecord : option.recordInfos) {
-			SqlStmtExecOption<EmpCoInfo> stmtExecOption = new SqlStmtExecOption<>();
+			DaoStmtExecOption<EmpCoInfo> stmtExecOption = new DaoStmtExecOption<>();
 			stmtExecOption.conn = option.conn;
 			stmtExecOption.recordInfo = eachRecord;
 			stmtExecOption.schemaName = option.schemaName;

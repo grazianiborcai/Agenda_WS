@@ -8,20 +8,20 @@ import java.sql.Time;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnAll;
-import br.com.gda.sql.SqlFormatterNumber;
-import br.com.gda.sql.SqlOperation;
-import br.com.gda.sql.SqlStmt;
-import br.com.gda.sql.SqlStmtHelper;
-import br.com.gda.sql.SqlStmtOption;
-import br.com.gda.sql.SqlStmtParamTranslator;
-import br.com.gda.sql.SqlStmtWhere;
-import br.com.gda.sql.SqlWhereBuilderOption;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoStmt;
+import br.com.gda.dao.DaoStmtHelper;
+import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtParamTranslator;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class EmpUpdateSingle implements SqlStmt<EmpInfo> {
-	private SqlStmt<EmpInfo> stmtSql;
-	private SqlStmtOption<EmpInfo> stmtOption;
+public final class EmpUpdateSingle implements DaoStmt<EmpInfo> {
+	private DaoStmt<EmpInfo> stmtSql;
+	private DaoStmtOption<EmpInfo> stmtOption;
 	
 	
 	public EmpUpdateSingle(Connection conn, EmpInfo recordInfo, String schemaName) {
@@ -32,12 +32,12 @@ public final class EmpUpdateSingle implements SqlStmt<EmpInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, EmpInfo recordInfo, String schemaName) {
-		this.stmtOption = new SqlStmtOption<>();
+		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = SqlDbTable.EMP_TABLE;
-		this.stmtOption.columns = SqlDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.tableName = DaoDbTable.EMP_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;
 		this.stmtOption.whereClause = buildWhereClause();
@@ -50,13 +50,13 @@ public final class EmpUpdateSingle implements SqlStmt<EmpInfo> {
 		final boolean IGNORE_NON_PK = true;
 		final boolean IGNORE_RECORD_MODE = true;		
 		
-		SqlWhereBuilderOption whereOption = new SqlWhereBuilderOption();
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;
 		
 		EmpInfo enforcedInfo = enforceUpdateByKey(stmtOption.recordInfo);
-		SqlStmtWhere whereClause = new EmpWhere(whereOption, stmtOption.tableName, enforcedInfo);
+		DaoStmtWhere whereClause = new EmpWhere(whereOption, stmtOption.tableName, enforcedInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -72,7 +72,7 @@ public final class EmpUpdateSingle implements SqlStmt<EmpInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new SqlStmtHelper<>(SqlOperation.UPDATE, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption);
 	}
 	
 	
@@ -102,17 +102,17 @@ public final class EmpUpdateSingle implements SqlStmt<EmpInfo> {
 	
 	
 	
-	@Override public SqlStmt<EmpInfo> getNewInstance() {
+	@Override public DaoStmt<EmpInfo> getNewInstance() {
 		return new EmpUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ParamTranslator implements SqlStmtParamTranslator<EmpInfo> {		
+	private class ParamTranslator implements DaoStmtParamTranslator<EmpInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpInfo recordInfo) throws SQLException {
-			Time beginTime = SqlFormatterNumber.localToSqlTime(recordInfo.beginTime);
-			Time endTime = SqlFormatterNumber.localToSqlTime(recordInfo.endTime);		
-			Date birthDate = SqlFormatterNumber.localToSqlDate(recordInfo.birthDate);
+			Time beginTime = DaoFormatterNumber.localToSqlTime(recordInfo.beginTime);
+			Time endTime = DaoFormatterNumber.localToSqlTime(recordInfo.endTime);		
+			Date birthDate = DaoFormatterNumber.localToSqlDate(recordInfo.birthDate);
 			
 			int i = 1;
 			stmt.setString(i++, recordInfo.cpf);

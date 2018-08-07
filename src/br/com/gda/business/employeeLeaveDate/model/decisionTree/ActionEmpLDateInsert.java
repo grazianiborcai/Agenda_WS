@@ -5,30 +5,30 @@ import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.dao.EmpLDateInsert;
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciActionHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.sql.SqlStmtExec;
-import br.com.gda.sql.SqlStmtExecOption;
 
 final class ActionEmpLDateInsert implements DeciAction<EmpLDateInfo> {
 	DeciAction<EmpLDateInfo> actionHelper;
 	
 	
 	public ActionEmpLDateInsert(DeciTreeOption<EmpLDateInfo> option) {
-		SqlStmtExec<EmpLDateInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec<EmpLDateInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private SqlStmtExec<EmpLDateInfo> buildStmtExec(DeciTreeOption<EmpLDateInfo> option) {
-		List<SqlStmtExecOption<EmpLDateInfo>> stmtExecOptions = new ArrayList<>();			
+	private DaoStmtExec<EmpLDateInfo> buildStmtExec(DeciTreeOption<EmpLDateInfo> option) {
+		List<DaoStmtExecOption<EmpLDateInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EmpLDateInfo eachRecord : option.recordInfos) {
-			SqlStmtExecOption<EmpLDateInfo> stmtExecOption = new SqlStmtExecOption<>();
+			DaoStmtExecOption<EmpLDateInfo> stmtExecOption = new DaoStmtExecOption<>();
 			stmtExecOption.conn = option.conn;
 			stmtExecOption.recordInfo = eachRecord;
 			stmtExecOption.schemaName = option.schemaName;

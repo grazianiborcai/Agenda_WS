@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.sql.SqlColumn;
-import br.com.gda.sql.SqlDbTable;
-import br.com.gda.sql.SqlDbTableColumnTemplate;
+import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoDbTable;
+import br.com.gda.dao.DaoDbTableColumnTemplate;
 
-public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
-	private Hashtable<String, List<SqlColumn>> tableColumns;	
+public final class StoreCoDbTableColumn extends DaoDbTableColumnTemplate {
+	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public StoreCoDbTableColumn() {
 		super();
@@ -17,7 +17,7 @@ public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	
-	@Override protected Hashtable<String, List<SqlColumn>> buildTableColumnsHook() {
+	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();
 		
 		storeWorkTimeConflictTable();
@@ -28,12 +28,12 @@ public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
 	
 	
 	private void storeWorkTimeConflictTable() {
-		final String TABLE_NAME = SqlDbTable.EMP_WT_TABLE;
+		final String TABLE_NAME = DaoDbTable.EMP_WT_TABLE;
 		
-		SqlColumn oneColumn;
-		List<SqlColumn> columns = new ArrayList<>();	
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();	
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "cod_owner";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -41,7 +41,7 @@ public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "cod_store";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -49,7 +49,7 @@ public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "cod_employee";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -57,7 +57,7 @@ public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "weekday";
 		oneColumn.isPK = IS_PRIMARY_KEY;
@@ -65,7 +65,7 @@ public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "begin_time";
 		oneColumn.isPK = NEGATIVE;
@@ -73,7 +73,7 @@ public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "end_time";
 		oneColumn.isPK = NEGATIVE;
@@ -81,7 +81,7 @@ public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = "record_mode";
 		oneColumn.isPK = NEGATIVE;
@@ -89,22 +89,22 @@ public final class StoreCoDbTableColumn extends SqlDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.WEEKDAY_TEXT_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.WEEKDAY_TEXT_TABLE;
 		oneColumn.columnName = "Name";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new SqlColumn();
-		oneColumn.tableName = SqlDbTable.STORE_TABLE;
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.STORE_TABLE;
 		oneColumn.columnName = "Cod_timezone";
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(SqlDbTable.STORE_WT_CONFLICT_VIEW, columns);
+		tableColumns.put(DaoDbTable.STORE_WT_CONFLICT_VIEW, columns);
 	}
 }
