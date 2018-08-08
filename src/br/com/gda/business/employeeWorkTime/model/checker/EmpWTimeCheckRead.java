@@ -16,10 +16,11 @@ public final class EmpWTimeCheckRead extends ModelCheckerTemplateSimple<EmpWTime
 	
 	
 	@Override protected boolean checkHook(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0 ||
-			recordInfo.codStore    	<= 0 ||
-			recordInfo.codEmployee 	<= 0 	)
-			
+		if (recordInfo.codStore <= 0 && recordInfo.codEmployee <= 0)
+			return FAILED;
+		
+		
+		if (recordInfo.codOwner <= 0)
 			return FAILED;
 		
 		

@@ -4,32 +4,32 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employee.model.decisionTree.RootEmpSelect;
 import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.info.PlanMerger;
-import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.decisionTree.RootStoreSelect;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerPlanMergeStore extends DeciActionHandlerTemplate<PlanInfo, StoreInfo> {
+final class HandlerPlanMergeEmp extends DeciActionHandlerTemplate<PlanInfo, EmpInfo> {
 	private List<PlanInfo> originalInfos;
 	
 	
-	public HandlerPlanMergeStore(Connection conn, String schemaName) {
+	public HandlerPlanMergeEmp(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
 	
 	
-	@Override protected List<StoreInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
+	@Override protected List<EmpInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
 		originalInfos = recordInfos;
 		
 		List<PlanDataInfo> collectedInfo = collectDataInfo(recordInfos);
-		return StoreInfo.copyFrom(collectedInfo);
+		return EmpInfo.copyFrom(collectedInfo);
 	}
 	
 	
@@ -46,13 +46,13 @@ final class HandlerPlanMergeStore extends DeciActionHandlerTemplate<PlanInfo, St
 	
 	
 	
-	@Override protected DeciAction<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
-		return new RootStoreSelect(option).toAction();
+	@Override protected DeciAction<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
+		return new RootEmpSelect(option).toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<PlanInfo> translateResultHook(DeciResult<StoreInfo> result) {
+	@Override protected DeciResult<PlanInfo> translateResultHook(DeciResult<EmpInfo> result) {
 		DeciResultHelper<PlanInfo> resultHelper = new DeciResultHelper<>();
 		resultHelper.copyWithoutResultset(result);
 		

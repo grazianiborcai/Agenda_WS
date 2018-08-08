@@ -28,12 +28,14 @@ public final class PlanningTimeResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectPlanTime(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
 								   @HeaderParam("codStore")    @DefaultValue("-1") long codStore, 
+								   @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee, 
 								   @HeaderParam("date")        @DefaultValue("1900-01-01") String date,
 			                       @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 		
 		PlanDataInfo dataInfo = new PlanDataInfo();
 		dataInfo.codOwner = codOwner;
 		dataInfo.codStore = codStore;
+		dataInfo.codEmployee = codEmployee;
 		dataInfo.date = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
 		dataInfo.codLanguage = codLanguage;
 		

@@ -47,16 +47,23 @@ public class RootPlanSelect implements DeciTree<PlanInfo> {
 	
 	private List<DeciAction<PlanInfo>> buildActionsOnPassed(DeciTreeOption<PlanInfo> option) {
 		List<DeciAction<PlanInfo>> actions = new ArrayList<>();		
-		DeciAction<PlanInfo> mainAction = new ActionPlanEnforceWeekday(option);
 		
-		DeciActionHandler<PlanInfo> mergeStore = new HandlerPlanMergeStore(option.conn, option.schemaName);
-		mainAction.addPostAction(mergeStore);
-		
+		DeciAction<PlanInfo> mainAction = new ActionPlanEnforceWeekday(option);		
+		DeciActionHandler<PlanInfo> mergeStore = new HandlerPlanMergeStore(option.conn, option.schemaName);		
 		DeciActionHandler<PlanInfo> mergeSWT = new HandlerPlanMergeSWT(option.conn, option.schemaName);
-		mergeStore.addPostAction(mergeSWT);
+		DeciActionHandler<PlanInfo> mergeEWT = new HandlerPlanMergeEWT(option.conn, option.schemaName);
+		DeciActionHandler<PlanInfo> mergeEmp = new HandlerPlanMergeEmp(option.conn, option.schemaName);
+		DeciActionHandler<PlanInfo> mergeME = new HandlerPlanMergeME(option.conn, option.schemaName);
+		DeciActionHandler<PlanInfo> mergeMat = new HandlerPlanMergeMat(option.conn, option.schemaName);
+		DeciActionHandler<PlanInfo> uniquify = new HandlerPlanUniquify(option.conn, option.schemaName);		
 		
-		DeciActionHandler<PlanInfo> uniquify = new HandlerPlanUniquify(option.conn, option.schemaName);
-		mergeSWT.addPostAction(uniquify);
+		mainAction.addPostAction(mergeStore);
+		mergeStore.addPostAction(mergeSWT);
+		mergeSWT.addPostAction(mergeEWT);
+		mergeEWT.addPostAction(mergeEmp);
+		mergeEmp.addPostAction(mergeME);
+		mergeME.addPostAction(mergeMat);
+		mergeMat.addPostAction(uniquify);
 		
 		actions.add(mainAction);
 		return actions;

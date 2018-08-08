@@ -28,13 +28,13 @@ final class HandlerPlanMergeSWT extends DeciActionHandlerTemplate<PlanInfo, Stor
 	@Override protected List<StoreWTimeInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
 		originalInfos = recordInfos;
 		
-		List<PlanDataInfo> packedInfo = packDataInfo(recordInfos);
-		return StoreWTimeInfo.copyFrom(packedInfo);
+		List<PlanDataInfo> collectedInfo = collectDataInfo(recordInfos);
+		return StoreWTimeInfo.copyFrom(collectedInfo);
 	}
 	
 	
 	
-	private List<PlanDataInfo> packDataInfo(List<PlanInfo> recordInfos) {
+	private List<PlanDataInfo> collectDataInfo(List<PlanInfo> recordInfos) {
 		List<PlanDataInfo> dataInfos = new ArrayList<>();
 		
 		for(PlanInfo eachrecord : recordInfos) {

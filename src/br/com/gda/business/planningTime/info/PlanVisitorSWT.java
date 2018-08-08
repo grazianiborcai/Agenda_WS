@@ -18,8 +18,8 @@ final class PlanVisitorSWT implements VisitorMerger<PlanInfo, PlanInfo, StoreWTi
 		
 		for (PlanDataInfo eachData : sourceOne.datas) {
 			PlanDataInfo dataInfo = PlanDataInfo.copyFrom(sourceTwo);
-			dataInfo.date = LocalDate.of(eachData.date.getYear(), eachData.date.getMonth(), eachData.date.getDayOfMonth());
-				
+			dataInfo.date = LocalDate.of(eachData.date.getYear(), eachData.date.getMonth(), eachData.date.getDayOfMonth());		
+			dataInfo.codEmployee = eachData.codEmployee;
 			resultInfo.datas.add(dataInfo);
 		}
 		

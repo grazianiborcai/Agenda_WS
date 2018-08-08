@@ -1,12 +1,12 @@
 package br.com.gda.business.planningTime.info;
 
-import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.VisitorMerger;
 
-final class PlanVisitorStore implements VisitorMerger<PlanInfo, PlanInfo, StoreInfo> {
+final class PlanVisitorEmp implements VisitorMerger<PlanInfo, PlanInfo, EmpInfo> {
 
-	@Override public PlanInfo mergeRecord(PlanInfo sourceOne, StoreInfo sourceTwo) {
+	@Override public PlanInfo mergeRecord(PlanInfo sourceOne, EmpInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 				
 		PlanInfo resultInfo = new PlanInfo();	
@@ -16,15 +16,15 @@ final class PlanVisitorStore implements VisitorMerger<PlanInfo, PlanInfo, StoreI
 		resultInfo.weekdays.addAll(sourceOne.weekdays);
 		resultInfo.datas.addAll(sourceOne.datas);
 		
-		resultInfo.stores.add(sourceTwo);
+		resultInfo.employees.add(sourceTwo);
 		
-		
+
 		return resultInfo;
 	}
 	
 	
 	
-	private void checkArgument(PlanInfo sourceOne, StoreInfo sourceTwo) {
+	private void checkArgument(PlanInfo sourceOne, EmpInfo sourceTwo) {
 		if (sourceOne.datas == null)
 			throw new NullPointerException("sourceOne.datas" + SystemMessage.NULL_ARGUMENT);
 		
