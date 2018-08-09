@@ -5,9 +5,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import br.com.gda.info.RecordInfo;
+import br.com.gda.info.InfoRecord;
 
-public final class DateTimeRangeInfo extends RecordInfo implements Cloneable {
+public final class DateTimeRangeInfo extends InfoRecord implements Cloneable {
 	public LocalDate dateValidFrom;
 	public LocalDate dateValidTo;
 	public LocalTime timeValidFrom;

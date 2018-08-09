@@ -3,9 +3,9 @@ package br.com.gda.business.planningTime.info;
 import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.info.RecordMerger;
+import br.com.gda.info.InfoMerger;
 
-final class PlanMergerSWT extends RecordMerger<PlanInfo, PlanInfo, StoreWTimeInfo> {
+final class PlanMergerSWT extends InfoMerger<PlanInfo, PlanInfo, StoreWTimeInfo> {
 	public PlanInfo merge(PlanInfo sourceOne, StoreWTimeInfo sourceTwo) {
 		return super.merge(sourceOne, sourceTwo, new PlanVisitorSWT());
 	}

@@ -1,16 +1,22 @@
 package br.com.gda.business.planningTime.info;
 
 import java.util.List;
-
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.info.RecordMergerFacTempl;
+import br.com.gda.info.InfoMergerTemplate;
 
-public final class PlanMerger extends RecordMergerFacTempl<PlanInfo> {
+public final class PlanMerger extends InfoMergerTemplate<PlanInfo> {	
+	
+	public PlanMerger() {
+		super(new PlanUniquifier());
+	}
+	
+	
+	
 	public PlanInfo merge(PlanInfo sourceOne, StoreWTimeInfo sourceTwo) {
 		return new PlanMergerSWT().merge(sourceOne, sourceTwo);
 	}

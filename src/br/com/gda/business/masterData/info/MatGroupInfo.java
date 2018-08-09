@@ -4,9 +4,9 @@ import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
-import br.com.gda.info.RecordInfo;
+import br.com.gda.info.InfoRecord;
 
-public class MatGroupInfo extends RecordInfo implements Cloneable {
+public class MatGroupInfo extends InfoRecord implements Cloneable {
 	public int codGroup;
 	public String txtGroup;
 	public int codBusiness;

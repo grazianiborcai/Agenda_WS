@@ -1,11 +1,14 @@
 package br.com.gda.business.planningTime.info;
 
-import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.VisitorMerger;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class PlanVisitorSWT implements VisitorMerger<PlanInfo, PlanInfo, StoreWTimeInfo> {
+final class PlanVisitorSWT implements InfoMergerVisitor<PlanInfo, PlanInfo, StoreWTimeInfo> {
 
 	@Override public PlanInfo mergeRecord(PlanInfo sourceOne, StoreWTimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
@@ -17,10 +20,10 @@ final class PlanVisitorSWT implements VisitorMerger<PlanInfo, PlanInfo, StoreWTi
 		resultInfo.weekdays.addAll(sourceOne.weekdays);
 		
 		for (PlanDataInfo eachData : sourceOne.datas) {
-			PlanDataInfo dataInfo = PlanDataInfo.copyFrom(sourceTwo);
-			dataInfo.date = LocalDate.of(eachData.date.getYear(), eachData.date.getMonth(), eachData.date.getDayOfMonth());		
-			dataInfo.codEmployee = eachData.codEmployee;
-			resultInfo.datas.add(dataInfo);
+			if (shouldMerge(eachData, sourceTwo)) {
+				List<PlanDataInfo> mergedResults = mergeStoreWTime(eachData, sourceTwo);
+				resultInfo.datas.addAll(mergedResults);
+			}
 		}
 		
 
@@ -29,20 +32,53 @@ final class PlanVisitorSWT implements VisitorMerger<PlanInfo, PlanInfo, StoreWTi
 	
 	
 	
-	private void checkArgument(PlanInfo sourceOne, StoreWTimeInfo sourceTwo) {
-		if (sourceOne.datas == null)
-			throw new NullPointerException("sourceOne.datas" + SystemMessage.NULL_ARGUMENT);
+	private void checkArgument(PlanInfo sourceOne, StoreWTimeInfo sourceTwo) {		
+		if (sourceTwo.beginTime == null)
+			throw new NullPointerException("beginTime" + SystemMessage.NULL_ARGUMENT);
 		
-		if (sourceOne.datas.isEmpty())
-			throw new IllegalArgumentException("sourceOne.datas" + SystemMessage.EMPTY_ARGUMENT);
+		if (sourceTwo.endTime == null)
+			throw new NullPointerException("endTime" + SystemMessage.NULL_ARGUMENT);
 		
 		
 		for (PlanDataInfo eachData : sourceOne.datas) {
+			if (eachData.codOwner <= 0)
+				throw new IllegalArgumentException("codOwner" + SystemMessage.MANDATORY_FIELD_EMPTY);
+			
 			if (eachData.codOwner != sourceTwo.codOwner)
 				throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
+		}
+	}
+	
+	
+	
+	private boolean shouldMerge(PlanDataInfo planData, StoreWTimeInfo storeWTime) {
+		if (planData.codStore == storeWTime.codStore &&
+			planData.codWeekday == storeWTime.codWeekday )
+			return true;
+		
+		return false;
+	}
+	
+	
+	
+	private List<PlanDataInfo> mergeStoreWTime(PlanDataInfo planData, StoreWTimeInfo storeWTime) {
+		PlanDataInfo resultInfo = makeClone(planData);
+		resultInfo.beginTime = LocalTime.of(storeWTime.beginTime.getHour(), storeWTime.beginTime.getMinute());
+		resultInfo.endTime = LocalTime.of(storeWTime.endTime.getHour(), storeWTime.endTime.getMinute());
+		
+		List<PlanDataInfo> results = new ArrayList<>();
+		results.add(resultInfo);
+		return results;
+	}
+	
+	
+	
+	private PlanDataInfo makeClone(PlanDataInfo planData) {
+		try {
+			return (PlanDataInfo) planData.clone();
 			
-			if (eachData.codStore != sourceTwo.codStore)
-				throw new IllegalArgumentException("codStore" + SystemMessage.ARGUMENT_DONT_MATCH);
+		} catch (CloneNotSupportedException e) {
+			throw new IllegalStateException(e);
 		}
 	}
 }

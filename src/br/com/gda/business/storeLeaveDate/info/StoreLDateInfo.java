@@ -7,9 +7,9 @@ import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.helper.RecordMode;
-import br.com.gda.info.RecordInfo;
+import br.com.gda.info.InfoRecord;
 
-public final class StoreLDateInfo extends RecordInfo implements Cloneable {
+public final class StoreLDateInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public LocalDate dateValidFrom;

@@ -4,9 +4,9 @@ import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
-import br.com.gda.info.RecordInfo;
+import br.com.gda.info.InfoRecord;
 
-public final class WeekdayInfo extends RecordInfo implements Cloneable {
+public final class WeekdayInfo extends InfoRecord implements Cloneable {
 	public int codWeekday;
 	public String txtWeekday;
 	public String codLanguage;

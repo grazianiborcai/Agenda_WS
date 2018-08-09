@@ -1,13 +1,13 @@
 package br.com.gda.business.planningTime.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.VisitorMerger;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class PlanVisitorME implements VisitorMerger<PlanInfo, PlanInfo, MatEmpInfo> {
-	private final boolean DONT_SKIP = false;
-	private final boolean SKIP = true;
-	
+final class PlanVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, MatEmpInfo> {
 	
 	@Override public PlanInfo mergeRecord(PlanInfo sourceOne, MatEmpInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
@@ -19,14 +19,10 @@ final class PlanVisitorME implements VisitorMerger<PlanInfo, PlanInfo, MatEmpInf
 		resultInfo.weekdays.addAll(sourceOne.weekdays);
 		
 		for (PlanDataInfo eachData : sourceOne.datas) {
-			if (shouldSkip(eachData, sourceTwo))
-				continue;			
-			
-			PlanDataInfo dataInfo = makeClone(eachData);
-			
-			dataInfo.codMat = sourceTwo.codMat;		
-			dataInfo.codEmployee = eachData.codEmployee;
-			resultInfo.datas.add(dataInfo);
+			if (shouldMerge(eachData, sourceTwo)) {		
+				List<PlanDataInfo> mergedResults = mergeMatEmp(eachData, sourceTwo);
+				resultInfo.datas.addAll(mergedResults);
+			}
 		}
 		
 
@@ -35,15 +31,57 @@ final class PlanVisitorME implements VisitorMerger<PlanInfo, PlanInfo, MatEmpInf
 	
 	
 	
-	private boolean shouldSkip(PlanDataInfo planData, MatEmpInfo matEmp) {
-		if (planData.codOwner    == matEmp.codOwner &&
-			planData.codStore    == matEmp.codStore &&
+	private void checkArgument(PlanInfo sourceOne, MatEmpInfo sourceTwo) {		
+		//TODO: colocar checks para unidade de medida e duração
+		
+		if (sourceTwo.codMat <= 0)
+			throw new IllegalArgumentException("sourceTwo.codMat" + SystemMessage.NULL_ARGUMENT);
+		
+		if (sourceTwo.codStore <= 0)
+			throw new IllegalArgumentException("sourceTwo.codEmployee" + SystemMessage.NULL_ARGUMENT);
+		
+		if (sourceTwo.codEmployee <= 0)
+			throw new IllegalArgumentException("sourceTwo.codEmployee" + SystemMessage.NULL_ARGUMENT);
+		
+		
+		for (PlanDataInfo eachData : sourceOne.datas) {
+			if (eachData.codOwner <= 0)
+				throw new IllegalArgumentException("codOwner" + SystemMessage.MANDATORY_FIELD_EMPTY);
+			
+			if (eachData.codOwner != sourceTwo.codOwner)
+				throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
+			
+			if (eachData.codStore <= 0)
+				throw new IllegalArgumentException("codEmployee" + SystemMessage.NULL_ARGUMENT);
+			
+			if (eachData.codEmployee <= 0)
+				throw new IllegalArgumentException("codEmployee" + SystemMessage.NULL_ARGUMENT);
+		}
+	}
+	
+	
+	
+	private boolean shouldMerge(PlanDataInfo planData, MatEmpInfo matEmp) {
+		if (planData.codStore    == matEmp.codStore &&
 			planData.codEmployee == matEmp.codEmployee)
 			
-			return DONT_SKIP;
+			return true;
 		
 		
-		return SKIP;
+		return false;
+	}
+	
+	
+	
+	private List<PlanDataInfo> mergeMatEmp(PlanDataInfo planData, MatEmpInfo matEmp) {
+		PlanDataInfo dataResult = makeClone(planData);
+		
+		dataResult.codMat = matEmp.codMat;	
+		
+		List<PlanDataInfo> dataResults = new ArrayList<>();
+		dataResults.add(dataResult);
+		
+		return dataResults;
 	}
 	
 	
@@ -54,28 +92,6 @@ final class PlanVisitorME implements VisitorMerger<PlanInfo, PlanInfo, MatEmpInf
 			
 		} catch (CloneNotSupportedException e) {
 			throw new IllegalArgumentException(e);
-		}
-	}
-	
-	
-	
-	private void checkArgument(PlanInfo sourceOne, MatEmpInfo sourceTwo) {
-		if (sourceOne.datas == null)
-			throw new NullPointerException("sourceOne.datas" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceOne.datas.isEmpty())
-			throw new IllegalArgumentException("sourceOne.datas" + SystemMessage.EMPTY_ARGUMENT);
-		
-		
-		for (PlanDataInfo eachData : sourceOne.datas) {
-			if (eachData.codOwner != sourceTwo.codOwner)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-			
-			if (eachData.codStore != sourceTwo.codStore)
-				throw new IllegalArgumentException("codStore" + SystemMessage.ARGUMENT_DONT_MATCH);
-			
-			if (eachData.codEmployee != sourceTwo.codEmployee)
-				throw new IllegalArgumentException("codEmployee" + SystemMessage.ARGUMENT_DONT_MATCH);
 		}
 	}
 }

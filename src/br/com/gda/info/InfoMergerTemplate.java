@@ -5,7 +5,29 @@ import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 
-public abstract class RecordMergerFacTempl<T> {
+public abstract class InfoMergerTemplate<T> {
+	private InfoUniquifier<T> resultUniquifier;
+	
+	
+	protected InfoMergerTemplate() {	
+		resultUniquifier = null;
+	}
+	
+	
+	protected InfoMergerTemplate(InfoUniquifier<T> uniquifier) {
+		checkArgument(uniquifier);
+		
+		resultUniquifier = uniquifier;
+	}
+	
+	
+	
+	private void checkArgument(InfoUniquifier<T> uniquifier) {
+		if (uniquifier == null)
+			throw new NullPointerException("uniquifier" + SystemMessage.NULL_ARGUMENT);
+	}
+	
+	
 	
 	public List<T> merge(List<?> sourceOnes, List<?> sourceTwos) {
 		checkArgument(sourceOnes, sourceTwos);
@@ -13,12 +35,16 @@ public abstract class RecordMergerFacTempl<T> {
 		if (isEmpty(sourceOnes, sourceTwos))
 			return Collections.emptyList();
 		
-		List<T> result = mergeHook(sourceOnes, sourceTwos);
+		List<T> results = mergeHook(sourceOnes, sourceTwos);
 		
-		if (result == null || result.isEmpty()) 
+		if (results == null || results.isEmpty()) 
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_POSSIBLE);		
 		
-		return result;
+		
+		if (resultUniquifier == null)
+			return results;
+		
+		return resultUniquifier.uniquify(results);
 	} 
 	
 	

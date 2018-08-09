@@ -3,9 +3,9 @@ package br.com.gda.business.masterData.info;
 import java.util.List;
 
 import br.com.gda.common.Language;
-import br.com.gda.info.RecordInfo;
+import br.com.gda.info.InfoRecord;
 
-public final class MatUnitInfo extends RecordInfo implements Cloneable {
+public final class MatUnitInfo extends InfoRecord implements Cloneable {
 	public String codUnit;
 	public String txtUnit;
 	public String codLanguage;

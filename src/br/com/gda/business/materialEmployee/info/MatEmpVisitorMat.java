@@ -2,9 +2,9 @@ package br.com.gda.business.materialEmployee.info;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.VisitorMerger;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class MatEmpVisitorMat implements VisitorMerger<MatEmpInfo, MatInfo, MatEmpInfo> {
+final class MatEmpVisitorMat implements InfoMergerVisitor<MatEmpInfo, MatInfo, MatEmpInfo> {
 
 	@Override public MatEmpInfo mergeRecord(MatInfo sourceOne, MatEmpInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

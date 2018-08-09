@@ -3,9 +3,9 @@ package br.com.gda.business.masterData.info;
 import java.util.List;
 
 import br.com.gda.common.Language;
-import br.com.gda.info.RecordInfo;
+import br.com.gda.info.InfoRecord;
 
-public final class CurrencyInfo extends RecordInfo implements Cloneable {
+public final class CurrencyInfo extends InfoRecord implements Cloneable {
 	public String codCurr;
 	public String txtCurr;
 	public String symbolCurr;

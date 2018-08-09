@@ -5,9 +5,9 @@ import java.util.List;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
-import br.com.gda.info.RecordInfo;
+import br.com.gda.info.InfoRecord;
 
-public final class MatStoreInfo extends RecordInfo implements Cloneable {
+public final class MatStoreInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
 	public long codMat;

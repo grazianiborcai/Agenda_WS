@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 
-public abstract class RecordMerger<T,K,S> {
-	protected List<T> merge(List<K> sourceOnes, List<S> sourceTwos, VisitorMerger<T,K,S> visitor) {
+public abstract class InfoMerger<T,K,S> {
+	protected List<T> merge(List<K> sourceOnes, List<S> sourceTwos, InfoMergerVisitor<T,K,S> visitor) {
 		checkArgument(sourceOnes, sourceTwos);
 		
 		List<T> results = new ArrayList<>();
@@ -25,7 +25,7 @@ public abstract class RecordMerger<T,K,S> {
 	
 	
 	
-	private T tryToMerge(K sourceOne, S sourceTwo, VisitorMerger<T,K,S> visitor) {
+	private T tryToMerge(K sourceOne, S sourceTwo, InfoMergerVisitor<T,K,S> visitor) {
 		try {
 			return merge(sourceOne, sourceTwo, visitor);
 			
@@ -41,19 +41,25 @@ public abstract class RecordMerger<T,K,S> {
 			throw new NullPointerException("sourceOnes" + SystemMessage.NULL_ARGUMENT);
 		
 		if (sourceTwos == null)
-			throw new NullPointerException("sourceTwos" + SystemMessage.NULL_ARGUMENT);
+			throw new NullPointerException("sourceTwos" + SystemMessage.NULL_ARGUMENT);		
+		
+		if (sourceOnes.isEmpty())
+			throw new IllegalArgumentException("sourceOnes" + SystemMessage.EMPTY_ARGUMENT);
+		
+		if (sourceTwos.isEmpty())
+			throw new IllegalArgumentException("sourceTwos" + SystemMessage.EMPTY_ARGUMENT);
 	}
 	
 	
 	
-	protected T merge(K sourceOne, S sourceTwo, VisitorMerger<T,K,S> visitor) {
+	protected T merge(K sourceOne, S sourceTwo, InfoMergerVisitor<T,K,S> visitor) {
 		checkArgument(sourceOne, sourceTwo, visitor);
 		return visitor.mergeRecord(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(K sourceOne, S sourceTwo, VisitorMerger<T,K,S> visitor) {
+	private void checkArgument(K sourceOne, S sourceTwo, InfoMergerVisitor<T,K,S> visitor) {
 		if (sourceOne == null)
 			throw new NullPointerException("sourceOne" + SystemMessage.NULL_ARGUMENT);
 		

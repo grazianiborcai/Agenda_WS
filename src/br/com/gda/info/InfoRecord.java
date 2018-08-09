@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-public abstract class RecordInfo implements Cloneable {
+public abstract class InfoRecord implements Cloneable {
 	
 	protected static <T> List<T> copyFrom(List<?> sourceObjs, Class<T> targetClass) {
 		if (sourceObjs == null)

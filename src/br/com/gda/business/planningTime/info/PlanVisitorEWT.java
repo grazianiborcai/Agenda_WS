@@ -1,12 +1,14 @@
 package br.com.gda.business.planningTime.info;
 
-import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.VisitorMerger;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class PlanVisitorEWT implements VisitorMerger<PlanInfo, PlanInfo, EmpWTimeInfo> {
+final class PlanVisitorEWT implements InfoMergerVisitor<PlanInfo, PlanInfo, EmpWTimeInfo> {
 
 	@Override public PlanInfo mergeRecord(PlanInfo sourceOne, EmpWTimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
@@ -18,9 +20,10 @@ final class PlanVisitorEWT implements VisitorMerger<PlanInfo, PlanInfo, EmpWTime
 		resultInfo.weekdays.addAll(sourceOne.weekdays);
 		
 		for (PlanDataInfo eachData : sourceOne.datas) {
-			PlanDataInfo dataInfo = PlanDataInfo.copyFrom(sourceTwo);
-			dataInfo.date = LocalDate.of(eachData.date.getYear(), eachData.date.getMonth(), eachData.date.getDayOfMonth());				
-			resultInfo.datas.add(dataInfo);
+			if (shouldMerge(eachData, sourceTwo)) {
+				List<PlanDataInfo> mergedResults = mergeEmpWTime(eachData, sourceTwo);
+				resultInfo.datas.addAll(mergedResults);
+			}
 		}
 		
 
@@ -30,12 +33,6 @@ final class PlanVisitorEWT implements VisitorMerger<PlanInfo, PlanInfo, EmpWTime
 	
 	
 	private void checkArgument(PlanInfo sourceOne, EmpWTimeInfo sourceTwo) {
-		if (sourceOne.datas == null)
-			throw new NullPointerException("sourceOne.datas" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceOne.datas.isEmpty())
-			throw new IllegalArgumentException("sourceOne.datas" + SystemMessage.EMPTY_ARGUMENT);
-		
 		if (sourceTwo.beginTime == null)
 			throw new NullPointerException("sourceTwo.beginTime" + SystemMessage.NULL_ARGUMENT);
 		
@@ -48,20 +45,59 @@ final class PlanVisitorEWT implements VisitorMerger<PlanInfo, PlanInfo, EmpWTime
 		
 		
 		for (PlanDataInfo eachData : sourceOne.datas) {
+			if (eachData.codOwner <= 0)
+				throw new IllegalArgumentException("codOwner" + SystemMessage.MANDATORY_FIELD_EMPTY);
+			
 			if (eachData.codOwner != sourceTwo.codOwner)
 				throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
+
 			
-			if (eachData.codStore != sourceTwo.codStore)
-				throw new IllegalArgumentException("codStore" + SystemMessage.ARGUMENT_DONT_MATCH);
+			if (eachData.beginTime == null)
+				throw new NullPointerException("beginTime" + SystemMessage.NULL_ARGUMENT);
 			
-			if (eachData.codWeekday != sourceTwo.codWeekday)
-				throw new IllegalArgumentException("codWeekday" + SystemMessage.ARGUMENT_DONT_MATCH);
+			if (eachData.endTime == null)
+				throw new NullPointerException("endTime" + SystemMessage.NULL_ARGUMENT);
+		}
+	}
+	
+	
+	
+	private boolean shouldMerge(PlanDataInfo planData, EmpWTimeInfo empWTime) {
+		if (planData.beginTime.isAfter(empWTime.beginTime) ||
+			planData.endTime.isBefore(empWTime.endTime))
+			return false;
+		
+		
+		if (planData.codStore   == empWTime.codStore &&
+			planData.codWeekday == empWTime.codWeekday)
+			return true;
+		
+		
+		return false;
+	}
+	
+	
+	
+	private List<PlanDataInfo> mergeEmpWTime(PlanDataInfo planData, EmpWTimeInfo empWTime) {
+		PlanDataInfo dataResult = makeClone(planData);
+		
+		dataResult.codEmployee = empWTime.codEmployee;
+		dataResult.beginTime = LocalTime.of(empWTime.beginTime.getHour(), empWTime.beginTime.getMinute());
+		dataResult.endTime = LocalTime.of(empWTime.endTime.getHour(), empWTime.endTime.getMinute());		
+
+		List<PlanDataInfo> dataResults = new ArrayList<>();
+		dataResults.add(dataResult);
+		return dataResults;
+	}
+	
+	
+	
+	private PlanDataInfo makeClone(PlanDataInfo planData) {
+		try {
+			return (PlanDataInfo) planData.clone();
 			
-			if (eachData.beginTime != null && eachData.beginTime.isAfter(sourceTwo.beginTime))
-				throw new IllegalArgumentException("beginTime" + SystemMessage.ARGUMENT_DONT_MATCH);
-			
-			if (eachData.endTime != null && eachData.endTime.isBefore(sourceTwo.endTime))
-				throw new IllegalArgumentException("endTime" + SystemMessage.ARGUMENT_DONT_MATCH);
+		} catch (CloneNotSupportedException e) {
+			throw new IllegalStateException(e);
 		}
 	}
 }

@@ -3,9 +3,9 @@ package br.com.gda.business.masterData.info;
 import java.util.List;
 
 import br.com.gda.common.Language;
-import br.com.gda.info.RecordInfo;
+import br.com.gda.info.InfoRecord;
 
-public final class TimezoneInfo extends RecordInfo implements Cloneable {
+public final class TimezoneInfo extends InfoRecord implements Cloneable {
 	public String codTimezone;
 	public String txtTimezone;
 	public String codLanguage;

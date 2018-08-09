@@ -4,9 +4,9 @@ import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.info.RecordMergerFacTempl;
+import br.com.gda.info.InfoMergerTemplate;
 
-public final class EmpWTimeMerger extends RecordMergerFacTempl<EmpWTimeInfo> {
+public final class EmpWTimeMerger extends InfoMergerTemplate<EmpWTimeInfo> {
 	public EmpWTimeInfo merge(StoreEmpInfo sourceOne, StoreWTimeInfo sourceTwo) {
 		return new EmpWTimeMergerSWT().merge(sourceOne, sourceTwo);
 	}

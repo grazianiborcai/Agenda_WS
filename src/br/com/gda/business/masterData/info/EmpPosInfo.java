@@ -4,9 +4,9 @@ import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.Language;
-import br.com.gda.info.RecordInfo;
+import br.com.gda.info.InfoRecord;
 
-public final class EmpPosInfo extends RecordInfo implements Cloneable {
+public final class EmpPosInfo extends InfoRecord implements Cloneable {
 	public long codPosition;
 	public String txtPosition;
 	public String codLanguage;

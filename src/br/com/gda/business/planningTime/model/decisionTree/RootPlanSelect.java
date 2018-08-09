@@ -55,7 +55,7 @@ public class RootPlanSelect implements DeciTree<PlanInfo> {
 		DeciActionHandler<PlanInfo> mergeEmp = new HandlerPlanMergeEmp(option.conn, option.schemaName);
 		DeciActionHandler<PlanInfo> mergeME = new HandlerPlanMergeME(option.conn, option.schemaName);
 		DeciActionHandler<PlanInfo> mergeMat = new HandlerPlanMergeMat(option.conn, option.schemaName);
-		DeciActionHandler<PlanInfo> uniquify = new HandlerPlanUniquify(option.conn, option.schemaName);		
+		//DeciActionHandler<PlanInfo> uniquify = new HandlerPlanUniquify(option.conn, option.schemaName);		
 		
 		mainAction.addPostAction(mergeStore);
 		mergeStore.addPostAction(mergeSWT);
@@ -63,7 +63,7 @@ public class RootPlanSelect implements DeciTree<PlanInfo> {
 		mergeEWT.addPostAction(mergeEmp);
 		mergeEmp.addPostAction(mergeME);
 		mergeME.addPostAction(mergeMat);
-		mergeMat.addPostAction(uniquify);
+		//mergeMat.addPostAction(uniquify);
 		
 		actions.add(mainAction);
 		return actions;

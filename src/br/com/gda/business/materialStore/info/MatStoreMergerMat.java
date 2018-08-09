@@ -3,9 +3,9 @@ package br.com.gda.business.materialStore.info;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.info.RecordMerger;
+import br.com.gda.info.InfoMerger;
 
-final class MatStoreMergerMat extends RecordMerger<MatStoreInfo, MatInfo, MatStoreInfo> {
+final class MatStoreMergerMat extends InfoMerger<MatStoreInfo, MatInfo, MatStoreInfo> {
 	public MatStoreInfo merge(MatInfo sourceOne, MatStoreInfo sourceTwo) {
 		return super.merge(sourceOne, sourceTwo, new MatStoreVisitorMat());
 	}

@@ -4,9 +4,9 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.info.RecordMergerFacTempl;
+import br.com.gda.info.InfoMergerTemplate;
 
-public final class MatEmpMerger extends RecordMergerFacTempl<MatEmpInfo> {
+public final class MatEmpMerger extends InfoMergerTemplate<MatEmpInfo> {
 	public MatEmpInfo merge(MatInfo sourceOne, MatEmpInfo sourceTwo) {
 		return new MatEmpMergerMat().merge(sourceOne, sourceTwo);
 	}
