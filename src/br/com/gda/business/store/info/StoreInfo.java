@@ -34,11 +34,13 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StoreInfo() {
-		this.codOwner = DefaultValue.number();
-		this.codStore = DefaultValue.number();
-		this.postalCode = DefaultValue.number();
-		this.codLanguage = Language.getDefaultLanguage();
-		this.recordMode = RecordMode.RECORD_OK;		
+		codOwner = DefaultValue.number();
+		codStore = DefaultValue.number();
+		postalCode = DefaultValue.number();
+		latitude = DefaultValue.number();;
+		longitude = DefaultValue.number();;
+		codLanguage = Language.getDefaultLanguage();
+		recordMode = RecordMode.RECORD_OK;		
 	}
 	
 	

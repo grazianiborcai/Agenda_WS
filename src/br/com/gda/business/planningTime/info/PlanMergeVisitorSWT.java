@@ -6,11 +6,11 @@ import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoWriteVisitor;
 
-final class PlanVisitorSWT implements InfoMergerVisitor<PlanInfo, PlanInfo, StoreWTimeInfo> {
+final class PlanMergeVisitorSWT implements InfoWriteVisitor<PlanInfo, PlanInfo, StoreWTimeInfo> {
 
-	@Override public PlanInfo mergeRecord(PlanInfo sourceOne, StoreWTimeInfo sourceTwo) {
+	@Override public PlanInfo writeRecord(PlanInfo sourceOne, StoreWTimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		PlanInfo resultInfo = new PlanInfo();	
@@ -34,18 +34,30 @@ final class PlanVisitorSWT implements InfoMergerVisitor<PlanInfo, PlanInfo, Stor
 	
 	private void checkArgument(PlanInfo sourceOne, StoreWTimeInfo sourceTwo) {		
 		if (sourceTwo.beginTime == null)
-			throw new NullPointerException("beginTime" + SystemMessage.NULL_ARGUMENT);
+			throw new NullPointerException("sourceTwo.beginTime" + SystemMessage.NULL_ARGUMENT);
 		
 		if (sourceTwo.endTime == null)
-			throw new NullPointerException("endTime" + SystemMessage.NULL_ARGUMENT);
+			throw new NullPointerException("sourceTwo.endTime" + SystemMessage.NULL_ARGUMENT);
+		
+		if (sourceTwo.codStore <= 0)
+			throw new IllegalArgumentException("sourceTwo.codStore" + SystemMessage.NULL_ARGUMENT);
+		
+		if (sourceTwo.codWeekday <= 0)
+			throw new IllegalArgumentException("sourceTwo.codWeekday" + SystemMessage.NULL_ARGUMENT);
 		
 		
 		for (PlanDataInfo eachData : sourceOne.datas) {
 			if (eachData.codOwner <= 0)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.MANDATORY_FIELD_EMPTY);
+				throw new IllegalArgumentException("codOwner" + SystemMessage.NULL_ARGUMENT);
 			
 			if (eachData.codOwner != sourceTwo.codOwner)
 				throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
+			
+			if (eachData.codStore <= 0)
+				throw new IllegalArgumentException("codStore" + SystemMessage.NULL_ARGUMENT);
+			
+			if (eachData.codWeekday <= 0)
+				throw new IllegalArgumentException("codWeekday" + SystemMessage.NULL_ARGUMENT);
 		}
 	}
 	

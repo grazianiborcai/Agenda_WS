@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoWriteVisitor;
 
-final class PlanVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, MatEmpInfo> {
+final class PlanMergeVisitorME implements InfoWriteVisitor<PlanInfo, PlanInfo, MatEmpInfo> {
 	
-	@Override public PlanInfo mergeRecord(PlanInfo sourceOne, MatEmpInfo sourceTwo) {
+	@Override public PlanInfo writeRecord(PlanInfo sourceOne, MatEmpInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		PlanInfo resultInfo = new PlanInfo();	
@@ -31,9 +31,7 @@ final class PlanVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, MatEm
 	
 	
 	
-	private void checkArgument(PlanInfo sourceOne, MatEmpInfo sourceTwo) {		
-		//TODO: colocar checks para unidade de medida e duração
-		
+	private void checkArgument(PlanInfo sourceOne, MatEmpInfo sourceTwo) {
 		if (sourceTwo.codMat <= 0)
 			throw new IllegalArgumentException("sourceTwo.codMat" + SystemMessage.NULL_ARGUMENT);
 		
@@ -62,11 +60,31 @@ final class PlanVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, MatEm
 	
 	
 	private boolean shouldMerge(PlanDataInfo planData, MatEmpInfo matEmp) {
-		if (planData.codStore    == matEmp.codStore &&
-			planData.codEmployee == matEmp.codEmployee)
+		if (planData.codStore    == matEmp.codStore 	&&
+			planData.codEmployee == matEmp.codEmployee 	&&
+			isMatService(matEmp)						&&
+			isTimeUnit(matEmp))
 			
 			return true;
 		
+		
+		return false;
+	}
+	
+	
+	
+	private boolean isMatService(MatEmpInfo matEmp) {
+		if (matEmp.codCategory == 2)
+			return true;
+		
+		return false;
+	}
+	
+	
+	
+	private boolean isTimeUnit(MatEmpInfo matEmp) {
+		if (matEmp.codUnit.equals("MIN"))
+			return true;
 		
 		return false;
 	}

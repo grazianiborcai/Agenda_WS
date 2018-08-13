@@ -2,11 +2,11 @@ package br.com.gda.business.materialEmployee.info;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoWriteVisitor;
 
-final class MatEmpVisitorEmp implements InfoMergerVisitor<MatEmpInfo, EmpInfo, MatEmpInfo> {
+final class MatEmpVisitorEmp implements InfoWriteVisitor<MatEmpInfo, EmpInfo, MatEmpInfo> {
 
-	@Override public MatEmpInfo mergeRecord(EmpInfo sourceOne, MatEmpInfo sourceTwo) {
+	@Override public MatEmpInfo writeRecord(EmpInfo sourceOne, MatEmpInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		MatEmpInfo resultInfo = MatEmpInfo.copyFrom(sourceTwo);

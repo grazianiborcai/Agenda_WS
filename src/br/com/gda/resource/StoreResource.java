@@ -345,11 +345,17 @@ public class StoreResource {
 	@Path(SELECT_STORE_LEAVE_DATE)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectStoreLDate(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-			                         @HeaderParam("codStore") @DefaultValue("-1") int codStore) {
+			                         @HeaderParam("codStore") @DefaultValue("-1") int codStore,
+			                         @HeaderParam("date")	  @DefaultValue("1900-01-01") String date) {
 
 		StoreLDateInfo recordInfo = new StoreLDateInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
+		
+		if (date.equals("1900-01-01") == false) {
+			recordInfo.dateValidFrom = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+			recordInfo.dateValidTo = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+		}
 		
 		Model storeSelect = new StoreLDateModelSelect(recordInfo);
 		storeSelect.executeRequest();

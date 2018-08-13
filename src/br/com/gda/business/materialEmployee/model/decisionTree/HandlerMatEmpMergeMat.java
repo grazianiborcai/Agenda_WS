@@ -43,7 +43,7 @@ final class HandlerMatEmpMergeMat extends DeciActionHandlerTemplate<MatEmpInfo, 
 		resultHelper.resultset = Collections.emptyList();
 		
 		if (result.hasResultset())
-			resultHelper.resultset = new MatEmpMerger().merge(result.getResultset(), originalInfos);
+			resultHelper.resultset = new MatEmpMerger().write(result.getResultset(), originalInfos);
 		
 		return resultHelper;
 	}

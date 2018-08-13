@@ -3,13 +3,14 @@ package br.com.gda.business.planningTime.info;
 import java.util.List;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
+import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoWriterFactory;
 
-public final class PlanMerger extends InfoMergerTemplate<PlanInfo> {	
+public final class PlanMerger extends InfoWriterFactory<PlanInfo> {	
 	
 	public PlanMerger() {
 		super(new PlanUniquifier());
@@ -51,10 +52,16 @@ public final class PlanMerger extends InfoMergerTemplate<PlanInfo> {
 		return new PlanMergerMat().merge(sourceOne, sourceTwo);
 	}
 	
+	
+	
+	public PlanInfo merge(PlanInfo sourceOne, WeekdayInfo sourceTwo) {
+		return new PlanMergerWeekday().merge(sourceOne, sourceTwo);
+	}
+	
 		
 	
 	@SuppressWarnings("unchecked")
-	@Override protected List<PlanInfo> mergeHook(List<?> sourceOnes, List<?> sourceTwos) {		
+	@Override protected List<PlanInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {		
 		if (sourceOnes.get(0) instanceof PlanInfo 	&&
 			sourceTwos.get(0) instanceof StoreWTimeInfo		)
 			return new PlanMergerSWT().merge((List<PlanInfo>) sourceOnes, (List<StoreWTimeInfo>) sourceTwos);
@@ -83,6 +90,11 @@ public final class PlanMerger extends InfoMergerTemplate<PlanInfo> {
 		if (sourceOnes.get(0) instanceof PlanInfo 	&&
 			sourceTwos.get(0) instanceof MatInfo			)
 			return new PlanMergerMat().merge((List<PlanInfo>) sourceOnes, (List<MatInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof PlanInfo 	&&
+			sourceTwos.get(0) instanceof WeekdayInfo			)
+			return new PlanMergerWeekday().merge((List<PlanInfo>) sourceOnes, (List<WeekdayInfo>) sourceTwos);
 		
 		return null;
 	} 

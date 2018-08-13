@@ -69,7 +69,7 @@ public final class DateTimeRangeInfo extends InfoRecord implements Cloneable {
 		}
 		
 		if (timeValidFrom != null) {			
-			int numTime = Integer.valueOf(timeValidFrom.format(DateTimeFormatter.BASIC_ISO_DATE));
+			int numTime = Integer.valueOf(timeValidFrom.format(DateTimeFormatter.ofPattern("HHmm")));
 			result = result * 31 + numTime;
 		}
 		

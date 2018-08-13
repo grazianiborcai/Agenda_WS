@@ -3,11 +3,11 @@ package br.com.gda.business.employeeWorkTime.info;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoWriteVisitor;
 
-final class EmpWTimeVisitorSWT implements InfoMergerVisitor<EmpWTimeInfo, StoreEmpInfo, StoreWTimeInfo> {
+final class EmpWTimeVisitorSWT implements InfoWriteVisitor<EmpWTimeInfo, StoreEmpInfo, StoreWTimeInfo> {
 
-	@Override public EmpWTimeInfo mergeRecord(StoreEmpInfo sourceOne, StoreWTimeInfo sourceTwo) {
+	@Override public EmpWTimeInfo writeRecord(StoreEmpInfo sourceOne, StoreWTimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		EmpWTimeInfo resultInfo = EmpWTimeInfo.copyFrom(sourceTwo);

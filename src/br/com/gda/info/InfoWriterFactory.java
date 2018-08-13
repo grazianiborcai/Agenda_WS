@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 
-public abstract class InfoMergerTemplate<T> {
+public abstract class InfoWriterFactory<T> {
 	private InfoUniquifier<T> resultUniquifier;
 	
 	
-	protected InfoMergerTemplate() {	
+	protected InfoWriterFactory() {	
 		resultUniquifier = null;
 	}
 	
 	
-	protected InfoMergerTemplate(InfoUniquifier<T> uniquifier) {
+	protected InfoWriterFactory(InfoUniquifier<T> uniquifier) {
 		checkArgument(uniquifier);
 		
 		resultUniquifier = uniquifier;
@@ -29,13 +29,13 @@ public abstract class InfoMergerTemplate<T> {
 	
 	
 	
-	public List<T> merge(List<?> sourceOnes, List<?> sourceTwos) {
+	public List<T> write(List<?> sourceOnes, List<?> sourceTwos) {
 		checkArgument(sourceOnes, sourceTwos);
 		
 		if (isEmpty(sourceOnes, sourceTwos))
 			return Collections.emptyList();
 		
-		List<T> results = mergeHook(sourceOnes, sourceTwos);
+		List<T> results = writeHook(sourceOnes, sourceTwos);
 		
 		if (results == null || results.isEmpty()) 
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_POSSIBLE);		
@@ -68,7 +68,7 @@ public abstract class InfoMergerTemplate<T> {
 	
 	
 	
-	protected List<T> mergeHook(List<?> sourceOnes, List<?> sourceTwos) {
+	protected List<T> writeHook(List<?> sourceOnes, List<?> sourceTwos) {
 		//Template method to be overridden by subclasses
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}

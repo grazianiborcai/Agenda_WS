@@ -6,11 +6,11 @@ import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoWriteVisitor;
 
-final class PlanVisitorEWT implements InfoMergerVisitor<PlanInfo, PlanInfo, EmpWTimeInfo> {
+final class PlanMergeVisitorEWT implements InfoWriteVisitor<PlanInfo, PlanInfo, EmpWTimeInfo> {
 
-	@Override public PlanInfo mergeRecord(PlanInfo sourceOne, EmpWTimeInfo sourceTwo) {
+	@Override public PlanInfo writeRecord(PlanInfo sourceOne, EmpWTimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		PlanInfo resultInfo = new PlanInfo();	
@@ -42,21 +42,32 @@ final class PlanVisitorEWT implements InfoMergerVisitor<PlanInfo, PlanInfo, EmpW
 		if (sourceTwo.codEmployee <= 0)
 			throw new NullPointerException("sourceTwo.codEmployee" + SystemMessage.NULL_ARGUMENT);
 		
+		if (sourceTwo.codStore <= 0)
+			throw new NullPointerException("sourceTwo.codStore" + SystemMessage.NULL_ARGUMENT);
+		
+		if (sourceTwo.codWeekday <= 0)
+			throw new NullPointerException("sourceTwo.codWeekday" + SystemMessage.NULL_ARGUMENT);
+		
 		
 		
 		for (PlanDataInfo eachData : sourceOne.datas) {
 			if (eachData.codOwner <= 0)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.MANDATORY_FIELD_EMPTY);
+				throw new IllegalArgumentException("codOwner" + SystemMessage.NULL_ARGUMENT);
 			
 			if (eachData.codOwner != sourceTwo.codOwner)
 				throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-
 			
 			if (eachData.beginTime == null)
 				throw new NullPointerException("beginTime" + SystemMessage.NULL_ARGUMENT);
 			
 			if (eachData.endTime == null)
 				throw new NullPointerException("endTime" + SystemMessage.NULL_ARGUMENT);
+			
+			if (eachData.codStore <= 0)
+				throw new IllegalArgumentException("codStore" + SystemMessage.NULL_ARGUMENT);
+			
+			if (eachData.codWeekday <= 0)
+				throw new IllegalArgumentException("codWeekday" + SystemMessage.NULL_ARGUMENT);
 		}
 	}
 	

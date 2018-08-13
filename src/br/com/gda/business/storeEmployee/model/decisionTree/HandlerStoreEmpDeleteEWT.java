@@ -56,7 +56,7 @@ final class HandlerStoreEmpDeleteEWT extends DeciActionHandlerTemplate<StoreEmpI
 	
 	
 	private List<EmpWTimeInfo> merge(List<StoreEmpInfo> storeEmps, List<StoreWTimeInfo> storeWTs) {
-		return new EmpWTimeMerger().merge(storeEmps, storeWTs);
+		return new EmpWTimeMerger().write(storeEmps, storeWTs);
 	}
 	
 	

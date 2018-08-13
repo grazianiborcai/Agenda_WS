@@ -3,16 +3,16 @@ package br.com.gda.business.planningTime.info;
 import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoWriter;
 
-final class PlanMergerEWT extends InfoMerger<PlanInfo, PlanInfo, EmpWTimeInfo> {
+final class PlanMergerEWT extends InfoWriter<PlanInfo, PlanInfo, EmpWTimeInfo> {
 	public PlanInfo merge(PlanInfo sourceOne, EmpWTimeInfo sourceTwo) {
-		return super.merge(sourceOne, sourceTwo, new PlanVisitorEWT());
+		return super.write(sourceOne, sourceTwo, new PlanMergeVisitorEWT());
 	}
 	
 	
 	
 	public List<PlanInfo> merge(List<PlanInfo> sourceOnes, List<EmpWTimeInfo> sourceTwos) {
-		return super.merge(sourceOnes, sourceTwos, new PlanVisitorEWT());
+		return super.write(sourceOnes, sourceTwos, new PlanMergeVisitorEWT());
 	}
 }

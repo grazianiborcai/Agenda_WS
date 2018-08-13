@@ -9,6 +9,7 @@ import br.com.gda.dao.DaoFormatterNumber;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
+import br.com.gda.dao.DaoWhereCondition;
 
 public final class StoreLDateWhere implements DaoStmtWhere {
 	private String whereClause;	
@@ -36,11 +37,11 @@ public final class StoreLDateWhere implements DaoStmtWhere {
 					break;
 					
 				case "date_valid_from" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.dateToString(recordInfo.dateValidFrom));
+					builder.addClauseAnd(eachColumn, DaoFormatterNumber.dateToString(recordInfo.dateValidFrom), DaoWhereCondition.LESS_OR_EQUAL);
 					break;
 					
-				case "time_valid_from" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.timeToString(recordInfo.timeValidFrom));
+				case "date_valid_to" :
+					builder.addClauseAnd(eachColumn, DaoFormatterNumber.dateToString(recordInfo.dateValidTo), DaoWhereCondition.GREATER_OR_EQUAL);
 					break;
 					
 				case "record_mode" :

@@ -4,9 +4,9 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoWriterFactory;
 
-public final class MatEmpMerger extends InfoMergerTemplate<MatEmpInfo> {
+public final class MatEmpMerger extends InfoWriterFactory<MatEmpInfo> {
 	public MatEmpInfo merge(MatInfo sourceOne, MatEmpInfo sourceTwo) {
 		return new MatEmpMergerMat().merge(sourceOne, sourceTwo);
 	}
@@ -21,7 +21,7 @@ public final class MatEmpMerger extends InfoMergerTemplate<MatEmpInfo> {
 	
 	
 	@SuppressWarnings("unchecked")
-	@Override protected List<MatEmpInfo> mergeHook(List<?> sourceOnes, List<?> sourceTwos) {		
+	@Override protected List<MatEmpInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {		
 		if (sourceOnes.get(0) instanceof EmpInfo &&
 			sourceTwos.get(0) instanceof MatEmpInfo)
 			return new MatEmpMergerEmp().merge((List<EmpInfo>) sourceOnes, (List<MatEmpInfo>) sourceTwos);

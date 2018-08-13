@@ -2,11 +2,11 @@ package br.com.gda.business.planningTime.info;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoWriteVisitor;
 
-final class PlanVisitorEmp implements InfoMergerVisitor<PlanInfo, PlanInfo, EmpInfo> {
+final class PlanMergeVisitorEmp implements InfoWriteVisitor<PlanInfo, PlanInfo, EmpInfo> {
 
-	@Override public PlanInfo mergeRecord(PlanInfo sourceOne, EmpInfo sourceTwo) {
+	@Override public PlanInfo writeRecord(PlanInfo sourceOne, EmpInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 				
 		PlanInfo resultInfo = new PlanInfo();	
@@ -18,8 +18,9 @@ final class PlanVisitorEmp implements InfoMergerVisitor<PlanInfo, PlanInfo, EmpI
 		
 		//TODO: substituir por lambda
 		for (PlanDataInfo eachPlanData : sourceOne.datas) {
-			if (shouldMerge(eachPlanData, sourceTwo)) {				
-				resultInfo.employees.add(sourceTwo);
+			if (shouldMerge(eachPlanData, sourceTwo)) {		
+				EmpInfo copyEmp = makeCopy(sourceTwo);
+				resultInfo.employees.add(copyEmp);
 				break;
 			}
 		}
@@ -29,13 +30,20 @@ final class PlanVisitorEmp implements InfoMergerVisitor<PlanInfo, PlanInfo, EmpI
 	
 	
 	
-	private void checkArgument(PlanInfo sourceOne, EmpInfo sourceTwo) {		
+	private void checkArgument(PlanInfo sourceOne, EmpInfo sourceTwo) {	
+		if (sourceTwo.codEmployee <= 0)
+			throw new IllegalArgumentException("sourceTwo.codEmployee" + SystemMessage.NULL_ARGUMENT);
+		
+		
 		for (PlanDataInfo eachData : sourceOne.datas) {
 			if (eachData.codOwner <= 0)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.MANDATORY_FIELD_EMPTY);
+				throw new IllegalArgumentException("codOwner" + SystemMessage.NULL_ARGUMENT);
 			
 			if (eachData.codOwner != sourceTwo.codOwner)
 				throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
+			
+			if (eachData.codEmployee <= 0)
+				throw new IllegalArgumentException("codOwner" + SystemMessage.NULL_ARGUMENT);
 		}
 	}
 	
@@ -46,5 +54,18 @@ final class PlanVisitorEmp implements InfoMergerVisitor<PlanInfo, PlanInfo, EmpI
 			return true;
 		
 		return false;
+	}
+	
+	
+	
+	private EmpInfo makeCopy(EmpInfo emp) {
+		EmpInfo copyEmp = new EmpInfo();
+		
+		copyEmp.codOwner = emp.codOwner;
+		copyEmp.codEmployee = emp.codEmployee;
+		copyEmp.name = emp.name;
+		copyEmp.codLanguage = emp.codLanguage;
+		
+		return copyEmp;
 	}
 }

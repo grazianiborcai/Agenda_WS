@@ -42,7 +42,7 @@ final class HandlerMatStoreMergeMat extends DeciActionHandlerTemplate<MatStoreIn
 		resultHelper.copyWithoutResultset(result);
 		
 		if (result.hasResultset()) {
-			resultHelper.resultset = MatStoreMerger.merge(result.getResultset(), originalInfos);
+			resultHelper.resultset = new MatStoreMerger().write(result.getResultset(), originalInfos);
 		
 		} else {		
 			List<MatStoreInfo> dummy = new ArrayList<>();

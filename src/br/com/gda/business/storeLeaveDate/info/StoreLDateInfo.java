@@ -85,6 +85,11 @@ public final class StoreLDateInfo extends InfoRecord implements Cloneable {
 			result = result * 31 + (int) numDate;
 		}
 		
+		if (timeValidFrom != null) {			
+			int numTime = Integer.valueOf(timeValidFrom.format(DateTimeFormatter.ofPattern("HHmm")));
+			result = result * 31 + (int) numTime;
+		}
+		
 		return result;
 	}
 	
@@ -103,6 +108,7 @@ public final class StoreLDateInfo extends InfoRecord implements Cloneable {
 				
 		return (codOwner == obj.codOwner && 
 				codStore == obj.codStore &&
-				isDateEqual(dateValidFrom, obj.dateValidFrom));
+				isDateEqual(dateValidFrom, obj.dateValidFrom) &&
+				isTimeEqual(timeValidFrom, obj.timeValidFrom));
 	}
 }
