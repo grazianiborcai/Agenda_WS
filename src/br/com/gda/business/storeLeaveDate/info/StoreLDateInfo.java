@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
@@ -30,13 +31,53 @@ public final class StoreLDateInfo extends InfoRecord implements Cloneable {
 	
 	
 	public static StoreLDateInfo copyFrom(Object sourceObj) {
+		if (isPlanData(sourceObj))
+			return copyFromPlanData(sourceObj);
+		
 		return copyFrom(sourceObj, StoreLDateInfo.class);
 	}
 	
 	
 	
 	public static List<StoreLDateInfo> copyFrom(List<?> sourceObjs) {
+		if (isPlanData(sourceObjs))
+			return copyFromPlanData(sourceObjs);
+			
 		return copyFrom(sourceObjs, StoreLDateInfo.class);
+	}
+	
+	
+	
+	private static boolean isPlanData(List<?> sourceObjs) {
+		if (sourceObjs == null || sourceObjs.isEmpty())
+			return false;
+		
+		return isPlanData(sourceObjs.get(0));
+	}
+	
+	
+	
+	private static boolean isPlanData(Object sourceObj) {
+		if (sourceObj == null)
+			return false;
+		
+		if (sourceObj instanceof PlanDataInfo)
+			return true;
+		
+		return false;
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private static List<StoreLDateInfo> copyFromPlanData(List<?> sourceObjs) {
+		return new StoreLDateCopyPlan().makeCopy( (List<PlanDataInfo>)sourceObjs);
+	}
+	
+	
+	
+	private static StoreLDateInfo copyFromPlanData(Object sourceObj) {
+		return new StoreLDateCopyPlan().makeCopy( (PlanDataInfo)sourceObj);
 	}
 	
 	

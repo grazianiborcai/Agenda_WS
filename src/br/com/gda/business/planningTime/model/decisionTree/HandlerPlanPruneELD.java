@@ -26,10 +26,13 @@ final class HandlerPlanPruneELD extends DeciActionHandlerTemplate<PlanInfo, EmpL
 	
 	
 	@Override protected List<EmpLDateInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
-		originalInfos = recordInfos;
-		
+		originalInfos = recordInfos;		
 		List<PlanDataInfo> collectedInfo = collectDataInfo(recordInfos);
-		return EmpLDateInfo.copyFrom(collectedInfo);
+		
+		List<EmpLDateInfo> empLdates = new ArrayList<>();
+		empLdates.addAll(EmpLDateInfo.copyFrom(collectedInfo));
+		
+		return empLdates;
 	}
 	
 	

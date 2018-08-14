@@ -148,12 +148,18 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response selectLeaveDate(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
 								    @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
-								    @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee) {
+								    @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
+								    @HeaderParam("date")	    @DefaultValue("1900-01-01") String date) {
 		
 		EmpLDateInfo recordInfo = new EmpLDateInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
+		
+		if (date.equals("1900-01-01") == false) {
+			recordInfo.dateValidFrom = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+			recordInfo.dateValidTo = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+		}
 		
 		Model modelSelect = new EmpLDateModelSelect(recordInfo);
 		modelSelect.executeRequest();

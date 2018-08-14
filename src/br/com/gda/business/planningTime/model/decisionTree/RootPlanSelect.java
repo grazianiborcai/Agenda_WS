@@ -58,7 +58,6 @@ public class RootPlanSelect implements DeciTree<PlanInfo> {
 		DeciActionHandler<PlanInfo> pruneSLD = new HandlerPlanPruneSLD(option.conn, option.schemaName);		
 		DeciActionHandler<PlanInfo> pruneELD = new HandlerPlanPruneELD(option.conn, option.schemaName);
 		DeciActionHandler<PlanInfo> mergeWeekday = new HandlerPlanMergeWeekday(option.conn, option.schemaName);	
-		//Employee Leave Dates
 		//Reserves
 		
 		mainAction.addPostAction(mergeStore);
@@ -68,8 +67,8 @@ public class RootPlanSelect implements DeciTree<PlanInfo> {
 		mergeEmp.addPostAction(mergeME);
 		mergeME.addPostAction(mergeMat);
 		mergeMat.addPostAction(pruneSLD);
-		//pruneSLD.addPostAction(pruneELD);
-		pruneSLD.addPostAction(mergeWeekday);
+		pruneSLD.addPostAction(pruneELD);
+		pruneELD.addPostAction(mergeWeekday);
 		
 		actions.add(mainAction);
 		return actions;

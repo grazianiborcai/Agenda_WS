@@ -89,8 +89,9 @@ public abstract class DeciActionHandlerTemplate<T,S> implements DeciActionHandle
 		option.recordInfos = translateRecordInfosHook(makeDefensiveCopy(infoRecords));
 		
 		actionHandler = getInstanceOfActionHook(option);
-		boolean result = actionHandler.executeAction();
+		actionHandler.executeAction();
 		resultHandler = translateResultHook(actionHandler.getDecisionResult());
+		boolean result = resultHandler.hasSuccessfullyFinished();
 		
 		return result;
 	}

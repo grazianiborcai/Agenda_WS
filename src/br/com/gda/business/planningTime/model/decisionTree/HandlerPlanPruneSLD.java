@@ -8,7 +8,6 @@ import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.info.PlanPruner;
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
-import br.com.gda.business.storeLeaveDate.info.StoreLDateMerger;
 import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStoreLDateSelect;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
@@ -27,15 +26,13 @@ final class HandlerPlanPruneSLD extends DeciActionHandlerTemplate<PlanInfo, Stor
 	
 	
 	@Override protected List<StoreLDateInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
-		originalInfos = recordInfos;
-		
+		originalInfos = recordInfos;		
 		List<PlanDataInfo> collectedInfo = collectDataInfo(recordInfos);
 		
 		List<StoreLDateInfo> storeLdates = new ArrayList<>();
 		storeLdates.addAll(StoreLDateInfo.copyFrom(collectedInfo));
 		
-		new StoreLDateMerger().merge(collectedInfo, storeLdates);
-		return StoreLDateInfo.copyFrom(collectedInfo);
+		return storeLdates;
 	}
 	
 	
