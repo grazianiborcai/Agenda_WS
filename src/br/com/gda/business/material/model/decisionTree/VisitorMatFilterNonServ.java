@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.decisionTree.DeciActionTransVisitor;
 
-final class VisitorMatFilterText implements DeciActionTransVisitor<MatInfo> {
+final class VisitorMatFilterNonServ implements DeciActionTransVisitor<MatInfo> {
 	private final boolean FAIL = false;
 	private final boolean OK = true;
 	
@@ -25,9 +25,9 @@ final class VisitorMatFilterText implements DeciActionTransVisitor<MatInfo> {
 	
 	
 	private boolean shouldAdd(MatInfo recordInfo) {
-		if (recordInfo.txtMat == null)
-			return FAIL;
+		if (recordInfo.codCategory == 2)
+			return OK;
 		
-		return OK;
+		return FAIL;
 	}
 }

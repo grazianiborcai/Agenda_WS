@@ -19,7 +19,7 @@ public final class CusCheckExist extends ModelCheckerTemplateAction<CusInfo> {
 		super(option);
 	}
 	
-	
+	//TODO: adicionar checkArgument para verificar campos de busca estão preenchidos
 	
 	@Override protected DeciAction<CusInfo> buildActionHook(CusInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CusInfo> option = buildActionOption(recordInfo, conn, schemaName);
@@ -45,7 +45,7 @@ public final class CusCheckExist extends ModelCheckerTemplateAction<CusInfo> {
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
 		if (makeFailureCodeHook(checkerResult) == SystemCode.CUS_ALREADY_EXIST)
-			return SystemMessage.CUS_ALREALDY_EXIST;
+			return SystemMessage.CUS_ALREADY_EXIST;
 		
 		return SystemMessage.CUS_NOT_FOUND;
 	}

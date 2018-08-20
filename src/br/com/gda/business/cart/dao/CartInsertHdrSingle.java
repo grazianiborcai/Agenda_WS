@@ -1,11 +1,12 @@
-package br.com.gda.business.material.dao;
+package br.com.gda.business.cart.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
-import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoOperation;
@@ -14,25 +15,25 @@ import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtParamTranslator;
 
-public final class MatInsertTextSingle implements DaoStmt<MatInfo> {
-	private DaoStmt<MatInfo> stmtSql;
-	private DaoStmtOption<MatInfo> stmtOption;
+public final class CartInsertHdrSingle implements DaoStmt<CartInfo> {
+	private DaoStmt<CartInfo> stmtSql;
+	private DaoStmtOption<CartInfo> stmtOption;
 	
 	
 	
-	public MatInsertTextSingle(Connection conn, MatInfo recordInfo, String schemaName) {
+	public CartInsertHdrSingle(Connection conn, CartInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, MatInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, CartInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.MAT_TEXT_TABLE;
+		this.stmtOption.tableName = DaoDbTable.CART_HDR_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;
@@ -65,29 +66,32 @@ public final class MatInsertTextSingle implements DaoStmt<MatInfo> {
 
 	
 	
-	@Override public List<MatInfo> getResultset() {
+	@Override public List<CartInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<MatInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements DaoStmtParamTranslator<CartInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CartInfo recordInfo) throws SQLException {
+			
+			Timestamp lastChanged = null;
+			if(recordInfo.lastChanged != null)
+				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
-			stmt.setLong(i++, recordInfo.codMat);
-			stmt.setString(i++, recordInfo.codLanguage);
-			stmt.setString(i++, recordInfo.txtMat);
-			stmt.setString(i++, recordInfo.description);
-			
+			stmt.setLong(i++, recordInfo.codCustomer);
+			stmt.setTimestamp(i++, lastChanged);			
+
 			return stmt;
 		}		
 	}
 	
 	
 	
-	@Override public DaoStmt<MatInfo> getNewInstance() {
-		return new MatInsertAttrSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<CartInfo> getNewInstance() {
+		return new CartInsertHdrSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 }

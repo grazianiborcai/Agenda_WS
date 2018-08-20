@@ -7,12 +7,12 @@ import br.com.gda.model.decisionTree.DeciActionHelperTrans;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionMatFilterText implements DeciAction<MatInfo> {
+public final class ActionMatFilterNullText implements DeciAction<MatInfo> {
 	private DeciAction<MatInfo> actionHelper;	
 	
 	
-	public ActionMatFilterText(DeciTreeOption<MatInfo> option) {			
-		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorMatFilterText());
+	public ActionMatFilterNullText(DeciTreeOption<MatInfo> option) {			
+		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorMatFilterNullText());
 	}
 	
 	

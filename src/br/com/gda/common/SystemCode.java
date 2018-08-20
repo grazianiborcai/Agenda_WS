@@ -12,6 +12,7 @@ public final class SystemCode {
 	public static final int NO_CONFLICT									= 8;
 	public static final int CONFLICT									= 9;
 	public static final int DATA_NOT_FOUND								= 10;
+	public static final int BAD_DATE									= 11;
 	public static final int SUCCESS 									= 200;
 	public static final int INTERNAL_ERROR 								= 500;
 	
@@ -78,10 +79,12 @@ public final class SystemCode {
 	public static final int GENDER_NOT_FOUND							= 1169;
 	
 	//Material
-	public static final int MATERIAL_ALREADY_EXIST						= 1200;
-	public static final int MATERIAL_NOT_FOUND							= 1201;
-	public static final int MATERIAL_TEXT_ALREADY_EXIST					= 1202;
-	public static final int MATERIAL_TEXT_NOT_FOUND						= 1203;
+	public static final int MAT_ALREADY_EXIST							= 1200;
+	public static final int MAT_NOT_FOUND								= 1201;
+	public static final int MAT_TEXT_ALREADY_EXIST						= 1202;
+	public static final int MAT_TEXT_NOT_FOUND							= 1203;	
+	public static final int MAT_SERVICE									= 1204;
+	public static final int MAT_NOT_SERVICE								= 1205;
 	
 	//Owner
 	public static final int OWNER_ALREADY_EXIST							= 1250;
@@ -101,4 +104,8 @@ public final class SystemCode {
 	public static final int CUS_NOT_FOUND 								= 1355;
 	public static final int CUS_EMAIL_CHANGED 							= 1356;
 	public static final int CUS_EMAIL_NOT_CHANGED						= 1357;
+	
+	//Cart
+	public static final int CART_ALREADY_EXIST							= 1400;
+	public static final int CART_NOT_FOUND								= 1401;
 }

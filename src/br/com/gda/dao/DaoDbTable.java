@@ -7,7 +7,9 @@ public final class DaoDbTable {
 	public static final String COUNTRY_TEXT_TABLE = "country_text";
 	public static final String CURRENCY_TABLE = "currency_unit";
 	public static final String CURRENCY_TEXT_TABLE = "currency_unit_text";	
-	public static final String CUS_TABLE = "customer";	
+	public static final String CART_HDR_TABLE = "shop_cart_header";
+	public static final String CART_ITM_TABLE = "shop_cart_item";
+	public static final String CUS_TABLE = "customer";
 	public static final String EMP_TABLE = "employee";	
 	public static final String EMP_WT_TABLE = "employee_working_time";
 	public static final String EMP_LD_TABLE = "employee_leave_time";

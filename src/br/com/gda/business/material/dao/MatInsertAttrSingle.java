@@ -25,8 +25,7 @@ public final class MatInsertAttrSingle implements DaoStmt<MatInfo> {
 	
 	public MatInsertAttrSingle(Connection conn, MatInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
-		
+		buildStmt();		
 	}
 	
 	
@@ -52,8 +51,7 @@ public final class MatInsertAttrSingle implements DaoStmt<MatInfo> {
 	
 	
 	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
+		stmtSql.generateStmt();		
 	}
 
 	

@@ -23,7 +23,7 @@ public final class HandlerCusSelect extends DeciActionHandlerTemplate<CusInfo, C
 	
 	
 	
-	@Override protected  DeciAction<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
+	@Override protected DeciAction<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
 		return new ActionCusSelect(option);
 	}
 	

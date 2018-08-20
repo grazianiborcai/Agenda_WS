@@ -2,9 +2,10 @@ package br.com.gda.business.material.model.checker;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.decisionTree.ActionMatSelect;
-import br.com.gda.business.material.model.decisionTree.HandlerMatFilterNullText;
+import br.com.gda.business.material.model.decisionTree.HandlerMatFilterNonServ;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -12,9 +13,9 @@ import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class MatCheckExistText extends ModelCheckerTemplateAction<MatInfo> {
+public final class MatCheckServ extends ModelCheckerTemplateAction<MatInfo> {
 	
-	public MatCheckExistText(ModelCheckerOption option) {
+	public MatCheckServ(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -24,7 +25,7 @@ public final class MatCheckExistText extends ModelCheckerTemplateAction<MatInfo>
 		DeciTreeOption<MatInfo> option = buildOption(recordInfo, conn, schemaName);
 		
 		DeciAction<MatInfo> actionSelect = new ActionMatSelect(option);
-		actionSelect.addPostAction(new HandlerMatFilterNullText(conn, schemaName));
+		actionSelect.addPostAction(new HandlerMatFilterNonServ(conn, schemaName));
 		return actionSelect;
 	}
 	
@@ -43,18 +44,18 @@ public final class MatCheckExistText extends ModelCheckerTemplateAction<MatInfo>
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.MAT_TEXT_ALREADY_EXIST)
-			return SystemMessage.MAT_TEXT_ALREADY_EXIST;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.MAT_SERVICE)
+			return SystemMessage.MAT_SERVICE;
 		
-		return SystemMessage.MAT_TEXT_NOT_FOUND;
+		return SystemMessage.MAT_NOT_SERVICE;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
-			return SystemCode.MAT_TEXT_ALREADY_EXIST;	
+			return SystemCode.MAT_SERVICE;	
 			
-		return SystemCode.MAT_TEXT_NOT_FOUND;
+		return SystemCode.MAT_NOT_SERVICE;
 	}
 }

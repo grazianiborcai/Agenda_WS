@@ -45,7 +45,7 @@ public final class CusCheckCpfChange extends ModelCheckerTemplateAction<CusInfo>
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
 		if (makeFailureCodeHook(checkerResult) == SystemCode.CUS_ALREADY_EXIST)
-			return SystemMessage.CUS_ALREALDY_EXIST;
+			return SystemMessage.CUS_ALREADY_EXIST;
 		
 		return SystemMessage.CUS_NOT_FOUND;
 	}

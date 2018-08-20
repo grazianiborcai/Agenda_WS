@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.gda.business.cart.dao.CartDbTableColumn;
 import br.com.gda.business.customer.dao.CusDbTableColumn;
 import br.com.gda.business.employee.dao.EmpDbTableColumn;
 import br.com.gda.business.employeeLeaveDate.dao.EmpLDateDbTableColumn;
@@ -50,6 +51,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CusDbTableColumn());
 		addTable(new OwnerDbTableColumn());
 		addTable(new MatStoreDbTableColumn());
+		addTable(new CartDbTableColumn());
 	}
 	
 	

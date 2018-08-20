@@ -25,6 +25,7 @@ public final class SystemMessage {
 	//System
 	public static final String ACTION_NOT_EXECUTED = "Action has not been executed";
 	public static final String ARGUMENT_DONT_MATCH = " arguments don't match";
+	public static final String BAD_DATE = "Invalid date";	
 	public static final String BAD_TIME_RANGE = "Invalid time range";	
 	public static final String CONFLICT = "Conflict detected";
 	public static final String DATA_NOT_FOUND = "Data not found";
@@ -80,9 +81,11 @@ public final class SystemMessage {
 	//Material
 	public static final String MAT_ALREALDY_EXIST = "Material data already exist on DB";	
 	public static final String MAT_NOT_FOUND = "Material data not found on DB";
-	public static final String MAT_TEXT_ALREALDY_EXIST = "Material text data already exist on DB";
+	public static final String MAT_NOT_SERVICE	= "Material's category is not a service";
+	public static final String MAT_SERVICE = "Material's category is a service";
+	public static final String MAT_TEXT_ALREADY_EXIST = "Material text data already exist on DB";
 	public static final String MAT_TEXT_NOT_FOUND = "Material text data not found on DB";
-		
+			
 	
 	
 	//Employee
@@ -132,7 +135,7 @@ public final class SystemMessage {
 			
 	
 	//Customer
-	public static final String CUS_ALREALDY_EXIST = "Customer's data already exist on DB";	
+	public static final String CUS_ALREADY_EXIST = "Customer's data already exist on DB";	
 	public static final String CUS_CPF_ALREADY_EXIST = "Customer's CPF already exist on DB";	
 	public static final String CUS_CPF_NOT_FOUND = "Customer's CPF not found on DB";	
 	public static final String CUS_EMAIL_ALREADY_EXIST = "Customer's e-email already exist on DB";	
@@ -140,4 +143,10 @@ public final class SystemMessage {
 	public static final String CUS_EMAIL_NOT_FOUND = "Customer's e-email not found on DB";	
 	public static final String CUS_EMAIL_NOT_CHANGED = "Customer's e-mail not changed";	
 	public static final String CUS_NOT_FOUND = "Customer's data not found on DB";	
+	
+	
+	
+	//Cart
+	public static final String CART_ALREADY_EXIST = "Cart data already exist on DB";	
+	public static final String CART_NOT_FOUND = "Cart's data not found on DB";
 }
