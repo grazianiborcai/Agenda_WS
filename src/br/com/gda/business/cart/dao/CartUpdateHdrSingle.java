@@ -1,11 +1,12 @@
-package br.com.gda.business.material.dao;
+package br.com.gda.business.cart.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
-import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoOperation;
@@ -16,24 +17,24 @@ import br.com.gda.dao.DaoStmtParamTranslator;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class MatUpdateAttrSingle implements DaoStmt<MatInfo> {
-	private DaoStmt<MatInfo> stmtSql;
-	private DaoStmtOption<MatInfo> stmtOption;
+public final class CartUpdateHdrSingle implements DaoStmt<CartInfo> {
+	private DaoStmt<CartInfo> stmtSql;
+	private DaoStmtOption<CartInfo> stmtOption;
 	
 	
-	public MatUpdateAttrSingle(Connection conn, MatInfo recordInfo, String schemaName) {
+	public CartUpdateHdrSingle(Connection conn, CartInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, MatInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, CartInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.MAT_TABLE;
+		this.stmtOption.tableName = DaoDbTable.CART_HDR_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;
@@ -52,7 +53,7 @@ public final class MatUpdateAttrSingle implements DaoStmt<MatInfo> {
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;
 		
-		DaoStmtWhere whereClause = new MatWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new CartWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -82,31 +83,28 @@ public final class MatUpdateAttrSingle implements DaoStmt<MatInfo> {
 
 	
 	
-	@Override public List<MatInfo> getResultset() {
+	@Override public List<CartInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<MatInfo> getNewInstance() {
-		return new MatUpdateAttrSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<CartInfo> getNewInstance() {
+		return new CartUpdateHdrSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<MatInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements DaoStmtParamTranslator<CartInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CartInfo recordInfo) throws SQLException {
+			
+			Timestamp lastChanged = null;
+			if(recordInfo.lastChanged != null)
+				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			
 			
 			int i = 1;
-			stmt.setDouble(i++, recordInfo.price);
-			stmt.setInt(i++, recordInfo.codType);
-			stmt.setInt(i++, recordInfo.codCategory);
-			stmt.setString(i++, recordInfo.codCurr);
-			stmt.setString(i++, recordInfo.codUnit);
-			stmt.setInt(i++, recordInfo.priceUnit);
-			stmt.setInt(i++, recordInfo.codGroup);
-			stmt.setBoolean(i++, recordInfo.isLocked);
-			stmt.setString(i++, recordInfo.recordMode);
+			stmt.setTimestamp(i++, lastChanged);
 			
 			return stmt;
 		}		

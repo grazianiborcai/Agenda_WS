@@ -79,8 +79,6 @@ final class RootCartInsertL3 implements DeciTree<CartInfo> {
 		checker = new CartCheckME(checkerOption);
 		queue.add(checker);
 		
-		//TODO: material precisa ficar em um único item
-		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
@@ -97,11 +95,11 @@ final class RootCartInsertL3 implements DeciTree<CartInfo> {
 		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
 		
 		DeciAction<CartInfo> enforceLChanged = new ActionCartEnforceLChanged(option);
-		//DeciActionHandler<CartInfo> insertHdr = new HandlerCartInsertHdr(option.conn, option.schemaName);		
+		DeciActionHandler<CartInfo> updateHdr = new HandlerCartUpdateHdr(option.conn, option.schemaName);		
 		DeciActionHandler<CartInfo> insertItm = new HandlerCartInsertItm(option.conn, option.schemaName);					
 		DeciActionHandler<CartInfo> selectCart = new HandlerCartSelect(option.conn, option.schemaName);			
 		
-		//enforceLChanged.addPostAction(insertHdr);
+		enforceLChanged.addPostAction(updateHdr);
 		enforceLChanged.addPostAction(insertItm);
 		enforceLChanged.addPostAction(selectCart);	
 		

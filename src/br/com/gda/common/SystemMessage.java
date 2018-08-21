@@ -114,11 +114,11 @@ public final class SystemMessage {
 	public static final String STORE_NOT_FOUND = "Store's data not found on DB";
 	public static final String STORE_CNPJ_ALREADY_EXIST = "Store's CNPJ already exist on DB";	
 	public static final String STORE_CNPJ_NOT_FOUND = "Store's CNPJ not found on DB";
-	public static final String STORE_EMP_ALREALDY_EXIST = "Store-Employee's data already exist on DB";
+	public static final String STORE_EMP_ALREADY_EXIST = "Store-Employee's data already exist on DB";
 	public static final String STORE_EMP_FLAGGED_AS_DELETED = "Store-Employee's data is flagged as deleted on DB";	
 	public static final String STORE_EMP_NOT_FOUND = "Store-Employee's data not found on DB";
-	public static final String STORE_MAT_ALREALDY_EXIST = "Store's material data already exist on DB";
-	public static final String STORE_MAT_EMP_ALREALDY_EXIST = "Employee's material data already exist on DB";	
+	public static final String STORE_MAT_ALREADY_EXIST = "Store's material data already exist on DB";
+	public static final String STORE_MAT_EMP_ALREADY_EXIST = "Employee's material data already exist on DB";	
 	public static final String STORE_MAT_EMP_FLAGGED_AS_DELETED = "Employee's material data is flagged as deleted on DB";
 	public static final String STORE_MAT_EMP_NOT_FOUND = "Employee's material data not found on DB";	
 	public static final String STORE_MAT_FLAGGED_AS_DELETED = "Store's material data is flagged as deleted on DB";
@@ -147,6 +147,8 @@ public final class SystemMessage {
 	
 	
 	//Cart
-	public static final String CART_ALREADY_EXIST = "Cart data already exist on DB";	
-	public static final String CART_NOT_FOUND = "Cart's data not found on DB";
+	public static final String CART_ALREADY_EXIST = "Cart's data already exist on DB";	
+	public static final String CART_NOT_FOUND = "Cart's data not found on DB";	
+	public static final String CART_ITEM_ALREADY_EXIST = "Cart item already exist on DB";	
+	public static final String CART_ITEM_NOT_FOUND = "Cart item not found on DB";
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckCus;
+import br.com.gda.business.cart.model.checker.CartCheckExistItm;
 import br.com.gda.business.cart.model.checker.CartCheckMS;
 import br.com.gda.business.cart.model.checker.CartCheckMat;
 import br.com.gda.business.cart.model.checker.CartCheckOwner;
@@ -40,6 +41,7 @@ public final class RootCartInsertL1 implements DeciTree<CartInfo> {
 	
 	private ModelChecker<CartInfo> buildDecisionChecker(DeciTreeOption<CartInfo> option) {
 		final boolean EXIST_ON_DB = true;
+		final boolean DONT_EXIST = false;
 		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
@@ -81,6 +83,13 @@ public final class RootCartInsertL1 implements DeciTree<CartInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new CartCheckMS(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = DONT_EXIST;	
+		checker = new CartCheckExistItm(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

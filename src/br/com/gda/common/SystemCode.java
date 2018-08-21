@@ -108,4 +108,6 @@ public final class SystemCode {
 	//Cart
 	public static final int CART_ALREADY_EXIST							= 1400;
 	public static final int CART_NOT_FOUND								= 1401;
+	public static final int CART_ITEM_ALREADY_EXIST 					= 1402;
+	public static final int CART_ITEM_NOT_FOUND 						= 1403;
 }

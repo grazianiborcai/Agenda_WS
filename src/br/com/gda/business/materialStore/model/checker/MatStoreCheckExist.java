@@ -66,7 +66,7 @@ public final class MatStoreCheckExist extends ModelCheckerTemplateSimple<MatStor
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
 		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_MAT_ALREADY_EXIST)
-			return SystemMessage.STORE_MAT_ALREALDY_EXIST;
+			return SystemMessage.STORE_MAT_ALREADY_EXIST;
 		
 		return SystemMessage.STORE_MAT_NOT_FOUND;
 	}
