@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckDate;
 import br.com.gda.business.cart.model.checker.CartCheckEmp;
-import br.com.gda.business.cart.model.checker.CartCheckExistHdr;
 import br.com.gda.business.cart.model.checker.CartCheckME;
 import br.com.gda.business.cart.model.checker.CartCheckTime;
 import br.com.gda.business.cart.model.checker.CartCheckWriteL3;
@@ -33,7 +32,6 @@ final class RootCartInsertL3 implements DeciTree<CartInfo> {
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -79,13 +77,6 @@ final class RootCartInsertL3 implements DeciTree<CartInfo> {
 		checker = new CartCheckME(checkerOption);
 		queue.add(checker);
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckExistHdr(checkerOption);
-		queue.add(checker);
-		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -94,34 +85,16 @@ final class RootCartInsertL3 implements DeciTree<CartInfo> {
 	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> enforceLChanged = new ActionCartEnforceLChanged(option);
-		DeciActionHandler<CartInfo> updateHdr = new HandlerCartUpdateHdr(option.conn, option.schemaName);		
-		DeciActionHandler<CartInfo> insertItm = new HandlerCartInsertItm(option.conn, option.schemaName);					
+		DeciAction<CartInfo> writeHdr = new RootCartWiteHdr(option).toAction();	
+		DeciActionHandler<CartInfo> insertItm = new HandlerCartInsertItm(option.conn, option.schemaName);	
+		DeciActionHandler<CartInfo> enforceKey = new HandlerCartEnforceKey(option.conn, option.schemaName);	
 		DeciActionHandler<CartInfo> selectCart = new HandlerCartSelect(option.conn, option.schemaName);			
 		
-		enforceLChanged.addPostAction(updateHdr);
-		enforceLChanged.addPostAction(insertItm);
-		enforceLChanged.addPostAction(selectCart);	
+		writeHdr.addPostAction(insertItm);
+		writeHdr.addPostAction(enforceKey);
+		enforceKey.addPostAction(selectCart);	
 		
-		actions.add(enforceLChanged);		
-		return actions;
-	}
-	
-	
-	
-	private List<DeciAction<CartInfo>> buildActionsOnFailed(DeciTreeOption<CartInfo> option) {
-		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
-		
-		DeciAction<CartInfo> enforceLChanged = new ActionCartEnforceLChanged(option);
-		DeciActionHandler<CartInfo> insertHdr = new HandlerCartInsertHdr(option.conn, option.schemaName);		
-		DeciActionHandler<CartInfo> insertItm = new HandlerCartInsertItm(option.conn, option.schemaName);					
-		DeciActionHandler<CartInfo> selectCart = new HandlerCartSelect(option.conn, option.schemaName);			
-		
-		enforceLChanged.addPostAction(insertHdr);
-		enforceLChanged.addPostAction(insertItm);
-		enforceLChanged.addPostAction(selectCart);	
-		
-		actions.add(enforceLChanged);		
+		actions.add(writeHdr);		
 		return actions;
 	}
 	

@@ -5,10 +5,12 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckMatServ;
+import br.com.gda.business.cart.model.checker.CartCheckWriteL1;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -16,11 +18,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class RootCartInsertL2 implements DeciTree<CartInfo> {
+final class RootCartUpdateL2 implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
-	public RootCartInsertL2(DeciTreeOption<CartInfo> option) {
+	public RootCartUpdateL2(DeciTreeOption<CartInfo> option) {
 		DeciTreeHelperOption<CartInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -40,6 +42,9 @@ final class RootCartInsertL2 implements DeciTree<CartInfo> {
 		ModelChecker<CartInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
+		checker = new CartCheckWriteL1();
+		queue.add(checker);
+		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
@@ -55,9 +60,14 @@ final class RootCartInsertL2 implements DeciTree<CartInfo> {
 	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> rootL3 = new RootCartInsertL3(option).toAction();
+		DeciAction<CartInfo> enforceItem = new ActionCartEnforceItemNum(option);
+		DeciActionHandler<CartInfo> enforceLChanged = new HandlerCartEnforceLChanged(option.conn, option.schemaName);
+		DeciActionHandler<CartInfo> rootL3 = new HandlerCartRootUpdateL3(option.conn, option.schemaName);	
 		
-		actions.add(rootL3);		
+		enforceItem.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(rootL3);
+		
+		actions.add(enforceItem);		
 		return actions;
 	}
 	

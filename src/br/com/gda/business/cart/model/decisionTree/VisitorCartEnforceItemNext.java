@@ -12,13 +12,16 @@ import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciActionTransVisitor;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisitorCartEnforceItemNum implements DeciActionTransVisitor<CartInfo> {
+final class VisitorCartEnforceItemNext implements DeciActionTransVisitor<CartInfo> {
 	private DeciTreeOption<CartInfo> selOption;
+	private int maxItem;
 	
 	
-	public VisitorCartEnforceItemNum(Connection conn, String schemaName) {
+	public VisitorCartEnforceItemNext(Connection conn, String schemaName) {
 		checkArgument(conn, schemaName);
 		makeOption(conn, schemaName);
+		
+		maxItem = 0;
 	}
 	
 	
@@ -62,18 +65,33 @@ final class VisitorCartEnforceItemNum implements DeciActionTransVisitor<CartInfo
 	
 	
 	private CartInfo enforce(CartInfo recordInfo) {
+		computeMaxItemNum();
+		
 		CartInfo enforcedRecord = makeClone(recordInfo);
-		enforcedRecord.itemNumber = GetItemNum();
+		enforcedRecord.itemNumber = maxItem;
 		return enforcedRecord;
 	}
 	
 	
 	
-	private int GetItemNum() {
-		List<CartInfo> cartItems = selectCart();
-		checkCart(cartItems);
+	private void computeMaxItemNum() {
+		if (maxItem == 0) 
+			getMaxItemNum();
 		
-		return cartItems.get(0).itemNumber;
+		maxItem = maxItem + 1;
+	}
+	
+	
+	
+	private int getMaxItemNum() {
+		List<CartInfo> cartItems = selectCart();
+		
+		for (CartInfo eachItem: cartItems) {
+			if (eachItem.itemNumber > maxItem)
+				maxItem = eachItem.itemNumber;
+		}
+		
+		return maxItem;
 	}
 	
 	
@@ -89,17 +107,6 @@ final class VisitorCartEnforceItemNum implements DeciActionTransVisitor<CartInfo
 			return mainAction.getDecisionResult().getResultset();
 		
 		return Collections.emptyList();
-	}
-	
-	
-	
-	private void checkCart(List<CartInfo> cartItems) {
-		if (cartItems.isEmpty())
-			throw new IllegalArgumentException(SystemMessage.DATA_NOT_FOUND);
-		
-		if (cartItems.size() > 1)
-			throw new IllegalArgumentException(SystemMessage.MULTIPLE_RECORDS);
-			
 	}
 	
 	

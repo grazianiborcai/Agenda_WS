@@ -9,9 +9,9 @@ import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerCartInsertItm extends DeciActionHandlerTemplate<CartInfo, CartInfo> {
-	
-	public HandlerCartInsertItm(Connection conn, String schemaName) {
+final class HandlerCartRootInsertL2 extends DeciActionHandlerTemplate<CartInfo, CartInfo> {
+
+	public HandlerCartRootInsertL2(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ final class HandlerCartInsertItm extends DeciActionHandlerTemplate<CartInfo, Car
 	
 	
 	@Override protected DeciAction<CartInfo> getInstanceOfActionHook(DeciTreeOption<CartInfo> option) {
-		return new ActionCartInsertItm(option);
+		return new RootCartInsertL2(option).toAction();
 	}
 	
 	

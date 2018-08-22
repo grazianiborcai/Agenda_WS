@@ -4,11 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.checker.CartCheckMatServ;
+import br.com.gda.business.cart.model.checker.CartCheckDate;
+import br.com.gda.business.cart.model.checker.CartCheckEmp;
+import br.com.gda.business.cart.model.checker.CartCheckME;
+import br.com.gda.business.cart.model.checker.CartCheckTime;
+import br.com.gda.business.cart.model.checker.CartCheckWriteL3;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -16,11 +21,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class RootCartInsertL2 implements DeciTree<CartInfo> {
+class RootCartUpdateL3 implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
-	public RootCartInsertL2(DeciTreeOption<CartInfo> option) {
+	public RootCartUpdateL3(DeciTreeOption<CartInfo> option) {
 		DeciTreeHelperOption<CartInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -34,17 +39,42 @@ final class RootCartInsertL2 implements DeciTree<CartInfo> {
 	
 	
 	private ModelChecker<CartInfo> buildDecisionChecker(DeciTreeOption<CartInfo> option) {
-		final boolean IS_SERVICE = true;
+		final boolean GOOD_DATE_TIME = true;
+		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
+		checker = new CartCheckWriteL3();
+		queue.add(checker);
+		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = IS_SERVICE;	
-		checker = new CartCheckMatServ(checkerOption);
+		checkerOption.expectedResult = GOOD_DATE_TIME;	
+		checker = new CartCheckTime(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = GOOD_DATE_TIME;	
+		checker = new CartCheckDate(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CartCheckEmp(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CartCheckME(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -55,9 +85,14 @@ final class RootCartInsertL2 implements DeciTree<CartInfo> {
 	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> rootL3 = new RootCartInsertL3(option).toAction();
+		DeciAction<CartInfo> updateHdr = new ActionCartUpdateHdr(option);	
+		DeciActionHandler<CartInfo> updateItm = new HandlerCartUpdateItm(option.conn, option.schemaName);					
+		DeciActionHandler<CartInfo> selectCart = new HandlerCartSelect(option.conn, option.schemaName);			
 		
-		actions.add(rootL3);		
+		updateHdr.addPostAction(updateItm);
+		updateHdr.addPostAction(selectCart);	
+		
+		actions.add(updateHdr);		
 		return actions;
 	}
 	

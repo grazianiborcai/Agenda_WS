@@ -15,6 +15,7 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -100,9 +101,14 @@ public final class RootCartInsertL1 implements DeciTree<CartInfo> {
 	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> insertL2 = new RootCartInsertL2(option).toAction();
+		DeciAction<CartInfo> enforceItem = new ActionCartEnforceItemNext(option);
+		DeciActionHandler<CartInfo> enforceLChanged = new HandlerCartEnforceLChanged(option.conn, option.schemaName);
+		DeciActionHandler<CartInfo> rootL2 = new HandlerCartRootInsertL2(option.conn, option.schemaName);	
 		
-		actions.add(insertL2);		
+		enforceItem.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(rootL2);
+		
+		actions.add(enforceItem);		
 		return actions;
 	}
 	

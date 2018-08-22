@@ -24,8 +24,8 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class CartSelectSingle implements DaoStmt<CartInfo> {
-	private final String LT_MAT = DaoDbTable.CART_ITM_TABLE;	
-	private final String RT_CART_ITM = DaoDbTable.CART_HDR_TABLE;
+	private final String LT_CART_HDR = DaoDbTable.CART_HDR_TABLE;	
+	private final String RT_CART_ITM = DaoDbTable.CART_ITM_TABLE;
 	
 	private DaoStmt<CartInfo> stmtSql;
 	private DaoStmtOption<CartInfo> stmtOption;
@@ -44,8 +44,8 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_MAT;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_MAT);
+		this.stmtOption.tableName = LT_CART_HDR;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_CART_HDR);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -56,11 +56,11 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 	
 	private String buildWhereClause() {
 		final boolean IGNORE_NULL = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
+		final boolean IGNORE_RECORD_MODE = true;
 		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new CartWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -70,23 +70,23 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 	
 	private List<DaoJoin> buildJoins() {
 		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinMatText());
+		joins.add(buildJoinCartItm());
 		return joins;
 	}
 	
 	
 	
-	private DaoJoin buildJoinMatText() {
+	private DaoJoin buildJoinCartItm() {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT;
+		oneColumn.leftTableName = LT_CART_HDR;
 		oneColumn.leftColumnName = CartDbTableColumn.COL_COD_OWNER;
 		oneColumn.rightColumnName = CartDbTableColumn.COL_COD_OWNER;
 		joinColumns.add(oneColumn);
 		
 		oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT;
+		oneColumn.leftTableName = LT_CART_HDR;
 		oneColumn.leftColumnName = CartDbTableColumn.COL_COD_CUSTOMER;
 		oneColumn.rightColumnName = CartDbTableColumn.COL_COD_CUSTOMER;
 		joinColumns.add(oneColumn);
