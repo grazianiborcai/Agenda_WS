@@ -7,13 +7,13 @@ public enum DaoOperation {
 		}
 	}, 
 	
-	HARD_DELETE("HARD_DELETE", true) {
+	HARD_DELETE("DELETE", true) {
 		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option) {
 			return new DaoStmtBuilderDeleteHard(option);
 		}
 	}, 
 	
-	SOFT_DELETE("SOFT_DELETE", true) {
+	SOFT_DELETE("DELETE", true) {
 		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option) {
 			return new DaoStmtBuilderDeleteSoft(option);
 		}

@@ -148,6 +148,10 @@ public final class SystemMessage {
 	
 	//Cart
 	public static final String CART_ALREADY_EXIST = "Cart's data already exist on DB";	
+	public static final String CART_HAVE_ITEM = "Cart still has items";	
+	public static final String CART_IS_EMPTY = "Cart is empty";
+	public static final String CART_MAT_ALREADY_EXIST = "Material already added to Cart";	
+	public static final String CART_MAT_NOT_FOUND = "Material not found on Cart";
 	public static final String CART_NOT_FOUND = "Cart's data not found on DB";	
 	public static final String CART_ITEM_ALREADY_EXIST = "Cart item already exist on DB";	
 	public static final String CART_ITEM_NOT_FOUND = "Cart item not found on DB";

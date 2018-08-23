@@ -8,12 +8,12 @@ import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecHelper;
 import br.com.gda.dao.DaoStmtExecOption;
 
-public final class CartInsertItm implements DaoStmtExec<CartInfo> {
+public final class CartDeleteItm implements DaoStmtExec<CartInfo> {
 	private DaoStmtExec<CartInfo> helper;
 	
 	
-	public CartInsertItm(List<DaoStmtExecOption<CartInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, CartInsertItmSingle.class, CartInfo.class);
+	public CartDeleteItm(List<DaoStmtExecOption<CartInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, CartDeleteItmSingle.class, CartInfo.class);
 	}
 	
 	

@@ -79,7 +79,7 @@ final class VisitorCartEnforceItemNum implements DeciActionTransVisitor<CartInfo
 	
 	
 	private List<CartInfo> selectCart() {
-		DeciAction<CartInfo> mainAction = new ActionCartEnforceKey(selOption);
+		DeciAction<CartInfo> mainAction = new ActionCartRemoveItemNum(selOption);
 		DeciActionHandler<CartInfo> selectCart = new HandlerCartSelect(selOption.conn, selOption.schemaName);
 		
 		mainAction.addPostAction(selectCart);

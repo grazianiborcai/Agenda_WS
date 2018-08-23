@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.checker.CartCheckMatServ;
+import br.com.gda.business.cart.model.checker.CartCheckRead;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
@@ -16,11 +15,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class RootCartUpdateL2 implements DeciTree<CartInfo> {
+public final class RootCartSelect implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
-	public RootCartUpdateL2(DeciTreeOption<CartInfo> option) {
+	public RootCartSelect(DeciTreeOption<CartInfo> option) {
 		DeciTreeHelperOption<CartInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -34,17 +33,10 @@ final class RootCartUpdateL2 implements DeciTree<CartInfo> {
 	
 	
 	private ModelChecker<CartInfo> buildDecisionChecker(DeciTreeOption<CartInfo> option) {
-		final boolean IS_SERVICE = true;
-		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
-		ModelCheckerOption checkerOption;
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = IS_SERVICE;	
-		checker = new CartCheckMatServ(checkerOption);
+		checker = new CartCheckRead();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -55,9 +47,9 @@ final class RootCartUpdateL2 implements DeciTree<CartInfo> {
 	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> rootL3 = new RootCartUpdateL3(option).toAction();
+		DeciAction<CartInfo> selectCart = new ActionCartSelect(option);
+		actions.add(selectCart);	
 		
-		actions.add(rootL3);		
 		return actions;
 	}
 	

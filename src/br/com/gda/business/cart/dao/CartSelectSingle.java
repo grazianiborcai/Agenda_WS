@@ -94,7 +94,7 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 		
 		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_CART_ITM;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
+		join.joinType = DaoJoinType.INNER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = null;
 		

@@ -35,6 +35,10 @@ public final class CartWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codCustomer));
 					break;
 					
+				case CartDbTableColumn.COL_ITEM_NUMBER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.itemNumber));
+					break;
+					
 				case CartDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codMat));
 					break;

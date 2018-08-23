@@ -6,20 +6,22 @@ import java.util.Collections;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.decisionTree.ActionCartSelect;
+import br.com.gda.business.cart.model.decisionTree.ActionCartEnforceKey;
+import br.com.gda.business.cart.model.decisionTree.HandlerCartSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class CartCheckExistItm extends ModelCheckerTemplateSimple<CartInfo> {
+public final class CartCheckHasItm extends ModelCheckerTemplateSimple<CartInfo> {
 	private final boolean RECORD_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	
 	
-	public CartCheckExistItm(ModelCheckerOption option) {
+	public CartCheckHasItm(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -44,11 +46,14 @@ public final class CartCheckExistItm extends ModelCheckerTemplateSimple<CartInfo
 	private List<CartInfo> selectCartItem(CartInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CartInfo> option = buildOption(recordInfo, conn, schemaName);		
 		
-		DeciAction<CartInfo> selectCartItem = new ActionCartSelect(option);		
-		selectCartItem.executeAction();
+		DeciAction<CartInfo> enforceKey = new ActionCartEnforceKey(option);
+		DeciActionHandlerTemplate<CartInfo, CartInfo> selectCartItem = new HandlerCartSelect(conn, schemaName);
 		
-		if (selectCartItem.getDecisionResult().hasResultset())
-			return selectCartItem.getDecisionResult().getResultset();
+		enforceKey.addPostAction(selectCartItem);
+		enforceKey.executeAction();
+		
+		if (enforceKey.getDecisionResult().hasResultset())
+			return enforceKey.getDecisionResult().getResultset();
 		
 		return Collections.emptyList();		
 	}
@@ -69,18 +74,18 @@ public final class CartCheckExistItm extends ModelCheckerTemplateSimple<CartInfo
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.CART_ITEM_ALREADY_EXIST)
-			return SystemMessage.CART_ITEM_ALREADY_EXIST;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.CART_HAVE_ITEM)
+			return SystemMessage.CART_HAVE_ITEM;
 		
-		return SystemMessage.CART_ITEM_NOT_FOUND;
+		return SystemMessage.CART_IS_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == RECORD_EXIST)
-			return SystemCode.CART_ITEM_ALREADY_EXIST;	
+			return SystemCode.CART_HAVE_ITEM;	
 			
-		return SystemCode.CART_ITEM_NOT_FOUND;
+		return SystemCode.CART_IS_EMPTY;
 	}
 }
