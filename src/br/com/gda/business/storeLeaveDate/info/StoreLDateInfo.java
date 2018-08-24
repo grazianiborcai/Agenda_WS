@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.helper.RecordMode;
@@ -34,6 +35,9 @@ public final class StoreLDateInfo extends InfoRecord implements Cloneable {
 		if (isPlanData(sourceObj))
 			return copyFromPlanData(sourceObj);
 		
+		if (isCart(sourceObj))
+			return copyFromCart(sourceObj);
+		
 		return copyFrom(sourceObj, StoreLDateInfo.class);
 	}
 	
@@ -42,6 +46,9 @@ public final class StoreLDateInfo extends InfoRecord implements Cloneable {
 	public static List<StoreLDateInfo> copyFrom(List<?> sourceObjs) {
 		if (isPlanData(sourceObjs))
 			return copyFromPlanData(sourceObjs);
+		
+		if (isCart(sourceObjs))
+			return copyFromCart(sourceObjs);
 			
 		return copyFrom(sourceObjs, StoreLDateInfo.class);
 	}
@@ -69,6 +76,27 @@ public final class StoreLDateInfo extends InfoRecord implements Cloneable {
 	
 	
 	
+	private static boolean isCart(List<?> sourceObjs) {
+		if (sourceObjs == null || sourceObjs.isEmpty())
+			return false;
+		
+		return isCart(sourceObjs.get(0));
+	}
+	
+	
+	
+	private static boolean isCart(Object sourceObj) {
+		if (sourceObj == null)
+			return false;
+		
+		if (sourceObj instanceof CartInfo)
+			return true;
+		
+		return false;
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	private static List<StoreLDateInfo> copyFromPlanData(List<?> sourceObjs) {
 		return new StoreLDateCopyPlan().makeCopy( (List<PlanDataInfo>)sourceObjs);
@@ -78,6 +106,19 @@ public final class StoreLDateInfo extends InfoRecord implements Cloneable {
 	
 	private static StoreLDateInfo copyFromPlanData(Object sourceObj) {
 		return new StoreLDateCopyPlan().makeCopy( (PlanDataInfo)sourceObj);
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private static List<StoreLDateInfo> copyFromCart(List<?> sourceObjs) {
+		return new StoreLDateCopyCart().makeCopy( (List<CartInfo>)sourceObjs);
+	}
+	
+	
+	
+	private static StoreLDateInfo copyFromCart(Object sourceObj) {
+		return new StoreLDateCopyCart().makeCopy( (CartInfo)sourceObj);
 	}
 	
 	

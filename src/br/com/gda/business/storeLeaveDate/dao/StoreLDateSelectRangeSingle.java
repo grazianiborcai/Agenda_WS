@@ -1,13 +1,14 @@
 package br.com.gda.business.storeLeaveDate.dao;
 
 import java.sql.Connection;
+
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class StoreLDateSelectSingle extends StoreLDateSelectTemplate {	
-	
-	public StoreLDateSelectSingle(Connection conn, StoreLDateInfo recordInfo, String schemaName) {
+public final class StoreLDateSelectRangeSingle extends StoreLDateSelectTemplate {
+
+	public StoreLDateSelectRangeSingle(Connection conn, StoreLDateInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -21,7 +22,7 @@ public final class StoreLDateSelectSingle extends StoreLDateSelectTemplate {
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new StoreLDateWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new StoreLDateWhereRange(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 }

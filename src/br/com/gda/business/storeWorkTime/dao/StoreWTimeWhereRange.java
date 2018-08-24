@@ -11,7 +11,7 @@ import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.DaoWhereCondition;
 
-public final class StoreWTimeWhereRange implements DaoStmtWhere {
+final class StoreWTimeWhereRange implements DaoStmtWhere {
 	private String whereClause;	
 	
 	

@@ -3,27 +3,37 @@ package br.com.gda.business.cart.model.checker;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEWT;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class CartCheckExistHdr implements ModelChecker<CartInfo> {
-	private CartCheckHasItem checker;
+public final class CartCheckEWT implements ModelChecker<CartInfo> {
+	private final boolean FAILED = false;
+	private final boolean SUCCESS = true;
+	
+	private ModelChecker<EmpWTimeInfo> checker;
 	
 	
-	public CartCheckExistHdr(ModelCheckerOption option) {
-		checker = new CartCheckHasItem(option);
+	public CartCheckEWT(ModelCheckerOption option) {
+		checker = new EmpWTimeCheckEWT(option);
 	}
-
+	
 	
 	
 	@Override public boolean check(List<CartInfo> recordInfos) {
-		return checker.check(recordInfos);
+		for (CartInfo eachInfo : recordInfos) {
+			if (check(eachInfo) == FAILED)
+				return FAILED;
+		}
+		
+		return SUCCESS;
 	}
 
 	
 	
 	@Override public boolean check(CartInfo recordInfo) {
-		return checker.check(recordInfo);
+		return checker.check(EmpWTimeInfo.copyFrom(recordInfo));
 	}
 
 	

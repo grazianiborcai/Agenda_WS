@@ -5,8 +5,11 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckDate;
+import br.com.gda.business.cart.model.checker.CartCheckEWT;
 import br.com.gda.business.cart.model.checker.CartCheckEmp;
 import br.com.gda.business.cart.model.checker.CartCheckME;
+import br.com.gda.business.cart.model.checker.CartCheckSLD;
+import br.com.gda.business.cart.model.checker.CartCheckSWT;
 import br.com.gda.business.cart.model.checker.CartCheckTime;
 import br.com.gda.business.cart.model.checker.CartCheckWriteL3;
 import br.com.gda.model.checker.ModelChecker;
@@ -41,6 +44,7 @@ final class RootCartInsertL3 implements DeciTree<CartInfo> {
 	private ModelChecker<CartInfo> buildDecisionChecker(DeciTreeOption<CartInfo> option) {
 		final boolean GOOD_DATE_TIME = true;
 		final boolean EXIST_ON_DB = true;
+		final boolean DONT_EXIST = false;
 		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
@@ -76,6 +80,30 @@ final class RootCartInsertL3 implements DeciTree<CartInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new CartCheckME(checkerOption);
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CartCheckSWT(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CartCheckEWT(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = DONT_EXIST;	
+		checker = new CartCheckSLD(checkerOption);
+		queue.add(checker);
+		
+		//TODO: Check Leave Times
+		//TODO: mesmo serviço com períodos conflitantes
 		
 		return new ModelCheckerQueue<>(queue);
 	}

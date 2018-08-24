@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.decisionTree.ActionCartEnforceKey;
+import br.com.gda.business.cart.model.decisionTree.ActionCartRemoveItemNum;
 import br.com.gda.business.cart.model.decisionTree.HandlerCartSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -16,12 +16,12 @@ import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class CartCheckHasItm extends ModelCheckerTemplateSimple<CartInfo> {
+public final class CartCheckExistServ extends ModelCheckerTemplateSimple<CartInfo> {
 	private final boolean RECORD_EXIST = true;
-	private final boolean NO_ENTRY_FOUND_ON_DB = false;
+	private final boolean NOT_FOUND = false;
 	
 	
-	public CartCheckHasItm(ModelCheckerOption option) {
+	public CartCheckExistServ(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -29,12 +29,7 @@ public final class CartCheckHasItm extends ModelCheckerTemplateSimple<CartInfo> 
 	
 	@Override protected boolean checkHook(CartInfo recordInfo, Connection conn, String schemaName) {	
 		try {
-			List<CartInfo> cartItens = selectCartItem(recordInfo, conn, schemaName);
-			
-			if (cartItens == null || cartItens.isEmpty())
-				return NO_ENTRY_FOUND_ON_DB;
-			
-			return RECORD_EXIST;
+			return checkExistServ(recordInfo, conn, schemaName);
 			
 		} catch (Exception e) {
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
@@ -43,17 +38,47 @@ public final class CartCheckHasItm extends ModelCheckerTemplateSimple<CartInfo> 
 	
 	
 	
+	private boolean checkExistServ(CartInfo recordInfo, Connection conn, String schemaName) {
+		List<CartInfo> cartItens = selectCartItem(recordInfo, conn, schemaName);
+		
+		if (cartItens == null || cartItens.isEmpty())
+			return NOT_FOUND;
+		
+		
+		for (CartInfo eachItem : cartItens) {
+			if (isEqual(recordInfo, eachItem) == RECORD_EXIST)
+				return RECORD_EXIST;
+		}		
+		
+		return NOT_FOUND;
+	}
+	
+	
+	
+	private boolean isEqual(CartInfo recordOne, CartInfo recordTwo) {
+		
+		return (recordOne.codOwner    == recordTwo.codOwner    	&&
+				recordOne.codCustomer == recordTwo.codCustomer 	&&
+				recordOne.codStore    == recordTwo.codStore    	&&
+				recordOne.codMat      == recordTwo.codMat      	&&
+				recordOne.date.isEqual(recordTwo.date)			&&
+				recordOne.beginTime.equals(recordTwo.beginTime) &&
+				recordOne.endTime.equals(recordTwo.endTime));
+	}
+	
+	
+	
 	private List<CartInfo> selectCartItem(CartInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CartInfo> option = buildOption(recordInfo, conn, schemaName);		
 		
-		DeciAction<CartInfo> enforceKey = new ActionCartEnforceKey(option);
+		DeciAction<CartInfo> removeItemNum = new ActionCartRemoveItemNum(option);
 		DeciActionHandlerTemplate<CartInfo, CartInfo> selectCartItem = new HandlerCartSelect(conn, schemaName);
 		
-		enforceKey.addPostAction(selectCartItem);
-		enforceKey.executeAction();
+		removeItemNum.addPostAction(selectCartItem);
+		removeItemNum.executeAction();
 		
-		if (enforceKey.getDecisionResult().hasResultset())
-			return enforceKey.getDecisionResult().getResultset();
+		if (removeItemNum.getDecisionResult().hasResultset())
+			return removeItemNum.getDecisionResult().getResultset();
 		
 		return Collections.emptyList();		
 	}
@@ -74,18 +99,18 @@ public final class CartCheckHasItm extends ModelCheckerTemplateSimple<CartInfo> 
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.CART_HAVE_ITEM)
-			return SystemMessage.CART_HAVE_ITEM;
+		if (makeFailureCodeHook(checkerResult) == SystemCode.CART_MAT_ALREADY_EXIST)
+			return SystemMessage.CART_MAT_ALREADY_EXIST;
 		
-		return SystemMessage.CART_IS_EMPTY;
+		return SystemMessage.CART_MAT_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
 		if (checkerResult == RECORD_EXIST)
-			return SystemCode.CART_HAVE_ITEM;	
+			return SystemCode.CART_MAT_ALREADY_EXIST;	
 			
-		return SystemCode.CART_IS_EMPTY;
+		return SystemCode.CART_MAT_NOT_FOUND;
 	}
 }

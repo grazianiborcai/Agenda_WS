@@ -3,7 +3,7 @@ package br.com.gda.model.decisionTree;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
-
+//TODO: Essa Classe é realmente necessária ?
 public final class DeciActionHandlerAdapter<T> implements DeciAction<T> {
 	private DeciActionHandler<T> handler;
 	private List<T> recordInfos;

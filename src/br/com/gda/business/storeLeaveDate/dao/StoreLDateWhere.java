@@ -28,23 +28,23 @@ public final class StoreLDateWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case "cod_owner" :
+				case StoreLDateDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codOwner));
 					break;
 					
-				case "cod_store" :
+				case StoreLDateDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codStore));
 					break;
 					
-				case "date_valid_from" :
+				case StoreLDateDbTableColumn.COL_DT_VALID_FROM :
 					builder.addClauseAnd(eachColumn, DaoFormatterNumber.dateToString(recordInfo.dateValidFrom), DaoWhereCondition.LESS_OR_EQUAL);
 					break;
 					
-				case "date_valid_to" :
+				case StoreLDateDbTableColumn.COL_DT_VALID_TO :
 					builder.addClauseAnd(eachColumn, DaoFormatterNumber.dateToString(recordInfo.dateValidTo), DaoWhereCondition.GREATER_OR_EQUAL);
 					break;
 					
-				case "record_mode" :
+				case StoreLDateDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn,recordInfo.recordMode);
 					break;
 			}

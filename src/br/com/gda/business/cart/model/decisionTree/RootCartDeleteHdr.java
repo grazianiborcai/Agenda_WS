@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckDelete;
-import br.com.gda.business.cart.model.checker.CartCheckHasItm;
+import br.com.gda.business.cart.model.checker.CartCheckHasItem;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -50,7 +50,7 @@ final class RootCartDeleteHdr implements DeciTree<CartInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = CART_IS_EMPTY;	
-		checker = new CartCheckHasItm(checkerOption);
+		checker = new CartCheckHasItem(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

@@ -9,6 +9,7 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -55,9 +56,12 @@ final class RootCartInsertL2 implements DeciTree<CartInfo> {
 	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> rootL3 = new RootCartInsertL3(option).toAction();
+		DeciAction<CartInfo> weekday = new ActionCartEnforceWeekday(option);
+		DeciActionHandler<CartInfo> rootL3 = new HandlerCartRootInsertL3(option.conn, option.schemaName);
 		
-		actions.add(rootL3);		
+		weekday.addPostAction(rootL3);
+		
+		actions.add(weekday);		
 		return actions;
 	}
 	

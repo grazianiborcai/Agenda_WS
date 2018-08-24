@@ -22,6 +22,8 @@ public final class SystemCode {
 	public static final int EMP_WTIME_FLAGGED_AS_DELETED 				= 1002;
 	public static final int EMP_WTIME_RANGE_CONFLICT 					= 1003;
 	public static final int EMP_WTIME_NO_RANGE_FOUND 					= 1004;
+	public static final int EMP_WTIME_VALID_WORKHOUR					= 1005;
+	public static final int EMP_WTIME_WORKHOUR_OUT_OF_RANGE				= 1006;
 	
 	// Employee
 	public static final int EMP_ALREADY_EXIST 							= 1050;
@@ -55,6 +57,8 @@ public final class SystemCode {
 	public static final int STORE_MAT_ALREADY_EXIST 					= 1118;
 	public static final int STORE_MAT_NOT_FOUND 						= 1119;
 	public static final int STORE_MAT_FLAGGED_AS_DELETED 				= 1120;
+	public static final int STORE_WTIME_NO_LEAVE_FOUND					= 1121;
+	public static final int STORE_WTIME_LEAVE_FOUND						= 1122;
 	
 	// Master Data
 	public static final int EMP_POS_ALREADY_EXIST						= 1150;

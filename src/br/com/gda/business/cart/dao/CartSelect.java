@@ -19,8 +19,7 @@ public final class CartSelect implements DaoStmtExec<CartInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

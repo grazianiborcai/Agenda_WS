@@ -5,12 +5,11 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckDelete;
-import br.com.gda.business.cart.model.checker.CartCheckExistHdr;
+import br.com.gda.business.cart.model.checker.CartCheckHasItem;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -36,7 +35,7 @@ public final class RootCartDeleteL1 implements DeciTree<CartInfo> {
 	
 	
 	private ModelChecker<CartInfo> buildDecisionChecker(DeciTreeOption<CartInfo> option) {
-		final boolean EXIST_ON_DB = true;
+		final boolean CART_HAS_ITEM = true;
 		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
@@ -48,8 +47,8 @@ public final class RootCartDeleteL1 implements DeciTree<CartInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckExistHdr(checkerOption);
+		checkerOption.expectedResult = CART_HAS_ITEM;	
+		checker = new CartCheckHasItem(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

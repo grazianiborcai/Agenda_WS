@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckCus;
-import br.com.gda.business.cart.model.checker.CartCheckExistMat;
+import br.com.gda.business.cart.model.checker.CartCheckExistServ;
 import br.com.gda.business.cart.model.checker.CartCheckMS;
 import br.com.gda.business.cart.model.checker.CartCheckMat;
 import br.com.gda.business.cart.model.checker.CartCheckOwner;
@@ -54,7 +54,7 @@ public final class RootCartUpdateL1 implements DeciTree<CartInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckExistMat(checkerOption);
+		checker = new CartCheckExistServ(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

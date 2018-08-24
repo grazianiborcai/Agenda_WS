@@ -9,6 +9,16 @@ import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class StoreLDateDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_COD_OWNER = "cod_owner";	
+	public static final String COL_COD_STORE = "cod_store";
+	public static final String COL_DT_VALID_FROM = "date_valid_from";
+	public static final String COL_TM_VALID_FROM = "time_valid_from";
+	public static final String COL_DT_VALID_TO = "date_valid_to";
+	public static final String COL_TM_VALID_TO = "time_valid_to";
+	public static final String COL_DESCRIPTION = "description";
+	public static final String COL_RECORD_MODE = "record_mode";
+	public static final String COL_COD_TIMEZONE = "Cod_timezone";
+	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public StoreLDateDbTableColumn() {
@@ -35,7 +45,7 @@ public final class StoreLDateDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_owner";
+		oneColumn.columnName = COL_COD_OWNER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -43,7 +53,7 @@ public final class StoreLDateDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_store";
+		oneColumn.columnName = COL_COD_STORE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -51,7 +61,7 @@ public final class StoreLDateDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "date_valid_from";
+		oneColumn.columnName = COL_DT_VALID_FROM;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -59,7 +69,7 @@ public final class StoreLDateDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "time_valid_from";
+		oneColumn.columnName = COL_TM_VALID_FROM;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -67,7 +77,7 @@ public final class StoreLDateDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "date_valid_to";
+		oneColumn.columnName = COL_DT_VALID_TO;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -75,7 +85,7 @@ public final class StoreLDateDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "time_valid_to";
+		oneColumn.columnName = COL_TM_VALID_TO;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -83,7 +93,7 @@ public final class StoreLDateDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "description";
+		oneColumn.columnName = COL_DESCRIPTION;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -91,7 +101,7 @@ public final class StoreLDateDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "record_mode";
+		oneColumn.columnName = COL_RECORD_MODE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -99,7 +109,7 @@ public final class StoreLDateDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.STORE_TABLE;
-		oneColumn.columnName = "Cod_timezone";
+		oneColumn.columnName = COL_COD_TIMEZONE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;

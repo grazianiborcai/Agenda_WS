@@ -66,8 +66,7 @@ public final class StoreLDateUpdateSingle implements DaoStmt<StoreLDateInfo> {
 	
 
 	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
+		stmtSql.generateStmt();		
 	}
 
 	

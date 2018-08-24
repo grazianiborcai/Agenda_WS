@@ -26,6 +26,8 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 	public String codUnit;
 	public String txtUnit;	
 	public LocalDate date;
+	public int codWeekday;
+	public String txtWeekday;
 	public LocalTime beginTime;
 	public LocalTime endTime;
 	public String codTimezone;	
@@ -43,6 +45,7 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		codMat = DefaultValue.number();
 		price = DefaultValue.number();
 		quantity = DefaultValue.number();
+		codWeekday = DefaultValue.number();
 		codLanguage = Language.getDefaultLanguage();		
 	}
 	

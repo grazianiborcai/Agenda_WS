@@ -9,12 +9,13 @@ import br.com.gda.dao.DaoFormatterNumber;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
+import br.com.gda.dao.DaoWhereCondition;
 
-final class EmpWTimeWhere implements DaoStmtWhere {
+final class EmpWTimeWhereRange implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public EmpWTimeWhere(DaoWhereBuilderOption whereOption, String tableName, EmpWTimeInfo recordInfo) {
+	public EmpWTimeWhereRange(DaoWhereBuilderOption whereOption, String tableName, EmpWTimeInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -40,6 +41,14 @@ final class EmpWTimeWhere implements DaoStmtWhere {
 					
 				case EmpWTimeDbTableColumn.COL_WEEKDAY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codWeekday));
+					break;
+					
+				case EmpWTimeDbTableColumn.COL_BEGIN_TIME :
+					builder.addClauseAnd(eachColumn, DaoFormatterNumber.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
+					break;
+					
+				case EmpWTimeDbTableColumn.COL_END_TIME :
+					builder.addClauseAnd(eachColumn, DaoFormatterNumber.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
 					break;
 					
 				case EmpWTimeDbTableColumn.COL_RECORD_MODE :
