@@ -9,6 +9,22 @@ import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_COD_POSITION = "Cod_position";
+	public static final String COL_COD_LANGUAGE = "Language";
+	public static final String COL_NAME = "Name";
+	public static final String COL_COD_UNIT = "Unit";
+	public static final String COL_COD_MAT_TYPE = "Cod_type";
+	public static final String COL_COD_MAT_CATEG = "Cod_category";
+	public static final String COL_COD_MAT_GROUP = "Cod_group";
+	public static final String COL_COD_BUSINESS = "Cod_business";
+	public static final String COL_COD_CURRENCY = "Cod_curr";
+	public static final String COL_CURRENCY_SYMBOL = "Symbol";
+	public static final String COL_COD_WEEKDAY = "Weekday";
+	public static final String COL_COD_TIMEZONE = "cod_timezone";
+	public static final String COL_COD_GENDER = "cod_gender";
+	public static final String COL_COD_ITEM_CATEG = "cod_shop_categ";
+	
+	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public MasterDataDbTableColumn() {
@@ -31,6 +47,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		languageTable();
 		timezoneTable();
 		genderTable();
+		cartItemCategTable();
 		
 		return tableColumns;
 	}
@@ -45,7 +62,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_position";
+		oneColumn.columnName = COL_COD_POSITION;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -53,7 +70,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.POSITION_TEXT_TABLE;
-		oneColumn.columnName = "Language";
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -61,7 +78,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.POSITION_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -80,7 +97,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Unit";
+		oneColumn.columnName = COL_COD_UNIT;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -88,7 +105,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.MAT_UNIT_TEXT_TABLE;
-		oneColumn.columnName = "Language";
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -96,7 +113,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.MAT_UNIT_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -115,7 +132,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_type";
+		oneColumn.columnName = COL_COD_MAT_TYPE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -123,7 +140,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.MAT_TYPE_TEXT_TABLE;
-		oneColumn.columnName = "Language";
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -131,7 +148,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.MAT_TYPE_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -150,7 +167,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_category";
+		oneColumn.columnName = COL_COD_MAT_CATEG;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -158,7 +175,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.MAT_CATEG_TEXT_TABLE;
-		oneColumn.columnName = "Language";
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -166,7 +183,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.MAT_CATEG_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -185,7 +202,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_group";
+		oneColumn.columnName = COL_COD_MAT_GROUP;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -193,7 +210,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_business";
+		oneColumn.columnName = COL_COD_BUSINESS;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -201,7 +218,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.MAT_GROUP_TEXT_TABLE;
-		oneColumn.columnName = "Language";
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -209,7 +226,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.MAT_GROUP_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -217,7 +234,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -236,7 +253,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_business";
+		oneColumn.columnName = COL_COD_BUSINESS;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -244,7 +261,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
-		oneColumn.columnName = "Language";
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -252,7 +269,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -271,7 +288,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_curr";
+		oneColumn.columnName = COL_COD_CURRENCY;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -279,7 +296,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Symbol";
+		oneColumn.columnName = COL_CURRENCY_SYMBOL;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -287,7 +304,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.CURRENCY_TEXT_TABLE;
-		oneColumn.columnName = "Language";
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -295,7 +312,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.CURRENCY_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -314,7 +331,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Weekday";
+		oneColumn.columnName = COL_COD_WEEKDAY;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -322,7 +339,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.WEEKDAY_TEXT_TABLE;
-		oneColumn.columnName = "Language";
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -330,7 +347,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.WEEKDAY_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -349,7 +366,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Language";
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -357,7 +374,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -376,7 +393,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_timezone";
+		oneColumn.columnName = COL_COD_TIMEZONE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -384,7 +401,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.TIMEZONE_TEXT_TABLE;
-		oneColumn.columnName = "language";
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -392,7 +409,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.TIMEZONE_TEXT_TABLE;
-		oneColumn.columnName = "name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -411,7 +428,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_gender";
+		oneColumn.columnName = COL_COD_GENDER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -419,7 +436,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.GENDER_TEXT_TABLE;
-		oneColumn.columnName = "language";
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -427,7 +444,42 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.GENDER_TEXT_TABLE;
-		oneColumn.columnName = "name";
+		oneColumn.columnName = COL_NAME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private void cartItemCategTable() {
+		final String TABLE_NAME = DaoDbTable.CART_ITM_CATEG_TABLE;
+		
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ITEM_CATEG;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.CART_ITM_CATEG_TEXT_TABLE;
+		oneColumn.columnName = COL_NAME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.CART_ITM_CATEG_TEXT_TABLE;
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;

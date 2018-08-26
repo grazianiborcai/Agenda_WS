@@ -5,12 +5,12 @@ import java.util.List;
 import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class MatCategWhere implements DaoStmtWhere {
+final class MatCategWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
@@ -26,8 +26,8 @@ public final class MatCategWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case "Cod_category" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codCategory));
+				case MasterDataDbTableColumn.COL_COD_MAT_CATEG :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCategory));
 					break;
 			}
 		}		

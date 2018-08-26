@@ -17,7 +17,7 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 	private DeciTree<OwnerInfo> tree;
-	
+	//	TODO: ao criar um Owner, esse deve herdar valores padrões como Taxa de Serviço
 	
 	public RootOwnerSelect(DeciTreeOption<OwnerInfo> option) {
 		DeciTreeHelperOption<OwnerInfo> helperOption = new DeciTreeHelperOption<>();

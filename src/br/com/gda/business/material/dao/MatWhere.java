@@ -6,7 +6,7 @@ import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
@@ -29,19 +29,19 @@ public final class MatWhere implements DaoStmtWhere {
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
 				case "Cod_owner" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codOwner));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
 				case "Cod_material" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codMat));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
 				case "Cod_type" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codType));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codType));
 					break;
 					
 				case "Cod_group" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codGroup));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codGroup));
 					break;
 					
 				case "Language":

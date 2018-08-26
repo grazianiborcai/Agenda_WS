@@ -10,7 +10,7 @@ import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.info.InfoUniquifier;
 
-final class PlanUniquifier implements InfoUniquifier<PlanInfo>{
+final class PlanUniquifier implements InfoUniquifier<PlanInfo> {
 	private List<StoreInfo> allStores;
 	private List<MatInfo> allMaterials;
 	private List<EmpInfo> allEmployees;

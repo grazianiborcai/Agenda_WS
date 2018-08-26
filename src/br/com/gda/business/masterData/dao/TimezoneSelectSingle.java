@@ -80,8 +80,8 @@ public final class TimezoneSelectSingle implements DaoStmt<TimezoneInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LEFT_TABLE;
-		oneColumn.leftColumnName = "cod_timezone";
-		oneColumn.rightColumnName = "cod_timezone";
+		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_TIMEZONE;
+		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_TIMEZONE;
 		joinColumns.add(oneColumn);
 		
 		
@@ -101,7 +101,7 @@ public final class TimezoneSelectSingle implements DaoStmt<TimezoneInfo> {
 		
 		constrainClause.append(rightTableName);
 		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append("Language");
+		constrainClause.append(MasterDataDbTableColumn.COL_COD_LANGUAGE);
 		constrainClause.append(DaoDictionary.SPACE);
 		constrainClause.append(DaoDictionary.EQUAL);
 		constrainClause.append(DaoDictionary.SPACE);
@@ -152,8 +152,8 @@ public final class TimezoneSelectSingle implements DaoStmt<TimezoneInfo> {
 	
 	private class ResultParser implements DaoResultParser<TimezoneInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = RIGHT_TABLE + "." + "name";
-		private final String LANGU_COL = RIGHT_TABLE + "." + "language";
+		private final String TEXT_COL = RIGHT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = RIGHT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<TimezoneInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<TimezoneInfo> finalResult = new ArrayList<>();
@@ -163,7 +163,7 @@ public final class TimezoneSelectSingle implements DaoStmt<TimezoneInfo> {
 		
 			do {				
 				TimezoneInfo dataInfo = new TimezoneInfo();
-				dataInfo.codTimezone = stmtResult.getString("cod_timezone");
+				dataInfo.codTimezone = stmtResult.getString(MasterDataDbTableColumn.COL_COD_TIMEZONE);
 				dataInfo.txtTimezone = stmtResult.getString(TEXT_COL);
 				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				

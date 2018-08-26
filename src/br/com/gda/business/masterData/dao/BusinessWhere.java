@@ -5,12 +5,12 @@ import java.util.List;
 import br.com.gda.business.masterData.info.BusinessInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class BusinessWhere implements DaoStmtWhere {
+final class BusinessWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
@@ -26,8 +26,8 @@ public final class BusinessWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case "Cod_business" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codBusiness));
+				case MasterDataDbTableColumn.COL_COD_BUSINESS :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codBusiness));
 					break;
 			}
 		}		

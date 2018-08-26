@@ -4,7 +4,6 @@ import java.time.LocalTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
@@ -24,7 +23,7 @@ public final class StoreWTimeInfo extends InfoRecord implements Cloneable {
 		this.codOwner = DefaultValue.number();
 		this.codStore = DefaultValue.number();
 		this.codWeekday = DefaultValue.number();
-		this.codLanguage = Language.getDefaultLanguage();
+		this.codLanguage = DefaultValue.language();
 		this.recordMode = RecordMode.RECORD_OK;
 	}
 	

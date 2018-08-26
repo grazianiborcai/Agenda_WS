@@ -9,7 +9,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class TimezoneWhere implements DaoStmtWhere {
+final class TimezoneWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
@@ -25,7 +25,7 @@ public final class TimezoneWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case "cod_timezone" :
+				case MasterDataDbTableColumn.COL_COD_TIMEZONE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codTimezone);
 					break;
 			}

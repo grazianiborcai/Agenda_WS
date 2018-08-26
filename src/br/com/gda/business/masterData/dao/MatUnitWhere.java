@@ -9,7 +9,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class MatUnitWhere implements DaoStmtWhere {
+final class MatUnitWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
@@ -25,7 +25,7 @@ public final class MatUnitWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case "Unit" :
+				case MasterDataDbTableColumn.COL_COD_UNIT :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codUnit);
 					break;
 			}

@@ -81,8 +81,8 @@ public final class CurrencySelectSingle implements DaoStmt<CurrencyInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_CURRENCY;
-		oneColumn.leftColumnName = "Cod_curr";
-		oneColumn.rightColumnName = "Cod_curr";
+		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_CURRENCY;
+		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_CURRENCY;
 		joinColumns.add(oneColumn);
 		
 		
@@ -102,7 +102,7 @@ public final class CurrencySelectSingle implements DaoStmt<CurrencyInfo> {
 		
 		constrainClause.append(rightTableName);
 		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append("Language");
+		constrainClause.append(MasterDataDbTableColumn.COL_COD_LANGUAGE);
 		constrainClause.append(DaoDictionary.SPACE);
 		constrainClause.append(DaoDictionary.EQUAL);
 		constrainClause.append(DaoDictionary.SPACE);
@@ -153,8 +153,8 @@ public final class CurrencySelectSingle implements DaoStmt<CurrencyInfo> {
 	
 	private class ResultParser implements DaoResultParser<CurrencyInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String CURRENCY_TEXT_COL = DaoDbTable.CURRENCY_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = DaoDbTable.CURRENCY_TEXT_TABLE + "." + "Language";
+		private final String CURRENCY_TEXT_COL = DaoDbTable.CURRENCY_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = DaoDbTable.CURRENCY_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<CurrencyInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CurrencyInfo> finalResult = new ArrayList<>();
@@ -164,8 +164,8 @@ public final class CurrencySelectSingle implements DaoStmt<CurrencyInfo> {
 		
 			do {				
 				CurrencyInfo dataInfo = new CurrencyInfo();
-				dataInfo.codCurr = stmtResult.getString("Cod_curr");
-				dataInfo.symbolCurr = stmtResult.getString("Symbol");
+				dataInfo.codCurr = stmtResult.getString(MasterDataDbTableColumn.COL_COD_CURRENCY);
+				dataInfo.symbolCurr = stmtResult.getString(MasterDataDbTableColumn.COL_CURRENCY_SYMBOL);
 				dataInfo.txtCurr = stmtResult.getString(CURRENCY_TEXT_COL);
 				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				

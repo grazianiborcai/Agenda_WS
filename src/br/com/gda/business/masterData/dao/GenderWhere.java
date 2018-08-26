@@ -5,12 +5,12 @@ import java.util.List;
 import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class GenderWhere implements DaoStmtWhere {
+final class GenderWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
@@ -26,8 +26,8 @@ public final class GenderWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case "cod_gender" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codGender));
+				case MasterDataDbTableColumn.COL_COD_GENDER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codGender));
 					break;
 			}
 		}		

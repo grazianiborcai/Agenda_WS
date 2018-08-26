@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -99,7 +99,7 @@ public final class CusUpdateSingle implements DaoStmt<CusInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<CusInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusInfo recordInfo) throws SQLException {	
-			Date birthDate = DaoFormatterNumber.localToSqlDate(recordInfo.birthDate);
+			Date birthDate = DaoFormatter.localToSqlDate(recordInfo.birthDate);
 			
 			int i = 1;
 			stmt.setString(i++, recordInfo.cpf);

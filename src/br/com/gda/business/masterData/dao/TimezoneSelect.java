@@ -19,8 +19,7 @@ public final class TimezoneSelect implements DaoStmtExec<TimezoneInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
@@ -50,15 +50,15 @@ public final class StoreCoWhere implements DaoStmtWhere {
 	private void generateKey(DaoColumn column, StoreCoInfo recordInfo) {
 		switch(column.columnName) {
 		case "cod_owner" :
-			builderKey.addClauseEqualAnd(column, DaoFormatterNumber.numberToString(recordInfo.codOwner));
+			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codOwner));
 			break;
 			
 		case "cod_store" :
-			builderKey.addClauseEqualAnd(column, DaoFormatterNumber.numberToString(recordInfo.codStore));
+			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codStore));
 			break;
 			
 		case "weekday" :
-			builderKey.addClauseEqualAnd(column, DaoFormatterNumber.numberToString(recordInfo.codWeekday));
+			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codWeekday));
 			break;
 			
 		case "record_mode" :
@@ -72,11 +72,11 @@ public final class StoreCoWhere implements DaoStmtWhere {
 	private void generateBeginTime(DaoColumn column, StoreCoInfo recordInfo) {
 		switch(column.columnName) {
 		case "begin_time" :
-			builderBeginTime.addClauseAnd(column, DaoFormatterNumber.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
+			builderBeginTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
 			break;
 			
 		case "end_time" :
-			builderBeginTime.addClauseAnd(column, DaoFormatterNumber.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);
+			builderBeginTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);
 			break;
 		}
 	}	
@@ -86,11 +86,11 @@ public final class StoreCoWhere implements DaoStmtWhere {
 	private void generateEndTime(DaoColumn column, StoreCoInfo recordInfo) {
 		switch(column.columnName) {
 		case "begin_time" :
-			builderEndTime.addClauseAnd(column, DaoFormatterNumber.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
+			builderEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
 			break;
 			
 		case "end_time" :
-			builderEndTime.addClauseAnd(column, DaoFormatterNumber.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
+			builderEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
 			break;
 		}
 	}	

@@ -3,7 +3,6 @@ package br.com.gda.business.owner.info;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
@@ -16,7 +15,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	
 	public OwnerInfo() {
 		this.codOwner = DefaultValue.number();
-		this.codLanguage = Language.getDefaultLanguage();
+		this.codLanguage = DefaultValue.language();
 		this.recordMode = RecordMode.RECORD_OK;	
 	}
 	

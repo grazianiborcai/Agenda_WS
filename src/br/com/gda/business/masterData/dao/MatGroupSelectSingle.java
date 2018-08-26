@@ -83,8 +83,8 @@ public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT_GROUP;
-		oneColumn.leftColumnName = "Cod_group";
-		oneColumn.rightColumnName = "Cod_group";
+		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_MAT_GROUP;
+		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_MAT_GROUP;
 		joinColumns.add(oneColumn);
 		
 		
@@ -104,8 +104,8 @@ public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT_GROUP;
-		oneColumn.leftColumnName = "Cod_business";
-		oneColumn.rightColumnName = "Cod_business";
+		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_BUSINESS;
+		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_BUSINESS;
 		joinColumns.add(oneColumn);
 		
 		
@@ -126,7 +126,7 @@ public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
 		
 		constrainClause.append(rightTableName);
 		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append("Language");
+		constrainClause.append(MasterDataDbTableColumn.COL_COD_LANGUAGE);
 		constrainClause.append(DaoDictionary.SPACE);
 		constrainClause.append(DaoDictionary.EQUAL);
 		constrainClause.append(DaoDictionary.SPACE);
@@ -177,9 +177,9 @@ public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
 	
 	private class ResultParser implements DaoResultParser<MatGroupInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String GROUP_TEXT_COL = DaoDbTable.MAT_GROUP_TEXT_TABLE + "." + "Name";
-		private final String BUSINESS_TEXT_COL = DaoDbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = DaoDbTable.MAT_GROUP_TEXT_TABLE + "." + "Language";
+		private final String GROUP_TEXT_COL = DaoDbTable.MAT_GROUP_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String BUSINESS_TEXT_COL = DaoDbTable.BUSINESS_AREA_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = DaoDbTable.MAT_GROUP_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<MatGroupInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatGroupInfo> finalResult = new ArrayList<>();
@@ -189,9 +189,9 @@ public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
 		
 			do {				
 				MatGroupInfo dataInfo = new MatGroupInfo();
-				dataInfo.codGroup = stmtResult.getInt("Cod_group");				
+				dataInfo.codGroup = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_MAT_GROUP);				
 				dataInfo.txtGroup = stmtResult.getString(GROUP_TEXT_COL);
-				dataInfo.codBusiness = stmtResult.getInt("Cod_business");
+				dataInfo.codBusiness = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_BUSINESS);
 				dataInfo.txtBusiness = stmtResult.getString(BUSINESS_TEXT_COL);
 				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				

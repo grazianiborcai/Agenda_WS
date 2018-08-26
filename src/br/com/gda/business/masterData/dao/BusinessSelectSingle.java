@@ -81,8 +81,8 @@ public final class BusinessSelectSingle implements DaoStmt<BusinessInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LEFT_TABLE;
-		oneColumn.leftColumnName = "Cod_business";
-		oneColumn.rightColumnName = "Cod_business";
+		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_BUSINESS;
+		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_BUSINESS;
 		joinColumns.add(oneColumn);
 		
 		
@@ -102,7 +102,7 @@ public final class BusinessSelectSingle implements DaoStmt<BusinessInfo> {
 		
 		constrainClause.append(rightTableName);
 		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append("Language");
+		constrainClause.append(MasterDataDbTableColumn.COL_COD_LANGUAGE);
 		constrainClause.append(DaoDictionary.SPACE);
 		constrainClause.append(DaoDictionary.EQUAL);
 		constrainClause.append(DaoDictionary.SPACE);
@@ -153,8 +153,8 @@ public final class BusinessSelectSingle implements DaoStmt<BusinessInfo> {
 	
 	private class ResultParser implements DaoResultParser<BusinessInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = RIGHT_TABLE + "." + "Name";
-		private final String LANGU_COL = RIGHT_TABLE + "." + "Language";
+		private final String TEXT_COL = RIGHT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = RIGHT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<BusinessInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<BusinessInfo> finalResult = new ArrayList<>();
@@ -164,7 +164,7 @@ public final class BusinessSelectSingle implements DaoStmt<BusinessInfo> {
 		
 			do {				
 				BusinessInfo dataInfo = new BusinessInfo();
-				dataInfo.codBusiness = stmtResult.getInt("Cod_business");
+				dataInfo.codBusiness = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_BUSINESS);
 				dataInfo.txtBusiness = stmtResult.getString(TEXT_COL);
 				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				

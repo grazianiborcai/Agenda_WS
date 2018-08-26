@@ -6,13 +6,14 @@ import java.time.LocalTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.common.Language;
 import br.com.gda.info.InfoRecord;
 
 public final class CartInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codCustomer;
 	public int itemNumber;
+	public char codItemCateg;
+	public String txtItemCateg;
 	public long codStore;
 	public String nameStore;
 	public long codEmployee;
@@ -20,6 +21,7 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 	public long codMat;
 	public String txtMat;
 	public double price;
+	public int priceUnit;
 	public int quantity;
 	public String codCurr;
 	public String txtCurr;
@@ -44,9 +46,10 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
 		price = DefaultValue.number();
+		priceUnit = DefaultValue.number();
 		quantity = DefaultValue.number();
 		codWeekday = DefaultValue.number();
-		codLanguage = Language.getDefaultLanguage();		
+		codLanguage = DefaultValue.language();		
 	}
 	
 	

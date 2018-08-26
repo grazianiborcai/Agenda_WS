@@ -81,8 +81,8 @@ public final class MatTypeSelectSingle implements DaoStmt<MatTypeInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT_TYPE;
-		oneColumn.leftColumnName = "Cod_type";
-		oneColumn.rightColumnName = "Cod_type";
+		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_MAT_TYPE;
+		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_MAT_TYPE;
 		joinColumns.add(oneColumn);
 		
 		
@@ -102,7 +102,7 @@ public final class MatTypeSelectSingle implements DaoStmt<MatTypeInfo> {
 		
 		constrainClause.append(rightTableName);
 		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append("Language");
+		constrainClause.append(MasterDataDbTableColumn.COL_COD_LANGUAGE);
 		constrainClause.append(DaoDictionary.SPACE);
 		constrainClause.append(DaoDictionary.EQUAL);
 		constrainClause.append(DaoDictionary.SPACE);
@@ -153,8 +153,8 @@ public final class MatTypeSelectSingle implements DaoStmt<MatTypeInfo> {
 	
 	private class ResultParser implements DaoResultParser<MatTypeInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TYPE_TEXT_COL = DaoDbTable.MAT_TYPE_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = DaoDbTable.MAT_TYPE_TEXT_TABLE + "." + "Language";
+		private final String TYPE_TEXT_COL = DaoDbTable.MAT_TYPE_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = DaoDbTable.MAT_TYPE_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<MatTypeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatTypeInfo> finalResult = new ArrayList<>();
@@ -164,7 +164,7 @@ public final class MatTypeSelectSingle implements DaoStmt<MatTypeInfo> {
 		
 			do {				
 				MatTypeInfo dataInfo = new MatTypeInfo();
-				dataInfo.codType = stmtResult.getInt("Cod_type");
+				dataInfo.codType = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_MAT_TYPE);
 				dataInfo.txtType = stmtResult.getString(TYPE_TEXT_COL);
 				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				

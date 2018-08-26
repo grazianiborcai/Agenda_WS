@@ -19,8 +19,7 @@ public final class BusinessSelect implements DaoStmtExec<BusinessInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

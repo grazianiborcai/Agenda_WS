@@ -3,7 +3,6 @@ package br.com.gda.business.storeEmployee.info;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
@@ -24,7 +23,7 @@ public final class StoreEmpInfo extends InfoRecord implements Cloneable {
 		this.codStore = DefaultValue.number();
 		this.codEmployee = DefaultValue.number();
 		this.codPositionStore = DefaultValue.number();
-		this.codLanguage = Language.getDefaultLanguage();
+		this.codLanguage = DefaultValue.language();
 		this.recordMode = RecordMode.RECORD_OK;		
 	}
 	

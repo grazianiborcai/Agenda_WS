@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -76,8 +76,8 @@ public final class StoreWTimeInsertSingle implements DaoStmt<StoreWTimeInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<StoreWTimeInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreWTimeInfo recordInfo) throws SQLException {
-			Time beginTime = DaoFormatterNumber.localToSqlTime(recordInfo.beginTime);
-			Time endTime = DaoFormatterNumber.localToSqlTime(recordInfo.endTime);	
+			Time beginTime = DaoFormatter.localToSqlTime(recordInfo.beginTime);
+			Time endTime = DaoFormatter.localToSqlTime(recordInfo.endTime);	
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);

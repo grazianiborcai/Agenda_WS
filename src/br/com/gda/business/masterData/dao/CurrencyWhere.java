@@ -9,7 +9,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class CurrencyWhere implements DaoStmtWhere {
+final class CurrencyWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
@@ -25,7 +25,7 @@ public final class CurrencyWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case "Cod_curr" :
+				case MasterDataDbTableColumn.COL_COD_CURRENCY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCurr);
 					break;
 			}

@@ -81,8 +81,8 @@ public final class GenderSelectSingle implements DaoStmt<GenderInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_GENDER;
-		oneColumn.leftColumnName = "cod_gender";
-		oneColumn.rightColumnName = "cod_gender";
+		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_GENDER;
+		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_GENDER;
 		joinColumns.add(oneColumn);
 		
 		
@@ -102,7 +102,7 @@ public final class GenderSelectSingle implements DaoStmt<GenderInfo> {
 		
 		constrainClause.append(rightTableName);
 		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append("language");
+		constrainClause.append(MasterDataDbTableColumn.COL_COD_LANGUAGE);
 		constrainClause.append(DaoDictionary.SPACE);
 		constrainClause.append(DaoDictionary.EQUAL);
 		constrainClause.append(DaoDictionary.SPACE);
@@ -153,8 +153,8 @@ public final class GenderSelectSingle implements DaoStmt<GenderInfo> {
 	
 	private class ResultParser implements DaoResultParser<GenderInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = DaoDbTable.GENDER_TEXT_TABLE + "." + "name";
-		private final String LANGU_COL = DaoDbTable.GENDER_TEXT_TABLE + "." + "language";
+		private final String TEXT_COL = DaoDbTable.GENDER_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = DaoDbTable.GENDER_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<GenderInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<GenderInfo> finalResult = new ArrayList<>();
@@ -164,7 +164,7 @@ public final class GenderSelectSingle implements DaoStmt<GenderInfo> {
 		
 			do {				
 				GenderInfo dataInfo = new GenderInfo();
-				dataInfo.codGender = stmtResult.getInt("cod_gender");
+				dataInfo.codGender = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_GENDER);
 				dataInfo.txtGender = stmtResult.getString(TEXT_COL);
 				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				

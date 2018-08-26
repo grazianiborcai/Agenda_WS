@@ -19,8 +19,7 @@ public final class WeekdaySelect implements DaoStmtExec<WeekdayInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

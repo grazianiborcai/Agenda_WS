@@ -110,8 +110,8 @@ public final class LanguSelectSingle implements DaoStmt<LanguInfo> {
 		
 			do {				
 				LanguInfo dataInfo = new LanguInfo();
-				dataInfo.codLanguage = stmtResult.getString("Language");
-				dataInfo.txtLanguage = stmtResult.getString("Name");	
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);
+				dataInfo.txtLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);	
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

@@ -95,9 +95,11 @@ public final class SystemCode {
 	public static final int OWNER_NOT_FOUND								= 1251;
 	
 	// Employee Leave Date
-	public static final int EMPLOYEE_LEAVE_DATE_ALREADY_EXIST 			= 1300;
-	public static final int EMPLOYEE_LEAVE_DATE_NOT_FOUND 				= 1301;
-	public static final int EMPLOYEE_LEAVE_DATE_FLAGGED_AS_DELETED 		= 1302;
+	public static final int EMP_LDATE_ALREADY_EXIST 					= 1300;
+	public static final int EMP_LDATE_NOT_FOUND 						= 1301;
+	public static final int EMP_LDATE_FLAGGED_AS_DELETED 				= 1302;
+	public static final int EMP_LDATE_NO_LEAVE_FOUND					= 1303;
+	public static final int EMP_LDATE_LEAVE_FOUND						= 1304;
 	
 	//Customer
 	public static final int CUS_CPF_ALREADY_EXIST						= 1350;

@@ -76,6 +76,19 @@ public final class StoreLDateInfo extends InfoRecord implements Cloneable {
 	
 	
 	
+	@SuppressWarnings("unchecked")
+	private static List<StoreLDateInfo> copyFromPlanData(List<?> sourceObjs) {
+		return new StoreLDateCopyPlan().makeCopy( (List<PlanDataInfo>)sourceObjs);
+	}
+	
+	
+	
+	private static StoreLDateInfo copyFromPlanData(Object sourceObj) {
+		return new StoreLDateCopyPlan().makeCopy( (PlanDataInfo)sourceObj);
+	}
+	
+	
+	
 	private static boolean isCart(List<?> sourceObjs) {
 		if (sourceObjs == null || sourceObjs.isEmpty())
 			return false;
@@ -93,19 +106,6 @@ public final class StoreLDateInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		return false;
-	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	private static List<StoreLDateInfo> copyFromPlanData(List<?> sourceObjs) {
-		return new StoreLDateCopyPlan().makeCopy( (List<PlanDataInfo>)sourceObjs);
-	}
-	
-	
-	
-	private static StoreLDateInfo copyFromPlanData(Object sourceObj) {
-		return new StoreLDateCopyPlan().makeCopy( (PlanDataInfo)sourceObj);
 	}
 	
 	

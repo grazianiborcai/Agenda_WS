@@ -15,12 +15,12 @@ public final class StoreLDateSelectRangeSingle extends StoreLDateSelectTemplate 
 	
 	
 	@Override protected String buildWhereClauseHook(String tableName, StoreLDateInfo recordInfo) {
-		final boolean IGNORE_NULL = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
+		final boolean DONT_IGNORE_NULL = false;
+		final boolean IGNORE_RECORD_MODE = true;
 		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new StoreLDateWhereRange(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();

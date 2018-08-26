@@ -19,8 +19,7 @@ public final class MatUnitSelect implements DaoStmtExec<MatUnitInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

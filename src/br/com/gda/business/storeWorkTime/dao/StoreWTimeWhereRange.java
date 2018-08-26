@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
@@ -29,23 +29,23 @@ final class StoreWTimeWhereRange implements DaoStmtWhere {
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
 				case "cod_owner" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codOwner));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
 				case "cod_store" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codStore));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
 				case "weekday" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codWeekday));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codWeekday));
 					break;
 					
 				case "begin_time" :
-					builder.addClauseAnd(eachColumn, DaoFormatterNumber.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
+					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
 					break;
 					
 				case "end_time" :
-					builder.addClauseAnd(eachColumn, DaoFormatterNumber.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
+					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
 					break;
 					
 				case "record_mode" :

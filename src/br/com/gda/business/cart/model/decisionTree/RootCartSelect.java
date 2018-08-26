@@ -8,6 +8,7 @@ import br.com.gda.business.cart.model.checker.CartCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -48,6 +49,22 @@ public final class RootCartSelect implements DeciTree<CartInfo> {
 		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
 		
 		DeciAction<CartInfo> selectCart = new ActionCartSelect(option);
+		DeciActionHandler<CartInfo> enforceCateg = new HandlerCartEnforceCateg(option.conn, option.schemaName);
+		DeciActionHandler<CartInfo> mergeStore = new HandlerCartMergeStore(option.conn, option.schemaName);
+		DeciActionHandler<CartInfo> enforceWeekday = new HandlerCartEnforceWeekday(option.conn, option.schemaName);
+		DeciActionHandler<CartInfo> mergeWeekday = new HandlerCartMergeWeekday(option.conn, option.schemaName);
+		DeciActionHandler<CartInfo> mergeCateg = new HandlerCartMergeCateg(option.conn, option.schemaName);
+		DeciActionHandler<CartInfo> addTotal = new HandlerCartTotal(option.conn, option.schemaName);
+		DeciActionHandler<CartInfo> mergeMat = new HandlerCartMergeMat(option.conn, option.schemaName);
+		
+		selectCart.addPostAction(mergeMat);
+		mergeMat.addPostAction(mergeStore);
+		mergeStore.addPostAction(enforceWeekday);
+		enforceWeekday.addPostAction(mergeWeekday);
+		mergeWeekday.addPostAction(enforceCateg);
+		enforceCateg.addPostAction(addTotal);
+		addTotal.addPostAction(mergeCateg);
+		
 		actions.add(selectCart);	
 		
 		return actions;

@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.common.Language;
 import br.com.gda.info.InfoRecord;
 
 public final class PlanDataInfo extends InfoRecord implements Cloneable {
@@ -27,7 +26,7 @@ public final class PlanDataInfo extends InfoRecord implements Cloneable {
 		codMat = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
-		codLanguage = Language.getDefaultLanguage();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

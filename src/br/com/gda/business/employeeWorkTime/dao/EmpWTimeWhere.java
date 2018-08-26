@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
@@ -27,19 +27,19 @@ final class EmpWTimeWhere implements DaoStmtWhere {
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case EmpWTimeDbTableColumn.COL_COD_OWNER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codOwner));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 				
 				case EmpWTimeDbTableColumn.COL_COD_STORE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codStore));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
 				case EmpWTimeDbTableColumn.COL_COD_EMPLOYEE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codEmployee));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
 				case EmpWTimeDbTableColumn.COL_WEEKDAY :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codWeekday));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codWeekday));
 					break;
 					
 				case EmpWTimeDbTableColumn.COL_RECORD_MODE :

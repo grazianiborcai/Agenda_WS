@@ -3,7 +3,6 @@ package br.com.gda.business.material.info;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
@@ -41,7 +40,7 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 		this.priceUnit = 1;
 		this.codGroup = DefaultValue.number();		
 		this.codBusiness = DefaultValue.number();	
-		this.codLanguage = Language.getDefaultLanguage();
+		this.codLanguage = DefaultValue.language();
 		this.isLocked = false;
 		this.recordMode = RecordMode.RECORD_OK;	
 	}

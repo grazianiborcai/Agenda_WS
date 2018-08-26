@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
@@ -27,27 +27,27 @@ public final class EmpLDateWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case "cod_owner" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codOwner));
+				case EmpLDateDbTableColumn.COL_COD_OWNER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 				
-				case "cod_store" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codStore));
+				case EmpLDateDbTableColumn.COL_COD_STORE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case "cod_employee" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatterNumber.numberToString(recordInfo.codEmployee));
+				case EmpLDateDbTableColumn.COL_COD_EMPLOYEE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
-				case "date_valid_from" :
-					builder.addClauseAnd(eachColumn, DaoFormatterNumber.dateToString(recordInfo.dateValidFrom), DaoWhereCondition.LESS_OR_EQUAL);
+				case EmpLDateDbTableColumn.COL_DT_VALID_FROM  :
+					builder.addClauseAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidFrom), DaoWhereCondition.LESS_OR_EQUAL);
 					break;
 					
-				case "date_valid_to" :
-					builder.addClauseAnd(eachColumn, DaoFormatterNumber.dateToString(recordInfo.dateValidTo), DaoWhereCondition.GREATER_OR_EQUAL);
+				case EmpLDateDbTableColumn.COL_DT_VALID_TO :
+					builder.addClauseAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidTo), DaoWhereCondition.GREATER_OR_EQUAL);
 					break;
 					
-				case "record_mode" :
+				case EmpLDateDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

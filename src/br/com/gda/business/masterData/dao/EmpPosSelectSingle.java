@@ -81,8 +81,8 @@ public final class EmpPosSelectSingle implements DaoStmt<EmpPosInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_POSITION;
-		oneColumn.leftColumnName = "Cod_position";
-		oneColumn.rightColumnName = "Cod_position";
+		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_POSITION;
+		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_POSITION;
 		joinColumns.add(oneColumn);
 		
 		
@@ -102,7 +102,7 @@ public final class EmpPosSelectSingle implements DaoStmt<EmpPosInfo> {
 		
 		constrainClause.append(rightTableName);
 		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append("Language");
+		constrainClause.append(MasterDataDbTableColumn.COL_COD_LANGUAGE);
 		constrainClause.append(DaoDictionary.SPACE);
 		constrainClause.append(DaoDictionary.EQUAL);
 		constrainClause.append(DaoDictionary.SPACE);
@@ -153,8 +153,8 @@ public final class EmpPosSelectSingle implements DaoStmt<EmpPosInfo> {
 	
 	private class ResultParser implements DaoResultParser<EmpPosInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String POSITION_TEXT_COLUMN = DaoDbTable.POSITION_TEXT_TABLE + "." + "Name";
-		private final String POSITION_LANGU_COLUMN = DaoDbTable.POSITION_TEXT_TABLE + "." + "Language";
+		private final String POSITION_TEXT_COLUMN = DaoDbTable.POSITION_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String POSITION_LANGU_COLUMN = DaoDbTable.POSITION_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<EmpPosInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpPosInfo> finalResult = new ArrayList<>();
@@ -164,7 +164,7 @@ public final class EmpPosSelectSingle implements DaoStmt<EmpPosInfo> {
 		
 			do {				
 				EmpPosInfo dataInfo = new EmpPosInfo();
-				dataInfo.codPosition = stmtResult.getLong("Cod_position");
+				dataInfo.codPosition = stmtResult.getLong(MasterDataDbTableColumn.COL_COD_POSITION);
 				dataInfo.txtPosition = stmtResult.getString(POSITION_TEXT_COLUMN);
 				dataInfo.codLanguage = stmtResult.getString(POSITION_LANGU_COLUMN);		
 				

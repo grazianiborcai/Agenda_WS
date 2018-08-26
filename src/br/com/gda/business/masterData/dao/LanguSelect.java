@@ -19,8 +19,7 @@ public final class LanguSelect implements DaoStmtExec<LanguInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

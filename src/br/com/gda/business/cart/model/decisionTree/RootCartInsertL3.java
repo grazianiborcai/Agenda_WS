@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckDate;
+import br.com.gda.business.cart.model.checker.CartCheckELD;
 import br.com.gda.business.cart.model.checker.CartCheckEWT;
 import br.com.gda.business.cart.model.checker.CartCheckEmp;
 import br.com.gda.business.cart.model.checker.CartCheckME;
@@ -102,8 +103,16 @@ final class RootCartInsertL3 implements DeciTree<CartInfo> {
 		checker = new CartCheckSLD(checkerOption);
 		queue.add(checker);
 		
-		//TODO: Check Leave Times
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = DONT_EXIST;	
+		checker = new CartCheckELD(checkerOption);
+		queue.add(checker);
+		
 		//TODO: mesmo serviço com períodos conflitantes
+		//TODO: adicionar totais
+		//TODO: adicionar serviço
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -116,7 +125,7 @@ final class RootCartInsertL3 implements DeciTree<CartInfo> {
 		DeciAction<CartInfo> writeHdr = new RootCartWiteHdr(option).toAction();	
 		DeciActionHandler<CartInfo> insertItm = new HandlerCartInsertItm(option.conn, option.schemaName);	
 		DeciActionHandler<CartInfo> enforceKey = new HandlerCartEnforceKey(option.conn, option.schemaName);	
-		DeciActionHandler<CartInfo> selectCart = new HandlerCartSelect(option.conn, option.schemaName);			
+		DeciActionHandler<CartInfo> selectCart = new HandlerCartRootSelect(option.conn, option.schemaName);			
 		
 		writeHdr.addPostAction(insertItm);
 		writeHdr.addPostAction(enforceKey);

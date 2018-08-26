@@ -5,9 +5,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.common.DefaultValue;
-import br.com.gda.common.Language;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
@@ -29,7 +29,7 @@ public final class EmpLDateInfo extends InfoRecord implements Cloneable {
 		this.codOwner = DefaultValue.number();
 		this.codStore = DefaultValue.number();
 		this.codEmployee = DefaultValue.number();
-		this.codLanguage = Language.getDefaultLanguage();
+		this.codLanguage = DefaultValue.language();
 		this.recordMode = RecordMode.RECORD_OK;
 	}
 	
@@ -39,6 +39,9 @@ public final class EmpLDateInfo extends InfoRecord implements Cloneable {
 		if (isPlanData(sourceObj))
 			return copyFromPlanData(sourceObj);
 		
+		if (isCart(sourceObj))
+			return copyFromCart(sourceObj);
+		
 		return copyFrom(sourceObj, EmpLDateInfo.class);
 	}
 	
@@ -47,6 +50,9 @@ public final class EmpLDateInfo extends InfoRecord implements Cloneable {
 	public static List<EmpLDateInfo> copyFrom(List<?> sourceObjs) {
 		if (isPlanData(sourceObjs))
 			return copyFromPlanData(sourceObjs);
+		
+		if (isCart(sourceObjs))
+			return copyFromCart(sourceObjs);
 		
 		return copyFrom(sourceObjs, EmpLDateInfo.class);
 	}
@@ -83,6 +89,40 @@ public final class EmpLDateInfo extends InfoRecord implements Cloneable {
 	
 	private static EmpLDateInfo copyFromPlanData(Object sourceObj) {
 		return new EmpLDateCopyPlan().makeCopy( (PlanDataInfo)sourceObj);
+	}
+	
+	
+	
+	private static boolean isCart(List<?> sourceObjs) {
+		if (sourceObjs == null || sourceObjs.isEmpty())
+			return false;
+		
+		return isCart(sourceObjs.get(0));
+	}
+	
+	
+	
+	private static boolean isCart(Object sourceObj) {
+		if (sourceObj == null)
+			return false;
+		
+		if (sourceObj instanceof CartInfo)
+			return true;
+		
+		return false;
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private static List<EmpLDateInfo> copyFromCart(List<?> sourceObjs) {
+		return new EmpLDateCopyCart().makeCopy( (List<CartInfo>)sourceObjs);
+	}
+	
+	
+	
+	private static EmpLDateInfo copyFromCart(Object sourceObj) {
+		return new EmpLDateCopyCart().makeCopy( (CartInfo)sourceObj);
 	}
 	
 	

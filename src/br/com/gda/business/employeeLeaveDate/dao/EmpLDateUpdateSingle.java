@@ -10,7 +10,7 @@ import java.util.List;
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatterNumber;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -98,8 +98,8 @@ public final class EmpLDateUpdateSingle implements DaoStmt<EmpLDateInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<EmpLDateInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpLDateInfo recordInfo) throws SQLException {			
-			Time endTime = DaoFormatterNumber.localToSqlTime(recordInfo.timeValidTo);	
-			Date endDate = DaoFormatterNumber.localToSqlDate(recordInfo.dateValidTo);	
+			Time endTime = DaoFormatter.localToSqlTime(recordInfo.timeValidTo);	
+			Date endDate = DaoFormatter.localToSqlDate(recordInfo.dateValidTo);	
 			
 			int i = 1;
 			stmt.setDate(i++, endDate);

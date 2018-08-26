@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public final class DaoFormatterNumber {
+public final class DaoFormatter {
 	public static String numberToString(long number) {
 		if (number < 0)
 			return null;
@@ -61,5 +61,14 @@ public final class DaoFormatterNumber {
 			return null;
 		
 		return localTime.format(DateTimeFormatter.ISO_LOCAL_TIME);
+	}
+	
+	
+	
+	public static String charToString(char c) {	
+		if (c == Character.MIN_VALUE)
+			return null;
+		
+		return Character.toString(c);
 	}
 }

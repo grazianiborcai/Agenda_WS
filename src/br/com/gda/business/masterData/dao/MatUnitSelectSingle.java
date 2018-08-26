@@ -81,8 +81,8 @@ public final class MatUnitSelectSingle implements DaoStmt<MatUnitInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_UNIT;
-		oneColumn.leftColumnName = "Unit";
-		oneColumn.rightColumnName = "Unit";
+		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_UNIT;
+		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_UNIT;
 		joinColumns.add(oneColumn);
 		
 		
@@ -102,7 +102,7 @@ public final class MatUnitSelectSingle implements DaoStmt<MatUnitInfo> {
 		
 		constrainClause.append(rightTableName);
 		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append("Language");
+		constrainClause.append(MasterDataDbTableColumn.COL_COD_LANGUAGE);
 		constrainClause.append(DaoDictionary.SPACE);
 		constrainClause.append(DaoDictionary.EQUAL);
 		constrainClause.append(DaoDictionary.SPACE);
@@ -153,8 +153,8 @@ public final class MatUnitSelectSingle implements DaoStmt<MatUnitInfo> {
 	
 	private class ResultParser implements DaoResultParser<MatUnitInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String UNIT_TEXT_COL = DaoDbTable.MAT_UNIT_TEXT_TABLE + "." + "Name";
-		private final String LANGU_COL = DaoDbTable.MAT_UNIT_TEXT_TABLE + "." + "Language";
+		private final String UNIT_TEXT_COL = DaoDbTable.MAT_UNIT_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = DaoDbTable.MAT_UNIT_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<MatUnitInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatUnitInfo> finalResult = new ArrayList<>();
@@ -164,7 +164,7 @@ public final class MatUnitSelectSingle implements DaoStmt<MatUnitInfo> {
 		
 			do {				
 				MatUnitInfo dataInfo = new MatUnitInfo();
-				dataInfo.codUnit = stmtResult.getString("Unit");
+				dataInfo.codUnit = stmtResult.getString(MasterDataDbTableColumn.COL_COD_UNIT);
 				dataInfo.txtUnit = stmtResult.getString(UNIT_TEXT_COL);
 				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				

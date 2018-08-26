@@ -12,6 +12,7 @@ import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.masterData.info.BusinessInfo;
+import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.EmpPosInfo;
 import br.com.gda.business.masterData.info.GenderInfo;
@@ -23,6 +24,7 @@ import br.com.gda.business.masterData.model.MatUnitModelSelect;
 import br.com.gda.business.masterData.model.TimezoneModelSelect;
 import br.com.gda.business.masterData.model.WeekdayModelSelect;
 import br.com.gda.business.masterData.model.BusinessModelSelect;
+import br.com.gda.business.masterData.model.CartCategModelSelect;
 import br.com.gda.business.masterData.model.CurrencyModelSelect;
 import br.com.gda.business.masterData.model.EmpPosModelSelect;
 import br.com.gda.business.masterData.model.GenderModelSelect;
@@ -46,6 +48,7 @@ public final class MasterDataResource {
 	private static final String SELECT_WEEKDAY = "/selectWeekday";
 	private static final String SELECT_TIMEZONE = "/selectTimezone";
 	private static final String SELECT_GENDER = "/selectGender";
+	private static final String SELECT_CART_ITEM_CATEG = "/selectCartItemCateg";
 	
 	
 	@GET
@@ -58,9 +61,9 @@ public final class MasterDataResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codPosition = codPosition;
 		
-		Model modelSelect = new EmpPosModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new EmpPosModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -75,9 +78,9 @@ public final class MasterDataResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codUnit = codUnit;
 		
-		Model modelSelect = new MatUnitModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new MatUnitModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -92,9 +95,9 @@ public final class MasterDataResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codType = codType;
 		
-		Model modelSelect = new MatTypeModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new MatTypeModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -109,9 +112,9 @@ public final class MasterDataResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codCategory = codCategory;
 		
-		Model modelSelect = new MatCategModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new MatCategModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -128,9 +131,9 @@ public final class MasterDataResource {
 		recordInfo.codGroup = codGroup;
 		recordInfo.codBusiness = codBusiness;
 		
-		Model modelSelect = new MatGroupModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new MatGroupModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -145,9 +148,9 @@ public final class MasterDataResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codBusiness = codBusiness;
 		
-		Model modelSelect = new BusinessModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new BusinessModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -162,9 +165,9 @@ public final class MasterDataResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codCurr = codCurr;
 		
-		Model modelSelect = new CurrencyModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new CurrencyModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -177,9 +180,9 @@ public final class MasterDataResource {
 		LanguInfo recordInfo = new LanguInfo();
 		recordInfo.codLanguage = codLanguage;
 		
-		Model modelSelect = new LanguModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new LanguModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -194,9 +197,9 @@ public final class MasterDataResource {
 		recordInfo.codWeekday = codWeekday;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model modelSelect = new WeekdayModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new WeekdayModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -211,9 +214,9 @@ public final class MasterDataResource {
 		recordInfo.codTimezone = codTimezone;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model modelSelect = new TimezoneModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new TimezoneModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -228,8 +231,28 @@ public final class MasterDataResource {
 		recordInfo.codGender = codGender;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model modelSelect = new GenderModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new GenderModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_CART_ITEM_CATEG)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectCartItemCateg(@HeaderParam("codLanguage")  @DefaultValue("EN") String codLanguage,
+			                            @HeaderParam("codItemCateg")  String codItemCateg){
+		
+		CartCategInfo recordInfo = new CartCategInfo();		
+		recordInfo.codLanguage = codLanguage;
+		
+		if (codItemCateg != null)
+			recordInfo.codItemCateg = codItemCateg.charAt(0);
+		
+		
+		Model model = new CartCategModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 }

@@ -95,9 +95,11 @@ public final class SystemMessage {
 	public static final String EMP_DATA_ALREADY_EXIST = "Employee's data already exist";
 	public static final String EMP_DATA_NOT_FOUND = "Employee's data not found";
 	public static final String EMP_FLAGGED_AS_DELETED = "Employee's data is flagged as deleted on DB";	
-	public static final String EMP_LD_ALREADY_EXIST = "Employee's leave date already exist on DB";
-	public static final String EMP_LD_FLAGGED_AS_DELETED = "Employee leave date data is flagged as deleted on DB";	
-	public static final String EMP_LD_NOT_FOUND = "Employee's leave date not found on DB";	
+	public static final String EMP_LDATE_ALREADY_EXIST = "Employee's leave date already exist on DB";
+	public static final String EMP_LDATE_FLAGGED_AS_DELETED = "Employee leave date data is flagged as deleted on DB";
+	public static final String EMP_LDATE_LEAVE_FOUND = "There is a employee's leave date for selected time";
+	public static final String EMP_LDATE_NO_LEAVE_FOUND = "Selected time is free of employee's leave dates";	
+	public static final String EMP_LDATE_NOT_FOUND = "There is a employee's leave date for selected time";
 	public static final String EMP_MULTIPLE_ENTRIES_FOUND = "Multiple entries found for Employee's data selection";	
 	public static final String EMP_NOT_FOUND = "Employee's data not found on DB";	
 	public static final String EMP_SINGLE_ENTRY_FOUND = "Single entry found for Employee's data selection";
@@ -108,6 +110,8 @@ public final class SystemMessage {
 	public static final String EMP_WTIME_RANGE_CONFLICT = "Employee's working time range conflict";	
 	public static final String EMP_WTIME_VALID_WORKHOUR = "Selected time is valid for Employee working time range";	
 	public static final String EMP_WTIME_WORKHOUR_OUT_OF_RANGE = "Selected time is out of range of Employee working time";
+	
+
 	
 
 			

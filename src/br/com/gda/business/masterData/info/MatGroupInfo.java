@@ -3,7 +3,6 @@ package br.com.gda.business.masterData.info;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.common.Language;
 import br.com.gda.info.InfoRecord;
 
 public class MatGroupInfo extends InfoRecord implements Cloneable {
@@ -17,7 +16,7 @@ public class MatGroupInfo extends InfoRecord implements Cloneable {
 	public MatGroupInfo() {
 		this.codGroup = DefaultValue.number();
 		this.codBusiness = DefaultValue.number();
-		this.codLanguage = Language.getDefaultLanguage();
+		this.codLanguage = DefaultValue.language();
 	}
 	
 	
