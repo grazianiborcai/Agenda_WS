@@ -55,6 +55,8 @@ public final class SystemMessage {
 		
 	
 	//Master Data
+	public static final String COUNTRY_ALREADY_EXIST = "Country already exist on DB";
+	public static final String COUNTRY_NOT_FOUND = "Country not found on DB";	
 	public static final String CURRENCY_ALREADY_EXIST = "Currency already exist on DB";
 	public static final String CURRENCY_NOT_FOUND = "Currency not found on DB";	
 	public static final String EMP_POS_ALREADY_EXIST = "Position already exist on DB";

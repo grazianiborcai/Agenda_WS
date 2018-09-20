@@ -33,7 +33,6 @@ final class BusinessWhere implements DaoStmtWhere {
 		}		
 			
 		whereClause = builder.generateClause();
-
 	}
 	
 	

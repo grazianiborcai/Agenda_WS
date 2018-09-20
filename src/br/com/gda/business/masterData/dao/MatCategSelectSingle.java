@@ -22,8 +22,8 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class MatCategSelectSingle implements DaoStmt<MatCategInfo> {
-	private final String LT_MAT_CATEG = DaoDbTable.MAT_CATEG_TABLE;
-	private final String RT_MAT_CATEG_TEXT = DaoDbTable.MAT_CATEG_TEXT_TABLE;
+	private final String LT_ATTR = DaoDbTable.MAT_CATEG_TABLE;
+	private final String RT_TEXT = DaoDbTable.MAT_CATEG_TEXT_TABLE;
 	
 	private DaoStmt<MatCategInfo> stmtSql;
 	private DaoStmtOption<MatCategInfo> stmtOption;
@@ -42,7 +42,7 @@ public final class MatCategSelectSingle implements DaoStmt<MatCategInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_MAT_CATEG;
+		this.stmtOption.tableName = LT_ATTR;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -80,17 +80,17 @@ public final class MatCategSelectSingle implements DaoStmt<MatCategInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT_CATEG;
+		oneColumn.leftTableName = LT_ATTR;
 		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_MAT_CATEG;
 		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_MAT_CATEG;
 		joinColumns.add(oneColumn);
 		
 		
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_MAT_CATEG_TEXT;
+		join.rightTableName = RT_TEXT;
 		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RT_MAT_CATEG_TEXT);
+		join.constraintClause = buildJoinConstraintText(RT_TEXT);
 		
 		return join;
 	}
@@ -153,8 +153,8 @@ public final class MatCategSelectSingle implements DaoStmt<MatCategInfo> {
 	
 	private class ResultParser implements DaoResultParser<MatCategInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String CATEG_TEXT_COL = DaoDbTable.MAT_CATEG_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = DaoDbTable.MAT_CATEG_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
+		private final String CATEG_TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<MatCategInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatCategInfo> finalResult = new ArrayList<>();

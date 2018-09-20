@@ -13,8 +13,10 @@ import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.masterData.info.BusinessInfo;
 import br.com.gda.business.masterData.info.CartCategInfo;
+import br.com.gda.business.masterData.info.CountryInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.EmpPosInfo;
+import br.com.gda.business.masterData.info.FeeCategInfo;
 import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.business.masterData.info.MatCategInfo;
@@ -25,8 +27,10 @@ import br.com.gda.business.masterData.model.TimezoneModelSelect;
 import br.com.gda.business.masterData.model.WeekdayModelSelect;
 import br.com.gda.business.masterData.model.BusinessModelSelect;
 import br.com.gda.business.masterData.model.CartCategModelSelect;
+import br.com.gda.business.masterData.model.CountryModelSelect;
 import br.com.gda.business.masterData.model.CurrencyModelSelect;
 import br.com.gda.business.masterData.model.EmpPosModelSelect;
+import br.com.gda.business.masterData.model.FeeCategModelSelect;
 import br.com.gda.business.masterData.model.GenderModelSelect;
 import br.com.gda.business.masterData.model.LanguModelSelect;
 import br.com.gda.business.masterData.model.MatCategModelSelect;
@@ -49,6 +53,8 @@ public final class MasterDataResource {
 	private static final String SELECT_TIMEZONE = "/selectTimezone";
 	private static final String SELECT_GENDER = "/selectGender";
 	private static final String SELECT_CART_ITEM_CATEG = "/selectCartItemCateg";
+	private static final String SELECT_COUNTRY = "/selectCountry";
+	private static final String SELECT_FEE_CATEG = "/selectFeeCateg";
 	
 	
 	@GET
@@ -241,8 +247,8 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_CART_ITEM_CATEG)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectCartItemCateg(@HeaderParam("codLanguage")  @DefaultValue("EN") String codLanguage,
-			                            @HeaderParam("codItemCateg")  String codItemCateg){
+	public Response selectCartItemCateg(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                            @HeaderParam("codItemCateg") String codItemCateg){
 		
 		CartCategInfo recordInfo = new CartCategInfo();		
 		recordInfo.codLanguage = codLanguage;
@@ -252,6 +258,44 @@ public final class MasterDataResource {
 		
 		
 		Model model = new CartCategModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_COUNTRY)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectCountry(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                      @HeaderParam("codCountry") String codCountry){
+		
+		CountryInfo recordInfo = new CountryInfo();		
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codCountry = codCountry;
+		
+		
+		Model model = new CountryModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_FEE_CATEG)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectFeeCateg(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                       @HeaderParam("codFeeCateg") String codFeeCateg){
+		
+		FeeCategInfo recordInfo = new FeeCategInfo();		
+		recordInfo.codLanguage = codLanguage;
+		
+		if (codFeeCateg != null)
+			recordInfo.codFeeCateg = codFeeCateg.charAt(0);
+		
+		
+		Model model = new FeeCategModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

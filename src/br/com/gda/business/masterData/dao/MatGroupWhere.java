@@ -37,7 +37,6 @@ final class MatGroupWhere implements DaoStmtWhere {
 		}		
 			
 		whereClause = builder.generateClause();
-
 	}
 	
 	

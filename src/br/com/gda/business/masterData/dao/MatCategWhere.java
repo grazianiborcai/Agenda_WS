@@ -33,7 +33,6 @@ final class MatCategWhere implements DaoStmtWhere {
 		}		
 			
 		whereClause = builder.generateClause();
-
 	}
 	
 	

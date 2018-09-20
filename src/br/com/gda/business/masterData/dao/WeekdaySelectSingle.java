@@ -22,8 +22,8 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class WeekdaySelectSingle implements DaoStmt<WeekdayInfo> {
-	private final String LEFT_TABLE = DaoDbTable.WEEKDAY_TABLE;
-	private final String RIGHT_TABLE = DaoDbTable.WEEKDAY_TEXT_TABLE;
+	private final String LT_ATTR = DaoDbTable.WEEKDAY_TABLE;
+	private final String RT_TEXT = DaoDbTable.WEEKDAY_TEXT_TABLE;
 	
 	private DaoStmt<WeekdayInfo> stmtSql;
 	private DaoStmtOption<WeekdayInfo> stmtOption;
@@ -42,7 +42,7 @@ public final class WeekdaySelectSingle implements DaoStmt<WeekdayInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LEFT_TABLE;
+		this.stmtOption.tableName = LT_ATTR;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -80,17 +80,17 @@ public final class WeekdaySelectSingle implements DaoStmt<WeekdayInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LEFT_TABLE;
+		oneColumn.leftTableName = LT_ATTR;
 		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_WEEKDAY;
 		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_WEEKDAY;
 		joinColumns.add(oneColumn);
 		
 		
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RIGHT_TABLE;
+		join.rightTableName = RT_TEXT;
 		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE);
+		join.constraintClause = buildJoinConstraintText(RT_TEXT);
 		
 		return join;
 	}
@@ -153,8 +153,8 @@ public final class WeekdaySelectSingle implements DaoStmt<WeekdayInfo> {
 	
 	private class ResultParser implements DaoResultParser<WeekdayInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = RIGHT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RIGHT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
+		private final String TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<WeekdayInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<WeekdayInfo> finalResult = new ArrayList<>();

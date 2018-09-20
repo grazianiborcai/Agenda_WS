@@ -66,7 +66,6 @@ public final class MatTypeModelSelect implements Model {
 	private static class TreeFactory implements DeciTreeFactory<MatTypeInfo> {		
 		@Override public DeciTree<MatTypeInfo> getInstance(DeciTreeOption<MatTypeInfo> option) {
 			return new RootMatTypeSelect(option);
-		}		
-	
+		}			
 	}
 }

@@ -22,8 +22,8 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class CurrencySelectSingle implements DaoStmt<CurrencyInfo> {
-	private final String LT_CURRENCY = DaoDbTable.CURRENCY_TABLE;
-	private final String RT_CURRENCY_TEXT = DaoDbTable.CURRENCY_TEXT_TABLE;
+	private final String LT_ATTR = DaoDbTable.CURRENCY_TABLE;
+	private final String RT_TEXT = DaoDbTable.CURRENCY_TEXT_TABLE;
 	
 	private DaoStmt<CurrencyInfo> stmtSql;
 	private DaoStmtOption<CurrencyInfo> stmtOption;
@@ -42,7 +42,7 @@ public final class CurrencySelectSingle implements DaoStmt<CurrencyInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_CURRENCY;
+		this.stmtOption.tableName = LT_ATTR;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -80,17 +80,17 @@ public final class CurrencySelectSingle implements DaoStmt<CurrencyInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_CURRENCY;
+		oneColumn.leftTableName = LT_ATTR;
 		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_CURRENCY;
 		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_CURRENCY;
 		joinColumns.add(oneColumn);
 		
 		
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_CURRENCY_TEXT;
+		join.rightTableName = RT_TEXT;
 		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RT_CURRENCY_TEXT);
+		join.constraintClause = buildJoinConstraintText(RT_TEXT);
 		
 		return join;
 	}
@@ -153,8 +153,8 @@ public final class CurrencySelectSingle implements DaoStmt<CurrencyInfo> {
 	
 	private class ResultParser implements DaoResultParser<CurrencyInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String CURRENCY_TEXT_COL = DaoDbTable.CURRENCY_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = DaoDbTable.CURRENCY_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
+		private final String CURRENCY_TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<CurrencyInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CurrencyInfo> finalResult = new ArrayList<>();

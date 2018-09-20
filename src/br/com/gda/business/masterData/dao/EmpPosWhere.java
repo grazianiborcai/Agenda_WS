@@ -33,7 +33,6 @@ final class EmpPosWhere implements DaoStmtWhere {
 		}		
 			
 		whereClause = builder.generateClause();
-
 	}
 	
 	

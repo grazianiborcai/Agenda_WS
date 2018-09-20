@@ -33,7 +33,6 @@ final class GenderWhere implements DaoStmtWhere {
 		}		
 			
 		whereClause = builder.generateClause();
-
 	}
 	
 	

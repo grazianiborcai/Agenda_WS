@@ -33,7 +33,6 @@ final class WeekdayWhere implements DaoStmtWhere {
 		}		
 			
 		whereClause = builder.generateClause();
-
 	}
 	
 	

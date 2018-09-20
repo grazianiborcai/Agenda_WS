@@ -10,6 +10,7 @@ import br.com.gda.business.employee.dao.EmpDbTableColumn;
 import br.com.gda.business.employeeLeaveDate.dao.EmpLDateDbTableColumn;
 import br.com.gda.business.employeeWorkTime.dao.EmpWTimeDbTableColumn;
 import br.com.gda.business.employeeWorkTimeConflict.dao.EmpCoDbTableColumn;
+import br.com.gda.business.fee.dao.FeeDbTableColumn;
 import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.material.dao.MatDbTableColumn;
 import br.com.gda.business.materialEmployee.dao.MatEmpDbTableColumn;
@@ -52,6 +53,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new OwnerDbTableColumn());
 		addTable(new MatStoreDbTableColumn());
 		addTable(new CartDbTableColumn());
+		addTable(new FeeDbTableColumn());
 	}
 	
 	

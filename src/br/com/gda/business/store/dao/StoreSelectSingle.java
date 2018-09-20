@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
@@ -22,8 +23,8 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
-	private final String LEFT_TABLE_STORE = DaoDbTable.STORE_TABLE;	
-	private final String RIGHT_TABLE_COUNTRY_TEXT = DaoDbTable.COUNTRY_TEXT_TABLE;
+	private final static String LT_ATTR = DaoDbTable.STORE_TABLE;	
+	private final static String RT_COUNTRY_TEXT = DaoDbTable.COUNTRY_TEXT_TABLE;
 	
 	private DaoStmt<StoreInfo> stmtSql;
 	private DaoStmtOption<StoreInfo> stmtOption;
@@ -42,8 +43,8 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LEFT_TABLE_STORE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LEFT_TABLE_STORE);
+		this.stmtOption.tableName = LT_ATTR;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_ATTR);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -78,17 +79,17 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LEFT_TABLE_STORE;
-		oneColumn.leftColumnName = "Country";
-		oneColumn.rightColumnName = "Country";
+		oneColumn.leftTableName = LT_ATTR;
+		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_COUNTRY;
+		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_COUNTRY;
 		joinColumns.add(oneColumn);
 		
 		
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RIGHT_TABLE_COUNTRY_TEXT;
+		join.rightTableName = RT_COUNTRY_TEXT;
 		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE_COUNTRY_TEXT);
+		join.constraintClause = buildJoinConstraintText(RT_COUNTRY_TEXT);
 		
 		return join;
 	}
@@ -154,7 +155,7 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 	
 	private static class ResultParser implements DaoResultParser<StoreInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String COUNTRY_TEXT_COLUMN = DaoDbTable.COUNTRY_TEXT_TABLE + "." + "Name";
+		private final String COUNTRY_TEXT_COLUMN = RT_COUNTRY_TEXT + "." + "Name";
 		
 		@Override public List<StoreInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreInfo> finalResult = new ArrayList<>();
@@ -164,27 +165,27 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 			
 			do {
 				StoreInfo dataInfo = new StoreInfo();
-				dataInfo.codOwner = stmtResult.getLong("cod_owner");
-				dataInfo.codStore = stmtResult.getLong("Cod_store");
-				dataInfo.cnpj = stmtResult.getString("CNPJ");
-				dataInfo.inscrMun = stmtResult.getString("Inscricao_municipal");
-				dataInfo.inscrEst = stmtResult.getString("Inscricao_estadual");
-				dataInfo.razaoSocial = stmtResult.getString("Razao_social");
-				dataInfo.name = stmtResult.getString("Name");
-				dataInfo.address1 = stmtResult.getString("Address1");
-				dataInfo.address2 = stmtResult.getString("Address2");
-				dataInfo.postalCode = stmtResult.getLong("Postalcode");
-				dataInfo.city = stmtResult.getString("City");
-				dataInfo.codCountry = stmtResult.getString("Country");
+				dataInfo.codOwner = stmtResult.getLong(StoreDbTableColumn.COL_COD_OWNER);
+				dataInfo.codStore = stmtResult.getLong(StoreDbTableColumn.COL_COD_STORE);
+				dataInfo.cnpj = stmtResult.getString(StoreDbTableColumn.COL_CNPJ);
+				dataInfo.inscrMun = stmtResult.getString(StoreDbTableColumn.COL_INSC_MUNICIPAL);
+				dataInfo.inscrEst = stmtResult.getString(StoreDbTableColumn.COL_INSC_ESTATUAL);
+				dataInfo.razaoSocial = stmtResult.getString(StoreDbTableColumn.COL_RAZAO_SOCIAL);
+				dataInfo.name = stmtResult.getString(StoreDbTableColumn.COL_NAME);
+				dataInfo.address1 = stmtResult.getString(StoreDbTableColumn.COL_ADDRESS1);
+				dataInfo.address2 = stmtResult.getString(StoreDbTableColumn.COL_ADDRESS2);
+				dataInfo.postalCode = stmtResult.getLong(StoreDbTableColumn.COL_COD_POST);
+				dataInfo.city = stmtResult.getString(StoreDbTableColumn.COL_CITY);
+				dataInfo.codCountry = stmtResult.getString(StoreDbTableColumn.COL_COUNTRY);
 				dataInfo.txtCountry = stmtResult.getString(COUNTRY_TEXT_COLUMN);
-				dataInfo.stateProvince = stmtResult.getString("State_province");
-				dataInfo.phone = stmtResult.getString("Phone");
-				dataInfo.codCurr = stmtResult.getString("Cod_curr");	
-				dataInfo.codPayment = stmtResult.getString("Cod_payment");					
-				dataInfo.latitude = stmtResult.getDouble("Latitude");	
-				dataInfo.longitude = stmtResult.getDouble("Longitude");	
-				dataInfo.codTimezone = stmtResult.getString("Cod_timezone");
-				dataInfo.recordMode = stmtResult.getString("record_mode");			
+				dataInfo.stateProvince = stmtResult.getString(StoreDbTableColumn.COL_STATE_PROVINCE);
+				dataInfo.phone = stmtResult.getString(StoreDbTableColumn.COL_PHONE);
+				dataInfo.codCurr = stmtResult.getString(StoreDbTableColumn.COL_COD_CURR);	
+				dataInfo.codPayment = stmtResult.getString(StoreDbTableColumn.COL_COD_PAYMENT);					
+				dataInfo.latitude = stmtResult.getDouble(StoreDbTableColumn.COL_LATITUTE);	
+				dataInfo.longitude = stmtResult.getDouble(StoreDbTableColumn.COL_LONGITUDE);	
+				dataInfo.codTimezone = stmtResult.getString(StoreDbTableColumn.COL_COD_TIME_ZONE);
+				dataInfo.recordMode = stmtResult.getString(StoreDbTableColumn.COL_RECORD_MODE);			
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -33,7 +33,6 @@ final class CartCategWhere implements DaoStmtWhere {
 		}		
 			
 		whereClause = builder.generateClause();
-
 	}
 	
 	

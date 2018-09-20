@@ -32,7 +32,6 @@ final class MatUnitWhere implements DaoStmtWhere {
 		}		
 			
 		whereClause = builder.generateClause();
-
 	}
 	
 	

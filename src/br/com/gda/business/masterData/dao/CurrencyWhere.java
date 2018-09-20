@@ -32,7 +32,6 @@ final class CurrencyWhere implements DaoStmtWhere {
 		}		
 			
 		whereClause = builder.generateClause();
-
 	}
 	
 	

@@ -22,8 +22,8 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class MatUnitSelectSingle implements DaoStmt<MatUnitInfo> {
-	private final String LT_UNIT = DaoDbTable.MAT_UNIT_TABLE;
-	private final String RT_UNIT_TEXT = DaoDbTable.MAT_UNIT_TEXT_TABLE;
+	private final String LT_ATTR = DaoDbTable.MAT_UNIT_TABLE;
+	private final String RT_TEXT = DaoDbTable.MAT_UNIT_TEXT_TABLE;
 	
 	private DaoStmt<MatUnitInfo> stmtSql;
 	private DaoStmtOption<MatUnitInfo> stmtOption;
@@ -42,7 +42,7 @@ public final class MatUnitSelectSingle implements DaoStmt<MatUnitInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_UNIT;
+		this.stmtOption.tableName = LT_ATTR;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -80,17 +80,17 @@ public final class MatUnitSelectSingle implements DaoStmt<MatUnitInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_UNIT;
+		oneColumn.leftTableName = LT_ATTR;
 		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_UNIT;
 		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_UNIT;
 		joinColumns.add(oneColumn);
 		
 		
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_UNIT_TEXT;
+		join.rightTableName = RT_TEXT;
 		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RT_UNIT_TEXT);
+		join.constraintClause = buildJoinConstraintText(RT_TEXT);
 		
 		return join;
 	}
@@ -153,8 +153,8 @@ public final class MatUnitSelectSingle implements DaoStmt<MatUnitInfo> {
 	
 	private class ResultParser implements DaoResultParser<MatUnitInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String UNIT_TEXT_COL = DaoDbTable.MAT_UNIT_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = DaoDbTable.MAT_UNIT_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
+		private final String UNIT_TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<MatUnitInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatUnitInfo> finalResult = new ArrayList<>();

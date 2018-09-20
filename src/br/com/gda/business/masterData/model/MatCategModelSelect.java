@@ -66,7 +66,6 @@ public final class MatCategModelSelect implements Model {
 	private static class TreeFactory implements DeciTreeFactory<MatCategInfo> {		
 		@Override public DeciTree<MatCategInfo> getInstance(DeciTreeOption<MatCategInfo> option) {
 			return new RootMatCategSelect(option);
-		}		
-	
+		}			
 	}
 }

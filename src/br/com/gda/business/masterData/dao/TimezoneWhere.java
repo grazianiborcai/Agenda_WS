@@ -32,7 +32,6 @@ final class TimezoneWhere implements DaoStmtWhere {
 		}		
 			
 		whereClause = builder.generateClause();
-
 	}
 	
 	

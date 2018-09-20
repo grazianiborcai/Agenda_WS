@@ -33,7 +33,6 @@ final class MatTypeWhere implements DaoStmtWhere {
 		}		
 			
 		whereClause = builder.generateClause();
-
 	}
 	
 	

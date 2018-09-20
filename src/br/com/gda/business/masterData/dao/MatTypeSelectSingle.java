@@ -22,8 +22,8 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class MatTypeSelectSingle implements DaoStmt<MatTypeInfo> {
-	private final String LT_MAT_TYPE = DaoDbTable.MAT_TYPE_TABLE;
-	private final String RT_MAT_TYPE_TEXT = DaoDbTable.MAT_TYPE_TEXT_TABLE;
+	private final String LT_ATTR = DaoDbTable.MAT_TYPE_TABLE;
+	private final String RT_TEXT = DaoDbTable.MAT_TYPE_TEXT_TABLE;
 	
 	private DaoStmt<MatTypeInfo> stmtSql;
 	private DaoStmtOption<MatTypeInfo> stmtOption;
@@ -42,7 +42,7 @@ public final class MatTypeSelectSingle implements DaoStmt<MatTypeInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_MAT_TYPE;
+		this.stmtOption.tableName = LT_ATTR;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -80,17 +80,17 @@ public final class MatTypeSelectSingle implements DaoStmt<MatTypeInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT_TYPE;
+		oneColumn.leftTableName = LT_ATTR;
 		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_MAT_TYPE;
 		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_MAT_TYPE;
 		joinColumns.add(oneColumn);
 		
 		
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_MAT_TYPE_TEXT;
+		join.rightTableName = RT_TEXT;
 		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RT_MAT_TYPE_TEXT);
+		join.constraintClause = buildJoinConstraintText(RT_TEXT);
 		
 		return join;
 	}
@@ -153,8 +153,8 @@ public final class MatTypeSelectSingle implements DaoStmt<MatTypeInfo> {
 	
 	private class ResultParser implements DaoResultParser<MatTypeInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TYPE_TEXT_COL = DaoDbTable.MAT_TYPE_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = DaoDbTable.MAT_TYPE_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
+		private final String TYPE_TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<MatTypeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatTypeInfo> finalResult = new ArrayList<>();

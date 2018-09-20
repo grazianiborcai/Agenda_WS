@@ -22,8 +22,8 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class BusinessSelectSingle implements DaoStmt<BusinessInfo> {
-	private final String LEFT_TABLE = DaoDbTable.BUSINESS_AREA_TABLE;
-	private final String RIGHT_TABLE = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
+	private final String LT_ATTR = DaoDbTable.BUSINESS_AREA_TABLE;
+	private final String RT_TEXT = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
 	
 	private DaoStmt<BusinessInfo> stmtSql;
 	private DaoStmtOption<BusinessInfo> stmtOption;
@@ -42,7 +42,7 @@ public final class BusinessSelectSingle implements DaoStmt<BusinessInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LEFT_TABLE;
+		this.stmtOption.tableName = LT_ATTR;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -80,17 +80,17 @@ public final class BusinessSelectSingle implements DaoStmt<BusinessInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LEFT_TABLE;
+		oneColumn.leftTableName = LT_ATTR;
 		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_BUSINESS;
 		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_BUSINESS;
 		joinColumns.add(oneColumn);
 		
 		
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RIGHT_TABLE;
+		join.rightTableName = RT_TEXT;
 		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RIGHT_TABLE);
+		join.constraintClause = buildJoinConstraintText(RT_TEXT);
 		
 		return join;
 	}
@@ -153,8 +153,8 @@ public final class BusinessSelectSingle implements DaoStmt<BusinessInfo> {
 	
 	private class ResultParser implements DaoResultParser<BusinessInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = RIGHT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RIGHT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
+		private final String TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<BusinessInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<BusinessInfo> finalResult = new ArrayList<>();

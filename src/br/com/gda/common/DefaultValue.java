@@ -19,6 +19,12 @@ public final class DefaultValue {
 	
 	
 	
+	public static String country() {
+		return "BR";
+	}
+	
+	
+	
 	public static int decimalPlace() {
 		return 2;
 	}

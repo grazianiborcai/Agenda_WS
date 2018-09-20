@@ -18,7 +18,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class LanguSelectSingle implements DaoStmt<LanguInfo> {
-	private final String LT_LANGU = DaoDbTable.LANGUAGE_TABLE;
+	private final String LT_ATTR = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<LanguInfo> stmtSql;
 	private DaoStmtOption<LanguInfo> stmtOption;
@@ -37,7 +37,7 @@ public final class LanguSelectSingle implements DaoStmt<LanguInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_LANGU;
+		this.stmtOption.tableName = LT_ATTR;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();

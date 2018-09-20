@@ -22,7 +22,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class EmpPosSelectSingle implements DaoStmt<EmpPosInfo> {
-	private final String LT_POSITION = DaoDbTable.POSITION_TABLE;
+	private final String LT_ATTR = DaoDbTable.POSITION_TABLE;
 	private final String RT_TEXT = DaoDbTable.POSITION_TEXT_TABLE;
 	
 	private DaoStmt<EmpPosInfo> stmtSql;
@@ -42,7 +42,7 @@ public final class EmpPosSelectSingle implements DaoStmt<EmpPosInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_POSITION;
+		this.stmtOption.tableName = LT_ATTR;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -80,7 +80,7 @@ public final class EmpPosSelectSingle implements DaoStmt<EmpPosInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_POSITION;
+		oneColumn.leftTableName = LT_ATTR;
 		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_POSITION;
 		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_POSITION;
 		joinColumns.add(oneColumn);
@@ -153,8 +153,8 @@ public final class EmpPosSelectSingle implements DaoStmt<EmpPosInfo> {
 	
 	private class ResultParser implements DaoResultParser<EmpPosInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String POSITION_TEXT_COLUMN = DaoDbTable.POSITION_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String POSITION_LANGU_COLUMN = DaoDbTable.POSITION_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
+		private final String POSITION_TEXT_COLUMN = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String POSITION_LANGU_COLUMN = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<EmpPosInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpPosInfo> finalResult = new ArrayList<>();

@@ -66,7 +66,6 @@ public final class LanguModelSelect implements Model {
 	private static class TreeFactory implements DeciTreeFactory<LanguInfo> {		
 		@Override public DeciTree<LanguInfo> getInstance(DeciTreeOption<LanguInfo> option) {
 			return new RootLanguSelect(option);
-		}		
-	
+		}			
 	}
 }

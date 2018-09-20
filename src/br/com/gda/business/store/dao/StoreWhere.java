@@ -27,19 +27,19 @@ public final class StoreWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case "Cod_owner" :
+				case StoreDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case "Cod_store" :
+				case StoreDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case "CNPJ" :
+				case StoreDbTableColumn.COL_CNPJ :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.cnpj);
 					break;
 					
-				case "record_mode" :
+				case StoreDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

@@ -66,7 +66,6 @@ public final class CurrencyModelSelect implements Model {
 	private static class TreeFactory implements DeciTreeFactory<CurrencyInfo> {		
 		@Override public DeciTree<CurrencyInfo> getInstance(DeciTreeOption<CurrencyInfo> option) {
 			return new RootCurrencySelect(option);
-		}		
-	
+		}			
 	}
 }

@@ -22,8 +22,8 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
-	private final String LT_MAT_GROUP = DaoDbTable.MAT_GROUP_TABLE;
-	private final String RT_MAT_GROUP_TEXT = DaoDbTable.MAT_GROUP_TEXT_TABLE;
+	private final String LT_ATTR = DaoDbTable.MAT_GROUP_TABLE;
+	private final String RT_TEXT = DaoDbTable.MAT_GROUP_TEXT_TABLE;
 	private final String RT_BUSINESS_TEXT = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
 	
 	private DaoStmt<MatGroupInfo> stmtSql;
@@ -43,7 +43,7 @@ public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_MAT_GROUP;
+		this.stmtOption.tableName = LT_ATTR;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -82,17 +82,17 @@ public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT_GROUP;
+		oneColumn.leftTableName = LT_ATTR;
 		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_MAT_GROUP;
 		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_MAT_GROUP;
 		joinColumns.add(oneColumn);
 		
 		
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_MAT_GROUP_TEXT;
+		join.rightTableName = RT_TEXT;
 		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RT_MAT_GROUP_TEXT);
+		join.constraintClause = buildJoinConstraintText(RT_TEXT);
 		
 		return join;
 	}
@@ -103,7 +103,7 @@ public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT_GROUP;
+		oneColumn.leftTableName = LT_ATTR;
 		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_BUSINESS;
 		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_BUSINESS;
 		joinColumns.add(oneColumn);
@@ -177,9 +177,9 @@ public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
 	
 	private class ResultParser implements DaoResultParser<MatGroupInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String GROUP_TEXT_COL = DaoDbTable.MAT_GROUP_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String BUSINESS_TEXT_COL = DaoDbTable.BUSINESS_AREA_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = DaoDbTable.MAT_GROUP_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
+		private final String GROUP_TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String BUSINESS_TEXT_COL = RT_BUSINESS_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<MatGroupInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatGroupInfo> finalResult = new ArrayList<>();

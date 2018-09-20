@@ -22,7 +22,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class GenderSelectSingle implements DaoStmt<GenderInfo> {
-	private final String LT_GENDER = DaoDbTable.GENDER_TABLE;
+	private final String LT_ATTR = DaoDbTable.GENDER_TABLE;
 	private final String RT_TEXT = DaoDbTable.GENDER_TEXT_TABLE;
 	
 	private DaoStmt<GenderInfo> stmtSql;
@@ -42,7 +42,7 @@ public final class GenderSelectSingle implements DaoStmt<GenderInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_GENDER;
+		this.stmtOption.tableName = LT_ATTR;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -80,7 +80,7 @@ public final class GenderSelectSingle implements DaoStmt<GenderInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_GENDER;
+		oneColumn.leftTableName = LT_ATTR;
 		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_GENDER;
 		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_GENDER;
 		joinColumns.add(oneColumn);
@@ -153,8 +153,8 @@ public final class GenderSelectSingle implements DaoStmt<GenderInfo> {
 	
 	private class ResultParser implements DaoResultParser<GenderInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = DaoDbTable.GENDER_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = DaoDbTable.GENDER_TEXT_TABLE + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
+		private final String TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
+		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<GenderInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<GenderInfo> finalResult = new ArrayList<>();
