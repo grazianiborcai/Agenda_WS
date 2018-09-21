@@ -17,6 +17,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.gda.business.feeStore.info.FeeStoreInfo;
+import br.com.gda.business.feeStore.model.FeeStoreModelSelect;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.business.materialEmployee.model.MatEmpModelDelete;
 import br.com.gda.business.materialEmployee.model.MatEmpModelInsert;
@@ -60,16 +62,17 @@ public class StoreResource {
 	private static final String INSERT_STORE_EMP = "/insertStoreEmployee";
 	private static final String UPDATE_STORE_EMP = "/updateStoreEmployee";
 	private static final String DELETE_STORE_EMP = "/deleteStoreEmployee";
-	private static final String SELECT_STORE_WORK_TIME = "/selectStoreWorkTime";
-	private static final String INSERT_STORE_WORK_TIME = "/insertStoreWorkTime";
-	private static final String DELETE_STORE_WORK_TIME = "/deleteStoreWorkTime";
-	private static final String UPDATE_STORE_WORK_TIME = "/updateStoreWorkTime";
-	private static final String SELECT_STORE_LEAVE_DATE = "/selectStoreLeaveDate";
-	private static final String INSERT_STORE_LEAVE_DATE = "/insertStoreLeaveDate";
-	private static final String UPDATE_STORE_LEAVE_DATE = "/updateStoreLeaveDate";
-	private static final String DELETE_STORE_LEAVE_DATE = "/deleteStoreLeaveDate";
+	private static final String SELECT_STORE_FEE = "/selectStoreFee";
+	private static final String SELECT_STORE_WTIME = "/selectStoreWorkTime";
+	private static final String INSERT_STORE_WTIME = "/insertStoreWorkTime";
+	private static final String DELETE_STORE_WTIME = "/deleteStoreWorkTime";
+	private static final String UPDATE_STORE_WTIME = "/updateStoreWorkTime";
+	private static final String SELECT_STORE_LDATE = "/selectStoreLeaveDate";
+	private static final String INSERT_STORE_LDATE = "/insertStoreLeaveDate";
+	private static final String UPDATE_STORE_LDATE = "/updateStoreLeaveDate";
+	private static final String DELETE_STORE_LDATE = "/deleteStoreLeaveDate";
 	private static final String SELECT_STORE_LOCATION = "/selectStoreLoc";
-	private static final String SELECT_STORE_WORK_TIME_CONFLICT = "/selectStoreWorkTimeConflict";
+	private static final String SELECT_STORE_WT_CONFLICT = "/selectStoreWorkTimeConflict";
 
 	
 	@POST
@@ -78,10 +81,10 @@ public class StoreResource {
 	public Response insertStore(String incomingData) {
 		//TODO: verificar fluxo: Store com status inativo/eliminado
 		//TODO: campos latitude e longitude nÃ£o setÃ£o sendo preenchidos
-		//TODO: não tem campos de horário de funcionamento
-		Model modelInsert = new StoreModelInsert(incomingData);
-		modelInsert.executeRequest();
-		return modelInsert.getResponse();
+		//TODO: nï¿½o tem campos de horï¿½rio de funcionamento
+		Model model = new StoreModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -91,9 +94,9 @@ public class StoreResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateStore(String incomingData) {
 		//TODO: falta inativar/ativar um Store
-		Model modelUpdate = new StoreModelUpdate(incomingData);
-		modelUpdate.executeRequest();
-		return modelUpdate.getResponse();
+		Model model = new StoreModelUpdate(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 
@@ -106,9 +109,9 @@ public class StoreResource {
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		
-		Model modelDelete = new StoreModelDelete(recordInfo);
-		modelDelete.executeRequest();
-		return modelDelete.getResponse();
+		Model model = new StoreModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 
 	
@@ -124,9 +127,9 @@ public class StoreResource {
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		
-		Model storeSelect = new StoreModelSelect(recordInfo);
-		storeSelect.executeRequest();
-		return storeSelect.getResponse();
+		Model model = new StoreModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -140,9 +143,9 @@ public class StoreResource {
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		
-		Model storeSelect = new StoreEmpModelSelect(recordInfo);
-		storeSelect.executeRequest();
-		return storeSelect.getResponse();
+		Model model = new StoreEmpModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -152,9 +155,9 @@ public class StoreResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStoreEmp(String incomingData) {
 		
-		Model modelInsert = new StoreEmpModelInsert(incomingData);
-		modelInsert.executeRequest();
-		return modelInsert.getResponse();
+		Model model = new StoreEmpModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -184,9 +187,30 @@ public class StoreResource {
 		recordInfo.codEmployee = codEmployee;
 		recordInfo.codPositionStore = codPositionStore;
 		
-		Model modelDelete = new StoreEmpModelDelete(recordInfo);
-		modelDelete.executeRequest();
-		return modelDelete.getResponse();
+		Model model = new StoreEmpModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STORE_FEE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStoreFee(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner,
+								   @HeaderParam("codStore") @DefaultValue("-1") long codStore,
+								   @HeaderParam("codFeeCateg") String codFeeCateg) {
+		
+		FeeStoreInfo recordInfo = new FeeStoreInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		
+		if (codFeeCateg != null)
+			recordInfo.codFeeCateg = codFeeCateg.charAt(0);
+		
+		Model model = new FeeStoreModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 
 	
@@ -253,9 +277,9 @@ public class StoreResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStoreMatEmp(String incomingData) {
 		
-		Model modelInsert = new MatEmpModelInsert(incomingData);
-		modelInsert.executeRequest();
-		return modelInsert.getResponse();
+		Model model = new MatEmpModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -273,15 +297,15 @@ public class StoreResource {
 		recordInfo.codEmployee = codEmployee;
 		recordInfo.codMat = codMat;
 		
-		Model modelDelete = new MatEmpModelDelete(recordInfo);
-		modelDelete.executeRequest();
-		return modelDelete.getResponse();
+		Model model = new MatEmpModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
 	
 	@GET
-	@Path(SELECT_STORE_WORK_TIME)
+	@Path(SELECT_STORE_WTIME)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectStoreWTime(@HeaderParam("codOwner")   @DefaultValue("-1") long codOwner, 
 			                         @HeaderParam("codStore")   @DefaultValue("-1") int codStore,
@@ -292,27 +316,27 @@ public class StoreResource {
 		recordInfo.codStore = codStore;
 		recordInfo.codWeekday = codWeekday;
 		
-		Model storeSelect = new StoreWTimeModelSelect(recordInfo);
-		storeSelect.executeRequest();
-		return storeSelect.getResponse();
+		Model model = new StoreWTimeModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
 	
 	@POST
-	@Path(INSERT_STORE_WORK_TIME)
+	@Path(INSERT_STORE_WTIME)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStoreWTime(String incomingData) {
 		
-		Model modelInsert = new StoreWTimeModelInsert(incomingData);
-		modelInsert.executeRequest();
-		return modelInsert.getResponse();
+		Model model = new StoreWTimeModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
 	
 	@DELETE
-	@Path(DELETE_STORE_WORK_TIME)
+	@Path(DELETE_STORE_WTIME)
 	public Response deleteStoreWTime(@HeaderParam("codOwner")   @DefaultValue("-1") long codOwner, 
 			                         @HeaderParam("codStore")   @DefaultValue("-1") int codStore,
 			                         @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday) {
@@ -322,27 +346,27 @@ public class StoreResource {
 		recordInfo.codStore = codStore;
 		recordInfo.codWeekday = codWeekday;
 		
-		Model modelDelete = new StoreWTimeModelDelete(recordInfo);
-		modelDelete.executeRequest();
-		return modelDelete.getResponse();
+		Model model = new StoreWTimeModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
 	
 	@POST
-	@Path(UPDATE_STORE_WORK_TIME)
+	@Path(UPDATE_STORE_WTIME)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateStoreWTime(String incomingData) {
 
-		Model modelUpdate = new StoreWTimeModelUpdate(incomingData);
-		modelUpdate.executeRequest();
-		return modelUpdate.getResponse();
+		Model model = new StoreWTimeModelUpdate(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
 	
 	@GET
-	@Path(SELECT_STORE_LEAVE_DATE)
+	@Path(SELECT_STORE_LDATE)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectStoreLDate(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 			                         @HeaderParam("codStore") @DefaultValue("-1") int codStore,
@@ -357,39 +381,39 @@ public class StoreResource {
 			recordInfo.dateValidTo = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
 		}
 		
-		Model storeSelect = new StoreLDateModelSelect(recordInfo);
-		storeSelect.executeRequest();
-		return storeSelect.getResponse();
+		Model model = new StoreLDateModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
 	
 	@POST
-	@Path(INSERT_STORE_LEAVE_DATE)
+	@Path(INSERT_STORE_LDATE)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStoreLDate(String incomingData) {
 		
-		Model modelInsert = new StoreLDateModelInsert(incomingData);
-		modelInsert.executeRequest();
-		return modelInsert.getResponse();
+		Model model = new StoreLDateModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
 	
 	@POST
-	@Path(UPDATE_STORE_LEAVE_DATE)
+	@Path(UPDATE_STORE_LDATE)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateStoreLDate(String incomingData) {
 
-		Model modelUpdate = new StoreLDateModelUpdate(incomingData);
-		modelUpdate.executeRequest();
-		return modelUpdate.getResponse();
+		Model model = new StoreLDateModelUpdate(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
 	
 	@DELETE
-	@Path(DELETE_STORE_LEAVE_DATE)
+	@Path(DELETE_STORE_LDATE)
 	public Response deleteStoreLDate(@HeaderParam("codOwner")      @DefaultValue("-1") long codOwner, 
 			                         @HeaderParam("codStore")      @DefaultValue("-1") int codStore,
 			                         @HeaderParam("dateValidFrom") @DefaultValue("1900-01-01") String dateValidFrom,
@@ -402,15 +426,15 @@ public class StoreResource {
 		recordInfo.dateValidFrom = LocalDate.parse(dateValidFrom, DateTimeFormatter.ISO_LOCAL_DATE);
 		recordInfo.timeValidFrom = LocalTime.parse(timeValidFrom, DateTimeFormatter.ISO_LOCAL_TIME);
 		
-		Model modelDelete = new StoreLDateModelDelete(recordInfo);
-		modelDelete.executeRequest();
-		return modelDelete.getResponse();
+		Model model = new StoreLDateModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
 	
 	@GET
-	@Path(SELECT_STORE_WORK_TIME_CONFLICT)
+	@Path(SELECT_STORE_WT_CONFLICT)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectStoreWTimeConflict(@HeaderParam("codOwner")   @DefaultValue("-1") long codOwner, 
 			                                 @HeaderParam("codStore")   @DefaultValue("-1") int codStore,
@@ -425,8 +449,8 @@ public class StoreResource {
 		recordInfo.beginTime = LocalTime.parse(beginTime, DateTimeFormatter.ISO_LOCAL_TIME);
 		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
 		
-		Model storeSelect = new StoreCoModelSelect(recordInfo);
-		storeSelect.executeRequest();
-		return storeSelect.getResponse();
+		Model model = new StoreCoModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 }

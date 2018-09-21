@@ -98,8 +98,7 @@ final class VisitorCartEnforceItemNum implements DeciActionTransVisitor<CartInfo
 			throw new IllegalArgumentException(SystemMessage.DATA_NOT_FOUND);
 		
 		if (cartItems.size() > 1)
-			throw new IllegalArgumentException(SystemMessage.MULTIPLE_RECORDS);
-			
+			throw new IllegalArgumentException(SystemMessage.MULTIPLE_RECORDS);			
 	}
 	
 	

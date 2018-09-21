@@ -3,7 +3,7 @@ package br.com.gda.model.decisionTree;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
-//TODO: Essa Classe é realmente necessária ?
+//TODO: Essa Classe ï¿½ realmente necessï¿½ria ?
 public final class DeciActionHandlerAdapter<T> implements DeciAction<T> {
 	private DeciActionHandler<T> handler;
 	private List<T> recordInfos;
@@ -46,6 +46,7 @@ public final class DeciActionHandlerAdapter<T> implements DeciAction<T> {
 	
 	
 	@Override public void addPostAction(DeciActionHandler<T> actionHandler) {
+		//TODO: implementar esse mÃ©todo
 		throw new IllegalStateException(SystemMessage.NO_IMPLEMENTATION);
 	}
 }

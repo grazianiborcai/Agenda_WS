@@ -1,59 +1,41 @@
-package br.com.gda.business.fee.dao;
+package br.com.gda.business.feeDefault.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
-public final class FeeDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_STORE = "cod_store";
+public final class FeeDefaultDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_FEE_CATEG = "cod_fee_categ";
+	public static final String COL_COD_CURRENCY = "cod_curr";
 	public static final String COL_VALUE = "value";
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
 	
-	public FeeDbTableColumn() {
+	public FeeDefaultDbTableColumn() {
 		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildFeeTable();	
+		tableColumns = new Hashtable<>();
+		buildFeeDefaultTable();
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildFeeTable() {
-		final String TABLE_NAME = DaoDbTable.FEE_TABLE;
+	private void buildFeeDefaultTable() {
+		final String TABLE_NAME = DaoDbTable.FEE_DEFAULT_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_OWNER;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_STORE;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
@@ -65,17 +47,17 @@ public final class FeeDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_VALUE;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.columnName = COL_COD_CURRENCY;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.STORE_TABLE;
-		oneColumn.columnName = StoreDbTableColumn.COL_COD_CURR;
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_VALUE;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

@@ -1,11 +1,11 @@
-package br.com.gda.business.fee.model;
+package br.com.gda.business.feeStore.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.fee.info.FeeInfo;
-import br.com.gda.business.fee.model.decisionTree.RootFeeSelect;
+import br.com.gda.business.feeStore.info.FeeStoreInfo;
+import br.com.gda.business.feeStore.model.decisionTree.RootFeeStoreSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class FeeModelSelect implements Model {
+public final class FeeStoreModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public FeeModelSelect(FeeInfo recordInfo) {
+	public FeeStoreModelSelect(FeeStoreInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class FeeModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(FeeInfo recordInfo) {
-		ModelOption<FeeInfo> helperOption = new ModelOption<>();
+	private void buildHelper(FeeStoreInfo recordInfo) {
+		ModelOption<FeeStoreInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = FeeInfo.class;
+		helperOption.infoRecordClass = FeeStoreInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class FeeModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<FeeInfo> {		
-		@Override public DeciTree<FeeInfo> getInstance(DeciTreeOption<FeeInfo> option) {
-			return new RootFeeSelect(option);
+	private static class TreeFactory implements DeciTreeFactory<FeeStoreInfo> {		
+		@Override public DeciTree<FeeStoreInfo> getInstance(DeciTreeOption<FeeStoreInfo> option) {
+			return new RootFeeStoreSelect(option);
 		}			
 	}
 }

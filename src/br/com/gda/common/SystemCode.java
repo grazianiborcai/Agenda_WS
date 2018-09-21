@@ -59,6 +59,8 @@ public final class SystemCode {
 	public static final int STORE_MAT_FLAGGED_AS_DELETED 				= 1120;
 	public static final int STORE_WTIME_NO_LEAVE_FOUND					= 1121;
 	public static final int STORE_WTIME_LEAVE_FOUND						= 1122;
+	public static final int STORE_FEE_ALREADY_EXIST 					= 1123;
+	public static final int STORE_FEE_NOT_FOUND 						= 1124;
 	
 	// Master Data
 	public static final int EMP_POS_ALREADY_EXIST						= 1150;
@@ -83,6 +85,8 @@ public final class SystemCode {
 	public static final int GENDER_NOT_FOUND							= 1169;	
 	public static final int COUNTRY_ALREADY_EXIST						= 1170;
 	public static final int COUNTRY_NOT_FOUND							= 1171;
+	public static final int FEE_CATEG_ALREADY_EXIST						= 1172;
+	public static final int FEE_CATEG_NOT_FOUND							= 1173;
 	
 	//Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

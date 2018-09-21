@@ -60,7 +60,9 @@ public final class SystemMessage {
 	public static final String CURRENCY_ALREADY_EXIST = "Currency already exist on DB";
 	public static final String CURRENCY_NOT_FOUND = "Currency not found on DB";	
 	public static final String EMP_POS_ALREADY_EXIST = "Position already exist on DB";
-	public static final String EMP_POS_NOT_FOUND = "Position not found on DB";	;	
+	public static final String EMP_POS_NOT_FOUND = "Position not found on DB";
+	public static final String FEE_CATEG_ALREADY_EXIST = "Fee Category already exist on DB";
+	public static final String FEE_CATEG_NOT_FOUND = "Fee Category not found on DB";
 	public static final String GENDER_ALREADY_EXIST = "Gender already exist on DB";
 	public static final String GENDER_NOT_FOUND = "Gender not found on DB";		
 	public static final String LANGUAGE_ALREADY_EXIST = "Language already exist on DB";
@@ -125,6 +127,8 @@ public final class SystemMessage {
 	public static final String STORE_EMP_ALREADY_EXIST = "Store-Employee's data already exist on DB";
 	public static final String STORE_EMP_FLAGGED_AS_DELETED = "Store-Employee's data is flagged as deleted on DB";	
 	public static final String STORE_EMP_NOT_FOUND = "Store-Employee's data not found on DB";
+	public static final String STORE_FEE_ALREADY_EXIST = "Store's fee data already exist on DB";
+	public static final String STORE_FEE_NOT_FOUND = "Store's fee data not found on DB";
 	public static final String STORE_MAT_ALREADY_EXIST = "Store's material data already exist on DB";
 	public static final String STORE_MAT_EMP_ALREADY_EXIST = "Employee's material data already exist on DB";	
 	public static final String STORE_MAT_EMP_FLAGGED_AS_DELETED = "Employee's material data is flagged as deleted on DB";
@@ -141,6 +145,7 @@ public final class SystemMessage {
 	public static final String STORE_WTIME_NOT_FOUND = "Store's working time not found on DB";
 	public static final String STORE_WTIME_VALID_WORKHOUR = "Selected time is valid for Store working time range";	
 	public static final String STORE_WTIME_WORKHOUR_OUT_OF_RANGE = "Selected time is out of range of Store working time";
+	
 	
 	
 	

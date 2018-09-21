@@ -18,7 +18,8 @@ public final class DaoDbTable {
 	public static final String EMP_LD_TABLE = "employee_leave_time";
 	public static final String FEE_CATEG_TABLE = "fee_categ";
 	public static final String FEE_CATEG_TEXT_TABLE = "fee_categ_text";
-	public static final String FEE_TABLE = "fee";
+	public static final String FEE_DEFAULT_TABLE = "fee_default";
+	public static final String FEE_STORE_TABLE = "fee_store";
 	public static final String GENDER_TABLE = "gender";
 	public static final String GENDER_TEXT_TABLE = "gender_text";
 	public static final String LANGUAGE_TABLE = "language";
