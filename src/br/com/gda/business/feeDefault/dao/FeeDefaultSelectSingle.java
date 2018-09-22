@@ -121,7 +121,7 @@ public final class FeeDefaultSelectSingle implements DaoStmt<FeeDefaultInfo> {
 				FeeDefaultInfo dataInfo = new FeeDefaultInfo();
 				dataInfo.codFeeCateg = stmtResult.getString(FeeDefaultDbTableColumn.COL_COD_FEE_CATEG).charAt(0);
 				dataInfo.codCurr = stmtResult.getString(FeeDefaultDbTableColumn.COL_COD_CURRENCY);
-				dataInfo.value = stmtResult.getDouble(FeeDefaultDbTableColumn.COL_VALUE);
+				dataInfo.price = stmtResult.getDouble(FeeDefaultDbTableColumn.COL_VALUE);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

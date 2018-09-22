@@ -8,12 +8,12 @@ import br.com.gda.info.InfoRecord;
 public final class FeeDefaultInfo extends InfoRecord implements Cloneable {
 	public char codFeeCateg;
 	public String codCurr;
-	public double value;
+	public double price;
 	
 	
 	public FeeDefaultInfo() {
 		codFeeCateg = DefaultValue.character();
-		value = DefaultValue.number();
+		price = DefaultValue.number();
 	}
 	
 	

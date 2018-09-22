@@ -54,6 +54,7 @@ public final class RootCartSelect implements DeciTree<CartInfo> {
 		DeciActionHandler<CartInfo> enforceWeekday = new HandlerCartEnforceWeekday(option.conn, option.schemaName);
 		DeciActionHandler<CartInfo> mergeWeekday = new HandlerCartMergeWeekday(option.conn, option.schemaName);
 		DeciActionHandler<CartInfo> mergeCateg = new HandlerCartMergeCateg(option.conn, option.schemaName);
+		DeciActionHandler<CartInfo> addFee = new HandlerCartFee(option.conn, option.schemaName);
 		DeciActionHandler<CartInfo> addTotal = new HandlerCartTotal(option.conn, option.schemaName);
 		DeciActionHandler<CartInfo> mergeMat = new HandlerCartMergeMat(option.conn, option.schemaName);
 		
@@ -62,7 +63,8 @@ public final class RootCartSelect implements DeciTree<CartInfo> {
 		mergeStore.addPostAction(enforceWeekday);
 		enforceWeekday.addPostAction(mergeWeekday);
 		mergeWeekday.addPostAction(enforceCateg);
-		enforceCateg.addPostAction(addTotal);
+		enforceCateg.addPostAction(addFee);
+		addFee.addPostAction(addTotal);
 		addTotal.addPostAction(mergeCateg);
 		
 		actions.add(selectCart);	

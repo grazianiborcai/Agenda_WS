@@ -10,14 +10,14 @@ public final class FeeStoreInfo extends InfoRecord implements Cloneable {
 	public long codStore;	
 	public char codFeeCateg;
 	public String codCurr;
-	public double value;
+	public double price;
 	
 	
 	public FeeStoreInfo() {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codFeeCateg = DefaultValue.character();
-		value = DefaultValue.number();
+		price = DefaultValue.number();
 	}
 	
 	

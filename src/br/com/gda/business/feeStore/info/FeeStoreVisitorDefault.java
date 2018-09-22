@@ -11,7 +11,7 @@ final class FeeStoreVisitorDefault implements InfoWriteVisitor<FeeStoreInfo, Fee
 		
 		FeeStoreInfo resultInfo = makeClone(sourceTwo);
 		resultInfo.codCurr = sourceOne.codCurr;
-		resultInfo.value = sourceOne.value;
+		resultInfo.price = sourceOne.price;
 
 		return resultInfo;
 	}

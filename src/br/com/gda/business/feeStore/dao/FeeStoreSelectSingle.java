@@ -122,7 +122,7 @@ public final class FeeStoreSelectSingle implements DaoStmt<FeeStoreInfo> {
 				dataInfo.codOwner = stmtResult.getLong(FeeStoreDbTableColumn.COL_COD_OWNER);
 				dataInfo.codStore = stmtResult.getLong(FeeStoreDbTableColumn.COL_COD_STORE);
 				dataInfo.codFeeCateg = stmtResult.getString(FeeStoreDbTableColumn.COL_COD_FEE_CATEG).charAt(0);
-				dataInfo.value = stmtResult.getDouble(FeeStoreDbTableColumn.COL_VALUE);
+				dataInfo.price = stmtResult.getDouble(FeeStoreDbTableColumn.COL_VALUE);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
