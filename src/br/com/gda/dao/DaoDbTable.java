@@ -54,5 +54,6 @@ public final class DaoDbTable {
 	
     //Views
 	public static final String EMP_WT_CONFLICT_VIEW = "view_employee_working_time";
-	public static final String STORE_WT_CONFLICT_VIEW = "view_store_working_time";
+	public static final String RESERVE_VIEW = "view_reserve";
+	public static final String STORE_WT_CONFLICT_VIEW = "view_store_working_time";	
 }

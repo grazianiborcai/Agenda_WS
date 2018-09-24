@@ -3,6 +3,7 @@ package br.com.gda.dao;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -70,5 +71,14 @@ public final class DaoFormatter {
 			return null;
 		
 		return Character.toString(c);
+	}
+	
+	
+	
+	public static String dateTimeToString(LocalDateTime localDateTime) {	
+		if (localDateTime == null)
+			return null;
+		
+		return localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 	}
 }

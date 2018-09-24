@@ -1,11 +1,10 @@
 package br.com.gda.business.cart.model.decisionTree;
 
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.common.DefaultValue;
 import br.com.gda.model.decisionTree.DeciActionTransVisitor;
 
 final class VisitorCartEnforceLChanged implements DeciActionTransVisitor<CartInfo> {
@@ -24,9 +23,7 @@ final class VisitorCartEnforceLChanged implements DeciActionTransVisitor<CartInf
 	
 	private CartInfo enforce(CartInfo recordInfo) {
 		CartInfo enforcedInfo = makeClone(recordInfo);
-		
-		ZonedDateTime nowUtc = ZonedDateTime.now(ZoneOffset.UTC);
-		enforcedInfo.lastChanged = nowUtc.toLocalDateTime();
+		enforcedInfo.lastChanged = DefaultValue.now();
 		return enforcedInfo;
 	}
 	
