@@ -10,6 +10,7 @@ class DaoWhereBuilderConcrete implements DaoWhereBuilder {
 	private final boolean OK = true;
 	private final boolean FAIL = false;
 	private final boolean SKIP = true;
+	private final String  SPACE = "";
 	private final boolean DONT_SKIP = false;
 	private final boolean NOT_PRIMARY_KEY = false;
 	private final boolean IS_EMPTY = true;
@@ -43,6 +44,12 @@ class DaoWhereBuilderConcrete implements DaoWhereBuilder {
 	
 	
 	
+	public void addClauseNullAnd(DaoColumn column) {
+		addClauseAnd(column, SPACE, DaoWhereCondition.IS_NULL);
+	}
+	
+	
+	
 	public void addClauseEqualAnd(DaoColumn column, String value) {
 		addClauseAnd(column, value, DaoWhereCondition.EQUAL);
 	}
@@ -51,6 +58,12 @@ class DaoWhereBuilderConcrete implements DaoWhereBuilder {
 	
 	public void addClauseAnd(DaoColumn column, String value, DaoWhereCondition condition) {
 		appendClause(column, value, DaoWhereOperator.AND.getSymbol(), condition);
+	}
+	
+	
+	
+	public void addClauseNullOr(DaoColumn column) {
+		addClauseOr(column, SPACE, DaoWhereCondition.IS_NULL);
 	}
 	
 	
@@ -216,7 +229,7 @@ class DaoWhereBuilderConcrete implements DaoWhereBuilder {
 	
 	
 	private String buildWhereClause(String tableName, String columnName, String value, String condition) {		
-		if (value == null)
+		if (value == null || condition.equals(DaoWhereCondition.IS_NULL.getSymbol()))
 			return buildClauseIsNull(tableName, columnName);
 		
 		StringBuilder resultClause = new StringBuilder();

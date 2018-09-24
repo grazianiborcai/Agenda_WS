@@ -16,6 +16,12 @@ public interface DaoWhereBuilder {
 	public void addClauseEqualAnd(DaoColumn column, String value);
 	
 	
+	public void addClauseNullAnd(DaoColumn column);
+	
+	
+	public void addClauseNullOr(DaoColumn column);
+	
+	
 	public void addClauseAnd(DaoColumn column, String value, DaoWhereCondition condition);
 	
 	

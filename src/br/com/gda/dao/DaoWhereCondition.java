@@ -1,7 +1,7 @@
 package br.com.gda.dao;
 
 public enum DaoWhereCondition {
-EQUAL("="), NOT_EQUAL("<>"), GREATER_OR_EQUAL(">="), LESS_OR_EQUAL("<=");
+EQUAL("="), NOT_EQUAL("<>"), GREATER_OR_EQUAL(">="), LESS_OR_EQUAL("<="), IS_NULL("IS NULL");
 	
 	private final String symbol;
 	

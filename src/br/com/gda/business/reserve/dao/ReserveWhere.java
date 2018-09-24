@@ -26,9 +26,13 @@ final class ReserveWhere implements DaoStmtWhere {
 		DaoWhereBuilder builderOne = whereClausePartOne(whereOption, tableName, recordInfo);
 		DaoWhereBuilder builderTwo = whereClausePartTwo(whereOption, tableName, recordInfo);
 		DaoWhereBuilder builderThree = whereClausePartThree(whereOption, tableName, recordInfo);
+		DaoWhereBuilder builderFour = whereClausePartFour(whereOption, tableName, recordInfo);
+		DaoWhereBuilder builderFive = whereClausePartFive(whereOption, tableName, recordInfo);
 		
 		builderOne.mergeBuilder(builderTwo, DaoWhereOperator.AND);
 		builderTwo.mergeBuilder(builderThree, DaoWhereOperator.OR);
+		builderOne.mergeBuilder(builderFour, DaoWhereOperator.AND);
+		builderOne.mergeBuilder(builderFive, DaoWhereOperator.AND);
 		whereClause = builderOne.generateClause();
 	}
 	
@@ -45,21 +49,8 @@ final class ReserveWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case ReserveDbTableColumn.COL_COD_STORE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
-					break;
-					
-				case ReserveDbTableColumn.COL_COD_EMPLOYEE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
-					//TODO: OR NULL
-					break;
-					
 				case ReserveDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
-					break;
-					
-				case ReserveDbTableColumn.COL_DATE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
 					break;
 					
 				case ReserveDbTableColumn.COL_LAST_CHANGED :
@@ -81,9 +72,9 @@ final class ReserveWhere implements DaoStmtWhere {
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
 				case ReserveDbTableColumn.COL_BEGIN_TIME :
+					builder.addClauseNullOr(eachColumn);
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);					
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
-					//TODO: OR is null
 					break;
 			}
 		}		
@@ -101,9 +92,47 @@ final class ReserveWhere implements DaoStmtWhere {
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
 				case ReserveDbTableColumn.COL_END_TIME :
+					builder.addClauseNullOr(eachColumn);
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);					
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
-					//TODO: OR is null
+					break;
+			}
+		}		
+		
+		return builder;
+	}
+	
+	
+	
+	private DaoWhereBuilder whereClausePartFour(DaoWhereBuilderOption whereOption, String tableName, ReserveInfo recordInfo) {
+		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);
+		
+		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
+		
+		for (DaoColumn eachColumn : columns) {			
+			switch(eachColumn.columnName) {
+				case ReserveDbTableColumn.COL_COD_EMPLOYEE :
+					builder.addClauseNullOr(eachColumn);
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
+					break;
+			}
+		}		
+		
+		return builder;
+	}
+	
+	
+	
+	private DaoWhereBuilder whereClausePartFive(DaoWhereBuilderOption whereOption, String tableName, ReserveInfo recordInfo) {
+		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);
+		
+		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
+		
+		for (DaoColumn eachColumn : columns) {			
+			switch(eachColumn.columnName) {
+				case ReserveDbTableColumn.COL_DATE :
+					builder.addClauseNullOr(eachColumn);
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
 					break;
 			}
 		}		
