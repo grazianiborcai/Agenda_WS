@@ -42,7 +42,7 @@ final class HandlerFeeStoreMergeDefault extends DeciActionHandlerTemplate<FeeSto
 		resultHelper.copyWithoutResultset(result);
 		
 		if (result.hasResultset()) {
-			resultHelper.resultset = new FeeStoreMerger().write(result.getResultset(), originalInfos);
+			resultHelper.resultset = new FeeStoreMerger().merge(result.getResultset(), originalInfos);
 		
 		} else {		
 			List<FeeStoreInfo> dummy = new ArrayList<>();

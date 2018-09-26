@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoWriteVisitor;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class PlanMergeVisitorME implements InfoWriteVisitor<PlanInfo, PlanInfo, MatEmpInfo> {
+final class PlanMergeVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, MatEmpInfo> {
 	
 	@Override public PlanInfo writeRecord(PlanInfo sourceOne, MatEmpInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

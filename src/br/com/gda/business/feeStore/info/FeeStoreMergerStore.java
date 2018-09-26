@@ -3,9 +3,9 @@ package br.com.gda.business.feeStore.info;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.info.InfoWriter;
+import br.com.gda.info.InfoMerger;
 
-final class FeeStoreMergerStore extends InfoWriter<FeeStoreInfo, StoreInfo, FeeStoreInfo> {
+final class FeeStoreMergerStore extends InfoMerger<FeeStoreInfo, StoreInfo, FeeStoreInfo> {
 	public FeeStoreInfo merge(StoreInfo sourceOne, FeeStoreInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new FeeStoreVisitorStore());
 	}

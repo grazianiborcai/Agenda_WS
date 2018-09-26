@@ -3,9 +3,9 @@ package br.com.gda.business.storeLeaveDate.info;
 import java.util.List;
 
 import br.com.gda.business.planningTime.info.PlanDataInfo;
-import br.com.gda.info.InfoWriter;
+import br.com.gda.info.InfoMerger;
 
-final class StoreLDateMergerPlan extends InfoWriter<StoreLDateInfo, PlanDataInfo, StoreLDateInfo> {
+final class StoreLDateMergerPlan extends InfoMerger<StoreLDateInfo, PlanDataInfo, StoreLDateInfo> {
 	public StoreLDateInfo merge(PlanDataInfo sourceOne, StoreLDateInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new StoreLDateVisitorPlan());
 	}

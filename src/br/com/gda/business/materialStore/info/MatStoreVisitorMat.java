@@ -2,9 +2,9 @@ package br.com.gda.business.materialStore.info;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoWriteVisitor;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class MatStoreVisitorMat implements InfoWriteVisitor<MatStoreInfo, MatInfo, MatStoreInfo> {
+final class MatStoreVisitorMat implements InfoMergerVisitor<MatStoreInfo, MatInfo, MatStoreInfo> {
 
 	@Override public MatStoreInfo writeRecord(MatInfo sourceOne, MatStoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

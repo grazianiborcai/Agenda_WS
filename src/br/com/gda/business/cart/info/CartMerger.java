@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.info.InfoWriterFactory;
+import br.com.gda.info.InfoWritterFactory;
 
-public final class CartMerger extends InfoWriterFactory<CartInfo> {	
+public final class CartMerger extends InfoWritterFactory<CartInfo> {	
 	
 	public CartMerger() {
 		super(new CartUniquifier());

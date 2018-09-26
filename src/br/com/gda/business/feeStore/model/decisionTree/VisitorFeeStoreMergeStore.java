@@ -74,6 +74,6 @@ final class VisitorFeeStoreMergeStore implements DeciActionTransVisitor<FeeStore
 	
 	
 	private List<FeeStoreInfo> merge(List<FeeStoreInfo> fees, List<StoreInfo> stores) {
-		return new FeeStoreMerger().write(stores, fees);
+		return new FeeStoreMerger().merge(stores, fees);
 	}
 }

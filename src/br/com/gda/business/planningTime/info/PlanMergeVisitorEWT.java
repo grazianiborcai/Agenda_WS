@@ -6,9 +6,9 @@ import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoWriteVisitor;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class PlanMergeVisitorEWT implements InfoWriteVisitor<PlanInfo, PlanInfo, EmpWTimeInfo> {
+final class PlanMergeVisitorEWT implements InfoMergerVisitor<PlanInfo, PlanInfo, EmpWTimeInfo> {
 
 	@Override public PlanInfo writeRecord(PlanInfo sourceOne, EmpWTimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

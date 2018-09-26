@@ -60,7 +60,7 @@ final class HandlerPlanPruneELD extends DeciActionHandlerTemplate<PlanInfo, EmpL
 		
 		if (result.hasResultset()) {
 			resultHelper.copyWithoutResultset(result);
-			resultHelper.resultset = new PlanPruner().write(originalInfos, result.getResultset());
+			resultHelper.resultset = new PlanPruner().merge(originalInfos, result.getResultset());
 		
 		} else {		
 			resultHelper.finishedWithSuccess = true;

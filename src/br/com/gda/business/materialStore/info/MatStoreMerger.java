@@ -2,10 +2,10 @@ package br.com.gda.business.materialStore.info;
 
 import java.util.List;
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.info.InfoWriterFactory;
+import br.com.gda.info.InfoWritterFactory;
 
 
-public final class MatStoreMerger extends InfoWriterFactory<MatStoreInfo> {	
+public final class MatStoreMerger extends InfoWritterFactory<MatStoreInfo> {	
 	static public MatStoreInfo merge(MatInfo sourceOne, MatStoreInfo sourceTwo) {
 		return new MatStoreMergerMat().merge(sourceOne, sourceTwo);
 	}

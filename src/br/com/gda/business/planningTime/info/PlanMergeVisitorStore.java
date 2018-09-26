@@ -2,9 +2,9 @@ package br.com.gda.business.planningTime.info;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoWriteVisitor;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class PlanMergeVisitorStore implements InfoWriteVisitor<PlanInfo, PlanInfo, StoreInfo> {
+final class PlanMergeVisitorStore implements InfoMergerVisitor<PlanInfo, PlanInfo, StoreInfo> {
 
 	@Override public PlanInfo writeRecord(PlanInfo sourceOne, StoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

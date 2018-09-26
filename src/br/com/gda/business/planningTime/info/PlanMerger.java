@@ -8,9 +8,9 @@ import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.info.InfoWriterFactory;
+import br.com.gda.info.InfoWritterFactory;
 
-public final class PlanMerger extends InfoWriterFactory<PlanInfo> {	
+public final class PlanMerger extends InfoWritterFactory<PlanInfo> {	
 	
 	public PlanMerger() {
 		super(new PlanUniquifier());

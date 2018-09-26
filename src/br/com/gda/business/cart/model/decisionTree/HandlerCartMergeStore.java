@@ -42,7 +42,7 @@ final class HandlerCartMergeStore extends DeciActionHandlerTemplate<CartInfo, St
 		resultHelper.copyWithoutResultset(result);
 		
 		if (result.hasResultset()) {
-			resultHelper.resultset = new CartMerger().write(result.getResultset(), originalInfos);
+			resultHelper.resultset = new CartMerger().merge(result.getResultset(), originalInfos);
 		
 		} else {		
 			List<CartInfo> dummy = new ArrayList<>();

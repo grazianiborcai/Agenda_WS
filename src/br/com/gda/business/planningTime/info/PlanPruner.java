@@ -3,10 +3,11 @@ package br.com.gda.business.planningTime.info;
 import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
+import br.com.gda.business.reserve.info.ReserveInfo;
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
-import br.com.gda.info.InfoWriterFactory;
+import br.com.gda.info.InfoWritterFactory;
 
-public final class PlanPruner extends InfoWriterFactory<PlanInfo> {
+public final class PlanPruner extends InfoWritterFactory<PlanInfo> {
 
 	public PlanInfo prune(PlanInfo sourceOne, StoreLDateInfo sourceTwo) {
 		return new PlanPrunerSLD().prune(sourceOne, sourceTwo);
@@ -30,6 +31,11 @@ public final class PlanPruner extends InfoWriterFactory<PlanInfo> {
 		if (sourceOnes.get(0) instanceof PlanInfo 	&&
 			sourceTwos.get(0) instanceof EmpLDateInfo		)
 			return new PlanPrunerELD().prune((List<PlanInfo>) sourceOnes, (List<EmpLDateInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof PlanInfo 	&&
+			sourceTwos.get(0) instanceof ReserveInfo		)
+			return new PlanPrunerReserve().prune((List<PlanInfo>) sourceOnes, (List<ReserveInfo>) sourceTwos);
 		
 		return null;
 	}

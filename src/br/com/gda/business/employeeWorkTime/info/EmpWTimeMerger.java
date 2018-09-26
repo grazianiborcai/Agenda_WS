@@ -4,9 +4,9 @@ import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.info.InfoWriterFactory;
+import br.com.gda.info.InfoWritterFactory;
 
-public final class EmpWTimeMerger extends InfoWriterFactory<EmpWTimeInfo> {
+public final class EmpWTimeMerger extends InfoWritterFactory<EmpWTimeInfo> {
 	public EmpWTimeInfo merge(StoreEmpInfo sourceOne, StoreWTimeInfo sourceTwo) {
 		return new EmpWTimeMergerSWT().merge(sourceOne, sourceTwo);
 	}

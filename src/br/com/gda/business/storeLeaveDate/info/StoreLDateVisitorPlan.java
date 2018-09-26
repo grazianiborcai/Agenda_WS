@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoWriteVisitor;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class StoreLDateVisitorPlan implements InfoWriteVisitor<StoreLDateInfo, PlanDataInfo, StoreLDateInfo> {
+final class StoreLDateVisitorPlan implements InfoMergerVisitor<StoreLDateInfo, PlanDataInfo, StoreLDateInfo> {
 
 	@Override public StoreLDateInfo writeRecord(PlanDataInfo sourceOne, StoreLDateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

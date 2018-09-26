@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 
-public abstract class InfoWriter<T,K,S> {
-	protected List<T> write(List<K> sourceOnes, List<S> sourceTwos, InfoWriteVisitor<T,K,S> visitor) {
+public abstract class InfoMerger<T,K,S> {
+	protected List<T> write(List<K> sourceOnes, List<S> sourceTwos, InfoMergerVisitor<T,K,S> visitor) {
 		checkArgument(sourceOnes, sourceTwos);
 		
 		List<T> results = new ArrayList<>();
@@ -25,7 +25,7 @@ public abstract class InfoWriter<T,K,S> {
 	
 	
 	
-	private T tryToWrite(K sourceOne, S sourceTwo, InfoWriteVisitor<T,K,S> visitor) {
+	private T tryToWrite(K sourceOne, S sourceTwo, InfoMergerVisitor<T,K,S> visitor) {
 		try {
 			return write(sourceOne, sourceTwo, visitor);
 			
@@ -52,14 +52,14 @@ public abstract class InfoWriter<T,K,S> {
 	
 	
 	
-	protected T write(K sourceOne, S sourceTwo, InfoWriteVisitor<T,K,S> visitor) {
+	protected T write(K sourceOne, S sourceTwo, InfoMergerVisitor<T,K,S> visitor) {
 		checkArgument(sourceOne, sourceTwo, visitor);
 		return visitor.writeRecord(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(K sourceOne, S sourceTwo, InfoWriteVisitor<T,K,S> visitor) {
+	private void checkArgument(K sourceOne, S sourceTwo, InfoMergerVisitor<T,K,S> visitor) {
 		if (sourceOne == null)
 			throw new NullPointerException("sourceOne" + SystemMessage.NULL_ARGUMENT);
 		

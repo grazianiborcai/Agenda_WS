@@ -3,9 +3,9 @@ package br.com.gda.business.cart.info;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.info.InfoWriter;
+import br.com.gda.info.InfoMerger;
 
-final class CartMergerStore extends InfoWriter<CartInfo, StoreInfo, CartInfo> {
+final class CartMergerStore extends InfoMerger<CartInfo, StoreInfo, CartInfo> {
 	public CartInfo merge(StoreInfo sourceOne, CartInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new CartVisitorStore());
 	}

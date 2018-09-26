@@ -2,9 +2,9 @@ package br.com.gda.business.cart.info;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoWriteVisitor;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CartVisitorWeekday implements InfoWriteVisitor<CartInfo, WeekdayInfo, CartInfo> {
+final class CartVisitorWeekday implements InfoMergerVisitor<CartInfo, WeekdayInfo, CartInfo> {
 
 	@Override public CartInfo writeRecord(WeekdayInfo sourceOne, CartInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

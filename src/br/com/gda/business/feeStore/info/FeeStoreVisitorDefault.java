@@ -2,9 +2,9 @@ package br.com.gda.business.feeStore.info;
 
 import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoWriteVisitor;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class FeeStoreVisitorDefault implements InfoWriteVisitor<FeeStoreInfo, FeeDefaultInfo, FeeStoreInfo> {
+final class FeeStoreVisitorDefault implements InfoMergerVisitor<FeeStoreInfo, FeeDefaultInfo, FeeStoreInfo> {
 
 	@Override public FeeStoreInfo writeRecord(FeeDefaultInfo sourceOne, FeeStoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

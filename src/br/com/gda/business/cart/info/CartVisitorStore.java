@@ -2,9 +2,9 @@ package br.com.gda.business.cart.info;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoWriteVisitor;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CartVisitorStore implements InfoWriteVisitor<CartInfo, StoreInfo, CartInfo> {
+final class CartVisitorStore implements InfoMergerVisitor<CartInfo, StoreInfo, CartInfo> {
 
 	@Override public CartInfo writeRecord(StoreInfo sourceOne, CartInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -3,9 +3,9 @@ package br.com.gda.business.planningTime.info;
 import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.info.InfoWriter;
+import br.com.gda.info.InfoMerger;
 
-final class PlanMergerME extends InfoWriter<PlanInfo, PlanInfo, MatEmpInfo> {
+final class PlanMergerME extends InfoMerger<PlanInfo, PlanInfo, MatEmpInfo> {
 	public PlanInfo merge(PlanInfo sourceOne, MatEmpInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new PlanMergeVisitorME());
 	}

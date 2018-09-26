@@ -57,7 +57,7 @@ final class HandlerPlanMergeWeekday extends DeciActionHandlerTemplate<PlanInfo, 
 		resultHelper.copyWithoutResultset(result);
 		
 		if (result.hasResultset()) {
-			resultHelper.resultset = new PlanMerger().write(originalInfos, result.getResultset());
+			resultHelper.resultset = new PlanMerger().merge(originalInfos, result.getResultset());
 		
 		} else {		
 			List<PlanInfo> dummy = new ArrayList<>();

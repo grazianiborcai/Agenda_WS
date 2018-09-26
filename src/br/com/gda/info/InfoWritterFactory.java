@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 
-public abstract class InfoWriterFactory<T> {
+public abstract class InfoWritterFactory<T> {
 	private InfoUniquifier<T> resultUniquifier;
 	
 	
-	protected InfoWriterFactory() {	
+	protected InfoWritterFactory() {	
 		resultUniquifier = null;
 	}
 	
 	
-	protected InfoWriterFactory(InfoUniquifier<T> uniquifier) {
+	protected InfoWritterFactory(InfoUniquifier<T> uniquifier) {
 		checkArgument(uniquifier);
 		
 		resultUniquifier = uniquifier;
@@ -29,7 +29,7 @@ public abstract class InfoWriterFactory<T> {
 	
 	
 	
-	public List<T> write(List<?> sourceOnes, List<?> sourceTwos) {
+	public List<T> merge(List<?> sourceOnes, List<?> sourceTwos) {
 		checkArgument(sourceOnes, sourceTwos);
 		
 		if (isEmpty(sourceOnes, sourceTwos))
@@ -39,6 +39,26 @@ public abstract class InfoWriterFactory<T> {
 		
 		if (results == null || results.isEmpty()) 
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_POSSIBLE);		
+		
+		
+		if (resultUniquifier == null)
+			return results;
+		
+		return resultUniquifier.uniquify(results);
+	} 
+	
+	
+	
+	public List<T> prune(List<?> sourceOnes, List<?> sourceTwos) {
+		checkArgument(sourceOnes, sourceTwos);
+		
+		if (isEmpty(sourceOnes, sourceTwos))
+			return Collections.emptyList();
+		
+		List<T> results = writeHook(sourceOnes, sourceTwos);
+		
+		if (results == null) 
+			return Collections.emptyList();		
 		
 		
 		if (resultUniquifier == null)
