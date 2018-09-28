@@ -13,6 +13,7 @@ public final class SystemCode {
 	public static final int CONFLICT									= 9;
 	public static final int DATA_NOT_FOUND								= 10;
 	public static final int BAD_DATE									= 11;
+	public static final int AGED_DATE									= 12;
 	public static final int SUCCESS 									= 200;
 	public static final int INTERNAL_ERROR 								= 500;
 	

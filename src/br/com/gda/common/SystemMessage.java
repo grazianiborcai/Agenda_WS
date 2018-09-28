@@ -1,6 +1,7 @@
 package br.com.gda.common;
 
 public final class SystemMessage {
+	//TODO: Organizar essas Strings
 	public static final String CPF_INVALID = "CPF is invalid";
 	public static final String CNPJ_INVALID = "CNPJ is invalid";	
 	public static final String OWNER_NOT_FOUND = "Owner data not found on DB";
@@ -11,7 +12,7 @@ public final class SystemMessage {
 	public static final String OWNER_ALREALDY_EXIST = "Owner data already exist on DB";		
 	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";				
 	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";			
-	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";
+	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";	
 			
 	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
 	public static final String RESULTSET_NOT_APPLICABLE = "Resultset is either not applicable or is empty";		
@@ -24,9 +25,11 @@ public final class SystemMessage {
 	
 	//System
 	public static final String ACTION_NOT_EXECUTED = "Action has not been executed";
+	public static final String AGED_DATE = "Date is in the past";
 	public static final String ARGUMENT_DONT_MATCH = " arguments don't match";
 	public static final String BAD_DATE = "Invalid date";	
 	public static final String BAD_TIME_RANGE = "Invalid time range";	
+	public static final String CLASS_MISMATCH = "Class type mismatch";	
 	public static final String CONFLICT = "Conflict detected";
 	public static final String DATA_NOT_FOUND = "Data not found";
 	public static final String EMPTY_ARGUMENT = " argument is empty";
@@ -46,11 +49,12 @@ public final class SystemMessage {
 	public static final String NULL_COLUMNS = "Columns for this given builder were passed null";
 	public static final String NULL_CONN = "Conn is null";
 	public static final String NULL_SCHEMA = "Schema name is null";	
+	public static final String POSITIVE_NUM_EXPECTED = " should be positive and greater than zero";	
 	public static final String REQUEST_FAILED = "It was not possible to complete your request";
 	public static final String REQUEST_NOT_EXECUTED = "Request has not been executed";
 	public static final String SUCCESS = "Success";			
-	public static final String WRONG_DATA_TYPE = "Wrong data type";		
-	public static final String CLASS_MISMATCH = "Class type mismatch";		
+	public static final String WRONG_DATA_TYPE = "Wrong data type";			
+		
 	
 		
 	

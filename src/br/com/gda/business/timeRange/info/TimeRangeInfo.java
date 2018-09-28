@@ -53,6 +53,11 @@ public final class TimeRangeInfo extends InfoRecord implements Cloneable {
 			result = result * 31 + numTime;
 		}
 		
+		if (endTime != null) {			
+			int numTime = Integer.valueOf(endTime.format(DateTimeFormatter.ofPattern("HHmm")));
+			result = result * 31 + numTime;
+		}
+		
 		return result;
 	}
 	

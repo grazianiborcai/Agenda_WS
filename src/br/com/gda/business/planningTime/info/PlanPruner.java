@@ -2,6 +2,7 @@ package br.com.gda.business.planningTime.info;
 
 import java.util.List;
 
+import br.com.gda.business.age.info.AgeInfo;
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
 import br.com.gda.business.reserve.info.ReserveInfo;
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
@@ -36,6 +37,11 @@ public final class PlanPruner extends InfoWritterFactory<PlanInfo> {
 		if (sourceOnes.get(0) instanceof PlanInfo 	&&
 			sourceTwos.get(0) instanceof ReserveInfo		)
 			return new PlanPrunerReserve().prune((List<PlanInfo>) sourceOnes, (List<ReserveInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof PlanInfo 	&&
+			sourceTwos.get(0) instanceof AgeInfo		)
+			return new PlanPrunerAge().prune((List<PlanInfo>) sourceOnes, (List<AgeInfo>) sourceTwos);
 		
 		return null;
 	}

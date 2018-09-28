@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.planningTime.info.PlanInfo;
+import br.com.gda.business.planningTime.model.checker.PlanCheckDate;
 import br.com.gda.business.planningTime.model.checker.PlanCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -40,6 +41,9 @@ public class RootPlanSelect implements DeciTree<PlanInfo> {
 		checker = new PlanCheckRead();
 		queue.add(checker);
 		
+		checker = new PlanCheckDate();
+		queue.add(checker);
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -58,6 +62,7 @@ public class RootPlanSelect implements DeciTree<PlanInfo> {
 		DeciActionHandler<PlanInfo> pruneSLD = new HandlerPlanPruneSLD(option.conn, option.schemaName);		
 		DeciActionHandler<PlanInfo> pruneELD = new HandlerPlanPruneELD(option.conn, option.schemaName);			
 		DeciActionHandler<PlanInfo> mergeWeekday = new HandlerPlanMergeWeekday(option.conn, option.schemaName);
+		DeciActionHandler<PlanInfo> pruneAge = new HandlerPlanPruneAge(option.conn, option.schemaName);
 		DeciActionHandler<PlanInfo> pruneReserve = new HandlerPlanPruneReserve(option.conn, option.schemaName);
 		
 		mainAction.addPostAction(mergeStore);
@@ -69,7 +74,8 @@ public class RootPlanSelect implements DeciTree<PlanInfo> {
 		mergeMat.addPostAction(pruneSLD);
 		pruneSLD.addPostAction(pruneELD);
 		pruneELD.addPostAction(mergeWeekday);
-		mergeWeekday.addPostAction(pruneReserve);
+		mergeWeekday.addPostAction(pruneAge);
+		pruneAge.addPostAction(pruneReserve);
 		
 		actions.add(mainAction);
 		return actions;

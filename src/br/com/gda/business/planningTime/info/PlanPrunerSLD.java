@@ -15,4 +15,4 @@ final class PlanPrunerSLD extends InfoMerger<PlanInfo, PlanInfo, StoreLDateInfo>
 	public List<PlanInfo> prune(List<PlanInfo> sourceOnes, List<StoreLDateInfo> sourceTwos) {
 		return super.write(sourceOnes, sourceTwos, new PlanPruneVisitorSLD());
 	}
-}
+}//TODO: herdar de InfoPruner

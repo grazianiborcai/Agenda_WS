@@ -1,6 +1,8 @@
 package br.com.gda.common;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
@@ -41,7 +43,19 @@ public final class DefaultValue {
 	
 	
 	
-	public static LocalDateTime now() {
+	public static LocalDate dateNow() {
+		return dateTimeNow().toLocalDate();
+	}
+	
+	
+	
+	public static LocalTime timeNow() {
+		return dateTimeNow().toLocalTime();
+	}
+	
+	
+	
+	public static LocalDateTime dateTimeNow() {
 		ZonedDateTime nowUtc = ZonedDateTime.now(ZoneOffset.UTC);
 		return nowUtc.toLocalDateTime();
 	}
