@@ -25,11 +25,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class RootCartInsertL3 implements DeciTree<CartInfo> {
+final class NodeCartInsertL2 implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
-	public RootCartInsertL3(DeciTreeOption<CartInfo> option) {
+	public NodeCartInsertL2(DeciTreeOption<CartInfo> option) {
 		DeciTreeHelperOption<CartInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -110,9 +110,9 @@ final class RootCartInsertL3 implements DeciTree<CartInfo> {
 		checker = new CartCheckELD(checkerOption);
 		queue.add(checker);
 		
-		//TODO: mesmo serviço com períodos conflitantes
+		//TODO: mesmo serviï¿½o com perï¿½odos conflitantes
 		//TODO: adicionar totais
-		//TODO: adicionar serviço
+		//TODO: adicionar serviï¿½o
 		
 		return new ModelCheckerQueue<>(queue);
 	}

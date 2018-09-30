@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.masterData.info.MatUnitInfo;
+import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.masterData.info.BusinessInfo;
@@ -23,6 +24,7 @@ import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.model.MatUnitModelSelect;
+import br.com.gda.business.masterData.model.OrderStatusModelSelect;
 import br.com.gda.business.masterData.model.TimezoneModelSelect;
 import br.com.gda.business.masterData.model.WeekdayModelSelect;
 import br.com.gda.business.masterData.model.BusinessModelSelect;
@@ -55,6 +57,7 @@ public final class MasterDataResource {
 	private static final String SELECT_CART_ITEM_CATEG = "/selectCartItemCateg";
 	private static final String SELECT_COUNTRY = "/selectCountry";
 	private static final String SELECT_FEE_CATEG = "/selectFeeCateg";
+	private static final String SELECT_ORDER_STATUS = "/selectOrderStatus";
 	
 	
 	@GET
@@ -296,6 +299,24 @@ public final class MasterDataResource {
 		
 		
 		Model model = new FeeCategModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_ORDER_STATUS)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectOrderStatus(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                          @HeaderParam("codOrderStatus") String codOrderStatus){
+		
+		OrderStatusInfo recordInfo = new OrderStatusInfo();		
+		recordInfo.codOrderStatus = codOrderStatus;
+		recordInfo.codLanguage = codLanguage;
+		
+		
+		Model model = new OrderStatusModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

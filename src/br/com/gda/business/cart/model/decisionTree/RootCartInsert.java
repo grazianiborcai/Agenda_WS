@@ -23,11 +23,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootCartUpdateL1 implements DeciTree<CartInfo> {
+public final class RootCartInsert implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
-	public RootCartUpdateL1(DeciTreeOption<CartInfo> option) {
+	public RootCartInsert(DeciTreeOption<CartInfo> option) {
 		DeciTreeHelperOption<CartInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -42,19 +42,13 @@ public final class RootCartUpdateL1 implements DeciTree<CartInfo> {
 	
 	private ModelChecker<CartInfo> buildDecisionChecker(DeciTreeOption<CartInfo> option) {
 		final boolean EXIST_ON_DB = true;
+		final boolean DONT_EXIST = false;
 		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checker = new CartCheckWriteL1();
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckExistServ(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -92,6 +86,15 @@ public final class RootCartUpdateL1 implements DeciTree<CartInfo> {
 		checker = new CartCheckMS(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = DONT_EXIST;	
+		checker = new CartCheckExistServ(checkerOption);
+		queue.add(checker);
+		
+		//TODO: verificar limite de itens no carrinho
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -100,9 +103,9 @@ public final class RootCartUpdateL1 implements DeciTree<CartInfo> {
 	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> enforceItem = new ActionCartEnforceItemNum(option);
+		DeciAction<CartInfo> enforceItem = new ActionCartEnforceItemNext(option);
 		DeciActionHandler<CartInfo> enforceLChanged = new HandlerCartEnforceLChanged(option.conn, option.schemaName);
-		DeciActionHandler<CartInfo> rootL2 = new HandlerCartRootUpdateL2(option.conn, option.schemaName);	
+		DeciActionHandler<CartInfo> rootL2 = new HandlerCartNodetInsertL1(option.conn, option.schemaName);	
 		
 		enforceItem.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(rootL2);

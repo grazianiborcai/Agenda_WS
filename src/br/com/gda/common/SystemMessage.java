@@ -175,4 +175,10 @@ public final class SystemMessage {
 	public static final String CART_NOT_FOUND = "Cart's data not found on DB";	
 	public static final String CART_ITEM_ALREADY_EXIST = "Cart item already exist on DB";	
 	public static final String CART_ITEM_NOT_FOUND = "Cart item not found on DB";
+	
+	
+	
+	//Ordere
+	public static final String ORDER_STATUS_ALREADY_EXIST = "Order Status already exist on DB";	
+	public static final String ORDER_STATUS_NOT_FOUND = "Order Status not found on DB";
 }

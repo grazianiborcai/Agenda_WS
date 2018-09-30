@@ -45,17 +45,8 @@ public final class CartCheckHasItem extends ModelCheckerTemplateSimple<CartInfo>
 	
 	private List<CartInfo> selectCartItem(CartInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CartInfo> option = buildOption(recordInfo, conn, schemaName);		
-		
-		DeciAction<CartInfo> enforceKey = new ActionCartEnforceKey(option);
-		DeciActionHandlerTemplate<CartInfo, CartInfo> selectCartItem = new HandlerCartSelect(conn, schemaName);
-		
-		enforceKey.addPostAction(selectCartItem);
-		enforceKey.executeAction();
-		
-		if (enforceKey.getDecisionResult().hasResultset())
-			return enforceKey.getDecisionResult().getResultset();
-		
-		return Collections.emptyList();		
+		List<CartInfo> resultset = executeAction(option);
+		return resultset;
 	}
 	
 	
@@ -69,6 +60,28 @@ public final class CartCheckHasItem extends ModelCheckerTemplateSimple<CartInfo>
 		newOption.schemaName = schemaName;
 		
 		return newOption;
+	}
+	
+	
+	
+	private List<CartInfo> executeAction(DeciTreeOption<CartInfo> option) {	
+		DeciAction<CartInfo> action = buildAction(option);		
+		action.executeAction();
+		
+		if (action.getDecisionResult().hasResultset())
+			return action.getDecisionResult().getResultset();
+		
+		return Collections.emptyList();		
+	}
+	
+	
+	
+	private DeciAction<CartInfo> buildAction(DeciTreeOption<CartInfo> option) {	
+		DeciAction<CartInfo> enforceKey = new ActionCartEnforceKey(option);
+		DeciActionHandlerTemplate<CartInfo, CartInfo> selectCartItem = new HandlerCartSelect(option.conn, option.schemaName);
+		
+		enforceKey.addPostAction(selectCartItem);
+		return enforceKey;	
 	}
 	
 	

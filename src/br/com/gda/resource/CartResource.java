@@ -97,7 +97,7 @@ public final class CartResource {
 	}
 	
 	
-	
+	//TODO: Remover?
 	@GET
 	@Path(SELECT_RESERVE)
 	@Produces(MediaType.APPLICATION_JSON)

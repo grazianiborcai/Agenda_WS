@@ -1,0 +1,56 @@
+package br.com.gda.business.order.model.checker;
+
+import java.util.List;
+
+import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.checker.CartCheckHasItem;
+import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
+
+public final class OrderCheckCart implements ModelChecker<OrderInfo> {
+	private final boolean FAILED = false;
+	private final boolean SUCCESS = true;
+	
+	private ModelChecker<CartInfo> checker;
+	
+	
+	public OrderCheckCart(ModelCheckerOption option) {
+		checker = new CartCheckHasItem(option);
+	}
+	
+	
+	
+	@Override public boolean check(List<OrderInfo> recordInfos) {
+		for (OrderInfo eachInfo : recordInfos) {
+			if (check(eachInfo) == FAILED)
+				return FAILED;
+		}
+		
+		return SUCCESS;
+	}
+
+	
+	
+	@Override public boolean check(OrderInfo recordInfo) {
+		return checker.check(CartInfo.copyFrom(recordInfo));
+	}
+
+	
+	
+	@Override public boolean getResult() {
+		return checker.getResult();
+	}
+
+	
+	
+	@Override public String getFailureExplanation() {
+		return checker.getFailureExplanation();
+	}
+
+	
+	
+	@Override public int getFailureCode() {
+		return checker.getFailureCode();
+	}
+}

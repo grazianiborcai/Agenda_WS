@@ -17,11 +17,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class RootCartInsertL2 implements DeciTree<CartInfo> {
+final class NodeCartInsertL1 implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
-	public RootCartInsertL2(DeciTreeOption<CartInfo> option) {
+	public NodeCartInsertL1(DeciTreeOption<CartInfo> option) {
 		DeciTreeHelperOption<CartInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -57,7 +57,7 @@ final class RootCartInsertL2 implements DeciTree<CartInfo> {
 		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
 		
 		DeciAction<CartInfo> weekday = new ActionCartEnforceWeekday(option);
-		DeciActionHandler<CartInfo> rootL3 = new HandlerCartRootInsertL3(option.conn, option.schemaName);
+		DeciActionHandler<CartInfo> rootL3 = new HandlerCartNodetInsertL2(option.conn, option.schemaName);
 		
 		weekday.addPostAction(rootL3);
 		

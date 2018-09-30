@@ -1,11 +1,12 @@
-package br.com.gda.business.storeEmployee.dao;
+package br.com.gda.business.order.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
-import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
+import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoOperation;
@@ -16,24 +17,24 @@ import br.com.gda.dao.DaoStmtParamTranslator;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class StoreEmpUpdateSingle implements DaoStmt<StoreEmpInfo> {
-	private DaoStmt<StoreEmpInfo> stmtSql;
-	private DaoStmtOption<StoreEmpInfo> stmtOption;
+public final class OrderUpdateHdrSingle implements DaoStmt<OrderInfo> {
+	private DaoStmt<OrderInfo> stmtSql;
+	private DaoStmtOption<OrderInfo> stmtOption;
 	
 	
-	public StoreEmpUpdateSingle(Connection conn, StoreEmpInfo recordInfo, String schemaName) {
+	public OrderUpdateHdrSingle(Connection conn, OrderInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, StoreEmpInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, OrderInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.STORE_EMP_TABLE;
+		this.stmtOption.tableName = DaoDbTable.ORDER_HDR_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;
@@ -45,12 +46,14 @@ public final class StoreEmpUpdateSingle implements DaoStmt<StoreEmpInfo> {
 	private String buildWhereClause() {
 		final boolean DONT_IGNORE_NULL = false;
 		final boolean IGNORE_RECORD_MODE = true;
+		final boolean IGNORE_NON_PK = true;
 		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;
 		
-		DaoStmtWhere whereClause = new StoreEmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new OrderWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -63,8 +66,7 @@ public final class StoreEmpUpdateSingle implements DaoStmt<StoreEmpInfo> {
 	
 
 	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
+		stmtSql.generateStmt();		
 	}
 
 	
@@ -81,24 +83,36 @@ public final class StoreEmpUpdateSingle implements DaoStmt<StoreEmpInfo> {
 
 	
 	
-	@Override public List<StoreEmpInfo> getResultset() {
+	@Override public List<OrderInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<StoreEmpInfo> getNewInstance() {
-		return new StoreEmpUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<OrderInfo> getNewInstance() {
+		return new OrderUpdateHdrSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<StoreEmpInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreEmpInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements DaoStmtParamTranslator<OrderInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, OrderInfo recordInfo) throws SQLException {
+			
+			Timestamp lastChanged = null;
+			if(recordInfo.lastChanged != null)
+				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			
 			
 			int i = 1;
-			stmt.setLong(i++, recordInfo.codPositionStore);
-			stmt.setString(i++, recordInfo.recordMode);
+			stmt.setLong(i++, recordInfo.codCustomer);
+			stmt.setTimestamp(i++, lastChanged);
+			stmt.setString(i++, recordInfo.codOrderExt);
+			stmt.setString(i++, recordInfo.codOrderStatus);
+			stmt.setString(i++, recordInfo.cusCodCountry);
+			stmt.setString(i++, recordInfo.cusCpf);
+			stmt.setString(i++, recordInfo.cusEmail);
+			stmt.setString(i++, recordInfo.cusName);
+			stmt.setString(i++, recordInfo.cusCodState);
 			
 			return stmt;
 		}		

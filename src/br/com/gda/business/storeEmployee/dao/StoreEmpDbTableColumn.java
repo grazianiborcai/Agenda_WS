@@ -9,7 +9,16 @@ import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
+	
+	public static final String COL_COD_EMPLOYEE = "cod_employee";		
+	public static final String COL_COD_OWNER = "cod_owner";
+	public static final String COL_COD_STORE = "cod_store";
+	public static final String COL_NAME = "name";
+	public static final String COL_COD_POSITION_STORE = "Cod_position_store";
+	public static final String COL_RECORD_MODE = "cod_customer";
+	
+
+	Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public StoreEmpDbTableColumn() {
 		super();
@@ -35,7 +44,7 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_owner";
+		oneColumn.columnName = COL_COD_OWNER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -43,7 +52,7 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_store";
+		oneColumn.columnName = COL_COD_STORE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -51,7 +60,7 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_employee";
+		oneColumn.columnName = COL_COD_EMPLOYEE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -59,7 +68,7 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_position_store";
+		oneColumn.columnName = COL_COD_POSITION_STORE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -67,7 +76,7 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "record_mode";
+		oneColumn.columnName = COL_RECORD_MODE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -75,7 +84,7 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.POSITION_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -83,7 +92,7 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.STORE_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -91,7 +100,7 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.EMP_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;

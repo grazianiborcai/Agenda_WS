@@ -1,8 +1,8 @@
-package br.com.gda.business.storeEmployee.dao;
+package br.com.gda.business.order.dao;
 
 import java.util.List;
 
-import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
+import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoFormatter;
@@ -10,37 +10,37 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class StoreEmpWhere implements DaoStmtWhere {
+final class OrderWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public StoreEmpWhere(DaoWhereBuilderOption whereOption, String tableName, StoreEmpInfo recordInfo) {
+	public OrderWhere(DaoWhereBuilderOption whereOption, String tableName, OrderInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, StoreEmpInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, OrderInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);
 		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case StoreEmpDbTableColumn.COL_COD_OWNER :
+				case OrderDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case StoreEmpDbTableColumn.COL_COD_STORE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
+				case OrderDbTableColumn.COL_COD_CUSTOMER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
 					break;
 					
-				case StoreEmpDbTableColumn.COL_COD_EMPLOYEE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
+				case OrderDbTableColumn.COL_COD_ORDER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
 					break;
 					
-				case StoreEmpDbTableColumn.COL_RECORD_MODE :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
+				case OrderDbTableColumn.COL_COD_ORDER_STATUS :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codOrderStatus);
 					break;
 			}
 		}		

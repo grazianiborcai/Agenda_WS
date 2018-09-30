@@ -127,4 +127,8 @@ public final class SystemCode {
 	public static final int CART_IS_EMPTY 								= 1405;	
 	public static final int CART_MAT_ALREADY_EXIST 						= 1406;
 	public static final int CART_MAT_NOT_FOUND 							= 1407;
+	
+	//Order
+	public static final int ORDER_STATUS_ALREADY_EXIST 					= 1450;
+	public static final int ORDER_STATUS_NOT_FOUND 						= 1451;
 }

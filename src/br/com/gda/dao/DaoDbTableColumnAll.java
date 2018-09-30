@@ -16,6 +16,7 @@ import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.material.dao.MatDbTableColumn;
 import br.com.gda.business.materialEmployee.dao.MatEmpDbTableColumn;
 import br.com.gda.business.materialStore.dao.MatStoreDbTableColumn;
+import br.com.gda.business.order.dao.OrderDbTableColumn;
 import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.business.reserve.dao.ReserveDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
@@ -58,6 +59,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new FeeStoreDbTableColumn());
 		addTable(new FeeDefaultDbTableColumn());
 		addTable(new ReserveDbTableColumn());
+		addTable(new OrderDbTableColumn());
 	}
 	
 	

@@ -1,11 +1,11 @@
-package br.com.gda.business.cart.model;
+package br.com.gda.business.masterData.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.decisionTree.RootCartDelete;
+import br.com.gda.business.masterData.info.OrderStatusInfo;
+import br.com.gda.business.masterData.model.decisionTree.RootOrderStatusSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class CartModelDelete implements Model {
+public final class OrderStatusModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public CartModelDelete(CartInfo recordInfo) {
+	public OrderStatusModelSelect(OrderStatusInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class CartModelDelete implements Model {
 	
 	
 	
-	private void buildHelper(CartInfo recordInfo) {
-		ModelOption<CartInfo> helperOption = new ModelOption<>();
+	private void buildHelper(OrderStatusInfo recordInfo) {
+		ModelOption<OrderStatusInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CartInfo.class;
+		helperOption.infoRecordClass = OrderStatusInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class CartModelDelete implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<CartInfo> {		
-		@Override public DeciTree<CartInfo> getInstance(DeciTreeOption<CartInfo> option) {
-			return new RootCartDelete(option);
-		}		
+	private static class TreeFactory implements DeciTreeFactory<OrderStatusInfo> {		
+		@Override public DeciTree<OrderStatusInfo> getInstance(DeciTreeOption<OrderStatusInfo> option) {
+			return new RootOrderStatusSelect(option);
+		}			
 	}
 }

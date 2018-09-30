@@ -4,16 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.checker.CartCheckDate;
-import br.com.gda.business.cart.model.checker.CartCheckEmp;
-import br.com.gda.business.cart.model.checker.CartCheckME;
-import br.com.gda.business.cart.model.checker.CartCheckTime;
-import br.com.gda.business.cart.model.checker.CartCheckWriteL3;
+import br.com.gda.business.cart.model.checker.CartCheckDelete;
+import br.com.gda.business.cart.model.checker.CartCheckHasItem;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -21,11 +17,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-class RootCartUpdateL3 implements DeciTree<CartInfo> {
+public final class RootCartDelete implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
-	public RootCartUpdateL3(DeciTreeOption<CartInfo> option) {
+	public RootCartDelete(DeciTreeOption<CartInfo> option) {
 		DeciTreeHelperOption<CartInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -39,42 +35,20 @@ class RootCartUpdateL3 implements DeciTree<CartInfo> {
 	
 	
 	private ModelChecker<CartInfo> buildDecisionChecker(DeciTreeOption<CartInfo> option) {
-		final boolean GOOD_DATE_TIME = true;
-		final boolean EXIST_ON_DB = true;
+		final boolean CART_HAS_ITEM = true;
 		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new CartCheckWriteL3();
+		checker = new CartCheckDelete();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = GOOD_DATE_TIME;	
-		checker = new CartCheckTime(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = GOOD_DATE_TIME;	
-		checker = new CartCheckDate(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckEmp(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckME(checkerOption);
+		checkerOption.expectedResult = CART_HAS_ITEM;	
+		checker = new CartCheckHasItem(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -85,16 +59,11 @@ class RootCartUpdateL3 implements DeciTree<CartInfo> {
 	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> updateHdr = new ActionCartUpdateHdr(option);	
-		DeciActionHandler<CartInfo> updateItm = new HandlerCartUpdateItm(option.conn, option.schemaName);	
-		DeciActionHandler<CartInfo> enforceKey = new HandlerCartEnforceKey(option.conn, option.schemaName);
-		DeciActionHandler<CartInfo> selectCart = new HandlerCartRootSelect(option.conn, option.schemaName);			
+		DeciAction<CartInfo> deleteItm = new RootCartDeleteItm(option).toAction();
+		DeciAction<CartInfo> deleteHdr = new RootCartDeleteHdr(option).toAction();
 		
-		updateHdr.addPostAction(updateItm);
-		updateHdr.addPostAction(enforceKey);
-		enforceKey.addPostAction(selectCart);	
-		
-		actions.add(updateHdr);		
+		actions.add(deleteItm);		
+		actions.add(deleteHdr);	
 		return actions;
 	}
 	

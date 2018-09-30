@@ -16,11 +16,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class RootCartUpdateL2 implements DeciTree<CartInfo> {
+final class NodeCartUpdateL1 implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
-	public RootCartUpdateL2(DeciTreeOption<CartInfo> option) {
+	public NodeCartUpdateL1(DeciTreeOption<CartInfo> option) {
 		DeciTreeHelperOption<CartInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -55,7 +55,7 @@ final class RootCartUpdateL2 implements DeciTree<CartInfo> {
 	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> rootL3 = new RootCartUpdateL3(option).toAction();
+		DeciAction<CartInfo> rootL3 = new NodeCartUpdateL2(option).toAction();
 		
 		actions.add(rootL3);		
 		return actions;

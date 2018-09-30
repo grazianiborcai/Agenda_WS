@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.decisionTree.RootCartUpdateL1;
+import br.com.gda.business.cart.model.decisionTree.RootCartUpdate;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -65,7 +65,7 @@ public final class CartModelUpdate implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<CartInfo> {		
 		@Override public DeciTree<CartInfo> getInstance(DeciTreeOption<CartInfo> option) {
-			return new RootCartUpdateL1(option);
+			return new RootCartUpdate(option);
 		}			
 	}
 }
