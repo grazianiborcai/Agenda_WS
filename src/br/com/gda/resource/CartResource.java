@@ -19,6 +19,7 @@ import br.com.gda.business.cart.model.CartModelDelete;
 import br.com.gda.business.cart.model.CartModelInsert;
 import br.com.gda.business.cart.model.CartModelSelect;
 import br.com.gda.business.cart.model.CartModelUpdate;
+import br.com.gda.business.order.model.OrderModelInsert;
 import br.com.gda.business.reserve.info.ReserveInfo;
 import br.com.gda.business.reserve.model.ReserveModelSelect;
 import br.com.gda.model.Model;
@@ -29,7 +30,8 @@ public final class CartResource {
 	private static final String UPDATE_CART = "/updateCart"	;
 	private static final String SELECT_CART = "/selectCart"	;
 	private static final String DELETE_CART = "/deleteCart"	;
-	private static final String SELECT_RESERVE = "/selectReserve"	;
+	private static final String SELECT_RESERVE = "/selectReserve";
+	private static final String CART_CHECKOUT = "/cartCheckout";
 	
 	
 	@POST
@@ -120,6 +122,18 @@ public final class CartResource {
 		
 		
 		Model model = new ReserveModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();	
+	}
+	
+	
+	
+	@POST
+	@Path(CART_CHECKOUT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response CartCheckout(String incomingData) {
+		
+		Model model = new OrderModelInsert(incomingData);
 		model.executeRequest();
 		return model.getResponse();	
 	}

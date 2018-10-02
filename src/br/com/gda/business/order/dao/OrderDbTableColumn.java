@@ -33,8 +33,10 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_MAT_COD_UNIT = "mat_unit";
 	public static final String COL_MAT_DATE = "mat_date";
 	public static final String COL_MAT_END_TIME = "mat_end_time";
+	public static final String COL_MAT_NAME = "mat_name";
 	public static final String COL_MAT_PRICE = "mat_price";
 	public static final String COL_MAT_PRICE_UNIT = "mat_price_unit";
+	public static final String COL_MAT_QUANTITY = "mat_quantity";
 	public static final String COL_STORE_CNPJ = "store_cnpj";
 	public static final String COL_STORE_COD_CURR = "store_cod_curr";
 	public static final String COL_STORE_COD_TIMEZONE = "store_cod_timezone";
@@ -363,6 +365,22 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_STORE_STATE_PROVINCE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_MAT_QUANTITY;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_MAT_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

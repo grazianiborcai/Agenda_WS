@@ -20,7 +20,7 @@ final class VisitorCartEnforceLChanged implements DeciActionTransVisitor<CartInf
 	}	
 	
 	
-	
+	//TODO: mover método para dentro de CartInfo
 	private CartInfo enforce(CartInfo recordInfo) {
 		CartInfo enforcedInfo = makeClone(recordInfo);
 		enforcedInfo.lastChanged = DefaultValue.dateTimeNow();

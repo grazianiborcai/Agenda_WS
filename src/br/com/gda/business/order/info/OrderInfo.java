@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
@@ -24,8 +25,10 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public String cusCodState;
 	public long codStore;
 	public long codMat;
+	public String matTxt;
 	public String matUnit;
 	public double matPrice;
+	public int matQuantity;
 	public String matCodCurr;
 	public int matCodType;
 	public int matCodCategory;
@@ -44,6 +47,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public String storeCodTimezone;
 	public long codEmployee;
 	public String empCpf;
+	public String empName;
 	
 	
 	public OrderInfo() {
@@ -58,20 +62,99 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		matCodCategory = DefaultValue.number();
 		matCodGroup = DefaultValue.number();
 		codEmployee = DefaultValue.number();
-		lastChanged = DefaultValue.dateTimeNow();
 		codLanguage = DefaultValue.language();
+		
+		computeLChanged();
+	}
+	
+	
+	
+	public void computeLChanged() {
+		lastChanged = DefaultValue.dateTimeNow();
+	}
+	
+	
+	
+	public void computeExternalId() {
+		String now = DefaultValue.dateTimeNow().toString();
+		StringBuilder result = new StringBuilder();
+		
+		for (int i=0; i <= now.length(); i=i+2) {
+			result.append(now.substring(i, i+1));
+		}
+		
+		for (int i=1; i <= now.length(); i=i+2) {
+			result.append(now.substring(i, i+1));
+		}
+		
+		result.insert(9, "-");
+		result.insert(3, "-");		
+		
+		char ascciiNum = (char)(Integer.valueOf(result.substring(0, 0)) + 'A');
+		result.delete(0, 0);
+		result.insert(0, ascciiNum);
+		
+		ascciiNum = (char)(Integer.valueOf(result.substring(1, 1)) + 'A');
+		result.delete(1, 1);
+		result.insert(1, ascciiNum);
+		
+		ascciiNum = (char)(Integer.valueOf(result.substring(2, 2)) + 'A');
+		result.delete(2, 2);
+		result.insert(2, ascciiNum);
+		
+		codOrderExt = result.toString();
 	}
 	
 	
 	
 	public static OrderInfo copyFrom(Object sourceObj) {
+		if (isCart(sourceObj))
+			return copyFromCart(sourceObj);
+		
 		return copyFrom(sourceObj, OrderInfo.class);
 	}
 	
 	
 	
 	public static List<OrderInfo> copyFrom(List<?> sourceObjs) {
+		if (isCart(sourceObjs))
+			return copyFromCart(sourceObjs);
+		
 		return copyFrom(sourceObjs, OrderInfo.class);
+	}
+	
+	
+	
+	private static boolean isCart(List<?> sourceObjs) {
+		if (sourceObjs == null || sourceObjs.isEmpty())
+			return false;
+		
+		return isCart(sourceObjs.get(0));
+	}
+	
+	
+	
+	private static boolean isCart(Object sourceObj) {
+		if (sourceObj == null)
+			return false;
+		
+		if (sourceObj instanceof CartInfo)
+			return true;
+		
+		return false;
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private static List<OrderInfo> copyFromCart(List<?> sourceObjs) {
+		return new OrderCopyCart().makeCopy( (List<CartInfo>)sourceObjs);
+	}
+	
+	
+	
+	private static OrderInfo copyFromCart(Object sourceObj) {
+		return new OrderCopyCart().makeCopy( (CartInfo)sourceObj);
 	}
 	
 	

@@ -59,6 +59,16 @@ public final class RootOrderInsert implements DeciTree<OrderInfo> {
 	
 	private List<DeciAction<OrderInfo>> buildActionsOnPassed(DeciTreeOption<OrderInfo> option) {
 		List<DeciAction<OrderInfo>> actions = new ArrayList<>();		
+		
+		DeciAction<OrderInfo> copyCart = new ActionOrderCopyCart(option);
+		DeciActionHandler<OrderInfo> enforceLChanged = new HandlerOrderEnforceLChanged(option.conn, option.schemaName);
+		
+		copyCart.addPostAction(enforceLChanged);
+		
+		actions.add(copyCart);		
+		return actions;
+		
+		
 		/*
 		DeciAction<OrderInfo> enforceItem = new ActionCartEnforceItemNext(option);
 		DeciActionHandler<OrderInfo> enforceLChanged = new HandlerCartEnforceLChanged(option.conn, option.schemaName);
@@ -73,7 +83,7 @@ public final class RootOrderInsert implements DeciTree<OrderInfo> {
 		//SELECT CART
 		//ENFORCE OWNER
 		//DELETE CART
-		return actions;
+		
 	}
 	
 	
