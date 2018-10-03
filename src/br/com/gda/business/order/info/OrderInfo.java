@@ -75,38 +75,6 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public void computeExternalId() {
-		String now = DefaultValue.dateTimeNow().toString();
-		StringBuilder result = new StringBuilder();
-		
-		for (int i=0; i <= now.length(); i=i+2) {
-			result.append(now.substring(i, i+1));
-		}
-		
-		for (int i=1; i <= now.length(); i=i+2) {
-			result.append(now.substring(i, i+1));
-		}
-		
-		result.insert(9, "-");
-		result.insert(3, "-");		
-		
-		char ascciiNum = (char)(Integer.valueOf(result.substring(0, 0)) + 'A');
-		result.delete(0, 0);
-		result.insert(0, ascciiNum);
-		
-		ascciiNum = (char)(Integer.valueOf(result.substring(1, 1)) + 'A');
-		result.delete(1, 1);
-		result.insert(1, ascciiNum);
-		
-		ascciiNum = (char)(Integer.valueOf(result.substring(2, 2)) + 'A');
-		result.delete(2, 2);
-		result.insert(2, ascciiNum);
-		
-		codOrderExt = result.toString();
-	}
-	
-	
-	
 	public static OrderInfo copyFrom(Object sourceObj) {
 		if (isCart(sourceObj))
 			return copyFromCart(sourceObj);

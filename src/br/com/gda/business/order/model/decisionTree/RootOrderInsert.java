@@ -62,8 +62,10 @@ public final class RootOrderInsert implements DeciTree<OrderInfo> {
 		
 		DeciAction<OrderInfo> copyCart = new ActionOrderCopyCart(option);
 		DeciActionHandler<OrderInfo> enforceLChanged = new HandlerOrderEnforceLChanged(option.conn, option.schemaName);
+		DeciActionHandler<OrderInfo> enforceExtid = new HandlerOrderEnforceExtid(option.conn, option.schemaName);
 		
 		copyCart.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceExtid);
 		
 		actions.add(copyCart);		
 		return actions;
