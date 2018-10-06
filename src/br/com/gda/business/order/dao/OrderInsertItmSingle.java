@@ -110,12 +110,13 @@ public final class OrderInsertItmSingle implements DaoStmt<OrderInfo> {
 			stmt.setString(i++, recordInfo.storeCodCurr);
 			stmt.setString(i++, recordInfo.storeCodTimezone);
 			stmt.setString(i++, recordInfo.storeCountry);
-			stmt.setString(i++, recordInfo.storeInscEstadual);
-			stmt.setString(i++, recordInfo.storeInscMunicipal);
+			stmt.setString(i++, recordInfo.storeInscrEst);
+			stmt.setString(i++, recordInfo.storeInscrMun);
 			stmt.setString(i++, recordInfo.storeName);
 			stmt.setString(i++, recordInfo.storeStateProvince);
 			stmt.setInt(i++, recordInfo.matQuantity);
 			stmt.setString(i++, recordInfo.matTxt);
+			stmt.setString(i++, recordInfo.empName);
 
 			return stmt;
 		}		

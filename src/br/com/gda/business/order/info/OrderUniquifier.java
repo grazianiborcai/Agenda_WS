@@ -1,13 +1,13 @@
-package br.com.gda.business.cart.info;
+package br.com.gda.business.order.info;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.gda.info.InfoUniquifier;
 
-final class CartUniquifier implements InfoUniquifier<CartInfo> {
+final class OrderUniquifier implements InfoUniquifier<OrderInfo> {
 	
-	@Override public List<CartInfo> uniquify(List<CartInfo> infoRecords) {
+	@Override public List<OrderInfo> uniquify(List<OrderInfo> infoRecords) {
 		return infoRecords.stream().distinct().collect(Collectors.toList());
 	}
 }

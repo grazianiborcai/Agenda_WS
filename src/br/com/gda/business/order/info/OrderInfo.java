@@ -38,8 +38,8 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public LocalTime matEndTime;
 	public LocalDate matDate;
 	public String storeCnpj;
-	public String storeInscMunicipal;
-	public String storeInscEstadual;
+	public String storeInscrMun;
+	public String storeInscrEst;
 	public String storeName;
 	public String storeCountry;
 	public String storeStateProvince;
@@ -69,8 +69,9 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public void computeLChanged() {
-		lastChanged = DefaultValue.dateTimeNow();
+	private void computeLChanged() {
+		OrderSetterLChanged attrSetter = new OrderSetterLChanged();		
+		attrSetter.setAttr(this);
 	}
 	
 	

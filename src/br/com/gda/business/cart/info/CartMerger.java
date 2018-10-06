@@ -16,8 +16,26 @@ public final class CartMerger extends InfoWritterFactory<CartInfo> {
 	
 	
 	
+	static public CartInfo merge(MatInfo sourceOne, CartInfo sourceTwo) {
+		return new CartMergerMat().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	static public CartInfo merge(StoreInfo sourceOne, CartInfo sourceTwo) {
 		return new CartMergerStore().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	static public CartInfo merge(CartCategInfo sourceOne, CartInfo sourceTwo) {
+		return new CartMergerCateg().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	static public CartInfo merge(WeekdayInfo sourceOne, CartInfo sourceTwo) {
+		return new CartMergerWeekday().merge(sourceOne, sourceTwo);
 	}
 	
 	

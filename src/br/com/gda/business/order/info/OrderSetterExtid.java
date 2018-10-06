@@ -4,10 +4,11 @@ import java.time.format.DateTimeFormatter;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.info.InfoSetter;
 
-public final class OrderExtid {
+public final class OrderSetterExtid implements InfoSetter<OrderInfo> {
 	
-	public OrderInfo setExtid(OrderInfo order) {
+	public OrderInfo setAttr(OrderInfo order) {
 		checkArgument(order);
 		
 		order.codOrderExt = genExtId();

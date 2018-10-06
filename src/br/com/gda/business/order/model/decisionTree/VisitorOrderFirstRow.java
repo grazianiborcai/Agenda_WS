@@ -3,18 +3,16 @@ package br.com.gda.business.order.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.order.info.OrderSetterExtid;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.model.decisionTree.DeciActionTransVisitor;
 
-final class VisitorOrderEnforceExtid implements DeciActionTransVisitor<OrderInfo> {
+final class VisitorOrderFirstRow implements DeciActionTransVisitor<OrderInfo> {
 	
 	@Override public List<OrderInfo> executeTransformation(List<OrderInfo> recordInfos) {
 		List<OrderInfo> resultRecords = new ArrayList<>();		
 		
-		for (OrderInfo eachRecord : recordInfos) {
-			resultRecords.add(enforce(eachRecord));
-		}
+		recordInfos.get(0);
+		resultRecords.add(enforce(recordInfos.get(0)));		
 		
 		return resultRecords;
 	}	
@@ -22,9 +20,7 @@ final class VisitorOrderEnforceExtid implements DeciActionTransVisitor<OrderInfo
 	
 	
 	private OrderInfo enforce(OrderInfo recordInfo) {
-		OrderInfo clonedInfo = makeClone(recordInfo);
-		OrderSetterExtid idMaker = new OrderSetterExtid();
-		return idMaker.setAttr(clonedInfo);
+		return makeClone(recordInfo);
 	}
 	
 	

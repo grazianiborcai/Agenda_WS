@@ -24,8 +24,8 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class CartSelectSingle implements DaoStmt<CartInfo> {
-	private final String LT_CART_HDR = DaoDbTable.CART_HDR_TABLE;	
-	private final String RT_CART_ITM = DaoDbTable.CART_ITM_TABLE;
+	private final String LT_HDR = DaoDbTable.CART_HDR_TABLE;	
+	private final String RT_ITM = DaoDbTable.CART_ITM_TABLE;
 	
 	private DaoStmt<CartInfo> stmtSql;
 	private DaoStmtOption<CartInfo> stmtOption;
@@ -44,8 +44,8 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_CART_HDR;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_CART_HDR);
+		this.stmtOption.tableName = LT_HDR;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_HDR);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -80,20 +80,20 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_CART_HDR;
+		oneColumn.leftTableName = LT_HDR;
 		oneColumn.leftColumnName = CartDbTableColumn.COL_COD_OWNER;
 		oneColumn.rightColumnName = CartDbTableColumn.COL_COD_OWNER;
 		joinColumns.add(oneColumn);
 		
 		oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_CART_HDR;
+		oneColumn.leftTableName = LT_HDR;
 		oneColumn.leftColumnName = CartDbTableColumn.COL_COD_CUSTOMER;
 		oneColumn.rightColumnName = CartDbTableColumn.COL_COD_CUSTOMER;
 		joinColumns.add(oneColumn);
 		
 		
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_CART_ITM;
+		join.rightTableName = RT_ITM;
 		join.joinType = DaoJoinType.INNER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = null;

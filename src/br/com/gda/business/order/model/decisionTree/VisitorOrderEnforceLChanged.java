@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.business.order.info.OrderSetterLChanged;
 import br.com.gda.model.decisionTree.DeciActionTransVisitor;
 
 final class VisitorOrderEnforceLChanged implements DeciActionTransVisitor<OrderInfo> {
@@ -21,9 +22,9 @@ final class VisitorOrderEnforceLChanged implements DeciActionTransVisitor<OrderI
 	
 	
 	private OrderInfo enforce(OrderInfo recordInfo) {
-		OrderInfo enforcedInfo = makeClone(recordInfo);
-		enforcedInfo.computeLChanged();
-		return enforcedInfo;
+		OrderInfo clonedInfo = makeClone(recordInfo);
+		OrderSetterLChanged attrSetter = new OrderSetterLChanged();
+		return attrSetter.setAttr(clonedInfo);
 	}
 	
 	
