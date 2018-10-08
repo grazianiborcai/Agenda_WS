@@ -7,12 +7,12 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionVisitor;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisitorCartEnforceItemNum implements DeciActionTransVisitor<CartInfo> {
+final class VisitorCartEnforceItemNum implements ActionVisitor<CartInfo> {
 	private DeciTreeOption<CartInfo> selOption;
 	
 	
@@ -79,8 +79,8 @@ final class VisitorCartEnforceItemNum implements DeciActionTransVisitor<CartInfo
 	
 	
 	private List<CartInfo> selectCart() {
-		DeciAction<CartInfo> mainAction = new ActionCartRemoveItemNum(selOption);
-		DeciActionHandler<CartInfo> selectCart = new HandlerCartSelect(selOption.conn, selOption.schemaName);
+		ActionStd<CartInfo> mainAction = new ActionCartRemoveItemNum(selOption);
+		ActionLazy<CartInfo> selectCart = new HandlerCartSelect(selOption.conn, selOption.schemaName);
 		
 		mainAction.addPostAction(selectCart);
 		mainAction.executeAction();

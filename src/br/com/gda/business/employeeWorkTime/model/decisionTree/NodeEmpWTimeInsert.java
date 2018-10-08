@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckSoftDelete;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -36,7 +36,7 @@ class NodeEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 	
 	
 	private ModelChecker<EmpWTimeInfo> buildDecisionChecker(DeciTreeOption<EmpWTimeInfo> option) {
-		List<ModelChecker<EmpWTimeInfo>> stack = new ArrayList<>();		
+		List<ModelChecker<EmpWTimeInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpWTimeInfo> checker;
 		
 		final boolean EXPECTED_NOT_DELETED = false;
@@ -45,15 +45,15 @@ class NodeEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXPECTED_NOT_DELETED;
 		checker = new EmpWTimeCheckSoftDelete(checkerOption);
-		stack.add(checker);
+		queue.add(checker);
 
-		return new ModelCheckerQueue<>(stack);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
 	
-	private List<DeciAction<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
-		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
+	private List<ActionStd<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
+		List<ActionStd<EmpWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionEmpWTimeInsert(option));
 		return actions;
@@ -61,8 +61,8 @@ class NodeEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
-	private List<DeciAction<EmpWTimeInfo>> buildActionsOnFailed(DeciTreeOption<EmpWTimeInfo> option) {
-		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
+	private List<ActionStd<EmpWTimeInfo>> buildActionsOnFailed(DeciTreeOption<EmpWTimeInfo> option) {
+		List<ActionStd<EmpWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionEmpWTimeUpdate(option));
 		return actions;
@@ -70,7 +70,7 @@ class NodeEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpWTimeInfo> toAction() {
+	@Override public ActionStd<EmpWTimeInfo> toAction() {
 		return tree.toAction();
 	}
 	

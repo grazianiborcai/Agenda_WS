@@ -7,9 +7,9 @@ import br.com.gda.business.storeLeaveDate.model.decisionTree.ActionStoreLDateEnf
 import br.com.gda.business.storeLeaveDate.model.decisionTree.HandlerStoreLDateSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class StoreLDateCheckSoftDelete extends ModelCheckerTemplateAction<StoreLDateInfo> {
@@ -20,10 +20,10 @@ public final class StoreLDateCheckSoftDelete extends ModelCheckerTemplateAction<
 	
 	
 	
-	@Override protected DeciAction<StoreLDateInfo> buildActionHook(StoreLDateInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<StoreLDateInfo> buildActionHook(StoreLDateInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<StoreLDateInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<StoreLDateInfo> actionSelect = new ActionStoreLDateEnforceDel(option);
+		ActionStd<StoreLDateInfo> actionSelect = new ActionStoreLDateEnforceDel(option);
 		actionSelect.addPostAction(new HandlerStoreLDateSelect(conn, schemaName));		
 		return actionSelect;
 	}

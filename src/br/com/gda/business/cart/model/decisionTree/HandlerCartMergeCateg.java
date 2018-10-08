@@ -8,13 +8,13 @@ import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootCartCategSelect;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerCartMergeCateg extends DeciActionHandlerTemplate<CartInfo, CartCategInfo> {
+final class HandlerCartMergeCateg extends ActionLazyTemplate<CartInfo, CartCategInfo> {
 	private List<CartInfo> originalInfos;
 	
 	
@@ -31,7 +31,7 @@ final class HandlerCartMergeCateg extends DeciActionHandlerTemplate<CartInfo, Ca
 	
 	
 	
-	@Override protected DeciAction<CartCategInfo> getInstanceOfActionHook(DeciTreeOption<CartCategInfo> option) {
+	@Override protected ActionStd<CartCategInfo> getInstanceOfActionHook(DeciTreeOption<CartCategInfo> option) {
 		return new RootCartCategSelect(option).toAction();
 	}
 	

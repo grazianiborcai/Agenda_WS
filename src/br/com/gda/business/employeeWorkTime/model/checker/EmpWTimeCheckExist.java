@@ -6,9 +6,9 @@ import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.model.decisionTree.ActionEmpWTimeSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public class EmpWTimeCheckExist extends ModelCheckerTemplateAction<EmpWTimeInfo> {
@@ -19,10 +19,10 @@ public class EmpWTimeCheckExist extends ModelCheckerTemplateAction<EmpWTimeInfo>
 	
 	
 	
-	@Override protected DeciAction<EmpWTimeInfo> buildActionHook(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<EmpWTimeInfo> buildActionHook(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<EmpWTimeInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		DeciAction<EmpWTimeInfo> actionSelect = new ActionEmpWTimeSelect(option);
+		ActionStd<EmpWTimeInfo> actionSelect = new ActionEmpWTimeSelect(option);
 		return actionSelect;
 	}
 	

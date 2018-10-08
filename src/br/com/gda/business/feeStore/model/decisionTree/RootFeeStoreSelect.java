@@ -8,10 +8,10 @@ import br.com.gda.business.feeStore.model.checker.FeeStoreCheckFeeCateg;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckOwner;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckRead;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckStore;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -72,8 +72,8 @@ public final class RootFeeStoreSelect implements DeciTree<FeeStoreInfo> {
 	
 	
 	
-	private List<DeciAction<FeeStoreInfo>> buildActionsOnPassed(DeciTreeOption<FeeStoreInfo> option) {
-		List<DeciAction<FeeStoreInfo>> actions = new ArrayList<>();
+	private List<ActionStd<FeeStoreInfo>> buildActionsOnPassed(DeciTreeOption<FeeStoreInfo> option) {
+		List<ActionStd<FeeStoreInfo>> actions = new ArrayList<>();
 		
 		actions.add(new NodeFeeStoreSelect(option).toAction());
 		return actions;
@@ -99,7 +99,7 @@ public final class RootFeeStoreSelect implements DeciTree<FeeStoreInfo> {
 	
 	
 	
-	@Override public DeciAction<FeeStoreInfo> toAction() {
+	@Override public ActionStd<FeeStoreInfo> toAction() {
 		return tree.toAction();
 	}
 }

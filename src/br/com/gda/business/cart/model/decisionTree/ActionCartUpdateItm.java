@@ -7,19 +7,19 @@ import br.com.gda.business.cart.dao.CartUpdateItm;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionCartUpdateItm implements DeciAction<CartInfo> {
-	private DeciAction<CartInfo> actionHelper;
+public final class ActionCartUpdateItm implements ActionStd<CartInfo> {
+	private ActionStd<CartInfo> actionHelper;
 	
 	
 	public ActionCartUpdateItm(DeciTreeOption<CartInfo> option) {
 		DaoStmtExec<CartInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ public final class ActionCartUpdateItm implements DeciAction<CartInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<CartInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<CartInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

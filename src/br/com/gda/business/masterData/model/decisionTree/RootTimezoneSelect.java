@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.model.checker.TimezoneCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -44,8 +44,8 @@ public final class RootTimezoneSelect implements DeciTree<TimezoneInfo> {
 
 		
 	
-	private List<DeciAction<TimezoneInfo>> buildActionsOnPassed(DeciTreeOption<TimezoneInfo> option) {
-		List<DeciAction<TimezoneInfo>> actions = new ArrayList<>();
+	private List<ActionStd<TimezoneInfo>> buildActionsOnPassed(DeciTreeOption<TimezoneInfo> option) {
+		List<ActionStd<TimezoneInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionTimezoneSelect(option));
 		return actions;
@@ -71,7 +71,7 @@ public final class RootTimezoneSelect implements DeciTree<TimezoneInfo> {
 	
 	
 	
-	@Override public DeciAction<TimezoneInfo> toAction() {
+	@Override public ActionStd<TimezoneInfo> toAction() {
 		return tree.toAction();
 	}
 }

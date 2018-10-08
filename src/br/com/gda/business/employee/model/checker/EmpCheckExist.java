@@ -7,9 +7,9 @@ import br.com.gda.business.employee.model.decisionTree.ActionEmpEnforceKey;
 import br.com.gda.business.employee.model.decisionTree.HandlerEmpSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class EmpCheckExist extends ModelCheckerTemplateAction<EmpInfo> {
@@ -20,10 +20,10 @@ public final class EmpCheckExist extends ModelCheckerTemplateAction<EmpInfo> {
 	
 	
 	
-	@Override protected DeciAction<EmpInfo> buildActionHook(EmpInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<EmpInfo> buildActionHook(EmpInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<EmpInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		DeciAction<EmpInfo> actionSelect = new ActionEmpEnforceKey(option);
+		ActionStd<EmpInfo> actionSelect = new ActionEmpEnforceKey(option);
 		actionSelect.addPostAction(new HandlerEmpSelect(conn, schemaName));
 		return actionSelect;
 	}

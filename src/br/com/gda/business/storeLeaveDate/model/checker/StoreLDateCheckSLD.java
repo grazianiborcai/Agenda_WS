@@ -7,9 +7,9 @@ import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.business.storeLeaveDate.model.decisionTree.ActionStoreLDateSelectRange;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class StoreLDateCheckSLD extends ModelCheckerTemplateAction<StoreLDateInfo> {
@@ -20,10 +20,10 @@ public final class StoreLDateCheckSLD extends ModelCheckerTemplateAction<StoreLD
 	
 	
 	
-	@Override protected DeciAction<StoreLDateInfo> buildActionHook(StoreLDateInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<StoreLDateInfo> buildActionHook(StoreLDateInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<StoreLDateInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		DeciAction<StoreLDateInfo> actionSelect = new ActionStoreLDateSelectRange(option);
+		ActionStd<StoreLDateInfo> actionSelect = new ActionStoreLDateSelectRange(option);
 		return actionSelect;
 	}
 	

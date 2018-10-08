@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 
 public final class DeciTreeHelper<T> implements DeciTree<T> {
@@ -14,8 +15,8 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	private ModelChecker<T> checker;
 	private DeciChoice decisionChoice;
 	private DeciResultHelper<T> deciResult;
-	private List<DeciAction<T>> actionsOnPassed;
-	private List<DeciAction<T>> actionsOnFailed;
+	private List<ActionStd<T>> actionsOnPassed;
+	private List<ActionStd<T>> actionsOnFailed;
 	
 
 	public DeciTreeHelper(DeciTreeHelperOption<T> option) {
@@ -99,11 +100,11 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	
-	private void executeDecisionActions(List<DeciAction<T>> decisionActions) {
+	private void executeDecisionActions(List<ActionStd<T>> decisionActions) {
 		if (decisionActions == null)
 			return;
 			
-		for (DeciAction<T> eachAction : decisionActions) {
+		for (ActionStd<T> eachAction : decisionActions) {
 			eachAction.executeAction();
 			DeciResult<T> actionResult = eachAction.getDecisionResult();		
 			buildResultFromAction(actionResult);
@@ -152,7 +153,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	
-	@Override public DeciAction<T> toAction() {
+	@Override public ActionStd<T> toAction() {
 		return new DeciTreeAdapter<>(this);
 	}
 }

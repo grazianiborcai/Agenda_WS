@@ -3,6 +3,7 @@ package br.com.gda.model.decisionTree;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 
 public final class DeciTreeDummy<T> implements DeciTree<T> {
 	private DeciResultHelper<T> dummyResult;
@@ -54,7 +55,7 @@ public final class DeciTreeDummy<T> implements DeciTree<T> {
 
 	
 	
-	@Override public DeciAction<T> toAction() {
+	@Override public ActionStd<T> toAction() {
 		return new DeciTreeAdapter<>(this);
 	}
 }

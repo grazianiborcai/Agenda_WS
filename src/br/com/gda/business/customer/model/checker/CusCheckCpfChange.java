@@ -8,9 +8,9 @@ import br.com.gda.business.customer.model.decisionTree.ActionCusEnforceKeyCpf;
 import br.com.gda.business.customer.model.decisionTree.HandlerCusSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class CusCheckCpfChange extends ModelCheckerTemplateAction<CusInfo> {
@@ -21,10 +21,10 @@ public final class CusCheckCpfChange extends ModelCheckerTemplateAction<CusInfo>
 	
 	
 	
-	@Override protected DeciAction<CusInfo> buildActionHook(CusInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<CusInfo> buildActionHook(CusInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CusInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<CusInfo> actionSelect = new ActionCusEnforceKeyCpf(option);
+		ActionStd<CusInfo> actionSelect = new ActionCusEnforceKeyCpf(option);
 		actionSelect.addPostAction(new HandlerCusSelect(conn, schemaName));
 		return actionSelect;
 	}

@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.common.DefaultValue;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionVisitor;
 
-final class VisitorCartRemoveItemNum implements DeciActionTransVisitor<CartInfo> {
+final class VisitorCartRemoveItemNum implements ActionVisitor<CartInfo> {
 	
 	@Override public List<CartInfo> executeTransformation(List<CartInfo> recordInfos) {
 		List<CartInfo> resultRecords = new ArrayList<>();		

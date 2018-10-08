@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperResult;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdDummy;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionStoreEmpSuccess implements DeciAction<StoreEmpInfo> {
-	private DeciAction<StoreEmpInfo> actionHelper;
+final class ActionStoreEmpSuccess implements ActionStd<StoreEmpInfo> {
+	private ActionStd<StoreEmpInfo> actionHelper;
 	
 	
 	public ActionStoreEmpSuccess(DeciTreeOption<StoreEmpInfo> option) {
-		actionHelper = new DeciActionHelperResult<>(buildDeciResult());
+		actionHelper = new ActionStdDummy<>(buildDeciResult());
 	}
 	
 	
@@ -37,7 +37,7 @@ final class ActionStoreEmpSuccess implements DeciAction<StoreEmpInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<StoreEmpInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<StoreEmpInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

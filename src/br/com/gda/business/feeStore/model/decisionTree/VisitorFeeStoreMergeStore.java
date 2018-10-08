@@ -9,11 +9,11 @@ import br.com.gda.business.feeStore.info.FeeStoreMerger;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.decisionTree.RootStoreSelect;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionVisitor;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisitorFeeStoreMergeStore implements DeciActionTransVisitor<FeeStoreInfo> {
+final class VisitorFeeStoreMergeStore implements ActionVisitor<FeeStoreInfo> {
 	private DeciTreeOption<StoreInfo> selOption;
 	
 	
@@ -62,7 +62,7 @@ final class VisitorFeeStoreMergeStore implements DeciActionTransVisitor<FeeStore
 	
 	
 	private List<StoreInfo> selectStore() {
-		DeciAction<StoreInfo> mainAction = new RootStoreSelect(selOption).toAction();
+		ActionStd<StoreInfo> mainAction = new RootStoreSelect(selOption).toAction();
 		mainAction.executeAction();
 		
 		if (mainAction.getDecisionResult().hasResultset())		

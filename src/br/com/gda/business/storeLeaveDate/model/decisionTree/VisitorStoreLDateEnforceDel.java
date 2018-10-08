@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.helper.RecordMode;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionVisitor;
 
-final class VisitorStoreLDateEnforceDel implements DeciActionTransVisitor<StoreLDateInfo> {
+final class VisitorStoreLDateEnforceDel implements ActionVisitor<StoreLDateInfo> {
 	
 	@Override public List<StoreLDateInfo> executeTransformation(List<StoreLDateInfo> recordInfos) {
 		List<StoreLDateInfo> resultRecords = new ArrayList<>();		

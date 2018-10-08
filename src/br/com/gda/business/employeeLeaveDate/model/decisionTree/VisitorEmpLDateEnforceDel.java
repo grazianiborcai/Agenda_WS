@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
 import br.com.gda.helper.RecordMode;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionVisitor;
 
-final class VisitorEmpLDateEnforceDel implements DeciActionTransVisitor<EmpLDateInfo> {
+final class VisitorEmpLDateEnforceDel implements ActionVisitor<EmpLDateInfo> {
 	
 	@Override public List<EmpLDateInfo> executeTransformation(List<EmpLDateInfo> recordInfos) {
 		List<EmpLDateInfo> resultRecords = new ArrayList<>();		

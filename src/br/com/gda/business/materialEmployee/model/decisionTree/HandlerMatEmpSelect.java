@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerMatEmpSelect extends DeciActionHandlerTemplate<MatEmpInfo, MatEmpInfo> {
+public final class HandlerMatEmpSelect extends ActionLazyTemplate<MatEmpInfo, MatEmpInfo> {
 	
 	public HandlerMatEmpSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
@@ -23,7 +23,7 @@ public final class HandlerMatEmpSelect extends DeciActionHandlerTemplate<MatEmpI
 	
 	
 	
-	@Override protected  DeciAction<MatEmpInfo> getInstanceOfActionHook(DeciTreeOption<MatEmpInfo> option) {
+	@Override protected  ActionStd<MatEmpInfo> getInstanceOfActionHook(DeciTreeOption<MatEmpInfo> option) {
 		return new ActionMatEmpSelect(option);
 	}
 	

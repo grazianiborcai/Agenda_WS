@@ -10,10 +10,10 @@ import br.com.gda.business.employee.model.checker.EmpCheckGender;
 import br.com.gda.business.employee.model.checker.EmpCheckKey;
 import br.com.gda.business.employee.model.checker.EmpCheckOwner;
 import br.com.gda.business.employee.model.checker.EmpCheckWrite;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -84,8 +84,8 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 	
 	
 	
-	private List<DeciAction<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
-		List<DeciAction<EmpInfo>> actions = new ArrayList<>();
+	private List<ActionStd<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
+		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new NodeEmpUpdateL1(option).toAction());	
 		return actions;
@@ -111,7 +111,7 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpInfo> toAction() {
+	@Override public ActionStd<EmpInfo> toAction() {
 		return tree.toAction();
 	}
 }

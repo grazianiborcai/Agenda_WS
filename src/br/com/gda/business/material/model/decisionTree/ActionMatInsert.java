@@ -1,17 +1,17 @@
 package br.com.gda.business.material.model.decisionTree;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionMatInsert implements DeciAction<MatInfo> {
+final class ActionMatInsert implements ActionStd<MatInfo> {
 	private final boolean SUCCESS = true;
 	
-	DeciAction<MatInfo> actionOneAttr;	
-	DeciAction<MatInfo> actionTwoText;
-	DeciAction<MatInfo> actionThreeSelec;
+	ActionStd<MatInfo> actionOneAttr;	
+	ActionStd<MatInfo> actionTwoText;
+	ActionStd<MatInfo> actionThreeSelec;
 	DeciTreeOption<MatInfo> actionOption;
 	
 	public ActionMatInsert(DeciTreeOption<MatInfo> option) {
@@ -107,7 +107,7 @@ final class ActionMatInsert implements DeciAction<MatInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<MatInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<MatInfo> actionHandler) {
 		//Dummy
 	}
 }

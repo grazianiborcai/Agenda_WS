@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.masterData.model.decisionTree.ActionWeekdaySelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class WeekdayCheckExist extends ModelCheckerTemplateAction<WeekdayInfo> {
@@ -19,10 +19,10 @@ public final class WeekdayCheckExist extends ModelCheckerTemplateAction<WeekdayI
 	
 	
 	
-	@Override protected DeciAction<WeekdayInfo> buildActionHook(WeekdayInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<WeekdayInfo> buildActionHook(WeekdayInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<WeekdayInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<WeekdayInfo> actionSelect = new ActionWeekdaySelect(option);
+		ActionStd<WeekdayInfo> actionSelect = new ActionWeekdaySelect(option);
 		return actionSelect;
 	}
 	

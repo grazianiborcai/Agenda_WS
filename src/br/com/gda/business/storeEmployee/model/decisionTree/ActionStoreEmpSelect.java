@@ -7,19 +7,19 @@ import br.com.gda.business.storeEmployee.dao.StoreEmpSelect;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionStoreEmpSelect implements DeciAction<StoreEmpInfo> {
-	private DeciAction<StoreEmpInfo> actionHelper;
+public final class ActionStoreEmpSelect implements ActionStd<StoreEmpInfo> {
+	private ActionStd<StoreEmpInfo> actionHelper;
 	
 	
 	public ActionStoreEmpSelect(DeciTreeOption<StoreEmpInfo> option) {
 		DaoStmtExec<StoreEmpInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ public final class ActionStoreEmpSelect implements DeciAction<StoreEmpInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<StoreEmpInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<StoreEmpInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

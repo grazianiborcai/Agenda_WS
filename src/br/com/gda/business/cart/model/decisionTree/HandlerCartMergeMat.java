@@ -8,13 +8,13 @@ import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.decisionTree.RootMatSelect;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerCartMergeMat extends DeciActionHandlerTemplate<CartInfo, MatInfo> {
+final class HandlerCartMergeMat extends ActionLazyTemplate<CartInfo, MatInfo> {
 	private List<CartInfo> originalInfos;
 	
 	
@@ -31,7 +31,7 @@ final class HandlerCartMergeMat extends DeciActionHandlerTemplate<CartInfo, MatI
 	
 	
 	
-	@Override protected DeciAction<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
+	@Override protected ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
 		return new RootMatSelect(option).toAction();
 	}
 	

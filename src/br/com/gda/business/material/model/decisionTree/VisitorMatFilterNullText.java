@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionVisitor;
 
-final class VisitorMatFilterNullText implements DeciActionTransVisitor<MatInfo> {
+final class VisitorMatFilterNullText implements ActionVisitor<MatInfo> {
 	private final boolean FAIL = false;
 	private final boolean OK = true;
 	

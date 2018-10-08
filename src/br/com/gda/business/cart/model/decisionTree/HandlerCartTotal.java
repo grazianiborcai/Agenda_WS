@@ -7,13 +7,13 @@ import java.util.List;
 import br.com.gda.business.amount.info.AmountInfo;
 import br.com.gda.business.amount.model.decisionTree.ActionAmountTotal;
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerCartTotal extends DeciActionHandlerTemplate<CartInfo, AmountInfo> {
+final class HandlerCartTotal extends ActionLazyTemplate<CartInfo, AmountInfo> {
 	private final char ITEM_CATEG = 'T';
 	
 	private List<CartInfo> originalInfos;
@@ -34,7 +34,7 @@ final class HandlerCartTotal extends DeciActionHandlerTemplate<CartInfo, AmountI
 	
 	
 	
-	@Override protected DeciAction<AmountInfo> getInstanceOfActionHook(DeciTreeOption<AmountInfo> option) {
+	@Override protected ActionStd<AmountInfo> getInstanceOfActionHook(DeciTreeOption<AmountInfo> option) {
 		return new ActionAmountTotal(option);
 	}
 	

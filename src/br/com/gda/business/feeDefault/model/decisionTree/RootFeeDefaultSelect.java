@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.business.feeDefault.model.checker.FeeDefaultCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -44,8 +44,8 @@ public final class RootFeeDefaultSelect implements DeciTree<FeeDefaultInfo> {
 	
 	
 	
-	private List<DeciAction<FeeDefaultInfo>> buildActionsOnPassed(DeciTreeOption<FeeDefaultInfo> option) {
-		List<DeciAction<FeeDefaultInfo>> actions = new ArrayList<>();
+	private List<ActionStd<FeeDefaultInfo>> buildActionsOnPassed(DeciTreeOption<FeeDefaultInfo> option) {
+		List<ActionStd<FeeDefaultInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionFeeDefaultSelect(option));
 		return actions;
@@ -71,7 +71,7 @@ public final class RootFeeDefaultSelect implements DeciTree<FeeDefaultInfo> {
 	
 	
 	
-	@Override public DeciAction<FeeDefaultInfo> toAction() {
+	@Override public ActionStd<FeeDefaultInfo> toAction() {
 		return tree.toAction();
 	}
 }

@@ -7,19 +7,19 @@ import br.com.gda.business.materialEmployee.dao.MatEmpDelete;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionMatEmpDelete implements DeciAction<MatEmpInfo> {
-	private DeciAction<MatEmpInfo> actionHelper;
+final class ActionMatEmpDelete implements ActionStd<MatEmpInfo> {
+	private ActionStd<MatEmpInfo> actionHelper;
 	
 	
 	public ActionMatEmpDelete(DeciTreeOption<MatEmpInfo> option) {
 		DaoStmtExec<MatEmpInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ final class ActionMatEmpDelete implements DeciAction<MatEmpInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<MatEmpInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<MatEmpInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

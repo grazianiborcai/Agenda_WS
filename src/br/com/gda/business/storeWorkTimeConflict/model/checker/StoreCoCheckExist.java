@@ -6,9 +6,9 @@ import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.business.storeWorkTimeConflict.model.decisionTree.RootStoreCoSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class StoreCoCheckExist extends ModelCheckerTemplateAction<StoreCoInfo> {	
@@ -19,10 +19,10 @@ public final class StoreCoCheckExist extends ModelCheckerTemplateAction<StoreCoI
 	
 	
 	
-	@Override protected DeciAction<StoreCoInfo> buildActionHook(StoreCoInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<StoreCoInfo> buildActionHook(StoreCoInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<StoreCoInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		DeciAction<StoreCoInfo> actionSelect = new RootStoreCoSelect(option).toAction();
+		ActionStd<StoreCoInfo> actionSelect = new RootStoreCoSelect(option).toAction();
 		return actionSelect;
 	}
 	

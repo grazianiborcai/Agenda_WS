@@ -7,12 +7,12 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionVisitor;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisitorCartEnforceItemNext implements DeciActionTransVisitor<CartInfo> {
+final class VisitorCartEnforceItemNext implements ActionVisitor<CartInfo> {
 	private DeciTreeOption<CartInfo> selOption;
 	private int maxItem;
 	
@@ -97,8 +97,8 @@ final class VisitorCartEnforceItemNext implements DeciActionTransVisitor<CartInf
 	
 	
 	private List<CartInfo> selectCart() {
-		DeciAction<CartInfo> mainAction = new ActionCartEnforceKey(selOption);
-		DeciActionHandler<CartInfo> selectCart = new HandlerCartSelect(selOption.conn, selOption.schemaName);
+		ActionStd<CartInfo> mainAction = new ActionCartEnforceKey(selOption);
+		ActionLazy<CartInfo> selectCart = new HandlerCartSelect(selOption.conn, selOption.schemaName);
 		
 		mainAction.addPostAction(selectCart);
 		mainAction.executeAction();

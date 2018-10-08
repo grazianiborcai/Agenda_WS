@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.model.checker.CurrencyCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -44,8 +44,8 @@ public final class RootCurrencySelect implements DeciTree<CurrencyInfo> {
 	
 	
 	
-	private List<DeciAction<CurrencyInfo>> buildActionsOnPassed(DeciTreeOption<CurrencyInfo> option) {
-		List<DeciAction<CurrencyInfo>> actions = new ArrayList<>();
+	private List<ActionStd<CurrencyInfo>> buildActionsOnPassed(DeciTreeOption<CurrencyInfo> option) {
+		List<ActionStd<CurrencyInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionCurrencySelect(option));
 		return actions;
@@ -71,7 +71,7 @@ public final class RootCurrencySelect implements DeciTree<CurrencyInfo> {
 	
 	
 	
-	@Override public DeciAction<CurrencyInfo> toAction() {
+	@Override public ActionStd<CurrencyInfo> toAction() {
 		return tree.toAction();
 	}
 }

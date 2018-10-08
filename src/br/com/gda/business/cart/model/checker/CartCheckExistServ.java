@@ -10,10 +10,10 @@ import br.com.gda.business.cart.model.decisionTree.ActionCartRemoveItemNum;
 import br.com.gda.business.cart.model.decisionTree.HandlerCartSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class CartCheckExistServ extends ModelCheckerTemplateSimple<CartInfo> {
@@ -71,8 +71,8 @@ public final class CartCheckExistServ extends ModelCheckerTemplateSimple<CartInf
 	private List<CartInfo> selectCartItem(CartInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CartInfo> option = buildOption(recordInfo, conn, schemaName);		
 		
-		DeciAction<CartInfo> removeItemNum = new ActionCartRemoveItemNum(option);
-		DeciActionHandlerTemplate<CartInfo, CartInfo> selectCartItem = new HandlerCartSelect(conn, schemaName);
+		ActionStd<CartInfo> removeItemNum = new ActionCartRemoveItemNum(option);
+		ActionLazyTemplate<CartInfo, CartInfo> selectCartItem = new HandlerCartSelect(conn, schemaName);
 		
 		removeItemNum.addPostAction(selectCartItem);
 		removeItemNum.executeAction();

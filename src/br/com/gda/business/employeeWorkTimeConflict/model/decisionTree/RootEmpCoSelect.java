@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.business.employeeWorkTimeConflict.model.checker.EmpCoCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -45,14 +45,14 @@ public final class RootEmpCoSelect implements DeciTree<EmpCoInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpCoInfo> toAction() {
+	@Override public ActionStd<EmpCoInfo> toAction() {
 		return tree.toAction();
 	}
 	
 	
 	
-	private List<DeciAction<EmpCoInfo>> buildActionsOnPassed(DeciTreeOption<EmpCoInfo> option) {
-		List<DeciAction<EmpCoInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<EmpCoInfo>> buildActionsOnPassed(DeciTreeOption<EmpCoInfo> option) {
+		List<ActionStd<EmpCoInfo>> actions = new ArrayList<>();		
 		actions.add(new ActionEmpCoSelect(option));
 		return actions;
 	}

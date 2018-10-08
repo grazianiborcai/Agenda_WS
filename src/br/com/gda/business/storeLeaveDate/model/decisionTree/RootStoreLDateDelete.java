@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckExist;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckKey;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -59,8 +59,8 @@ public final class RootStoreLDateDelete implements DeciTree<StoreLDateInfo> {
 	
 	
 	
-	private List<DeciAction<StoreLDateInfo>> buildActionsOnPassed(DeciTreeOption<StoreLDateInfo> option) {
-		List<DeciAction<StoreLDateInfo>> actions = new ArrayList<>();
+	private List<ActionStd<StoreLDateInfo>> buildActionsOnPassed(DeciTreeOption<StoreLDateInfo> option) {
+		List<ActionStd<StoreLDateInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionStoreLDateDelete(option));
 		return actions;
@@ -86,7 +86,7 @@ public final class RootStoreLDateDelete implements DeciTree<StoreLDateInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreLDateInfo> toAction() {
+	@Override public ActionStd<StoreLDateInfo> toAction() {
 		return tree.toAction();
 	}
 }

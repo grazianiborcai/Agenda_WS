@@ -1,23 +1,23 @@
 package br.com.gda.business.customer.model.decisionTree;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperTrans;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperTrans;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionCusEnforceCpf implements DeciAction<CusInfo> {
-	private DeciAction<CusInfo> actionHelper;	
+public final class ActionCusEnforceCpf implements ActionStd<CusInfo> {
+	private ActionStd<CusInfo> actionHelper;	
 	
 	
 	public ActionCusEnforceCpf(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorCusEnforceCpf());
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisitorCusEnforceCpf());
 	}
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<CusInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<CusInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

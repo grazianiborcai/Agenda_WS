@@ -7,19 +7,19 @@ import br.com.gda.business.masterData.dao.MatUnitSelect;
 import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionMatUnitSelect implements DeciAction<MatUnitInfo> {
-	private DeciAction<MatUnitInfo> actionHelper;
+public final class ActionMatUnitSelect implements ActionStd<MatUnitInfo> {
+	private ActionStd<MatUnitInfo> actionHelper;
 	
 	
 	public ActionMatUnitSelect(DeciTreeOption<MatUnitInfo> option) {
 		DaoStmtExec<MatUnitInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ public final class ActionMatUnitSelect implements DeciAction<MatUnitInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<MatUnitInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<MatUnitInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -8,9 +8,9 @@ import br.com.gda.business.customer.model.decisionTree.ActionCusEnforceKey;
 import br.com.gda.business.customer.model.decisionTree.HandlerCusSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class CusCheckExist extends ModelCheckerTemplateAction<CusInfo> {
@@ -19,12 +19,12 @@ public final class CusCheckExist extends ModelCheckerTemplateAction<CusInfo> {
 		super(option);
 	}
 	
-	//TODO: adicionar checkArgument para verificar campos de busca estão preenchidos
+	//TODO: adicionar checkArgument para verificar campos de busca estï¿½o preenchidos
 	
-	@Override protected DeciAction<CusInfo> buildActionHook(CusInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<CusInfo> buildActionHook(CusInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CusInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<CusInfo> actionSelect = new ActionCusEnforceKey(option);
+		ActionStd<CusInfo> actionSelect = new ActionCusEnforceKey(option);
 		actionSelect.addPostAction(new HandlerCusSelect(conn, schemaName));
 		return actionSelect;
 	}

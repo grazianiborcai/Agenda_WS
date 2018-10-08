@@ -11,13 +11,13 @@ import br.com.gda.business.reserve.info.ReserveInfo;
 import br.com.gda.business.reserve.model.decisionTree.RootReserveSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerPlanPruneReserve extends DeciActionHandlerTemplate<PlanInfo, ReserveInfo> {
+final class HandlerPlanPruneReserve extends ActionLazyTemplate<PlanInfo, ReserveInfo> {
 	private List<PlanInfo> originalInfos;
 	
 	
@@ -51,7 +51,7 @@ final class HandlerPlanPruneReserve extends DeciActionHandlerTemplate<PlanInfo, 
 	
 	
 	
-	@Override protected DeciAction<ReserveInfo> getInstanceOfActionHook(DeciTreeOption<ReserveInfo> option) {
+	@Override protected ActionStd<ReserveInfo> getInstanceOfActionHook(DeciTreeOption<ReserveInfo> option) {
 		return new RootReserveSelect(option).toAction();
 	}
 	

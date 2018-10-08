@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.business.masterData.model.decisionTree.ActionLanguSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class LanguCheckExist extends ModelCheckerTemplateAction<LanguInfo> {
@@ -19,10 +19,10 @@ public final class LanguCheckExist extends ModelCheckerTemplateAction<LanguInfo>
 	
 	
 	
-	@Override protected DeciAction<LanguInfo> buildActionHook(LanguInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<LanguInfo> buildActionHook(LanguInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<LanguInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<LanguInfo> actionSelect = new ActionLanguSelect(option);
+		ActionStd<LanguInfo> actionSelect = new ActionLanguSelect(option);
 		return actionSelect;
 	}
 	

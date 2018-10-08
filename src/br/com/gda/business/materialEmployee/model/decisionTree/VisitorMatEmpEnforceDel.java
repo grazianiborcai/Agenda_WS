@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.helper.RecordMode;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionVisitor;
 
-final class VisitorMatEmpEnforceDel implements DeciActionTransVisitor<MatEmpInfo> {
+final class VisitorMatEmpEnforceDel implements ActionVisitor<MatEmpInfo> {
 	
 	@Override public List<MatEmpInfo> executeTransformation(List<MatEmpInfo> recordInfos) {
 		List<MatEmpInfo> resultRecords = new ArrayList<>();		

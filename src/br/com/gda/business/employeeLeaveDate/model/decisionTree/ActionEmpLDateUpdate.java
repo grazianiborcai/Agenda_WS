@@ -7,19 +7,19 @@ import br.com.gda.business.employeeLeaveDate.dao.EmpLDateUpdate;
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionEmpLDateUpdate implements DeciAction<EmpLDateInfo> {
-	DeciAction<EmpLDateInfo> actionHelper;
+final class ActionEmpLDateUpdate implements ActionStd<EmpLDateInfo> {
+	ActionStd<EmpLDateInfo> actionHelper;
 	
 	
 	public ActionEmpLDateUpdate(DeciTreeOption<EmpLDateInfo> option) {
 		DaoStmtExec<EmpLDateInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ final class ActionEmpLDateUpdate implements DeciAction<EmpLDateInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<EmpLDateInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<EmpLDateInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerStoreCoSelect extends DeciActionHandlerTemplate<StoreCoInfo, StoreCoInfo> {
+public final class HandlerStoreCoSelect extends ActionLazyTemplate<StoreCoInfo, StoreCoInfo> {
 	
 	public HandlerStoreCoSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
@@ -23,7 +23,7 @@ public final class HandlerStoreCoSelect extends DeciActionHandlerTemplate<StoreC
 	
 	
 	
-	@Override protected DeciAction<StoreCoInfo> getInstanceOfActionHook(DeciTreeOption<StoreCoInfo> option) {
+	@Override protected ActionStd<StoreCoInfo> getInstanceOfActionHook(DeciTreeOption<StoreCoInfo> option) {
 		return new ActionStoreCoSelect(option);
 	}
 	

@@ -7,13 +7,13 @@ import java.util.List;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.business.feeStore.model.decisionTree.RootFeeStoreSelect;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerCartFee extends DeciActionHandlerTemplate<CartInfo, FeeStoreInfo> {
+final class HandlerCartFee extends ActionLazyTemplate<CartInfo, FeeStoreInfo> {
 	private final char ITEM_CATEG = 'S';
 	private final char FEE_CATEG = 'S';
 	
@@ -46,7 +46,7 @@ final class HandlerCartFee extends DeciActionHandlerTemplate<CartInfo, FeeStoreI
 	
 	
 	
-	@Override protected DeciAction<FeeStoreInfo> getInstanceOfActionHook(DeciTreeOption<FeeStoreInfo> option) {
+	@Override protected ActionStd<FeeStoreInfo> getInstanceOfActionHook(DeciTreeOption<FeeStoreInfo> option) {
 		return new RootFeeStoreSelect(option).toAction();
 	}
 	

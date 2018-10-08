@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.gda.business.age.info.AgeInfo;
 import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.info.PlanPruner;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionVisitor;
 
-final class VisitorPlanPruneAge implements DeciActionTransVisitor<PlanInfo> {
+final class VisitorPlanPruneAge implements ActionVisitor<PlanInfo> {
 	
 	@Override public List<PlanInfo> executeTransformation(List<PlanInfo> recordInfos) {		
 		return prune(recordInfos);

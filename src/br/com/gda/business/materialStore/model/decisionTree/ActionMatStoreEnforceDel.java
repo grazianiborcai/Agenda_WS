@@ -1,23 +1,23 @@
 package br.com.gda.business.materialStore.model.decisionTree;
 
 import br.com.gda.business.materialStore.info.MatStoreInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperTrans;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperTrans;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionMatStoreEnforceDel implements DeciAction<MatStoreInfo> {
-	private DeciAction<MatStoreInfo> actionHelper;	
+public final class ActionMatStoreEnforceDel implements ActionStd<MatStoreInfo> {
+	private ActionStd<MatStoreInfo> actionHelper;	
 	
 	
 	public ActionMatStoreEnforceDel(DeciTreeOption<MatStoreInfo> option) {			
-		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorMatStoreEnforceDel());
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisitorMatStoreEnforceDel());
 	}
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<MatStoreInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<MatStoreInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

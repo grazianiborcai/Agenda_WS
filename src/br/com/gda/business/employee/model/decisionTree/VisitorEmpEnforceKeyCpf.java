@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionVisitor;
 
-final class VisitorEmpEnforceKeyCpf implements DeciActionTransVisitor<EmpInfo> {
+final class VisitorEmpEnforceKeyCpf implements ActionVisitor<EmpInfo> {
 	
 	@Override public List<EmpInfo> executeTransformation(List<EmpInfo> recordInfos) {
 		List<EmpInfo> resultRecords = new ArrayList<>();		

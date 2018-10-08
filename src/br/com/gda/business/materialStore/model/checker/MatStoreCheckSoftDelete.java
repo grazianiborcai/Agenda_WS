@@ -8,9 +8,9 @@ import br.com.gda.business.materialStore.model.decisionTree.ActionMatStoreEnforc
 import br.com.gda.business.materialStore.model.decisionTree.HandlerMatStoreSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class MatStoreCheckSoftDelete extends ModelCheckerTemplateAction<MatStoreInfo> {
@@ -21,10 +21,10 @@ public final class MatStoreCheckSoftDelete extends ModelCheckerTemplateAction<Ma
 	
 	
 	
-	@Override protected DeciAction<MatStoreInfo> buildActionHook(MatStoreInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<MatStoreInfo> buildActionHook(MatStoreInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatStoreInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<MatStoreInfo> actionSelect = new ActionMatStoreEnforceDel(option);
+		ActionStd<MatStoreInfo> actionSelect = new ActionMatStoreEnforceDel(option);
 		actionSelect.addPostAction(new HandlerMatStoreSelect(conn, schemaName));
 		return actionSelect;
 	}

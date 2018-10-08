@@ -1,23 +1,23 @@
 package br.com.gda.business.cart.model.decisionTree;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperTrans;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperTrans;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionCartEnforceCateg implements DeciAction<CartInfo> {
-	private DeciAction<CartInfo> actionHelper;	
+final class ActionCartEnforceCateg implements ActionStd<CartInfo> {
+	private ActionStd<CartInfo> actionHelper;	
 	
 	
 	public ActionCartEnforceCateg(DeciTreeOption<CartInfo> option) {			
-		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorCartEnforceCateg());
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisitorCartEnforceCateg());
 	}
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<CartInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<CartInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

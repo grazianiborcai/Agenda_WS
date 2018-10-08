@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.business.masterData.model.checker.MatGroupCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -44,8 +44,8 @@ public final class RootMatGroupSelect implements DeciTree<MatGroupInfo> {
 	
 	
 	
-	private List<DeciAction<MatGroupInfo>> buildActionsOnPassed(DeciTreeOption<MatGroupInfo> option) {
-		List<DeciAction<MatGroupInfo>> actions = new ArrayList<>();
+	private List<ActionStd<MatGroupInfo>> buildActionsOnPassed(DeciTreeOption<MatGroupInfo> option) {
+		List<ActionStd<MatGroupInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionMatGroupSelect(option));
 		return actions;
@@ -71,7 +71,7 @@ public final class RootMatGroupSelect implements DeciTree<MatGroupInfo> {
 	
 	
 	
-	@Override public DeciAction<MatGroupInfo> toAction() {
+	@Override public ActionStd<MatGroupInfo> toAction() {
 		return tree.toAction();
 	}
 }

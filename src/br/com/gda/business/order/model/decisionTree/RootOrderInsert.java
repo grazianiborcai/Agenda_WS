@@ -4,13 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.business.order.model.action.StdOrderCopyCart;
+import br.com.gda.business.order.model.action.LazyOrderEnforceExtid;
+import br.com.gda.business.order.model.action.LazyOrderEnforceLChanged;
+import br.com.gda.business.order.model.action.LazyOrderInsertHdrFirst;
+import br.com.gda.business.order.model.action.LazyOrderInsertItm;
+import br.com.gda.business.order.model.action.LazyOrderMergeCus;
+import br.com.gda.business.order.model.action.LazyOrderMergeEmp;
+import br.com.gda.business.order.model.action.LazyOrderMergeMat;
+import br.com.gda.business.order.model.action.LazyOrderMergeStore;
 import br.com.gda.business.order.model.checker.OrderCheckCart;
 import br.com.gda.business.order.model.checker.OrderCheckWrite;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -57,18 +66,18 @@ public final class RootOrderInsert implements DeciTree<OrderInfo> {
 	
 	
 	
-	private List<DeciAction<OrderInfo>> buildActionsOnPassed(DeciTreeOption<OrderInfo> option) {
-		List<DeciAction<OrderInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<OrderInfo>> buildActionsOnPassed(DeciTreeOption<OrderInfo> option) {
+		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<OrderInfo> copyCart = new ActionOrderCopyCart(option);
-		DeciActionHandler<OrderInfo> enforceLChanged = new HandlerOrderEnforceLChanged(option.conn, option.schemaName);
-		DeciActionHandler<OrderInfo> enforceExtid = new HandlerOrderEnforceExtid(option.conn, option.schemaName);
-		DeciActionHandler<OrderInfo> mergeEmp = new HandlerOrderMergeEmp(option.conn, option.schemaName);
-		DeciActionHandler<OrderInfo> mergeCus = new HandlerOrderMergeCus(option.conn, option.schemaName);
-		DeciActionHandler<OrderInfo> mergeMat = new HandlerOrderMergeMat(option.conn, option.schemaName);
-		DeciActionHandler<OrderInfo> mergeStore = new HandlerOrderMergeStore(option.conn, option.schemaName);
-		DeciActionHandler<OrderInfo> insertHdr = new HandlerOrderInsertHdrFirst(option.conn, option.schemaName);
-		DeciActionHandler<OrderInfo> insertItm = new HandlerOrderInsertItm(option.conn, option.schemaName);
+		ActionStd<OrderInfo> copyCart = new StdOrderCopyCart(option);
+		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> enforceExtid = new LazyOrderEnforceExtid(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeEmp = new LazyOrderMergeEmp(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeCus = new LazyOrderMergeCus(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeMat = new LazyOrderMergeMat(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeStore = new LazyOrderMergeStore(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> insertHdr = new LazyOrderInsertHdrFirst(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> insertItm = new LazyOrderInsertItm(option.conn, option.schemaName);
 		
 		copyCart.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceExtid);
@@ -120,7 +129,7 @@ public final class RootOrderInsert implements DeciTree<OrderInfo> {
 	
 	
 	
-	@Override public DeciAction<OrderInfo> toAction() {
+	@Override public ActionStd<OrderInfo> toAction() {
 		return tree.toAction();
 	}
 }

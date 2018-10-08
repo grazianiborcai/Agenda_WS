@@ -7,9 +7,9 @@ import br.com.gda.business.store.model.decisionTree.ActionStoreEnforceKeyCnpj;
 import br.com.gda.business.store.model.decisionTree.HandlerStoreSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class StoreCheckCnpjChange extends ModelCheckerTemplateAction<StoreInfo> {
@@ -20,10 +20,10 @@ public final class StoreCheckCnpjChange extends ModelCheckerTemplateAction<Store
 	
 	
 	
-	@Override protected DeciAction<StoreInfo> buildActionHook(StoreInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<StoreInfo> buildActionHook(StoreInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<StoreInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		DeciAction<StoreInfo> actionSelect = new ActionStoreEnforceKeyCnpj(option);
+		ActionStd<StoreInfo> actionSelect = new ActionStoreEnforceKeyCnpj(option);
 		actionSelect.addPostAction(new HandlerStoreSelect(conn, schemaName));
 		return actionSelect;
 	}

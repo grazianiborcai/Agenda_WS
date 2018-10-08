@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.helper.RecordMode;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionVisitor;
 
-final class VisitorEmpWTimeEnforceDel implements DeciActionTransVisitor<EmpWTimeInfo> {
+final class VisitorEmpWTimeEnforceDel implements ActionVisitor<EmpWTimeInfo> {
 	
 	@Override public List<EmpWTimeInfo> executeTransformation(List<EmpWTimeInfo> recordInfos) {
 		List<EmpWTimeInfo> resultRecords = new ArrayList<>();		

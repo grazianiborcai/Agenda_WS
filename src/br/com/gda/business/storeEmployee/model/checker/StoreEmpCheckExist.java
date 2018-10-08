@@ -6,9 +6,9 @@ import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.business.storeEmployee.model.decisionTree.ActionStoreEmpSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class StoreEmpCheckExist extends ModelCheckerTemplateAction<StoreEmpInfo> {
@@ -19,10 +19,10 @@ public final class StoreEmpCheckExist extends ModelCheckerTemplateAction<StoreEm
 	
 	
 	
-	@Override protected DeciAction<StoreEmpInfo> buildActionHook(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<StoreEmpInfo> buildActionHook(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<StoreEmpInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		DeciAction<StoreEmpInfo> actionSelect = new ActionStoreEmpSelect(option);
+		ActionStd<StoreEmpInfo> actionSelect = new ActionStoreEmpSelect(option);
 		return actionSelect;
 	}
 	

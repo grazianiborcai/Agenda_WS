@@ -9,10 +9,10 @@ import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckOwner;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckStore;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckTimeRange;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckWrite;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -77,8 +77,8 @@ public final class RootStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 	
 	
 	
-	private List<DeciAction<StoreLDateInfo>> buildActionsOnPassed(DeciTreeOption<StoreLDateInfo> option) {
-		List<DeciAction<StoreLDateInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<StoreLDateInfo>> buildActionsOnPassed(DeciTreeOption<StoreLDateInfo> option) {
+		List<ActionStd<StoreLDateInfo>> actions = new ArrayList<>();		
 		actions.add(new NodeStoreLDateInsert(option).toAction());
 		actions.add(new ActionStoreLDateSelect(option));
 		return actions;
@@ -104,7 +104,7 @@ public final class RootStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreLDateInfo> toAction() {
+	@Override public ActionStd<StoreLDateInfo> toAction() {
 		return tree.toAction();
 	}
 }

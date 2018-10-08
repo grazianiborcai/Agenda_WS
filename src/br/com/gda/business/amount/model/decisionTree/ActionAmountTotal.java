@@ -1,23 +1,23 @@
 package br.com.gda.business.amount.model.decisionTree;
 
 import br.com.gda.business.amount.info.AmountInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperTrans;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperTrans;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionAmountTotal implements DeciAction<AmountInfo> {
-	private DeciAction<AmountInfo> actionHelper;	
+public final class ActionAmountTotal implements ActionStd<AmountInfo> {
+	private ActionStd<AmountInfo> actionHelper;	
 	
 	
 	public ActionAmountTotal(DeciTreeOption<AmountInfo> option) {			
-		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorAmountTotal());
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisitorAmountTotal());
 	}
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<AmountInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<AmountInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

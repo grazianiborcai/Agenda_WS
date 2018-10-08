@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.model.checker.PlanCheckDate;
 import br.com.gda.business.planningTime.model.checker.PlanCheckRead;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -49,21 +49,21 @@ public class RootPlanSelect implements DeciTree<PlanInfo> {
 	
 	
 	
-	private List<DeciAction<PlanInfo>> buildActionsOnPassed(DeciTreeOption<PlanInfo> option) {
-		List<DeciAction<PlanInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<PlanInfo>> buildActionsOnPassed(DeciTreeOption<PlanInfo> option) {
+		List<ActionStd<PlanInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<PlanInfo> mainAction = new ActionPlanEnforceWeekday(option);		
-		DeciActionHandler<PlanInfo> mergeStore = new HandlerPlanMergeStore(option.conn, option.schemaName);		
-		DeciActionHandler<PlanInfo> mergeSWT = new HandlerPlanMergeSWT(option.conn, option.schemaName);
-		DeciActionHandler<PlanInfo> mergeEWT = new HandlerPlanMergeEWT(option.conn, option.schemaName);
-		DeciActionHandler<PlanInfo> mergeEmp = new HandlerPlanMergeEmp(option.conn, option.schemaName);
-		DeciActionHandler<PlanInfo> mergeME = new HandlerPlanMergeME(option.conn, option.schemaName);
-		DeciActionHandler<PlanInfo> mergeMat = new HandlerPlanMergeMat(option.conn, option.schemaName);			
-		DeciActionHandler<PlanInfo> pruneSLD = new HandlerPlanPruneSLD(option.conn, option.schemaName);		
-		DeciActionHandler<PlanInfo> pruneELD = new HandlerPlanPruneELD(option.conn, option.schemaName);			
-		DeciActionHandler<PlanInfo> mergeWeekday = new HandlerPlanMergeWeekday(option.conn, option.schemaName);
-		DeciActionHandler<PlanInfo> pruneAge = new HandlerPlanPruneAge(option.conn, option.schemaName);
-		DeciActionHandler<PlanInfo> pruneReserve = new HandlerPlanPruneReserve(option.conn, option.schemaName);
+		ActionStd<PlanInfo> mainAction = new ActionPlanEnforceWeekday(option);		
+		ActionLazy<PlanInfo> mergeStore = new HandlerPlanMergeStore(option.conn, option.schemaName);		
+		ActionLazy<PlanInfo> mergeSWT = new HandlerPlanMergeSWT(option.conn, option.schemaName);
+		ActionLazy<PlanInfo> mergeEWT = new HandlerPlanMergeEWT(option.conn, option.schemaName);
+		ActionLazy<PlanInfo> mergeEmp = new HandlerPlanMergeEmp(option.conn, option.schemaName);
+		ActionLazy<PlanInfo> mergeME = new HandlerPlanMergeME(option.conn, option.schemaName);
+		ActionLazy<PlanInfo> mergeMat = new HandlerPlanMergeMat(option.conn, option.schemaName);			
+		ActionLazy<PlanInfo> pruneSLD = new HandlerPlanPruneSLD(option.conn, option.schemaName);		
+		ActionLazy<PlanInfo> pruneELD = new HandlerPlanPruneELD(option.conn, option.schemaName);			
+		ActionLazy<PlanInfo> mergeWeekday = new HandlerPlanMergeWeekday(option.conn, option.schemaName);
+		ActionLazy<PlanInfo> pruneAge = new HandlerPlanPruneAge(option.conn, option.schemaName);
+		ActionLazy<PlanInfo> pruneReserve = new HandlerPlanPruneReserve(option.conn, option.schemaName);
 		
 		mainAction.addPostAction(mergeStore);
 		mergeStore.addPostAction(mergeSWT);
@@ -101,7 +101,7 @@ public class RootPlanSelect implements DeciTree<PlanInfo> {
 	
 	
 	
-	@Override public DeciAction<PlanInfo> toAction() {
+	@Override public ActionStd<PlanInfo> toAction() {
 		return tree.toAction();
 	}
 }

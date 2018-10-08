@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerCartRootSelect extends DeciActionHandlerTemplate<CartInfo, CartInfo> {
+final class HandlerCartRootSelect extends ActionLazyTemplate<CartInfo, CartInfo> {
 
 	public HandlerCartRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
@@ -23,7 +23,7 @@ final class HandlerCartRootSelect extends DeciActionHandlerTemplate<CartInfo, Ca
 	
 	
 	
-	@Override protected DeciAction<CartInfo> getInstanceOfActionHook(DeciTreeOption<CartInfo> option) {
+	@Override protected ActionStd<CartInfo> getInstanceOfActionHook(DeciTreeOption<CartInfo> option) {
 		return new RootCartSelect(option).toAction();
 	}
 	

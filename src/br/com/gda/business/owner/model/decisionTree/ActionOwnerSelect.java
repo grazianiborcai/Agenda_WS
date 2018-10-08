@@ -7,19 +7,19 @@ import br.com.gda.business.owner.dao.OwnerSelect;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionOwnerSelect implements DeciAction<OwnerInfo> {
-	private DeciAction<OwnerInfo> actionHelper;
+final class ActionOwnerSelect implements ActionStd<OwnerInfo> {
+	private ActionStd<OwnerInfo> actionHelper;
 	
 	
 	public ActionOwnerSelect(DeciTreeOption<OwnerInfo> option) {
 		DaoStmtExec<OwnerInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ final class ActionOwnerSelect implements DeciAction<OwnerInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<OwnerInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<OwnerInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

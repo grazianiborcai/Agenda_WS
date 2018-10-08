@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.business.planningTime.info.PlanInfo;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionVisitor;
 
-final class VisitorPlanEnforceWeekday implements DeciActionTransVisitor<PlanInfo> {
+final class VisitorPlanEnforceWeekday implements ActionVisitor<PlanInfo> {
 	
 	@Override public List<PlanInfo> executeTransformation(List<PlanInfo> recordInfos) {
 		List<PlanInfo> resultRecords = new ArrayList<>();		

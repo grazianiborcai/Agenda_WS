@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.checker.EmpCheckExistCpf;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -53,14 +53,14 @@ final class NodeEmpUpdateL2 implements DeciTree<EmpInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpInfo> toAction() {
+	@Override public ActionStd<EmpInfo> toAction() {
 		return tree.toAction();
 	}
 	
 	
 	
-	private List<DeciAction<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
-		List<DeciAction<EmpInfo>> actions = new ArrayList<>();
+	private List<ActionStd<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
+		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionEmpUpdate(option));
 		actions.add(new ActionEmpSelect(option));		

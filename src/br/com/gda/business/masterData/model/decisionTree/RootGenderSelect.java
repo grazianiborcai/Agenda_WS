@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.business.masterData.model.checker.GenderCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -44,8 +44,8 @@ public final class RootGenderSelect implements DeciTree<GenderInfo> {
 	
 	
 	
-	private List<DeciAction<GenderInfo>> buildActionsOnPassed(DeciTreeOption<GenderInfo> option) {
-		List<DeciAction<GenderInfo>> actions = new ArrayList<>();
+	private List<ActionStd<GenderInfo>> buildActionsOnPassed(DeciTreeOption<GenderInfo> option) {
+		List<ActionStd<GenderInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionGenderSelect(option));
 		return actions;
@@ -71,7 +71,7 @@ public final class RootGenderSelect implements DeciTree<GenderInfo> {
 	
 	
 	
-	@Override public DeciAction<GenderInfo> toAction() {
+	@Override public ActionStd<GenderInfo> toAction() {
 		return tree.toAction();
 	}
 }

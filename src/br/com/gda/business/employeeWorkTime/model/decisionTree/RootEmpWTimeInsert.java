@@ -13,10 +13,10 @@ import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckSWT;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWeekday;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEmp;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckWrite;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -113,14 +113,14 @@ public final class RootEmpWTimeInsert implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpWTimeInfo> toAction() {
+	@Override public ActionStd<EmpWTimeInfo> toAction() {
 		return tree.toAction();
 	}
 	
 	
 	
-	private List<DeciAction<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
-		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
+	private List<ActionStd<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
+		List<ActionStd<EmpWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new NodeEmpWTimeInsert(option).toAction());	
 		actions.add(new ActionEmpWTimeSelect(option));

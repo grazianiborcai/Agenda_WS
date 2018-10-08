@@ -7,19 +7,19 @@ import br.com.gda.business.masterData.dao.MatGroupSelect;
 import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionMatGroupSelect implements DeciAction<MatGroupInfo> {
-	private DeciAction<MatGroupInfo> actionHelper;
+public final class ActionMatGroupSelect implements ActionStd<MatGroupInfo> {
+	private ActionStd<MatGroupInfo> actionHelper;
 	
 	
 	public ActionMatGroupSelect(DeciTreeOption<MatGroupInfo> option) {
 		DaoStmtExec<MatGroupInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ public final class ActionMatGroupSelect implements DeciAction<MatGroupInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<MatGroupInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<MatGroupInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

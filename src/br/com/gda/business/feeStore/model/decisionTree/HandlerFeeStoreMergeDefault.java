@@ -8,13 +8,13 @@ import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.business.feeDefault.model.decisionTree.RootFeeDefaultSelect;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.business.feeStore.info.FeeStoreMerger;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerFeeStoreMergeDefault extends DeciActionHandlerTemplate<FeeStoreInfo, FeeDefaultInfo> {
+final class HandlerFeeStoreMergeDefault extends ActionLazyTemplate<FeeStoreInfo, FeeDefaultInfo> {
 	private List<FeeStoreInfo> originalInfos;
 	
 	
@@ -31,7 +31,7 @@ final class HandlerFeeStoreMergeDefault extends DeciActionHandlerTemplate<FeeSto
 	
 	
 	
-	@Override protected DeciAction<FeeDefaultInfo> getInstanceOfActionHook(DeciTreeOption<FeeDefaultInfo> option) {
+	@Override protected ActionStd<FeeDefaultInfo> getInstanceOfActionHook(DeciTreeOption<FeeDefaultInfo> option) {
 		return new RootFeeDefaultSelect(option).toAction();
 	}
 	

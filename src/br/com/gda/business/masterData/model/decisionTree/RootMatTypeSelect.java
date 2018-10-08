@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.model.checker.MatTypeCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -44,8 +44,8 @@ public final class RootMatTypeSelect implements DeciTree<MatTypeInfo> {
 	
 	
 	
-	private List<DeciAction<MatTypeInfo>> buildActionsOnPassed(DeciTreeOption<MatTypeInfo> option) {
-		List<DeciAction<MatTypeInfo>> actions = new ArrayList<>();
+	private List<ActionStd<MatTypeInfo>> buildActionsOnPassed(DeciTreeOption<MatTypeInfo> option) {
+		List<ActionStd<MatTypeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionMatTypeSelect(option));
 		return actions;
@@ -71,7 +71,7 @@ public final class RootMatTypeSelect implements DeciTree<MatTypeInfo> {
 	
 	
 	
-	@Override public DeciAction<MatTypeInfo> toAction() {
+	@Override public ActionStd<MatTypeInfo> toAction() {
 		return tree.toAction();
 	}
 }

@@ -11,11 +11,11 @@ import br.com.gda.business.cart.model.checker.CartCheckMat;
 import br.com.gda.business.cart.model.checker.CartCheckOwner;
 import br.com.gda.business.cart.model.checker.CartCheckStore;
 import br.com.gda.business.cart.model.checker.CartCheckWriteL1;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -100,12 +100,12 @@ public final class RootCartInsert implements DeciTree<CartInfo> {
 	
 	
 	
-	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
-		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
+		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> enforceItem = new ActionCartEnforceItemNext(option);
-		DeciActionHandler<CartInfo> enforceLChanged = new HandlerCartEnforceLChanged(option.conn, option.schemaName);
-		DeciActionHandler<CartInfo> rootL2 = new HandlerCartNodetInsertL1(option.conn, option.schemaName);	
+		ActionStd<CartInfo> enforceItem = new ActionCartEnforceItemNext(option);
+		ActionLazy<CartInfo> enforceLChanged = new HandlerCartEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<CartInfo> rootL2 = new HandlerCartNodetInsertL1(option.conn, option.schemaName);	
 		
 		enforceItem.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(rootL2);
@@ -134,7 +134,7 @@ public final class RootCartInsert implements DeciTree<CartInfo> {
 	
 	
 	
-	@Override public DeciAction<CartInfo> toAction() {
+	@Override public ActionStd<CartInfo> toAction() {
 		return tree.toAction();
 	}
 }

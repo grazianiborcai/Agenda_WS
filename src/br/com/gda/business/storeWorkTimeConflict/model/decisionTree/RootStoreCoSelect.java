@@ -6,11 +6,11 @@ import java.util.List;
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.business.storeWorkTimeConflict.model.checker.StoreCoCheckRead;
 import br.com.gda.business.storeWorkTimeConflict.model.checker.StoreCoCheckSWT;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -58,17 +58,17 @@ public final class RootStoreCoSelect implements DeciTree<StoreCoInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreCoInfo> toAction() {
+	@Override public ActionStd<StoreCoInfo> toAction() {
 		return tree.toAction();
 	}
 	
 	
 	
-	private List<DeciAction<StoreCoInfo>> buildActionsOnPassed(DeciTreeOption<StoreCoInfo> option) {
-		List<DeciAction<StoreCoInfo>> actions = new ArrayList<>();
+	private List<ActionStd<StoreCoInfo>> buildActionsOnPassed(DeciTreeOption<StoreCoInfo> option) {
+		List<ActionStd<StoreCoInfo>> actions = new ArrayList<>();
 		
-		DeciAction<StoreCoInfo> actionRange = new ActionStoreCoMakeRange(option);
-		DeciActionHandler<StoreCoInfo> actionSelect = new HandlerStoreCoSelect(option.conn, option.schemaName);
+		ActionStd<StoreCoInfo> actionRange = new ActionStoreCoMakeRange(option);
+		ActionLazy<StoreCoInfo> actionSelect = new HandlerStoreCoSelect(option.conn, option.schemaName);
 		actionRange.addPostAction(actionSelect);		
 		actions.add(actionRange);
 		

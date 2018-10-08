@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.business.masterData.model.decisionTree.ActionGenderSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class GenderCheckExist extends ModelCheckerTemplateAction<GenderInfo> {
@@ -19,10 +19,10 @@ public final class GenderCheckExist extends ModelCheckerTemplateAction<GenderInf
 	
 	
 	
-	@Override protected DeciAction<GenderInfo> buildActionHook(GenderInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<GenderInfo> buildActionHook(GenderInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<GenderInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<GenderInfo> actionSelect = new ActionGenderSelect(option);
+		ActionStd<GenderInfo> actionSelect = new ActionGenderSelect(option);
 		return actionSelect;
 	}
 	

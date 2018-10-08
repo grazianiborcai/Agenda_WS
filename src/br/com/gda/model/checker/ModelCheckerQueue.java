@@ -5,12 +5,12 @@ import java.util.List;
 
 
 public final class ModelCheckerQueue<T> extends ModelCheckerTemplateSimple<T>{
-	private List<ModelChecker<T>> queueChecker; //TODO: renomear variáveis de Stack para Queue nas subclasses
+	private List<ModelChecker<T>> queueChecker;
 	private ModelChecker<T> failedChecker;
 	
-	public ModelCheckerQueue(List<ModelChecker<T>> stack) {
+	public ModelCheckerQueue(List<ModelChecker<T>> queue) {
 		super();	
-		queueChecker = stack;
+		queueChecker = queue;
 	}
 	
 	

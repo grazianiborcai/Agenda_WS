@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckExist;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -54,8 +54,8 @@ final class NodeFeeStoreSelect implements DeciTree<FeeStoreInfo> {
 	
 	
 	
-	private List<DeciAction<FeeStoreInfo>> buildActionsOnPassed(DeciTreeOption<FeeStoreInfo> option) {
-		List<DeciAction<FeeStoreInfo>> actions = new ArrayList<>();
+	private List<ActionStd<FeeStoreInfo>> buildActionsOnPassed(DeciTreeOption<FeeStoreInfo> option) {
+		List<ActionStd<FeeStoreInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionFeeStoreSelect(option));
 		return actions;
@@ -63,11 +63,11 @@ final class NodeFeeStoreSelect implements DeciTree<FeeStoreInfo> {
 	
 	
 	
-	private List<DeciAction<FeeStoreInfo>> buildActionsOnFailed(DeciTreeOption<FeeStoreInfo> option) {
-		List<DeciAction<FeeStoreInfo>> actions = new ArrayList<>();
+	private List<ActionStd<FeeStoreInfo>> buildActionsOnFailed(DeciTreeOption<FeeStoreInfo> option) {
+		List<ActionStd<FeeStoreInfo>> actions = new ArrayList<>();
 		
-		DeciAction<FeeStoreInfo> mergeStore = new ActionFeeStoreMergeStore(option);
-		DeciActionHandler<FeeStoreInfo> mergeDefault = new HandlerFeeStoreMergeDefault(option.conn, option.schemaName);
+		ActionStd<FeeStoreInfo> mergeStore = new ActionFeeStoreMergeStore(option);
+		ActionLazy<FeeStoreInfo> mergeDefault = new HandlerFeeStoreMergeDefault(option.conn, option.schemaName);
 		
 		mergeStore.addPostAction(mergeDefault);
 		
@@ -95,7 +95,7 @@ final class NodeFeeStoreSelect implements DeciTree<FeeStoreInfo> {
 	
 	
 	
-	@Override public DeciAction<FeeStoreInfo> toAction() {
+	@Override public ActionStd<FeeStoreInfo> toAction() {
 		return tree.toAction();
 	}
 }

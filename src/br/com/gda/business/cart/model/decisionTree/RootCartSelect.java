@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckRead;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -45,18 +45,18 @@ public final class RootCartSelect implements DeciTree<CartInfo> {
 	
 	
 	
-	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
-		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
+		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> selectCart = new ActionCartSelect(option);
-		DeciActionHandler<CartInfo> enforceCateg = new HandlerCartEnforceCateg(option.conn, option.schemaName);
-		DeciActionHandler<CartInfo> mergeStore = new HandlerCartMergeStore(option.conn, option.schemaName);
-		DeciActionHandler<CartInfo> enforceWeekday = new HandlerCartEnforceWeekday(option.conn, option.schemaName);
-		DeciActionHandler<CartInfo> mergeWeekday = new HandlerCartMergeWeekday(option.conn, option.schemaName);
-		DeciActionHandler<CartInfo> mergeCateg = new HandlerCartMergeCateg(option.conn, option.schemaName);
-		DeciActionHandler<CartInfo> addFee = new HandlerCartFee(option.conn, option.schemaName);
-		DeciActionHandler<CartInfo> addTotal = new HandlerCartTotal(option.conn, option.schemaName);
-		DeciActionHandler<CartInfo> mergeMat = new HandlerCartMergeMat(option.conn, option.schemaName);
+		ActionStd<CartInfo> selectCart = new ActionCartSelect(option);
+		ActionLazy<CartInfo> enforceCateg = new HandlerCartEnforceCateg(option.conn, option.schemaName);
+		ActionLazy<CartInfo> mergeStore = new HandlerCartMergeStore(option.conn, option.schemaName);
+		ActionLazy<CartInfo> enforceWeekday = new HandlerCartEnforceWeekday(option.conn, option.schemaName);
+		ActionLazy<CartInfo> mergeWeekday = new HandlerCartMergeWeekday(option.conn, option.schemaName);
+		ActionLazy<CartInfo> mergeCateg = new HandlerCartMergeCateg(option.conn, option.schemaName);
+		ActionLazy<CartInfo> addFee = new HandlerCartFee(option.conn, option.schemaName);
+		ActionLazy<CartInfo> addTotal = new HandlerCartTotal(option.conn, option.schemaName);
+		ActionLazy<CartInfo> mergeMat = new HandlerCartMergeMat(option.conn, option.schemaName);
 		
 		selectCart.addPostAction(mergeMat);
 		mergeMat.addPostAction(mergeStore);
@@ -92,7 +92,7 @@ public final class RootCartSelect implements DeciTree<CartInfo> {
 	
 	
 	
-	@Override public DeciAction<CartInfo> toAction() {
+	@Override public ActionStd<CartInfo> toAction() {
 		return tree.toAction();
 	}
 }

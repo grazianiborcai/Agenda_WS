@@ -7,19 +7,19 @@ import br.com.gda.business.storeWorkTime.dao.StoreWTimeSelect;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionStoreWTimeSelect implements DeciAction<StoreWTimeInfo> {
-	private DeciAction<StoreWTimeInfo> actionHelper;
+public final class ActionStoreWTimeSelect implements ActionStd<StoreWTimeInfo> {
+	private ActionStd<StoreWTimeInfo> actionHelper;
 	
 	
 	public ActionStoreWTimeSelect(DeciTreeOption<StoreWTimeInfo> option) {
 		DaoStmtExec<StoreWTimeInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ public final class ActionStoreWTimeSelect implements DeciAction<StoreWTimeInfo> 
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<StoreWTimeInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<StoreWTimeInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

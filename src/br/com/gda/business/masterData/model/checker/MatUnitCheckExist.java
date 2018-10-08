@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.business.masterData.model.decisionTree.ActionMatUnitSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class MatUnitCheckExist extends ModelCheckerTemplateAction<MatUnitInfo> {
@@ -19,10 +19,10 @@ public final class MatUnitCheckExist extends ModelCheckerTemplateAction<MatUnitI
 	
 	
 	
-	@Override protected DeciAction<MatUnitInfo> buildActionHook(MatUnitInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<MatUnitInfo> buildActionHook(MatUnitInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatUnitInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<MatUnitInfo> actionSelect = new ActionMatUnitSelect(option);
+		ActionStd<MatUnitInfo> actionSelect = new ActionMatUnitSelect(option);
 		return actionSelect;
 	}
 	

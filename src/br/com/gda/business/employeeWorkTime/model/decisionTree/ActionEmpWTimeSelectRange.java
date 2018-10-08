@@ -7,19 +7,19 @@ import br.com.gda.business.employeeWorkTime.dao.EmpWTimeSelectRange;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionEmpWTimeSelectRange implements DeciAction<EmpWTimeInfo> {
-	private DeciAction<EmpWTimeInfo> actionHelper;
+public final class ActionEmpWTimeSelectRange implements ActionStd<EmpWTimeInfo> {
+	private ActionStd<EmpWTimeInfo> actionHelper;
 	
 	
 	public ActionEmpWTimeSelectRange(DeciTreeOption<EmpWTimeInfo> option) {
 		DaoStmtExec<EmpWTimeInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ public final class ActionEmpWTimeSelectRange implements DeciAction<EmpWTimeInfo>
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<EmpWTimeInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<EmpWTimeInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

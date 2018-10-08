@@ -7,9 +7,9 @@ import br.com.gda.business.storeEmployee.model.decisionTree.ActionStoreEmpEnforc
 import br.com.gda.business.storeEmployee.model.decisionTree.HandlerStoreEmpSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class StoreEmpCheckSoftDelete extends ModelCheckerTemplateAction<StoreEmpInfo> {
@@ -20,10 +20,10 @@ public final class StoreEmpCheckSoftDelete extends ModelCheckerTemplateAction<St
 	
 	
 	
-	@Override protected DeciAction<StoreEmpInfo> buildActionHook(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<StoreEmpInfo> buildActionHook(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<StoreEmpInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<StoreEmpInfo> actionSelect = new ActionStoreEmpEnforceDel(option);
+		ActionStd<StoreEmpInfo> actionSelect = new ActionStoreEmpEnforceDel(option);
 		actionSelect.addPostAction(new HandlerStoreEmpSelect(conn, schemaName));		
 		return actionSelect;
 	}

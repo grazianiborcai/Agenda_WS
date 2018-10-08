@@ -107,7 +107,7 @@ public final class SystemMessage {
 	public static final String EMP_LDATE_FLAGGED_AS_DELETED = "Employee leave date data is flagged as deleted on DB";
 	public static final String EMP_LDATE_LEAVE_FOUND = "There is a employee's leave date for selected time";
 	public static final String EMP_LDATE_NO_LEAVE_FOUND = "Selected time is free of employee's leave dates";	
-	public static final String EMP_LDATE_NOT_FOUND = "There is a employee's leave date for selected time";
+	public static final String EMP_LDATE_NOT_FOUND = "Employee's leave date not found on DB";
 	public static final String EMP_MULTIPLE_ENTRIES_FOUND = "Multiple entries found for Employee's data selection";	
 	public static final String EMP_NOT_FOUND = "Employee's data not found on DB";	
 	public static final String EMP_SINGLE_ENTRY_FOUND = "Single entry found for Employee's data selection";

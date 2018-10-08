@@ -13,11 +13,11 @@ import br.com.gda.business.material.model.checker.MatCheckOwner;
 import br.com.gda.business.material.model.checker.MatCheckType;
 import br.com.gda.business.material.model.checker.MatCheckUnit;
 import br.com.gda.business.material.model.checker.MatCheckWrite;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -105,20 +105,20 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 		queue.add(checker);
 		
 		//TODO: verificar se barcode ou código do fornecedor já existe  no banco
-		//TODO: verificar a unidade de medida. Servi�o somente pode ter tempo e produto somente pode ter unidade
+		//TODO: verificar a unidade de medida. Servi�o somente pode ter tempo e produto somente pode ter unidade
 		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
 	
-	private List<DeciAction<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
-		List<DeciAction<MatInfo>> actions = new ArrayList<>();		
-		DeciAction<MatInfo> actionInsertAttr = new ActionMatInsertAttr(option);
+	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
+		List<ActionStd<MatInfo>> actions = new ArrayList<>();		
+		ActionStd<MatInfo> actionInsertAttr = new ActionMatInsertAttr(option);
 		
-		DeciActionHandler<MatInfo> insertTxt = new HandlerMatInsertText(option.conn, option.schemaName);		
+		ActionLazy<MatInfo> insertTxt = new HandlerMatInsertText(option.conn, option.schemaName);		
 		actionInsertAttr.addPostAction(insertTxt);		
 		
-		DeciActionHandler<MatInfo> selectMat = new HandlerMatSelect(option.conn, option.schemaName);		
+		ActionLazy<MatInfo> selectMat = new HandlerMatSelect(option.conn, option.schemaName);		
 		actionInsertAttr.addPostAction(selectMat);	
 		
 		actions.add(actionInsertAttr);		
@@ -145,7 +145,7 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 	
 	
 	
-	@Override public DeciAction<MatInfo> toAction() {
+	@Override public ActionStd<MatInfo> toAction() {
 		return tree.toAction();
 	}
 }

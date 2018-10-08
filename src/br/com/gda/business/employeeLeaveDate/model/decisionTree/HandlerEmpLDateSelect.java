@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerEmpLDateSelect extends DeciActionHandlerTemplate<EmpLDateInfo, EmpLDateInfo> {
+public final class HandlerEmpLDateSelect extends ActionLazyTemplate<EmpLDateInfo, EmpLDateInfo> {
 	
 	public HandlerEmpLDateSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
@@ -23,7 +23,7 @@ public final class HandlerEmpLDateSelect extends DeciActionHandlerTemplate<EmpLD
 	
 	
 	
-	@Override protected DeciAction<EmpLDateInfo> getInstanceOfActionHook(DeciTreeOption<EmpLDateInfo> option) {
+	@Override protected ActionStd<EmpLDateInfo> getInstanceOfActionHook(DeciTreeOption<EmpLDateInfo> option) {
 		return new ActionEmpLDateSelect(option);
 	}
 	

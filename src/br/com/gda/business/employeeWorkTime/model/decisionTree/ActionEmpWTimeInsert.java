@@ -7,19 +7,19 @@ import br.com.gda.business.employeeWorkTime.dao.EmpWTimeInsert;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionEmpWTimeInsert implements DeciAction<EmpWTimeInfo> {
-	private DeciAction<EmpWTimeInfo> actionHelper;
+final class ActionEmpWTimeInsert implements ActionStd<EmpWTimeInfo> {
+	private ActionStd<EmpWTimeInfo> actionHelper;
 	
 	
 	public ActionEmpWTimeInsert(DeciTreeOption<EmpWTimeInfo> option) {
 		DaoStmtExec<EmpWTimeInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ final class ActionEmpWTimeInsert implements DeciAction<EmpWTimeInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<EmpWTimeInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<EmpWTimeInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

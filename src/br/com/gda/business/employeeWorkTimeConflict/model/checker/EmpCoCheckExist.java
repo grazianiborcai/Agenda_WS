@@ -6,9 +6,9 @@ import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.business.employeeWorkTimeConflict.model.decisionTree.RootEmpCoSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class EmpCoCheckExist extends ModelCheckerTemplateAction<EmpCoInfo> {
@@ -19,10 +19,10 @@ public final class EmpCoCheckExist extends ModelCheckerTemplateAction<EmpCoInfo>
 	
 	
 	
-	@Override protected DeciAction<EmpCoInfo> buildActionHook(EmpCoInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<EmpCoInfo> buildActionHook(EmpCoInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<EmpCoInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		DeciAction<EmpCoInfo> actionSelect = new RootEmpCoSelect(option).toAction();
+		ActionStd<EmpCoInfo> actionSelect = new RootEmpCoSelect(option).toAction();
 		return actionSelect;
 	}
 	

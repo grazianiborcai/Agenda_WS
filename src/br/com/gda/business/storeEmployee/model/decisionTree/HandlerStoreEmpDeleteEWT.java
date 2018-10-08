@@ -10,14 +10,14 @@ import br.com.gda.business.employeeWorkTime.model.decisionTree.RootEmpWTimeDelet
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.business.storeWorkTime.model.decisionTree.RootStoreWTimeSelect;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerStoreEmpDeleteEWT extends DeciActionHandlerTemplate<StoreEmpInfo, EmpWTimeInfo> {
+final class HandlerStoreEmpDeleteEWT extends ActionLazyTemplate<StoreEmpInfo, EmpWTimeInfo> {
 	private Connection conn;
 	private String schemaName;
 	
@@ -61,7 +61,7 @@ final class HandlerStoreEmpDeleteEWT extends DeciActionHandlerTemplate<StoreEmpI
 	
 	
 	
-	@Override protected  DeciAction<EmpWTimeInfo> getInstanceOfActionHook(DeciTreeOption<EmpWTimeInfo> option) {
+	@Override protected  ActionStd<EmpWTimeInfo> getInstanceOfActionHook(DeciTreeOption<EmpWTimeInfo> option) {
 		return new RootEmpWTimeDelete(option).toAction();
 	}
 	

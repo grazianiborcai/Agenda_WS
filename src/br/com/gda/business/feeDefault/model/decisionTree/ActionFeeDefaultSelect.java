@@ -7,19 +7,19 @@ import br.com.gda.business.feeDefault.dao.FeeDefaultSelect;
 import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionFeeDefaultSelect implements DeciAction<FeeDefaultInfo> {
-	private DeciAction<FeeDefaultInfo> actionHelper;
+public final class ActionFeeDefaultSelect implements ActionStd<FeeDefaultInfo> {
+	private ActionStd<FeeDefaultInfo> actionHelper;
 	
 	
 	public ActionFeeDefaultSelect(DeciTreeOption<FeeDefaultInfo> option) {
 		DaoStmtExec<FeeDefaultInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ public final class ActionFeeDefaultSelect implements DeciAction<FeeDefaultInfo> 
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<FeeDefaultInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<FeeDefaultInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

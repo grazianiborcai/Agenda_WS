@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.business.masterData.model.decisionTree.ActionMatCategSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class MatCategCheckExist extends ModelCheckerTemplateAction<MatCategInfo> {
@@ -19,10 +19,10 @@ public final class MatCategCheckExist extends ModelCheckerTemplateAction<MatCate
 	
 	
 	
-	@Override protected DeciAction<MatCategInfo> buildActionHook(MatCategInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<MatCategInfo> buildActionHook(MatCategInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatCategInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<MatCategInfo> actionSelect = new ActionMatCategSelect(option);
+		ActionStd<MatCategInfo> actionSelect = new ActionMatCategSelect(option);
 		return actionSelect;
 	}
 	

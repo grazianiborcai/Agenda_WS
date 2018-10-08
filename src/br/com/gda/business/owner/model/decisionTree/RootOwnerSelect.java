@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.checker.OwnerCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -17,7 +17,7 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 	private DeciTree<OwnerInfo> tree;
-	//	TODO: ao criar um Owner, esse deve herdar valores padrões como Taxa de Serviço
+	//	TODO: ao criar um Owner, esse deve herdar valores padrï¿½es como Taxa de Serviï¿½o
 	
 	public RootOwnerSelect(DeciTreeOption<OwnerInfo> option) {
 		DeciTreeHelperOption<OwnerInfo> helperOption = new DeciTreeHelperOption<>();
@@ -44,8 +44,8 @@ public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 	
 	
 	
-	private List<DeciAction<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
-		List<DeciAction<OwnerInfo>> actions = new ArrayList<>();
+	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionOwnerSelect(option));
 		return actions;
@@ -71,7 +71,7 @@ public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 	
 	
 	
-	@Override public DeciAction<OwnerInfo> toAction() {
+	@Override public ActionStd<OwnerInfo> toAction() {
 		return tree.toAction();
 	}
 }

@@ -6,11 +6,11 @@ import java.util.List;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckDelete;
 import br.com.gda.business.cart.model.checker.CartCheckExistItm;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -57,11 +57,11 @@ final class RootCartDeleteItm implements DeciTree<CartInfo> {
 	
 	
 	
-	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
-		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
+		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> selectItem = new ActionCartSelect(option);
-		DeciActionHandler<CartInfo> deleteItm = new HandlerCartDeleteItm(option.conn, option.schemaName);
+		ActionStd<CartInfo> selectItem = new ActionCartSelect(option);
+		ActionLazy<CartInfo> deleteItm = new HandlerCartDeleteItm(option.conn, option.schemaName);
 		
 		selectItem.addPostAction(deleteItm);
 		
@@ -89,7 +89,7 @@ final class RootCartDeleteItm implements DeciTree<CartInfo> {
 	
 	
 	
-	@Override public DeciAction<CartInfo> toAction() {
+	@Override public ActionStd<CartInfo> toAction() {
 		return tree.toAction();
 	}
 }

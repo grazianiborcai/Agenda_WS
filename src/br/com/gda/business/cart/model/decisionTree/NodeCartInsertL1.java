@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckMatServ;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -53,11 +53,11 @@ final class NodeCartInsertL1 implements DeciTree<CartInfo> {
 	
 	
 	
-	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
-		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
+		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> weekday = new ActionCartEnforceWeekday(option);
-		DeciActionHandler<CartInfo> rootL3 = new HandlerCartNodetInsertL2(option.conn, option.schemaName);
+		ActionStd<CartInfo> weekday = new ActionCartEnforceWeekday(option);
+		ActionLazy<CartInfo> rootL3 = new HandlerCartNodetInsertL2(option.conn, option.schemaName);
 		
 		weekday.addPostAction(rootL3);
 		
@@ -85,7 +85,7 @@ final class NodeCartInsertL1 implements DeciTree<CartInfo> {
 	
 	
 	
-	@Override public DeciAction<CartInfo> toAction() {
+	@Override public ActionStd<CartInfo> toAction() {
 		return tree.toAction();
 	}
 }

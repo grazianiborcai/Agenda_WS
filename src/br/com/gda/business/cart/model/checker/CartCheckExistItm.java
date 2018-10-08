@@ -9,9 +9,9 @@ import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.decisionTree.ActionCartSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class CartCheckExistItm extends ModelCheckerTemplateSimple<CartInfo> {
@@ -44,7 +44,7 @@ public final class CartCheckExistItm extends ModelCheckerTemplateSimple<CartInfo
 	private List<CartInfo> selectCartItem(CartInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CartInfo> option = buildOption(recordInfo, conn, schemaName);		
 		
-		DeciAction<CartInfo> selectCartItem = new ActionCartSelect(option);		
+		ActionStd<CartInfo> selectCartItem = new ActionCartSelect(option);		
 		selectCartItem.executeAction();
 		
 		if (selectCartItem.getDecisionResult().hasResultset())

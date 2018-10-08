@@ -12,10 +12,10 @@ import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckStore;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckStoreEmp;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckTimeRange;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmpLDateCheckWrite;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -96,8 +96,8 @@ public final class RootEmpLDateUpdate implements DeciTree<EmpLDateInfo> {
 	
 	
 	
-	private List<DeciAction<EmpLDateInfo>> buildActionsOnPassed(DeciTreeOption<EmpLDateInfo> option) {
-		List<DeciAction<EmpLDateInfo>> actions = new ArrayList<>();
+	private List<ActionStd<EmpLDateInfo>> buildActionsOnPassed(DeciTreeOption<EmpLDateInfo> option) {
+		List<ActionStd<EmpLDateInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionEmpLDateUpdate(option));
 		actions.add(new ActionEmpLDateSelect(option));
@@ -124,7 +124,7 @@ public final class RootEmpLDateUpdate implements DeciTree<EmpLDateInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpLDateInfo> toAction() {
+	@Override public ActionStd<EmpLDateInfo> toAction() {
 		return tree.toAction();
 	}
 }

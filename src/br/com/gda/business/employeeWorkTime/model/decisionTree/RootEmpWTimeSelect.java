@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -44,14 +44,14 @@ public final class RootEmpWTimeSelect implements DeciTree<EmpWTimeInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpWTimeInfo> toAction() {
+	@Override public ActionStd<EmpWTimeInfo> toAction() {
 		return tree.toAction();
 	}
 	
 	
 	
-	private List<DeciAction<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
-		List<DeciAction<EmpWTimeInfo>> actions = new ArrayList<>();
+	private List<ActionStd<EmpWTimeInfo>> buildActionsOnPassed(DeciTreeOption<EmpWTimeInfo> option) {
+		List<ActionStd<EmpWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionEmpWTimeSelect(option));
 		return actions;

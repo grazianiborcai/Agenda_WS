@@ -7,19 +7,19 @@ import br.com.gda.business.masterData.dao.WeekdaySelect;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionWeekdaySelect implements DeciAction<WeekdayInfo> {
-	private DeciAction<WeekdayInfo> actionHelper;
+public final class ActionWeekdaySelect implements ActionStd<WeekdayInfo> {
+	private ActionStd<WeekdayInfo> actionHelper;
 	
 	
 	public ActionWeekdaySelect(DeciTreeOption<WeekdayInfo> option) {
 		DaoStmtExec<WeekdayInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ public final class ActionWeekdaySelect implements DeciAction<WeekdayInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<WeekdayInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<WeekdayInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

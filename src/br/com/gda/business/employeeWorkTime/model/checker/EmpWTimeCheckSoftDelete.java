@@ -7,9 +7,9 @@ import br.com.gda.business.employeeWorkTime.model.decisionTree.ActionEmpWTimeEnf
 import br.com.gda.business.employeeWorkTime.model.decisionTree.HandlerEmpWTimeSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class EmpWTimeCheckSoftDelete extends ModelCheckerTemplateAction<EmpWTimeInfo> {
@@ -20,10 +20,10 @@ public final class EmpWTimeCheckSoftDelete extends ModelCheckerTemplateAction<Em
 	
 	
 	
-	@Override protected DeciAction<EmpWTimeInfo> buildActionHook(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<EmpWTimeInfo> buildActionHook(EmpWTimeInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<EmpWTimeInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<EmpWTimeInfo> actionSelect = new ActionEmpWTimeEnforceDel(option);
+		ActionStd<EmpWTimeInfo> actionSelect = new ActionEmpWTimeEnforceDel(option);
 		actionSelect.addPostAction(new HandlerEmpWTimeSelect(conn, schemaName));		
 		return actionSelect;
 	}

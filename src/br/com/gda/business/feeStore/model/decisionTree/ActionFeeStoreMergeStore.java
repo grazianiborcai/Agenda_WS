@@ -1,23 +1,23 @@
 package br.com.gda.business.feeStore.model.decisionTree;
 
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperTrans;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperTrans;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionFeeStoreMergeStore implements DeciAction<FeeStoreInfo> {
-	private DeciAction<FeeStoreInfo> actionHelper;	
+final class ActionFeeStoreMergeStore implements ActionStd<FeeStoreInfo> {
+	private ActionStd<FeeStoreInfo> actionHelper;	
 	
 	
 	public ActionFeeStoreMergeStore(DeciTreeOption<FeeStoreInfo> option) {			
-		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorFeeStoreMergeStore(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisitorFeeStoreMergeStore(option.conn, option.schemaName));
 	}
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<FeeStoreInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<FeeStoreInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

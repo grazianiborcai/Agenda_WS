@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.checker.CusCheckExist;
 import br.com.gda.business.customer.model.checker.CusCheckKey;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -60,14 +60,14 @@ public final class RootCusDelete implements DeciTree<CusInfo> {
 	
 	
 	
-	@Override public DeciAction<CusInfo> toAction() {
+	@Override public ActionStd<CusInfo> toAction() {
 		return tree.toAction();
 	}
 	
 	
 	
-	private List<DeciAction<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
-		List<DeciAction<CusInfo>> actions = new ArrayList<>();
+	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
+		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		actions.add(new ActionCusDelete(option));
 		return actions;
 	}

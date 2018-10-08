@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.materialStore.info.MatStoreInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerMatStoreSelect extends DeciActionHandlerTemplate<MatStoreInfo, MatStoreInfo> {
+public final class HandlerMatStoreSelect extends ActionLazyTemplate<MatStoreInfo, MatStoreInfo> {
 	
 	public HandlerMatStoreSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
@@ -23,7 +23,7 @@ public final class HandlerMatStoreSelect extends DeciActionHandlerTemplate<MatSt
 	
 	
 	
-	@Override protected  DeciAction<MatStoreInfo> getInstanceOfActionHook(DeciTreeOption<MatStoreInfo> option) {
+	@Override protected  ActionStd<MatStoreInfo> getInstanceOfActionHook(DeciTreeOption<MatStoreInfo> option) {
 		return new ActionMatStoreSelect(option);
 	}
 	

@@ -5,8 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStdTemplate;
 
-public final class DeciTreeAdapter<T> extends DeciActionHelperTemplate<T> {
+public final class DeciTreeAdapter<T> extends ActionStdTemplate<T> {
 	private DeciTree<T> deciTree;
 	
 	public DeciTreeAdapter(DeciTree<T> tree) {

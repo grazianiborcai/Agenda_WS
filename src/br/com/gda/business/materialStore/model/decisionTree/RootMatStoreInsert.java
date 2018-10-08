@@ -9,10 +9,10 @@ import br.com.gda.business.materialStore.model.checker.MatStoreCheckMat;
 import br.com.gda.business.materialStore.model.checker.MatStoreCheckOwner;
 import br.com.gda.business.materialStore.model.checker.MatStoreCheckStore;
 import br.com.gda.business.materialStore.model.checker.MatStoreCheckWrite;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -83,8 +83,8 @@ public final class RootMatStoreInsert implements DeciTree<MatStoreInfo> {
 	
 	
 	
-	private List<DeciAction<MatStoreInfo>> buildActionsOnPassed(DeciTreeOption<MatStoreInfo> option) {
-		List<DeciAction<MatStoreInfo>> actions = new ArrayList<>();
+	private List<ActionStd<MatStoreInfo>> buildActionsOnPassed(DeciTreeOption<MatStoreInfo> option) {
+		List<ActionStd<MatStoreInfo>> actions = new ArrayList<>();
 		
 		actions.add(new NodeMatStoreInsert(option).toAction());	
 		return actions;
@@ -110,7 +110,7 @@ public final class RootMatStoreInsert implements DeciTree<MatStoreInfo> {
 	
 	
 	
-	@Override public DeciAction<MatStoreInfo> toAction() {
+	@Override public ActionStd<MatStoreInfo> toAction() {
 		return tree.toAction();
 	}
 }

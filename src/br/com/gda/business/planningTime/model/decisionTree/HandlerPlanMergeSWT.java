@@ -9,13 +9,13 @@ import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.info.PlanMerger;
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.business.storeWorkTime.model.decisionTree.RootStoreWTimeSelect;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerPlanMergeSWT extends DeciActionHandlerTemplate<PlanInfo, StoreWTimeInfo> {
+final class HandlerPlanMergeSWT extends ActionLazyTemplate<PlanInfo, StoreWTimeInfo> {
 	private List<PlanInfo> originalInfos;
 	
 	
@@ -46,7 +46,7 @@ final class HandlerPlanMergeSWT extends DeciActionHandlerTemplate<PlanInfo, Stor
 	
 	
 	
-	@Override protected DeciAction<StoreWTimeInfo> getInstanceOfActionHook(DeciTreeOption<StoreWTimeInfo> option) {
+	@Override protected ActionStd<StoreWTimeInfo> getInstanceOfActionHook(DeciTreeOption<StoreWTimeInfo> option) {
 		return new RootStoreWTimeSelect(option).toAction();
 	}
 	

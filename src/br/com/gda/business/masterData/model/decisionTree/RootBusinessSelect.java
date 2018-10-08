@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.BusinessInfo;
 import br.com.gda.business.masterData.model.checker.BusinessCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -44,8 +44,8 @@ public final class RootBusinessSelect implements DeciTree<BusinessInfo> {
 
 		
 	
-	private List<DeciAction<BusinessInfo>> buildActionsOnPassed(DeciTreeOption<BusinessInfo> option) {
-		List<DeciAction<BusinessInfo>> actions = new ArrayList<>();
+	private List<ActionStd<BusinessInfo>> buildActionsOnPassed(DeciTreeOption<BusinessInfo> option) {
+		List<ActionStd<BusinessInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionBusinessSelect(option));
 		return actions;
@@ -71,7 +71,7 @@ public final class RootBusinessSelect implements DeciTree<BusinessInfo> {
 	
 	
 	
-	@Override public DeciAction<BusinessInfo> toAction() {
+	@Override public ActionStd<BusinessInfo> toAction() {
 		return tree.toAction();
 	}
 }

@@ -9,11 +9,11 @@ import br.com.gda.business.storeWorkTime.model.decisionTree.RootStoreWTimeSelect
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.common.TimeRange;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionVisitor;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisitorStoreCoMakeRange implements DeciActionTransVisitor<StoreCoInfo> {
+final class VisitorStoreCoMakeRange implements ActionVisitor<StoreCoInfo> {
 	private Connection conn; 
 	private String schemaName;
 	private List<StoreCoInfo> storeWTRanges = new ArrayList<>();

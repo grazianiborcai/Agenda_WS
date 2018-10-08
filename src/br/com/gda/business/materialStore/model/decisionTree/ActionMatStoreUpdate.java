@@ -7,19 +7,19 @@ import br.com.gda.business.materialStore.dao.MatStoreUpdate;
 import br.com.gda.business.materialStore.info.MatStoreInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionMatStoreUpdate implements DeciAction<MatStoreInfo> {
-	DeciAction<MatStoreInfo> actionHelper;
+final class ActionMatStoreUpdate implements ActionStd<MatStoreInfo> {
+	ActionStd<MatStoreInfo> actionHelper;
 	
 	
 	public ActionMatStoreUpdate(DeciTreeOption<MatStoreInfo> option) {
 		DaoStmtExec<MatStoreInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ final class ActionMatStoreUpdate implements DeciAction<MatStoreInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<MatStoreInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<MatStoreInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

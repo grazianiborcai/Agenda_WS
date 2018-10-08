@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.checker.CusCheckExistCpf;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -53,8 +53,8 @@ final class NodeCusUpdateL2 implements DeciTree<CusInfo> {
 	
 	
 	
-	private List<DeciAction<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
-		List<DeciAction<CusInfo>> actions = new ArrayList<>();
+	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
+		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionCusUpdate(option));
 		actions.add(new ActionCusSelect(option));		
@@ -81,7 +81,7 @@ final class NodeCusUpdateL2 implements DeciTree<CusInfo> {
 	
 	
 	
-	@Override public DeciAction<CusInfo> toAction() {
+	@Override public ActionStd<CusInfo> toAction() {
 		return tree.toAction();
 	}
 }

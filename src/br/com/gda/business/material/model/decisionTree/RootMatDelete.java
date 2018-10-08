@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.checker.MatCheckExist;
 import br.com.gda.business.material.model.checker.MatCheckKey;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -58,8 +58,8 @@ public final class RootMatDelete implements DeciTree<MatInfo> {
 	
 	
 	
-	private List<DeciAction<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
-		List<DeciAction<MatInfo>> actions = new ArrayList<>();
+	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
+		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionMatDelete(option));
 		return actions;
@@ -85,7 +85,7 @@ public final class RootMatDelete implements DeciTree<MatInfo> {
 	
 	
 	
-	@Override public DeciAction<MatInfo> toAction() {
+	@Override public ActionStd<MatInfo> toAction() {
 		return tree.toAction();
 	}
 }

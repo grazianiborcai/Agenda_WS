@@ -10,10 +10,10 @@ import br.com.gda.business.cart.model.decisionTree.ActionCartEnforceKey;
 import br.com.gda.business.cart.model.decisionTree.HandlerCartSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class CartCheckHasItem extends ModelCheckerTemplateSimple<CartInfo> {
@@ -65,7 +65,7 @@ public final class CartCheckHasItem extends ModelCheckerTemplateSimple<CartInfo>
 	
 	
 	private List<CartInfo> executeAction(DeciTreeOption<CartInfo> option) {	
-		DeciAction<CartInfo> action = buildAction(option);		
+		ActionStd<CartInfo> action = buildAction(option);		
 		action.executeAction();
 		
 		if (action.getDecisionResult().hasResultset())
@@ -76,9 +76,9 @@ public final class CartCheckHasItem extends ModelCheckerTemplateSimple<CartInfo>
 	
 	
 	
-	private DeciAction<CartInfo> buildAction(DeciTreeOption<CartInfo> option) {	
-		DeciAction<CartInfo> enforceKey = new ActionCartEnforceKey(option);
-		DeciActionHandlerTemplate<CartInfo, CartInfo> selectCartItem = new HandlerCartSelect(option.conn, option.schemaName);
+	private ActionStd<CartInfo> buildAction(DeciTreeOption<CartInfo> option) {	
+		ActionStd<CartInfo> enforceKey = new ActionCartEnforceKey(option);
+		ActionLazyTemplate<CartInfo, CartInfo> selectCartItem = new HandlerCartSelect(option.conn, option.schemaName);
 		
 		enforceKey.addPostAction(selectCartItem);
 		return enforceKey;	

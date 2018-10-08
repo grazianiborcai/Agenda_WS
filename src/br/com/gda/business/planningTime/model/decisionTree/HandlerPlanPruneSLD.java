@@ -9,13 +9,13 @@ import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.info.PlanPruner;
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStoreLDateSelect;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerPlanPruneSLD extends DeciActionHandlerTemplate<PlanInfo, StoreLDateInfo> {
+final class HandlerPlanPruneSLD extends ActionLazyTemplate<PlanInfo, StoreLDateInfo> {
 	private List<PlanInfo> originalInfos;
 	
 	
@@ -49,7 +49,7 @@ final class HandlerPlanPruneSLD extends DeciActionHandlerTemplate<PlanInfo, Stor
 	
 	
 	
-	@Override protected DeciAction<StoreLDateInfo> getInstanceOfActionHook(DeciTreeOption<StoreLDateInfo> option) {
+	@Override protected ActionStd<StoreLDateInfo> getInstanceOfActionHook(DeciTreeOption<StoreLDateInfo> option) {
 		return new RootStoreLDateSelect(option).toAction();
 	}
 	

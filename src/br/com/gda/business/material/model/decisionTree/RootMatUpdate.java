@@ -14,10 +14,10 @@ import br.com.gda.business.material.model.checker.MatCheckOwner;
 import br.com.gda.business.material.model.checker.MatCheckType;
 import br.com.gda.business.material.model.checker.MatCheckUnit;
 import br.com.gda.business.material.model.checker.MatCheckWrite;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -116,8 +116,8 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 	
 	
 	
-	private List<DeciAction<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
-		List<DeciAction<MatInfo>> actions = new ArrayList<>();
+	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
+		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionMatUpdateAttr(option));
 		actions.add(new NodeMatUpdateText(option).toAction());
@@ -145,7 +145,7 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 	
 	
 	
-	@Override public DeciAction<MatInfo> toAction() {
+	@Override public ActionStd<MatInfo> toAction() {
 		return tree.toAction();
 	}
 }

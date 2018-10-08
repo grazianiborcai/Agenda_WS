@@ -13,11 +13,11 @@ import br.com.gda.business.cart.model.checker.CartCheckSLD;
 import br.com.gda.business.cart.model.checker.CartCheckSWT;
 import br.com.gda.business.cart.model.checker.CartCheckTime;
 import br.com.gda.business.cart.model.checker.CartCheckWriteL3;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -119,13 +119,13 @@ final class NodeCartInsertL2 implements DeciTree<CartInfo> {
 	
 	
 	
-	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
-		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
+		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> upsertHdr = new RootCartUpsertHdr(option).toAction();	
-		DeciActionHandler<CartInfo> insertItm = new HandlerCartInsertItm(option.conn, option.schemaName);	
-		DeciActionHandler<CartInfo> enforceKey = new HandlerCartEnforceKey(option.conn, option.schemaName);	
-		DeciActionHandler<CartInfo> selectCart = new HandlerCartRootSelect(option.conn, option.schemaName);			
+		ActionStd<CartInfo> upsertHdr = new RootCartUpsertHdr(option).toAction();	
+		ActionLazy<CartInfo> insertItm = new HandlerCartInsertItm(option.conn, option.schemaName);	
+		ActionLazy<CartInfo> enforceKey = new HandlerCartEnforceKey(option.conn, option.schemaName);	
+		ActionLazy<CartInfo> selectCart = new HandlerCartRootSelect(option.conn, option.schemaName);			
 		//TODO: First Row
 		upsertHdr.addPostAction(insertItm);
 		upsertHdr.addPostAction(enforceKey);
@@ -155,7 +155,7 @@ final class NodeCartInsertL2 implements DeciTree<CartInfo> {
 	
 	
 	
-	@Override public DeciAction<CartInfo> toAction() {
+	@Override public ActionStd<CartInfo> toAction() {
 		return tree.toAction();
 	}
 }

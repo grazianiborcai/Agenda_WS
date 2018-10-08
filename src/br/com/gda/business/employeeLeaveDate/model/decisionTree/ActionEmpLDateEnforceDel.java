@@ -1,23 +1,23 @@
 package br.com.gda.business.employeeLeaveDate.model.decisionTree;
 
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperTrans;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperTrans;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionEmpLDateEnforceDel implements DeciAction<EmpLDateInfo> {
-	private DeciAction<EmpLDateInfo> actionHelper;	
+public final class ActionEmpLDateEnforceDel implements ActionStd<EmpLDateInfo> {
+	private ActionStd<EmpLDateInfo> actionHelper;	
 	
 	
 	public ActionEmpLDateEnforceDel(DeciTreeOption<EmpLDateInfo> option) {			
-		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorEmpLDateEnforceDel());
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisitorEmpLDateEnforceDel());
 	}
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<EmpLDateInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<EmpLDateInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

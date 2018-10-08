@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckSoftDelete;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -53,8 +53,8 @@ final class NodeStoreWTimeInsert implements DeciTree<StoreWTimeInfo> {
 	
 	
 	
-	private List<DeciAction<StoreWTimeInfo>> buildActionsOnPassed(DeciTreeOption<StoreWTimeInfo> option) {
-		List<DeciAction<StoreWTimeInfo>> actions = new ArrayList<>();
+	private List<ActionStd<StoreWTimeInfo>> buildActionsOnPassed(DeciTreeOption<StoreWTimeInfo> option) {
+		List<ActionStd<StoreWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionStoreWTimeInsert(option));				
 		return actions;
@@ -62,8 +62,8 @@ final class NodeStoreWTimeInsert implements DeciTree<StoreWTimeInfo> {
 	
 	
 	
-	private List<DeciAction<StoreWTimeInfo>> buildActionsOnFailed(DeciTreeOption<StoreWTimeInfo> option) {
-		List<DeciAction<StoreWTimeInfo>> actions = new ArrayList<>();
+	private List<ActionStd<StoreWTimeInfo>> buildActionsOnFailed(DeciTreeOption<StoreWTimeInfo> option) {
+		List<ActionStd<StoreWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionStoreWTimeUpdate(option));	
 		return actions;
@@ -89,7 +89,7 @@ final class NodeStoreWTimeInsert implements DeciTree<StoreWTimeInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreWTimeInfo> toAction() {
+	@Override public ActionStd<StoreWTimeInfo> toAction() {
 		return tree.toAction();
 	}
 }

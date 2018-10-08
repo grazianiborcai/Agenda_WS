@@ -7,19 +7,19 @@ import br.com.gda.business.store.dao.StoreDelete;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionStoreDelete implements DeciAction<StoreInfo> {
-	private DeciAction<StoreInfo> actionHelper;
+final class ActionStoreDelete implements ActionStd<StoreInfo> {
+	private ActionStd<StoreInfo> actionHelper;
 	
 	
 	public ActionStoreDelete(DeciTreeOption<StoreInfo> option) {
 		DaoStmtExec<StoreInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ final class ActionStoreDelete implements DeciAction<StoreInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<StoreInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<StoreInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

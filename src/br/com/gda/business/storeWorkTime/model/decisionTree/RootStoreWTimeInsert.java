@@ -10,10 +10,10 @@ import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckStore;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckRange;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckWeekday;
 import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckWrite;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -85,8 +85,8 @@ public final class RootStoreWTimeInsert implements DeciTree<StoreWTimeInfo> {
 	
 	
 	
-	private List<DeciAction<StoreWTimeInfo>> buildActionsOnPassed(DeciTreeOption<StoreWTimeInfo> option) {
-		List<DeciAction<StoreWTimeInfo>> actions = new ArrayList<>();
+	private List<ActionStd<StoreWTimeInfo>> buildActionsOnPassed(DeciTreeOption<StoreWTimeInfo> option) {
+		List<ActionStd<StoreWTimeInfo>> actions = new ArrayList<>();
 		
 		actions.add(new NodeStoreWTimeInsert(option).toAction());
 		actions.add(new ActionStoreWTimeSelect(option));
@@ -113,7 +113,7 @@ public final class RootStoreWTimeInsert implements DeciTree<StoreWTimeInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreWTimeInfo> toAction() {
+	@Override public ActionStd<StoreWTimeInfo> toAction() {
 		return tree.toAction();
 	}
 }

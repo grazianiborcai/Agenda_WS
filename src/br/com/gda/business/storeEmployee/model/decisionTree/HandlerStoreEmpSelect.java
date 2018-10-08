@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerStoreEmpSelect extends DeciActionHandlerTemplate<StoreEmpInfo, StoreEmpInfo> {
+public final class HandlerStoreEmpSelect extends ActionLazyTemplate<StoreEmpInfo, StoreEmpInfo> {
 	
 	public HandlerStoreEmpSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
@@ -23,7 +23,7 @@ public final class HandlerStoreEmpSelect extends DeciActionHandlerTemplate<Store
 	
 	
 	
-	@Override protected  DeciAction<StoreEmpInfo> getInstanceOfActionHook(DeciTreeOption<StoreEmpInfo> option) {
+	@Override protected  ActionStd<StoreEmpInfo> getInstanceOfActionHook(DeciTreeOption<StoreEmpInfo> option) {
 		return new ActionStoreEmpSelect(option);
 	}
 	

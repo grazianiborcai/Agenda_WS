@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckSWT;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -53,16 +53,16 @@ final class NodeStoreEmpInsertEWT implements DeciTree<StoreEmpInfo> {
 	
 	
 	
-	private List<DeciAction<StoreEmpInfo>> buildActionsOnPassed(DeciTreeOption<StoreEmpInfo> option) {
-		List<DeciAction<StoreEmpInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<StoreEmpInfo>> buildActionsOnPassed(DeciTreeOption<StoreEmpInfo> option) {
+		List<ActionStd<StoreEmpInfo>> actions = new ArrayList<>();		
 		actions.add(new HandlerStoreEmpInsertEWT(option.conn, option.schemaName).toAction(option.recordInfos));
 		return actions;
 	}
 	
 	
 	
-	private List<DeciAction<StoreEmpInfo>> buildActionsOnFailed(DeciTreeOption<StoreEmpInfo> option) {
-		List<DeciAction<StoreEmpInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<StoreEmpInfo>> buildActionsOnFailed(DeciTreeOption<StoreEmpInfo> option) {
+		List<ActionStd<StoreEmpInfo>> actions = new ArrayList<>();		
 		actions.add(new ActionStoreEmpSuccess(option));
 		return actions;
 	}
@@ -87,7 +87,7 @@ final class NodeStoreEmpInsertEWT implements DeciTree<StoreEmpInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreEmpInfo> toAction() {
+	@Override public ActionStd<StoreEmpInfo> toAction() {
 		return tree.toAction();
 	}
 }

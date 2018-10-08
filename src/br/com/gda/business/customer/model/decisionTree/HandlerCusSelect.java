@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerCusSelect extends DeciActionHandlerTemplate<CusInfo, CusInfo> {
+public final class HandlerCusSelect extends ActionLazyTemplate<CusInfo, CusInfo> {
 	
 	public HandlerCusSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
@@ -23,7 +23,7 @@ public final class HandlerCusSelect extends DeciActionHandlerTemplate<CusInfo, C
 	
 	
 	
-	@Override protected DeciAction<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
+	@Override protected ActionStd<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
 		return new ActionCusSelect(option);
 	}
 	

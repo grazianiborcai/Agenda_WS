@@ -7,9 +7,9 @@ import br.com.gda.business.owner.model.decisionTree.ActionOwnerEnforceKey;
 import br.com.gda.business.owner.model.decisionTree.HandlerOwnerSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class OwnerCheckExist extends ModelCheckerTemplateAction<OwnerInfo> {
@@ -20,10 +20,10 @@ public final class OwnerCheckExist extends ModelCheckerTemplateAction<OwnerInfo>
 	
 	
 	
-	@Override protected DeciAction<OwnerInfo> buildActionHook(OwnerInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<OwnerInfo> buildActionHook(OwnerInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<OwnerInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		DeciAction<OwnerInfo> actionSelect = new ActionOwnerEnforceKey(option);
+		ActionStd<OwnerInfo> actionSelect = new ActionOwnerEnforceKey(option);
 		actionSelect.addPostAction(new HandlerOwnerSelect(conn, schemaName));
 		return actionSelect;
 	}

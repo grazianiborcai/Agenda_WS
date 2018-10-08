@@ -1,13 +1,13 @@
 package br.com.gda.business.materialEmployee.model.decisionTree;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionMatEmpSelectAll implements DeciAction<MatEmpInfo> {
-	private DeciAction<MatEmpInfo> actionHelper;
+final class ActionMatEmpSelectAll implements ActionStd<MatEmpInfo> {
+	private ActionStd<MatEmpInfo> actionHelper;
 	
 	
 	public ActionMatEmpSelectAll(DeciTreeOption<MatEmpInfo> option) {
@@ -21,7 +21,7 @@ final class ActionMatEmpSelectAll implements DeciAction<MatEmpInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<MatEmpInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<MatEmpInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

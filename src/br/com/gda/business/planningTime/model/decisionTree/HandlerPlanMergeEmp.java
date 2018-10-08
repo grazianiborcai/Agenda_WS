@@ -9,13 +9,13 @@ import br.com.gda.business.employee.model.decisionTree.RootEmpSelect;
 import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.info.PlanMerger;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerPlanMergeEmp extends DeciActionHandlerTemplate<PlanInfo, EmpInfo> {
+final class HandlerPlanMergeEmp extends ActionLazyTemplate<PlanInfo, EmpInfo> {
 	private List<PlanInfo> originalInfos;
 	
 	
@@ -46,7 +46,7 @@ final class HandlerPlanMergeEmp extends DeciActionHandlerTemplate<PlanInfo, EmpI
 	
 	
 	
-	@Override protected DeciAction<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
+	@Override protected ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
 		return new RootEmpSelect(option).toAction();
 	}
 	

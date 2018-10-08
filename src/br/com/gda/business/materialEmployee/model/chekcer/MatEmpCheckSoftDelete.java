@@ -8,9 +8,9 @@ import br.com.gda.business.materialEmployee.model.decisionTree.ActionMatEmpEnfor
 import br.com.gda.business.materialEmployee.model.decisionTree.HandlerMatEmpSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class MatEmpCheckSoftDelete extends ModelCheckerTemplateAction<MatEmpInfo> {	
@@ -21,10 +21,10 @@ public final class MatEmpCheckSoftDelete extends ModelCheckerTemplateAction<MatE
 	
 	
 	
-	@Override protected DeciAction<MatEmpInfo> buildActionHook(MatEmpInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<MatEmpInfo> buildActionHook(MatEmpInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatEmpInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<MatEmpInfo> actionSelect = new ActionMatEmpEnforceDel(option);
+		ActionStd<MatEmpInfo> actionSelect = new ActionMatEmpEnforceDel(option);
 		actionSelect.addPostAction(new HandlerMatEmpSelect(conn, schemaName));
 		return actionSelect ;
 	}

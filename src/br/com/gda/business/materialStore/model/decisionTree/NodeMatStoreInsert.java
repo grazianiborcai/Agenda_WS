@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.gda.business.materialStore.info.MatStoreInfo;
 import br.com.gda.business.materialStore.model.checker.MatStoreCheckSoftDelete;
 import br.com.gda.business.materialStore.model.checker.MatStoreCheckWrite;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -57,8 +57,8 @@ final class NodeMatStoreInsert implements DeciTree<MatStoreInfo> {
 	
 	
 	
-	private List<DeciAction<MatStoreInfo>> buildActionsOnPassed(DeciTreeOption<MatStoreInfo> option) {
-		List<DeciAction<MatStoreInfo>> actions = new ArrayList<>();
+	private List<ActionStd<MatStoreInfo>> buildActionsOnPassed(DeciTreeOption<MatStoreInfo> option) {
+		List<ActionStd<MatStoreInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionMatStoreInsert(option));
 		actions.add(new ActionMatStoreSelect(option));		
@@ -67,8 +67,8 @@ final class NodeMatStoreInsert implements DeciTree<MatStoreInfo> {
 	
 	
 	
-	private List<DeciAction<MatStoreInfo>> buildActionsOnFailed(DeciTreeOption<MatStoreInfo> option) {
-		List<DeciAction<MatStoreInfo>> actions = new ArrayList<>();
+	private List<ActionStd<MatStoreInfo>> buildActionsOnFailed(DeciTreeOption<MatStoreInfo> option) {
+		List<ActionStd<MatStoreInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionMatStoreUpdate(option));
 		actions.add(new ActionMatStoreSelect(option));		
@@ -95,7 +95,7 @@ final class NodeMatStoreInsert implements DeciTree<MatStoreInfo> {
 	
 	
 	
-	@Override public DeciAction<MatStoreInfo> toAction() {
+	@Override public ActionStd<MatStoreInfo> toAction() {
 		return tree.toAction();
 	}
 }

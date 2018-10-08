@@ -9,11 +9,11 @@ import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.business.feeDefault.model.decisionTree.ActionFeeDefaultSelect;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionVisitor;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisitorFeeStoreDefault implements DeciActionTransVisitor<FeeStoreInfo> {
+final class VisitorFeeStoreDefault implements ActionVisitor<FeeStoreInfo> {
 	private DeciTreeOption<FeeDefaultInfo> selOption;
 	
 	
@@ -79,7 +79,7 @@ final class VisitorFeeStoreDefault implements DeciActionTransVisitor<FeeStoreInf
 	
 	
 	private List<FeeDefaultInfo> selectFeeDefault() {
-		DeciAction<FeeDefaultInfo> mainAction = new ActionFeeDefaultSelect(selOption);
+		ActionStd<FeeDefaultInfo> mainAction = new ActionFeeDefaultSelect(selOption);
 		mainAction.executeAction();
 		
 		if (mainAction.getDecisionResult().hasResultset())		

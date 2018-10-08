@@ -9,11 +9,11 @@ import br.com.gda.business.cart.model.checker.CartCheckEmp;
 import br.com.gda.business.cart.model.checker.CartCheckME;
 import br.com.gda.business.cart.model.checker.CartCheckTime;
 import br.com.gda.business.cart.model.checker.CartCheckWriteL3;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -82,13 +82,13 @@ class NodeCartUpdateL2 implements DeciTree<CartInfo> {
 	
 	
 	
-	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
-		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
+		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> updateHdr = new ActionCartUpdateHdr(option);	
-		DeciActionHandler<CartInfo> updateItm = new HandlerCartUpdateItm(option.conn, option.schemaName);	
-		DeciActionHandler<CartInfo> enforceKey = new HandlerCartEnforceKey(option.conn, option.schemaName);
-		DeciActionHandler<CartInfo> selectCart = new HandlerCartRootSelect(option.conn, option.schemaName);			
+		ActionStd<CartInfo> updateHdr = new ActionCartUpdateHdr(option);	
+		ActionLazy<CartInfo> updateItm = new HandlerCartUpdateItm(option.conn, option.schemaName);	
+		ActionLazy<CartInfo> enforceKey = new HandlerCartEnforceKey(option.conn, option.schemaName);
+		ActionLazy<CartInfo> selectCart = new HandlerCartRootSelect(option.conn, option.schemaName);			
 		
 		updateHdr.addPostAction(updateItm);
 		updateHdr.addPostAction(enforceKey);
@@ -118,7 +118,7 @@ class NodeCartUpdateL2 implements DeciTree<CartInfo> {
 	
 	
 	
-	@Override public DeciAction<CartInfo> toAction() {
+	@Override public ActionStd<CartInfo> toAction() {
 		return tree.toAction();
 	}
 }

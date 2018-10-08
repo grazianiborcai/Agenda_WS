@@ -7,9 +7,9 @@ import br.com.gda.business.material.model.decisionTree.ActionMatSelect;
 import br.com.gda.business.material.model.decisionTree.HandlerMatFilterNullText;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class MatCheckExistText extends ModelCheckerTemplateAction<MatInfo> {
@@ -20,10 +20,10 @@ public final class MatCheckExistText extends ModelCheckerTemplateAction<MatInfo>
 	
 	
 	
-	@Override protected DeciAction<MatInfo> buildActionHook(MatInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<MatInfo> buildActionHook(MatInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		DeciAction<MatInfo> actionSelect = new ActionMatSelect(option);
+		ActionStd<MatInfo> actionSelect = new ActionMatSelect(option);
 		actionSelect.addPostAction(new HandlerMatFilterNullText(conn, schemaName));
 		return actionSelect;
 	}

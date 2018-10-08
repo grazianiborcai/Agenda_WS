@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckDelete;
 import br.com.gda.business.cart.model.checker.CartCheckHasItem;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -58,10 +58,10 @@ final class RootCartDeleteHdr implements DeciTree<CartInfo> {
 	
 	
 	
-	private List<DeciAction<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
-		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
+		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> deleteHdr = new ActionCartDeleteHdr(option);		
+		ActionStd<CartInfo> deleteHdr = new ActionCartDeleteHdr(option);		
 		actions.add(deleteHdr);		
 		
 		return actions;
@@ -70,17 +70,17 @@ final class RootCartDeleteHdr implements DeciTree<CartInfo> {
 	
 	
 	
-	private List<DeciAction<CartInfo>> buildActionsOnFailed(DeciTreeOption<CartInfo> option) {
-		List<DeciAction<CartInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<CartInfo>> buildActionsOnFailed(DeciTreeOption<CartInfo> option) {
+		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		DeciAction<CartInfo> dummyAction = getDummyAction();		
+		ActionStd<CartInfo> dummyAction = getDummyAction();		
 		actions.add(dummyAction);		
 		return actions;
 	}
 	
 	
 	
-	private DeciAction<CartInfo> getDummyAction() {
+	private ActionStd<CartInfo> getDummyAction() {
 		List<CartInfo> dummyResults = new ArrayList<>();
 		CartInfo dummyRecord = new CartInfo();
 		dummyResults.add(dummyRecord);
@@ -109,7 +109,7 @@ final class RootCartDeleteHdr implements DeciTree<CartInfo> {
 	
 	
 	
-	@Override public DeciAction<CartInfo> toAction() {
+	@Override public ActionStd<CartInfo> toAction() {
 		return tree.toAction();
 	}
 }

@@ -7,19 +7,19 @@ import br.com.gda.business.customer.dao.CusInsert;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionCusInsert implements DeciAction<CusInfo> {
-	DeciAction<CusInfo> actionHelper;
+final class ActionCusInsert implements ActionStd<CusInfo> {
+	ActionStd<CusInfo> actionHelper;
 	
 	
 	public ActionCusInsert(DeciTreeOption<CusInfo> option) {
 		DaoStmtExec<CusInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ final class ActionCusInsert implements DeciAction<CusInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<CusInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<CusInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

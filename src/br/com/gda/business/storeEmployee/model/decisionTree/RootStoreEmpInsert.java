@@ -9,10 +9,10 @@ import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckEmpPos;
 import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckExist;
 import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckStore;
 import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckWrite;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -81,15 +81,15 @@ public final class RootStoreEmpInsert implements DeciTree<StoreEmpInfo> {
 	
 	
 	
-	private List<DeciAction<StoreEmpInfo>> buildActionsOnPassed(DeciTreeOption<StoreEmpInfo> option) {
-		List<DeciAction<StoreEmpInfo>> actions = new ArrayList<>();
+	private List<ActionStd<StoreEmpInfo>> buildActionsOnPassed(DeciTreeOption<StoreEmpInfo> option) {
+		List<ActionStd<StoreEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new NodeStoreEmpInsert(option).toAction());
 		actions.add(new NodeStoreEmpInsertEWT(option).toAction());
 		actions.add(new ActionStoreEmpSelect(option));
 		return actions;
 		
-		//TODO: O InsertEWT pode gerar conflitos. Imagine que um empregado já esteja lotado em uma outra loja.
+		//TODO: O InsertEWT pode gerar conflitos. Imagine que um empregado jï¿½ esteja lotado em uma outra loja.
 	}
 	
 	
@@ -112,7 +112,7 @@ public final class RootStoreEmpInsert implements DeciTree<StoreEmpInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreEmpInfo> toAction() {
+	@Override public ActionStd<StoreEmpInfo> toAction() {
 		return tree.toAction();
 	}
 }

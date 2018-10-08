@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.business.storeLeaveDate.model.checker.StoreLDateCheckSoftDelete;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -53,8 +53,8 @@ final class NodeStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 	
 	
 	
-	private List<DeciAction<StoreLDateInfo>> buildActionsOnPassed(DeciTreeOption<StoreLDateInfo> option) {
-		List<DeciAction<StoreLDateInfo>> actions = new ArrayList<>();
+	private List<ActionStd<StoreLDateInfo>> buildActionsOnPassed(DeciTreeOption<StoreLDateInfo> option) {
+		List<ActionStd<StoreLDateInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionStoreLDateInsert(option));				
 		return actions;
@@ -62,8 +62,8 @@ final class NodeStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 	
 	
 	
-	private List<DeciAction<StoreLDateInfo>> buildActionsOnFailed(DeciTreeOption<StoreLDateInfo> option) {
-		List<DeciAction<StoreLDateInfo>> actions = new ArrayList<>();
+	private List<ActionStd<StoreLDateInfo>> buildActionsOnFailed(DeciTreeOption<StoreLDateInfo> option) {
+		List<ActionStd<StoreLDateInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionStoreLDateUpdate(option));		
 		return actions;
@@ -89,7 +89,7 @@ final class NodeStoreLDateInsert implements DeciTree<StoreLDateInfo> {
 	
 	
 	
-	@Override public DeciAction<StoreLDateInfo> toAction() {
+	@Override public ActionStd<StoreLDateInfo> toAction() {
 		return tree.toAction();
 	}
 }

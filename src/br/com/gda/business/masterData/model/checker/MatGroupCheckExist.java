@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.business.masterData.model.decisionTree.ActionMatGroupSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class MatGroupCheckExist extends ModelCheckerTemplateAction<MatGroupInfo> {
@@ -19,10 +19,10 @@ public final class MatGroupCheckExist extends ModelCheckerTemplateAction<MatGrou
 	
 	
 	
-	@Override protected DeciAction<MatGroupInfo> buildActionHook(MatGroupInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<MatGroupInfo> buildActionHook(MatGroupInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatGroupInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<MatGroupInfo> actionSelect = new ActionMatGroupSelect(option);
+		ActionStd<MatGroupInfo> actionSelect = new ActionMatGroupSelect(option);
 		return actionSelect;
 	}
 	

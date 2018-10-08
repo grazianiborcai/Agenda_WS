@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.model.decisionTree.ActionCurrencySelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class CurrencyCheckExist extends ModelCheckerTemplateAction<CurrencyInfo> {
@@ -19,10 +19,10 @@ public final class CurrencyCheckExist extends ModelCheckerTemplateAction<Currenc
 	
 	
 	
-	@Override protected DeciAction<CurrencyInfo> buildActionHook(CurrencyInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<CurrencyInfo> buildActionHook(CurrencyInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CurrencyInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<CurrencyInfo> actionSelect = new ActionCurrencySelect(option);
+		ActionStd<CurrencyInfo> actionSelect = new ActionCurrencySelect(option);
 		return actionSelect;
 	}
 	

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.model.decisionTree.DeciActionTransVisitor;
+import br.com.gda.model.action.ActionVisitor;
 
-final class VisitorCartEnforceCateg implements DeciActionTransVisitor<CartInfo> {
+final class VisitorCartEnforceCateg implements ActionVisitor<CartInfo> {
 	private final char ITEM_CATEG = 'I';
 	
 	

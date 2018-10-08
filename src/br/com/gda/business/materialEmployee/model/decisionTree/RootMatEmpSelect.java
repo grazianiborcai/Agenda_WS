@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.business.materialEmployee.model.chekcer.MatEmpCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -44,8 +44,8 @@ public final class RootMatEmpSelect implements DeciTree<MatEmpInfo> {
 	
 	
 	
-	private List<DeciAction<MatEmpInfo>> buildActionsOnPassed(DeciTreeOption<MatEmpInfo> option) {
-		List<DeciAction<MatEmpInfo>> actions = new ArrayList<>();
+	private List<ActionStd<MatEmpInfo>> buildActionsOnPassed(DeciTreeOption<MatEmpInfo> option) {
+		List<ActionStd<MatEmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionMatEmpSelectAll(option));
 		return actions;
@@ -71,7 +71,7 @@ public final class RootMatEmpSelect implements DeciTree<MatEmpInfo> {
 	
 	
 	
-	@Override public DeciAction<MatEmpInfo> toAction() {
+	@Override public ActionStd<MatEmpInfo> toAction() {
 		return tree.toAction();
 	}
 }

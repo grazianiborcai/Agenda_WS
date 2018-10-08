@@ -6,9 +6,9 @@ import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.business.materialEmployee.model.decisionTree.ActionMatEmpSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class MatEmpCheckExist extends ModelCheckerTemplateAction<MatEmpInfo> {
@@ -19,10 +19,10 @@ public final class MatEmpCheckExist extends ModelCheckerTemplateAction<MatEmpInf
 	
 	
 	
-	@Override protected DeciAction<MatEmpInfo> buildActionHook(MatEmpInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<MatEmpInfo> buildActionHook(MatEmpInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatEmpInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		DeciAction<MatEmpInfo> actionSelect = new ActionMatEmpSelect(option);
+		ActionStd<MatEmpInfo> actionSelect = new ActionMatEmpSelect(option);
 		return actionSelect;
 	}
 	

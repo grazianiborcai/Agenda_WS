@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.model.decisionTree.ActionTimezoneSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class TimezoneCheckExist extends ModelCheckerTemplateAction<TimezoneInfo> {	
@@ -19,10 +19,10 @@ public final class TimezoneCheckExist extends ModelCheckerTemplateAction<Timezon
 	
 	
 	
-	@Override protected DeciAction<TimezoneInfo> buildActionHook(TimezoneInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<TimezoneInfo> buildActionHook(TimezoneInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<TimezoneInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<TimezoneInfo> actionSelect = new ActionTimezoneSelect(option);
+		ActionStd<TimezoneInfo> actionSelect = new ActionTimezoneSelect(option);
 		return actionSelect;
 	}
 	

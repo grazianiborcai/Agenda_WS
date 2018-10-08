@@ -10,13 +10,13 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.decisionTree.RootEmpSelect;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.business.materialEmployee.info.MatEmpMerger;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerMatEmpMergeEmp extends DeciActionHandlerTemplate<MatEmpInfo, EmpInfo> {
+public final class HandlerMatEmpMergeEmp extends ActionLazyTemplate<MatEmpInfo, EmpInfo> {
 	private List<MatEmpInfo> originalInfos;
 	
 	
@@ -41,7 +41,7 @@ public final class HandlerMatEmpMergeEmp extends DeciActionHandlerTemplate<MatEm
 	
 	
 	
-	@Override protected DeciAction<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
+	@Override protected ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
 		return new RootEmpSelect(option).toAction();
 	}
 	

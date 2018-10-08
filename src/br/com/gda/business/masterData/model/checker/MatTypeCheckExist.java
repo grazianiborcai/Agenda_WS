@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.model.decisionTree.ActionMatTypeSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class MatTypeCheckExist extends ModelCheckerTemplateAction<MatTypeInfo> {
@@ -19,10 +19,10 @@ public final class MatTypeCheckExist extends ModelCheckerTemplateAction<MatTypeI
 	
 	
 	
-	@Override protected DeciAction<MatTypeInfo> buildActionHook(MatTypeInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<MatTypeInfo> buildActionHook(MatTypeInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatTypeInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<MatTypeInfo> actionSelect = new ActionMatTypeSelect(option);
+		ActionStd<MatTypeInfo> actionSelect = new ActionMatTypeSelect(option);
 		return actionSelect;
 	}
 	

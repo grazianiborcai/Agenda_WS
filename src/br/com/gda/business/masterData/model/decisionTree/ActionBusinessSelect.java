@@ -7,19 +7,19 @@ import br.com.gda.business.masterData.dao.BusinessSelect;
 import br.com.gda.business.masterData.info.BusinessInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionBusinessSelect implements DeciAction<BusinessInfo> {
-	private DeciAction<BusinessInfo> actionHelper;
+final class ActionBusinessSelect implements ActionStd<BusinessInfo> {
+	private ActionStd<BusinessInfo> actionHelper;
 	
 	
 	public ActionBusinessSelect(DeciTreeOption<BusinessInfo> option) {
 		DaoStmtExec<BusinessInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ final class ActionBusinessSelect implements DeciAction<BusinessInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<BusinessInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<BusinessInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

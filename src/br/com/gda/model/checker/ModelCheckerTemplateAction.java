@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.decisionTree.DeciAction;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.decisionTree.DeciResult;
 
 public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
@@ -23,7 +23,7 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	private boolean expectedResult;
 	private Connection conn;
 	private String schemaName;
-	private DeciAction<T> deciAction;
+	private ActionStd<T> deciAction;
 	
 	
 	
@@ -101,7 +101,7 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	
 	
-	protected DeciAction<T> buildActionHook(T recordInfo, Connection conn, String schemaName) {
+	protected ActionStd<T> buildActionHook(T recordInfo, Connection conn, String schemaName) {
 		//Template method: to be overwritten by subclasses
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	
 	}
@@ -119,7 +119,7 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	
 	
-	private void checkArgument(DeciAction<T> action) {
+	private void checkArgument(ActionStd<T> action) {
 		if (action == null)
 			throw new NullPointerException("action" + SystemMessage.NULL_ARGUMENT);
 	}
@@ -148,7 +148,7 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	}
 	
 	
-	//TODO: remover esse método
+	//TODO: remover esse mï¿½todo
 	protected boolean checkHook(T recordInfo, Connection conn, String schemaName) {
 		//Template method: to be overwritten by subclasses
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);

@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.masterData.model.checker.OrderStatusCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -44,8 +44,8 @@ public final class RootOrderStatusSelect implements DeciTree<OrderStatusInfo> {
 
 		
 	
-	private List<DeciAction<OrderStatusInfo>> buildActionsOnPassed(DeciTreeOption<OrderStatusInfo> option) {
-		List<DeciAction<OrderStatusInfo>> actions = new ArrayList<>();
+	private List<ActionStd<OrderStatusInfo>> buildActionsOnPassed(DeciTreeOption<OrderStatusInfo> option) {
+		List<ActionStd<OrderStatusInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionOrderStatusSelect(option));
 		return actions;
@@ -71,7 +71,7 @@ public final class RootOrderStatusSelect implements DeciTree<OrderStatusInfo> {
 	
 	
 	
-	@Override public DeciAction<OrderStatusInfo> toAction() {
+	@Override public ActionStd<OrderStatusInfo> toAction() {
 		return tree.toAction();
 	}
 }

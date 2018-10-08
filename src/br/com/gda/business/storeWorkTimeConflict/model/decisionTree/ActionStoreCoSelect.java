@@ -7,19 +7,19 @@ import br.com.gda.business.storeWorkTimeConflict.dao.StoreCoSelect;
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionStoreCoSelect implements DeciAction<StoreCoInfo> {
-	private DeciAction<StoreCoInfo> actionHelper;
+final class ActionStoreCoSelect implements ActionStd<StoreCoInfo> {
+	private ActionStd<StoreCoInfo> actionHelper;
 	
 	
 	public ActionStoreCoSelect(DeciTreeOption<StoreCoInfo> option) {
 		DaoStmtExec<StoreCoInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ final class ActionStoreCoSelect implements DeciAction<StoreCoInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<StoreCoInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<StoreCoInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

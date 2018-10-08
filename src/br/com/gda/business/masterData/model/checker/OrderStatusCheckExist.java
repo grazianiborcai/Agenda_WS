@@ -7,9 +7,9 @@ import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.masterData.model.decisionTree.ActionOrderStatusSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class OrderStatusCheckExist extends ModelCheckerTemplateAction<OrderStatusInfo> {
@@ -20,10 +20,10 @@ public final class OrderStatusCheckExist extends ModelCheckerTemplateAction<Orde
 	
 	
 	
-	@Override protected DeciAction<OrderStatusInfo> buildActionHook(OrderStatusInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<OrderStatusInfo> buildActionHook(OrderStatusInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<OrderStatusInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<OrderStatusInfo> actionSelect = new ActionOrderStatusSelect(option);
+		ActionStd<OrderStatusInfo> actionSelect = new ActionOrderStatusSelect(option);
 		return actionSelect;
 	}
 	

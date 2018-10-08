@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.EmpPosInfo;
 import br.com.gda.business.masterData.model.checker.EmpPosCheckRead;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -44,8 +44,8 @@ public final class RootEmpPosSelect implements DeciTree<EmpPosInfo> {
 	
 	
 	
-	private List<DeciAction<EmpPosInfo>> buildActionsOnPassed(DeciTreeOption<EmpPosInfo> option) {
-		List<DeciAction<EmpPosInfo>> actions = new ArrayList<>();
+	private List<ActionStd<EmpPosInfo>> buildActionsOnPassed(DeciTreeOption<EmpPosInfo> option) {
+		List<ActionStd<EmpPosInfo>> actions = new ArrayList<>();
 		
 		actions.add(new ActionEmpPosSelect(option));
 		return actions;
@@ -71,7 +71,7 @@ public final class RootEmpPosSelect implements DeciTree<EmpPosInfo> {
 	
 	
 	
-	@Override public DeciAction<EmpPosInfo> toAction() {
+	@Override public ActionStd<EmpPosInfo> toAction() {
 		return tree.toAction();
 	}
 }

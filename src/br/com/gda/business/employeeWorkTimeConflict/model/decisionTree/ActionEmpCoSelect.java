@@ -7,19 +7,19 @@ import br.com.gda.business.employeeWorkTimeConflict.dao.EmpCoSelect;
 import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperStmt;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionEmpCoSelect implements DeciAction<EmpCoInfo> {
-	private DeciAction<EmpCoInfo> actionHelper;
+final class ActionEmpCoSelect implements ActionStd<EmpCoInfo> {
+	private ActionStd<EmpCoInfo> actionHelper;
 	
 	
 	public ActionEmpCoSelect(DeciTreeOption<EmpCoInfo> option) {
 		DaoStmtExec<EmpCoInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new DeciActionHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
@@ -40,7 +40,7 @@ final class ActionEmpCoSelect implements DeciAction<EmpCoInfo> {
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<EmpCoInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<EmpCoInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

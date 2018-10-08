@@ -7,9 +7,9 @@ import br.com.gda.business.masterData.info.FeeCategInfo;
 import br.com.gda.business.masterData.model.decisionTree.ActionFeeCategSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
-import br.com.gda.model.decisionTree.DeciAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class FeeCategCheckExist extends ModelCheckerTemplateAction<FeeCategInfo> {
@@ -20,10 +20,10 @@ public final class FeeCategCheckExist extends ModelCheckerTemplateAction<FeeCate
 	
 	
 	
-	@Override protected DeciAction<FeeCategInfo> buildActionHook(FeeCategInfo recordInfo, Connection conn, String schemaName) {
+	@Override protected ActionStd<FeeCategInfo> buildActionHook(FeeCategInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<FeeCategInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		DeciAction<FeeCategInfo> actionSelect = new ActionFeeCategSelect(option);
+		ActionStd<FeeCategInfo> actionSelect = new ActionFeeCategSelect(option);
 		return actionSelect;
 	}
 	

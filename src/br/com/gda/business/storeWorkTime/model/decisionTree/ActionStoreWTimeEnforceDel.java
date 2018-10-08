@@ -1,23 +1,23 @@
 package br.com.gda.business.storeWorkTime.model.decisionTree;
 
 import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandler;
-import br.com.gda.model.decisionTree.DeciActionHelperTrans;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperTrans;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionStoreWTimeEnforceDel implements DeciAction<StoreWTimeInfo> {
-	private DeciAction<StoreWTimeInfo> actionHelper;	
+public final class ActionStoreWTimeEnforceDel implements ActionStd<StoreWTimeInfo> {
+	private ActionStd<StoreWTimeInfo> actionHelper;	
 	
 	
 	public ActionStoreWTimeEnforceDel(DeciTreeOption<StoreWTimeInfo> option) {			
-		actionHelper = new DeciActionHelperTrans<>(option.recordInfos, new VisitorStoreWTimeEnforceDel());
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisitorStoreWTimeEnforceDel());
 	}
 	
 	
 	
-	@Override public void addPostAction(DeciActionHandler<StoreWTimeInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<StoreWTimeInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

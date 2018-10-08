@@ -9,13 +9,13 @@ import br.com.gda.business.masterData.model.decisionTree.RootWeekdaySelect;
 import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.info.PlanMerger;
-import br.com.gda.model.decisionTree.DeciAction;
-import br.com.gda.model.decisionTree.DeciActionHandlerTemplate;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerPlanMergeWeekday extends DeciActionHandlerTemplate<PlanInfo, WeekdayInfo> {
+final class HandlerPlanMergeWeekday extends ActionLazyTemplate<PlanInfo, WeekdayInfo> {
 	private List<PlanInfo> originalInfos;
 	
 	
@@ -46,7 +46,7 @@ final class HandlerPlanMergeWeekday extends DeciActionHandlerTemplate<PlanInfo, 
 	
 	
 	
-	@Override protected DeciAction<WeekdayInfo> getInstanceOfActionHook(DeciTreeOption<WeekdayInfo> option) {
+	@Override protected ActionStd<WeekdayInfo> getInstanceOfActionHook(DeciTreeOption<WeekdayInfo> option) {
 		return new RootWeekdaySelect(option).toAction();
 	}
 	
