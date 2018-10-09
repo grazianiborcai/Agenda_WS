@@ -12,11 +12,11 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitor;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisitorOrderCopyCart implements ActionVisitor<OrderInfo> {
+final class LazyVisitorOrderCopyCart implements ActionVisitor<OrderInfo> {
 	private DeciTreeOption<CartInfo> selOption;
 	
 	
-	public VisitorOrderCopyCart(Connection conn, String schemaName) {
+	public LazyVisitorOrderCopyCart(Connection conn, String schemaName) {
 		checkArgument(conn, schemaName);
 		makeOption(conn, schemaName);
 	}

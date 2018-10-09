@@ -12,7 +12,7 @@ public final class StdOrderCopyCart implements ActionStd<OrderInfo> {
 	
 	
 	public StdOrderCopyCart(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisitorOrderCopyCart(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new LazyVisitorOrderCopyCart(option.conn, option.schemaName));
 	}
 	
 	

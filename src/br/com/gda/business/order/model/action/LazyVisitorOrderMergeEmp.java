@@ -9,9 +9,9 @@ import br.com.gda.info.InfoWritterFactory;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisitorOrderMergeEmp extends ActionVisitorTemplateMerge<OrderInfo, EmpInfo> {
+final class LazyVisitorOrderMergeEmp extends ActionVisitorTemplateMerge<OrderInfo, EmpInfo> {
 	
-	public VisitorOrderMergeEmp(Connection conn, String schemaName) {
+	public LazyVisitorOrderMergeEmp(Connection conn, String schemaName) {
 		super(conn, schemaName, EmpInfo.class);
 	}
 	

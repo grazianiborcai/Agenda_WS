@@ -12,7 +12,7 @@ final class StdOrderMergeEmp implements ActionStd<OrderInfo> {
 	
 	
 	public StdOrderMergeEmp(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisitorOrderMergeEmp(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new LazyVisitorOrderMergeEmp(option.conn, option.schemaName));
 	}
 	
 	

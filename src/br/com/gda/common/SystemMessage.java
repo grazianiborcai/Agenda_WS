@@ -37,7 +37,9 @@ public final class SystemMessage {
 	public static final String INTERNAL_ERROR = "Ops... something went wrong";
 	public static final String KEY_FIELD_IS_EMPTY = "Key field should not be null";
 	public static final String KEY_FIELD_NOT_NULL = "Key field should not be passed";
+	public static final String LIMIT_EXCEEDED = "Limit exceeded";	
 	public static final String MERGE_NOT_POSSIBLE = "Merge operation not possible";	
+	public static final String MIN_SIZE_REQUIRED = "Size should be greater or equal to: ";	
 	public static final String MULTIPLE_RECORDS = "Multiple records found on DB";
 	public static final String NO_CHECK_PERFORMED = "Check operation was not performed";
 	public static final String NO_CONFLICT = "No conflict detected";
@@ -53,8 +55,7 @@ public final class SystemMessage {
 	public static final String REQUEST_FAILED = "It was not possible to complete your request";
 	public static final String REQUEST_NOT_EXECUTED = "Request has not been executed";
 	public static final String SUCCESS = "Success";			
-	public static final String WRONG_DATA_TYPE = "Wrong data type";			
-		
+	public static final String WRONG_DATA_TYPE = "Wrong data type";				
 	
 		
 	

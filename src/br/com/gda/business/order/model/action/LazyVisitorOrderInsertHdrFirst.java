@@ -12,11 +12,11 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionVisitor;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisitorOrderInsertHdrFirst implements ActionVisitor<OrderInfo> {
+final class LazyVisitorOrderInsertHdrFirst implements ActionVisitor<OrderInfo> {
 	private DeciTreeOption<OrderInfo> selOption;
 	
 	
-	public VisitorOrderInsertHdrFirst(Connection conn, String schemaName) {
+	public LazyVisitorOrderInsertHdrFirst(Connection conn, String schemaName) {
 		checkArgument(conn, schemaName);
 		makeOption(conn, schemaName);
 	}

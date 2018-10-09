@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.model.action.ActionVisitor;
 
-final class VisitorOrderFirstRow implements ActionVisitor<OrderInfo> {
+final class LazyVisitorOrderFirstRow implements ActionVisitor<OrderInfo> {
 	
 	@Override public List<OrderInfo> executeTransformation(List<OrderInfo> recordInfos) {
 		List<OrderInfo> resultRecords = new ArrayList<>();		

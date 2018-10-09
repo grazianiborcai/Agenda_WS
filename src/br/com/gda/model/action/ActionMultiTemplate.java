@@ -9,42 +9,51 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
-import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
+public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
+	private final int MIN_SIZE = 2;
+	private final boolean NOT_ENOUGH_ELEMENTS = true;
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;
-	protected final boolean EMPTY = false;
 	
-	private DeciTreeOption<S> option;
+	private int sizeToTrigger;
 	private Connection conn; 
 	private String schemaName;
-	private ActionStd<S> actionHandler;
-	private DeciResult<T> resultHandler;
+	private DeciResult<T> visitorResult;
 	private DeciResult<T> resultPostAction;
 	private List<ActionLazy<T>> postActions;
+	private List<List<T>> recordLists;
+	private ActionMultiVisitor<T> visitor;
 	
 	
-	public ActionLazyTemplate(Connection conn, String schemaName) {
-		checkArgument(conn, schemaName);
+	public ActionMultiTemplate(ActionMultiOption<T> option) {
+		checkArgument(option);
 		
-		this.conn = conn;
-		this.schemaName = schemaName;
-		this.postActions = new ArrayList<>();
+		sizeToTrigger = option.sizeToTrigger;
+		conn = option.conn;
+		schemaName = option.schemaName;
+		postActions = new ArrayList<>();
+		recordLists = new ArrayList<>();
 	}
 	
 	
 	
-	private void checkArgument(Connection conn, String schemaName) {
-		if (conn == null)
+	private void checkArgument(ActionMultiOption<T> option) {
+		if (option == null)
+			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
+		
+		if (option.conn == null)
 			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
 		
-		if (schemaName == null)
+		if (option.schemaName == null)
 			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+		
+		if (option.sizeToTrigger < MIN_SIZE)
+			throw new NullPointerException(SystemMessage.MIN_SIZE_REQUIRED + MIN_SIZE);
 	}
 	
 	
-		
+	
 	@Override public boolean executeAction(T infoRecord) {
 		checkArgument(infoRecord);
 		
@@ -65,12 +74,19 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	@Override public boolean executeAction(List<T> infoRecords) {
 		checkArgument(infoRecords);	
-		boolean result = tryToExecuteAction(infoRecords);
+		checkListSize();
+		addToList(infoRecords);		
 		
-		if (result == SUCCESS) 
-			result = executePostActions();				
+		if (hasEnoughElement()) {
+			boolean result = tryToExecuteAction(infoRecords);
+			
+			if (result == SUCCESS) 
+				result = executePostActions();				
+			
+			return result;
+		}		
 		
-		return result;
+		return NOT_ENOUGH_ELEMENTS;
 	}
 	
 	
@@ -85,26 +101,22 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	
 	
-	private boolean tryToExecuteAction(List<T> infoRecords) {
-		option = buildOption(infoRecords);
-		
-		actionHandler = getInstanceOfActionHook(option);
-		actionHandler.executeAction();
-		resultHandler = translateResultHook(actionHandler.getDecisionResult());
-		boolean result = resultHandler.hasSuccessfullyFinished();
-		
-		return result;
+	private void checkListSize() {
+		if (hasEnoughElement())
+			throw new IllegalStateException(SystemMessage.LIMIT_EXCEEDED);
 	}
 	
 	
 	
-	private DeciTreeOption<S> buildOption(List<T> infoRecords) {
-		DeciTreeOption<S> opt = new DeciTreeOption<>();
-		opt.conn = conn;
-		opt.schemaName = schemaName;
-		opt.recordInfos = translateRecordInfosHook(makeDefensiveCopy(infoRecords));
-		
-		return opt;
+	private boolean hasEnoughElement() {
+		return recordLists.size() >= sizeToTrigger;
+	}
+	
+	
+	
+	private void addToList(List<T> infoRecords) {
+		List<T> clones = makeDefensiveCopy(infoRecords);
+		recordLists.add(makeDefensiveCopy(clones));
 	}
 	
 	
@@ -137,25 +149,20 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	
 	
-	protected List<S> translateRecordInfosHook(List<T> recordInfos) {
-		//Template method to be overridden by subclasses
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	private boolean tryToExecuteAction(List<T> infoRecords) {
+		visitor = getInstanceOfVisitorHook(conn, schemaName);
+		visitor.executeAction(recordLists);
+		visitorResult = visitor.getDecisionResult();
+		return visitorResult.hasSuccessfullyFinished();
 	}
 	
 	
 	
-	protected  ActionStd<S> getInstanceOfActionHook(DeciTreeOption<S> option) {
+	protected ActionMultiVisitor<T> getInstanceOfVisitorHook(Connection conn, String schemaName) {
 		//Template method to be overridden by subclasses
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
-	
-	
-	
-	protected DeciResult<T> translateResultHook(DeciResult<S> result) {
-		//Template method to be overridden by subclasses
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
-	}
-	
+
 	
 	
 	private boolean executePostActions() {				
@@ -175,7 +182,7 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	private boolean tryToExecutePostActions(ActionLazy<T> postAction) {				
 		try {
-			postAction.executeAction(resultHandler.getResultset());
+			postAction.executeAction(visitorResult.getResultset());
 			resultPostAction = postAction.getDecisionResult();
 			return SUCCESS;
 		
@@ -200,19 +207,20 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	
 	@Override public DeciResult<T> getDecisionResult() {
-		if (resultHandler == null)
+		if (visitorResult == null)
 			throw new IllegalStateException();
 		
 		if (resultPostAction != null)
 			return resultPostAction;
 		
-		return resultHandler;
+		return visitorResult;
 	}
 	
 	
 	
 	@Override public ActionStd<T> toAction(List<T> recordInfos) {
-		return new ActionLazyAdapter<>(this, recordInfos);
+		//TODO: Verificar se esse metodo faz sentido implementar
+		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	

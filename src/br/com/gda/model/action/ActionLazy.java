@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.gda.model.decisionTree.DeciResult;
 
 public interface ActionLazy<T> {
+	//TODO: adicionar classe que chamou como parametro ?
 	public boolean executeAction(List<T> infoRecords);
 	
 	public boolean executeAction(T infoRecord);
