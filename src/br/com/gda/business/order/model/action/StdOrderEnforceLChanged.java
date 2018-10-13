@@ -12,7 +12,7 @@ final class StdOrderEnforceLChanged implements ActionStd<OrderInfo> {
 	
 	
 	public StdOrderEnforceLChanged(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new LazyVisitorOrderEnforceLChanged());
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new StdVisitorOrderEnforceLChanged());
 	}
 	
 	

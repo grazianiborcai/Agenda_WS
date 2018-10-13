@@ -7,6 +7,7 @@ import java.util.List;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.business.feeStore.model.decisionTree.RootFeeStoreSelect;
+import br.com.gda.business.masterData.info.CartCateg;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -14,7 +15,6 @@ import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 final class HandlerCartFee extends ActionLazyTemplate<CartInfo, FeeStoreInfo> {
-	private final char ITEM_CATEG = 'S';
 	private final char FEE_CATEG = 'S';
 	
 	private List<CartInfo> originalInfos;
@@ -71,7 +71,7 @@ final class HandlerCartFee extends ActionLazyTemplate<CartInfo, FeeStoreInfo> {
 		
 		for (FeeStoreInfo eachFee : fees) {
 			CartInfo cartItem = CartInfo.copyFrom(eachFee);
-			cartItem.codItemCateg = ITEM_CATEG;
+			cartItem.codItemCateg = CartCateg.SERVICE_FEE.getCodCateg();
 			cartItem.priceUnit = 1;
 			cartItem.quantity = 1;
 			results.add(cartItem);

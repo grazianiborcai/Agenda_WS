@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.masterData.info.CartCateg;
 import br.com.gda.model.action.ActionVisitor;
 
 final class VisitorCartEnforceCateg implements ActionVisitor<CartInfo> {
-	private final char ITEM_CATEG = 'I';
-	
 	
 	@Override public List<CartInfo> executeTransformation(List<CartInfo> recordInfos) {
 		List<CartInfo> resultRecords = new ArrayList<>();		
@@ -25,7 +24,7 @@ final class VisitorCartEnforceCateg implements ActionVisitor<CartInfo> {
 	private CartInfo enforce(CartInfo recordInfo) {
 		CartInfo enforcedInfo = makeClone(recordInfo);
 		
-		enforcedInfo.codItemCateg = ITEM_CATEG;
+		enforcedInfo.codItemCateg = CartCateg.ITEM.getCodCateg();
 		return enforcedInfo;
 	}
 	

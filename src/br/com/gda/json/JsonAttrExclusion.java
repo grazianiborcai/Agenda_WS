@@ -12,6 +12,9 @@ public final class JsonAttrExclusion implements ExclusionStrategy {
 		if (f.getName().equals("recordMode"))
 			return SKIP;
 		
+		if (f.getName().equals("recordFlag"))
+			return SKIP;
+		
 		if (f.getName().equals("second"))
 			return SKIP;
 		
@@ -21,6 +24,8 @@ public final class JsonAttrExclusion implements ExclusionStrategy {
 		return DONT_SKIP;
 	}
 
+	
+	
 	@Override
 	public boolean shouldSkipClass(Class<?> clazz) {
 		return DONT_SKIP;

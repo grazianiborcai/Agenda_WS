@@ -7,7 +7,17 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import br.com.gda.common.DefaultValue;
+
 public abstract class InfoRecord implements Cloneable {
+	public char recordFlag;
+	
+	
+	protected InfoRecord() {
+		recordFlag = DefaultValue.character();
+	}
+	
+	
 	
 	protected static <T> List<T> copyFrom(List<?> sourceObjs, Class<T> targetClass) {
 		if (sourceObjs == null)

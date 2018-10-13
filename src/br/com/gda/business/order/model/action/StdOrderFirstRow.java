@@ -12,7 +12,7 @@ final class StdOrderFirstRow implements ActionStd<OrderInfo> {
 	
 	
 	public StdOrderFirstRow(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new LazyVisitorOrderFirstRow());
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new StdVisitorOrderFirstRow());
 	}
 	
 	

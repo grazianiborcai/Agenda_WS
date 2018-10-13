@@ -12,7 +12,7 @@ final class StdOrderMergeMat implements ActionStd<OrderInfo> {
 	
 	
 	public StdOrderMergeMat(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new LazyVisitorOrderMergeMat(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new StdVisitorOrderMergeMat(option.conn, option.schemaName));
 	}
 	
 	

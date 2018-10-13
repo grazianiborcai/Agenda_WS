@@ -4,19 +4,19 @@ import java.sql.Connection;
 import java.util.Collections;
 import java.util.List;
 
-import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.decisionTree.RootCartSelect;
 import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.business.order.info.OrderMerger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionVisitor;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-
-final class LazyVisitorOrderCopyCart implements ActionVisitor<OrderInfo> {
-	private DeciTreeOption<CartInfo> selOption;
+//TODO: Trocar pela classe Multi ?
+final class StdVisitorOrderInsertHdrFirst implements ActionVisitor<OrderInfo> {
+	private DeciTreeOption<OrderInfo> selOption;
 	
 	
-	public LazyVisitorOrderCopyCart(Connection conn, String schemaName) {
+	public StdVisitorOrderInsertHdrFirst(Connection conn, String schemaName) {
 		checkArgument(conn, schemaName);
 		makeOption(conn, schemaName);
 	}
@@ -44,35 +44,44 @@ final class LazyVisitorOrderCopyCart implements ActionVisitor<OrderInfo> {
 		
 	@Override public List<OrderInfo> executeTransformation(List<OrderInfo> recordInfos) {
 		addRecordToOption(recordInfos);
-		List<CartInfo> carts = selectCart();
-		
-		if (carts.isEmpty())
-			return Collections.emptyList();
-		
-		return makeCopy(carts);
+		List<OrderInfo> hdrs = execAction();		
+		return mergeHdr(hdrs, recordInfos);
 	}	
 	
 	
 	
 	private void addRecordToOption(List<OrderInfo> recordInfos) {
-		selOption.recordInfos = CartInfo.copyFrom(recordInfos);
+		selOption.recordInfos = recordInfos;
 	}
 	
 	
 	
-	private List<CartInfo> selectCart() {
-		ActionStd<CartInfo> mainAction = new RootCartSelect(selOption).toAction();
-		mainAction.executeAction();
+	private List<OrderInfo> execAction() {
+		ActionStd<OrderInfo> action = buildAction();
+		action.executeAction();
 		
-		if (mainAction.getDecisionResult().hasResultset())		
-			return mainAction.getDecisionResult().getResultset();
+		if (action.getDecisionResult().hasResultset())		
+			return action.getDecisionResult().getResultset();
 		
 		return Collections.emptyList();
 	}
 	
 	
 	
-	private List<OrderInfo> makeCopy(List<CartInfo> carts) {
-		return OrderInfo.copyFrom(carts);
+	private ActionStd<OrderInfo> buildAction() {
+		ActionStd<OrderInfo> firstRow = new StdOrderFirstRow(selOption);
+		ActionLazy<OrderInfo> insertHdr = new LazyOrderInsertHdr(selOption.conn, selOption.schemaName);
+		
+		firstRow.addPostAction(insertHdr);
+		return firstRow;
+	}
+	
+	
+	
+	private List<OrderInfo> mergeHdr(List<OrderInfo> hdrs, List<OrderInfo> originals) {
+		if (hdrs.isEmpty())
+			return Collections.emptyList();		
+		
+		return new OrderMerger().merge(hdrs, originals);
 	}
 }

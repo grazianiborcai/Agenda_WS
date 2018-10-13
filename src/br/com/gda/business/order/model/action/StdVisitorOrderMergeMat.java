@@ -1,24 +1,24 @@
 package br.com.gda.business.order.model.action;
 
 import java.sql.Connection;
-import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.decisionTree.RootCusSelect;
+import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.material.model.decisionTree.RootMatSelect;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.info.OrderMerger;
 import br.com.gda.info.InfoWritterFactory;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class LazyVisitorOrderMergeCus extends ActionVisitorTemplateMerge<OrderInfo, CusInfo> {
+final class StdVisitorOrderMergeMat extends ActionVisitorTemplateMerge<OrderInfo, MatInfo> {
 	
-	public LazyVisitorOrderMergeCus(Connection conn, String schemaName) {
-		super(conn, schemaName, CusInfo.class);
+	public StdVisitorOrderMergeMat(Connection conn, String schemaName) {
+		super(conn, schemaName, MatInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<CusInfo>> getTreeClassHook() {
-		return RootCusSelect.class;
+	@Override protected Class<? extends DeciTree<MatInfo>> getTreeClassHook() {
+		return RootMatSelect.class;
 	}
 	
 	

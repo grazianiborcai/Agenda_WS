@@ -9,6 +9,7 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	private final int MIN_SIZE = 2;
@@ -16,7 +17,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;
 	
-	private int sizeToTrigger;
+	private int sizeToExecute;
 	private Connection conn; 
 	private String schemaName;
 	private DeciResult<T> visitorResult;
@@ -26,10 +27,10 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	private ActionMultiVisitor<T> visitor;
 	
 	
-	public ActionMultiTemplate(ActionMultiOption<T> option) {
+	protected ActionMultiTemplate(ActionMultiOption<T> option) {
 		checkArgument(option);
 		
-		sizeToTrigger = option.sizeToTrigger;
+		sizeToExecute = option.sizeToTrigger;
 		conn = option.conn;
 		schemaName = option.schemaName;
 		postActions = new ArrayList<>();
@@ -50,6 +51,34 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 		
 		if (option.sizeToTrigger < MIN_SIZE)
 			throw new NullPointerException(SystemMessage.MIN_SIZE_REQUIRED + MIN_SIZE);
+	}
+	
+	
+	
+	protected ActionMultiTemplate(DeciTreeOption<T> option, int sizeToTrigger) {
+		checkArgument(option, sizeToTrigger);
+		
+		sizeToExecute = sizeToTrigger;
+		conn = option.conn;
+		schemaName = option.schemaName;
+		postActions = new ArrayList<>();
+		recordLists = new ArrayList<>();
+	}
+	
+	
+	
+	private void checkArgument(DeciTreeOption<T> option, int sizeToTrigger) {
+		if (option == null)
+			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
+		
+		if (option.conn == null)
+			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+		
+		if (option.schemaName == null)
+			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+		
+		if (sizeToTrigger <= 0)
+			throw new NullPointerException("sizeToTrigger" + SystemMessage.POSITIVE_NUM_EXPECTED);
 	}
 	
 	
@@ -109,7 +138,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	
 	private boolean hasEnoughElement() {
-		return recordLists.size() >= sizeToTrigger;
+		return recordLists.size() >= sizeToExecute;
 	}
 	
 	
@@ -207,13 +236,38 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	
 	@Override public DeciResult<T> getDecisionResult() {
-		if (visitorResult == null)
+		if (hasExecuted() == false)
 			throw new IllegalStateException();
 		
 		if (resultPostAction != null)
 			return resultPostAction;
 		
-		return visitorResult;
+		if (visitorResult != null)
+			return visitorResult;
+		
+		return buildParcialResult();
+	}
+	
+	
+	
+	private boolean hasExecuted() {
+		if (visitorResult != null)
+			return true;
+		
+		if (resultPostAction != null)
+			return true;
+		
+		return false;
+	}
+	
+	
+	
+	private DeciResult<T> buildParcialResult() {
+		DeciResultHelper<T> deciResult = new DeciResultHelper<>();		
+		deciResult.finishedWithSuccess = true;
+		deciResult.hasResultset = true;
+		deciResult.resultset = recordLists.get(recordLists.size()-1);
+		return deciResult;
 	}
 	
 	

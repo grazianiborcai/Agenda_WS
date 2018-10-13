@@ -17,13 +17,7 @@ final class OrderCopyCart extends InfoCopierTemplate<OrderInfo, CartInfo>{
 		result.codOwner = source.codOwner;
 		result.itemNumber = source.itemNumber;
 		result.codCustomer = source.codCustomer;	
-		//result.codOrderStatus;
-		//result.cusCpf;
-		//result.cusEmail;
-		//result.cusName;
-		//result.codLanguage;
-		//result.cusCodCountry;
-		//result.cusCodState;
+		result.codItemCateg = source.codItemCateg;
 		result.codStore = source.codStore;
 		result.codMat = source.codMat;
 		result.matTxt = source.txtMat;
@@ -37,7 +31,6 @@ final class OrderCopyCart extends InfoCopierTemplate<OrderInfo, CartInfo>{
 		result.matDate = source.date;
 		result.storeName = source.nameStore;
 		result.codEmployee = source.codEmployee;
-		//result.empCpf;
 		result.empName = source.nameEmployee;
 		
 		return result;

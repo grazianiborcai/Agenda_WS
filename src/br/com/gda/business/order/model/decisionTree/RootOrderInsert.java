@@ -7,6 +7,8 @@ import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.action.StdOrderCopyCart;
 import br.com.gda.business.order.model.action.LazyOrderEnforceExtid;
 import br.com.gda.business.order.model.action.LazyOrderEnforceLChanged;
+import br.com.gda.business.order.model.action.LazyOrderFilterExtra;
+import br.com.gda.business.order.model.action.LazyOrderFilterItm;
 import br.com.gda.business.order.model.action.LazyOrderInsertHdrFirst;
 import br.com.gda.business.order.model.action.LazyOrderInsertItm;
 import br.com.gda.business.order.model.action.LazyOrderMergeCus;
@@ -70,6 +72,8 @@ public final class RootOrderInsert implements DeciTree<OrderInfo> {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<OrderInfo> copyCart = new StdOrderCopyCart(option);
+		ActionLazy<OrderInfo> filterItm = new LazyOrderFilterItm(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> filterExtra = new LazyOrderFilterExtra(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceExtid = new LazyOrderEnforceExtid(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> mergeEmp = new LazyOrderMergeEmp(option.conn, option.schemaName);
@@ -79,7 +83,9 @@ public final class RootOrderInsert implements DeciTree<OrderInfo> {
 		ActionLazy<OrderInfo> insertHdr = new LazyOrderInsertHdrFirst(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> insertItm = new LazyOrderInsertItm(option.conn, option.schemaName);
 		
-		copyCart.addPostAction(enforceLChanged);
+		copyCart.addPostAction(filterItm);
+		copyCart.addPostAction(filterExtra);
+		filterItm.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceExtid);
 		enforceExtid.addPostAction(mergeEmp);
 		mergeEmp.addPostAction(mergeCus);
@@ -90,23 +96,6 @@ public final class RootOrderInsert implements DeciTree<OrderInfo> {
 		
 		actions.add(copyCart);		
 		return actions;
-		
-		
-		/*
-		DeciAction<OrderInfo> enforceItem = new ActionCartEnforceItemNext(option);
-		DeciActionHandler<OrderInfo> enforceLChanged = new HandlerCartEnforceLChanged(option.conn, option.schemaName);
-		DeciActionHandler<OrderInfo> rootL2 = new HandlerCartNodetInsertL1(option.conn, option.schemaName);	
-		
-		enforceItem.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(rootL2);
-		
-		actions.add(enforceItem);		
-		*/
-		
-		//SELECT CART
-		//ENFORCE OWNER
-		//DELETE CART
-		
 	}
 	
 	

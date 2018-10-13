@@ -7,6 +7,7 @@ import java.util.List;
 import br.com.gda.business.amount.info.AmountInfo;
 import br.com.gda.business.amount.model.decisionTree.ActionAmountTotal;
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.masterData.info.CartCateg;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -14,7 +15,6 @@ import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 final class HandlerCartTotal extends ActionLazyTemplate<CartInfo, AmountInfo> {
-	private final char ITEM_CATEG = 'T';
 	
 	private List<CartInfo> originalInfos;
 	private CartInfo lineTotal;
@@ -71,7 +71,7 @@ final class HandlerCartTotal extends ActionLazyTemplate<CartInfo, AmountInfo> {
 	
 	
 	private CartInfo enforceCateg(CartInfo totalItem) {
-		totalItem.codItemCateg = ITEM_CATEG;
+		totalItem.codItemCateg = CartCateg.TOTAL.getCodCateg();
 		return totalItem;
 	}
 }

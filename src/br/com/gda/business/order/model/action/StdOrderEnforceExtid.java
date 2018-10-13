@@ -12,7 +12,7 @@ final class StdOrderEnforceExtid implements ActionStd<OrderInfo> {
 	
 	
 	public StdOrderEnforceExtid(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new LazyVisitorOrderEnforceExtid());
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new StdVisitorOrderEnforceExtid());
 	}
 	
 	

@@ -49,7 +49,8 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		priceUnit = DefaultValue.number();
 		quantity = DefaultValue.number();
 		codWeekday = DefaultValue.number();
-		codLanguage = DefaultValue.language();		
+		codLanguage = DefaultValue.language();	
+		codItemCateg = DefaultValue.character();
 	}
 	
 	

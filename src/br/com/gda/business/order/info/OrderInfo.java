@@ -13,6 +13,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codOrder;
 	public int itemNumber;
+	public char codItemCateg;
 	public String codOrderExt;
 	public long codCustomer;	
 	public String codOrderStatus;
@@ -63,6 +64,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		matCodGroup = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codLanguage = DefaultValue.language();
+		codItemCateg = DefaultValue.character();
 		
 		computeLChanged();
 	}
