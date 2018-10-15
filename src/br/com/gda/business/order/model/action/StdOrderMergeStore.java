@@ -12,7 +12,7 @@ final class StdOrderMergeStore implements ActionStd<OrderInfo> {
 	
 	
 	public StdOrderMergeStore(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new StdVisitorOrderMergeStore(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisiOrderMergeStore(option.conn, option.schemaName));
 	}
 	
 	

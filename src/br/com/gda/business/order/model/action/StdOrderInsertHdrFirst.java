@@ -12,7 +12,7 @@ final class StdOrderInsertHdrFirst implements ActionStd<OrderInfo> {
 	
 	
 	public StdOrderInsertHdrFirst(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new StdVisitorOrderInsertHdrFirst(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisiOrderInsertHdrFirst(option.conn, option.schemaName));
 	}
 	
 	

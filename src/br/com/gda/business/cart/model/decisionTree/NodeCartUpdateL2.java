@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.action.StdCartUpdateHdr;
+import br.com.gda.business.cart.model.action.LazyCartEnforceKey;
+import br.com.gda.business.cart.model.action.LazyCartRootSelect;
+import br.com.gda.business.cart.model.action.LazyCartUpdateItm;
 import br.com.gda.business.cart.model.checker.CartCheckDate;
 import br.com.gda.business.cart.model.checker.CartCheckEmp;
 import br.com.gda.business.cart.model.checker.CartCheckME;
@@ -85,10 +89,10 @@ class NodeCartUpdateL2 implements DeciTree<CartInfo> {
 	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartInfo> updateHdr = new ActionCartUpdateHdr(option);	
-		ActionLazy<CartInfo> updateItm = new HandlerCartUpdateItm(option.conn, option.schemaName);	
-		ActionLazy<CartInfo> enforceKey = new HandlerCartEnforceKey(option.conn, option.schemaName);
-		ActionLazy<CartInfo> selectCart = new HandlerCartRootSelect(option.conn, option.schemaName);			
+		ActionStd<CartInfo> updateHdr = new StdCartUpdateHdr(option);	
+		ActionLazy<CartInfo> updateItm = new LazyCartUpdateItm(option.conn, option.schemaName);	
+		ActionLazy<CartInfo> enforceKey = new LazyCartEnforceKey(option.conn, option.schemaName);
+		ActionLazy<CartInfo> selectCart = new LazyCartRootSelect(option.conn, option.schemaName);			
 		
 		updateHdr.addPostAction(updateItm);
 		updateHdr.addPostAction(enforceKey);

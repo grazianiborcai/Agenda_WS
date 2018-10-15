@@ -131,4 +131,7 @@ public final class SystemCode {
 	//Order
 	public static final int ORDER_STATUS_ALREADY_EXIST 					= 1450;
 	public static final int ORDER_STATUS_NOT_FOUND 						= 1451;
+	
+	//Total Amount
+	public static final int AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES			= 1500;
 }

@@ -16,7 +16,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class NodeCartUpdateL1 implements DeciTree<CartInfo> {
+public final class NodeCartUpdateL1 implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	

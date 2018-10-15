@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.action.StdCartDeleteHdr;
 import br.com.gda.business.cart.model.checker.CartCheckDelete;
 import br.com.gda.business.cart.model.checker.CartCheckHasItem;
 import br.com.gda.model.action.ActionStd;
@@ -61,7 +62,7 @@ final class RootCartDeleteHdr implements DeciTree<CartInfo> {
 	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartInfo> deleteHdr = new ActionCartDeleteHdr(option);		
+		ActionStd<CartInfo> deleteHdr = new StdCartDeleteHdr(option);		
 		actions.add(deleteHdr);		
 		
 		return actions;

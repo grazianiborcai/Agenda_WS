@@ -9,6 +9,7 @@ public final class FeeStoreInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
 	public char codFeeCateg;
+	public String txtFeeCateg;
 	public String codCurr;
 	public double price;
 	

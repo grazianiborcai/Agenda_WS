@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.action.StdCartInsertHdr;
+import br.com.gda.business.cart.model.action.StdCartUpdateHdr;
 import br.com.gda.business.cart.model.checker.CartCheckExistHdr;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -56,7 +58,7 @@ final class RootCartUpsertHdr implements DeciTree<CartInfo> {
 	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartInfo> updateHdr = new ActionCartUpdateHdr(option);	
+		ActionStd<CartInfo> updateHdr = new StdCartUpdateHdr(option);	
 		
 		actions.add(updateHdr);		
 		return actions;
@@ -67,7 +69,7 @@ final class RootCartUpsertHdr implements DeciTree<CartInfo> {
 	private List<ActionStd<CartInfo>> buildActionsOnFailed(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartInfo> insertHdr = new ActionCartInsertHdr(option);	
+		ActionStd<CartInfo> insertHdr = new StdCartInsertHdr(option);	
 		
 		actions.add(insertHdr);		
 		return actions;

@@ -25,11 +25,13 @@ public final class SystemMessage {
 	
 	//System
 	public static final String ACTION_NOT_EXECUTED = "Action has not been executed";
+	public static final String ACTION_NOT_INIT = " is NULL or EMPTY. Action was not initialized as expected";
 	public static final String AGED_DATE = "Date is in the past";
 	public static final String ARGUMENT_DONT_MATCH = " arguments don't match";
 	public static final String BAD_DATE = "Invalid date";	
 	public static final String BAD_TIME_RANGE = "Invalid time range";	
 	public static final String CLASS_MISMATCH = "Class type mismatch";	
+	public static final String COMPARE_NOT_POSSIBLE = "Not possible to compare objects. Equals() was broken";	
 	public static final String CONFLICT = "Conflict detected";
 	public static final String DATA_NOT_FOUND = "Data not found";
 	public static final String EMPTY_ARGUMENT = " argument is empty";
@@ -55,10 +57,10 @@ public final class SystemMessage {
 	public static final String REQUEST_FAILED = "It was not possible to complete your request";
 	public static final String REQUEST_NOT_EXECUTED = "Request has not been executed";
 	public static final String SUCCESS = "Success";			
-	public static final String WRONG_DATA_TYPE = "Wrong data type";				
+	public static final String WRONG_DATA_TYPE = "Wrong data type";	
+	
 	
 		
-	
 	//Master Data
 	public static final String COUNTRY_ALREADY_EXIST = "Country already exist on DB";
 	public static final String COUNTRY_NOT_FOUND = "Country not found on DB";	
@@ -167,6 +169,8 @@ public final class SystemMessage {
 	
 	
 	
+	
+	
 	//Cart
 	public static final String CART_ALREADY_EXIST = "Cart's data already exist on DB";	
 	public static final String CART_HAVE_ITEM = "Cart still has items";	
@@ -179,7 +183,15 @@ public final class SystemMessage {
 	
 	
 	
-	//Ordere
+	
+	
+	//Order
 	public static final String ORDER_STATUS_ALREADY_EXIST = "Order Status already exist on DB";	
 	public static final String ORDER_STATUS_NOT_FOUND = "Order Status not found on DB";
+	
+	
+	
+	
+	//Total Amount
+	public static final String AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES = "Amount field does not have two decimal places";
 }

@@ -6,8 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.decisionTree.ActionCartEnforceKey;
-import br.com.gda.business.cart.model.decisionTree.HandlerCartSelect;
+import br.com.gda.business.cart.model.action.StdCartEnforceKey;
+import br.com.gda.business.cart.model.action.LazyCartSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -77,8 +77,8 @@ public final class CartCheckHasItem extends ModelCheckerTemplateSimple<CartInfo>
 	
 	
 	private ActionStd<CartInfo> buildAction(DeciTreeOption<CartInfo> option) {	
-		ActionStd<CartInfo> enforceKey = new ActionCartEnforceKey(option);
-		ActionLazyTemplate<CartInfo, CartInfo> selectCartItem = new HandlerCartSelect(option.conn, option.schemaName);
+		ActionStd<CartInfo> enforceKey = new StdCartEnforceKey(option);
+		ActionLazyTemplate<CartInfo, CartInfo> selectCartItem = new LazyCartSelect(option.conn, option.schemaName);
 		
 		enforceKey.addPostAction(selectCartItem);
 		return enforceKey;	

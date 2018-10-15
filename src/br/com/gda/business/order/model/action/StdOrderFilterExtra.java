@@ -12,7 +12,7 @@ public final class StdOrderFilterExtra implements ActionStd<OrderInfo> {
 	
 	
 	public StdOrderFilterExtra(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new StdVisitorOrderFilterExtra());
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisiOrderFilterExtra());
 	}
 	
 	

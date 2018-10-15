@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.decisionTree.ActionCartSelect;
+import br.com.gda.business.cart.model.action.StdCartSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -44,7 +44,7 @@ public final class CartCheckExistItm extends ModelCheckerTemplateSimple<CartInfo
 	private List<CartInfo> selectCartItem(CartInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CartInfo> option = buildOption(recordInfo, conn, schemaName);		
 		
-		ActionStd<CartInfo> selectCartItem = new ActionCartSelect(option);		
+		ActionStd<CartInfo> selectCartItem = new StdCartSelect(option);		
 		selectCartItem.executeAction();
 		
 		if (selectCartItem.getDecisionResult().hasResultset())

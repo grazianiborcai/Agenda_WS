@@ -12,7 +12,7 @@ public final class StdOrderFlagExtra implements ActionStd<OrderInfo> {
 	
 	
 	public StdOrderFlagExtra(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new StdVisitorOrderFlagExtra());
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisiOrderFlagExtra());
 	}
 	
 	

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.action.StdCartEnforceWeekday;
+import br.com.gda.business.cart.model.action.LazyCartNodetInsertL2;
 import br.com.gda.business.cart.model.checker.CartCheckMatServ;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
@@ -17,7 +19,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class NodeCartInsertL1 implements DeciTree<CartInfo> {
+public final class NodeCartInsertL1 implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
@@ -56,8 +58,8 @@ final class NodeCartInsertL1 implements DeciTree<CartInfo> {
 	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartInfo> weekday = new ActionCartEnforceWeekday(option);
-		ActionLazy<CartInfo> rootL3 = new HandlerCartNodetInsertL2(option.conn, option.schemaName);
+		ActionStd<CartInfo> weekday = new StdCartEnforceWeekday(option);
+		ActionLazy<CartInfo> rootL3 = new LazyCartNodetInsertL2(option.conn, option.schemaName);
 		
 		weekday.addPostAction(rootL3);
 		

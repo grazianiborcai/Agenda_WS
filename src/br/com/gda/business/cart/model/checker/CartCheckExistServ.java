@@ -6,8 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.decisionTree.ActionCartRemoveItemNum;
-import br.com.gda.business.cart.model.decisionTree.HandlerCartSelect;
+import br.com.gda.business.cart.model.action.StdCartRemoveItemNum;
+import br.com.gda.business.cart.model.action.LazyCartSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -71,8 +71,8 @@ public final class CartCheckExistServ extends ModelCheckerTemplateSimple<CartInf
 	private List<CartInfo> selectCartItem(CartInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CartInfo> option = buildOption(recordInfo, conn, schemaName);		
 		
-		ActionStd<CartInfo> removeItemNum = new ActionCartRemoveItemNum(option);
-		ActionLazyTemplate<CartInfo, CartInfo> selectCartItem = new HandlerCartSelect(conn, schemaName);
+		ActionStd<CartInfo> removeItemNum = new StdCartRemoveItemNum(option);
+		ActionLazyTemplate<CartInfo, CartInfo> selectCartItem = new LazyCartSelect(conn, schemaName);
 		
 		removeItemNum.addPostAction(selectCartItem);
 		removeItemNum.executeAction();

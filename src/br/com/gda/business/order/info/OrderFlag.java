@@ -1,7 +1,7 @@
 package br.com.gda.business.order.info;
 
 public enum OrderFlag {
-	HEADER('H'), EXTRA('E');
+	ITEM('I'), EXTRA('E');
 	
 	private char flagId;
 	
@@ -11,7 +11,7 @@ public enum OrderFlag {
 	
 	
 	
-	public char getId() {
+	public char getFlagId() {
 		return flagId;
 	}
 }

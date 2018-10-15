@@ -83,6 +83,31 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	
 	
+	protected ActionMultiTemplate(Connection conn, String schemaName, int sizeToTrigger) {
+		checkArgument(conn, schemaName, sizeToTrigger);
+		
+		this.sizeToExecute = sizeToTrigger;
+		this.conn = conn;
+		this.schemaName = schemaName;
+		this.postActions = new ArrayList<>();
+		this.recordLists = new ArrayList<>();
+	}
+	
+	
+	
+	private void checkArgument(Connection conn, String schemaName, int sizeToTrigger) {		
+		if (conn == null)
+			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+		
+		if (schemaName == null)
+			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+		
+		if (sizeToTrigger <= 0)
+			throw new NullPointerException("sizeToTrigger" + SystemMessage.POSITIVE_NUM_EXPECTED);
+	}
+	
+	
+	
 	@Override public boolean executeAction(T infoRecord) {
 		checkArgument(infoRecord);
 		

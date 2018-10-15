@@ -10,6 +10,11 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 
 public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisitor<T> {
+	protected final boolean IS_TAKEN = true;
+	protected final boolean NOT_TAKEN = false;
+	protected final boolean FLAGGED = true;
+	protected final boolean NOT_FLAGGED = false;
+	
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
@@ -48,60 +53,99 @@ public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisito
 	
 	
 	@Override public boolean executeAction(List<List<T>> infoRecords) {
+		boolean result = buildList(infoRecords);	
+		
+		if (result == SUCCESS)
+			result = tryToExecuteAction();
+		
+		
+		if (result == FAILED)
+			return buildResultFailed();
+		
+		
+		return buildResultSuccess();
+	}
+	
+	
+	
+	private boolean buildList(List<List<T>> infoRecords) {
 		int index = 0;
 		
 		for (List<T> eachRecords : infoRecords) {
 			index = index + 1;
 			boolean hasNext = (infoRecords.size() - 1) < index;
-			boolean result = tryToExecuteAction(index, eachRecords, hasNext);
+			boolean result = buildListHook(eachRecords, hasNext);
 			
-			if (result == FAILED) {
-				buildResultFailed();
+			if (result == FAILED)
 				return FAILED;
-			}	
 		}		
 		
-		buildResultSuccess();
 		return SUCCESS;
 	}
 	
 	
 	
-	private boolean tryToExecuteAction(int index, List<T> infoRecords, boolean hasNext) {
-		List<T> results = executeHook(index, infoRecords, hasNext);
-		
-		if (results == null || results.isEmpty()) 			
-			return FAILED;
-		
-		resultRecords.addAll(results);		
-		return SUCCESS;			
-	}
-	
-	
-	
-	protected List<T> executeHook(int index, List<T> infoRecords, boolean hasNext) {
+	protected boolean buildListHook(List<T> infoRecords, boolean hasNext) {
 		//Template method to be overridden by subclasses
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	
 	
-	private void buildResultSuccess() {
-		actionResult = new DeciResultHelper<>();
-		actionResult.finishedWithSuccess = SUCCESS;
-		actionResult.hasResultset = true;
-		actionResult.resultset = resultRecords;
+	private boolean tryToExecuteAction() {
+		List<T> results = executeHook();
+		
+		if (isResultValid(results) == FAILED) 			
+			return FAILED;
+		
+		buildResultRecords(results);		
+		return SUCCESS;			
 	}
 	
 	
 	
-	private void buildResultFailed() {
+	private boolean isResultValid(List<T> infoRecords) {
+		if (infoRecords == null || infoRecords.isEmpty()) 			
+			return FAILED;
+		
+		return SUCCESS;
+	}
+	
+	
+	
+	private void buildResultRecords(List<T> infoRecords) {
+		resultRecords.addAll(infoRecords);
+	}
+	
+	
+	
+	protected List<T> executeHook() {
+		//Template method to be overridden by subclasses
+		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	}
+	
+	
+	
+	private boolean buildResultSuccess() {
+		actionResult = new DeciResultHelper<>();
+		actionResult.finishedWithSuccess = SUCCESS;
+		actionResult.hasResultset = true;
+		actionResult.resultset = resultRecords;
+		
+		return actionResult.finishedWithSuccess;
+	}
+	
+	
+	
+	private boolean buildResultFailed() {
 		actionResult = new DeciResultHelper<>();
 		actionResult.finishedWithSuccess = FAILED;
 		actionResult.failureCode = SystemCode.INTERNAL_ERROR;
 		actionResult.failureMessage = SystemMessage.INTERNAL_ERROR;
 		actionResult.hasResultset = false;
 		actionResult.resultset = null;
+		
+		return actionResult.finishedWithSuccess;
 	}
 	
 	

@@ -12,7 +12,7 @@ public final class StdOrderFilterItm implements ActionStd<OrderInfo> {
 	
 	
 	public StdOrderFilterItm(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new StdVisitorOrderFilterItm());
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisiOrderFilterItm());
 	}
 	
 	

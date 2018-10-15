@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.action.StdCartEnforceItemNext;
+import br.com.gda.business.cart.model.action.LazyCartEnforceLChanged;
+import br.com.gda.business.cart.model.action.LazyCartNodetInsertL1;
 import br.com.gda.business.cart.model.checker.CartCheckCus;
 import br.com.gda.business.cart.model.checker.CartCheckExistServ;
 import br.com.gda.business.cart.model.checker.CartCheckMS;
@@ -103,9 +106,9 @@ public final class RootCartInsert implements DeciTree<CartInfo> {
 	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartInfo> enforceItem = new ActionCartEnforceItemNext(option);
-		ActionLazy<CartInfo> enforceLChanged = new HandlerCartEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<CartInfo> rootL2 = new HandlerCartNodetInsertL1(option.conn, option.schemaName);	
+		ActionStd<CartInfo> enforceItem = new StdCartEnforceItemNext(option);
+		ActionLazy<CartInfo> enforceLChanged = new LazyCartEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<CartInfo> rootL2 = new LazyCartNodetInsertL1(option.conn, option.schemaName);	
 		
 		enforceItem.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(rootL2);

@@ -6,14 +6,17 @@ import java.time.LocalTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
+import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
 
-public final class CartInfo extends InfoRecord implements Cloneable {
+public final class CartInfo extends InfoRecord implements Cloneable, Comparable<CartInfo> {
 	public long codOwner;	
 	public long codCustomer;
 	public int itemNumber;
 	public char codItemCateg;
 	public String txtItemCateg;
+	public char codFeeCateg;
+	public String txtFeeCateg;
 	public long codStore;
 	public String nameStore;
 	public long codEmployee;
@@ -51,6 +54,7 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		codWeekday = DefaultValue.number();
 		codLanguage = DefaultValue.language();	
 		codItemCateg = DefaultValue.character();
+		codFeeCateg = DefaultValue.character();
 	}
 	
 	
@@ -112,5 +116,25 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		return (codOwner    == obj.codOwner    && 
 				codCustomer == obj.codCustomer &&
 				itemNumber  == obj.itemNumber);
+	}
+
+
+	
+	@Override public int compareTo(CartInfo arg0) {
+		if (arg0 == null)
+			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	
+
+		
+		if (itemNumber < arg0.itemNumber)
+			return -1;
+		
+		if (itemNumber > arg0.itemNumber)
+			return 1;
+		
+		if (equals(arg0))
+			return 0;
+		
+		
+		throw new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE);
 	}
 }

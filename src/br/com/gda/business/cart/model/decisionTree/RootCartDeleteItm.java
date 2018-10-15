@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.action.StdCartSelect;
+import br.com.gda.business.cart.model.action.LazyCartDeleteItm;
 import br.com.gda.business.cart.model.checker.CartCheckDelete;
 import br.com.gda.business.cart.model.checker.CartCheckExistItm;
 import br.com.gda.model.action.ActionStd;
@@ -60,8 +62,8 @@ final class RootCartDeleteItm implements DeciTree<CartInfo> {
 	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartInfo> selectItem = new ActionCartSelect(option);
-		ActionLazy<CartInfo> deleteItm = new HandlerCartDeleteItm(option.conn, option.schemaName);
+		ActionStd<CartInfo> selectItem = new StdCartSelect(option);
+		ActionLazy<CartInfo> deleteItm = new LazyCartDeleteItm(option.conn, option.schemaName);
 		
 		selectItem.addPostAction(deleteItm);
 		

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.action.LazyCartEnforceKey;
+import br.com.gda.business.cart.model.action.LazyCartInsertItm;
+import br.com.gda.business.cart.model.action.LazyCartRootSelect;
 import br.com.gda.business.cart.model.checker.CartCheckDate;
 import br.com.gda.business.cart.model.checker.CartCheckELD;
 import br.com.gda.business.cart.model.checker.CartCheckEWT;
@@ -25,7 +28,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class NodeCartInsertL2 implements DeciTree<CartInfo> {
+public final class NodeCartInsertL2 implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
@@ -123,9 +126,9 @@ final class NodeCartInsertL2 implements DeciTree<CartInfo> {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<CartInfo> upsertHdr = new RootCartUpsertHdr(option).toAction();	
-		ActionLazy<CartInfo> insertItm = new HandlerCartInsertItm(option.conn, option.schemaName);	
-		ActionLazy<CartInfo> enforceKey = new HandlerCartEnforceKey(option.conn, option.schemaName);	
-		ActionLazy<CartInfo> selectCart = new HandlerCartRootSelect(option.conn, option.schemaName);			
+		ActionLazy<CartInfo> insertItm = new LazyCartInsertItm(option.conn, option.schemaName);	
+		ActionLazy<CartInfo> enforceKey = new LazyCartEnforceKey(option.conn, option.schemaName);	
+		ActionLazy<CartInfo> selectCart = new LazyCartRootSelect(option.conn, option.schemaName);			
 		//TODO: First Row
 		upsertHdr.addPostAction(insertItm);
 		upsertHdr.addPostAction(enforceKey);

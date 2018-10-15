@@ -12,7 +12,7 @@ final class StdOrderMergeCus implements ActionStd<OrderInfo> {
 	
 	
 	public StdOrderMergeCus(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new StdVisitorOrderMergeCus(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisiOrderMergeCus(option.conn, option.schemaName));
 	}
 	
 	
