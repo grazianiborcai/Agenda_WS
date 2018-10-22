@@ -87,12 +87,13 @@ public final class RootOrderInsert implements DeciTree<OrderInfo> {
 		ActionLazy<OrderInfo> mergeStore = new LazyOrderMergeStore(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> insertHdr = new LazyOrderInsertHdrFirst(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> insertItm = new LazyOrderInsertItm(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> multiMergeExtra = new MultiOrderMergeExtra(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeExtra = new MultiOrderMergeExtra(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> insertExtra = new LazyOrderInsertItm(option.conn, option.schemaName);
 		
 		copyCart.addPostAction(filterItm);
 		copyCart.addPostAction(filterExtra);
 		filterExtra.addPostAction(flagExtra);
-		flagExtra.addPostAction(multiMergeExtra);
+		flagExtra.addPostAction(mergeExtra);
 		filterItm.addPostAction(flagItm);
 		flagItm.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceExtid);
@@ -101,8 +102,9 @@ public final class RootOrderInsert implements DeciTree<OrderInfo> {
 		mergeCus.addPostAction(mergeMat);		
 		mergeMat.addPostAction(mergeStore);
 		mergeStore.addPostAction(insertHdr);
-		insertHdr.addPostAction(insertItm);
-		insertHdr.addPostAction(multiMergeExtra);
+		insertHdr.addPostAction(insertItm);	
+		insertHdr.addPostAction(mergeExtra);
+		mergeExtra.addPostAction(insertExtra);		
 		
 		actions.add(copyCart);		
 		return actions;

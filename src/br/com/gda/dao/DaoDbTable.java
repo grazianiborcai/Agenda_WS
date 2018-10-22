@@ -10,6 +10,7 @@ public final class DaoDbTable {
 	public static final String CART_ITM_TABLE = "shop_cart_item";
 	public static final String COUNTRY_TABLE = "country";
 	public static final String COUNTRY_TEXT_TABLE = "country_text";
+	public static final String COUNTRY_PHONE_TABLE = "country_phone";
 	public static final String CURRENCY_TABLE = "currency_unit";
 	public static final String CURRENCY_TEXT_TABLE = "currency_unit_text";	
 	public static final String CUS_TABLE = "customer";
@@ -52,7 +53,7 @@ public final class DaoDbTable {
 	public static final String UNIT_TEXT_TABLE = "measure_unit_text";	
 	public static final String WEEKDAY_TABLE = "weekday";
 	public static final String WEEKDAY_TEXT_TABLE = "weekday_text";
-
+	
 	
 	
 	

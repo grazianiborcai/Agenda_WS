@@ -8,18 +8,18 @@ import br.com.gda.info.InfoSetter;
 
 public final class OrderSetterLChanged implements InfoSetter<OrderInfo> {
 	
-	public OrderInfo setAttr(OrderInfo order) {
-		checkArgument(order);
+	public OrderInfo setAttr(OrderInfo recordInfo) {
+		checkArgument(recordInfo);
 		
-		order.lastChanged = genLastChanged();
-		return order;
+		recordInfo.lastChanged = genLastChanged();
+		return recordInfo;
 	}
 	
 	
 	
-	private void checkArgument(OrderInfo order) {
-		if (order == null)
-			throw new NullPointerException("order" + SystemMessage.NULL_ARGUMENT);
+	private void checkArgument(OrderInfo recordInfo) {
+		if (recordInfo == null)
+			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 	}
 	
 	

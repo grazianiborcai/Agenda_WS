@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.masterData.info.WeekdayInfo;
-import br.com.gda.business.masterData.model.decisionTree.ActionWeekdaySelect;
+import br.com.gda.business.masterData.model.action.StdWeekdaySelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -22,7 +22,7 @@ public final class WeekdayCheckExist extends ModelCheckerTemplateAction<WeekdayI
 	@Override protected ActionStd<WeekdayInfo> buildActionHook(WeekdayInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<WeekdayInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<WeekdayInfo> actionSelect = new ActionWeekdaySelect(option);
+		ActionStd<WeekdayInfo> actionSelect = new StdWeekdaySelect(option);
 		return actionSelect;
 	}
 	

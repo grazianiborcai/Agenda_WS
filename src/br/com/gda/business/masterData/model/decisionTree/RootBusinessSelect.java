@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.BusinessInfo;
+import br.com.gda.business.masterData.model.action.StdBusinessSelect;
 import br.com.gda.business.masterData.model.checker.BusinessCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootBusinessSelect implements DeciTree<BusinessInfo> {
 	private List<ActionStd<BusinessInfo>> buildActionsOnPassed(DeciTreeOption<BusinessInfo> option) {
 		List<ActionStd<BusinessInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionBusinessSelect(option));
+		actions.add(new StdBusinessSelect(option));
 		return actions;
 	}
 	

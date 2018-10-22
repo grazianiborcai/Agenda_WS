@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.FeeCategInfo;
+import br.com.gda.business.masterData.model.action.StdFeeCategSelect;
 import br.com.gda.business.masterData.model.checker.FeeCategCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootFeeCategSelect implements DeciTree<FeeCategInfo> {
 	private List<ActionStd<FeeCategInfo>> buildActionsOnPassed(DeciTreeOption<FeeCategInfo> option) {
 		List<ActionStd<FeeCategInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionFeeCategSelect(option));
+		actions.add(new StdFeeCategSelect(option));
 		return actions;
 	}
 	

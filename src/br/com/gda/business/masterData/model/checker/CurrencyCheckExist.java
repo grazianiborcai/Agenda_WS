@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.masterData.info.CurrencyInfo;
-import br.com.gda.business.masterData.model.decisionTree.ActionCurrencySelect;
+import br.com.gda.business.masterData.model.action.StdCurrencySelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -22,7 +22,7 @@ public final class CurrencyCheckExist extends ModelCheckerTemplateAction<Currenc
 	@Override protected ActionStd<CurrencyInfo> buildActionHook(CurrencyInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CurrencyInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<CurrencyInfo> actionSelect = new ActionCurrencySelect(option);
+		ActionStd<CurrencyInfo> actionSelect = new StdCurrencySelect(option);
 		return actionSelect;
 	}
 	

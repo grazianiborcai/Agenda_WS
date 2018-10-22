@@ -88,6 +88,8 @@ public final class SystemCode {
 	public static final int COUNTRY_NOT_FOUND							= 1171;
 	public static final int FEE_CATEG_ALREADY_EXIST						= 1172;
 	public static final int FEE_CATEG_NOT_FOUND							= 1173;
+	public static final int COUNTRY_PHONE_ALREADY_EXIST					= 1174;
+	public static final int COUNTRY_PHONE_NOT_FOUND						= 1175;
 	
 	//Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
@@ -134,4 +136,11 @@ public final class SystemCode {
 	
 	//Total Amount
 	public static final int AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES			= 1500;
+	
+	//Phone
+	public static final int PHONE_NUMBER_IS_NULL						= 1550;
+	public static final int PHONE_NUMBER_IS_FILLED						= 1551;
+	public static final int PHONE_COUNTRY_IS_BR							= 1552;
+	public static final int PHONE_COUNTRY_IS_NOT_BR						= 1553;
+	public static final int PHONE_NUMBER_INVALID						= 1554;
 }

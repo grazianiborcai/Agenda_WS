@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.MatCategInfo;
+import br.com.gda.business.masterData.model.action.StdMatCategSelect;
 import br.com.gda.business.masterData.model.checker.MatCategCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootMatCategSelect implements DeciTree<MatCategInfo> {
 	private List<ActionStd<MatCategInfo>> buildActionsOnPassed(DeciTreeOption<MatCategInfo> option) {
 		List<ActionStd<MatCategInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionMatCategSelect(option));
+		actions.add(new StdMatCategSelect(option));
 		return actions;
 	}
 	

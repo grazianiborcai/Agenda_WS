@@ -113,7 +113,7 @@ public final class CusUpdateSingle implements DaoStmt<CusInfo> {
 			stmt.setString(i++, recordInfo.city);
 			stmt.setString(i++, recordInfo.codCountry);
 			stmt.setString(i++, recordInfo.stateProvince);
-			stmt.setString(i++, recordInfo.phone);	
+			stmt.setString(i++, recordInfo.phoneNumber1);	
 			stmt.setString(i++, recordInfo.recordMode);
 			
 			return stmt;

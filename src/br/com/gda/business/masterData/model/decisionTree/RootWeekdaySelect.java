@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
+import br.com.gda.business.masterData.model.action.StdWeekdaySelect;
 import br.com.gda.business.masterData.model.checker.WeekdayCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootWeekdaySelect implements DeciTree<WeekdayInfo> {
 	private List<ActionStd<WeekdayInfo>> buildActionsOnPassed(DeciTreeOption<WeekdayInfo> option) {
 		List<ActionStd<WeekdayInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionWeekdaySelect(option));
+		actions.add(new StdWeekdaySelect(option));
 		return actions;
 	}
 	

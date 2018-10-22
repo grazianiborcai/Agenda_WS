@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.decisionTree.ActionCusEnforceKeyCpf;
-import br.com.gda.business.customer.model.decisionTree.HandlerCusSelect;
+import br.com.gda.business.customer.model.action.StdCusEnforceKeyCpf;
+import br.com.gda.business.customer.model.action.LazyCusSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -24,8 +24,8 @@ public final class CusCheckCpfChange extends ModelCheckerTemplateAction<CusInfo>
 	@Override protected ActionStd<CusInfo> buildActionHook(CusInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CusInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<CusInfo> actionSelect = new ActionCusEnforceKeyCpf(option);
-		actionSelect.addPostAction(new HandlerCusSelect(conn, schemaName));
+		ActionStd<CusInfo> actionSelect = new StdCusEnforceKeyCpf(option);
+		actionSelect.addPostAction(new LazyCusSelect(conn, schemaName));
 		return actionSelect;
 	}
 	

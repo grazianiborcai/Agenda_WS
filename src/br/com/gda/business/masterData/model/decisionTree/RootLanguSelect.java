@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.LanguInfo;
+import br.com.gda.business.masterData.model.action.StdLanguSelect;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -47,7 +48,7 @@ public final class RootLanguSelect implements DeciTree<LanguInfo> {
 	private List<ActionStd<LanguInfo>> buildActionsOnPassed(DeciTreeOption<LanguInfo> option) {
 		List<ActionStd<LanguInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionLanguSelect(option));
+		actions.add(new StdLanguSelect(option));
 		return actions;
 	}
 	

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.OrderStatusInfo;
+import br.com.gda.business.masterData.model.action.StdOrderStatusSelect;
 import br.com.gda.business.masterData.model.checker.OrderStatusCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootOrderStatusSelect implements DeciTree<OrderStatusInfo> {
 	private List<ActionStd<OrderStatusInfo>> buildActionsOnPassed(DeciTreeOption<OrderStatusInfo> option) {
 		List<ActionStd<OrderStatusInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionOrderStatusSelect(option));
+		actions.add(new StdOrderStatusSelect(option));
 		return actions;
 	}
 	

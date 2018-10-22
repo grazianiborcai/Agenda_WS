@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.GenderInfo;
+import br.com.gda.business.masterData.model.action.StdGenderSelect;
 import br.com.gda.business.masterData.model.checker.GenderCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootGenderSelect implements DeciTree<GenderInfo> {
 	private List<ActionStd<GenderInfo>> buildActionsOnPassed(DeciTreeOption<GenderInfo> option) {
 		List<ActionStd<GenderInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionGenderSelect(option));
+		actions.add(new StdGenderSelect(option));
 		return actions;
 	}
 	

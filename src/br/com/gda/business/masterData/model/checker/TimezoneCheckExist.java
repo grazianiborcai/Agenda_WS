@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.masterData.info.TimezoneInfo;
-import br.com.gda.business.masterData.model.decisionTree.ActionTimezoneSelect;
+import br.com.gda.business.masterData.model.action.StdTimezoneSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -22,7 +22,7 @@ public final class TimezoneCheckExist extends ModelCheckerTemplateAction<Timezon
 	@Override protected ActionStd<TimezoneInfo> buildActionHook(TimezoneInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<TimezoneInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<TimezoneInfo> actionSelect = new ActionTimezoneSelect(option);
+		ActionStd<TimezoneInfo> actionSelect = new StdTimezoneSelect(option);
 		return actionSelect;
 	}
 	

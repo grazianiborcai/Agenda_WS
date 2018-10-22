@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.CountryInfo;
+import br.com.gda.business.masterData.model.action.StdCountrySelect;
 import br.com.gda.business.masterData.model.checker.CountryCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootCountrySelect implements DeciTree<CountryInfo> {
 	private List<ActionStd<CountryInfo>> buildActionsOnPassed(DeciTreeOption<CountryInfo> option) {
 		List<ActionStd<CountryInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionCountrySelect(option));
+		actions.add(new StdCountrySelect(option));
 		return actions;
 	}
 	

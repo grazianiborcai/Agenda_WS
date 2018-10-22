@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.masterData.info.MatUnitInfo;
-import br.com.gda.business.masterData.model.decisionTree.ActionMatUnitSelect;
+import br.com.gda.business.masterData.model.action.StdMatUnitSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -22,7 +22,7 @@ public final class MatUnitCheckExist extends ModelCheckerTemplateAction<MatUnitI
 	@Override protected ActionStd<MatUnitInfo> buildActionHook(MatUnitInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatUnitInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<MatUnitInfo> actionSelect = new ActionMatUnitSelect(option);
+		ActionStd<MatUnitInfo> actionSelect = new StdMatUnitSelect(option);
 		return actionSelect;
 	}
 	

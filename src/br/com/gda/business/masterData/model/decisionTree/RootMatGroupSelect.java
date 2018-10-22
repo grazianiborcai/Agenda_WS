@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.MatGroupInfo;
+import br.com.gda.business.masterData.model.action.StdMatGroupSelect;
 import br.com.gda.business.masterData.model.checker.MatGroupCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootMatGroupSelect implements DeciTree<MatGroupInfo> {
 	private List<ActionStd<MatGroupInfo>> buildActionsOnPassed(DeciTreeOption<MatGroupInfo> option) {
 		List<ActionStd<MatGroupInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionMatGroupSelect(option));
+		actions.add(new StdMatGroupSelect(option));
 		return actions;
 	}
 	

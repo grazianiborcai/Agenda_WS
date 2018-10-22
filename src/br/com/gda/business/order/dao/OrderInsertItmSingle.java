@@ -117,6 +117,7 @@ public final class OrderInsertItmSingle implements DaoStmt<OrderInfo> {
 			stmt.setInt(i++, recordInfo.matQuantity);
 			stmt.setString(i++, recordInfo.matTxt);
 			stmt.setString(i++, recordInfo.empName);
+			stmt.setString(i++, Character.toString(recordInfo.codItemCateg));
 
 			return stmt;
 		}		

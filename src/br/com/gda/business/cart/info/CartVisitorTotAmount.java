@@ -13,6 +13,7 @@ final class CartVisitorTotAmount implements InfoMergerVisitor<CartInfo, TotAmoun
 		
 		resultInfo.price = sourceOne.amount;
 		resultInfo.codCurr = sourceOne.codCurr;
+		resultInfo.quantity = 1;
 		
 		resultInfo.codItemCateg = CartCateg.TOTAL.getCodCateg();
 

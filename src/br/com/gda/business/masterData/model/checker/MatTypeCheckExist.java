@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.masterData.info.MatTypeInfo;
-import br.com.gda.business.masterData.model.decisionTree.ActionMatTypeSelect;
+import br.com.gda.business.masterData.model.action.StdMatTypeSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -22,7 +22,7 @@ public final class MatTypeCheckExist extends ModelCheckerTemplateAction<MatTypeI
 	@Override protected ActionStd<MatTypeInfo> buildActionHook(MatTypeInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatTypeInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<MatTypeInfo> actionSelect = new ActionMatTypeSelect(option);
+		ActionStd<MatTypeInfo> actionSelect = new StdMatTypeSelect(option);
 		return actionSelect;
 	}
 	

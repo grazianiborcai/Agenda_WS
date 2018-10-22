@@ -27,23 +27,23 @@ public final class CusWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case "cod_owner" :
+				case CusDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case "Cod_customer" :
+				case CusDbTableColumn.COL_COD_CUSTOMER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
 					break;
 					
-				case "CPF" :
+				case CusDbTableColumn.COL_CPF :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.cpf);
 					break;
 					
-				case "email" :
+				case CusDbTableColumn.COL_EMAIL :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.email);
 					break;
 					
-				case "record_mode" :
+				case CusDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

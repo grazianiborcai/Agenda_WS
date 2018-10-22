@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.business.customer.model.action.StdCusInsert;
+import br.com.gda.business.customer.model.action.StdCusSelect;
 import br.com.gda.business.customer.model.checker.CusCheckCpf;
 import br.com.gda.business.customer.model.checker.CusCheckExistCpf;
 import br.com.gda.business.customer.model.checker.CusCheckExistEmail;
@@ -98,8 +100,8 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionCusInsert(option));
-		actions.add(new ActionCusSelect(option));		
+		actions.add(new StdCusInsert(option));
+		actions.add(new StdCusSelect(option));		
 		return actions;
 	}
 	

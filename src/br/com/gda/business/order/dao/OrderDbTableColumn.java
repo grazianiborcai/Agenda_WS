@@ -11,6 +11,7 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = "cod_customer";	
 	public static final String COL_COD_EMPLOYEE = "cod_employee";
+	public static final String COL_COD_ITEM_CATEG = "cod_item_categ";
 	public static final String COL_COD_MATERIAL = "cod_material";
 	public static final String COL_COD_ORDER = "cod_order";
 	public static final String COL_COD_ORDER_EXT = "cod_order_external";
@@ -23,7 +24,7 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CUS_NAME = "cus_name";
 	public static final String COL_CUS_STATE = "cus_state_province";
 	public static final String COL_EMP_COD_CPF = "emp_cpf";
-	public static final String COL_EMP_NAME = "emp_name";
+	public static final String COL_EMP_NAME = "emp_name";	
 	public static final String COL_ITEM_NUMBER = "item_number";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_MAT_BEGIN_TIME = "mat_begin_time";
@@ -390,6 +391,14 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_EMP_NAME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ITEM_CATEG;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

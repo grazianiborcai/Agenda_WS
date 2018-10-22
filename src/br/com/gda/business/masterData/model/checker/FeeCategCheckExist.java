@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import br.com.gda.business.masterData.info.FeeCategInfo;
-import br.com.gda.business.masterData.model.decisionTree.ActionFeeCategSelect;
+import br.com.gda.business.masterData.model.action.StdFeeCategSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -23,7 +23,7 @@ public final class FeeCategCheckExist extends ModelCheckerTemplateAction<FeeCate
 	@Override protected ActionStd<FeeCategInfo> buildActionHook(FeeCategInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<FeeCategInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<FeeCategInfo> actionSelect = new ActionFeeCategSelect(option);
+		ActionStd<FeeCategInfo> actionSelect = new StdFeeCategSelect(option);
 		return actionSelect;
 	}
 	

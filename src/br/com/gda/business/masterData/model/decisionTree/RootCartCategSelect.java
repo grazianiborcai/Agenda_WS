@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.CartCategInfo;
+import br.com.gda.business.masterData.model.action.StdCartCategSelect;
 import br.com.gda.business.masterData.model.checker.CartCategCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootCartCategSelect implements DeciTree<CartCategInfo> {
 	private List<ActionStd<CartCategInfo>> buildActionsOnPassed(DeciTreeOption<CartCategInfo> option) {
 		List<ActionStd<CartCategInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionCartCategSelect(option));
+		actions.add(new StdCartCategSelect(option));
 		return actions;
 	}
 	

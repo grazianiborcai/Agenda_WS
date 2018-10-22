@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.masterData.info.LanguInfo;
-import br.com.gda.business.masterData.model.decisionTree.ActionLanguSelect;
+import br.com.gda.business.masterData.model.action.StdLanguSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -22,7 +22,7 @@ public final class LanguCheckExist extends ModelCheckerTemplateAction<LanguInfo>
 	@Override protected ActionStd<LanguInfo> buildActionHook(LanguInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<LanguInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<LanguInfo> actionSelect = new ActionLanguSelect(option);
+		ActionStd<LanguInfo> actionSelect = new StdLanguSelect(option);
 		return actionSelect;
 	}
 	

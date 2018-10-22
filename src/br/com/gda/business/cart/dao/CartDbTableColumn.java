@@ -9,20 +9,21 @@ import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class CartDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_CUSTOMER = "cod_customer";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_ITEM_NUMBER = "item_number";
-	public static final String COL_QUANTITY = "quantity";
-	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_COD_MATERIAL = "cod_material";
-	public static final String COL_MAT_UNIT = "mat_unit";
-	public static final String COL_MAT_PRICE = "mat_price";
-	public static final String COL_MAT_COD_CURR = "mat_cod_curr";
 	public static final String COL_BEGIN_TIME = "begin_time";
-	public static final String COL_END_TIME = "end_time";
-	public static final String COL_DATE = "date";
+	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_EMPLOYEE = "cod_employee";
+	public static final String COL_COD_MATERIAL = "cod_material";
+	public static final String COL_COD_STORE = "cod_store";
+	public static final String COL_COD_OWNER = "cod_owner";
+	public static final String COL_DATE = "date";
+	public static final String COL_END_TIME = "end_time";
+	public static final String COL_ITEM_NUMBER = "item_number";
+	public static final String COL_LAST_CHANGED = "last_changed";
+	public static final String COL_MAT_COD_CURR = "mat_cod_curr";	
+	public static final String COL_MAT_PRICE = "mat_price";
+	public static final String COL_MAT_UNIT = "mat_unit";
+	public static final String COL_QUANTITY = "quantity";
+	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
 	

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import br.com.gda.business.masterData.info.OrderStatusInfo;
-import br.com.gda.business.masterData.model.decisionTree.ActionOrderStatusSelect;
+import br.com.gda.business.masterData.model.action.StdOrderStatusSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -23,7 +23,7 @@ public final class OrderStatusCheckExist extends ModelCheckerTemplateAction<Orde
 	@Override protected ActionStd<OrderStatusInfo> buildActionHook(OrderStatusInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<OrderStatusInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<OrderStatusInfo> actionSelect = new ActionOrderStatusSelect(option);
+		ActionStd<OrderStatusInfo> actionSelect = new StdOrderStatusSelect(option);
 		return actionSelect;
 	}
 	

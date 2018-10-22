@@ -185,8 +185,12 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 				dataInfo.storeCodTimezone = stmtResult.getString(OrderDbTableColumn.COL_STORE_COD_TIMEZONE);
 				dataInfo.codEmployee = stmtResult.getLong(OrderDbTableColumn.COL_COD_EMPLOYEE);
 				dataInfo.empCpf = stmtResult.getString(OrderDbTableColumn.COL_EMP_COD_CPF);
-				dataInfo.empName = stmtResult.getString(OrderDbTableColumn.COL_EMP_NAME);
+				dataInfo.empName = stmtResult.getString(OrderDbTableColumn.COL_EMP_NAME);				
 				
+				
+				String codItemCateg = stmtResult.getString(OrderDbTableColumn.COL_COD_ITEM_CATEG);
+				if (codItemCateg != null)
+					dataInfo.codItemCateg = codItemCateg.charAt(0);
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(OrderDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)

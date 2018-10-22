@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.masterData.info.GenderInfo;
-import br.com.gda.business.masterData.model.decisionTree.ActionGenderSelect;
+import br.com.gda.business.masterData.model.action.StdGenderSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -22,7 +22,7 @@ public final class GenderCheckExist extends ModelCheckerTemplateAction<GenderInf
 	@Override protected ActionStd<GenderInfo> buildActionHook(GenderInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<GenderInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<GenderInfo> actionSelect = new ActionGenderSelect(option);
+		ActionStd<GenderInfo> actionSelect = new StdGenderSelect(option);
 		return actionSelect;
 	}
 	

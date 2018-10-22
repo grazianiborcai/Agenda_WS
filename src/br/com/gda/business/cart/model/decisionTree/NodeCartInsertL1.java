@@ -59,9 +59,9 @@ public final class NodeCartInsertL1 implements DeciTree<CartInfo> {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<CartInfo> weekday = new StdCartEnforceWeekday(option);
-		ActionLazy<CartInfo> rootL3 = new LazyCartNodetInsertL2(option.conn, option.schemaName);
+		ActionLazy<CartInfo> nodeL2 = new LazyCartNodetInsertL2(option.conn, option.schemaName);
 		
-		weekday.addPostAction(rootL3);
+		weekday.addPostAction(nodeL2);
 		
 		actions.add(weekday);		
 		return actions;

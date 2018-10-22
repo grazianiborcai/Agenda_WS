@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import br.com.gda.business.masterData.info.CountryInfo;
-import br.com.gda.business.masterData.model.decisionTree.ActionCountrySelect;
+import br.com.gda.business.masterData.model.action.StdCountrySelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -23,7 +23,7 @@ public final class CountryCheckExist extends ModelCheckerTemplateAction<CountryI
 	@Override protected ActionStd<CountryInfo> buildActionHook(CountryInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CountryInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<CountryInfo> actionSelect = new ActionCountrySelect(option);
+		ActionStd<CountryInfo> actionSelect = new StdCountrySelect(option);
 		return actionSelect;
 	}
 	

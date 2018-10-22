@@ -4,12 +4,33 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_ADDRESS_1 = "address1";
+	public static final String COL_ADDRESS_2 = "address2";
+	public static final String COL_COD_BIRTH_DATE = "born_date";
+	public static final String COL_COD_CITY = "city";
+	public static final String COL_COD_COUNTRY = "country";
+	public static final String COL_COD_CUSTOMER = "cod_customer";
+	public static final String COL_COD_GENDER = "cod_gender";
+	public static final String COL_COD_STATE_PROVINCE = "state_province";
+	public static final String COL_CPF = "cpf";
+	public static final String COL_COD_OWNER = "cod_owner";
+	public static final String COL_EMAIL = "email";
+	public static final String COL_NAME = "name";
+	public static final String COL_NAME_COUNTRY = MasterDataDbTableColumn.COL_NAME;
+	public static final String COL_NAME_GENDER = MasterDataDbTableColumn.COL_NAME;	
+	public static final String COL_PHONE_1 = "phone_1";
+	public static final String COL_POSTAL_CODE = "postalcode";
+	public static final String COL_RECORD_MODE = "record_mode";	
+
+	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
+	
 	
 	public CusDbTableColumn() {
 		super();
@@ -33,7 +54,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_owner";
+		oneColumn.columnName = COL_COD_OWNER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -41,7 +62,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_customer";
+		oneColumn.columnName = COL_COD_CUSTOMER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
@@ -49,7 +70,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "CPF";
+		oneColumn.columnName = COL_CPF;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -57,7 +78,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -65,7 +86,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Cod_gender";
+		oneColumn.columnName = COL_COD_GENDER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -73,7 +94,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Born_date";
+		oneColumn.columnName = COL_COD_BIRTH_DATE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -81,7 +102,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "email";
+		oneColumn.columnName = COL_EMAIL;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -89,7 +110,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Address1";
+		oneColumn.columnName = COL_ADDRESS_1;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -97,7 +118,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Address2";
+		oneColumn.columnName = COL_ADDRESS_2;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -105,7 +126,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Postalcode";
+		oneColumn.columnName = COL_POSTAL_CODE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -113,7 +134,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "City";
+		oneColumn.columnName = COL_COD_CITY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -121,7 +142,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Country";
+		oneColumn.columnName = COL_COD_COUNTRY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -129,7 +150,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "State_province";
+		oneColumn.columnName = COL_COD_STATE_PROVINCE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -137,7 +158,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "Phone";
+		oneColumn.columnName = COL_PHONE_1;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -145,7 +166,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "record_mode";
+		oneColumn.columnName = COL_RECORD_MODE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -153,7 +174,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.GENDER_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME_GENDER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -161,7 +182,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.COUNTRY_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.columnName = COL_NAME_COUNTRY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;

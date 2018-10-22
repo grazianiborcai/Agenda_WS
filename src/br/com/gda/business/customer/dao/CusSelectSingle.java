@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoDictionary;
@@ -23,7 +24,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class CusSelectSingle implements DaoStmt<CusInfo> {
-	private final String LT_EMPLOYEE = DaoDbTable.CUS_TABLE;	
+	private final String LT_CUSTOMER = DaoDbTable.CUS_TABLE;	
 	private final String RT_GENDER_TEXT = DaoDbTable.GENDER_TEXT_TABLE;
 	private final String RT_COUNTRY_TEXT = DaoDbTable.COUNTRY_TEXT_TABLE;
 	
@@ -44,8 +45,8 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_EMPLOYEE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_EMPLOYEE);
+		this.stmtOption.tableName = LT_CUSTOMER;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_CUSTOMER);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -83,9 +84,9 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_EMPLOYEE;
-		oneColumn.leftColumnName = "Cod_gender";
-		oneColumn.rightColumnName = "Cod_gender";
+		oneColumn.leftTableName = LT_CUSTOMER;
+		oneColumn.leftColumnName = CusDbTableColumn.COL_COD_GENDER;
+		oneColumn.rightColumnName = CusDbTableColumn.COL_COD_GENDER;
 		joinColumns.add(oneColumn);
 		
 		
@@ -104,9 +105,9 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_EMPLOYEE;
-		oneColumn.leftColumnName = "Country";
-		oneColumn.rightColumnName = "Country";
+		oneColumn.leftTableName = LT_CUSTOMER;
+		oneColumn.leftColumnName = CusDbTableColumn.COL_COD_COUNTRY;
+		oneColumn.rightColumnName = CusDbTableColumn.COL_COD_COUNTRY;
 		joinColumns.add(oneColumn);
 		
 		
@@ -126,7 +127,7 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 		
 		constrainClause.append(rightTableName);
 		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append("Language");
+		constrainClause.append(MasterDataDbTableColumn.COL_COD_LANGUAGE);
 		constrainClause.append(DaoDictionary.SPACE);
 		constrainClause.append(DaoDictionary.EQUAL);
 		constrainClause.append(DaoDictionary.SPACE);
@@ -180,8 +181,8 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 	
 	private static class ResultParser implements DaoResultParser<CusInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String GENDER_TEXT_COLUMN = DaoDbTable.GENDER_TEXT_TABLE + "." + "Name";
-		private final String COUNTRY_TEXT_COLUMN = DaoDbTable.COUNTRY_TEXT_TABLE + "." + "Name";
+		private final String COL_TXT_GENDER = DaoDbTable.GENDER_TEXT_TABLE + "." + CusDbTableColumn.COL_NAME_GENDER;
+		private final String COL_TXT_COUNTRY = DaoDbTable.COUNTRY_TEXT_TABLE + "." + CusDbTableColumn.COL_NAME_COUNTRY;
 		
 		@Override public List<CusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CusInfo> finalResult = new ArrayList<>();
@@ -191,24 +192,24 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 			
 			do {
 				CusInfo dataInfo = new CusInfo();
-				dataInfo.codOwner = stmtResult.getLong("cod_owner");
-				dataInfo.codCustomer = stmtResult.getLong("cod_customer");
-				dataInfo.cpf = stmtResult.getString("CPF");
-				dataInfo.name = stmtResult.getString("Name");
-				dataInfo.codGender = stmtResult.getInt("Cod_gender");
-				dataInfo.txtGender = stmtResult.getString(GENDER_TEXT_COLUMN);
-				dataInfo.email = stmtResult.getString("Email");
-				dataInfo.address1 = stmtResult.getString("Address1");
-				dataInfo.address2 = stmtResult.getString("Address2");
-				dataInfo.postalCode = stmtResult.getLong("Postalcode");
-				dataInfo.city = stmtResult.getString("City");
-				dataInfo.codCountry = stmtResult.getString("Country");
-				dataInfo.txtCountry = stmtResult.getString(COUNTRY_TEXT_COLUMN);
-				dataInfo.stateProvince = stmtResult.getString("State_province");
-				dataInfo.phone = stmtResult.getString("Phone");
-				dataInfo.recordMode = stmtResult.getString("record_mode");
+				dataInfo.codOwner = stmtResult.getLong(CusDbTableColumn.COL_COD_OWNER);
+				dataInfo.codCustomer = stmtResult.getLong(CusDbTableColumn.COL_COD_CUSTOMER);
+				dataInfo.cpf = stmtResult.getString(CusDbTableColumn.COL_CPF);
+				dataInfo.name = stmtResult.getString(CusDbTableColumn.COL_NAME);
+				dataInfo.codGender = stmtResult.getInt(CusDbTableColumn.COL_COD_GENDER);
+				dataInfo.txtGender = stmtResult.getString(COL_TXT_GENDER);
+				dataInfo.email = stmtResult.getString(CusDbTableColumn.COL_EMAIL);
+				dataInfo.address1 = stmtResult.getString(CusDbTableColumn.COL_ADDRESS_1);
+				dataInfo.address2 = stmtResult.getString(CusDbTableColumn.COL_ADDRESS_2);
+				dataInfo.postalCode = stmtResult.getLong(CusDbTableColumn.COL_POSTAL_CODE);
+				dataInfo.city = stmtResult.getString(CusDbTableColumn.COL_COD_CITY);
+				dataInfo.codCountry = stmtResult.getString(CusDbTableColumn.COL_COD_COUNTRY);
+				dataInfo.txtCountry = stmtResult.getString(COL_TXT_COUNTRY);
+				dataInfo.stateProvince = stmtResult.getString(CusDbTableColumn.COL_COD_STATE_PROVINCE);
+				dataInfo.phoneNumber1 = stmtResult.getString(CusDbTableColumn.COL_PHONE_1);
+				dataInfo.recordMode = stmtResult.getString(CusDbTableColumn.COL_RECORD_MODE);
 				
-				Date tempDate = stmtResult.getDate("Born_date");
+				Date tempDate = stmtResult.getDate(CusDbTableColumn.COL_COD_BIRTH_DATE);
 				if (tempDate != null)
 					dataInfo.birthDate = tempDate.toLocalDate();				
 				

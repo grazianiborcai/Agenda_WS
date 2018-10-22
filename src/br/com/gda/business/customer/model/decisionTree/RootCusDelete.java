@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.business.customer.model.action.StdCusDelete;
 import br.com.gda.business.customer.model.checker.CusCheckExist;
 import br.com.gda.business.customer.model.checker.CusCheckKey;
 import br.com.gda.model.action.ActionStd;
@@ -68,7 +69,7 @@ public final class RootCusDelete implements DeciTree<CusInfo> {
 	
 	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
-		actions.add(new ActionCusDelete(option));
+		actions.add(new StdCusDelete(option));
 		return actions;
 	}
 	

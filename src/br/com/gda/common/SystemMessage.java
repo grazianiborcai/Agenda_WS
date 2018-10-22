@@ -64,6 +64,8 @@ public final class SystemMessage {
 	//Master Data
 	public static final String COUNTRY_ALREADY_EXIST = "Country already exist on DB";
 	public static final String COUNTRY_NOT_FOUND = "Country not found on DB";	
+	public static final String COUNTRY_PHONE_ALREADY_EXIST = "Phone Country code already exist on DB";
+	public static final String COUNTRY_PHONE_NOT_FOUND = "Phone Country code not found on DB";	
 	public static final String CURRENCY_ALREADY_EXIST = "Currency already exist on DB";
 	public static final String CURRENCY_NOT_FOUND = "Currency not found on DB";	
 	public static final String EMP_POS_ALREADY_EXIST = "Position already exist on DB";
@@ -194,4 +196,14 @@ public final class SystemMessage {
 	
 	//Total Amount
 	public static final String AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES = "Amount field does not have two decimal places";
+	
+	
+	
+	
+	//Phone
+	public static final String PHONE_NUMBER_IS_NULL = "Phone number is blank";
+	public static final String PHONE_NUMBER_IS_FILLED = "Phone number is not blank";
+	public static final String PHONE_COUNTRY_IS_BR = "Phone country code refers to Brazil";
+	public static final String PHONE_COUNTRY_IS_NOT_BR = "Phone country code doens't refer to Brazil";
+	public static final String PHONE_NUMBER_INVALID = "Phone number is invalid";
 }

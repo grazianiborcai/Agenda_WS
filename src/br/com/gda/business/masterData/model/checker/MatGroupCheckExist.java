@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.masterData.info.MatGroupInfo;
-import br.com.gda.business.masterData.model.decisionTree.ActionMatGroupSelect;
+import br.com.gda.business.masterData.model.action.StdMatGroupSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -22,7 +22,7 @@ public final class MatGroupCheckExist extends ModelCheckerTemplateAction<MatGrou
 	@Override protected ActionStd<MatGroupInfo> buildActionHook(MatGroupInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatGroupInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<MatGroupInfo> actionSelect = new ActionMatGroupSelect(option);
+		ActionStd<MatGroupInfo> actionSelect = new StdMatGroupSelect(option);
 		return actionSelect;
 	}
 	

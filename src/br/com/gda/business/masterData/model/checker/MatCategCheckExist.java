@@ -3,7 +3,7 @@ package br.com.gda.business.masterData.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.masterData.info.MatCategInfo;
-import br.com.gda.business.masterData.model.decisionTree.ActionMatCategSelect;
+import br.com.gda.business.masterData.model.action.StdMatCategSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -22,7 +22,7 @@ public final class MatCategCheckExist extends ModelCheckerTemplateAction<MatCate
 	@Override protected ActionStd<MatCategInfo> buildActionHook(MatCategInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatCategInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<MatCategInfo> actionSelect = new ActionMatCategSelect(option);
+		ActionStd<MatCategInfo> actionSelect = new StdMatCategSelect(option);
 		return actionSelect;
 	}
 	

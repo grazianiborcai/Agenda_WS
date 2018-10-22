@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.MatTypeInfo;
+import br.com.gda.business.masterData.model.action.StdMatTypeSelect;
 import br.com.gda.business.masterData.model.checker.MatTypeCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootMatTypeSelect implements DeciTree<MatTypeInfo> {
 	private List<ActionStd<MatTypeInfo>> buildActionsOnPassed(DeciTreeOption<MatTypeInfo> option) {
 		List<ActionStd<MatTypeInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionMatTypeSelect(option));
+		actions.add(new StdMatTypeSelect(option));
 		return actions;
 	}
 	

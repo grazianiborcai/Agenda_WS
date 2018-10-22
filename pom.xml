@@ -111,6 +111,12 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/br.com.moip/java-sdk -->
+		<dependency>
+		    <groupId>br.com.moip</groupId>
+		    <artifactId>java-sdk</artifactId>
+		    <version>4.2.0</version>
+</dependency>
 
 	</dependencies>
 </project>
