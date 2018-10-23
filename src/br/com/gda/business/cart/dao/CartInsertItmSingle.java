@@ -102,7 +102,6 @@ public class CartInsertItmSingle implements DaoStmt<CartInfo> {
 			stmt.setTime(i++, endTime);
 			stmt.setDate(i++, date);
 			stmt.setLong(i++, recordInfo.codEmployee);
-			stmt.setString(i++, Character.toString(recordInfo.codItemCateg));
 
 			return stmt;
 		}		

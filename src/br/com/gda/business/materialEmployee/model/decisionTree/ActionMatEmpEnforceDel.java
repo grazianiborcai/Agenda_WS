@@ -3,7 +3,7 @@ package br.com.gda.business.materialEmployee.model.decisionTree;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperTrans;
+import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -12,7 +12,7 @@ public final class ActionMatEmpEnforceDel implements ActionStd<MatEmpInfo> {
 	
 	
 	public ActionMatEmpEnforceDel(DeciTreeOption<MatEmpInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisitorMatEmpEnforceDel());
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisitorMatEmpEnforceDel());
 	}
 	
 	

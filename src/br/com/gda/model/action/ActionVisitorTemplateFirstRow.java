@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.info.InfoRecord;
 
 
-public abstract class ActionVisitorTemplateFirstRow<T extends InfoRecord> implements ActionVisitor<T> {
+public abstract class ActionVisitorTemplateFirstRow<T extends InfoRecord> implements ActionVisitorEnforce<T> {
 	
 	@Override public List<T> executeTransformation(List<T> recordInfos) {
 		List<T> resultRecords = new ArrayList<>();		

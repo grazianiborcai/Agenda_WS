@@ -206,4 +206,9 @@ public final class SystemMessage {
 	public static final String PHONE_COUNTRY_IS_BR = "Phone country code refers to Brazil";
 	public static final String PHONE_COUNTRY_IS_NOT_BR = "Phone country code doens't refer to Brazil";
 	public static final String PHONE_NUMBER_INVALID = "Phone number is invalid";
+	public static final String PHONE_NUMBER_IS_VALID = "Phone number is valid";
+	public static final String PHONE_NUMBER_INVALID_LENGTH_BR = "Invalid phone length. Area code is expected";
+	public static final String PHONE_NUMBER_INVALID_NUMBER = "Only numbers are allowed for phone";
+	public static final String PHONE_NUMBER_INVALID_AREA_CODE = "Invalid area code for phone number";
+	public static final String PHONE_NUMBER_INVALID_SEQUENCE = "Invalid sequence for phone number";
 }

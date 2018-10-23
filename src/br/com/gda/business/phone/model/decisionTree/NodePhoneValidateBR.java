@@ -5,7 +5,11 @@ import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.StdPhoneSuccess;
-import br.com.gda.business.phone.model.checker.PhoneCheckBR;
+import br.com.gda.business.phone.model.checker.PhoneCheckBrNumber;
+import br.com.gda.business.phone.model.checker.PhoneCheckBrSequence;
+import br.com.gda.business.phone.model.checker.PhoneCheckBrAreaCode;
+import br.com.gda.business.phone.model.checker.PhoneCheckBrLength;
+import br.com.gda.business.phone.model.checker.PhoneCheckOnlyNumber;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -37,7 +41,19 @@ public final class NodePhoneValidateBR implements DeciTree<PhoneInfo> {
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
 
-		checker = new PhoneCheckBR();
+		checker = new PhoneCheckBrLength();
+		queue.add(checker);
+		
+		checker = new PhoneCheckOnlyNumber();
+		queue.add(checker);
+		
+		checker = new PhoneCheckBrAreaCode();
+		queue.add(checker);
+		
+		checker = new PhoneCheckBrSequence();
+		queue.add(checker);
+		
+		checker = new PhoneCheckBrNumber();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

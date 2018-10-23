@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.model.action.ActionVisitor;
+import br.com.gda.model.action.ActionVisitorEnforce;
 
-final class VisitorOwnerEnforceKey implements ActionVisitor<OwnerInfo> {
+final class VisitorOwnerEnforceKey implements ActionVisitorEnforce<OwnerInfo> {
 	
 	@Override public List<OwnerInfo> executeTransformation(List<OwnerInfo> recordInfos) {
 		List<OwnerInfo> resultRecords = new ArrayList<>();		

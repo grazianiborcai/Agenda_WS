@@ -12,6 +12,7 @@ import br.com.gda.business.customer.model.checker.CusCheckExistEmail;
 import br.com.gda.business.customer.model.checker.CusCheckGenField;
 import br.com.gda.business.customer.model.checker.CusCheckGender;
 import br.com.gda.business.customer.model.checker.CusCheckOwner;
+import br.com.gda.business.customer.model.checker.CusCheckPhone1;
 import br.com.gda.business.customer.model.checker.CusCheckWrite;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -44,6 +45,7 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 	private ModelChecker<CusInfo> buildDecisionChecker(DeciTreeOption<CusInfo> option) {
 		final boolean EXIST_ON_DB = true;	
 		final boolean DONT_EXIST_ON_DB = false;	
+		final boolean IS_VALID = true;
 		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
@@ -84,6 +86,13 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
 		checker = new CusCheckExistEmail(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = IS_VALID;		
+		checker = new CusCheckPhone1(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

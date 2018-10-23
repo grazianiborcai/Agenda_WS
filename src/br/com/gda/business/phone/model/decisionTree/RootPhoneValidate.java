@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.StdPhoneSuccess;
-import br.com.gda.business.phone.model.checker.PhoneCheckAreaBR;
 import br.com.gda.business.phone.model.checker.PhoneCheckNull;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -38,7 +37,6 @@ public final class RootPhoneValidate implements DeciTree<PhoneInfo> {
 	
 	private ModelChecker<PhoneInfo> buildDecisionChecker(DeciTreeOption<PhoneInfo> option) {
 		final boolean NOT_NULL = false;
-		final boolean IS_BR = true;
 		
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
@@ -51,13 +49,6 @@ public final class RootPhoneValidate implements DeciTree<PhoneInfo> {
 		checker = new PhoneCheckNull(checkerOption);
 		queue.add(checker);
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = IS_BR;	
-		checker = new PhoneCheckAreaBR(checkerOption);
-		queue.add(checker);
-		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -66,7 +57,7 @@ public final class RootPhoneValidate implements DeciTree<PhoneInfo> {
 	private List<ActionStd<PhoneInfo>> buildActionsOnPassed(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
 		
-		actions.add(new NodePhoneValidateBR(option).toAction());
+		actions.add(new NodePhoneValidateL1(option).toAction());
 		return actions;
 	}
 	

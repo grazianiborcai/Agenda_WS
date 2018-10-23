@@ -39,12 +39,9 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private static PhoneInfo setAttr(PhoneInfo recordInfo) {
-		PhoneSetterAreaCode setterAreaCode = new PhoneSetterAreaCode();
-		setterAreaCode.setAttr(recordInfo);
-		
-		PhoneSetterNumber setterNumber = new PhoneSetterNumber();
-		setterNumber.setAttr(recordInfo);
+	private static PhoneInfo setAttr(PhoneInfo recordInfo) {		
+		PhoneSetterAll setterAttr = new PhoneSetterAll();
+		setterAttr.setAttr(recordInfo);
 		
 		return recordInfo;
 	}

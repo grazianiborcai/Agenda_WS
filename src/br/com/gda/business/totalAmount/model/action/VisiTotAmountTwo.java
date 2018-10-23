@@ -6,9 +6,9 @@ import java.util.List;
 
 import br.com.gda.business.totalAmount.info.TotAmountInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.action.ActionVisitor;
+import br.com.gda.model.action.ActionVisitorEnforce;
 
-final class VisiTotAmountTwo implements ActionVisitor<TotAmountInfo> {
+final class VisiTotAmountTwo implements ActionVisitorEnforce<TotAmountInfo> {
 	private long total;
 	private int decimalPlace;
 	//TODO: verificar soma entre moedas com diferentes casas decimais

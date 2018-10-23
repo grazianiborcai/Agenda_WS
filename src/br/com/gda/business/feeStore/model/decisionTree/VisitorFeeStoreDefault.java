@@ -10,10 +10,10 @@ import br.com.gda.business.feeDefault.model.decisionTree.ActionFeeDefaultSelect;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionVisitor;
+import br.com.gda.model.action.ActionVisitorEnforce;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisitorFeeStoreDefault implements ActionVisitor<FeeStoreInfo> {
+final class VisitorFeeStoreDefault implements ActionVisitorEnforce<FeeStoreInfo> {
 	private DeciTreeOption<FeeDefaultInfo> selOption;
 	
 	

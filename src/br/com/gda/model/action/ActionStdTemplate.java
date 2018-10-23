@@ -2,7 +2,6 @@ package br.com.gda.model.action;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import br.com.gda.common.SystemCode;
@@ -16,14 +15,12 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	private DeciResultHelper<T> deciResult;
 	private List<ActionLazy<T>> postActions;
-	private List<T> resultset;
 	private boolean hasExecuted;
 	
 	
 	public ActionStdTemplate() {
 		deciResult = new DeciResultHelper<>();
 		postActions = new ArrayList<>();
-		resultset = Collections.emptyList();
 		hasExecuted = false;
 	}
 	
@@ -52,47 +49,91 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	private boolean tryToExecuteAction() {
 		try {
-			resultset = tryToExecuteActionHook();
-			
-			if (isResultsetEmpty()) {
-				tryToBuildResultFailed();
-				return FAILED;
-			}
-			
-			buildResultSuccess();
-			return SUCCESS;
+			DeciResult<T> result = tryToExecuteActionResuHook();
+			copyResult(result);
+			return result.hasSuccessfullyFinished();
 		
 		} catch (Exception e) {
-			buildResultFailed();
+			buildResultError();
 			return FAILED;
 		}			
 	}
 	
 	
 	
-	protected List<T> tryToExecuteActionHook() throws SQLException {
+	protected DeciResult<T> tryToExecuteActionResuHook() throws SQLException {
+		List<T> resultRecords = tryToExecuteActionListHook();
+		return buildResult(resultRecords);
+	}
+	
+	
+	
+	protected List<T> tryToExecuteActionListHook() throws SQLException {
 		//Template method to be overridden by subclasses
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	
 	
-	private boolean isResultsetEmpty() {
-		if (resultset == null || resultset.isEmpty()) {
-			return true;
-		}
+	private DeciResult<T> buildResult(List<T> recordInfos) {
+		if (recordInfos.isEmpty()) 
+			return buildResultFailed();
+			
+		return buildResultSuccess(recordInfos);
 		
-		return false;
 	}
 	
 	
 	
-	private void tryToBuildResultFailed() {
+	private DeciResult<T> buildResultFailed() {
+		DeciResultHelper<T> result = new DeciResultHelper<>();
+		
 		DeciResult<T> failedResult = buildResultFailedHook();		
-		deciResult.copyWithoutResultset(failedResult);
+		result.copyWithoutResultset(failedResult);
 		
 		if (failedResult.hasResultset()) 
-			deciResult.resultset = failedResult.getResultset();
+			result.resultset = failedResult.getResultset();
+		
+		return result;
+	}
+	
+	
+	
+	protected DeciResult<T> buildResultFailedHook() {
+		//Template Method: Default behavior
+		return buildResultDataNotFound();
+	}
+	
+	
+	
+	private DeciResult<T> buildResultDataNotFound() {
+		DeciResultHelper<T> result = new DeciResultHelper<>();
+		
+		result.finishedWithSuccess = FAILED;
+		result.failureCode = SystemCode.DATA_NOT_FOUND;
+		result.failureMessage = SystemMessage.DATA_NOT_FOUND;
+		result.hasResultset = false;
+		result.resultset = null;
+		
+		return result;
+	}
+	
+	
+	
+	private DeciResult<T> buildResultSuccess(List<T> recordInfos) {
+		DeciResultHelper<T> result = new DeciResultHelper<>();
+		
+		result.finishedWithSuccess = SUCCESS;
+		result.hasResultset = true;
+		result.resultset = recordInfos;
+		
+		return result;
+	}
+	
+	
+	
+	private void copyResult(DeciResult<T> result) {
+		deciResult.copyFrom(result);
 	}
 	
 	
@@ -114,52 +155,24 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	private boolean tryToExecutePostActions(ActionLazy<T> postAction) {				
 		try {
-			postAction.executeAction(resultset);
-			deciResult.copyFrom(postAction.getDecisionResult());
+			postAction.executeAction(deciResult.getResultset());
+			copyResult(postAction.getDecisionResult());
 			return SUCCESS;
 		
 		} catch (Exception e) {
-			buildResultFailed();
+			buildResultError();
 			return FAILED;
 		}		
 	}
 	
 	
 	
-	private void buildResultSuccess() {
-		deciResult.finishedWithSuccess = SUCCESS;
-		deciResult.hasResultset = true;
-		deciResult.resultset = resultset;
-	}
-	
-	
-	
-	private void buildResultFailed() {
+	private void buildResultError() {
 		deciResult.finishedWithSuccess = FAILED;
 		deciResult.failureCode = SystemCode.INTERNAL_ERROR;
 		deciResult.failureMessage = SystemMessage.INTERNAL_ERROR;
 		deciResult.hasResultset = false;
 		deciResult.resultset = null;
-	}
-	
-	
-	
-	protected DeciResult<T> buildResultFailedHook() {
-		//Template Method: Default behavior
-		return buildResultDataNotFound();
-	}
-	
-	
-	private DeciResult<T> buildResultDataNotFound() {
-		DeciResultHelper<T> result = new DeciResultHelper<>();
-		
-		result.finishedWithSuccess = FAILED;
-		result.failureCode = SystemCode.DATA_NOT_FOUND;
-		result.failureMessage = SystemMessage.DATA_NOT_FOUND;
-		result.hasResultset = false;
-		result.resultset = null;
-		
-		return result;
 	}
 	
 	

@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.helper.RecordMode;
-import br.com.gda.model.action.ActionVisitor;
+import br.com.gda.model.action.ActionVisitorEnforce;
 
-final class VisitorEmpEnforceDel implements ActionVisitor<EmpInfo> {
+final class VisitorEmpEnforceDel implements ActionVisitorEnforce<EmpInfo> {
 	
 	@Override public List<EmpInfo> executeTransformation(List<EmpInfo> recordInfos) {
 		List<EmpInfo> resultRecords = new ArrayList<>();		

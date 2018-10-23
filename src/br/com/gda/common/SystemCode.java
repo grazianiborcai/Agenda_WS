@@ -143,4 +143,9 @@ public final class SystemCode {
 	public static final int PHONE_COUNTRY_IS_BR							= 1552;
 	public static final int PHONE_COUNTRY_IS_NOT_BR						= 1553;
 	public static final int PHONE_NUMBER_INVALID						= 1554;
+	public static final int PHONE_NUMBER_IS_VALID						= 1555;
+	public static final int PHONE_NUMBER_INVALID_LENGTH_BR				= 1556;
+	public static final int PHONE_NUMBER_INVALID_NUMBER					= 1557;
+	public static final int PHONE_NUMBER_INVALID_AREA_CODE				= 1558;
+	public static final int PHONE_NUMBER_INVALID_SEQUENCE				= 1559;
 }

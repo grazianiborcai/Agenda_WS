@@ -23,7 +23,8 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
 	public String txtCountry;
 	public String stateProvince;
-	public String phoneNumber1;
+	public int codCountryPhone1;
+	public String phoneNumber1;	
 	public String codLanguage;
 	public String recordMode;
 	
@@ -33,7 +34,8 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codGender = DefaultValue.number();
 		postalCode = DefaultValue.number();
-		codLanguage = DefaultValue.language();
+		codCountryPhone1 = DefaultValue.number();
+		codLanguage = DefaultValue.language();		
 		recordMode = RecordMode.RECORD_OK;		
 	}
 	

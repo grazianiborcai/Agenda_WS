@@ -7,7 +7,7 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
 
 
-public abstract class ActionVisitorTemplateEnforce<T extends InfoRecord> implements ActionVisitor<T> {	
+public abstract class ActionVisitorTemplateEnforce<T extends InfoRecord> implements ActionVisitorEnforce<T> {	
 	
 	@Override public List<T> executeTransformation(List<T> recordInfos) {
 		List<T> resultRecords = new ArrayList<>();		

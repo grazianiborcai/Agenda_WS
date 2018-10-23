@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.model.action.ActionVisitor;
+import br.com.gda.model.action.ActionVisitorEnforce;
 
-final class VisitorMatEnforceKey implements ActionVisitor<MatInfo> {
+final class VisitorMatEnforceKey implements ActionVisitorEnforce<MatInfo> {
 	
 	@Override public List<MatInfo> executeTransformation(List<MatInfo> recordInfos) {
 		List<MatInfo> resultRecords = new ArrayList<>();		

@@ -8,9 +8,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class PhoneCheckBR extends ModelCheckerTemplateSimple<PhoneInfo> {
+public final class PhoneCheckBrNumber extends ModelCheckerTemplateSimple<PhoneInfo> {
 
-	public PhoneCheckBR() {
+	public PhoneCheckBrNumber() {
 		super();
 	}
 	
@@ -18,22 +18,11 @@ public final class PhoneCheckBR extends ModelCheckerTemplateSimple<PhoneInfo> {
 	
 	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
 		if (checkNull(recordInfo.phoneNumber) == super.FAILED)
-			return super.FAILED;
+			return super.FAILED;	
 		
-		if (checkOnlyNumber(recordInfo.phoneNumber) == super.FAILED)			
-			return super.FAILED;
-		
-		if (checkLength(recordInfo.phoneNumber) == super.FAILED)			
-			return super.FAILED;
-		
-		if (checkAreaCode(recordInfo.phoneNumber) == super.FAILED)			
-			return super.FAILED;
 		
 		if (checkPhoneNumber(recordInfo.phoneNumber) == super.FAILED)
-			return super.FAILED;
-		
-		if (checkSequence(recordInfo.phoneNumber) == FAILED)			
-			return FAILED;
+			return super.FAILED;	
 		
 		
 		return super.SUCCESS;
@@ -46,37 +35,6 @@ public final class PhoneCheckBR extends ModelCheckerTemplateSimple<PhoneInfo> {
 			return super.FAILED;
 		
 		return super.SUCCESS;
-	}
-	
-	
-	
-	private boolean checkOnlyNumber(String phoneNumber) {
-	    return phoneNumber.matches("^\\d+$");
-	}
-	
-	
-	
-	private boolean checkLength(String phoneNumber) {
-	    if (phoneNumber.length() < 10 || phoneNumber.length() > 11)
-	           return super.FAILED;
-	    
-	    return super.SUCCESS;
-	}
-	
-	
-	
-	private boolean checkAreaCode(String phoneNumber) {
-		int areaCode = getAreaCode(phoneNumber);
-		return AreaPhone.BR.checkCodArea(areaCode);
-	}
-	
-	
-	
-	private int getAreaCode(String phoneNumber) {
-		int begin = 0;
-		int end = AreaPhone.BR.getAreaCodeLength();
-		String areaCode = phoneNumber.substring(begin, end);
-		return Integer.valueOf(areaCode);
 	}
 	
 	
@@ -132,27 +90,6 @@ public final class PhoneCheckBR extends ModelCheckerTemplateSimple<PhoneInfo> {
 	           return super.FAILED;
 	    
 	    return super.SUCCESS;
-	}
-	
-	
-	
-	private boolean checkSequence(String phoneNumber) {
-		boolean IS_MONODIGIT = true;
-		String number = removeAreaCode(phoneNumber);
-		
-		if (number.matches("^(\\d)\\1+$") == IS_MONODIGIT) 
-			return FAILED;		
-	    
-	    return SUCCESS;
-	}
-	
-	
-	
-	private String removeAreaCode(String phoneNumber) {
-		int begin = AreaPhone.BR.getAreaCodeLength();
-		int end = phoneNumber.length();
-		
-		return phoneNumber.substring(begin, end);
 	}
 	
 	

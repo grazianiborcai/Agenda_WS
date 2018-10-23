@@ -3,7 +3,7 @@ package br.com.gda.business.employee.model.decisionTree;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperTrans;
+import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -12,7 +12,7 @@ public final class ActionEmpEnforceKeyCpf implements ActionStd<EmpInfo> {
 	
 	
 	public ActionEmpEnforceKeyCpf(DeciTreeOption<EmpInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisitorEmpEnforceKeyCpf());
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisitorEmpEnforceKeyCpf());
 	}
 	
 	

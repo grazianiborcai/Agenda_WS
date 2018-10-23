@@ -126,32 +126,19 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	
 	
-	private boolean checkActionResult(DeciResult<T> actionResult) {
+	private boolean checkActionResult(DeciResult<T> actionResult) {	
 		if (actionResult.hasSuccessfullyFinished() == FAILED &&
-			actionResult.getFailureCode() == SystemCode.DATA_NOT_FOUND)
+			actionResult.getFailureCode() == SystemCode.INTERNAL_ERROR)
+			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
+		
+		
+		if (actionResult.hasSuccessfullyFinished() == SUCCESS &&
+			actionResult.getResultset().isEmpty())
 			return NOT_FOUND;
+		
+		
+		return actionResult.hasSuccessfullyFinished();
 			
-			
-			if (actionResult.hasSuccessfullyFinished() == FAILED)		
-				throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
-				
-			
-			if (actionResult.hasResultset() == EMPTY_RESULTSET)
-				return NOT_FOUND;
-			
-			
-			if (actionResult.getResultset().isEmpty())
-				return NOT_FOUND;
-			
-			
-			return ALREADY_EXIST;
-	}
-	
-	
-	//TODO: remover esse m�todo
-	protected boolean checkHook(T recordInfo, Connection conn, String schemaName) {
-		//Template method: to be overwritten by subclasses
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	
@@ -193,5 +180,17 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	protected int makeFailureCodeHook(boolean checkerResult) {
 		//Template method: to be overwritten by subclasses
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	}
+	
+	
+	
+	protected String getActionFailedExplanation() {
+		return deciAction.getDecisionResult().getFailureMessage();
+	}
+	
+	
+	
+	protected int getActionFailedCode() {
+		return deciAction.getDecisionResult().getFailureCode();
 	}
 }

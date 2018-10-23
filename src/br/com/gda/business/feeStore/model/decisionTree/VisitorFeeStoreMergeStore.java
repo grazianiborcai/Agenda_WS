@@ -10,10 +10,10 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.decisionTree.RootStoreSelect;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionVisitor;
+import br.com.gda.model.action.ActionVisitorEnforce;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisitorFeeStoreMergeStore implements ActionVisitor<FeeStoreInfo> {
+final class VisitorFeeStoreMergeStore implements ActionVisitorEnforce<FeeStoreInfo> {
 	private DeciTreeOption<StoreInfo> selOption;
 	
 	

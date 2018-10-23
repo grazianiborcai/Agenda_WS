@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.gda.business.age.info.AgeInfo;
 import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.info.PlanPruner;
-import br.com.gda.model.action.ActionVisitor;
+import br.com.gda.model.action.ActionVisitorEnforce;
 
-final class VisitorPlanPruneAge implements ActionVisitor<PlanInfo> {
+final class VisitorPlanPruneAge implements ActionVisitorEnforce<PlanInfo> {
 	
 	@Override public List<PlanInfo> executeTransformation(List<PlanInfo> recordInfos) {		
 		return prune(recordInfos);

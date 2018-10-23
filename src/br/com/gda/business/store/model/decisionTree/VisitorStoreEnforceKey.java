@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.model.action.ActionVisitor;
+import br.com.gda.model.action.ActionVisitorEnforce;
 
-final class VisitorStoreEnforceKey implements ActionVisitor<StoreInfo> {
+final class VisitorStoreEnforceKey implements ActionVisitorEnforce<StoreInfo> {
 	
 	@Override public List<StoreInfo> executeTransformation(List<StoreInfo> recordInfos) {
 		List<StoreInfo> resultRecords = new ArrayList<>();		

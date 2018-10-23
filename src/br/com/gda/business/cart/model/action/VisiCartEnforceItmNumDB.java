@@ -9,10 +9,10 @@ import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionVisitor;
+import br.com.gda.model.action.ActionVisitorEnforce;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisiCartEnforceItmNumDB implements ActionVisitor<CartInfo> {
+final class VisiCartEnforceItmNumDB implements ActionVisitorEnforce<CartInfo> {
 	private DeciTreeOption<CartInfo> selOption;
 	
 	

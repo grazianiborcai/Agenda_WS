@@ -6,31 +6,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.decisionTree.DeciResult;
 
-public final class ActionStdHelperTrans<T> extends ActionStdTemplate<T> {
+public final class ActionStdHelperAction<T> extends ActionStdTemplate<T> {
 	private List<T> records = new ArrayList<>();
-	private ActionVisitor<T> visitorTrans;
+	private ActionVisitorAction<T> visitorAction;
 	
 	
-	public ActionStdHelperTrans(T recordInfo, ActionVisitor<T> visitor) {		
+	public ActionStdHelperAction(T recordInfo, ActionVisitorAction<T> visitor) {		
 		super();
 		checkArgument(recordInfo, visitor);
 		makeDefensiveCopy(recordInfo);
-		visitorTrans = visitor;
+		visitorAction = visitor;
 	}
 	
 	
 	
-	public ActionStdHelperTrans(List<T> recordInfos, ActionVisitor<T> visitor) {
+	public ActionStdHelperAction(List<T> recordInfos, ActionVisitorAction<T> visitor) {
 		super();
 		checkArgument(recordInfos, visitor);
 		makeDefensiveCopy(recordInfos);
-		visitorTrans = visitor;
+		visitorAction = visitor;
 	}
 	
 	
 	
-	private void checkArgument(List<T> recordInfos, ActionVisitor<T> visitor) {
+	private void checkArgument(List<T> recordInfos, ActionVisitorAction<T> visitor) {
 		if (recordInfos == null)
 			throw new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT);
 		
@@ -46,7 +47,7 @@ public final class ActionStdHelperTrans<T> extends ActionStdTemplate<T> {
 	
 	
 	
-	private void checkArgument(T recordInfo, ActionVisitor<T> visitor) {
+	private void checkArgument(T recordInfo, ActionVisitorAction<T> visitor) {
 		if (recordInfo == null)
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 	}
@@ -80,7 +81,7 @@ public final class ActionStdHelperTrans<T> extends ActionStdTemplate<T> {
 	
 	
 	
-	@Override protected List<T> tryToExecuteActionHook() throws SQLException {
-		return visitorTrans.executeTransformation(records);
+	@Override protected DeciResult<T> tryToExecuteActionResuHook() throws SQLException {
+		return visitorAction.executeTransformation(records);
 	}
 }

@@ -3,7 +3,7 @@ package br.com.gda.business.planningTime.model.decisionTree;
 import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperTrans;
+import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -12,7 +12,7 @@ final class ActionPlanPruneAge implements ActionStd<PlanInfo> {
 	
 	
 	public ActionPlanPruneAge(DeciTreeOption<PlanInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisitorPlanPruneAge());
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisitorPlanPruneAge());
 	}
 	
 	

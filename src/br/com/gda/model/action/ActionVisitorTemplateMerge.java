@@ -15,7 +15,7 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends InfoRecord> implements ActionVisitor<T> {
+public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorEnforce<T> {
 	private DeciTreeOption<S> selOption;
 	private Class<S> sClazz;
 	

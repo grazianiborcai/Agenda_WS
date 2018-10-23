@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
 
-public abstract class ActionVisitorTemplateFilter<T extends InfoRecord> implements ActionVisitor<T> {	
+public abstract class ActionVisitorTemplateFilter<T extends InfoRecord> implements ActionVisitorEnforce<T> {	
 	protected boolean KEEP_RECORD = false;
 	protected boolean SKIP_RECORD = true;
 	

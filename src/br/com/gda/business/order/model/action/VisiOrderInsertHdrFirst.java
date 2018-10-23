@@ -9,10 +9,10 @@ import br.com.gda.business.order.info.OrderMerger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionVisitor;
+import br.com.gda.model.action.ActionVisitorEnforce;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 //TODO: Trocar pela classe Multi ?
-final class VisiOrderInsertHdrFirst implements ActionVisitor<OrderInfo> {
+final class VisiOrderInsertHdrFirst implements ActionVisitorEnforce<OrderInfo> {
 	private DeciTreeOption<OrderInfo> selOption;
 	
 	

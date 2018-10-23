@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.materialStore.info.MatStoreInfo;
 import br.com.gda.helper.RecordMode;
-import br.com.gda.model.action.ActionVisitor;
+import br.com.gda.model.action.ActionVisitorEnforce;
 
-final class VisitorMatStoreEnforceDel implements ActionVisitor<MatStoreInfo> {
+final class VisitorMatStoreEnforceDel implements ActionVisitorEnforce<MatStoreInfo> {
 	
 	@Override public List<MatStoreInfo> executeTransformation(List<MatStoreInfo> recordInfos) {
 		List<MatStoreInfo> resultRecords = new ArrayList<>();		

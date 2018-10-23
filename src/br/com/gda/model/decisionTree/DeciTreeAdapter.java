@@ -26,7 +26,7 @@ public final class DeciTreeAdapter<T> extends ActionStdTemplate<T> {
 	
 	
 	
-	@Override protected List<T> tryToExecuteActionHook() throws SQLException {
+	@Override protected List<T> tryToExecuteActionListHook() throws SQLException {
 		  deciTree.makeDecision();
 		  DeciResult<T> treeResult = deciTree.getDecisionResult();
 		  

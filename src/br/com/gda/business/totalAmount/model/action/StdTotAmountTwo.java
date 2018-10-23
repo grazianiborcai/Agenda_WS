@@ -3,7 +3,7 @@ package br.com.gda.business.totalAmount.model.action;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.totalAmount.info.TotAmountInfo;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperTrans;
+import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -12,7 +12,7 @@ public final class StdTotAmountTwo implements ActionStd<TotAmountInfo> {
 	
 	
 	public StdTotAmountTwo(DeciTreeOption<TotAmountInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisiTotAmountTwo());
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiTotAmountTwo());
 	}
 	
 	

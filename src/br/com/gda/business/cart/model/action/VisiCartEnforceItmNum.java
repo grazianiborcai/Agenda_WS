@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.model.action.ActionVisitor;
+import br.com.gda.model.action.ActionVisitorEnforce;
 
-final class VisiCartEnforceItmNum implements ActionVisitor<CartInfo> {	
+final class VisiCartEnforceItmNum implements ActionVisitorEnforce<CartInfo> {	
 	private int maxItemNum;
 	
 		

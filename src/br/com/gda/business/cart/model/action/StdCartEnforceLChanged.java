@@ -3,7 +3,7 @@ package br.com.gda.business.cart.model.action;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperTrans;
+import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -12,7 +12,7 @@ final class StdCartEnforceLChanged implements ActionStd<CartInfo> {
 	
 	
 	public StdCartEnforceLChanged(DeciTreeOption<CartInfo> option) {			
-		actionHelper = new ActionStdHelperTrans<>(option.recordInfos, new VisiCartEnforceLChanged());
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCartEnforceLChanged());
 	}
 	
 	

@@ -9,9 +9,9 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class PhoneCheckAreaBR extends ModelCheckerTemplateSimple<PhoneInfo> {
+public final class PhoneCheckBrCountry extends ModelCheckerTemplateSimple<PhoneInfo> {
 
-	public PhoneCheckAreaBR(ModelCheckerOption option) {
+	public PhoneCheckBrCountry(ModelCheckerOption option) {
 		super(option);
 	}
 	

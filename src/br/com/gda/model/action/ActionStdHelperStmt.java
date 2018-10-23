@@ -25,7 +25,7 @@ public final class ActionStdHelperStmt<T> extends ActionStdTemplate<T> {
 	
 	
 	
-	@Override protected List<T> tryToExecuteActionHook() throws SQLException {
+	@Override protected List<T> tryToExecuteActionListHook() throws SQLException {
 		stmtExec.executeStmt();
 		return stmtExec.getResultset();
 	} 
