@@ -81,4 +81,13 @@ public final class DaoFormatter {
 		
 		return localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 	}
+	
+	
+	
+	public static Integer boxNumber(int number) {
+		if (number < 0)
+			return null;
+		
+		return number;
+	}
 }

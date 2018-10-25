@@ -180,6 +180,8 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<CusInfo> {
+		private final boolean NOT_NULL = false;
+		
 		private final boolean EMPTY_RESULT_SET = false;
 		private final String COL_TXT_GENDER = DaoDbTable.GENDER_TEXT_TABLE + "." + CusDbTableColumn.COL_NAME_GENDER;
 		private final String COL_TXT_COUNTRY = DaoDbTable.COUNTRY_TEXT_TABLE + "." + CusDbTableColumn.COL_NAME_COUNTRY;
@@ -203,11 +205,16 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 				dataInfo.address2 = stmtResult.getString(CusDbTableColumn.COL_ADDRESS_2);
 				dataInfo.postalCode = stmtResult.getLong(CusDbTableColumn.COL_POSTAL_CODE);
 				dataInfo.city = stmtResult.getString(CusDbTableColumn.COL_COD_CITY);
+				dataInfo.phoneNumber1 = stmtResult.getString(CusDbTableColumn.COL_PHONE_1);
 				dataInfo.codCountry = stmtResult.getString(CusDbTableColumn.COL_COD_COUNTRY);
 				dataInfo.txtCountry = stmtResult.getString(COL_TXT_COUNTRY);
-				dataInfo.stateProvince = stmtResult.getString(CusDbTableColumn.COL_COD_STATE_PROVINCE);
-				dataInfo.phoneNumber1 = stmtResult.getString(CusDbTableColumn.COL_PHONE_1);
+				dataInfo.stateProvince = stmtResult.getString(CusDbTableColumn.COL_COD_STATE_PROVINCE);								
 				dataInfo.recordMode = stmtResult.getString(CusDbTableColumn.COL_RECORD_MODE);
+				
+				//TODO: verificar se numero nulo antes de atribuir. Ajustar todo o workspace
+				stmtResult.getInt(CusDbTableColumn.COL_PHONE_1_COUNTRY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codCountryPhone1 = stmtResult.getInt(CusDbTableColumn.COL_PHONE_1_COUNTRY);
 				
 				Date tempDate = stmtResult.getDate(CusDbTableColumn.COL_COD_BIRTH_DATE);
 				if (tempDate != null)

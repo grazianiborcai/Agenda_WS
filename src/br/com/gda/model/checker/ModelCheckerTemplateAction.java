@@ -183,7 +183,7 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	}
 	
 	
-	
+	//TODO: Mover para dentro "makeFailureExplanationHook" e tornar o padrao ?
 	protected String getActionFailedExplanation() {
 		return deciAction.getDecisionResult().getFailureMessage();
 	}

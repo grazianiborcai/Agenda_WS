@@ -25,8 +25,9 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_NAME_COUNTRY = MasterDataDbTableColumn.COL_NAME;
 	public static final String COL_NAME_GENDER = MasterDataDbTableColumn.COL_NAME;	
 	public static final String COL_PHONE_1 = "phone_1";
+	public static final String COL_PHONE_1_COUNTRY = "country_phone_1";
 	public static final String COL_POSTAL_CODE = "postalcode";
-	public static final String COL_RECORD_MODE = "record_mode";	
+	public static final String COL_RECORD_MODE = "record_mode";		
 
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
@@ -167,6 +168,14 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_RECORD_MODE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_PHONE_1_COUNTRY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -97,6 +97,9 @@ public final class CusInsertSingle implements DaoStmt<CusInfo> {
 			stmt.setString(i++, recordInfo.stateProvince);
 			stmt.setString(i++, recordInfo.phoneNumber1);			
 			stmt.setString(i++, recordInfo.recordMode);
+			stmt.setInt(i++, recordInfo.codCountryPhone1);
+			
+			//TODO: verificar se numero nulo antes de atribuir. Ajustar todo o workspace
 			
 			return stmt;
 		}		

@@ -32,11 +32,4 @@ public final class StdCusValidatePhone1 implements ActionStd<CusInfo> {
 	@Override public DeciResult<CusInfo> getDecisionResult() {
 		return actionHelper.getDecisionResult();
 	}
-	
-	
-	/*
-	@Override protected DeciResult<T> buildResultFailedHook() {
-		//Template Method: Default behavior
-		return buildResultDataNotFound();
-	} */
 }

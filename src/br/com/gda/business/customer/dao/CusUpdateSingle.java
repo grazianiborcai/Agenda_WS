@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
@@ -115,6 +116,14 @@ public final class CusUpdateSingle implements DaoStmt<CusInfo> {
 			stmt.setString(i++, recordInfo.stateProvince);
 			stmt.setString(i++, recordInfo.phoneNumber1);	
 			stmt.setString(i++, recordInfo.recordMode);
+			
+			//TODO: verificar se numero nulo antes de atribuir. Ajustar todo o workspace
+			if (DaoFormatter.boxNumber(recordInfo.codCountryPhone1) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setInt(i++, recordInfo.codCountryPhone1);
+			}
+			
 			
 			return stmt;
 		}		
