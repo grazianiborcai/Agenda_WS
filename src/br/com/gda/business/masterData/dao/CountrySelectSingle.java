@@ -165,6 +165,7 @@ public final class CountrySelectSingle implements DaoStmt<CountryInfo> {
 			do {				
 				CountryInfo dataInfo = new CountryInfo();
 				dataInfo.codCountry = stmtResult.getString(MasterDataDbTableColumn.COL_COD_COUNTRY);
+				dataInfo.codCountryAlpha3 = stmtResult.getString(MasterDataDbTableColumn.COL_COD_COUNTRY_ALPHA3);
 				dataInfo.txtCountry = stmtResult.getString(TEXT_COL);
 				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				

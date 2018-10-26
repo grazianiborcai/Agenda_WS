@@ -91,7 +91,7 @@ public final class CusInsertSingle implements DaoStmt<CusInfo> {
 			stmt.setString(i++, recordInfo.email);
 			stmt.setString(i++, recordInfo.address1);
 			stmt.setString(i++, recordInfo.address2);
-			stmt.setLong(i++, recordInfo.postalCode);
+			stmt.setString(i++, recordInfo.postalCode);
 			stmt.setString(i++, recordInfo.city);
 			stmt.setString(i++, recordInfo.codCountry);
 			stmt.setString(i++, recordInfo.stateProvince);

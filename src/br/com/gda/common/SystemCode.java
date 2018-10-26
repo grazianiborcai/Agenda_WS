@@ -147,5 +147,14 @@ public final class SystemCode {
 	public static final int PHONE_NUMBER_INVALID_LENGTH_BR				= 1556;
 	public static final int PHONE_NUMBER_INVALID_NUMBER					= 1557;
 	public static final int PHONE_NUMBER_INVALID_AREA_CODE				= 1558;
-	public static final int PHONE_NUMBER_INVALID_SEQUENCE				= 1559;
+	public static final int PHONE_NUMBER_INVALID_SEQUENCE				= 1559;	
+	
+	//Address
+	public static final int ADDRESS_IS_NULL								= 1600;
+	public static final int ADDRESS_IS_FILLED							= 1601;
+	
+	//Form
+	public static final int ADDRESS_FORM_ALREADY_EXIST					= 1700;
+	public static final int ADDRESS_FORM_NOT_FOUND						= 1701;
+	public static final int ADDRESS_FORM_INVALID						= 1702;
 }

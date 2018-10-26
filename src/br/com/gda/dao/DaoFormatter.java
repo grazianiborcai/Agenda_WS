@@ -90,4 +90,21 @@ public final class DaoFormatter {
 		
 		return number;
 	}
+	
+	
+	
+	public static Long boxNumber(long number) {
+		if (number < 0)
+			return null;
+		
+		return number;
+	}
+	
+	
+	public static Float boxNumber(float number) {
+		if (number < 0)
+			return null;
+		
+		return number;
+	}
 }

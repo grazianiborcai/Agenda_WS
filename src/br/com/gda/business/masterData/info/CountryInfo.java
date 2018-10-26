@@ -7,6 +7,7 @@ import br.com.gda.info.InfoRecord;
 
 public final class CountryInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
+	public String codCountryAlpha3;
 	public String txtCountry;
 	public String codLanguage;
 	
@@ -51,6 +52,6 @@ public final class CountryInfo extends InfoRecord implements Cloneable {
 		
 		
 		CountryInfo obj = (CountryInfo) o;		
-		return (codCountry.equals(obj.codCountry));
+		return (isStringEqual(codCountry, obj.codCountry));
 	}
 }

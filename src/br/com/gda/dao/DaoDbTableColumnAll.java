@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.gda.business.address.dao.AddressDbTableColumn;
 import br.com.gda.business.cart.dao.CartDbTableColumn;
 import br.com.gda.business.customer.dao.CusDbTableColumn;
 import br.com.gda.business.employee.dao.EmpDbTableColumn;
@@ -12,6 +13,7 @@ import br.com.gda.business.employeeWorkTime.dao.EmpWTimeDbTableColumn;
 import br.com.gda.business.employeeWorkTimeConflict.dao.EmpCoDbTableColumn;
 import br.com.gda.business.feeDefault.dao.FeeDefaultDbTableColumn;
 import br.com.gda.business.feeStore.dao.FeeStoreDbTableColumn;
+import br.com.gda.business.form.dao.FormDbTableColumn;
 import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.material.dao.MatDbTableColumn;
 import br.com.gda.business.materialEmployee.dao.MatEmpDbTableColumn;
@@ -60,6 +62,8 @@ public final class DaoDbTableColumnAll {
 		addTable(new FeeDefaultDbTableColumn());
 		addTable(new ReserveDbTableColumn());
 		addTable(new OrderDbTableColumn());
+		addTable(new AddressDbTableColumn());
+		addTable(new FormDbTableColumn());
 	}
 	
 	

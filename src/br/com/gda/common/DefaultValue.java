@@ -6,6 +6,8 @@ import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
+import br.com.gda.helper.RecordMode;
+
 public final class DefaultValue {
 	public static int number() {
 		return -1;
@@ -58,5 +60,11 @@ public final class DefaultValue {
 	public static LocalDateTime dateTimeNow() {
 		ZonedDateTime nowUtc = ZonedDateTime.now(ZoneOffset.UTC);
 		return nowUtc.toLocalDateTime();
+	}
+	
+	
+	
+	public static String recordMode() {
+		return RecordMode.RECORD_OK;
 	}
 }

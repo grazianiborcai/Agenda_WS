@@ -126,6 +126,6 @@ public final class OrderInsertItmSingle implements DaoStmt<OrderInfo> {
 	
 	
 	@Override public DaoStmt<OrderInfo> getNewInstance() {
-		return new OrderInsertHdrSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new OrderInsertItmSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 }

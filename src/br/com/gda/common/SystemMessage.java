@@ -12,8 +12,7 @@ public final class SystemMessage {
 	public static final String OWNER_ALREALDY_EXIST = "Owner data already exist on DB";		
 	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";				
 	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";			
-	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";	
-			
+	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";			
 	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
 	public static final String RESULTSET_NOT_APPLICABLE = "Resultset is either not applicable or is empty";		
 	public static final String OPERATION_CANT_BE_PROCESSED = "Not possible to process this operation";	
@@ -124,9 +123,7 @@ public final class SystemMessage {
 	public static final String EMP_WTIME_VALID_WORKHOUR = "Selected time is valid for Employee working time range";	
 	public static final String EMP_WTIME_WORKHOUR_OUT_OF_RANGE = "Selected time is out of range of Employee working time";
 	
-
 	
-
 			
 	//Store		
 	public static final String STORE_ALREALDY_EXIST = "Store's data already exist on DB";	
@@ -154,9 +151,7 @@ public final class SystemMessage {
 	public static final String STORE_WTIME_NOT_FOUND = "Store's working time not found on DB";
 	public static final String STORE_WTIME_VALID_WORKHOUR = "Selected time is valid for Store working time range";	
 	public static final String STORE_WTIME_WORKHOUR_OUT_OF_RANGE = "Selected time is out of range of Store working time";
-	
-	
-	
+		
 	
 	
 	//Customer
@@ -171,8 +166,6 @@ public final class SystemMessage {
 	
 	
 	
-	
-	
 	//Cart
 	public static final String CART_ALREADY_EXIST = "Cart's data already exist on DB";	
 	public static final String CART_HAVE_ITEM = "Cart still has items";	
@@ -183,21 +176,17 @@ public final class SystemMessage {
 	public static final String CART_ITEM_ALREADY_EXIST = "Cart item already exist on DB";	
 	public static final String CART_ITEM_NOT_FOUND = "Cart item not found on DB";
 	
-	
-	
-	
+		
 	
 	//Order
 	public static final String ORDER_STATUS_ALREADY_EXIST = "Order Status already exist on DB";	
 	public static final String ORDER_STATUS_NOT_FOUND = "Order Status not found on DB";
 	
-	
-	
+		
 	
 	//Total Amount
 	public static final String AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES = "Amount field does not have two decimal places";
-	
-	
+		
 	
 	
 	//Phone
@@ -211,4 +200,17 @@ public final class SystemMessage {
 	public static final String PHONE_NUMBER_INVALID_NUMBER = "Only numbers are allowed for phone";
 	public static final String PHONE_NUMBER_INVALID_AREA_CODE = "Invalid area code for phone number";
 	public static final String PHONE_NUMBER_INVALID_SEQUENCE = "Invalid sequence for phone number";
+		
+	
+	
+	//Address
+	public static final String ADDRESS_IS_NULL = "Address is blank";
+	public static final String ADDRESS_IS_FILLED = "Address is not blank";
+		
+	
+	
+	//Form
+	public static final String ADDRESS_FORM_ALREADY_EXIST = "Address form already exist on DB";
+	public static final String ADDRESS_FORM_NOT_FOUND = "Address form not found on DB";
+	public static final String ADDRESS_FORM_INVALID = "Invalid address form";
 }

@@ -203,7 +203,7 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 				dataInfo.email = stmtResult.getString(CusDbTableColumn.COL_EMAIL);
 				dataInfo.address1 = stmtResult.getString(CusDbTableColumn.COL_ADDRESS_1);
 				dataInfo.address2 = stmtResult.getString(CusDbTableColumn.COL_ADDRESS_2);
-				dataInfo.postalCode = stmtResult.getLong(CusDbTableColumn.COL_POSTAL_CODE);
+				dataInfo.postalCode = stmtResult.getString(CusDbTableColumn.COL_POSTAL_CODE);
 				dataInfo.city = stmtResult.getString(CusDbTableColumn.COL_COD_CITY);
 				dataInfo.phoneNumber1 = stmtResult.getString(CusDbTableColumn.COL_PHONE_1);
 				dataInfo.codCountry = stmtResult.getString(CusDbTableColumn.COL_COD_COUNTRY);

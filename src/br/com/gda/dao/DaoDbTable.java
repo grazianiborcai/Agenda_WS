@@ -2,6 +2,8 @@ package br.com.gda.dao;
 
 public final class DaoDbTable {	
     //Tables
+	public static final String ADDRESS_TABLE = "address";
+	public static final String ADDRESS_FORM_TABLE = "address_form";
 	public static final String BUSINESS_AREA_TABLE = "business_area";
 	public static final String BUSINESS_AREA_TEXT_TABLE = "business_area_text";	
 	public static final String CART_HDR_TABLE = "shop_cart_header";

@@ -17,14 +17,14 @@ public final class OrderStatusInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static CountryInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, CountryInfo.class);
+	public static OrderStatusInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, OrderStatusInfo.class);
 	}
 	
 	
 	
-	public static List<CountryInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, CountryInfo.class);
+	public static List<OrderStatusInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, OrderStatusInfo.class);
 	}
 	
 	
@@ -46,11 +46,11 @@ public final class OrderStatusInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof CountryInfo))
+		if (!(o instanceof OrderStatusInfo))
 			return false;
 		
 		
-		CountryInfo obj = (CountryInfo) o;		
-		return (codOrderStatus.equals(obj.codCountry));
+		OrderStatusInfo obj = (OrderStatusInfo) o;		
+		return (isStringEqual(codOrderStatus, obj.codOrderStatus));
 	}
 }

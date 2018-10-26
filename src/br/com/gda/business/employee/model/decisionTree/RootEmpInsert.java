@@ -76,6 +76,8 @@ public final class RootEmpInsert implements DeciTree<EmpInfo> {
 		checker = new EmpCheckExistCpf(checkerOption);
 		queue.add(checker);	
 		
+		//TODO: "phone1" copiar de Customer
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	

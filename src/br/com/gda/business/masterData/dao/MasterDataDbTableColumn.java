@@ -11,6 +11,7 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BUSINESS = "cod_business";
 	public static final String COL_COD_COUNTRY = "country";
+	public static final String COL_COD_COUNTRY_ALPHA3 = "country_alpha3";
 	public static final String COL_COD_COUNTRY_PHONE = "country_phone";	
 	public static final String COL_COD_CURRENCY = "cod_curr";
 	public static final String COL_COD_ITEM_CATEG = "cod_shop_categ";	
@@ -477,6 +478,14 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_COUNTRY_ALPHA3;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.COUNTRY_TEXT_TABLE;

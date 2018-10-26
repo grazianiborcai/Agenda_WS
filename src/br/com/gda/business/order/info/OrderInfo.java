@@ -49,6 +49,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public long codEmployee;
 	public String empCpf;
 	public String empName;
+	//TODO: Adicionar endereco do cliente
 	
 	
 	public OrderInfo() {
