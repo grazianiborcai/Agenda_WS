@@ -7,8 +7,8 @@ import br.com.gda.info.InfoRecord;
 
 public final class StateInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
-	public String codCountryAlpha3;
 	public String txtCountry;
+	public String codCountryAlpha3;
 	public String codState;
 	public String txtState;
 	public String codLanguage;

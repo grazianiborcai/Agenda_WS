@@ -6,8 +6,7 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.action.LazyAddressEnforceLChanged;
 import br.com.gda.business.address.model.action.LazyAddressNodeInsert;
-import br.com.gda.business.address.model.action.StdAddressMergeAddressForm;
-import br.com.gda.business.address.model.action.StdAddressSuccess;
+import br.com.gda.business.address.model.action.StdAddressMergeForm;
 import br.com.gda.business.address.model.checker.AddressCheckCountry;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -32,7 +31,6 @@ public final class RootAddressInsert implements DeciTree<AddressInfo> {
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -54,6 +52,7 @@ public final class RootAddressInsert implements DeciTree<AddressInfo> {
 		queue.add(checker);
 		
 		//TODO: Somente um pointer (Employee/Store/Customer) pode estar preeenchido
+		//TODO: Verificar limite de enderecos
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -63,7 +62,7 @@ public final class RootAddressInsert implements DeciTree<AddressInfo> {
 	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<AddressInfo> mergeForm = new StdAddressMergeAddressForm(option);		
+		ActionStd<AddressInfo> mergeForm = new StdAddressMergeForm(option);		
 		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<AddressInfo> nodeInsert = new LazyAddressNodeInsert(option.conn, option.schemaName);	
 		
@@ -71,15 +70,6 @@ public final class RootAddressInsert implements DeciTree<AddressInfo> {
 		enforceLChanged.addPostAction(nodeInsert);
 		
 		actions.add(mergeForm);		
-		return actions;
-	}
-	
-	
-	
-	private List<ActionStd<AddressInfo>> buildActionsOnFailed(DeciTreeOption<AddressInfo> option) {
-		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
-		
-		actions.add(new StdAddressSuccess(option));
 		return actions;
 	}
 	

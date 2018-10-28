@@ -28,6 +28,9 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	public String line2;
 	public String line3;
 	public String line4;
+	public String line5;
+	public String line6;
+	public String line7;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public String codForm;

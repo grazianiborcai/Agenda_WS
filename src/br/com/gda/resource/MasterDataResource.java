@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.business.masterData.info.OrderStatusInfo;
+import br.com.gda.business.masterData.info.StateInfo;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.masterData.info.BusinessInfo;
@@ -26,6 +27,7 @@ import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.model.MatUnitModelSelect;
 import br.com.gda.business.masterData.model.OrderStatusModelSelect;
+import br.com.gda.business.masterData.model.StateModelSelect;
 import br.com.gda.business.masterData.model.TimezoneModelSelect;
 import br.com.gda.business.masterData.model.WeekdayModelSelect;
 import br.com.gda.business.masterData.model.BusinessModelSelect;
@@ -61,6 +63,7 @@ public final class MasterDataResource {
 	private static final String SELECT_FEE_CATEG = "/selectFeeCateg";
 	private static final String SELECT_ORDER_STATUS = "/selectOrderStatus";
 	private static final String SELECT_COUNTRY_PHONE = "/selectCountryPhone";
+	private static final String SELECT_STATE = "/selectState";
 	
 	
 	@GET
@@ -338,6 +341,26 @@ public final class MasterDataResource {
 		
 		
 		Model model = new CountryPhoneModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STATE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectState(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                    @HeaderParam("codCountry") String codCountry,
+			                    @HeaderParam("codState") String codState){
+		
+		StateInfo recordInfo = new StateInfo();		
+		recordInfo.codCountry = codCountry;
+		recordInfo.codState = codState;
+		recordInfo.codLanguage = codLanguage;
+		
+		
+		Model model = new StateModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

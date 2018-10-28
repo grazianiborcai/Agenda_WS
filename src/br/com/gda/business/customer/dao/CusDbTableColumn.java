@@ -4,31 +4,23 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_ADDRESS_1 = "address1";
-	public static final String COL_ADDRESS_2 = "address2";
+	public static final String COL_COD_ADDRESS_1 = "cod_address_1";
 	public static final String COL_COD_BIRTH_DATE = "born_date";
-	public static final String COL_COD_CITY = "city";
-	public static final String COL_COD_COUNTRY = "country";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_GENDER = "cod_gender";
-	public static final String COL_COD_STATE_PROVINCE = "state_province";
 	public static final String COL_CPF = "cpf";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_EMAIL = "email";
 	public static final String COL_NAME = "name";
-	public static final String COL_NAME_COUNTRY = MasterDataDbTableColumn.COL_NAME;
-	public static final String COL_NAME_GENDER = MasterDataDbTableColumn.COL_NAME;	
 	public static final String COL_PHONE_1 = "phone_1";
 	public static final String COL_PHONE_1_COUNTRY = "country_phone_1";
-	public static final String COL_POSTAL_CODE = "postalcode";
-	public static final String COL_RECORD_MODE = "record_mode";		
-
+	public static final String COL_RECORD_MODE = "record_mode";	
+	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
@@ -111,54 +103,6 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_ADDRESS_1;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_ADDRESS_2;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_POSTAL_CODE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_CITY;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_COUNTRY;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_STATE_PROVINCE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_PHONE_1;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
@@ -182,18 +126,10 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.GENDER_TEXT_TABLE;
-		oneColumn.columnName = COL_NAME_GENDER;
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ADDRESS_1;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.COUNTRY_TEXT_TABLE;
-		oneColumn.columnName = COL_NAME_COUNTRY;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

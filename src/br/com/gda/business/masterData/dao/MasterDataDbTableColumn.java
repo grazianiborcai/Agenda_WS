@@ -28,6 +28,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_WEEKDAY = "weekday";
 	public static final String COL_CURRENCY_SYMBOL = "Symbol";
 	public static final String COL_NAME = "name";
+	public static final String COL_STATE_PROVINCE = "state_province";
 	
 	
 	
@@ -58,6 +59,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		feeCategTable();
 		orderStatusTable();
 		countryPhoneTable();
+		stateTable();
 		
 		return tableColumns;
 	}
@@ -645,6 +647,49 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.COUNTRY_TEXT_TABLE;
+		oneColumn.columnName = COL_COD_LANGUAGE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private void stateTable() {
+		final String TABLE_NAME = DaoDbTable.STATE_TABLE;
+		
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_COUNTRY;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_STATE_PROVINCE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.STATE_TEXT_TABLE;
+		oneColumn.columnName = COL_NAME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.STATE_TEXT_TABLE;
 		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

@@ -1,10 +1,11 @@
 package br.com.gda.business.customer.info;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.DefaultValue;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
 public final class CusInfo extends InfoRecord implements Cloneable {
@@ -16,15 +17,9 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public String txtGender;
 	public LocalDate birthDate;
 	public String email;
-	public String address1;
-	public String address2;
-	public String postalCode;
-	public String city;
-	public String codCountry;
-	public String txtCountry;
-	public String stateProvince;
 	public int codCountryPhone1;
 	public String phoneNumber1;	
+	public List<AddressInfo> addresses;
 	public String codLanguage;
 	public String recordMode;
 	
@@ -32,10 +27,11 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public CusInfo() {
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
-		codGender = DefaultValue.number();
+		codGender = DefaultValue.gender();
 		codCountryPhone1 = DefaultValue.number();
+		addresses = new ArrayList<>();
 		codLanguage = DefaultValue.language();		
-		recordMode = RecordMode.RECORD_OK;		
+		recordMode = DefaultValue.recordMode();		
 	}
 	
 	

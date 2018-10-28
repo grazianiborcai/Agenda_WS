@@ -90,6 +90,8 @@ public final class SystemCode {
 	public static final int FEE_CATEG_NOT_FOUND							= 1173;
 	public static final int COUNTRY_PHONE_ALREADY_EXIST					= 1174;
 	public static final int COUNTRY_PHONE_NOT_FOUND						= 1175;
+	public static final int STATE_ALREADY_EXIST							= 1176;
+	public static final int STATE_NOT_FOUND								= 1177;
 	
 	//Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

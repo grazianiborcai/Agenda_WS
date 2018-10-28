@@ -98,6 +98,8 @@ public final class RootCusUpdate implements DeciTree<CusInfo> {
 		checker = new CusCheckPhone1(checkerOption);
 		queue.add(checker);	
 		
+		//TODO: verificar se Addresses e customer possuem o mesmo codigo
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -107,6 +109,7 @@ public final class RootCusUpdate implements DeciTree<CusInfo> {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
 		actions.add(new NodeCusUpdateL1(option).toAction());	
+		actions.add(new RootCusSelect(option).toAction());
 		return actions;
 	}
 	

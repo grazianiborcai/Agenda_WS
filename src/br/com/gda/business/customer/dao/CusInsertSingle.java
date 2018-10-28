@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,20 +87,23 @@ public final class CusInsertSingle implements DaoStmt<CusInfo> {
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setString(i++, recordInfo.cpf);
 			stmt.setString(i++, recordInfo.name);
-			stmt.setInt(i++, recordInfo.codGender);
+			
+			if (DaoFormatter.boxNumber(recordInfo.codGender) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setInt(i++, recordInfo.codGender);
+			}
+			
 			stmt.setDate(i++, birthDate);
 			stmt.setString(i++, recordInfo.email);
-			stmt.setString(i++, recordInfo.address1);
-			stmt.setString(i++, recordInfo.address2);
-			stmt.setString(i++, recordInfo.postalCode);
-			stmt.setString(i++, recordInfo.city);
-			stmt.setString(i++, recordInfo.codCountry);
-			stmt.setString(i++, recordInfo.stateProvince);
 			stmt.setString(i++, recordInfo.phoneNumber1);			
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setInt(i++, recordInfo.codCountryPhone1);
 			
-			//TODO: verificar se numero nulo antes de atribuir. Ajustar todo o workspace
+			if (DaoFormatter.boxNumber(recordInfo.codCountryPhone1) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setInt(i++, recordInfo.codCountryPhone1);
+			}
 			
 			return stmt;
 		}		

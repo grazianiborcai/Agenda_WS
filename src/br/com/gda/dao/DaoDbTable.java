@@ -47,6 +47,8 @@ public final class DaoDbTable {
 	public static final String POSITION_TEXT_TABLE = "position_text";
 	public static final String TIMEZONE_TABLE = "timezone";
 	public static final String TIMEZONE_TEXT_TABLE = "timezone_text";
+	public static final String STATE_TABLE = "state";
+	public static final String STATE_TEXT_TABLE = "state_text";
 	public static final String STORE_EMP_TABLE = "store_emp";
 	public static final String STORE_TABLE = "store";
 	public static final String STORE_LD_TABLE = "store_leave_time";

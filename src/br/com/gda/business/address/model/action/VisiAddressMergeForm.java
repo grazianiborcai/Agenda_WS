@@ -10,9 +10,9 @@ import br.com.gda.info.InfoWritterFactory;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiAddressMergeAddressForm extends ActionVisitorTemplateMerge<AddressInfo, AddressFormInfo> {
+final class VisiAddressMergeForm extends ActionVisitorTemplateMerge<AddressInfo, AddressFormInfo> {
 	
-	public VisiAddressMergeAddressForm(Connection conn, String schemaName) {
+	public VisiAddressMergeForm(Connection conn, String schemaName) {
 		super(conn, schemaName, AddressFormInfo.class);
 	}
 	

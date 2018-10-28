@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.business.customer.model.action.LazyCusMergeAddress;
+import br.com.gda.business.customer.model.action.LazyCusMergeGender;
 import br.com.gda.business.customer.model.action.StdCusSelect;
 import br.com.gda.business.customer.model.checker.CusCheckRead;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -54,7 +57,14 @@ public final class RootCusSelect implements DeciTree<CusInfo> {
 	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdCusSelect(option));
+		ActionStd<CusInfo> select = new StdCusSelect(option);
+		ActionLazy<CusInfo> mergeGender = new LazyCusMergeGender(option.conn, option.schemaName);
+		ActionLazy<CusInfo> mergeAddress = new LazyCusMergeAddress(option.conn, option.schemaName);
+		
+		select.addPostAction(mergeGender);
+		mergeGender.addPostAction(mergeAddress);
+		
+		actions.add(select);
 		return actions;
 	}
 	

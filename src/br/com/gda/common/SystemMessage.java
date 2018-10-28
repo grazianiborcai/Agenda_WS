@@ -85,10 +85,12 @@ public final class SystemMessage {
 	public static final String UNIT_NOT_FOUND = "Unit not found on DB";
 	public static final String WEEKDAY_ALREADY_EXIST = "Weekday already exist on DB";
 	public static final String WEEKDAY_NOT_FOUND = "Weekday not found on DB";
+	public static final String STATE_ALREADY_EXIST = "State already exist on DB";
+	public static final String STATE_NOT_FOUND = "State not found on DB";
 	public static final String TIMEZONE_ALREADY_EXIST = "Timezone already exist on DB";
 	public static final String TIMEZONE_NOT_FOUND = "Timezone not found on DB";
-	
-	
+
+		
 	
 	//Material
 	public static final String MAT_ALREALDY_EXIST = "Material data already exist on DB";	

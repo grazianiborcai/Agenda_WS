@@ -5,11 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.action.StdAddressInsert;
-import br.com.gda.business.address.model.checker.AddressCheckState;
-import br.com.gda.business.address.model.checker.AddressCheckWriteA01;
+import br.com.gda.business.address.model.checker.AddressCheckWriteA00;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -18,11 +16,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeAddressInsertA01 implements DeciTree<AddressInfo> {
+public final class NodeAddressInsertA00 implements DeciTree<AddressInfo> {
 	private DeciTree<AddressInfo> tree;
 	
 	
-	public NodeAddressInsertA01(DeciTreeOption<AddressInfo> option) {
+	public NodeAddressInsertA00(DeciTreeOption<AddressInfo> option) {
 		DeciTreeHelperOption<AddressInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -36,20 +34,10 @@ public final class NodeAddressInsertA01 implements DeciTree<AddressInfo> {
 	
 	
 	private ModelChecker<AddressInfo> buildDecisionChecker(DeciTreeOption<AddressInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
-		ModelCheckerOption checkerOption;
 
-		checker = new AddressCheckWriteA01();
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
-		checker = new AddressCheckState(checkerOption);
+		checker = new AddressCheckWriteA00();
 		queue.add(checker);
 		
 		

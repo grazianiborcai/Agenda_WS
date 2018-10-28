@@ -67,4 +67,10 @@ public final class DefaultValue {
 	public static String recordMode() {
 		return RecordMode.RECORD_OK;
 	}
+	
+	
+	
+	public static int gender() {
+		return 1;
+	}
 }

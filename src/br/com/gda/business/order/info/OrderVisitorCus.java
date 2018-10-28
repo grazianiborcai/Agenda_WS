@@ -13,8 +13,9 @@ final class OrderVisitorCus implements InfoMergerVisitor<OrderInfo, CusInfo, Ord
 		resultInfo.cusCpf = sourceOne.cpf;
 		resultInfo.cusEmail = sourceOne.email;
 		resultInfo.cusName = sourceOne.name;
-		resultInfo.cusCodCountry = sourceOne.codCountry;
-		resultInfo.cusCodState = sourceOne.stateProvince;
+		//resultInfo.cusCodCountry = sourceOne.codCountry1;
+		//resultInfo.cusCodState = sourceOne.codState1;
+		//TODO: persitir endereco
 
 		return resultInfo;
 	}

@@ -24,6 +24,9 @@ public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LINE2 = "line2";
 	public static final String COL_LINE3 = "line3";
 	public static final String COL_LINE4 = "line4";	
+	public static final String COL_LINE5 = "line5";
+	public static final String COL_LINE6 = "line6";
+	public static final String COL_LINE7 = "line7";
 	public static final String COL_LONGITUDE = "longitude";
 	public static final String COL_POSTALCODE = "zipCode";
 	public static final String COL_RECORD_MODE = "record_mode";
@@ -201,6 +204,30 @@ public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_LINE4;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_LINE5;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_LINE6;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_LINE7;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

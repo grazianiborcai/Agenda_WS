@@ -23,8 +23,8 @@ final class VisiCusValidatePhone1 extends ActionVisitorTemplateAction<CusInfo, P
 		List<PhoneInfo> results = new ArrayList<>();
 		
 		for (CusInfo eachRecord : recordInfos) {
-			PhoneInfo phone = translateToPhone(eachRecord);
-			results.add(phone);
+			PhoneInfo actionInfo = translateToActionInfo(eachRecord);
+			results.add(actionInfo);
 		}		
 		
 		return results;
@@ -32,11 +32,11 @@ final class VisiCusValidatePhone1 extends ActionVisitorTemplateAction<CusInfo, P
 	
 	
 	
-	private PhoneInfo translateToPhone(CusInfo recordInfo) {
-		PhoneInfo phone = new PhoneInfo();
-		phone.codCountryPhone = recordInfo.codCountryPhone1;
-		phone.phoneNumber = recordInfo.phoneNumber1;
-		return phone;
+	private PhoneInfo translateToActionInfo(CusInfo recordInfo) {
+		PhoneInfo actionInfo = new PhoneInfo();
+		actionInfo.codCountryPhone = recordInfo.codCountryPhone1;
+		actionInfo.phoneNumber = recordInfo.phoneNumber1;
+		return actionInfo;
 	}
 	
 	

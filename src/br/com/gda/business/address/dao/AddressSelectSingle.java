@@ -127,12 +127,13 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 				dataInfo.streetNumber = stmtResult.getString(AddressDbTableColumn.COL_STREET_NUMBER);
 				dataInfo.complement = stmtResult.getString(AddressDbTableColumn.COL_COMPLEMENT);
 				dataInfo.postalCode = stmtResult.getString(AddressDbTableColumn.COL_POSTALCODE);
-				dataInfo.latitude = stmtResult.getFloat(AddressDbTableColumn.COL_LATITUDE);
-				dataInfo.longitude = stmtResult.getFloat(AddressDbTableColumn.COL_LONGITUDE);
 				dataInfo.line1 = stmtResult.getString(AddressDbTableColumn.COL_LINE1);
 				dataInfo.line2 = stmtResult.getString(AddressDbTableColumn.COL_LINE2);
 				dataInfo.line3 = stmtResult.getString(AddressDbTableColumn.COL_LINE3);
 				dataInfo.line4 = stmtResult.getString(AddressDbTableColumn.COL_LINE4);
+				dataInfo.line5 = stmtResult.getString(AddressDbTableColumn.COL_LINE5);
+				dataInfo.line6 = stmtResult.getString(AddressDbTableColumn.COL_LINE6);
+				dataInfo.line7 = stmtResult.getString(AddressDbTableColumn.COL_LINE7);
 				dataInfo.recordMode = stmtResult.getString(AddressDbTableColumn.COL_RECORD_MODE);
 				
 				stmtResult.getLong(AddressDbTableColumn.COL_COD_STORE);
@@ -145,11 +146,20 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 				
 				stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE);				
+					dataInfo.codCustomer = stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE);			
+				
+				stmtResult.getFloat(AddressDbTableColumn.COL_LATITUDE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.latitude = stmtResult.getFloat(AddressDbTableColumn.COL_LATITUDE);	
+				
+				stmtResult.getFloat(AddressDbTableColumn.COL_LONGITUDE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.longitude = stmtResult.getFloat(AddressDbTableColumn.COL_LONGITUDE);
 
 				Timestamp lastChanged = stmtResult.getTimestamp(AddressDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();				
+					dataInfo.lastChanged = lastChanged.toLocalDateTime();		
+				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -138,6 +138,9 @@ public final class AddressInsertSingle implements DaoStmt<AddressInfo> {
 			stmt.setString(i++, recordInfo.line2);
 			stmt.setString(i++, recordInfo.line3);
 			stmt.setString(i++, recordInfo.line4);
+			stmt.setString(i++, recordInfo.line5);
+			stmt.setString(i++, recordInfo.line6);
+			stmt.setString(i++, recordInfo.line7);
 			stmt.setString(i++, recordInfo.recordMode);
 			stmt.setTimestamp(i++, lastChanged);
 

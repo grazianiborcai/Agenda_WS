@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.action.StdCusSelect;
 import br.com.gda.business.customer.model.action.StdCusUpdate;
 import br.com.gda.business.customer.model.checker.CusCheckExistCpf;
 import br.com.gda.model.action.ActionStd;
@@ -59,7 +58,6 @@ final class NodeCusUpdateL2 implements DeciTree<CusInfo> {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdCusUpdate(option));
-		actions.add(new StdCusSelect(option));		
 		return actions;
 	}
 	

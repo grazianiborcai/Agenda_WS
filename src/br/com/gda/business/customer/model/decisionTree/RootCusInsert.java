@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.action.StdCusInsert;
-import br.com.gda.business.customer.model.action.StdCusSelect;
 import br.com.gda.business.customer.model.checker.CusCheckCpf;
 import br.com.gda.business.customer.model.checker.CusCheckExistCpf;
 import br.com.gda.business.customer.model.checker.CusCheckExistEmail;
@@ -95,6 +94,8 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 		checker = new CusCheckPhone1(checkerOption);
 		queue.add(checker);	
 		
+		//TODO: verificar se Addresses e customer possuem o mesmo codigo
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -110,8 +111,10 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdCusInsert(option));
-		actions.add(new StdCusSelect(option));		
+		actions.add(new RootCusSelect(option).toAction());		
 		return actions;
+		
+		//TODO: inserir address
 	}
 	
 	
