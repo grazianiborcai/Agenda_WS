@@ -177,7 +177,8 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 		try {
 			postAction.executeAction(resultHandler.getResultset());
 			resultPostAction = postAction.getDecisionResult();
-			return SUCCESS;
+			return resultPostAction.hasSuccessfullyFinished();
+			//return SUCCESS;
 		
 		} catch (Exception e) {
 			buildResultFailed();

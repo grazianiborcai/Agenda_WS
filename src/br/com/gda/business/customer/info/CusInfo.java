@@ -1,6 +1,7 @@
 package br.com.gda.business.customer.info;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public List<AddressInfo> addresses;
 	public String codLanguage;
 	public String recordMode;
+	public LocalDateTime lastChanged;
 	
 	
 	public CusInfo() {

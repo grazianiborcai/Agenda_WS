@@ -157,7 +157,8 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 		try {
 			postAction.executeAction(deciResult.getResultset());
 			copyResult(postAction.getDecisionResult());
-			return SUCCESS;
+			return postAction.getDecisionResult().hasSuccessfullyFinished();
+			//return SUCCESS;
 		
 		} catch (Exception e) {
 			buildResultError();

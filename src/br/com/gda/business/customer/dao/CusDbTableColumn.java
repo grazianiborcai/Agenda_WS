@@ -9,17 +9,18 @@ import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_ADDRESS_1 = "cod_address_1";
-	public static final String COL_COD_BIRTH_DATE = "born_date";
+	public static final String COL_COD_BIRTH_DATE = "birth_date";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_GENDER = "cod_gender";
 	public static final String COL_CPF = "cpf";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_EMAIL = "email";
+	public static final String COL_LAST_CHANGED = "last_changed";	
 	public static final String COL_NAME = "name";
 	public static final String COL_PHONE_1 = "phone_1";
 	public static final String COL_PHONE_1_COUNTRY = "country_phone_1";
 	public static final String COL_RECORD_MODE = "record_mode";	
+	
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
@@ -127,7 +128,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_ADDRESS_1;
+		oneColumn.columnName = COL_LAST_CHANGED;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

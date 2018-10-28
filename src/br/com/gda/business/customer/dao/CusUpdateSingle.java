@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.List;
 
@@ -102,6 +103,10 @@ public final class CusUpdateSingle implements DaoStmt<CusInfo> {
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusInfo recordInfo) throws SQLException {	
 			Date birthDate = DaoFormatter.localToSqlDate(recordInfo.birthDate);
 			
+			Timestamp lastChanged = null;
+			if(recordInfo.lastChanged != null)
+				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			
 			int i = 1;
 			stmt.setString(i++, recordInfo.cpf);
 			stmt.setString(i++, recordInfo.name);
@@ -122,6 +127,8 @@ public final class CusUpdateSingle implements DaoStmt<CusInfo> {
 			} else {
 				stmt.setInt(i++, recordInfo.codCountryPhone1);
 			}
+			
+			stmt.setTimestamp(i++, lastChanged);
 			
 			
 			return stmt;

@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.address.dao.AddressDbTableColumn;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
@@ -129,6 +131,10 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 				stmtResult.getInt(CusDbTableColumn.COL_PHONE_1_COUNTRY);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codCountryPhone1 = stmtResult.getInt(CusDbTableColumn.COL_PHONE_1_COUNTRY);
+				
+				Timestamp lastChanged = stmtResult.getTimestamp(AddressDbTableColumn.COL_LAST_CHANGED);
+				if (lastChanged != null)
+					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
 				
 				Date tempDate = stmtResult.getDate(CusDbTableColumn.COL_COD_BIRTH_DATE);
 				if (tempDate != null)

@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.action.StdCusInsert;
+import br.com.gda.business.customer.model.action.LazyCusEnforceAddressKey;
+import br.com.gda.business.customer.model.action.LazyCusInsert;
+import br.com.gda.business.customer.model.action.LazyCusNodeInsertAddress;
+import br.com.gda.business.customer.model.action.LazyCusRootSelect;
+import br.com.gda.business.customer.model.action.StdCusEnforceLChanged;
 import br.com.gda.business.customer.model.checker.CusCheckCpf;
 import br.com.gda.business.customer.model.checker.CusCheckExistCpf;
 import br.com.gda.business.customer.model.checker.CusCheckExistEmail;
@@ -13,6 +17,7 @@ import br.com.gda.business.customer.model.checker.CusCheckGender;
 import br.com.gda.business.customer.model.checker.CusCheckOwner;
 import br.com.gda.business.customer.model.checker.CusCheckPhone1;
 import br.com.gda.business.customer.model.checker.CusCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -110,11 +115,19 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdCusInsert(option));
-		actions.add(new RootCusSelect(option).toAction());		
-		return actions;
+		ActionStd<CusInfo> enforceLChanged = new StdCusEnforceLChanged(option);
+		ActionLazy<CusInfo> insert = new LazyCusInsert(option.conn, option.schemaName);
+		ActionLazy<CusInfo> enforceAddressKey = new LazyCusEnforceAddressKey(option.conn, option.schemaName);
+		ActionLazy<CusInfo> insertAddress = new LazyCusNodeInsertAddress(option.conn, option.schemaName);
+		ActionLazy<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);		
 		
-		//TODO: inserir address
+		enforceLChanged.addPostAction(insert);
+		insert.addPostAction(enforceAddressKey);
+		enforceAddressKey.addPostAction(insertAddress);
+		enforceAddressKey.addPostAction(select);
+		
+		actions.add(enforceLChanged);		
+		return actions;
 	}
 	
 	
