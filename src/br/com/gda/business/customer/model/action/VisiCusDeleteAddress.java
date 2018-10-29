@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.decisionTree.RootAddressInsert;
+import br.com.gda.business.address.model.decisionTree.RootAddressDelete;
 import br.com.gda.business.customer.info.CusInfo;import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisiCusInsertAddress extends ActionVisitorTemplateAction<CusInfo, AddressInfo> {
-	public VisiCusInsertAddress(Connection conn, String schemaName) {
+final class VisiCusDeleteAddress extends ActionVisitorTemplateAction<CusInfo, AddressInfo> {
+	public VisiCusDeleteAddress(Connection conn, String schemaName) {
 		super(conn, schemaName, CusInfo.class, AddressInfo.class);
 	}
 	
@@ -30,6 +30,6 @@ final class VisiCusInsertAddress extends ActionVisitorTemplateAction<CusInfo, Ad
 	
 	
 	@Override protected ActionStd<AddressInfo> getActionHook(DeciTreeOption<AddressInfo> option) {
-		return new RootAddressInsert(option).toAction();
+		return new RootAddressDelete(option).toAction();
 	}
 }

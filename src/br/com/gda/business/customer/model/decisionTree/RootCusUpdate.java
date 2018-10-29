@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.business.customer.model.action.LazyCusNodeUpdateL1;
+import br.com.gda.business.customer.model.action.LazyCusNodeUpsertAddress;
+import br.com.gda.business.customer.model.action.StdCusEnforceAddressKey;
+import br.com.gda.business.customer.model.action.StdCusEnforceLChanged;
 import br.com.gda.business.customer.model.checker.CusCheckCpf;
 import br.com.gda.business.customer.model.checker.CusCheckEmailChange;
 import br.com.gda.business.customer.model.checker.CusCheckExist;
@@ -12,6 +16,7 @@ import br.com.gda.business.customer.model.checker.CusCheckKey;
 import br.com.gda.business.customer.model.checker.CusCheckOwner;
 import br.com.gda.business.customer.model.checker.CusCheckPhone1;
 import br.com.gda.business.customer.model.checker.CusCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -108,9 +113,27 @@ public final class RootCusUpdate implements DeciTree<CusInfo> {
 	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
+		ActionStd<CusInfo> enforceLChanged = new StdCusEnforceLChanged(option);
+		ActionLazy<CusInfo> update = new LazyCusNodeUpdateL1(option.conn, option.schemaName);		
+		ActionStd<CusInfo> enforceAddressKey = new StdCusEnforceAddressKey(option);
+		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
+		ActionStd<CusInfo> select = new RootCusSelect(option).toAction();		
+		
+		enforceLChanged.addPostAction(update);
+		enforceAddressKey.addPostAction(upsertAddress);
+		
+		actions.add(enforceLChanged);
+		actions.add(enforceAddressKey);	
+		actions.add(select);	
+		return actions;
+		
+		/*
+		List<ActionStd<CusInfo>> actions = new ArrayList<>();
+		
 		actions.add(new NodeCusUpdateL1(option).toAction());	
 		actions.add(new RootCusSelect(option).toAction());
 		return actions;
+		*/
 	}
 	
 	

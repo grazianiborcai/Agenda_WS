@@ -8,11 +8,11 @@ import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecHelper;
 import br.com.gda.dao.DaoStmtExecOption;
 
-public final class AddressUpdateHdr implements DaoStmtExec<AddressInfo> {
+public final class AddressUpdate implements DaoStmtExec<AddressInfo> {
 	private DaoStmtExec<AddressInfo> helper;
 	
 	
-	public AddressUpdateHdr(List<DaoStmtExecOption<AddressInfo>> options) {
+	public AddressUpdate(List<DaoStmtExecOption<AddressInfo>> options) {
 		helper = new DaoStmtExecHelper<>(options, AddressUpdateSingle.class, AddressInfo.class);
 	}
 	

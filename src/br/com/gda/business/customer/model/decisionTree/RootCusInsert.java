@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.action.LazyCusEnforceAddressKey;
 import br.com.gda.business.customer.model.action.LazyCusInsert;
-import br.com.gda.business.customer.model.action.LazyCusNodeInsertAddress;
+import br.com.gda.business.customer.model.action.LazyCusNodeUpsertAddress;
 import br.com.gda.business.customer.model.action.LazyCusRootSelect;
 import br.com.gda.business.customer.model.action.StdCusEnforceLChanged;
 import br.com.gda.business.customer.model.checker.CusCheckCpf;
@@ -118,12 +118,12 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 		ActionStd<CusInfo> enforceLChanged = new StdCusEnforceLChanged(option);
 		ActionLazy<CusInfo> insert = new LazyCusInsert(option.conn, option.schemaName);
 		ActionLazy<CusInfo> enforceAddressKey = new LazyCusEnforceAddressKey(option.conn, option.schemaName);
-		ActionLazy<CusInfo> insertAddress = new LazyCusNodeInsertAddress(option.conn, option.schemaName);
+		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);		
 		
 		enforceLChanged.addPostAction(insert);
 		insert.addPostAction(enforceAddressKey);
-		enforceAddressKey.addPostAction(insertAddress);
+		enforceAddressKey.addPostAction(upsertAddress);
 		enforceAddressKey.addPostAction(select);
 		
 		actions.add(enforceLChanged);		

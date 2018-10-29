@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCusInsertAddress implements ActionStd<CusInfo> {
+public final class StdCusDeleteAddress implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusInsertAddress(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiCusInsertAddress(option.conn, option.schemaName));
+	public StdCusDeleteAddress(DeciTreeOption<CusInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiCusDeleteAddress(option.conn, option.schemaName));
 	}
 	
 	

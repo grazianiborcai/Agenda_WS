@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.checker.AddressCheckFormA01;
+import br.com.gda.business.address.model.checker.AddressCheckNewRecord;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -15,18 +16,18 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeAddressInsert implements DeciTree<AddressInfo> {
+public final class NodeAddressUpsertL1 implements DeciTree<AddressInfo> {
 	private DeciTree<AddressInfo> tree;
 	
 	
-	public NodeAddressInsert(DeciTreeOption<AddressInfo> option) {
+	public NodeAddressUpsertL1(DeciTreeOption<AddressInfo> option) {
 		DeciTreeHelperOption<AddressInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
+		helperOption.actionsOnFailed = null;
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -34,10 +35,17 @@ public final class NodeAddressInsert implements DeciTree<AddressInfo> {
 	
 	
 	private ModelChecker<AddressInfo> buildDecisionChecker(DeciTreeOption<AddressInfo> option) {
+		final boolean ONLY_NEW_RECORD = true;
+		
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
-
-		checker = new AddressCheckFormA01();
+		ModelCheckerOption checkerOption;
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ONLY_NEW_RECORD;	
+		checker = new AddressCheckNewRecord(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -46,22 +54,11 @@ public final class NodeAddressInsert implements DeciTree<AddressInfo> {
 	
 	
 	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
-		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
+		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> nodeInsertA01 = new NodeAddressInsertA01(option).toAction();	
-
-		actions.add(nodeInsertA01);		
-		return actions;
-	}
-	
-	
-	
-	private List<ActionStd<AddressInfo>> buildActionsOnFailed(DeciTreeOption<AddressInfo> option) {
-		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
+		ActionStd<AddressInfo> insert = new RootAddressInsert(option).toAction();
 		
-		ActionStd<AddressInfo> nodeInsertA00 = new NodeAddressInsertA00(option).toAction();	
-
-		actions.add(nodeInsertA00);		
+		actions.add(insert);	
 		return actions;
 	}
 	

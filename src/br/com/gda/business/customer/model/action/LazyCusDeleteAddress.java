@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCusInsertAddress extends ActionLazyTemplate<CusInfo, CusInfo> {
+public final class LazyCusDeleteAddress extends ActionLazyTemplate<CusInfo, CusInfo> {
 	
-	public LazyCusInsertAddress(Connection conn, String schemaName) {
+	public LazyCusDeleteAddress(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCusInsertAddress extends ActionLazyTemplate<CusInfo, CusI
 	
 	
 	@Override protected ActionStd<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
-		return new StdCusUpsertAddress(option);
+		return new StdCusDeleteAddress(option);
 	}
 	
 	

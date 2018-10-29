@@ -1,18 +1,18 @@
 package br.com.gda.business.customer.model.action;
 
-import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionStdHelperAction;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCusEnforceAddressKey implements ActionStd<CusInfo> {
+public final class StdCusUpsertAddress implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusEnforceAddressKey(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusEnforceAddressKey());
+	public StdCusUpsertAddress(DeciTreeOption<CusInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiCusUpsertAddress(option.conn, option.schemaName));
 	}
 	
 	

@@ -106,8 +106,6 @@ public final class AddressUpdateSingle implements DaoStmt<AddressInfo> {
 			
 			
 			int i = 1;
-			stmt.setLong(i++, recordInfo.codOwner);
-			
 			
 			if (DaoFormatter.boxNumber(recordInfo.codStore) == null) {
 				stmt.setNull(i++, Types.INTEGER);
@@ -144,8 +142,7 @@ public final class AddressUpdateSingle implements DaoStmt<AddressInfo> {
 				stmt.setNull(i++, Types.FLOAT);
 			} else {
 				stmt.setFloat(i++, recordInfo.latitude);
-			}
-			
+			}			
 			
 			
 			if (DaoFormatter.boxNumber(recordInfo.longitude) == null) {

@@ -154,6 +154,10 @@ public final class SystemCode {
 	//Address
 	public static final int ADDRESS_IS_NULL								= 1600;
 	public static final int ADDRESS_IS_FILLED							= 1601;
+	public static final int ADDRESS_NOT_FOUND							= 1602;
+	public static final int ADDRESS_ALREADY_EXIST						= 1603;
+	public static final int ADDRESS_IS_NEW								= 1604;
+	public static final int ADDRESS_IS_OLD								= 1605;
 	
 	//Form
 	public static final int ADDRESS_FORM_ALREADY_EXIST					= 1700;

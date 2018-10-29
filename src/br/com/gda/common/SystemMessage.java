@@ -208,6 +208,10 @@ public final class SystemMessage {
 	//Address
 	public static final String ADDRESS_IS_NULL = "Address is blank";
 	public static final String ADDRESS_IS_FILLED = "Address is not blank";
+	public static final String ADDRESS_NOT_FOUND = "Address not found on DB";
+	public static final String ADDRESS_ALREADY_EXIST = "Address already exist";
+	public static final String ADDRESS_IS_NEW = "New Address record";
+	public static final String ADDRESS_IS_OLD = "Old Address record";
 		
 	
 	

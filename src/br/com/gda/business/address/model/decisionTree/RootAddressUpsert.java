@@ -1,11 +1,10 @@
-package br.com.gda.business.customer.model.decisionTree;
+package br.com.gda.business.address.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.action.StdCusUpdate;
-import br.com.gda.business.customer.model.checker.CusCheckCpfChange;
+import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.address.model.checker.AddressCheckNewRecord;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -17,16 +16,15 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeCusUpdateL1 implements DeciTree<CusInfo> {
-	private DeciTree<CusInfo> tree;
+public final class RootAddressUpsert implements DeciTree<AddressInfo> {
+	private DeciTree<AddressInfo> tree;
 	
 	
-	public NodeCusUpdateL1(DeciTreeOption<CusInfo> option) {
-		DeciTreeHelperOption<CusInfo> helperOption = new DeciTreeHelperOption<>();
+	public RootAddressUpsert(DeciTreeOption<AddressInfo> option) {
+		DeciTreeHelperOption<AddressInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
-		helperOption.schemaName = option.schemaName;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		helperOption.actionsOnFailed = buildActionsOnFailed(option);
@@ -36,38 +34,42 @@ public final class NodeCusUpdateL1 implements DeciTree<CusInfo> {
 	
 	
 	
-	private ModelChecker<CusInfo> buildDecisionChecker(DeciTreeOption<CusInfo> option) {
-		final boolean EXIST_ON_DB = true;
+	private ModelChecker<AddressInfo> buildDecisionChecker(DeciTreeOption<AddressInfo> option) {
+		final boolean ONLY_NEW_RECORD = true;
 		
-		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
-		ModelChecker<CusInfo> checker;
+		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
+		ModelChecker<AddressInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new CusCheckCpfChange(checkerOption);
-		queue.add(checker);	
+		checkerOption.expectedResult = ONLY_NEW_RECORD;	
+		checker = new AddressCheckNewRecord(checkerOption);
+		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
 	
-	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();
+	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
+		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		actions.add(new StdCusUpdate(option));
+		ActionStd<AddressInfo> insert = new NodeAddressUpsertL1(option).toAction();
+		
+		actions.add(insert);		
 		return actions;
 	}
 	
 	
 	
-	private List<ActionStd<CusInfo>> buildActionsOnFailed(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();
+	private List<ActionStd<AddressInfo>> buildActionsOnFailed(DeciTreeOption<AddressInfo> option) {
+		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		actions.add(new NodeCusUpdateL2(option).toAction());	
+		ActionStd<AddressInfo> update = new NodeAddressUpsertL2(option).toAction();
+		
+		actions.add(update);		
 		return actions;
 	}
 	
@@ -85,13 +87,13 @@ public final class NodeCusUpdateL1 implements DeciTree<CusInfo> {
 	
 	
 	
-	@Override public DeciResult<CusInfo> getDecisionResult() {
+	@Override public DeciResult<AddressInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
 	
 	
-	@Override public ActionStd<CusInfo> toAction() {
+	@Override public ActionStd<AddressInfo> toAction() {
 		return tree.toAction();
 	}
 }

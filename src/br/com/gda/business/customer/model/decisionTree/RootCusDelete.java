@@ -69,7 +69,13 @@ public final class RootCusDelete implements DeciTree<CusInfo> {
 	
 	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
-		actions.add(new StdCusDelete(option));
+		
+		ActionStd<CusInfo> deleteAddress = new NodeCusDeleteAddress(option).toAction();
+		ActionStd<CusInfo> delete = new StdCusDelete(option);		
+		
+		actions.add(deleteAddress);
+		actions.add(delete);
+		
 		return actions;
 	}
 	

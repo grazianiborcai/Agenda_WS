@@ -1,18 +1,18 @@
 package br.com.gda.business.address.model.action;
 
-import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdAddressEnforceLChanged implements ActionStd<AddressInfo> {
+public final class StdAddressFilterOld implements ActionStd<AddressInfo> {
 	private ActionStd<AddressInfo> actionHelper;	
 	
 	
-	public StdAddressEnforceLChanged(DeciTreeOption<AddressInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiAddressEnforceLChanged());
+	public StdAddressFilterOld(DeciTreeOption<AddressInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiAddressFilterOld());
 	}
 	
 	
