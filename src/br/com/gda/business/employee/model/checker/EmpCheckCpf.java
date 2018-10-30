@@ -41,13 +41,13 @@ public final class EmpCheckCpf implements ModelChecker<EmpInfo> {
 
 	
 	
-	@Override public String getFailureExplanation() {
-		return checkerCpf.getFailureExplanation();
+	@Override public String getFailMessage() {
+		return checkerCpf.getFailMessage();
 	}
 
 	
 	
-	@Override public int getFailureCode() {
-		return checkerCpf.getFailureCode();
+	@Override public int getFailCode() {
+		return checkerCpf.getFailCode();
 	}
 }

@@ -10,6 +10,7 @@ import br.com.gda.model.checker.ModelChecker;
 public final class DeciTreeHelper<T> implements DeciTree<T> {
 	private final boolean RESULT_SUCCESS = true;
 	private final boolean RESULT_FAILED = false;
+	private final boolean EMPTY = false;
 	
 	private List<T> recordInfos;
 	private ModelChecker<T> checker;
@@ -22,12 +23,12 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	public DeciTreeHelper(DeciTreeHelperOption<T> option) {
 		checkArgument(option);
 		
-		this.checker = option.visitorChecker;
-		this.recordInfos = option.recordInfos;
-		this.actionsOnPassed = option.actionsOnPassed;
-		this.actionsOnFailed = option.actionsOnFailed;
-		this.decisionChoice = null;
-		this.deciResult = new DeciResultHelper<>();
+		checker = option.visitorChecker;
+		recordInfos = option.recordInfos;
+		actionsOnPassed = option.actionsOnPassed;
+		actionsOnFailed = option.actionsOnFailed;
+		decisionChoice = null;
+		deciResult = new DeciResultHelper<>();
 	}
 	
 	
@@ -40,7 +41,10 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 			throw new NullPointerException("option.visitorChecker" + SystemMessage.NULL_ARGUMENT);
 		
 		if (option.conn == null)
-			throw new NullPointerException("option.connr" + SystemMessage.NULL_ARGUMENT);
+			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
+		
+		if (option.actionsOnPassed == null)
+			throw new NullPointerException("option.actionsOnPassed" + SystemMessage.NULL_ARGUMENT);
 		
 		if (option.recordInfos == null)
 			throw new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT);
@@ -52,20 +56,20 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	public void makeDecision() {
-		boolean checkResult = checkCondition();
+		boolean checkResult = checkCondition(recordInfos, checker);
 		
 		if (checkResult == RESULT_SUCCESS)
-			onPassed();
+			onPassed(actionsOnPassed);
 			
 		if (checkResult == RESULT_FAILED)
-			onFailed();		
+			onFailed(actionsOnFailed, checker);		
 	}
 	
 	
 	
-	private boolean checkCondition() {		
-		for (T eachRecord : this.recordInfos) {
-			boolean resultChecker = this.checker.check(eachRecord);
+	private boolean checkCondition(List<T> records, ModelChecker<T> condiChecker) {		
+		for (T eachRecord : records) {
+			boolean resultChecker = condiChecker.check(eachRecord);
 			
 			if (resultChecker == RESULT_FAILED) 
 				return RESULT_FAILED;
@@ -76,26 +80,34 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 		
-	private void onPassed() {
-		this.decisionChoice = DeciChoice.PASSED;		
-		this.deciResult.finishedWithSuccess = RESULT_SUCCESS;
-		executeDecisionActions(this.actionsOnPassed);
+	private void onPassed(List<ActionStd<T>> actions) {
+		buildSuccessMessage();
+		executeDecisionActions(actions);
 	}
 	
 	
 	
-	private void onFailed() {
-		this.decisionChoice = DeciChoice.FAILED;
-		this.deciResult.finishedWithSuccess = RESULT_FAILED;
-		buildFailureMessage();
-		executeDecisionActions(this.actionsOnFailed);		
+	private void buildSuccessMessage() {	
+		decisionChoice = DeciChoice.PASSED;
+		deciResult.isSuccess = RESULT_SUCCESS;
+		deciResult.hasResultset = EMPTY;
 	}
 	
 	
 	
-	private void buildFailureMessage() {		
-		this.deciResult.failureCode = this.checker.getFailureCode();
-		this.deciResult.failureMessage = this.checker.getFailureExplanation();
+	private void onFailed(List<ActionStd<T>> actions, ModelChecker<T> condiChecker) {
+		buildFailureMessage(condiChecker.getFailCode(), condiChecker.getFailMessage());
+		executeDecisionActions(actions);		
+	}
+	
+	
+	
+	private void buildFailureMessage(int code, String explanation) {	
+		decisionChoice = DeciChoice.FAILED;
+		deciResult.isSuccess = RESULT_FAILED;
+		deciResult.hasResultset = EMPTY;
+		deciResult.failCode = code;
+		deciResult.failMessage = explanation;
 	}
 	
 	
@@ -109,7 +121,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 			DeciResult<T> actionResult = eachAction.getDecisionResult();		
 			buildResultFromAction(actionResult);
 			
-			if (actionResult.hasSuccessfullyFinished() == RESULT_FAILED)
+			if (actionResult.isSuccess() == RESULT_FAILED)
 				break;
 		}
 	}
@@ -117,24 +129,26 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	private void buildResultFromAction(DeciResult<T> actionResult) {
-		this.deciResult.finishedWithSuccess = actionResult.hasSuccessfullyFinished();
-		if (this.deciResult.finishedWithSuccess == RESULT_FAILED) {
-			this.deciResult.failureCode = actionResult.getFailureCode();
-			this.deciResult.failureMessage = actionResult.getFailureMessage();
+		deciResult.isSuccess = actionResult.isSuccess();
+		
+		if (deciResult.isSuccess == RESULT_FAILED) {
+			deciResult.failCode = actionResult.getFailCode();
+			deciResult.failMessage = actionResult.getFailMessage();
 		}
 		
 		
-		this.deciResult.hasResultset = actionResult.hasResultset();
+		deciResult.hasResultset = actionResult.hasResultset();
+		
 		if (actionResult.hasResultset()) {
-			this.deciResult.resultset = actionResult.getResultset();
+			deciResult.resultset = actionResult.getResultset();
 		}
 		
 		
-		if (this.deciResult.hasResultset()) {
-			if (this.deciResult.resultset == null || this.deciResult.resultset.isEmpty()) {
-				this.deciResult.finishedWithSuccess = RESULT_FAILED;
-				this.deciResult.failureCode = SystemCode.DATA_NOT_FOUND;
-				this.deciResult.failureMessage = SystemMessage.DATA_NOT_FOUND;
+		if (deciResult.hasResultset()) {
+			if (deciResult.resultset == null || deciResult.resultset.isEmpty()) {
+				deciResult.isSuccess = RESULT_FAILED;
+				deciResult.failCode = SystemCode.DATA_NOT_FOUND;
+				deciResult.failMessage = SystemMessage.DATA_NOT_FOUND;
 			}
 		}
 	}
@@ -142,13 +156,13 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	public DeciChoice getDecisionMade() {
-		return this.decisionChoice;
+		return decisionChoice;
 	}
 
 
 	
 	public DeciResult<T> getDecisionResult() {
-		return this.deciResult;
+		return deciResult;
 	}
 	
 	

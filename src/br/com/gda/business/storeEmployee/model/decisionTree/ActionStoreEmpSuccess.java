@@ -25,7 +25,7 @@ final class ActionStoreEmpSuccess implements ActionStd<StoreEmpInfo> {
 		final boolean SUCCESS = true;
 		
 		DeciResultHelper<StoreEmpInfo> deciResult = new DeciResultHelper<>();
-		deciResult.finishedWithSuccess = SUCCESS;
+		deciResult.isSuccess = SUCCESS;
 		deciResult.hasResultset = SUCCESS;
 		
 		List<StoreEmpInfo> dummyResultset = new ArrayList<>();

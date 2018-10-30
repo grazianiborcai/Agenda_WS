@@ -207,7 +207,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 		visitor = getInstanceOfVisitorHook(conn, schemaName);
 		visitor.executeAction(recordLists);
 		visitorResult = visitor.getDecisionResult();
-		return visitorResult.hasSuccessfullyFinished();
+		return visitorResult.isSuccess();
 	}
 	
 	
@@ -250,9 +250,9 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	private void buildResultFailed() {
 		DeciResultHelper<T> deciResult = new DeciResultHelper<>();		
-		deciResult.finishedWithSuccess = false;
-		deciResult.failureCode = SystemCode.INTERNAL_ERROR;
-		deciResult.failureMessage = SystemMessage.INTERNAL_ERROR;
+		deciResult.isSuccess = false;
+		deciResult.failCode = SystemCode.INTERNAL_ERROR;
+		deciResult.failMessage = SystemMessage.INTERNAL_ERROR;
 		deciResult.hasResultset = false;
 		deciResult.resultset = null;
 		resultPostAction = deciResult;
@@ -289,7 +289,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	private DeciResult<T> buildParcialResult() {
 		DeciResultHelper<T> deciResult = new DeciResultHelper<>();		
-		deciResult.finishedWithSuccess = true;
+		deciResult.isSuccess = true;
 		deciResult.hasResultset = true;
 		deciResult.resultset = recordLists.get(recordLists.size()-1);
 		return deciResult;

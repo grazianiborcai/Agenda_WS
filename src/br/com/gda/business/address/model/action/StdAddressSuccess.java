@@ -25,7 +25,7 @@ public final class StdAddressSuccess implements ActionStd<AddressInfo> {
 		final boolean SUCCESS = true;
 		
 		DeciResultHelper<AddressInfo> deciResult = new DeciResultHelper<>();
-		deciResult.finishedWithSuccess = SUCCESS;
+		deciResult.isSuccess = SUCCESS;
 		deciResult.hasResultset = SUCCESS;
 		
 		List<AddressInfo> dummyResultset = new ArrayList<>();

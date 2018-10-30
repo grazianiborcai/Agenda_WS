@@ -41,13 +41,13 @@ public final class StoreCheckCnpj implements ModelChecker<StoreInfo> {
 
 	
 	
-	@Override public String getFailureExplanation() {
-		return checkerCnpj.getFailureExplanation();
+	@Override public String getFailMessage() {
+		return checkerCnpj.getFailMessage();
 	}
 
 	
 	
-	@Override public int getFailureCode() {
-		return checkerCnpj.getFailureCode();
+	@Override public int getFailCode() {
+		return checkerCnpj.getFailCode();
 	}
 }

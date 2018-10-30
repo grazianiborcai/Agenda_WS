@@ -63,7 +63,7 @@ final class HandlerPlanPruneSLD extends ActionLazyTemplate<PlanInfo, StoreLDateI
 			resultHelper.resultset = new PlanPruner().merge(originalInfos, result.getResultset());
 		
 		} else {		
-			resultHelper.finishedWithSuccess = true;
+			resultHelper.isSuccess = true;
 			resultHelper.hasResultset = true;
 			resultHelper.resultset = originalInfos;
 		}

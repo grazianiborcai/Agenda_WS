@@ -3,11 +3,11 @@ package br.com.gda.model.decisionTree;
 import java.util.List;
 
 public interface DeciResult<T> {
-	public boolean hasSuccessfullyFinished();	
+	public boolean isSuccess();	
 	
-	public String getFailureMessage();
+	public String getFailMessage();
 	
-	public int getFailureCode();
+	public int getFailCode();
 	
 	public boolean hasResultset();
 	

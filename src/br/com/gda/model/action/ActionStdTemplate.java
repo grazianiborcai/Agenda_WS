@@ -51,7 +51,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 		try {
 			DeciResult<T> result = tryToExecuteActionResuHook();
 			copyResult(result);
-			return result.hasSuccessfullyFinished();
+			return result.isSuccess();
 		
 		} catch (Exception e) {
 			buildResultError();
@@ -109,9 +109,9 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	private DeciResult<T> buildResultDataNotFound() {
 		DeciResultHelper<T> result = new DeciResultHelper<>();
 		
-		result.finishedWithSuccess = FAILED;
-		result.failureCode = SystemCode.DATA_NOT_FOUND;
-		result.failureMessage = SystemMessage.DATA_NOT_FOUND;
+		result.isSuccess = FAILED;
+		result.failCode = SystemCode.DATA_NOT_FOUND;
+		result.failMessage = SystemMessage.DATA_NOT_FOUND;
 		result.hasResultset = false;
 		result.resultset = null;
 		
@@ -123,7 +123,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	private DeciResult<T> buildResultSuccess(List<T> recordInfos) {
 		DeciResultHelper<T> result = new DeciResultHelper<>();
 		
-		result.finishedWithSuccess = SUCCESS;
+		result.isSuccess = SUCCESS;
 		result.hasResultset = true;
 		result.resultset = recordInfos;
 		
@@ -157,7 +157,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 		try {
 			postAction.executeAction(deciResult.getResultset());
 			copyResult(postAction.getDecisionResult());
-			return postAction.getDecisionResult().hasSuccessfullyFinished();
+			return postAction.getDecisionResult().isSuccess();
 			//return SUCCESS;
 		
 		} catch (Exception e) {
@@ -169,9 +169,9 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	private void buildResultError() {
-		deciResult.finishedWithSuccess = FAILED;
-		deciResult.failureCode = SystemCode.INTERNAL_ERROR;
-		deciResult.failureMessage = SystemMessage.INTERNAL_ERROR;
+		deciResult.isSuccess = FAILED;
+		deciResult.failCode = SystemCode.INTERNAL_ERROR;
+		deciResult.failMessage = SystemMessage.INTERNAL_ERROR;
 		deciResult.hasResultset = false;
 		deciResult.resultset = null;
 	}

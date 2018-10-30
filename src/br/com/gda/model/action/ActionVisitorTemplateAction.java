@@ -102,7 +102,7 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 	
 	
 	private DeciResult<T> buildResult(DeciResult<S> actionResult) {
-		if (actionResult.hasSuccessfullyFinished())
+		if (actionResult.isSuccess())
 			return translateResult(actionResult);
 		
 		return buildFailedResult(actionResult);

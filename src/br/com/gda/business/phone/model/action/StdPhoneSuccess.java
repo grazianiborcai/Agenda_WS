@@ -25,7 +25,7 @@ public final class StdPhoneSuccess implements ActionStd<PhoneInfo> {
 		final boolean SUCCESS = true;
 		
 		DeciResultHelper<PhoneInfo> deciResult = new DeciResultHelper<>();
-		deciResult.finishedWithSuccess = SUCCESS;
+		deciResult.isSuccess = SUCCESS;
 		deciResult.hasResultset = SUCCESS;
 		
 		List<PhoneInfo> dummyResultset = new ArrayList<>();

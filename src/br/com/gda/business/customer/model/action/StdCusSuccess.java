@@ -25,7 +25,7 @@ public final class StdCusSuccess implements ActionStd<CusInfo> {
 		final boolean SUCCESS = true;
 		
 		DeciResultHelper<CusInfo> deciResult = new DeciResultHelper<>();
-		deciResult.finishedWithSuccess = SUCCESS;
+		deciResult.isSuccess = SUCCESS;
 		deciResult.hasResultset = SUCCESS;
 		
 		List<CusInfo> dummyResultset = new ArrayList<>();

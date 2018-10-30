@@ -44,13 +44,13 @@ public final class CartCheckCus implements ModelChecker<CartInfo> {
 
 	
 	
-	@Override public String getFailureExplanation() {
-		return checker.getFailureExplanation();
+	@Override public String getFailMessage() {
+		return checker.getFailMessage();
 	}
 
 	
 	
-	@Override public int getFailureCode() {
-		return checker.getFailureCode();
+	@Override public int getFailCode() {
+		return checker.getFailCode();
 	}
 }

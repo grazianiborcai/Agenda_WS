@@ -8,9 +8,9 @@ public final class DeciResultHelper<T> implements DeciResult<T> {
 	private final boolean FAILED = false;
 	
 	public List<T> resultset;
-	public String failureMessage;
-	public int failureCode;
-	public Boolean finishedWithSuccess;
+	public String failMessage;
+	public int failCode;
+	public Boolean isSuccess;
 	public boolean hasResultset;
 	
 	
@@ -26,12 +26,12 @@ public final class DeciResultHelper<T> implements DeciResult<T> {
 		
 		clear();
 		
-		if (deciResult.hasSuccessfullyFinished() == FAILED) {
-			failureMessage = deciResult.getFailureMessage();
-			failureCode = deciResult.getFailureCode();
+		if (deciResult.isSuccess() == FAILED) {
+			failMessage = deciResult.getFailMessage();
+			failCode = deciResult.getFailCode();
 		}
 		
-		finishedWithSuccess = deciResult.hasSuccessfullyFinished();
+		isSuccess = deciResult.isSuccess();
 		hasResultset = deciResult.hasResultset();
 	}
 	
@@ -39,37 +39,37 @@ public final class DeciResultHelper<T> implements DeciResult<T> {
 	
 	private void clear() {
 		resultset = null;
-		failureMessage = null;
-		failureCode = DefaultValue.number();
-		finishedWithSuccess = null;
+		failMessage = null;
+		failCode = DefaultValue.number();
+		isSuccess = null;
 		hasResultset = false;
 	}
 	
 	
 	
-	public boolean hasSuccessfullyFinished() {
-		if (this.finishedWithSuccess == null)
+	public boolean isSuccess() {
+		if (this.isSuccess == null)
 			throw new IllegalStateException();
 		
-		return this.finishedWithSuccess;
+		return this.isSuccess;
 	}
 	
 	
 	
-	public String getFailureMessage() {
-		if (this.failureMessage == null)
+	public String getFailMessage() {
+		if (this.failMessage == null)
 			throw new IllegalStateException();
 		
-		return this.failureMessage;
+		return this.failMessage;
 	}
 
 	
 	
-	public int getFailureCode() {
-		if (this.failureCode < 0)
+	public int getFailCode() {
+		if (this.failCode < 0)
 			throw new IllegalStateException();
 		
-		return this.failureCode;
+		return this.failCode;
 	}	
 	
 	
@@ -92,11 +92,11 @@ public final class DeciResultHelper<T> implements DeciResult<T> {
 	public void copyFrom(DeciResult<T> sourceResult) {
 		clear();
 		
-		finishedWithSuccess = sourceResult.hasSuccessfullyFinished();
+		isSuccess = sourceResult.isSuccess();
 		
-		if (sourceResult.hasSuccessfullyFinished() == false) {
-			failureMessage = sourceResult.getFailureMessage();
-			failureCode = sourceResult.getFailureCode();
+		if (sourceResult.isSuccess() == false) {
+			failMessage = sourceResult.getFailMessage();
+			failCode = sourceResult.getFailCode();
 		}
 		
 		hasResultset = sourceResult.hasResultset();

@@ -128,24 +128,24 @@ public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisito
 	
 	private boolean buildResultSuccess() {
 		actionResult = new DeciResultHelper<>();
-		actionResult.finishedWithSuccess = SUCCESS;
+		actionResult.isSuccess = SUCCESS;
 		actionResult.hasResultset = true;
 		actionResult.resultset = resultRecords;
 		
-		return actionResult.finishedWithSuccess;
+		return actionResult.isSuccess;
 	}
 	
 	
 	
 	private boolean buildResultFailed() {
 		actionResult = new DeciResultHelper<>();
-		actionResult.finishedWithSuccess = FAILED;
-		actionResult.failureCode = SystemCode.INTERNAL_ERROR;
-		actionResult.failureMessage = SystemMessage.INTERNAL_ERROR;
+		actionResult.isSuccess = FAILED;
+		actionResult.failCode = SystemCode.INTERNAL_ERROR;
+		actionResult.failMessage = SystemMessage.INTERNAL_ERROR;
 		actionResult.hasResultset = false;
 		actionResult.resultset = null;
 		
-		return actionResult.finishedWithSuccess;
+		return actionResult.isSuccess;
 	}
 	
 	

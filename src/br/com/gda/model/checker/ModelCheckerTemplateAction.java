@@ -127,17 +127,17 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	
 	private boolean checkActionResult(DeciResult<T> actionResult) {	
-		if (actionResult.hasSuccessfullyFinished() == FAILED &&
-			actionResult.getFailureCode() == SystemCode.INTERNAL_ERROR)
+		if (actionResult.isSuccess() == FAILED &&
+			actionResult.getFailCode() == SystemCode.INTERNAL_ERROR)
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
 		
 		
-		if (actionResult.hasSuccessfullyFinished() == SUCCESS &&
+		if (actionResult.isSuccess() == SUCCESS &&
 			actionResult.getResultset().isEmpty())
 			return NOT_FOUND;
 		
 		
-		return actionResult.hasSuccessfullyFinished();
+		return actionResult.isSuccess();
 			
 	}
 	
@@ -152,7 +152,7 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	
 	
-	@Override public String getFailureExplanation() {
+	@Override public String getFailMessage() {
 		if (this.failMsg == NO_FAIL_MSG)
 			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
 		
@@ -161,7 +161,7 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	
 	
-	@Override public int getFailureCode() {
+	@Override public int getFailCode() {
 		if (this.failCode == NO_FAIL_CODE)
 			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
 		
@@ -185,12 +185,12 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	//TODO: Mover para dentro "makeFailureExplanationHook" e tornar o padrao ?
 	protected String getActionFailedExplanation() {
-		return deciAction.getDecisionResult().getFailureMessage();
+		return deciAction.getDecisionResult().getFailMessage();
 	}
 	
 	
 	
 	protected int getActionFailedCode() {
-		return deciAction.getDecisionResult().getFailureCode();
+		return deciAction.getDecisionResult().getFailCode();
 	}
 }

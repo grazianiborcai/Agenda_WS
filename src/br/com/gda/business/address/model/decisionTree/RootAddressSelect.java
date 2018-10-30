@@ -53,9 +53,10 @@ public final class RootAddressSelect implements DeciTree<AddressInfo> {
 		ActionStd<AddressInfo> select = new StdAddressSelect(option);		
 		ActionLazy<AddressInfo> mergeForm = new LazyAddressMergeForm(option.conn, option.schemaName);
 		
-		select.addPostAction(mergeForm);
-		
+		select.addPostAction(mergeForm);		
 		actions.add(select);	
+		
+		//TODO: Retorna Form incorreto caso haja endereco de Form diversos
 		
 		return actions;
 	}

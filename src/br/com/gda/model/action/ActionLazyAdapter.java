@@ -35,7 +35,7 @@ final class ActionLazyAdapter<T> implements ActionStd<T> {
 	@Override public boolean executeAction() {			
 		  handler.executeAction(recordInfos);
 		  DeciResult<T> treeResult = handler.getDecisionResult();
-		  return treeResult.hasSuccessfullyFinished();
+		  return treeResult.isSuccess();
 	}
 	
 	

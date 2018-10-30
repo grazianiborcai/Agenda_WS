@@ -31,7 +31,7 @@ public final class DeciTreeDummy<T> implements DeciTree<T> {
 		dummyResult = new DeciResultHelper<>();
 		
 		dummyResult.resultset = dummyResultset;
-		dummyResult.finishedWithSuccess = true;
+		dummyResult.isSuccess = true;
 		dummyResult.hasResultset = true;
 	}
 	

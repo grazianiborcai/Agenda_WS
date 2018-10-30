@@ -25,13 +25,13 @@ public final class ModelCherckerTrue<T> implements ModelChecker<T> {
 	
 	
 	
-	public String getFailureExplanation() {
+	public String getFailMessage() {
 		throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
 	}
 	
 	
 	
-	public int getFailureCode() {
+	public int getFailCode() {
 		throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
 	}
 }

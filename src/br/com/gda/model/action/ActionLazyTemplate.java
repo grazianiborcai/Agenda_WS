@@ -91,7 +91,7 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 		actionHandler = getInstanceOfActionHook(option);
 		actionHandler.executeAction();
 		resultHandler = translateResultHook(actionHandler.getDecisionResult());
-		boolean result = resultHandler.hasSuccessfullyFinished();
+		boolean result = resultHandler.isSuccess();
 		
 		return result;
 	}
@@ -177,7 +177,7 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 		try {
 			postAction.executeAction(resultHandler.getResultset());
 			resultPostAction = postAction.getDecisionResult();
-			return resultPostAction.hasSuccessfullyFinished();
+			return resultPostAction.isSuccess();
 			//return SUCCESS;
 		
 		} catch (Exception e) {
@@ -190,9 +190,9 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	private void buildResultFailed() {
 		DeciResultHelper<T> deciResult = new DeciResultHelper<>();		
-		deciResult.finishedWithSuccess = false;
-		deciResult.failureCode = SystemCode.INTERNAL_ERROR;
-		deciResult.failureMessage = SystemMessage.INTERNAL_ERROR;
+		deciResult.isSuccess = false;
+		deciResult.failCode = SystemCode.INTERNAL_ERROR;
+		deciResult.failMessage = SystemMessage.INTERNAL_ERROR;
 		deciResult.hasResultset = false;
 		deciResult.resultset = null;
 		resultPostAction = deciResult;

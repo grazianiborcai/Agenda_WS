@@ -140,14 +140,14 @@ public class ModelHelper<T> implements Model {
 				buildDecisionTree();
 				makeDecision();
 				
-				if (currentTreeResult.hasSuccessfullyFinished() == RESULT_FAILED)
+				if (currentTreeResult.isSuccess() == RESULT_FAILED)
 					break;
 			}
 			
 			closeTransaction();
 			buildResponse();
 			
-			return currentTreeResult.hasSuccessfullyFinished();
+			return currentTreeResult.isSuccess();
 			
 		} catch (Exception e) {
 			makeResponse(SystemMessage.INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(), Response.Status.INTERNAL_SERVER_ERROR);
@@ -182,10 +182,10 @@ public class ModelHelper<T> implements Model {
 	
 	
 	private void closeTransaction() throws SQLException {
-		if (this.currentTreeResult.hasSuccessfullyFinished() == RESULT_SUCCESS) 
+		if (this.currentTreeResult.isSuccess() == RESULT_SUCCESS) 
 			commitWork();
 			
-		if (this.currentTreeResult.hasSuccessfullyFinished() == RESULT_FAILED) 
+		if (this.currentTreeResult.isSuccess() == RESULT_FAILED) 
 			rollback();
 		
 		DbConnection.closeConnection(this.conn);
@@ -212,11 +212,11 @@ public class ModelHelper<T> implements Model {
 	
 	
 	private void buildResponse() {		
-		if (this.currentTreeResult.hasSuccessfullyFinished() == RESULT_FAILED) 
+		if (this.currentTreeResult.isSuccess() == RESULT_FAILED) 
 			makeResponseFailed();
 		
 		
-		if (this.currentTreeResult.hasSuccessfullyFinished() == RESULT_SUCCESS)
+		if (this.currentTreeResult.isSuccess() == RESULT_SUCCESS)
 			makeResponseSuccess();
 	}
 	
@@ -225,10 +225,10 @@ public class ModelHelper<T> implements Model {
 	private void makeResponseFailed() {
 		Response.Status htmlStatus = Response.Status.BAD_REQUEST;
 		
-		if (this.currentTreeResult.getFailureCode() == Response.Status.INTERNAL_SERVER_ERROR.getStatusCode())
+		if (this.currentTreeResult.getFailCode() == Response.Status.INTERNAL_SERVER_ERROR.getStatusCode())
 			htmlStatus = Response.Status.INTERNAL_SERVER_ERROR;
 		
-		makeResponse(this.currentTreeResult.getFailureMessage(), this.currentTreeResult.getFailureCode(), htmlStatus);
+		makeResponse(this.currentTreeResult.getFailMessage(), this.currentTreeResult.getFailCode(), htmlStatus);
 	}
 	
 	

@@ -65,7 +65,7 @@ final class HandlerPlanPruneReserve extends ActionLazyTemplate<PlanInfo, Reserve
 			resultHelper.resultset = new PlanPruner().prune(originalInfos, result.getResultset());	
 			
 		} else {		
-			resultHelper.finishedWithSuccess = true;
+			resultHelper.isSuccess = true;
 			resultHelper.hasResultset = true;
 			resultHelper.resultset = originalInfos;
 		}
@@ -83,9 +83,9 @@ final class HandlerPlanPruneReserve extends ActionLazyTemplate<PlanInfo, Reserve
 		//TODO: DATA_NOT_FOUND deverá ficar em uma classe já pronta. Evitar repetição no código
 		DeciResultHelper<PlanInfo> resultHelper = new DeciResultHelper<>();
 		resultHelper.hasResultset = false;		
-		resultHelper.failureMessage = SystemMessage.DATA_NOT_FOUND;
-		resultHelper.failureCode = SystemCode.DATA_NOT_FOUND;
-		resultHelper.finishedWithSuccess = false;
+		resultHelper.failMessage = SystemMessage.DATA_NOT_FOUND;
+		resultHelper.failCode = SystemCode.DATA_NOT_FOUND;
+		resultHelper.isSuccess = false;
 		
 		return resultHelper;
 	}

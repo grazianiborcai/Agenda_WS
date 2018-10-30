@@ -31,12 +31,12 @@ public final class ModelCheckerQueue<T> extends ModelCheckerTemplateSimple<T>{
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return failedChecker.getFailureExplanation();
+		return failedChecker.getFailMessage();
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return failedChecker.getFailureCode();
+		return failedChecker.getFailCode();
 	}
 }

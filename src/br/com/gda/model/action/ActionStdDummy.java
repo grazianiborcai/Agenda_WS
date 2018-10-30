@@ -21,7 +21,7 @@ public final class ActionStdDummy<T> implements ActionStd<T> {
 
 	
 	@Override public boolean executeAction() {
-		return deciResult.hasSuccessfullyFinished();
+		return deciResult.isSuccess();
 	}
 
 	

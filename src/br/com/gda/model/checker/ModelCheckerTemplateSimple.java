@@ -87,7 +87,7 @@ public abstract class ModelCheckerTemplateSimple<T> implements ModelChecker<T> {
 	
 	
 	
-	@Override public String getFailureExplanation() {
+	@Override public String getFailMessage() {
 		if (this.failMsg == NO_FAIL_MSG)
 			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
 		
@@ -96,7 +96,7 @@ public abstract class ModelCheckerTemplateSimple<T> implements ModelChecker<T> {
 	
 	
 	
-	@Override public int getFailureCode() {
+	@Override public int getFailCode() {
 		if (this.failCode == NO_FAIL_CODE)
 			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
 		
