@@ -1,6 +1,5 @@
 package br.com.gda.model.action;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +15,15 @@ public final class ActionStdHelperAction<T> extends ActionStdTemplate<T> {
 	public ActionStdHelperAction(T recordInfo, ActionVisitorAction<T> visitor) {		
 		super();
 		checkArgument(recordInfo, visitor);
-		makeDefensiveCopy(recordInfo);
+		makeCopy(recordInfo);
 		visitorAction = visitor;
+	}
+	
+	
+	
+	private void makeCopy(T recordInfo) {
+		T cloned = super.makeDefensiveCopy(recordInfo);
+		records.add(cloned);
 	}
 	
 	
@@ -25,8 +31,14 @@ public final class ActionStdHelperAction<T> extends ActionStdTemplate<T> {
 	public ActionStdHelperAction(List<T> recordInfos, ActionVisitorAction<T> visitor) {
 		super();
 		checkArgument(recordInfos, visitor);
-		makeDefensiveCopy(recordInfos);
+		makeCopy(recordInfos);
 		visitorAction = visitor;
+	}
+	
+	
+	
+	private void makeCopy(List<T> recordInfos) {
+		records = super.makeDefensiveCopy(recordInfos);
 	}
 	
 	
@@ -50,33 +62,9 @@ public final class ActionStdHelperAction<T> extends ActionStdTemplate<T> {
 	private void checkArgument(T recordInfo, ActionVisitorAction<T> visitor) {
 		if (recordInfo == null)
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-	}
-	
-	
-	
-	private void makeDefensiveCopy(List<T> recordInfos) {
-		for (T eachRecord : recordInfos) {
-			makeDefensiveCopy(eachRecord);
-		}
-	}
-	
-	
-	
-	private void makeDefensiveCopy(T recordInfo) {
-		try {
-			tryToMakeDefensiveCopy(recordInfo);
-			
-		} catch (Exception e) {
-			throw new IllegalStateException(e);
-		}
-	}
-	
-	
-	
-	private void tryToMakeDefensiveCopy(T recordInfo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {		
-		@SuppressWarnings("unchecked")
-		T recordCloned = (T) recordInfo.getClass().getMethod("clone").invoke(recordInfo);
-		records.add(recordCloned);		
+		
+		if (visitor == null)
+			throw new NullPointerException("visitor" + SystemMessage.NULL_ARGUMENT);
 	}
 	
 	

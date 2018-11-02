@@ -6,7 +6,7 @@ import br.com.gda.business.customer.model.decisionTree.RootCusSelect;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.info.OrderMerger;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiOrderMergeCus extends ActionVisitorTemplateMerge<OrderInfo, CusInfo> {

@@ -1,7 +1,9 @@
-package br.com.gda.model.action;
+package br.com.gda.model.action.commom;
 
 import java.util.Comparator;
 import java.util.List;
+
+import br.com.gda.model.action.ActionVisitorEnforce;
 
 
 public abstract class ActionVisitorTemplateSort<T extends Comparable<T>> implements ActionVisitorEnforce<T> {

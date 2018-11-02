@@ -1,7 +1,7 @@
 package br.com.gda.business.order.model.action;
 
 import br.com.gda.business.order.info.OrderInfo;
-import br.com.gda.model.action.ActionVisitorTemplateFirstRow;
+import br.com.gda.model.action.commom.ActionVisitorTemplateFirstRow;
 
 final class VisiOrderFirstRow extends ActionVisitorTemplateFirstRow<OrderInfo> {
 	

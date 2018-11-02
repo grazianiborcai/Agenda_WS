@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.commom.ActionStdDummy;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdDummy;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;

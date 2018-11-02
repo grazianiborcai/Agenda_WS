@@ -7,7 +7,7 @@ import br.com.gda.business.masterData.info.StateInfo;
 import br.com.gda.business.masterData.info.StateMerger;
 import br.com.gda.business.masterData.model.decisionTree.RootCountrySelect;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiStateMergeCountry extends ActionVisitorTemplateMerge<StateInfo, CountryInfo> {

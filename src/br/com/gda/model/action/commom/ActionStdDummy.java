@@ -1,6 +1,8 @@
-package br.com.gda.model.action;
+package br.com.gda.model.action.commom;
 
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.decisionTree.DeciResult;
 
 public final class ActionStdDummy<T> implements ActionStd<T> {

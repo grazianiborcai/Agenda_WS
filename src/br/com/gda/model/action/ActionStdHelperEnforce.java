@@ -1,6 +1,5 @@
 package br.com.gda.model.action;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +14,15 @@ public final class ActionStdHelperEnforce<T> extends ActionStdTemplate<T> {
 	public ActionStdHelperEnforce(T recordInfo, ActionVisitorEnforce<T> visitor) {		
 		super();
 		checkArgument(recordInfo, visitor);
-		makeDefensiveCopy(recordInfo);
+		makeCopy(recordInfo);
 		visitorEnforce = visitor;
+	}
+	
+	
+	
+	private void makeCopy(T recordInfo) {
+		T cloned = super.makeDefensiveCopy(recordInfo);
+		records.add(cloned);
 	}
 	
 	
@@ -24,8 +30,14 @@ public final class ActionStdHelperEnforce<T> extends ActionStdTemplate<T> {
 	public ActionStdHelperEnforce(List<T> recordInfos, ActionVisitorEnforce<T> visitor) {
 		super();
 		checkArgument(recordInfos, visitor);
-		makeDefensiveCopy(recordInfos);
+		makeCopy(recordInfos);
 		visitorEnforce = visitor;
+	}
+	
+	
+	
+	private void makeCopy(List<T> recordInfos) {
+		records = super.makeDefensiveCopy(recordInfos);
 	}
 	
 	
@@ -49,33 +61,6 @@ public final class ActionStdHelperEnforce<T> extends ActionStdTemplate<T> {
 	private void checkArgument(T recordInfo, ActionVisitorEnforce<T> visitor) {
 		if (recordInfo == null)
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-	}
-	
-	
-	
-	private void makeDefensiveCopy(List<T> recordInfos) {
-		for (T eachRecord : recordInfos) {
-			makeDefensiveCopy(eachRecord);
-		}
-	}
-	
-	
-	
-	private void makeDefensiveCopy(T recordInfo) {
-		try {
-			tryToMakeDefensiveCopy(recordInfo);
-			
-		} catch (Exception e) {
-			throw new IllegalStateException(e);
-		}
-	}
-	
-	
-	
-	private void tryToMakeDefensiveCopy(T recordInfo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {		
-		@SuppressWarnings("unchecked")
-		T recordCloned = (T) recordInfo.getClass().getMethod("clone").invoke(recordInfo);
-		records.add(recordCloned);		
 	}
 	
 	

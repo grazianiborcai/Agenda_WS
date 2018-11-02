@@ -7,7 +7,7 @@ import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.business.feeStore.model.decisionTree.RootFeeStoreSelect;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiCartMergeFee extends ActionVisitorTemplateMerge<CartInfo, FeeStoreInfo> {

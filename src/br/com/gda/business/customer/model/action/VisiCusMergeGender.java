@@ -7,7 +7,7 @@ import br.com.gda.business.customer.info.CusMerger;
 import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootGenderSelect;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiCusMergeGender extends ActionVisitorTemplateMerge<CusInfo, GenderInfo> {

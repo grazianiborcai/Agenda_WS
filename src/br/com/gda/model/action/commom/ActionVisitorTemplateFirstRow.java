@@ -1,9 +1,10 @@
-package br.com.gda.model.action;
+package br.com.gda.model.action.commom;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.info.InfoRecord;
+import br.com.gda.model.action.ActionVisitorEnforce;
 
 
 public abstract class ActionVisitorTemplateFirstRow<T extends InfoRecord> implements ActionVisitorEnforce<T> {

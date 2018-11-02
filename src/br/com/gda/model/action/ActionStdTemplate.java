@@ -10,8 +10,8 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 
 public abstract class ActionStdTemplate<T> implements ActionStd<T> {
-	private final boolean SUCCESS = true;
-	private final boolean FAILED = false;	
+	protected final boolean SUCCESS = true;
+	protected final boolean FAILED = false;	
 	
 	private DeciResultHelper<T> deciResult;
 	private List<ActionLazy<T>> postActions;
@@ -36,13 +36,19 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	public boolean executeAction() {
-		hasExecuted = true;
+		flagAsExecuted();
 		boolean result = tryToExecuteAction();
 		
 		if (result == SUCCESS) 
 			result = executePostActions();				
 		
 		return result;
+	}
+	
+	
+	
+	private void flagAsExecuted() {
+		hasExecuted = true;
 	}
 	
 	
@@ -158,7 +164,6 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 			postAction.executeAction(deciResult.getResultset());
 			copyResult(postAction.getDecisionResult());
 			return postAction.getDecisionResult().isSuccess();
-			//return SUCCESS;
 		
 		} catch (Exception e) {
 			buildResultError();
@@ -188,5 +193,36 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	private void checkState() {
 		if (hasExecuted == false)
 			throw new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED);
+	}
+	
+	
+	
+	protected List<T> makeDefensiveCopy(List<T> recordInfos) {
+		List<T> clonedInfos = new ArrayList<>();
+		
+		for (T eachRecord : recordInfos) {
+			T cloned = makeDefensiveCopy(eachRecord);
+			clonedInfos.add(cloned);
+		}
+		
+		return clonedInfos;
+	}
+	
+	
+	
+	protected T makeDefensiveCopy(T recordInfo) {
+		return tryToMakeDefensiveCopy(recordInfo);
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private T tryToMakeDefensiveCopy(T recordInfo) {		
+		try {
+			return (T) recordInfo.getClass().getMethod("clone").invoke(recordInfo);
+			
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		}
 	}
 }

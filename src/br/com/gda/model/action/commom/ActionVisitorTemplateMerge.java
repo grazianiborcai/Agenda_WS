@@ -1,4 +1,4 @@
-package br.com.gda.model.action;
+package br.com.gda.model.action.commom;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -11,6 +11,8 @@ import java.util.List;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionVisitorEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;

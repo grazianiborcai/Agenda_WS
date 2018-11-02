@@ -1,10 +1,11 @@
-package br.com.gda.model.action;
+package br.com.gda.model.action.commom;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
+import br.com.gda.model.action.ActionVisitorEnforce;
 
 public abstract class ActionVisitorTemplateFilter<T extends InfoRecord> implements ActionVisitorEnforce<T> {	
 	protected boolean KEEP_RECORD = false;

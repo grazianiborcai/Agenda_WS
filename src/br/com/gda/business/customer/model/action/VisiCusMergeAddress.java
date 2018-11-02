@@ -7,7 +7,7 @@ import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.info.CusMerger;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiCusMergeAddress extends ActionVisitorTemplateMerge<CusInfo, AddressInfo> {
