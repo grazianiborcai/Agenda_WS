@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -37,10 +40,10 @@ public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisito
 	
 	private void checkArgument(Connection conn, String schemaName) {
 		if (conn == null)
-			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
 		
 		if (schemaName == null)
-			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));
 	}
 	
 	
@@ -87,6 +90,7 @@ public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisito
 	
 	protected boolean buildListHook(List<T> infoRecords, boolean hasNext) {
 		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -121,6 +125,7 @@ public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisito
 	
 	protected List<T> executeHook() {
 		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -159,7 +164,7 @@ public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisito
 	
 	private void checkState() {
 		if (hasExecuted() == false)
-			throw new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED);
+			throwException(new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED));
 	}
 	
 	
@@ -169,5 +174,25 @@ public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisito
 			return false;
 		
 		return true;
+	}
+	
+	
+	
+	private void throwException(Exception e) {
+		try {
+			logException(e);
+			throw e;
+			
+		} catch (Exception e1) {
+			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
+			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

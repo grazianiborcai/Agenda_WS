@@ -2,6 +2,9 @@ package br.com.gda.model.action;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.decisionTree.DeciResult;
 
@@ -20,18 +23,17 @@ final class ActionLazyAdapter<T> implements ActionStd<T> {
 	
 	private void checkArgument(ActionLazy<T> actionHandler, List<T> recordInfos) {
 		if (actionHandler == null)
-			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
 		
 		if (recordInfos == null)
-			throw new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT));
 		
 		if (recordInfos.isEmpty())
-			throw new NullPointerException("recordInfos" + SystemMessage.EMPTY_ARGUMENT);
+			throwException(new NullPointerException("recordInfos" + SystemMessage.EMPTY_ARGUMENT));
 	}
 	
 	
 	
-
 	@Override public boolean executeAction() {			
 		  handler.executeAction(recordInfos);
 		  DeciResult<T> treeResult = handler.getDecisionResult();
@@ -48,6 +50,26 @@ final class ActionLazyAdapter<T> implements ActionStd<T> {
 	
 	@Override public void addPostAction(ActionLazy<T> actionHandler) {
 		//TODO: implementar esse método
-		throw new IllegalStateException(SystemMessage.NO_IMPLEMENTATION);
+		throwException(new IllegalStateException(SystemMessage.NO_IMPLEMENTATION));
+	}
+	
+	
+	
+	private void throwException(Exception e) {
+		try {
+			logException(e);
+			throw e;
+			
+		} catch (Exception e1) {
+			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
+			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

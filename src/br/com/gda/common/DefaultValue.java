@@ -15,6 +15,12 @@ public final class DefaultValue {
 	
 	
 	
+	public static boolean boole() {
+		return false;
+	}
+	
+	
+	
 	public static char character() {
 		return Character.MIN_VALUE;
 	}

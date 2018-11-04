@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -37,10 +40,10 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	private void checkArgument(Connection conn, String schemaName) {
 		if (conn == null)
-			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
 		
 		if (schemaName == null)
-			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));
 	}
 	
 	
@@ -58,7 +61,7 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	private void checkArgument(T infoRecord) {
 		if (infoRecord == null)
-			throw new NullPointerException("infoRecord" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("infoRecord" + SystemMessage.NULL_ARGUMENT));
 	}
 	
 	
@@ -77,10 +80,10 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	private void checkArgument(List<T> infoRecords) {
 		if (infoRecords == null)
-			throw new NullPointerException("infoRecords" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("infoRecords" + SystemMessage.NULL_ARGUMENT));
 		
 		if (infoRecords.isEmpty())
-			throw new NullPointerException("infoRecords" + SystemMessage.EMPTY_ARGUMENT);
+			throwException(new NullPointerException("infoRecords" + SystemMessage.EMPTY_ARGUMENT));
 	}
 	
 	
@@ -114,6 +117,7 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 			return tryToMakeDefensiveCopy(recordInfos);
 			
 		} catch (Exception e) {
+			logException(e);
 			throw new UnsupportedOperationException(e);
 		}
 	}
@@ -139,6 +143,7 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	protected List<S> translateRecordInfosHook(List<T> recordInfos) {
 		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -146,6 +151,7 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	protected  ActionStd<S> getInstanceOfActionHook(DeciTreeOption<S> option) {
 		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -153,6 +159,7 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	protected DeciResult<T> translateResultHook(DeciResult<S> result) {
 		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -178,11 +185,11 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 			postAction.executeAction(resultHandler.getResultset());
 			resultPostAction = postAction.getDecisionResult();
 			return resultPostAction.isSuccess();
-			//return SUCCESS;
 		
 		} catch (Exception e) {
 			buildResultFailed();
 			return FAILED;
+			//TODO: realmente tratar erro ao inves de passar a exception
 		}		
 	}
 	
@@ -202,7 +209,7 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	@Override public DeciResult<T> getDecisionResult() {
 		if (resultHandler == null)
-			throw new IllegalStateException();
+			throwException(new IllegalStateException());
 		
 		if (resultPostAction != null)
 			return resultPostAction;
@@ -220,8 +227,28 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	@Override public void addPostAction(ActionLazy<T> actionHandler) {
 		if (actionHandler == null)
-			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
 		
 		postActions.add(actionHandler);
+	}
+	
+	
+	
+	private void throwException(Exception e) {
+		try {
+			logException(e);
+			throw e;
+			
+		} catch (Exception e1) {
+			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
+			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

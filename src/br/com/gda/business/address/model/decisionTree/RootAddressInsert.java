@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.action.LazyAddressEnforceLChanged;
-import br.com.gda.business.address.model.action.LazyAddressNodeInsert;
-import br.com.gda.business.address.model.action.StdAddressMergeForm;
+import br.com.gda.business.address.model.action.LazyAddressNodeInsertMap;
+import br.com.gda.business.address.model.action.MapAddressMergeForm;
 import br.com.gda.business.address.model.checker.AddressCheckCountry;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -62,9 +62,9 @@ public final class RootAddressInsert implements DeciTree<AddressInfo> {
 	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<AddressInfo> mergeForm = new StdAddressMergeForm(option);		
+		ActionStd<AddressInfo> mergeForm = new MapAddressMergeForm(option);		
 		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<AddressInfo> nodeInsert = new LazyAddressNodeInsert(option.conn, option.schemaName);	
+		ActionLazy<AddressInfo> nodeInsert = new LazyAddressNodeInsertMap(option.conn, option.schemaName);	
 		
 		mergeForm.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(nodeInsert);

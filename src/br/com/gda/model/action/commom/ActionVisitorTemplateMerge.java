@@ -6,7 +6,8 @@ import java.sql.Connection;
 import java.util.Collections;
 import java.util.List;
 
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
@@ -33,13 +34,13 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	private void checkArgument(Connection conn, String schemaName, Class<S> clazz) {
 		if (conn == null)
-			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);		
+			throwException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));		
 		
 		if (schemaName == null)
-			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);		
+			throwException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));		
 		
 		if (clazz == null)
-			throw new NullPointerException("clazz" + SystemMessage.NULL_ARGUMENT);	
+			throwException(new NullPointerException("clazz" + SystemMessage.NULL_ARGUMENT));	
 	}
 	
 	
@@ -71,6 +72,7 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 			selOption.recordInfos = (List<S>) met.invoke(sInstance, recordInfos);
 				
 			} catch (Exception e) {
+				logException(e);
 				throw new IllegalArgumentException(e);
 			}
 	}
@@ -93,6 +95,7 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 			return (ActionStd<S>) actionConstru.newInstance(selOption).toAction();
 				
 			} catch (Exception e) {
+				logException(e);
 				throw new IllegalArgumentException(e);
 			}
 	}
@@ -101,6 +104,7 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	protected Class<? extends DeciTree<S>> getTreeClassHook() {
 		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -130,6 +134,7 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 			return (List<T>) met.invoke(writterInstance, new Object[] {selectedInfos, recordInfos});
 				
 			} catch (Exception e) {
+				logException(e);
 				throw new IllegalArgumentException(e);
 			}
 	}
@@ -138,6 +143,27 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	protected Class<? extends InfoWritterFactory<T>> getMergerClassHook() {
 		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	}
+	
+	
+	
+	private void throwException(Exception e) {
+		try {
+			logException(e);
+			throw e;
+			
+		} catch (Exception e1) {
+			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
+			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

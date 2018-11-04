@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -28,7 +31,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	public void addPostAction(ActionLazy<T> actionHandler) {
 		if (actionHandler == null)
-			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
 		
 		postActions.add(actionHandler);
 	}
@@ -60,6 +63,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 			return result.isSuccess();
 		
 		} catch (Exception e) {
+			logException(e);
 			buildResultError();
 			return FAILED;
 		}			
@@ -76,6 +80,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	protected List<T> tryToExecuteActionListHook() throws SQLException {
 		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -106,7 +111,12 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	protected DeciResult<T> buildResultFailedHook() {
-		//Template Method: Default behavior
+		return buildResultFailedDefault();
+	}
+	
+	
+	
+	private DeciResult<T> buildResultFailedDefault() {
 		return buildResultDataNotFound();
 	}
 	
@@ -168,6 +178,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 		} catch (Exception e) {
 			buildResultError();
 			return FAILED;
+			//TODO: realmente tratar exception ao inves de dispara-la ?
 		}		
 	}
 	
@@ -192,7 +203,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	private void checkState() {
 		if (hasExecuted == false)
-			throw new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED);
+			throwException(new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED));
 	}
 	
 	
@@ -222,7 +233,28 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 			return (T) recordInfo.getClass().getMethod("clone").invoke(recordInfo);
 			
 		} catch (Exception e) {
+			logException(e);
 			throw new IllegalStateException(e);
 		}
+	}
+	
+	
+	
+	private void throwException(Exception e) {
+		try {
+			logException(e);
+			throw e;
+			
+		} catch (Exception e1) {
+			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
+			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

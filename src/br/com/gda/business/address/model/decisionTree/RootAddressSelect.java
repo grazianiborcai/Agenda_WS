@@ -56,8 +56,6 @@ public final class RootAddressSelect implements DeciTree<AddressInfo> {
 		select.addPostAction(mergeForm);		
 		actions.add(select);	
 		
-		//TODO: Retorna Form incorreto caso haja endereco de Form diversos
-		
 		return actions;
 	}
 	

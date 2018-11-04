@@ -1,8 +1,9 @@
-package br.com.gda.model.checker;
+package br.com.gda.model.checker.common;
 
 import java.util.List;
 
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.checker.ModelChecker;
 
 public final class ModelCherckerTrue<T> implements ModelChecker<T> {
 	private final boolean RESULT_SUCCESS = true;

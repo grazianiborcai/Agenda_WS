@@ -4,6 +4,9 @@ import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -27,16 +30,16 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 	
 	private void checkArgument(Connection conn, String schemaName, Class<T> baseClazz, Class<S> actionClazz) {
 		if (conn == null)
-			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);		
+			throwException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));		
 		
 		if (schemaName == null)
-			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);	
+			throwException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));	
 		
 		if (baseClazz == null)
-			throw new NullPointerException("baseClazz" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("baseClazz" + SystemMessage.NULL_ARGUMENT));
 		
 		if (actionClazz == null)
-			throw new NullPointerException("actionClazz" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("actionClazz" + SystemMessage.NULL_ARGUMENT));
 	}
 	
 	
@@ -80,6 +83,7 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 			return (List<S>) met.invoke(sInstance, baseInfos);
 				
 			} catch (Exception e) {
+				logException(e);
 				throw new IllegalArgumentException(e);
 			}
 	}
@@ -96,6 +100,7 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 	
 	protected ActionStd<S> getActionHook(DeciTreeOption<S> option) {
 		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -137,6 +142,7 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 			return (List<T>) met.invoke(tInstance, results);
 				
 			} catch (Exception e) {
+				logException(e);
 				throw new IllegalArgumentException(e);
 			}
 	}
@@ -147,5 +153,25 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 		DeciResultHelper<T> failedResult = new DeciResultHelper<>();
 		failedResult.copyWithoutResultset(actionResult);
 		return failedResult;
+	}
+		
+	
+	
+	private void throwException(Exception e) {
+		try {
+			logException(e);
+			throw e;
+			
+		} catch (Exception e1) {
+			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
+			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

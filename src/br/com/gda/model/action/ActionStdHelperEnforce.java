@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemMessage;
 
 public final class ActionStdHelperEnforce<T> extends ActionStdTemplate<T> {
@@ -44,11 +47,11 @@ public final class ActionStdHelperEnforce<T> extends ActionStdTemplate<T> {
 	
 	private void checkArgument(List<T> recordInfos, ActionVisitorEnforce<T> visitor) {
 		if (recordInfos == null)
-			throw new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT));
 		
 		
 		if (recordInfos.isEmpty())
-			throw new IllegalArgumentException("recordInfos" + SystemMessage.EMPTY_ARGUMENT);
+			throwException(new IllegalArgumentException("recordInfos" + SystemMessage.EMPTY_ARGUMENT));
 		
 		
 		for (T eachRecord : recordInfos) {
@@ -60,12 +63,32 @@ public final class ActionStdHelperEnforce<T> extends ActionStdTemplate<T> {
 	
 	private void checkArgument(T recordInfo, ActionVisitorEnforce<T> visitor) {
 		if (recordInfo == null)
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 	}
 	
 	
 	
 	@Override protected List<T> tryToExecuteActionListHook() throws SQLException {
 		return visitorEnforce.executeTransformation(records);
+	}
+	
+	
+	
+	private void throwException(Exception e) {
+		try {
+			logException(e);
+			throw e;
+			
+		} catch (Exception e1) {
+			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
+			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

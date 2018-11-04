@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -41,16 +44,16 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	private void checkArgument(ActionMultiOption<T> option) {
 		if (option == null)
-			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
 		
 		if (option.conn == null)
-			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
 		
 		if (option.schemaName == null)
-			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));
 		
 		if (option.sizeToTrigger < MIN_SIZE)
-			throw new NullPointerException(SystemMessage.MIN_SIZE_REQUIRED + MIN_SIZE);
+			throwException(new NullPointerException(SystemMessage.MIN_SIZE_REQUIRED + MIN_SIZE));
 	}
 	
 	
@@ -69,16 +72,16 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	private void checkArgument(DeciTreeOption<T> option, int sizeToTrigger) {
 		if (option == null)
-			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
 		
 		if (option.conn == null)
-			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
 		
 		if (option.schemaName == null)
-			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));
 		
 		if (sizeToTrigger <= 0)
-			throw new NullPointerException("sizeToTrigger" + SystemMessage.POSITIVE_NUM_EXPECTED);
+			throwException(new NullPointerException("sizeToTrigger" + SystemMessage.POSITIVE_NUM_EXPECTED));
 	}
 	
 	
@@ -97,13 +100,13 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	private void checkArgument(Connection conn, String schemaName, int sizeToTrigger) {		
 		if (conn == null)
-			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
 		
 		if (schemaName == null)
-			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));
 		
 		if (sizeToTrigger <= 0)
-			throw new NullPointerException("sizeToTrigger" + SystemMessage.POSITIVE_NUM_EXPECTED);
+			throwException(new NullPointerException("sizeToTrigger" + SystemMessage.POSITIVE_NUM_EXPECTED));
 	}
 	
 	
@@ -121,7 +124,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	private void checkArgument(T infoRecord) {
 		if (infoRecord == null)
-			throw new NullPointerException("infoRecord" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("infoRecord" + SystemMessage.NULL_ARGUMENT));
 	}
 	
 	
@@ -147,17 +150,17 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	private void checkArgument(List<T> infoRecords) {
 		if (infoRecords == null)
-			throw new NullPointerException("infoRecords" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("infoRecords" + SystemMessage.NULL_ARGUMENT));
 		
 		if (infoRecords.isEmpty())
-			throw new NullPointerException("infoRecords" + SystemMessage.EMPTY_ARGUMENT);
+			throwException(new NullPointerException("infoRecords" + SystemMessage.EMPTY_ARGUMENT));
 	}
 	
 	
 	
 	private void checkListSize() {
 		if (hasEnoughElement())
-			throw new IllegalStateException(SystemMessage.LIMIT_EXCEEDED);
+			throwException(new IllegalStateException(SystemMessage.LIMIT_EXCEEDED));
 	}
 	
 	
@@ -180,6 +183,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 			return tryToMakeDefensiveCopy(recordInfos);
 			
 		} catch (Exception e) {
+			logException(e);
 			throw new UnsupportedOperationException(e);
 		}
 	}
@@ -214,6 +218,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	protected ActionMultiVisitor<T> getInstanceOfVisitorHook(Connection conn, String schemaName) {
 		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 
@@ -299,6 +304,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	@Override public ActionStd<T> toAction(List<T> recordInfos) {
 		//TODO: Verificar se esse metodo faz sentido implementar
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -306,8 +312,28 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	@Override public void addPostAction(ActionLazy<T> actionHandler) {
 		if (actionHandler == null)
-			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
 		
 		postActions.add(actionHandler);
+	}
+	
+	
+	
+	private void throwException(Exception e) {
+		try {
+			logException(e);
+			throw e;
+			
+		} catch (Exception e1) {
+			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
+			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

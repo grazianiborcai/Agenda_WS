@@ -1,9 +1,10 @@
-package br.com.gda.model.checker;
+package br.com.gda.model.checker.common;
 
 import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
 public final class ModelCheckerCpf extends ModelCheckerTemplateSimple<String> {
 

@@ -9,11 +9,11 @@ import br.com.gda.model.action.ActionMapOption;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdAddressMergeFormMap implements ActionStd<AddressInfo> {
+public final class MapAddressNodeInsert implements ActionStd<AddressInfo> {
 	private ActionStd<AddressInfo> actionHelper;	
 	
 	
-	public StdAddressMergeFormMap(DeciTreeOption<AddressInfo> option) {			
+	public MapAddressNodeInsert(DeciTreeOption<AddressInfo> option) {			
 		actionHelper = new ActionStdHelperMap<AddressInfo, AddressFormInfo>(buildOption(option));
 	}
 	
@@ -21,8 +21,8 @@ public final class StdAddressMergeFormMap implements ActionStd<AddressInfo> {
 	
 	private ActionMapOption<AddressInfo, AddressFormInfo> buildOption(DeciTreeOption<AddressInfo> treeOption) {
 		ActionMapOption<AddressInfo, AddressFormInfo> optionMap = ActionMapOption.copyFromTreeOption(treeOption);
-		optionMap.visitorAction = VisiAddressMergeFormMap.class;
-		optionMap.visitorMap = VisiAddressFormKey.class;
+		optionMap.visitorAction = VisimapAddressNodeInsert.class;
+		optionMap.visitorMap = VisimapAddressFormKey.class;
 		
 		return optionMap;
 	}

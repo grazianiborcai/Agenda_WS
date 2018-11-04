@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
@@ -18,7 +21,7 @@ public final class ActionStdHelperMap<T, S> extends ActionStdTemplate<T> {
 	private List<T> records;
 	private Class<? extends ActionVisitorAction<T>> actionClazz;
 	private Class<? extends ActionVisitorMap<T,S>> mapClazz;
-	private Map<S,List<T>> recordMap;	
+	private Map<S,List<T>> recordMap;
 	
 	
 	public ActionStdHelperMap(ActionMapOption<T,S> option) {
@@ -35,7 +38,7 @@ public final class ActionStdHelperMap<T, S> extends ActionStdTemplate<T> {
 		actionClazz = option.visitorAction;
 		mapClazz = option.visitorMap;
 		records = makeCopy(option.recordInfos);
-		recordMap = mapRecord(records);
+		recordMap = mapRecord(records);		
 	}
 	
 	
@@ -92,6 +95,7 @@ public final class ActionStdHelperMap<T, S> extends ActionStdTemplate<T> {
 			return clazz.getConstructor().newInstance();
 				
 			} catch (Exception e) {
+				logException(e);
 				throw new IllegalArgumentException(e);
 			}
 	}
@@ -100,25 +104,25 @@ public final class ActionStdHelperMap<T, S> extends ActionStdTemplate<T> {
 	
 	private void checkArgument(ActionMapOption<T,S> option) {
 		if (option == null)
-			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
 		
 		if (option.recordInfos == null)
-			throw new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT);		
+			throwException(new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT));		
 		
 		if (option.recordInfos.isEmpty())
-			throw new IllegalArgumentException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT);		
+			throwException(new IllegalArgumentException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT));		
 		
 		if (option.visitorAction == null)
-			throw new NullPointerException("option.visitorAction" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("option.visitorAction" + SystemMessage.NULL_ARGUMENT));
 		
 		if (option.visitorMap == null)
-			throw new NullPointerException("option.visitorMap" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("option.visitorMap" + SystemMessage.NULL_ARGUMENT));
 		
 		if (option.conn == null)
-			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT));
 		
 		if (option.schemaName == null)
-			throw new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT));
 	}
 	
 	
@@ -145,12 +149,12 @@ public final class ActionStdHelperMap<T, S> extends ActionStdTemplate<T> {
 	
 	private ActionVisitorAction<T> getVisitorActionInstance(Class<? extends ActionVisitorAction<T>> clazz, Connection conn, String schemaName) {
 		try {
-			//TODO: se a classe nao for publica da erro. Testar e dispara exception
 			Constructor<? extends ActionVisitorAction<T>> constructor = clazz.getConstructor(Connection.class, String.class);
 			Object[] params = {actionConn, actionSchemaName};
 			return constructor.newInstance(params);
 				
 			} catch (Exception e) {
+				logException(e);
 				throw new IllegalArgumentException(e);
 			}
 	}
@@ -180,6 +184,26 @@ public final class ActionStdHelperMap<T, S> extends ActionStdTemplate<T> {
 	
 	private void checkArgument(DeciResult<T> actionResult) {
 		if (actionResult == null)
-			throw new NullPointerException("actionResult" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("actionResult" + SystemMessage.NULL_ARGUMENT));
+	}
+	
+	
+	
+	private void throwException(Exception e) {
+		try {
+			logException(e);
+			throw e;
+			
+		} catch (Exception e1) {
+			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
+			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

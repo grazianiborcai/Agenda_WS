@@ -36,9 +36,9 @@ public class CustomerResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertCustomer(String incomingData) {		
 		
-		Model modelInsert = new CusModelInsert(incomingData);
-		modelInsert.executeRequest();
-		return modelInsert.getResponse();
+		Model model = new CusModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -48,9 +48,9 @@ public class CustomerResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateCustomer(String incomingData) {
 		
-		Model modelUpdate = new CusModelUpdate(incomingData);
-		modelUpdate.executeRequest();
-		return modelUpdate.getResponse();
+		Model model = new CusModelUpdate(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 
 	
@@ -64,9 +64,9 @@ public class CustomerResource {
 		recordInfo.codOwner = codOwner;
 		recordInfo.codCustomer = codCustomer;
 		
-		Model modelDelete = new CusModelDelete(recordInfo);
-		modelDelete.executeRequest();
-		return modelDelete.getResponse();
+		Model model = new CusModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 
 	
@@ -81,9 +81,9 @@ public class CustomerResource {
 		recordInfo.codOwner = codOwner;
 		recordInfo.codCustomer = codCustomer;
 		
-		Model modelSelect = new CusModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new CusModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 
 	

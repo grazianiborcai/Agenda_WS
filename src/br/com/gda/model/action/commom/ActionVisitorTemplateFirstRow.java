@@ -3,6 +3,10 @@ package br.com.gda.model.action.commom;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.model.action.ActionVisitorEnforce;
 
@@ -25,7 +29,29 @@ public abstract class ActionVisitorTemplateFirstRow<T extends InfoRecord> implem
 			return (T) recordInfo.clone();
 			
 		} catch (CloneNotSupportedException e) {
+			logException(e);
 			throw new IllegalStateException(e);
 		}
+	}
+	
+	
+	
+	@SuppressWarnings("unused")
+	private void throwException(Exception e) {
+		try {
+			logException(e);
+			throw e;
+			
+		} catch (Exception e1) {
+			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
+			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

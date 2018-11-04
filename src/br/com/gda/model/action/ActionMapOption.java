@@ -3,6 +3,9 @@ package br.com.gda.model.action;
 import java.sql.Connection;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -31,6 +34,26 @@ public final class ActionMapOption<T,S> {
 	
 	private static <T> void checkArgument(DeciTreeOption<T> treeOption) {
 		if (treeOption == null)
-		throw new NullPointerException("treeOption" + SystemMessage.NULL_ARGUMENT);
+			throwException(new NullPointerException("treeOption" + SystemMessage.NULL_ARGUMENT));
+	}
+	
+	
+	
+	static private void throwException(Exception e) {
+		try {
+			logException(e);
+			throw e;
+			
+		} catch (Exception e1) {
+			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
+			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		}
+	}
+	
+	
+	
+	static private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(ActionMapOption.class);
+		logger.error(e.getMessage(), e);
 	}
 }
