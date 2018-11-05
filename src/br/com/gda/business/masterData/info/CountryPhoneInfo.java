@@ -38,7 +38,10 @@ public final class CountryPhoneInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public int hashCode() {
-		return codCountryPhone;
+		int result = 17;
+		result = result * 31 + codCountryPhone;
+		
+		return result;
 	}
 	
 	

@@ -36,6 +36,9 @@ public final class OrderStatusInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public int hashCode() {
+		if (codOrderStatus == null)
+			return 0;
+		
 		return codOrderStatus.hashCode();
 	}
 	

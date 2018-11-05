@@ -16,7 +16,7 @@ public final class AddressCheckWriteA00 extends ModelCheckerTemplateSimple<Addre
 	
 	
 	@Override protected boolean checkHook(AddressInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.line1 == null )		
+		if ( recordInfo.codCountry == null || recordInfo.line1 == null )		
 			
 			return super.FAILED;
 		

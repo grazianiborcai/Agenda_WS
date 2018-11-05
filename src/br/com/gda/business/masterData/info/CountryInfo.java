@@ -37,6 +37,9 @@ public final class CountryInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public int hashCode() {
+		if (codCountry == null)
+			return 0;
+		
 		return codCountry.hashCode();
 	}
 	

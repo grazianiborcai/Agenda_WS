@@ -53,6 +53,7 @@ public final class RootAddressInsert implements DeciTree<AddressInfo> {
 		
 		//TODO: Somente um pointer (Employee/Store/Customer) pode estar preeenchido
 		//TODO: Verificar limite de enderecos
+		//TODO: verifica ao menos um pointer
 		
 		return new ModelCheckerQueue<>(queue);
 	}
