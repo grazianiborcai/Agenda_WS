@@ -7,17 +7,19 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class AddressCheckWrite extends ModelCheckerTemplateSimple<AddressInfo> {
+public final class AddressCheckRef extends ModelCheckerTemplateSimple<AddressInfo> {
 
-	public AddressCheckWrite() {
+	public AddressCheckRef() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(AddressInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codCountry 	== null		)			
+		if ( recordInfo.codCustomer 	<= 0	&&
+			 recordInfo.codStore 		<= 0	&& 
+			 recordInfo.codEmployee 	<= 0		)			
+			
 			return super.FAILED;
 		
 		
@@ -27,12 +29,12 @@ public final class AddressCheckWrite extends ModelCheckerTemplateSimple<AddressI
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.ADDRESS_WITHOUT_REFERENCE;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.ADDRESS_WITHOUT_REFERENCE;
 	}
 }

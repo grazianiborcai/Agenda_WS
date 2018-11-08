@@ -8,6 +8,9 @@ import br.com.gda.business.address.model.action.LazyAddressEnforceLChanged;
 import br.com.gda.business.address.model.action.LazyAddressNodeInsertMap;
 import br.com.gda.business.address.model.action.MapAddressMergeForm;
 import br.com.gda.business.address.model.checker.AddressCheckCountry;
+import br.com.gda.business.address.model.checker.AddressCheckRef;
+import br.com.gda.business.address.model.checker.AddressCheckRefMulti;
+import br.com.gda.business.address.model.checker.AddressCheckWrite;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -44,6 +47,15 @@ public final class RootAddressInsert implements DeciTree<AddressInfo> {
 		ModelChecker<AddressInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
+		checker = new AddressCheckWrite();
+		queue.add(checker);
+		
+		checker = new AddressCheckRef();
+		queue.add(checker);
+		
+		checker = new AddressCheckRefMulti();
+		queue.add(checker);
+		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
@@ -51,9 +63,7 @@ public final class RootAddressInsert implements DeciTree<AddressInfo> {
 		checker = new AddressCheckCountry(checkerOption);
 		queue.add(checker);
 		
-		//TODO: Somente um pointer (Employee/Store/Customer) pode estar preeenchido
 		//TODO: Verificar limite de enderecos
-		//TODO: verifica ao menos um pointer
 		
 		return new ModelCheckerQueue<>(queue);
 	}

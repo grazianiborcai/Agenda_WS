@@ -158,6 +158,8 @@ public final class SystemCode {
 	public static final int ADDRESS_ALREADY_EXIST						= 1603;
 	public static final int ADDRESS_IS_NEW								= 1604;
 	public static final int ADDRESS_IS_OLD								= 1605;
+	public static final int ADDRESS_WITHOUT_REFERENCE					= 1606;
+	public static final int ADDRESS_MULTIPLE_REFERENCE					= 1607;
 	
 	//Form
 	public static final int ADDRESS_FORM_ALREADY_EXIST					= 1700;

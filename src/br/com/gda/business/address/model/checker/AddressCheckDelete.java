@@ -7,17 +7,17 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class AddressCheckWrite extends ModelCheckerTemplateSimple<AddressInfo> {
+public final class AddressCheckDelete extends ModelCheckerTemplateSimple<AddressInfo> {
 
-	public AddressCheckWrite() {
+	public AddressCheckDelete() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(AddressInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codCountry 	== null		)			
+		if ( recordInfo.codOwner   <= 0 ||
+			 recordInfo.codAddress <= 0 )			
 			return super.FAILED;
 		
 		

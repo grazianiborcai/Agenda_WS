@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.action.StdAddressDelete;
-import br.com.gda.business.address.model.checker.AddressCheckWrite;
+import br.com.gda.business.address.model.checker.AddressCheckDelete;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -39,7 +39,7 @@ public final class RootAddressDelete implements DeciTree<AddressInfo> {
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
 		
-		checker = new AddressCheckWrite();
+		checker = new AddressCheckDelete();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

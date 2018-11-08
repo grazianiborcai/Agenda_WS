@@ -213,6 +213,8 @@ public final class SystemMessage {
 	public static final String ADDRESS_ALREADY_EXIST = "Address already exist";
 	public static final String ADDRESS_IS_NEW = "New Address record";
 	public static final String ADDRESS_IS_OLD = "Old Address record";
+	public static final String ADDRESS_WITHOUT_REFERENCE = "No reference added to Address";
+	public static final String ADDRESS_MULTIPLE_REFERENCE = "Address has multiple references";
 		
 	
 	
