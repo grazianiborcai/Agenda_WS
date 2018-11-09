@@ -46,12 +46,16 @@ public final class ActionStdHelperEnforce<T> extends ActionStdTemplate<T> {
 	
 	
 	private void checkArgument(List<T> recordInfos, ActionVisitorEnforce<T> visitor) {
-		if (recordInfos == null)
-			throwException(new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT));
+		if (recordInfos == null) {
+			logException(new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT);
+		}
 		
 		
-		if (recordInfos.isEmpty())
-			throwException(new IllegalArgumentException("recordInfos" + SystemMessage.EMPTY_ARGUMENT));
+		if (recordInfos.isEmpty()) {
+			logException(new IllegalArgumentException("recordInfos" + SystemMessage.EMPTY_ARGUMENT));
+			throw new IllegalArgumentException("recordInfos" + SystemMessage.EMPTY_ARGUMENT);
+		}
 		
 		
 		for (T eachRecord : recordInfos) {
@@ -62,27 +66,16 @@ public final class ActionStdHelperEnforce<T> extends ActionStdTemplate<T> {
 	
 	
 	private void checkArgument(T recordInfo, ActionVisitorEnforce<T> visitor) {
-		if (recordInfo == null)
-			throwException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
+		if (recordInfo == null) {
+			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
 	
 	@Override protected List<T> tryToExecuteActionListHook() throws SQLException {
 		return visitorEnforce.executeTransformation(records);
-	}
-	
-	
-	
-	private void throwException(Exception e) {
-		try {
-			logException(e);
-			throw e;
-			
-		} catch (Exception e1) {
-			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
-			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
-		}
 	}
 	
 	

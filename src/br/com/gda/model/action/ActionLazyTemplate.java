@@ -39,11 +39,16 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	
 	private void checkArgument(Connection conn, String schemaName) {
-		if (conn == null)
-			throwException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
+		if (conn == null) {
+			logException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (schemaName == null)
-			throwException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));
+		
+		if (schemaName == null) {
+			logException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
@@ -60,8 +65,10 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	
 	private void checkArgument(T infoRecord) {
-		if (infoRecord == null)
-			throwException(new NullPointerException("infoRecord" + SystemMessage.NULL_ARGUMENT));
+		if (infoRecord == null) {
+			logException(new NullPointerException("infoRecord" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("infoRecord" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
@@ -79,11 +86,16 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	
 	private void checkArgument(List<T> infoRecords) {
-		if (infoRecords == null)
-			throwException(new NullPointerException("infoRecords" + SystemMessage.NULL_ARGUMENT));
+		if (infoRecords == null) {
+			logException(new NullPointerException("infoRecords" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("infoRecords" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (infoRecords.isEmpty())
-			throwException(new NullPointerException("infoRecords" + SystemMessage.EMPTY_ARGUMENT));
+		
+		if (infoRecords.isEmpty()) {
+			logException(new NullPointerException("infoRecords" + SystemMessage.EMPTY_ARGUMENT));
+			throw new NullPointerException("infoRecords" + SystemMessage.EMPTY_ARGUMENT);
+		}
 	}
 	
 	
@@ -208,8 +220,12 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	
 	@Override public DeciResult<T> getDecisionResult() {
-		if (resultHandler == null)
-			throwException(new IllegalStateException());
+		if (resultHandler == null) {
+			logException(new IllegalStateException());
+			throw new IllegalStateException();
+			//TODO: Mudar para NullException e adicionar motivo do erro
+		}
+		
 		
 		if (resultPostAction != null)
 			return resultPostAction;
@@ -226,23 +242,12 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	
 	@Override public void addPostAction(ActionLazy<T> actionHandler) {
-		if (actionHandler == null)
-			throwException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
+		if (actionHandler == null) {
+			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
+		}
 		
 		postActions.add(actionHandler);
-	}
-	
-	
-	
-	private void throwException(Exception e) {
-		try {
-			logException(e);
-			throw e;
-			
-		} catch (Exception e1) {
-			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
-			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
-		}
 	}
 	
 	

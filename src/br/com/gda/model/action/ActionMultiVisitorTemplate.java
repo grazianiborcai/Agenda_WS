@@ -39,11 +39,16 @@ public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisito
 	
 	
 	private void checkArgument(Connection conn, String schemaName) {
-		if (conn == null)
-			throwException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
+		if (conn == null) {
+			logException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (schemaName == null)
-			throwException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));
+		
+		if (schemaName == null) {
+			logException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
@@ -163,8 +168,10 @@ public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisito
 	
 	
 	private void checkState() {
-		if (hasExecuted() == false)
-			throwException(new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED));
+		if (hasExecuted() == false) {
+			logException(new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED));
+			throw new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED);
+		}
 	}
 	
 	
@@ -174,19 +181,6 @@ public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisito
 			return false;
 		
 		return true;
-	}
-	
-	
-	
-	private void throwException(Exception e) {
-		try {
-			logException(e);
-			throw e;
-			
-		} catch (Exception e1) {
-			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
-			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
-		}
 	}
 	
 	

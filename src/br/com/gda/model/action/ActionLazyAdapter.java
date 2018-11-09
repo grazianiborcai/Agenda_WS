@@ -22,14 +22,22 @@ final class ActionLazyAdapter<T> implements ActionStd<T> {
 	
 	
 	private void checkArgument(ActionLazy<T> actionHandler, List<T> recordInfos) {
-		if (actionHandler == null)
-			throwException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
+		if (actionHandler == null) {
+			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (recordInfos == null)
-			throwException(new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT));
 		
-		if (recordInfos.isEmpty())
-			throwException(new NullPointerException("recordInfos" + SystemMessage.EMPTY_ARGUMENT));
+		if (recordInfos == null) {
+			logException(new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (recordInfos.isEmpty()) {
+			logException(new NullPointerException("recordInfos" + SystemMessage.EMPTY_ARGUMENT));
+			throw new NullPointerException("recordInfos" + SystemMessage.EMPTY_ARGUMENT);
+		}
 	}
 	
 	
@@ -50,20 +58,8 @@ final class ActionLazyAdapter<T> implements ActionStd<T> {
 	
 	@Override public void addPostAction(ActionLazy<T> actionHandler) {
 		//TODO: implementar esse método
-		throwException(new IllegalStateException(SystemMessage.NO_IMPLEMENTATION));
-	}
-	
-	
-	
-	private void throwException(Exception e) {
-		try {
-			logException(e);
-			throw e;
-			
-		} catch (Exception e1) {
-			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
-			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
-		}
+		logException(new IllegalStateException(SystemMessage.NO_IMPLEMENTATION));
+		throw new IllegalStateException(SystemMessage.NO_IMPLEMENTATION);
 	}
 	
 	

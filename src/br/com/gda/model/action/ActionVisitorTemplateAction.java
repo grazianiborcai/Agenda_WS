@@ -29,17 +29,28 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 	
 	
 	private void checkArgument(Connection conn, String schemaName, Class<T> baseClazz, Class<S> actionClazz) {
-		if (conn == null)
-			throwException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));		
+		if (conn == null) {
+			logException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (schemaName == null)
-			throwException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));	
 		
-		if (baseClazz == null)
-			throwException(new NullPointerException("baseClazz" + SystemMessage.NULL_ARGUMENT));
+		if (schemaName == null) {
+			logException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));	
+			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (actionClazz == null)
-			throwException(new NullPointerException("actionClazz" + SystemMessage.NULL_ARGUMENT));
+		
+		if (baseClazz == null) {
+			logException(new NullPointerException("baseClazz" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("baseClazz" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (actionClazz == null) {
+			logException(new NullPointerException("actionClazz" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("actionClazz" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
@@ -153,19 +164,6 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 		DeciResultHelper<T> failedResult = new DeciResultHelper<>();
 		failedResult.copyWithoutResultset(actionResult);
 		return failedResult;
-	}
-		
-	
-	
-	private void throwException(Exception e) {
-		try {
-			logException(e);
-			throw e;
-			
-		} catch (Exception e1) {
-			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
-			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
-		}
 	}
 	
 	

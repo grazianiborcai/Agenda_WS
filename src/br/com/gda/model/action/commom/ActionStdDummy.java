@@ -19,8 +19,10 @@ public final class ActionStdDummy<T> implements ActionStd<T> {
 	
 	
 	private void checkArgument(DeciResult<T> decisionResult) {
-		if (decisionResult == null)
-			throwException(new NullPointerException("decisionResult" + SystemMessage.NULL_ARGUMENT));
+		if (decisionResult == null) {
+			logException(new NullPointerException("decisionResult" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("decisionResult" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 
 
@@ -38,20 +40,8 @@ public final class ActionStdDummy<T> implements ActionStd<T> {
 	
 	
 	@Override public void addPostAction(ActionLazy<T> actionHandler) {
-		throwException(new IllegalStateException(SystemMessage.NO_IMPLEMENTATION));		
-	}
-	
-	
-	
-	private void throwException(Exception e) {
-		try {
-			logException(e);
-			throw e;
-			
-		} catch (Exception e1) {
-			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
-			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
-		}
+		logException(new IllegalStateException(SystemMessage.NO_IMPLEMENTATION));
+		throw new IllegalStateException(SystemMessage.NO_IMPLEMENTATION);
 	}
 	
 	

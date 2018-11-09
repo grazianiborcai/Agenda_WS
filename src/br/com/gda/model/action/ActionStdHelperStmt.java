@@ -22,8 +22,10 @@ public final class ActionStdHelperStmt<T> extends ActionStdTemplate<T> {
 	
 	
 	private void checkArgument(DaoStmtExec<T> sqlStmtExecutor) {
-		if (sqlStmtExecutor == null)
-			throwException(new NullPointerException("sqlStmtExecutor" + SystemMessage.NULL_ARGUMENT));
+		if (sqlStmtExecutor == null) {
+			logException(new NullPointerException("sqlStmtExecutor" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("sqlStmtExecutor" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
@@ -32,19 +34,6 @@ public final class ActionStdHelperStmt<T> extends ActionStdTemplate<T> {
 		stmtExec.executeStmt();
 		return stmtExec.getResultset();
 	} 
-	
-	
-	
-	private void throwException(Exception e) {
-		try {
-			logException(e);
-			throw e;
-			
-		} catch (Exception e1) {
-			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
-			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
-		}
-	}
 	
 	
 	

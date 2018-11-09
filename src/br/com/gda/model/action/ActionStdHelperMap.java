@@ -103,26 +103,46 @@ public final class ActionStdHelperMap<T, S> extends ActionStdTemplate<T> {
 	
 	
 	private void checkArgument(ActionMapOption<T,S> option) {
-		if (option == null)
-			throwException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
+		if (option == null) {
+			logException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (option.recordInfos == null)
-			throwException(new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT));		
 		
-		if (option.recordInfos.isEmpty())
-			throwException(new IllegalArgumentException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT));		
+		if (option.recordInfos == null) {
+			logException(new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (option.visitorAction == null)
-			throwException(new NullPointerException("option.visitorAction" + SystemMessage.NULL_ARGUMENT));
 		
-		if (option.visitorMap == null)
-			throwException(new NullPointerException("option.visitorMap" + SystemMessage.NULL_ARGUMENT));
+		if (option.recordInfos.isEmpty()) {
+			logException(new IllegalArgumentException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT));
+			throw new IllegalArgumentException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT);
+		}
 		
-		if (option.conn == null)
-			throwException(new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT));
 		
-		if (option.schemaName == null)
-			throwException(new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT));
+		if (option.visitorAction == null) {
+			logException(new NullPointerException("option.visitorAction" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.visitorAction" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.visitorMap == null) {
+			logException(new NullPointerException("option.visitorMap" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.visitorMap" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.conn == null) {
+			logException(new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.schemaName == null) {
+			logException(new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
@@ -183,20 +203,9 @@ public final class ActionStdHelperMap<T, S> extends ActionStdTemplate<T> {
 	
 	
 	private void checkArgument(DeciResult<T> actionResult) {
-		if (actionResult == null)
-			throwException(new NullPointerException("actionResult" + SystemMessage.NULL_ARGUMENT));
-	}
-	
-	
-	
-	private void throwException(Exception e) {
-		try {
-			logException(e);
-			throw e;
-			
-		} catch (Exception e1) {
-			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
-			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		if (actionResult == null) {
+			logException(new NullPointerException("actionResult" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("actionResult" + SystemMessage.NULL_ARGUMENT);
 		}
 	}
 	

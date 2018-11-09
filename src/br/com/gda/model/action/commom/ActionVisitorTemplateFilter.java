@@ -55,20 +55,6 @@ public abstract class ActionVisitorTemplateFilter<T extends InfoRecord> implemen
 	
 	
 	
-	@SuppressWarnings("unused")
-	private void throwException(Exception e) {
-		try {
-			logException(e);
-			throw e;
-			
-		} catch (Exception e1) {
-			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
-			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
-		}
-	}
-	
-	
-	
 	private void logException(Exception e) {
 		Logger logger = LogManager.getLogger(this.getClass());
 		logger.error(e.getMessage(), e);

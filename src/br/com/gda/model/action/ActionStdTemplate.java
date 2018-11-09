@@ -30,8 +30,10 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	public void addPostAction(ActionLazy<T> actionHandler) {
-		if (actionHandler == null)
-			throwException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
+		if (actionHandler == null) {
+			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
+		}
 		
 		postActions.add(actionHandler);
 	}
@@ -202,8 +204,10 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	private void checkState() {
-		if (hasExecuted == false)
-			throwException(new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED));
+		if (hasExecuted == false) {
+			logException(new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED));
+			throw new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED);
+		}
 	}
 	
 	
@@ -235,19 +239,6 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 		} catch (Exception e) {
 			logException(e);
 			throw new IllegalStateException(e);
-		}
-	}
-	
-	
-	
-	private void throwException(Exception e) {
-		try {
-			logException(e);
-			throw e;
-			
-		} catch (Exception e1) {
-			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
-			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
 		}
 	}
 	

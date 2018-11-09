@@ -33,14 +33,22 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	
 	private void checkArgument(Connection conn, String schemaName, Class<S> clazz) {
-		if (conn == null)
-			throwException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));		
+		if (conn == null) {
+			logException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (schemaName == null)
-			throwException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));		
 		
-		if (clazz == null)
-			throwException(new NullPointerException("clazz" + SystemMessage.NULL_ARGUMENT));	
+		if (schemaName == null) {
+			logException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));	
+			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (clazz == null) {
+			logException(new NullPointerException("clazz" + SystemMessage.NULL_ARGUMENT));	
+			throw new NullPointerException("clazz" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
@@ -145,19 +153,6 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
-	}
-	
-	
-	
-	private void throwException(Exception e) {
-		try {
-			logException(e);
-			throw e;
-			
-		} catch (Exception e1) {
-			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
-			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
-		}
 	}
 	
 	

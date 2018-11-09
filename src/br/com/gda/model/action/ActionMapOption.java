@@ -33,20 +33,9 @@ public final class ActionMapOption<T,S> {
 	
 	
 	private static <T> void checkArgument(DeciTreeOption<T> treeOption) {
-		if (treeOption == null)
-			throwException(new NullPointerException("treeOption" + SystemMessage.NULL_ARGUMENT));
-	}
-	
-	
-	
-	static private void throwException(Exception e) {
-		try {
-			logException(e);
-			throw e;
-			
-		} catch (Exception e1) {
-			logException(new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION));
-			throw new IllegalArgumentException(SystemMessage.WRONG_EXCEPTION);
+		if (treeOption == null) {
+			logException(new NullPointerException("treeOption" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("treeOption" + SystemMessage.NULL_ARGUMENT);
 		}
 	}
 	
