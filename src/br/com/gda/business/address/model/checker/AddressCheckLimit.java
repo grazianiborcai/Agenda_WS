@@ -12,9 +12,11 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class AddressCheckExist extends ModelCheckerTemplateAction<AddressInfo> {
+public final class AddressCheckLimit extends ModelCheckerTemplateAction<AddressInfo> {
+	private final int MAX_RECORD_COUNT = 10;
 	
-	public AddressCheckExist(ModelCheckerOption option) {
+	
+	public AddressCheckLimit(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -41,19 +43,19 @@ public final class AddressCheckExist extends ModelCheckerTemplateAction<AddressI
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.ADDRESS_ALREADY_EXIST)
-			return SystemMessage.ADDRESS_ALREADY_EXIST;
-		
-		return SystemMessage.ADDRESS_NOT_FOUND;
+	@Override protected boolean hasPassedHook(boolean checkerResult, int recordCount) {
+		return (recordCount < MAX_RECORD_COUNT);
 	}
 	
 	
 	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
-			return SystemCode.ADDRESS_ALREADY_EXIST;	
-			
-		return SystemCode.ADDRESS_NOT_FOUND;
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {			
+		return SystemMessage.ADDRESS_LIMIT_EXCEEDED;
+	}
+	
+	
+	
+	@Override protected int makeFailCodeHook(boolean checkerResult) {			
+		return SystemCode.ADDRESS_LIMIT_EXCEEDED;
 	}
 }

@@ -50,11 +50,11 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 	
 	private String buildWhereClause() {
 		final boolean IGNORE_NULL = true;
-		final boolean IGNORE_RECORD_MODE = true;
+		final boolean DONT_IGNORE_RECORD_MODE = false;
 		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
+		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new AddressWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

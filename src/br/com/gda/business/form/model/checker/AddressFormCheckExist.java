@@ -41,8 +41,8 @@ public final class AddressFormCheckExist extends ModelCheckerTemplateAction<Addr
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.ADDRESS_FORM_ALREADY_EXIST)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.ADDRESS_FORM_ALREADY_EXIST)
 			return SystemMessage.ADDRESS_FORM_ALREADY_EXIST;
 		
 		return SystemMessage.ADDRESS_FORM_NOT_FOUND;
@@ -50,7 +50,7 @@ public final class AddressFormCheckExist extends ModelCheckerTemplateAction<Addr
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.ADDRESS_FORM_ALREADY_EXIST;	
 			

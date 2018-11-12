@@ -47,8 +47,8 @@ public final class AddressUpdateSingle implements DaoStmt<AddressInfo> {
 	
 	private String buildWhereClause() {
 		final boolean DONT_IGNORE_NULL = false;
-		final boolean IGNORE_RECORD_MODE = true;
 		final boolean IGNORE_NON_PK = true;
+		final boolean IGNORE_RECORD_MODE = true;
 		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DONT_IGNORE_NULL;

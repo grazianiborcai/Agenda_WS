@@ -40,13 +40,13 @@ public final class StoreCoCheckExist extends ModelCheckerTemplateAction<StoreCoI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {
 		return SystemMessage.CONFLICT;
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		return SystemCode.CONFLICT;
 	}
 }

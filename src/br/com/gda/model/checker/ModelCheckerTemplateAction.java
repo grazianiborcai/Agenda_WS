@@ -3,6 +3,10 @@ package br.com.gda.model.checker;
 import java.sql.Connection;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -23,7 +27,7 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	private boolean expectedResult;
 	private Connection conn;
 	private String schemaName;
-	private ActionStd<T> deciAction;
+	private ActionStd<T> action;
 	
 	
 	
@@ -35,25 +39,38 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	protected ModelCheckerTemplateAction(ModelCheckerOption option) {
 		checkArgument(option);
-		
-		failMsg = NO_FAIL_MSG;
-		failCode = NO_FAIL_CODE;
-		expectedResult = option.expectedResult;
-		conn = option.conn;
-		schemaName = option.schemaName;
+		init(option);
 	}
 	
 	
 	
 	private void checkArgument(ModelCheckerOption option) {
-		if (option == null)
+		if (option == null) {
+			logException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (option.conn == null)
+		
+		if (option.conn == null) {
+			logException(new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (option.schemaName == null)
+		
+		if (option.schemaName == null) {
+			logException(new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT);
+		}
+	}
+	
+	
+	
+	private void init(ModelCheckerOption option) {
+		failMsg = NO_FAIL_MSG;
+		failCode = NO_FAIL_CODE;
+		expectedResult = option.expectedResult;
+		conn = option.conn;
+		schemaName = option.schemaName;
 	}
 	
 	
@@ -74,27 +91,24 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	
 	private void checkArgument(List<T> recordInfos) {
-		if (recordInfos == null)
+		if (recordInfos == null) {
+			logException(new NullPointerException("recordInfos " + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfos " + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (recordInfos.isEmpty())
+		
+		if (recordInfos.isEmpty()) {
+			logException(new NullPointerException("recordInfos " + SystemMessage.EMPTY_ARGUMENT));
 			throw new NullPointerException("recordInfos " + SystemMessage.EMPTY_ARGUMENT);
+		}
 	}	
 
 	
 	
 	@Override public boolean check(T recordInfo) {
-		deciAction = buildActionHook(recordInfo, conn, schemaName);		
-		boolean checkerResult = executeAction();		
-		
-		if (checkerResult != this.expectedResult) {
-			this.failMsg = makeFailureExplanationHook(checkerResult);
-			this.failCode = makeFailureCodeHook(checkerResult);
-			actualResult = FAILED;
-		
-		} else {
-			actualResult = SUCCESS;
-		}
+		action = buildActionHook(recordInfo, conn, schemaName);		
+		DeciResult<T> actionResult = executeAction(action);	
+		parseActionResult(actionResult);
 		
 		return getResult();
 	}
@@ -103,49 +117,106 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	protected ActionStd<T> buildActionHook(T recordInfo, Connection conn, String schemaName) {
 		//Template method: to be overwritten by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	
 	}
 	
 	
 	
-	private boolean executeAction() {
-		 checkArgument(deciAction);
+	private DeciResult<T> executeAction(ActionStd<T> execAction) {
+		 checkArgument(execAction);
 		 
-		 deciAction.executeAction();
-		 DeciResult<T> actionResult = deciAction.getDecisionResult();
-		 
-		 return checkActionResult(actionResult);
+		 execAction.executeAction();
+		 return execAction.getDecisionResult();
 	}
 	
 	
 	
 	private void checkArgument(ActionStd<T> action) {
-		if (action == null)
+		if (action == null) {
+			logException(new NullPointerException("action" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("action" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
 	
-	private boolean checkActionResult(DeciResult<T> actionResult) {	
-		if (actionResult.isSuccess() == FAILED &&
-			actionResult.getFailCode() == SystemCode.INTERNAL_ERROR)
+	private void parseActionResult(DeciResult<T> result) {
+		boolean checkerResult = checkActionResult(result);
+		int recordCount = getRecordCount(result);		
+		
+		if (hasPassed(checkerResult, recordCount)) {
+			makeSuccessResult();			
+		} else {
+			makeFailResult(checkerResult);
+		}
+	}
+	
+	
+	
+	private boolean checkActionResult(DeciResult<T> result) {	
+		if (result.isSuccess() == FAILED &&
+			result.getFailCode() == SystemCode.INTERNAL_ERROR) {
+			
+			logException(new IllegalStateException(SystemMessage.INTERNAL_ERROR));
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
+		}
 		
 		
-		if (actionResult.isSuccess() == SUCCESS &&
-			actionResult.getResultset().isEmpty())
+		if (result.isSuccess() == SUCCESS && result.getResultset().isEmpty())
 			return NOT_FOUND;
 		
 		
-		return actionResult.isSuccess();
-			
+		return result.isSuccess();			
+	}
+	
+	
+	
+	private int getRecordCount(DeciResult<T> result) {
+		int recordCount = DefaultValue.number();
+		
+		if (result.hasResultset())
+			recordCount = result.getResultset().size();
+		
+		return recordCount;
+	}
+	
+	
+	
+	private boolean hasPassed(boolean checkerResult, int recordCount) {
+		boolean copyResult = checkerResult;
+		int copyCount = recordCount;
+		
+		return hasPassedHook(copyResult, copyCount);
+	}
+	
+	
+	
+	protected boolean hasPassedHook(boolean checkerResult, int recordCount) {
+		return (checkerResult == expectedResult);
+	}
+	
+	
+	
+	private void makeSuccessResult() {
+		actualResult = SUCCESS;
+	}
+	
+	
+	
+	private void makeFailResult(boolean result) {
+		failMsg = makeFailExplanationHook(result);
+		failCode = makeFailCodeHook(result);
+		actualResult = FAILED;
 	}
 	
 	
 	
 	@Override public boolean getResult() {
-		if (this.actualResult == null)
+		if (this.actualResult == null) {
+			logException(new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED));
 			throw new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED);
+		}
 		
 		return this.actualResult;
 	}
@@ -153,8 +224,10 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	
 	@Override public String getFailMessage() {
-		if (this.failMsg == NO_FAIL_MSG)
+		if (this.failMsg == NO_FAIL_MSG) {
+			logException(new IllegalStateException(SystemMessage.NO_ERROR_FOUND));
 			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
+		}
 		
 		return this.failMsg;
 	}
@@ -162,35 +235,47 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	
 	@Override public int getFailCode() {
-		if (this.failCode == NO_FAIL_CODE)
+		if (this.failCode == NO_FAIL_CODE) {
+			logException(new IllegalStateException(SystemMessage.NO_ERROR_FOUND));
 			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
+		}
 		
 		return this.failCode;
 	}
 	
 	
 	
-	protected String makeFailureExplanationHook(boolean checkerResult) {
+	protected String makeFailExplanationHook(boolean checkerResult) {
 		//Template method: to be overwritten by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	
 	
-	protected int makeFailureCodeHook(boolean checkerResult) {
+	protected int makeFailCodeHook(boolean checkerResult) {
 		//Template method: to be overwritten by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
+	
 	
 	
 	//TODO: Mover para dentro "makeFailureExplanationHook" e tornar o padrao ?
-	protected String getActionFailedExplanation() {
-		return deciAction.getDecisionResult().getFailMessage();
+	protected String getActionFailExplanation() {
+		return action.getDecisionResult().getFailMessage();
 	}
 	
 	
 	
-	protected int getActionFailedCode() {
-		return deciAction.getDecisionResult().getFailCode();
+	protected int getActionFailCode() {
+		return action.getDecisionResult().getFailCode();
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

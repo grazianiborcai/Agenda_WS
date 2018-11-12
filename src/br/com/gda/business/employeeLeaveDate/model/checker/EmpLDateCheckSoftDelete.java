@@ -42,13 +42,13 @@ public final class EmpLDateCheckSoftDelete extends ModelCheckerTemplateAction<Em
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {	
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {	
 		return SystemMessage.EMP_LDATE_FLAGGED_AS_DELETED;
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		return SystemCode.EMP_LDATE_FLAGGED_AS_DELETED;	
 	}
 }

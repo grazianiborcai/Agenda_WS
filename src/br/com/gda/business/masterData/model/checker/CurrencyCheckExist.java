@@ -40,8 +40,8 @@ public final class CurrencyCheckExist extends ModelCheckerTemplateAction<Currenc
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.CURRENCY_ALREADY_EXIST)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.CURRENCY_ALREADY_EXIST)
 			return SystemMessage.CURRENCY_ALREADY_EXIST;
 		
 		return SystemMessage.CURRENCY_NOT_FOUND;
@@ -49,7 +49,7 @@ public final class CurrencyCheckExist extends ModelCheckerTemplateAction<Currenc
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.CURRENCY_ALREADY_EXIST;	
 			

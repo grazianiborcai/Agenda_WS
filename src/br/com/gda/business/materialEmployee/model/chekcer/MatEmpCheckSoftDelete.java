@@ -43,13 +43,13 @@ public final class MatEmpCheckSoftDelete extends ModelCheckerTemplateAction<MatE
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {	
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {	
 		return SystemMessage.STORE_MAT_EMP_FLAGGED_AS_DELETED;
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		return SystemCode.STORE_MAT_EMP_FLAGGED_AS_DELETED;	
 	}
 }

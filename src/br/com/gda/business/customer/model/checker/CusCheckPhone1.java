@@ -41,19 +41,19 @@ public final class CusCheckPhone1 extends ModelCheckerTemplateAction<CusInfo> {
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.PHONE_NUMBER_IS_VALID)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.PHONE_NUMBER_IS_VALID)
 			return SystemMessage.PHONE_NUMBER_IS_VALID;
 		
-		return super.getActionFailedExplanation();
+		return super.getActionFailExplanation();
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == super.SUCCESS)
 			return SystemCode.PHONE_NUMBER_IS_VALID;	
 			
-		return super.getActionFailedCode();
+		return super.getActionFailCode();
 	}
 }

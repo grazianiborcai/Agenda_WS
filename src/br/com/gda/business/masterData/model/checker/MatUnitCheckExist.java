@@ -40,8 +40,8 @@ public final class MatUnitCheckExist extends ModelCheckerTemplateAction<MatUnitI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.UNIT_ALREADY_EXIST)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.UNIT_ALREADY_EXIST)
 			return SystemMessage.UNIT_ALREADY_EXIST;
 		
 		return SystemMessage.UNIT_NOT_FOUND;
@@ -49,7 +49,7 @@ public final class MatUnitCheckExist extends ModelCheckerTemplateAction<MatUnitI
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.UNIT_ALREADY_EXIST;	
 			

@@ -16,18 +16,18 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootAddressUpsert implements DeciTree<AddressInfo> {
+public final class NodeAddressUpsertdelL1 implements DeciTree<AddressInfo> {
 	private DeciTree<AddressInfo> tree;
 	
 	
-	public RootAddressUpsert(DeciTreeOption<AddressInfo> option) {
+	public NodeAddressUpsertdelL1(DeciTreeOption<AddressInfo> option) {
 		DeciTreeHelperOption<AddressInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
+		helperOption.actionsOnFailed = null;
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -56,20 +56,9 @@ public final class RootAddressUpsert implements DeciTree<AddressInfo> {
 	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> insert = new NodeAddressUpsertL1(option).toAction();
+		ActionStd<AddressInfo> insert = new RootAddressInsert(option).toAction();
 		
-		actions.add(insert);		
-		return actions;
-	}
-	
-	
-	
-	private List<ActionStd<AddressInfo>> buildActionsOnFailed(DeciTreeOption<AddressInfo> option) {
-		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
-		
-		ActionStd<AddressInfo> update = new NodeAddressUpsertL2(option).toAction();
-		
-		actions.add(update);		
+		actions.add(insert);	
 		return actions;
 	}
 	

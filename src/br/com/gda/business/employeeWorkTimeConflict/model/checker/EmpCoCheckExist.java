@@ -40,13 +40,13 @@ public final class EmpCoCheckExist extends ModelCheckerTemplateAction<EmpCoInfo>
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {
 		return SystemMessage.EMP_WTIME_RANGE_CONFLICT;
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		return SystemCode.EMP_WTIME_RANGE_CONFLICT;
 	}
 }

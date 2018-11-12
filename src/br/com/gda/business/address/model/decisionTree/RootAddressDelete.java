@@ -6,8 +6,10 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.action.StdAddressDelete;
 import br.com.gda.business.address.model.checker.AddressCheckDelete;
+import br.com.gda.business.address.model.checker.AddressCheckExist;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -28,18 +30,28 @@ public final class RootAddressDelete implements DeciTree<AddressInfo> {
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
+		//helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
 	
-	private ModelChecker<AddressInfo> buildDecisionChecker(DeciTreeOption<AddressInfo> option) {		
+	private ModelChecker<AddressInfo> buildDecisionChecker(DeciTreeOption<AddressInfo> option) {	
+		final boolean EXIST = true;
+		
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
 		checker = new AddressCheckDelete();
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST;	
+		checker = new AddressCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -58,14 +70,14 @@ public final class RootAddressDelete implements DeciTree<AddressInfo> {
 	
 	
 	
-	
-	private List<ActionStd<AddressInfo>> buildActionsOnFailed(DeciTreeOption<AddressInfo> option) {
+	//TODO: Por que esse Dummy foi inserido ???
+	/*private List<ActionStd<AddressInfo>> buildActionsOnFailed(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<AddressInfo> dummyAction = getDummyAction();		
 		actions.add(dummyAction);		
 		return actions;
-	}
+	}*/
 	
 	
 	

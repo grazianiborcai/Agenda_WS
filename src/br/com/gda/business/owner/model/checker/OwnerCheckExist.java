@@ -42,8 +42,8 @@ public final class OwnerCheckExist extends ModelCheckerTemplateAction<OwnerInfo>
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.OWNER_ALREADY_EXIST)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.OWNER_ALREADY_EXIST)
 			return SystemMessage.OWNER_ALREALDY_EXIST;
 		
 		return SystemMessage.OWNER_NOT_FOUND;
@@ -51,7 +51,7 @@ public final class OwnerCheckExist extends ModelCheckerTemplateAction<OwnerInfo>
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.OWNER_ALREADY_EXIST;	
 			

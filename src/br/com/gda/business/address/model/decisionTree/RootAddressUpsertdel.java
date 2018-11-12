@@ -4,12 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.action.LazyAddressRootInsert;
-import br.com.gda.business.address.model.action.LazyAddressRootUpdate;
-import br.com.gda.business.address.model.action.StdAddressFilterNew;
-import br.com.gda.business.address.model.action.StdAddressFilterOld;
 import br.com.gda.business.address.model.checker.AddressCheckNewRecord;
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -21,11 +16,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeAddressUpsertL2 implements DeciTree<AddressInfo> {
+public final class RootAddressUpsertdel implements DeciTree<AddressInfo> {
 	private DeciTree<AddressInfo> tree;
 	
 	
-	public NodeAddressUpsertL2(DeciTreeOption<AddressInfo> option) {
+	public RootAddressUpsertdel(DeciTreeOption<AddressInfo> option) {
 		DeciTreeHelperOption<AddressInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -40,7 +35,7 @@ public final class NodeAddressUpsertL2 implements DeciTree<AddressInfo> {
 	
 	
 	private ModelChecker<AddressInfo> buildDecisionChecker(DeciTreeOption<AddressInfo> option) {
-		final boolean ONLY_OLD_RECORD = false;
+		final boolean ONLY_NEW_RECORD = true;
 		
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
@@ -49,7 +44,7 @@ public final class NodeAddressUpsertL2 implements DeciTree<AddressInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ONLY_OLD_RECORD;	
+		checkerOption.expectedResult = ONLY_NEW_RECORD;	
 		checker = new AddressCheckNewRecord(checkerOption);
 		queue.add(checker);
 		
@@ -61,9 +56,9 @@ public final class NodeAddressUpsertL2 implements DeciTree<AddressInfo> {
 	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> Update = new RootAddressUpdate(option).toAction();
+		ActionStd<AddressInfo> insert = new NodeAddressUpsertdelL1(option).toAction();
 		
-		actions.add(Update);	
+		actions.add(insert);		
 		return actions;
 	}
 	
@@ -72,22 +67,9 @@ public final class NodeAddressUpsertL2 implements DeciTree<AddressInfo> {
 	private List<ActionStd<AddressInfo>> buildActionsOnFailed(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> filterOld = new StdAddressFilterOld(option);			
-		ActionLazy<AddressInfo> update = new LazyAddressRootUpdate(option.conn, option.schemaName);
-		ActionStd<AddressInfo> filterNew = new StdAddressFilterNew(option);			
-		ActionLazy<AddressInfo> insert = new LazyAddressRootInsert(option.conn, option.schemaName);
+		ActionStd<AddressInfo> update = new NodeAddressUpsertdelL2(option).toAction();
 		
-		//ActionStd<AddressInfo> select = new RootAddressSelect(option).toAction();	//TODO: temp
-
-		
-		filterOld.addPostAction(update);
-		filterNew.addPostAction(insert);
-		
-		//TODO: MERGE resultado
-		
-		actions.add(filterOld);		
-		actions.add(filterNew);	
-		//actions.add(select);	
+		actions.add(update);		
 		return actions;
 	}
 	

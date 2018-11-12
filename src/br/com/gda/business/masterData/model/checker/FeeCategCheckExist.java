@@ -41,8 +41,8 @@ public final class FeeCategCheckExist extends ModelCheckerTemplateAction<FeeCate
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.FEE_CATEG_ALREADY_EXIST)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.FEE_CATEG_ALREADY_EXIST)
 			return SystemMessage.FEE_CATEG_ALREADY_EXIST;
 		
 		return SystemMessage.FEE_CATEG_NOT_FOUND;
@@ -50,7 +50,7 @@ public final class FeeCategCheckExist extends ModelCheckerTemplateAction<FeeCate
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.FEE_CATEG_ALREADY_EXIST;	
 			

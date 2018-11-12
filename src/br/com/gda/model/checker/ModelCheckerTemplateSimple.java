@@ -3,6 +3,9 @@ package br.com.gda.model.checker;
 import java.sql.Connection;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemMessage;
 
 public abstract class ModelCheckerTemplateSimple<T> implements ModelChecker<T> {
@@ -37,12 +40,17 @@ public abstract class ModelCheckerTemplateSimple<T> implements ModelChecker<T> {
 	
 	
 	@Override public boolean check(List<T> recordInfos) {
-		if (recordInfos == null)
+		if (recordInfos == null) {
+			logException(new NullPointerException("recordInfos " + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfos " + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (recordInfos.isEmpty())
+		
+		if (recordInfos.isEmpty()) {
+			logException(new NullPointerException("recordInfos " + SystemMessage.EMPTY_ARGUMENT));
 			throw new NullPointerException("recordInfos " + SystemMessage.EMPTY_ARGUMENT);
-		
+		}
+				
 		
 		for (T eachRecordInfo : recordInfos) {
 			boolean checkerResult = check(eachRecordInfo);
@@ -73,14 +81,17 @@ public abstract class ModelCheckerTemplateSimple<T> implements ModelChecker<T> {
 	
 	protected boolean checkHook(T recordInfo, Connection conn, String schemaName) {
 		//Template method: to be overwritten by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	
 	
 	@Override public boolean getResult() {
-		if (this.actualResult == null)
+		if (this.actualResult == null) {
+			logException(new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED));
 			throw new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED);
+		}
 		
 		return this.actualResult;
 	}
@@ -88,8 +99,10 @@ public abstract class ModelCheckerTemplateSimple<T> implements ModelChecker<T> {
 	
 	
 	@Override public String getFailMessage() {
-		if (this.failMsg == NO_FAIL_MSG)
+		if (this.failMsg == NO_FAIL_MSG) {
+			logException(new IllegalStateException(SystemMessage.NO_ERROR_FOUND));
 			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
+		}
 		
 		return this.failMsg;
 	}
@@ -97,8 +110,10 @@ public abstract class ModelCheckerTemplateSimple<T> implements ModelChecker<T> {
 	
 	
 	@Override public int getFailCode() {
-		if (this.failCode == NO_FAIL_CODE)
+		if (this.failCode == NO_FAIL_CODE) {
+			logException(new IllegalStateException(SystemMessage.NO_ERROR_FOUND));
 			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
+		}
 		
 		return this.failCode;
 	}
@@ -107,6 +122,7 @@ public abstract class ModelCheckerTemplateSimple<T> implements ModelChecker<T> {
 	
 	protected String makeFailureExplanationHook(boolean checkerResult) {
 		//Template method: to be overwritten by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -114,6 +130,14 @@ public abstract class ModelCheckerTemplateSimple<T> implements ModelChecker<T> {
 	
 	protected int makeFailureCodeHook(boolean checkerResult) {
 		//Template method: to be overwritten by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

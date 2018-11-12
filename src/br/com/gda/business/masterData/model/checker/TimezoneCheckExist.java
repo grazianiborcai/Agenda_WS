@@ -40,8 +40,8 @@ public final class TimezoneCheckExist extends ModelCheckerTemplateAction<Timezon
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.TIMEZONE_ALREADY_EXIST)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.TIMEZONE_ALREADY_EXIST)
 			return SystemMessage.TIMEZONE_ALREADY_EXIST;
 		
 		return SystemMessage.TIMEZONE_NOT_FOUND;
@@ -49,7 +49,7 @@ public final class TimezoneCheckExist extends ModelCheckerTemplateAction<Timezon
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.TIMEZONE_ALREADY_EXIST;	
 			

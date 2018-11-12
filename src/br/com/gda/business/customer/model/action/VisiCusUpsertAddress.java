@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.decisionTree.RootAddressUpsert;
+import br.com.gda.business.address.model.decisionTree.RootAddressUpsertdel;
 import br.com.gda.business.customer.info.CusInfo;import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -30,6 +30,6 @@ final class VisiCusUpsertAddress extends ActionVisitorTemplateAction<CusInfo, Ad
 	
 	
 	@Override protected ActionStd<AddressInfo> getActionHook(DeciTreeOption<AddressInfo> option) {
-		return new RootAddressUpsert(option).toAction();
+		return new RootAddressUpsertdel(option).toAction();
 	}
 }

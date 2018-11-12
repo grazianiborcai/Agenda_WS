@@ -42,13 +42,13 @@ public final class StoreEmpCheckSoftDelete extends ModelCheckerTemplateAction<St
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {	
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {	
 		return SystemMessage.STORE_EMP_FLAGGED_AS_DELETED;
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		return SystemCode.STORE_EMP_FLAGGED_AS_DELETED;	
 	}
 }

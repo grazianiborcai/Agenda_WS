@@ -41,8 +41,8 @@ public final class StoreLDateCheckSLD extends ModelCheckerTemplateAction<StoreLD
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_WTIME_NO_LEAVE_FOUND)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.STORE_WTIME_NO_LEAVE_FOUND)
 			return SystemMessage.STORE_WTIME_NO_LEAVE_FOUND;
 		
 		return SystemMessage.STORE_WTIME_LEAVE_FOUND;
@@ -50,7 +50,7 @@ public final class StoreLDateCheckSLD extends ModelCheckerTemplateAction<StoreLD
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.STORE_WTIME_LEAVE_FOUND;	
 			

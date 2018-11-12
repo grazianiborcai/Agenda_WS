@@ -40,8 +40,8 @@ public final class WeekdayCheckExist extends ModelCheckerTemplateAction<WeekdayI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.WEEKDAY_ALREADY_EXIST)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.WEEKDAY_ALREADY_EXIST)
 			return SystemMessage.WEEKDAY_ALREADY_EXIST;
 		
 		return SystemMessage.WEEKDAY_NOT_FOUND;
@@ -49,7 +49,7 @@ public final class WeekdayCheckExist extends ModelCheckerTemplateAction<WeekdayI
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.WEEKDAY_ALREADY_EXIST;	
 			

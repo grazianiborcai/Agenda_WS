@@ -40,8 +40,8 @@ public final class EmpPosCheckExist extends ModelCheckerTemplateAction<EmpPosInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMP_POS_ALREADY_EXIST)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.EMP_POS_ALREADY_EXIST)
 			return SystemMessage.EMP_POS_ALREADY_EXIST;
 		
 		return SystemMessage.EMP_POS_NOT_FOUND;
@@ -49,7 +49,7 @@ public final class EmpPosCheckExist extends ModelCheckerTemplateAction<EmpPosInf
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.EMP_POS_ALREADY_EXIST;	
 			

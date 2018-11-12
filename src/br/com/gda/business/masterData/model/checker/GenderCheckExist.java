@@ -40,8 +40,8 @@ public final class GenderCheckExist extends ModelCheckerTemplateAction<GenderInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.GENDER_ALREADY_EXIST)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.GENDER_ALREADY_EXIST)
 			return SystemMessage.GENDER_ALREADY_EXIST;
 		
 		return SystemMessage.GENDER_NOT_FOUND;
@@ -49,7 +49,7 @@ public final class GenderCheckExist extends ModelCheckerTemplateAction<GenderInf
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.GENDER_ALREADY_EXIST;	
 			

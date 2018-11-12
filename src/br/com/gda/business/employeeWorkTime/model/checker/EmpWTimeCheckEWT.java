@@ -41,8 +41,8 @@ public final class EmpWTimeCheckEWT extends ModelCheckerTemplateAction<EmpWTimeI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMP_WTIME_VALID_WORKHOUR)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.EMP_WTIME_VALID_WORKHOUR)
 			return SystemMessage.EMP_WTIME_VALID_WORKHOUR;
 		
 		return SystemMessage.EMP_WTIME_WORKHOUR_OUT_OF_RANGE;
@@ -50,7 +50,7 @@ public final class EmpWTimeCheckEWT extends ModelCheckerTemplateAction<EmpWTimeI
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.EMP_WTIME_WORKHOUR_OUT_OF_RANGE;	
 			

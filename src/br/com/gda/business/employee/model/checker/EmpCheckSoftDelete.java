@@ -42,13 +42,13 @@ public final class EmpCheckSoftDelete extends ModelCheckerTemplateAction<EmpInfo
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {	
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {	
 		return SystemMessage.EMP_FLAGGED_AS_DELETED;
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		return SystemCode.EMP_FLAGGED_AS_DELETED;	
 	}
 }

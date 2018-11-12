@@ -41,8 +41,8 @@ public final class StateCheckExist extends ModelCheckerTemplateAction<StateInfo>
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STATE_ALREADY_EXIST)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.STATE_ALREADY_EXIST)
 			return SystemMessage.STATE_ALREADY_EXIST;
 		
 		return SystemMessage.STATE_NOT_FOUND;
@@ -50,7 +50,7 @@ public final class StateCheckExist extends ModelCheckerTemplateAction<StateInfo>
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.STATE_ALREADY_EXIST;	
 			

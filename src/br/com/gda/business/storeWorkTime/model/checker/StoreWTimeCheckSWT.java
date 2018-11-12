@@ -40,8 +40,8 @@ public final class StoreWTimeCheckSWT extends ModelCheckerTemplateAction<StoreWT
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_WTIME_VALID_WORKHOUR)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.STORE_WTIME_VALID_WORKHOUR)
 			return SystemMessage.STORE_WTIME_VALID_WORKHOUR;
 		
 		return SystemMessage.STORE_WTIME_WORKHOUR_OUT_OF_RANGE;
@@ -49,7 +49,7 @@ public final class StoreWTimeCheckSWT extends ModelCheckerTemplateAction<StoreWT
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.STORE_WTIME_WORKHOUR_OUT_OF_RANGE;	
 			

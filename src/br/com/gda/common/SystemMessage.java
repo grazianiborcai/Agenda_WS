@@ -214,6 +214,9 @@ public final class SystemMessage {
 	public static final String ADDRESS_IS_OLD = "Old Address record";
 	public static final String ADDRESS_WITHOUT_REFERENCE = "No reference added to Address";
 	public static final String ADDRESS_MULTIPLE_REFERENCE = "Address has multiple references";
+	public static final String ADDRESS_FLAG_DELETE_TRUE = "Address flagged to deletion";
+	public static final String ADDRESS_FLAG_DELETE_FALSE = "No Address flagged to deletion";
+	public static final String ADDRESS_LIMIT_EXCEEDED = "Address limit exceeded. Delete old addresses before adding new ones";
 		
 	
 	

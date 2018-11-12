@@ -46,6 +46,10 @@ final class AddressWhere implements DaoStmtWhere {
 				case AddressDbTableColumn.COL_COD_EMPLOYEE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
+					
+				case AddressDbTableColumn.COL_RECORD_MODE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
+					break;
 			}
 		}		
 		

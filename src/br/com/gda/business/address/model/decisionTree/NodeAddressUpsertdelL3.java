@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.action.LazyAddressEnforceLChanged;
-import br.com.gda.business.address.model.action.LazymapAddressNodeInsert;
-import br.com.gda.business.address.model.action.MapAddressMergeForm;
-import br.com.gda.business.address.model.checker.AddressCheckCountry;
-import br.com.gda.business.address.model.checker.AddressCheckRef;
-import br.com.gda.business.address.model.checker.AddressCheckRefMulti;
-import br.com.gda.business.address.model.checker.AddressCheckInsert;
-import br.com.gda.business.address.model.checker.AddressCheckLimit;
+import br.com.gda.business.address.model.action.LazyAddressRootDelete;
+import br.com.gda.business.address.model.action.StdAddressFilterDeleted;
+import br.com.gda.business.address.model.checker.AddressCheckFlagDel;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -24,17 +19,18 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootAddressInsert implements DeciTree<AddressInfo> {
+public final class NodeAddressUpsertdelL3 implements DeciTree<AddressInfo> {
 	private DeciTree<AddressInfo> tree;
 	
 	
-	public RootAddressInsert(DeciTreeOption<AddressInfo> option) {
+	public NodeAddressUpsertdelL3(DeciTreeOption<AddressInfo> option) {
 		DeciTreeHelperOption<AddressInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
+		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -42,32 +38,17 @@ public final class RootAddressInsert implements DeciTree<AddressInfo> {
 	
 	
 	private ModelChecker<AddressInfo> buildDecisionChecker(DeciTreeOption<AddressInfo> option) {
-		final boolean EXIST = true;
+		final boolean ONLY_NON_DELETED_RECORD = false;
 		
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new AddressCheckInsert();
-		queue.add(checker);
-		
-		checker = new AddressCheckRef();
-		queue.add(checker);
-		
-		checker = new AddressCheckRefMulti();
-		queue.add(checker);
-		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
-		checker = new AddressCheckCountry(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checker = new AddressCheckLimit(checkerOption);
+		checkerOption.expectedResult = ONLY_NON_DELETED_RECORD;	
+		checker = new AddressCheckFlagDel(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -76,16 +57,30 @@ public final class RootAddressInsert implements DeciTree<AddressInfo> {
 	
 	
 	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
-		List<ActionStd<AddressInfo>> actions = new ArrayList<>();	
+		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> mergeForm = new MapAddressMergeForm(option);		
-		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<AddressInfo> nodeInsert = new LazymapAddressNodeInsert(option.conn, option.schemaName);	
+		ActionStd<AddressInfo> update = new RootAddressUpdate(option).toAction();
 		
-		mergeForm.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(nodeInsert);
+		actions.add(update);	
+		return actions;
+	}
+	
+	
+	
+	private List<ActionStd<AddressInfo>> buildActionsOnFailed(DeciTreeOption<AddressInfo> option) {
+		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		actions.add(mergeForm);		
+		ActionStd<AddressInfo> update = new RootAddressUpdate(option).toAction();
+		ActionStd<AddressInfo> filterDel = new StdAddressFilterDeleted(option);			
+		ActionLazy<AddressInfo> delete = new LazyAddressRootDelete(option.conn, option.schemaName);
+		
+		filterDel.addPostAction(delete);
+		
+		//TODO: MERGE resultado
+		
+		actions.add(update);		
+		actions.add(filterDel);	
+		
 		return actions;
 	}
 	

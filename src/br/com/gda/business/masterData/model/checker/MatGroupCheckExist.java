@@ -40,8 +40,8 @@ public final class MatGroupCheckExist extends ModelCheckerTemplateAction<MatGrou
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.MAT_GROUP_ALREADY_EXIST)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.MAT_GROUP_ALREADY_EXIST)
 			return SystemMessage.MAT_GROUP_ALREADY_EXIST;
 		
 		return SystemMessage.MAT_GROUP_NOT_FOUND;
@@ -49,7 +49,7 @@ public final class MatGroupCheckExist extends ModelCheckerTemplateAction<MatGrou
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.MAT_GROUP_ALREADY_EXIST;	
 			

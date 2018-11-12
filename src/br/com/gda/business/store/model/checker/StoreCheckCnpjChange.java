@@ -42,8 +42,8 @@ public final class StoreCheckCnpjChange extends ModelCheckerTemplateAction<Store
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_ALREADY_EXIST)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.STORE_ALREADY_EXIST)
 			return SystemMessage.STORE_ALREALDY_EXIST;
 		
 		return SystemMessage.STORE_NOT_FOUND;
@@ -51,7 +51,7 @@ public final class StoreCheckCnpjChange extends ModelCheckerTemplateAction<Store
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.STORE_ALREADY_EXIST;	
 			

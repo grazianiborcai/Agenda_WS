@@ -41,8 +41,8 @@ public final class EmpLDateCheckELD extends ModelCheckerTemplateAction<EmpLDateI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.EMP_LDATE_NO_LEAVE_FOUND)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.EMP_LDATE_NO_LEAVE_FOUND)
 			return SystemMessage.EMP_LDATE_NO_LEAVE_FOUND;
 		
 		return SystemMessage.EMP_LDATE_LEAVE_FOUND;
@@ -50,7 +50,7 @@ public final class EmpLDateCheckELD extends ModelCheckerTemplateAction<EmpLDateI
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.EMP_LDATE_LEAVE_FOUND;	
 			

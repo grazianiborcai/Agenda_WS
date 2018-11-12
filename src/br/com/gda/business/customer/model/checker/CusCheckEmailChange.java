@@ -43,8 +43,8 @@ public final class CusCheckEmailChange extends ModelCheckerTemplateAction<CusInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.CUS_EMAIL_NOT_CHANGED)
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.CUS_EMAIL_NOT_CHANGED)
 			return SystemMessage.CUS_EMAIL_NOT_CHANGED;
 		
 		return SystemMessage.CUS_EMAIL_CHANGED;
@@ -52,7 +52,7 @@ public final class CusCheckEmailChange extends ModelCheckerTemplateAction<CusInf
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
 			return SystemCode.CUS_EMAIL_NOT_CHANGED;	
 			

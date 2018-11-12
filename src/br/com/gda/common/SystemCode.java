@@ -160,6 +160,9 @@ public final class SystemCode {
 	public static final int ADDRESS_IS_OLD								= 1605;
 	public static final int ADDRESS_WITHOUT_REFERENCE					= 1606;
 	public static final int ADDRESS_MULTIPLE_REFERENCE					= 1607;
+	public static final int ADDRESS_FLAG_DELETE_TRUE					= 1608;
+	public static final int ADDRESS_FLAG_DELETE_FALSE					= 1609;
+	public static final int ADDRESS_LIMIT_EXCEEDED						= 1610;
 	
 	//Form
 	public static final int ADDRESS_FORM_ALREADY_EXIST					= 1700;
