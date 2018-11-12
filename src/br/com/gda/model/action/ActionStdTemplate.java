@@ -92,8 +92,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 		if (recordInfos.isEmpty()) 
 			return buildResultFailed();
 			
-		return buildResultSuccess(recordInfos);
-		
+		return buildResultSuccess(recordInfos);		
 	}
 	
 	

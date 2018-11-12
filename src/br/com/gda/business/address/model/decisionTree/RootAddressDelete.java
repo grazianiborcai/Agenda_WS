@@ -14,7 +14,6 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeDummy;
 import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -62,8 +61,8 @@ public final class RootAddressDelete implements DeciTree<AddressInfo> {
 	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> deleteHdr = new StdAddressDelete(option);		
-		actions.add(deleteHdr);		
+		ActionStd<AddressInfo> delete = new StdAddressDelete(option);		
+		actions.add(delete);		
 		
 		return actions;
 	}
@@ -77,7 +76,7 @@ public final class RootAddressDelete implements DeciTree<AddressInfo> {
 		ActionStd<AddressInfo> dummyAction = getDummyAction();		
 		actions.add(dummyAction);		
 		return actions;
-	}*/
+	}
 	
 	
 	
@@ -88,7 +87,7 @@ public final class RootAddressDelete implements DeciTree<AddressInfo> {
 		
 		DeciTreeDummy<AddressInfo> dummyTree = new DeciTreeDummy<>(dummyResults);
 		return dummyTree.toAction();
-	}
+	}*/
 	
 	
 	

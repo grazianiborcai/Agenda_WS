@@ -28,7 +28,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 		actionsOnPassed = option.actionsOnPassed;
 		actionsOnFailed = option.actionsOnFailed;
 		decisionChoice = null;
-		deciResult = new DeciResultHelper<>();
+		deciResult = null;
 	}
 	
 	
@@ -82,28 +82,32 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 		
 	private void onPassed(List<ActionStd<T>> actions) {
 		buildSuccessMessage();
-		executeDecisionActions(actions);
+		if (hasAction(actions))
+			executeDecisionActions(actions);
 	}
 	
 	
 	
 	private void buildSuccessMessage() {	
 		decisionChoice = DeciChoice.PASSED;
+		deciResult = new DeciResultHelper<>();
 		deciResult.isSuccess = RESULT_SUCCESS;
-		deciResult.hasResultset = EMPTY;
+		deciResult.hasResultset = EMPTY; 
 	}
 	
 	
 	
 	private void onFailed(List<ActionStd<T>> actions, ModelChecker<T> condiChecker) {
 		buildFailureMessage(condiChecker.getFailCode(), condiChecker.getFailMessage());
-		executeDecisionActions(actions);		
+		if (hasAction(actions))
+			executeDecisionActions(actions);		
 	}
 	
 	
 	
 	private void buildFailureMessage(int code, String explanation) {	
 		decisionChoice = DeciChoice.FAILED;
+		deciResult = new DeciResultHelper<>();
 		deciResult.isSuccess = RESULT_FAILED;
 		deciResult.hasResultset = EMPTY;
 		deciResult.failCode = code;
@@ -112,10 +116,13 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	
-	private void executeDecisionActions(List<ActionStd<T>> decisionActions) {
-		if (decisionActions == null)
-			return;
-			
+	private boolean hasAction(List<ActionStd<T>> decisionActions) {
+		return (decisionActions != null);
+	}
+	
+	
+	
+	private void executeDecisionActions(List<ActionStd<T>> decisionActions) {			
 		for (ActionStd<T> eachAction : decisionActions) {
 			eachAction.executeAction();
 			DeciResult<T> actionResult = eachAction.getDecisionResult();		
@@ -127,8 +134,9 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	}
 	
 	
-	
+
 	private void buildResultFromAction(DeciResult<T> actionResult) {
+		deciResult = new DeciResultHelper<>();
 		deciResult.isSuccess = actionResult.isSuccess();
 		
 		if (deciResult.isSuccess == RESULT_FAILED) {

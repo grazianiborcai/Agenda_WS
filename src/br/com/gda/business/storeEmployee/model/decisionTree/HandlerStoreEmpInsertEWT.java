@@ -100,7 +100,7 @@ final class HandlerStoreEmpInsertEWT extends ActionLazyTemplate<StoreEmpInfo, Em
 	
 	
 	
-	@Override protected  ActionStd<EmpWTimeInfo> getInstanceOfActionHook(DeciTreeOption<EmpWTimeInfo> option) {
+	@Override protected ActionStd<EmpWTimeInfo> getInstanceOfActionHook(DeciTreeOption<EmpWTimeInfo> option) {
 		if (validRecords.isEmpty()) 
 			return getDummyAction();
 		
