@@ -40,7 +40,7 @@ public final class PhoneSetterAreaCode implements InfoSetter<PhoneInfo> {
 	private int setAreaCode(PhoneInfo recordInfo, AreaPhone areaPhone) {
 		int begin = 0;
 		int end = areaPhone.getAreaCodeLength();
-		String areaCode = recordInfo.phoneNumber.substring(begin, end);
+		String areaCode = recordInfo.fullNumber.substring(begin, end);
 		return Integer.valueOf(areaCode);
 	}
 }

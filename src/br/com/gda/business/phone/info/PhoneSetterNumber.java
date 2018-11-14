@@ -37,14 +37,14 @@ public final class PhoneSetterNumber implements InfoSetter<PhoneInfo> {
 	
 	
 	private PhoneInfo setNumber(PhoneInfo recordInfo) {
-		recordInfo.number = recordInfo.phoneNumber;
+		recordInfo.number = recordInfo.fullNumber;
 		
 		if (hasAreaCode(recordInfo)) {
 			AreaPhone areaPhone = getAreaCode(recordInfo);
 			int begin = areaPhone.getAreaCodeLength();
-			int end = recordInfo.phoneNumber.length();
+			int end = recordInfo.fullNumber.length();
 			
-			recordInfo.number = recordInfo.phoneNumber.substring(begin, end);
+			recordInfo.number = recordInfo.fullNumber.substring(begin, end);
 		}		
 		
 		return recordInfo;

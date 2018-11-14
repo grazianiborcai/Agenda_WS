@@ -1,7 +1,7 @@
 package br.com.gda.business.address.model.action;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.form.info.AddressFormInfo;
+import br.com.gda.business.form.formAddress.info.FormAddressInfo;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionStdHelperMap;
 import br.com.gda.model.action.ActionLazy;
@@ -14,13 +14,13 @@ public final class MapAddressMergeForm implements ActionStd<AddressInfo> {
 	
 	
 	public MapAddressMergeForm(DeciTreeOption<AddressInfo> option) {			
-		actionHelper = new ActionStdHelperMap<AddressInfo, AddressFormInfo>(buildOption(option));
+		actionHelper = new ActionStdHelperMap<AddressInfo, FormAddressInfo>(buildOption(option));
 	}
 	
 	
 	
-	private ActionMapOption<AddressInfo, AddressFormInfo> buildOption(DeciTreeOption<AddressInfo> treeOption) {
-		ActionMapOption<AddressInfo, AddressFormInfo> optionMap = ActionMapOption.copyFromTreeOption(treeOption);
+	private ActionMapOption<AddressInfo, FormAddressInfo> buildOption(DeciTreeOption<AddressInfo> treeOption) {
+		ActionMapOption<AddressInfo, FormAddressInfo> optionMap = ActionMapOption.copyFromTreeOption(treeOption);
 		optionMap.visitorAction = VisimapAddressMergeForm.class;
 		optionMap.visitorMap = VisimapAddressFormKey.class;
 		

@@ -16,7 +16,7 @@ public final class PhoneCheckOnlyNumber extends ModelCheckerTemplateSimple<Phone
 	
 	
 	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.phoneNumber.matches("^\\d+$"))			
+		if (recordInfo.fullNumber.matches("^\\d+$"))			
 			return super.SUCCESS;		
 		
 		return super.FAILED;

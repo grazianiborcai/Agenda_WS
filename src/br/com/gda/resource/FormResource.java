@@ -7,8 +7,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.form.info.AddressFormInfo;
-import br.com.gda.business.form.model.AddressFormModelSelect;
+import br.com.gda.business.form.formAddress.info.FormAddressInfo;
+import br.com.gda.business.form.formAddress.model.FormAddressModelSelect;
 import br.com.gda.model.Model;
 
 @Path("/Form")
@@ -23,11 +23,11 @@ public class FormResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectAddressForm(@HeaderParam("codCountry") String codCountry) {
 		
-		AddressFormInfo recordInfo = new AddressFormInfo();
+		FormAddressInfo recordInfo = new FormAddressInfo();
 		recordInfo.codCountry = codCountry;
 		
 		
-		Model modelSelect = new AddressFormModelSelect(recordInfo);
+		Model modelSelect = new FormAddressModelSelect(recordInfo);
 		modelSelect.executeRequest();
 		return modelSelect.getResponse();	
 	}

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.phone.model.checker.PhoneCheckBrCountry;
+import br.com.gda.business.phone.model.checker.PhoneCheckCountryBr;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class NodePhoneValidateL2 implements DeciTree<PhoneInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = IS_BR;	
-		checker = new PhoneCheckBrCountry(checkerOption);
+		checker = new PhoneCheckCountryBr(checkerOption);
 		queue.add(checker); 
 		
 		return new ModelCheckerQueue<>(queue);

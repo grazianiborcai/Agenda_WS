@@ -35,7 +35,7 @@ final class VisiCusValidatePhone1 extends ActionVisitorTemplateAction<CusInfo, P
 	private PhoneInfo translateToActionInfo(CusInfo recordInfo) {
 		PhoneInfo actionInfo = new PhoneInfo();
 		actionInfo.codCountryPhone = recordInfo.codCountryPhone1;
-		actionInfo.phoneNumber = recordInfo.phoneNumber1;
+		actionInfo.fullNumber = recordInfo.phoneNumber1;
 		return actionInfo;
 	}
 	

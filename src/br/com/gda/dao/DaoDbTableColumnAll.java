@@ -13,7 +13,7 @@ import br.com.gda.business.employeeWorkTime.dao.EmpWTimeDbTableColumn;
 import br.com.gda.business.employeeWorkTimeConflict.dao.EmpCoDbTableColumn;
 import br.com.gda.business.feeDefault.dao.FeeDefaultDbTableColumn;
 import br.com.gda.business.feeStore.dao.FeeStoreDbTableColumn;
-import br.com.gda.business.form.dao.FormDbTableColumn;
+import br.com.gda.business.form.formAddress.dao.FormAddressDbTableColumn;
 import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.material.dao.MatDbTableColumn;
 import br.com.gda.business.materialEmployee.dao.MatEmpDbTableColumn;
@@ -63,7 +63,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new ReserveDbTableColumn());
 		addTable(new OrderDbTableColumn());
 		addTable(new AddressDbTableColumn());
-		addTable(new FormDbTableColumn());
+		addTable(new FormAddressDbTableColumn());
 	}
 	
 	

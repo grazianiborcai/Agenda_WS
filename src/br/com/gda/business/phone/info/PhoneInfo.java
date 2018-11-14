@@ -1,21 +1,39 @@
 package br.com.gda.business.phone.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class PhoneInfo extends InfoRecord implements Cloneable {
+	public long codOwner;
+	public long codPhone;
+	public long codCustomer;
+	public long codStore;
+	public long codEmployee;
+	public String codCountry;
+	public String fullNumber;
 	public int codCountryPhone;
-	public String phoneNumber;
 	public int codArea;
 	public String number;
 	public String formatted;
+	public String recordMode;
+	public LocalDateTime lastChanged;
+	public String codForm;
+	public boolean isDeleted;
 	
 	
 	public PhoneInfo() {
+		codOwner = DefaultValue.number();
+		codPhone = DefaultValue.number();
+		codStore = DefaultValue.number();
+		codCustomer = DefaultValue.number();
+		codEmployee = DefaultValue.number();
 		codCountryPhone = DefaultValue.number();
 		codArea = DefaultValue.number();
+		recordMode = DefaultValue.recordMode();
+		isDeleted = DefaultValue.boole();
 	}
 	
 	
@@ -59,8 +77,8 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codCountryPhone ^ (codCountryPhone >>> 32));
 		
-		if (phoneNumber != null)
-			result = result * 31 + phoneNumber.hashCode();
+		if (fullNumber != null)
+			result = result * 31 + fullNumber.hashCode();
 		
 		return result;
 	}
@@ -77,6 +95,6 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 		
 		
 		PhoneInfo obj = (PhoneInfo) o;		
-		return (codCountryPhone == obj.codCountryPhone && isStringEqual(phoneNumber, obj.phoneNumber));
+		return (codCountryPhone == obj.codCountryPhone && isStringEqual(fullNumber, obj.fullNumber));
 	}	
 }

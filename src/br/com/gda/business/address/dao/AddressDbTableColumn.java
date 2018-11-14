@@ -50,7 +50,7 @@ public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
 	}
 	
 	
-	
+	//TODO: Ajustar PK
 	private void buildAddressTable() {
 		final String TABLE_NAME = DaoDbTable.ADDRESS_TABLE;
 		

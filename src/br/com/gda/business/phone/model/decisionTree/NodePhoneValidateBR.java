@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.StdPhoneSuccess;
-import br.com.gda.business.phone.model.checker.PhoneCheckBrNumber;
-import br.com.gda.business.phone.model.checker.PhoneCheckBrSequence;
-import br.com.gda.business.phone.model.checker.PhoneCheckBrAreaCode;
-import br.com.gda.business.phone.model.checker.PhoneCheckBrLength;
+import br.com.gda.business.phone.model.checker.PhoneCheckNumberBr;
+import br.com.gda.business.phone.model.checker.PhoneCheckSequenceBr;
+import br.com.gda.business.phone.model.checker.PhoneCheckAreaCodeBr;
+import br.com.gda.business.phone.model.checker.PhoneCheckLengthBr;
 import br.com.gda.business.phone.model.checker.PhoneCheckOnlyNumber;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -41,19 +41,19 @@ public final class NodePhoneValidateBR implements DeciTree<PhoneInfo> {
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
 
-		checker = new PhoneCheckBrLength();
+		checker = new PhoneCheckLengthBr();
 		queue.add(checker);
 		
 		checker = new PhoneCheckOnlyNumber();
 		queue.add(checker);
 		
-		checker = new PhoneCheckBrAreaCode();
+		checker = new PhoneCheckAreaCodeBr();
 		queue.add(checker);
 		
-		checker = new PhoneCheckBrSequence();
+		checker = new PhoneCheckSequenceBr();
 		queue.add(checker);
 		
-		checker = new PhoneCheckBrNumber();
+		checker = new PhoneCheckNumberBr();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

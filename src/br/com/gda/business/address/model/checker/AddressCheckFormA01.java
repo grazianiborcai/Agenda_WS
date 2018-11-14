@@ -3,7 +3,7 @@ package br.com.gda.business.address.model.checker;
 import java.sql.Connection;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.form.info.Form;
+import br.com.gda.business.form.common.Form;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
@@ -28,12 +28,12 @@ public final class AddressCheckFormA01 extends ModelCheckerTemplateSimple<Addres
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ADDRESS_FORM_INVALID;
+		return SystemMessage.FORM_ADDRESS_INVALID;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.ADDRESS_FORM_INVALID;
+		return SystemCode.FORM_ADDRESS_INVALID;
 	}
 }

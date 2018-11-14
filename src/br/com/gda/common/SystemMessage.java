@@ -198,10 +198,14 @@ public final class SystemMessage {
 	public static final String PHONE_COUNTRY_IS_NOT_BR = "Phone country code doens't refer to Brazil";
 	public static final String PHONE_NUMBER_INVALID = "Phone number is invalid";
 	public static final String PHONE_NUMBER_IS_VALID = "Phone number is valid";
+	public static final String PHONE_NUMBER_INVALID_LENGTH = "Invalid phone length";
 	public static final String PHONE_NUMBER_INVALID_LENGTH_BR = "Invalid phone length. Area code is expected";
 	public static final String PHONE_NUMBER_INVALID_NUMBER = "Only numbers are allowed for phone";
 	public static final String PHONE_NUMBER_INVALID_AREA_CODE = "Invalid area code for phone number";
-	public static final String PHONE_NUMBER_INVALID_SEQUENCE = "Invalid sequence for phone number";
+	public static final String PHONE_NUMBER_INVALID_SEQUENCE = "Invalid sequence for phone number";	
+	public static final String PHONE_WITHOUT_REFERENCE = "No reference added to Phone";
+	public static final String PHONE_MULTIPLE_REFERENCE = "Phone has multiple references";
+	public static final String PHONE_LIMIT_EXCEEDED = "Phone limit exceeded. Delete old phones before adding new ones";
 		
 	
 	
@@ -221,7 +225,8 @@ public final class SystemMessage {
 	
 	
 	//Form
-	public static final String ADDRESS_FORM_ALREADY_EXIST = "Address form already exist on DB";
-	public static final String ADDRESS_FORM_NOT_FOUND = "Address form not found on DB";
-	public static final String ADDRESS_FORM_INVALID = "Invalid address form";
+	public static final String FORM_ADDRESS_ALREADY_EXIST = "Address form already exist on DB";
+	public static final String FORM_ADDRESS_NOT_FOUND = "Address form not found on DB";
+	public static final String FORM_ADDRESS_INVALID = "Invalid address form";
+	public static final String FORM_PHONE_INVALID = "Invalid address form";
 }
