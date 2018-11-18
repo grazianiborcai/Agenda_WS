@@ -52,6 +52,7 @@ public final class SystemMessage {
 	public static final String NULL_COLUMNS = "Columns for this given builder were passed null";
 	public static final String NULL_CONN = "Conn is null";
 	public static final String NULL_SCHEMA = "Schema name is null";	
+	public static final String OBJ_NOT_INITIALIED = "Object was not initialized or operartion not applicable for current state";
 	public static final String POSITIVE_NUM_EXPECTED = " should be positive and greater than zero";	
 	public static final String REQUEST_FAILED = "It was not possible to complete your request";
 	public static final String REQUEST_NOT_EXECUTED = "Request has not been executed";
@@ -206,6 +207,8 @@ public final class SystemMessage {
 	public static final String PHONE_WITHOUT_REFERENCE = "No reference added to Phone";
 	public static final String PHONE_MULTIPLE_REFERENCE = "Phone has multiple references";
 	public static final String PHONE_LIMIT_EXCEEDED = "Phone limit exceeded. Delete old phones before adding new ones";
+	public static final String PHONE_NOT_FOUND = "Phone not found on DB";
+	public static final String PHONE_ALREADY_EXIST = "Phone already exist";
 		
 	
 	

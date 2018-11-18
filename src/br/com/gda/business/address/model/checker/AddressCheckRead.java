@@ -19,11 +19,6 @@ public final class AddressCheckRead extends ModelCheckerTemplateSimple<AddressIn
 		if ( recordInfo.codOwner <= 0 )			
 			return super.FAILED;
 		
-		if ( recordInfo.codCustomer <= 0 && 
-			 recordInfo.codStore 	<= 0 &&
-			 recordInfo.codEmployee	<= 0)			
-			return super.FAILED;
-		
 		
 		return super.SUCCESS;
 	}

@@ -8,6 +8,9 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.json.JsonResponseMaker;
@@ -25,20 +28,18 @@ public class ModelHelper<T> implements Model {
 	private Connection conn;
 	private String schemaName;
 	private Response response;
-	private DeciTree<T> decisionTree;
 	private List<DeciResult<T>> treeResults;
 	private DeciTreeFactory<T> treeFactory;
-	private Iterator<T> infoRecordItr;
-	private T currentRecordInfo;
-	private DeciResult<T> currentTreeResult;
 	
 	
 	
 	public static <T> Model factory(ModelOption<T> option, String incomingData) {
 		try {
 			return new ModelHelper<T>(option, incomingData);
+			
 		} catch (Exception e) {
-			return new ModelDummyFailed();
+			logException(e);
+			return new ModelFailed();
 		}
 	}
 	
@@ -47,8 +48,10 @@ public class ModelHelper<T> implements Model {
 	public static <T> Model factory(ModelOption<T> option, T recordInfo) {
 		try {
 			return new ModelHelper<T>(option, recordInfo);
+			
 		} catch (Exception e) {
-			return new ModelDummyFailed();
+			logException(e);
+			return new ModelFailed();
 		}
 	}
 	
@@ -56,24 +59,24 @@ public class ModelHelper<T> implements Model {
 	
 	private ModelHelper(ModelOption<T> option, String incomingData) {		
 		checkArgument(option, incomingData);
-		List<T> parsedRecordInfos = parseRawInfo(incomingData, option.infoRecordClass);
-		initialize(option, parsedRecordInfos);	
+		List<T> recordInfos = parseRawInfo(incomingData, option.infoRecordClass);
+		init(option, recordInfos);	
 	}
 	
 	
 
 	private ModelHelper(ModelOption<T> option, T recordInfo) {
 		checkArgument(option, recordInfo);
-		List<T> requestedRecordInfos = new ArrayList<>();
-		requestedRecordInfos.add(recordInfo);
-		initialize(option, requestedRecordInfos);	
+		init(option, recordInfo);	
 	}
 	
 	
 	
 	private void checkArgument(ModelOption<T> option, String incomingData) {
-		if (incomingData == null)
+		if (incomingData == null) {
+			logException(new NullPointerException("incomingData" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("incomingData" + SystemMessage.NULL_ARGUMENT);
+		}
 		
 		checkOption(option);
 	}
@@ -81,8 +84,10 @@ public class ModelHelper<T> implements Model {
 	
 	
 	private void checkArgument(ModelOption<T> option, T recordInfo) {
-		if (recordInfo == null)
+		if (recordInfo == null) {
+			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
+		}
 		
 		checkOption(option);
 	}
@@ -90,20 +95,34 @@ public class ModelHelper<T> implements Model {
 	
 	
 	private void checkOption(ModelOption<T> option) {
-		if (option == null)
+		if (option == null) {
+			logException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (option.infoRecordClass == null)
+		
+		if (option.infoRecordClass == null) {
+			logException(new NullPointerException("option.infoRecordClass" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option.infoRecordClass" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (option.decisionTreeFactory == null)
+		
+		if (option.decisionTreeFactory == null) {
+			logException(new NullPointerException("option.decisionTreeFactory" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option.decisionTreeFactory" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (option.conn == null)
+		
+		if (option.conn == null) {
+			logException(new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (option.schemaName == null)
+		
+		if (option.schemaName == null) {
+			logException(new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
@@ -115,13 +134,21 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private void initialize(ModelOption<T> option, List<T> recordInfos) {
-		this.conn = option.conn;
-		this.schemaName = option.schemaName;
-		this.treeFactory = option.decisionTreeFactory;
-		this.recordInfos = recordInfos;	
-		this.infoRecordItr = this.recordInfos.iterator();
-		this.treeResults = new ArrayList<>();
+	private void init(ModelOption<T> option, T record) {
+		List<T> recordInfos = new ArrayList<>();
+		recordInfos.add(record);
+		
+		init(option, recordInfos);
+	}
+	
+	
+	
+	private void init(ModelOption<T> option, List<T> records) {
+		conn = option.conn;
+		schemaName = option.schemaName;
+		treeFactory = option.decisionTreeFactory;
+		recordInfos = records;			
+		treeResults = new ArrayList<>();
 	}
 
 	
@@ -132,24 +159,27 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private boolean tryToExecuteRequest() {				
+	private boolean tryToExecuteRequest() {	
 		try {
-			while (infoRecordItr.hasNext()) {
-				currentRecordInfo = infoRecordItr.next();
+			DeciResult<T> lastResult = null;
+			Iterator<T> itr = recordInfos.iterator();
+			
+			while (itr.hasNext()) {
+				T cursor = itr.next();
+				lastResult = execute(cursor);			
 				
-				buildDecisionTree();
-				makeDecision();
-				
-				if (currentTreeResult.isSuccess() == RESULT_FAILED)
+				if (shouldStop(lastResult))
 					break;
 			}
 			
-			closeTransaction();
-			buildResponse();
+					
+			closeTransaction(lastResult);
+			buildResponse(lastResult, treeResults);
 			
-			return currentTreeResult.isSuccess();
+			return lastResult.isSuccess();
 			
 		} catch (Exception e) {
+			logException(e);
 			makeResponse(SystemMessage.INTERNAL_ERROR, Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(), Response.Status.INTERNAL_SERVER_ERROR);
 			return RESULT_FAILED;
 		}
@@ -157,47 +187,82 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private void buildDecisionTree() {
+	private DeciResult<T> execute(T recordInfo) {
+		DeciTree<T> decisionTree = buildDecisionTree(recordInfo);
+		DeciResult<T> treeResult = makeDecision(decisionTree);
+		addTreeResult(treeResult);	
+		
+		return getLastTreeResult();
+	}
+	
+	
+	
+	private DeciTree<T> buildDecisionTree(T recordInfo) {
+		DeciTreeOption<T> treeOption = buildOption(recordInfo);
+		return treeFactory.getInstance(treeOption);
+	}
+	
+	
+	
+	private DeciTreeOption<T> buildOption(T recordInfo) {
 		DeciTreeOption<T> treeOption = new DeciTreeOption<>();
 		
-		List<T> currentRecordInfos = new ArrayList<>();
-		currentRecordInfos.add(this.currentRecordInfo);
+		List<T> recordInfos = new ArrayList<>();
+		recordInfos.add(recordInfo);
 		
-		treeOption.conn = this.conn;
-		treeOption.recordInfos = currentRecordInfos;
-		treeOption.schemaName = this.schemaName;
+		treeOption.conn = conn;
+		treeOption.recordInfos = recordInfos;
+		treeOption.schemaName = schemaName;
 		
-		this.decisionTree = this.treeFactory.getInstance(treeOption);
+		return treeOption;
 	}
 	
 	
 	
-	private void makeDecision() {
-		decisionTree.makeDecision();
-		
-		currentTreeResult = decisionTree.getDecisionResult();
-		treeResults.add(currentTreeResult);
+	private DeciResult<T> makeDecision(DeciTree<T> tree) {
+		tree.makeDecision();
+		return tree.getDecisionResult();
 	}
 	
 	
 	
-	private void closeTransaction() throws SQLException {
-		if (this.currentTreeResult.isSuccess() == RESULT_SUCCESS) 
+	private void addTreeResult(DeciResult<T> treeResult) {
+		treeResults.add(treeResult);
+	}
+	
+	
+	
+	private DeciResult<T> getLastTreeResult() {
+		int lasElem = treeResults.size() - 1;		
+		return treeResults.get(lasElem);
+	}	
+	
+	
+	
+	private boolean shouldStop(DeciResult<T> treeResult) {
+		return (treeResult.isSuccess() == RESULT_FAILED);
+	}
+	
+	
+	
+	private void closeTransaction(DeciResult<T> treeResult) throws SQLException {
+		if (treeResult.isSuccess() == RESULT_SUCCESS) 
 			commitWork();
 			
-		if (this.currentTreeResult.isSuccess() == RESULT_FAILED) 
+		if (treeResult.isSuccess() == RESULT_FAILED) 
 			rollback();
 		
-		DbConnection.closeConnection(this.conn);
+		DbConnection.closeConnection(conn);
 	}
 	
 	
 	
 	private void commitWork() throws SQLException {
 		try {
-			this.conn.commit();
+			conn.commit();
 		
 		} catch (Exception e) {
+			logException(e);
 			rollback();
 			throw e;
 		}
@@ -206,44 +271,49 @@ public class ModelHelper<T> implements Model {
 	
 	
 	private void rollback() throws SQLException {
-		this.conn.rollback();
+		try {
+			conn.rollback();
+			
+		} catch (Exception e) {
+			logException(e);
+			throw e;
+		}
 	}
 	
 	
 	
-	private void buildResponse() {		
-		if (this.currentTreeResult.isSuccess() == RESULT_FAILED) 
-			makeResponseFailed();
+	private void buildResponse(DeciResult<T> lastTreeResult, List<DeciResult<T>> allTreeResults) {		
+		if (lastTreeResult.isSuccess() == RESULT_FAILED) 
+			makeResponseFailed(lastTreeResult);		
 		
-		
-		if (this.currentTreeResult.isSuccess() == RESULT_SUCCESS)
-			makeResponseSuccess();
+		if (lastTreeResult.isSuccess() == RESULT_SUCCESS)
+			makeResponseSuccess(allTreeResults);
 	}
 	
 	
 	
-	private void makeResponseFailed() {
+	private void makeResponseFailed(DeciResult<T> treeResult) {
 		Response.Status htmlStatus = Response.Status.BAD_REQUEST;
 		
-		if (this.currentTreeResult.getFailCode() == Response.Status.INTERNAL_SERVER_ERROR.getStatusCode())
+		if (treeResult.getFailCode() == Response.Status.INTERNAL_SERVER_ERROR.getStatusCode())
 			htmlStatus = Response.Status.INTERNAL_SERVER_ERROR;
 		
-		makeResponse(this.currentTreeResult.getFailMessage(), this.currentTreeResult.getFailCode(), htmlStatus);
+		makeResponse(treeResult.getFailMessage(), treeResult.getFailCode(), htmlStatus);
 	}
 	
 	
 	
-	private void makeResponseSuccess() {
-		List<T> allResultset = new ArrayList<>();
+	private void makeResponseSuccess(List<DeciResult<T>> allTreeResults) {
+		List<T> allResultsets = new ArrayList<>();
 		
-		for (DeciResult<T> eachTreeResult : this.treeResults) {
-			if (eachTreeResult.hasResultset()) {
-				List<T> eachResultset = eachTreeResult.getResultset();
-				allResultset.addAll(eachResultset);
+		for (DeciResult<T> eachResult : allTreeResults) {
+			if (eachResult.hasResultset()) {
+				List<T> eachResultset = eachResult.getResultset();
+				allResultsets.addAll(eachResultset);
 			}
 		}
 		
-		makeResponse(SystemMessage.RETURNED_SUCCESSFULLY, Response.Status.OK.getStatusCode(), Response.Status.OK, allResultset);
+		makeResponse(SystemMessage.RETURNED_SUCCESSFULLY, Response.Status.OK.getStatusCode(), Response.Status.OK, allResultsets);
 	}
 	
 	
@@ -256,15 +326,29 @@ public class ModelHelper<T> implements Model {
 	
 	private void makeResponse(String msg, int msgCode, Response.Status htmlStatus, Object bodyMsg) {		
 		JsonResponseMaker responseMaker = new JsonResponseMaker(msg, msgCode, htmlStatus, bodyMsg);
-		this.response = responseMaker.makeResponse();
+		response = responseMaker.makeResponse();
 	}
 	
 	
 	
 	public Response getResponse() {
-		if (this.response == null)
+		checkState(response);		
+		return response;
+	}
+	
+	
+	
+	private void checkState(Response state) {
+		if (state == null) {
+			logException(new IllegalStateException(SystemMessage.NO_RESPONSE));
 			throw new IllegalStateException(SystemMessage.NO_RESPONSE);
-		
-		return this.response;
+		}
+	}
+	
+	
+	
+	private static void logException(Exception e) {
+		Logger logger = LogManager.getLogger(ModelHelper.class);
+		logger.error(e.getMessage(), e);
 	}
 }

@@ -154,6 +154,8 @@ public final class SystemCode {
 	public static final int PHONE_MULTIPLE_REFERENCE					= 1661;
 	public static final int PHONE_LIMIT_EXCEEDED						= 1662;
 	public static final int PHONE_NUMBER_INVALID_LENGTH					= 1563;
+	public static final int PHONE_NOT_FOUND								= 1564;
+	public static final int PHONE_ALREADY_EXIST							= 1565;
 	
 	//Address
 	public static final int ADDRESS_IS_NULL								= 1600;

@@ -7,20 +7,21 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class PhoneCheckRead extends ModelCheckerTemplateSimple<PhoneInfo> {
+public final class PhoneCheckDelete extends ModelCheckerTemplateSimple<PhoneInfo> {
 
-	public PhoneCheckRead() {
+	public PhoneCheckDelete() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner <= 0 )			
-			return FAILED;
+		if ( recordInfo.codOwner   	<= 0 ||
+			 recordInfo.codPhone	<= 0 )			
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

@@ -1,12 +1,12 @@
-package br.com.gda.business.address.model.decisionTree;
+package br.com.gda.business.phone.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.action.StdAddressDelete;
-import br.com.gda.business.address.model.checker.AddressCheckDelete;
-import br.com.gda.business.address.model.checker.AddressCheckExist;
+import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.phone.model.action.StdPhoneDelete;
+import br.com.gda.business.phone.model.checker.PhoneCheckDelete;
+import br.com.gda.business.phone.model.checker.PhoneCheckExist;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -18,12 +18,12 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootAddressDelete implements DeciTree<AddressInfo> {
-	private DeciTree<AddressInfo> tree;
+public final class RootPhoneDelete implements DeciTree<PhoneInfo> {
+	private DeciTree<PhoneInfo> tree;
 	
 	
-	public RootAddressDelete(DeciTreeOption<AddressInfo> option) {
-		DeciTreeHelperOption<AddressInfo> helperOption = new DeciTreeHelperOption<>();
+	public RootPhoneDelete(DeciTreeOption<PhoneInfo> option) {
+		DeciTreeHelperOption<PhoneInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
@@ -35,21 +35,21 @@ public final class RootAddressDelete implements DeciTree<AddressInfo> {
 	
 	
 	
-	private ModelChecker<AddressInfo> buildDecisionChecker(DeciTreeOption<AddressInfo> option) {	
+	private ModelChecker<PhoneInfo> buildDecisionChecker(DeciTreeOption<PhoneInfo> option) {	
 		final boolean EXIST = true;
 		
-		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
-		ModelChecker<AddressInfo> checker;	
+		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
+		ModelChecker<PhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new AddressCheckDelete();
+		checker = new PhoneCheckDelete();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST;	
-		checker = new AddressCheckExist(checkerOption);
+		checker = new PhoneCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -57,10 +57,10 @@ public final class RootAddressDelete implements DeciTree<AddressInfo> {
 	
 	
 	
-	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
-		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
+	private List<ActionStd<PhoneInfo>> buildActionsOnPassed(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		//TODO: LCHANGED
-		ActionStd<AddressInfo> delete = new StdAddressDelete(option);		
+		ActionStd<PhoneInfo> delete = new StdPhoneDelete(option);		
 		actions.add(delete);		
 		
 		return actions;
@@ -80,13 +80,13 @@ public final class RootAddressDelete implements DeciTree<AddressInfo> {
 	
 	
 	
-	@Override public DeciResult<AddressInfo> getDecisionResult() {
+	@Override public DeciResult<PhoneInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
 	
 	
-	@Override public ActionStd<AddressInfo> toAction() {
+	@Override public ActionStd<PhoneInfo> toAction() {
 		return tree.toAction();
 	}
 }

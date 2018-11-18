@@ -5,14 +5,14 @@ import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.LazyPhoneEnforceLChanged;
-import br.com.gda.business.phone.model.action.LazymapPhoneNodeInsert;
+import br.com.gda.business.phone.model.action.LazymapPhoneNodeUpdate;
 import br.com.gda.business.phone.model.action.MapPhoneMergeForm;
 import br.com.gda.business.phone.model.checker.PhoneCheckCountry;
 import br.com.gda.business.phone.model.checker.PhoneCheckCountryPhone;
-import br.com.gda.business.phone.model.checker.PhoneCheckLimit;
+import br.com.gda.business.phone.model.checker.PhoneCheckExist;
 import br.com.gda.business.phone.model.checker.PhoneCheckRef;
 import br.com.gda.business.phone.model.checker.PhoneCheckRefMulti;
-import br.com.gda.business.phone.model.checker.PhoneCheckWrite;
+import br.com.gda.business.phone.model.checker.PhoneCheckUpdate;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -25,11 +25,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootPhoneInsert implements DeciTree<PhoneInfo> {
+public final class RootPhoneUpdate implements DeciTree<PhoneInfo> {
 	private DeciTree<PhoneInfo> tree;
 	
 	
-	public RootPhoneInsert(DeciTreeOption<PhoneInfo> option) {
+	public RootPhoneUpdate(DeciTreeOption<PhoneInfo> option) {
 		DeciTreeHelperOption<PhoneInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -49,7 +49,7 @@ public final class RootPhoneInsert implements DeciTree<PhoneInfo> {
 		ModelChecker<PhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new PhoneCheckWrite();
+		checker = new PhoneCheckUpdate();
 		queue.add(checker);
 		
 		checker = new PhoneCheckRef();
@@ -75,7 +75,8 @@ public final class RootPhoneInsert implements DeciTree<PhoneInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checker = new PhoneCheckLimit(checkerOption);
+		checkerOption.expectedResult = EXIST;	
+		checker = new PhoneCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -84,14 +85,14 @@ public final class RootPhoneInsert implements DeciTree<PhoneInfo> {
 	
 	
 	private List<ActionStd<PhoneInfo>> buildActionsOnPassed(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();	
+		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<PhoneInfo> mergeForm = new MapPhoneMergeForm(option);		
 		ActionLazy<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<PhoneInfo> nodeInsert = new LazymapPhoneNodeInsert(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> nodeUpdate = new LazymapPhoneNodeUpdate(option.conn, option.schemaName);	
 		
 		mergeForm.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(nodeInsert);
+		enforceLChanged.addPostAction(nodeUpdate);
 		
 		actions.add(mergeForm);		
 		return actions;

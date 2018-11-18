@@ -29,6 +29,10 @@ final class CountryPhoneWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_COUNTRY_PHONE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCountryPhone));
 					break;
+					
+				case MasterDataDbTableColumn.COL_COD_COUNTRY :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
+					break;
 			}
 		}		
 			

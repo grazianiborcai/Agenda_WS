@@ -14,12 +14,14 @@ import br.com.gda.business.employeeWorkTimeConflict.dao.EmpCoDbTableColumn;
 import br.com.gda.business.feeDefault.dao.FeeDefaultDbTableColumn;
 import br.com.gda.business.feeStore.dao.FeeStoreDbTableColumn;
 import br.com.gda.business.form.formAddress.dao.FormAddressDbTableColumn;
+import br.com.gda.business.form.formPhone.dao.FormPhoneDbTableColumn;
 import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.material.dao.MatDbTableColumn;
 import br.com.gda.business.materialEmployee.dao.MatEmpDbTableColumn;
 import br.com.gda.business.materialStore.dao.MatStoreDbTableColumn;
 import br.com.gda.business.order.dao.OrderDbTableColumn;
 import br.com.gda.business.owner.dao.OwnerDbTableColumn;
+import br.com.gda.business.phone.dao.PhoneDbTableColumn;
 import br.com.gda.business.reserve.dao.ReserveDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.business.storeEmployee.dao.StoreEmpDbTableColumn;
@@ -64,6 +66,8 @@ public final class DaoDbTableColumnAll {
 		addTable(new OrderDbTableColumn());
 		addTable(new AddressDbTableColumn());
 		addTable(new FormAddressDbTableColumn());
+		addTable(new PhoneDbTableColumn());
+		addTable(new FormPhoneDbTableColumn());
 	}
 	
 	

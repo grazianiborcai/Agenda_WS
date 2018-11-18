@@ -48,9 +48,9 @@ public final class NodeAddressUpdate implements DeciTree<AddressInfo> {
 	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AddressInfo> nodeInsertA01 = new NodeAddressUpdateA01(option).toAction();	
+		ActionStd<AddressInfo> nodeUpdateA01 = new NodeAddressUpdateA01(option).toAction();	
 
-		actions.add(nodeInsertA01);		
+		actions.add(nodeUpdateA01);		
 		return actions;
 	}
 	
@@ -59,9 +59,9 @@ public final class NodeAddressUpdate implements DeciTree<AddressInfo> {
 	private List<ActionStd<AddressInfo>> buildActionsOnFailed(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AddressInfo> nodeInsertA00 = new NodeAddressUpdateA00(option).toAction();	
+		ActionStd<AddressInfo> nodeUpdateA00 = new NodeAddressUpdateA00(option).toAction();	
 
-		actions.add(nodeInsertA00);		
+		actions.add(nodeUpdateA00);		
 		return actions;
 	}
 	

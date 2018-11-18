@@ -1,14 +1,23 @@
-package br.com.gda.model.decisionTree;
+package br.com.gda.model.decisionTree.common;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.decisionTree.DeciChoice;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciResultHelper;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.decisionTree.DeciTreeAdapter;
 
+
+//TODO: Realmente necessario ?
 public final class DeciTreeDummy<T> implements DeciTree<T> {
 	private DeciResultHelper<T> dummyResult;
-	private List<T> dummyResultset;
-	
+	private List<T> dummyResultset;	
 	
 	
 	public DeciTreeDummy(List<T> dummyRecords) {
@@ -21,8 +30,10 @@ public final class DeciTreeDummy<T> implements DeciTree<T> {
 	
 	
 	private void checkArgument(List<T> dummyRecords) {
-		if (dummyRecords == null)
+		if (dummyRecords == null) {
+			logException(new NullPointerException("dummyRecords" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("dummyRecords" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
@@ -57,5 +68,12 @@ public final class DeciTreeDummy<T> implements DeciTree<T> {
 	
 	@Override public ActionStd<T> toAction() {
 		return new DeciTreeAdapter<>(this);
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

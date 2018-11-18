@@ -2,6 +2,9 @@ package br.com.gda.model.decisionTree;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -22,35 +25,57 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 
 	public DeciTreeHelper(DeciTreeHelperOption<T> option) {
 		checkArgument(option);
+		init(option);
+	}
+	
+	
+	
+	private void checkArgument(DeciTreeHelperOption<T> option) {
+		if (option == null) {
+			logException(new NullPointerException("options" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
+		}
 		
+		
+		if (option.visitorChecker == null) {
+			logException(new NullPointerException("option.visitorChecker" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.visitorChecker" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.conn == null) {
+			logException(new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.actionsOnPassed == null) {
+			logException(new NullPointerException("option.actionsOnPassed" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.actionsOnPassed" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.recordInfos == null) {
+			logException(new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.recordInfos.isEmpty()) {
+			logException(new NullPointerException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT));
+			throw new NullPointerException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT);
+		}
+	}
+	
+	
+	
+	private void init(DeciTreeHelperOption<T> option) {
 		checker = option.visitorChecker;
 		recordInfos = option.recordInfos;
 		actionsOnPassed = option.actionsOnPassed;
 		actionsOnFailed = option.actionsOnFailed;
 		decisionChoice = null;
 		deciResult = null;
-	}
-	
-	
-	
-	private void checkArgument(DeciTreeHelperOption<T> option) {
-		if (option == null)
-			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
-		
-		if (option.visitorChecker == null)
-			throw new NullPointerException("option.visitorChecker" + SystemMessage.NULL_ARGUMENT);
-		
-		if (option.conn == null)
-			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
-		
-		if (option.actionsOnPassed == null)
-			throw new NullPointerException("option.actionsOnPassed" + SystemMessage.NULL_ARGUMENT);
-		
-		if (option.recordInfos == null)
-			throw new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT);
-		
-		if (option.recordInfos.isEmpty())
-			throw new NullPointerException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT);
 	}
 	
 	
@@ -178,4 +203,11 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	@Override public ActionStd<T> toAction() {
 		return new DeciTreeAdapter<>(this);
 	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
+	}	
 }

@@ -6,9 +6,10 @@ import java.util.List;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.action.LazyAddressMergeFormMap;
+import br.com.gda.business.address.model.action.LazymapAddressMergeForm;
 import br.com.gda.business.address.model.action.StdAddressSelect;
 import br.com.gda.business.address.model.checker.AddressCheckRead;
+import br.com.gda.business.address.model.checker.AddressCheckRef;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
@@ -42,6 +43,9 @@ public final class RootAddressSelect implements DeciTree<AddressInfo> {
 		checker = new AddressCheckRead();
 		queue.add(checker);
 		
+		checker = new AddressCheckRef();
+		queue.add(checker);
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -51,7 +55,7 @@ public final class RootAddressSelect implements DeciTree<AddressInfo> {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<AddressInfo> select = new StdAddressSelect(option);		
-		ActionLazy<AddressInfo> mergeForm = new LazyAddressMergeFormMap(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> mergeForm = new LazymapAddressMergeForm(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeForm);		
 		actions.add(select);	

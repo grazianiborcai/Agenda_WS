@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public final class DeciTreeOption<T> implements Cloneable {
 	public List<T> recordInfos;
 	public Connection conn;
@@ -30,7 +33,15 @@ public final class DeciTreeOption<T> implements Cloneable {
 			return deepCopy;
 			
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			logException(e);
 			throw new CloneNotSupportedException();
 		} 		
 	}  
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
+	}
 }

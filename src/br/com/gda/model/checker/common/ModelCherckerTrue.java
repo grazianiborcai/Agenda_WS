@@ -2,6 +2,9 @@ package br.com.gda.model.checker.common;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelChecker;
 
@@ -27,12 +30,21 @@ public final class ModelCherckerTrue<T> implements ModelChecker<T> {
 	
 	
 	public String getFailMessage() {
+		logException(new IllegalStateException(SystemMessage.NO_ERROR_FOUND));
 		throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
 	}
 	
 	
 	
 	public int getFailCode() {
+		logException(new IllegalStateException(SystemMessage.NO_ERROR_FOUND));
 		throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

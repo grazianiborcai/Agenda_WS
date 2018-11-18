@@ -15,9 +15,9 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
 	public String fullNumber;
 	public int codCountryPhone;
-	public int codArea;
-	public String number;
-	public String formatted;
+	public int codArea;				//TODO: Remover
+	public String number;			//TODO: Remover
+	public String formatted;		//TODO: Remover
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public String codForm;
@@ -58,7 +58,7 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	
 	
 	private static PhoneInfo setAttr(PhoneInfo recordInfo) {		
-		PhoneSetterAll setterAttr = new PhoneSetterAll();
+		PhoneSetterAll_ setterAttr = new PhoneSetterAll_();
 		setterAttr.setAttr(recordInfo);
 		
 		return recordInfo;

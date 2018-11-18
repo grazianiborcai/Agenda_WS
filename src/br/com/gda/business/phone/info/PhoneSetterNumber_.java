@@ -3,7 +3,7 @@ package br.com.gda.business.phone.info;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class PhoneSetterNumber implements InfoSetter<PhoneInfo> {
+public final class PhoneSetterNumber_ implements InfoSetter<PhoneInfo> {
 	
 	public PhoneInfo setAttr(PhoneInfo recordInfo) {
 		checkArgument(recordInfo);
@@ -30,7 +30,7 @@ public final class PhoneSetterNumber implements InfoSetter<PhoneInfo> {
 	
 	
 	private PhoneInfo setAreaCode(PhoneInfo recordInfo) {
-		PhoneSetterAreaCode setter = new PhoneSetterAreaCode();
+		PhoneSetterAreaCode_ setter = new PhoneSetterAreaCode_();
 		return setter.setAttr(recordInfo);
 	}
 	

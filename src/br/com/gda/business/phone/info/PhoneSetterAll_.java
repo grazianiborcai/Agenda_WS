@@ -2,7 +2,7 @@ package br.com.gda.business.phone.info;
 
 import br.com.gda.info.InfoSetter;
 
-public final class PhoneSetterAll implements InfoSetter<PhoneInfo> {
+public final class PhoneSetterAll_ implements InfoSetter<PhoneInfo> {
 	public PhoneInfo setAttr(PhoneInfo recordInfo) {
 		PhoneInfo result = recordInfo;
 		
@@ -21,10 +21,10 @@ public final class PhoneSetterAll implements InfoSetter<PhoneInfo> {
 	
 	
 	private PhoneInfo setAllAttr(PhoneInfo recordInfo) {
-		PhoneSetterAreaCode setterAreaCode = new PhoneSetterAreaCode();
+		PhoneSetterAreaCode_ setterAreaCode = new PhoneSetterAreaCode_();
 		setterAreaCode.setAttr(recordInfo);
 		
-		PhoneSetterNumber setterNumber = new PhoneSetterNumber();
+		PhoneSetterNumber_ setterNumber = new PhoneSetterNumber_();
 		setterNumber.setAttr(recordInfo);		
 		
 		return recordInfo;

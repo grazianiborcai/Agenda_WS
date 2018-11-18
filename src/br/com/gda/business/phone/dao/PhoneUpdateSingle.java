@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -103,7 +105,27 @@ public final class PhoneUpdateSingle implements DaoStmt<PhoneInfo> {
 				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
 			
 			
-			int i = 1;			
+			int i = 1;		
+			
+			if (DaoFormatter.boxNumber(recordInfo.codStore) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codStore);
+			}
+			
+			
+			if (DaoFormatter.boxNumber(recordInfo.codCustomer) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codCustomer);
+			}
+			
+			
+			if (DaoFormatter.boxNumber(recordInfo.codEmployee) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codEmployee);
+			}
 			
 			stmt.setString(i++, recordInfo.codCountry);
 			stmt.setString(i++, recordInfo.fullNumber);
