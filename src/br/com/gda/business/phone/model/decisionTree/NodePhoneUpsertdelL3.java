@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.phone.model.action.StdPhoneSuccess;
-import br.com.gda.business.phone.model.checker.PhoneCheckNull;
+import br.com.gda.business.phone.model.action.LazyPhoneRootDelete;
+import br.com.gda.business.phone.model.action.StdPhoneFilterDeleted;
+import br.com.gda.business.phone.model.checker.PhoneCheckFlagDel;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -17,11 +19,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootPhoneValidate implements DeciTree<PhoneInfo> {
+public final class NodePhoneUpsertdelL3 implements DeciTree<PhoneInfo> {
 	private DeciTree<PhoneInfo> tree;
 	
 	
-	public RootPhoneValidate(DeciTreeOption<PhoneInfo> option) {
+	public NodePhoneUpsertdelL3(DeciTreeOption<PhoneInfo> option) {
 		DeciTreeHelperOption<PhoneInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -36,7 +38,7 @@ public final class RootPhoneValidate implements DeciTree<PhoneInfo> {
 	
 	
 	private ModelChecker<PhoneInfo> buildDecisionChecker(DeciTreeOption<PhoneInfo> option) {
-		final boolean NOT_NULL = false;
+		final boolean ONLY_NON_DELETED_RECORD = false;
 		
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
@@ -45,8 +47,8 @@ public final class RootPhoneValidate implements DeciTree<PhoneInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = NOT_NULL;	
-		checker = new PhoneCheckNull(checkerOption);
+		checkerOption.expectedResult = ONLY_NON_DELETED_RECORD;	
+		checker = new PhoneCheckFlagDel(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -55,18 +57,28 @@ public final class RootPhoneValidate implements DeciTree<PhoneInfo> {
 	
 	
 	private List<ActionStd<PhoneInfo>> buildActionsOnPassed(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
+		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		actions.add(new NodePhoneValidateL1(option).toAction());
+		ActionStd<PhoneInfo> update = new RootPhoneUpdate(option).toAction();
+		
+		actions.add(update);	
 		return actions;
 	}
 	
 	
 	
 	private List<ActionStd<PhoneInfo>> buildActionsOnFailed(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
+		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		actions.add(new StdPhoneSuccess(option));
+		ActionStd<PhoneInfo> update = new RootPhoneUpdate(option).toAction();
+		ActionStd<PhoneInfo> filterDel = new StdPhoneFilterDeleted(option);			
+		ActionLazy<PhoneInfo> delete = new LazyPhoneRootDelete(option.conn, option.schemaName);
+		
+		filterDel.addPostAction(delete);
+		
+		actions.add(update);		
+		actions.add(filterDel);	
+		
 		return actions;
 	}
 	

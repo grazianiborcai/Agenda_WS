@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.phone.model.action.LazyPhoneValidateNodeL2;
-import br.com.gda.business.phone.model.action.StdPhoneAttrAll;
-import br.com.gda.business.phone.model.checker.PhoneCheckCountryPhone;
-import br.com.gda.business.phone.model.checker.PhoneCheckRead;
+import br.com.gda.business.phone.model.action.LazyPhoneNodeUpsertdelL3;
+import br.com.gda.business.phone.model.action.LazyPhoneRootInsert;
+import br.com.gda.business.phone.model.action.StdPhoneFilterNew;
+import br.com.gda.business.phone.model.action.StdPhoneFilterOld;
+import br.com.gda.business.phone.model.checker.PhoneCheckNewRecord;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -20,41 +21,37 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodePhoneValidateL1 implements DeciTree<PhoneInfo> {
+public final class NodePhoneUpsertdelL2 implements DeciTree<PhoneInfo> {
 	private DeciTree<PhoneInfo> tree;
 	
 	
-	public NodePhoneValidateL1(DeciTreeOption<PhoneInfo> option) {
+	public NodePhoneUpsertdelL2(DeciTreeOption<PhoneInfo> option) {
 		DeciTreeHelperOption<PhoneInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
+		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
 	
-	private ModelChecker<PhoneInfo> buildDecisionChecker(DeciTreeOption<PhoneInfo> option) {	
-		final boolean EXIST = true;
+	private ModelChecker<PhoneInfo> buildDecisionChecker(DeciTreeOption<PhoneInfo> option) {
+		final boolean ONLY_OLD_RECORD = false;
 		
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
-
-		checker = new PhoneCheckRead();
-		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
-		checker = new PhoneCheckCountryPhone(checkerOption);
-		queue.add(checker); 
-		
-		
+		checkerOption.expectedResult = ONLY_OLD_RECORD;	
+		checker = new PhoneCheckNewRecord(checkerOption);
+		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -62,15 +59,29 @@ public final class NodePhoneValidateL1 implements DeciTree<PhoneInfo> {
 	
 	
 	private List<ActionStd<PhoneInfo>> buildActionsOnPassed(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
+		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> setAtrAll = new StdPhoneAttrAll(option);
-		ActionLazy<PhoneInfo> nodeL2 = new LazyPhoneValidateNodeL2(option.conn, option.schemaName);
+		ActionStd<PhoneInfo> nodeL3 = new NodePhoneUpsertdelL3(option).toAction();
 		
-		setAtrAll.addPostAction(nodeL2);
+		actions.add(nodeL3);	
+		return actions;
+	}
+	
+	
+	
+	private List<ActionStd<PhoneInfo>> buildActionsOnFailed(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
+		ActionStd<PhoneInfo> filterOld = new StdPhoneFilterOld(option);			
+		ActionLazy<PhoneInfo> nodeL3 = new LazyPhoneNodeUpsertdelL3(option.conn, option.schemaName);
+		ActionStd<PhoneInfo> filterNew = new StdPhoneFilterNew(option);			
+		ActionLazy<PhoneInfo> insert = new LazyPhoneRootInsert(option.conn, option.schemaName);
 		
-		actions.add(setAtrAll);
+		filterOld.addPostAction(nodeL3);
+		filterNew.addPostAction(insert);
+		
+		actions.add(filterOld);		
+		actions.add(filterNew);	
 		return actions;
 	}
 	

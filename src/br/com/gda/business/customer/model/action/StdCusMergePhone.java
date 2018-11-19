@@ -1,18 +1,18 @@
 package br.com.gda.business.customer.model.action;
 
-import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionStdHelperAction;
+import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCusValidatePhone1 implements ActionStd<CusInfo> {
+public final class StdCusMergePhone implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusValidatePhone1(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiCusValidatePhone1(option.conn, option.schemaName));
+	public StdCusMergePhone(DeciTreeOption<CusInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusMergePhone(option.conn, option.schemaName));
 	}
 	
 	
