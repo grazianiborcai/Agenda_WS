@@ -156,6 +156,13 @@ public final class SystemCode {
 	public static final int PHONE_NUMBER_INVALID_LENGTH					= 1563;
 	public static final int PHONE_NOT_FOUND								= 1564;
 	public static final int PHONE_ALREADY_EXIST							= 1565;
+	public static final int PHONE_IS_NEW								= 1566;
+	public static final int PHONE_IS_OLD								= 1567;
+	public static final int PHONE_FLAG_DELETE_TRUE						= 1568;
+	public static final int PHONE_FLAG_DELETE_FALSE						= 1569;
+	public static final int PHONE_IS_NULL								= 1570;
+	public static final int PHONE_IS_FILLED								= 1571;
+	public static final int PHONE_COD_IS_FILLED							= 1572;
 	
 	//Address
 	public static final int ADDRESS_IS_NULL								= 1600;
@@ -169,6 +176,7 @@ public final class SystemCode {
 	public static final int ADDRESS_FLAG_DELETE_TRUE					= 1608;
 	public static final int ADDRESS_FLAG_DELETE_FALSE					= 1609;
 	public static final int ADDRESS_LIMIT_EXCEEDED						= 1610;
+	public static final int ADDRESS_COD_IS_FILLED						= 1610;
 	
 	//Form
 	public static final int FORM_ADDRESS_ALREADY_EXIST					= 1700;

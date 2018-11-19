@@ -17,7 +17,6 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	public int codCountryPhone;
 	public int codArea;				//TODO: Remover
 	public String number;			//TODO: Remover
-	public String formatted;		//TODO: Remover
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public String codForm;

@@ -5,9 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.action.LazyCusEnforceAddressKey;
+import br.com.gda.business.customer.model.action.LazyCusEnforcePhoneKey;
 import br.com.gda.business.customer.model.action.LazyCusInsert;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpsertAddress;
-import br.com.gda.business.customer.model.action.LazyCusRootSelect;
+import br.com.gda.business.customer.model.action.LazyCusNodeUpsertPhone;
 import br.com.gda.business.customer.model.action.StdCusEnforceLChanged;
 import br.com.gda.business.customer.model.checker.CusCheckCpf;
 import br.com.gda.business.customer.model.checker.CusCheckExistCpf;
@@ -15,8 +16,9 @@ import br.com.gda.business.customer.model.checker.CusCheckExistEmail;
 import br.com.gda.business.customer.model.checker.CusCheckGenField;
 import br.com.gda.business.customer.model.checker.CusCheckGender;
 import br.com.gda.business.customer.model.checker.CusCheckOwner;
-import br.com.gda.business.customer.model.checker.CusCheckPhone1;
 import br.com.gda.business.customer.model.checker.CusCheckWrite;
+import br.com.gda.business.customer.model.checker.CusCheckWriteAddress;
+import br.com.gda.business.customer.model.checker.CusCheckWritePhone;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -49,7 +51,6 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 	private ModelChecker<CusInfo> buildDecisionChecker(DeciTreeOption<CusInfo> option) {
 		final boolean EXIST_ON_DB = true;	
 		final boolean DONT_EXIST_ON_DB = false;	
-		final boolean IS_VALID = true;
 		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
@@ -62,6 +63,12 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 		queue.add(checker);
 		
 		checker = new CusCheckCpf();
+		queue.add(checker);
+		
+		checker = new CusCheckWritePhone();
+		queue.add(checker);
+		
+		checker = new CusCheckWriteAddress();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -91,13 +98,14 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
 		checker = new CusCheckExistEmail(checkerOption);
 		queue.add(checker);	
-		
+		/*
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = IS_VALID;		
-		checker = new CusCheckPhone1(checkerOption);
+		checker = new CusCheckPhone1_(checkerOption);
 		queue.add(checker);	
+		*/
 		
 		//TODO: verificar se Addresses e customer possuem o mesmo codigo
 		
@@ -119,14 +127,19 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 		ActionLazy<CusInfo> insert = new LazyCusInsert(option.conn, option.schemaName);
 		ActionLazy<CusInfo> enforceAddressKey = new LazyCusEnforceAddressKey(option.conn, option.schemaName);
 		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazy<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);		
+		ActionLazy<CusInfo> enforcePhoneKey = new LazyCusEnforcePhoneKey(option.conn, option.schemaName);
+		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionStd<CusInfo> select = new RootCusSelect(option).toAction();		
 		
 		enforceLChanged.addPostAction(insert);
 		insert.addPostAction(enforceAddressKey);
 		enforceAddressKey.addPostAction(upsertAddress);
-		enforceAddressKey.addPostAction(select);
+		
+		insert.addPostAction(enforcePhoneKey);
+		enforcePhoneKey.addPostAction(upsertPhone);	
 		
 		actions.add(enforceLChanged);		
+		actions.add(select);	
 		return actions;
 	}
 	

@@ -6,15 +6,16 @@ import java.util.List;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpdateL1;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpsertAddress;
+import br.com.gda.business.customer.model.action.LazyCusNodeUpsertPhone;
 import br.com.gda.business.customer.model.action.StdCusEnforceAddressKey;
 import br.com.gda.business.customer.model.action.StdCusEnforceLChanged;
+import br.com.gda.business.customer.model.action.StdCusEnforcePhoneKey;
 import br.com.gda.business.customer.model.checker.CusCheckCpf;
 import br.com.gda.business.customer.model.checker.CusCheckEmailChange;
 import br.com.gda.business.customer.model.checker.CusCheckExist;
 import br.com.gda.business.customer.model.checker.CusCheckGender;
 import br.com.gda.business.customer.model.checker.CusCheckKey;
 import br.com.gda.business.customer.model.checker.CusCheckOwner;
-import br.com.gda.business.customer.model.checker.CusCheckPhone1;
 import br.com.gda.business.customer.model.checker.CusCheckWrite;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -51,7 +52,7 @@ public final class RootCusUpdate implements DeciTree<CusInfo> {
 		final boolean NOT_CHANGED = true;
 		final boolean EXIST_ON_DB = true;			
 		final boolean KEY_NOT_NULL = true;	
-		final boolean IS_VALID = true;
+		//final boolean IS_VALID = true;
 		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
@@ -95,13 +96,14 @@ public final class RootCusUpdate implements DeciTree<CusInfo> {
 		checkerOption.schemaName = option.schemaName;		
 		checker = new CusCheckEmailChange(checkerOption);
 		queue.add(checker);
-		
+		/*
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = IS_VALID;		
-		checker = new CusCheckPhone1(checkerOption);
+		checker = new CusCheckPhone1_(checkerOption);
 		queue.add(checker);	
+		*/
 		
 		//TODO: verificar se Addresses e customer possuem o mesmo codigo
 		
@@ -116,14 +118,18 @@ public final class RootCusUpdate implements DeciTree<CusInfo> {
 		ActionStd<CusInfo> enforceLChanged = new StdCusEnforceLChanged(option);
 		ActionLazy<CusInfo> update = new LazyCusNodeUpdateL1(option.conn, option.schemaName);		
 		ActionStd<CusInfo> enforceAddressKey = new StdCusEnforceAddressKey(option);
-		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);		
+		ActionStd<CusInfo> enforcePhoneKey = new StdCusEnforcePhoneKey(option);
+		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionStd<CusInfo> select = new RootCusSelect(option).toAction();		
 		
 		enforceLChanged.addPostAction(update);
 		enforceAddressKey.addPostAction(upsertAddress);
+		enforcePhoneKey.addPostAction(upsertPhone);
 		
 		actions.add(enforceLChanged);
 		actions.add(enforceAddressKey);	
+		actions.add(enforcePhoneKey);
 		actions.add(select);	
 		return actions;
 		

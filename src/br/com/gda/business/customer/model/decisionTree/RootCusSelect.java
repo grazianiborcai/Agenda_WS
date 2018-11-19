@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.action.LazyCusMergeAddress;
 import br.com.gda.business.customer.model.action.LazyCusMergeGender;
+import br.com.gda.business.customer.model.action.LazyCusMergePhone;
 import br.com.gda.business.customer.model.action.StdCusSelect;
 import br.com.gda.business.customer.model.checker.CusCheckRead;
 import br.com.gda.model.action.ActionLazy;
@@ -60,9 +61,11 @@ public final class RootCusSelect implements DeciTree<CusInfo> {
 		ActionStd<CusInfo> select = new StdCusSelect(option);
 		ActionLazy<CusInfo> mergeGender = new LazyCusMergeGender(option.conn, option.schemaName);
 		ActionLazy<CusInfo> mergeAddress = new LazyCusMergeAddress(option.conn, option.schemaName);
+		ActionLazy<CusInfo> mergePhone = new LazyCusMergePhone(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeGender);
 		mergeGender.addPostAction(mergeAddress);
+		mergeAddress.addPostAction(mergePhone);
 		
 		actions.add(select);
 		return actions;

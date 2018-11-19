@@ -6,7 +6,8 @@ import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.decisionTree.RootAddressDelete;
-import br.com.gda.business.customer.info.CusInfo;import br.com.gda.model.action.ActionStd;
+import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 

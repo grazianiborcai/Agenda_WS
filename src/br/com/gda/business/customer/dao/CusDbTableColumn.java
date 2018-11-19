@@ -17,8 +17,6 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_EMAIL = "email";
 	public static final String COL_LAST_CHANGED = "last_changed";	
 	public static final String COL_NAME = "name";
-	public static final String COL_PHONE_1 = "phone_1";
-	public static final String COL_PHONE_1_COUNTRY = "country_phone_1";
 	public static final String COL_RECORD_MODE = "record_mode";	
 	
 	
@@ -104,23 +102,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_PHONE_1;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_RECORD_MODE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_PHONE_1_COUNTRY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

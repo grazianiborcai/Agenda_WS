@@ -1,5 +1,8 @@
 package br.com.gda.business.customer.info;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
@@ -14,8 +17,10 @@ public final class CusSetterAddressKey implements InfoSetter<CusInfo> {
 	
 	
 	private void checkArgument(CusInfo recordInfo) {
-		if (recordInfo == null)
+		if (recordInfo == null) {
+			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
@@ -28,4 +33,11 @@ public final class CusSetterAddressKey implements InfoSetter<CusInfo> {
 		
 		return recordInfo;
 	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
+	}	
 }

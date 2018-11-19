@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.gda.helper.RecordMode;
 
@@ -79,4 +81,10 @@ public final class DefaultValue {
 	public static int gender() {
 		return 1;
 	}
+	
+	
+	
+	public static <T> List<T> list() {
+		return new ArrayList<>();
+	}	
 }

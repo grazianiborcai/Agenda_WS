@@ -209,6 +209,13 @@ public final class SystemMessage {
 	public static final String PHONE_LIMIT_EXCEEDED = "Phone limit exceeded. Delete old phones before adding new ones";
 	public static final String PHONE_NOT_FOUND = "Phone not found on DB";
 	public static final String PHONE_ALREADY_EXIST = "Phone already exist";
+	public static final String PHONE_IS_NEW = "New Phone record";
+	public static final String PHONE_IS_OLD = "Old Phone record";
+	public static final String PHONE_FLAG_DELETE_TRUE = "Phone flagged to deletion";
+	public static final String PHONE_FLAG_DELETE_FALSE = "No Phone flagged to deletion";
+	public static final String PHONE_IS_NULL = "Phone is blank";
+	public static final String PHONE_IS_FILLED = "Phone is not blank";
+	public static final String PHONE_COD_IS_FILLED = "Code Phone should be blank";
 		
 	
 	
@@ -224,6 +231,7 @@ public final class SystemMessage {
 	public static final String ADDRESS_FLAG_DELETE_TRUE = "Address flagged to deletion";
 	public static final String ADDRESS_FLAG_DELETE_FALSE = "No Address flagged to deletion";
 	public static final String ADDRESS_LIMIT_EXCEEDED = "Address limit exceeded. Delete old addresses before adding new ones";
+	public static final String ADDRESS_COD_IS_FILLED = "Code Address should be blank";
 		
 	
 	

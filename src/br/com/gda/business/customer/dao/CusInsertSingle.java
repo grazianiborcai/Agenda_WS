@@ -100,15 +100,8 @@ public final class CusInsertSingle implements DaoStmt<CusInfo> {
 			}
 			
 			stmt.setDate(i++, birthDate);
-			stmt.setString(i++, recordInfo.email);
-			stmt.setString(i++, recordInfo.phoneNumber1);			
+			stmt.setString(i++, recordInfo.email);			
 			stmt.setString(i++, recordInfo.recordMode);
-			
-			if (DaoFormatter.boxNumber(recordInfo.codCountryPhone1) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setInt(i++, recordInfo.codCountryPhone1);
-			}
 			
 			stmt.setTimestamp(i++, lastChanged);
 			

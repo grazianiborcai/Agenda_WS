@@ -120,17 +120,12 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 				dataInfo.codCustomer = stmtResult.getLong(CusDbTableColumn.COL_COD_CUSTOMER);
 				dataInfo.cpf = stmtResult.getString(CusDbTableColumn.COL_CPF);
 				dataInfo.name = stmtResult.getString(CusDbTableColumn.COL_NAME);			
-				dataInfo.email = stmtResult.getString(CusDbTableColumn.COL_EMAIL);
-				dataInfo.phoneNumber1 = stmtResult.getString(CusDbTableColumn.COL_PHONE_1);							
+				dataInfo.email = stmtResult.getString(CusDbTableColumn.COL_EMAIL);						
 				dataInfo.recordMode = stmtResult.getString(CusDbTableColumn.COL_RECORD_MODE);
 				
 				stmtResult.getInt(CusDbTableColumn.COL_COD_GENDER);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codGender = stmtResult.getInt(CusDbTableColumn.COL_COD_GENDER);	
-				
-				stmtResult.getInt(CusDbTableColumn.COL_PHONE_1_COUNTRY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCountryPhone1 = stmtResult.getInt(CusDbTableColumn.COL_PHONE_1_COUNTRY);
+					dataInfo.codGender = stmtResult.getInt(CusDbTableColumn.COL_COD_GENDER);
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(AddressDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)

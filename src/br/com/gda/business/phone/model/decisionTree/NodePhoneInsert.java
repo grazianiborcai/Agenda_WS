@@ -47,7 +47,7 @@ public final class NodePhoneInsert implements DeciTree<PhoneInfo> {
 	
 	private List<ActionStd<PhoneInfo>> buildActionsOnPassed(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
-		
+		//TODO: atribuir atributos: area code
 		ActionStd<PhoneInfo> nodeInsertT01 = new NodePhoneInsertT01(option).toAction();	
 
 		actions.add(nodeInsertT01);		
