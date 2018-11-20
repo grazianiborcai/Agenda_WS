@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.phone.model.action.LazyPhoneNodeInsertT00;
+import br.com.gda.business.phone.model.action.LazyPhoneNodeInsertT01;
+import br.com.gda.business.phone.model.action.StdPhoneEnforceNumberT00;
+import br.com.gda.business.phone.model.action.StdPhoneEnforceNumberT01;
 import br.com.gda.business.phone.model.checker.PhoneCheckFormT01;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -47,10 +52,13 @@ public final class NodePhoneInsert implements DeciTree<PhoneInfo> {
 	
 	private List<ActionStd<PhoneInfo>> buildActionsOnPassed(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
-		//TODO: atribuir atributos: area code
-		ActionStd<PhoneInfo> nodeInsertT01 = new NodePhoneInsertT01(option).toAction();	
 
-		actions.add(nodeInsertT01);		
+		ActionStd<PhoneInfo> enforceNumberT01 = new StdPhoneEnforceNumberT01(option);
+		ActionLazy<PhoneInfo> nodeInsertT01 = new LazyPhoneNodeInsertT01(option.conn, option.schemaName);
+		
+		enforceNumberT01.addPostAction(nodeInsertT01);
+
+		actions.add(enforceNumberT01);		
 		return actions;
 	}
 	
@@ -58,10 +66,13 @@ public final class NodePhoneInsert implements DeciTree<PhoneInfo> {
 	
 	private List<ActionStd<PhoneInfo>> buildActionsOnFailed(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
-		
-		ActionStd<PhoneInfo> nodeInsertT00 = new NodePhoneInsertT00(option).toAction();	
 
-		actions.add(nodeInsertT00);		
+		ActionStd<PhoneInfo> enforceNumberT00 = new StdPhoneEnforceNumberT00(option);
+		ActionLazy<PhoneInfo> nodeInsertT00 = new LazyPhoneNodeInsertT00(option.conn, option.schemaName);
+		
+		enforceNumberT00.addPostAction(nodeInsertT00);
+
+		actions.add(enforceNumberT00);		
 		return actions;
 	}
 	

@@ -15,8 +15,9 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
 	public String fullNumber;
 	public int codCountryPhone;
-	public int codArea;				//TODO: Remover
-	public String number;			//TODO: Remover
+	public String codArea;
+	public String number;
+	public String complement;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public String codForm;
@@ -30,7 +31,6 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codCountryPhone = DefaultValue.number();
-		codArea = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		isDeleted = DefaultValue.boole();
 	}
@@ -38,29 +38,13 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	
 	
 	public static PhoneInfo copyFrom(Object sourceObj) {
-		PhoneInfo result = copyFrom(sourceObj, PhoneInfo.class);
-		return setAttr(result);
+		return copyFrom(sourceObj, PhoneInfo.class);
 	}
 	
 	
 	
 	public static List<PhoneInfo> copyFrom(List<?> sourceObjs) {
-		List<PhoneInfo> results = copyFrom(sourceObjs, PhoneInfo.class);
-		
-		for (PhoneInfo eachPhone : results) {
-			setAttr(eachPhone);
-		}
-		
-		return results;
-	}
-	
-	
-	
-	private static PhoneInfo setAttr(PhoneInfo recordInfo) {		
-		PhoneSetterAll_ setterAttr = new PhoneSetterAll_();
-		setterAttr.setAttr(recordInfo);
-		
-		return recordInfo;
+		return copyFrom(sourceObjs, PhoneInfo.class);
 	}
 	
 	
@@ -74,10 +58,8 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codCountryPhone ^ (codCountryPhone >>> 32));
-		
-		if (fullNumber != null)
-			result = result * 31 + fullNumber.hashCode();
+		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
+		result = result * 31 + (int) (codPhone ^ (codPhone >>> 32));
 		
 		return result;
 	}
@@ -94,6 +76,6 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 		
 		
 		PhoneInfo obj = (PhoneInfo) o;		
-		return (codCountryPhone == obj.codCountryPhone && isStringEqual(fullNumber, obj.fullNumber));
+		return (codOwner == obj.codOwner && codPhone == obj.codPhone);
 	}	
 }

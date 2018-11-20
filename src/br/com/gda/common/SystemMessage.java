@@ -62,6 +62,8 @@ public final class SystemMessage {
 	
 		
 	//Master Data
+	public static final String AREA_PHONE_ALREADY_EXIST = "Phone Area already exist on DB";
+	public static final String AREA_PHONE_NOT_FOUND = "Phone Area not found on DB";	
 	public static final String COUNTRY_ALREADY_EXIST = "Country already exist on DB";
 	public static final String COUNTRY_NOT_FOUND = "Country not found on DB";	
 	public static final String COUNTRY_PHONE_ALREADY_EXIST = "Phone Country code already exist on DB";

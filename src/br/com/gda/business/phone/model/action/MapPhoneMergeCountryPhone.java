@@ -21,7 +21,7 @@ public final class MapPhoneMergeCountryPhone implements ActionStd<PhoneInfo> {
 	
 	private ActionMapOption<PhoneInfo, FormPhoneInfo> buildOption(DeciTreeOption<PhoneInfo> treeOption) {
 		ActionMapOption<PhoneInfo, FormPhoneInfo> optionMap = ActionMapOption.copyFromTreeOption(treeOption);
-		optionMap.visitorAction = VisimapPhoneMergeForm.class;
+		optionMap.visitorAction = VisimapPhoneMergeCountryPhone.class;
 		optionMap.visitorMap = VisimapPhoneFormKey.class;
 		
 		return optionMap;

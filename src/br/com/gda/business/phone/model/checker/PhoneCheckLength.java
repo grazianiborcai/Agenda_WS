@@ -7,16 +7,16 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class PhoneCheckLengthT00 extends ModelCheckerTemplateSimple<PhoneInfo> {
+public final class PhoneCheckLength extends ModelCheckerTemplateSimple<PhoneInfo> {
 
-	public PhoneCheckLengthT00() {
+	public PhoneCheckLength() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.fullNumber.length() < 5 || recordInfo.fullNumber.length() > 30)			
+		if (recordInfo.fullNumber.length() < 2)			
 			return super.FAILED;
 		
 		

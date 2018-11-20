@@ -10,6 +10,7 @@ import br.com.gda.business.phone.model.action.MapPhoneMergeForm;
 import br.com.gda.business.phone.model.checker.PhoneCheckCountry;
 import br.com.gda.business.phone.model.checker.PhoneCheckCountryPhone;
 import br.com.gda.business.phone.model.checker.PhoneCheckExist;
+import br.com.gda.business.phone.model.checker.PhoneCheckLength;
 import br.com.gda.business.phone.model.checker.PhoneCheckRef;
 import br.com.gda.business.phone.model.checker.PhoneCheckRefMulti;
 import br.com.gda.business.phone.model.checker.PhoneCheckUpdate;
@@ -50,6 +51,9 @@ public final class RootPhoneUpdate implements DeciTree<PhoneInfo> {
 		ModelCheckerOption checkerOption;
 		
 		checker = new PhoneCheckUpdate();
+		queue.add(checker);
+		
+		checker = new PhoneCheckLength();
 		queue.add(checker);
 		
 		checker = new PhoneCheckRef();

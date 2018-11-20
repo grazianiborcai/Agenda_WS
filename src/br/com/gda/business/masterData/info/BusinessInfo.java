@@ -12,8 +12,8 @@ public final class BusinessInfo extends InfoRecord implements Cloneable {
 	
 	
 	public BusinessInfo() {
-		this.codBusiness = DefaultValue.number();
-		this.codLanguage = DefaultValue.language();
+		codBusiness = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

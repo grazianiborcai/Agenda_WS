@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.StdPhoneUpdate;
-import br.com.gda.business.phone.model.checker.PhoneCheckWrite;
+import br.com.gda.business.phone.model.checker.PhoneCheckLengthT00;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -37,7 +37,7 @@ public final class NodePhoneUpdateT00 implements DeciTree<PhoneInfo> {
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
 
-		checker = new PhoneCheckWrite();
+		checker = new PhoneCheckLengthT00();
 		queue.add(checker);
 		
 		

@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdPhoneAttrAll implements ActionStd<PhoneInfo> {
+public final class StdPhoneEnforceNumberT00 implements ActionStd<PhoneInfo> {
 	private ActionStd<PhoneInfo> actionHelper;	
 	
 	
-	public StdPhoneAttrAll(DeciTreeOption<PhoneInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiPhoneSetAttrAll());
+	public StdPhoneEnforceNumberT00(DeciTreeOption<PhoneInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiPhoneEnforceNumberT00());
 	}
 	
 	

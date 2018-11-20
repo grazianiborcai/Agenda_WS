@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.StdPhoneInsert;
-import br.com.gda.business.phone.model.checker.PhoneCheckAreaCodeBr;
-import br.com.gda.business.phone.model.checker.PhoneCheckLengthBr;
-import br.com.gda.business.phone.model.checker.PhoneCheckNumberBr;
-import br.com.gda.business.phone.model.checker.PhoneCheckSequenceBr;
+import br.com.gda.business.phone.model.checker.PhoneCheckArea;
+import br.com.gda.business.phone.model.checker.PhoneCheckLengthT01;
+import br.com.gda.business.phone.model.checker.PhoneCheckNumberT01;
+import br.com.gda.business.phone.model.checker.PhoneCheckSequenceT01;
 import br.com.gda.business.phone.model.checker.PhoneCheckOnlyNumber;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -38,22 +39,29 @@ public final class NodePhoneInsertT01 implements DeciTree<PhoneInfo> {
 	
 	
 	private ModelChecker<PhoneInfo> buildDecisionChecker(DeciTreeOption<PhoneInfo> option) {
+		final boolean EXIST = true;
+		
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
+		ModelCheckerOption checkerOption;
 
-		checker = new PhoneCheckLengthBr();
+		checker = new PhoneCheckLengthT01();
 		queue.add(checker);
 		
 		checker = new PhoneCheckOnlyNumber();
 		queue.add(checker);
 		
-		checker = new PhoneCheckAreaCodeBr();
+		checker = new PhoneCheckSequenceT01();
 		queue.add(checker);
 		
-		checker = new PhoneCheckSequenceBr();
+		checker = new PhoneCheckNumberT01();
 		queue.add(checker);
 		
-		checker = new PhoneCheckNumberBr();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST;	
+		checker = new PhoneCheckArea(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

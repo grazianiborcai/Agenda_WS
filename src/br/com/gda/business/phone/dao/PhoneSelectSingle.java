@@ -122,6 +122,7 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 				dataInfo.codCountry = stmtResult.getString(PhoneDbTableColumn.COL_COUNTRY);
 				dataInfo.fullNumber = stmtResult.getString(PhoneDbTableColumn.COL_FULL_NUMBER);
 				dataInfo.recordMode = stmtResult.getString(PhoneDbTableColumn.COL_RECORD_MODE);
+				dataInfo.complement = stmtResult.getString(PhoneDbTableColumn.COL_COMPLEMENT);
 				
 				stmtResult.getLong(PhoneDbTableColumn.COL_COD_STORE);
 				if (stmtResult.wasNull() == NOT_NULL)

@@ -2,54 +2,40 @@ package br.com.gda.business.phone.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.phone.info.AreaPhone;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class PhoneCheckNumberBr extends ModelCheckerTemplateSimple<PhoneInfo> {
+public final class PhoneCheckNumberT01 extends ModelCheckerTemplateSimple<PhoneInfo> {
 
-	public PhoneCheckNumberBr() {
+	public PhoneCheckNumberT01() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
-		if (checkNull(recordInfo.fullNumber) == super.FAILED)
-			return super.FAILED;	
+		if (recordInfo.number == null)
+			return super.FAILED;		
 		
 		
-		if (checkPhoneNumber(recordInfo.fullNumber) == super.FAILED)
-			return super.FAILED;	
-		
-		
-		return super.SUCCESS;
-	}
-	
-	
-	
-	private boolean checkNull(String phoneNumber) {
-		if (phoneNumber == null)
-			return super.FAILED;
-		
-		return super.SUCCESS;
+		return (checkPhoneNumber(recordInfo.number));
 	}
 	
 	
 	
 	private boolean checkPhoneNumber(String phoneNumber) {
 		if (isMobile(phoneNumber))
-			return checkMobileNumber(phoneNumber);
+			return checkMobile(phoneNumber);
 	    
-	    return checkLandLineNumber(phoneNumber);
+	    return checkLandline(phoneNumber);
 	}
 	
 	
 	
 	private boolean isMobile(String phoneNumber) {
-		int begin = AreaPhone.BR.getAreaCodeLength();
+		int begin = 0;
 		int end = begin + 1;
 		
 		String firstDigit = phoneNumber.substring(begin, end);
@@ -58,7 +44,7 @@ public final class PhoneCheckNumberBr extends ModelCheckerTemplateSimple<PhoneIn
 	
 	
 	
-	private boolean checkMobileNumber(String phoneNumber) {
+	private boolean checkMobile(String phoneNumber) {
 		if (checkMobileLength(phoneNumber) == super.FAILED)
 			return super.FAILED;
 		
@@ -68,7 +54,7 @@ public final class PhoneCheckNumberBr extends ModelCheckerTemplateSimple<PhoneIn
 	
 	
 	private boolean checkMobileLength(String phoneNumber) {
-	    if (phoneNumber.length() != 11)
+	    if (phoneNumber.length() != 9)
 	           return super.FAILED;
 	    
 	    return super.SUCCESS;
@@ -76,7 +62,7 @@ public final class PhoneCheckNumberBr extends ModelCheckerTemplateSimple<PhoneIn
 	
 	
 	
-	private boolean checkLandLineNumber(String phoneNumber) {
+	private boolean checkLandline(String phoneNumber) {
 		if (checkLandLineLength(phoneNumber) == super.FAILED)
 			return super.FAILED;
 		
@@ -86,7 +72,7 @@ public final class PhoneCheckNumberBr extends ModelCheckerTemplateSimple<PhoneIn
 	
 	
 	private boolean checkLandLineLength(String phoneNumber) {
-	    if (phoneNumber.length() != 10)
+	    if (phoneNumber.length() != 8)
 	           return super.FAILED;
 	    
 	    return super.SUCCESS;

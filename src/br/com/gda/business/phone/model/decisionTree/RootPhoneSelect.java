@@ -58,10 +58,11 @@ public final class RootPhoneSelect implements DeciTree<PhoneInfo> {
 		ActionStd<PhoneInfo> select = new StdPhoneSelect(option);	
 		ActionLazy<PhoneInfo> mergeCountryPhone = new LazymapPhoneMergeCountryPhone(option.conn, option.schemaName);
 		ActionLazy<PhoneInfo> mergeForm = new LazymapPhoneMergeForm(option.conn, option.schemaName);
-		//TODO: COUNTRY PHONE nao esta sendo retornado
+
 		select.addPostAction(mergeCountryPhone);	
 		mergeCountryPhone.addPostAction(mergeForm);
-		actions.add(select);	
+		
+		actions.add(select);
 		
 		return actions;
 	}

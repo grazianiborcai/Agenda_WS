@@ -13,6 +13,7 @@ import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.masterData.info.StateInfo;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
+import br.com.gda.business.masterData.info.AreaPhoneInfo;
 import br.com.gda.business.masterData.info.BusinessInfo;
 import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.info.CountryInfo;
@@ -30,6 +31,7 @@ import br.com.gda.business.masterData.model.OrderStatusModelSelect;
 import br.com.gda.business.masterData.model.StateModelSelect;
 import br.com.gda.business.masterData.model.TimezoneModelSelect;
 import br.com.gda.business.masterData.model.WeekdayModelSelect;
+import br.com.gda.business.masterData.model.AreaPhoneModelSelect;
 import br.com.gda.business.masterData.model.BusinessModelSelect;
 import br.com.gda.business.masterData.model.CartCategModelSelect;
 import br.com.gda.business.masterData.model.CountryModelSelect;
@@ -64,6 +66,7 @@ public final class MasterDataResource {
 	private static final String SELECT_ORDER_STATUS = "/selectOrderStatus";
 	private static final String SELECT_COUNTRY_PHONE = "/selectCountryPhone";
 	private static final String SELECT_STATE = "/selectState";
+	private static final String SELECT_AREA_PHONE = "/selectAreaPhone";
 	
 	
 	@GET
@@ -333,7 +336,7 @@ public final class MasterDataResource {
 	@Path(SELECT_COUNTRY_PHONE)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectCountryPhone(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
-			                           @HeaderParam("codCountryPhone") @DefaultValue("-1") int codCountryPhone){
+			                           @HeaderParam("codCountryPhone") @DefaultValue("-1") int codCountryPhone) {
 		
 		CountryPhoneInfo recordInfo = new CountryPhoneInfo();		
 		recordInfo.codCountryPhone = codCountryPhone;
@@ -348,11 +351,31 @@ public final class MasterDataResource {
 	
 	
 	@GET
-	@Path(SELECT_STATE)
+	@Path(SELECT_AREA_PHONE)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectState(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
-			                    @HeaderParam("codCountry") String codCountry,
-			                    @HeaderParam("codState") String codState){
+								@HeaderParam("codCountryPhone") @DefaultValue("-1") int codCountryPhone,
+			                    @HeaderParam("codArea") String codArea) {
+		
+		AreaPhoneInfo recordInfo = new AreaPhoneInfo();		
+		recordInfo.codCountryPhone = codCountryPhone;
+		recordInfo.codArea = codArea;
+		recordInfo.codLanguage = codLanguage;
+		
+		
+		Model model = new AreaPhoneModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STATE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectAreaPhone(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                        @HeaderParam("codCountry") String codCountry,
+			                        @HeaderParam("codState") String codState) {
 		
 		StateInfo recordInfo = new StateInfo();		
 		recordInfo.codCountry = codCountry;

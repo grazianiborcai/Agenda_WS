@@ -113,6 +113,7 @@ public final class PhoneInsertSingle implements DaoStmt<PhoneInfo> {
 			stmt.setString(i++, recordInfo.fullNumber);
 			stmt.setString(i++, recordInfo.recordMode);
 			stmt.setTimestamp(i++, lastChanged);
+			stmt.setString(i++, recordInfo.complement);
 
 			return stmt;
 		}		

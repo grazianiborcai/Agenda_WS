@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.phone.model.decisionTree.NodePhoneUpdateT00;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazymapPhoneMergeCountryPhone extends ActionLazyTemplate<PhoneInfo, PhoneInfo> {
+public final class LazyPhoneNodeUpdateT00 extends ActionLazyTemplate<PhoneInfo, PhoneInfo> {
 
-	public LazymapPhoneMergeCountryPhone(Connection conn, String schemaName) {
+	public LazyPhoneNodeUpdateT00(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazymapPhoneMergeCountryPhone extends ActionLazyTemplate<Phon
 	
 	
 	@Override protected ActionStd<PhoneInfo> getInstanceOfActionHook(DeciTreeOption<PhoneInfo> option) {
-		return new MapPhoneMergeCountryPhone(option);
+		return new NodePhoneUpdateT00(option).toAction();
 	}
 	
 	

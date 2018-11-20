@@ -9,6 +9,7 @@ import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_COD_AREA_PHONE = "cod_area_phone";	
 	public static final String COL_COD_BUSINESS = "cod_business";
 	public static final String COL_COD_COUNTRY = "country";
 	public static final String COL_COD_COUNTRY_ALPHA3 = "country_alpha3";
@@ -60,6 +61,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		orderStatusTable();
 		countryPhoneTable();
 		stateTable();
+		areaPhoneTable();
 		
 		return tableColumns;
 	}
@@ -690,6 +692,49 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.STATE_TEXT_TABLE;
+		oneColumn.columnName = COL_COD_LANGUAGE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private void areaPhoneTable() {
+		final String TABLE_NAME = DaoDbTable.AREA_PHONE_TABLE;
+		
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_COUNTRY_PHONE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_AREA_PHONE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.AREA_PHONE_TEXT_TABLE;
+		oneColumn.columnName = COL_NAME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.AREA_PHONE_TEXT_TABLE;
 		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
