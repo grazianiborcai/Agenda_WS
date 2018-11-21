@@ -127,7 +127,7 @@ public final class PhoneUpdateSingle implements DaoStmt<PhoneInfo> {
 				stmt.setLong(i++, recordInfo.codEmployee);
 			}
 			
-			stmt.setString(i++, recordInfo.codCountry);
+			stmt.setInt(i++, recordInfo.codCountryPhone);
 			stmt.setString(i++, recordInfo.fullNumber);
 			stmt.setString(i++, recordInfo.recordMode);
 			stmt.setTimestamp(i++, lastChanged);

@@ -16,9 +16,9 @@ public final class PhoneCheckUpdate extends ModelCheckerTemplateSimple<PhoneInfo
 	
 	
 	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codPhone 	<= 0 	||
-			 recordInfo.codCountry 	== null		)		
+		if ( recordInfo.codOwner 		<= 0 	||
+			 recordInfo.codPhone 		<= 0 	||
+			 recordInfo.codCountryPhone	<= 0		)		
 			
 			return super.FAILED;
 		

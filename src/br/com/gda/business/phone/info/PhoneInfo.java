@@ -58,8 +58,15 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
-		result = result * 31 + (int) (codPhone ^ (codPhone >>> 32));
+		result = result * 31 + (int) (codOwner 		^ (codOwner 	>>> 32));
+		result = result * 31 + (int) (codPhone 		^ (codPhone 	>>> 32));		
+		result = result * 31 + (int) (codCustomer 	^ (codCustomer 	>>> 32));
+		result = result * 31 + (int) (codStore 		^ (codStore 	>>> 32));
+		result = result * 31 + (int) (codEmployee 	^ (codEmployee 	>>> 32));		
+		result = result * 31 + codCountryPhone;
+		
+		if (fullNumber != null)
+			result = result * 31 + fullNumber.hashCode();
 		
 		return result;
 	}
@@ -76,6 +83,12 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 		
 		
 		PhoneInfo obj = (PhoneInfo) o;		
-		return (codOwner == obj.codOwner && codPhone == obj.codPhone);
+		return (codOwner 		== obj.codOwner 		&& 
+				codPhone 		== obj.codPhone			&&	
+				codCustomer 	== obj.codCustomer 		&&
+				codStore		== obj.codStore			&&
+				codEmployee		== obj.codEmployee		&&
+				codCountryPhone == obj.codCountryPhone	&&
+				super.isStringEqual(fullNumber, obj.fullNumber));
 	}	
 }

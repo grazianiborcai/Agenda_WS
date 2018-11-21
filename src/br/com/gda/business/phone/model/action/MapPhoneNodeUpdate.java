@@ -2,7 +2,7 @@ package br.com.gda.business.phone.model.action;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionStdHelperMap;
-import br.com.gda.business.form.formPhone.info.FormPhoneInfo;
+import br.com.gda.business.masterData.info.CountryPhoneInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionMapOption;
@@ -14,15 +14,15 @@ public final class MapPhoneNodeUpdate implements ActionStd<PhoneInfo> {
 	
 	
 	public MapPhoneNodeUpdate(DeciTreeOption<PhoneInfo> option) {			
-		actionHelper = new ActionStdHelperMap<PhoneInfo, FormPhoneInfo>(buildOption(option));
+		actionHelper = new ActionStdHelperMap<PhoneInfo, CountryPhoneInfo>(buildOption(option));
 	}
 	
 	
 	
-	private ActionMapOption<PhoneInfo, FormPhoneInfo> buildOption(DeciTreeOption<PhoneInfo> treeOption) {
-		ActionMapOption<PhoneInfo, FormPhoneInfo> optionMap = ActionMapOption.copyFromTreeOption(treeOption);
+	private ActionMapOption<PhoneInfo, CountryPhoneInfo> buildOption(DeciTreeOption<PhoneInfo> treeOption) {
+		ActionMapOption<PhoneInfo, CountryPhoneInfo> optionMap = ActionMapOption.copyFromTreeOption(treeOption);
 		optionMap.visitorAction = VisimapPhoneNodeUpdate.class;
-		optionMap.visitorMap = VisimapPhoneFormKey.class;
+		optionMap.visitorMap = VisimapPhoneBucket.class;
 		
 		return optionMap;
 	}
