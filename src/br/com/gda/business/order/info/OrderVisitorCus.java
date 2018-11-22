@@ -13,9 +13,7 @@ final class OrderVisitorCus implements InfoMergerVisitor<OrderInfo, CusInfo, Ord
 		resultInfo.cusCpf = sourceOne.cpf;
 		resultInfo.cusEmail = sourceOne.email;
 		resultInfo.cusName = sourceOne.name;
-		//resultInfo.cusCodCountry = sourceOne.codCountry1;
-		//resultInfo.cusCodState = sourceOne.codState1;
-		//TODO: persitir endereco
+		//TODO: persitir endereco/telefone
 
 		return resultInfo;
 	}
@@ -23,11 +21,8 @@ final class OrderVisitorCus implements InfoMergerVisitor<OrderInfo, CusInfo, Ord
 	
 	
 	private void checkArgument(CusInfo sourceOne, OrderInfo sourceTwo) {
-		if (sourceOne.codOwner != sourceTwo.codOwner)
-			throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-		
-		if (sourceOne.codCustomer != sourceTwo.codCustomer)
-			throw new IllegalArgumentException("codCustomer" + SystemMessage.ARGUMENT_DONT_MATCH);
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -39,5 +34,11 @@ final class OrderVisitorCus implements InfoMergerVisitor<OrderInfo, CusInfo, Ord
 		} catch (Exception e) {
 			throw new IllegalStateException(e); 
 		}
+	}
+
+
+
+	@Override public boolean shouldWrite(CusInfo sourceOne, OrderInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codCustomer == sourceTwo.codCustomer);
 	}
 }

@@ -22,11 +22,8 @@ final class OrderVisitorMat implements InfoMergerVisitor<OrderInfo, MatInfo, Ord
 	
 	
 	private void checkArgument(MatInfo sourceOne, OrderInfo sourceTwo) {
-		if (sourceOne.codOwner != sourceTwo.codOwner)
-			throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-		
-		if (sourceOne.codMat != sourceTwo.codMat)
-			throw new IllegalArgumentException("codMat" + SystemMessage.ARGUMENT_DONT_MATCH);
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -38,5 +35,11 @@ final class OrderVisitorMat implements InfoMergerVisitor<OrderInfo, MatInfo, Ord
 		} catch (Exception e) {
 			throw new IllegalStateException(e); 
 		}
+	}
+
+
+
+	@Override public boolean shouldWrite(MatInfo sourceOne, OrderInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codMat == sourceTwo.codMat);
 	}
 }

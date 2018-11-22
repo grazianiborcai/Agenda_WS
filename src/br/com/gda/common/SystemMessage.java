@@ -40,6 +40,8 @@ public final class SystemMessage {
 	public static final String KEY_FIELD_NOT_NULL = "Key field should not be passed";
 	public static final String LIMIT_EXCEEDED = "Limit exceeded";	
 	public static final String MERGE_NOT_POSSIBLE = "Merge operation not possible";	
+	public static final String MERGE_RETURNED_NULL = "Merge operation returned null";	
+	public static final String MERGE_NOT_ALLOWED = "Merge operation not allowed";
 	public static final String MIN_SIZE_REQUIRED = "Size should be greater or equal to: ";	
 	public static final String MULTIPLE_RECORDS = "Multiple records found on DB";
 	public static final String NO_CHECK_PERFORMED = "Check operation was not performed";

@@ -26,13 +26,8 @@ final class PlanMergeVisitorStore implements InfoMergerVisitor<PlanInfo, PlanInf
 	
 	
 	private void checkArgument(PlanInfo sourceOne, StoreInfo sourceTwo) {		
-		for (PlanDataInfo eachData : sourceOne.datas) {
-			if (eachData.codOwner <= 0)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachData.codOwner != sourceTwo.codOwner)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-		}
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -54,5 +49,20 @@ final class PlanMergeVisitorStore implements InfoMergerVisitor<PlanInfo, PlanInf
 		copyStore.codLanguage = store.codLanguage;
 		
 		return copyStore;
+	}
+
+
+
+	@Override public boolean shouldWrite(PlanInfo sourceOne, StoreInfo sourceTwo) {
+		for (PlanDataInfo eachData : sourceOne.datas) {
+			if (eachData.codOwner <= 0)
+				return false;
+			
+			if (eachData.codOwner != sourceTwo.codOwner)
+				return false;
+		}
+		
+		
+		return true;
 	}
 }

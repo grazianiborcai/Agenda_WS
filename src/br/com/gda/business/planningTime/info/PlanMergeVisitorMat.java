@@ -45,20 +45,8 @@ final class PlanMergeVisitorMat implements InfoMergerVisitor<PlanInfo, PlanInfo,
 	
 	
 	private void checkArgument(PlanInfo sourceOne, MatInfo sourceTwo) {	
-		if (sourceTwo.codMat <= 0)
-			throw new IllegalArgumentException("sourceTwo.codMat" + SystemMessage.NULL_ARGUMENT);
-		
-		
-		for (PlanDataInfo eachData : sourceOne.datas) {
-			if (eachData.codOwner <= 0)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachData.codOwner != sourceTwo.codOwner)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-			
-			if (eachData.codMat <= 0)
-				throw new IllegalArgumentException("codMat" + SystemMessage.NULL_ARGUMENT);
-		}
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -144,5 +132,27 @@ final class PlanMergeVisitorMat implements InfoMergerVisitor<PlanInfo, PlanInfo,
 	
 	private boolean isRangeValid(LocalTime endTime, LocalTime maxTime) {
 		return (maxTime.isAfter(endTime) || maxTime.equals(endTime));
+	}
+
+
+
+	@Override public boolean shouldWrite(PlanInfo sourceOne, MatInfo sourceTwo) {
+		if (sourceTwo.codMat <= 0)
+			return false;
+		
+		
+		for (PlanDataInfo eachData : sourceOne.datas) {
+			if (eachData.codOwner <= 0)
+				return false;
+			
+			if (eachData.codOwner != sourceTwo.codOwner)
+				return false;
+			
+			if (eachData.codMat <= 0)
+				return false;
+		}
+		
+		
+		return true;
 	}
 }

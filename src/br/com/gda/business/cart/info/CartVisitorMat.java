@@ -24,12 +24,9 @@ final class CartVisitorMat implements InfoMergerVisitor<CartInfo, MatInfo, CartI
 	
 	
 	private void checkArgument(MatInfo sourceOne, CartInfo sourceTwo) {
-		if (sourceOne.codOwner != sourceTwo.codOwner)
-			throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-		
-		if (sourceOne.codMat != sourceTwo.codMat)
-			throw new IllegalArgumentException("codMat" + SystemMessage.ARGUMENT_DONT_MATCH);
-	}
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	}	
 	
 	
 	
@@ -40,6 +37,12 @@ final class CartVisitorMat implements InfoMergerVisitor<CartInfo, MatInfo, CartI
 		} catch (Exception e) {
 			throw new IllegalStateException(e); 
 		}
+	}
+
+
+	
+	@Override public boolean shouldWrite(MatInfo sourceOne, CartInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codMat == sourceTwo.codMat);
 	}
 }
 

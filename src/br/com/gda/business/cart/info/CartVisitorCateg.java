@@ -18,8 +18,8 @@ final class CartVisitorCateg implements InfoMergerVisitor<CartInfo, CartCategInf
 	
 	
 	private void checkArgument(CartCategInfo sourceOne, CartInfo sourceTwo) {
-		if (sourceOne.codItemCateg != sourceTwo.codItemCateg)
-			throw new IllegalArgumentException("codItemCateg" + SystemMessage.ARGUMENT_DONT_MATCH);
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -31,5 +31,11 @@ final class CartVisitorCateg implements InfoMergerVisitor<CartInfo, CartCategInf
 		} catch (Exception e) {
 			throw new IllegalStateException(e); 
 		}
+	}
+
+
+	
+	@Override public boolean shouldWrite(CartCategInfo sourceOne, CartInfo sourceTwo) {
+		return (sourceOne.codItemCateg == sourceTwo.codItemCateg);
 	}
 }

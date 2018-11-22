@@ -17,11 +17,8 @@ final class OrderVisitorOrder implements InfoMergerVisitor<OrderInfo, OrderInfo,
 	
 	
 	private void checkArgument(OrderInfo sourceOne, OrderInfo sourceTwo) {
-		if (sourceOne.codOwner != sourceTwo.codOwner)
-			throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-		
-		if (sourceOne.codCustomer != sourceTwo.codCustomer)
-			throw new IllegalArgumentException("codCustomer" + SystemMessage.ARGUMENT_DONT_MATCH);
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -33,5 +30,11 @@ final class OrderVisitorOrder implements InfoMergerVisitor<OrderInfo, OrderInfo,
 		} catch (Exception e) {
 			throw new IllegalStateException(e); 
 		}
+	}
+
+
+	
+	@Override public boolean shouldWrite(OrderInfo sourceOne, OrderInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codCustomer == sourceTwo.codCustomer);
 	}
 }

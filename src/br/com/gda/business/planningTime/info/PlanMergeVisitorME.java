@@ -32,29 +32,8 @@ final class PlanMergeVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, 
 	
 	
 	private void checkArgument(PlanInfo sourceOne, MatEmpInfo sourceTwo) {
-		if (sourceTwo.codMat <= 0)
-			throw new IllegalArgumentException("sourceTwo.codMat" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceTwo.codStore <= 0)
-			throw new IllegalArgumentException("sourceTwo.codEmployee" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceTwo.codEmployee <= 0)
-			throw new IllegalArgumentException("sourceTwo.codEmployee" + SystemMessage.NULL_ARGUMENT);
-		
-		
-		for (PlanDataInfo eachData : sourceOne.datas) {
-			if (eachData.codOwner <= 0)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.MANDATORY_FIELD_EMPTY);
-			
-			if (eachData.codOwner != sourceTwo.codOwner)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-			
-			if (eachData.codStore <= 0)
-				throw new IllegalArgumentException("codEmployee" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachData.codEmployee <= 0)
-				throw new IllegalArgumentException("codEmployee" + SystemMessage.NULL_ARGUMENT);
-		}
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -111,5 +90,36 @@ final class PlanMergeVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, 
 		} catch (CloneNotSupportedException e) {
 			throw new IllegalArgumentException(e);
 		}
+	}
+
+
+
+	@Override public boolean shouldWrite(PlanInfo sourceOne, MatEmpInfo sourceTwo) {
+		if (sourceTwo.codMat <= 0)
+			return false;
+		
+		if (sourceTwo.codStore <= 0)
+			return false;
+		
+		if (sourceTwo.codEmployee <= 0)
+			return false;
+		
+		
+		for (PlanDataInfo eachData : sourceOne.datas) {
+			if (eachData.codOwner <= 0)
+				return false;
+			
+			if (eachData.codOwner != sourceTwo.codOwner)
+				return false;
+			
+			if (eachData.codStore <= 0)
+				return false;
+			
+			if (eachData.codEmployee <= 0)
+				return false;
+		}
+		
+		
+		return true;
 	}
 }

@@ -21,14 +21,8 @@ final class StoreLDateVisitorPlan implements InfoMergerVisitor<StoreLDateInfo, P
 	
 	
 	private void checkArgument(PlanDataInfo sourceOne, StoreLDateInfo sourceTwo) {		
-		if (sourceTwo.codOwner <= 0)
-			throw new IllegalArgumentException("codOwner" + SystemMessage.NULL_ARGUMENT);		
-		
-		if (sourceOne.codOwner != sourceTwo.codOwner)
-			throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-		
-		if (sourceOne.date == null)
-			throw new IllegalArgumentException("codOwner" + SystemMessage.NULL_ARGUMENT);
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -40,5 +34,21 @@ final class StoreLDateVisitorPlan implements InfoMergerVisitor<StoreLDateInfo, P
 		} catch (CloneNotSupportedException e) {
 			throw new IllegalStateException(e);
 		}
+	}
+
+
+
+	@Override public boolean shouldWrite(PlanDataInfo sourceOne, StoreLDateInfo sourceTwo) {
+		if (sourceTwo.codOwner <= 0)
+			return false;		
+		
+		if (sourceOne.codOwner != sourceTwo.codOwner)
+			return false;
+		
+		if (sourceOne.date == null)
+			return false;
+		
+		
+		return true;
 	}
 }

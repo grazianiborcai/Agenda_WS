@@ -19,10 +19,13 @@ final class EmpWTimeVisitorSWT implements InfoMergerVisitor<EmpWTimeInfo, StoreE
 	
 	
 	private void checkArgument(StoreEmpInfo sourceOne, StoreWTimeInfo sourceTwo) {
-		if (sourceOne.codOwner != sourceTwo.codOwner)
-			throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-		
-		if (sourceOne.codStore != sourceTwo.codStore)
-			throw new IllegalArgumentException("codStore" + SystemMessage.ARGUMENT_DONT_MATCH);
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	}
+
+
+
+	@Override public boolean shouldWrite(StoreEmpInfo sourceOne, StoreWTimeInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codStore == sourceTwo.codStore);
 	}
 }

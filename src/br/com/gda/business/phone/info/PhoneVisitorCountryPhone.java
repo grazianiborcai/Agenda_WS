@@ -17,10 +17,8 @@ final class PhoneVisitorCountryPhone implements InfoMergerVisitor<PhoneInfo, Cou
 	
 	
 	private void checkArgument(CountryPhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		if (sourceOne.codCountryPhone != sourceTwo.codCountryPhone) {
-			logException(new IllegalArgumentException("codCountryPhone" + SystemMessage.ARGUMENT_DONT_MATCH));
-			throw new IllegalArgumentException("codCountryPhone" + SystemMessage.ARGUMENT_DONT_MATCH);
-		}
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -49,5 +47,11 @@ final class PhoneVisitorCountryPhone implements InfoMergerVisitor<PhoneInfo, Cou
 	private void logException(Exception e) {
 		Logger logger = LogManager.getLogger(this.getClass());
 		logger.error(e.getMessage(), e);
+	}
+
+
+
+	@Override public boolean shouldWrite(CountryPhoneInfo sourceOne, PhoneInfo sourceTwo) {
+		return (sourceOne.codCountryPhone == sourceTwo.codCountryPhone);
 	}
 }

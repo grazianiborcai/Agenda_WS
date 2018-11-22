@@ -19,10 +19,8 @@ final class CusVisitorGender implements InfoMergerVisitor<CusInfo, GenderInfo, C
 	
 	
 	private void checkArgument(GenderInfo sourceOne, CusInfo sourceTwo) {
-		if (sourceOne.codGender != sourceTwo.codGender) {
-			logException(new IllegalArgumentException("codGender" + SystemMessage.ARGUMENT_DONT_MATCH));
-			throw new IllegalArgumentException("codGender" + SystemMessage.ARGUMENT_DONT_MATCH);
-		}
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -43,6 +41,12 @@ final class CusVisitorGender implements InfoMergerVisitor<CusInfo, GenderInfo, C
 		sourceTwo.txtGender = sourceOne.txtGender;
 
 		return sourceTwo;
+	}
+	
+	
+	
+	@Override public boolean shouldWrite(GenderInfo sourceOne, CusInfo sourceTwo) {
+		return (sourceOne.codGender == sourceTwo.codGender);
 	}
 	
 	

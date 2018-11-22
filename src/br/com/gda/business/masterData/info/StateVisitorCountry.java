@@ -18,14 +18,8 @@ final class StateVisitorCountry implements InfoMergerVisitor<StateInfo, CountryI
 	
 	
 	private void checkArgument(CountryInfo sourceOne, StateInfo sourceTwo) {
-		if (sourceOne.codCountry == null)
-			throw new NullPointerException("sourceOne.codCountry" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceTwo.codCountry == null)
-			throw new NullPointerException("sourceTwo.codCountry" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceOne.codCountry.equals(sourceTwo.codCountry) == false)
-			throw new IllegalArgumentException("codCountry" + SystemMessage.ARGUMENT_DONT_MATCH);
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -37,5 +31,13 @@ final class StateVisitorCountry implements InfoMergerVisitor<StateInfo, CountryI
 		} catch (Exception e) {
 			throw new IllegalStateException(e); 
 		}
+	}
+
+
+
+	@Override public boolean shouldWrite(CountryInfo sourceOne, StateInfo sourceTwo) {
+		return (sourceOne.codCountry != null) &&
+			   (sourceTwo.codCountry != null) &&
+			   (sourceOne.codCountry.equals(sourceTwo.codCountry));
 	}
 }

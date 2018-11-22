@@ -18,8 +18,8 @@ final class CartVisitorWeekday implements InfoMergerVisitor<CartInfo, WeekdayInf
 	
 	
 	private void checkArgument(WeekdayInfo sourceOne, CartInfo sourceTwo) {
-		if (sourceOne.codWeekday != sourceTwo.codWeekday)
-			throw new IllegalArgumentException("codWeekday" + SystemMessage.ARGUMENT_DONT_MATCH);
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -31,5 +31,11 @@ final class CartVisitorWeekday implements InfoMergerVisitor<CartInfo, WeekdayInf
 		} catch (Exception e) {
 			throw new IllegalStateException(e); 
 		}
+	}
+
+
+	
+	@Override public boolean shouldWrite(WeekdayInfo sourceOne, CartInfo sourceTwo) {
+		return (sourceOne.codWeekday == sourceTwo.codWeekday);
 	}
 }

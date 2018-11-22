@@ -27,44 +27,8 @@ final class PlanPruneVisitorELD implements InfoMergerVisitor<PlanInfo, PlanInfo,
 	
 	
 	private void checkArgument(PlanInfo sourceOne, EmpLDateInfo sourceTwo) {		
-		if (sourceTwo.dateValidFrom == null)
-			throw new NullPointerException("sourceTwo.dateValidFrom" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceTwo.dateValidTo == null)
-			throw new NullPointerException("sourceTwo.dateValidTo" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceTwo.timeValidFrom == null)
-			throw new NullPointerException("sourceTwo.timeValidFrom" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceTwo.timeValidTo == null)
-			throw new NullPointerException("sourceTwo.timeValidTo" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceTwo.codStore <= 0)
-			throw new IllegalArgumentException("sourceTwo.codStore" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceTwo.codEmployee <= 0)
-			throw new IllegalArgumentException("sourceTwo.codEmployee" + SystemMessage.NULL_ARGUMENT);
-		
-		
-		for (PlanDataInfo eachData : sourceOne.datas) {
-			if (eachData.codOwner <= 0)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachData.codOwner != sourceTwo.codOwner)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-			
-			if (eachData.codStore <= 0)
-				throw new IllegalArgumentException("codStore" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachData.date == null)
-				throw new IllegalArgumentException("date" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachData.beginTime == null)
-				throw new IllegalArgumentException("beginTime" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachData.endTime == null)
-				throw new IllegalArgumentException("endTime" + SystemMessage.NULL_ARGUMENT);
-		}
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -96,5 +60,51 @@ final class PlanPruneVisitorELD implements InfoMergerVisitor<PlanInfo, PlanInfo,
 			return true;	
 		
 		return false;
+	}
+
+
+
+	@Override public boolean shouldWrite(PlanInfo sourceOne, EmpLDateInfo sourceTwo) {
+		if (sourceTwo.dateValidFrom == null)
+			return false;
+		
+		if (sourceTwo.dateValidTo == null)
+			return false;
+		
+		if (sourceTwo.timeValidFrom == null)
+			return false;
+		
+		if (sourceTwo.timeValidTo == null)
+			return false;
+		
+		if (sourceTwo.codStore <= 0)
+			return false;
+		
+		if (sourceTwo.codEmployee <= 0)
+			return false;
+		
+		
+		for (PlanDataInfo eachData : sourceOne.datas) {
+			if (eachData.codOwner <= 0)
+				return false;
+			
+			if (eachData.codOwner != sourceTwo.codOwner)
+				return false;
+			
+			if (eachData.codStore <= 0)
+				return false;
+			
+			if (eachData.date == null)
+				return false;
+			
+			if (eachData.beginTime == null)
+				return false;
+			
+			if (eachData.endTime == null)
+				return false;
+		}
+		
+		
+		return true;
 	}
 }

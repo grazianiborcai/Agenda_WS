@@ -25,10 +25,13 @@ final class MatStoreVisitorMat implements InfoMergerVisitor<MatStoreInfo, MatInf
 	
 	
 	private void checkArgument(MatInfo sourceOne, MatStoreInfo sourceTwo) {
-		if (sourceOne.codOwner != sourceTwo.codOwner)
-			throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-		
-		if (sourceOne.codMat != sourceTwo.codMat)
-			throw new IllegalArgumentException("codMat" + SystemMessage.ARGUMENT_DONT_MATCH);
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	}
+
+
+
+	@Override public boolean shouldWrite(MatInfo sourceOne, MatStoreInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codMat == sourceTwo.codMat);
 	}
 }

@@ -11,16 +11,15 @@ final class AddressVisitorForm implements InfoMergerVisitor<AddressInfo, FormAdd
 
 	@Override public AddressInfo writeRecord(FormAddressInfo sourceOne, AddressInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
+		
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
 	private void checkArgument(FormAddressInfo sourceOne, AddressInfo sourceTwo) {
-		if (sourceOne.codCountry.equals(sourceTwo.codCountry) == false) {
-			logException(new IllegalArgumentException("codCountry" + SystemMessage.ARGUMENT_DONT_MATCH));
-			throw new IllegalArgumentException("codCountry" + SystemMessage.ARGUMENT_DONT_MATCH);
-		}
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -42,6 +41,12 @@ final class AddressVisitorForm implements InfoMergerVisitor<AddressInfo, FormAdd
 			logException(e);
 			throw new IllegalStateException(e); 
 		}
+	}
+	
+	
+	
+	@Override public boolean shouldWrite(FormAddressInfo sourceOne, AddressInfo sourceTwo) {
+		return sourceOne.codCountry.equals(sourceTwo.codCountry);
 	}
 	
 	

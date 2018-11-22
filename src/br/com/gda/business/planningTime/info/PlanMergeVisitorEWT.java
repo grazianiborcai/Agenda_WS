@@ -33,42 +33,8 @@ final class PlanMergeVisitorEWT implements InfoMergerVisitor<PlanInfo, PlanInfo,
 	
 	
 	private void checkArgument(PlanInfo sourceOne, EmpWTimeInfo sourceTwo) {
-		if (sourceTwo.beginTime == null)
-			throw new NullPointerException("sourceTwo.beginTime" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceTwo.endTime == null)
-			throw new NullPointerException("sourceTwo.endTime" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceTwo.codEmployee <= 0)
-			throw new NullPointerException("sourceTwo.codEmployee" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceTwo.codStore <= 0)
-			throw new NullPointerException("sourceTwo.codStore" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sourceTwo.codWeekday <= 0)
-			throw new NullPointerException("sourceTwo.codWeekday" + SystemMessage.NULL_ARGUMENT);
-		
-		
-		
-		for (PlanDataInfo eachData : sourceOne.datas) {
-			if (eachData.codOwner <= 0)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachData.codOwner != sourceTwo.codOwner)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-			
-			if (eachData.beginTime == null)
-				throw new NullPointerException("beginTime" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachData.endTime == null)
-				throw new NullPointerException("endTime" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachData.codStore <= 0)
-				throw new IllegalArgumentException("codStore" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachData.codWeekday <= 0)
-				throw new IllegalArgumentException("codWeekday" + SystemMessage.NULL_ARGUMENT);
-		}
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -110,5 +76,50 @@ final class PlanMergeVisitorEWT implements InfoMergerVisitor<PlanInfo, PlanInfo,
 		} catch (CloneNotSupportedException e) {
 			throw new IllegalStateException(e);
 		}
+	}
+
+
+	
+	@Override public boolean shouldWrite(PlanInfo sourceOne, EmpWTimeInfo sourceTwo) {
+		if (sourceTwo.beginTime == null)
+			return false;
+		
+		if (sourceTwo.endTime == null)
+			return false;
+		
+		if (sourceTwo.codEmployee <= 0)
+			return false;
+		
+		if (sourceTwo.codStore <= 0)
+			return false;
+		
+		if (sourceTwo.codWeekday <= 0)
+			return false;
+		
+		
+		
+		for (PlanDataInfo eachData : sourceOne.datas) {
+			if (eachData.codOwner <= 0)
+				return false;
+			
+			if (eachData.codOwner != sourceTwo.codOwner)
+				return false;
+			
+			if (eachData.beginTime == null)
+				return false;
+			
+			if (eachData.endTime == null)
+				return false;
+			
+			if (eachData.codStore <= 0)
+				return false;
+			
+			if (eachData.codWeekday <= 0)
+				return false;
+		}
+		
+		
+		
+		return true;
 	}
 }

@@ -3,6 +3,9 @@ package br.com.gda.info;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemMessage;
 
 public abstract class InfoPruner<T,S> {
@@ -39,6 +42,7 @@ public abstract class InfoPruner<T,S> {
 			return prune(sourceOne, sourceTwo, visitor);
 			
 		} catch (Exception e) {
+			logException(e);
 			return null;
 		}
 	}
@@ -46,17 +50,28 @@ public abstract class InfoPruner<T,S> {
 	
 	
 	private void checkArgument(List<T> sourceOnes, List<S> sourceTwos) {
-		if (sourceOnes == null)
+		if (sourceOnes == null) {
+			logException(new NullPointerException("sourceOnes" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("sourceOnes" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (sourceTwos == null)
+		
+		if (sourceTwos == null) {
+			logException(new NullPointerException("sourceTwos" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("sourceTwos" + SystemMessage.NULL_ARGUMENT);		
+		}
 		
-		if (sourceOnes.isEmpty())
+		
+		if (sourceOnes.isEmpty()) {
+			logException(new IllegalArgumentException("sourceOnes" + SystemMessage.EMPTY_ARGUMENT));
 			throw new IllegalArgumentException("sourceOnes" + SystemMessage.EMPTY_ARGUMENT);
+		}
 		
-		if (sourceTwos.isEmpty())
+		
+		if (sourceTwos.isEmpty()) {
+			logException(new IllegalArgumentException("sourceTwos" + SystemMessage.EMPTY_ARGUMENT));
 			throw new IllegalArgumentException("sourceTwos" + SystemMessage.EMPTY_ARGUMENT);
+		}
 	}
 	
 	
@@ -69,13 +84,28 @@ public abstract class InfoPruner<T,S> {
 	
 	
 	private void checkArgument(T sourceOne, S sourceTwo, InfoPrunerVisitor<T,S> visitor) {
-		if (sourceOne == null)
+		if (sourceOne == null) {
+			logException(new NullPointerException("sourceOne" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("sourceOne" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (sourceTwo == null)
+		
+		if (sourceTwo == null) {
+			logException(new NullPointerException("sourceTwo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("sourceTwo" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (visitor == null)
+		
+		if (visitor == null) {
+			logException(new NullPointerException("visitor" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("visitor" + SystemMessage.NULL_ARGUMENT);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

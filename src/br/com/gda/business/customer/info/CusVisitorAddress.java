@@ -19,15 +19,8 @@ final class CusVisitorAddress implements InfoMergerVisitor<CusInfo, AddressInfo,
 	
 	
 	private void checkArgument(AddressInfo sourceOne, CusInfo sourceTwo) {
-		if (sourceOne.codOwner != sourceTwo.codOwner) {
-			logException(new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH));
-			throw new IllegalArgumentException("codOwner" + SystemMessage.ARGUMENT_DONT_MATCH);
-		}
-		
-		if (sourceOne.codCustomer != sourceTwo.codCustomer) {
-			logException(new IllegalArgumentException("codCustomer" + SystemMessage.ARGUMENT_DONT_MATCH));
-			throw new IllegalArgumentException("codCustomer" + SystemMessage.ARGUMENT_DONT_MATCH);
-		}
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -52,8 +45,14 @@ final class CusVisitorAddress implements InfoMergerVisitor<CusInfo, AddressInfo,
 	
 	
 	
+	@Override public boolean shouldWrite(AddressInfo sourceOne, CusInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codCustomer == sourceTwo.codCustomer);
+	}	
+	
+	
+	
 	private void logException(Exception e) {
 		Logger logger = LogManager.getLogger(this.getClass());
 		logger.error(e.getMessage(), e);
-	}	
+	}
 }

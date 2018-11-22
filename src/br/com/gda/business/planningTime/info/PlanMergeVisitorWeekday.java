@@ -32,13 +32,8 @@ final class PlanMergeVisitorWeekday implements InfoMergerVisitor<PlanInfo, PlanI
 	
 	
 	private void checkArgument(PlanInfo sourceOne, WeekdayInfo sourceTwo) {		
-		for (PlanDataInfo eachData : sourceOne.datas) {
-			if (eachData.codOwner <= 0)
-				throw new IllegalArgumentException("codOwner" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachData.codWeekday <= 0)
-				throw new IllegalArgumentException("codWeekday" + SystemMessage.NULL_ARGUMENT);
-		}
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -59,5 +54,20 @@ final class PlanMergeVisitorWeekday implements InfoMergerVisitor<PlanInfo, PlanI
 		} catch (CloneNotSupportedException e) {
 			throw new IllegalStateException(e);
 		}
+	}
+
+
+	
+	@Override public boolean shouldWrite(PlanInfo sourceOne, WeekdayInfo sourceTwo) {
+		for (PlanDataInfo eachData : sourceOne.datas) {
+			if (eachData.codOwner <= 0)
+				return false;
+			
+			if (eachData.codWeekday <= 0)
+				return false;
+		}
+		
+		
+		return true;
 	}
 }

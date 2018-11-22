@@ -19,8 +19,8 @@ final class FeeStoreVisitorDefault implements InfoMergerVisitor<FeeStoreInfo, Fe
 	
 	
 	private void checkArgument(FeeDefaultInfo sourceOne, FeeStoreInfo sourceTwo) {
-		if (sourceOne.codFeeCateg != sourceTwo.codFeeCateg)
-			throw new IllegalArgumentException("codFeeCateg" + SystemMessage.ARGUMENT_DONT_MATCH);
+		if (shouldWrite(sourceOne, sourceTwo) == false)
+			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
@@ -32,5 +32,11 @@ final class FeeStoreVisitorDefault implements InfoMergerVisitor<FeeStoreInfo, Fe
 		} catch (Exception e) {
 			throw new IllegalStateException(e); 
 		}
+	}
+	
+
+	
+	@Override public boolean shouldWrite(FeeDefaultInfo sourceOne, FeeStoreInfo sourceTwo) {
+		return (sourceOne.codFeeCateg == sourceTwo.codFeeCateg);
 	}
 }

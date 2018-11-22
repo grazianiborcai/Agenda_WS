@@ -3,6 +3,9 @@ package br.com.gda.info;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemMessage;
 
 public class InfoCopierTemplate<T,S> implements InfoCopier<T,S> {
@@ -10,7 +13,7 @@ public class InfoCopierTemplate<T,S> implements InfoCopier<T,S> {
 	
 	
 	public InfoCopierTemplate() {
-		
+		resultUniquifier = null;
 	}
 	
 	
@@ -23,8 +26,10 @@ public class InfoCopierTemplate<T,S> implements InfoCopier<T,S> {
 	
 	
 	private void checkArgument(InfoUniquifier<T> uniquifier) {
-		if (uniquifier == null)
+		if (uniquifier == null) {
+			logException(new NullPointerException("uniquifier" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("uniquifier" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
@@ -37,22 +42,24 @@ public class InfoCopierTemplate<T,S> implements InfoCopier<T,S> {
 	
 	
 	private void checkArgument(S source) {
-		if (source == null)
+		if (source == null) {
+			logException(new NullPointerException("source" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("source" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 
 	
 	
 	protected T makeCopyHook(S source) {
 		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 
 	
 	
 	public List<T> makeCopy(List<S> sources) {
-		checkArgument(sources);
-		
+		checkArgument(sources);		
 		List<T> results = new ArrayList<>();
 		
 		for (S eachSource : sources) {
@@ -60,7 +67,12 @@ public class InfoCopierTemplate<T,S> implements InfoCopier<T,S> {
 			results.add(eachResult);
 		}
 		
-		
+		return uniquify(results);
+	}
+	
+	
+	
+	private List<T> uniquify(List<T> results) {
 		if (resultUniquifier == null)
 			return results;
 		
@@ -70,10 +82,21 @@ public class InfoCopierTemplate<T,S> implements InfoCopier<T,S> {
 	
 	
 	private void checkArgument(List<S> sources) {
-		if (sources == null)
+		if (sources == null) {
+			logException(new NullPointerException("sources" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("sources" + SystemMessage.NULL_ARGUMENT);
+		}
 		
-		if (sources.isEmpty())
+		
+		if (sources.isEmpty()) {
+			logException(new NullPointerException("sources" + SystemMessage.EMPTY_ARGUMENT));
 			throw new NullPointerException("sources" + SystemMessage.EMPTY_ARGUMENT);
+		}
+	}
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }
