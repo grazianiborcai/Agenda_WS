@@ -123,6 +123,12 @@ public final class CusUpdateSingle implements DaoStmt<CusInfo> {
 			
 			stmt.setTimestamp(i++, lastChanged);
 			
+			if (recordInfo.codPerson >= 0) {
+				stmt.setLong(i++, recordInfo.codPerson);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
 			
 			return stmt;
 		}		

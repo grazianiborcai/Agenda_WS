@@ -1,17 +1,14 @@
-package br.com.gda.business.customer.info;
+package br.com.gda.business.person.info;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class CusInfo extends InfoRecord implements Cloneable {
+public final class PersonInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public long codCustomer;
 	public long codPerson;
 	public String cpf;
 	public String name;
@@ -19,34 +16,29 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public String txtGender;
 	public LocalDate birthDate;
 	public String email;
-	public List<AddressInfo> addresses;
-	public List<PhoneInfo> phones;
 	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	
 	
-	public CusInfo() {
+	public PersonInfo() {
 		codOwner = DefaultValue.number();
-		codCustomer = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codGender = DefaultValue.gender();
-		addresses = DefaultValue.list();
-		phones = DefaultValue.list();
 		codLanguage = DefaultValue.language();		
 		recordMode = DefaultValue.recordMode();		
 	}
 	
 	
 	
-	public static CusInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, CusInfo.class);
+	public static PersonInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, PersonInfo.class);
 	}
 	
 	
 	
-	public static List<CusInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, CusInfo.class);
+	public static List<PersonInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, PersonInfo.class);
 	}
 	
 	
@@ -60,8 +52,8 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
-		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
+		result = result * 31 + (int) (codOwner  ^ (codOwner  >>> 32));
+		result = result * 31 + (int) (codPerson ^ (codPerson >>> 32));
 		
 		return result;
 	}
@@ -73,11 +65,11 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof CusInfo))
+		if (!(o instanceof PersonInfo))
 			return false;
 		
 		
-		CusInfo obj = (CusInfo) o;		
-		return (codOwner == obj.codOwner && codCustomer == obj.codCustomer);
+		PersonInfo obj = (PersonInfo) o;		
+		return (codOwner == obj.codOwner && codPerson == obj.codPerson);
 	}
 }

@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.gda.business.address.model.AddressModelInsert;
 import br.com.gda.business.address.model.AddressModelUpdate;
+import br.com.gda.business.person.model.PersonModelInsert;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.PhoneModelInsert;
 import br.com.gda.business.phone.model.PhoneModelSelect;
@@ -25,6 +26,7 @@ public class TestResource {
 	private static final String INSERT_PHONE = "/insertPhone";
 	private static final String UPDATE_PHONE = "/updatePhone";
 	private static final String SELECT_PHONE = "/selectPhone";
+	private static final String INSERT_PERSON = "/insertPerson";
 	
 	
 	
@@ -97,5 +99,18 @@ public class TestResource {
 		Model model = new PhoneModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_PERSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertPerson(String incomingData) {
+		
+		
+		Model model = new PersonModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();	
 	}
 }

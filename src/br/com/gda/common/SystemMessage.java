@@ -236,7 +236,7 @@ public final class SystemMessage {
 	public static final String ADDRESS_FLAG_DELETE_FALSE = "No Address flagged to deletion";
 	public static final String ADDRESS_LIMIT_EXCEEDED = "Address limit exceeded. Delete old addresses before adding new ones";
 	public static final String ADDRESS_COD_IS_FILLED = "Code Address should be blank";
-		
+			
 	
 	
 	//Form
@@ -244,4 +244,18 @@ public final class SystemMessage {
 	public static final String FORM_ADDRESS_NOT_FOUND = "Address form not found on DB";
 	public static final String FORM_ADDRESS_INVALID = "Invalid address form";
 	public static final String FORM_PHONE_INVALID = "Invalid address form";
+	
+	
+	
+	//Person
+	public static final String PERSON_CPF_BLANK = "CPF is empty";
+	public static final String PERSON_CPF_INVALID_NUMBER = "Only numbers are allowed for CPF";
+	public static final String PERSON_CPF_INVALID_LENGTH = "Invalid CPF length";
+	public static final String PERSON_CPF_INVALID_SEQUENCE = "Invalid sequence for CPF";	
+	public static final String PERSON_CPF_INVALID = "CPF is invalid";
+	public static final String PERSON_CPF_ALREADY_EXIST = "CPF already exist on DB";	
+	public static final String PERSON_CPF_NOT_FOUND = "CPF not found on DB";	
+	public static final String PERSON_EMAIL_BLANK = "Email is empty";
+	public static final String PERSON_EMAIL_ALREADY_EXIST = "e-email already exist on DB";	
+	public static final String PERSON_EMAIL_NOT_FOUND = "e-email not found on DB";	
 }

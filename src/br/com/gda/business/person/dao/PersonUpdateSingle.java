@@ -1,60 +1,73 @@
-package br.com.gda.business.customer.dao;
+package br.com.gda.business.person.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
-import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
-import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtParamTranslator;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class CusInsertSingle implements DaoStmt<CusInfo> {	
-	private DaoStmt<CusInfo> stmtSql;
-	private DaoStmtOption<CusInfo> stmtOption;
+public final class PersonUpdateSingle implements DaoStmt<PersonInfo> {
+	private DaoStmt<PersonInfo> stmtSql;
+	private DaoStmtOption<PersonInfo> stmtOption;
 	
 	
-	
-	public CusInsertSingle(Connection conn, CusInfo recordInfo, String schemaName) {
+	public PersonUpdateSingle(Connection conn, PersonInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
-		
+		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, CusInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, PersonInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.CUS_TABLE;
+		this.stmtOption.tableName = DaoDbTable.PERSON_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser(recordInfo);
-		this.stmtOption.whereClause = null;
+		this.stmtOption.resultParser = null;
+		this.stmtOption.whereClause = buildWhereClause();
+	}
+	
+	
+	
+	private String buildWhereClause() {
+		final boolean DONT_IGNORE_NULL = false;
+		final boolean IGNORE_NON_PK = true;
+		final boolean IGNORE_RECORD_MODE = true;		
+		
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		whereOption.ignoreNull = DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;
+		
+		DaoStmtWhere whereClause = new PersonWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption);
 	}
-		
 	
 	
+
 	@Override public void generateStmt() throws SQLException {
 		stmtSql.generateStmt();
 		
@@ -74,14 +87,20 @@ public final class CusInsertSingle implements DaoStmt<CusInfo> {
 
 	
 	
-	@Override public List<CusInfo> getResultset() {
+	@Override public List<PersonInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<CusInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusInfo recordInfo) throws SQLException {
+	@Override public DaoStmt<PersonInfo> getNewInstance() {
+		return new PersonUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	}
+	
+	
+	
+	private class ParamTranslator implements DaoStmtParamTranslator<PersonInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PersonInfo recordInfo) throws SQLException {	
 			Date birthDate = DaoFormatter.localToSqlDate(recordInfo.birthDate);
 			
 			Timestamp lastChanged = null;
@@ -89,7 +108,6 @@ public final class CusInsertSingle implements DaoStmt<CusInfo> {
 				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
 			
 			int i = 1;
-			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setString(i++, recordInfo.cpf);
 			stmt.setString(i++, recordInfo.name);
 			
@@ -100,45 +118,13 @@ public final class CusInsertSingle implements DaoStmt<CusInfo> {
 			}
 			
 			stmt.setDate(i++, birthDate);
-			stmt.setString(i++, recordInfo.email);			
+			stmt.setString(i++, recordInfo.email);	
 			stmt.setString(i++, recordInfo.recordMode);
 			
 			stmt.setTimestamp(i++, lastChanged);
 			
-			if (recordInfo.codPerson >= 0) {
-				stmt.setLong(i++, recordInfo.codPerson);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
 			
 			return stmt;
 		}		
-	}
-	
-	
-	
-	@Override public DaoStmt<CusInfo> getNewInstance() {
-		return new CusInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser<CusInfo> {
-		private CusInfo recordInfo;
-		
-		public ResultParser(CusInfo recordToParse) {
-			recordInfo = recordToParse;
-		}
-		
-		
-		
-		@Override public List<CusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<CusInfo> finalResult = new ArrayList<>();
-			recordInfo.codCustomer = lastId;
-			finalResult.add(recordInfo);			
-			return finalResult;
-		}
 	}
 }

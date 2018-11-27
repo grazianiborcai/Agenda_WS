@@ -1,4 +1,4 @@
-package br.com.gda.business.customer.dao;
+package br.com.gda.business.person.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -8,9 +8,8 @@ import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
-public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
+public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BIRTH_DATE = "birth_date";
-	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_GENDER = "cod_gender";
 	public static final String COL_CPF = "cpf";
 	public static final String COL_COD_OWNER = "cod_owner";
@@ -25,7 +24,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	
-	public CusDbTableColumn() {
+	public PersonDbTableColumn() {
 		super();
 	}
 	
@@ -40,7 +39,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	private void buildCustomerTable() {
-		final String TABLE_NAME = DaoDbTable.CUS_TABLE;
+		final String TABLE_NAME = DaoDbTable.PERSON_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
@@ -55,7 +54,7 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_CUSTOMER;
+		oneColumn.columnName = COL_COD_PERSON;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
@@ -112,14 +111,6 @@ public final class CusDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_LAST_CHANGED;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PERSON;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

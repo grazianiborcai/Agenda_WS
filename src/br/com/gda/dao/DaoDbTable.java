@@ -45,6 +45,7 @@ public final class DaoDbTable {
 	public static final String ORDER_STATUS_TABLE = "order_status";
 	public static final String ORDER_STATUS_TEXT_TABLE = "order_status_text";
 	public static final String OWNER_TABLE = "owner";
+	public static final String PERSON_TABLE = "person";
 	public static final String PHONE_TABLE = "phone";
 	public static final String PHONE_FORM_TABLE = "phone_form";
 	public static final String POSITION_TABLE = "position";

@@ -1,4 +1,4 @@
-package br.com.gda.business.customer.dao;
+package br.com.gda.business.person.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -10,7 +10,7 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoFormatter;
@@ -21,13 +21,13 @@ import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtParamTranslator;
 
-public final class CusInsertSingle implements DaoStmt<CusInfo> {	
-	private DaoStmt<CusInfo> stmtSql;
-	private DaoStmtOption<CusInfo> stmtOption;
+public final class PersonInsertSingle implements DaoStmt<PersonInfo> {	
+	private DaoStmt<PersonInfo> stmtSql;
+	private DaoStmtOption<PersonInfo> stmtOption;
 	
 	
 	
-	public CusInsertSingle(Connection conn, CusInfo recordInfo, String schemaName) {
+	public PersonInsertSingle(Connection conn, PersonInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 		
@@ -35,12 +35,12 @@ public final class CusInsertSingle implements DaoStmt<CusInfo> {
 	
 	
 	
-	private void buildStmtOption(Connection conn, CusInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, PersonInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.CUS_TABLE;
+		this.stmtOption.tableName = DaoDbTable.PERSON_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser(recordInfo);
@@ -74,14 +74,14 @@ public final class CusInsertSingle implements DaoStmt<CusInfo> {
 
 	
 	
-	@Override public List<CusInfo> getResultset() {
+	@Override public List<PersonInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<CusInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements DaoStmtParamTranslator<PersonInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PersonInfo recordInfo) throws SQLException {
 			Date birthDate = DaoFormatter.localToSqlDate(recordInfo.birthDate);
 			
 			Timestamp lastChanged = null;
@@ -105,38 +105,32 @@ public final class CusInsertSingle implements DaoStmt<CusInfo> {
 			
 			stmt.setTimestamp(i++, lastChanged);
 			
-			if (recordInfo.codPerson >= 0) {
-				stmt.setLong(i++, recordInfo.codPerson);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
 			return stmt;
 		}		
 	}
 	
 	
 	
-	@Override public DaoStmt<CusInfo> getNewInstance() {
-		return new CusInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<PersonInfo> getNewInstance() {
+		return new PersonInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<CusInfo> {
-		private CusInfo recordInfo;
+	private static class ResultParser implements DaoResultParser<PersonInfo> {
+		private PersonInfo recordInfo;
 		
-		public ResultParser(CusInfo recordToParse) {
+		public ResultParser(PersonInfo recordToParse) {
 			recordInfo = recordToParse;
 		}
 		
 		
 		
-		@Override public List<CusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<CusInfo> finalResult = new ArrayList<>();
-			recordInfo.codCustomer = lastId;
+		@Override public List<PersonInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<PersonInfo> finalResult = new ArrayList<>();
+			recordInfo.codPerson = lastId;
 			finalResult.add(recordInfo);			
 			return finalResult;
 		}

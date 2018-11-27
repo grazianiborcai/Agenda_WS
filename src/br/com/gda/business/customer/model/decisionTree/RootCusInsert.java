@@ -98,14 +98,6 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
 		checker = new CusCheckExistEmail(checkerOption);
 		queue.add(checker);	
-		/*
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = IS_VALID;		
-		checker = new CusCheckPhone1_(checkerOption);
-		queue.add(checker);	
-		*/
 		
 		//TODO: verificar se Addresses e customer possuem o mesmo codigo
 		

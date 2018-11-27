@@ -185,4 +185,16 @@ public final class SystemCode {
 	public static final int FORM_ADDRESS_NOT_FOUND						= 1701;
 	public static final int FORM_ADDRESS_INVALID						= 1702;
 	public static final int FORM_PHONE_INVALID							= 1703;
+	
+	//Person
+	public static final int PERSON_CPF_BLANK							= 1750;
+	public static final int PERSON_CPF_INVALID_NUMBER					= 1751;
+	public static final int PERSON_CPF_INVALID_LENGTH					= 1752;
+	public static final int PERSON_CPF_INVALID_SEQUENCE					= 1753;
+	public static final int PERSON_CPF_INVALID							= 1754;
+	public static final int PERSON_CPF_ALREADY_EXIST					= 1755;
+	public static final int PERSON_CPF_NOT_FOUND						= 1756;	
+	public static final int PERSON_EMAIL_BLANK							= 1757;
+	public static final int PERSON_EMAIL_ALREADY_EXIST					= 1758;
+	public static final int PERSON_EMAIL_NOT_FOUND						= 1759;	
 }
