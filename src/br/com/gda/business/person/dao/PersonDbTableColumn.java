@@ -10,14 +10,16 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BIRTH_DATE = "birth_date";
+	public static final String COL_COD_ENTITY_CATEG = "cod_entity_categ";
 	public static final String COL_COD_GENDER = "cod_gender";
-	public static final String COL_CPF = "cpf";
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_EMAIL = "email";
-	public static final String COL_LAST_CHANGED = "last_changed";	
-	public static final String COL_NAME = "name";
 	public static final String COL_COD_PERSON = "cod_person";
+	public static final String COL_COD_OWNER = "cod_owner";
+	public static final String COL_CPF = "cpf";
+	public static final String COL_EMAIL = "email";
+	public static final String COL_LAST_CHANGED = "last_changed";
+	public static final String COL_NAME = "name";
 	public static final String COL_RECORD_MODE = "record_mode";	
+	
 	
 	
 	
@@ -111,6 +113,14 @@ public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_LAST_CHANGED;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ENTITY_CATEG;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

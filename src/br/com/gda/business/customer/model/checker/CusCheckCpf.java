@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.common.ModelCheckerCpf;
+import br.com.gda.model.checker.common.ModelCheckerCpf_;
 
 public final class CusCheckCpf implements ModelChecker<CusInfo> {
 	private final boolean SUCCESS = true;
@@ -13,7 +13,7 @@ public final class CusCheckCpf implements ModelChecker<CusInfo> {
 	private ModelChecker<String> checkerCpf;
 	
 	public CusCheckCpf() {
-		checkerCpf = new ModelCheckerCpf();
+		checkerCpf = new ModelCheckerCpf_();
 	}
 
 	

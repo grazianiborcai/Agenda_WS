@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.action.LazyPersonInsert;
 import br.com.gda.business.person.model.action.StdPersonEnforceLChanged;
+import br.com.gda.business.person.model.checker.PersonCheckEntityCateg;
 import br.com.gda.business.person.model.checker.PersonCheckGender;
 import br.com.gda.business.person.model.checker.PersonCheckOwner;
 import br.com.gda.business.person.model.checker.PersonCheckWrite;
@@ -60,6 +61,13 @@ public final class RootPersonInsert implements DeciTree<PersonInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new PersonCheckGender(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new PersonCheckEntityCateg(checkerOption);
 		queue.add(checker);	
 			
 		return new ModelCheckerQueue<>(queue);

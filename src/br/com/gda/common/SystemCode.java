@@ -94,6 +94,8 @@ public final class SystemCode {
 	public static final int STATE_NOT_FOUND								= 1177;
 	public static final int AREA_PHONE_ALREADY_EXIST					= 1178;
 	public static final int AREA_PHONE_NOT_FOUND						= 1179;
+	public static final int ENTITY_CATEG_ALREADY_EXIST					= 1180;
+	public static final int ENTITY_CATEG_NOT_FOUND						= 1181;
 	
 	//Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
@@ -197,4 +199,14 @@ public final class SystemCode {
 	public static final int PERSON_EMAIL_BLANK							= 1757;
 	public static final int PERSON_EMAIL_ALREADY_EXIST					= 1758;
 	public static final int PERSON_EMAIL_NOT_FOUND						= 1759;	
+	public static final int PERSON_ALREADY_EXIST 						= 1760;
+	public static final int PERSON_NOT_FOUND 							= 1761;
+	public static final int PERSON_EMAIL_CHANGED 						= 1762;
+	public static final int PERSON_EMAIL_NOT_CHANGED					= 1763;	
+	public static final int PERSON_CPF_CHANGED 							= 1764;
+	public static final int PERSON_CPF_NOT_CHANGED						= 1765;
+	public static final int PERSON_CPF_CANT_BE_CHANGED					= 1766;
+	public static final int PERSON_EMAIL_CANT_BE_CHANGED				= 1767;
+	public static final int PERSON_CPF_ERASURED							= 1768;
+	public static final int PERSON_CPF_NOT_ERASURED						= 1769;
 }

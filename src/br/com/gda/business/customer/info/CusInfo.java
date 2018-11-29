@@ -24,6 +24,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
+	//public String codEntityCateg;
 	
 	
 	public CusInfo() {

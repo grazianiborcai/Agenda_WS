@@ -43,6 +43,10 @@ public final class PersonWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, recordInfo.email);
 					break;
 					
+				case PersonDbTableColumn.COL_COD_ENTITY_CATEG :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codEntityCateg);
+					break;
+					
 				case PersonDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;

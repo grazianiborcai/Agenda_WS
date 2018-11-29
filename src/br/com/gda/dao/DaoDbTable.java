@@ -21,6 +21,8 @@ public final class DaoDbTable {
 	public static final String EMP_TABLE = "employee";	
 	public static final String EMP_WT_TABLE = "employee_working_time";
 	public static final String EMP_LD_TABLE = "employee_leave_time";
+	public static final String ENTITY_CATEG_TABLE = "entity_categ";
+	public static final String ENTITY_CATEG_TEXT_TABLE = "entity_categ_text";
 	public static final String FEE_CATEG_TABLE = "fee_categ";
 	public static final String FEE_CATEG_TEXT_TABLE = "fee_categ_text";
 	public static final String FEE_DEFAULT_TABLE = "fee_default";

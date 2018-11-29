@@ -73,7 +73,9 @@ public final class SystemMessage {
 	public static final String CURRENCY_ALREADY_EXIST = "Currency already exist on DB";
 	public static final String CURRENCY_NOT_FOUND = "Currency not found on DB";	
 	public static final String EMP_POS_ALREADY_EXIST = "Position already exist on DB";
-	public static final String EMP_POS_NOT_FOUND = "Position not found on DB";
+	public static final String EMP_POS_NOT_FOUND = "Position not found on DB";	
+	public static final String ENTITY_CATEG_ALREADY_EXIST = "Entity Category already exist on DB";
+	public static final String ENTITY_CATEG_NOT_FOUND = "Entity Category not found on DB";		
 	public static final String FEE_CATEG_ALREADY_EXIST = "Fee Category already exist on DB";
 	public static final String FEE_CATEG_NOT_FOUND = "Fee Category not found on DB";
 	public static final String GENDER_ALREADY_EXIST = "Gender already exist on DB";
@@ -258,4 +260,14 @@ public final class SystemMessage {
 	public static final String PERSON_EMAIL_BLANK = "Email is empty";
 	public static final String PERSON_EMAIL_ALREADY_EXIST = "e-email already exist on DB";	
 	public static final String PERSON_EMAIL_NOT_FOUND = "e-email not found on DB";	
+	public static final String PERSON_ALREADY_EXIST = "Person already exist on DB";	
+	public static final String PERSON_NOT_FOUND = "Person not found on DB";	
+	public static final String PERSON_EMAIL_NOT_CHANGED = "e-mail not changed";	
+	public static final String PERSON_EMAIL_CHANGED = "e-mail has been changed";	
+	public static final String PERSON_CPF_NOT_CHANGED = "CPF not changed";	
+	public static final String PERSON_CPF_CHANGED = "CPF has been changed";	
+	public static final String PERSON_CPF_CANT_BE_CHANGED = "CPF can't be changed";	
+	public static final String PERSON_EMAIL_CANT_BE_CHANGED = "e-mail can't be changed";	
+	public static final String PERSON_CPF_NOT_ERASURED = "CPF not erasured";	
+	public static final String PERSON_CPF_ERASURED = "CPF can't be erasured";	
 }

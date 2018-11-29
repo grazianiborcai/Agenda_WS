@@ -55,7 +55,7 @@ public final class NodePersonInsertL1 implements DeciTree<PersonInfo> {
 	private List<ActionStd<PersonInfo>> buildActionsOnPassed(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> nodeCpf = new NodePersonInsertCpf(option).toAction();		
+		ActionStd<PersonInfo> nodeCpf = new NodePersonCpf(option).toAction();		
 		actions.add(nodeCpf);	
 		return actions;
 	}

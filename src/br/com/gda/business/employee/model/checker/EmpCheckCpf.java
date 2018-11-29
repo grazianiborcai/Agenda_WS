@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.common.ModelCheckerCpf;
+import br.com.gda.model.checker.common.ModelCheckerCpf_;
 
 public final class EmpCheckCpf implements ModelChecker<EmpInfo> {
 	private final boolean RESULT_SUCCESS = true;
@@ -13,7 +13,7 @@ public final class EmpCheckCpf implements ModelChecker<EmpInfo> {
 	private ModelChecker<String> checkerCpf;
 	
 	public EmpCheckCpf() {
-		checkerCpf = new ModelCheckerCpf();
+		checkerCpf = new ModelCheckerCpf_();
 	}
 
 	

@@ -101,9 +101,9 @@ public final class PersonInsertSingle implements DaoStmt<PersonInfo> {
 			
 			stmt.setDate(i++, birthDate);
 			stmt.setString(i++, recordInfo.email);			
-			stmt.setString(i++, recordInfo.recordMode);
-			
+			stmt.setString(i++, recordInfo.recordMode);			
 			stmt.setTimestamp(i++, lastChanged);
+			stmt.setString(i++, recordInfo.codEntityCateg);
 			
 			return stmt;
 		}		

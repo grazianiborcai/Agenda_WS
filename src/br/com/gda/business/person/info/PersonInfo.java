@@ -14,6 +14,7 @@ public final class PersonInfo extends InfoRecord implements Cloneable {
 	public String name;
 	public int codGender;
 	public String txtGender;
+	public String codEntityCateg;
 	public LocalDate birthDate;
 	public String email;
 	public String codLanguage;
@@ -54,6 +55,19 @@ public final class PersonInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner  ^ (codOwner  >>> 32));
 		result = result * 31 + (int) (codPerson ^ (codPerson >>> 32));
+		result = result * 31 + (int) (codGender ^ (codGender >>> 32));
+		
+		if (cpf != null)
+			result = result * 31 + cpf.hashCode();
+		
+		if (name != null)
+			result = result * 31 + name.hashCode();
+		
+		if (codEntityCateg != null)
+			result = result * 31 + codEntityCateg.hashCode();
+		
+		if (birthDate != null)
+			result = result * 31 + birthDate.hashCode();
 		
 		return result;
 	}
@@ -70,6 +84,12 @@ public final class PersonInfo extends InfoRecord implements Cloneable {
 		
 		
 		PersonInfo obj = (PersonInfo) o;		
-		return (codOwner == obj.codOwner && codPerson == obj.codPerson);
+		return (codOwner 	== obj.codOwner 	&& 
+				codPerson 	== obj.codPerson	&&
+				codGender 	== obj.codGender	&&
+				super.isStringEqual(cpf, obj.cpf)						&&
+				super.isStringEqual(name, obj.name)						&&
+				super.isStringEqual(codEntityCateg, obj.codEntityCateg)	&&
+				super.isDateEqual(birthDate, obj.birthDate)					);
 	}
 }

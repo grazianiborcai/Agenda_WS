@@ -121,6 +121,7 @@ public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
 				dataInfo.name = stmtResult.getString(PersonDbTableColumn.COL_NAME);			
 				dataInfo.email = stmtResult.getString(PersonDbTableColumn.COL_EMAIL);						
 				dataInfo.recordMode = stmtResult.getString(PersonDbTableColumn.COL_RECORD_MODE);
+				dataInfo.codEntityCateg = stmtResult.getString(PersonDbTableColumn.COL_COD_ENTITY_CATEG);
 				
 				stmtResult.getInt(PersonDbTableColumn.COL_COD_GENDER);
 				if (stmtResult.wasNull() == NOT_NULL)

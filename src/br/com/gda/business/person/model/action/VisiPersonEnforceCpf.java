@@ -9,6 +9,7 @@ final class VisiPersonEnforceCpf extends ActionVisitorTemplateEnforce<PersonInfo
 		PersonInfo enforcedRecord = new PersonInfo();
 		enforcedRecord.codOwner = recordInfo.codOwner;
 		enforcedRecord.cpf = recordInfo.cpf;
+		enforcedRecord.codEntityCateg = recordInfo.codEntityCateg;
 		return enforcedRecord;
 	}
 }

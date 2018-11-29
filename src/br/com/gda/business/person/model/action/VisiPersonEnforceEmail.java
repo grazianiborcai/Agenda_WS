@@ -8,7 +8,8 @@ final class VisiPersonEnforceEmail extends ActionVisitorTemplateEnforce<PersonIn
 	@Override protected PersonInfo enforceHook(PersonInfo recordInfo) {
 		PersonInfo enforcedRecord = new PersonInfo();
 		enforcedRecord.codOwner = recordInfo.codOwner;
-		enforcedRecord.email = recordInfo. email;
+		enforcedRecord.email = recordInfo.email;
+		enforcedRecord.codEntityCateg = recordInfo.codEntityCateg;
 		return enforcedRecord;
 	}
 }

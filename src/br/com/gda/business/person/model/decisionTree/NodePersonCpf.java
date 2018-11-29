@@ -22,11 +22,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodePersonInsertCpf implements DeciTree<PersonInfo> {
+public final class NodePersonCpf implements DeciTree<PersonInfo> {
 	private DeciTree<PersonInfo> tree;
 	
 	
-	public NodePersonInsertCpf(DeciTreeOption<PersonInfo> option) {
+	public NodePersonCpf(DeciTreeOption<PersonInfo> option) {
 		DeciTreeHelperOption<PersonInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);

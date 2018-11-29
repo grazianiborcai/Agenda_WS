@@ -6,9 +6,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class ModelCheckerCpf extends ModelCheckerTemplateSimple<String> {
+public final class ModelCheckerCpf_ extends ModelCheckerTemplateSimple<String> {
 
-	public ModelCheckerCpf() {
+	public ModelCheckerCpf_() {
 		super();
 	}
 	
