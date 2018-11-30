@@ -11,6 +11,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public String name;
 	public String codLanguage;
 	public String recordMode;
+	//TODO: legal_country - dados sensiveis precisam atender legislacao do pais
 	
 	
 	public OwnerInfo() {

@@ -52,8 +52,8 @@ public final class EntityCategCheckExist extends ModelCheckerTemplateAction<Enti
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
-			return SystemCode.COUNTRY_ALREADY_EXIST;	
+			return SystemCode.ENTITY_CATEG_ALREADY_EXIST;	
 			
-		return SystemCode.COUNTRY_NOT_FOUND;
+		return SystemCode.ENTITY_CATEG_NOT_FOUND;
 	}
 }
