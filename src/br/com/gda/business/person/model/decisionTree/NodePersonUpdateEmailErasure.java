@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.action.StdPersonSuccess;
-import br.com.gda.business.person.model.checker.PersonCheckEmailErasured;
+import br.com.gda.business.person.model.checker.PersonCheckEmailErasure;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -17,11 +17,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodePersonUpdateEmailErasured implements DeciTree<PersonInfo> {
+public final class NodePersonUpdateEmailErasure implements DeciTree<PersonInfo> {
 	private DeciTree<PersonInfo> tree;
 	
 	
-	public NodePersonUpdateEmailErasured(DeciTreeOption<PersonInfo> option) {
+	public NodePersonUpdateEmailErasure(DeciTreeOption<PersonInfo> option) {
 		DeciTreeHelperOption<PersonInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -46,7 +46,7 @@ public final class NodePersonUpdateEmailErasured implements DeciTree<PersonInfo>
 		checkerOption.expectedResult = NOT_CHANGED;		
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;		
-		checker = new PersonCheckEmailErasured(checkerOption);
+		checker = new PersonCheckEmailErasure(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

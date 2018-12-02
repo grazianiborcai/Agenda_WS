@@ -64,7 +64,7 @@ public final class NodePersonUpdateL1 implements DeciTree<PersonInfo> {
 	private List<ActionStd<PersonInfo>> buildActionsOnFailed(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> nodeCpf = new NodePersonUpdateCpfErasured(option).toAction();		
+		ActionStd<PersonInfo> nodeCpf = new NodePersonUpdateCpfErasure(option).toAction();		
 		actions.add(nodeCpf);	
 		return actions;
 	}

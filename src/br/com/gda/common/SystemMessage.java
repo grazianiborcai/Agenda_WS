@@ -268,6 +268,8 @@ public final class SystemMessage {
 	public static final String PERSON_CPF_CHANGED = "CPF has been changed";	
 	public static final String PERSON_CPF_CANT_BE_CHANGED = "CPF can't be changed";	
 	public static final String PERSON_EMAIL_CANT_BE_CHANGED = "e-mail can't be changed";	
-	public static final String PERSON_CPF_NOT_ERASURED = "CPF not erasured";	
-	public static final String PERSON_CPF_ERASURED = "CPF can't be erasured";	
+	public static final String PERSON_CPF_NO_ERASURE = "No CPF erasure";	
+	public static final String PERSON_CPF_ERASURE = "CPF erasure is not allowed";	
+	public static final String PERSON_EMAIL_NO_ERASURE = "No e-mail erasure";	
+	public static final String PERSON_EMAIL_ERASURE = "e-mail erasure is not allowed";	
 }

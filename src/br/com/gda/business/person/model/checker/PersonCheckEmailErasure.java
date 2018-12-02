@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import br.com.gda.business.person.info.PersonInfo;
-import br.com.gda.business.person.model.action.LazyPersonFilterCpfFilled;
+import br.com.gda.business.person.model.action.LazyPersonFilterEmailFilled;
 import br.com.gda.business.person.model.action.LazyPersonSelect;
 import br.com.gda.business.person.model.action.StdPersonEnforceKey;
 import br.com.gda.common.SystemCode;
@@ -15,9 +15,9 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class PersonCheckCpfErasured extends ModelCheckerTemplateAction<PersonInfo> {
+public final class PersonCheckEmailErasure extends ModelCheckerTemplateAction<PersonInfo> {
 	
-	public PersonCheckCpfErasured(ModelCheckerOption option) {
+	public PersonCheckEmailErasure(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -28,7 +28,7 @@ public final class PersonCheckCpfErasured extends ModelCheckerTemplateAction<Per
 		
 		ActionStd<PersonInfo> enforceKey = new StdPersonEnforceKey(option);
 		ActionLazy<PersonInfo> select = new LazyPersonSelect(conn, schemaName);
-		ActionLazy<PersonInfo> filter = new LazyPersonFilterCpfFilled(conn, schemaName);
+		ActionLazy<PersonInfo> filter = new LazyPersonFilterEmailFilled(conn, schemaName);
 		
 		enforceKey.addPostAction(select);
 		select.addPostAction(filter);
@@ -51,18 +51,18 @@ public final class PersonCheckCpfErasured extends ModelCheckerTemplateAction<Per
 	
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.PERSON_CPF_NOT_ERASURED)
-			return SystemMessage.PERSON_CPF_NOT_ERASURED;
+		if (makeFailCodeHook(checkerResult) == SystemCode.PERSON_EMAIL_NO_ERASURE)
+			return SystemMessage.PERSON_EMAIL_NO_ERASURE;
 		
-		return SystemMessage.PERSON_CPF_ERASURED;
+		return SystemMessage.PERSON_EMAIL_ERASURE;
 	}
 	
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
-			return SystemCode.PERSON_CPF_ERASURED;	
+			return SystemCode.PERSON_EMAIL_ERASURE;	
 			
-		return SystemCode.PERSON_CPF_ERASURED;
+		return SystemCode.PERSON_EMAIL_ERASURE;
 	}
 }

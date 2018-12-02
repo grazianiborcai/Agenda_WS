@@ -64,7 +64,7 @@ public final class NodePersonUpdateL2 implements DeciTree<PersonInfo> {
 	private List<ActionStd<PersonInfo>> buildActionsOnFailed(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> nodeEmail = new NodePersonUpdateEmailErasured(option).toAction();		
+		ActionStd<PersonInfo> nodeEmail = new NodePersonUpdateEmailErasure(option).toAction();		
 		actions.add(nodeEmail);	
 		return actions;
 	}

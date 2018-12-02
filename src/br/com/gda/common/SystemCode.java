@@ -207,6 +207,8 @@ public final class SystemCode {
 	public static final int PERSON_CPF_NOT_CHANGED						= 1765;
 	public static final int PERSON_CPF_CANT_BE_CHANGED					= 1766;
 	public static final int PERSON_EMAIL_CANT_BE_CHANGED				= 1767;
-	public static final int PERSON_CPF_ERASURED							= 1768;
-	public static final int PERSON_CPF_NOT_ERASURED						= 1769;
+	public static final int PERSON_CPF_ERASURE							= 1768;
+	public static final int PERSON_CPF_NO_ERASURE						= 1769;
+	public static final int PERSON_EMAIL_ERASURE						= 1770;
+	public static final int PERSON_EMAIL_NO_ERASURE						= 1771;
 }
