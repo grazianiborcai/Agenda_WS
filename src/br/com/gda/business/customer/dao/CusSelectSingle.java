@@ -1,7 +1,6 @@
 package br.com.gda.business.customer.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -116,15 +115,8 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 			do {
 				CusInfo dataInfo = new CusInfo();
 				dataInfo.codOwner = stmtResult.getLong(CusDbTableColumn.COL_COD_OWNER);
-				dataInfo.codCustomer = stmtResult.getLong(CusDbTableColumn.COL_COD_CUSTOMER);
-				dataInfo.cpf = stmtResult.getString(CusDbTableColumn.COL_CPF);
-				dataInfo.name = stmtResult.getString(CusDbTableColumn.COL_NAME);			
-				dataInfo.email = stmtResult.getString(CusDbTableColumn.COL_EMAIL);						
+				dataInfo.codCustomer = stmtResult.getLong(CusDbTableColumn.COL_COD_CUSTOMER);									
 				dataInfo.recordMode = stmtResult.getString(CusDbTableColumn.COL_RECORD_MODE);
-				
-				stmtResult.getInt(CusDbTableColumn.COL_COD_GENDER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codGender = stmtResult.getInt(CusDbTableColumn.COL_COD_GENDER);
 				
 				stmtResult.getInt(CusDbTableColumn.COL_COD_PERSON);
 				if (stmtResult.wasNull() == NOT_NULL)
@@ -133,11 +125,7 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 				Timestamp lastChanged = stmtResult.getTimestamp(CusDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
-				
-				Date tempDate = stmtResult.getDate(CusDbTableColumn.COL_COD_BIRTH_DATE);
-				if (tempDate != null)
-					dataInfo.birthDate = tempDate.toLocalDate();
-				
+
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
 			

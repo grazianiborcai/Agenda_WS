@@ -5,8 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.action.StdCusDelete;
+import br.com.gda.business.customer.model.action.StdCusDeletePerson;
 import br.com.gda.business.customer.model.checker.CusCheckExist;
-import br.com.gda.business.customer.model.checker.CusCheckPerson;
+import br.com.gda.business.customer.model.checker.CusCheckPersonChange;
 import br.com.gda.business.customer.model.checker.CusCheckWrite;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -39,6 +40,7 @@ public final class RootCusDelete implements DeciTree<CusInfo> {
 	
 	private ModelChecker<CusInfo> buildDecisionChecker(DeciTreeOption<CusInfo> option) {
 		final boolean EXIST_ON_DB = true;	
+		final boolean NOT_CHANGED = true;
 		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
@@ -55,11 +57,11 @@ public final class RootCusDelete implements DeciTree<CusInfo> {
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
+		checkerOption.expectedResult = NOT_CHANGED;		
 		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new CusCheckPerson(checkerOption);
-		queue.add(checker);	
+		checkerOption.schemaName = option.schemaName;		
+		checker = new CusCheckPersonChange(checkerOption);
+		queue.add(checker);
 		
 		 return new ModelCheckerQueue<CusInfo>(queue);
 	}
@@ -77,11 +79,13 @@ public final class RootCusDelete implements DeciTree<CusInfo> {
 		
 		ActionStd<CusInfo> deleteAddress = new NodeCusDeleteAddress(option).toAction();
 		ActionStd<CusInfo> deletePhone = new NodeCusDeletePhone(option).toAction();
-		ActionStd<CusInfo> delete = new StdCusDelete(option);		
+		ActionStd<CusInfo> deleteCustomer = new StdCusDelete(option);	
+		ActionStd<CusInfo> deletePerson = new StdCusDeletePerson(option);
 		
 		actions.add(deleteAddress);
 		actions.add(deletePhone);
-		actions.add(delete);
+		actions.add(deleteCustomer);
+		actions.add(deletePerson);
 		
 		return actions;
 	}

@@ -11,8 +11,9 @@ import br.com.gda.business.customer.model.action.LazyCusInsert;
 import br.com.gda.business.customer.model.action.LazyCusInsertPerson;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpsertAddress;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpsertPhone;
+import br.com.gda.business.customer.model.action.LazyCusRootSelect;
 import br.com.gda.business.customer.model.action.StdCusEnforceLChanged;
-import br.com.gda.business.customer.model.checker.CusCheckGenField;
+import br.com.gda.business.customer.model.checker.CusCheckTechField;
 import br.com.gda.business.customer.model.checker.CusCheckOwner;
 import br.com.gda.business.customer.model.checker.CusCheckInsert;
 import br.com.gda.business.customer.model.checker.CusCheckWriteAddress;
@@ -56,7 +57,7 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 		checker = new CusCheckInsert();
 		queue.add(checker);
 		
-		checker = new CusCheckGenField();
+		checker = new CusCheckTechField();
 		queue.add(checker);
 		
 		checker = new CusCheckWritePhone();
@@ -96,7 +97,7 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<CusInfo> enforcePhoneKey = new LazyCusEnforcePhoneKey(option.conn, option.schemaName);
 		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionStd<CusInfo> select = new RootCusSelect(option).toAction();		
+		ActionLazy<CusInfo> selectCustomer = new LazyCusRootSelect(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(enforceEntityCateg);
 		enforceEntityCateg.addPostAction(insertPerson);
@@ -108,8 +109,9 @@ public final class RootCusInsert implements DeciTree<CusInfo> {
 		insertCus.addPostAction(enforcePhoneKey);
 		enforcePhoneKey.addPostAction(upsertPhone);	
 		
-		actions.add(enforceLChanged);		
-		actions.add(select);	
+		insertCus.addPostAction(selectCustomer);
+		
+		actions.add(enforceLChanged);	
 		return actions;
 	}
 	

@@ -58,11 +58,13 @@ public class CustomerResource {
 	@DELETE
 	@Path(DELETE_CUSTOMER)
 	public Response deleteCustomer(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-								   @HeaderParam("codCustomer") @DefaultValue("-1") long codCustomer) {
+								   @HeaderParam("codCustomer") @DefaultValue("-1") long codCustomer,
+								   @HeaderParam("codPerson")   @DefaultValue("-1") long codPerson) {
 
 		CusInfo recordInfo = new CusInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codCustomer = codCustomer;
+		recordInfo.codPerson = codPerson;
 		
 		Model model = new CusModelDelete(recordInfo);
 		model.executeRequest();

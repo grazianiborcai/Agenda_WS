@@ -1,7 +1,6 @@
 package br.com.gda.business.customer.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -11,7 +10,6 @@ import java.util.List;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -101,24 +99,12 @@ public final class CusUpdateSingle implements DaoStmt<CusInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<CusInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusInfo recordInfo) throws SQLException {	
-			Date birthDate = DaoFormatter.localToSqlDate(recordInfo.birthDate);
 			
 			Timestamp lastChanged = null;
 			if(recordInfo.lastChanged != null)
 				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
 			
 			int i = 1;
-			stmt.setString(i++, recordInfo.cpf);
-			stmt.setString(i++, recordInfo.name);
-			
-			if (DaoFormatter.boxNumber(recordInfo.codGender) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setInt(i++, recordInfo.codGender);
-			}
-			
-			stmt.setDate(i++, birthDate);
-			stmt.setString(i++, recordInfo.email);	
 			stmt.setString(i++, recordInfo.recordMode);
 			
 			stmt.setTimestamp(i++, lastChanged);

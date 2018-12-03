@@ -128,6 +128,7 @@ public final class SystemCode {
 	public static final int CUS_EMAIL_NOT_CHANGED						= 1357;
 	public static final int CUS_PERSON_CANT_BE_CHANGED					= 1358;
 	public static final int CUS_PERSON_NOT_CHANGED						= 1359;
+	public static final int CUS_TECH_FIELD_SHOULD_BE_EMPTY				= 1360;
 	
 	//Cart
 	public static final int CART_ALREADY_EXIST							= 1400;

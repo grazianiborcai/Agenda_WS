@@ -175,6 +175,7 @@ public final class SystemMessage {
 	public static final String CUS_NOT_FOUND = "Customer's data not found on DB";		
 	public static final String CUS_PERSON_CANT_BE_CHANGED = "Person can't be changed";	
 	public static final String CUS_PERSON_NOT_CHANGED = "Person not changed";	
+	public static final String CUS_TECH_FIELD_SHOULD_BE_EMPTY = "Customer: technical fields shouldn't be filled";	
 	
 	
 	
