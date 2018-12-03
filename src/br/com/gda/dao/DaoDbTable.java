@@ -62,6 +62,7 @@ public final class DaoDbTable {
 	public static final String STORE_WT_TABLE = "store_working_time";
 	public static final String UNIT_TABLE = "measure_unit";
 	public static final String UNIT_TEXT_TABLE = "measure_unit_text";	
+	public static final String USER_TABLE = "user";
 	public static final String WEEKDAY_TABLE = "weekday";
 	public static final String WEEKDAY_TEXT_TABLE = "weekday_text";
 	

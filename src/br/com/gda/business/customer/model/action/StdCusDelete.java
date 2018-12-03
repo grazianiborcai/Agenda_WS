@@ -14,7 +14,7 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public final class StdCusDelete implements ActionStd<CusInfo> {
-	ActionStd<CusInfo> actionHelper;
+	private ActionStd<CusInfo> actionHelper;
 	
 	
 	public StdCusDelete(DeciTreeOption<CusInfo> option) {

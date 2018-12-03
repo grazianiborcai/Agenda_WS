@@ -19,7 +19,7 @@ public final class CusCheckExist extends ModelCheckerTemplateAction<CusInfo> {
 		super(option);
 	}
 	
-	//TODO: adicionar checkArgument para verificar campos de busca est�o preenchidos
+	//TODO: adicionar checkArgument para verificar campos de busca estao preenchidos
 	
 	@Override protected ActionStd<CusInfo> buildActionHook(CusInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CusInfo> option = buildActionOption(recordInfo, conn, schemaName);

@@ -279,4 +279,14 @@ public final class SystemMessage {
 	public static final String PERSON_EMAIL_NO_ERASURE = "No e-mail erasure";	
 	public static final String PERSON_EMAIL_ERASURE = "e-mail erasure is not allowed";	
 	public static final String PERSON_TECH_FIELD_SHOULD_BE_EMPTY = "Person: technical fields shouldn't be filled";	
+	
+	
+	
+	//User
+	public static final String USER_COD_IS_FILLED = "Code User should be blank";
+	public static final String USER_TECH_FIELD_SHOULD_BE_EMPTY = "User: technical fields shouldn't be filled";
+	public static final String USER_PERSON_NOT_CHANGED = "Person not changed";
+	public static final String USER_PERSON_CANT_BE_CHANGED = "Person can't be changed";
+	public static final String USER_ALREADY_EXIST = "User's data already exist on DB";
+	public static final String USER_NOT_FOUND = "User's data not found on DB";	
 }

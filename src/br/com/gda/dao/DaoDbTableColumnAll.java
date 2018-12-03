@@ -29,6 +29,7 @@ import br.com.gda.business.storeEmployee.dao.StoreEmpDbTableColumn;
 import br.com.gda.business.storeLeaveDate.dao.StoreLDateDbTableColumn;
 import br.com.gda.business.storeWorkTime.dao.StoreWTimeDbTableColumn;
 import br.com.gda.business.storeWorkTimeConflict.dao.StoreCoDbTableColumn;
+import br.com.gda.business.user.dao.UserDbTableColumn;
 import br.com.gda.common.SystemMessage;
 
 public final class DaoDbTableColumnAll {
@@ -70,6 +71,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PhoneDbTableColumn());
 		addTable(new FormPhoneDbTableColumn());
 		addTable(new PersonDbTableColumn());
+		addTable(new UserDbTableColumn());
 	}
 	
 	
