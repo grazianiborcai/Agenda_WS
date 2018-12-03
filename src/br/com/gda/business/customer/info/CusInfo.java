@@ -15,6 +15,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public long codPerson;
 	public String cpf;
 	public String name;
+	public String codEntityCateg;
 	public int codGender;
 	public String txtGender;
 	public LocalDate birthDate;

@@ -4,15 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.decisionTree.NodeCusUpdateL1;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCusNodeUpdateL1 extends ActionLazyTemplate<CusInfo, CusInfo> {
+public final class LazyCusDeletePerson extends ActionLazyTemplate<CusInfo, CusInfo> {
 	
-	public LazyCusNodeUpdateL1(Connection conn, String schemaName) {
+	public LazyCusDeletePerson(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyCusNodeUpdateL1 extends ActionLazyTemplate<CusInfo, CusIn
 	
 	
 	@Override protected ActionStd<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
-		return new NodeCusUpdateL1(option).toAction();
+		return new StdCusDeletePerson(option);
 	}
 	
 	

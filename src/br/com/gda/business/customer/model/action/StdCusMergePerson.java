@@ -1,18 +1,18 @@
 package br.com.gda.business.customer.model.action;
 
-import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCusEnforceKeyEmail implements ActionStd<CusInfo> {
+final class StdCusMergePerson implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusEnforceKeyEmail(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusEnforceKeyEmail());
+	public StdCusMergePerson(DeciTreeOption<CusInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusMergePerson(option.conn, option.schemaName));
 	}
 	
 	

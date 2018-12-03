@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCusMergeGender extends ActionLazyTemplate<CusInfo, CusInfo> {
+public final class LazyCusMergePerson extends ActionLazyTemplate<CusInfo, CusInfo> {
 	
-	public LazyCusMergeGender(Connection conn, String schemaName) {
+	public LazyCusMergePerson(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCusMergeGender extends ActionLazyTemplate<CusInfo, CusInf
 	
 	
 	@Override protected ActionStd<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
-		return new StdCusMergeGender(option);
+		return new StdCusMergePerson(option);
 	}
 	
 	

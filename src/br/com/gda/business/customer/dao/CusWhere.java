@@ -35,6 +35,10 @@ public final class CusWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
 					break;
 					
+				case CusDbTableColumn.COL_COD_PERSON :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPerson));
+					break;
+					
 				case CusDbTableColumn.COL_CPF :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.cpf);
 					break;

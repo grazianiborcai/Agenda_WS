@@ -78,7 +78,7 @@ public final class RootAddressUpdate implements DeciTree<AddressInfo> {
 	
 	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
-		
+		//TODO: Verificar se chave referencia foi alterada
 		ActionStd<AddressInfo> mergeForm = new MapAddressMergeForm(option);		
 		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<AddressInfo> nodeUpdate = new LazymapAddressNodeUpdate(option.conn, option.schemaName);	

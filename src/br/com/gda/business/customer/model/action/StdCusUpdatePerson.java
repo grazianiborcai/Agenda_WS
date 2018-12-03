@@ -2,17 +2,17 @@ package br.com.gda.business.customer.model.action;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionStdHelperAction;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCusEnforceKeyCpf implements ActionStd<CusInfo> {
+public final class StdCusUpdatePerson implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusEnforceKeyCpf(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusEnforceKeyCpf());
+	public StdCusUpdatePerson(DeciTreeOption<CusInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiCusUpdatePerson(option.conn, option.schemaName));
 	}
 	
 	

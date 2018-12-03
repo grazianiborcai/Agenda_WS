@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdCusMergeGender implements ActionStd<CusInfo> {
+public final class StdCusEnforceEntityCateg implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusMergeGender(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusMergeGender(option.conn, option.schemaName));
+	public StdCusEnforceEntityCateg(DeciTreeOption<CusInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusEnforceEntityCateg());
 	}
 	
 	

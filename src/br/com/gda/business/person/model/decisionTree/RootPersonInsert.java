@@ -9,6 +9,7 @@ import br.com.gda.business.person.model.action.StdPersonEnforceLChanged;
 import br.com.gda.business.person.model.checker.PersonCheckEntityCateg;
 import br.com.gda.business.person.model.checker.PersonCheckGender;
 import br.com.gda.business.person.model.checker.PersonCheckOwner;
+import br.com.gda.business.person.model.checker.PersonCheckTechField;
 import br.com.gda.business.person.model.checker.PersonCheckWrite;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -47,6 +48,9 @@ public final class RootPersonInsert implements DeciTree<PersonInfo> {
 		ModelCheckerOption checkerOption;		
 		
 		checker = new PersonCheckWrite();
+		queue.add(checker);
+		
+		checker = new PersonCheckTechField();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

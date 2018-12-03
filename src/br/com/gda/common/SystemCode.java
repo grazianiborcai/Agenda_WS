@@ -14,6 +14,7 @@ public final class SystemCode {
 	public static final int DATA_NOT_FOUND								= 10;
 	public static final int BAD_DATE									= 11;
 	public static final int AGED_DATE									= 12;
+	public static final int TECH_FIELD_SHOULD_BE_EMPTY					= 13;
 	public static final int SUCCESS 									= 200;
 	public static final int INTERNAL_ERROR 								= 500;
 	
@@ -125,6 +126,8 @@ public final class SystemCode {
 	public static final int CUS_NOT_FOUND 								= 1355;
 	public static final int CUS_EMAIL_CHANGED 							= 1356;
 	public static final int CUS_EMAIL_NOT_CHANGED						= 1357;
+	public static final int CUS_PERSON_CANT_BE_CHANGED					= 1358;
+	public static final int CUS_PERSON_NOT_CHANGED						= 1359;
 	
 	//Cart
 	public static final int CART_ALREADY_EXIST							= 1400;
@@ -167,6 +170,7 @@ public final class SystemCode {
 	public static final int PHONE_IS_NULL								= 1570;
 	public static final int PHONE_IS_FILLED								= 1571;
 	public static final int PHONE_COD_IS_FILLED							= 1572;
+	public static final int PHONE_TECH_FIELD_SHOULD_BE_EMPTY			= 1573;
 	
 	//Address
 	public static final int ADDRESS_IS_NULL								= 1600;
@@ -180,7 +184,8 @@ public final class SystemCode {
 	public static final int ADDRESS_FLAG_DELETE_TRUE					= 1608;
 	public static final int ADDRESS_FLAG_DELETE_FALSE					= 1609;
 	public static final int ADDRESS_LIMIT_EXCEEDED						= 1610;
-	public static final int ADDRESS_COD_IS_FILLED						= 1610;
+	public static final int ADDRESS_COD_IS_FILLED						= 1611;
+	public static final int ADDRESS_TECH_FIELD_SHOULD_BE_EMPTY			= 1612;
 	
 	//Form
 	public static final int FORM_ADDRESS_ALREADY_EXIST					= 1700;
@@ -211,4 +216,5 @@ public final class SystemCode {
 	public static final int PERSON_CPF_NO_ERASURE						= 1769;
 	public static final int PERSON_EMAIL_ERASURE						= 1770;
 	public static final int PERSON_EMAIL_NO_ERASURE						= 1771;
+	public static final int PERSON_TECH_FIELD_SHOULD_BE_EMPTY			= 1772;
 }

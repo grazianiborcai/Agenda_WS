@@ -4,22 +4,22 @@ import java.sql.Connection;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.info.CusMerger;
-import br.com.gda.business.masterData.info.GenderInfo;
-import br.com.gda.business.masterData.model.decisionTree.RootGenderSelect;
+import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.person.model.decisionTree.RootPersonSelect;
 import br.com.gda.info.InfoWritterFactory;
 import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCusMergeGender extends ActionVisitorTemplateMerge<CusInfo, GenderInfo> {
+final class VisiCusMergePerson extends ActionVisitorTemplateMerge<CusInfo, PersonInfo> {
 	
-	public VisiCusMergeGender(Connection conn, String schemaName) {
-		super(conn, schemaName, GenderInfo.class);
+	public VisiCusMergePerson(Connection conn, String schemaName) {
+		super(conn, schemaName, PersonInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<GenderInfo>> getTreeClassHook() {
-		return RootGenderSelect.class;
+	@Override protected Class<? extends DeciTree<PersonInfo>> getTreeClassHook() {
+		return RootPersonSelect.class;
 	}
 	
 	

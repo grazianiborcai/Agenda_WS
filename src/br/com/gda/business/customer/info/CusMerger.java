@@ -3,7 +3,7 @@ package br.com.gda.business.customer.info;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.masterData.info.GenderInfo;
+import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.info.InfoWritterFactory;
 
@@ -21,14 +21,14 @@ public final class CusMerger extends InfoWritterFactory<CusInfo> {
 	
 	
 	
-	static public CusInfo merge(GenderInfo sourceOne, CusInfo sourceTwo) {
-		return new CusMergerGender().merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
 	static public CusInfo merge(PhoneInfo sourceOne, CusInfo sourceTwo) {
 		return new CusMergerPhone().merge(sourceOne, sourceTwo);
+	}	
+	
+	
+	
+	static public CusInfo merge(PersonInfo sourceOne, CusInfo sourceTwo) {
+		return new CusMergerPerson().merge(sourceOne, sourceTwo);
 	}	
 	
 	
@@ -40,14 +40,14 @@ public final class CusMerger extends InfoWritterFactory<CusInfo> {
 			return new CusMergerAddress().merge((List<AddressInfo>) sourceOnes, (List<CusInfo>) sourceTwos);
 		
 		
-		if (sourceOnes.get(0) instanceof GenderInfo 	&&
-			sourceTwos.get(0) instanceof CusInfo		)
-			return new CusMergerGender().merge((List<GenderInfo>) sourceOnes, (List<CusInfo>) sourceTwos);		
-		
-		
-		if (sourceOnes.get(0) instanceof PhoneInfo 	&&
+		if (sourceOnes.get(0) instanceof PhoneInfo 		&&
 			sourceTwos.get(0) instanceof CusInfo		)
 			return new CusMergerPhone().merge((List<PhoneInfo>) sourceOnes, (List<CusInfo>) sourceTwos);	
+		
+		
+		if (sourceOnes.get(0) instanceof PersonInfo 	&&
+			sourceTwos.get(0) instanceof CusInfo		)
+			return new CusMergerPerson().merge((List<PersonInfo>) sourceOnes, (List<CusInfo>) sourceTwos);	
 		
 		return null;
 	}

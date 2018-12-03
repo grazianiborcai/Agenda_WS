@@ -7,18 +7,16 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class CusCheckWrite extends ModelCheckerTemplateSimple<CusInfo> {
+public final class CusCheckInsert extends ModelCheckerTemplateSimple<CusInfo> {
 
-	public CusCheckWrite() {
+	public CusCheckInsert() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CusInfo recordInfo, Connection conn, String schemaName) {	
-		if (    recordInfo.codOwner 	<= 0 
-			 || recordInfo.codCustomer	<= 0
-			 || recordInfo.codPerson	<= 0	)
+		if ( recordInfo.codOwner <= 0 )
 			return FAILED;
 		
 		

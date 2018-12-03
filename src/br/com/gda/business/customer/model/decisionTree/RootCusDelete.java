@@ -6,7 +6,8 @@ import java.util.List;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.action.StdCusDelete;
 import br.com.gda.business.customer.model.checker.CusCheckExist;
-import br.com.gda.business.customer.model.checker.CusCheckKey;
+import br.com.gda.business.customer.model.checker.CusCheckPerson;
+import br.com.gda.business.customer.model.checker.CusCheckWrite;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -37,16 +38,13 @@ public final class RootCusDelete implements DeciTree<CusInfo> {
 	
 	
 	private ModelChecker<CusInfo> buildDecisionChecker(DeciTreeOption<CusInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		final boolean KEY_NOT_NULL = true;	
+		final boolean EXIST_ON_DB = true;	
 		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = KEY_NOT_NULL;
-		checker = new CusCheckKey(checkerOption);
+		checker = new CusCheckWrite();
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
@@ -55,6 +53,13 @@ public final class RootCusDelete implements DeciTree<CusInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new CusCheckExist(checkerOption);
 		queue.add(checker);		
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new CusCheckPerson(checkerOption);
+		queue.add(checker);	
 		
 		 return new ModelCheckerQueue<CusInfo>(queue);
 	}

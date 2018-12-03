@@ -3,37 +3,37 @@ package br.com.gda.business.customer.model.checker;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.masterData.info.GenderInfo;
-import br.com.gda.business.masterData.model.checker.GenderCheckExist;
+import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.person.model.checker.PersonCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class CusCheckGender implements ModelChecker<CusInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
+public final class CusCheckPerson implements ModelChecker<CusInfo> {
+	private final boolean RESULT_FAILED = false;
+	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<GenderInfo> checker;
+	private ModelChecker<PersonInfo> checker;
 	
 	
-	public CusCheckGender(ModelCheckerOption option) {
-		checker = new GenderCheckExist(option);
+	public CusCheckPerson(ModelCheckerOption option) {
+		checker = new PersonCheckExist(option);
 	}
 	
 	
 	
 	@Override public boolean check(List<CusInfo> recordInfos) {
 		for (CusInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
+			if (check(eachInfo) == RESULT_FAILED)
+				return RESULT_FAILED;
 		}
 		
-		return SUCCESS;
+		return RESULT_SUCCESS;
 	}
 
 	
 	
 	@Override public boolean check(CusInfo recordInfo) {
-		return checker.check(GenderInfo.copyFrom(recordInfo));
+		return checker.check(PersonInfo.copyFrom(recordInfo));
 	}
 
 	

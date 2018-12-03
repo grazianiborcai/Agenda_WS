@@ -65,10 +65,26 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 	
 		
 	@Override public DeciResult<T> executeTransformation(List<T> baseInfos) {
+		checkArgument(baseInfos);
 		addRecordToOption(baseInfos);
 		DeciResult<S> actionResult = executeAction(selOption);		
 		
-		return buildResult(actionResult);
+		return buildResult(baseInfos, actionResult);
+	}
+	
+	
+	
+	private void checkArgument(List<T> baseInfos) {
+		if (baseInfos == null) {
+			logException(new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (baseInfos.isEmpty()) {
+			logException(new IllegalArgumentException("baseInfos" + SystemMessage.EMPTY_ARGUMENT));
+			throw new IllegalArgumentException("baseInfos" + SystemMessage.EMPTY_ARGUMENT);
+		}	
 	}
 	
 	
@@ -117,20 +133,20 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 	
 	
 	
-	private DeciResult<T> buildResult(DeciResult<S> actionResult) {
+	private DeciResult<T> buildResult(List<T> baseInfos, DeciResult<S> actionResult) {
 		if (actionResult.isSuccess())
-			return translateResult(actionResult);
+			return translateResult(baseInfos, actionResult);
 		
 		return buildFailedResult(actionResult);
 	}
 	
 	
 	
-	private DeciResult<T> translateResult(DeciResult<S> actionResult) {
+	private DeciResult<T> translateResult(List<T> baseInfos, DeciResult<S> actionResult) {
 		DeciResultHelper<T> translatedResult = new DeciResultHelper<>();
 		translatedResult.copyWithoutResultset(actionResult);
 		
-		List<T> translatedRecords = translateToBaseClass(actionResult.getResultset());
+		List<T> translatedRecords = translateToBaseClass(baseInfos, actionResult.getResultset());
 		translatedResult.resultset = translatedRecords;
 		
 		return translatedResult;
@@ -138,14 +154,14 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 	
 	
 	
-	private List<T> translateToBaseClass(List<S> results) {
-		return toBaseClassHook(results);
+	private List<T> translateToBaseClass(List<T> baseInfos, List<S> results) {
+		return toBaseClassHook(baseInfos, results);
 	}
 	
 	
 	
 	@SuppressWarnings("unchecked")
-	protected List<T> toBaseClassHook(List<S> results) {
+	protected List<T> toBaseClassHook(List<T> baseInfos, List<S> results) {
 		try {
 			T tInstance = tClazz.getConstructor().newInstance();
 			

@@ -52,7 +52,7 @@ public final class NodePhoneUpdate implements DeciTree<PhoneInfo> {
 	
 	private List<ActionStd<PhoneInfo>> buildActionsOnPassed(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
-
+		//TODO: Verificar se chave referencia foi alterada
 		ActionStd<PhoneInfo> enforceNumberT01 = new StdPhoneEnforceNumberT01(option);
 		ActionLazy<PhoneInfo> nodeUpdateT01 = new LazyPhoneNodeUpdateT01(option.conn, option.schemaName);
 		

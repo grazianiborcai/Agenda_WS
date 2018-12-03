@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.person.model.action.LazyPersonMergeGender;
 import br.com.gda.business.person.model.action.StdPersonSelect;
 import br.com.gda.business.person.model.checker.PersonCheckRead;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -55,6 +57,9 @@ public final class RootPersonSelect implements DeciTree<PersonInfo> {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PersonInfo> select = new StdPersonSelect(option);		
+		ActionLazy<PersonInfo> mergeGender = new LazyPersonMergeGender(option.conn, option.schemaName);
+		
+		select.addPostAction(mergeGender);		
 		actions.add(select);
 		
 		return actions;

@@ -59,6 +59,7 @@ public final class SystemMessage {
 	public static final String REQUEST_FAILED = "It was not possible to complete your request";
 	public static final String REQUEST_NOT_EXECUTED = "Request has not been executed";
 	public static final String SUCCESS = "Success";			
+	public static final String TECH_FIELD_SHOULD_BE_EMPTY = "Technical fields shouldn't be filled";
 	public static final String WRONG_DATA_TYPE = "Wrong data type";	
 	
 	
@@ -171,7 +172,9 @@ public final class SystemMessage {
 	public static final String CUS_EMAIL_CHANGED = "Customer's e-mail changed";	
 	public static final String CUS_EMAIL_NOT_FOUND = "Customer's e-email not found on DB";	
 	public static final String CUS_EMAIL_NOT_CHANGED = "Customer's e-mail not changed";	
-	public static final String CUS_NOT_FOUND = "Customer's data not found on DB";	
+	public static final String CUS_NOT_FOUND = "Customer's data not found on DB";		
+	public static final String CUS_PERSON_CANT_BE_CHANGED = "Person can't be changed";	
+	public static final String CUS_PERSON_NOT_CHANGED = "Person not changed";	
 	
 	
 	
@@ -222,6 +225,7 @@ public final class SystemMessage {
 	public static final String PHONE_IS_NULL = "Phone is blank";
 	public static final String PHONE_IS_FILLED = "Phone is not blank";
 	public static final String PHONE_COD_IS_FILLED = "Code Phone should be blank";
+	public static final String PHONE_TECH_FIELD_SHOULD_BE_EMPTY = "Phone: technical fields shouldn't be filled";
 		
 	
 	
@@ -238,6 +242,7 @@ public final class SystemMessage {
 	public static final String ADDRESS_FLAG_DELETE_FALSE = "No Address flagged to deletion";
 	public static final String ADDRESS_LIMIT_EXCEEDED = "Address limit exceeded. Delete old addresses before adding new ones";
 	public static final String ADDRESS_COD_IS_FILLED = "Code Address should be blank";
+	public static final String ADDRESS_TECH_FIELD_SHOULD_BE_EMPTY = "Address: technical fields shouldn't be filled";
 			
 	
 	
@@ -272,4 +277,5 @@ public final class SystemMessage {
 	public static final String PERSON_CPF_ERASURE = "CPF erasure is not allowed";	
 	public static final String PERSON_EMAIL_NO_ERASURE = "No e-mail erasure";	
 	public static final String PERSON_EMAIL_ERASURE = "e-mail erasure is not allowed";	
+	public static final String PERSON_TECH_FIELD_SHOULD_BE_EMPTY = "Person: technical fields shouldn't be filled";	
 }
