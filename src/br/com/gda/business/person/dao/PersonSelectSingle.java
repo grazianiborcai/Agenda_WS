@@ -20,7 +20,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
-	private final String LT_CUSTOMER = DaoDbTable.PERSON_TABLE;
+	private final String LT_PERSON = DaoDbTable.PERSON_TABLE;
 	
 	private DaoStmt<PersonInfo> stmtSql;
 	private DaoStmtOption<PersonInfo> stmtOption;
@@ -39,8 +39,8 @@ public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_CUSTOMER;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_CUSTOMER);
+		this.stmtOption.tableName = LT_PERSON;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_PERSON);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();

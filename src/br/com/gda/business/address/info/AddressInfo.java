@@ -12,6 +12,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	public long codCustomer;
 	public long codStore;
 	public long codEmployee;
+	public long codUser;
 	public String codCountry;
 	public String txtCountry;
 	public String codState;
@@ -44,6 +45,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
+		codUser = DefaultValue.number();
 		longitude = DefaultValue.number();
 		latitude = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();

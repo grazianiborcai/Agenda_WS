@@ -133,6 +133,14 @@ public final class PhoneUpdateSingle implements DaoStmt<PhoneInfo> {
 			stmt.setTimestamp(i++, lastChanged);
 			stmt.setString(i++, recordInfo.complement);
 			
+			
+			if (DaoFormatter.boxNumber(recordInfo.codUser) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codUser);
+			}	
+			
+			
 			return stmt;
 		}		
 	}

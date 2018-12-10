@@ -9,6 +9,7 @@ import br.com.gda.business.address.model.action.LazymapAddressNodeUpdate;
 import br.com.gda.business.address.model.action.MapAddressMergeForm;
 import br.com.gda.business.address.model.checker.AddressCheckCountry;
 import br.com.gda.business.address.model.checker.AddressCheckExist;
+import br.com.gda.business.address.model.checker.AddressCheckOwner;
 import br.com.gda.business.address.model.checker.AddressCheckRef;
 import br.com.gda.business.address.model.checker.AddressCheckRefMulti;
 import br.com.gda.business.address.model.checker.AddressCheckUpdate;
@@ -55,6 +56,13 @@ public final class RootAddressUpdate implements DeciTree<AddressInfo> {
 		queue.add(checker);
 		
 		checker = new AddressCheckRefMulti();
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST;	
+		checker = new AddressCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

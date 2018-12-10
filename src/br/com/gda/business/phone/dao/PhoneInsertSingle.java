@@ -114,6 +114,13 @@ public final class PhoneInsertSingle implements DaoStmt<PhoneInfo> {
 			stmt.setString(i++, recordInfo.recordMode);
 			stmt.setTimestamp(i++, lastChanged);
 			stmt.setString(i++, recordInfo.complement);
+			
+			
+			if (DaoFormatter.boxNumber(recordInfo.codUser) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codUser);
+			}	
 
 			return stmt;
 		}		

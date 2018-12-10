@@ -24,6 +24,7 @@ import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.business.person.dao.PersonDbTableColumn;
 import br.com.gda.business.phone.dao.PhoneDbTableColumn;
 import br.com.gda.business.reserve.dao.ReserveDbTableColumn;
+import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.business.storeEmployee.dao.StoreEmpDbTableColumn;
 import br.com.gda.business.storeLeaveDate.dao.StoreLDateDbTableColumn;
@@ -72,6 +73,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new FormPhoneDbTableColumn());
 		addTable(new PersonDbTableColumn());
 		addTable(new UserDbTableColumn());
+		addTable(new SnapDbTableColumn());
 	}
 	
 	

@@ -289,4 +289,10 @@ public final class SystemMessage {
 	public static final String USER_PERSON_CANT_BE_CHANGED = "Person can't be changed";
 	public static final String USER_ALREADY_EXIST = "User's data already exist on DB";
 	public static final String USER_NOT_FOUND = "User's data not found on DB";	
+	
+	
+	
+	//Snapshot
+	public static final String SNAPSHOT_ALREADY_EXIST = "Snapshot already exist on DB";	
+	public static final String SNAPSHOT_NOT_FOUND = "Snapshot not found on DB";	
 }

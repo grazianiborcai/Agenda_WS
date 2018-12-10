@@ -226,4 +226,8 @@ public final class SystemCode {
 	public static final int USER_PERSON_CANT_BE_CHANGED					= 1803;
 	public static final int USER_ALREADY_EXIST 							= 1804;
 	public static final int USER_NOT_FOUND 								= 1805;
+	
+	//Snapshot
+	public static final int SNAPSHOT_ALREADY_EXIST 						= 1850;
+	public static final int SNAPSHOT_NOT_FOUND 							= 1851;
 }

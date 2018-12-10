@@ -48,12 +48,14 @@ public final class DaoDbTable {
 	public static final String ORDER_STATUS_TEXT_TABLE = "order_status_text";
 	public static final String OWNER_TABLE = "owner";
 	public static final String PERSON_TABLE = "person";
+	public static final String PERSON_SNAPSHOT_TABLE = "person_snapshot";
 	public static final String PHONE_TABLE = "phone";
 	public static final String PHONE_FORM_TABLE = "phone_form";
 	public static final String POSITION_TABLE = "position";
 	public static final String POSITION_TEXT_TABLE = "position_text";
 	public static final String TIMEZONE_TABLE = "timezone";
 	public static final String TIMEZONE_TEXT_TABLE = "timezone_text";
+	public static final String SNAPSHOT_HDR_TABLE = "snapshot_header";
 	public static final String STATE_TABLE = "state";
 	public static final String STATE_TEXT_TABLE = "state_text";
 	public static final String STORE_EMP_TABLE = "store_emp";

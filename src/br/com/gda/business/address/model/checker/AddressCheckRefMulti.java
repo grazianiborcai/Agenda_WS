@@ -26,6 +26,9 @@ public final class AddressCheckRefMulti extends ModelCheckerTemplateSimple<Addre
 		
 		if ( recordInfo.codEmployee >= 0 )
 			totRef = totRef + 1;
+		
+		if ( recordInfo.codUser >= 0 )
+			totRef = totRef + 1;
 				
 		if ( totRef != 1 )			
 			return super.FAILED;
