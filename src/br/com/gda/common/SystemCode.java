@@ -230,4 +230,11 @@ public final class SystemCode {
 	//Snapshot
 	public static final int SNAPSHOT_ALREADY_EXIST 						= 1850;
 	public static final int SNAPSHOT_NOT_FOUND 							= 1851;
+	
+	//PersonUser
+	public static final int PERSON_USER_WITHOUT_REFERENCE				= 1900;
+	public static final int PERSON_USER_EMAIL_IS_NULL					= 1901;
+	public static final int PERSON_USER_EMAIL_IS_FILLED					= 1902;
+	public static final int PERSON_USER_CPF_IS_NULL						= 1903;
+	public static final int PERSON_USER_CPF_IS_FILLED					= 1904;
 }

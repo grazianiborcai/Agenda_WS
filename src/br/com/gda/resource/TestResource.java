@@ -13,6 +13,8 @@ import br.com.gda.business.address.model.AddressModelInsert;
 import br.com.gda.business.address.model.AddressModelUpdate;
 import br.com.gda.business.person.model.PersonModelInsert;
 import br.com.gda.business.person.model.PersonModelUpdate;
+import br.com.gda.business.personUser.info.PersonUserInfo;
+import br.com.gda.business.personUser.model.PersonUserModelSelect;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.PhoneModelInsert;
 import br.com.gda.business.phone.model.PhoneModelSelect;
@@ -29,6 +31,7 @@ public class TestResource {
 	private static final String SELECT_PHONE = "/selectPhone";
 	private static final String INSERT_PERSON = "/insertPerson";
 	private static final String UPDATE_PERSON = "/updatePerson";
+	private static final String SELECT_PERSON_USER = "/selectPersonUser";
 	
 	
 	
@@ -128,4 +131,23 @@ public class TestResource {
 		model.executeRequest();
 		return model.getResponse();	
 	}	
+	
+	
+	
+	@GET
+	@Path(SELECT_PERSON_USER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPersonUser(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+								     @HeaderParam("e-mail") String email,
+			                         @HeaderParam("cpff") String cpf) {
+
+		PersonUserInfo recordInfo = new PersonUserInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.email = email;
+		recordInfo.cpf = cpf;
+		
+		Model model = new PersonUserModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
 }

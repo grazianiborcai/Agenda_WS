@@ -295,4 +295,13 @@ public final class SystemMessage {
 	//Snapshot
 	public static final String SNAPSHOT_ALREADY_EXIST = "Snapshot already exist on DB";	
 	public static final String SNAPSHOT_NOT_FOUND = "Snapshot not found on DB";	
+	
+	
+	
+	//PersonUser
+	public static final String PERSON_USER_WITHOUT_REFERENCE = "No reference added to Person-User";
+	public static final String PERSON_USER_EMAIL_IS_NULL = "Person-User's e-mail is blank";
+	public static final String PERSON_USER_EMAIL_IS_FILLED = "Person-User's e-mail is not blank";
+	public static final String PERSON_USER_CPF_IS_NULL = "Person-User's CPF is blank";
+	public static final String PERSON_USER_CPF_IS_FILLED = "Person-User's CPF is not blank";
 }
