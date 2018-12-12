@@ -9,7 +9,7 @@ public final class SystemMessage {
 	public static final String TABLE_NOT_FOUND = "table was not found";			
 	public static final String ILLEGAL_ARGUMENT = "IllegalArgument: mandatory argument might be missing or invalid value was passed";	
 	public static final String NULL_WHERE_CLAUSE = "where clause is null";			
-	public static final String OWNER_ALREALDY_EXIST = "Owner data already exist on DB";		
+	public static final String OWNER_ALREADY_EXIST = "Owner data already exist on DB";		
 	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";				
 	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";			
 	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";			
@@ -256,40 +256,40 @@ public final class SystemMessage {
 	
 	
 	//Person
-	public static final String PERSON_CPF_BLANK = "CPF is empty";
-	public static final String PERSON_CPF_INVALID_NUMBER = "Only numbers are allowed for CPF";
-	public static final String PERSON_CPF_INVALID_LENGTH = "Invalid CPF length";
-	public static final String PERSON_CPF_INVALID_SEQUENCE = "Invalid sequence for CPF";	
-	public static final String PERSON_CPF_INVALID = "CPF is invalid";
-	public static final String PERSON_CPF_ALREADY_EXIST = "CPF already exist on DB";	
-	public static final String PERSON_CPF_NOT_FOUND = "CPF not found on DB";	
-	public static final String PERSON_EMAIL_BLANK = "Email is empty";
-	public static final String PERSON_EMAIL_ALREADY_EXIST = "e-email already exist on DB";	
-	public static final String PERSON_EMAIL_NOT_FOUND = "e-email not found on DB";	
 	public static final String PERSON_ALREADY_EXIST = "Person already exist on DB";	
-	public static final String PERSON_NOT_FOUND = "Person not found on DB";	
-	public static final String PERSON_EMAIL_NOT_CHANGED = "e-mail not changed";	
-	public static final String PERSON_EMAIL_CHANGED = "e-mail has been changed";	
+	public static final String PERSON_CPF_ALREADY_EXIST = "CPF already exist on DB";
+	public static final String PERSON_CPF_BLANK = "CPF is empty";	
+	public static final String PERSON_CPF_CANT_BE_CHANGED = "CPF can't be changed";
+	public static final String PERSON_CPF_CHANGED = "CPF has been changed";
+	public static final String PERSON_CPF_ERASURE = "CPF erasure is not allowed";
+	public static final String PERSON_CPF_NO_ERASURE = "No CPF erasure";
 	public static final String PERSON_CPF_NOT_CHANGED = "CPF not changed";	
-	public static final String PERSON_CPF_CHANGED = "CPF has been changed";	
-	public static final String PERSON_CPF_CANT_BE_CHANGED = "CPF can't be changed";	
-	public static final String PERSON_EMAIL_CANT_BE_CHANGED = "e-mail can't be changed";	
-	public static final String PERSON_CPF_NO_ERASURE = "No CPF erasure";	
-	public static final String PERSON_CPF_ERASURE = "CPF erasure is not allowed";	
-	public static final String PERSON_EMAIL_NO_ERASURE = "No e-mail erasure";	
+	public static final String PERSON_CPF_NOT_FOUND = "CPF not found on DB";
+	public static final String PERSON_CPF_INVALID = "CPF is invalid";	
+	public static final String PERSON_CPF_INVALID_LENGTH = "Invalid CPF length";
+	public static final String PERSON_CPF_INVALID_NUMBER = "Only numbers are allowed for CPF";
+	public static final String PERSON_CPF_INVALID_SEQUENCE = "Invalid sequence for CPF";	
+	public static final String PERSON_EMAIL_ALREADY_EXIST = "e-email already exist on DB";	
+	public static final String PERSON_EMAIL_BLANK = "Email is empty";
+	public static final String PERSON_EMAIL_CANT_BE_CHANGED = "e-mail can't be changed";
+	public static final String PERSON_EMAIL_CHANGED = "e-mail has been changed";
 	public static final String PERSON_EMAIL_ERASURE = "e-mail erasure is not allowed";	
+	public static final String PERSON_EMAIL_NO_ERASURE = "No e-mail erasure";
+	public static final String PERSON_EMAIL_NOT_CHANGED = "e-mail not changed";	
+	public static final String PERSON_EMAIL_NOT_FOUND = "e-email not found on DB";
+	public static final String PERSON_NOT_FOUND = "Person not found on DB";	
 	public static final String PERSON_TECH_FIELD_SHOULD_BE_EMPTY = "Person: technical fields shouldn't be filled";	
 	
 	
 	
 	//User
+	public static final String USER_ALREADY_EXIST = "User's data already exist on DB";
 	public static final String USER_COD_IS_FILLED = "Code User should be blank";
-	public static final String USER_TECH_FIELD_SHOULD_BE_EMPTY = "User: technical fields shouldn't be filled";
+	public static final String USER_NOT_FOUND = "User's data not found on DB";
 	public static final String USER_PERSON_NOT_CHANGED = "Person not changed";
 	public static final String USER_PERSON_CANT_BE_CHANGED = "Person can't be changed";
-	public static final String USER_ALREADY_EXIST = "User's data already exist on DB";
-	public static final String USER_NOT_FOUND = "User's data not found on DB";	
-	
+	public static final String USER_TECH_FIELD_SHOULD_BE_EMPTY = "User: technical fields shouldn't be filled";
+			
 	
 	
 	//Snapshot
@@ -298,10 +298,20 @@ public final class SystemMessage {
 	
 	
 	
-	//PersonUser
-	public static final String PERSON_USER_WITHOUT_REFERENCE = "No reference added to Person-User";
-	public static final String PERSON_USER_EMAIL_IS_NULL = "Person-User's e-mail is blank";
-	public static final String PERSON_USER_EMAIL_IS_FILLED = "Person-User's e-mail is not blank";
-	public static final String PERSON_USER_CPF_IS_NULL = "Person-User's CPF is blank";
+	//PersonUser	
+	public static final String PERSON_USER_ALREADY_EXIST = "Person-User data already exist on DB";
 	public static final String PERSON_USER_CPF_IS_FILLED = "Person-User's CPF is not blank";
+	public static final String PERSON_USER_CPF_IS_NULL = "Person-User's CPF is blank";
+	public static final String PERSON_USER_EMAIL_IS_FILLED = "Person-User's e-mail is not blank";
+	public static final String PERSON_USER_EMAIL_IS_NULL = "Person-User's e-mail is blank";		
+	public static final String PERSON_USER_NOT_FOUND = "Person-User data not found on DB";
+	public static final String PERSON_USER_WITHOUT_REFERENCE = "No reference added to Person-User";
+	
+	
+	
+	//Address Snapshot
+	public static final String ADDRESS_SNAPSHOT_ALREADY_EXIST = "Address-Snapshot already exist";
+	public static final String ADDRESS_SNAPSHOT_IS_NULL = "Address-Snapshot: Snapshot code is blank";	
+	public static final String ADDRESS_SNAPSHOT_IS_FILLED = "Address-Snapshot: Snapshot code is not blank";	
+	public static final String ADDRESS_SNAPSHOT_NOT_FOUND = "Address-Snapshot not found on DB";	
 }

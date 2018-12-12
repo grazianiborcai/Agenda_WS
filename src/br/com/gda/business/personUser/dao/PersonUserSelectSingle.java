@@ -53,12 +53,12 @@ public final class PersonUserSelectSingle implements DaoStmt<PersonUserInfo> {
 	
 	private String buildWhereClause() {
 		final boolean IGNORE_NULL = true;
-		final boolean IGNORE_RECORD_MODE = true;
+		final boolean DONT_IGNORE_RECORD_MODE = false;
 		final boolean DUMMY_CLAUSE_NOT_ALLOWED = false;
 		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;	
+		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DUMMY_CLAUSE_NOT_ALLOWED;
 		
 		DaoStmtWhere whereClause = new PersonUserWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -146,6 +146,7 @@ public final class PersonUserSelectSingle implements DaoStmt<PersonUserInfo> {
 		private final String CPF_COL = LT_PERSON + "." + PersonUserDbTableColumn.COL_CPF;
 		private final String EMAIL_COL = LT_PERSON + "." + PersonUserDbTableColumn.COL_EMAIL;
 		private final String COD_USER_COL = RT_USER + "." + PersonUserDbTableColumn.COL_COD_USER;
+		private final String RECORD_MODE_COL = LT_PERSON + "." + PersonUserDbTableColumn.COL_RECORD_MODE;
 		
 		
 		@Override public List<PersonUserInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -162,6 +163,7 @@ public final class PersonUserSelectSingle implements DaoStmt<PersonUserInfo> {
 				dataInfo.codPerson = stmtResult.getLong(COD_PERSON_COL);
 				dataInfo.cpf = stmtResult.getString(CPF_COL);
 				dataInfo.email = stmtResult.getString(EMAIL_COL);
+				dataInfo.recordMode = stmtResult.getString(RECORD_MODE_COL);
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

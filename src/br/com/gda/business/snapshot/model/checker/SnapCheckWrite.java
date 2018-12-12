@@ -16,9 +16,7 @@ public final class SnapCheckWrite extends ModelCheckerTemplateSimple<SnapInfo> {
 	
 	
 	@Override protected boolean checkHook(SnapInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner   	<= 0 || 
-			 recordInfo.codSnapshot	<= 0 ||
-			 recordInfo.codPerson	<= 0	)	
+		if ( recordInfo.codOwner <= 0 )	
 			return super.FAILED;
 		
 		

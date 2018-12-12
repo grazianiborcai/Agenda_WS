@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
@@ -25,7 +26,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
-	//public String codEntityCateg;
+	public UserInfo userData;
 	
 	
 	public CusInfo() {
@@ -37,6 +38,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		phones = DefaultValue.list();
 		codLanguage = DefaultValue.language();		
 		recordMode = DefaultValue.recordMode();		
+		userData = DefaultValue.object();
 	}
 	
 	

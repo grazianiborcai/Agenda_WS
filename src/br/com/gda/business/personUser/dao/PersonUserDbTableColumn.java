@@ -17,6 +17,7 @@ public final class PersonUserDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_USER = UserDbTableColumn.COL_COD_USER;
 	public static final String COL_CPF = PersonDbTableColumn.COL_CPF;
 	public static final String COL_EMAIL = PersonDbTableColumn.COL_EMAIL;
+	public static final String COL_RECORD_MODE = PersonDbTableColumn.COL_RECORD_MODE;	
 	
 	
 	
@@ -87,6 +88,14 @@ public final class PersonUserDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_EMAIL;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_RECORD_MODE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

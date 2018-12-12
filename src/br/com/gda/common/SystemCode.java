@@ -237,4 +237,12 @@ public final class SystemCode {
 	public static final int PERSON_USER_EMAIL_IS_FILLED					= 1902;
 	public static final int PERSON_USER_CPF_IS_NULL						= 1903;
 	public static final int PERSON_USER_CPF_IS_FILLED					= 1904;
+	public static final int PERSON_USER_ALREADY_EXIST					= 1905;
+	public static final int PERSON_USER_NOT_FOUND						= 1906;
+	
+	//Address Snapshot
+	public static final int ADDRESS_SNAPSHOT_IS_NULL 					= 2000;	
+	public static final int ADDRESS_SNAPSHOT_IS_FILLED 					= 2001;	
+	public static final int ADDRESS_SNAPSHOT_NOT_FOUND					= 2002;
+	public static final int ADDRESS_SNAPSHOT_ALREADY_EXIST				= 2003;
 }

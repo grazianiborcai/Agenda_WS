@@ -3,6 +3,7 @@ package br.com.gda.dao;
 public final class DaoDbTable {	
     //Tables
 	public static final String ADDRESS_TABLE = "address";
+	public static final String ADDRESS_SNAPSHOT_TABLE = "address_snapshot";
 	public static final String ADDRESS_FORM_TABLE = "address_form";
 	public static final String AREA_PHONE_TABLE = "area_phone";
 	public static final String AREA_PHONE_TEXT_TABLE = "area_phone_text";

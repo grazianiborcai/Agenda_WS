@@ -5,6 +5,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.business.address.dao.AddressDbTableColumn;
+import br.com.gda.business.addressSnapshot.dao.AddressSnapDbTableColumn;
 import br.com.gda.business.cart.dao.CartDbTableColumn;
 import br.com.gda.business.customer.dao.CusDbTableColumn;
 import br.com.gda.business.employee.dao.EmpDbTableColumn;
@@ -69,6 +70,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new ReserveDbTableColumn());
 		addTable(new OrderDbTableColumn());
 		addTable(new AddressDbTableColumn());
+		addTable(new AddressSnapDbTableColumn());
 		addTable(new FormAddressDbTableColumn());
 		addTable(new PhoneDbTableColumn());
 		addTable(new FormPhoneDbTableColumn());

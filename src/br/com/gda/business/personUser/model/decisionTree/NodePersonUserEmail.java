@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.personUser.info.PersonUserInfo;
+import br.com.gda.business.personUser.model.action.LazyPersonUserMergeUser;
 import br.com.gda.business.personUser.model.action.LazyPersonUserSelect;
 import br.com.gda.business.personUser.model.action.StdPersonUserEnforceEmail;
 import br.com.gda.business.personUser.model.checker.PersonUserCheckHasEmail;
@@ -67,8 +68,10 @@ public final class NodePersonUserEmail implements DeciTree<PersonUserInfo> {
 		
 		ActionStd<PersonUserInfo> enforceEmail = new StdPersonUserEnforceEmail(option);
 	    ActionLazy<PersonUserInfo> select = new LazyPersonUserSelect(option.conn, option.schemaName);
+	    ActionLazy<PersonUserInfo> mergeUser = new LazyPersonUserMergeUser(option.conn, option.schemaName);
 		
 	    enforceEmail.addPostAction(select);
+	    select.addPostAction(mergeUser);
 		
 		actions.add(enforceEmail);
 		return actions;

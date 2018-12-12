@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.personUser.info.PersonUserInfo;
+import br.com.gda.business.personUser.model.action.LazyPersonUserMergeUser;
 import br.com.gda.business.personUser.model.action.LazyPersonUserSelect;
 import br.com.gda.business.personUser.model.action.StdPersonUserEnforceCpf;
 import br.com.gda.business.personUser.model.checker.PersonUserCheckHasCpf;
@@ -66,8 +67,10 @@ public final class NodePersonUserCpf implements DeciTree<PersonUserInfo> {
 		
 		ActionStd<PersonUserInfo> enforceCpf = new StdPersonUserEnforceCpf(option);
 	    ActionLazy<PersonUserInfo> select = new LazyPersonUserSelect(option.conn, option.schemaName);
+	    ActionLazy<PersonUserInfo> mergeUser = new LazyPersonUserMergeUser(option.conn, option.schemaName);
 		
 	    enforceCpf.addPostAction(select);
+	    select.addPostAction(mergeUser);
 		
 		actions.add(enforceCpf);
 		return actions;

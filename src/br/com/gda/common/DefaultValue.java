@@ -84,6 +84,12 @@ public final class DefaultValue {
 	
 	
 	
+	public static <T> T object() {
+		return null;
+	}
+	
+	
+	
 	public static <T> List<T> list() {
 		return new ArrayList<>();
 	}	

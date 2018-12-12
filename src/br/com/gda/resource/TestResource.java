@@ -11,6 +11,9 @@ import javax.ws.rs.core.Response;
 
 import br.com.gda.business.address.model.AddressModelInsert;
 import br.com.gda.business.address.model.AddressModelUpdate;
+import br.com.gda.business.addressSnapshot.info.AddressSnapInfo;
+import br.com.gda.business.addressSnapshot.model.AddressSnapModelInsert;
+import br.com.gda.business.addressSnapshot.model.AddressSnapModelSelect;
 import br.com.gda.business.person.model.PersonModelInsert;
 import br.com.gda.business.person.model.PersonModelUpdate;
 import br.com.gda.business.personUser.info.PersonUserInfo;
@@ -32,6 +35,8 @@ public class TestResource {
 	private static final String INSERT_PERSON = "/insertPerson";
 	private static final String UPDATE_PERSON = "/updatePerson";
 	private static final String SELECT_PERSON_USER = "/selectPersonUser";
+	private static final String SELECT_ADDRESS_SNAPSHOT = "/selectAddressSnapshot";
+	private static final String INSERT_ADDRESS_SNAPSHOT = "/insertAddressSnapshot";
 	
 	
 	
@@ -149,5 +154,35 @@ public class TestResource {
 		Model model = new PersonUserModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_ADDRESS_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectAddressSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
+								          @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
+
+		AddressSnapInfo recordInfo = new AddressSnapInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codSnapshot = codSnapshot;
+		
+		Model model = new AddressSnapModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_ADDRESS_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertAddressSnapshot(String incomingData) {
+		
+		
+		Model model = new AddressSnapModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();	
 	}
 }

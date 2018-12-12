@@ -4,22 +4,24 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.gda.business.person.dao.PersonDbTableColumn;
+import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class PersonSnapDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_BIRTH_DATE = "birth_date";
-	public static final String COL_COD_ENTITY_CATEG = "cod_entity_categ";
-	public static final String COL_COD_GENDER = "cod_gender";
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_PERSON = "cod_person";	
-	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
-	public static final String COL_CPF = "cpf";
-	public static final String COL_EMAIL = "email";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_NAME = "name";
-	public static final String COL_RECORD_MODE = "record_mode";	
+	public static final String COL_COD_BIRTH_DATE = PersonDbTableColumn.COL_COD_BIRTH_DATE;
+	public static final String COL_COD_ENTITY_CATEG = PersonDbTableColumn.COL_COD_ENTITY_CATEG;
+	public static final String COL_COD_GENDER = PersonDbTableColumn.COL_COD_GENDER;
+	public static final String COL_COD_OWNER = PersonDbTableColumn.COL_COD_OWNER;
+	public static final String COL_COD_PERSON = PersonDbTableColumn.COL_COD_PERSON;	
+	public static final String COL_COD_SNAPSHOT = SnapDbTableColumn.COL_COD_SNAPSHOT;
+	public static final String COL_CPF = PersonDbTableColumn.COL_CPF;
+	public static final String COL_EMAIL = PersonDbTableColumn.COL_EMAIL;
+	public static final String COL_LAST_CHANGED = PersonDbTableColumn.COL_LAST_CHANGED;
+	public static final String COL_NAME = PersonDbTableColumn.COL_NAME;
+	public static final String COL_RECORD_MODE = PersonDbTableColumn.COL_RECORD_MODE;	
 	
 	
 	

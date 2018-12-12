@@ -61,8 +61,8 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
-		result = result * 31 + (int) (codUser ^ (codUser >>> 32));
+		result = result * 31 + (int) (codOwner  ^ (codOwner >>> 32));
+		result = result * 31 + (int) (codUser 	^ (codUser 	>>> 32));
 		
 		return result;
 	}

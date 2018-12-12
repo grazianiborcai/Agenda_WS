@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.personUser.info.PersonUserInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.info.InfoWritterFactory;
 
@@ -33,6 +34,12 @@ public final class CusMerger extends InfoWritterFactory<CusInfo> {
 	
 	
 	
+	static public CusInfo merge(PersonUserInfo sourceOne, CusInfo sourceTwo) {
+		return new CusMergerPersonUser().merge(sourceOne, sourceTwo);
+	}		
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<CusInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
 		if (sourceOnes.get(0) instanceof AddressInfo 	&&
@@ -48,6 +55,11 @@ public final class CusMerger extends InfoWritterFactory<CusInfo> {
 		if (sourceOnes.get(0) instanceof PersonInfo 	&&
 			sourceTwos.get(0) instanceof CusInfo		)
 			return new CusMergerPerson().merge((List<PersonInfo>) sourceOnes, (List<CusInfo>) sourceTwos);	
+		
+		
+		if (sourceOnes.get(0) instanceof PersonUserInfo 	&&
+			sourceTwos.get(0) instanceof CusInfo		)
+			return new CusMergerPersonUser().merge((List<PersonUserInfo>) sourceOnes, (List<CusInfo>) sourceTwos);		
 		
 		return null;
 	}
