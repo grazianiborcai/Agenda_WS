@@ -37,13 +37,13 @@ public final class PersonSnapDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
-		buildCustomerTable();		
+		buildPersonSnapTable();		
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildCustomerTable() {
+	private void buildPersonSnapTable() {
 		final String TABLE_NAME = DaoDbTable.PERSON_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;

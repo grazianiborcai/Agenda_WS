@@ -40,7 +40,7 @@ public final class PersonSnapInsertSingle implements DaoStmt<PersonSnapInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.PERSON_TABLE;
+		this.stmtOption.tableName = DaoDbTable.PERSON_SNAPSHOT_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser(recordInfo);

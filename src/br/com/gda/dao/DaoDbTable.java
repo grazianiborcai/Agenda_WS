@@ -52,6 +52,7 @@ public final class DaoDbTable {
 	public static final String PERSON_SNAPSHOT_TABLE = "person_snapshot";
 	public static final String PHONE_TABLE = "phone";
 	public static final String PHONE_FORM_TABLE = "phone_form";
+	public static final String PHONE_SNAPSHOT_TABLE = "phone_snapshot";
 	public static final String POSITION_TABLE = "position";
 	public static final String POSITION_TEXT_TABLE = "position_text";
 	public static final String TIMEZONE_TABLE = "timezone";
@@ -74,7 +75,8 @@ public final class DaoDbTable {
 	
     //Views
 	public static final String EMP_WT_CONFLICT_VIEW = "view_employee_working_time";
-	public static final String RESERVE_VIEW = "view_reserve";
-	public static final String STORE_WT_CONFLICT_VIEW = "view_store_working_time";	
+	public static final String RESERVE_VIEW = "view_reserve";		
+	public static final String PERSON_CUS_VIEW = "view_person_customer";
 	public static final String PERSON_USER_VIEW = "view_person_user";	
+	public static final String STORE_WT_CONFLICT_VIEW = "view_store_working_time";
 }

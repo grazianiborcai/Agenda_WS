@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
-import br.com.gda.business.personSnapshot.model.action.StdPersonSnapInsert;
 import br.com.gda.business.personSnapshot.model.checker.PersonSnapCheckOwner;
 import br.com.gda.business.personSnapshot.model.checker.PersonSnapCheckPerson;
-import br.com.gda.business.personSnapshot.model.checker.PersonSnapCheckSnapHdr;
 import br.com.gda.business.personSnapshot.model.checker.PersonSnapCheckWrite;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -58,13 +56,6 @@ public final class RootPersonSnapInsert implements DeciTree<PersonSnapInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new PersonSnapCheckSnapHdr(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new PersonSnapCheckPerson(checkerOption);
 		queue.add(checker);	
 			
@@ -82,8 +73,8 @@ public final class RootPersonSnapInsert implements DeciTree<PersonSnapInfo> {
 	private List<ActionStd<PersonSnapInfo>> buildActionsOnPassed(DeciTreeOption<PersonSnapInfo> option) {
 		List<ActionStd<PersonSnapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonSnapInfo> insert = new StdPersonSnapInsert(option);	
-		actions.add(insert);
+		ActionStd<PersonSnapInfo> nodeInsert = new NodePersonSnapInsertL1(option).toAction();	
+		actions.add(nodeInsert);
 		
 		return actions;
 	}

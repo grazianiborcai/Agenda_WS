@@ -245,4 +245,24 @@ public final class SystemCode {
 	public static final int ADDRESS_SNAPSHOT_IS_FILLED 					= 2001;	
 	public static final int ADDRESS_SNAPSHOT_NOT_FOUND					= 2002;
 	public static final int ADDRESS_SNAPSHOT_ALREADY_EXIST				= 2003;
+	
+	//Phone Snapshot
+	public static final int PHONE_SNAPSHOT_IS_NULL 						= 2050;	
+	public static final int PHONE_SNAPSHOT_IS_FILLED 					= 2051;	
+	public static final int PHONE_SNAPSHOT_NOT_FOUND					= 2052;
+	public static final int PHONE_SNAPSHOT_ALREADY_EXIST				= 2053;
+	
+	//Person Snapshot
+	public static final int PERSON_SNAPSHOT_IS_NULL 					= 2100;	
+	public static final int PERSON_SNAPSHOT_NOT_FOUND					= 2101;
+	public static final int PERSON_SNAPSHOT_ALREADY_EXIST				= 2102;
+	
+	//PersonCustomer
+	public static final int PERSON_CUS_WITHOUT_REFERENCE				= 2150;
+	public static final int PERSON_CUS_EMAIL_IS_NULL					= 2101;
+	public static final int PERSON_CUS_EMAIL_IS_FILLED					= 2102;
+	public static final int PERSON_CUS_CPF_IS_NULL						= 2103;
+	public static final int PERSON_CUS_CPF_IS_FILLED					= 2104;
+	public static final int PERSON_CUS_ALREADY_EXIST					= 2105;
+	public static final int PERSON_CUS_NOT_FOUND						= 2106;
 }

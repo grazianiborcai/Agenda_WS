@@ -16,7 +16,8 @@ public final class PhoneCheckRef extends ModelCheckerTemplateSimple<PhoneInfo> {
 	
 	
 	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codCustomer 	<= 0	&&
+		if ( recordInfo.codPhone 		<= 0	&&
+			 recordInfo.codCustomer 	<= 0	&&
 			 recordInfo.codStore 		<= 0	&& 
 			 recordInfo.codUser 		<= 0	&& 
 			 recordInfo.codEmployee 	<= 0		)			

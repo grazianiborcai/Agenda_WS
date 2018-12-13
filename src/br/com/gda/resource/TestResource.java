@@ -16,12 +16,20 @@ import br.com.gda.business.addressSnapshot.model.AddressSnapModelInsert;
 import br.com.gda.business.addressSnapshot.model.AddressSnapModelSelect;
 import br.com.gda.business.person.model.PersonModelInsert;
 import br.com.gda.business.person.model.PersonModelUpdate;
+import br.com.gda.business.personCustomer.info.PersonCusInfo;
+import br.com.gda.business.personCustomer.model.PersonCusModelSelect;
+import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
+import br.com.gda.business.personSnapshot.model.PersonSnapModelInsert;
+import br.com.gda.business.personSnapshot.model.PersonSnapModelSelect;
 import br.com.gda.business.personUser.info.PersonUserInfo;
 import br.com.gda.business.personUser.model.PersonUserModelSelect;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.PhoneModelInsert;
 import br.com.gda.business.phone.model.PhoneModelSelect;
 import br.com.gda.business.phone.model.PhoneModelUpdate;
+import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
+import br.com.gda.business.phoneSnapshot.model.PhoneSnapModelInsert;
+import br.com.gda.business.phoneSnapshot.model.PhoneSnapModelSelect;
 import br.com.gda.model.Model;
 
 @Path("/Test")
@@ -35,8 +43,13 @@ public class TestResource {
 	private static final String INSERT_PERSON = "/insertPerson";
 	private static final String UPDATE_PERSON = "/updatePerson";
 	private static final String SELECT_PERSON_USER = "/selectPersonUser";
+	private static final String SELECT_PERSON_CUSTOMER = "/selectPersonCustomer";
 	private static final String SELECT_ADDRESS_SNAPSHOT = "/selectAddressSnapshot";
 	private static final String INSERT_ADDRESS_SNAPSHOT = "/insertAddressSnapshot";
+	private static final String SELECT_PHONE_SNAPSHOT = "/selectPhoneSnapshot";
+	private static final String INSERT_PHONE_SNAPSHOT = "/insertPhoneSnapshot";
+	private static final String SELECT_PERSON_SNAPSHOT = "/selectPersonSnapshot";
+	private static final String INSERT_PERSON_SNAPSHOT = "/insertPersonSnapshot";
 	
 	
 	
@@ -159,6 +172,25 @@ public class TestResource {
 	
 	
 	@GET
+	@Path(SELECT_PERSON_CUSTOMER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPersonCsutomer(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+								         @HeaderParam("e-mail") String email,
+			                             @HeaderParam("cpff") String cpf) {
+
+		PersonCusInfo recordInfo = new PersonCusInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.email = email;
+		recordInfo.cpf = cpf;
+		
+		Model model = new PersonCusModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
 	@Path(SELECT_ADDRESS_SNAPSHOT)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectAddressSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
@@ -182,6 +214,66 @@ public class TestResource {
 		
 		
 		Model model = new AddressSnapModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();	
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_PHONE_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPhoneSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
+								        @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
+
+		PhoneSnapInfo recordInfo = new PhoneSnapInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codSnapshot = codSnapshot;
+		
+		Model model = new PhoneSnapModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_PHONE_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertPhoneSnapshot(String incomingData) {
+		
+		
+		Model model = new PhoneSnapModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();	
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_PERSON_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPersonSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
+								         @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
+
+		PersonSnapInfo recordInfo = new PersonSnapInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codSnapshot = codSnapshot;
+		
+		Model model = new PersonSnapModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_PERSON_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertPersonSnapshot(String incomingData) {
+		
+		
+		Model model = new PersonSnapModelInsert(incomingData);
 		model.executeRequest();
 		return model.getResponse();	
 	}

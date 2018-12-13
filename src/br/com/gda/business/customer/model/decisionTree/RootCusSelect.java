@@ -64,7 +64,6 @@ public final class RootCusSelect implements DeciTree<CusInfo> {
 		ActionLazy<CusInfo> mergeAddress = new LazyCusMergeAddress(option.conn, option.schemaName);
 		ActionLazy<CusInfo> mergePhone = new LazyCusMergePhone(option.conn, option.schemaName);
 		ActionLazy<CusInfo> mergePersonUser = new LazyCusMergePersonUser(option.conn, option.schemaName);
-		//ActionLazy<CusInfo> mergePersonUser = new LazyCusNodeSelectPersonUser(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);

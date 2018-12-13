@@ -23,8 +23,11 @@ import br.com.gda.business.materialStore.dao.MatStoreDbTableColumn;
 import br.com.gda.business.order.dao.OrderDbTableColumn;
 import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.business.person.dao.PersonDbTableColumn;
+import br.com.gda.business.personCustomer.dao.PersonCusDbTableColumn;
+import br.com.gda.business.personSnapshot.dao.PersonSnapDbTableColumn;
 import br.com.gda.business.personUser.dao.PersonUserDbTableColumn;
 import br.com.gda.business.phone.dao.PhoneDbTableColumn;
+import br.com.gda.business.phoneSnapshot.dao.PhoneSnapDbTableColumn;
 import br.com.gda.business.reserve.dao.ReserveDbTableColumn;
 import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
@@ -73,11 +76,14 @@ public final class DaoDbTableColumnAll {
 		addTable(new AddressSnapDbTableColumn());
 		addTable(new FormAddressDbTableColumn());
 		addTable(new PhoneDbTableColumn());
+		addTable(new PhoneSnapDbTableColumn());
 		addTable(new FormPhoneDbTableColumn());
 		addTable(new PersonDbTableColumn());
+		addTable(new PersonSnapDbTableColumn());
 		addTable(new UserDbTableColumn());
 		addTable(new SnapDbTableColumn());
-		addTable(new PersonUserDbTableColumn());
+		addTable(new PersonUserDbTableColumn());	
+		addTable(new PersonCusDbTableColumn());
 	}
 	
 	

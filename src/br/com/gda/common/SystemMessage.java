@@ -314,4 +314,30 @@ public final class SystemMessage {
 	public static final String ADDRESS_SNAPSHOT_IS_NULL = "Address-Snapshot: Snapshot code is blank";	
 	public static final String ADDRESS_SNAPSHOT_IS_FILLED = "Address-Snapshot: Snapshot code is not blank";	
 	public static final String ADDRESS_SNAPSHOT_NOT_FOUND = "Address-Snapshot not found on DB";	
+	
+	
+	
+	//Phone Snapshot
+	public static final String PHONE_SNAPSHOT_ALREADY_EXIST = "Phone-Snapshot already exist";
+	public static final String PHONE_SNAPSHOT_IS_NULL = "Phone-Snapshot: Snapshot code is blank";	
+	public static final String PHONE_SNAPSHOT_IS_FILLED = "Phone-Snapshot: Snapshot code is not blank";	
+	public static final String PHONE_SNAPSHOT_NOT_FOUND = "Phone-Snapshot not found on DB";	
+	
+	
+	
+	//Person Snapshot
+	public static final String PERSON_SNAPSHOT_ALREADY_EXIST = "Person-Snapshot already exist";
+	public static final String PERSON_SNAPSHOT_IS_NULL = "Person-Snapshot: Snapshot code is blank";		
+	public static final String PERSON_SNAPSHOT_NOT_FOUND = "Person-Snapshot not found on DB";	
+	
+	
+	
+	//PersonCustomer	
+	public static final String PERSON_CUS_ALREADY_EXIST = "Person-Customer data already exist on DB";
+	public static final String PERSON_CUS_CPF_IS_FILLED = "Person-Customer's CPF is not blank";
+	public static final String PERSON_CUS_CPF_IS_NULL = "Person-Customer's CPF is blank";
+	public static final String PERSON_CUS_EMAIL_IS_FILLED = "Person-Customer's e-mail is not blank";
+	public static final String PERSON_CUS_EMAIL_IS_NULL = "Person-Customer's e-mail is blank";		
+	public static final String PERSON_CUS_NOT_FOUND = "Person-Customer data not found on DB";
+	public static final String PERSON_CUS_WITHOUT_REFERENCE = "No reference added to Person-Customer";
 }
