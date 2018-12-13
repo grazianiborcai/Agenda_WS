@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.addressSnapshot.info.AddressSnapInfo;
-import br.com.gda.business.addressSnapshot.model.action.LazyAddressSnapInsert;
-import br.com.gda.business.addressSnapshot.model.action.LazyAddressSnapMergeAddress;
+import br.com.gda.business.addressSnapshot.model.action.LazyAddressSnapNodeInsertL2;
 import br.com.gda.business.addressSnapshot.model.action.StdAddressSnapMergeSnap;
 import br.com.gda.business.addressSnapshot.model.checker.AddressSnapCheckHasSnap;
 import br.com.gda.model.action.ActionLazy;
@@ -64,11 +63,9 @@ public final class NodeAddressSnapInsertL1 implements DeciTree<AddressSnapInfo> 
 		List<ActionStd<AddressSnapInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<AddressSnapInfo> mergeSnap = new StdAddressSnapMergeSnap(option);	
-		ActionLazy<AddressSnapInfo> mergeAddress = new LazyAddressSnapMergeAddress(option.conn, option.schemaName);	
-		ActionLazy<AddressSnapInfo> insert = new LazyAddressSnapInsert(option.conn, option.schemaName);
+		ActionLazy<AddressSnapInfo> nodeL2 = new LazyAddressSnapNodeInsertL2(option.conn, option.schemaName);
 		
-		mergeSnap.addPostAction(mergeAddress);
-		mergeAddress.addPostAction(insert);
+		mergeSnap.addPostAction(nodeL2);
 		
 		actions.add(mergeSnap);
 		return actions;

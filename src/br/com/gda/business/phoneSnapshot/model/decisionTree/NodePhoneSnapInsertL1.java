@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
-import br.com.gda.business.phoneSnapshot.model.action.LazyPhoneSnapInsert;
-import br.com.gda.business.phoneSnapshot.model.action.LazyPhoneSnapMergePhone;
+import br.com.gda.business.phoneSnapshot.model.action.LazyPhoneSnapNodeInsertL2;
 import br.com.gda.business.phoneSnapshot.model.action.StdPhoneSnapMergeSnap;
 import br.com.gda.business.phoneSnapshot.model.checker.PhoneSnapCheckHasSnap;
 import br.com.gda.model.action.ActionLazy;
@@ -64,11 +63,9 @@ public final class NodePhoneSnapInsertL1 implements DeciTree<PhoneSnapInfo> {
 		List<ActionStd<PhoneSnapInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<PhoneSnapInfo> mergeSnap = new StdPhoneSnapMergeSnap(option);	
-		ActionLazy<PhoneSnapInfo> mergePhone = new LazyPhoneSnapMergePhone(option.conn, option.schemaName);	
-		ActionLazy<PhoneSnapInfo> insert = new LazyPhoneSnapInsert(option.conn, option.schemaName);
+		ActionLazy<PhoneSnapInfo> nodeL2 = new LazyPhoneSnapNodeInsertL2(option.conn, option.schemaName);	
 		
-		mergeSnap.addPostAction(mergePhone);
-		mergePhone.addPostAction(insert);
+		mergeSnap.addPostAction(nodeL2);
 		
 		actions.add(mergeSnap);
 		return actions;

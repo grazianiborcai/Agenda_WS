@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
+import br.com.gda.business.personSnapshot.model.decisionTree.NodePersonSnapInsertL2;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyPersonSnapMergePerson extends ActionLazyTemplate<PersonSnapInfo, PersonSnapInfo> {
-
-	public LazyPersonSnapMergePerson(Connection conn, String schemaName) {
+public final class LazyPersonSnapNodeInsertL2 extends ActionLazyTemplate<PersonSnapInfo, PersonSnapInfo> {
+	
+	public LazyPersonSnapNodeInsertL2(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyPersonSnapMergePerson extends ActionLazyTemplate<PersonSn
 	
 	
 	@Override protected ActionStd<PersonSnapInfo> getInstanceOfActionHook(DeciTreeOption<PersonSnapInfo> option) {
-		return new StdPersonSnapMergePerson(option);
+		return new NodePersonSnapInsertL2(option).toAction();
 	}
 	
 	

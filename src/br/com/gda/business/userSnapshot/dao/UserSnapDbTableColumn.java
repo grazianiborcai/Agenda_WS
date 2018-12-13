@@ -1,24 +1,29 @@
-package br.com.gda.business.user.dao;
+package br.com.gda.business.userSnapshot.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
+import br.com.gda.business.user.dao.UserDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
-public final class UserDbTableColumn extends DaoDbTableColumnTemplate {	
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_PERSON = "cod_person";
-	public static final String COL_COD_USER = "cod_user";
-	public static final String COL_LAST_CHANGED = "last_changed";		
-	public static final String COL_RECORD_MODE = "record_mode";	
+public final class UserSnapDbTableColumn extends DaoDbTableColumnTemplate {		
+	public static final String COL_COD_OWNER = UserDbTableColumn.COL_COD_OWNER;		
+	public static final String COL_COD_PERSON = UserDbTableColumn.COL_COD_PERSON;
+	public static final String COL_COD_SNAPSHOT = SnapDbTableColumn.COL_COD_SNAPSHOT;
+	public static final String COL_COD_USER = UserDbTableColumn.COL_COD_USER;
+	public static final String COL_LAST_CHANGED = UserDbTableColumn.COL_LAST_CHANGED;
+	public static final String COL_RECORD_MODE = UserDbTableColumn.COL_RECORD_MODE;	
+	
+	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	
-	public UserDbTableColumn() {
+	public UserSnapDbTableColumn() {
 		super();
 	}
 	
@@ -33,7 +38,7 @@ public final class UserDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	private void buildUserTable() {
-		final String TABLE_NAME = DaoDbTable.USER_TABLE;
+		final String TABLE_NAME = DaoDbTable.USER_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
@@ -48,10 +53,18 @@ public final class UserDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_SNAPSHOT;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_USER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
+		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();

@@ -1,4 +1,4 @@
-package br.com.gda.business.user.info;
+package br.com.gda.business.userSnapshot.info;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,8 +9,9 @@ import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class UserInfo extends InfoRecord implements Cloneable {
+public final class UserSnapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public long codSnapshot;
 	public long codUser;
 	public long codPerson;
 	public long codCustomer;
@@ -28,8 +29,9 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	
 	
-	public UserInfo() {
+	public UserSnapInfo() {
 		codOwner = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codCustomer = DefaultValue.number();
@@ -42,14 +44,14 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static UserInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, UserInfo.class);
+	public static UserSnapInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, UserSnapInfo.class);
 	}
 	
 	
 	
-	public static List<UserInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, UserInfo.class);
+	public static List<UserSnapInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, UserSnapInfo.class);
 	}
 	
 	
@@ -63,8 +65,9 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner  ^ (codOwner >>> 32));
-		result = result * 31 + (int) (codUser 	^ (codUser 	>>> 32));
+		result = result * 31 + (int) (codOwner     	^ (codOwner    >>> 32));
+		result = result * 31 + (int) (codSnapshot	^ (codSnapshot >>> 32));
+		result = result * 31 + (int) (codUser 	   	^ (codUser 	   >>> 32));
 		
 		return result;
 	}
@@ -76,11 +79,13 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof UserInfo))
+		if (!(o instanceof UserSnapInfo))
 			return false;
 		
 		
-		UserInfo obj = (UserInfo) o;		
-		return (codOwner == obj.codOwner && codUser == obj.codUser);
+		UserSnapInfo obj = (UserSnapInfo) o;		
+		return (codOwner 	== obj.codOwner 	&&
+				codSnapshot	== obj.codSnapshot 	&&
+				codUser 	== obj.codUser);
 	}
 }

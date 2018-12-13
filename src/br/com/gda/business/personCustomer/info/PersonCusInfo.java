@@ -2,7 +2,6 @@ package br.com.gda.business.personCustomer.info;
 
 import java.util.List;
 
-import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
@@ -13,7 +12,6 @@ public final class PersonCusInfo extends InfoRecord implements Cloneable {
 	public String codEntityCateg;
 	public String cpf;
 	public String email;
-	public UserInfo userData;
 	public String recordMode;
 	
 	
@@ -22,7 +20,6 @@ public final class PersonCusInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
-		userData = DefaultValue.object();
 	}
 	
 	

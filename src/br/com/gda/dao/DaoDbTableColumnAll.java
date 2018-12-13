@@ -36,6 +36,7 @@ import br.com.gda.business.storeLeaveDate.dao.StoreLDateDbTableColumn;
 import br.com.gda.business.storeWorkTime.dao.StoreWTimeDbTableColumn;
 import br.com.gda.business.storeWorkTimeConflict.dao.StoreCoDbTableColumn;
 import br.com.gda.business.user.dao.UserDbTableColumn;
+import br.com.gda.business.userSnapshot.dao.UserSnapDbTableColumn;
 import br.com.gda.common.SystemMessage;
 
 public final class DaoDbTableColumnAll {
@@ -81,6 +82,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PersonDbTableColumn());
 		addTable(new PersonSnapDbTableColumn());
 		addTable(new UserDbTableColumn());
+		addTable(new UserSnapDbTableColumn());
 		addTable(new SnapDbTableColumn());
 		addTable(new PersonUserDbTableColumn());	
 		addTable(new PersonCusDbTableColumn());

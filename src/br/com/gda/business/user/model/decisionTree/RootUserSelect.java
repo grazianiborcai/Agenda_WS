@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.action.LazyUserMergeAddress;
 import br.com.gda.business.user.model.action.LazyUserMergePerson;
+import br.com.gda.business.user.model.action.LazyUserMergePersonCus;
 import br.com.gda.business.user.model.action.LazyUserMergePhone;
 import br.com.gda.business.user.model.action.StdUserSelect;
 import br.com.gda.business.user.model.checker.UserCheckRead;
@@ -62,10 +63,12 @@ public final class RootUserSelect implements DeciTree<UserInfo> {
 		ActionLazy<UserInfo> mergePerson = new LazyUserMergePerson(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergeAddress = new LazyUserMergeAddress(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergePhone = new LazyUserMergePhone(option.conn, option.schemaName);
+		ActionLazy<UserInfo> mergePersonCus = new LazyUserMergePersonCus(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
+		mergePhone.addPostAction(mergePersonCus);
 		
 		actions.add(select);
 		return actions;

@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
+import br.com.gda.business.phoneSnapshot.model.decisionTree.NodePhoneSnapInsertL2;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyPhoneSnapMergePhone extends ActionLazyTemplate<PhoneSnapInfo, PhoneSnapInfo> {
-
-	public LazyPhoneSnapMergePhone(Connection conn, String schemaName) {
+public final class LazyPhoneSnapNodeInsertL2 extends ActionLazyTemplate<PhoneSnapInfo, PhoneSnapInfo> {
+	
+	public LazyPhoneSnapNodeInsertL2(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyPhoneSnapMergePhone extends ActionLazyTemplate<PhoneSnapI
 	
 	
 	@Override protected ActionStd<PhoneSnapInfo> getInstanceOfActionHook(DeciTreeOption<PhoneSnapInfo> option) {
-		return new StdPhoneSnapMergePhone(option);
+		return new NodePhoneSnapInsertL2(option).toAction();
 	}
 	
 	

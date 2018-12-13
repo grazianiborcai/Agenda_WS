@@ -30,6 +30,7 @@ import br.com.gda.business.phone.model.PhoneModelUpdate;
 import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
 import br.com.gda.business.phoneSnapshot.model.PhoneSnapModelInsert;
 import br.com.gda.business.phoneSnapshot.model.PhoneSnapModelSelect;
+import br.com.gda.business.userSnapshot.model.UserSnapModelInsert;
 import br.com.gda.model.Model;
 
 @Path("/Test")
@@ -50,6 +51,7 @@ public class TestResource {
 	private static final String INSERT_PHONE_SNAPSHOT = "/insertPhoneSnapshot";
 	private static final String SELECT_PERSON_SNAPSHOT = "/selectPersonSnapshot";
 	private static final String INSERT_PERSON_SNAPSHOT = "/insertPersonSnapshot";
+	private static final String INSERT_USER_SNAPSHOT = "/insertUserSnapshot";
 	
 	
 	
@@ -274,6 +276,19 @@ public class TestResource {
 		
 		
 		Model model = new PersonSnapModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();	
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_USER_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertUserSnapshot(String incomingData) {
+		
+		
+		Model model = new UserSnapModelInsert(incomingData);
 		model.executeRequest();
 		return model.getResponse();	
 	}

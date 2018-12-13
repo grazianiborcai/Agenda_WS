@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
-import br.com.gda.business.personSnapshot.model.action.LazyPersonSnapInsert;
-import br.com.gda.business.personSnapshot.model.action.LazyPersonSnapMergePerson;
+import br.com.gda.business.personSnapshot.model.action.LazyPersonSnapNodeInsertL2;
 import br.com.gda.business.personSnapshot.model.action.StdPersonSnapMergeSnap;
 import br.com.gda.business.personSnapshot.model.checker.PersonSnapCheckHasSnap;
 import br.com.gda.model.action.ActionLazy;
@@ -64,11 +63,9 @@ public final class NodePersonSnapInsertL1 implements DeciTree<PersonSnapInfo> {
 		List<ActionStd<PersonSnapInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<PersonSnapInfo> mergeSnap = new StdPersonSnapMergeSnap(option);	
-		ActionLazy<PersonSnapInfo> mergePerson = new LazyPersonSnapMergePerson(option.conn, option.schemaName);	
-		ActionLazy<PersonSnapInfo> insert = new LazyPersonSnapInsert(option.conn, option.schemaName);
+		ActionLazy<PersonSnapInfo> nodeL2 = new LazyPersonSnapNodeInsertL2(option.conn, option.schemaName);
 		
-		mergeSnap.addPostAction(mergePerson);
-		mergePerson.addPostAction(insert);
+		mergeSnap.addPostAction(nodeL2);
 		
 		actions.add(mergeSnap);
 		return actions;

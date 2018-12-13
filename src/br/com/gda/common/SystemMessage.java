@@ -340,4 +340,11 @@ public final class SystemMessage {
 	public static final String PERSON_CUS_EMAIL_IS_NULL = "Person-Customer's e-mail is blank";		
 	public static final String PERSON_CUS_NOT_FOUND = "Person-Customer data not found on DB";
 	public static final String PERSON_CUS_WITHOUT_REFERENCE = "No reference added to Person-Customer";
+	
+	
+	
+	//User Snapshot
+	public static final String USER_SNAPSHOT_ALREADY_EXIST = "User-Snapshot's data already exist on DB";
+	public static final String USER_SNAPSHOT_NOT_FOUND = "User-Snapshot's data not found on DB";
+	public static final String USER_SNAPSHOT_IS_NULL = "User-Snapshot: Snapshot code is blank";
 }

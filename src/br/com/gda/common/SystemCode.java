@@ -265,4 +265,9 @@ public final class SystemCode {
 	public static final int PERSON_CUS_CPF_IS_FILLED					= 2104;
 	public static final int PERSON_CUS_ALREADY_EXIST					= 2105;
 	public static final int PERSON_CUS_NOT_FOUND						= 2106;
+	
+	//User Snapshot
+	public static final int USER_SNAPSHOT_ALREADY_EXIST 				= 2150;
+	public static final int USER_SNAPSHOT_NOT_FOUND 					= 2151;
+	public static final int USER_SNAPSHOT_IS_NULL 						= 2152;	
 }
