@@ -2,18 +2,15 @@ package br.com.gda.business.userSnapshot.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.userSnapshot.info.UserSnapInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoOperation;
-import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
@@ -41,7 +38,7 @@ public final class UserSnapInsertSingle implements DaoStmt<UserSnapInfo> {
 		this.stmtOption.tableName = DaoDbTable.USER_SNAPSHOT_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser(recordInfo);
+		this.stmtOption.resultParser = null;
 		this.stmtOption.whereClause = null;
 	}
 	
@@ -107,26 +104,5 @@ public final class UserSnapInsertSingle implements DaoStmt<UserSnapInfo> {
 	
 	@Override public DaoStmt<UserSnapInfo> getNewInstance() {
 		return new UserSnapInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser<UserSnapInfo> {
-		private UserSnapInfo recordInfo;
-		
-		public ResultParser(UserSnapInfo recordToParse) {
-			recordInfo = recordToParse;
-		}
-		
-		
-		
-		@Override public List<UserSnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<UserSnapInfo> finalResult = new ArrayList<>();
-			recordInfo.codUser = lastId;
-			finalResult.add(recordInfo);			
-			return finalResult;
-		}
 	}
 }

@@ -30,12 +30,17 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	public void addPostAction(ActionLazy<T> actionHandler) {
+		checkArgument(actionHandler);
+		postActions.add(actionHandler);
+	}
+	
+	
+	
+	private void checkArgument(ActionLazy<T> actionHandler) {
 		if (actionHandler == null) {
 			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
 		}
-		
-		postActions.add(actionHandler);
 	}
 	
 	
@@ -172,6 +177,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	private boolean tryToExecutePostActions(ActionLazy<T> postAction) {				
 		try {
+			//TODO: nao deveria passar o resultado do Post para o proximo Post
 			postAction.executeAction(deciResult.getResultset());
 			copyResult(postAction.getDecisionResult());
 			return postAction.getDecisionResult().isSuccess();

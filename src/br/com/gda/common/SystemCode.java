@@ -270,4 +270,6 @@ public final class SystemCode {
 	public static final int USER_SNAPSHOT_ALREADY_EXIST 				= 2150;
 	public static final int USER_SNAPSHOT_NOT_FOUND 					= 2151;
 	public static final int USER_SNAPSHOT_IS_NULL 						= 2152;	
+	public static final int USER_SNAPSHOT_NO_ADDRESS					= 2153;	
+	public static final int USER_SNAPSHOT_NO_PHONE						= 2154;
 }

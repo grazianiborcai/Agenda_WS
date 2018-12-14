@@ -5,6 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.userSnapshot.info.UserSnapInfo;
 import br.com.gda.business.userSnapshot.model.action.LazyUserSnapInsert;
+import br.com.gda.business.userSnapshot.model.action.LazyUserSnapInsertPersonSnap;
+import br.com.gda.business.userSnapshot.model.action.LazyUserSnapNodeInsertAddressSnap;
+import br.com.gda.business.userSnapshot.model.action.LazyUserSnapNodeInsertPhoneSnap;
 import br.com.gda.business.userSnapshot.model.action.StdUserSnapMergeUser;
 import br.com.gda.business.userSnapshot.model.checker.UserSnapCheckExist;
 import br.com.gda.business.userSnapshot.model.checker.UserSnapCheckSnap;
@@ -68,12 +71,18 @@ public final class NodeUserSnapInsertL2 implements DeciTree<UserSnapInfo> {
 	private List<ActionStd<UserSnapInfo>> buildActionsOnPassed(DeciTreeOption<UserSnapInfo> option) {
 		List<ActionStd<UserSnapInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<UserSnapInfo> mergePhone = new StdUserSnapMergeUser(option);	
-		ActionLazy<UserSnapInfo> insert = new LazyUserSnapInsert(option.conn, option.schemaName);
+		ActionStd<UserSnapInfo> mergeUser = new StdUserSnapMergeUser(option);	
+		ActionLazy<UserSnapInfo> insertPersonSnap = new LazyUserSnapInsertPersonSnap(option.conn, option.schemaName);
+		ActionLazy<UserSnapInfo> insertUserSnap = new LazyUserSnapInsert(option.conn, option.schemaName);
+		ActionLazy<UserSnapInfo> insertAddressSnap = new LazyUserSnapNodeInsertAddressSnap(option.conn, option.schemaName);
+		ActionLazy<UserSnapInfo> insertPhoneSnap = new LazyUserSnapNodeInsertPhoneSnap(option.conn, option.schemaName);
 		
-		mergePhone.addPostAction(insert);
+		mergeUser.addPostAction(insertPersonSnap);
+		mergeUser.addPostAction(insertUserSnap);
+		mergeUser.addPostAction(insertAddressSnap);
+		mergeUser.addPostAction(insertPhoneSnap);
 		
-		actions.add(mergePhone);
+		actions.add(mergeUser);
 		return actions;
 	}
 	

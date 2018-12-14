@@ -8,13 +8,14 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 
-public abstract class InfoMerger<T,K,S> {
+public abstract class InfoMerger<T  extends InfoRecord, K extends InfoRecord, S extends InfoRecord> {
+	
 	protected List<T> write(List<K> sourceOnes, List<S> sourceTwos, InfoMergerVisitor<T,K,S> visitor) {
 		checkArgument(sourceOnes, sourceTwos);		
 		List<T> results = new ArrayList<>();
 		
 		for (K eachSourceOne : sourceOnes) {			
-			for (S eachSourceTwo : sourceTwos) {
+			for (S eachSourceTwo : sourceTwos) {				
 				if (visitor.shouldWrite(eachSourceOne, eachSourceTwo)) {
 					T oneResult = tryToWrite(eachSourceOne, eachSourceTwo, visitor);
 					
@@ -68,9 +69,14 @@ public abstract class InfoMerger<T,K,S> {
 	
 	
 	
+	@SuppressWarnings("unchecked")
 	protected T write(K sourceOne, S sourceTwo, InfoMergerVisitor<T,K,S> visitor) {
 		checkArgument(sourceOne, sourceTwo, visitor);
-		return visitor.writeRecord(sourceOne, sourceTwo);
+		
+		K clonedSourceOne = (K) makeClone(sourceOne);
+		S clonedSourceTwo = (S) makeClone(sourceTwo);
+		
+		return visitor.writeRecord(clonedSourceOne, clonedSourceTwo);
 	}
 	
 	
@@ -100,6 +106,18 @@ public abstract class InfoMerger<T,K,S> {
 		if (result == null) {
 			logException(new IllegalArgumentException(SystemMessage.MERGE_RETURNED_NULL));
 			throw new IllegalArgumentException(SystemMessage.MERGE_RETURNED_NULL);
+		}
+	}
+	
+	
+	
+	private InfoRecord makeClone(InfoRecord recordInfo) {
+		try {
+			return (InfoRecord) recordInfo.clone();
+			
+		} catch (CloneNotSupportedException e) {
+			logException(e);
+			throw new IllegalStateException(e);
 		}
 	}
 	
