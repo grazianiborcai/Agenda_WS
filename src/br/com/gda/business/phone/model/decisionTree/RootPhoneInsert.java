@@ -12,7 +12,7 @@ import br.com.gda.business.phone.model.checker.PhoneCheckCountryPhone;
 import br.com.gda.business.phone.model.checker.PhoneCheckLength;
 import br.com.gda.business.phone.model.checker.PhoneCheckLimit;
 import br.com.gda.business.phone.model.checker.PhoneCheckOwner;
-import br.com.gda.business.phone.model.checker.PhoneCheckRef;
+import br.com.gda.business.phone.model.checker.PhoneCheckRefWrite;
 import br.com.gda.business.phone.model.checker.PhoneCheckRefMulti;
 import br.com.gda.business.phone.model.checker.PhoneCheckTechField;
 import br.com.gda.business.phone.model.checker.PhoneCheckWrite;
@@ -61,7 +61,7 @@ public final class RootPhoneInsert implements DeciTree<PhoneInfo> {
 		checker = new PhoneCheckLength();
 		queue.add(checker);
 		
-		checker = new PhoneCheckRef();
+		checker = new PhoneCheckRefWrite();
 		queue.add(checker);
 		
 		checker = new PhoneCheckRefMulti();

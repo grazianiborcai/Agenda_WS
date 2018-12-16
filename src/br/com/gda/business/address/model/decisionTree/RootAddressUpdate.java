@@ -10,7 +10,7 @@ import br.com.gda.business.address.model.action.MapAddressMergeForm;
 import br.com.gda.business.address.model.checker.AddressCheckCountry;
 import br.com.gda.business.address.model.checker.AddressCheckExist;
 import br.com.gda.business.address.model.checker.AddressCheckOwner;
-import br.com.gda.business.address.model.checker.AddressCheckRef;
+import br.com.gda.business.address.model.checker.AddressCheckRefWrite;
 import br.com.gda.business.address.model.checker.AddressCheckRefMulti;
 import br.com.gda.business.address.model.checker.AddressCheckUpdate;
 import br.com.gda.model.action.ActionLazy;
@@ -52,7 +52,7 @@ public final class RootAddressUpdate implements DeciTree<AddressInfo> {
 		checker = new AddressCheckUpdate();
 		queue.add(checker);
 		
-		checker = new AddressCheckRef();
+		checker = new AddressCheckRefWrite();
 		queue.add(checker);
 		
 		checker = new AddressCheckRefMulti();

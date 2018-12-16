@@ -9,7 +9,7 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.action.LazymapAddressMergeForm;
 import br.com.gda.business.address.model.action.StdAddressSelect;
 import br.com.gda.business.address.model.checker.AddressCheckRead;
-import br.com.gda.business.address.model.checker.AddressCheckRef;
+import br.com.gda.business.address.model.checker.AddressCheckRefRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
@@ -43,7 +43,7 @@ public final class RootAddressSelect implements DeciTree<AddressInfo> {
 		checker = new AddressCheckRead();
 		queue.add(checker);
 		
-		checker = new AddressCheckRef();
+		checker = new AddressCheckRefRead();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

@@ -30,7 +30,9 @@ import br.com.gda.business.phone.model.PhoneModelUpdate;
 import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
 import br.com.gda.business.phoneSnapshot.model.PhoneSnapModelInsert;
 import br.com.gda.business.phoneSnapshot.model.PhoneSnapModelSelect;
+import br.com.gda.business.userSnapshot.info.UserSnapInfo;
 import br.com.gda.business.userSnapshot.model.UserSnapModelInsert;
+import br.com.gda.business.userSnapshot.model.UserSnapModelSelect;
 import br.com.gda.model.Model;
 
 @Path("/Test")
@@ -52,6 +54,7 @@ public class TestResource {
 	private static final String SELECT_PERSON_SNAPSHOT = "/selectPersonSnapshot";
 	private static final String INSERT_PERSON_SNAPSHOT = "/insertPersonSnapshot";
 	private static final String INSERT_USER_SNAPSHOT = "/insertUserSnapshot";
+	private static final String SELECT_USER_SNAPSHOT = "/selectUserSnapshot";
 	
 	
 	
@@ -292,4 +295,21 @@ public class TestResource {
 		model.executeRequest();
 		return model.getResponse();	
 	}
+	
+	
+	
+	@GET
+	@Path(SELECT_USER_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectUserSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
+								       @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
+
+		UserSnapInfo recordInfo = new UserSnapInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codSnapshot = codSnapshot;
+		
+		Model model = new UserSnapModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}	
 }

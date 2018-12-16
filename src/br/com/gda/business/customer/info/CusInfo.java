@@ -2,6 +2,7 @@ package br.com.gda.business.customer.info;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
@@ -56,7 +57,44 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		CusInfo deepCopy = (CusInfo) super.clone();
+		
+		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
+		deepCopy.phones = clonePhones(deepCopy.phones);
+		
+		return deepCopy;
+	}
+	
+	
+	
+	private List<AddressInfo> cloneAddresses(List<AddressInfo> addresses) throws CloneNotSupportedException {
+		if (addresses == null)
+			return null;
+		
+		List<AddressInfo> deepAddresses = new ArrayList<>();
+		
+		for (AddressInfo eachAddress : addresses) {
+			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
+			deepAddresses.add(clonedAddress);
+		}
+		
+		return deepAddresses;
+	}
+	
+	
+	
+	private List<PhoneInfo> clonePhones(List<PhoneInfo> phones) throws CloneNotSupportedException {
+		if (phones == null)
+			return null;
+		
+		List<PhoneInfo> deepPhones = new ArrayList<>();
+		
+		for (PhoneInfo eachPhone : phones) {
+			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
+			deepPhones.add(clonedPhone);
+		}
+		
+		return deepPhones;
 	}
 	
 	

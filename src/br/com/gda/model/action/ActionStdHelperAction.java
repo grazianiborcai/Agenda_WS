@@ -81,7 +81,7 @@ public final class ActionStdHelperAction<T> extends ActionStdTemplate<T> {
 	
 	
 	
-	@Override protected DeciResult<T> tryToExecuteActionResuHook() throws SQLException {
+	@Override protected DeciResult<T> tryToExecuteActionReturnResuHook() throws SQLException {
 		return visitorAction.executeTransformation(records);
 	}
 	

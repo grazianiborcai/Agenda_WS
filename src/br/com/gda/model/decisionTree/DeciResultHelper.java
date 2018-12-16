@@ -9,7 +9,7 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 
 public final class DeciResultHelper<T> implements DeciResult<T> {
-	private final boolean FAIL = false;
+	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	public List<T> resultset;
@@ -32,7 +32,7 @@ public final class DeciResultHelper<T> implements DeciResult<T> {
 		if (deciResult.isSuccess() == SUCCESS)
 			buildSuccessMessage(deciResult);
 		
-		if (deciResult.isSuccess() == FAIL)
+		if (deciResult.isSuccess() == FAILED)
 			buildFailMessage(deciResult);		
 	}
 	

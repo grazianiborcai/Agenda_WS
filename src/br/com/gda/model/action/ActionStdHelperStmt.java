@@ -30,7 +30,7 @@ public final class ActionStdHelperStmt<T> extends ActionStdTemplate<T> {
 	
 	
 	
-	@Override protected List<T> tryToExecuteActionListHook() throws SQLException {
+	@Override protected List<T> tryToExecuteActionReturnListHook() throws SQLException {
 		stmtExec.executeStmt();
 		return stmtExec.getResultset();
 	} 

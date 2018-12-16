@@ -1,22 +1,22 @@
-package br.com.gda.business.customer.info;
+package br.com.gda.business.userSnapshot.info;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.addressSnapshot.info.AddressSnapInfo;
+import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
 import br.com.gda.info.InfoUniquifier;
 
-final class CusUniquifier implements InfoUniquifier<CusInfo> {
+final class UserSnapUniquifier implements InfoUniquifier<UserSnapInfo> {
 	
-	@Override public List<CusInfo> uniquify(List<CusInfo> infoRecords) {
-		List<CusInfo> uniques = new ArrayList<>();		
+	@Override public List<UserSnapInfo> uniquify(List<UserSnapInfo> infoRecords) {
+		List<UserSnapInfo> uniques = new ArrayList<>();		
 		
-		for (CusInfo eachRecord : infoRecords) {
+		for (UserSnapInfo eachRecord : infoRecords) {
 			if (uniques.contains(eachRecord)) {
 				int dupleIndex = uniques.indexOf(eachRecord);
-				CusInfo duple = uniques.get(dupleIndex);
+				UserSnapInfo duple = uniques.get(dupleIndex);
 				
 				uniquifyAddress(duple, eachRecord);
 				uniquifyPhone(duple, eachRecord);
@@ -32,8 +32,8 @@ final class CusUniquifier implements InfoUniquifier<CusInfo> {
 	
 	
 	
-	private void uniquifyAddress(CusInfo duple, CusInfo eachRecord) {
-		List<AddressInfo> allAddresses = new ArrayList<>();
+	private void uniquifyAddress(UserSnapInfo duple, UserSnapInfo eachRecord) {
+		List<AddressSnapInfo> allAddresses = new ArrayList<>();
 		
 		allAddresses.addAll(duple.addresses);
 		allAddresses.addAll(eachRecord.addresses);
@@ -43,8 +43,8 @@ final class CusUniquifier implements InfoUniquifier<CusInfo> {
 	
 	
 	
-	private void uniquifyPhone(CusInfo duple, CusInfo eachRecord) {
-		List<PhoneInfo> allPhones = new ArrayList<>();
+	private void uniquifyPhone(UserSnapInfo duple, UserSnapInfo eachRecord) {
+		List<PhoneSnapInfo> allPhones = new ArrayList<>();
 		
 		allPhones.addAll(duple.phones);
 		allPhones.addAll(eachRecord.phones);

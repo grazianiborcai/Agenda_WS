@@ -74,7 +74,7 @@ public final class ActionStdHelperEnforce<T> extends ActionStdTemplate<T> {
 	
 	
 	
-	@Override protected List<T> tryToExecuteActionListHook() throws SQLException {
+	@Override protected List<T> tryToExecuteActionReturnListHook() throws SQLException {
 		return visitorEnforce.executeTransformation(records);
 	}
 	

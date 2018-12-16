@@ -1,23 +1,22 @@
-package br.com.gda.business.phone.model.checker;
+package br.com.gda.business.address.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class PhoneCheckRef extends ModelCheckerTemplateSimple<PhoneInfo> {
+public final class AddressCheckRefWrite extends ModelCheckerTemplateSimple<AddressInfo> {
 
-	public PhoneCheckRef() {
+	public AddressCheckRefWrite() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codPhone 		<= 0	&&
-			 recordInfo.codCustomer 	<= 0	&&
+	@Override protected boolean checkHook(AddressInfo recordInfo, Connection conn, String schemaName) {	
+		if ( recordInfo.codCustomer 	<= 0	&&
 			 recordInfo.codStore 		<= 0	&& 
 			 recordInfo.codUser 		<= 0	&& 
 			 recordInfo.codEmployee 	<= 0		)			
@@ -31,12 +30,12 @@ public final class PhoneCheckRef extends ModelCheckerTemplateSimple<PhoneInfo> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PHONE_WITHOUT_REFERENCE;
+		return SystemMessage.ADDRESS_WITHOUT_REFERENCE;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.PHONE_WITHOUT_REFERENCE;
+		return SystemCode.ADDRESS_WITHOUT_REFERENCE;
 	}
 }

@@ -11,18 +11,27 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
+import br.com.gda.model.decisionTree.common.DeciResultInternalError;
 
 public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;	
 	
-	private DeciResultHelper<T> deciResult;
+	private DeciResultHelper<T> actionResult;
+	private DeciResultHelper<T> finalResult;
 	private List<ActionLazy<T>> postActions;
 	private boolean hasExecuted;
 	
 	
 	public ActionStdTemplate() {
-		deciResult = new DeciResultHelper<>();
+		init();
+	}
+	
+	
+	
+	private void init() {
+		actionResult = new DeciResultHelper<>();
+		finalResult = new DeciResultHelper<>();
 		postActions = new ArrayList<>();
 		hasExecuted = false;
 	}
@@ -65,27 +74,28 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	private boolean tryToExecuteAction() {
 		try {
-			DeciResult<T> result = tryToExecuteActionResuHook();
-			copyResult(result);
+			DeciResult<T> result = tryToExecuteActionReturnResuHook();
+			copyToActionResult(result);
+			copyToFinalResult(result);
 			return result.isSuccess();
 		
 		} catch (Exception e) {
 			logException(e);
-			buildResultError();
+			buildResultInternalError();
 			return FAILED;
 		}			
 	}
 	
 	
 	
-	protected DeciResult<T> tryToExecuteActionResuHook() throws SQLException {
-		List<T> resultRecords = tryToExecuteActionListHook();
-		return buildResult(resultRecords);
+	protected DeciResult<T> tryToExecuteActionReturnResuHook() throws SQLException {
+		List<T> resultRecords = tryToExecuteActionReturnListHook();
+		return buildResultFromList(resultRecords);
 	}
 	
 	
 	
-	protected List<T> tryToExecuteActionListHook() throws SQLException {
+	protected List<T> tryToExecuteActionReturnListHook() throws SQLException {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
@@ -93,7 +103,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	
-	private DeciResult<T> buildResult(List<T> recordInfos) {
+	private DeciResult<T> buildResultFromList(List<T> recordInfos) {
 		if (recordInfos.isEmpty()) 
 			return buildResultFailed();
 			
@@ -117,6 +127,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	protected DeciResult<T> buildResultFailedHook() {
+		//Template Method: default implementation
 		return buildResultFailedDefault();
 	}
 	
@@ -154,56 +165,55 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	
-	private void copyResult(DeciResult<T> result) {
-		deciResult.copyFrom(result);
-	}
-	
-	
-	
-	private boolean executePostActions() {				
-		boolean result = true;
-		
+	private boolean executePostActions() {	
 		for (ActionLazy<T> eachAction : postActions) {
-			result = tryToExecutePostActions(eachAction);
+			DeciResult<T> postResult = tryToExecutePostActions(eachAction);
+			copyToFinalResult(postResult);
 			
-			if (result == FAILED)
-				return result;
+			if (postResult.isSuccess() == FAILED)
+				return FAILED;
 		}
 				
-		return result;
+		return SUCCESS;
 	}
 	
 	
 	
-	private boolean tryToExecutePostActions(ActionLazy<T> postAction) {				
+	private DeciResult<T> tryToExecutePostActions(ActionLazy<T> postAction) {				
 		try {
-			//TODO: nao deveria passar o resultado do Post para o proximo Post
-			postAction.executeAction(deciResult.getResultset());
-			copyResult(postAction.getDecisionResult());
-			return postAction.getDecisionResult().isSuccess();
+			postAction.executeAction(actionResult.getResultset());
+			return postAction.getDecisionResult();
 		
 		} catch (Exception e) {
-			buildResultError();
-			return FAILED;
-			//TODO: realmente tratar exception ao inves de dispara-la ?
+			logException(e);			
+			return new DeciResultInternalError<>();
 		}		
 	}
 	
 	
 	
-	private void buildResultError() {
-		deciResult.isSuccess = FAILED;
-		deciResult.failCode = SystemCode.INTERNAL_ERROR;
-		deciResult.failMessage = SystemMessage.INTERNAL_ERROR;
-		deciResult.hasResultset = false;
-		deciResult.resultset = null;
+	private void copyToActionResult(DeciResult<T> result) {
+		actionResult.copyFrom(result);
+	}
+	
+	
+	
+	private void copyToFinalResult(DeciResult<T> result) {
+		finalResult.copyFrom(result);
+	}
+	
+	
+	
+	private void buildResultInternalError() {
+		actionResult.copyFrom(new DeciResultInternalError<>());
+		finalResult.copyFrom(new DeciResultInternalError<>());
 	}
 	
 	
 	
 	public DeciResult<T> getDecisionResult() {
 		checkState();
-		return this.deciResult;
+		return finalResult;
 	}
 	
 	

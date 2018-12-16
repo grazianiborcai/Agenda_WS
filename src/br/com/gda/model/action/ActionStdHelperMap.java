@@ -147,7 +147,7 @@ public final class ActionStdHelperMap<T, S> extends ActionStdTemplate<T> {
 	
 	
 	
-	@Override protected DeciResult<T> tryToExecuteActionResuHook() throws SQLException {
+	@Override protected DeciResult<T> tryToExecuteActionReturnResuHook() throws SQLException {
 		List<T> results = new ArrayList<>();
 		DeciResult<T> parcialResult = null;
 		

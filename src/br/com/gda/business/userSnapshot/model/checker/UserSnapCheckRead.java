@@ -16,7 +16,8 @@ public final class UserSnapCheckRead extends ModelCheckerTemplateSimple<UserSnap
 	
 	
 	@Override protected boolean checkHook(UserSnapInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner <= 0 )			
+		if (recordInfo.codOwner 	<= 0 ||
+			recordInfo.codSnapshot 	<= 0	)			
 			return FAILED;		
 		
 		return SUCCESS;
