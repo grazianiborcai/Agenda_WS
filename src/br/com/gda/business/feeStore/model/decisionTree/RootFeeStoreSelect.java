@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
+import br.com.gda.business.feeStore.model.action.StdFeeStoreSelect;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckFeeCateg;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckOwner;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckRead;
@@ -75,7 +76,7 @@ public final class RootFeeStoreSelect implements DeciTree<FeeStoreInfo> {
 	private List<ActionStd<FeeStoreInfo>> buildActionsOnPassed(DeciTreeOption<FeeStoreInfo> option) {
 		List<ActionStd<FeeStoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new NodeFeeStoreSelect(option).toAction());
+		actions.add(new StdFeeStoreSelect(option));
 		return actions;
 	}
 	

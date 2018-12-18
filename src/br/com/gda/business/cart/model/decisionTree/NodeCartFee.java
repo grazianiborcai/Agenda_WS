@@ -4,18 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.action.LazyCartEnforceKey;
-import br.com.gda.business.cart.model.action.LazyCartInsertItm;
-import br.com.gda.business.cart.model.action.LazyCartRootSelect;
-import br.com.gda.business.cart.model.checker.CartCheckDate;
-import br.com.gda.business.cart.model.checker.CartCheckELD;
-import br.com.gda.business.cart.model.checker.CartCheckEWT;
-import br.com.gda.business.cart.model.checker.CartCheckEmp;
-import br.com.gda.business.cart.model.checker.CartCheckME;
-import br.com.gda.business.cart.model.checker.CartCheckSLD;
-import br.com.gda.business.cart.model.checker.CartCheckSWT;
-import br.com.gda.business.cart.model.checker.CartCheckTime;
-import br.com.gda.business.cart.model.checker.CartCheckWriteL3;
+import br.com.gda.business.cart.model.action.LazyCartFlagFee;
+import br.com.gda.business.cart.model.action.LazyCartMergeFeeDefault;
+import br.com.gda.business.cart.model.action.LazyCartMergeFeeStore;
+import br.com.gda.business.cart.model.action.MultiCartAddFee;
+import br.com.gda.business.cart.model.action.StdCartFirstRow;
+import br.com.gda.business.cart.model.action.StdCartFlagItem;
+import br.com.gda.business.cart.model.checker.CartCheckFeeStoreService;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
@@ -39,6 +34,7 @@ public final class NodeCartFee implements DeciTree<CartInfo> {
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
+		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -46,76 +42,18 @@ public final class NodeCartFee implements DeciTree<CartInfo> {
 	
 	
 	private ModelChecker<CartInfo> buildDecisionChecker(DeciTreeOption<CartInfo> option) {
-		final boolean GOOD_DATE_TIME = true;
 		final boolean EXIST_ON_DB = true;
-		final boolean DONT_EXIST = false;
 		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new CartCheckWriteL3();
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = GOOD_DATE_TIME;	
-		checker = new CartCheckTime(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = GOOD_DATE_TIME;	
-		checker = new CartCheckDate(checkerOption);
-		queue.add(checker);
-		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckEmp(checkerOption);
+		checker = new CartCheckFeeStoreService(checkerOption);
 		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckME(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckSWT(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckEWT(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST;	
-		checker = new CartCheckSLD(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST;	
-		checker = new CartCheckELD(checkerOption);
-		queue.add(checker);
-		
-		//TODO: mesmo servi�o com per�odos conflitantes
-		//TODO: adicionar totais
-		//TODO: adicionar servi�o
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -123,18 +61,49 @@ public final class NodeCartFee implements DeciTree<CartInfo> {
 	
 	
 	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
-		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
+		//TODO: quando pedido contem multiplas lojas (Store), a taxa de servico e' obtida da loja da primeira linha. Melhorar isso ?
+		List<ActionStd<CartInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<CartInfo> upsertHdr = new RootCartUpsertHdr(option).toAction();	
-		ActionLazy<CartInfo> insertItm = new LazyCartInsertItm(option.conn, option.schemaName);	
-		ActionLazy<CartInfo> enforceKey = new LazyCartEnforceKey(option.conn, option.schemaName);	
-		ActionLazy<CartInfo> selectCart = new LazyCartRootSelect(option.conn, option.schemaName);			
-		//TODO: First Row
-		upsertHdr.addPostAction(insertItm);
-		upsertHdr.addPostAction(enforceKey);
-		enforceKey.addPostAction(selectCart);	
+		ActionStd<CartInfo> flagItem = new StdCartFlagItem(option);
+		ActionLazy<CartInfo> addFee = new MultiCartAddFee(option.conn, option.schemaName);
+		ActionStd<CartInfo> firstRow = new StdCartFirstRow(option);
+		ActionLazy<CartInfo> mergeFeeStore = new LazyCartMergeFeeStore(option.conn, option.schemaName);
+		ActionLazy<CartInfo> flagFee = new LazyCartFlagFee(option.conn, option.schemaName);
 		
-		actions.add(upsertHdr);		
+		
+		flagItem.addPostAction(addFee);
+		
+		firstRow.addPostAction(mergeFeeStore);
+		mergeFeeStore.addPostAction(flagFee);
+		flagFee.addPostAction(addFee);
+		
+		
+		actions.add(flagItem);	
+		actions.add(firstRow);
+		return actions;
+	}
+	
+	
+	
+	private List<ActionStd<CartInfo>> buildActionsOnFailed(DeciTreeOption<CartInfo> option) {
+		List<ActionStd<CartInfo>> actions = new ArrayList<>();	
+		
+		ActionStd<CartInfo> flagItem = new StdCartFlagItem(option);
+		ActionLazy<CartInfo> addFee = new MultiCartAddFee(option.conn, option.schemaName);
+		ActionStd<CartInfo> firstRow = new StdCartFirstRow(option);
+		ActionLazy<CartInfo> mergeFeeStore = new LazyCartMergeFeeDefault(option.conn, option.schemaName);
+		ActionLazy<CartInfo> flagFee = new LazyCartFlagFee(option.conn, option.schemaName);
+		
+		
+		flagItem.addPostAction(addFee);
+		
+		firstRow.addPostAction(mergeFeeStore);
+		mergeFeeStore.addPostAction(flagFee);
+		flagFee.addPostAction(addFee);
+		
+		
+		actions.add(flagItem);	
+		actions.add(firstRow);
 		return actions;
 	}
 	

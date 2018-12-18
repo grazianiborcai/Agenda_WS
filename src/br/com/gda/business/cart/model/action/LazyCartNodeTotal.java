@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.decisionTree.NodeCartTotal;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class LazyCartUpdateHdr extends ActionLazyTemplate<CartInfo, CartInfo> {
-
-	public LazyCartUpdateHdr(Connection conn, String schemaName) {
+public final class LazyCartNodeTotal extends ActionLazyTemplate<CartInfo, CartInfo> {
+	
+	public LazyCartNodeTotal(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ final class LazyCartUpdateHdr extends ActionLazyTemplate<CartInfo, CartInfo> {
 	
 	
 	@Override protected ActionStd<CartInfo> getInstanceOfActionHook(DeciTreeOption<CartInfo> option) {
-		return new StdCartUpdateHdr(option);
+		return new NodeCartTotal(option).toAction();
 	}
 	
 	

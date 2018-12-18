@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
-import br.com.gda.business.feeDefault.model.action.StdFeeDefaultSelect;
-import br.com.gda.business.feeDefault.model.checker.FeeDefaultCheckRead;
+import br.com.gda.business.feeDefault.model.action.LazyFeeDefaultSelect;
+import br.com.gda.business.feeDefault.model.action.StdFeeDefaultEnforceCategServ;
+import br.com.gda.business.feeDefault.model.checker.FeeDefaultCheckReadCateg;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -16,14 +18,14 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootFeeDefaultSelect implements DeciTree<FeeDefaultInfo> {
+public final class RootFeeDefaultSelectService implements DeciTree<FeeDefaultInfo> {
 	private DeciTree<FeeDefaultInfo> tree;
 	
 	
-	public RootFeeDefaultSelect(DeciTreeOption<FeeDefaultInfo> option) {
+	public RootFeeDefaultSelectService(DeciTreeOption<FeeDefaultInfo> option) {
 		DeciTreeHelperOption<FeeDefaultInfo> helperOption = new DeciTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
@@ -33,11 +35,11 @@ public final class RootFeeDefaultSelect implements DeciTree<FeeDefaultInfo> {
 	
 	
 	
-	private ModelChecker<FeeDefaultInfo> buildDecisionChecker() {
+	private ModelChecker<FeeDefaultInfo> buildDecisionChecker(DeciTreeOption<FeeDefaultInfo> option) {		
 		List<ModelChecker<FeeDefaultInfo>> queue = new ArrayList<>();		
 		ModelChecker<FeeDefaultInfo> checker;
 		
-		checker = new FeeDefaultCheckRead();
+		checker = new FeeDefaultCheckReadCateg();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -48,7 +50,12 @@ public final class RootFeeDefaultSelect implements DeciTree<FeeDefaultInfo> {
 	private List<ActionStd<FeeDefaultInfo>> buildActionsOnPassed(DeciTreeOption<FeeDefaultInfo> option) {
 		List<ActionStd<FeeDefaultInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdFeeDefaultSelect(option));
+		ActionStd<FeeDefaultInfo> enforceCateg = new StdFeeDefaultEnforceCategServ(option);
+		ActionLazy<FeeDefaultInfo> mergeMat = new LazyFeeDefaultSelect(option.conn, option.schemaName);
+		
+		enforceCateg.addPostAction(mergeMat);		
+		
+		actions.add(enforceCateg);
 		return actions;
 	}
 	

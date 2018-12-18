@@ -14,6 +14,9 @@ import br.com.gda.business.address.model.AddressModelUpdate;
 import br.com.gda.business.addressSnapshot.info.AddressSnapInfo;
 import br.com.gda.business.addressSnapshot.model.AddressSnapModelInsert;
 import br.com.gda.business.addressSnapshot.model.AddressSnapModelSelect;
+import br.com.gda.business.feeStore.info.FeeStoreInfo;
+import br.com.gda.business.feeStore.model.FeeStoreModelSelect;
+import br.com.gda.business.feeStore.model.FeeStoreModelSelectService;
 import br.com.gda.business.person.model.PersonModelInsert;
 import br.com.gda.business.person.model.PersonModelUpdate;
 import br.com.gda.business.personCustomer.info.PersonCusInfo;
@@ -55,6 +58,8 @@ public class TestResource {
 	private static final String INSERT_PERSON_SNAPSHOT = "/insertPersonSnapshot";
 	private static final String INSERT_USER_SNAPSHOT = "/insertUserSnapshot";
 	private static final String SELECT_USER_SNAPSHOT = "/selectUserSnapshot";
+	private static final String SELECT_FEE_STORE = "/selectFeeStore";
+	private static final String SELECT_FEE_STORE_SERVICE = "/selectFeeStoreService";
 	
 	
 	
@@ -309,6 +314,43 @@ public class TestResource {
 		recordInfo.codSnapshot = codSnapshot;
 		
 		Model model = new UserSnapModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}	
+	
+	
+	
+	@GET
+	@Path(SELECT_FEE_STORE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectFeeStore(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+								   @HeaderParam("codStore") @DefaultValue("-1") long codStore,
+								   @HeaderParam("codFeeCateg") String codFeeCateg) {
+
+		FeeStoreInfo recordInfo = new FeeStoreInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		if (codFeeCateg != null)
+			recordInfo.codFeeCateg = codFeeCateg.charAt(0);
+		
+		Model model = new FeeStoreModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}	
+	
+	
+	
+	@GET
+	@Path(SELECT_FEE_STORE_SERVICE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectFeeStoreService(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+								          @HeaderParam("codStore") @DefaultValue("-1") long codStore) {
+
+		FeeStoreInfo recordInfo = new FeeStoreInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		
+		Model model = new FeeStoreModelSelectService(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}	

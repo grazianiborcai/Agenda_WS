@@ -3,7 +3,7 @@ package br.com.gda.business.feeStore.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
-import br.com.gda.business.feeStore.model.decisionTree.RootFeeStoreSelect;
+import br.com.gda.business.feeStore.model.decisionTree.RootFeeStoreSelectService;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -11,9 +11,9 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class FeeStoreCheckExist extends ModelCheckerTemplateAction<FeeStoreInfo> {
+public final class FeeStoreCheckExistService extends ModelCheckerTemplateAction<FeeStoreInfo> {
 	
-	public FeeStoreCheckExist(ModelCheckerOption option) {
+	public FeeStoreCheckExistService(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -22,7 +22,7 @@ public final class FeeStoreCheckExist extends ModelCheckerTemplateAction<FeeStor
 	@Override protected ActionStd<FeeStoreInfo> buildActionHook(FeeStoreInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<FeeStoreInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<FeeStoreInfo> select = new RootFeeStoreSelect(option).toAction();
+		ActionStd<FeeStoreInfo> select = new RootFeeStoreSelectService(option).toAction();
 		return select;
 	}
 	

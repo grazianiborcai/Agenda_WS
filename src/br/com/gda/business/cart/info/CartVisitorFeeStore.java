@@ -5,7 +5,7 @@ import br.com.gda.business.masterData.info.CartCateg;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class CartVisitorFee implements InfoMergerVisitor<CartInfo, FeeStoreInfo, CartInfo> {
+final class CartVisitorFeeStore implements InfoMergerVisitor<CartInfo, FeeStoreInfo, CartInfo> {
 
 	@Override public CartInfo writeRecord(FeeStoreInfo sourceOne, CartInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -1,18 +1,18 @@
 package br.com.gda.business.feeStore.model.action;
 
-import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdFeeStoreDefault implements ActionStd<FeeStoreInfo> {
+public final class StdFeeStoreEnforceCategServ implements ActionStd<FeeStoreInfo> {
 	private ActionStd<FeeStoreInfo> actionHelper;	
 	
 	
-	public StdFeeStoreDefault(DeciTreeOption<FeeStoreInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiFeeStoreDefault(option.conn, option.schemaName));
+	public StdFeeStoreEnforceCategServ(DeciTreeOption<FeeStoreInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiFeeStoreEnforceCategServ());
 	}
 	
 	

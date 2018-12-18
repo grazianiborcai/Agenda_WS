@@ -1,4 +1,4 @@
-package br.com.gda.business.feeDefault.model.decisionTree;
+package br.com.gda.business.feeDefault.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +13,11 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionFeeDefaultSelect implements ActionStd<FeeDefaultInfo> {
+public final class StdFeeDefaultSelect implements ActionStd<FeeDefaultInfo> {
 	private ActionStd<FeeDefaultInfo> actionHelper;
 	
 	
-	public ActionFeeDefaultSelect(DeciTreeOption<FeeDefaultInfo> option) {
+	public StdFeeDefaultSelect(DeciTreeOption<FeeDefaultInfo> option) {
 		DaoStmtExec<FeeDefaultInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}

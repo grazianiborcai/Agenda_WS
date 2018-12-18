@@ -306,7 +306,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	
 	@Override public DeciResult<T> getDecisionResult() {
-		checkState();
+		//checkState();
 		
 		if (resultPostAction != null)
 			return resultPostAction;
@@ -318,13 +318,13 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	}
 	
 	
-	
+	/*
 	private void checkState() {
 		if (hasExecuted() == false) {
 			logException(new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED));
 			throw new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED);
 		}
-	}
+	}*/
 	
 	
 	

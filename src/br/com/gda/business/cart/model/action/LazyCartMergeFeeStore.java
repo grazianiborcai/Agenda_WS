@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartFirstRow extends ActionLazyTemplate<CartInfo, CartInfo> {
+public final class LazyCartMergeFeeStore extends ActionLazyTemplate<CartInfo, CartInfo> {
 	
-	public LazyCartFirstRow(Connection conn, String schemaName) {
+	public LazyCartMergeFeeStore(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCartFirstRow extends ActionLazyTemplate<CartInfo, CartInf
 	
 	
 	@Override protected ActionStd<CartInfo> getInstanceOfActionHook(DeciTreeOption<CartInfo> option) {
-		return new StdCartFirstRow(option);
+		return new StdCartMergeFeeStore(option);
 	}
 	
 	
