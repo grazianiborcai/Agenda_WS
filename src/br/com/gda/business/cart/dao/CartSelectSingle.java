@@ -143,9 +143,11 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<CartInfo> {
+		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<CartInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			
 			List<CartInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
@@ -153,16 +155,29 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 			
 			do {
 				CartInfo dataInfo = new CartInfo();
-				dataInfo.codOwner = stmtResult.getLong(CartDbTableColumn.COL_COD_OWNER);
-				dataInfo.codCustomer = stmtResult.getLong(CartDbTableColumn.COL_COD_CUSTOMER);
-				dataInfo.itemNumber = stmtResult.getInt(CartDbTableColumn.COL_ITEM_NUMBER);
-				dataInfo.codStore = stmtResult.getLong(CartDbTableColumn.COL_COD_STORE);
-				dataInfo.codEmployee = stmtResult.getLong(CartDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.codMat = stmtResult.getLong(CartDbTableColumn.COL_COD_MATERIAL);
+				dataInfo.codOwner = stmtResult.getLong(CartDbTableColumn.COL_COD_OWNER);				
+				dataInfo.itemNumber = stmtResult.getInt(CartDbTableColumn.COL_ITEM_NUMBER);					
 				dataInfo.price = stmtResult.getDouble(CartDbTableColumn.COL_MAT_PRICE);
 				dataInfo.quantity = stmtResult.getInt(CartDbTableColumn.COL_QUANTITY);
 				dataInfo.codCurr = stmtResult.getString(CartDbTableColumn.COL_MAT_COD_CURR);
 				dataInfo.codUnit = stmtResult.getString(CartDbTableColumn.COL_MAT_UNIT);
+				
+				
+				stmtResult.getLong(CartDbTableColumn.COL_COD_CUSTOMER);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codCustomer = stmtResult.getLong(CartDbTableColumn.COL_COD_CUSTOMER);
+				
+				stmtResult.getLong(CartDbTableColumn.COL_COD_STORE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codStore = stmtResult.getLong(CartDbTableColumn.COL_COD_STORE);
+				
+				stmtResult.getLong(CartDbTableColumn.COL_COD_EMPLOYEE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codEmployee = stmtResult.getLong(CartDbTableColumn.COL_COD_EMPLOYEE);
+				
+				stmtResult.getLong(CartDbTableColumn.COL_COD_MATERIAL);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codMat = stmtResult.getLong(CartDbTableColumn.COL_COD_MATERIAL);
 
 
 				Date date = stmtResult.getDate(CartDbTableColumn.COL_DATE);

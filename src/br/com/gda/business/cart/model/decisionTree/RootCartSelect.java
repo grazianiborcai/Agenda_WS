@@ -106,7 +106,7 @@ public final class RootCartSelect implements DeciTree<CartInfo> {
 		flagTotal.addPostAction(addTotal);
 		addTotal.addPostAction(mergeCateg);
 		mergeCateg.addPostAction(enforceItemNum);
-		enforceItemNum.addPostAction(sort);
+		enforceItemNum.addPostAction(sort); 
 		
 		actions.add(selectCart);	
 		

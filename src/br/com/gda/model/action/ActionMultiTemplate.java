@@ -285,6 +285,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 			return SUCCESS;
 		
 		} catch (Exception e) {
+			logException(e);
 			buildResultFailed();
 			return FAILED;
 		}		
@@ -305,8 +306,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	
 	@Override public DeciResult<T> getDecisionResult() {
-		if (hasExecuted() == false)
-			throw new IllegalStateException();
+		checkState();
 		
 		if (resultPostAction != null)
 			return resultPostAction;
@@ -315,6 +315,15 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 			return visitorResult;
 		
 		return buildParcialResult();
+	}
+	
+	
+	
+	private void checkState() {
+		if (hasExecuted() == false) {
+			logException(new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED));
+			throw new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED);
+		}
 	}
 	
 	

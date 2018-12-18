@@ -1,4 +1,4 @@
-package br.com.gda.business.feeStore.model.decisionTree;
+package br.com.gda.business.feeStore.model.action;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -13,11 +13,11 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorEnforce;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisitorFeeStoreDefault implements ActionVisitorEnforce<FeeStoreInfo> {
+final class VisiFeeStoreDefault implements ActionVisitorEnforce<FeeStoreInfo> {
 	private DeciTreeOption<FeeDefaultInfo> selOption;
 	
 	
-	public VisitorFeeStoreDefault(Connection conn, String schemaName) {
+	public VisiFeeStoreDefault(Connection conn, String schemaName) {
 		checkArgument(conn, schemaName);
 		makeOption(conn, schemaName);
 	}

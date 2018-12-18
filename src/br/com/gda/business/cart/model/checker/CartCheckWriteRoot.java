@@ -6,9 +6,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class CartCheckWriteL1 extends ModelCheckerTemplateSimple<CartInfo> {
+public final class CartCheckWriteRoot extends ModelCheckerTemplateSimple<CartInfo> {
 
-	public CartCheckWriteL1() {
+	public CartCheckWriteRoot() {
 		super();
 	}
 	

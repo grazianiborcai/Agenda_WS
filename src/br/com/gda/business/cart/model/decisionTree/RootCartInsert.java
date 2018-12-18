@@ -13,7 +13,7 @@ import br.com.gda.business.cart.model.checker.CartCheckMS;
 import br.com.gda.business.cart.model.checker.CartCheckMat;
 import br.com.gda.business.cart.model.checker.CartCheckOwner;
 import br.com.gda.business.cart.model.checker.CartCheckStore;
-import br.com.gda.business.cart.model.checker.CartCheckWriteL1;
+import br.com.gda.business.cart.model.checker.CartCheckWriteRoot;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
@@ -51,7 +51,7 @@ public final class RootCartInsert implements DeciTree<CartInfo> {
 		ModelChecker<CartInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new CartCheckWriteL1();
+		checker = new CartCheckWriteRoot();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -108,10 +108,10 @@ public final class RootCartInsert implements DeciTree<CartInfo> {
 		
 		ActionStd<CartInfo> enforceItem = new StdCartEnforceItemNext(option);
 		ActionLazy<CartInfo> enforceLChanged = new LazyCartEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<CartInfo> rootL2 = new LazyCartNodetInsertL1(option.conn, option.schemaName);	
+		ActionLazy<CartInfo> nodeL1 = new LazyCartNodetInsertL1(option.conn, option.schemaName);	
 		
 		enforceItem.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(rootL2);
+		enforceLChanged.addPostAction(nodeL1);
 		
 		actions.add(enforceItem);		
 		return actions;

@@ -1,4 +1,4 @@
-package br.com.gda.business.feeStore.model.decisionTree;
+package br.com.gda.business.feeStore.model.action;
 
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.model.action.ActionStd;
@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionFeeStoreMergeStore implements ActionStd<FeeStoreInfo> {
+public final class StdFeeStoreMergeStore implements ActionStd<FeeStoreInfo> {
 	private ActionStd<FeeStoreInfo> actionHelper;	
 	
 	
-	public ActionFeeStoreMergeStore(DeciTreeOption<FeeStoreInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisitorFeeStoreMergeStore(option.conn, option.schemaName));
+	public StdFeeStoreMergeStore(DeciTreeOption<FeeStoreInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiFeeStoreMergeStore(option.conn, option.schemaName));
 	}
 	
 	

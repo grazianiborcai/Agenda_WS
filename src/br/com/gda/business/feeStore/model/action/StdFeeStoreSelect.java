@@ -1,4 +1,4 @@
-package br.com.gda.business.feeStore.model.decisionTree;
+package br.com.gda.business.feeStore.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +13,11 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionFeeStoreSelect implements ActionStd<FeeStoreInfo> {
+public final class StdFeeStoreSelect implements ActionStd<FeeStoreInfo> {
 	private ActionStd<FeeStoreInfo> actionHelper;
 	
 	
-	public ActionFeeStoreSelect(DeciTreeOption<FeeStoreInfo> option) {
+	public StdFeeStoreSelect(DeciTreeOption<FeeStoreInfo> option) {
 		DaoStmtExec<FeeStoreInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}

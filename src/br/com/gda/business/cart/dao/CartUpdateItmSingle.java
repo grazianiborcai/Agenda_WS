@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
@@ -113,15 +114,35 @@ public final class CartUpdateItmSingle implements DaoStmt<CartInfo> {
 			
 			int i = 1;
 			stmt.setInt(i++, recordInfo.quantity);
-			stmt.setLong(i++, recordInfo.codStore);
-			stmt.setLong(i++, recordInfo.codMat);
+			
+			
+			if (recordInfo.codStore >= 0) {
+				stmt.setLong(i++, recordInfo.codStore);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			if (recordInfo.codMat >= 0) {
+				stmt.setLong(i++, recordInfo.codMat);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
 			stmt.setString(i++, recordInfo.codUnit);
 			stmt.setDouble(i++, recordInfo.price);
 			stmt.setString(i++, recordInfo.codCurr);
 			stmt.setTime(i++, beginTime);
 			stmt.setTime(i++, endTime);
 			stmt.setDate(i++, date);
-			stmt.setLong(i++, recordInfo.codEmployee);
+			
+			
+			if (recordInfo.codEmployee >= 0) {
+				stmt.setLong(i++, recordInfo.codEmployee);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
 			
 			return stmt;
 		}		

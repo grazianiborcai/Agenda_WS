@@ -1,5 +1,8 @@
 package br.com.gda.business.feeStore.info;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
@@ -30,6 +33,7 @@ final class FeeStoreVisitorDefault implements InfoMergerVisitor<FeeStoreInfo, Fe
 			return (FeeStoreInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
+			logException(e);
 			throw new IllegalStateException(e); 
 		}
 	}
@@ -38,5 +42,12 @@ final class FeeStoreVisitorDefault implements InfoMergerVisitor<FeeStoreInfo, Fe
 	
 	@Override public boolean shouldWrite(FeeDefaultInfo sourceOne, FeeStoreInfo sourceTwo) {
 		return (sourceOne.codFeeCateg == sourceTwo.codFeeCateg);
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

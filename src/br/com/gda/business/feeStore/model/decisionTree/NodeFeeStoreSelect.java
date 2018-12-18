@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
+import br.com.gda.business.feeStore.model.action.StdFeeStoreMergeStore;
+import br.com.gda.business.feeStore.model.action.StdFeeStoreSelect;
+import br.com.gda.business.feeStore.model.action.LazyFeeStoreMergeDefault;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckExist;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
@@ -57,7 +60,7 @@ final class NodeFeeStoreSelect implements DeciTree<FeeStoreInfo> {
 	private List<ActionStd<FeeStoreInfo>> buildActionsOnPassed(DeciTreeOption<FeeStoreInfo> option) {
 		List<ActionStd<FeeStoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionFeeStoreSelect(option));
+		actions.add(new StdFeeStoreSelect(option));
 		return actions;
 	}
 	
@@ -66,8 +69,8 @@ final class NodeFeeStoreSelect implements DeciTree<FeeStoreInfo> {
 	private List<ActionStd<FeeStoreInfo>> buildActionsOnFailed(DeciTreeOption<FeeStoreInfo> option) {
 		List<ActionStd<FeeStoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FeeStoreInfo> mergeStore = new ActionFeeStoreMergeStore(option);
-		ActionLazy<FeeStoreInfo> mergeDefault = new HandlerFeeStoreMergeDefault(option.conn, option.schemaName);
+		ActionStd<FeeStoreInfo> mergeStore = new StdFeeStoreMergeStore(option);
+		ActionLazy<FeeStoreInfo> mergeDefault = new LazyFeeStoreMergeDefault(option.conn, option.schemaName);
 		
 		mergeStore.addPostAction(mergeDefault);
 		

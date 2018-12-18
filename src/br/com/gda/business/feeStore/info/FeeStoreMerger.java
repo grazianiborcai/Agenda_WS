@@ -29,7 +29,7 @@ public final class FeeStoreMerger extends InfoWritterFactory<FeeStoreInfo> {
 		
 		if (sourceOnes.get(0) instanceof FeeDefaultInfo 	&&
 			sourceTwos.get(0) instanceof FeeStoreInfo		)
-			return new FeeStoreMergerDefault().merge((List<FeeDefaultInfo>) sourceOnes, (List<FeeStoreInfo>) sourceTwos);
+			return new FeeStoreMergerDefault_().merge((List<FeeDefaultInfo>) sourceOnes, (List<FeeStoreInfo>) sourceTwos);
 		
 		return null;
 	}

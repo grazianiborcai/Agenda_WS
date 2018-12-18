@@ -102,8 +102,7 @@ public final class UserSelectSingle implements DaoStmt<UserInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<UserInfo> {
-		private final boolean NOT_NULL = false;
-		
+		private final boolean NOT_NULL = false;		
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<UserInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -118,9 +117,9 @@ public final class UserSelectSingle implements DaoStmt<UserInfo> {
 				dataInfo.codUser = stmtResult.getLong(UserDbTableColumn.COL_COD_USER);									
 				dataInfo.recordMode = stmtResult.getString(UserDbTableColumn.COL_RECORD_MODE);
 				
-				stmtResult.getInt(UserDbTableColumn.COL_COD_PERSON);
+				stmtResult.getLong(UserDbTableColumn.COL_COD_PERSON);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPerson = stmtResult.getInt(UserDbTableColumn.COL_COD_PERSON);
+					dataInfo.codPerson = stmtResult.getLong(UserDbTableColumn.COL_COD_PERSON);
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(UserDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)

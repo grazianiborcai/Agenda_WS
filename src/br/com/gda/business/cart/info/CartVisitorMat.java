@@ -1,5 +1,8 @@
 package br.com.gda.business.cart.info;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
@@ -35,6 +38,7 @@ final class CartVisitorMat implements InfoMergerVisitor<CartInfo, MatInfo, CartI
 			return (CartInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
+			logException(e);
 			throw new IllegalStateException(e); 
 		}
 	}
@@ -44,5 +48,11 @@ final class CartVisitorMat implements InfoMergerVisitor<CartInfo, MatInfo, CartI
 	@Override public boolean shouldWrite(MatInfo sourceOne, CartInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codMat == sourceTwo.codMat);
 	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
+	}
 }
-

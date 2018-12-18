@@ -1,4 +1,4 @@
-package br.com.gda.business.feeStore.model.decisionTree;
+package br.com.gda.business.feeStore.model.action;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -14,11 +14,11 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerFeeStoreMergeDefault extends ActionLazyTemplate<FeeStoreInfo, FeeDefaultInfo> {
+public final class LazyFeeStoreMergeDefault extends ActionLazyTemplate<FeeStoreInfo, FeeDefaultInfo> {
 	private List<FeeStoreInfo> originalInfos;
 	
 	
-	public HandlerFeeStoreMergeDefault(Connection conn, String schemaName) {
+	public LazyFeeStoreMergeDefault(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
