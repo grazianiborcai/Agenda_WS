@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderInsertHdr extends ActionLazyTemplate<OrderInfo, OrderInfo> {
+public final class LazyOrderInsertHdrFirst_ extends ActionLazyTemplate<OrderInfo, OrderInfo> {
 	
-	public LazyOrderInsertHdr(Connection conn, String schemaName) {
+	public LazyOrderInsertHdrFirst_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOrderInsertHdr extends ActionLazyTemplate<OrderInfo, Orde
 	
 	
 	@Override protected ActionStd<OrderInfo> getInstanceOfActionHook(DeciTreeOption<OrderInfo> option) {
-		return new StdOrderInsertHdr(option);
+		return new StdOrderInsertHdrFirst_(option);
 	}
 	
 	

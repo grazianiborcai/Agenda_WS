@@ -12,6 +12,8 @@ import br.com.gda.info.InfoRecord;
 public final class CartInfo extends InfoRecord implements Cloneable, Comparable<CartInfo> {
 	public long codOwner;	
 	public long codCustomer;
+	public long codUser;
+	public long codPerson;
 	public int itemNumber;
 	public char codItemCateg;
 	public String txtItemCateg;
@@ -44,6 +46,8 @@ public final class CartInfo extends InfoRecord implements Cloneable, Comparable<
 	public CartInfo() {
 		codOwner = DefaultValue.number();	
 		codCustomer = DefaultValue.number();
+		codPerson = DefaultValue.number();
+		codUser = DefaultValue.number();
 		itemNumber = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
@@ -96,6 +100,8 @@ public final class CartInfo extends InfoRecord implements Cloneable, Comparable<
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
+		result = result * 31 + (int) (codUser 	  ^ (codUser 	 >>> 32));
+		result = result * 31 + (int) (codPerson   ^ (codPerson   >>> 32));
 		result = result * 31 + (int) (itemNumber  ^ (itemNumber  >>> 32));
 		
 		return result;
@@ -115,6 +121,8 @@ public final class CartInfo extends InfoRecord implements Cloneable, Comparable<
 		CartInfo obj = (CartInfo) o;		
 		return (codOwner    == obj.codOwner    && 
 				codCustomer == obj.codCustomer &&
+				codPerson   == obj.codPerson   &&
+				codUser     == obj.codUser     &&
 				itemNumber  == obj.itemNumber);
 	}
 

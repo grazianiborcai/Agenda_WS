@@ -17,7 +17,7 @@ public final class CartCheckWriteL3 extends ModelCheckerTemplateSimple<CartInfo>
 	
 	@Override protected boolean checkHook(CartInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 		<= 0 	
-			|| recordInfo.codCustomer	<= 0 	
+			|| recordInfo.codUser		<= 0 	
 			|| recordInfo.codStore 		<= 0
 			|| recordInfo.codEmployee	<= 0
 			|| recordInfo.codMat		<= 0

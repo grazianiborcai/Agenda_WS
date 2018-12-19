@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class OrderCheckWrite extends ModelCheckerTemplateSimple<OrderInfo> {
+public final class OrderCheckWriteSnap extends ModelCheckerTemplateSimple<OrderInfo> {
 
-	public OrderCheckWrite() {
+	public OrderCheckWriteSnap() {
 		super();
 	}
 	

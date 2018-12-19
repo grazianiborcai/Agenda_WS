@@ -15,14 +15,12 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_MATERIAL = "cod_material";
 	public static final String COL_COD_ORDER = "cod_order";
 	public static final String COL_COD_ORDER_EXT = "cod_order_external";
-	public static final String COL_COD_ORDER_STATUS = "cod_order_status";	
-	public static final String COL_COD_OWNER = "cod_owner";		
+	public static final String COL_COD_ORDER_STATUS = "cod_order_status";
+	public static final String COL_COD_PERSON = "cod_person";
+	public static final String COL_COD_OWNER = "cod_owner";	
+	public static final String COL_COD_SNAPSHOT = "cod_snapshot";	
 	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_CUS_COUNTRY = "cus_country";
-	public static final String COL_CUS_CPF = "cus_cpf";	
-	public static final String COL_CUS_EMAIL = "cus_email";	
-	public static final String COL_CUS_NAME = "cus_name";
-	public static final String COL_CUS_STATE = "cus_state_province";
+	public static final String COL_COD_USER = "cod_user";
 	public static final String COL_EMP_COD_CPF = "emp_cpf";
 	public static final String COL_EMP_NAME = "emp_name";	
 	public static final String COL_ITEM_NUMBER = "item_number";
@@ -123,7 +121,7 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_CUS_COUNTRY;
+		oneColumn.columnName = COL_COD_PERSON;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -131,7 +129,7 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_CUS_CPF;
+		oneColumn.columnName = COL_COD_USER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -139,23 +137,7 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_CUS_EMAIL;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_CUS_NAME;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_CUS_STATE;
+		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -1,22 +1,23 @@
-package br.com.gda.business.order.model.checker;
+package br.com.gda.business.cart.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class OrderCheckWrite extends ModelCheckerTemplateSimple<OrderInfo> {
+public final class CartCheckHasCus extends ModelCheckerTemplateSimple<CartInfo> {
 
-	public OrderCheckWrite() {
+	public CartCheckHasCus() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(OrderInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner <= 0 || recordInfo.codUser <= 0 )			
+	@Override protected boolean checkHook(CartInfo recordInfo, Connection conn, String schemaName) {	
+		if ( recordInfo.codOwner <= 0 || recordInfo.codCustomer	<= 0 )
+			
 			return FAILED;
 		
 		

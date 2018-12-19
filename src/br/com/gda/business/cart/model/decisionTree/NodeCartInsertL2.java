@@ -113,9 +113,9 @@ public final class NodeCartInsertL2 implements DeciTree<CartInfo> {
 		checker = new CartCheckELD(checkerOption);
 		queue.add(checker);
 		
-		//TODO: mesmo servi�o com per�odos conflitantes
+		//TODO: mesmo servico com periodos conflitantes
 		//TODO: adicionar totais
-		//TODO: adicionar servi�o
+		//TODO: adicionar servico
 		
 		return new ModelCheckerQueue<>(queue);
 	}

@@ -7,12 +7,12 @@ import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.action.StdCartEnforceItmNumDB;
 import br.com.gda.business.cart.model.action.LazyCartEnforceLChanged;
 import br.com.gda.business.cart.model.action.LazyCartNodeUpdateL1;
-import br.com.gda.business.cart.model.checker.CartCheckCus;
 import br.com.gda.business.cart.model.checker.CartCheckExistServ;
 import br.com.gda.business.cart.model.checker.CartCheckMS;
 import br.com.gda.business.cart.model.checker.CartCheckMat;
 import br.com.gda.business.cart.model.checker.CartCheckOwner;
 import br.com.gda.business.cart.model.checker.CartCheckStore;
+import br.com.gda.business.cart.model.checker.CartCheckUser;
 import br.com.gda.business.cart.model.checker.CartCheckWriteRoot;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
@@ -71,7 +71,7 @@ public final class RootCartUpdate implements DeciTree<CartInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckCus(checkerOption);
+		checker = new CartCheckUser(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
@@ -104,15 +105,20 @@ public final class OrderUpdateHdrSingle implements DaoStmt<OrderInfo> {
 			
 			
 			int i = 1;
-			stmt.setLong(i++, recordInfo.codCustomer);
+			
+			if (recordInfo.codCustomer >= 0) {
+				stmt.setLong(i++, recordInfo.codCustomer);	
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
 			stmt.setTimestamp(i++, lastChanged);
 			stmt.setString(i++, recordInfo.codOrderExt);
 			stmt.setString(i++, recordInfo.codOrderStatus);
-			stmt.setString(i++, recordInfo.cusCodCountry);
-			stmt.setString(i++, recordInfo.cusCpf);
-			stmt.setString(i++, recordInfo.cusEmail);
-			stmt.setString(i++, recordInfo.cusName);
-			stmt.setString(i++, recordInfo.cusCodState);
+			stmt.setLong(i++, recordInfo.codPerson);
+			stmt.setLong(i++, recordInfo.codUser);
+			stmt.setLong(i++, recordInfo.codSnapshot);
 			
 			return stmt;
 		}		

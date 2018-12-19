@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdOrderInsertHdrFirst implements ActionStd<OrderInfo> {
+final class StdOrderMergeUser implements ActionStd<OrderInfo> {
 	private ActionStd<OrderInfo> actionHelper;	
 	
 	
-	public StdOrderInsertHdrFirst(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOrderInsertHdrFirst(option.conn, option.schemaName));
+	public StdOrderMergeUser(DeciTreeOption<OrderInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOrderMergeUser(option.conn, option.schemaName));
 	}
 	
 	

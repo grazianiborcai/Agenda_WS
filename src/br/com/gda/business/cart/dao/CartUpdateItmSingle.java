@@ -130,9 +130,6 @@ public final class CartUpdateItmSingle implements DaoStmt<CartInfo> {
 			}
 			
 			
-			stmt.setString(i++, recordInfo.codUnit);
-			stmt.setDouble(i++, recordInfo.price);
-			stmt.setString(i++, recordInfo.codCurr);
 			stmt.setTime(i++, beginTime);
 			stmt.setTime(i++, endTime);
 			stmt.setDate(i++, date);

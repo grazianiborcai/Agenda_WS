@@ -8,6 +8,7 @@ import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.totalAmount.info.TotAmountInfo;
+import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoWritterFactory;
 
 public final class CartMerger extends InfoWritterFactory<CartInfo> {	
@@ -54,6 +55,12 @@ public final class CartMerger extends InfoWritterFactory<CartInfo> {
 	
 	
 	
+	static public CartInfo merge(UserInfo sourceOne, CartInfo sourceTwo) {
+		return new CartMergerUser().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<CartInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {		
 		if (sourceOnes.get(0) instanceof MatInfo 			&&
@@ -84,6 +91,11 @@ public final class CartMerger extends InfoWritterFactory<CartInfo> {
 		if (sourceOnes.get(0) instanceof TotAmountInfo 		&&
 			sourceTwos.get(0) instanceof CartInfo		)
 			return new CartMergerTotAmount().merge((List<TotAmountInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof UserInfo 			&&
+			sourceTwos.get(0) instanceof CartInfo		)
+			return new CartMergerUser().merge((List<UserInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
 		
 		
 		return null;

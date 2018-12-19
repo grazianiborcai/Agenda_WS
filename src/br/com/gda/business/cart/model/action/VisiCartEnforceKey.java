@@ -8,7 +8,7 @@ final class VisiCartEnforceKey extends ActionVisitorTemplateEnforce<CartInfo> {
 	@Override protected CartInfo enforceHook(CartInfo recordInfo) {
 		CartInfo enforcedRecord = new CartInfo();
 		enforcedRecord.codOwner = recordInfo.codOwner;
-		enforcedRecord.codCustomer = recordInfo.codCustomer;
+		enforcedRecord.codUser = recordInfo.codUser;
 		return enforcedRecord;
 	}
 }

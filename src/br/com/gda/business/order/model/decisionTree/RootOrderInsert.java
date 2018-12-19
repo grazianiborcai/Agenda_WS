@@ -11,14 +11,17 @@ import br.com.gda.business.order.model.action.LazyOrderFilterExtra;
 import br.com.gda.business.order.model.action.LazyOrderFilterItm;
 import br.com.gda.business.order.model.action.LazyOrderFlagExtra;
 import br.com.gda.business.order.model.action.LazyOrderFlagItem;
-import br.com.gda.business.order.model.action.LazyOrderInsertHdrFirst;
+import br.com.gda.business.order.model.action.LazyOrderInsertHdr;
+import br.com.gda.business.order.model.action.LazyOrderInsertHdrFirst_;
 import br.com.gda.business.order.model.action.LazyOrderInsertItm;
 import br.com.gda.business.order.model.action.LazyOrderMergeCus;
 import br.com.gda.business.order.model.action.LazyOrderMergeEmp;
 import br.com.gda.business.order.model.action.LazyOrderMergeMat;
 import br.com.gda.business.order.model.action.LazyOrderMergeStore;
+import br.com.gda.business.order.model.action.LazyOrderMergeUser;
 import br.com.gda.business.order.model.action.MultiOrderMergeExtra;
 import br.com.gda.business.order.model.checker.OrderCheckCart;
+import br.com.gda.business.order.model.checker.OrderCheckUser;
 import br.com.gda.business.order.model.checker.OrderCheckWrite;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
@@ -66,6 +69,13 @@ public final class RootOrderInsert implements DeciTree<OrderInfo> {
 		checker = new OrderCheckCart(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new OrderCheckUser(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -74,39 +84,52 @@ public final class RootOrderInsert implements DeciTree<OrderInfo> {
 	private List<ActionStd<OrderInfo>> buildActionsOnPassed(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrderInfo> copyCart = new StdOrderCopyCart(option);
-		ActionLazy<OrderInfo> filterItm = new LazyOrderFilterItm(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> flagItm = new LazyOrderFlagItem(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> filterExtra = new LazyOrderFilterExtra(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> flagExtra = new LazyOrderFlagExtra(option.conn, option.schemaName);
+		ActionStd<OrderInfo> nodeSnapshot = new NodeOrderSnapshot(option).toAction();
 		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceExtid = new LazyOrderEnforceExtid(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> mergeEmp = new LazyOrderMergeEmp(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> mergeCus = new LazyOrderMergeCus(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> mergeMat = new LazyOrderMergeMat(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> mergeStore = new LazyOrderMergeStore(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> insertHdr = new LazyOrderInsertHdrFirst(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> insertItm = new LazyOrderInsertItm(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> mergeExtra = new MultiOrderMergeExtra(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> insertExtra = new LazyOrderInsertItm(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeUser = new LazyOrderMergeUser(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> insertHdr = new LazyOrderInsertHdr(option.conn, option.schemaName);
 		
-		copyCart.addPostAction(filterItm);
-		copyCart.addPostAction(filterExtra);
-		filterExtra.addPostAction(flagExtra);
-		flagExtra.addPostAction(mergeExtra);
-		filterItm.addPostAction(flagItm);
-		flagItm.addPostAction(enforceLChanged);
+		nodeSnapshot.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceExtid);
-		enforceExtid.addPostAction(mergeEmp);
-		mergeEmp.addPostAction(mergeCus);
-		mergeCus.addPostAction(mergeMat);		
-		mergeMat.addPostAction(mergeStore);
-		mergeStore.addPostAction(insertHdr);
-		insertHdr.addPostAction(insertItm);	
-		insertHdr.addPostAction(mergeExtra);
-		mergeExtra.addPostAction(insertExtra);		
+		enforceExtid.addPostAction(mergeUser);
+		mergeUser.addPostAction(insertHdr);
+		
+		actions.add(nodeSnapshot);
+		
+		//ActionStd<OrderInfo> copyCart = new StdOrderCopyCart(option);
+		//ActionLazy<OrderInfo> filterItm = new LazyOrderFilterItm(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> flagItm = new LazyOrderFlagItem(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> filterExtra = new LazyOrderFilterExtra(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> flagExtra = new LazyOrderFlagExtra(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> enforceExtid = new LazyOrderEnforceExtid(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> mergeEmp = new LazyOrderMergeEmp(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> mergeCus = new LazyOrderMergeCus(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> mergeMat = new LazyOrderMergeMat(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> mergeStore = new LazyOrderMergeStore(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> insertHdr = new LazyOrderInsertHdrFirst(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> insertItm = new LazyOrderInsertItm(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> mergeExtra = new MultiOrderMergeExtra(option.conn, option.schemaName);
+		//ActionLazy<OrderInfo> insertExtra = new LazyOrderInsertItm(option.conn, option.schemaName);
+		
+		//copyCart.addPostAction(filterItm);
+		//copyCart.addPostAction(filterExtra);
+		//filterExtra.addPostAction(flagExtra);
+		//flagExtra.addPostAction(mergeExtra);
+		//filterItm.addPostAction(flagItm);
+		//flagItm.addPostAction(enforceLChanged);
+		//enforceLChanged.addPostAction(enforceExtid);
+		//enforceExtid.addPostAction(mergeEmp);
+		//mergeEmp.addPostAction(mergeCus);
+		//mergeCus.addPostAction(mergeMat);		
+		//mergeMat.addPostAction(mergeStore);
+		//mergeStore.addPostAction(insertHdr);
+		//insertHdr.addPostAction(insertItm);	
+		//insertHdr.addPostAction(mergeExtra);
+		//mergeExtra.addPostAction(insertExtra);		
 		//TODO: Adicinar Acao para leitura da Ordem ou retornar msg de sucesso
-		actions.add(copyCart);		
+		//actions.add(copyCart);		
 		return actions;
 	}
 	

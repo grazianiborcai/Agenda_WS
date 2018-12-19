@@ -12,11 +12,11 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionVisitorEnforce;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 //TODO: Trocar pela classe Multi ?
-final class VisiOrderInsertHdrFirst implements ActionVisitorEnforce<OrderInfo> {
+final class VisiOrderInsertHdrFirst_ implements ActionVisitorEnforce<OrderInfo> {
 	private DeciTreeOption<OrderInfo> selOption;
 	
 	
-	public VisiOrderInsertHdrFirst(Connection conn, String schemaName) {
+	public VisiOrderInsertHdrFirst_(Connection conn, String schemaName) {
 		checkArgument(conn, schemaName);
 		makeOption(conn, schemaName);
 	}

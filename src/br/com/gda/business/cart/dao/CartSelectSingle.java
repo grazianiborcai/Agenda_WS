@@ -87,8 +87,8 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 		
 		oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_HDR;
-		oneColumn.leftColumnName = CartDbTableColumn.COL_COD_CUSTOMER;
-		oneColumn.rightColumnName = CartDbTableColumn.COL_COD_CUSTOMER;
+		oneColumn.leftColumnName = CartDbTableColumn.COL_COD_USER;
+		oneColumn.rightColumnName = CartDbTableColumn.COL_COD_USER;
 		joinColumns.add(oneColumn);
 		
 		
@@ -155,17 +155,18 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 			
 			do {
 				CartInfo dataInfo = new CartInfo();
-				dataInfo.codOwner = stmtResult.getLong(CartDbTableColumn.COL_COD_OWNER);				
-				dataInfo.itemNumber = stmtResult.getInt(CartDbTableColumn.COL_ITEM_NUMBER);					
-				dataInfo.price = stmtResult.getDouble(CartDbTableColumn.COL_MAT_PRICE);
-				dataInfo.quantity = stmtResult.getInt(CartDbTableColumn.COL_QUANTITY);
-				dataInfo.codCurr = stmtResult.getString(CartDbTableColumn.COL_MAT_COD_CURR);
-				dataInfo.codUnit = stmtResult.getString(CartDbTableColumn.COL_MAT_UNIT);
-				
+				dataInfo.codOwner = stmtResult.getLong(CartDbTableColumn.COL_COD_OWNER);	
+				dataInfo.codUser = stmtResult.getLong(CartDbTableColumn.COL_COD_USER);
+				dataInfo.itemNumber = stmtResult.getInt(CartDbTableColumn.COL_ITEM_NUMBER);	
+				dataInfo.quantity = stmtResult.getInt(CartDbTableColumn.COL_QUANTITY);				
 				
 				stmtResult.getLong(CartDbTableColumn.COL_COD_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codCustomer = stmtResult.getLong(CartDbTableColumn.COL_COD_CUSTOMER);
+				
+				stmtResult.getLong(CartDbTableColumn.COL_COD_PERSON);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPerson = stmtResult.getLong(CartDbTableColumn.COL_COD_PERSON);
 				
 				stmtResult.getLong(CartDbTableColumn.COL_COD_STORE);
 				if (stmtResult.wasNull() == NOT_NULL)

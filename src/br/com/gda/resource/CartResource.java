@@ -62,12 +62,12 @@ public final class CartResource {
 	@Path(SELECT_CART)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectCart(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
-							   @HeaderParam("codCustomer") @DefaultValue("-1") long codCustomer,
+							   @HeaderParam("codUser")     @DefaultValue("-1") long codUser,
 							   @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 		
 		CartInfo recordInfo = new CartInfo();
 		recordInfo.codOwner = codOwner;
-		recordInfo.codCustomer = codCustomer;
+		recordInfo.codUser = codUser;
 		recordInfo.codLanguage = codLanguage;
 		
 		

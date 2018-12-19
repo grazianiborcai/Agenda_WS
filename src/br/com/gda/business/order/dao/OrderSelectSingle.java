@@ -156,13 +156,9 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 				dataInfo.codOwner = stmtResult.getLong(OrderDbTableColumn.COL_COD_OWNER);
 				dataInfo.codOrder = stmtResult.getLong(OrderDbTableColumn.COL_COD_ORDER);
 				dataInfo.codCustomer = stmtResult.getLong(OrderDbTableColumn.COL_COD_CUSTOMER);
+				//dataInfo.codSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_SNAPSHOT);
 				dataInfo.codOrderExt = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_EXT);
 				dataInfo.codOrderStatus = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_STATUS);
-				dataInfo.cusName = stmtResult.getString(OrderDbTableColumn.COL_CUS_NAME);
-				dataInfo.cusCpf = stmtResult.getString(OrderDbTableColumn.COL_CUS_CPF);
-				dataInfo.cusEmail = stmtResult.getString(OrderDbTableColumn.COL_CUS_EMAIL);
-				dataInfo.cusCodCountry = stmtResult.getString(OrderDbTableColumn.COL_CUS_COUNTRY);
-				dataInfo.cusCodState = stmtResult.getString(OrderDbTableColumn.COL_CUS_STATE);
 				dataInfo.itemNumber = stmtResult.getInt(OrderDbTableColumn.COL_ITEM_NUMBER);
 				dataInfo.codStore = stmtResult.getLong(OrderDbTableColumn.COL_COD_STORE);
 				dataInfo.codMat = stmtResult.getLong(OrderDbTableColumn.COL_COD_MATERIAL);

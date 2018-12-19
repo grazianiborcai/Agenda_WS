@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
@@ -104,6 +105,21 @@ public final class CartUpdateHdrSingle implements DaoStmt<CartInfo> {
 			
 			
 			int i = 1;
+			
+			if (recordInfo.codCustomer >= 0) {
+				stmt.setLong(i++, recordInfo.codCustomer);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			if (recordInfo.codPerson >= 0) {
+				stmt.setLong(i++, recordInfo.codPerson);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
 			stmt.setTimestamp(i++, lastChanged);
 			
 			return stmt;

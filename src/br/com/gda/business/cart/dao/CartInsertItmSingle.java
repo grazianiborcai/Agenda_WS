@@ -94,15 +94,7 @@ public class CartInsertItmSingle implements DaoStmt<CartInfo> {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
-			
-			
-			if (recordInfo.codCustomer >= 0) {
-				stmt.setLong(i++, recordInfo.codCustomer);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}			
-			
-			
+			stmt.setLong(i++, recordInfo.codUser);
 			stmt.setInt(i++, recordInfo.itemNumber);	
 			stmt.setInt(i++, recordInfo.quantity);
 			
@@ -118,12 +110,9 @@ public class CartInsertItmSingle implements DaoStmt<CartInfo> {
 				stmt.setLong(i++, recordInfo.codMat);
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
-			}	
+			}
+						
 			
-			
-			stmt.setString(i++, recordInfo.codUnit);
-			stmt.setDouble(i++, recordInfo.price);
-			stmt.setString(i++, recordInfo.codCurr);
 			stmt.setTime(i++, beginTime);
 			stmt.setTime(i++, endTime);
 			stmt.setDate(i++, date);

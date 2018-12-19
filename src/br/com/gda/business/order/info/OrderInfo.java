@@ -12,6 +12,9 @@ import br.com.gda.info.InfoRecord;
 public final class OrderInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codOrder;
+	public long codPerson;
+	public long codUser;
+	public long codSnapshot;
 	public int itemNumber;
 	public char codItemCateg;
 	public String codOrderExt;
@@ -55,6 +58,9 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public OrderInfo() {
 		codOwner = DefaultValue.number();
 		codOrder = DefaultValue.number();
+		codPerson = DefaultValue.number();
+		codUser = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		itemNumber = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codMat = DefaultValue.number();
@@ -66,15 +72,6 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		codEmployee = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		codItemCateg = DefaultValue.character();
-		
-		computeLChanged();
-	}
-	
-	
-	
-	private void computeLChanged() {
-		OrderSetterLChanged attrSetter = new OrderSetterLChanged();		
-		attrSetter.setAttr(this);
 	}
 	
 	

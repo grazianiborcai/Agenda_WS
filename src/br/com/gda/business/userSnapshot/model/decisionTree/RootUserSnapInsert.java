@@ -67,7 +67,7 @@ public final class RootUserSnapInsert implements DeciTree<UserSnapInfo> {
 	private List<ActionStd<UserSnapInfo>> buildActionsOnPassed(DeciTreeOption<UserSnapInfo> option) {
 		List<ActionStd<UserSnapInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<UserSnapInfo> nodeInsert = new NodeUserSnapInsertL1(option).toAction();		
+		ActionStd<UserSnapInfo> nodeInsert = new NodeUserSnapInsertL1(option).toAction();
 		actions.add(nodeInsert);		
 		
 		return actions;
