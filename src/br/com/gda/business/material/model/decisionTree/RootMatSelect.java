@@ -4,7 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.material.model.action.LazyMatMergeCurrency;
+import br.com.gda.business.material.model.action.LazyMatMergeMatCateg;
+import br.com.gda.business.material.model.action.LazyMatMergeMatGroup;
+import br.com.gda.business.material.model.action.LazyMatMergeMatType;
+import br.com.gda.business.material.model.action.LazyMatMergeMatUnit;
+import br.com.gda.business.material.model.action.StdMatSelect;
 import br.com.gda.business.material.model.checker.MatCheckRead;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -47,7 +54,20 @@ public final class RootMatSelect implements DeciTree<MatInfo> {
 	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionMatSelect(option));
+		ActionStd<MatInfo> select = new StdMatSelect(option);
+		ActionLazy<MatInfo> mergeMatType = new LazyMatMergeMatType(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeMatCateg = new LazyMatMergeMatCateg(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeMatGroup = new LazyMatMergeMatGroup(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeCurrency = new LazyMatMergeCurrency(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeMatUnit = new LazyMatMergeMatUnit(option.conn, option.schemaName);
+		
+		select.addPostAction(mergeMatType);
+		mergeMatType.addPostAction(mergeMatCateg);
+		mergeMatCateg.addPostAction(mergeMatGroup);
+		mergeMatGroup.addPostAction(mergeCurrency);
+		mergeCurrency.addPostAction(mergeMatUnit);
+		
+		actions.add(select);
 		return actions;
 	}
 	

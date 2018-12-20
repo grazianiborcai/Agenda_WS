@@ -24,7 +24,7 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
 	private final String LT_ATTR = DaoDbTable.MAT_GROUP_TABLE;
 	private final String RT_TEXT = DaoDbTable.MAT_GROUP_TEXT_TABLE;
-	private final String RT_BUSINESS_TEXT = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
+	private final String RT_BUSINESS_TEXT = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;	//TODO: usar o merge ao inves do JOIN
 	
 	private DaoStmt<MatGroupInfo> stmtSql;
 	private DaoStmtOption<MatGroupInfo> stmtOption;

@@ -1,4 +1,4 @@
-package br.com.gda.business.material.model.decisionTree;
+package br.com.gda.business.material.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.action.ActionVisitorEnforce;
 
-final class VisitorMatFilterNullText implements ActionVisitorEnforce<MatInfo> {
+final class VisiMatFilterNullText implements ActionVisitorEnforce<MatInfo> {
 	private final boolean FAIL = false;
 	private final boolean OK = true;
 	

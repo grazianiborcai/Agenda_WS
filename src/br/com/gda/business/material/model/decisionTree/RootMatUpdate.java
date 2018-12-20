@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.material.model.action.StdMatSelect;
+import br.com.gda.business.material.model.action.StdMatUpdateAttr;
 import br.com.gda.business.material.model.checker.MatCheckCateg;
 import br.com.gda.business.material.model.checker.MatCheckCurrency;
 import br.com.gda.business.material.model.checker.MatCheckExist;
@@ -118,10 +120,10 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 	
 	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
-		
-		actions.add(new ActionMatUpdateAttr(option));
+		//TODO: Colocar acoes encadeadas
+		actions.add(new StdMatUpdateAttr(option));
 		actions.add(new NodeMatUpdateText(option).toAction());
-		actions.add(new ActionMatSelect(option));
+		actions.add(new StdMatSelect(option));
 		return actions;
 	}
 	

@@ -3,8 +3,8 @@ package br.com.gda.business.material.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.decisionTree.ActionMatEnforceKey;
-import br.com.gda.business.material.model.decisionTree.HandlerMatSelect;
+import br.com.gda.business.material.model.action.StdMatEnforceKey;
+import br.com.gda.business.material.model.action.LazyMatSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -23,8 +23,8 @@ public final class MatCheckExist extends ModelCheckerTemplateAction<MatInfo> {
 	@Override protected ActionStd<MatInfo> buildActionHook(MatInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<MatInfo> actionSelect = new ActionMatEnforceKey(option);
-		actionSelect.addPostAction(new HandlerMatSelect(conn, schemaName));
+		ActionStd<MatInfo> actionSelect = new StdMatEnforceKey(option);
+		actionSelect.addPostAction(new LazyMatSelect(conn, schemaName));
 		return actionSelect;
 	}
 	

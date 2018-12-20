@@ -24,13 +24,6 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	private final String LT_MAT = DaoDbTable.MAT_TABLE;	
 	private final String RT_MAT_TEXT = DaoDbTable.MAT_TEXT_TABLE;
-	private final String RT_MAT_TYPE_TEXT = DaoDbTable.MAT_TYPE_TEXT_TABLE;
-	private final String RT_MAT_CATEGORY_TEXT = DaoDbTable.MAT_CATEG_TEXT_TABLE;
-	private final String RT_MAT_GROUP_TEXT = DaoDbTable.MAT_GROUP_TEXT_TABLE;
-	private final String RT_MAT_GROUP = DaoDbTable.MAT_GROUP_TABLE;
-	private final String RT_CURRENCY_TEXT = DaoDbTable.CURRENCY_TEXT_TABLE;
-	private final String RT_UNIT_TEXT = DaoDbTable.UNIT_TEXT_TABLE;
-	private final String RT_BUSINESS_TEXT = DaoDbTable.BUSINESS_AREA_TEXT_TABLE;
 	
 	private DaoStmt<MatInfo> stmtSql;
 	private DaoStmtOption<MatInfo> stmtOption;
@@ -45,16 +38,16 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, MatInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_MAT;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_MAT);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = buildJoins();
+		stmtOption = new DaoStmtOption<>();
+		stmtOption.conn = conn;
+		stmtOption.recordInfo = recordInfo;
+		stmtOption.schemaName = schemaName;
+		stmtOption.tableName = LT_MAT;
+		stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_MAT);
+		stmtOption.stmtParamTranslator = null;
+		stmtOption.resultParser = new ResultParser();
+		stmtOption.whereClause = buildWhereClause();
+		stmtOption.joins = buildJoins();
 	}
 	
 	
@@ -75,14 +68,7 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	
 	private List<DaoJoin> buildJoins() {
 		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinMatText());		
-		joins.add(buildJoinTypeText());
-		joins.add(buildJoinCategoryText());
-		joins.add(buildJoinCurrencyText());
-		joins.add(buildJoinUnitText());
-		joins.add(buildJoinGroupText());		
-		joins.add(buildJoinBusinessCod());
-		joins.add(buildJoinBusinessText());
+		joins.add(buildJoinMatText());
 		return joins;
 	}
 	
@@ -93,8 +79,8 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_MAT;
-		oneColumn.leftColumnName = "Cod_material";
-		oneColumn.rightColumnName = "Cod_material";
+		oneColumn.leftColumnName = MatDbTableColumn.COL_COD_MATERIAL;
+		oneColumn.rightColumnName = MatDbTableColumn.COL_COD_MATERIAL;
 		joinColumns.add(oneColumn);
 		
 		
@@ -109,163 +95,12 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	
 	
 	
-	private DaoJoin buildJoinTypeText() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT;
-		oneColumn.leftColumnName = "Cod_type";
-		oneColumn.rightColumnName = "Cod_type";
-		joinColumns.add(oneColumn);
-		
-		
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_MAT_TYPE_TEXT;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(join.rightTableName);
-		
-		return join;
-	}
-	
-	
-	
-	private DaoJoin buildJoinCategoryText() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT;
-		oneColumn.leftColumnName = "Cod_category";
-		oneColumn.rightColumnName = "Cod_category";
-		joinColumns.add(oneColumn);
-		
-		
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_MAT_CATEGORY_TEXT;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(join.rightTableName);
-		
-		return join;
-	}
-	
-	
-	
-	private DaoJoin buildJoinCurrencyText() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT;
-		oneColumn.leftColumnName = "Cod_curr";
-		oneColumn.rightColumnName = "Cod_curr";
-		joinColumns.add(oneColumn);
-		
-		
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_CURRENCY_TEXT;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(join.rightTableName);
-		
-		return join;
-	}
-	
-	
-	
-	private DaoJoin buildJoinUnitText() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT;
-		oneColumn.leftColumnName = "Unit";
-		oneColumn.rightColumnName = "Unit";
-		joinColumns.add(oneColumn);
-		
-		
-		DaoJoin join = new DaoJoin();
-		String rightTableName = RT_UNIT_TEXT;
-		join.rightTableName = rightTableName;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(rightTableName);
-		
-		return join;
-	}
-	
-	
-	
-	private DaoJoin buildJoinGroupText() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT;
-		oneColumn.leftColumnName = "Cod_group";
-		oneColumn.rightColumnName = "Cod_group";
-		joinColumns.add(oneColumn);
-		
-		
-		DaoJoin join = new DaoJoin();
-		String rightTableName = RT_MAT_GROUP_TEXT;
-		join.rightTableName = rightTableName;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(rightTableName);
-		
-		return join;
-	}
-	
-	
-	
-	private DaoJoin buildJoinBusinessCod() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT;
-		oneColumn.leftColumnName = "Cod_group";
-		oneColumn.rightColumnName = "Cod_group";
-		joinColumns.add(oneColumn);
-		
-		
-		DaoJoin join = new DaoJoin();
-		String rightTableName = RT_MAT_GROUP;
-		join.rightTableName = rightTableName;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = null;
-		
-		return join;
-	} 
-	
-	
-	
-	private DaoJoin buildJoinBusinessText() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = RT_MAT_GROUP;
-		oneColumn.leftColumnName = "Cod_business";
-		oneColumn.rightColumnName = "Cod_business";
-		joinColumns.add(oneColumn);
-		
-		
-		DaoJoin join = new DaoJoin();
-		String rightTableName = RT_BUSINESS_TEXT;
-		join.rightTableName = rightTableName;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(rightTableName);
-		
-		return join;
-	}
-	
-	
-	
 	private String buildJoinConstraintText(String rightTableName) {
 		StringBuilder constrainClause = new StringBuilder(); 
 		
 		constrainClause.append(rightTableName);
 		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append("Language");
+		constrainClause.append(MatDbTableColumn.COL_LANGUAGE);
 		constrainClause.append(DaoDictionary.SPACE);
 		constrainClause.append(DaoDictionary.EQUAL);
 		constrainClause.append(DaoDictionary.SPACE);
@@ -319,16 +154,9 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	
 	private static class ResultParser implements DaoResultParser<MatInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String MAT_TEXT_COL = DaoDbTable.MAT_TEXT_TABLE + "." + "Name";
-		private final String MAT_LANGU_COL = DaoDbTable.MAT_TEXT_TABLE + "." + "Language";
-		private final String MAT_DESCR_COL = DaoDbTable.MAT_TEXT_TABLE + "." + "Description";
-		private final String MAT_TYPE_TEXT_COL = DaoDbTable.MAT_TYPE_TEXT_TABLE + "." + "Name";
-		private final String MAT_CATEGORY_TEXT_COL = DaoDbTable.MAT_CATEG_TEXT_TABLE + "." + "Name";
-		private final String MAT_GROUP_TEXT_COL = DaoDbTable.MAT_GROUP_TEXT_TABLE + "." + "Name";
-		private final String MAT_BUSINESS_COL = DaoDbTable.MAT_GROUP_TABLE + "." + "Cod_business";
-		private final String MAT_BUSINESS_TEXT_COL = DaoDbTable.BUSINESS_AREA_TEXT_TABLE + "." + "Name";
-		private final String CURRENCY_TEXT_COL = DaoDbTable.CURRENCY_TEXT_TABLE + "." + "Name";
-		private final String UNIT_TEXT_COL = DaoDbTable.UNIT_TEXT_TABLE + "." + "Name";
+		private final String MAT_TEXT_COL = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_NAME;
+		private final String MAT_LANGU_COL = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_LANGUAGE;
+		private final String MAT_DESCR_COL = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_DESCRIPTION;
 		
 		@Override public List<MatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatInfo> finalResult = new ArrayList<>();
@@ -338,27 +166,20 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 			
 			do {
 				MatInfo dataInfo = new MatInfo();
-				dataInfo.codOwner = stmtResult.getLong("cod_owner");
-				dataInfo.codMat = stmtResult.getLong("Cod_material");
+				dataInfo.codOwner = stmtResult.getLong(MatDbTableColumn.COL_COD_OWNER);
+				dataInfo.codMat = stmtResult.getLong(MatDbTableColumn.COL_COD_MATERIAL);
 				dataInfo.txtMat = stmtResult.getString(MAT_TEXT_COL);
 				dataInfo.description = stmtResult.getString(MAT_DESCR_COL);
-				dataInfo.codType = stmtResult.getInt("Cod_type");
-				dataInfo.txtType = stmtResult.getString(MAT_TYPE_TEXT_COL);
-				dataInfo.codCategory = stmtResult.getInt("Cod_category");
-				dataInfo.txtCategory = stmtResult.getString(MAT_CATEGORY_TEXT_COL);
-				dataInfo.price = stmtResult.getDouble("Price");
-				dataInfo.priceUnit = stmtResult.getInt("Price_unit");				
-				dataInfo.codCurr = stmtResult.getString("Cod_curr");	
-				dataInfo.txtCurr = stmtResult.getString(CURRENCY_TEXT_COL);
-				dataInfo.codUnit = stmtResult.getString("Unit");	
-				dataInfo.txtUnit = stmtResult.getString(UNIT_TEXT_COL);
-				dataInfo.codGroup = stmtResult.getInt("Cod_group");	
-				dataInfo.txtGroup = stmtResult.getString(MAT_GROUP_TEXT_COL);
-				dataInfo.codBusiness = stmtResult.getInt(MAT_BUSINESS_COL);	
-				dataInfo.txtBusiness = stmtResult.getString(MAT_BUSINESS_TEXT_COL);
+				dataInfo.codType = stmtResult.getInt(MatDbTableColumn.COL_COD_TYPE);
+				dataInfo.codCategory = stmtResult.getInt(MatDbTableColumn.COL_COD_CATEGORY);
+				dataInfo.price = stmtResult.getDouble(MatDbTableColumn.COL_PRICE);
+				dataInfo.priceUnit = stmtResult.getInt(MatDbTableColumn.COL_PRICE_UNIT);				
+				dataInfo.codCurr = stmtResult.getString(MatDbTableColumn.COL_COD_CURRRENCY);
+				dataInfo.codUnit = stmtResult.getString(MatDbTableColumn.COL_COD_UNIT);	
+				dataInfo.codGroup = stmtResult.getInt(MatDbTableColumn.COL_COD_GROUP);
 				dataInfo.codLanguage = stmtResult.getString(MAT_LANGU_COL);	
-				dataInfo.isLocked = stmtResult.getBoolean("Is_locked");	
-				dataInfo.recordMode = stmtResult.getString("record_mode");					
+				dataInfo.isLocked = stmtResult.getBoolean(MatDbTableColumn.COL_IS_LOCKED);	
+				dataInfo.recordMode = stmtResult.getString(MatDbTableColumn.COL_RECORD_MODE);					
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

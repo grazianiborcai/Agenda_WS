@@ -1,4 +1,4 @@
-package br.com.gda.business.material.model.decisionTree;
+package br.com.gda.business.material.model.action;
 
 import java.sql.Connection;
 import java.util.List;
@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerMatSelect extends ActionLazyTemplate<MatInfo, MatInfo> {
-
-	public HandlerMatSelect(Connection conn, String schemaName) {
+public final class LazyMatInsertText extends ActionLazyTemplate<MatInfo, MatInfo> {
+	
+	public LazyMatInsertText(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -23,8 +23,8 @@ public final class HandlerMatSelect extends ActionLazyTemplate<MatInfo, MatInfo>
 	
 	
 	
-	@Override protected ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
-		return new ActionMatSelect(option);
+	@Override protected  ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
+		return new StdMatInsertText(option);
 	}
 	
 	

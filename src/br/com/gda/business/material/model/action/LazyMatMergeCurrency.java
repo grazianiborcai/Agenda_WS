@@ -1,17 +1,17 @@
-package br.com.gda.business.material.model.decisionTree;
+package br.com.gda.business.material.model.action;
 
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerMatInsertText extends ActionLazyTemplate<MatInfo, MatInfo> {
+public final class LazyMatMergeCurrency extends ActionLazyTemplate<MatInfo, MatInfo> {
 	
-	public HandlerMatInsertText(Connection conn, String schemaName) {
+	public LazyMatMergeCurrency(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -23,8 +23,8 @@ final class HandlerMatInsertText extends ActionLazyTemplate<MatInfo, MatInfo> {
 	
 	
 	
-	@Override protected  ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
-		return new ActionMatInsertText(option);
+	@Override protected ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
+		return new StdMatMergeCurrency(option);
 	}
 	
 	

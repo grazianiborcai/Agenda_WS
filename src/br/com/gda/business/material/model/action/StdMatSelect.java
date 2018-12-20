@@ -1,9 +1,9 @@
-package br.com.gda.business.material.model.decisionTree;
+package br.com.gda.business.material.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.material.dao.MatInsertText;
+import br.com.gda.business.material.dao.MatSelect;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
@@ -13,11 +13,11 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionMatInsertText implements ActionStd<MatInfo> {
+public final class StdMatSelect implements ActionStd<MatInfo> {
 	private ActionStd<MatInfo> actionHelper;
 	
 	
-	public ActionMatInsertText(DeciTreeOption<MatInfo> option) {
+	public StdMatSelect(DeciTreeOption<MatInfo> option) {
 		DaoStmtExec<MatInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
@@ -35,7 +35,7 @@ final class ActionMatInsertText implements ActionStd<MatInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new MatInsertText(stmtExecOptions);
+		return new MatSelect(stmtExecOptions);
 	}
 	
 	

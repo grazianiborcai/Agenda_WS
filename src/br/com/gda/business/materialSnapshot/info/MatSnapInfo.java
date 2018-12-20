@@ -1,4 +1,4 @@
-package br.com.gda.business.material.info;
+package br.com.gda.business.materialSnapshot.info;
 
 import java.util.List;
 
@@ -6,8 +6,9 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
-public final class MatInfo extends InfoRecord implements Cloneable {
+public final class MatSnapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public long codSnapshot;
 	public long codMat;
 	public String txtMat;
 	public String description;
@@ -31,8 +32,9 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	//TODO: testar material precisao com mais de 2 casas decimais
 	
 	
-	public MatInfo() {
-		codOwner = DefaultValue.number();
+	public MatSnapInfo() {
+		codOwner = DefaultValue.number();		
+		codSnapshot = DefaultValue.number();	
 		codMat = DefaultValue.number();
 		codType = DefaultValue.number();
 		codCategory = DefaultValue.number();
@@ -47,14 +49,14 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static MatInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, MatInfo.class);
+	public static MatSnapInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, MatSnapInfo.class);
 	}
 	
 	
 	
-	public static List<MatInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, MatInfo.class);
+	public static List<MatSnapInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, MatSnapInfo.class);
 	}
 	
 	
@@ -68,8 +70,9 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner  ^ (codOwner	>>> 32));
-		result = result * 31 + (int) (codMat 	^ (codMat 	>>> 32));
+		result = result * 31 + (int) (codOwner  	^ (codOwner		>>> 32));
+		result = result * 31 + (int) (codSnapshot 	^ (codSnapshot 	>>> 32));
+		result = result * 31 + (int) (codMat 		^ (codMat 		>>> 32));
 		
 		return result;
 	}
@@ -81,11 +84,13 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof MatInfo))
+		if (!(o instanceof MatSnapInfo))
 			return false;
 		
 		
-		MatInfo obj = (MatInfo) o;		
-		return (codOwner == obj.codOwner && codMat == obj.codMat);
+		MatSnapInfo obj = (MatSnapInfo) o;		
+		return (codOwner    == obj.codOwner 	&&
+				codSnapshot == obj.codSnapshot	&&
+				codMat      == obj.codMat			);
 	}
 }

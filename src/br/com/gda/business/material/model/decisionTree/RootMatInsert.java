@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.material.model.action.StdMatInsertAttr;
+import br.com.gda.business.material.model.action.LazyMatInsertText;
+import br.com.gda.business.material.model.action.LazyMatSelect;
 import br.com.gda.business.material.model.checker.MatCheckCateg;
 import br.com.gda.business.material.model.checker.MatCheckCurrency;
 import br.com.gda.business.material.model.checker.MatCheckGenField;
@@ -113,12 +116,12 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 	
 	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();		
-		ActionStd<MatInfo> actionInsertAttr = new ActionMatInsertAttr(option);
 		
-		ActionLazy<MatInfo> insertTxt = new HandlerMatInsertText(option.conn, option.schemaName);		
-		actionInsertAttr.addPostAction(insertTxt);		
+		ActionStd<MatInfo> actionInsertAttr = new StdMatInsertAttr(option);		
+		ActionLazy<MatInfo> insertTxt = new LazyMatInsertText(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> selectMat = new LazyMatSelect(option.conn, option.schemaName);		
 		
-		ActionLazy<MatInfo> selectMat = new HandlerMatSelect(option.conn, option.schemaName);		
+		actionInsertAttr.addPostAction(insertTxt);
 		actionInsertAttr.addPostAction(selectMat);	
 		
 		actions.add(actionInsertAttr);		

@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.decisionTree.ActionMatSelect;
-import br.com.gda.business.material.model.decisionTree.HandlerMatFilterNonServ;
+import br.com.gda.business.material.model.action.StdMatSelect;
+import br.com.gda.business.material.model.action.LazyMatFilterNonServ;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -24,8 +24,8 @@ public final class MatCheckServ extends ModelCheckerTemplateAction<MatInfo> {
 	@Override protected ActionStd<MatInfo> buildActionHook(MatInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<MatInfo> actionSelect = new ActionMatSelect(option);
-		actionSelect.addPostAction(new HandlerMatFilterNonServ(conn, schemaName));
+		ActionStd<MatInfo> actionSelect = new StdMatSelect(option);
+		actionSelect.addPostAction(new LazyMatFilterNonServ(conn, schemaName));
 		return actionSelect;
 	}
 	

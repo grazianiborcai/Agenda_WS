@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.material.model.action.StdMatDelete;
 import br.com.gda.business.material.model.checker.MatCheckExist;
 import br.com.gda.business.material.model.checker.MatCheckKey;
 import br.com.gda.model.action.ActionStd;
@@ -61,7 +62,7 @@ public final class RootMatDelete implements DeciTree<MatInfo> {
 	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionMatDelete(option));
+		actions.add(new StdMatDelete(option));
 		return actions;
 	}
 	

@@ -28,28 +28,28 @@ public final class MatWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case "Cod_owner" :
+				case MatDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case "Cod_material" :
+				case MatDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
-				case "Cod_type" :
+				case MatDbTableColumn.COL_COD_TYPE  :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codType));
 					break;
 					
-				case "Cod_group" :
+				case MatDbTableColumn.COL_COD_GROUP :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codGroup));
 					break;
 					
-				case "Language":
+				case MatDbTableColumn.COL_LANGUAGE :
 					if (tableName == DaoDbTable.MAT_TEXT_TABLE)
 						builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 					
-				case "record_mode" :
+				case MatDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

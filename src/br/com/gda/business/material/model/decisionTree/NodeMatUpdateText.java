@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.material.model.action.StdMatInsertText;
+import br.com.gda.business.material.model.action.StdMatUpdateText;
 import br.com.gda.business.material.model.checker.MatCheckExistText;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -56,7 +58,7 @@ final class NodeMatUpdateText implements DeciTree<MatInfo> {
 	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionMatUpdateText(option));
+		actions.add(new StdMatUpdateText(option));
 		return actions;
 	}
 	
@@ -65,7 +67,7 @@ final class NodeMatUpdateText implements DeciTree<MatInfo> {
 	private List<ActionStd<MatInfo>> buildActionsOnFailed(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionMatInsertText(option));
+		actions.add(new StdMatInsertText(option));
 		return actions;
 	}
 	

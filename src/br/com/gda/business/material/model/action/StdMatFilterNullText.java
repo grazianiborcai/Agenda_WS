@@ -1,4 +1,4 @@
-package br.com.gda.business.material.model.decisionTree;
+package br.com.gda.business.material.model.action;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.action.ActionStd;
@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionMatFilterNonServ implements ActionStd<MatInfo> {
+public final class StdMatFilterNullText implements ActionStd<MatInfo> {
 	private ActionStd<MatInfo> actionHelper;	
 	
 	
-	public ActionMatFilterNonServ(DeciTreeOption<MatInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisitorMatFilterNonServ());
+	public StdMatFilterNullText(DeciTreeOption<MatInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiMatFilterNullText());
 	}
 	
 	
