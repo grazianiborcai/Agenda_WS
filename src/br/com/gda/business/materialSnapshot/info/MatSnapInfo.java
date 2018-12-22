@@ -1,5 +1,6 @@
 package br.com.gda.business.materialSnapshot.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
@@ -29,12 +30,12 @@ public final class MatSnapInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public boolean isLocked;
 	public String recordMode;
-	//TODO: testar material precisao com mais de 2 casas decimais
+	public LocalDateTime lastChanged;
 	
 	
 	public MatSnapInfo() {
-		codOwner = DefaultValue.number();		
-		codSnapshot = DefaultValue.number();	
+		codOwner = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codType = DefaultValue.number();
 		codCategory = DefaultValue.number();
@@ -89,8 +90,8 @@ public final class MatSnapInfo extends InfoRecord implements Cloneable {
 		
 		
 		MatSnapInfo obj = (MatSnapInfo) o;		
-		return (codOwner    == obj.codOwner 	&&
-				codSnapshot == obj.codSnapshot	&&
-				codMat      == obj.codMat			);
+		return (codOwner 	== obj.codOwner 	&&
+				codSnapshot == obj.codSnapshot 	&&
+				codMat 		== obj.codMat		);
 	}
 }

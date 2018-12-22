@@ -3,6 +3,7 @@ package br.com.gda.business.material.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -179,7 +180,12 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 				dataInfo.codGroup = stmtResult.getInt(MatDbTableColumn.COL_COD_GROUP);
 				dataInfo.codLanguage = stmtResult.getString(MAT_LANGU_COL);	
 				dataInfo.isLocked = stmtResult.getBoolean(MatDbTableColumn.COL_IS_LOCKED);	
-				dataInfo.recordMode = stmtResult.getString(MatDbTableColumn.COL_RECORD_MODE);					
+				dataInfo.recordMode = stmtResult.getString(MatDbTableColumn.COL_RECORD_MODE);
+				
+				Timestamp lastChanged = stmtResult.getTimestamp(MatDbTableColumn.COL_LAST_CHANGED);
+				if (lastChanged != null)
+					dataInfo.lastChanged = lastChanged.toLocalDateTime();
+				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

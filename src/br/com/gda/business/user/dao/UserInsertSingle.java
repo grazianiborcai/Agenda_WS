@@ -87,8 +87,7 @@ public final class UserInsertSingle implements DaoStmt<UserInfo> {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);		
-			stmt.setString(i++, recordInfo.recordMode);
-			
+			stmt.setString(i++, recordInfo.recordMode);			
 			stmt.setTimestamp(i++, lastChanged);
 			
 			if (recordInfo.codPerson >= 0) {

@@ -272,4 +272,9 @@ public final class SystemCode {
 	public static final int USER_SNAPSHOT_IS_NULL 						= 2152;	
 	public static final int USER_SNAPSHOT_NO_ADDRESS					= 2153;	
 	public static final int USER_SNAPSHOT_NO_PHONE						= 2154;
+	
+	//Material Snapshot
+	public static final int MATERIAL_SNAPSHOT_IS_NULL 					= 2200;	
+	public static final int MATERIAL_SNAPSHOT_ALREADY_EXIST 			= 2201;
+	public static final int MATERIAL_SNAPSHOT_NOT_FOUND 				= 2202;
 }

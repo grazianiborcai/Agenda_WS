@@ -3,6 +3,7 @@ package br.com.gda.business.material.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
@@ -74,12 +75,17 @@ public final class MatInsertTextSingle implements DaoStmt<MatInfo> {
 	private class ParamTranslator implements DaoStmtParamTranslator<MatInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatInfo recordInfo) throws SQLException {
 			
+			Timestamp lastChanged = null;
+			if(recordInfo.lastChanged != null)
+				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codMat);
 			stmt.setString(i++, recordInfo.codLanguage);
 			stmt.setString(i++, recordInfo.txtMat);
 			stmt.setString(i++, recordInfo.description);
+			stmt.setTimestamp(i++, lastChanged);
 			
 			return stmt;
 		}		
@@ -88,6 +94,6 @@ public final class MatInsertTextSingle implements DaoStmt<MatInfo> {
 	
 	
 	@Override public DaoStmt<MatInfo> getNewInstance() {
-		return new MatInsertAttrSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new MatInsertTextSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 }

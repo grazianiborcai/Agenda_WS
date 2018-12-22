@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.action.StdMatSelect;
-import br.com.gda.business.material.model.action.StdMatUpdateAttr;
+import br.com.gda.business.material.model.action.LazyMatNodeUpdateText;
+import br.com.gda.business.material.model.action.LazyMatRootSelect;
+import br.com.gda.business.material.model.action.LazyMatUpdateAttr;
+import br.com.gda.business.material.model.action.StdMatEnforceLChanged;
 import br.com.gda.business.material.model.checker.MatCheckCateg;
 import br.com.gda.business.material.model.checker.MatCheckCurrency;
 import br.com.gda.business.material.model.checker.MatCheckExist;
@@ -16,6 +18,7 @@ import br.com.gda.business.material.model.checker.MatCheckOwner;
 import br.com.gda.business.material.model.checker.MatCheckType;
 import br.com.gda.business.material.model.checker.MatCheckUnit;
 import br.com.gda.business.material.model.checker.MatCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -120,10 +123,17 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 	
 	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
-		//TODO: Colocar acoes encadeadas
-		actions.add(new StdMatUpdateAttr(option));
-		actions.add(new NodeMatUpdateText(option).toAction());
-		actions.add(new StdMatSelect(option));
+
+		ActionStd<MatInfo> enforceLChanged = new StdMatEnforceLChanged(option);	
+		ActionLazy<MatInfo> updateAttr = new LazyMatUpdateAttr(option.conn, option.schemaName);
+		ActionLazy<MatInfo> updateText = new LazyMatNodeUpdateText(option.conn, option.schemaName);
+		ActionLazy<MatInfo> select = new LazyMatRootSelect(option.conn, option.schemaName);
+		
+		enforceLChanged.addPostAction(updateAttr);
+		updateAttr.addPostAction(updateText);
+		updateText.addPostAction(select);
+		
+		actions.add(enforceLChanged);
 		return actions;
 	}
 	

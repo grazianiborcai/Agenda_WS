@@ -17,6 +17,9 @@ import br.com.gda.business.addressSnapshot.model.AddressSnapModelSelect;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.business.feeStore.model.FeeStoreModelSelect;
 import br.com.gda.business.feeStore.model.FeeStoreModelSelectService;
+import br.com.gda.business.materialSnapshot.info.MatSnapInfo;
+import br.com.gda.business.materialSnapshot.model.MatSnapModelInsert;
+import br.com.gda.business.materialSnapshot.model.MatSnapModelSelect;
 import br.com.gda.business.person.model.PersonModelInsert;
 import br.com.gda.business.person.model.PersonModelUpdate;
 import br.com.gda.business.personCustomer.info.PersonCusInfo;
@@ -60,6 +63,8 @@ public class TestResource {
 	private static final String SELECT_USER_SNAPSHOT = "/selectUserSnapshot";
 	private static final String SELECT_FEE_STORE = "/selectFeeStore";
 	private static final String SELECT_FEE_STORE_SERVICE = "/selectFeeStoreService";
+	private static final String INSERT_MATERIAL_SNAPSHOT = "/insertMaterialSnapshot";
+	private static final String SELECT_MATERIAL_SNAPSHOT = "/selectMaterialSnapshot";
 	
 	
 	
@@ -354,4 +359,34 @@ public class TestResource {
 		model.executeRequest();
 		return model.getResponse();
 	}	
+	
+	
+	
+	@POST
+	@Path(INSERT_MATERIAL_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertMatSnapshot(String incomingData) {
+		
+		
+		Model model = new MatSnapModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();	
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_MATERIAL_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectMatSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
+								      @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
+
+		MatSnapInfo recordInfo = new MatSnapInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codSnapshot = codSnapshot;
+		
+		Model model = new MatSnapModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
 }

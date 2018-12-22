@@ -1,5 +1,6 @@
 package br.com.gda.business.material.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
@@ -28,6 +29,8 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public boolean isLocked;
 	public String recordMode;
+	public LocalDateTime lastChanged;
+	
 	//TODO: testar material precisao com mais de 2 casas decimais
 	
 	

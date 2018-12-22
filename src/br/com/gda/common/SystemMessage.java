@@ -349,4 +349,11 @@ public final class SystemMessage {
 	public static final String USER_SNAPSHOT_IS_NULL = "User-Snapshot: Snapshot code is blank";
 	public static final String USER_SNAPSHOT_NO_ADDRESS = "User-Snapshot: User has no address";
 	public static final String USER_SNAPSHOT_NO_PHONE = "User-Snapshot: User has no phone";
+	
+	
+	
+	//Material Snapshot
+	public static final String MATERIAL_SNAPSHOT_ALREADY_EXIST = "Material-Snapshot's data already exist on DB";
+	public static final String MATERIAL_SNAPSHOT_NOT_FOUND = "Material-Snapshot's data not found on DB";
+	public static final String MATERIAL_SNAPSHOT_IS_NULL = "Material-Snapshot: Snapshot code is blank";
 }

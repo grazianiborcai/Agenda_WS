@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.action.StdMatInsertAttr;
+import br.com.gda.business.material.model.action.LazyMatInsertAttr;
 import br.com.gda.business.material.model.action.LazyMatInsertText;
-import br.com.gda.business.material.model.action.LazyMatSelect;
+import br.com.gda.business.material.model.action.LazyMatRootSelect;
+import br.com.gda.business.material.model.action.StdMatEnforceLChanged;
 import br.com.gda.business.material.model.checker.MatCheckCateg;
 import br.com.gda.business.material.model.checker.MatCheckCurrency;
 import br.com.gda.business.material.model.checker.MatCheckGenField;
@@ -107,8 +108,7 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 		checker = new MatCheckType(checkerOption);
 		queue.add(checker);
 		
-		//TODO: verificar se barcode ou código do fornecedor já existe  no banco
-		//TODO: verificar a unidade de medida. Servi�o somente pode ter tempo e produto somente pode ter unidade
+		//TODO: verificar a unidade de medida. Servico somente pode ter tempo e produto somente pode ter unidade
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -117,14 +117,16 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MatInfo> actionInsertAttr = new StdMatInsertAttr(option);		
+		ActionStd<MatInfo> enforceLChanged = new StdMatEnforceLChanged(option);	
+		ActionLazy<MatInfo> insertAttr = new LazyMatInsertAttr(option.conn, option.schemaName);	
 		ActionLazy<MatInfo> insertTxt = new LazyMatInsertText(option.conn, option.schemaName);	
-		ActionLazy<MatInfo> selectMat = new LazyMatSelect(option.conn, option.schemaName);		
+		ActionLazy<MatInfo> select = new LazyMatRootSelect(option.conn, option.schemaName);		
 		
-		actionInsertAttr.addPostAction(insertTxt);
-		actionInsertAttr.addPostAction(selectMat);	
+		enforceLChanged.addPostAction(insertAttr);
+		insertAttr.addPostAction(insertTxt);
+		insertTxt.addPostAction(select);	
 		
-		actions.add(actionInsertAttr);		
+		actions.add(enforceLChanged);		
 		return actions;
 	}
 	

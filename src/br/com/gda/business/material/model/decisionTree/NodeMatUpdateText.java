@@ -18,7 +18,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class NodeMatUpdateText implements DeciTree<MatInfo> {
+public final class NodeMatUpdateText implements DeciTree<MatInfo> {
 	private DeciTree<MatInfo> tree;
 	
 	

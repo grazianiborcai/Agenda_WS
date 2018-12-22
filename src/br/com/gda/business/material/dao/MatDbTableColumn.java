@@ -19,6 +19,7 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_UNIT = "unit";
 	public static final String COL_DESCRIPTION = "description";
 	public static final String COL_LANGUAGE = "language";
+	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_NAME = "name";
 	public static final String COL_IS_LOCKED = "is_locked";
 	public static final String COL_PRICE = "price";
@@ -140,6 +141,14 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_LAST_CHANGED;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.MAT_TEXT_TABLE;
 		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
@@ -209,6 +218,14 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_DESCRIPTION;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_LAST_CHANGED;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
