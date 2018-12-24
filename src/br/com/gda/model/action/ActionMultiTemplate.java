@@ -324,7 +324,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 			logException(new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED));
 			throw new IllegalStateException(SystemMessage.ACTION_NOT_EXECUTED);
 		}
-	}*/
+	}
 	
 	
 	
@@ -336,7 +336,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 			return true;
 		
 		return false;
-	}
+	}*/
 	
 	
 	

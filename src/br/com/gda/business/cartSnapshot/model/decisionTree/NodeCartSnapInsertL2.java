@@ -8,6 +8,7 @@ import br.com.gda.business.cartSnapshot.model.action.LazyCartSnapFirstRow;
 import br.com.gda.business.cartSnapshot.model.action.LazyCartSnapInsertHdr;
 import br.com.gda.business.cartSnapshot.model.action.LazyCartSnapInsertItm;
 import br.com.gda.business.cartSnapshot.model.action.LazyCartSnapNodeInsertMatSnap;
+import br.com.gda.business.cartSnapshot.model.action.LazyCartSnapNodeInsertUserSnap;
 import br.com.gda.business.cartSnapshot.model.action.StdCartSnapMergeCart;
 import br.com.gda.business.cartSnapshot.model.checker.CartSnapCheckExist;
 import br.com.gda.business.cartSnapshot.model.checker.CartSnapCheckSnap;
@@ -73,23 +74,18 @@ public final class NodeCartSnapInsertL2 implements DeciTree<CartSnapInfo> {
 		
 		ActionStd<CartSnapInfo> mergeCart = new StdCartSnapMergeCart(option);	
 		ActionLazy<CartSnapInfo> insertMatSnap = new LazyCartSnapNodeInsertMatSnap(option.conn, option.schemaName);
+		ActionLazy<CartSnapInfo> insertUserSnap = new LazyCartSnapNodeInsertUserSnap(option.conn, option.schemaName);
 		ActionLazy<CartSnapInfo> firstRow = new LazyCartSnapFirstRow(option.conn, option.schemaName);
 		ActionLazy<CartSnapInfo> insertHdr = new LazyCartSnapInsertHdr(option.conn, option.schemaName);
 		ActionLazy<CartSnapInfo> insertItm = new LazyCartSnapInsertItm(option.conn, option.schemaName);
-		//ActionLazy<CartSnapInfo> insertUserSnap = new LazyUserSnapInsert(option.conn, option.schemaName);
-		//ActionLazy<CartSnapInfo> insertAddressSnap = new LazyUserSnapNodeInsertAddressSnap(option.conn, option.schemaName);
-		//ActionLazy<CartSnapInfo> insertPhoneSnap = new LazyUserSnapNodeInsertPhoneSnap(option.conn, option.schemaName);
 		
 		mergeCart.addPostAction(insertMatSnap);
+		mergeCart.addPostAction(insertUserSnap);
 		
 		mergeCart.addPostAction(firstRow);
 		firstRow.addPostAction(insertHdr);
 		
 		mergeCart.addPostAction(insertItm);
-		
-		//mergeCart.addPostAction(insertUserSnap);
-		//mergeCart.addPostAction(insertAddressSnap);
-		//mergeCart.addPostAction(insertPhoneSnap);
 		
 		actions.add(mergeCart);
 		return actions;

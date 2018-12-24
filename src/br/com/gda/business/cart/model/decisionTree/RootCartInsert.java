@@ -100,6 +100,8 @@ public final class RootCartInsert implements DeciTree<CartInfo> {
 		
 		//TODO: verificar limite de itens no carrinho
 		//TODO: verificar quantidade. Somente 1 para servico. Nao pode ser negativa para todos os casos
+		//TODO: verificar valores negativos
+		//TODO: verificar Ordem em aberto
 		
 		return new ModelCheckerQueue<>(queue);
 	}

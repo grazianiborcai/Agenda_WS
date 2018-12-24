@@ -3,13 +3,13 @@ package br.com.gda.business.order.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.userSnapshot.info.UserSnapInfo;
+import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class OrderVisitorUserSnap implements InfoMergerVisitor<OrderInfo, UserSnapInfo, OrderInfo> {
+final class OrderVisitorCartSnap implements InfoMergerVisitor<OrderInfo, CartSnapInfo, OrderInfo> {
 
-	@Override public OrderInfo writeRecord(UserSnapInfo sourceOne, OrderInfo sourceTwo) {
+	@Override public OrderInfo writeRecord(CartSnapInfo sourceOne, OrderInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		return merge(sourceOne, sourceTwo);
@@ -17,19 +17,16 @@ final class OrderVisitorUserSnap implements InfoMergerVisitor<OrderInfo, UserSna
 	
 	
 	
-	private void checkArgument(UserSnapInfo sourceOne, OrderInfo sourceTwo) {
+	private void checkArgument(CartSnapInfo sourceOne, OrderInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private OrderInfo merge(UserSnapInfo sourceOne, OrderInfo sourceTwo) {
+	private OrderInfo merge(CartSnapInfo sourceOne, OrderInfo sourceTwo) {
 		OrderInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.userSnap = makeClone(sourceOne);
-		
-		resultInfo.codPerson = sourceOne.codPerson;
-		resultInfo.codCustomer = sourceOne.codCustomer;
+		resultInfo.cartSnaps.add(makeClone(sourceOne));
 		
 		return resultInfo;
 	}
@@ -48,9 +45,9 @@ final class OrderVisitorUserSnap implements InfoMergerVisitor<OrderInfo, UserSna
 	
 	
 	
-	private UserSnapInfo makeClone(UserSnapInfo recordInfo) {
+	private CartSnapInfo makeClone(CartSnapInfo recordInfo) {
 		try {
-			return (UserSnapInfo) recordInfo.clone();
+			return (CartSnapInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -60,10 +57,9 @@ final class OrderVisitorUserSnap implements InfoMergerVisitor<OrderInfo, UserSna
 	
 	
 	
-	@Override public boolean shouldWrite(UserSnapInfo sourceOne, OrderInfo sourceTwo) {
-		return (sourceOne.codOwner  	== sourceTwo.codOwner	&&
-				sourceOne.codUser 		== sourceTwo.codUser	&&
-				sourceOne.codSnapshot 	== sourceTwo.codSnapshot		);
+	@Override public boolean shouldWrite(CartSnapInfo sourceOne, OrderInfo sourceTwo) {
+		return (sourceOne.codOwner  == sourceTwo.codOwner	&&
+				sourceOne.codUser 	== sourceTwo.codUser		);
 	}
 	
 	

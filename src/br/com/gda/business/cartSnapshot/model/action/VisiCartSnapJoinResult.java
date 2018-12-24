@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.cart.info.CartFlag;
-import br.com.gda.business.cartSnapshot.info.CartSnapFlag;
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionMultiVisitorTemplate;
@@ -125,7 +124,7 @@ final class VisiCartSnapJoinResult extends ActionMultiVisitorTemplate<CartSnapIn
 	
 	private boolean isItem(List<CartSnapInfo> infoRecords) {
 		for (CartSnapInfo eachRecord: infoRecords) {
-			if (eachRecord.recordFlag != CartSnapFlag.ITEM.getFlagId())
+			if (eachRecord.recordFlag != CartFlag.ITEM.getFlagId())
 				return super.NOT_FLAGGED;
 		}
 		
