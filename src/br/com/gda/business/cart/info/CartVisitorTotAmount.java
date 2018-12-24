@@ -13,6 +13,9 @@ final class CartVisitorTotAmount implements InfoMergerVisitor<CartInfo, TotAmoun
 		CartInfo resultInfo = new CartInfo();
 		resultInfo.codOwner = sourceTwo.codOwner;
 		resultInfo.codCustomer = sourceTwo.codCustomer;
+		resultInfo.codUser = sourceTwo.codUser;
+		resultInfo.codPerson = sourceTwo.codPerson;
+		resultInfo.codLanguage = sourceTwo.codLanguage;
 		
 		resultInfo.price = sourceOne.amount;
 		resultInfo.codCurr = sourceOne.codCurr;

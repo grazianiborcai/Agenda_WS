@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.action.StdCartEnforceItemNext;
+import br.com.gda.business.cart.model.action.LazyCartEnforceItmCategItem;
 import br.com.gda.business.cart.model.action.LazyCartEnforceLChanged;
 import br.com.gda.business.cart.model.action.LazyCartMergeUser;
 import br.com.gda.business.cart.model.action.LazyCartNodetInsertL1;
@@ -111,11 +112,13 @@ public final class RootCartInsert implements DeciTree<CartInfo> {
 		ActionStd<CartInfo> nodeCus = new NodeCartCusL1(option).toAction();
 		ActionStd<CartInfo> nodePerson = new NodeCartPersonL1(option).toAction();
 		ActionStd<CartInfo> enforceItem = new StdCartEnforceItemNext(option);
+		ActionLazy<CartInfo> enforceItemCateg = new LazyCartEnforceItmCategItem(option.conn, option.schemaName);
 		ActionLazy<CartInfo> enforceLChanged = new LazyCartEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<CartInfo> mergeUser = new LazyCartMergeUser(option.conn, option.schemaName);
 		ActionLazy<CartInfo> nodeL1 = new LazyCartNodetInsertL1(option.conn, option.schemaName);
 		
-		enforceItem.addPostAction(enforceLChanged);
+		enforceItem.addPostAction(enforceItemCateg);
+		enforceItemCateg.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeUser);
 		mergeUser.addPostAction(nodeL1);
 		

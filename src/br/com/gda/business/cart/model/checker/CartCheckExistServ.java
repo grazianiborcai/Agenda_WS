@@ -58,7 +58,7 @@ public final class CartCheckExistServ extends ModelCheckerTemplateSimple<CartInf
 	private boolean isEqual(CartInfo recordOne, CartInfo recordTwo) {
 		
 		return (recordOne.codOwner    == recordTwo.codOwner    	&&
-				recordOne.codCustomer == recordTwo.codCustomer 	&&
+				recordOne.codUser 	  == recordTwo.codUser 	    &&
 				recordOne.codStore    == recordTwo.codStore    	&&
 				recordOne.codMat      == recordTwo.codMat      	&&
 				recordOne.date.isEqual(recordTwo.date)			&&

@@ -9,6 +9,7 @@ import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.common.DefaultValue;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoOperation;
@@ -31,21 +32,21 @@ public class CartInsertItmSingle implements DaoStmt<CartInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, CartInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.CART_ITM_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = null;
-		this.stmtOption.whereClause = null;
+		stmtOption = new DaoStmtOption<>();
+		stmtOption.conn = conn;
+		stmtOption.recordInfo = recordInfo;
+		stmtOption.schemaName = schemaName;
+		stmtOption.tableName = DaoDbTable.CART_ITM_TABLE;
+		stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(stmtOption.tableName);
+		stmtOption.stmtParamTranslator = new ParamTranslator();
+		stmtOption.resultParser = null;
+		stmtOption.whereClause = null;
 	}
 	
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption);
 	}
 		
 	
@@ -123,6 +124,14 @@ public class CartInsertItmSingle implements DaoStmt<CartInfo> {
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}	
+			
+			
+			if (recordInfo.codItemCateg == DefaultValue.character()) {
+				stmt.setNull(i++, Types.VARCHAR);
+			} else {
+				stmt.setString(i++, Character.toString(recordInfo.codItemCateg)); 
+			}	
+			
 
 			return stmt;
 		}		
@@ -131,6 +140,6 @@ public class CartInsertItmSingle implements DaoStmt<CartInfo> {
 	
 	
 	@Override public DaoStmt<CartInfo> getNewInstance() {
-		return new CartInsertHdrSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new CartInsertItmSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 }

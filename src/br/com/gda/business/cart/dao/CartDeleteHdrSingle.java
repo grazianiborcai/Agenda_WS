@@ -91,7 +91,7 @@ public final class CartDeleteHdrSingle implements DaoStmt<CartInfo> {
 	
 	
 	@Override public DaoStmt<CartInfo> getNewInstance() {
-		return new CartDeleteItmSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new CartDeleteHdrSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	

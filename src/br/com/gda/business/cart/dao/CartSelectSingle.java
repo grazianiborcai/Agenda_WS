@@ -179,6 +179,10 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 				stmtResult.getLong(CartDbTableColumn.COL_COD_MATERIAL);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codMat = stmtResult.getLong(CartDbTableColumn.COL_COD_MATERIAL);
+				
+				stmtResult.getString(CartDbTableColumn.COL_COD_ITEM_CATEG);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codItemCateg = stmtResult.getString(CartDbTableColumn.COL_COD_ITEM_CATEG).charAt(0);
 
 
 				Date date = stmtResult.getDate(CartDbTableColumn.COL_DATE);

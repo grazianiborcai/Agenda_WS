@@ -84,6 +84,11 @@ public final class MatSnapSelectSingle implements DaoStmt<MatSnapInfo> {
 		oneColumn.rightColumnName = MatSnapDbTableColumn.COL_COD_MATERIAL;
 		joinColumns.add(oneColumn);
 		
+		oneColumn = new DaoJoinColumn();
+		oneColumn.leftTableName = LT_MAT;
+		oneColumn.leftColumnName = MatSnapDbTableColumn.COL_COD_SNAPSHOT;
+		oneColumn.rightColumnName = MatSnapDbTableColumn.COL_COD_SNAPSHOT;
+		joinColumns.add(oneColumn);		
 		
 		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_MAT_TEXT;

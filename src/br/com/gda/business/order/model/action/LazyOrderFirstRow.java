@@ -9,7 +9,7 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class LazyOrderFirstRow extends ActionLazyTemplate<OrderInfo, OrderInfo> {
+public final class LazyOrderFirstRow extends ActionLazyTemplate<OrderInfo, OrderInfo> {
 
 	public LazyOrderFirstRow(Connection conn, String schemaName) {
 		super(conn, schemaName);

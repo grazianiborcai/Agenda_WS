@@ -11,6 +11,12 @@ final class CartVisitorFeeStore implements InfoMergerVisitor<CartInfo, FeeStoreI
 		checkArgument(sourceOne, sourceTwo);
 		
 		CartInfo resultInfo = CartInfo.copyFrom(sourceOne);
+		resultInfo.codOwner = sourceTwo.codOwner;	
+		resultInfo.codCustomer = sourceTwo.codCustomer;
+		resultInfo.codUser = sourceTwo.codUser;
+		resultInfo.codPerson = sourceTwo.codPerson;
+		resultInfo.codCurr = sourceTwo.codCurr;
+		resultInfo.codLanguage = sourceTwo.codLanguage;
 		resultInfo.codItemCateg = CartCateg.SERVICE_FEE.getCodCateg();	//TODO: deve ficar aqui ou criar um Action ?
 		resultInfo.priceUnit = 1;
 		resultInfo.quantity = 1;

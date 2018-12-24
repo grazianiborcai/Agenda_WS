@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
-import br.com.gda.business.order.model.action.StdOrderFirstRow;
+import br.com.gda.business.order.model.action.StdOrderMergeSnap;
+import br.com.gda.business.order.model.action.LazyOrderFirstRow;
+import br.com.gda.business.order.model.action.LazyOrderMergeMatSnap;
 import br.com.gda.business.order.model.action.LazyOrderMergeUserSnap;
 import br.com.gda.business.order.model.checker.OrderCheckWriteSnap;
 import br.com.gda.model.action.ActionStd;
@@ -50,12 +52,16 @@ public final class NodeOrderSnapshot implements DeciTree<OrderInfo> {
 	private List<ActionStd<OrderInfo>> buildActionsOnPassed(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrderInfo> firstRow = new StdOrderFirstRow(option);		
+		ActionStd<OrderInfo> mergeSnap = new StdOrderMergeSnap(option);
+		ActionLazy<OrderInfo> firstRow = new LazyOrderFirstRow(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> mergeUserSnap = new LazyOrderMergeUserSnap(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeMatSnap = new LazyOrderMergeMatSnap(option.conn, option.schemaName);		
 		
+		mergeSnap.addPostAction(firstRow);
 		firstRow.addPostAction(mergeUserSnap);
+		mergeSnap.addPostAction(mergeMatSnap);
 		
-		actions.add(firstRow);		
+		actions.add(mergeSnap);		
 		return actions;
 	}
 	

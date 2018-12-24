@@ -345,15 +345,24 @@ public final class SystemMessage {
 	
 	//User Snapshot
 	public static final String USER_SNAPSHOT_ALREADY_EXIST = "User-Snapshot's data already exist on DB";
-	public static final String USER_SNAPSHOT_NOT_FOUND = "User-Snapshot's data not found on DB";
-	public static final String USER_SNAPSHOT_IS_NULL = "User-Snapshot: Snapshot code is blank";
+	public static final String USER_SNAPSHOT_IS_NULL = "User-Snapshot: Snapshot code is blank";		
 	public static final String USER_SNAPSHOT_NO_ADDRESS = "User-Snapshot: User has no address";
 	public static final String USER_SNAPSHOT_NO_PHONE = "User-Snapshot: User has no phone";
+	public static final String USER_SNAPSHOT_NOT_FOUND = "User-Snapshot's data not found on DB";
 	
 	
 	
 	//Material Snapshot
-	public static final String MATERIAL_SNAPSHOT_ALREADY_EXIST = "Material-Snapshot's data already exist on DB";
-	public static final String MATERIAL_SNAPSHOT_NOT_FOUND = "Material-Snapshot's data not found on DB";
+	public static final String MATERIAL_SNAPSHOT_ALREADY_EXIST = "Material-Snapshot's data already exist on DB";	
 	public static final String MATERIAL_SNAPSHOT_IS_NULL = "Material-Snapshot: Snapshot code is blank";
+	public static final String MATERIAL_SNAPSHOT_TEXT_ALREADY_EXIST = "Material-Snapshot: Material Text already exist on DB";
+	public static final String MATERIAL_SNAPSHOT_TEXT_NOT_FOUND = "Material-Snapshot: Material Text not found on DB";
+	public static final String MATERIAL_SNAPSHOT_NOT_FOUND = "Material-Snapshot's data not found on DB";
+	
+	
+	
+	//Cart Snapshot
+	public static final String CART_SNAPSHOT_ALREADY_EXIST = "Cart-Snapshot's data already exist on DB";	
+	public static final String CART_SNAPSHOT_IS_NULL = "Cart-Snapshot: Snapshot code is blank";
+	public static final String CART_SNAPSHOT_NOT_FOUND = "Cart-Snapshot's data not found on DB";
 }

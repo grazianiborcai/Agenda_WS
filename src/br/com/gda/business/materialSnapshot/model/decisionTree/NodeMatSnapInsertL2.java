@@ -71,10 +71,10 @@ public final class NodeMatSnapInsertL2 implements DeciTree<MatSnapInfo> {
 		
 		ActionStd<MatSnapInfo> mergeMat = new StdMatSnapMergeMat(option);
 		ActionLazy<MatSnapInfo> insertAttr = new LazyMatSnapInsertAttr(option.conn, option.schemaName);	
-		ActionLazy<MatSnapInfo> insertTxt = new LazyMatSnapInsertText(option.conn, option.schemaName);	
+		ActionLazy<MatSnapInfo> insertText = new LazyMatSnapInsertText(option.conn, option.schemaName);	
 		
 		mergeMat.addPostAction(insertAttr);
-		insertAttr.addPostAction(insertTxt);
+		insertAttr.addPostAction(insertText);
 		
 		actions.add(mergeMat);
 		return actions;

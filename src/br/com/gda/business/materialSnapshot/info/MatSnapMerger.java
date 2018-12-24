@@ -14,7 +14,7 @@ import br.com.gda.info.InfoWritterFactory;
 public final class MatSnapMerger extends InfoWritterFactory<MatSnapInfo> {	
 	
 	public MatSnapMerger() {
-		super();
+		super(new MatSnapUniquifier());
 	}
 	
 	

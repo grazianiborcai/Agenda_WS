@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
@@ -129,8 +132,10 @@ public final class CartInfo extends InfoRecord implements Cloneable, Comparable<
 
 	
 	@Override public int compareTo(CartInfo arg0) {
-		if (arg0 == null)
+		if (arg0 == null) {
+			logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	
+		}
 
 		
 		if (itemNumber < arg0.itemNumber)
@@ -143,6 +148,14 @@ public final class CartInfo extends InfoRecord implements Cloneable, Comparable<
 			return 0;
 		
 		
+		logException(new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE));
 		throw new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE);
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

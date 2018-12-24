@@ -10,9 +10,11 @@ public final class DaoDbTable {
 	public static final String BUSINESS_AREA_TABLE = "business_area";
 	public static final String BUSINESS_AREA_TEXT_TABLE = "business_area_text";	
 	public static final String CART_HDR_TABLE = "shop_cart_header";
+	public static final String CART_HDR_SNAPSHOT_TABLE = "shop_cart_header_snapshot";
 	public static final String CART_ITM_CATEG_TABLE = "shop_cart_categ";
 	public static final String CART_ITM_CATEG_TEXT_TABLE = "shop_cart_categ_text";
 	public static final String CART_ITM_TABLE = "shop_cart_item";
+	public static final String CART_ITM_SNAPSHOT_TABLE = "shop_cart_item_snapshot";
 	public static final String COUNTRY_TABLE = "country";
 	public static final String COUNTRY_TEXT_TABLE = "country_text";
 	public static final String COUNTRY_PHONE_TABLE = "country_phone";

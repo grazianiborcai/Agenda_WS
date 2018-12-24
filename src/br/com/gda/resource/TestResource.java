@@ -14,6 +14,9 @@ import br.com.gda.business.address.model.AddressModelUpdate;
 import br.com.gda.business.addressSnapshot.info.AddressSnapInfo;
 import br.com.gda.business.addressSnapshot.model.AddressSnapModelInsert;
 import br.com.gda.business.addressSnapshot.model.AddressSnapModelSelect;
+import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
+import br.com.gda.business.cartSnapshot.model.CartSnapModelInsert;
+import br.com.gda.business.cartSnapshot.model.CartSnapModelSelect;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.business.feeStore.model.FeeStoreModelSelect;
 import br.com.gda.business.feeStore.model.FeeStoreModelSelectService;
@@ -65,6 +68,8 @@ public class TestResource {
 	private static final String SELECT_FEE_STORE_SERVICE = "/selectFeeStoreService";
 	private static final String INSERT_MATERIAL_SNAPSHOT = "/insertMaterialSnapshot";
 	private static final String SELECT_MATERIAL_SNAPSHOT = "/selectMaterialSnapshot";
+	private static final String INSERT_CART_SNAPSHOT = "/insertCartSnapshot";
+	private static final String SELECT_CART_SNAPSHOT = "/selectCartSnapshot";
 	
 	
 	
@@ -386,6 +391,36 @@ public class TestResource {
 		recordInfo.codSnapshot = codSnapshot;
 		
 		Model model = new MatSnapModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_CART_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertCartSnapshot(String incomingData) {
+		
+		
+		Model model = new CartSnapModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();	
+	} 
+	
+	
+	
+	@GET
+	@Path(SELECT_CART_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectCartSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
+								       @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
+
+		CartSnapInfo recordInfo = new CartSnapInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codSnapshot = codSnapshot;
+		
+		Model model = new CartSnapModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

@@ -4,6 +4,8 @@ import java.util.List;
 
 import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
+import br.com.gda.business.masterData.info.CartCategInfo;
+import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.store.info.StoreInfo;
@@ -61,6 +63,18 @@ public final class CartMerger extends InfoWritterFactory<CartInfo> {
 	
 	
 	
+	static public CartInfo merge(CartCategInfo sourceOne, CartInfo sourceTwo) {
+		return new CartMergerCartCateg().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	static public CartInfo merge(CurrencyInfo sourceOne, CartInfo sourceTwo) {
+		return new CartMergerCurrency().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<CartInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {		
 		if (sourceOnes.get(0) instanceof MatInfo 			&&
@@ -96,6 +110,16 @@ public final class CartMerger extends InfoWritterFactory<CartInfo> {
 		if (sourceOnes.get(0) instanceof UserInfo 			&&
 			sourceTwos.get(0) instanceof CartInfo		)
 			return new CartMergerUser().merge((List<UserInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof CartCategInfo 		&&
+			sourceTwos.get(0) instanceof CartInfo		)
+			return new CartMergerCartCateg().merge((List<CartCategInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof CurrencyInfo 		&&
+			sourceTwos.get(0) instanceof CartInfo		)
+			return new CartMergerCurrency().merge((List<CurrencyInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
 		
 		
 		return null;

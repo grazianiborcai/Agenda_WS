@@ -9,6 +9,7 @@ import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.common.DefaultValue;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoOperation;
@@ -92,7 +93,7 @@ public final class CartUpdateItmSingle implements DaoStmt<CartInfo> {
 	
 	
 	@Override public DaoStmt<CartInfo> getNewInstance() {
-		return new CartUpdateHdrSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new CartUpdateItmSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -140,6 +141,14 @@ public final class CartUpdateItmSingle implements DaoStmt<CartInfo> {
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}	
+			
+			
+			if (recordInfo.codItemCateg == DefaultValue.character()) {
+				stmt.setNull(i++, Types.VARCHAR);
+			} else {
+				stmt.setString(i++, Character.toString(recordInfo.codItemCateg)); 
+			}	
+			
 			
 			return stmt;
 		}		

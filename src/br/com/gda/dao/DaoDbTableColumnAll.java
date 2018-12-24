@@ -7,6 +7,7 @@ import java.util.List;
 import br.com.gda.business.address.dao.AddressDbTableColumn;
 import br.com.gda.business.addressSnapshot.dao.AddressSnapDbTableColumn;
 import br.com.gda.business.cart.dao.CartDbTableColumn;
+import br.com.gda.business.cartSnapshot.dao.CartSnapDbTableColumn;
 import br.com.gda.business.customer.dao.CusDbTableColumn;
 import br.com.gda.business.employee.dao.EmpDbTableColumn;
 import br.com.gda.business.employeeLeaveDate.dao.EmpLDateDbTableColumn;
@@ -71,6 +72,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new OwnerDbTableColumn());
 		addTable(new MatStoreDbTableColumn());
 		addTable(new CartDbTableColumn());
+		addTable(new CartSnapDbTableColumn());
 		addTable(new FeeStoreDbTableColumn());
 		addTable(new FeeDefaultDbTableColumn());
 		addTable(new ReserveDbTableColumn());

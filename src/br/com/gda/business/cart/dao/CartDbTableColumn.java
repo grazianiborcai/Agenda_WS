@@ -12,6 +12,7 @@ public final class CartDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = "begin_time";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_EMPLOYEE = "cod_employee";
+	public static final String COL_COD_ITEM_CATEG = "cod_shop_categ";
 	public static final String COL_COD_MATERIAL = "cod_material";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_PERSON = "cod_person";
@@ -152,6 +153,14 @@ public final class CartDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.CART_ITM_TABLE;
+		oneColumn.columnName = COL_COD_ITEM_CATEG;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
+		
 		tableColumns.put(TABLE_NAME, columns);
 	}
 	
@@ -242,6 +251,14 @@ public final class CartDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ITEM_CATEG;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.CART_HDR_TABLE;

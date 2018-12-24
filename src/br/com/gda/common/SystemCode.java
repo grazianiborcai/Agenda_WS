@@ -277,4 +277,11 @@ public final class SystemCode {
 	public static final int MATERIAL_SNAPSHOT_IS_NULL 					= 2200;	
 	public static final int MATERIAL_SNAPSHOT_ALREADY_EXIST 			= 2201;
 	public static final int MATERIAL_SNAPSHOT_NOT_FOUND 				= 2202;
+	public static final int MATERIAL_SNAPSHOT_TEXT_NOT_FOUND			= 2203;
+	public static final int MATERIAL_SNAPSHOT_TEXT_ALREADY_EXIST		= 2204;
+	
+	//Cart Snapshot
+	public static final int CART_SNAPSHOT_IS_NULL 						= 2250;	
+	public static final int CART_SNAPSHOT_ALREADY_EXIST 				= 2251;
+	public static final int CART_SNAPSHOT_NOT_FOUND 					= 2252;
 }

@@ -5,9 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.action.StdCartSelect;
-import br.com.gda.business.cart.model.action.LazyCartEnforceItmCategItem;
 import br.com.gda.business.cart.model.action.LazyCartEnforceItmNum;
 import br.com.gda.business.cart.model.action.LazyCartEnforceWeekday;
+import br.com.gda.business.cart.model.action.LazyCartMergeCartCateg;
+import br.com.gda.business.cart.model.action.LazyCartMergeCurrency;
 import br.com.gda.business.cart.model.action.LazyCartMergeMat;
 import br.com.gda.business.cart.model.action.LazyCartMergeStore;
 import br.com.gda.business.cart.model.action.LazyCartMergeWeekday;
@@ -58,31 +59,30 @@ public final class RootCartSelect implements DeciTree<CartInfo> {
 	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartInfo> selectCart = new StdCartSelect(option);
+		ActionStd<CartInfo>  selectCart = new StdCartSelect(option);
 		ActionLazy<CartInfo> mergeMat = new LazyCartMergeMat(option.conn, option.schemaName);
 		ActionLazy<CartInfo> mergeStore = new LazyCartMergeStore(option.conn, option.schemaName);
 		ActionLazy<CartInfo> enforceWeekday = new LazyCartEnforceWeekday(option.conn, option.schemaName);
-		ActionLazy<CartInfo> mergeWeekday = new LazyCartMergeWeekday(option.conn, option.schemaName);
-		ActionLazy<CartInfo> enforceItemCateg = new LazyCartEnforceItmCategItem(option.conn, option.schemaName);		
+		ActionLazy<CartInfo> mergeWeekday = new LazyCartMergeWeekday(option.conn, option.schemaName);	
 		ActionLazy<CartInfo> nodeFee = new LazyCartNodeFee(option.conn, option.schemaName);
 		ActionLazy<CartInfo> nodeTotal = new LazyCartNodeTotal(option.conn, option.schemaName);
 		ActionLazy<CartInfo> enforceItemNum = new LazyCartEnforceItmNum(option.conn, option.schemaName);
+		ActionLazy<CartInfo> mergeCartCateg = new LazyCartMergeCartCateg(option.conn, option.schemaName);
+		ActionLazy<CartInfo> mergeCurrency = new LazyCartMergeCurrency(option.conn, option.schemaName);
 		ActionLazy<CartInfo> sort = new LazyCartSort(option.conn, option.schemaName);
-		
 		
 		selectCart.addPostAction(mergeMat);
 		mergeMat.addPostAction(mergeStore);
 		mergeStore.addPostAction(enforceWeekday);
 		enforceWeekday.addPostAction(mergeWeekday);
-		mergeWeekday.addPostAction(enforceItemCateg);		
-		enforceItemCateg.addPostAction(nodeFee);
+		mergeWeekday.addPostAction(nodeFee);
 		nodeFee.addPostAction(nodeTotal);
 		nodeTotal.addPostAction(enforceItemNum);
-		enforceItemNum.addPostAction(sort);
+		enforceItemNum.addPostAction(mergeCartCateg);		
+		mergeCartCateg.addPostAction(mergeCurrency);	
+		mergeCurrency.addPostAction(sort);	
 		
-		
-		actions.add(selectCart);	
-		
+		actions.add(selectCart);			
 		return actions;
 	}
 	

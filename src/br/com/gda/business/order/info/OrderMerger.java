@@ -5,6 +5,8 @@ import java.util.List;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.materialSnapshot.info.MatSnapInfo;
+import br.com.gda.business.snapshot.info.SnapInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.userSnapshot.info.UserSnapInfo;
@@ -60,6 +62,18 @@ public final class OrderMerger extends InfoWritterFactory<OrderInfo> {
 	
 	
 	
+	static public OrderInfo merge(SnapInfo sourceOne, OrderInfo sourceTwo) {
+		return new OrderMergerSnap().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	static public OrderInfo merge(MatSnapInfo sourceOne, OrderInfo sourceTwo) {
+		return new OrderMergerMatSnap().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<OrderInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {		
 		if (sourceOnes.get(0) instanceof EmpInfo 			&&
@@ -95,6 +109,16 @@ public final class OrderMerger extends InfoWritterFactory<OrderInfo> {
 		if (sourceOnes.get(0) instanceof UserInfo 			&&
 			sourceTwos.get(0) instanceof OrderInfo		)
 			return new OrderMergerUser().merge((List<UserInfo>) sourceOnes, (List<OrderInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof SnapInfo 			&&
+			sourceTwos.get(0) instanceof OrderInfo		)
+			return new OrderMergerSnap().merge((List<SnapInfo>) sourceOnes, (List<OrderInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof MatSnapInfo 		&&
+			sourceTwos.get(0) instanceof OrderInfo		)
+			return new OrderMergerMatSnap().merge((List<MatSnapInfo>) sourceOnes, (List<OrderInfo>) sourceTwos);
 		
 		return null;
 	}

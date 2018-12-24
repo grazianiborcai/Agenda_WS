@@ -3,6 +3,9 @@ package br.com.gda.business.cart.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.business.cart.info.CartFlag;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.common.SystemMessage;
@@ -118,11 +121,15 @@ final class VisiCartAddTotal extends ActionMultiVisitorTemplate<CartInfo> {
 	
 	
 	private void checkList() {
-		if (allItems == null || allItems.isEmpty())
+		if (allItems == null || allItems.isEmpty()) {
+			logException(new IllegalStateException("allItems" + SystemMessage.ACTION_NOT_INIT));
 			throw new IllegalStateException("allItems" + SystemMessage.ACTION_NOT_INIT);
+		}
 		
-		if (total  == null)
+		if (total == null) {
+			logException(new IllegalStateException("total" + SystemMessage.ACTION_NOT_INIT));
 			throw new IllegalStateException("total" + SystemMessage.ACTION_NOT_INIT);
+		}
 	}
 	
 	
@@ -148,7 +155,15 @@ final class VisiCartAddTotal extends ActionMultiVisitorTemplate<CartInfo> {
 			return (CartInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
+			logException(e);
 			throw new IllegalStateException(e); 
 		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

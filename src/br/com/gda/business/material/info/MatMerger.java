@@ -12,7 +12,7 @@ import br.com.gda.info.InfoWritterFactory;
 public final class MatMerger extends InfoWritterFactory<MatInfo> {	
 	
 	public MatMerger() {
-		super();
+		super(new MatUniquifier());
 	}
 	
 	
