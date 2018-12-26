@@ -8,7 +8,7 @@ import br.com.gda.business.order.model.action.LazyOrderDeleteCart;
 import br.com.gda.business.order.model.action.LazyOrderEnforceExtid;
 import br.com.gda.business.order.model.action.LazyOrderEnforceLChanged;
 import br.com.gda.business.order.model.action.LazyOrderInsert;
-import br.com.gda.business.order.model.action.LazyOrderMergeUserSnap;
+import br.com.gda.business.order.model.action.LazyOrderMergeCartSnap;
 import br.com.gda.business.order.model.checker.OrderCheckCart;
 import br.com.gda.business.order.model.checker.OrderCheckUser;
 import br.com.gda.business.order.model.checker.OrderCheckWrite;
@@ -76,7 +76,7 @@ public final class RootOrderPlace implements DeciTree<OrderInfo> {
 		ActionStd<OrderInfo> nodeSnapshot = new NodeOrderSnapshot(option).toAction();
 		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceExtid = new LazyOrderEnforceExtid(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> mergeUserSnap = new LazyOrderMergeUserSnap(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeUserSnap = new LazyOrderMergeCartSnap(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> insertOrder = new LazyOrderInsert(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> emptyCart = new LazyOrderDeleteCart(option.conn, option.schemaName);
 		

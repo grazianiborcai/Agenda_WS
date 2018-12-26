@@ -25,22 +25,10 @@ final class OrderVisitorCartSnap implements InfoMergerVisitor<OrderInfo, CartSna
 	
 	
 	private OrderInfo merge(CartSnapInfo sourceOne, OrderInfo sourceTwo) {
-		OrderInfo resultInfo = makeClone(sourceTwo);
+		OrderInfo resultInfo = sourceTwo;
 		resultInfo.cartSnaps.add(makeClone(sourceOne));
 		
 		return resultInfo;
-	}
-	
-	
-	
-	private OrderInfo makeClone(OrderInfo recordInfo) {
-		try {
-			return (OrderInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
 	}
 	
 	
@@ -58,8 +46,9 @@ final class OrderVisitorCartSnap implements InfoMergerVisitor<OrderInfo, CartSna
 	
 	
 	@Override public boolean shouldWrite(CartSnapInfo sourceOne, OrderInfo sourceTwo) {
-		return (sourceOne.codOwner  == sourceTwo.codOwner	&&
-				sourceOne.codUser 	== sourceTwo.codUser		);
+		return (sourceOne.codOwner  	== sourceTwo.codOwner	&&
+				sourceOne.codUser 		== sourceTwo.codUser	&&
+				sourceOne.codSnapshot 	== sourceTwo.codSnapshot		);
 	}
 	
 	

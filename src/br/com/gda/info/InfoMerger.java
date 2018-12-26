@@ -74,9 +74,8 @@ public abstract class InfoMerger<T  extends InfoRecord, K extends InfoRecord, S 
 		checkArgument(sourceOne, sourceTwo, visitor);
 		
 		K clonedSourceOne = (K) makeClone(sourceOne);
-		S clonedSourceTwo = (S) makeClone(sourceTwo);
-		
-		return visitor.writeRecord(clonedSourceOne, clonedSourceTwo);
+
+		return visitor.writeRecord(clonedSourceOne, sourceTwo);
 	}
 	
 	

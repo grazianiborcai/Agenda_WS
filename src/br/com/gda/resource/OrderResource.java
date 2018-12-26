@@ -1,43 +1,50 @@
 package br.com.gda.resource;
 
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.OrderModelPlace;
+import br.com.gda.business.order.model.OrderModelSelect;
 import br.com.gda.model.Model;
 
 @Path("/Order")
 public final class OrderResource {
-	//private static final String SELECT_CART = "/selectCart"	;
-	private static final String ORDER_PLACE = "/orderPlace";
+	private static final String SELECT_ORDER = "/selectOrder"	;
+	private static final String PLACE_ORDER = "/placeOrder";
 	
 	
-	/*
+	
 	@GET
-	@Path(SELECT_CART)
+	@Path(SELECT_ORDER)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectCart(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
-							   @HeaderParam("codUser")     @DefaultValue("-1") long codUser,
-							   @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+	public Response selectOrder(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
+							    @HeaderParam("codUser")     @DefaultValue("-1") long codUser,
+							    @HeaderParam("codOrder")    @DefaultValue("-1") long codOrder,
+							    @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 		
-		CartInfo recordInfo = new CartInfo();
+		OrderInfo recordInfo = new OrderInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codUser = codUser;
+		recordInfo.codOrder = codOrder;
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new CartModelSelect(recordInfo);
+		Model model = new OrderModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
-	} */
+	} 
 	
 	
 	
 	@POST
-	@Path(ORDER_PLACE)
+	@Path(PLACE_ORDER)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response orderPlace(String incomingData) {
 		

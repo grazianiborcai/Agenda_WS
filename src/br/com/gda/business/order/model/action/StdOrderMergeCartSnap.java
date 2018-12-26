@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdOrderMergeUserSnap implements ActionStd<OrderInfo> {
+final class StdOrderMergeCartSnap implements ActionStd<OrderInfo> {
 	private ActionStd<OrderInfo> actionHelper;	
 	
 	
-	public StdOrderMergeUserSnap(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOrderMergeUserSnap(option.conn, option.schemaName));
+	public StdOrderMergeCartSnap(DeciTreeOption<OrderInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOrderMergeCartSnap(option.conn, option.schemaName));
 	}
 	
 	

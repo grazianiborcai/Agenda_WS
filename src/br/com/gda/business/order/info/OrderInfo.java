@@ -51,7 +51,26 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		OrderInfo deepCopy = (OrderInfo) super.clone();
+		deepCopy.cartSnaps = cloneCartItems(deepCopy.cartSnaps);
+		
+		return deepCopy;
+	}
+	
+	
+	
+	private List<CartSnapInfo> cloneCartItems(List<CartSnapInfo> cartItems) throws CloneNotSupportedException {
+		if (cartItems == null)
+			return null;
+		
+		List<CartSnapInfo> deepCartItems = new ArrayList<>();
+		
+		for (CartSnapInfo eachItem : cartItems) {
+			CartSnapInfo cloneItem = (CartSnapInfo) eachItem.clone();
+			deepCartItems.add(cloneItem);
+		}
+		
+		return deepCartItems;
 	}
 	
 	

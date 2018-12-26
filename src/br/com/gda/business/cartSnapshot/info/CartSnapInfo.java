@@ -148,6 +148,12 @@ public final class CartSnapInfo extends InfoRecord implements Cloneable, Compara
 		if (itemNumber > arg0.itemNumber)
 			return 1;
 		
+		if (codSnapshot < arg0.codSnapshot)
+			return -1;
+		
+		if (codSnapshot > arg0.codSnapshot)
+			return 1;
+		
 		if (equals(arg0))
 			return 0;
 		

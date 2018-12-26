@@ -24,11 +24,13 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_MAT_GROUP = "cod_group";
 	public static final String COL_COD_MAT_TYPE = "cod_type";
 	public static final String COL_COD_ORDER_STATUS = "cod_order_status";
+	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
 	public static final String COL_COD_POSITION = "cod_position";
 	public static final String COL_COD_TIMEZONE = "cod_timezone";
 	public static final String COL_COD_UNIT = "unit";
-	public static final String COL_COD_WEEKDAY = "weekday";
+	public static final String COL_COD_WEEKDAY = "weekday";	
 	public static final String COL_CURRENCY_SYMBOL = "Symbol";
+	public static final String COL_DESCRIPTION = "description";
 	public static final String COL_NAME = "name";
 	public static final String COL_STATE_PROVINCE = "state_province";
 	
@@ -64,6 +66,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		stateTable();
 		areaPhoneTable();
 		entityCategTable();
+		payPartnerTable();
 		
 		return tableColumns;
 	}
@@ -775,6 +778,41 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private void payPartnerTable() {
+		final String TABLE_NAME = DaoDbTable.PAY_PARTNER_TABLE;
+		
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PAY_PARTNER;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_NAME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_DESCRIPTION;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

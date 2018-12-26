@@ -365,4 +365,16 @@ public final class SystemMessage {
 	public static final String CART_SNAPSHOT_ALREADY_EXIST = "Cart-Snapshot's data already exist on DB";	
 	public static final String CART_SNAPSHOT_IS_NULL = "Cart-Snapshot: Snapshot code is blank";
 	public static final String CART_SNAPSHOT_NOT_FOUND = "Cart-Snapshot's data not found on DB";
+	
+	
+	
+	//Pay Partner-Store
+	public static final String PAY_PARTNER_STORE_ALREADY_EXIST = "Pay Partner-Store's data already exist on DB";
+	public static final String PAY_PARTNER_STORE_NOT_FOUND = "Pay Partner-Store's data not found on DB";
+	
+	
+	
+	//Pay Partner-Country
+	public static final String PAY_PARTNER_COUNTRY_ALREADY_EXIST = "Pay Partner-Country's data already exist on DB";
+	public static final String PAY_PARTNER_COUNTRY_NOT_FOUND = "Pay Partner-Country's data not found on DB";
 }

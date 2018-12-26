@@ -115,7 +115,8 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 			do {
 				OrderInfo dataInfo = new OrderInfo();
 				dataInfo.codOwner = stmtResult.getLong(OrderDbTableColumn.COL_COD_OWNER);
-				dataInfo.codOrder = stmtResult.getLong(OrderDbTableColumn.COL_COD_ORDER);				
+				dataInfo.codOrder = stmtResult.getLong(OrderDbTableColumn.COL_COD_ORDER);	
+				dataInfo.codUser = stmtResult.getLong(OrderDbTableColumn.COL_COD_USER);
 				dataInfo.codSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_SNAPSHOT);
 				dataInfo.codOrderExt = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_EXT);
 				dataInfo.codOrderStatus = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_STATUS);	

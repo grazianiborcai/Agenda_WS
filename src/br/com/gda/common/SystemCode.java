@@ -284,4 +284,12 @@ public final class SystemCode {
 	public static final int CART_SNAPSHOT_IS_NULL 						= 2250;	
 	public static final int CART_SNAPSHOT_ALREADY_EXIST 				= 2251;
 	public static final int CART_SNAPSHOT_NOT_FOUND 					= 2252;
+	
+	//Pay Partner-Store
+	public static final int PAY_PARTNER_STORE_ALREADY_EXIST 			= 2300;
+	public static final int PAY_PARTNER_STORE_NOT_FOUND 				= 2301;
+	
+	//Pay Partner-Country
+	public static final int PAY_PARTNER_COUNTRY_ALREADY_EXIST 			= 2350;
+	public static final int PAY_PARTNER_COUNTRY_NOT_FOUND 				= 2351;
 }
