@@ -152,6 +152,10 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codUser = stmtResult.getLong(AddressDbTableColumn.COL_COD_USER);	
 				
+				stmtResult.getLong(AddressDbTableColumn.COL_COD_PAY_CUSTOMER);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPayCustomer = stmtResult.getLong(AddressDbTableColumn.COL_COD_PAY_CUSTOMER);	
+				
 				stmtResult.getFloat(AddressDbTableColumn.COL_LATITUDE);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.latitude = stmtResult.getFloat(AddressDbTableColumn.COL_LATITUDE);	

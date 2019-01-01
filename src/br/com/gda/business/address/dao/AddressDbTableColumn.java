@@ -15,6 +15,7 @@ public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COUNTRY = "country";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_EMPLOYEE = "cod_employee";	
+	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";
 	public static final String COL_COD_STORE = "cod_store";
 	public static final String COL_COD_USER = "cod_user";
 	public static final String COL_COD_OWNER = "cod_owner";
@@ -51,7 +52,7 @@ public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
 	}
 	
 	
-	//TODO: Ajustar PK
+	
 	private void buildAddressTable() {
 		final String TABLE_NAME = DaoDbTable.ADDRESS_TABLE;
 		
@@ -253,6 +254,14 @@ public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_USER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PAY_CUSTOMER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

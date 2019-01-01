@@ -40,6 +40,7 @@ import br.com.gda.business.storeWorkTimeConflict.dao.StoreCoDbTableColumn;
 import br.com.gda.business.user.dao.UserDbTableColumn;
 import br.com.gda.business.userSnapshot.dao.UserSnapDbTableColumn;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.payService.payCustomer.dao.PayCusDbTableColumn;
 import br.com.gda.payService.payPartnerCountry.dao.PayPartnerCountryDbTableColumn;
 import br.com.gda.payService.payPartnerStore.dao.PayPartnerStoreDbTableColumn;
 
@@ -94,6 +95,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PersonCusDbTableColumn());
 		addTable(new PayPartnerStoreDbTableColumn());
 		addTable(new PayPartnerCountryDbTableColumn());
+		addTable(new PayCusDbTableColumn());
 	}
 	
 	

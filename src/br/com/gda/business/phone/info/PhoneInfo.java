@@ -13,6 +13,7 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codEmployee;
 	public long codUser;
+	public long codPayCustomer;
 	public String codCountry;
 	public String fullNumber;
 	public int codCountryPhone;
@@ -32,6 +33,7 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codUser = DefaultValue.number();
+		codPayCustomer = DefaultValue.number();;
 		codCountryPhone = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		isDeleted = DefaultValue.boole();
@@ -60,11 +62,13 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner 		^ (codOwner 	>>> 32));
-		result = result * 31 + (int) (codPhone 		^ (codPhone 	>>> 32));		
-		result = result * 31 + (int) (codCustomer 	^ (codCustomer 	>>> 32));
-		result = result * 31 + (int) (codStore 		^ (codStore 	>>> 32));
-		result = result * 31 + (int) (codEmployee 	^ (codEmployee 	>>> 32));		
+		result = result * 31 + (int) (codOwner 			^ (codOwner 		>>> 32));
+		result = result * 31 + (int) (codPhone 			^ (codPhone 		>>> 32));		
+		result = result * 31 + (int) (codCustomer 		^ (codCustomer 		>>> 32));
+		result = result * 31 + (int) (codStore 			^ (codStore 		>>> 32));
+		result = result * 31 + (int) (codEmployee 		^ (codEmployee 		>>> 32));		
+		result = result * 31 + (int) (codUser 			^ (codUser 			>>> 32));
+		result = result * 31 + (int) (codPayCustomer 	^ (codPayCustomer 	>>> 32));
 		result = result * 31 + codCountryPhone;
 		
 		if (fullNumber != null)
@@ -91,6 +95,8 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 				codStore		== obj.codStore			&&
 				codEmployee		== obj.codEmployee		&&
 				codCountryPhone == obj.codCountryPhone	&&
+				codUser 		== obj.codUser 			&&
+				codPayCustomer 	== obj.codPayCustomer 	&&
 				super.isStringEqual(fullNumber, obj.fullNumber));
 	}	
 }

@@ -20,6 +20,7 @@ public final class PhoneCheckRefRead extends ModelCheckerTemplateSimple<PhoneInf
 			 recordInfo.codCustomer 	<= 0	&&
 			 recordInfo.codStore 		<= 0	&& 
 			 recordInfo.codUser 		<= 0	&& 
+			 recordInfo.codPayCustomer 	<= 0	&&
 			 recordInfo.codEmployee 	<= 0		)			
 			
 			return super.FAILED;

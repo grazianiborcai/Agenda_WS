@@ -377,4 +377,13 @@ public final class SystemMessage {
 	//Pay Partner-Country
 	public static final String PAY_PARTNER_COUNTRY_ALREADY_EXIST = "Pay Partner-Country's data already exist on DB";
 	public static final String PAY_PARTNER_COUNTRY_NOT_FOUND = "Pay Partner-Country's data not found on DB";
+	
+	
+		
+	//Pay-Customer
+	public static final String PAY_CUS_ALREADY_EXIST = "Pay-Customer's data already exist on DB";		
+	public static final String PAY_CUS_NOT_FOUND = "Pay-Customer's data not found on DB";
+	public static final String PAY_CUS_PERSON_CANT_BE_CHANGED = "Pay-Person can't be changed";	
+	public static final String PAY_CUS_PERSON_NOT_CHANGED = "Pay-Person not changed";
+	public static final String PAY_CUS_TECH_FIELD_SHOULD_BE_EMPTY = "Pay-Customer: technical fields shouldn't be filled";
 }

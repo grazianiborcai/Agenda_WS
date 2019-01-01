@@ -292,4 +292,11 @@ public final class SystemCode {
 	//Pay Partner-Country
 	public static final int PAY_PARTNER_COUNTRY_ALREADY_EXIST 			= 2350;
 	public static final int PAY_PARTNER_COUNTRY_NOT_FOUND 				= 2351;
+	
+	//Pay-Customer
+	public static final int PAY_CUS_ALREADY_EXIST 						= 2400;
+	public static final int PAY_CUS_NOT_FOUND 							= 2401;
+	public static final int PAY_CUS_PERSON_CANT_BE_CHANGED				= 2402;
+	public static final int PAY_CUS_PERSON_NOT_CHANGED					= 2403;
+	public static final int PAY_CUS_TECH_FIELD_SHOULD_BE_EMPTY			= 2404;
 }

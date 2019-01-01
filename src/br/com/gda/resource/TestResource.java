@@ -43,6 +43,7 @@ import br.com.gda.business.userSnapshot.info.UserSnapInfo;
 import br.com.gda.business.userSnapshot.model.UserSnapModelInsert;
 import br.com.gda.business.userSnapshot.model.UserSnapModelSelect;
 import br.com.gda.model.Model;
+import br.com.gda.payService.payCustomer.model.PayCusModelInsert;
 
 @Path("/Test")
 public class TestResource {
@@ -70,6 +71,7 @@ public class TestResource {
 	private static final String SELECT_MATERIAL_SNAPSHOT = "/selectMaterialSnapshot";
 	private static final String INSERT_CART_SNAPSHOT = "/insertCartSnapshot";
 	private static final String SELECT_CART_SNAPSHOT = "/selectCartSnapshot";
+	private static final String INSERT_PAY_CUSTOMER = "/insertPayCustomer";
 	
 	
 	
@@ -424,4 +426,17 @@ public class TestResource {
 		model.executeRequest();
 		return model.getResponse();
 	}
+	
+	
+	
+	@POST
+	@Path(INSERT_PAY_CUSTOMER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertPayCustomer(String incomingData) {
+		
+		
+		Model model = new PayCusModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();	
+	} 
 }

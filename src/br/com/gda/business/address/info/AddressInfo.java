@@ -13,6 +13,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codEmployee;
 	public long codUser;
+	public long codPayCustomer;
 	public String codCountry;
 	public String txtCountry;
 	public String codState;
@@ -46,6 +47,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codUser = DefaultValue.number();
+		codPayCustomer = DefaultValue.number();;
 		longitude = DefaultValue.number();
 		latitude = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
@@ -75,11 +77,13 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner 	 	^ (codOwner   	>>> 32));
-		result = result * 31 + (int) (codAddress 	^ (codAddress 	>>> 32));		
-		result = result * 31 + (int) (codCustomer 	^ (codCustomer 	>>> 32));
-		result = result * 31 + (int) (codStore 		^ (codStore 	>>> 32));
-		result = result * 31 + (int) (codEmployee 	^ (codEmployee 	>>> 32));
+		result = result * 31 + (int) (codOwner 	 		^ (codOwner   		>>> 32));
+		result = result * 31 + (int) (codAddress 		^ (codAddress 		>>> 32));		
+		result = result * 31 + (int) (codCustomer 		^ (codCustomer 		>>> 32));
+		result = result * 31 + (int) (codStore 			^ (codStore 		>>> 32));
+		result = result * 31 + (int) (codEmployee 		^ (codEmployee 		>>> 32));
+		result = result * 31 + (int) (codUser 			^ (codUser 			>>> 32));
+		result = result * 31 + (int) (codPayCustomer 	^ (codPayCustomer 	>>> 32));
 		
 		if (codCountry != null)
 			result = result * 31 + codCountry.hashCode();
@@ -142,11 +146,13 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 		
 		
 		AddressInfo obj = (AddressInfo) o;		
-		return (codOwner 	== obj.codOwner 						&& 
-				codAddress 	== obj.codAddress						&&
-				codCustomer	== obj.codCustomer						&&
-				codStore	== obj.codStore							&&
-				codEmployee	== obj.codEmployee						&&
+		return (codOwner 		== obj.codOwner 					&& 
+				codAddress 		== obj.codAddress					&&
+				codCustomer		== obj.codCustomer					&&
+				codStore		== obj.codStore						&&
+				codEmployee		== obj.codEmployee					&&
+				codUser			== obj.codUser						&&
+				codPayCustomer	== obj.codPayCustomer				&&
 				super.isStringEqual(codCountry, obj.codCountry)		&&				
 				super.isStringEqual(codState, obj.codState)			&&
 				super.isStringEqual(city, obj.city)					&&

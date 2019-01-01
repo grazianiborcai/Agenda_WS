@@ -1,7 +1,7 @@
 package br.com.gda.business.masterData.info;
 
 public enum EntityCateg {
-	CUSTOMER("C"), USER("U");
+	CUSTOMER("C"), USER("U"), PAY_CUSTOMER("Y");
 
 	private final String codStringCateg;
 	

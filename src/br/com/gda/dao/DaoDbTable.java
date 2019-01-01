@@ -51,6 +51,7 @@ public final class DaoDbTable {
 	public static final String ORDER_STATUS_TABLE = "order_status";
 	public static final String ORDER_STATUS_TEXT_TABLE = "order_status_text";
 	public static final String OWNER_TABLE = "owner";
+	public static final String PAY_CUS_TABLE = "pay_customer";
 	public static final String PAY_PARTNER_TABLE = "pay_partner";
 	public static final String PAY_PARTNER_COUNTRY_TABLE = "pay_partner_country";
 	public static final String PAY_PARTNER_STORE_TABLE = "pay_partner_store";

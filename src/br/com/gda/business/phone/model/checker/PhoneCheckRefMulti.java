@@ -29,6 +29,9 @@ public final class PhoneCheckRefMulti extends ModelCheckerTemplateSimple<PhoneIn
 		
 		if ( recordInfo.codUser >= 0 )
 			totRef = totRef + 1;	
+		
+		if ( recordInfo.codPayCustomer >= 0 )
+			totRef = totRef + 1;
 				
 		if ( totRef != 1 )			
 			return super.FAILED;
