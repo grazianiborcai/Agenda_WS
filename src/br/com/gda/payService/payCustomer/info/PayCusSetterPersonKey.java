@@ -7,11 +7,11 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class PayCusSetterAddressKey implements InfoSetter<PayCusInfo> {
+public final class PayCusSetterPersonKey implements InfoSetter<PayCusInfo> {
 	
 	public PayCusInfo setAttr(PayCusInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setAddressKey(recordInfo);
+		return setPersonKey(recordInfo);
 	}
 	
 	
@@ -25,17 +25,8 @@ public final class PayCusSetterAddressKey implements InfoSetter<PayCusInfo> {
 	
 	
 	
-	private PayCusInfo setAddressKey(PayCusInfo recordInfo) {
-		if (recordInfo.address == null)
-			return recordInfo;
-		
-		recordInfo.address.codOwner = recordInfo.codOwner;
-		recordInfo.address.codPayCustomer = recordInfo.codPayCustomer;		
-		recordInfo.address.codAddress = DefaultValue.number();
-		recordInfo.address.codCustomer = DefaultValue.number();
-		recordInfo.address.codStore = DefaultValue.number();
-		recordInfo.address.codEmployee = DefaultValue.number();
-		recordInfo.address.codUser = DefaultValue.number();
+	private PayCusInfo setPersonKey(PayCusInfo recordInfo) {		
+		recordInfo.codPerson = DefaultValue.number();		
 		
 		return recordInfo;
 	}

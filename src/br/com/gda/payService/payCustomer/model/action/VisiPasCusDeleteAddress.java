@@ -22,7 +22,7 @@ final class VisiPasCusDeleteAddress extends ActionVisitorTemplateAction<PayCusIn
 		List<AddressInfo> results = new ArrayList<>();
 		
 		for (PayCusInfo eachRecord : recordInfos) {
-			results.addAll(eachRecord.addresses);
+			results.add(eachRecord.address);
 		}		
 		
 		return results;

@@ -172,6 +172,7 @@ public final class SystemCode {
 	public static final int PHONE_IS_FILLED								= 1571;
 	public static final int PHONE_COD_IS_FILLED							= 1572;
 	public static final int PHONE_TECH_FIELD_SHOULD_BE_EMPTY			= 1573;
+	public static final int PHONE_COD_IS_BLANK							= 1574;
 	
 	//Address
 	public static final int ADDRESS_IS_NULL								= 1600;
@@ -187,6 +188,7 @@ public final class SystemCode {
 	public static final int ADDRESS_LIMIT_EXCEEDED						= 1610;
 	public static final int ADDRESS_COD_IS_FILLED						= 1611;
 	public static final int ADDRESS_TECH_FIELD_SHOULD_BE_EMPTY			= 1612;
+	public static final int ADDRESS_COD_IS_BLANK						= 1613;
 	
 	//Form
 	public static final int FORM_ADDRESS_ALREADY_EXIST					= 1700;
@@ -299,4 +301,6 @@ public final class SystemCode {
 	public static final int PAY_CUS_PERSON_CANT_BE_CHANGED				= 2402;
 	public static final int PAY_CUS_PERSON_NOT_CHANGED					= 2403;
 	public static final int PAY_CUS_TECH_FIELD_SHOULD_BE_EMPTY			= 2404;
+	public static final int PAY_CUS_USER_ALREADY_EXIST					= 2405;
+	public static final int PAY_CUS_USER_NOT_FOUND						= 2406;
 }

@@ -225,6 +225,7 @@ public final class SystemMessage {
 	public static final String PHONE_FLAG_DELETE_FALSE = "No Phone flagged to deletion";
 	public static final String PHONE_IS_NULL = "Phone is blank";
 	public static final String PHONE_IS_FILLED = "Phone is not blank";
+	public static final String PHONE_COD_IS_BLANK = "Code Phone is blank";
 	public static final String PHONE_COD_IS_FILLED = "Code Phone should be blank";
 	public static final String PHONE_TECH_FIELD_SHOULD_BE_EMPTY = "Phone: technical fields shouldn't be filled";
 		
@@ -243,6 +244,7 @@ public final class SystemMessage {
 	public static final String ADDRESS_FLAG_DELETE_FALSE = "No Address flagged to deletion";
 	public static final String ADDRESS_LIMIT_EXCEEDED = "Address limit exceeded. Delete old addresses before adding new ones";
 	public static final String ADDRESS_COD_IS_FILLED = "Code Address should be blank";
+	public static final String ADDRESS_COD_IS_BLANK = "Code Address is blank";
 	public static final String ADDRESS_TECH_FIELD_SHOULD_BE_EMPTY = "Address: technical fields shouldn't be filled";
 			
 	
@@ -386,4 +388,6 @@ public final class SystemMessage {
 	public static final String PAY_CUS_PERSON_CANT_BE_CHANGED = "Pay-Person can't be changed";	
 	public static final String PAY_CUS_PERSON_NOT_CHANGED = "Pay-Person not changed";
 	public static final String PAY_CUS_TECH_FIELD_SHOULD_BE_EMPTY = "Pay-Customer: technical fields shouldn't be filled";
+	public static final String PAY_CUS_USER_ALREADY_EXIST = "Pay-Customer-User's data already exist on DB";
+	public static final String PAY_CUS_USER_NOT_FOUND = "Pay-Customer-User's data not found on DB";
 }

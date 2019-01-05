@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoWritterFactory;
 
 public final class PayCusMerger extends InfoWritterFactory<PayCusInfo> {	
@@ -33,6 +34,12 @@ public final class PayCusMerger extends InfoWritterFactory<PayCusInfo> {
 	
 	
 	
+	static public PayCusInfo merge(UserInfo sourceOne, PayCusInfo sourceTwo) {
+		return new PayCusMergerUser().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<PayCusInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
 		if (sourceOnes.get(0) instanceof AddressInfo 	&&
@@ -48,6 +55,11 @@ public final class PayCusMerger extends InfoWritterFactory<PayCusInfo> {
 		if (sourceOnes.get(0) instanceof PersonInfo 	&&
 			sourceTwos.get(0) instanceof PayCusInfo		)
 			return new PayCusMergerPerson().merge((List<PersonInfo>) sourceOnes, (List<PayCusInfo>) sourceTwos);	
+		
+		
+		if (sourceOnes.get(0) instanceof UserInfo 	&&
+			sourceTwos.get(0) instanceof PayCusInfo		)
+			return new PayCusMergerUser().merge((List<UserInfo>) sourceOnes, (List<PayCusInfo>) sourceTwos);	
 		
 		return null;
 	}

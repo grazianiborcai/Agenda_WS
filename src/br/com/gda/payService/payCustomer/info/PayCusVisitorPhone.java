@@ -38,15 +38,26 @@ final class PayCusVisitorPhone implements InfoMergerVisitor<PayCusInfo, PhoneInf
 	
 	
 	private PayCusInfo merge(PhoneInfo sourceOne, PayCusInfo sourceTwo) {
-		sourceTwo.phones.add(sourceOne);
-
+		sourceTwo.phone = makeClone(sourceOne);
 		return sourceTwo;
+	}
+	
+	
+	
+	private PhoneInfo makeClone(PhoneInfo recordInfo) {
+		try {
+			return (PhoneInfo) recordInfo.clone();
+			
+		} catch (Exception e) {
+			logException(e);
+			throw new IllegalStateException(e); 
+		}
 	}
 
 
 	
 	@Override public boolean shouldWrite(PhoneInfo sourceOne, PayCusInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codCustomer == sourceTwo.codPayCustomer);
+		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codPayCustomer == sourceTwo.codPayCustomer);
 	}		
 	
 	

@@ -115,6 +115,27 @@ public final class PayCusInsertSingle implements DaoStmt<PayCusInfo> {
 				stmt.setNull(i++, Types.INTEGER);
 			}
 			
+			
+			if (recordInfo.codPersonRef >= 0) {
+				stmt.setLong(i++, recordInfo.codPersonRef);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codPhoneRef >= 0) {
+				stmt.setLong(i++, recordInfo.codPhoneRef);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codAddressRef >= 0) {
+				stmt.setLong(i++, recordInfo.codAddressRef);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
 			return stmt;
 		}		
 	}

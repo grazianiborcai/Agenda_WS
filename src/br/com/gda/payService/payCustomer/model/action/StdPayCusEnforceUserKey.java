@@ -1,18 +1,18 @@
 package br.com.gda.payService.payCustomer.model.action;
 
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionStdHelperAction;
+import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payService.payCustomer.info.PayCusInfo;
 
-public final class StdPayCusMergeAddress implements ActionStd<PayCusInfo> {
+public final class StdPayCusEnforceUserKey implements ActionStd<PayCusInfo> {
 	private ActionStd<PayCusInfo> actionHelper;	
 	
 	
-	public StdPayCusMergeAddress(DeciTreeOption<PayCusInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiPayCusMergeAddress(option.conn, option.schemaName));
+	public StdPayCusEnforceUserKey(DeciTreeOption<PayCusInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiPayCusEnforceUserKey());
 	}
 	
 	

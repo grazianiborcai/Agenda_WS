@@ -43,7 +43,9 @@ import br.com.gda.business.userSnapshot.info.UserSnapInfo;
 import br.com.gda.business.userSnapshot.model.UserSnapModelInsert;
 import br.com.gda.business.userSnapshot.model.UserSnapModelSelect;
 import br.com.gda.model.Model;
+import br.com.gda.payService.payCustomer.info.PayCusInfo;
 import br.com.gda.payService.payCustomer.model.PayCusModelInsert;
+import br.com.gda.payService.payCustomer.model.PayCusModelSelect;
 
 @Path("/Test")
 public class TestResource {
@@ -72,6 +74,7 @@ public class TestResource {
 	private static final String INSERT_CART_SNAPSHOT = "/insertCartSnapshot";
 	private static final String SELECT_CART_SNAPSHOT = "/selectCartSnapshot";
 	private static final String INSERT_PAY_CUSTOMER = "/insertPayCustomer";
+	private static final String SELECT_PAY_CUSTOMER = "/selectPayCustomer";
 	
 	
 	
@@ -439,4 +442,21 @@ public class TestResource {
 		model.executeRequest();
 		return model.getResponse();	
 	} 
+	
+	
+	
+	@GET
+	@Path(SELECT_PAY_CUSTOMER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPayCustomer(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+								      @HeaderParam("codUser")  @DefaultValue("-1") long codUser) {
+
+		PayCusInfo recordInfo = new PayCusInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codUser = codUser;
+		
+		Model model = new PayCusModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
 }

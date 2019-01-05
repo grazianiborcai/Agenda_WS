@@ -22,7 +22,7 @@ final class VisiPayCusDeletePhone extends ActionVisitorTemplateAction<PayCusInfo
 		List<PhoneInfo> results = new ArrayList<>();
 		
 		for (PayCusInfo eachRecord : recordInfos) {
-			results.addAll(eachRecord.phones);
+			results.add(eachRecord.phone);
 		}		
 		
 		return results;

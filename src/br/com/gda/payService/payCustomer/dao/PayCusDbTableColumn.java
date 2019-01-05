@@ -9,13 +9,16 @@ import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class PayCusDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_COD_ADDRESS_REF = "cod_address_ref";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";
 	public static final String COL_COD_PAY_CUSTOMER_EXT = "cod_pay_customer_external";
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
-	public static final String COL_COD_USER = "cod_user";
-	public static final String COL_LAST_CHANGED = "last_changed";	
 	public static final String COL_COD_PERSON = "cod_person";
+	public static final String COL_COD_PERSON_REF = "cod_person_ref";
+	public static final String COL_COD_PHONE_REF = "cod_phone_ref";
+	public static final String COL_COD_USER = "cod_user";
+	public static final String COL_LAST_CHANGED = "last_changed";		
 	public static final String COL_RECORD_MODE = "record_mode";	
 	
 	
@@ -102,6 +105,30 @@ public final class PayCusDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_PAY_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PERSON_REF;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PHONE_REF;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ADDRESS_REF;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

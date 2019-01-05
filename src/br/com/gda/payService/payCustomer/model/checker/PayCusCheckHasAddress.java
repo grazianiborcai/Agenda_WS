@@ -17,7 +17,7 @@ public final class PayCusCheckHasAddress extends ModelCheckerTemplateSimple<PayC
 	
 	
 	@Override protected boolean checkHook(PayCusInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.addresses == null || recordInfo.addresses.isEmpty())			
+		if (recordInfo.address == null)			
 			return super.FAILED;		
 		
 		return super.SUCCESS;

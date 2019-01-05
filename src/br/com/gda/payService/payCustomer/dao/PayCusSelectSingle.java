@@ -131,6 +131,18 @@ public final class PayCusSelectSingle implements DaoStmt<PayCusInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPayPartner = stmtResult.getInt(PayCusDbTableColumn.COL_COD_PAY_PARTNER);
 				
+				stmtResult.getInt(PayCusDbTableColumn.COL_COD_PERSON_REF);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPersonRef = stmtResult.getInt(PayCusDbTableColumn.COL_COD_PERSON_REF);
+				
+				stmtResult.getInt(PayCusDbTableColumn.COL_COD_PHONE_REF);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPhoneRef = stmtResult.getInt(PayCusDbTableColumn.COL_COD_PHONE_REF);
+				
+				stmtResult.getInt(PayCusDbTableColumn.COL_COD_ADDRESS_REF);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codAddressRef = stmtResult.getInt(PayCusDbTableColumn.COL_COD_ADDRESS_REF);
+				
 				Timestamp lastChanged = stmtResult.getTimestamp(PayCusDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();	

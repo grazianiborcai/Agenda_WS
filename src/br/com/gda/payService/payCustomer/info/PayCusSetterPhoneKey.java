@@ -3,7 +3,7 @@ package br.com.gda.payService.payCustomer.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
@@ -11,7 +11,7 @@ public final class PayCusSetterPhoneKey implements InfoSetter<PayCusInfo> {
 	
 	public PayCusInfo setAttr(PayCusInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setAddressKey(recordInfo);
+		return setPhoneKey(recordInfo);
 	}
 	
 	
@@ -25,11 +25,17 @@ public final class PayCusSetterPhoneKey implements InfoSetter<PayCusInfo> {
 	
 	
 	
-	private PayCusInfo setAddressKey(PayCusInfo recordInfo) {
-		for (PhoneInfo eachAddress : recordInfo.phones) {
-			eachAddress.codOwner = recordInfo.codOwner;
-			eachAddress.codCustomer = recordInfo.codPayCustomer;
-		}
+	private PayCusInfo setPhoneKey(PayCusInfo recordInfo) {
+		if (recordInfo.phone == null)
+			return recordInfo;
+		
+		recordInfo.phone.codOwner = recordInfo.codOwner;
+		recordInfo.phone.codPayCustomer = recordInfo.codPayCustomer;		
+		recordInfo.phone.codPhone = DefaultValue.number();
+		recordInfo.phone.codCustomer = DefaultValue.number();
+		recordInfo.phone.codStore = DefaultValue.number();
+		recordInfo.phone.codEmployee = DefaultValue.number();
+		recordInfo.phone.codUser = DefaultValue.number();
 		
 		return recordInfo;
 	}

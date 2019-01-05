@@ -16,7 +16,8 @@ public final class PayCusCheckInsert extends ModelCheckerTemplateSimple<PayCusIn
 	
 	
 	@Override protected boolean checkHook(PayCusInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner <= 0 )
+		if ( recordInfo.codOwner <= 0 ||
+			 recordInfo.codUser  <= 0		)
 			return FAILED;
 		
 		

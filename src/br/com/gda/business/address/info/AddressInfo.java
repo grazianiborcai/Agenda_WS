@@ -64,7 +64,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	
 	public static List<AddressInfo> copyFrom(List<?> sourceObjs) {
 		return copyFrom(sourceObjs, AddressInfo.class);
-	}
+	}	
 	
 	
 	

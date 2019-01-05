@@ -2,7 +2,6 @@ package br.com.gda.payService.payCustomer.info;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
@@ -17,6 +16,9 @@ public final class PayCusInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public long codUser;
 	public long codPerson;
+	public long codPersonRef;
+	public long codPhoneRef;
+	public long codAddressRef;
 	public String cpf;
 	public String name;
 	public String codEntityCateg;
@@ -24,8 +26,8 @@ public final class PayCusInfo extends InfoRecord implements Cloneable {
 	public String txtGender;
 	public LocalDate birthDate;
 	public String email;
-	public List<AddressInfo> addresses;
-	public List<PhoneInfo> phones;
+	public AddressInfo address;
+	public PhoneInfo phone;
 	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
@@ -37,9 +39,12 @@ public final class PayCusInfo extends InfoRecord implements Cloneable {
 		codPayPartner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codPerson = DefaultValue.number();
+		codPersonRef = DefaultValue.number();
+		codAddressRef = DefaultValue.number();
+		codPhoneRef = DefaultValue.number();
 		codGender = DefaultValue.gender();
-		addresses = DefaultValue.list();
-		phones = DefaultValue.list();
+		address = DefaultValue.object();
+		phone = DefaultValue.object();
 		codLanguage = DefaultValue.language();		
 		recordMode = DefaultValue.recordMode();		
 	}
@@ -61,42 +66,28 @@ public final class PayCusInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		PayCusInfo deepCopy = (PayCusInfo) super.clone();
 		
-		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
-		deepCopy.phones = clonePhones(deepCopy.phones);
+		deepCopy.address = cloneAddress(deepCopy.address);
+		deepCopy.phone = clonePhone(deepCopy.phone);
 		
 		return deepCopy;
 	}
 	
 	
 	
-	private List<AddressInfo> cloneAddresses(List<AddressInfo> addresses) throws CloneNotSupportedException {
-		if (addresses == null)
+	private AddressInfo cloneAddress(AddressInfo address) throws CloneNotSupportedException {
+		if (address == null)
 			return null;
 		
-		List<AddressInfo> deepAddresses = new ArrayList<>();
-		
-		for (AddressInfo eachAddress : addresses) {
-			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
-			deepAddresses.add(clonedAddress);
-		}
-		
-		return deepAddresses;
+		return (AddressInfo) address.clone();
 	}
 	
 	
 	
-	private List<PhoneInfo> clonePhones(List<PhoneInfo> phones) throws CloneNotSupportedException {
-		if (phones == null)
+	private PhoneInfo clonePhone(PhoneInfo phone) throws CloneNotSupportedException {
+		if (phone == null)
 			return null;
 		
-		List<PhoneInfo> deepPhones = new ArrayList<>();
-		
-		for (PhoneInfo eachPhone : phones) {
-			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
-			deepPhones.add(clonedPhone);
-		}
-		
-		return deepPhones;
+		return (PhoneInfo) phone.clone();
 	}
 	
 	
