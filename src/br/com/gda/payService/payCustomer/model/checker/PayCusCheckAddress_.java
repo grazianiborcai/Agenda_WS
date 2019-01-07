@@ -2,21 +2,21 @@ package br.com.gda.payService.payCustomer.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.phone.model.checker.PhoneCheckExist;
+import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.address.model.checker.AddressCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.payService.payCustomer.info.PayCusInfo;
 
-public final class PayCusCheckPhoneExist implements ModelChecker<PayCusInfo> {
+public final class PayCusCheckAddress_ implements ModelChecker<PayCusInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PhoneInfo> checker;
+	private ModelChecker<AddressInfo> checker;
 	
 	
-	public PayCusCheckPhoneExist(ModelCheckerOption option) {
-		checker = new PhoneCheckExist(option);
+	public PayCusCheckAddress_(ModelCheckerOption option) {
+		checker = new AddressCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class PayCusCheckPhoneExist implements ModelChecker<PayCusInfo> {
 	
 	
 	@Override public boolean check(PayCusInfo recordInfo) {
-		return checker.check(PhoneInfo.copyFrom(recordInfo));
+		return checker.check(AddressInfo.copyFrom(recordInfo));
 	}
 
 	

@@ -3,7 +3,6 @@ package br.com.gda.payService.payCustomer.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -15,10 +14,9 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payService.payCustomer.info.PayCusInfo;
-import br.com.gda.payService.payCustomer.model.action.LazyPayCusDeletePhone;
-import br.com.gda.payService.payCustomer.model.action.StdPayCusMergePhone;
+import br.com.gda.payService.payCustomer.model.action.StdPayCusDeletePhone;
 import br.com.gda.payService.payCustomer.model.action.StdPayCusSuccess;
-import br.com.gda.payService.payCustomer.model.checker.PayCusCheckPhoneExist;
+import br.com.gda.payService.payCustomer.model.checker.PayCusCheckHasPhone;
 
 public final class NodePayCusDeletePhone implements DeciTree<PayCusInfo> {
 	private DeciTree<PayCusInfo> tree;
@@ -49,7 +47,7 @@ public final class NodePayCusDeletePhone implements DeciTree<PayCusInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST;		
-		checker = new PayCusCheckPhoneExist(checkerOption);
+		checker = new PayCusCheckHasPhone(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -66,12 +64,9 @@ public final class NodePayCusDeletePhone implements DeciTree<PayCusInfo> {
 	private List<ActionStd<PayCusInfo>> buildActionsOnPassed(DeciTreeOption<PayCusInfo> option) {
 		List<ActionStd<PayCusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayCusInfo> mergeAddress = new StdPayCusMergePhone(option);
-		ActionLazy<PayCusInfo> deleteAddress = new LazyPayCusDeletePhone(option.conn, option.schemaName);
+		ActionStd<PayCusInfo> deleteAddress = new StdPayCusDeletePhone(option);
 		
-		mergeAddress.addPostAction(deleteAddress);
-		
-		actions.add(mergeAddress);		
+		actions.add(deleteAddress);		
 		return actions;
 	}
 	

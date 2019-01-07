@@ -16,9 +16,8 @@ public final class PayCusCheckWrite extends ModelCheckerTemplateSimple<PayCusInf
 	
 	
 	@Override protected boolean checkHook(PayCusInfo recordInfo, Connection conn, String schemaName) {	
-		if (    recordInfo.codOwner 		<= 0 
-			 || recordInfo.codPayCustomer	<= 0
-			 || recordInfo.codPerson		<= 0	)
+		if (    recordInfo.codOwner <= 0 
+			 || recordInfo.codUser	<= 0	)
 			return FAILED;
 		
 		

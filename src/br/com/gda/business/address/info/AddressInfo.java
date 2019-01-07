@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
+import br.com.gda.payService.payCustomer.info.PayCusInfo;
 
 public final class AddressInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -57,14 +58,54 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	
 	
 	public static AddressInfo copyFrom(Object sourceObj) {
+		if (isPayCus(sourceObj))
+			return copyFromPayCus(sourceObj);
+		
 		return copyFrom(sourceObj, AddressInfo.class);
 	}
 	
 	
 	
 	public static List<AddressInfo> copyFrom(List<?> sourceObjs) {
+		if (isPayCus(sourceObjs))
+			return copyFromPayCus(sourceObjs);
+		
 		return copyFrom(sourceObjs, AddressInfo.class);
 	}	
+	
+	
+	
+	private static boolean isPayCus(List<?> sourceObjs) {
+		if (sourceObjs == null || sourceObjs.isEmpty())
+			return false;
+		
+		return isPayCus(sourceObjs.get(0));
+	}
+	
+	
+	
+	private static boolean isPayCus(Object sourceObj) {
+		if (sourceObj == null)
+			return false;
+		
+		if (sourceObj instanceof PayCusInfo)
+			return true;
+		
+		return false;
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private static List<AddressInfo> copyFromPayCus(List<?> sourceObjs) {
+		return new AddressCopyPayCus().makeCopy( (List<PayCusInfo>)sourceObjs);
+	}
+	
+	
+	
+	private static AddressInfo copyFromPayCus(Object sourceObj) {
+		return new AddressCopyPayCus().makeCopy( (PayCusInfo)sourceObj);
+	}
 	
 	
 	

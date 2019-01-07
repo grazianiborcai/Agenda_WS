@@ -8,10 +8,11 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payService.payCustomer.info.PayCusInfo;
+import br.com.gda.payService.payCustomer.model.decisionTree.NodePayCusDeleteAddress;
 
-public final class LazyPayCusDeleteAddress extends ActionLazyTemplate<PayCusInfo, PayCusInfo> {
+public final class LazyPayCusNodeDeleteAddress extends ActionLazyTemplate<PayCusInfo, PayCusInfo> {
 	
-	public LazyPayCusDeleteAddress(Connection conn, String schemaName) {
+	public LazyPayCusNodeDeleteAddress(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyPayCusDeleteAddress extends ActionLazyTemplate<PayCusInfo
 	
 	
 	@Override protected ActionStd<PayCusInfo> getInstanceOfActionHook(DeciTreeOption<PayCusInfo> option) {
-		return new StdPayCusDeleteAddress(option);
+		return new NodePayCusDeleteAddress(option).toAction();
 	}
 	
 	

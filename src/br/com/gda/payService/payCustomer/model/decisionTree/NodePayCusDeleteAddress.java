@@ -3,7 +3,6 @@ package br.com.gda.payService.payCustomer.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -15,10 +14,9 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payService.payCustomer.info.PayCusInfo;
-import br.com.gda.payService.payCustomer.model.action.LazyPayCusDeleteAddress;
-import br.com.gda.payService.payCustomer.model.action.StdPayCusMergeAddress;
+import br.com.gda.payService.payCustomer.model.action.StdPayCusDeleteAddress;
 import br.com.gda.payService.payCustomer.model.action.StdPayCusSuccess;
-import br.com.gda.payService.payCustomer.model.checker.PayCusCheckAddressExist;
+import br.com.gda.payService.payCustomer.model.checker.PayCusCheckHasAddress;
 
 public final class NodePayCusDeleteAddress implements DeciTree<PayCusInfo> {
 	private DeciTree<PayCusInfo> tree;
@@ -49,7 +47,7 @@ public final class NodePayCusDeleteAddress implements DeciTree<PayCusInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST;		
-		checker = new PayCusCheckAddressExist(checkerOption);
+		checker = new PayCusCheckHasAddress(checkerOption);		//TODO: Replicar esse check para todos que utilizam Address
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -66,12 +64,9 @@ public final class NodePayCusDeleteAddress implements DeciTree<PayCusInfo> {
 	private List<ActionStd<PayCusInfo>> buildActionsOnPassed(DeciTreeOption<PayCusInfo> option) {
 		List<ActionStd<PayCusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayCusInfo> mergeAddress = new StdPayCusMergeAddress(option);
-		ActionLazy<PayCusInfo> deleteAddress = new LazyPayCusDeleteAddress(option.conn, option.schemaName);
+		ActionStd<PayCusInfo> deleteAddress = new StdPayCusDeleteAddress(option);
 		
-		mergeAddress.addPostAction(deleteAddress);
-		
-		actions.add(mergeAddress);		
+		actions.add(deleteAddress);		
 		return actions;
 	}
 	

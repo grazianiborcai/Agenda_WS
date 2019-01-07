@@ -13,9 +13,9 @@ import br.com.gda.payService.payCustomer.info.PayCusInfo;
 import br.com.gda.payService.payCustomer.model.action.LazyPayCusSelect;
 import br.com.gda.payService.payCustomer.model.action.StdPayCusEnforceUserKey;
 
-public final class PayCusCheckUserUnique extends ModelCheckerTemplateAction<PayCusInfo> {
+public final class PayCusCheckUserTaken extends ModelCheckerTemplateAction<PayCusInfo> {
 	
-	public PayCusCheckUserUnique(ModelCheckerOption option) {
+	public PayCusCheckUserTaken(ModelCheckerOption option) {
 		super(option);
 	}
 	

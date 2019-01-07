@@ -71,13 +71,26 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	
 	
-	@SuppressWarnings("unchecked")
 	private void addRecordToOption(List<T> recordInfos) {
+		selOption.recordInfos = toActionClassHook(recordInfos);
+	}
+	
+	
+	
+	protected List<S> toActionClassHook(List<T> recordInfos) {
+		//Template method - Default behavior
+		return toActionClass(recordInfos);	
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private List<S> toActionClass(List<T> recordInfos) {
 		try {
 			S sInstance = sClazz.getConstructor().newInstance();
 			
 			Method met = sClazz.getMethod("copyFrom", List.class);
-			selOption.recordInfos = (List<S>) met.invoke(sInstance, recordInfos);
+			return (List<S>) met.invoke(sInstance, recordInfos);
 				
 			} catch (Exception e) {
 				logException(e);

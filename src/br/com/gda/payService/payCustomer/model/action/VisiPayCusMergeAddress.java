@@ -7,15 +7,27 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionVisitorTemplateAction;
-import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
+import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.payService.payCustomer.info.PayCusInfo;
 import br.com.gda.payService.payCustomer.info.PayCusMerger;
 
-final class VisiPayCusMergeAddress extends ActionVisitorTemplateAction<PayCusInfo, AddressInfo> {
+final class VisiPayCusMergeAddress extends ActionVisitorTemplateMerge<PayCusInfo, AddressInfo> {
+	
 	public VisiPayCusMergeAddress(Connection conn, String schemaName) {
-		super(conn, schemaName, PayCusInfo.class, AddressInfo.class);
+		super(conn, schemaName, AddressInfo.class);
+	}
+	
+	
+	
+	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
+		return RootAddressSelect.class;
+	}
+	
+	
+	
+	@Override protected Class<? extends InfoWritterFactory<PayCusInfo>> getMergerClassHook() {
+		return PayCusMerger.class;
 	}
 	
 	
@@ -31,18 +43,5 @@ final class VisiPayCusMergeAddress extends ActionVisitorTemplateAction<PayCusInf
 		}		
 		
 		return results;
-	}
-	
-	
-	
-	@Override protected ActionStd<AddressInfo> getActionHook(DeciTreeOption<AddressInfo> option) {
-		return new RootAddressSelect(option).toAction();
-	}
-	
-	
-	
-	@Override protected List<PayCusInfo> toBaseClassHook(List<PayCusInfo> baseInfos, List<AddressInfo> results) {
-		InfoWritterFactory<PayCusInfo> merger = new PayCusMerger();
-		return merger.merge(results, baseInfos);
 	}
 }

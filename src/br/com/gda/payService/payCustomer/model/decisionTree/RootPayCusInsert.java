@@ -28,7 +28,7 @@ import br.com.gda.payService.payCustomer.model.action.LazyPayCusRootSelect;
 import br.com.gda.payService.payCustomer.model.action.StdPayCusMergeUser;
 import br.com.gda.payService.payCustomer.model.checker.PayCusCheckUserAddress;
 import br.com.gda.payService.payCustomer.model.checker.PayCusCheckUserPhone;
-import br.com.gda.payService.payCustomer.model.checker.PayCusCheckUserUnique;
+import br.com.gda.payService.payCustomer.model.checker.PayCusCheckUserTaken;
 import br.com.gda.payService.payCustomer.model.checker.PayCusCheckInsert;
 import br.com.gda.payService.payCustomer.model.checker.PayCusCheckOwner;
 import br.com.gda.payService.payCustomer.model.checker.PayCusCheckTechField;
@@ -105,7 +105,7 @@ public final class RootPayCusInsert implements DeciTree<PayCusInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST;		
-		checker = new PayCusCheckUserUnique(checkerOption);
+		checker = new PayCusCheckUserTaken(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

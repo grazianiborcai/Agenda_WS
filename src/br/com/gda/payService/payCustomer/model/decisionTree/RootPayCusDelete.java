@@ -3,6 +3,7 @@ package br.com.gda.payService.payCustomer.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -14,10 +15,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payService.payCustomer.info.PayCusInfo;
-import br.com.gda.payService.payCustomer.model.action.StdPayCusDelete;
-import br.com.gda.payService.payCustomer.model.action.StdPayCusDeletePerson;
-import br.com.gda.payService.payCustomer.model.checker.PayCusCheckExist;
-import br.com.gda.payService.payCustomer.model.checker.PayCusCheckPersonChange;
+import br.com.gda.payService.payCustomer.model.action.LazyPayCusDelete;
+import br.com.gda.payService.payCustomer.model.action.LazyPayCusDeletePerson;
+import br.com.gda.payService.payCustomer.model.action.LazyPayCusNodeDeleteAddress;
+import br.com.gda.payService.payCustomer.model.action.LazyPayCusNodeDeletePhone;
+import br.com.gda.payService.payCustomer.model.checker.PayCusCheckUserTaken;
 import br.com.gda.payService.payCustomer.model.checker.PayCusCheckWrite;
 
 public final class RootPayCusDelete implements DeciTree<PayCusInfo> {
@@ -40,7 +42,6 @@ public final class RootPayCusDelete implements DeciTree<PayCusInfo> {
 	
 	private ModelChecker<PayCusInfo> buildDecisionChecker(DeciTreeOption<PayCusInfo> option) {
 		final boolean EXIST_ON_DB = true;	
-		final boolean NOT_CHANGED = true;
 		
 		List<ModelChecker<PayCusInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayCusInfo> checker;
@@ -53,15 +54,8 @@ public final class RootPayCusDelete implements DeciTree<PayCusInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new PayCusCheckExist(checkerOption);
-		queue.add(checker);		
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = NOT_CHANGED;		
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;		
-		checker = new PayCusCheckPersonChange(checkerOption);
-		queue.add(checker);
+		checker = new PayCusCheckUserTaken(checkerOption);
+		queue.add(checker);	
 		
 		 return new ModelCheckerQueue<PayCusInfo>(queue);
 	}
@@ -77,16 +71,18 @@ public final class RootPayCusDelete implements DeciTree<PayCusInfo> {
 	private List<ActionStd<PayCusInfo>> buildActionsOnPassed(DeciTreeOption<PayCusInfo> option) {
 		List<ActionStd<PayCusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayCusInfo> deleteAddress = new NodePayCusDeleteAddress(option).toAction();
-		ActionStd<PayCusInfo> deletePhone = new NodePayCusDeletePhone(option).toAction();
-		ActionStd<PayCusInfo> deleteCustomer = new StdPayCusDelete(option);	
-		ActionStd<PayCusInfo> deletePerson = new StdPayCusDeletePerson(option);
+		ActionStd<PayCusInfo> select = new RootPayCusSelect(option).toAction();
+		ActionLazy<PayCusInfo> deleteAddress = new LazyPayCusNodeDeleteAddress(option.conn, option.schemaName);
+		ActionLazy<PayCusInfo> deletePhone = new LazyPayCusNodeDeletePhone(option.conn, option.schemaName);
+		ActionLazy<PayCusInfo> deletePayCustomer = new LazyPayCusDelete(option.conn, option.schemaName);	
+		ActionLazy<PayCusInfo> deletePerson = new LazyPayCusDeletePerson(option.conn, option.schemaName);
 		
-		actions.add(deleteAddress);
-		actions.add(deletePhone);
-		actions.add(deleteCustomer);
-		actions.add(deletePerson);
+		select.addPostAction(deleteAddress);
+		select.addPostAction(deletePhone);
+		select.addPostAction(deletePayCustomer);
+		select.addPostAction(deletePerson);
 		
+		actions.add(select);				
 		return actions;
 	}
 	

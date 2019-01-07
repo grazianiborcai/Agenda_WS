@@ -1,5 +1,6 @@
 package br.com.gda.resource;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -44,6 +45,7 @@ import br.com.gda.business.userSnapshot.model.UserSnapModelInsert;
 import br.com.gda.business.userSnapshot.model.UserSnapModelSelect;
 import br.com.gda.model.Model;
 import br.com.gda.payService.payCustomer.info.PayCusInfo;
+import br.com.gda.payService.payCustomer.model.PayCusModelDelete;
 import br.com.gda.payService.payCustomer.model.PayCusModelInsert;
 import br.com.gda.payService.payCustomer.model.PayCusModelSelect;
 
@@ -75,6 +77,7 @@ public class TestResource {
 	private static final String SELECT_CART_SNAPSHOT = "/selectCartSnapshot";
 	private static final String INSERT_PAY_CUSTOMER = "/insertPayCustomer";
 	private static final String SELECT_PAY_CUSTOMER = "/selectPayCustomer";
+	private static final String DELETE_PAY_CUSTOMER = "/deletePayCustomer";
 	
 	
 	
@@ -456,6 +459,21 @@ public class TestResource {
 		recordInfo.codUser = codUser;
 		
 		Model model = new PayCusModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_PAY_CUSTOMER)
+	public Response deletePayCustomer(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+			                          @HeaderParam("codUser")  @DefaultValue("-1") long codUser) {
+		PayCusInfo recordInfo = new PayCusInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codUser = codUser;
+		
+		Model model = new PayCusModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

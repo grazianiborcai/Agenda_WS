@@ -17,7 +17,7 @@ public final class PayCusCheckHasPhone extends ModelCheckerTemplateSimple<PayCus
 	
 	
 	@Override protected boolean checkHook(PayCusInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.phone == null)			
+		if (recordInfo.phone == null )			
 			return super.FAILED;		
 		
 		return super.SUCCESS;
