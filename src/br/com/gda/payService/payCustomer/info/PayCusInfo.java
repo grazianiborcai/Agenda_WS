@@ -19,6 +19,7 @@ public final class PayCusInfo extends InfoRecord implements Cloneable {
 	public long codPersonRef;
 	public long codPhoneRef;
 	public long codAddressRef;
+	public String codCountry;
 	public String cpf;
 	public String name;
 	public String codEntityCateg;

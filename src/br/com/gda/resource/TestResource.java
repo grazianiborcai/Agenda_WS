@@ -48,6 +48,10 @@ import br.com.gda.payService.payCustomer.info.PayCusInfo;
 import br.com.gda.payService.payCustomer.model.PayCusModelDelete;
 import br.com.gda.payService.payCustomer.model.PayCusModelInsert;
 import br.com.gda.payService.payCustomer.model.PayCusModelSelect;
+import br.com.gda.payService.payPartnerCountry.info.PayPartnerCountryInfo;
+import br.com.gda.payService.payPartnerCountry.model.PayPartnerCountryModelSelect;
+import br.com.gda.payService.payPartnerStore.info.PayPartnerStoreInfo;
+import br.com.gda.payService.payPartnerStore.model.PayPartnerStoreModelSelect;
 
 @Path("/Test")
 public class TestResource {
@@ -78,6 +82,8 @@ public class TestResource {
 	private static final String INSERT_PAY_CUSTOMER = "/insertPayCustomer";
 	private static final String SELECT_PAY_CUSTOMER = "/selectPayCustomer";
 	private static final String DELETE_PAY_CUSTOMER = "/deletePayCustomer";
+	private static final String SELECT_PAY_PARTNER_STORE = "/selectPayPartnerStore";
+	private static final String SELECT_PAY_PARTNER_COUNTRY = "/selectPayPartnerCountry";
 	
 	
 	
@@ -474,6 +480,38 @@ public class TestResource {
 		recordInfo.codUser = codUser;
 		
 		Model model = new PayCusModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_PAY_PARTNER_STORE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPayPartnerStore(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+								          @HeaderParam("codStore") @DefaultValue("-1") long codStore) {
+
+		PayPartnerStoreInfo recordInfo = new PayPartnerStoreInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		
+		Model model = new PayPartnerStoreModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_PAY_PARTNER_COUNTRY)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPayPartnerCountry(@HeaderParam("codCountry") String codCountry) {
+
+		PayPartnerCountryInfo recordInfo = new PayPartnerCountryInfo();
+		recordInfo.codCountry = codCountry;
+		
+		Model model = new PayPartnerCountryModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

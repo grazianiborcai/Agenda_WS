@@ -10,6 +10,7 @@ public final class PayPartnerStoreInfo extends InfoRecord implements Cloneable {
 	public long codStore;	
 	public int codPayPartner;
 	public String txtPayPartner;
+	public String description;
 	
 	
 	public PayPartnerStoreInfo() {

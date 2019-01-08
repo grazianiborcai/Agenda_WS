@@ -15,6 +15,7 @@ public final class DaoDbTable {
 	public static final String CART_ITM_CATEG_TEXT_TABLE = "shop_cart_categ_text";
 	public static final String CART_ITM_TABLE = "shop_cart_item";
 	public static final String CART_ITM_SNAPSHOT_TABLE = "shop_cart_item_snapshot";
+	public static final String COMP_TABLE = "company";
 	public static final String COUNTRY_TABLE = "country";
 	public static final String COUNTRY_TEXT_TABLE = "country_text";
 	public static final String COUNTRY_PHONE_TABLE = "country_phone";

@@ -3,6 +3,7 @@ package br.com.gda.payService.payPartnerCountry.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -14,6 +15,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payService.payPartnerCountry.info.PayPartnerCountryInfo;
+import br.com.gda.payService.payPartnerCountry.model.action.LazyPayPartnerCountryMergePayPartner;
 import br.com.gda.payService.payPartnerCountry.model.action.StdPayPartnerCountrySelect;
 import br.com.gda.payService.payPartnerCountry.model.checker.PayPartnerCountryCheckCountry;
 import br.com.gda.payService.payPartnerCountry.model.checker.PayPartnerCountryCheckRead;
@@ -60,7 +62,12 @@ public final class RootPayPartnerCountrySelect implements DeciTree<PayPartnerCou
 	private List<ActionStd<PayPartnerCountryInfo>> buildActionsOnPassed(DeciTreeOption<PayPartnerCountryInfo> option) {
 		List<ActionStd<PayPartnerCountryInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdPayPartnerCountrySelect(option));
+		ActionStd<PayPartnerCountryInfo> select = new StdPayPartnerCountrySelect(option);
+		ActionLazy<PayPartnerCountryInfo> mergePayPartner = new LazyPayPartnerCountryMergePayPartner(option.conn, option.schemaName);
+		
+		select.addPostAction(mergePayPartner);
+		
+		actions.add(select);
 		return actions;
 	}
 	

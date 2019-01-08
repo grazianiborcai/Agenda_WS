@@ -3,6 +3,7 @@ package br.com.gda.payService.payPartnerStore.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -14,6 +15,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payService.payPartnerStore.info.PayPartnerStoreInfo;
+import br.com.gda.payService.payPartnerStore.model.action.LazyPayPartnerStoreMergePayPartner;
 import br.com.gda.payService.payPartnerStore.model.action.StdPayPartnerStoreSelect;
 import br.com.gda.payService.payPartnerStore.model.checker.PayPartnerStoreCheckOwner;
 import br.com.gda.payService.payPartnerStore.model.checker.PayPartnerStoreCheckRead;
@@ -68,7 +70,12 @@ public final class RootPayPartnerStoreSelect implements DeciTree<PayPartnerStore
 	private List<ActionStd<PayPartnerStoreInfo>> buildActionsOnPassed(DeciTreeOption<PayPartnerStoreInfo> option) {
 		List<ActionStd<PayPartnerStoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdPayPartnerStoreSelect(option));
+		ActionStd<PayPartnerStoreInfo> select = new StdPayPartnerStoreSelect(option);
+		ActionLazy<PayPartnerStoreInfo> mergePayPartner = new LazyPayPartnerStoreMergePayPartner(option.conn, option.schemaName);
+		
+		select.addPostAction(mergePayPartner);
+		
+		actions.add(select);
 		return actions;
 	}
 	

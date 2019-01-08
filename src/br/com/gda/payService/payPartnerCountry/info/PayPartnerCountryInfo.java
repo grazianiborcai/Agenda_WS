@@ -9,6 +9,7 @@ public final class PayPartnerCountryInfo extends InfoRecord implements Cloneable
 	public String codCountry;
 	public int codPayPartner;
 	public String txtPayPartner;
+	public String description;
 	
 	
 	public PayPartnerCountryInfo() {

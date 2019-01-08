@@ -8,6 +8,7 @@ import br.com.gda.business.address.dao.AddressDbTableColumn;
 import br.com.gda.business.addressSnapshot.dao.AddressSnapDbTableColumn;
 import br.com.gda.business.cart.dao.CartDbTableColumn;
 import br.com.gda.business.cartSnapshot.dao.CartSnapDbTableColumn;
+import br.com.gda.business.company.dao.CompDbTableColumn;
 import br.com.gda.business.customer.dao.CusDbTableColumn;
 import br.com.gda.business.employee.dao.EmpDbTableColumn;
 import br.com.gda.business.employeeLeaveDate.dao.EmpLDateDbTableColumn;
@@ -96,6 +97,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PayPartnerStoreDbTableColumn());
 		addTable(new PayPartnerCountryDbTableColumn());
 		addTable(new PayCusDbTableColumn());
+		addTable(new CompDbTableColumn());
 	}
 	
 	
