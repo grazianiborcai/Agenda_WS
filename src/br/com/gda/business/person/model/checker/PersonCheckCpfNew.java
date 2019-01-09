@@ -49,7 +49,7 @@ public final class PersonCheckCpfNew extends ModelCheckerTemplateAction<PersonIn
 	}
 	
 	
-	
+	//TODO: a mensagem e realmente essa ?
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
 		if (makeFailCodeHook(checkerResult) == SystemCode.PERSON_CPF_CANT_BE_CHANGED)
 			return SystemMessage.PERSON_CPF_CANT_BE_CHANGED;

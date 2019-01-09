@@ -18,11 +18,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodePersonEmailChange implements DeciTree<PersonInfo> {
+public final class NodePersonEmailChange_ implements DeciTree<PersonInfo> {
 	private DeciTree<PersonInfo> tree;
 	
 	
-	public NodePersonEmailChange(DeciTreeOption<PersonInfo> option) {
+	public NodePersonEmailChange_(DeciTreeOption<PersonInfo> option) {
 		DeciTreeHelperOption<PersonInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);

@@ -18,6 +18,8 @@ import br.com.gda.business.addressSnapshot.model.AddressSnapModelSelect;
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.business.cartSnapshot.model.CartSnapModelInsert;
 import br.com.gda.business.cartSnapshot.model.CartSnapModelSelect;
+import br.com.gda.business.company.model.CompModelInsert;
+import br.com.gda.business.company.model.CompModelUpdate;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.business.feeStore.model.FeeStoreModelSelect;
 import br.com.gda.business.feeStore.model.FeeStoreModelSelectService;
@@ -84,6 +86,8 @@ public class TestResource {
 	private static final String DELETE_PAY_CUSTOMER = "/deletePayCustomer";
 	private static final String SELECT_PAY_PARTNER_STORE = "/selectPayPartnerStore";
 	private static final String SELECT_PAY_PARTNER_COUNTRY = "/selectPayPartnerCountry";
+	private static final String INSERT_COMPANY = "/insertCompany";
+	private static final String UPDATE_COMPANY = "/updateCompany";
 	
 	
 	
@@ -515,4 +519,30 @@ public class TestResource {
 		model.executeRequest();
 		return model.getResponse();
 	}
+	
+	
+	
+	@POST
+	@Path(INSERT_COMPANY)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertCompany(String incomingData) {
+		
+		
+		Model model = new CompModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();	
+	}
+	
+	
+	
+	@POST
+	@Path(UPDATE_COMPANY)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateCompany(String incomingData) {
+		
+		
+		Model model = new CompModelUpdate(incomingData);
+		model.executeRequest();
+		return model.getResponse();	
+	}	
 }

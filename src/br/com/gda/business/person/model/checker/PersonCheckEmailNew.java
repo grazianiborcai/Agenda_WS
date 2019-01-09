@@ -49,7 +49,7 @@ public final class PersonCheckEmailNew extends ModelCheckerTemplateAction<Person
 	}
 	
 	
-	
+	//TODO: a mensagem e realmente essa ?
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
 		if (makeFailCodeHook(checkerResult) == SystemCode.PERSON_EMAIL_CANT_BE_CHANGED)
 			return SystemMessage.PERSON_EMAIL_CANT_BE_CHANGED;

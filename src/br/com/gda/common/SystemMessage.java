@@ -390,4 +390,22 @@ public final class SystemMessage {
 	public static final String PAY_CUS_TECH_FIELD_SHOULD_BE_EMPTY = "Pay-Customer: technical fields shouldn't be filled";
 	public static final String PAY_CUS_USER_ALREADY_EXIST = "Pay-Customer-User's data already exist on DB";
 	public static final String PAY_CUS_USER_NOT_FOUND = "Pay-Customer-User's data not found on DB";
+	
+	
+	
+	//Company		
+	public static final String COMPANY_ALREADY_EXIST = "Company already exist on DB";	
+	public static final String COMPANY_CNPJ_ALREADY_EXIST = "CNPJ already exist on DB";
+	public static final String COMPANY_CNPJ_BLANK = "CNPJ is empty";	
+	public static final String COMPANY_CNPJ_CANT_BE_CHANGED = "CNPJ can't be changed";
+	public static final String COMPANY_CNPJ_ERASURE = "CNPJ erasure is not allowed";
+	public static final String COMPANY_CNPJ_INVALID = "CNPJ is invalid";	
+	public static final String COMPANY_CNPJ_INVALID_LENGTH = "Invalid CNPJ length";
+	public static final String COMPANY_CNPJ_INVALID_NUMBER = "Only numbers are allowed for CNPJ";
+	public static final String COMPANY_CNPJ_INVALID_SEQUENCE = "Invalid sequence for CNPJ";
+	public static final String COMPANY_CNPJ_NO_ERASURE = "No CNPJ erasure";
+	public static final String COMPANY_CNPJ_NOT_CHANGED = "CNPJ not changed";	
+	public static final String COMPANY_CNPJ_NOT_FOUND = "CNPJ not found on DB";
+	public static final String COMPANY_NOT_FOUND = "Company not found on DB";	
+	public static final String COMPANY_TECH_FIELD_SHOULD_BE_EMPTY = "Company: technical fields shouldn't be filled";
 }

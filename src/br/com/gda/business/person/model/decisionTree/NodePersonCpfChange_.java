@@ -18,11 +18,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodePersonCpfChange implements DeciTree<PersonInfo> {
+public final class NodePersonCpfChange_ implements DeciTree<PersonInfo> {
 	private DeciTree<PersonInfo> tree;
 	
 	
-	public NodePersonCpfChange(DeciTreeOption<PersonInfo> option) {
+	public NodePersonCpfChange_(DeciTreeOption<PersonInfo> option) {
 		DeciTreeHelperOption<PersonInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);

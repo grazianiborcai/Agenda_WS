@@ -1,71 +1,37 @@
-package br.com.gda.model.checker.common;
+package br.com.gda.business.company.model.checker;
 
 import java.sql.Connection;
 
+import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class ModelCheckerCnpj extends ModelCheckerTemplateSimple<String> {
+public final class CompCheckCnpjNumber extends ModelCheckerTemplateSimple<CompInfo> {
 
-	public ModelCheckerCnpj() {
+	public CompCheckCnpjNumber() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(String cnpj, Connection conn, String schemaName) {	
-		if (cnpj == null)
-			return SUCCESS;
-		
-		if (checkOnlyNumber(cnpj) == FAILED)			
-			return FAILED;
-		
-		if (checkLength(cnpj) == FAILED)			
-			return FAILED;
-		
-		if (checkSequence(cnpj) == FAILED)			
-			return FAILED;
-		
-		if (checkNumberVerification(cnpj) == FAILED)
-			return FAILED;
+	@Override protected boolean checkHook(CompInfo recordInfo, Connection conn, String schemaName) {	
+		if (recordInfo.cnpj == null)
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		if (checkNumber(recordInfo.cnpj))			
+			return super.SUCCESS;
+		
+		
+		return super.FAILED;
 	}
 	
 	
 	
-	private boolean checkOnlyNumber(String cnpj) {
-	    return cnpj.matches("^\\d+$");
-	}
-	
-	
-	
-	private boolean checkLength(String cnpj) {
-	    if (cnpj.length() != 14)
-	           return FAILED;
-	    
-	    return SUCCESS;
-	}
-	
-	
-	
-	private boolean checkSequence(String cnpj) {
-		boolean IS_MONODIGIT = true;
-		
-		if (cnpj.matches("^(\\d)\\1+$") == IS_MONODIGIT) 
-			return FAILED;		
-
-	    
-	    return SUCCESS;
-	}
-	
-	
-	
-	private boolean checkNumberVerification(String cnpj) {
-	    char dig13 = getNumberVerificationDig13(cnpj);
-	    char dig14 = getNumberVerificationDig14(cnpj);
+	private boolean checkNumber(String cnpj) {
+	    char dig13 = getNumberDig13(cnpj);
+	    char dig14 = getNumberDig14(cnpj);
 	    
 	    if (cnpj.charAt(12) == dig13 && cnpj.charAt(13) == dig14)
 	    	return SUCCESS;
@@ -75,7 +41,7 @@ public final class ModelCheckerCnpj extends ModelCheckerTemplateSimple<String> {
 	
 	
 	
-	private char getNumberVerificationDig13(String cnpj) {
+	private char getNumberDig13(String cnpj) {
 		final int CNPJ_BODY = 11;
 		final int ASCII_ZERO = 48;
 		
@@ -103,7 +69,7 @@ public final class ModelCheckerCnpj extends ModelCheckerTemplateSimple<String> {
 	
 	
 	
-	private char getNumberVerificationDig14(String cnpj) {
+	private char getNumberDig14(String cnpj) {
 		final int CNPJ_BODY = 12;
 		final int ASCII_ZERO = 48;
 		
@@ -132,12 +98,12 @@ public final class ModelCheckerCnpj extends ModelCheckerTemplateSimple<String> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.CNPJ_INVALID;
+		return SystemMessage.COMPANY_CNPJ_INVALID;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.CNPJ_INVALID;
+		return SystemCode.COMPANY_CNPJ_INVALID;
 	}
 }

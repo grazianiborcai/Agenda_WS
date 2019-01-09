@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.common.ModelCheckerCnpj;
+import br.com.gda.model.checker.common.ModelCheckerCnpj_;
 
 public final class StoreCheckCnpj implements ModelChecker<StoreInfo> {
 	private final boolean SUCCESS = true;
@@ -13,7 +13,7 @@ public final class StoreCheckCnpj implements ModelChecker<StoreInfo> {
 	private ModelChecker<String> checkerCnpj;
 	
 	public StoreCheckCnpj() {
-		checkerCnpj = new ModelCheckerCnpj();
+		checkerCnpj = new ModelCheckerCnpj_();
 	}
 
 	

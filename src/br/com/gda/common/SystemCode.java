@@ -303,4 +303,20 @@ public final class SystemCode {
 	public static final int PAY_CUS_TECH_FIELD_SHOULD_BE_EMPTY			= 2404;
 	public static final int PAY_CUS_USER_ALREADY_EXIST					= 2405;
 	public static final int PAY_CUS_USER_NOT_FOUND						= 2406;
+	
+	//Company
+	public static final int COMPANY_TECH_FIELD_SHOULD_BE_EMPTY			= 2500;
+	public static final int COMPANY_CNPJ_BLANK							= 2501;
+	public static final int COMPANY_CNPJ_ALREADY_EXIST					= 2502;
+	public static final int COMPANY_CNPJ_NOT_FOUND						= 2503;	
+	public static final int COMPANY_ALREADY_EXIST 						= 2504;
+	public static final int COMPANY_NOT_FOUND 							= 2505;
+	public static final int COMPANY_CNPJ_INVALID_SEQUENCE				= 2506;
+	public static final int COMPANY_CNPJ_INVALID_NUMBER					= 2507;
+	public static final int COMPANY_CNPJ_INVALID						= 2508;
+	public static final int COMPANY_CNPJ_CANT_BE_CHANGED				= 2509;
+	public static final int COMPANY_CNPJ_NOT_CHANGED					= 2510;
+	public static final int COMPANY_CNPJ_INVALID_LENGTH					= 2511;
+	public static final int COMPANY_CNPJ_NO_ERASURE						= 2512;
+	public static final int COMPANY_CNPJ_ERASURE						= 2513;
 }
