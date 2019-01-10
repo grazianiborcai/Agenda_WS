@@ -1,34 +1,30 @@
 package br.com.gda.business.owner.dao;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoOperation;
-import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtParamTranslator;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
-	private final String LEFT_TABLE = DaoDbTable.OWNER_TABLE;	
-	
+public final class OwnerUpdateSingle implements DaoStmt<OwnerInfo> {
 	private DaoStmt<OwnerInfo> stmtSql;
 	private DaoStmtOption<OwnerInfo> stmtOption;
 	
 	
-	
-	public OwnerSelectSingle(Connection conn, OwnerInfo recordInfo, String schemaName) {
+	public OwnerUpdateSingle(Connection conn, OwnerInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		buildStmt();		
 	}
 	
 	
@@ -38,23 +34,24 @@ public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LEFT_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LEFT_TABLE);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
+		this.stmtOption.tableName = DaoDbTable.OWNER_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
+		this.stmtOption.stmtParamTranslator = new ParamTranslator();
+		this.stmtOption.resultParser = null;
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
 	}
 	
 	
 	
 	private String buildWhereClause() {
 		final boolean DONT_IGNORE_NULL = false;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
+		final boolean IGNORE_NON_PK = true;
+		final boolean IGNORE_RECORD_MODE = true;		
 		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;
 		
 		DaoStmtWhere whereClause = new OwnerWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -63,13 +60,14 @@ public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption);
 	}
 	
 	
 
 	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
+		stmtSql.generateStmt();
+		
 	}
 
 	
@@ -93,36 +91,23 @@ public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
 	
 	
 	@Override public DaoStmt<OwnerInfo> getNewInstance() {
-		return new OwnerSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new OwnerUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser<OwnerInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<OwnerInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<OwnerInfo> finalResult = new ArrayList<>();
+	private class ParamTranslator implements DaoStmtParamTranslator<OwnerInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, OwnerInfo recordInfo) throws SQLException {	
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			Timestamp lastChanged = null;
+			if(recordInfo.lastChanged != null)
+				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
 			
-			do {
-				OwnerInfo dataInfo = new OwnerInfo();
-				dataInfo.codOwner = stmtResult.getLong(OwnerDbTableColumn.COL_COD_OWNER);
-				dataInfo.recordMode = stmtResult.getString(OwnerDbTableColumn.COL_RECORD_MODE);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(OwnerDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
+			int i = 1;					
+			stmt.setTimestamp(i++, lastChanged);	
+			stmt.setString(i++, recordInfo.recordMode);	
 			
-			return finalResult;
-		}
+			return stmt;
+		}		
 	}
 }

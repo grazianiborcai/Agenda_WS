@@ -1,5 +1,6 @@
 package br.com.gda.business.owner.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
@@ -8,10 +9,9 @@ import br.com.gda.info.InfoRecord;
 
 public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public String name;
+	public LocalDateTime lastChanged;
 	public String codLanguage;
 	public String recordMode;
-	//TODO: legal_country - dados sensiveis precisam atender legislacao do pais
 	
 	
 	public OwnerInfo() {
