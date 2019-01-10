@@ -3,21 +3,34 @@ package br.com.gda.business.owner.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.DefaultValue;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
 public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public String codEntityCateg;
 	public LocalDateTime lastChanged;
 	public String codLanguage;
 	public String recordMode;
+	public List<AddressInfo> addresses;
+	public List<PhoneInfo> phones;
+	public UserInfo userData;
+	public PersonInfo personData;
+	
 	
 	
 	public OwnerInfo() {
-		this.codOwner = DefaultValue.number();
-		this.codLanguage = DefaultValue.language();
-		this.recordMode = RecordMode.RECORD_OK;	
+		codOwner = DefaultValue.number();
+		codLanguage = DefaultValue.language();
+		addresses = DefaultValue.list();
+		phones = DefaultValue.list();
+		recordMode = DefaultValue.recordMode();		
+		userData = DefaultValue.object();
+		personData = DefaultValue.object();
 	}
 	
 	

@@ -1,17 +1,17 @@
-package br.com.gda.business.owner.model.decisionTree;
+package br.com.gda.business.owner.model.action;
 
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerOwnerSelect extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
+public final class LazyOwnerMergePhone extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
 	
-	public HandlerOwnerSelect(Connection conn, String schemaName) {
+	public LazyOwnerMergePhone(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class HandlerOwnerSelect extends ActionLazyTemplate<OwnerInfo, Owne
 	
 	
 	@Override protected ActionStd<OwnerInfo> getInstanceOfActionHook(DeciTreeOption<OwnerInfo> option) {
-		return new ActionOwnerSelect(option);
+		return new StdOwnerMergePhone(option);
 	}
 	
 	

@@ -1,15 +1,13 @@
 package br.com.gda.common;
 
 public final class SystemMessage {
-	//TODO: Organizar essas Strings
+	// TODO: Organizar essas Strings
 	public static final String CPF_INVALID = "CPF is invalid";
 	public static final String CNPJ_INVALID = "CNPJ is invalid";	
-	public static final String OWNER_NOT_FOUND = "Owner data not found on DB";
 	public static final String NULL_TABLE_NAME = "Table name is null";
 	public static final String TABLE_NOT_FOUND = "table was not found";			
 	public static final String ILLEGAL_ARGUMENT = "IllegalArgument: mandatory argument might be missing or invalid value was passed";	
-	public static final String NULL_WHERE_CLAUSE = "where clause is null";			
-	public static final String OWNER_ALREADY_EXIST = "Owner data already exist on DB";		
+	public static final String NULL_WHERE_CLAUSE = "where clause is null";				
 	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";				
 	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";			
 	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";			
@@ -22,7 +20,7 @@ public final class SystemMessage {
 
 	
 	
-	//System
+	// System
 	public static final String ACTION_NOT_EXECUTED = "Action has not been executed";
 	public static final String ACTION_NOT_INIT = " is NULL or EMPTY. Action was not initialized as expected";
 	public static final String AGED_DATE = "Date is in the past";
@@ -64,7 +62,7 @@ public final class SystemMessage {
 	
 	
 		
-	//Master Data
+	// Master Data
 	public static final String AREA_PHONE_ALREADY_EXIST = "Phone Area already exist on DB";
 	public static final String AREA_PHONE_NOT_FOUND = "Phone Area not found on DB";	
 	public static final String COUNTRY_ALREADY_EXIST = "Country already exist on DB";
@@ -100,17 +98,26 @@ public final class SystemMessage {
 
 		
 	
-	//Material
+	// Material
 	public static final String MAT_ALREALDY_EXIST = "Material data already exist on DB";	
 	public static final String MAT_NOT_FOUND = "Material data not found on DB";
 	public static final String MAT_NOT_SERVICE	= "Material's category is not a service";
 	public static final String MAT_SERVICE = "Material's category is a service";
 	public static final String MAT_TEXT_ALREADY_EXIST = "Material text data already exist on DB";
 	public static final String MAT_TEXT_NOT_FOUND = "Material text data not found on DB";
+	
+	
+	
+	// Owner
+	public static final String OWNER_ALREADY_EXIST = "Owner data already exist on DB";	
+	public static final String OWNER_NOT_FOUND = "Owner data not found on DB";
+	public static final String OWNER_TECH_FIELD_SHOULD_BE_EMPTY = "Owner: technical fields shouldn't be filled";
+	public static final String OWNER_PERSON_NOT_CHANGED = "Owner: Person not changed";
+	public static final String OWNER_PERSON_CANT_BE_CHANGED = "Owner: Person can't be changed";	
 			
 	
 	
-	//Employee
+	// Employee
 	public static final String EMP_ALREALDY_EXIST = "Employee's data already exist on DB";	
 	public static final String EMP_CPF_ALREADY_EXIST = "Employee's CPF already exist on DB";	
 	public static final String EMP_CPF_NOT_FOUND = "Employee's CPF not found on DB";	
@@ -135,7 +142,7 @@ public final class SystemMessage {
 	
 	
 			
-	//Store		
+	// Store		
 	public static final String STORE_ALREALDY_EXIST = "Store's data already exist on DB";	
 	public static final String STORE_NOT_FOUND = "Store's data not found on DB";
 	public static final String STORE_CNPJ_ALREADY_EXIST = "Store's CNPJ already exist on DB";	
@@ -164,7 +171,7 @@ public final class SystemMessage {
 		
 	
 	
-	//Customer
+	// Customer
 	public static final String CUS_ALREADY_EXIST = "Customer's data already exist on DB";	
 	public static final String CUS_CPF_ALREADY_EXIST = "Customer's CPF already exist on DB";	
 	public static final String CUS_CPF_NOT_FOUND = "Customer's CPF not found on DB";	
@@ -179,7 +186,7 @@ public final class SystemMessage {
 	
 	
 	
-	//Cart
+	// Cart
 	public static final String CART_ALREADY_EXIST = "Cart's data already exist on DB";	
 	public static final String CART_HAVE_ITEM = "Cart still has items";	
 	public static final String CART_IS_EMPTY = "Cart is empty";
@@ -191,18 +198,18 @@ public final class SystemMessage {
 	
 		
 	
-	//Order
+	// Order
 	public static final String ORDER_STATUS_ALREADY_EXIST = "Order Status already exist on DB";	
 	public static final String ORDER_STATUS_NOT_FOUND = "Order Status not found on DB";
 	
 		
 	
-	//Total Amount
+	// Total Amount
 	public static final String AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES = "Amount field does not have two decimal places";
 		
 	
 	
-	//Phone
+	// Phone
 	public static final String PHONE_NUMBER_IS_NULL = "Phone number is blank";
 	public static final String PHONE_NUMBER_IS_FILLED = "Phone number is not blank";
 	public static final String PHONE_COUNTRY_IS_BR = "Phone country code refers to Brazil";
@@ -231,7 +238,7 @@ public final class SystemMessage {
 		
 	
 	
-	//Address
+	// Address
 	public static final String ADDRESS_IS_NULL = "Address is blank";
 	public static final String ADDRESS_IS_FILLED = "Address is not blank";
 	public static final String ADDRESS_NOT_FOUND = "Address not found on DB";
@@ -249,7 +256,7 @@ public final class SystemMessage {
 			
 	
 	
-	//Form
+	// Form
 	public static final String FORM_ADDRESS_ALREADY_EXIST = "Address form already exist on DB";
 	public static final String FORM_ADDRESS_NOT_FOUND = "Address form not found on DB";
 	public static final String FORM_ADDRESS_INVALID = "Invalid address form";
@@ -257,7 +264,7 @@ public final class SystemMessage {
 	
 	
 	
-	//Person
+	// Person
 	public static final String PERSON_ALREADY_EXIST = "Person already exist on DB";	
 	public static final String PERSON_CPF_ALREADY_EXIST = "CPF already exist on DB";
 	public static final String PERSON_CPF_BLANK = "CPF is empty";	
@@ -284,7 +291,7 @@ public final class SystemMessage {
 	
 	
 	
-	//User
+	// User
 	public static final String USER_ALREADY_EXIST = "User's data already exist on DB";
 	public static final String USER_COD_IS_FILLED = "Code User should be blank";
 	public static final String USER_NOT_FOUND = "User's data not found on DB";
@@ -294,13 +301,13 @@ public final class SystemMessage {
 			
 	
 	
-	//Snapshot
+	// Snapshot
 	public static final String SNAPSHOT_ALREADY_EXIST = "Snapshot already exist on DB";	
 	public static final String SNAPSHOT_NOT_FOUND = "Snapshot not found on DB";	
 	
 	
 	
-	//PersonUser	
+	// PersonUser	
 	public static final String PERSON_USER_ALREADY_EXIST = "Person-User data already exist on DB";
 	public static final String PERSON_USER_CPF_IS_FILLED = "Person-User's CPF is not blank";
 	public static final String PERSON_USER_CPF_IS_NULL = "Person-User's CPF is blank";
@@ -311,7 +318,7 @@ public final class SystemMessage {
 	
 	
 	
-	//Address Snapshot
+	// Address Snapshot
 	public static final String ADDRESS_SNAPSHOT_ALREADY_EXIST = "Address-Snapshot already exist";
 	public static final String ADDRESS_SNAPSHOT_IS_NULL = "Address-Snapshot: Snapshot code is blank";	
 	public static final String ADDRESS_SNAPSHOT_IS_FILLED = "Address-Snapshot: Snapshot code is not blank";	
@@ -319,7 +326,7 @@ public final class SystemMessage {
 	
 	
 	
-	//Phone Snapshot
+	// Phone Snapshot
 	public static final String PHONE_SNAPSHOT_ALREADY_EXIST = "Phone-Snapshot already exist";
 	public static final String PHONE_SNAPSHOT_IS_NULL = "Phone-Snapshot: Snapshot code is blank";	
 	public static final String PHONE_SNAPSHOT_IS_FILLED = "Phone-Snapshot: Snapshot code is not blank";	
@@ -327,14 +334,14 @@ public final class SystemMessage {
 	
 	
 	
-	//Person Snapshot
+	// Person Snapshot
 	public static final String PERSON_SNAPSHOT_ALREADY_EXIST = "Person-Snapshot already exist";
 	public static final String PERSON_SNAPSHOT_IS_NULL = "Person-Snapshot: Snapshot code is blank";		
 	public static final String PERSON_SNAPSHOT_NOT_FOUND = "Person-Snapshot not found on DB";	
 	
 	
 	
-	//PersonCustomer	
+	// PersonCustomer	
 	public static final String PERSON_CUS_ALREADY_EXIST = "Person-Customer data already exist on DB";
 	public static final String PERSON_CUS_CPF_IS_FILLED = "Person-Customer's CPF is not blank";
 	public static final String PERSON_CUS_CPF_IS_NULL = "Person-Customer's CPF is blank";
@@ -345,7 +352,7 @@ public final class SystemMessage {
 	
 	
 	
-	//User Snapshot
+	// User Snapshot
 	public static final String USER_SNAPSHOT_ALREADY_EXIST = "User-Snapshot's data already exist on DB";
 	public static final String USER_SNAPSHOT_IS_NULL = "User-Snapshot: Snapshot code is blank";		
 	public static final String USER_SNAPSHOT_NO_ADDRESS = "User-Snapshot: User has no address";
@@ -354,7 +361,7 @@ public final class SystemMessage {
 	
 	
 	
-	//Material Snapshot
+	// Material Snapshot
 	public static final String MATERIAL_SNAPSHOT_ALREADY_EXIST = "Material-Snapshot's data already exist on DB";	
 	public static final String MATERIAL_SNAPSHOT_IS_NULL = "Material-Snapshot: Snapshot code is blank";
 	public static final String MATERIAL_SNAPSHOT_TEXT_ALREADY_EXIST = "Material-Snapshot: Material Text already exist on DB";
@@ -363,26 +370,26 @@ public final class SystemMessage {
 	
 	
 	
-	//Cart Snapshot
+	// Cart Snapshot
 	public static final String CART_SNAPSHOT_ALREADY_EXIST = "Cart-Snapshot's data already exist on DB";	
 	public static final String CART_SNAPSHOT_IS_NULL = "Cart-Snapshot: Snapshot code is blank";
 	public static final String CART_SNAPSHOT_NOT_FOUND = "Cart-Snapshot's data not found on DB";
 	
 	
 	
-	//Pay Partner-Store
+	// Pay Partner-Store
 	public static final String PAY_PARTNER_STORE_ALREADY_EXIST = "Pay Partner-Store's data already exist on DB";
 	public static final String PAY_PARTNER_STORE_NOT_FOUND = "Pay Partner-Store's data not found on DB";
 	
 	
 	
-	//Pay Partner-Country
+	// Pay Partner-Country
 	public static final String PAY_PARTNER_COUNTRY_ALREADY_EXIST = "Pay Partner-Country's data already exist on DB";
 	public static final String PAY_PARTNER_COUNTRY_NOT_FOUND = "Pay Partner-Country's data not found on DB";
 	
 	
 		
-	//Pay-Customer
+	// Pay-Customer
 	public static final String PAY_CUS_ALREADY_EXIST = "Pay-Customer's data already exist on DB";		
 	public static final String PAY_CUS_NOT_FOUND = "Pay-Customer's data not found on DB";
 	public static final String PAY_CUS_PERSON_CANT_BE_CHANGED = "Pay-Person can't be changed";	
@@ -393,7 +400,7 @@ public final class SystemMessage {
 	
 	
 	
-	//Company		
+	// Company		
 	public static final String COMPANY_ALREADY_EXIST = "Company already exist on DB";	
 	public static final String COMPANY_CNPJ_ALREADY_EXIST = "CNPJ already exist on DB";
 	public static final String COMPANY_CNPJ_BLANK = "CNPJ is empty";	

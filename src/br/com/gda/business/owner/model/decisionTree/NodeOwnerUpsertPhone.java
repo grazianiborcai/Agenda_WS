@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.action.LazyOwnerMergeAddress;
-import br.com.gda.business.owner.model.action.LazyOwnerMergePerson;
-import br.com.gda.business.owner.model.action.LazyOwnerMergePersonUser;
-import br.com.gda.business.owner.model.action.LazyOwnerMergePhone;
-import br.com.gda.business.owner.model.action.StdOwnerSelect;
-import br.com.gda.business.owner.model.checker.OwnerCheckRead;
-import br.com.gda.model.action.ActionLazy;
+import br.com.gda.business.owner.model.action.StdOwnerSuccess;
+import br.com.gda.business.owner.model.action.StdOwnerUpsertPhone;
+import br.com.gda.business.owner.model.checker.OwnerCheckHasPhone;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -21,28 +18,37 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
-	private DeciTree<OwnerInfo> tree;		
-		
-	public RootOwnerSelect(DeciTreeOption<OwnerInfo> option) {
+public final class NodeOwnerUpsertPhone implements DeciTree<OwnerInfo> {
+	private DeciTree<OwnerInfo> tree;
+	
+	
+	public NodeOwnerUpsertPhone(DeciTreeOption<OwnerInfo> option) {
 		DeciTreeHelperOption<OwnerInfo> helperOption = new DeciTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
+		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
 	
 	
 	
-	private ModelChecker<OwnerInfo> buildDecisionChecker() {
+	private ModelChecker<OwnerInfo> buildDecisionChecker(DeciTreeOption<OwnerInfo> option) {
+		final boolean HAS_ADDRESS = true;
+		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new OwnerCheckRead();
-		queue.add(checker);
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = HAS_ADDRESS;		
+		checker = new OwnerCheckHasPhone(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -58,18 +64,16 @@ public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> select = new StdOwnerSelect(option);
-		ActionLazy<OwnerInfo> mergePerson = new LazyOwnerMergePerson(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> mergeAddress = new LazyOwnerMergeAddress(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> mergePhone = new LazyOwnerMergePhone(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> mergePersonUser = new LazyOwnerMergePersonUser(option.conn, option.schemaName);
+		actions.add(new StdOwnerUpsertPhone(option));		
+		return actions;
+	}
+	
+	
+	
+	private List<ActionStd<OwnerInfo>> buildActionsOnFailed(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		select.addPostAction(mergePerson);
-		mergePerson.addPostAction(mergeAddress);
-		mergeAddress.addPostAction(mergePhone);
-		mergePhone.addPostAction(mergePersonUser);
-		
-		actions.add(select);
+		actions.add(new StdOwnerSuccess(option));		
 		return actions;
 	}
 	
@@ -91,4 +95,3 @@ public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 		return tree.getDecisionResult();
 	}
 }
-	

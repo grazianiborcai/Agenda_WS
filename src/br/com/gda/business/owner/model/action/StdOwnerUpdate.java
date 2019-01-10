@@ -1,9 +1,9 @@
-package br.com.gda.business.owner.model.decisionTree;
+package br.com.gda.business.owner.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.owner.dao.OwnerSelect;
+import br.com.gda.business.owner.dao.OwnerUpdate;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
@@ -13,11 +13,11 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionOwnerSelect implements ActionStd<OwnerInfo> {
+public final class StdOwnerUpdate implements ActionStd<OwnerInfo> {
 	private ActionStd<OwnerInfo> actionHelper;
 	
 	
-	public ActionOwnerSelect(DeciTreeOption<OwnerInfo> option) {
+	public StdOwnerUpdate(DeciTreeOption<OwnerInfo> option) {
 		DaoStmtExec<OwnerInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
@@ -35,7 +35,7 @@ final class ActionOwnerSelect implements ActionStd<OwnerInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new OwnerSelect(stmtExecOptions);
+		return new OwnerUpdate(stmtExecOptions);
 	}
 	
 	

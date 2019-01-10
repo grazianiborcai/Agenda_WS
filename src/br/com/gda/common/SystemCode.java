@@ -98,7 +98,7 @@ public final class SystemCode {
 	public static final int ENTITY_CATEG_ALREADY_EXIST					= 1180;
 	public static final int ENTITY_CATEG_NOT_FOUND						= 1181;
 	
-	//Material
+	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
 	public static final int MAT_NOT_FOUND								= 1201;
 	public static final int MAT_TEXT_ALREADY_EXIST						= 1202;
@@ -106,9 +106,12 @@ public final class SystemCode {
 	public static final int MAT_SERVICE									= 1204;
 	public static final int MAT_NOT_SERVICE								= 1205;
 	
-	//Owner
+	// Owner
 	public static final int OWNER_ALREADY_EXIST							= 1250;
 	public static final int OWNER_NOT_FOUND								= 1251;
+	public static final int OWNER_TECH_FIELD_SHOULD_BE_EMPTY			= 1252;
+	public static final int OWNER_PERSON_NOT_CHANGED					= 1253;
+	public static final int OWNER_PERSON_CANT_BE_CHANGED				= 1254;
 	
 	// Employee Leave Date
 	public static final int EMP_LDATE_ALREADY_EXIST 					= 1300;
@@ -117,7 +120,7 @@ public final class SystemCode {
 	public static final int EMP_LDATE_NO_LEAVE_FOUND					= 1303;
 	public static final int EMP_LDATE_LEAVE_FOUND						= 1304;
 	
-	//Customer
+	// Customer
 	public static final int CUS_CPF_ALREADY_EXIST						= 1350;
 	public static final int CUS_CPF_NOT_FOUND							= 1351;	
 	public static final int CUS_EMAIL_ALREADY_EXIST						= 1352;
@@ -130,7 +133,7 @@ public final class SystemCode {
 	public static final int CUS_PERSON_NOT_CHANGED						= 1359;
 	public static final int CUS_TECH_FIELD_SHOULD_BE_EMPTY				= 1360;
 	
-	//Cart
+	// Cart
 	public static final int CART_ALREADY_EXIST							= 1400;
 	public static final int CART_NOT_FOUND								= 1401;
 	public static final int CART_ITEM_ALREADY_EXIST 					= 1402;
@@ -140,14 +143,14 @@ public final class SystemCode {
 	public static final int CART_MAT_ALREADY_EXIST 						= 1406;
 	public static final int CART_MAT_NOT_FOUND 							= 1407;
 	
-	//Order
+	// Order
 	public static final int ORDER_STATUS_ALREADY_EXIST 					= 1450;
 	public static final int ORDER_STATUS_NOT_FOUND 						= 1451;
 	
-	//Total Amount
+	// Total Amount
 	public static final int AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES			= 1500;
 	
-	//Phone
+	// Phone
 	public static final int PHONE_NUMBER_IS_NULL						= 1550;
 	public static final int PHONE_NUMBER_IS_FILLED						= 1551;
 	public static final int PHONE_COUNTRY_IS_BR							= 1552;
@@ -174,7 +177,7 @@ public final class SystemCode {
 	public static final int PHONE_TECH_FIELD_SHOULD_BE_EMPTY			= 1573;
 	public static final int PHONE_COD_IS_BLANK							= 1574;
 	
-	//Address
+	// Address
 	public static final int ADDRESS_IS_NULL								= 1600;
 	public static final int ADDRESS_IS_FILLED							= 1601;
 	public static final int ADDRESS_NOT_FOUND							= 1602;
@@ -190,13 +193,13 @@ public final class SystemCode {
 	public static final int ADDRESS_TECH_FIELD_SHOULD_BE_EMPTY			= 1612;
 	public static final int ADDRESS_COD_IS_BLANK						= 1613;
 	
-	//Form
+	// Form
 	public static final int FORM_ADDRESS_ALREADY_EXIST					= 1700;
 	public static final int FORM_ADDRESS_NOT_FOUND						= 1701;
 	public static final int FORM_ADDRESS_INVALID						= 1702;
 	public static final int FORM_PHONE_INVALID							= 1703;
 	
-	//Person
+	// Person
 	public static final int PERSON_CPF_BLANK							= 1750;
 	public static final int PERSON_CPF_INVALID_NUMBER					= 1751;
 	public static final int PERSON_CPF_INVALID_LENGTH					= 1752;
@@ -221,7 +224,7 @@ public final class SystemCode {
 	public static final int PERSON_EMAIL_NO_ERASURE						= 1771;
 	public static final int PERSON_TECH_FIELD_SHOULD_BE_EMPTY			= 1772;
 	
-	//User
+	// User
 	public static final int USER_COD_IS_FILLED							= 1800;
 	public static final int USER_TECH_FIELD_SHOULD_BE_EMPTY				= 1801;
 	public static final int USER_PERSON_NOT_CHANGED						= 1802;
@@ -229,11 +232,11 @@ public final class SystemCode {
 	public static final int USER_ALREADY_EXIST 							= 1804;
 	public static final int USER_NOT_FOUND 								= 1805;
 	
-	//Snapshot
+	// Snapshot
 	public static final int SNAPSHOT_ALREADY_EXIST 						= 1850;
 	public static final int SNAPSHOT_NOT_FOUND 							= 1851;
 	
-	//PersonUser
+	// PersonUser
 	public static final int PERSON_USER_WITHOUT_REFERENCE				= 1900;
 	public static final int PERSON_USER_EMAIL_IS_NULL					= 1901;
 	public static final int PERSON_USER_EMAIL_IS_FILLED					= 1902;
@@ -242,24 +245,24 @@ public final class SystemCode {
 	public static final int PERSON_USER_ALREADY_EXIST					= 1905;
 	public static final int PERSON_USER_NOT_FOUND						= 1906;
 	
-	//Address Snapshot
+	// Address Snapshot
 	public static final int ADDRESS_SNAPSHOT_IS_NULL 					= 2000;	
 	public static final int ADDRESS_SNAPSHOT_IS_FILLED 					= 2001;	
 	public static final int ADDRESS_SNAPSHOT_NOT_FOUND					= 2002;
 	public static final int ADDRESS_SNAPSHOT_ALREADY_EXIST				= 2003;
 	
-	//Phone Snapshot
+	// Phone Snapshot
 	public static final int PHONE_SNAPSHOT_IS_NULL 						= 2050;	
 	public static final int PHONE_SNAPSHOT_IS_FILLED 					= 2051;	
 	public static final int PHONE_SNAPSHOT_NOT_FOUND					= 2052;
 	public static final int PHONE_SNAPSHOT_ALREADY_EXIST				= 2053;
 	
-	//Person Snapshot
+	// Person Snapshot
 	public static final int PERSON_SNAPSHOT_IS_NULL 					= 2100;	
 	public static final int PERSON_SNAPSHOT_NOT_FOUND					= 2101;
 	public static final int PERSON_SNAPSHOT_ALREADY_EXIST				= 2102;
 	
-	//PersonCustomer
+	// PersonCustomer
 	public static final int PERSON_CUS_WITHOUT_REFERENCE				= 2150;
 	public static final int PERSON_CUS_EMAIL_IS_NULL					= 2101;
 	public static final int PERSON_CUS_EMAIL_IS_FILLED					= 2102;
@@ -268,34 +271,34 @@ public final class SystemCode {
 	public static final int PERSON_CUS_ALREADY_EXIST					= 2105;
 	public static final int PERSON_CUS_NOT_FOUND						= 2106;
 	
-	//User Snapshot
+	// User Snapshot
 	public static final int USER_SNAPSHOT_ALREADY_EXIST 				= 2150;
 	public static final int USER_SNAPSHOT_NOT_FOUND 					= 2151;
 	public static final int USER_SNAPSHOT_IS_NULL 						= 2152;	
 	public static final int USER_SNAPSHOT_NO_ADDRESS					= 2153;	
 	public static final int USER_SNAPSHOT_NO_PHONE						= 2154;
 	
-	//Material Snapshot
+	// Material Snapshot
 	public static final int MATERIAL_SNAPSHOT_IS_NULL 					= 2200;	
 	public static final int MATERIAL_SNAPSHOT_ALREADY_EXIST 			= 2201;
 	public static final int MATERIAL_SNAPSHOT_NOT_FOUND 				= 2202;
 	public static final int MATERIAL_SNAPSHOT_TEXT_NOT_FOUND			= 2203;
 	public static final int MATERIAL_SNAPSHOT_TEXT_ALREADY_EXIST		= 2204;
 	
-	//Cart Snapshot
+	// Cart Snapshot
 	public static final int CART_SNAPSHOT_IS_NULL 						= 2250;	
 	public static final int CART_SNAPSHOT_ALREADY_EXIST 				= 2251;
 	public static final int CART_SNAPSHOT_NOT_FOUND 					= 2252;
 	
-	//Pay Partner-Store
+	// Pay Partner-Store
 	public static final int PAY_PARTNER_STORE_ALREADY_EXIST 			= 2300;
 	public static final int PAY_PARTNER_STORE_NOT_FOUND 				= 2301;
 	
-	//Pay Partner-Country
+	// Pay Partner-Country
 	public static final int PAY_PARTNER_COUNTRY_ALREADY_EXIST 			= 2350;
 	public static final int PAY_PARTNER_COUNTRY_NOT_FOUND 				= 2351;
 	
-	//Pay-Customer
+	// Pay-Customer
 	public static final int PAY_CUS_ALREADY_EXIST 						= 2400;
 	public static final int PAY_CUS_NOT_FOUND 							= 2401;
 	public static final int PAY_CUS_PERSON_CANT_BE_CHANGED				= 2402;
@@ -304,7 +307,7 @@ public final class SystemCode {
 	public static final int PAY_CUS_USER_ALREADY_EXIST					= 2405;
 	public static final int PAY_CUS_USER_NOT_FOUND						= 2406;
 	
-	//Company
+	// Company
 	public static final int COMPANY_TECH_FIELD_SHOULD_BE_EMPTY			= 2500;
 	public static final int COMPANY_CNPJ_BLANK							= 2501;
 	public static final int COMPANY_CNPJ_ALREADY_EXIST					= 2502;
