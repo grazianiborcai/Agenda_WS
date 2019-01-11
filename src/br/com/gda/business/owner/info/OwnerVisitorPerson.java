@@ -39,6 +39,7 @@ final class OwnerVisitorPerson implements InfoMergerVisitor<OwnerInfo, PersonInf
 	
 	private OwnerInfo merge(PersonInfo sourceOne, OwnerInfo sourceTwo) {
 		sourceTwo.personData = makeClone(sourceOne);
+		sourceTwo.codPerson = sourceOne.codPerson;
 		return sourceTwo;
 	}
 	

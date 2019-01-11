@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
@@ -106,6 +107,19 @@ public final class OwnerUpdateSingle implements DaoStmt<OwnerInfo> {
 			int i = 1;					
 			stmt.setTimestamp(i++, lastChanged);	
 			stmt.setString(i++, recordInfo.recordMode);	
+			
+			if (recordInfo.codPerson >= 0) {
+				stmt.setLong(i++, recordInfo.codPerson);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codCompany >= 0) {
+				stmt.setLong(i++, recordInfo.codCompany);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
 			
 			return stmt;
 		}		

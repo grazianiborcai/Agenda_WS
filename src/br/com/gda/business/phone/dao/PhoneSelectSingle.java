@@ -144,6 +144,10 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPayCustomer = stmtResult.getLong(PhoneDbTableColumn.COL_COD_PAY_CUSTOMER);	
 				
+				stmtResult.getLong(PhoneDbTableColumn.COL_COD_OWNER_REF);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codOwnerRef = stmtResult.getLong(PhoneDbTableColumn.COL_COD_OWNER_REF);	
+				
 				Timestamp lastChanged = stmtResult.getTimestamp(PhoneDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();		

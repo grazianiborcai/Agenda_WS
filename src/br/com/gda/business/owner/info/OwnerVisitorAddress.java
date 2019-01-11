@@ -46,7 +46,8 @@ final class OwnerVisitorAddress implements InfoMergerVisitor<OwnerInfo, AddressI
 	
 	
 	@Override public boolean shouldWrite(AddressInfo sourceOne, OwnerInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+		return (sourceOne.codOwner 		== sourceTwo.codOwner &&
+				sourceOne.codOwnerRef 	== sourceTwo.codOwner		);
 	}	
 	
 	

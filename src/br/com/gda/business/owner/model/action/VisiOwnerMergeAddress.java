@@ -1,7 +1,9 @@
 package br.com.gda.business.owner.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
+import br.com.gda.business.address.info.AddressCopier;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
 import br.com.gda.business.owner.info.OwnerInfo;
@@ -26,5 +28,11 @@ final class VisiOwnerMergeAddress extends ActionVisitorTemplateMerge<OwnerInfo, 
 	
 	@Override protected Class<? extends InfoWritterFactory<OwnerInfo>> getMergerClassHook() {
 		return OwnerMerger.class;
+	}
+	
+	
+	
+	@Override protected List<AddressInfo> toActionClassHook(List<OwnerInfo> recordInfos) {
+		return AddressCopier.copyFromOwner(recordInfos);	
 	}
 }

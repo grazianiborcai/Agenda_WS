@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,6 +88,18 @@ public final class OwnerInsertSingle implements DaoStmt<OwnerInfo> {
 			int i = 1;
 			stmt.setTimestamp(i++, lastChanged);
 			stmt.setString(i++, recordInfo.recordMode);
+			
+			if (recordInfo.codPerson >= 0) {
+				stmt.setLong(i++, recordInfo.codPerson);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			if (recordInfo.codCompany >= 0) {
+				stmt.setLong(i++, recordInfo.codCompany);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
 			
 			return stmt;
 		}		

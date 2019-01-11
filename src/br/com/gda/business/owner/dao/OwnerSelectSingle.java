@@ -102,6 +102,7 @@ public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<OwnerInfo> {
+		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<OwnerInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -114,6 +115,14 @@ public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
 				OwnerInfo dataInfo = new OwnerInfo();
 				dataInfo.codOwner = stmtResult.getLong(OwnerDbTableColumn.COL_COD_OWNER);
 				dataInfo.recordMode = stmtResult.getString(OwnerDbTableColumn.COL_RECORD_MODE);
+				
+				stmtResult.getLong(OwnerDbTableColumn.COL_COD_PERSON);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPerson = stmtResult.getLong(OwnerDbTableColumn.COL_COD_PERSON);
+				
+				stmtResult.getLong(OwnerDbTableColumn.COL_COD_COMPANY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codCompany = stmtResult.getLong(OwnerDbTableColumn.COL_COD_COMPANY);
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(OwnerDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)

@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.action.LazyOwnerMergeAddress;
+import br.com.gda.business.owner.model.action.LazyOwnerMergeComp;
 import br.com.gda.business.owner.model.action.LazyOwnerMergePerson;
 import br.com.gda.business.owner.model.action.LazyOwnerMergePersonUser;
 import br.com.gda.business.owner.model.action.LazyOwnerMergePhone;
@@ -60,14 +61,16 @@ public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 		
 		ActionStd<OwnerInfo> select = new StdOwnerSelect(option);
 		ActionLazy<OwnerInfo> mergePerson = new LazyOwnerMergePerson(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> mergeComp = new LazyOwnerMergeComp(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> mergeAddress = new LazyOwnerMergeAddress(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> mergePhone = new LazyOwnerMergePhone(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> mergePersonUser = new LazyOwnerMergePersonUser(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
-		mergePerson.addPostAction(mergeAddress);
+		mergePerson.addPostAction(mergeComp);
+		mergeComp.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
-		mergePhone.addPostAction(mergePersonUser);
+		//mergePhone.addPostAction(mergePersonUser);
 		
 		actions.add(select);
 		return actions;

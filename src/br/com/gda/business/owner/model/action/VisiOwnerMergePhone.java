@@ -1,9 +1,11 @@
 package br.com.gda.business.owner.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.info.OwnerMerger;
+import br.com.gda.business.phone.info.PhoneCopier;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.decisionTree.RootPhoneSelect;
 import br.com.gda.info.InfoWritterFactory;
@@ -26,5 +28,11 @@ final class VisiOwnerMergePhone extends ActionVisitorTemplateMerge<OwnerInfo, Ph
 	
 	@Override protected Class<? extends InfoWritterFactory<OwnerInfo>> getMergerClassHook() {
 		return OwnerMerger.class;
+	}
+	
+	
+	
+	@Override protected List<PhoneInfo> toActionClassHook(List<OwnerInfo> recordInfos) {
+		return PhoneCopier.copyFromOwner(recordInfos);	
 	}
 }

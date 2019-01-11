@@ -45,15 +45,11 @@ public final class PhoneUpdateSingle implements DaoStmt<PhoneInfo> {
 	
 	
 	
-	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean IGNORE_NON_PK = true;
-		final boolean IGNORE_RECORD_MODE = true;
-		
+	private String buildWhereClause() {		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
-		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;
 		
 		DaoStmtWhere whereClause = new PhoneWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -145,6 +141,13 @@ public final class PhoneUpdateSingle implements DaoStmt<PhoneInfo> {
 				stmt.setNull(i++, Types.INTEGER);
 			} else {
 				stmt.setLong(i++, recordInfo.codPayCustomer);
+			}	
+			
+			
+			if (DaoFormatter.boxNumber(recordInfo.codOwnerRef) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codOwnerRef);
 			}	
 			
 			

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
@@ -12,6 +13,8 @@ import br.com.gda.info.InfoRecord;
 
 public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public long codPerson;
+	public long codCompany;
 	public String codEntityCateg;
 	public LocalDateTime lastChanged;
 	public String codLanguage;
@@ -19,17 +22,21 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
 	public UserInfo userData;
+	public CompInfo companyData;
 	public PersonInfo personData;
 	
 	
 	
 	public OwnerInfo() {
 		codOwner = DefaultValue.number();
+		codPerson = DefaultValue.number();
+		codCompany = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		recordMode = DefaultValue.recordMode();		
 		userData = DefaultValue.object();
+		companyData = DefaultValue.object();
 		personData = DefaultValue.object();
 	}
 	

@@ -46,7 +46,8 @@ final class OwnerVisitorPhone implements InfoMergerVisitor<OwnerInfo, PhoneInfo,
 
 	
 	@Override public boolean shouldWrite(PhoneInfo sourceOne, OwnerInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+		return (sourceOne.codOwner 		== sourceTwo.codOwner 	&&
+				sourceOne.codOwnerRef 	== sourceTwo.codOwner		);
 	}		
 	
 	

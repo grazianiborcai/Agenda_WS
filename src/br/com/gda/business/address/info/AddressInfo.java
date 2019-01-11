@@ -15,6 +15,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	public long codEmployee;
 	public long codUser;
 	public long codPayCustomer;
+	public long codOwnerRef;
 	public String codCountry;
 	public String txtCountry;
 	public String codState;
@@ -48,7 +49,8 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codUser = DefaultValue.number();
-		codPayCustomer = DefaultValue.number();;
+		codPayCustomer = DefaultValue.number();
+		codOwnerRef = DefaultValue.number();
 		longitude = DefaultValue.number();
 		latitude = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
@@ -125,6 +127,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codEmployee 		^ (codEmployee 		>>> 32));
 		result = result * 31 + (int) (codUser 			^ (codUser 			>>> 32));
 		result = result * 31 + (int) (codPayCustomer 	^ (codPayCustomer 	>>> 32));
+		result = result * 31 + (int) (codOwnerRef 		^ (codOwnerRef 		>>> 32));
 		
 		if (codCountry != null)
 			result = result * 31 + codCountry.hashCode();
@@ -194,6 +197,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 				codEmployee		== obj.codEmployee					&&
 				codUser			== obj.codUser						&&
 				codPayCustomer	== obj.codPayCustomer				&&
+				codOwnerRef		== obj.codOwnerRef					&&
 				super.isStringEqual(codCountry, obj.codCountry)		&&				
 				super.isStringEqual(codState, obj.codState)			&&
 				super.isStringEqual(city, obj.city)					&&

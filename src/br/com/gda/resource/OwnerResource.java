@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.business.owner.model.OwnerModelInsert;
 import br.com.gda.business.owner.model.OwnerModelSelect;
 import br.com.gda.legacy.model.OwnerModel;
 import br.com.gda.model.Model;
@@ -28,7 +29,6 @@ public class OwnerResource {
 	private static final String SELECT_OWNER 	= "/selectOwner"	;
 	private static final String LOGIN_OWNER  	= "/loginOwner" 	;
 	private static final String CHANGE_PASSWORD = "/changePassword"	;
-	private static final String INSERT_CUSTOMER = "/insertCustomer"	;
 	
 	
 	
@@ -54,10 +54,10 @@ public class OwnerResource {
 	@Path(INSERT_OWNER)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertOwner(String incomingData) {		
-		//TODO: o Owner é na verdade um grupo/franquia. Pode ser visto como um usuário Master/Admin com acesso total ao sistema. 
-		//dessa forma não precisa de dados de pessoa física/jurídica. Basta um email, senha, nome da rede/grupo/franquia, telefone
-		//TODO: verificar se é interessante criar como employee
-		return new OwnerModel().insertOwner(incomingData);
+		
+		Model model = new OwnerModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -102,15 +102,5 @@ public class OwnerResource {
 			@HeaderParam("newPassword") String newPassword) {													
 																												
 		return new OwnerModel().changePassword(codOwner, newPassword);											
-	}																											
-	
-	
-	
-	@POST
-	@Path(INSERT_CUSTOMER)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertCustomer(String incomingData) {
-		//TODO: realmente precisa desse serviço? Não pode usar o CustomerResource ?
-		return new OwnerModel().insertCustomer(incomingData);
 	}
 }

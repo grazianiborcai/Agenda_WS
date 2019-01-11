@@ -12,6 +12,7 @@ public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_EMPLOYEE = "cod_employee";	
 	public static final String COL_COD_OWNER = "cod_owner";
+	public static final String COL_COD_OWNER_REF = "cod_owner_ref";
 	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";
 	public static final String COL_COD_PHONE = "cod_phone";
 	public static final String COL_COD_STORE = "cod_store";
@@ -136,6 +137,14 @@ public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_PAY_CUSTOMER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_OWNER_REF;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

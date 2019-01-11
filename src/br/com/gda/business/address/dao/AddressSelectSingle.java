@@ -49,12 +49,9 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new AddressWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -155,6 +152,10 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 				stmtResult.getLong(AddressDbTableColumn.COL_COD_PAY_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPayCustomer = stmtResult.getLong(AddressDbTableColumn.COL_COD_PAY_CUSTOMER);	
+				
+				stmtResult.getLong(AddressDbTableColumn.COL_COD_OWNER_REF);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codOwnerRef = stmtResult.getLong(AddressDbTableColumn.COL_COD_OWNER_REF);
 				
 				stmtResult.getFloat(AddressDbTableColumn.COL_LATITUDE);
 				if (stmtResult.wasNull() == NOT_NULL)

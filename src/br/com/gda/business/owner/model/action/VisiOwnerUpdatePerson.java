@@ -19,7 +19,7 @@ final class VisiOwnerUpdatePerson extends ActionVisitorTemplateAction<OwnerInfo,
 	}
 	
 	
-	
+	//TODO: isso parece que nao vai funcionar. Testar
 	@Override protected List<PersonInfo> toActionClassHook(List<OwnerInfo> recordInfos) {
 		List<PersonInfo> results = new ArrayList<>();
 		

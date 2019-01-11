@@ -102,8 +102,7 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<CusInfo> {
-		private final boolean NOT_NULL = false;
-		
+		private final boolean NOT_NULL = false;		
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<CusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
