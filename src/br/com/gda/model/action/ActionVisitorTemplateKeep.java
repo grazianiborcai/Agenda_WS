@@ -1,6 +1,5 @@
-package br.com.gda.model.action.commom;
+package br.com.gda.model.action;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.util.Collections;
@@ -12,18 +11,15 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionVisitorEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorEnforce<T> {
+public abstract class ActionVisitorTemplateKeep<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorEnforce<T> {
 	private DeciTreeOption<S> selOption;
 	private Class<S> sClazz;
 	
 
-	public ActionVisitorTemplateMerge(Connection conn, String schemaName, Class<S> clazz) {
+	public ActionVisitorTemplateKeep(Connection conn, String schemaName, Class<S> clazz) {
 		checkArgument(conn, schemaName, clazz);
 		makeOption(conn, schemaName);
 		
@@ -64,9 +60,9 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 		
 	@Override public List<T> executeTransformation(List<T> recordInfos) {
 		addRecordToOption(recordInfos);
-		List<S> selectedInfos = selectToMerge();
+		List<S> selectedInfos = selectToKeep();
 		
-		return merge(recordInfos, selectedInfos);
+		return keep(recordInfos, selectedInfos);
 	}	
 	
 	
@@ -100,8 +96,8 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	
 	
-	private List<S> selectToMerge() {
-		ActionStd<S> mainAction = buildAction();
+	private List<S> selectToKeep() {
+		ActionStd<S> mainAction = getActionHook(selOption);
 		mainAction.executeAction();
 		
 		return buildResult(mainAction.getDecisionResult());
@@ -109,21 +105,7 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	
 	
-	private ActionStd<S> buildAction() {
-		try {
-			Class<? extends DeciTree<S>> actionClass = getTreeClassHook();
-			Constructor<? extends DeciTree<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStd<S>) actionConstru.newInstance(selOption).toAction();
-				
-			} catch (Exception e) {
-				logException(e);
-				throw new IllegalArgumentException(e);
-			}
-	}
-	
-	
-	
-	protected Class<? extends DeciTree<S>> getTreeClassHook() {
+	protected ActionStd<S> getActionHook(DeciTreeOption<S> option) {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
@@ -141,17 +123,17 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	
 	@SuppressWarnings("unchecked")
-	private List<T> merge(List<T> recordInfos, List<S> selectedInfos) {		
+	private List<T> keep(List<T> recordInfos, List<S> selectedInfos) {		
 		//TODO: Mover regra para dentro de Merger ???
 		if (selectedInfos.isEmpty())
 			return recordInfos;
 		
 		
 		try {			
-			Class<? extends InfoWritterFactory<T>> mergerClass = getMergerClassHook();
-			Method met = mergerClass.getMethod("merge", List.class, List.class);
+			Class<? extends InfoWritterFactory<T>> keeperClass = getKeeperClassHook();
+			Method met = keeperClass.getMethod("keep", List.class, List.class);
 			
-			InfoWritterFactory<T> writterInstance = mergerClass.getConstructor().newInstance();
+			InfoWritterFactory<T> writterInstance = keeperClass.getConstructor().newInstance();
 			return (List<T>) met.invoke(writterInstance, new Object[] {selectedInfos, recordInfos});
 				
 			} catch (Exception e) {
@@ -162,7 +144,7 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	
 	
-	protected Class<? extends InfoWritterFactory<T>> getMergerClassHook() {
+	protected Class<? extends InfoWritterFactory<T>> getKeeperClassHook() {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);

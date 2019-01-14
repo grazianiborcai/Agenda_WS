@@ -17,8 +17,11 @@ public final class OwnerCheckHasAddress extends ModelCheckerTemplateSimple<Owner
 	
 	
 	@Override protected boolean checkHook(OwnerInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.addresses == null || recordInfo.addresses.isEmpty())			
+		if (recordInfo.addresses == null)			
 			return super.FAILED;		
+		
+		if (recordInfo.addresses.isEmpty())			
+			return super.FAILED;
 		
 		return super.SUCCESS;
 	}

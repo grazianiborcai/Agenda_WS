@@ -7,7 +7,7 @@ import br.com.gda.business.address.info.AddressMerger;
 import br.com.gda.business.form.formAddress.info.FormAddressInfo;
 import br.com.gda.business.form.formAddress.model.decisionTree.RootFormAddressSelect;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiAddressMergeForm extends ActionVisitorTemplateMerge<AddressInfo, FormAddressInfo> {

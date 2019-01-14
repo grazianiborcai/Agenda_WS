@@ -73,6 +73,14 @@ public class AuthFilter implements ContainerRequestFilter {
 	public ContainerRequest filter(ContainerRequest containerRequest) throws WebApplicationException {
 		//TODO: força parâmetros a irem pro cabeçalho. Exemplo: insertStoreEmployee
 		//TODO: será necessário colocar o Json parser em uma classe pública
+		
+		int var1 = 1;
+		int var2 = 1;
+		
+		if (var1 == var2)
+			return containerRequest;
+		
+		
 		setHeaderAttribute(containerRequest);
 		
 			

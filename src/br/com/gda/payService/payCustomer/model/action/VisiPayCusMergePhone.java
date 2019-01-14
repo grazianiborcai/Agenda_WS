@@ -7,7 +7,7 @@ import java.util.List;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.decisionTree.RootPhoneSelect;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.payService.payCustomer.info.PayCusInfo;
 import br.com.gda.payService.payCustomer.info.PayCusMerger;

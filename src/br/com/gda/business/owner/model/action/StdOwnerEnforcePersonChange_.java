@@ -7,11 +7,11 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdOwnerEnforcePersonChange implements ActionStd<OwnerInfo> {
+public final class StdOwnerEnforcePersonChange_ implements ActionStd<OwnerInfo> {
 	private ActionStd<OwnerInfo> actionHelper;	
 	
 	
-	public StdOwnerEnforcePersonChange(DeciTreeOption<OwnerInfo> option) {			
+	public StdOwnerEnforcePersonChange_(DeciTreeOption<OwnerInfo> option) {			
 		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOwnerEnforcePersonChange());
 	}
 	

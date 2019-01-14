@@ -223,6 +223,8 @@ public final class SystemCode {
 	public static final int PERSON_EMAIL_ERASURE						= 1770;
 	public static final int PERSON_EMAIL_NO_ERASURE						= 1771;
 	public static final int PERSON_TECH_FIELD_SHOULD_BE_EMPTY			= 1772;
+	public static final int PERSON_IS_NULL								= 1773;
+	public static final int PERSON_IS_FILLED							= 1774;
 	
 	// User
 	public static final int USER_COD_IS_FILLED							= 1800;

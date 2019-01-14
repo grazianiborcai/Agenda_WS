@@ -16,6 +16,8 @@ public abstract class InfoPruner<T,S> {
 		
 		
 		for (T eachSourceOne : sourceOnes) {	
+			oneResult = null;
+			
 			for (S eachSourceTwo : sourceTwos) {				
 				if (oneResult == null) {
 					oneResult = tryToPrune(eachSourceOne, eachSourceTwo, visitor);

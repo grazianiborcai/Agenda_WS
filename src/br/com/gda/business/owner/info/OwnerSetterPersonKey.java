@@ -32,6 +32,7 @@ public final class OwnerSetterPersonKey implements InfoSetter<OwnerInfo> {
 	
 	private OwnerInfo setPersonKey(OwnerInfo recordInfo) {
 		recordInfo.personData.codOwner = recordInfo.codOwner;
+		recordInfo.personData.codPerson = recordInfo.codPerson;
 		recordInfo.personData.codEntityCateg = recordInfo.codEntityCateg;
 		
 		return recordInfo;

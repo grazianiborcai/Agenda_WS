@@ -7,7 +7,7 @@ import br.com.gda.business.company.model.decisionTree.RootCompSelect;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.info.OwnerMerger;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiOwnerMergeComp extends ActionVisitorTemplateMerge<OwnerInfo, CompInfo> {

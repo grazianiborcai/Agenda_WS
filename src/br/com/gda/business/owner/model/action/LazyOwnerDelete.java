@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOwnerDeletePhone extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
+public final class LazyOwnerDelete extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
 	
-	public LazyOwnerDeletePhone(Connection conn, String schemaName) {
+	public LazyOwnerDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOwnerDeletePhone extends ActionLazyTemplate<OwnerInfo, Ow
 	
 	
 	@Override protected ActionStd<OwnerInfo> getInstanceOfActionHook(DeciTreeOption<OwnerInfo> option) {
-		return new StdOwnerDeletePhone(option);
+		return new StdOwnerDelete(option);
 	}
 	
 	

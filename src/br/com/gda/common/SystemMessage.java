@@ -33,7 +33,8 @@ public final class SystemMessage {
 	public static final String DATA_NOT_FOUND = "Data not found";
 	public static final String EMPTY_ARGUMENT = " argument is empty";
 	public static final String EMPTY_COLUMNS = "No columns for this given builder were passed";
-	public static final String INTERNAL_ERROR = "Ops... something went wrong";
+	public static final String INTERNAL_ERROR = "Ops... something went wrong";	
+	public static final String KEEP_NOT_ALLOWED = "Keep operation not allowed";
 	public static final String KEY_FIELD_IS_EMPTY = "Key field should not be null";
 	public static final String KEY_FIELD_NOT_NULL = "Key field should not be passed";
 	public static final String LIMIT_EXCEEDED = "Limit exceeded";	
@@ -46,6 +47,7 @@ public final class SystemMessage {
 	public static final String NO_CONFLICT = "No conflict detected";
 	public static final String NO_ERROR_FOUND = "No error was found";
 	public static final String NO_IMPLEMENTATION = "There is no implementation for this method";	
+	public static final String NO_KEEPER_IMPLEMENTATION = "No Keeper implementation";
 	public static final String NO_RESPONSE = "Main operation was not executed";
 	public static final String NO_TEMPLATE_IMPLEMENTATION = "Template method not overwritten by subclass";
 	public static final String NULL_ARGUMENT = " argument is null";
@@ -286,6 +288,8 @@ public final class SystemMessage {
 	public static final String PERSON_EMAIL_NO_ERASURE = "No e-mail erasure";
 	public static final String PERSON_EMAIL_NOT_CHANGED = "e-mail not changed";	
 	public static final String PERSON_EMAIL_NOT_FOUND = "e-email not found on DB";
+	public static final String PERSON_IS_NULL = "Person is blank";
+	public static final String PERSON_IS_FILLED = "Person is not blank";
 	public static final String PERSON_NOT_FOUND = "Person not found on DB";	
 	public static final String PERSON_TECH_FIELD_SHOULD_BE_EMPTY = "Person: technical fields shouldn't be filled";	
 	

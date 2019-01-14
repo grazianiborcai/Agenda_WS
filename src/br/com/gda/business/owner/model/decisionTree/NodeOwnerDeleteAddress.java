@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.action.LazyOwnerDeleteAddress;
+import br.com.gda.business.owner.model.action.StdOwnerDeleteAddress;
 import br.com.gda.business.owner.model.action.StdOwnerSuccess;
-import br.com.gda.business.owner.model.action.StdOwnerMergeAddress;
-import br.com.gda.business.owner.model.checker.OwnerCheckAddressExist;
-import br.com.gda.model.action.ActionLazy;
+import br.com.gda.business.owner.model.checker.OwnerCheckHasAddress;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -39,7 +37,7 @@ public final class NodeOwnerDeleteAddress implements DeciTree<OwnerInfo> {
 	
 	
 	private ModelChecker<OwnerInfo> buildDecisionChecker(DeciTreeOption<OwnerInfo> option) {
-		final boolean EXIST = true;
+		final boolean HAS_ADDRESS = true;
 		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
@@ -48,8 +46,8 @@ public final class NodeOwnerDeleteAddress implements DeciTree<OwnerInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;		
-		checker = new OwnerCheckAddressExist(checkerOption);
+		checkerOption.expectedResult = HAS_ADDRESS;		
+		checker = new OwnerCheckHasAddress(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -66,12 +64,9 @@ public final class NodeOwnerDeleteAddress implements DeciTree<OwnerInfo> {
 	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> mergeAddress = new StdOwnerMergeAddress(option);
-		ActionLazy<OwnerInfo> deleteAddress = new LazyOwnerDeleteAddress(option.conn, option.schemaName);
+		ActionStd<OwnerInfo> deleteAddress = new StdOwnerDeleteAddress(option);
 		
-		mergeAddress.addPostAction(deleteAddress);
-		
-		actions.add(mergeAddress);		
+		actions.add(deleteAddress);		
 		return actions;
 	}
 	

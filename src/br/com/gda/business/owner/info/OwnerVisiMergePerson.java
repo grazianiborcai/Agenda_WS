@@ -3,13 +3,13 @@ package br.com.gda.business.owner.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.company.info.CompInfo;
+import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class OwnerVisitorComp implements InfoMergerVisitor<OwnerInfo, CompInfo, OwnerInfo> {
+final class OwnerVisiMergePerson implements InfoMergerVisitor<OwnerInfo, PersonInfo, OwnerInfo> {
 
-	@Override public OwnerInfo writeRecord(CompInfo sourceOne, OwnerInfo sourceTwo) {
+	@Override public OwnerInfo writeRecord(PersonInfo sourceOne, OwnerInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		OwnerInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class OwnerVisitorComp implements InfoMergerVisitor<OwnerInfo, CompInfo, O
 	
 	
 	
-	private void checkArgument(CompInfo sourceOne, OwnerInfo sourceTwo) {
+	private void checkArgument(PersonInfo sourceOne, OwnerInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,17 +37,17 @@ final class OwnerVisitorComp implements InfoMergerVisitor<OwnerInfo, CompInfo, O
 	
 	
 	
-	private OwnerInfo merge(CompInfo sourceOne, OwnerInfo sourceTwo) {
-		sourceTwo.companyData = makeClone(sourceOne);
-		sourceTwo.codCompany = sourceOne.codCompany;
+	private OwnerInfo merge(PersonInfo sourceOne, OwnerInfo sourceTwo) {
+		sourceTwo.personData = makeClone(sourceOne);
+		sourceTwo.codPerson = sourceOne.codPerson;
 		return sourceTwo;
 	}
 	
 	
 	
-	private CompInfo makeClone(CompInfo recordInfo) {
+	private PersonInfo makeClone(PersonInfo recordInfo) {
 		try {
-			return (CompInfo) recordInfo.clone();
+			return (PersonInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -57,7 +57,7 @@ final class OwnerVisitorComp implements InfoMergerVisitor<OwnerInfo, CompInfo, O
 	
 	
 	
-	@Override public boolean shouldWrite(CompInfo sourceOne, OwnerInfo sourceTwo) {
+	@Override public boolean shouldWrite(PersonInfo sourceOne, OwnerInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	

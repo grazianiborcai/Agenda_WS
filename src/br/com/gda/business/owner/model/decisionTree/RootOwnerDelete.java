@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.action.StdOwnerDelete;
-import br.com.gda.business.owner.model.action.StdOwnerDeletePerson;
+import br.com.gda.business.owner.model.action.LazyOwnerDelete;
+import br.com.gda.business.owner.model.action.LazyOwnerDeleteComp;
+import br.com.gda.business.owner.model.action.LazyOwnerDeletePerson;
+import br.com.gda.business.owner.model.action.LazyOwnerNodeDeleteAddress;
+import br.com.gda.business.owner.model.action.LazyOwnerNodeDeletePhone;
+import br.com.gda.business.owner.model.checker.OwnerCheckDelete;
 import br.com.gda.business.owner.model.checker.OwnerCheckExist;
-import br.com.gda.business.owner.model.checker.OwnerCheckPersonChange;
-import br.com.gda.business.owner.model.checker.OwnerCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -40,13 +43,12 @@ public final class RootOwnerDelete implements DeciTree<OwnerInfo> {
 	
 	private ModelChecker<OwnerInfo> buildDecisionChecker(DeciTreeOption<OwnerInfo> option) {
 		final boolean EXIST_ON_DB = true;	
-		final boolean NOT_CHANGED = true;
 		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new OwnerCheckWrite();
+		checker = new OwnerCheckDelete();
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
@@ -54,14 +56,7 @@ public final class RootOwnerDelete implements DeciTree<OwnerInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new OwnerCheckExist(checkerOption);
-		queue.add(checker);		
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = NOT_CHANGED;		
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;		
-		checker = new OwnerCheckPersonChange(checkerOption);
-		queue.add(checker);
+		queue.add(checker);	
 		
 		 return new ModelCheckerQueue<OwnerInfo>(queue);
 	}
@@ -77,15 +72,20 @@ public final class RootOwnerDelete implements DeciTree<OwnerInfo> {
 	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> deleteAddress = new NodeOwnerDeleteAddress(option).toAction();
-		ActionStd<OwnerInfo> deletePhone = new NodeOwnerDeletePhone(option).toAction();
-		ActionStd<OwnerInfo> deleteCustomer = new StdOwnerDelete(option);	
-		ActionStd<OwnerInfo> deletePerson = new StdOwnerDeletePerson(option);
+		ActionStd<OwnerInfo> select = new RootOwnerSelect(option).toAction();
+		ActionLazy<OwnerInfo> deleteAddress = new LazyOwnerNodeDeleteAddress(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> deletePhone = new LazyOwnerNodeDeletePhone(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> deletePerson = new LazyOwnerDeletePerson(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> deleteCompany = new LazyOwnerDeleteComp(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> deleteOwner = new LazyOwnerDelete(option.conn, option.schemaName);			
 		
-		actions.add(deleteAddress);
-		actions.add(deletePhone);
-		actions.add(deleteCustomer);
-		actions.add(deletePerson);
+		select.addPostAction(deleteAddress);
+		select.addPostAction(deletePhone);
+		select.addPostAction(deletePerson);
+		select.addPostAction(deleteCompany);
+		select.addPostAction(deleteOwner);
+		
+		actions.add(select);
 		
 		return actions;
 	}

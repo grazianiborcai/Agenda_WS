@@ -7,17 +7,16 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class OwnerCheckWrite extends ModelCheckerTemplateSimple<OwnerInfo> {
+public final class OwnerCheckDelete extends ModelCheckerTemplateSimple<OwnerInfo> {
 
-	public OwnerCheckWrite() {
+	public OwnerCheckDelete() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(OwnerInfo recordInfo, Connection conn, String schemaName) {	
-		if (    recordInfo.codOwner 			<= 0 
-			 || recordInfo.personData.codPerson	<= 0	)
+		if ( recordInfo.codOwner <= 0 )
 			return FAILED;
 		
 		

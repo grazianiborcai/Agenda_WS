@@ -7,7 +7,7 @@ import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.decisionTree.RootMatSelect;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiCartMergeMat extends ActionVisitorTemplateMerge<CartInfo, MatInfo> {

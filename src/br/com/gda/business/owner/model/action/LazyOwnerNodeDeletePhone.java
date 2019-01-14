@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.business.owner.model.decisionTree.NodeOwnerDeletePhone;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOwnerDeleteAddress extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
+public final class LazyOwnerNodeDeletePhone extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
 	
-	public LazyOwnerDeleteAddress(Connection conn, String schemaName) {
+	public LazyOwnerNodeDeletePhone(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyOwnerDeleteAddress extends ActionLazyTemplate<OwnerInfo, 
 	
 	
 	@Override protected ActionStd<OwnerInfo> getInstanceOfActionHook(DeciTreeOption<OwnerInfo> option) {
-		return new StdOwnerDeleteAddress(option);
+		return new NodeOwnerDeletePhone(option).toAction();
 	}
 	
 	

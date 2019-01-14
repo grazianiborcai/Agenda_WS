@@ -7,7 +7,7 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class OwnerVisitorAddress implements InfoMergerVisitor<OwnerInfo, AddressInfo, OwnerInfo> {
+final class OwnerVisiMergeAddress implements InfoMergerVisitor<OwnerInfo, AddressInfo, OwnerInfo> {
 
 	@Override public OwnerInfo writeRecord(AddressInfo sourceOne, OwnerInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

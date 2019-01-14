@@ -7,7 +7,7 @@ import br.com.gda.business.cart.model.decisionTree.RootCartSelect;
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.business.cartSnapshot.info.CartSnapMerger;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiCartSnapMergeCart extends ActionVisitorTemplateMerge<CartSnapInfo, CartInfo> {

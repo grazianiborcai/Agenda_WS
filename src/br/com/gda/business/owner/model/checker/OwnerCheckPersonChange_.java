@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.action.LazyOwnerSelect;
-import br.com.gda.business.owner.model.action.StdOwnerEnforcePersonChange;
+import br.com.gda.business.owner.model.action.StdOwnerEnforcePersonChange_;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -13,9 +13,9 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class OwnerCheckPersonChange extends ModelCheckerTemplateAction<OwnerInfo> {
+public final class OwnerCheckPersonChange_ extends ModelCheckerTemplateAction<OwnerInfo> {
 	
-	public OwnerCheckPersonChange(ModelCheckerOption option) {
+	public OwnerCheckPersonChange_(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -24,7 +24,7 @@ public final class OwnerCheckPersonChange extends ModelCheckerTemplateAction<Own
 	@Override protected ActionStd<OwnerInfo> buildActionHook(OwnerInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<OwnerInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<OwnerInfo> actionSelect = new StdOwnerEnforcePersonChange(option);
+		ActionStd<OwnerInfo> actionSelect = new StdOwnerEnforcePersonChange_(option);
 		actionSelect.addPostAction(new LazyOwnerSelect(conn, schemaName));
 		return actionSelect;
 	}

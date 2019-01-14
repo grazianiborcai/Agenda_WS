@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.business.owner.model.action.LazyOwnerEnforceAddressKey;
 import br.com.gda.business.owner.model.action.LazyOwnerEnforceEntityCateg;
+import br.com.gda.business.owner.model.action.LazyOwnerKeeperOwner;
+import br.com.gda.business.owner.model.action.LazyOwnerNodeUpdatePerson;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeUpsertAddress;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeUpsertPhone;
 import br.com.gda.business.owner.model.action.LazyOwnerUpdate;
 import br.com.gda.business.owner.model.action.LazyOwnerUpdatePerson;
 import br.com.gda.business.owner.model.action.StdOwnerEnforceAddressKey;
+import br.com.gda.business.owner.model.action.StdOwnerEnforceEntityCateg;
 import br.com.gda.business.owner.model.action.StdOwnerEnforceLChanged;
 import br.com.gda.business.owner.model.action.StdOwnerEnforcePhoneKey;
 import br.com.gda.business.owner.model.checker.OwnerCheckExist;
-import br.com.gda.business.owner.model.checker.OwnerCheckPerson;
-import br.com.gda.business.owner.model.checker.OwnerCheckPersonChange;
-import br.com.gda.business.owner.model.checker.OwnerCheckWrite;
+import br.com.gda.business.owner.model.checker.OwnerCheckUpdate;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -49,13 +51,12 @@ public final class RootOwnerUpdate implements DeciTree<OwnerInfo> {
 	
 	private ModelChecker<OwnerInfo> buildDecisionChecker(DeciTreeOption<OwnerInfo> option) {
 		final boolean EXIST_ON_DB = true;
-		final boolean NOT_CHANGED = true;
 		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new OwnerCheckWrite();
+		checker = new OwnerCheckUpdate();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -64,22 +65,6 @@ public final class RootOwnerUpdate implements DeciTree<OwnerInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new OwnerCheckExist(checkerOption);
 		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new OwnerCheckPerson(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = NOT_CHANGED;		
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;		
-		checker = new OwnerCheckPersonChange(checkerOption);
-		queue.add(checker);
-		
-		//TODO: verificar se Addresses e customer possuem o mesmo codigo
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -91,24 +76,28 @@ public final class RootOwnerUpdate implements DeciTree<OwnerInfo> {
 		//TODO: Verificar cod_phone e cod_address
 		ActionStd<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
 		ActionLazy<OwnerInfo> enforceEntityCateg = new LazyOwnerEnforceEntityCateg(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> updateCus = new LazyOwnerUpdate(option.conn, option.schemaName);		
-		ActionLazy<OwnerInfo> updatePerson = new LazyOwnerUpdatePerson(option.conn, option.schemaName);
-		ActionStd<OwnerInfo> enforceAddressKey = new StdOwnerEnforceAddressKey(option);
-		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);		
-		ActionStd<OwnerInfo> enforcePhoneKey = new StdOwnerEnforcePhoneKey(option);
-		ActionLazy<OwnerInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionStd<OwnerInfo> select = new RootOwnerSelect(option).toAction();		
+		ActionLazy<OwnerInfo> KeepOwner = new LazyOwnerKeeperOwner(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);	
+		ActionLazy<OwnerInfo> updatePerson = new LazyOwnerNodeUpdatePerson(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> enforceAddressKey = new LazyOwnerEnforceAddressKey(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
+		
+		
+	
+		//ActionStd<OwnerInfo> enforcePhoneKey = new StdOwnerEnforcePhoneKey(option);
+		//ActionLazy<OwnerInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);		
+		//ActionStd<OwnerInfo> select = new RootOwnerSelect(option).toAction();		
 		
 		enforceLChanged.addPostAction(enforceEntityCateg);
-		enforceEntityCateg.addPostAction(updatePerson);
-		updatePerson.addPostAction(updateCus);
+		enforceEntityCateg.addPostAction(KeepOwner);
+		KeepOwner.addPostAction(updateOwner);
+		
+		KeepOwner.addPostAction(updatePerson);
+		
+		KeepOwner.addPostAction(enforceAddressKey);
 		enforceAddressKey.addPostAction(upsertAddress);
-		enforcePhoneKey.addPostAction(upsertPhone);
 		
 		actions.add(enforceLChanged);
-		actions.add(enforceAddressKey);	
-		actions.add(enforcePhoneKey);
-		actions.add(select);	
 		return actions;
 	}
 	

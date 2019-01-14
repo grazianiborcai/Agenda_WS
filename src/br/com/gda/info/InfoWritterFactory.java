@@ -9,6 +9,9 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 
 public abstract class InfoWritterFactory<T> {
+	protected final boolean ENABLED = true;
+	protected final boolean DISABLED = false;
+	
 	private InfoUniquifier<T> resultUniquifier;
 	
 	
@@ -76,6 +79,36 @@ public abstract class InfoWritterFactory<T> {
 	
 	
 	
+	public List<T> keep(List<?> sourceOnes, List<?> sourceTwos) {
+		checkKeepState();
+		checkArgument(sourceOnes, sourceTwos);
+		
+		if (isEmpty(sourceOnes, sourceTwos))
+			return Collections.emptyList();
+		
+		List<T> results = writeHook(sourceOnes, sourceTwos);
+		
+		if (results == null) 
+			return Collections.emptyList();		
+		
+		
+		if (resultUniquifier == null)
+			return results;
+		
+		return resultUniquifier.uniquify(results);
+	} 
+	
+	
+	
+	private void checkKeepState() {
+		if (isKeeper() == DISABLED) {
+			logException(new IllegalStateException(SystemMessage.NO_KEEPER_IMPLEMENTATION));
+			throw new IllegalStateException(SystemMessage.NO_KEEPER_IMPLEMENTATION);
+		}
+	}
+	
+	
+	
 	private void checkArgument(List<?> sourceOnes, List<?> sourceTwos) {
 		if (sourceOnes == null) {
 			logException(new NullPointerException("sourceOnes" + SystemMessage.NULL_ARGUMENT));
@@ -104,6 +137,45 @@ public abstract class InfoWritterFactory<T> {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	}
+	
+	
+	
+	public boolean isPruner() {
+		return isPrunerHook();
+	}
+	
+	
+	
+	protected boolean isPrunerHook() {
+		//Template method: default behavior
+		return DISABLED;
+	}
+	
+	
+	
+	public boolean isMerger() {
+		return isMergerHook();
+	}
+	
+	
+	
+	protected boolean isMergerHook() {
+		//Template method: default behavior
+		return DISABLED;
+	}
+	
+	
+	
+	public boolean isKeeper() {
+		return isKeeperHook();
+	}
+	
+	
+	
+	protected boolean isKeeperHook() {
+		//Template method: default behavior
+		return DISABLED;
 	}
 	
 	

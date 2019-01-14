@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.info.OwnerMerger;
+import br.com.gda.business.person.info.PersonCopier;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.decisionTree.RootPersonUpdate;
 import br.com.gda.info.InfoWritterFactory;
@@ -19,12 +20,12 @@ final class VisiOwnerUpdatePerson extends ActionVisitorTemplateAction<OwnerInfo,
 	}
 	
 	
-	//TODO: isso parece que nao vai funcionar. Testar
+	
 	@Override protected List<PersonInfo> toActionClassHook(List<OwnerInfo> recordInfos) {
 		List<PersonInfo> results = new ArrayList<>();
 		
 		for (OwnerInfo eachRecord : recordInfos) {
-			results.add(PersonInfo.copyFrom(eachRecord));
+			results.add(PersonCopier.copyFromOwner(eachRecord));
 		}		
 		
 		return results;

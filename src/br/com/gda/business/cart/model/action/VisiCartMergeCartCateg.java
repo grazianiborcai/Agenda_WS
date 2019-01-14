@@ -7,7 +7,7 @@ import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootCartCategSelect;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiCartMergeCartCateg extends ActionVisitorTemplateMerge<CartInfo, CartCategInfo> {

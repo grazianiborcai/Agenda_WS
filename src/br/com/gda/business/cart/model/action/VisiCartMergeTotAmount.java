@@ -7,7 +7,7 @@ import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.totalAmount.info.TotAmountInfo;
 import br.com.gda.business.totalAmount.model.decisionTree.RootTotAmountCompute;
 import br.com.gda.info.InfoWritterFactory;
-import br.com.gda.model.action.commom.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiCartMergeTotAmount extends ActionVisitorTemplateMerge<CartInfo, TotAmountInfo> {
