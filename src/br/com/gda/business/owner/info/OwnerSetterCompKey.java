@@ -32,6 +32,7 @@ public final class OwnerSetterCompKey implements InfoSetter<OwnerInfo> {
 	
 	private OwnerInfo setCompKey(OwnerInfo recordInfo) {
 		recordInfo.companyData.codOwner = recordInfo.codOwner;
+		recordInfo.companyData.codCompany = recordInfo.codCompany;
 		recordInfo.companyData.codEntityCateg = recordInfo.codEntityCateg;
 		
 		return recordInfo;

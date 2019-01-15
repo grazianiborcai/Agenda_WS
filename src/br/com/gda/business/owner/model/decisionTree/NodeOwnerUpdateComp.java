@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.action.LazyOwnerUpsertAddress;
-import br.com.gda.business.owner.model.action.StdOwnerEnforceAddressKey;
+import br.com.gda.business.owner.model.action.LazyOwnerUpdateComp;
+import br.com.gda.business.owner.model.action.StdOwnerEnforceCompKey;
 import br.com.gda.business.owner.model.action.StdOwnerSuccess;
-import br.com.gda.business.owner.model.checker.OwnerCheckHasAddress;
+import br.com.gda.business.owner.model.checker.OwnerCheckHasComp;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -20,16 +20,17 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeOwnerUpsertAddress implements DeciTree<OwnerInfo> {
+public final class NodeOwnerUpdateComp implements DeciTree<OwnerInfo> {
 	private DeciTree<OwnerInfo> tree;
 	
 	
-	public NodeOwnerUpsertAddress(DeciTreeOption<OwnerInfo> option) {
+	public NodeOwnerUpdateComp(DeciTreeOption<OwnerInfo> option) {
 		DeciTreeHelperOption<OwnerInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
+		helperOption.schemaName = option.schemaName;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
@@ -39,7 +40,7 @@ public final class NodeOwnerUpsertAddress implements DeciTree<OwnerInfo> {
 	
 	
 	private ModelChecker<OwnerInfo> buildDecisionChecker(DeciTreeOption<OwnerInfo> option) {
-		final boolean HAS_ADDRESS = true;
+		final boolean HAS_COMPANY = true;
 		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
@@ -48,17 +49,11 @@ public final class NodeOwnerUpsertAddress implements DeciTree<OwnerInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_ADDRESS;		
-		checker = new OwnerCheckHasAddress(checkerOption);
-		queue.add(checker);	
+		checkerOption.expectedResult = HAS_COMPANY;		
+		checker = new OwnerCheckHasComp(checkerOption);
+		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
-	}
-	
-	
-	
-	@Override public ActionStd<OwnerInfo> toAction() {
-		return tree.toAction();
 	}
 	
 	
@@ -66,12 +61,12 @@ public final class NodeOwnerUpsertAddress implements DeciTree<OwnerInfo> {
 	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> enforceAddressKey = new StdOwnerEnforceAddressKey(option);
-		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerUpsertAddress(option.conn, option.schemaName);
+		ActionStd<OwnerInfo> enforceCompKey = new StdOwnerEnforceCompKey(option);
+		ActionLazy<OwnerInfo> updateCompany = new LazyOwnerUpdateComp(option.conn, option.schemaName);
 		
-		enforceAddressKey.addPostAction(upsertAddress);
+		enforceCompKey.addPostAction(updateCompany);
 		
-		actions.add(enforceAddressKey);		
+		actions.add(enforceCompKey);
 		return actions;
 	}
 	
@@ -100,5 +95,11 @@ public final class NodeOwnerUpsertAddress implements DeciTree<OwnerInfo> {
 	
 	@Override public DeciResult<OwnerInfo> getDecisionResult() {
 		return tree.getDecisionResult();
+	}
+	
+	
+	
+	@Override public ActionStd<OwnerInfo> toAction() {
+		return tree.toAction();
 	}
 }

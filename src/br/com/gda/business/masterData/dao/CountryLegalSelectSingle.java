@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.CountryInfo;
+import br.com.gda.business.masterData.info.CountryLegalInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoDictionary;
@@ -21,23 +21,23 @@ import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class CountrySelectSingle implements DaoStmt<CountryInfo> {
-	private final String LT_ATTR = DaoDbTable.COUNTRY_TABLE;
+public final class CountryLegalSelectSingle implements DaoStmt<CountryLegalInfo> {
+	private final String LT_ATTR = DaoDbTable.COUNTRY_LEGAL_TABLE;
 	private final String RT_TEXT = DaoDbTable.COUNTRY_TEXT_TABLE;
 	
-	private DaoStmt<CountryInfo> stmtSql;
-	private DaoStmtOption<CountryInfo> stmtOption;
+	private DaoStmt<CountryLegalInfo> stmtSql;
+	private DaoStmtOption<CountryLegalInfo> stmtOption;
 	
 	
 	
-	public CountrySelectSingle(Connection conn, CountryInfo recordInfo, String schemaName) {
+	public CountryLegalSelectSingle(Connection conn, CountryLegalInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, CountryInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, CountryLegalInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -48,18 +48,6 @@ public final class CountrySelectSingle implements DaoStmt<CountryInfo> {
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
 		this.stmtOption.joins = buildJoins();
-	}
-	
-	
-	
-	private String buildWhereClause() {
-		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoWhereBuilderOption.DUMMY_CLAUSE_ALLOWED;
-		
-		DaoStmtWhere whereClause = new CountryWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
-		return whereClause.getWhereClause();
 	}
 	
 	
@@ -111,6 +99,18 @@ public final class CountrySelectSingle implements DaoStmt<CountryInfo> {
 	
 	
 	
+	private String buildWhereClause() {
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;	
+		whereOption.dummyClauseWhenEmpty = DaoWhereBuilderOption.DUMMY_CLAUSE_ALLOWED;
+		
+		DaoStmtWhere whereClause = new CountryLegalWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		return whereClause.getWhereClause();
+	}
+	
+	
+	
 	private void buildStmt() {
 		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
@@ -135,35 +135,35 @@ public final class CountrySelectSingle implements DaoStmt<CountryInfo> {
 
 	
 	
-	@Override public List<CountryInfo> getResultset() {
+	@Override public List<CountryLegalInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<CountryInfo> getNewInstance() {
-		return new CountrySelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<CountryLegalInfo> getNewInstance() {
+		return new CountryLegalSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements DaoResultParser<CountryInfo> {
+	private class ResultParser implements DaoResultParser<CountryLegalInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
 		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
+		private final String TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
 		
-		@Override public List<CountryInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<CountryInfo> finalResult = new ArrayList<>();
+		@Override public List<CountryLegalInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<CountryLegalInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 				return finalResult;
 		
 			do {				
-				CountryInfo dataInfo = new CountryInfo();
+				CountryLegalInfo dataInfo = new CountryLegalInfo();
 				dataInfo.codCountry = stmtResult.getString(MasterDataDbTableColumn.COL_COD_COUNTRY);
-				dataInfo.codCountryAlpha3 = stmtResult.getString(MasterDataDbTableColumn.COL_COD_COUNTRY_ALPHA3);
 				dataInfo.txtCountry = stmtResult.getString(TEXT_COL);
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
+				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);	
+				
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

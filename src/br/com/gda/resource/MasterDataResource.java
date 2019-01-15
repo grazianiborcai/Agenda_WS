@@ -17,6 +17,7 @@ import br.com.gda.business.masterData.info.AreaPhoneInfo;
 import br.com.gda.business.masterData.info.BusinessInfo;
 import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.info.CountryInfo;
+import br.com.gda.business.masterData.info.CountryLegalInfo;
 import br.com.gda.business.masterData.info.CountryPhoneInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.EmpPosInfo;
@@ -35,6 +36,7 @@ import br.com.gda.business.masterData.model.WeekdayModelSelect;
 import br.com.gda.business.masterData.model.AreaPhoneModelSelect;
 import br.com.gda.business.masterData.model.BusinessModelSelect;
 import br.com.gda.business.masterData.model.CartCategModelSelect;
+import br.com.gda.business.masterData.model.CountryLegalModelSelect;
 import br.com.gda.business.masterData.model.CountryModelSelect;
 import br.com.gda.business.masterData.model.CountryPhoneModelSelect;
 import br.com.gda.business.masterData.model.CurrencyModelSelect;
@@ -64,6 +66,7 @@ public final class MasterDataResource {
 	private static final String SELECT_GENDER = "/selectGender";
 	private static final String SELECT_CART_ITEM_CATEG = "/selectCartItemCateg";
 	private static final String SELECT_COUNTRY = "/selectCountry";
+	private static final String SELECT_COUNTRY_LEGAL = "/selectCountryLegal";
 	private static final String SELECT_FEE_CATEG = "/selectFeeCateg";
 	private static final String SELECT_ORDER_STATUS = "/selectOrderStatus";
 	private static final String SELECT_COUNTRY_PHONE = "/selectCountryPhone";
@@ -291,6 +294,24 @@ public final class MasterDataResource {
 		
 		
 		Model model = new CountryModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_COUNTRY_LEGAL)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectCountryLegal(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                           @HeaderParam("codCountry") String codCountry){
+		
+		CountryLegalInfo recordInfo = new CountryLegalInfo();		
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codCountry = codCountry;
+		
+		
+		Model model = new CountryLegalModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

@@ -69,6 +69,8 @@ public final class SystemMessage {
 	public static final String AREA_PHONE_NOT_FOUND = "Phone Area not found on DB";	
 	public static final String COUNTRY_ALREADY_EXIST = "Country already exist on DB";
 	public static final String COUNTRY_NOT_FOUND = "Country not found on DB";	
+	public static final String COUNTRY_LEGAL_ALREADY_EXIST = "Legal Country already exist on DB";
+	public static final String COUNTRY_LEGAL_NOT_FOUND = "Legal Country not found on DB";	
 	public static final String COUNTRY_PHONE_ALREADY_EXIST = "Phone Country code already exist on DB";
 	public static final String COUNTRY_PHONE_NOT_FOUND = "Phone Country code not found on DB";	
 	public static final String CURRENCY_ALREADY_EXIST = "Currency already exist on DB";
@@ -417,6 +419,8 @@ public final class SystemMessage {
 	public static final String COMPANY_CNPJ_NO_ERASURE = "No CNPJ erasure";
 	public static final String COMPANY_CNPJ_NOT_CHANGED = "CNPJ not changed";	
 	public static final String COMPANY_CNPJ_NOT_FOUND = "CNPJ not found on DB";
+	public static final String COMPANY_IS_NULL = "Company is blank";
+	public static final String COMPANY_IS_FILLED = "Company is not blank";
 	public static final String COMPANY_NOT_FOUND = "Company not found on DB";	
 	public static final String COMPANY_TECH_FIELD_SHOULD_BE_EMPTY = "Company: technical fields shouldn't be filled";
 }

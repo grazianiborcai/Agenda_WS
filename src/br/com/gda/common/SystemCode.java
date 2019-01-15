@@ -97,6 +97,8 @@ public final class SystemCode {
 	public static final int AREA_PHONE_NOT_FOUND						= 1179;
 	public static final int ENTITY_CATEG_ALREADY_EXIST					= 1180;
 	public static final int ENTITY_CATEG_NOT_FOUND						= 1181;
+	public static final int COUNTRY_LEGAL_ALREADY_EXIST					= 1182;
+	public static final int COUNTRY_LEGAL_NOT_FOUND						= 1183;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
@@ -324,4 +326,6 @@ public final class SystemCode {
 	public static final int COMPANY_CNPJ_INVALID_LENGTH					= 2511;
 	public static final int COMPANY_CNPJ_NO_ERASURE						= 2512;
 	public static final int COMPANY_CNPJ_ERASURE						= 2513;
+	public static final int COMPANY_IS_NULL								= 2514;
+	public static final int COMPANY_IS_FILLED							= 2515;
 }
