@@ -10,10 +10,12 @@ public final class CountryLegalInfo extends InfoRecord implements Cloneable {
 	public String codCountryAlpha3;
 	public String txtCountry;
 	public String codLanguage;
+	public String recordMode;
 	
 	
 	public CountryLegalInfo() {
-		this.codLanguage = DefaultValue.language();
+		codLanguage = DefaultValue.language();
+		recordMode = DefaultValue.recordMode();
 	}
 	
 	

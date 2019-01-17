@@ -7,10 +7,11 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.cartSnapshot.dao.CartSnapDbTableColumn;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
+import br.com.gda.dao.DaoJoin;
+import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -20,7 +21,8 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
-	private final String LT_HDR = DaoDbTable.ORDER_TABLE;	
+	private final String LT_HDR = DaoDbTable.ORDER_TABLE;
+	private final String RT_ATTR = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<OrderInfo> stmtSql;
 	private DaoStmtOption<OrderInfo> stmtOption;
@@ -44,7 +46,27 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+		this.stmtOption.joins = buildJoins();
+	}
+	
+	
+	
+	private List<DaoJoin> buildJoins() {
+		List<DaoJoin> joins = new ArrayList<>();		
+		joins.add(buildJoinLanguage());
+		return joins;
+	}
+	
+	
+	
+	private DaoJoin buildJoinLanguage() {
+		DaoJoin join = new DaoJoin();
+		join.rightTableName = RT_ATTR;
+		join.joinType = DaoJoinType.CROSS_JOIN;
+		join.joinColumns = null;
+		join.constraintClause = null;
+		
+		return join;
 	}
 	
 	
@@ -124,7 +146,12 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 				
 				stmtResult.getLong(OrderDbTableColumn.COL_COD_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(CartSnapDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codCustomer = stmtResult.getLong(OrderDbTableColumn.COL_COD_CUSTOMER);
+				
+				
+				stmtResult.getString(OrderDbTableColumn.COL_COD_LANGUAGE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codLanguage = stmtResult.getString(OrderDbTableColumn.COL_COD_LANGUAGE);
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(OrderDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)

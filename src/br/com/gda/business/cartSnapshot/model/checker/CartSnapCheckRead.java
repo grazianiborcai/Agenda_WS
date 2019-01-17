@@ -16,8 +16,9 @@ public final class CartSnapCheckRead extends ModelCheckerTemplateSimple<CartSnap
 	
 	
 	@Override protected boolean checkHook(CartSnapInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0 ||
-			recordInfo.codSnapshot 	<= 0	)			
+		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codSnapshot 	<= 0 	||
+			recordInfo.codLanguage	== null		)			
 			return FAILED;		
 		
 		return SUCCESS;

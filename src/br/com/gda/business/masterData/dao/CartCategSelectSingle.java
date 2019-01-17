@@ -70,13 +70,13 @@ public final class CartCategSelectSingle implements DaoStmt<CartCategInfo> {
 	
 	private List<DaoJoin> buildJoins() {
 		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinUnitText());
+		joins.add(buildJoinText());
 		return joins;
 	}
 	
 	
 	
-	private DaoJoin buildJoinUnitText() {
+	private DaoJoin buildJoinText() {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();

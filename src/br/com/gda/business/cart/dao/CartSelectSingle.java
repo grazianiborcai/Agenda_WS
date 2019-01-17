@@ -26,6 +26,7 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 public final class CartSelectSingle implements DaoStmt<CartInfo> {
 	private final String LT_HDR = DaoDbTable.CART_HDR_TABLE;	
 	private final String RT_ITM = DaoDbTable.CART_ITM_TABLE;
+	private final String RT_ATTR = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<CartInfo> stmtSql;
 	private DaoStmtOption<CartInfo> stmtOption;
@@ -71,6 +72,7 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 	private List<DaoJoin> buildJoins() {
 		List<DaoJoin> joins = new ArrayList<>();		
 		joins.add(buildJoinCartItm());
+		joins.add(buildJoinLanguage());
 		return joins;
 	}
 	
@@ -96,6 +98,18 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 		join.rightTableName = RT_ITM;
 		join.joinType = DaoJoinType.INNER_JOIN;
 		join.joinColumns = joinColumns;
+		join.constraintClause = null;
+		
+		return join;
+	}
+	
+	
+	
+	private DaoJoin buildJoinLanguage() {
+		DaoJoin join = new DaoJoin();
+		join.rightTableName = RT_ATTR;
+		join.joinType = DaoJoinType.CROSS_JOIN;
+		join.joinColumns = null;
 		join.constraintClause = null;
 		
 		return join;
@@ -183,6 +197,10 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 				stmtResult.getString(CartDbTableColumn.COL_COD_ITEM_CATEG);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codItemCateg = stmtResult.getString(CartDbTableColumn.COL_COD_ITEM_CATEG).charAt(0);
+				
+				stmtResult.getString(CartDbTableColumn.COL_COD_LANGUAGE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codLanguage = stmtResult.getString(CartDbTableColumn.COL_COD_LANGUAGE);
 
 
 				Date date = stmtResult.getDate(CartDbTableColumn.COL_DATE);

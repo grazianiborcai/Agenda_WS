@@ -27,6 +27,10 @@ final class CountryLegalWhere implements DaoStmtWhere {
 			switch(eachColumn.columnName) {
 				case MasterDataDbTableColumn.COL_COD_COUNTRY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
+					break;					
+					
+				case MasterDataDbTableColumn.COL_RECORD_MODE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
 		}		

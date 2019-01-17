@@ -1,14 +1,14 @@
 package br.com.gda.business.order.model.action;
 
 import br.com.gda.business.order.info.OrderInfo;
-import br.com.gda.business.order.info.OrderSetterLChanged;
+import br.com.gda.business.order.info.OrderSetterStatusCreated;
 import br.com.gda.info.InfoSetter;
 import br.com.gda.model.action.ActionVisitorTemplateEnforce;
 
-final class VisiOrderEnforceLChanged extends ActionVisitorTemplateEnforce<OrderInfo> {
+final class VisiOrderEnforceStatusCreated extends ActionVisitorTemplateEnforce<OrderInfo> {
 	
 	@Override protected OrderInfo enforceHook(OrderInfo recordInfo) {
-		InfoSetter<OrderInfo> attrSetter = new OrderSetterLChanged();
+		InfoSetter<OrderInfo> attrSetter = new OrderSetterStatusCreated();
 		return attrSetter.setAttr(recordInfo);
 	}
 }

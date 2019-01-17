@@ -18,6 +18,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public String codOrderExt;
 	public long codCustomer;	
 	public String codOrderStatus;
+	public String txtOrderStatus;
 	public LocalDateTime lastChanged;
 	public String codLanguage;
 	public List<CartSnapInfo> cartSnaps;

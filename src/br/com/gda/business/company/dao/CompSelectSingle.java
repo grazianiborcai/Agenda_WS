@@ -119,7 +119,7 @@ public final class CompSelectSingle implements DaoStmt<CompInfo> {
 				dataInfo.email = stmtResult.getString(CompDbTableColumn.COL_EMAIL);						
 				dataInfo.recordMode = stmtResult.getString(CompDbTableColumn.COL_RECORD_MODE);
 				dataInfo.codEntityCateg = stmtResult.getString(CompDbTableColumn.COL_COD_ENTITY_CATEG);
-				dataInfo.codCountryLegal = stmtResult.getString(CompDbTableColumn.COL_COD_COUNTRY_LEGAL);
+				dataInfo.codCountryLegal = stmtResult.getString(CompDbTableColumn.COL_COUNTRY_LEGAL);
 				dataInfo.inscrEst = stmtResult.getString(CompDbTableColumn.COL_INSC_ESTATUAL);
 				dataInfo.inscrMun = stmtResult.getString(CompDbTableColumn.COL_INSC_MUNICIPAL);
 				dataInfo.razaoSocial = stmtResult.getString(CompDbTableColumn.COL_RAZAO_SOCIAL);

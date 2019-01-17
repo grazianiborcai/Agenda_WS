@@ -13,12 +13,12 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CATEGORY = "cod_category";
 	public static final String COL_COD_CURRRENCY = "cod_curr";
 	public static final String COL_COD_GROUP = "cod_group";
+	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_MATERIAL = "cod_material";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_TYPE = "cod_type";
 	public static final String COL_COD_UNIT = "unit";
-	public static final String COL_DESCRIPTION = "description";
-	public static final String COL_LANGUAGE = "language";
+	public static final String COL_DESCRIPTION = "description";	
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_NAME = "name";
 	public static final String COL_IS_LOCKED = "is_locked";
@@ -166,7 +166,7 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.MAT_TEXT_TABLE;
-		oneColumn.columnName = COL_LANGUAGE;
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -201,7 +201,7 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_LANGUAGE;
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

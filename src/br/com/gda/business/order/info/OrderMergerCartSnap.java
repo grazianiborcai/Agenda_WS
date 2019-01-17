@@ -7,12 +7,12 @@ import br.com.gda.info.InfoMerger;
 
 final class OrderMergerCartSnap extends InfoMerger<OrderInfo, CartSnapInfo, OrderInfo> {
 	public OrderInfo merge(CartSnapInfo sourceOne, OrderInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new OrderVisitorCartSnap());
+		return super.write(sourceOne, sourceTwo, new OrderVisiCartSnap());
 	}
 	
 	
 	
 	public List<OrderInfo> merge(List<CartSnapInfo> sourceOnes, List<OrderInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new OrderVisitorCartSnap());
+		return super.write(sourceOnes, sourceTwos, new OrderVisiCartSnap());
 	}
 }

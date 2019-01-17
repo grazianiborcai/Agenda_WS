@@ -7,7 +7,7 @@ import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class OrderVisitorCartSnap implements InfoMergerVisitor<OrderInfo, CartSnapInfo, OrderInfo> {
+final class OrderVisiCartSnap implements InfoMergerVisitor<OrderInfo, CartSnapInfo, OrderInfo> {
 
 	@Override public OrderInfo writeRecord(CartSnapInfo sourceOne, OrderInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

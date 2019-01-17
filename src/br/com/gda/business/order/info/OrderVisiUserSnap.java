@@ -3,13 +3,13 @@ package br.com.gda.business.order.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.userSnapshot.info.UserSnapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class OrderVisitorSnap implements InfoMergerVisitor<OrderInfo, SnapInfo, OrderInfo> {
+final class OrderVisiUserSnap implements InfoMergerVisitor<OrderInfo, UserSnapInfo, OrderInfo> {
 
-	@Override public OrderInfo writeRecord(SnapInfo sourceOne, OrderInfo sourceTwo) {
+	@Override public OrderInfo writeRecord(UserSnapInfo sourceOne, OrderInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		return merge(sourceOne, sourceTwo);
@@ -17,16 +17,17 @@ final class OrderVisitorSnap implements InfoMergerVisitor<OrderInfo, SnapInfo, O
 	
 	
 	
-	private void checkArgument(SnapInfo sourceOne, OrderInfo sourceTwo) {
+	private void checkArgument(UserSnapInfo sourceOne, OrderInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private OrderInfo merge(SnapInfo sourceOne, OrderInfo sourceTwo) {
+	private OrderInfo merge(UserSnapInfo sourceOne, OrderInfo sourceTwo) {
 		OrderInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.codSnapshot = sourceOne.codSnapshot;
+		resultInfo.codPerson = sourceOne.codPerson;
+		resultInfo.codCustomer = sourceOne.codCustomer;
 		
 		return resultInfo;
 	}
@@ -45,8 +46,10 @@ final class OrderVisitorSnap implements InfoMergerVisitor<OrderInfo, SnapInfo, O
 	
 	
 	
-	@Override public boolean shouldWrite(SnapInfo sourceOne, OrderInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	@Override public boolean shouldWrite(UserSnapInfo sourceOne, OrderInfo sourceTwo) {
+		return (sourceOne.codOwner  	== sourceTwo.codOwner	&&
+				sourceOne.codUser 		== sourceTwo.codUser	&&
+				sourceOne.codSnapshot 	== sourceTwo.codSnapshot		);
 	}
 	
 	

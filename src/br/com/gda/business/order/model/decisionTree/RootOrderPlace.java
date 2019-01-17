@@ -7,8 +7,10 @@ import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.action.LazyOrderDeleteCart;
 import br.com.gda.business.order.model.action.LazyOrderEnforceExtid;
 import br.com.gda.business.order.model.action.LazyOrderEnforceLChanged;
+import br.com.gda.business.order.model.action.LazyOrderEnforceStatusCreated;
 import br.com.gda.business.order.model.action.LazyOrderInsert;
 import br.com.gda.business.order.model.action.LazyOrderMergeCartSnap;
+import br.com.gda.business.order.model.action.LazyOrderMergeUserSnap;
 import br.com.gda.business.order.model.checker.OrderCheckCart;
 import br.com.gda.business.order.model.checker.OrderCheckUser;
 import br.com.gda.business.order.model.checker.OrderCheckWrite;
@@ -75,15 +77,19 @@ public final class RootOrderPlace implements DeciTree<OrderInfo> {
 		
 		ActionStd<OrderInfo> nodeSnapshot = new NodeOrderSnapshot(option).toAction();
 		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> enforceStatusCreated = new LazyOrderEnforceStatusCreated(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceExtid = new LazyOrderEnforceExtid(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> mergeUserSnap = new LazyOrderMergeCartSnap(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeUserSnap = new LazyOrderMergeUserSnap(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeCartSnap = new LazyOrderMergeCartSnap(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> insertOrder = new LazyOrderInsert(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> emptyCart = new LazyOrderDeleteCart(option.conn, option.schemaName);
 		
 		nodeSnapshot.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceExtid);
-		enforceExtid.addPostAction(mergeUserSnap);
-		mergeUserSnap.addPostAction(insertOrder);
+		enforceLChanged.addPostAction(enforceStatusCreated);
+		enforceStatusCreated.addPostAction(enforceExtid);
+		enforceExtid.addPostAction(mergeUserSnap);		
+		mergeUserSnap.addPostAction(mergeCartSnap);		
+		mergeCartSnap.addPostAction(insertOrder);
 		insertOrder.addPostAction(emptyCart);
 		
 		actions.add(nodeSnapshot);

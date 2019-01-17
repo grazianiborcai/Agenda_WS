@@ -101,7 +101,7 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 		
 		constrainClause.append(rightTableName);
 		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append(MatDbTableColumn.COL_LANGUAGE);
+		constrainClause.append(MatDbTableColumn.COL_COD_LANGUAGE);
 		constrainClause.append(DaoDictionary.SPACE);
 		constrainClause.append(DaoDictionary.EQUAL);
 		constrainClause.append(DaoDictionary.SPACE);
@@ -156,7 +156,7 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	private static class ResultParser implements DaoResultParser<MatInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		private final String MAT_TEXT_COL = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_NAME;
-		private final String MAT_LANGU_COL = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_LANGUAGE;
+		private final String MAT_LANGU_COL = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_COD_LANGUAGE;
 		private final String MAT_DESCR_COL = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_DESCRIPTION;
 		
 		@Override public List<MatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

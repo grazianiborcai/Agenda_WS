@@ -26,6 +26,7 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 public final class CartSnapSelectSingle implements DaoStmt<CartSnapInfo> {
 	private final String LT_HDR = DaoDbTable.CART_HDR_SNAPSHOT_TABLE;	
 	private final String RT_ITM = DaoDbTable.CART_ITM_SNAPSHOT_TABLE;
+	private final String RT_ATTR = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<CartSnapInfo> stmtSql;
 	private DaoStmtOption<CartSnapInfo> stmtOption;
@@ -71,6 +72,7 @@ public final class CartSnapSelectSingle implements DaoStmt<CartSnapInfo> {
 	private List<DaoJoin> buildJoins() {
 		List<DaoJoin> joins = new ArrayList<>();		
 		joins.add(buildJoinCartItm());
+		joins.add(buildJoinLanguage());
 		return joins;
 	}
 	
@@ -96,6 +98,18 @@ public final class CartSnapSelectSingle implements DaoStmt<CartSnapInfo> {
 		join.rightTableName = RT_ITM;
 		join.joinType = DaoJoinType.INNER_JOIN;
 		join.joinColumns = joinColumns;
+		join.constraintClause = null;
+		
+		return join;
+	}
+	
+	
+	
+	private DaoJoin buildJoinLanguage() {
+		DaoJoin join = new DaoJoin();
+		join.rightTableName = RT_ATTR;
+		join.joinType = DaoJoinType.CROSS_JOIN;
+		join.joinColumns = null;
 		join.constraintClause = null;
 		
 		return join;
@@ -193,6 +207,10 @@ public final class CartSnapSelectSingle implements DaoStmt<CartSnapInfo> {
 				stmtResult.getDouble(CartSnapDbTableColumn.COL_PRICE);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.price = stmtResult.getDouble(CartSnapDbTableColumn.COL_PRICE);
+				
+				stmtResult.getString(CartSnapDbTableColumn.COL_COD_LANGUAGE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codLanguage = stmtResult.getString(CartSnapDbTableColumn.COL_COD_LANGUAGE);
 
 
 				Date date = stmtResult.getDate(CartSnapDbTableColumn.COL_DATE);

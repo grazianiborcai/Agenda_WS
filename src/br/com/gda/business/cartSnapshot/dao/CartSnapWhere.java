@@ -42,6 +42,10 @@ public final class CartSnapWhere implements DaoStmtWhere {
 				case CartSnapDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
+					
+				case CartSnapDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 		

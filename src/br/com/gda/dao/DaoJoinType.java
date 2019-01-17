@@ -1,7 +1,7 @@
 package br.com.gda.dao;
 
 public enum DaoJoinType {
-	INNER_JOIN("INNER JOIN"), LEFT_OUTER_JOIN("LEFT OUTER JOIN");
+	INNER_JOIN("INNER JOIN"), LEFT_OUTER_JOIN("LEFT OUTER JOIN"), CROSS_JOIN("CROSS JOIN");
 	
 	private final String sqlTypeSymbol;
 	

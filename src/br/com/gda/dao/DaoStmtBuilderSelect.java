@@ -29,82 +29,174 @@ final class DaoStmtBuilderSelect extends DaoStmtBuilderTemplate {
 	@Override protected String generateStatementHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins) {
 		StringBuilder resultStatement = new StringBuilder();
 		
-		resultStatement.append(DaoOperation.SELECT.toString());
-		resultStatement.append(DaoDictionary.SPACE);
+		resultStatement = appendOperation(resultStatement);
+		resultStatement = appendColumn(resultStatement, columns);
+		resultStatement = appendTable(resultStatement, schemaName, tableName);
+		resultStatement = appendJoin(resultStatement, schemaName, joins);
+		resultStatement = appendWhere(resultStatement, whereClause);
 		
+		return resultStatement.toString();
+	}
+	
+	
+	
+	private StringBuilder appendOperation(StringBuilder statement) {
+		statement.append(DaoOperation.SELECT.toString());
+		statement.append(DaoDictionary.SPACE);
+		
+		return statement;		
+	}
+	
+	
+	
+	private StringBuilder appendColumn(StringBuilder statement, List<DaoColumn> columns) {
 		Iterator<DaoColumn> columnItr = columns.iterator();
 		
 		while (columnItr.hasNext()) {
 			DaoColumn eachColumn = columnItr.next();
-			resultStatement.append(eachColumn.tableName);
-			resultStatement.append(DaoDictionary.PERIOD);
-			resultStatement.append(eachColumn.columnName);
+			statement.append(eachColumn.tableName);
+			statement.append(DaoDictionary.PERIOD);
+			statement.append(eachColumn.columnName);
 			
 			if (columnItr.hasNext()) {
-				resultStatement.append(DaoDictionary.COMMA);
-				resultStatement.append(DaoDictionary.SPACE);
+				statement.append(DaoDictionary.COMMA);
+				statement.append(DaoDictionary.SPACE);
 			}
 		}
 		
-		resultStatement.append(DaoDictionary.SPACE);
-		resultStatement.append(DaoDictionary.FROM);
-		resultStatement.append(DaoDictionary.SPACE);		
-		resultStatement.append(schemaName);
-		resultStatement.append(DaoDictionary.PERIOD);
-		resultStatement.append(tableName);
-		resultStatement.append(DaoDictionary.SPACE);
+		return statement;		
+	}
+	
+	
+	
+	private StringBuilder appendTable(StringBuilder statement, String schemaName, String tableName) {
+		statement.append(DaoDictionary.SPACE);
+		statement.append(DaoDictionary.FROM);
+		statement.append(DaoDictionary.SPACE);		
+		statement.append(schemaName);
+		statement.append(DaoDictionary.PERIOD);
+		statement.append(tableName);
+		statement.append(DaoDictionary.SPACE);
 		
-		//### join
-		//TODO: organizar esse código em métodos
-		if (joins != null) {		
-			for (DaoJoin eachJoin : joins) {
-				resultStatement.append(eachJoin.joinType.toString());
-				resultStatement.append(DaoDictionary.SPACE);
-				resultStatement.append(schemaName);
-				resultStatement.append(DaoDictionary.PERIOD);
-				resultStatement.append(eachJoin.rightTableName);
-				resultStatement.append(DaoDictionary.SPACE);
-				resultStatement.append(DaoDictionary.ON);
-				resultStatement.append(DaoDictionary.SPACE);
-				
-				Iterator<DaoJoinColumn> joinColumnItr = eachJoin.joinColumns.iterator();				
-				
-				while (joinColumnItr.hasNext()) {
-					DaoJoinColumn eachJoinColumn = joinColumnItr.next();
-					resultStatement.append(eachJoinColumn.leftTableName);
-					resultStatement.append(DaoDictionary.PERIOD);
-					resultStatement.append(eachJoinColumn.leftColumnName);
-					resultStatement.append(DaoDictionary.SPACE);
-					resultStatement.append(eachJoinColumn.condition);
-					resultStatement.append(DaoDictionary.SPACE);
-					resultStatement.append(eachJoin.rightTableName);
-					resultStatement.append(DaoDictionary.PERIOD);
-					resultStatement.append(eachJoinColumn.rightColumnName);
-					resultStatement.append(DaoDictionary.SPACE);
-					
-					if (joinColumnItr.hasNext()) {
-						resultStatement.append(DaoDictionary.AND);
-						resultStatement.append(DaoDictionary.SPACE);
-					}
-				}
-				
-				
-				if (eachJoin.constraintClause != null) {
-					if (!eachJoin.joinColumns.isEmpty()) {
-						resultStatement.append(DaoDictionary.AND);
-						resultStatement.append(DaoDictionary.SPACE);
-					}
-					resultStatement.append(eachJoin.constraintClause);
-					resultStatement.append(DaoDictionary.SPACE);
-				}
+		return statement;		
+	}
+	
+	
+	
+	private StringBuilder appendJoin(StringBuilder statement, String schemaName, List<DaoJoin> joins) {
+		if (shouldAppendJoin(joins) == false)
+			return statement;
+		
+	
+		for (DaoJoin eachJoin : joins) {
+			statement = appendJoinTable(statement, schemaName, eachJoin);
+			
+			if (shouldAppendJoinColumn(eachJoin.joinType))
+				statement = appendJoinColumn(statement, eachJoin);				
+			
+			if (shouldAppendJoinConstraint(eachJoin.constraintClause)) 
+				statement = appendJoinConstraint(statement, eachJoin);				
+		}
+
+		
+		return statement;		
+	}
+	
+	
+	
+	private boolean shouldAppendJoin(List<DaoJoin> joins) {
+		if (joins == null)
+			return false;
+		
+		if (joins.isEmpty())
+			return false;
+		
+		 return true;
+	}
+	
+	
+	
+	private StringBuilder appendJoinTable(StringBuilder statement, String schemaName, DaoJoin join) {
+		statement.append(join.joinType.toString());
+		statement.append(DaoDictionary.SPACE);
+		statement.append(schemaName);
+		statement.append(DaoDictionary.PERIOD);
+		statement.append(join.rightTableName);
+		statement.append(DaoDictionary.SPACE);
+		
+		return statement;
+	}
+	
+	
+	
+	private boolean shouldAppendJoinColumn(DaoJoinType joinType) {
+		if (joinType == DaoJoinType.CROSS_JOIN)
+			return false;
+		
+		 return true;
+	}
+	
+	
+	
+	private StringBuilder appendJoinColumn(StringBuilder statement, DaoJoin join) {
+		statement.append(DaoDictionary.ON);
+		statement.append(DaoDictionary.SPACE);
+		
+		Iterator<DaoJoinColumn> joinColumnItr = join.joinColumns.iterator();				
+		
+		while (joinColumnItr.hasNext()) {
+			DaoJoinColumn eachJoinColumn = joinColumnItr.next();
+			statement.append(eachJoinColumn.leftTableName);
+			statement.append(DaoDictionary.PERIOD);
+			statement.append(eachJoinColumn.leftColumnName);
+			statement.append(DaoDictionary.SPACE);
+			statement.append(eachJoinColumn.condition);
+			statement.append(DaoDictionary.SPACE);
+			statement.append(join.rightTableName);
+			statement.append(DaoDictionary.PERIOD);
+			statement.append(eachJoinColumn.rightColumnName);
+			statement.append(DaoDictionary.SPACE);
+			
+			if (joinColumnItr.hasNext()) {
+				statement.append(DaoDictionary.AND);
+				statement.append(DaoDictionary.SPACE);
 			}
 		}
 		
-		resultStatement.append(DaoDictionary.WHERE);
-		resultStatement.append(DaoDictionary.SPACE);
-		resultStatement.append(whereClause);
-		resultStatement.append(DaoDictionary.END_STATEMENT);
+		return statement;		
+	}
+	
+	
+	
+	private boolean shouldAppendJoinConstraint(String constraintClause) {
+		if (constraintClause == null)
+			return false;
 		
-		return resultStatement.toString();
+		 return true;
+	}
+	
+	
+	
+	private StringBuilder appendJoinConstraint(StringBuilder statement, DaoJoin join) {
+		if (join.joinColumns.isEmpty() == false) {
+			statement.append(DaoDictionary.AND);
+			statement.append(DaoDictionary.SPACE);
+		}
+		
+		statement.append(join.constraintClause);
+		statement.append(DaoDictionary.SPACE);
+		
+		return statement;		
+	}
+	
+	
+	
+	private StringBuilder appendWhere(StringBuilder statement, String whereClause) {
+		statement.append(DaoDictionary.WHERE);
+		statement.append(DaoDictionary.SPACE);
+		statement.append(whereClause);
+		statement.append(DaoDictionary.END_STATEMENT);
+		
+		return statement;		
 	}
 }

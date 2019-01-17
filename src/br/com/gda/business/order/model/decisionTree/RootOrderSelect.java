@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.action.LazyOrderMergeCartSnap;
+import br.com.gda.business.order.model.action.LazyOrderMergeOrderStatus;
 import br.com.gda.business.order.model.action.StdOrderSelect;
 import br.com.gda.business.order.model.checker.OrderCheckRead;
 import br.com.gda.model.action.ActionLazy;
@@ -58,8 +59,10 @@ public final class RootOrderSelect implements DeciTree<OrderInfo> {
 		
 		ActionStd<OrderInfo> select = new StdOrderSelect(option);
 		ActionLazy<OrderInfo> mergeCartSnap = new LazyOrderMergeCartSnap(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeOrderStatus = new LazyOrderMergeOrderStatus(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCartSnap);
+		mergeCartSnap.addPostAction(mergeOrderStatus);
 		
 		actions.add(select);
 		return actions;

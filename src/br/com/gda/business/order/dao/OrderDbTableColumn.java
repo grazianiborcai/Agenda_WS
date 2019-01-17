@@ -10,13 +10,14 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = "cod_customer";
+	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_ORDER = "cod_order";
 	public static final String COL_COD_ORDER_EXT = "cod_order_external";
-	public static final String COL_COD_ORDER_STATUS = "cod_order_status";
-	public static final String COL_COD_PERSON = "cod_person";
+	public static final String COL_COD_ORDER_STATUS = "cod_order_status";	
 	public static final String COL_COD_OWNER = "cod_owner";	
+	public static final String COL_COD_PERSON = "cod_person";
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
-	public static final String COL_COD_USER = "cod_user";
+	public static final String COL_COD_USER = "cod_user";	
 	public static final String COL_LAST_CHANGED = "last_changed";
 	
 	
@@ -112,6 +113,14 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
+		oneColumn.columnName = COL_COD_LANGUAGE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

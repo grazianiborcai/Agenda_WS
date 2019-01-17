@@ -102,7 +102,7 @@ public final class CountryLegalSelectSingle implements DaoStmt<CountryLegalInfo>
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;	
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoWhereBuilderOption.DUMMY_CLAUSE_ALLOWED;
 		
 		DaoStmtWhere whereClause = new CountryLegalWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -161,6 +161,7 @@ public final class CountryLegalSelectSingle implements DaoStmt<CountryLegalInfo>
 			do {				
 				CountryLegalInfo dataInfo = new CountryLegalInfo();
 				dataInfo.codCountry = stmtResult.getString(MasterDataDbTableColumn.COL_COD_COUNTRY);
+				dataInfo.recordMode = stmtResult.getString(MasterDataDbTableColumn.COL_RECORD_MODE);
 				dataInfo.txtCountry = stmtResult.getString(TEXT_COL);
 				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);	
 				

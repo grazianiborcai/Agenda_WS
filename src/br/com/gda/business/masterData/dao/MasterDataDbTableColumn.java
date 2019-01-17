@@ -32,6 +32,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CURRENCY_SYMBOL = "Symbol";
 	public static final String COL_DESCRIPTION = "description";
 	public static final String COL_NAME = "name";
+	public static final String COL_RECORD_MODE = "record_mode";
 	public static final String COL_STATE_PROVINCE = "state_province";
 	
 	
@@ -528,6 +529,14 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_COUNTRY;
 		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_RECORD_MODE;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	

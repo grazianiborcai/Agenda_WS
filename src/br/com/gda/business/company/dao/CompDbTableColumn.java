@@ -13,7 +13,7 @@ public final class CompDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COMPANY = "cod_company";
 	public static final String COL_COD_ENTITY_CATEG = "cod_entity_categ";
 	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_COUNTRY_LEGAL = "cod_country_legal";
+	public static final String COL_COUNTRY_LEGAL = "country_legal";
 	public static final String COL_EMAIL = "email";
 	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";
 	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";
@@ -111,7 +111,7 @@ public final class CompDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_COUNTRY_LEGAL;
+		oneColumn.columnName = COL_COUNTRY_LEGAL;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

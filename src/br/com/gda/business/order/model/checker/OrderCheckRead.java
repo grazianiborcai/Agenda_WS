@@ -16,8 +16,9 @@ public final class OrderCheckRead extends ModelCheckerTemplateSimple<OrderInfo> 
 	
 	
 	@Override protected boolean checkHook(OrderInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner <= 0	||
-			recordInfo.codUser  <= 0)			
+		if (recordInfo.codOwner 	<= 0	||
+			recordInfo.codUser  	<= 0	||
+			recordInfo.codLanguage	== null		)			
 			return FAILED;		
 		
 		return SUCCESS;
