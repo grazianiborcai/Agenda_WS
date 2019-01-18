@@ -91,6 +91,10 @@ public final class SystemMessage {
 	public static final String MAT_GROUP_NOT_FOUND = "Group not found on DB";	
 	public static final String MAT_TYPE_ALREADY_EXIST = "Type already exist on DB";	
 	public static final String MAT_TYPE_NOT_FOUND = "Type not found on DB";	
+	public static final String ORDER_STATUS_ALREADY_EXIST = "Order Status already exist on DB";	
+	public static final String ORDER_STATUS_NOT_FOUND = "Order Status not found on DB";
+	public static final String PAYMENT_STATUS_ALREADY_EXIST = "Payment Status already exist on DB";	
+	public static final String PAYMENT_STATUS_NOT_FOUND = "Payment Status not found on DB";
 	public static final String UNIT_ALREADY_EXIST = "Unit already exist on DB";
 	public static final String UNIT_NOT_FOUND = "Unit not found on DB";
 	public static final String WEEKDAY_ALREADY_EXIST = "Weekday already exist on DB";
@@ -99,8 +103,8 @@ public final class SystemMessage {
 	public static final String STATE_NOT_FOUND = "State not found on DB";
 	public static final String TIMEZONE_ALREADY_EXIST = "Timezone already exist on DB";
 	public static final String TIMEZONE_NOT_FOUND = "Timezone not found on DB";
+	
 
-		
 	
 	// Material
 	public static final String MAT_ALREALDY_EXIST = "Material data already exist on DB";	
@@ -199,12 +203,7 @@ public final class SystemMessage {
 	public static final String CART_NOT_FOUND = "Cart's data not found on DB";	
 	public static final String CART_ITEM_ALREADY_EXIST = "Cart item already exist on DB";	
 	public static final String CART_ITEM_NOT_FOUND = "Cart item not found on DB";
-	
-		
-	
-	// Order
-	public static final String ORDER_STATUS_ALREADY_EXIST = "Order Status already exist on DB";	
-	public static final String ORDER_STATUS_NOT_FOUND = "Order Status not found on DB";
+
 	
 		
 	
@@ -423,4 +422,10 @@ public final class SystemMessage {
 	public static final String COMPANY_IS_FILLED = "Company is not blank";
 	public static final String COMPANY_NOT_FOUND = "Company not found on DB";	
 	public static final String COMPANY_TECH_FIELD_SHOULD_BE_EMPTY = "Company: technical fields shouldn't be filled";
+	
+	
+	
+	// Pay Partner-Owner
+	public static final String PAY_PARTNER_OWNER_IS_NULL = "Pay-Partner-Owner's country is blank";
+	public static final String PAY_PARTNER_OWNER_IS_FILLED = "Pay-Partner-Owner's country is not blank";
 }

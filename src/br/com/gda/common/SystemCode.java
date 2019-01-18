@@ -99,6 +99,10 @@ public final class SystemCode {
 	public static final int ENTITY_CATEG_NOT_FOUND						= 1181;
 	public static final int COUNTRY_LEGAL_ALREADY_EXIST					= 1182;
 	public static final int COUNTRY_LEGAL_NOT_FOUND						= 1183;
+	public static final int ORDER_STATUS_ALREADY_EXIST 					= 1184;
+	public static final int ORDER_STATUS_NOT_FOUND 						= 1185;
+	public static final int PAYMENT_STATUS_ALREADY_EXIST 				= 1186;
+	public static final int PAYMENT_STATUS_NOT_FOUND 					= 1187;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
@@ -144,11 +148,7 @@ public final class SystemCode {
 	public static final int CART_IS_EMPTY 								= 1405;	
 	public static final int CART_MAT_ALREADY_EXIST 						= 1406;
 	public static final int CART_MAT_NOT_FOUND 							= 1407;
-	
-	// Order
-	public static final int ORDER_STATUS_ALREADY_EXIST 					= 1450;
-	public static final int ORDER_STATUS_NOT_FOUND 						= 1451;
-	
+
 	// Total Amount
 	public static final int AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES			= 1500;
 	
@@ -328,4 +328,8 @@ public final class SystemCode {
 	public static final int COMPANY_CNPJ_ERASURE						= 2513;
 	public static final int COMPANY_IS_NULL								= 2514;
 	public static final int COMPANY_IS_FILLED							= 2515;
+	
+	// Pay Partner-Owner
+	public static final int PAY_PARTNER_OWNER_IS_NULL					= 2550;
+	public static final int PAY_PARTNER_OWNER_IS_FILLED					= 2551;
 }

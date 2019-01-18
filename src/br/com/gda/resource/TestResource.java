@@ -50,10 +50,12 @@ import br.com.gda.payService.payCustomer.info.PayCusInfo;
 import br.com.gda.payService.payCustomer.model.PayCusModelDelete;
 import br.com.gda.payService.payCustomer.model.PayCusModelInsert;
 import br.com.gda.payService.payCustomer.model.PayCusModelSelect;
-import br.com.gda.payService.payPartnerCountry.info.PayPartnerCountryInfo;
-import br.com.gda.payService.payPartnerCountry.model.PayPartnerCountryModelSelect;
-import br.com.gda.payService.payPartnerStore.info.PayPartnerStoreInfo;
-import br.com.gda.payService.payPartnerStore.model.PayPartnerStoreModelSelect;
+import br.com.gda.payService.payPartnerCountry.info.PayparCountryInfo;
+import br.com.gda.payService.payPartnerCountry.model.PayparCountryModelSelect;
+import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
+import br.com.gda.payService.payPartnerOwner.model.PayparOwnerModelSelect;
+import br.com.gda.payService.payPartnerStore.info.PayparStoreInfo;
+import br.com.gda.payService.payPartnerStore.model.PayparStoreModelSelect;
 
 @Path("/Test")
 public class TestResource {
@@ -86,6 +88,7 @@ public class TestResource {
 	private static final String DELETE_PAY_CUSTOMER = "/deletePayCustomer";
 	private static final String SELECT_PAY_PARTNER_STORE = "/selectPayPartnerStore";
 	private static final String SELECT_PAY_PARTNER_COUNTRY = "/selectPayPartnerCountry";
+	private static final String SELECT_PAY_PARTNER_OWNER = "/selectPayPartnerOwner";
 	private static final String INSERT_COMPANY = "/insertCompany";
 	private static final String UPDATE_COMPANY = "/updateCompany";
 	
@@ -496,11 +499,11 @@ public class TestResource {
 	public Response selectPayPartnerStore(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 								          @HeaderParam("codStore") @DefaultValue("-1") long codStore) {
 
-		PayPartnerStoreInfo recordInfo = new PayPartnerStoreInfo();
+		PayparStoreInfo recordInfo = new PayparStoreInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		
-		Model model = new PayPartnerStoreModelSelect(recordInfo);
+		Model model = new PayparStoreModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -512,10 +515,25 @@ public class TestResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectPayPartnerCountry(@HeaderParam("codCountry") String codCountry) {
 
-		PayPartnerCountryInfo recordInfo = new PayPartnerCountryInfo();
+		PayparCountryInfo recordInfo = new PayparCountryInfo();
 		recordInfo.codCountry = codCountry;
 		
-		Model model = new PayPartnerCountryModelSelect(recordInfo);
+		Model model = new PayparCountryModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_PAY_PARTNER_OWNER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPayPartnerOwner(@HeaderParam("codOwner") long codOwner) {
+
+		PayparOwnerInfo recordInfo = new PayparOwnerInfo();
+		recordInfo.codOwner = codOwner;
+		
+		Model model = new PayparOwnerModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

@@ -7,12 +7,12 @@ import br.com.gda.info.InfoMerger;
 
 final class PayCusMergerUser extends InfoMerger<PayCusInfo, UserInfo, PayCusInfo> {
 	public PayCusInfo merge(UserInfo sourceOne, PayCusInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new PayCusVisitorUser());
+		return super.write(sourceOne, sourceTwo, new PayCusVisiUser());
 	}
 	
 	
 	
 	public List<PayCusInfo> merge(List<UserInfo> sourceOnes, List<PayCusInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new PayCusVisitorUser());
+		return super.write(sourceOnes, sourceTwos, new PayCusVisiUser());
 	}
 }

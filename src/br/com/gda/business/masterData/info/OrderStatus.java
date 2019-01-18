@@ -4,16 +4,16 @@ public enum OrderStatus {
 	CREATED("CREATED"), WAITING("WAITING"), PAID("PAID"), NOT_PAID("NOT_PAID"), CANCELLED("CANCELLED");
 	
 	
-	private final String codOrderStatus;
+	private final String codStatus;
 	
 	
 	private OrderStatus(String cod) {
-		codOrderStatus = cod;
+		codStatus = cod;
 	}
 	
 	
 	
 	public String getCodStatus() {
-		return codOrderStatus;
+		return codStatus;
 	}
 }

@@ -6,6 +6,8 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class MoipCusInfo extends InfoRecord implements Cloneable {
+	public long codOwner;
+	public long codPayCustomer;
 	public String ownId;
 	public String fullName;
 	public String email;
@@ -26,6 +28,8 @@ public final class MoipCusInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MoipCusInfo() {
+		codOwner = DefaultValue.number();
+		codPayCustomer = DefaultValue.number();
 		phoneCountryCode = DefaultValue.number();
 		phoneAreaCode = DefaultValue.number();
 		phoneNumber = DefaultValue.number();
