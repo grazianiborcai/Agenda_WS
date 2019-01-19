@@ -46,10 +46,10 @@ import br.com.gda.business.userSnapshot.info.UserSnapInfo;
 import br.com.gda.business.userSnapshot.model.UserSnapModelInsert;
 import br.com.gda.business.userSnapshot.model.UserSnapModelSelect;
 import br.com.gda.model.Model;
-import br.com.gda.payService.payCustomer.info.PayCusInfo;
-import br.com.gda.payService.payCustomer.model.PayCusModelDelete;
-import br.com.gda.payService.payCustomer.model.PayCusModelInsert;
-import br.com.gda.payService.payCustomer.model.PayCusModelSelect;
+import br.com.gda.payService.payCustomer.info.PaycusInfo;
+import br.com.gda.payService.payCustomer.model.PaycusModelDelete;
+import br.com.gda.payService.payCustomer.model.PaycusModelInsert;
+import br.com.gda.payService.payCustomer.model.PaycusModelSelect;
 import br.com.gda.payService.payPartnerCountry.info.PayparCountryInfo;
 import br.com.gda.payService.payPartnerCountry.model.PayparCountryModelSelect;
 import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
@@ -454,7 +454,7 @@ public class TestResource {
 	public Response insertPayCustomer(String incomingData) {
 		
 		
-		Model model = new PayCusModelInsert(incomingData);
+		Model model = new PaycusModelInsert(incomingData);
 		model.executeRequest();
 		return model.getResponse();	
 	} 
@@ -467,11 +467,11 @@ public class TestResource {
 	public Response selectPayCustomer(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 								      @HeaderParam("codUser")  @DefaultValue("-1") long codUser) {
 
-		PayCusInfo recordInfo = new PayCusInfo();
+		PaycusInfo recordInfo = new PaycusInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codUser = codUser;
 		
-		Model model = new PayCusModelSelect(recordInfo);
+		Model model = new PaycusModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -482,11 +482,11 @@ public class TestResource {
 	@Path(DELETE_PAY_CUSTOMER)
 	public Response deletePayCustomer(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 			                          @HeaderParam("codUser")  @DefaultValue("-1") long codUser) {
-		PayCusInfo recordInfo = new PayCusInfo();
+		PaycusInfo recordInfo = new PaycusInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codUser = codUser;
 		
-		Model model = new PayCusModelDelete(recordInfo);
+		Model model = new PaycusModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

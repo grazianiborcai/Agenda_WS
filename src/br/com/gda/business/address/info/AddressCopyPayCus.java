@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.info.InfoCopierTemplate;
-import br.com.gda.payService.payCustomer.info.PayCusInfo;
+import br.com.gda.payService.payCustomer.info.PaycusInfo;
 
-final class AddressCopyPayCus extends InfoCopierTemplate<AddressInfo, PayCusInfo>{
+final class AddressCopyPayCus extends InfoCopierTemplate<AddressInfo, PaycusInfo>{
 	
 	public AddressCopyPayCus() {
 		super();
@@ -14,7 +14,7 @@ final class AddressCopyPayCus extends InfoCopierTemplate<AddressInfo, PayCusInfo
 	
 	
 	
-	@Override protected AddressInfo makeCopyHook(PayCusInfo source) {
+	@Override protected AddressInfo makeCopyHook(PaycusInfo source) {
 		if (source.address == null)
 			return null;
 		

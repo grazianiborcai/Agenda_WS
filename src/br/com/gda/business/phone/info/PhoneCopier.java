@@ -4,18 +4,18 @@ import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.info.InfoCopier;
-import br.com.gda.payService.payCustomer.info.PayCusInfo;
+import br.com.gda.payService.payCustomer.info.PaycusInfo;
 
 public final class PhoneCopier {
-	public static PhoneInfo copyFromPayCusRef(PayCusInfo source) {
-		InfoCopier<PhoneInfo, PayCusInfo> copier = new PhoneCopyPayCusRef();
+	public static PhoneInfo copyFromPayCusRef(PaycusInfo source) {
+		InfoCopier<PhoneInfo, PaycusInfo> copier = new PhoneCopyPayCusRef();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<PhoneInfo> copyFromPayCusRef(List<PayCusInfo> sources) {
-		InfoCopier<PhoneInfo, PayCusInfo> copier = new PhoneCopyPayCusRef();
+	public static List<PhoneInfo> copyFromPayCusRef(List<PaycusInfo> sources) {
+		InfoCopier<PhoneInfo, PaycusInfo> copier = new PhoneCopyPayCusRef();
 		return copier.makeCopy(sources);
 	}
 	

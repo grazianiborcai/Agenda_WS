@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
-import br.com.gda.payService.payCustomer.info.PayCusInfo;
+import br.com.gda.payService.payCustomer.info.PaycusInfo;
 
 public final class AddressInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -90,7 +90,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 		if (sourceObj == null)
 			return false;
 		
-		if (sourceObj instanceof PayCusInfo)
+		if (sourceObj instanceof PaycusInfo)
 			return true;
 		
 		return false;
@@ -100,13 +100,13 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	
 	@SuppressWarnings("unchecked")
 	private static List<AddressInfo> copyFromPayCus(List<?> sourceObjs) {
-		return new AddressCopyPayCus().makeCopy( (List<PayCusInfo>)sourceObjs);
+		return new AddressCopyPayCus().makeCopy( (List<PaycusInfo>)sourceObjs);
 	}
 	
 	
 	
 	private static AddressInfo copyFromPayCus(Object sourceObj) {
-		return new AddressCopyPayCus().makeCopy( (PayCusInfo)sourceObj);
+		return new AddressCopyPayCus().makeCopy( (PaycusInfo)sourceObj);
 	}
 	
 	

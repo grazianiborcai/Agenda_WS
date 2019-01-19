@@ -1,9 +1,9 @@
 package br.com.gda.business.phone.info;
 
 import br.com.gda.info.InfoCopierTemplate;
-import br.com.gda.payService.payCustomer.info.PayCusInfo;
+import br.com.gda.payService.payCustomer.info.PaycusInfo;
 
-final class PhoneCopyPayCusRef extends InfoCopierTemplate<PhoneInfo, PayCusInfo>{
+final class PhoneCopyPayCusRef extends InfoCopierTemplate<PhoneInfo, PaycusInfo>{
 	
 	public PhoneCopyPayCusRef() {
 		super();
@@ -11,7 +11,7 @@ final class PhoneCopyPayCusRef extends InfoCopierTemplate<PhoneInfo, PayCusInfo>
 	
 	
 	
-	@Override protected PhoneInfo makeCopyHook(PayCusInfo source) {
+	@Override protected PhoneInfo makeCopyHook(PaycusInfo source) {
 		PhoneInfo result = new PhoneInfo();
 		result.codOwner = source.codOwner;
 		result.codPhone = source.codPhoneRef;
