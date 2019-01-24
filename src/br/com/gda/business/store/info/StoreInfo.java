@@ -18,34 +18,19 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public long codPerson;
 	public long codCompany;
 	public String codEntityCateg;
+	public String codCurr;
+	public String txtCurr;
+	public String codTimezone;
+	public String txtTimezone;
+	public String codLanguage;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
 	public UserInfo userData;
 	public CompInfo companyData;
 	public PersonInfo personData;
-	
-	public String cnpj;
-	public String inscrMun;
-	public String inscrEst;
-	public String razaoSocial;
-	public String name;
-	public String address1;
-	public String address2;
-	public long   postalCode;
-	public String city;
-	public String codCountry;
-	public String txtCountry;
-	public String stateProvince;
-	public String phone;
-	public String codCurr;
-	public String txtCurr;
-	public String codPayment;
-	public double latitude;
-	public double longitude;
-	public String codTimezone;
-	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String recordMode;
+
 	
 	
 	public StoreInfo() {
@@ -53,9 +38,6 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codCompany = DefaultValue.number();
-		postalCode = DefaultValue.number();
-		latitude = DefaultValue.number();
-		longitude = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		recordMode = RecordMode.RECORD_OK;
 		userData = DefaultValue.object();

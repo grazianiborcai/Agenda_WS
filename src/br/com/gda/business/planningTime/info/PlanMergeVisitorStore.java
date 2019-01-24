@@ -37,15 +37,15 @@ final class PlanMergeVisitorStore implements InfoMergerVisitor<PlanInfo, PlanInf
 		
 		copyStore.codOwner = store.codOwner;
 		copyStore.codStore = store.codStore;	
-		copyStore.name = store.name;
-		copyStore.address1 = store.address1;
-		copyStore.address2 = store.address2;
-		copyStore.postalCode = store.postalCode;
-		copyStore.city = store.city;
-		copyStore.codCountry = store.codCountry;
-		copyStore.txtCountry = store.txtCountry;
-		copyStore.stateProvince = store.stateProvince;
-		copyStore.phone = store.phone;
+//		copyStore.name = store.name;						//TODO: Ajustar
+//		copyStore.address1 = store.address1;				//TODO: Ajustar
+//		copyStore.address2 = store.address2;				//TODO: Ajustar
+//		copyStore.postalCode = store.postalCode;			//TODO: Ajustar
+//		copyStore.city = store.city;						//TODO: Ajustar
+//		copyStore.codCountry = store.codCountry;			//TODO: Ajustar
+//		copyStore.txtCountry = store.txtCountry;			//TODO: Ajustar
+//		copyStore.stateProvince = store.stateProvince;		//TODO: Ajustar
+//		copyStore.phone = store.phone;						//TODO: Ajustar
 		copyStore.codLanguage = store.codLanguage;
 		
 		return copyStore;

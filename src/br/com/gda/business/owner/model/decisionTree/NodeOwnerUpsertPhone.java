@@ -39,7 +39,7 @@ public final class NodeOwnerUpsertPhone implements DeciTree<OwnerInfo> {
 	
 	
 	private ModelChecker<OwnerInfo> buildDecisionChecker(DeciTreeOption<OwnerInfo> option) {
-		final boolean HAS_ADDRESS = true;
+		final boolean HAS_PHONE = true;
 		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
@@ -48,7 +48,7 @@ public final class NodeOwnerUpsertPhone implements DeciTree<OwnerInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_ADDRESS;		
+		checkerOption.expectedResult = HAS_PHONE;		
 		checker = new OwnerCheckHasPhone(checkerOption);
 		queue.add(checker);	
 		

@@ -4,12 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.checker.StoreCheckCnpj_;
+import br.com.gda.business.store.model.action.LazyStoreEnforceEntityCateg;
+import br.com.gda.business.store.model.action.LazyStoreKeepStore;
+import br.com.gda.business.store.model.action.LazyStoreNodeUpdateComp;
+import br.com.gda.business.store.model.action.LazyStoreNodeUpdatePerson;
+import br.com.gda.business.store.model.action.LazyStoreNodeUpsertAddress;
+import br.com.gda.business.store.model.action.LazyStoreNodeUpsertPhone;
+import br.com.gda.business.store.model.action.LazyStoreUpdate;
+import br.com.gda.business.store.model.action.StdStoreEnforceLChanged;
+import br.com.gda.business.store.model.checker.StoreCheckCurrency;
 import br.com.gda.business.store.model.checker.StoreCheckExist;
 import br.com.gda.business.store.model.checker.StoreCheckKey;
 import br.com.gda.business.store.model.checker.StoreCheckOwner;
 import br.com.gda.business.store.model.checker.StoreCheckTimezone;
 import br.com.gda.business.store.model.checker.StoreCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -33,6 +42,7 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 		helperOption.conn = option.conn;
 		helperOption.schemaName = option.schemaName;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
+		helperOption.actionsOnFailed = null;
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -55,9 +65,6 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 		checker = new StoreCheckKey(checkerOption);
 		queue.add(checker);
 		
-		checker = new StoreCheckCnpj_();
-		queue.add(checker);
-		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
@@ -76,6 +83,13 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new StoreCheckCurrency(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreCheckExist(checkerOption);
 		queue.add(checker);	
 		
@@ -86,8 +100,28 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 	
 	private List<ActionStd<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
+
+		ActionStd<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
+		ActionLazy<StoreInfo> enforceEntityCateg = new LazyStoreEnforceEntityCateg(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> KeepStore = new LazyStoreKeepStore(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> updateStore = new LazyStoreUpdate(option.conn, option.schemaName);	
+		ActionLazy<StoreInfo> updatePerson = new LazyStoreNodeUpdatePerson(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> updateCompany = new LazyStoreNodeUpdateComp(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionStd<StoreInfo> select = new RootStoreSelect(option).toAction();		
 		
-		actions.add(new NodeStoreUpdateL1(option).toAction());	
+		enforceLChanged.addPostAction(enforceEntityCateg);
+		enforceEntityCateg.addPostAction(KeepStore);
+		
+		KeepStore.addPostAction(updateStore);		
+		KeepStore.addPostAction(updatePerson);
+		KeepStore.addPostAction(updateCompany);		
+		KeepStore.addPostAction(upsertAddress);		
+		KeepStore.addPostAction(upsertPhone);
+		
+		actions.add(enforceLChanged);
+		actions.add(select);
 		return actions;
 	}
 	

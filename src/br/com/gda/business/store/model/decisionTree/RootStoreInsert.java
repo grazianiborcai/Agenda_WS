@@ -4,11 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.action.StdStoreInsert;
+import br.com.gda.business.store.model.action.LazyStoreEnforceAddressKey;
+import br.com.gda.business.store.model.action.LazyStoreEnforceCompKey;
 import br.com.gda.business.store.model.action.LazyStoreEnforceEntityCateg;
+import br.com.gda.business.store.model.action.LazyStoreEnforcePersonKey;
+import br.com.gda.business.store.model.action.LazyStoreEnforcePhoneKey;
 import br.com.gda.business.store.model.action.LazyStoreInsert;
-import br.com.gda.business.store.model.action.LazyStoreSelect;
+import br.com.gda.business.store.model.action.LazyStoreInsertComp;
+import br.com.gda.business.store.model.action.LazyStoreInsertPerson;
+import br.com.gda.business.store.model.action.LazyStoreNodeUpsertAddress;
+import br.com.gda.business.store.model.action.LazyStoreNodeUpsertPhone;
+import br.com.gda.business.store.model.action.LazyStoreRootSelect;
+import br.com.gda.business.store.model.action.LazyStoreUpdate;
 import br.com.gda.business.store.model.action.StdStoreEnforceLChanged;
+import br.com.gda.business.store.model.checker.StoreCheckCurrency;
 import br.com.gda.business.store.model.checker.StoreCheckGenField;
 import br.com.gda.business.store.model.checker.StoreCheckOwner;
 import br.com.gda.business.store.model.checker.StoreCheckTimezone;
@@ -77,6 +86,13 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 		checker = new StoreCheckTimezone(checkerOption);
 		queue.add(checker);	
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new StoreCheckCurrency(checkerOption);
+		queue.add(checker);	
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -88,16 +104,16 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 		ActionStd<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
 		ActionLazy<StoreInfo> insertStore = new LazyStoreInsert(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> enforceEntityCateg = new LazyStoreEnforceEntityCateg(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> enforcePersonKey = new LazyOwnerEnforcePersonKey(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> insertPerson = new LazyOwnerInsertPerson(option.conn, option.schemaName);	
-		ActionLazy<StoreInfo> enforceCompKey = new LazyOwnerEnforceCompKey(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> insertComp = new LazyOwnerInsertComp(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);	
-		ActionLazy<StoreInfo> enforceAddressKey = new LazyOwnerEnforceAddressKey(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> enforcePhoneKey = new LazyOwnerEnforcePhoneKey(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionLazy<StoreInfo> selectOwner = new LazyOwnerRootSelect(option.conn, option.schemaName);	
+		ActionLazy<StoreInfo> enforcePersonKey = new LazyStoreEnforcePersonKey(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> insertPerson = new LazyStoreInsertPerson(option.conn, option.schemaName);	
+		ActionLazy<StoreInfo> enforceCompKey = new LazyStoreEnforceCompKey(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> insertComp = new LazyStoreInsertComp(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> updateStore = new LazyStoreUpdate(option.conn, option.schemaName);	
+		ActionLazy<StoreInfo> enforceAddressKey = new LazyStoreEnforceAddressKey(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> enforcePhoneKey = new LazyStoreEnforcePhoneKey(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionLazy<StoreInfo> selectStore = new LazyStoreRootSelect(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(insertStore);
 		insertStore.addPostAction(enforceEntityCateg);
@@ -106,15 +122,15 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 		
 		insertPerson.addPostAction(enforceCompKey);
 		enforceCompKey.addPostAction(insertComp);		
-		insertComp.addPostAction(updateOwner);
+		insertComp.addPostAction(updateStore);
 		
-		updateOwner.addPostAction(enforceAddressKey);
+		updateStore.addPostAction(enforceAddressKey);
 		enforceAddressKey.addPostAction(upsertAddress);
 		
-		updateOwner.addPostAction(enforcePhoneKey);
+		updateStore.addPostAction(enforcePhoneKey);
 		enforcePhoneKey.addPostAction(upsertPhone);	
 		
-		updateOwner.addPostAction(selectOwner);
+		updateStore.addPostAction(selectStore);
 		
 		actions.add(enforceLChanged);	
 		return actions;

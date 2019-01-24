@@ -19,8 +19,9 @@ public final class StoreCheckKey extends ModelCheckerTemplateSimple<StoreInfo> {
 	
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
-		if (    recordInfo.codOwner  >= 0 
-			 && recordInfo.codStore  >= 0 )			
+		if (  recordInfo.codOwner  		>= 0	&& 
+			  recordInfo.codStore  		>= 0	&&
+			  recordInfo.codLanguage 	!= null		)			
 			return KEY_NOT_NULL;		
 		
 		return EMPTY_KEY;

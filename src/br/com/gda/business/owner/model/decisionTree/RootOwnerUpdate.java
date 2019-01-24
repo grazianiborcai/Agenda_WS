@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.action.LazyOwnerEnforceEntityCateg;
-import br.com.gda.business.owner.model.action.LazyOwnerKeeperOwner;
+import br.com.gda.business.owner.model.action.LazyOwnerKeepOwner;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeUpdateComp;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeUpdatePerson;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeUpsertAddress;
@@ -72,7 +72,7 @@ public final class RootOwnerUpdate implements DeciTree<OwnerInfo> {
 
 		ActionStd<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
 		ActionLazy<OwnerInfo> enforceEntityCateg = new LazyOwnerEnforceEntityCateg(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> KeepOwner = new LazyOwnerKeeperOwner(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> KeepOwner = new LazyOwnerKeepOwner(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> updatePerson = new LazyOwnerNodeUpdatePerson(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> updateCompany = new LazyOwnerNodeUpdateComp(option.conn, option.schemaName);

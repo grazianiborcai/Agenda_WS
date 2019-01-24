@@ -4,9 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.action.LazyStoreMergeAddress;
+import br.com.gda.business.store.model.action.LazyStoreMergeComp;
+import br.com.gda.business.store.model.action.LazyStoreMergeCurrency;
+import br.com.gda.business.store.model.action.LazyStoreMergePerson;
+import br.com.gda.business.store.model.action.LazyStoreMergePhone;
+import br.com.gda.business.store.model.action.LazyStoreMergeTimezone;
 import br.com.gda.business.store.model.action.StdStoreSelect;
-import br.com.gda.business.store.model.checker.StoreCheckCnpj_;
 import br.com.gda.business.store.model.checker.StoreCheckRead;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -42,9 +48,6 @@ public final class RootStoreSelect implements DeciTree<StoreInfo> {
 		checker = new StoreCheckRead();
 		queue.add(checker);
 		
-		checker = new StoreCheckCnpj_();
-		queue.add(checker);
-		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -52,8 +55,25 @@ public final class RootStoreSelect implements DeciTree<StoreInfo> {
 	
 	private List<ActionStd<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
+		//TODO: Incluir usuario
+		ActionStd<StoreInfo> select = new StdStoreSelect(option);
+		ActionLazy<StoreInfo> mergeCurrency = new LazyStoreMergeCurrency(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> mergeTimezone = new LazyStoreMergeTimezone(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> mergePerson = new LazyStoreMergePerson(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> mergeComp = new LazyStoreMergeComp(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> mergeAddress = new LazyStoreMergeAddress(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> mergePhone = new LazyStoreMergePhone(option.conn, option.schemaName);
+		//ActionLazy<StoreInfo> mergePersonUser = new LazyOwnerMergePersonUser(option.conn, option.schemaName);
 		
-		actions.add(new StdStoreSelect(option));
+		select.addPostAction(mergeCurrency);
+		mergeCurrency.addPostAction(mergeTimezone);
+		mergeTimezone.addPostAction(mergePerson);
+		mergePerson.addPostAction(mergeComp);
+		mergeComp.addPostAction(mergeAddress);
+		mergeAddress.addPostAction(mergePhone);
+		//mergePhone.addPostAction(mergePersonUser);
+		
+		actions.add(select);
 		return actions;
 	}
 	

@@ -13,7 +13,7 @@ final class CartSnapVisitorStore implements InfoMergerVisitor<CartSnapInfo, Stor
 		checkArgument(sourceOne, sourceTwo);
 		
 		CartSnapInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.nameStore = sourceOne.name;
+		resultInfo.nameStore = "sourceOne.name";	//TODO: Ajustar nome
 		resultInfo.codTimezone = sourceOne.codTimezone;
 
 		return resultInfo;

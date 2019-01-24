@@ -13,7 +13,7 @@ final class CartVisitorStore implements InfoMergerVisitor<CartInfo, StoreInfo, C
 		checkArgument(sourceOne, sourceTwo);
 		
 		CartInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.nameStore = sourceOne.name;
+		resultInfo.nameStore = "sourceOne.name";		//TODO: Ajustar nome
 		resultInfo.codTimezone = sourceOne.codTimezone;
 
 		return resultInfo;
