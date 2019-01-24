@@ -3,16 +3,14 @@ package br.com.gda.business.store.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoDictionary;
 import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinColumn;
 import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -23,8 +21,8 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
-	private final static String LT_ATTR = DaoDbTable.STORE_TABLE;	
-	private final static String RT_COUNTRY_TEXT = DaoDbTable.COUNTRY_TEXT_TABLE;
+	private final static String LT_STORE = DaoDbTable.STORE_TABLE;	
+	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<StoreInfo> stmtSql;
 	private DaoStmtOption<StoreInfo> stmtOption;
@@ -43,8 +41,8 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_ATTR;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_ATTR);
+		this.stmtOption.tableName = LT_STORE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_STORE);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -54,12 +52,9 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new StoreWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -69,47 +64,20 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 	
 	private List<DaoJoin> buildJoins() {
 		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinCountryText());		
+		joins.add(buildJoinLanguage());		
 		return joins;
 	}
 	
 	
 	
-	private DaoJoin buildJoinCountryText() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_ATTR;
-		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_COUNTRY;
-		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_COUNTRY;
-		joinColumns.add(oneColumn);
-		
-		
+	private DaoJoin buildJoinLanguage() {
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_COUNTRY_TEXT;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RT_COUNTRY_TEXT);
+		join.rightTableName = RT_LANGU;
+		join.joinType = DaoJoinType.CROSS_JOIN;
+		join.joinColumns = null;
+		join.constraintClause = null;
 		
 		return join;
-	}
-	
-	
-	
-	private String buildJoinConstraintText(String rightTableName) {
-		StringBuilder constrainClause = new StringBuilder(); 
-		
-		constrainClause.append(rightTableName);
-		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append("Language");
-		constrainClause.append(DaoDictionary.SPACE);
-		constrainClause.append(DaoDictionary.EQUAL);
-		constrainClause.append(DaoDictionary.SPACE);
-		constrainClause.append(DaoDictionary.QUOTE);
-		constrainClause.append(this.stmtOption.recordInfo.codLanguage);
-		constrainClause.append(DaoDictionary.QUOTE);
-		
-		return constrainClause.toString();
 	}
 	
 	
@@ -154,8 +122,8 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<StoreInfo> {
+		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String COUNTRY_TEXT_COLUMN = RT_COUNTRY_TEXT + "." + "Name";
 		
 		@Override public List<StoreInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreInfo> finalResult = new ArrayList<>();
@@ -167,25 +135,30 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 				StoreInfo dataInfo = new StoreInfo();
 				dataInfo.codOwner = stmtResult.getLong(StoreDbTableColumn.COL_COD_OWNER);
 				dataInfo.codStore = stmtResult.getLong(StoreDbTableColumn.COL_COD_STORE);
-				dataInfo.cnpj = stmtResult.getString(StoreDbTableColumn.COL_CNPJ);
-				dataInfo.inscrMun = stmtResult.getString(StoreDbTableColumn.COL_INSC_MUNICIPAL);
-				dataInfo.inscrEst = stmtResult.getString(StoreDbTableColumn.COL_INSC_ESTATUAL);
-				dataInfo.razaoSocial = stmtResult.getString(StoreDbTableColumn.COL_RAZAO_SOCIAL);
-				dataInfo.name = stmtResult.getString(StoreDbTableColumn.COL_NAME);
-				dataInfo.address1 = stmtResult.getString(StoreDbTableColumn.COL_ADDRESS1);
-				dataInfo.address2 = stmtResult.getString(StoreDbTableColumn.COL_ADDRESS2);
-				dataInfo.postalCode = stmtResult.getLong(StoreDbTableColumn.COL_COD_POST);
-				dataInfo.city = stmtResult.getString(StoreDbTableColumn.COL_CITY);
-				dataInfo.codCountry = stmtResult.getString(StoreDbTableColumn.COL_COUNTRY);
-				dataInfo.txtCountry = stmtResult.getString(COUNTRY_TEXT_COLUMN);
-				dataInfo.stateProvince = stmtResult.getString(StoreDbTableColumn.COL_STATE_PROVINCE);
-				dataInfo.phone = stmtResult.getString(StoreDbTableColumn.COL_PHONE);
-				dataInfo.codCurr = stmtResult.getString(StoreDbTableColumn.COL_COD_CURR);	
-				dataInfo.codPayment = stmtResult.getString(StoreDbTableColumn.COL_COD_PAYMENT);					
-				dataInfo.latitude = stmtResult.getDouble(StoreDbTableColumn.COL_LATITUTE);	
-				dataInfo.longitude = stmtResult.getDouble(StoreDbTableColumn.COL_LONGITUDE);	
+				dataInfo.codCurr = stmtResult.getString(StoreDbTableColumn.COL_COD_CURR);
 				dataInfo.codTimezone = stmtResult.getString(StoreDbTableColumn.COL_COD_TIME_ZONE);
-				dataInfo.recordMode = stmtResult.getString(StoreDbTableColumn.COL_RECORD_MODE);			
+				dataInfo.recordMode = stmtResult.getString(StoreDbTableColumn.COL_RECORD_MODE);	
+				
+				
+				stmtResult.getLong(StoreDbTableColumn.COL_COD_PERSON);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPerson = stmtResult.getLong(StoreDbTableColumn.COL_COD_PERSON);
+				
+				
+				stmtResult.getLong(StoreDbTableColumn.COL_COD_COMPANY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codCompany = stmtResult.getLong(StoreDbTableColumn.COL_COD_COMPANY);
+				
+				
+				stmtResult.getString(StoreDbTableColumn.COL_COD_LANGUAGE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codLanguage = stmtResult.getString(StoreDbTableColumn.COL_COD_LANGUAGE);
+				
+				
+				Timestamp lastChanged = stmtResult.getTimestamp(StoreDbTableColumn.COL_LAST_CHANGED);
+				if (lastChanged != null)
+					dataInfo.lastChanged = lastChanged.toLocalDateTime();
+		
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

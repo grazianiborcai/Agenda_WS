@@ -16,7 +16,8 @@ public final class StoreCheckRead extends ModelCheckerTemplateSimple<StoreInfo> 
 	
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner <= 0 )			
+		if (recordInfo.codOwner 	<= 0 	|| 
+			recordInfo.codLanguage 	== null		)			
 			return FAILED;
 		
 		

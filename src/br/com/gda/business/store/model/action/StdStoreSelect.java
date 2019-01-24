@@ -1,9 +1,9 @@
-package br.com.gda.business.store.model.decisionTree;
+package br.com.gda.business.store.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.store.dao.StoreUpdate;
+import br.com.gda.business.store.dao.StoreSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
@@ -13,11 +13,11 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionStoreUpdate implements ActionStd<StoreInfo> {
+public final class StdStoreSelect implements ActionStd<StoreInfo> {
 	private ActionStd<StoreInfo> actionHelper;
 	
 	
-	public ActionStoreUpdate(DeciTreeOption<StoreInfo> option) {
+	public StdStoreSelect(DeciTreeOption<StoreInfo> option) {
 		DaoStmtExec<StoreInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
@@ -35,7 +35,7 @@ final class ActionStoreUpdate implements ActionStd<StoreInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new StoreUpdate(stmtExecOptions);
+		return new StoreSelect(stmtExecOptions);
 	}
 	
 	

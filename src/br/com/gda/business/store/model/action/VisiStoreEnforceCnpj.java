@@ -1,13 +1,12 @@
-package br.com.gda.business.store.model.decisionTree;
+package br.com.gda.business.store.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.model.action.ActionVisitorEnforce;
 
-final class VisitorStoreEnforceKeyCnpj implements ActionVisitorEnforce<StoreInfo> {
+final class VisiStoreEnforceCnpj implements ActionVisitorEnforce<StoreInfo> {
 	
 	@Override public List<StoreInfo> executeTransformation(List<StoreInfo> recordInfos) {
 		List<StoreInfo> resultRecords = new ArrayList<>();		
@@ -22,14 +21,9 @@ final class VisitorStoreEnforceKeyCnpj implements ActionVisitorEnforce<StoreInfo
 	
 	
 	private StoreInfo enforce(StoreInfo recordInfo) {
-		StoreInfo enforcedRecord;
-		try {
-			enforcedRecord = (StoreInfo) recordInfo.clone();
-			enforcedRecord.recordMode = RecordMode.RECORD_OK;
-			return enforcedRecord;
-		
-		} catch (CloneNotSupportedException e) {
-			throw new IllegalStateException(e);
-		}
+		StoreInfo enforcedRecord = new StoreInfo();
+		enforcedRecord.codOwner = recordInfo.codOwner;
+		enforcedRecord.cnpj     = recordInfo.cnpj;
+		return enforcedRecord;
 	}
 }

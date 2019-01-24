@@ -34,13 +34,13 @@ public final class PaycusDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
-		buildCustomerTable();		
+		buildPayparTable();		
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildCustomerTable() {
+	private void buildPayparTable() {
 		final String TABLE_NAME = DaoDbTable.PAY_CUS_TABLE;
 		
 		DaoColumn oneColumn;

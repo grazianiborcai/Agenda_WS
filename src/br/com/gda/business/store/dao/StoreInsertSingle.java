@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,27 +78,34 @@ public final class StoreInsertSingle implements DaoStmt<StoreInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<StoreInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreInfo recordInfo) throws SQLException {
+			Timestamp lastChanged = null;
+			if(recordInfo.lastChanged != null)
+				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
-			stmt.setString(i++, recordInfo.cnpj);
-			stmt.setString(i++, recordInfo.inscrMun);
-			stmt.setString(i++, recordInfo.inscrEst);
-			stmt.setString(i++, recordInfo.razaoSocial);
-			stmt.setString(i++, recordInfo.name);
-			stmt.setString(i++, recordInfo.address1);
-			stmt.setString(i++, recordInfo.address2);
-			stmt.setLong(i++, recordInfo.postalCode);
-			stmt.setString(i++, recordInfo.city);
-			stmt.setString(i++, recordInfo.codCountry);
-			stmt.setString(i++, recordInfo.stateProvince);
-			stmt.setString(i++, recordInfo.phone);	
+			
+			
+			if (recordInfo.codPerson >= 0) {
+				stmt.setLong(i++, recordInfo.codPerson);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codCompany >= 0) {
+				stmt.setLong(i++, recordInfo.codCompany);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			stmt.setTimestamp(i++, lastChanged);
 			stmt.setString(i++, recordInfo.codCurr);
-			stmt.setString(i++, recordInfo.codPayment);
-			stmt.setDouble(i++, recordInfo.latitude);
-			stmt.setDouble(i++, recordInfo.longitude);
 			stmt.setString(i++, recordInfo.codTimezone);
 			stmt.setString(i++, recordInfo.recordMode);
+
 			
 			return stmt;
 		}		

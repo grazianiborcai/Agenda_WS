@@ -14,6 +14,7 @@ public final class PaycusInfo extends InfoRecord implements Cloneable {
 	public long codPayCustomer;
 	public String codPayCustomerExt;
 	public int codPayPartner;
+	public String txtPayPartner;
 	public long codUser;
 	public long codPerson;
 	public long codPersonRef;

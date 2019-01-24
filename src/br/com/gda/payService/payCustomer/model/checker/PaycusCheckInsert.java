@@ -16,8 +16,9 @@ public final class PaycusCheckInsert extends ModelCheckerTemplateSimple<PaycusIn
 	
 	
 	@Override protected boolean checkHook(PaycusInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner <= 0 ||
-			 recordInfo.codUser  <= 0		)
+		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.codUser  	<= 0 	||
+			 recordInfo.codLanguage	== null		)
 			return FAILED;
 		
 		

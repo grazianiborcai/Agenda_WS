@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.action.StdStoreDelete;
 import br.com.gda.business.store.model.checker.StoreCheckExist;
 import br.com.gda.business.store.model.checker.StoreCheckKey;
 import br.com.gda.model.action.ActionStd;
@@ -63,7 +64,7 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 	private List<ActionStd<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionStoreDelete(option));
+		actions.add(new StdStoreDelete(option));
 		return actions;
 	}
 	

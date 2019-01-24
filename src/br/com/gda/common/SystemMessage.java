@@ -395,14 +395,20 @@ public final class SystemMessage {
 	
 		
 	// Pay-Customer
+	public static final String PAY_CUS_ADDRESS_IS_BLANK = "Pay-Cutomer's address reference is blank";
+	public static final String PAY_CUS_ADDRESS_IS_FILLED = "Pay-Cutomer's address reference should be blank";
 	public static final String PAY_CUS_ALREADY_EXIST = "Pay-Customer's data already exist on DB";		
 	public static final String PAY_CUS_NOT_FOUND = "Pay-Customer's data not found on DB";
 	public static final String PAY_CUS_PERSON_CANT_BE_CHANGED = "Pay-Person can't be changed";	
 	public static final String PAY_CUS_PERSON_NOT_CHANGED = "Pay-Person not changed";
+	public static final String PAY_CUS_PHONE_IS_BLANK = "Pay-Cutomer's phone reference is blank";
+	public static final String PAY_CUS_PHONE_IS_FILLED = "Pay-Cutomer's phone reference should be blank";
 	public static final String PAY_CUS_TECH_FIELD_SHOULD_BE_EMPTY = "Pay-Customer: technical fields shouldn't be filled";
 	public static final String PAY_CUS_USER_ALREADY_EXIST = "Pay-Customer-User's data already exist on DB";
 	public static final String PAY_CUS_USER_NOT_FOUND = "Pay-Customer-User's data not found on DB";
-	
+	public static final String PAY_CUS_PAY_PARTNER_IS_BLANK = "Pay-Cutomer's pay-partner reference is blank";
+	public static final String PAY_CUS_PAY_PARTNER_IS_FILLED = "Pay-Cutomer's pay-partner reference should be blank";
+
 	
 	
 	// Company		

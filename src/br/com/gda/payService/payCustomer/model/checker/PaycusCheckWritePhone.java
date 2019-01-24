@@ -24,14 +24,14 @@ public final class PaycusCheckWritePhone extends ModelCheckerTemplateSimple<Payc
 	}
 	
 	
-	//TODO: Criar mensagem indicando campo Ref
+
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PHONE_COD_IS_BLANK;
+		return SystemMessage.PAY_CUS_PHONE_IS_BLANK;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.PHONE_COD_IS_BLANK;
+		return SystemCode.PAY_CUS_PHONE_IS_BLANK;
 	}
 }

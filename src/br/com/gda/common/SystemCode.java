@@ -310,6 +310,12 @@ public final class SystemCode {
 	public static final int PAY_CUS_TECH_FIELD_SHOULD_BE_EMPTY			= 2404;
 	public static final int PAY_CUS_USER_ALREADY_EXIST					= 2405;
 	public static final int PAY_CUS_USER_NOT_FOUND						= 2406;
+	public static final int PAY_CUS_PHONE_IS_FILLED						= 2407;
+	public static final int PAY_CUS_PHONE_IS_BLANK						= 2408;
+	public static final int PAY_CUS_ADDRESS_IS_FILLED					= 2409;
+	public static final int PAY_CUS_ADDRESS_IS_BLANK					= 2410;
+	public static final int PAY_CUS_PAY_PARTNER_IS_FILLED				= 2411;
+	public static final int PAY_CUS_PAY_PARTNER_IS_BLANK				= 2412;
 	
 	// Company
 	public static final int COMPANY_TECH_FIELD_SHOULD_BE_EMPTY			= 2500;

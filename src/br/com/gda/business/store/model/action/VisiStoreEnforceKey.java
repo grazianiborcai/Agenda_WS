@@ -1,4 +1,4 @@
-package br.com.gda.business.store.model.decisionTree;
+package br.com.gda.business.store.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.model.action.ActionVisitorEnforce;
 
-final class VisitorStoreEnforceKey implements ActionVisitorEnforce<StoreInfo> {
+final class VisiStoreEnforceKey implements ActionVisitorEnforce<StoreInfo> {
 	
 	@Override public List<StoreInfo> executeTransformation(List<StoreInfo> recordInfos) {
 		List<StoreInfo> resultRecords = new ArrayList<>();		

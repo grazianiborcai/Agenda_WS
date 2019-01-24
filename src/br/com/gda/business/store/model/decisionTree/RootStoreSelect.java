@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.checker.StoreCheckCnpj;
+import br.com.gda.business.store.model.action.StdStoreSelect;
+import br.com.gda.business.store.model.checker.StoreCheckCnpj_;
 import br.com.gda.business.store.model.checker.StoreCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -41,7 +42,7 @@ public final class RootStoreSelect implements DeciTree<StoreInfo> {
 		checker = new StoreCheckRead();
 		queue.add(checker);
 		
-		checker = new StoreCheckCnpj();
+		checker = new StoreCheckCnpj_();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -52,7 +53,7 @@ public final class RootStoreSelect implements DeciTree<StoreInfo> {
 	private List<ActionStd<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionStoreSelect(option));
+		actions.add(new StdStoreSelect(option));
 		return actions;
 	}
 	

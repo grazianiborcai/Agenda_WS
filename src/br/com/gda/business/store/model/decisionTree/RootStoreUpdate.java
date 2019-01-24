@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.checker.StoreCheckCnpj;
+import br.com.gda.business.store.model.checker.StoreCheckCnpj_;
 import br.com.gda.business.store.model.checker.StoreCheckExist;
 import br.com.gda.business.store.model.checker.StoreCheckKey;
 import br.com.gda.business.store.model.checker.StoreCheckOwner;
@@ -55,7 +55,7 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 		checker = new StoreCheckKey(checkerOption);
 		queue.add(checker);
 		
-		checker = new StoreCheckCnpj();
+		checker = new StoreCheckCnpj_();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

@@ -26,7 +26,7 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 public final class CartSelectSingle implements DaoStmt<CartInfo> {
 	private final String LT_HDR = DaoDbTable.CART_HDR_TABLE;	
 	private final String RT_ITM = DaoDbTable.CART_ITM_TABLE;
-	private final String RT_ATTR = DaoDbTable.LANGUAGE_TABLE;
+	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<CartInfo> stmtSql;
 	private DaoStmtOption<CartInfo> stmtOption;
@@ -107,7 +107,7 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 	
 	private DaoJoin buildJoinLanguage() {
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_ATTR;
+		join.rightTableName = RT_LANGU;
 		join.joinType = DaoJoinType.CROSS_JOIN;
 		join.joinColumns = null;
 		join.constraintClause = null;

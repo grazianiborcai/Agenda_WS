@@ -3,8 +3,8 @@ package br.com.gda.business.store.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.decisionTree.ActionStoreEnforceKeyCnpj;
-import br.com.gda.business.store.model.decisionTree.HandlerStoreSelect;
+import br.com.gda.business.store.model.action.StdStoreEnforceKeyCnpj;
+import br.com.gda.business.store.model.action.LazyStoreSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -23,8 +23,8 @@ public final class StoreCheckCnpjChange extends ModelCheckerTemplateAction<Store
 	@Override protected ActionStd<StoreInfo> buildActionHook(StoreInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<StoreInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<StoreInfo> actionSelect = new ActionStoreEnforceKeyCnpj(option);
-		actionSelect.addPostAction(new HandlerStoreSelect(conn, schemaName));
+		ActionStd<StoreInfo> actionSelect = new StdStoreEnforceKeyCnpj(option);
+		actionSelect.addPostAction(new LazyStoreSelect(conn, schemaName));
 		return actionSelect;
 	}
 	

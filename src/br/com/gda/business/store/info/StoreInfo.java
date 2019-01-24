@@ -1,7 +1,13 @@
 package br.com.gda.business.store.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.company.info.CompInfo;
+import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
@@ -9,6 +15,15 @@ import br.com.gda.info.InfoRecord;
 public final class StoreInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
+	public long codPerson;
+	public long codCompany;
+	public String codEntityCateg;
+	public List<AddressInfo> addresses;
+	public List<PhoneInfo> phones;
+	public UserInfo userData;
+	public CompInfo companyData;
+	public PersonInfo personData;
+	
 	public String cnpj;
 	public String inscrMun;
 	public String inscrEst;
@@ -29,17 +44,25 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public double longitude;
 	public String codTimezone;
 	public String codLanguage;
+	public LocalDateTime lastChanged;
 	public String recordMode;
 	
 	
 	public StoreInfo() {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
+		codPerson = DefaultValue.number();
+		codCompany = DefaultValue.number();
 		postalCode = DefaultValue.number();
 		latitude = DefaultValue.number();
 		longitude = DefaultValue.number();
 		codLanguage = DefaultValue.language();
-		recordMode = RecordMode.RECORD_OK;		
+		recordMode = RecordMode.RECORD_OK;
+		userData = DefaultValue.object();
+		companyData = DefaultValue.object();
+		personData = DefaultValue.object();
+		addresses = DefaultValue.list();
+		phones = DefaultValue.list();
 	}
 	
 	

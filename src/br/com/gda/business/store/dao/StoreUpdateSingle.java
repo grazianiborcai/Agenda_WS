@@ -3,6 +3,8 @@ package br.com.gda.business.store.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
@@ -29,47 +31,33 @@ public final class StoreUpdateSingle implements DaoStmt<StoreInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, StoreInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.STORE_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = null;
-		this.stmtOption.whereClause = buildWhereClause();
+		stmtOption = new DaoStmtOption<>();
+		stmtOption.conn = conn;
+		stmtOption.recordInfo = recordInfo;
+		stmtOption.schemaName = schemaName;
+		stmtOption.tableName = DaoDbTable.STORE_TABLE;
+		stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(stmtOption.tableName);
+		stmtOption.stmtParamTranslator = new ParamTranslator();
+		stmtOption.resultParser = null;
+		stmtOption.whereClause = buildWhereClause();
 	}
 	
 	
 	
 	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean IGNORE_NON_PK = true;
-		final boolean IGNORE_RECORD_MODE = true;		
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
-		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;
 		
-		StoreInfo enforcedInfo = enforceUpdateByKey(stmtOption.recordInfo);
-		DaoStmtWhere whereClause = new StoreWhere(whereOption, stmtOption.tableName, enforcedInfo);
+		DaoStmtWhere whereClause = new StoreWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private StoreInfo enforceUpdateByKey(StoreInfo recordInfo) {
-		StoreInfo enforcedInfo = new StoreInfo();
-		enforcedInfo.codOwner = recordInfo.codOwner;
-		enforcedInfo.codStore = recordInfo.codStore;
-		return enforcedInfo;
-	}
-	
-	
-	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, stmtOption);
 	}
 	
 	
@@ -107,23 +95,28 @@ public final class StoreUpdateSingle implements DaoStmt<StoreInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<StoreInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreInfo recordInfo) throws SQLException {			
+			Timestamp lastChanged = null;
+			if(recordInfo.lastChanged != null)
+				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			
 			int i = 1;
-			stmt.setString(i++, recordInfo.cnpj);
-			stmt.setString(i++, recordInfo.inscrMun);
-			stmt.setString(i++, recordInfo.inscrEst);
-			stmt.setString(i++, recordInfo.razaoSocial);
-			stmt.setString(i++, recordInfo.name);
-			stmt.setString(i++, recordInfo.address1);
-			stmt.setString(i++, recordInfo.address2);
-			stmt.setLong(i++, recordInfo.postalCode);
-			stmt.setString(i++, recordInfo.city);
-			stmt.setString(i++, recordInfo.codCountry);
-			stmt.setString(i++, recordInfo.stateProvince);
-			stmt.setString(i++, recordInfo.phone);	
+			
+			if (recordInfo.codPerson >= 0) {
+				stmt.setLong(i++, recordInfo.codPerson);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codCompany >= 0) {
+				stmt.setLong(i++, recordInfo.codCompany);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			stmt.setTimestamp(i++, lastChanged);
 			stmt.setString(i++, recordInfo.codCurr);
-			stmt.setString(i++, recordInfo.codPayment);
-			stmt.setDouble(i++, recordInfo.latitude);
-			stmt.setDouble(i++, recordInfo.longitude);
 			stmt.setString(i++, recordInfo.codTimezone);
 			stmt.setString(i++, recordInfo.recordMode);
 			

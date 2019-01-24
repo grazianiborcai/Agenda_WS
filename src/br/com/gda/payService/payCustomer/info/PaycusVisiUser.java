@@ -19,6 +19,8 @@ final class PaycusVisiUser implements InfoMergerVisitor<PaycusInfo, UserInfo, Pa
 		checkArgument(sourceOne, sourceTwo);
 		
 		PaycusInfo copyInfo = PaycusInfo.copyFrom(sourceOne);
+		copyInfo.codPayPartner = sourceTwo.codPayPartner;
+		copyInfo.txtPayPartner = sourceTwo.txtPayPartner;
 		copyInfo.codPayCustomer = sourceTwo.codPayCustomer;
 		copyInfo.codPerson = sourceTwo.codPerson;
 		copyInfo.codPhoneRef = sourceTwo.codPhoneRef;

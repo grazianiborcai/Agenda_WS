@@ -35,12 +35,12 @@ public final class StoreWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case StoreDbTableColumn.COL_CNPJ :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.cnpj);
-					break;
-					
 				case StoreDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
+					break;
+					
+				case StoreDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
 		}		

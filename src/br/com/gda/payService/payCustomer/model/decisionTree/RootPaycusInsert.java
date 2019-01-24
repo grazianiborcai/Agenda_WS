@@ -22,10 +22,10 @@ import br.com.gda.payService.payCustomer.model.action.LazyPaycusEnforcePersonKey
 import br.com.gda.payService.payCustomer.model.action.LazyPaycusEnforcePhoneKey;
 import br.com.gda.payService.payCustomer.model.action.LazyPaycusInsert;
 import br.com.gda.payService.payCustomer.model.action.LazyPaycusInsertPerson;
+import br.com.gda.payService.payCustomer.model.action.LazyPaycusMergeUser;
 import br.com.gda.payService.payCustomer.model.action.LazyPaycusNodeUpsertAddress;
 import br.com.gda.payService.payCustomer.model.action.LazyPaycusNodeUpsertPhone;
 import br.com.gda.payService.payCustomer.model.action.LazyPaycusRootSelect;
-import br.com.gda.payService.payCustomer.model.action.StdPaycusMergeUser;
 import br.com.gda.payService.payCustomer.model.checker.PaycusCheckUserAddress;
 import br.com.gda.payService.payCustomer.model.checker.PaycusCheckUserPhone;
 import br.com.gda.payService.payCustomer.model.checker.PaycusCheckUserTaken;
@@ -121,8 +121,9 @@ public final class RootPaycusInsert implements DeciTree<PaycusInfo> {
 	
 	private List<ActionStd<PaycusInfo>> buildActionsOnPassed(DeciTreeOption<PaycusInfo> option) {
 		List<ActionStd<PaycusInfo>> actions = new ArrayList<>();
-		//TODO: inserir PAY_PARTNER
-		ActionStd<PaycusInfo> mergeUser = new StdPaycusMergeUser(option);
+
+		ActionStd<PaycusInfo> nodePaypar = new NodePaycusPaypar(option).toAction();
+		ActionLazy<PaycusInfo> mergeUser = new LazyPaycusMergeUser(option.conn, option.schemaName);
 		ActionLazy<PaycusInfo> enforceLChanged = new LazyPaycusEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PaycusInfo> enforceEntityCateg = new LazyPaycusEnforceEntityCateg(option.conn, option.schemaName);
 		ActionLazy<PaycusInfo> enforcePersonKey = new LazyPaycusEnforcePersonKey(option.conn, option.schemaName);
@@ -134,6 +135,7 @@ public final class RootPaycusInsert implements DeciTree<PaycusInfo> {
 		ActionLazy<PaycusInfo> upsertPhone = new LazyPaycusNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionLazy<PaycusInfo> selectCustomer = new LazyPaycusRootSelect(option.conn, option.schemaName);	
 		
+		nodePaypar.addPostAction(mergeUser);
 		mergeUser.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceEntityCateg);
 		enforceEntityCateg.addPostAction(enforcePersonKey);
@@ -148,7 +150,7 @@ public final class RootPaycusInsert implements DeciTree<PaycusInfo> {
 		
 		insertPayCus.addPostAction(selectCustomer);
 		
-		actions.add(mergeUser);	
+		actions.add(nodePaypar);	
 		return actions;
 	}
 	

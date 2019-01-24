@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.action.StdStoreSelect;
+import br.com.gda.business.store.model.action.StdStoreUpdate;
 import br.com.gda.business.store.model.checker.StoreCheckCnpjChange;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -57,8 +59,8 @@ final class NodeStoreUpdateL1 implements DeciTree<StoreInfo> {
 	private List<ActionStd<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionStoreUpdate(option));
-		actions.add(new ActionStoreSelect(option));		
+		actions.add(new StdStoreUpdate(option));
+		actions.add(new StdStoreSelect(option));		
 		return actions;
 	}
 	

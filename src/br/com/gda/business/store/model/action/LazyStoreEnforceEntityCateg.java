@@ -1,17 +1,17 @@
-package br.com.gda.business.store.model.decisionTree;
+package br.com.gda.business.store.model.action;
 
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerStoreSelect extends ActionLazyTemplate<StoreInfo, StoreInfo> {
-
-	public HandlerStoreSelect(Connection conn, String schemaName) {
+public final class LazyStoreEnforceEntityCateg extends ActionLazyTemplate<StoreInfo, StoreInfo> {
+	
+	public LazyStoreEnforceEntityCateg(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -23,8 +23,8 @@ public final class HandlerStoreSelect extends ActionLazyTemplate<StoreInfo, Stor
 	
 	
 	
-	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
-		return new ActionStoreSelect(option);
+	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+		return new StdStoreEnforceEntityCateg(option);
 	}
 	
 	
