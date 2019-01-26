@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employee.model.action.LazyEmpMergeAddress;
+import br.com.gda.business.employee.model.action.LazyEmpMergePerson;
+import br.com.gda.business.employee.model.action.LazyEmpMergePhone;
+import br.com.gda.business.employee.model.action.StdEmpSelect;
 import br.com.gda.business.employee.model.checker.EmpCheckRead;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -52,8 +57,19 @@ public final class RootEmpSelect implements DeciTree<EmpInfo> {
 	
 	private List<ActionStd<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+		//TODO: Incluir usuario
+		ActionStd<EmpInfo> select = new StdEmpSelect(option);
+		ActionLazy<EmpInfo> mergePerson = new LazyEmpMergePerson(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> mergeAddress = new LazyEmpMergeAddress(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> mergePhone = new LazyEmpMergePhone(option.conn, option.schemaName);
+		//ActionLazy<EmpInfo> mergePersonUser = new LazyOwnerMergePersonUser(option.conn, option.schemaName);
 		
-		actions.add(new ActionEmpSelect(option));
+		select.addPostAction(mergePerson);
+		mergePerson.addPostAction(mergeAddress);
+		mergeAddress.addPostAction(mergePhone);
+		//mergePhone.addPostAction(mergePersonUser);
+		
+		actions.add(select);
 		return actions;
 	}
 	

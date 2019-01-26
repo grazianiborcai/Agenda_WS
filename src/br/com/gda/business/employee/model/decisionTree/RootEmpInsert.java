@@ -4,12 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.checker.EmpCheckCpf;
-import br.com.gda.business.employee.model.checker.EmpCheckExistCpf;
+import br.com.gda.business.employee.model.action.LazyEmpEnforceAddressKey;
+import br.com.gda.business.employee.model.action.LazyEmpEnforceEntityCateg;
+import br.com.gda.business.employee.model.action.LazyEmpEnforcePersonKey;
+import br.com.gda.business.employee.model.action.LazyEmpEnforcePhoneKey;
+import br.com.gda.business.employee.model.action.LazyEmpInsert;
+import br.com.gda.business.employee.model.action.LazyEmpInsertPerson;
+import br.com.gda.business.employee.model.action.LazyEmpNodeUpsertAddress;
+import br.com.gda.business.employee.model.action.LazyEmpNodeUpsertPhone;
+import br.com.gda.business.employee.model.action.LazyEmpRootSelect;
+import br.com.gda.business.employee.model.action.LazyEmpUpdate;
+import br.com.gda.business.employee.model.action.StdEmpEnforceLChanged;
 import br.com.gda.business.employee.model.checker.EmpCheckGenField;
-import br.com.gda.business.employee.model.checker.EmpCheckGender;
 import br.com.gda.business.employee.model.checker.EmpCheckOwner;
 import br.com.gda.business.employee.model.checker.EmpCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -40,7 +49,6 @@ public final class RootEmpInsert implements DeciTree<EmpInfo> {
 	
 	private ModelChecker<EmpInfo> buildDecisionChecker(DeciTreeOption<EmpInfo> option) {
 		final boolean EXIST_ON_DB = true;
-		final boolean DONT_EXIST_ON_DB = false;	
 		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
@@ -52,31 +60,12 @@ public final class RootEmpInsert implements DeciTree<EmpInfo> {
 		checker = new EmpCheckGenField();
 		queue.add(checker);
 		
-		checker = new EmpCheckCpf();
-		queue.add(checker);
-		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpCheckOwner(checkerOption);
 		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpCheckGender(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new EmpCheckExistCpf(checkerOption);
-		queue.add(checker);	
-		
-		//TODO: "phone1" copiar de Customer
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -92,8 +81,33 @@ public final class RootEmpInsert implements DeciTree<EmpInfo> {
 	private List<ActionStd<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionEmpInsert(option));
-		actions.add(new ActionEmpSelect(option));		
+		ActionStd<EmpInfo> enforceLChanged = new StdEmpEnforceLChanged(option);
+		ActionLazy<EmpInfo> insertEmployee = new LazyEmpInsert(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> enforceEntityCateg = new LazyEmpEnforceEntityCateg(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> enforcePersonKey = new LazyEmpEnforcePersonKey(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> insertPerson = new LazyEmpInsertPerson(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> updateEmployee = new LazyEmpUpdate(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> enforceAddressKey = new LazyEmpEnforceAddressKey(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> upsertAddress = new LazyEmpNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> enforcePhoneKey = new LazyEmpEnforcePhoneKey(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> upsertPhone = new LazyEmpNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionLazy<EmpInfo> select = new LazyEmpRootSelect(option.conn, option.schemaName);	
+		
+		enforceLChanged.addPostAction(insertEmployee);
+		insertEmployee.addPostAction(enforceEntityCateg);
+		enforceEntityCateg.addPostAction(enforcePersonKey);
+		enforcePersonKey.addPostAction(insertPerson);		
+		insertPerson.addPostAction(updateEmployee);
+		
+		updateEmployee.addPostAction(enforceAddressKey);
+		enforceAddressKey.addPostAction(upsertAddress);
+		
+		updateEmployee.addPostAction(enforcePhoneKey);
+		enforcePhoneKey.addPostAction(upsertPhone);	
+		
+		updateEmployee.addPostAction(select);
+		
+		actions.add(enforceLChanged);	
 		return actions;
 	}
 	

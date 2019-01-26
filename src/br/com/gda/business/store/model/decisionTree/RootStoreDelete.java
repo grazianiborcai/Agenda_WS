@@ -82,8 +82,7 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 		select.addPostAction(deleteCompany);
 		select.addPostAction(deleteStore);
 		
-		actions.add(select);
-		
+		actions.add(select);		
 		return actions;
 	}
 	

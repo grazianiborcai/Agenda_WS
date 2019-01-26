@@ -27,21 +27,21 @@ final class EmpWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case "cod_owner" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
-					break;
-					
-				case "cod_employee" :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
-					break;
-					
-				case "CPF" :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.cpf);
-					break;
-					
-				case "record_mode" :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
-					break;
+			case EmpDbTableColumn.COL_COD_OWNER :
+				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
+				break;
+				
+			case EmpDbTableColumn.COL_COD_EMPLOYEE :
+				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
+				break;
+				
+			case EmpDbTableColumn.COL_RECORD_MODE :
+				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
+				break;
+				
+			case EmpDbTableColumn.COL_COD_LANGUAGE :
+				builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+				break;
 			}
 		}		
 		

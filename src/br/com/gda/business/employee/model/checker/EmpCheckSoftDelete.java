@@ -3,8 +3,8 @@ package br.com.gda.business.employee.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.decisionTree.ActionEmpEnforceDel;
-import br.com.gda.business.employee.model.decisionTree.HandlerEmpSelect;
+import br.com.gda.business.employee.model.action.StdEmpEnforceDel;
+import br.com.gda.business.employee.model.action.LazyEmpSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -23,8 +23,8 @@ public final class EmpCheckSoftDelete extends ModelCheckerTemplateAction<EmpInfo
 	@Override protected ActionStd<EmpInfo> buildActionHook(EmpInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<EmpInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<EmpInfo> actionSelect = new ActionEmpEnforceDel(option);
-		actionSelect.addPostAction(new HandlerEmpSelect(conn, schemaName));		
+		ActionStd<EmpInfo> actionSelect = new StdEmpEnforceDel(option);
+		actionSelect.addPostAction(new LazyEmpSelect(conn, schemaName));		
 		return actionSelect;
 	}
 	

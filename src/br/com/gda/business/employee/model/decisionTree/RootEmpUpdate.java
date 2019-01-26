@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.checker.EmpCheckCpf;
+import br.com.gda.business.employee.model.action.LazyEmpEnforceEntityCateg;
+import br.com.gda.business.employee.model.action.LazyEmpKeepEmp;
+import br.com.gda.business.employee.model.action.LazyEmpNodeUpdatePerson;
+import br.com.gda.business.employee.model.action.LazyEmpNodeUpsertAddress;
+import br.com.gda.business.employee.model.action.LazyEmpNodeUpsertPhone;
+import br.com.gda.business.employee.model.action.LazyEmpUpdate;
+import br.com.gda.business.employee.model.action.StdEmpEnforceLChanged;
 import br.com.gda.business.employee.model.checker.EmpCheckExist;
-import br.com.gda.business.employee.model.checker.EmpCheckGender;
 import br.com.gda.business.employee.model.checker.EmpCheckKey;
 import br.com.gda.business.employee.model.checker.EmpCheckOwner;
 import br.com.gda.business.employee.model.checker.EmpCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -55,9 +61,6 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 		checker = new EmpCheckKey(checkerOption);
 		queue.add(checker);
 		
-		checker = new EmpCheckCpf();
-		queue.add(checker);
-		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
@@ -69,17 +72,8 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpCheckGender(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmpCheckExist(checkerOption);
 		queue.add(checker);	
-		
-		//TODO: "phone1" copiar de Customer
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -88,8 +82,26 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 	
 	private List<ActionStd<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+
+		ActionStd<EmpInfo> enforceLChanged = new StdEmpEnforceLChanged(option);
+		ActionLazy<EmpInfo> enforceEntityCateg = new LazyEmpEnforceEntityCateg(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> keepEmployee = new LazyEmpKeepEmp(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> updateEmployee = new LazyEmpUpdate(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> updatePerson = new LazyEmpNodeUpdatePerson(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> upsertAddress = new LazyEmpNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> upsertPhone = new LazyEmpNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionStd<EmpInfo> select = new RootEmpSelect(option).toAction();		
 		
-		actions.add(new NodeEmpUpdateL1(option).toAction());	
+		enforceLChanged.addPostAction(enforceEntityCateg);
+		enforceEntityCateg.addPostAction(keepEmployee);
+		
+		keepEmployee.addPostAction(updateEmployee);		
+		keepEmployee.addPostAction(updatePerson);	
+		keepEmployee.addPostAction(upsertAddress);		
+		keepEmployee.addPostAction(upsertPhone);
+		
+		actions.add(enforceLChanged);
+		actions.add(select);
 		return actions;
 	}
 	

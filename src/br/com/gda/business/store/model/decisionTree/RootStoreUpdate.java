@@ -103,7 +103,7 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 
 		ActionStd<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
 		ActionLazy<StoreInfo> enforceEntityCateg = new LazyStoreEnforceEntityCateg(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> KeepStore = new LazyStoreKeepStore(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> keepStore = new LazyStoreKeepStore(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> updateStore = new LazyStoreUpdate(option.conn, option.schemaName);	
 		ActionLazy<StoreInfo> updatePerson = new LazyStoreNodeUpdatePerson(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> updateCompany = new LazyStoreNodeUpdateComp(option.conn, option.schemaName);
@@ -112,13 +112,13 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 		ActionStd<StoreInfo> select = new RootStoreSelect(option).toAction();		
 		
 		enforceLChanged.addPostAction(enforceEntityCateg);
-		enforceEntityCateg.addPostAction(KeepStore);
+		enforceEntityCateg.addPostAction(keepStore);
 		
-		KeepStore.addPostAction(updateStore);		
-		KeepStore.addPostAction(updatePerson);
-		KeepStore.addPostAction(updateCompany);		
-		KeepStore.addPostAction(upsertAddress);		
-		KeepStore.addPostAction(upsertPhone);
+		keepStore.addPostAction(updateStore);		
+		keepStore.addPostAction(updatePerson);
+		keepStore.addPostAction(updateCompany);		
+		keepStore.addPostAction(upsertAddress);		
+		keepStore.addPostAction(upsertPhone);
 		
 		actions.add(enforceLChanged);
 		actions.add(select);

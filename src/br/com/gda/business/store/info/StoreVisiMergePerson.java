@@ -58,7 +58,7 @@ final class StoreVisiMergePerson implements InfoMergerVisitor<StoreInfo, PersonI
 	
 	
 	@Override public boolean shouldWrite(PersonInfo sourceOne, StoreInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+		return (sourceOne.codOwner == sourceTwo.codOwner		);
 	}
 	
 	

@@ -1,16 +1,15 @@
 package br.com.gda.business.employee.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Time;
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -46,27 +45,13 @@ public final class EmpUpdateSingle implements DaoStmt<EmpInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean IGNORE_NON_PK = true;
-		final boolean IGNORE_RECORD_MODE = true;		
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
-		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;
 		
-		EmpInfo enforcedInfo = enforceUpdateByKey(stmtOption.recordInfo);
-		DaoStmtWhere whereClause = new EmpWhere(whereOption, stmtOption.tableName, enforcedInfo);
+		DaoStmtWhere whereClause = new EmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
-	private EmpInfo enforceUpdateByKey(EmpInfo recordInfo) {
-		EmpInfo enforcedInfo = new EmpInfo();
-		enforcedInfo.codOwner = recordInfo.codOwner;
-		enforcedInfo.codEmployee = recordInfo.codEmployee;
-		return enforcedInfo;
 	}
 	
 	
@@ -110,29 +95,25 @@ public final class EmpUpdateSingle implements DaoStmt<EmpInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<EmpInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpInfo recordInfo) throws SQLException {
-			Time beginTime = DaoFormatter.localToSqlTime(recordInfo.beginTime);
-			Time endTime = DaoFormatter.localToSqlTime(recordInfo.endTime);		
-			Date birthDate = DaoFormatter.localToSqlDate(recordInfo.birthDate);
 			
-			int i = 1;
-			stmt.setString(i++, recordInfo.cpf);
-			stmt.setString(i++, recordInfo.name);
-			stmt.setInt(i++, recordInfo.codGender);
-			stmt.setDate(i++, birthDate);
-			stmt.setString(i++, recordInfo.email);
-			stmt.setString(i++, recordInfo.address1);
-			stmt.setString(i++, recordInfo.address2);
-			stmt.setLong(i++, recordInfo.postalCode);
-			stmt.setString(i++, recordInfo.city);
-			stmt.setString(i++, recordInfo.codCountry);
-			stmt.setString(i++, recordInfo.stateProvince);
-			stmt.setString(i++, recordInfo.phone);			
-			stmt.setTime(i++, beginTime);
-			stmt.setTime(i++, endTime);
-			stmt.setLong(i++, recordInfo.codPosition);
-			stmt.setString(i++, recordInfo.recordMode);
+			Timestamp lastChanged = null;
+			if(recordInfo.lastChanged != null)
+				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			
+			
+			int i = 1;	
+			
+			if (recordInfo.codPerson >= 0) {
+				stmt.setLong(i++, recordInfo.codPerson);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			stmt.setString(i++, recordInfo.recordMode);	
+			stmt.setTimestamp(i++, lastChanged);
 			
 			return stmt;
-		}		
+		} 
 	}
 }

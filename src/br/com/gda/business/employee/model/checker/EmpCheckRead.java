@@ -16,7 +16,8 @@ public final class EmpCheckRead extends ModelCheckerTemplateSimple<EmpInfo> {
 	
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner <= 0 )			
+		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codLanguage 	== null		)			
 			return FAILED;		
 		
 		return SUCCESS;

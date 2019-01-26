@@ -1,10 +1,13 @@
 package br.com.gda.business.employee.info;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
@@ -12,6 +15,17 @@ import br.com.gda.info.InfoRecord;
 public final class EmpInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
+	public long codPerson;
+	public String codEntityCateg;
+	public PersonInfo personData;
+	public List<AddressInfo> addresses;
+	public List<PhoneInfo> phones;
+	public String codLanguage;
+	public String recordMode;
+	public LocalDateTime lastChanged;
+	
+	
+	
 	public List<Long> stores; //TODO: remover esse campo
 	public String cpf;
 	public String name;
@@ -31,19 +45,18 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 	public LocalTime endTime;	 //TODO: remover esse campo
 	public long codPosition;	 //TODO: remover esse campo
 	public String txtPosition;	 //TODO: remover esse campo
-	public String codLanguage;
-	public String recordMode;
+
 	
 	
 	public EmpInfo() {
-		this.codOwner = DefaultValue.number();
-		this.codEmployee = DefaultValue.number();
-		this.stores = new ArrayList<>();
-		this.codGender = DefaultValue.number();
-		this.postalCode = DefaultValue.number();
-		this.codPosition = DefaultValue.number();
-		this.codLanguage = DefaultValue.language();
-		this.recordMode = RecordMode.RECORD_OK;		
+		codOwner = DefaultValue.number();
+		codEmployee = DefaultValue.number();
+		codPerson = DefaultValue.number();
+		codLanguage = DefaultValue.language();
+		recordMode = RecordMode.RECORD_OK;
+		personData = DefaultValue.object();
+		addresses = DefaultValue.list();
+		phones = DefaultValue.list();
 	}
 	
 	

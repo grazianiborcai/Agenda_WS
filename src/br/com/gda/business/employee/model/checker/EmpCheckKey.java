@@ -19,8 +19,9 @@ public final class EmpCheckKey extends ModelCheckerTemplateSimple<EmpInfo> {
 	
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
-		if (    recordInfo.codOwner 	>= 0 
-			 && recordInfo.codEmployee  >= 0 )			
+		if ( recordInfo.codOwner 	>= 0	&& 
+			 recordInfo.codEmployee	>= 0	&&
+			 recordInfo.codLanguage != null		)			
 			return KEY_NOT_NULL;		
 		
 		return EMPTY_KEY;

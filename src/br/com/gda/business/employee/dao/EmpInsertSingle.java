@@ -1,18 +1,17 @@
 package br.com.gda.business.employee.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -81,28 +80,26 @@ public final class EmpInsertSingle implements DaoStmt<EmpInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<EmpInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpInfo recordInfo) throws SQLException {
-			Time beginTime = DaoFormatter.localToSqlTime(recordInfo.beginTime);
-			Time endTime = DaoFormatter.localToSqlTime(recordInfo.endTime);	
-			Date birthDate = DaoFormatter.localToSqlDate(recordInfo.birthDate);
+			Timestamp lastChanged = null;
+			if(recordInfo.lastChanged != null)
+				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
-			stmt.setString(i++, recordInfo.cpf);
-			stmt.setString(i++, recordInfo.name);
-			stmt.setInt(i++, recordInfo.codGender);
-			stmt.setDate(i++, birthDate);
-			stmt.setString(i++, recordInfo.email);
-			stmt.setString(i++, recordInfo.address1);
-			stmt.setString(i++, recordInfo.address2);
-			stmt.setLong(i++, recordInfo.postalCode);
-			stmt.setString(i++, recordInfo.city);
-			stmt.setString(i++, recordInfo.codCountry);
-			stmt.setString(i++, recordInfo.stateProvince);
-			stmt.setString(i++, recordInfo.phone);			
-			stmt.setTime(i++, beginTime);
-			stmt.setTime(i++, endTime);
-			stmt.setLong(i++, recordInfo.codPosition);
+			stmt.setLong(i++, recordInfo.codEmployee);
+			
+			
+			if (recordInfo.codPerson >= 0) {
+				stmt.setLong(i++, recordInfo.codPerson);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
 			stmt.setString(i++, recordInfo.recordMode);
+			stmt.setTimestamp(i++, lastChanged);		
+
 			
 			return stmt;
 		}		

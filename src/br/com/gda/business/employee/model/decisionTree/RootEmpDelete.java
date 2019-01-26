@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employee.model.action.LazyEmpDelete;
+import br.com.gda.business.employee.model.action.LazyEmpDeletePerson;
+import br.com.gda.business.employee.model.action.LazyEmpNodeDeleteAddress;
+import br.com.gda.business.employee.model.action.LazyEmpNodeDeletePhone;
 import br.com.gda.business.employee.model.checker.EmpCheckExist;
 import br.com.gda.business.employee.model.checker.EmpCheckKey;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -68,7 +73,19 @@ public final class RootEmpDelete implements DeciTree<EmpInfo> {
 	
 	private List<ActionStd<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
-		actions.add(new ActionEmpDelete(option));
+		
+		ActionStd<EmpInfo> select = new RootEmpSelect(option).toAction();
+		ActionLazy<EmpInfo> deleteAddress = new LazyEmpNodeDeleteAddress(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deletePhone = new LazyEmpNodeDeletePhone(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deletePerson = new LazyEmpDeletePerson(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deleteStore = new LazyEmpDelete(option.conn, option.schemaName);			
+		
+		select.addPostAction(deleteAddress);
+		select.addPostAction(deletePhone);
+		select.addPostAction(deletePerson);
+		select.addPostAction(deleteStore);
+		
+		actions.add(select);		
 		return actions;
 	}
 	
