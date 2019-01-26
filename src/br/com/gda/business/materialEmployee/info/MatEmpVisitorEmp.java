@@ -10,7 +10,7 @@ final class MatEmpVisitorEmp implements InfoMergerVisitor<MatEmpInfo, EmpInfo, M
 		checkArgument(sourceOne, sourceTwo);
 		
 		MatEmpInfo resultInfo = MatEmpInfo.copyFrom(sourceTwo);
-		resultInfo.nameEmployee = sourceOne.name;
+		resultInfo.nameEmployee = "sourceOne.name";		//TODO: Ajustar
 
 		return resultInfo;
 	}

@@ -51,7 +51,7 @@ final class PlanMergeVisitorEmp implements InfoMergerVisitor<PlanInfo, PlanInfo,
 		
 		copyEmp.codOwner = emp.codOwner;
 		copyEmp.codEmployee = emp.codEmployee;
-		copyEmp.name = emp.name;
+		//copyEmp.name = emp.name;				//TODO: Ajustar
 		copyEmp.codLanguage = emp.codLanguage;
 		
 		return copyEmp;

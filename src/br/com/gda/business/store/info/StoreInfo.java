@@ -1,6 +1,7 @@
 package br.com.gda.business.store.info;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
@@ -62,7 +63,64 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		StoreInfo deepCopy = (StoreInfo) super.clone();
+		
+		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
+		deepCopy.phones = clonePhones(deepCopy.phones);
+		deepCopy.personData = clonePerson(deepCopy.personData);
+		deepCopy.companyData = cloneCompany(deepCopy.companyData);
+		
+		return deepCopy;
+	}
+	
+	
+	
+	private List<AddressInfo> cloneAddresses(List<AddressInfo> addressesToClone) throws CloneNotSupportedException {
+		if (addressesToClone == null)
+			return null;
+		
+		List<AddressInfo> deepAddresses = new ArrayList<>();
+		
+		for (AddressInfo eachAddress : addressesToClone) {
+			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
+			deepAddresses.add(clonedAddress);
+		}
+		
+		return deepAddresses;
+	}
+	
+	
+	
+	private List<PhoneInfo> clonePhones(List<PhoneInfo> phonesToClone) throws CloneNotSupportedException {
+		if (phonesToClone == null)
+			return null;
+		
+		List<PhoneInfo> deepPhones = new ArrayList<>();
+		
+		for (PhoneInfo eachPhone : phonesToClone) {
+			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
+			deepPhones.add(clonedPhone);
+		}
+		
+		return deepPhones;
+	}
+	
+	
+	
+	private PersonInfo clonePerson(PersonInfo personToClone) throws CloneNotSupportedException {
+		if (personToClone == null)
+			return null;
+		
+		return (PersonInfo) personToClone.clone();
+	}
+	
+	
+	
+	private CompInfo cloneCompany(CompInfo companyToClone) throws CloneNotSupportedException {
+		if (companyToClone == null)
+			return null;
+		
+		return (CompInfo) companyToClone.clone();
 	}
 	
 	

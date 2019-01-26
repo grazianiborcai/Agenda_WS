@@ -66,13 +66,13 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<AddressInfo> cloneAddresses(List<AddressInfo> addresses) throws CloneNotSupportedException {
-		if (addresses == null)
+	private List<AddressInfo> cloneAddresses(List<AddressInfo> addressesToClone) throws CloneNotSupportedException {
+		if (addressesToClone == null)
 			return null;
 		
 		List<AddressInfo> deepAddresses = new ArrayList<>();
 		
-		for (AddressInfo eachAddress : addresses) {
+		for (AddressInfo eachAddress : addressesToClone) {
 			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
 			deepAddresses.add(clonedAddress);
 		}
@@ -82,13 +82,13 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<PhoneInfo> clonePhones(List<PhoneInfo> phones) throws CloneNotSupportedException {
-		if (phones == null)
+	private List<PhoneInfo> clonePhones(List<PhoneInfo> phonesToClone) throws CloneNotSupportedException {
+		if (phonesToClone == null)
 			return null;
 		
 		List<PhoneInfo> deepPhones = new ArrayList<>();
 		
-		for (PhoneInfo eachPhone : phones) {
+		for (PhoneInfo eachPhone : phonesToClone) {
 			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
 			deepPhones.add(clonedPhone);
 		}
