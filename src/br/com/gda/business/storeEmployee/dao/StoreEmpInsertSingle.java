@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,13 +79,17 @@ public final class StoreEmpInsertSingle implements DaoStmt<StoreEmpInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<StoreEmpInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreEmpInfo recordInfo) throws SQLException {
+			Timestamp lastChanged = null;
+			if(recordInfo.lastChanged != null)
+				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codStore);
 			stmt.setLong(i++, recordInfo.codEmployee);
-			stmt.setLong(i++, recordInfo.codPositionStore);
+			stmt.setInt(i++, recordInfo.codPosition);
 			stmt.setString(i++, recordInfo.recordMode);
+			stmt.setTimestamp(i++, lastChanged);
 			
 			return stmt;
 		}		

@@ -3,7 +3,7 @@ package br.com.gda.business.storeEmployee.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
-import br.com.gda.business.storeEmployee.model.decisionTree.ActionStoreEmpSelect;
+import br.com.gda.business.storeEmployee.model.action.StdStoreEmpSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -22,7 +22,7 @@ public final class StoreEmpCheckExist extends ModelCheckerTemplateAction<StoreEm
 	@Override protected ActionStd<StoreEmpInfo> buildActionHook(StoreEmpInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<StoreEmpInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<StoreEmpInfo> actionSelect = new ActionStoreEmpSelect(option);
+		ActionStd<StoreEmpInfo> actionSelect = new StdStoreEmpSelect(option);
 		return actionSelect;
 	}
 	

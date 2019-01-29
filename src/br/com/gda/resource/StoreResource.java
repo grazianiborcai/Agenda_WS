@@ -179,13 +179,13 @@ public class StoreResource {
 	public Response deleteStoreEmp(@HeaderParam("codOwner")         @DefaultValue("-1") long codOwner, 
 			                       @HeaderParam("codStore")         @DefaultValue("-1") int codStore,
 			                       @HeaderParam("codEmployee")      @DefaultValue("-1") long codEmployee,
-			                       @HeaderParam("codPositionStore") @DefaultValue("-1") long codPositionStore) {
+			                       @HeaderParam("codPositionStore") @DefaultValue("-1") int codPositionStore) {
 		
 		StoreEmpInfo recordInfo = new StoreEmpInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
-		recordInfo.codPositionStore = codPositionStore;
+		recordInfo.codPosition = codPositionStore;
 		
 		Model model = new StoreEmpModelDelete(recordInfo);
 		model.executeRequest();

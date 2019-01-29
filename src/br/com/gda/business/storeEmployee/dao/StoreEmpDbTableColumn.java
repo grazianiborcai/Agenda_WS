@@ -10,11 +10,12 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 
 public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 	
-	public static final String COL_COD_EMPLOYEE = "cod_employee";		
+	public static final String COL_COD_EMPLOYEE = "cod_employee";
+	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_OWNER = "cod_owner";
+	public static final String COL_COD_POSITION = "cod_position";
 	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_NAME = "name";
-	public static final String COL_COD_POSITION_STORE = "Cod_position_store";
+	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_RECORD_MODE = "cod_customer";
 	
 
@@ -68,8 +69,8 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_POSITION_STORE;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.columnName = COL_COD_POSITION;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
@@ -83,24 +84,16 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.POSITION_TEXT_TABLE;
-		oneColumn.columnName = COL_NAME;
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_LAST_CHANGED;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.STORE_TABLE;
-		oneColumn.columnName = COL_NAME;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.EMP_TABLE;
-		oneColumn.columnName = COL_NAME;
+		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;

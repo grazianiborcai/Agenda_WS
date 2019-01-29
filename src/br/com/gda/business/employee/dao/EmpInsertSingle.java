@@ -87,7 +87,6 @@ public final class EmpInsertSingle implements DaoStmt<EmpInfo> {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
-			stmt.setLong(i++, recordInfo.codEmployee);
 			
 			
 			if (recordInfo.codPerson >= 0) {

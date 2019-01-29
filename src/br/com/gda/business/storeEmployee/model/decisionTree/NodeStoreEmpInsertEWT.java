@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
+import br.com.gda.business.storeEmployee.model.action.StdStoreEmpSuccess;
+import br.com.gda.business.storeEmployee.model.action.LazyStoreEmpInsertEWT;
 import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckSWT;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -55,7 +57,7 @@ final class NodeStoreEmpInsertEWT implements DeciTree<StoreEmpInfo> {
 	
 	private List<ActionStd<StoreEmpInfo>> buildActionsOnPassed(DeciTreeOption<StoreEmpInfo> option) {
 		List<ActionStd<StoreEmpInfo>> actions = new ArrayList<>();		
-		actions.add(new HandlerStoreEmpInsertEWT(option.conn, option.schemaName).toAction(option.recordInfos));
+		actions.add(new LazyStoreEmpInsertEWT(option.conn, option.schemaName).toAction(option.recordInfos));
 		return actions;
 	}
 	
@@ -63,7 +65,7 @@ final class NodeStoreEmpInsertEWT implements DeciTree<StoreEmpInfo> {
 	
 	private List<ActionStd<StoreEmpInfo>> buildActionsOnFailed(DeciTreeOption<StoreEmpInfo> option) {
 		List<ActionStd<StoreEmpInfo>> actions = new ArrayList<>();		
-		actions.add(new ActionStoreEmpSuccess(option));
+		actions.add(new StdStoreEmpSuccess(option));
 		return actions;
 	}
 	

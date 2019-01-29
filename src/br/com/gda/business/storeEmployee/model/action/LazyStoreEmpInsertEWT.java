@@ -1,4 +1,4 @@
-package br.com.gda.business.storeEmployee.model.decisionTree;
+package br.com.gda.business.storeEmployee.model.action;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.common.DeciTreeDummy;
 
-final class HandlerStoreEmpInsertEWT extends ActionLazyTemplate<StoreEmpInfo, EmpWTimeInfo> {
+public final class LazyStoreEmpInsertEWT extends ActionLazyTemplate<StoreEmpInfo, EmpWTimeInfo> {
 	private final boolean SUCCESS = true;
 	private final boolean DONT_EXIST_ON_DB = false;
 	
@@ -31,7 +31,7 @@ final class HandlerStoreEmpInsertEWT extends ActionLazyTemplate<StoreEmpInfo, Em
 	private List<EmpWTimeInfo> validRecords;
 	
 	
-	public HandlerStoreEmpInsertEWT(Connection conn, String schemaName) {
+	public LazyStoreEmpInsertEWT(Connection conn, String schemaName) {
 		super(conn, schemaName);
 		
 		this.conn = conn;

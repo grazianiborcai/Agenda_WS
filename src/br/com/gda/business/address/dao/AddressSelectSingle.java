@@ -143,7 +143,7 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 				
 				stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codEmployee = stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE);
 				
 				stmtResult.getLong(AddressDbTableColumn.COL_COD_USER);
 				if (stmtResult.wasNull() == NOT_NULL)

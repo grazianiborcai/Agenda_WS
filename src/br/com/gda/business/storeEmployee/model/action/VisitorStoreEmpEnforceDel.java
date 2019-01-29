@@ -1,4 +1,4 @@
-package br.com.gda.business.storeEmployee.model.decisionTree;
+package br.com.gda.business.storeEmployee.model.action;
 
 import java.util.ArrayList;
 import java.util.List;

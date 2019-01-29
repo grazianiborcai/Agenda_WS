@@ -1,4 +1,4 @@
-package br.com.gda.business.storeEmployee.model.decisionTree;
+package br.com.gda.business.storeEmployee.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +11,11 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class ActionStoreEmpSuccess implements ActionStd<StoreEmpInfo> {
+public final class StdStoreEmpSuccess implements ActionStd<StoreEmpInfo> {
 	private ActionStd<StoreEmpInfo> actionHelper;
 	
 	
-	public ActionStoreEmpSuccess(DeciTreeOption<StoreEmpInfo> option) {
+	public StdStoreEmpSuccess(DeciTreeOption<StoreEmpInfo> option) {
 		actionHelper = new ActionStdDummy<>(buildDeciResult());
 	}
 	

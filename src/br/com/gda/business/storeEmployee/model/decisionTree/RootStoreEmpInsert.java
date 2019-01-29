@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
+import br.com.gda.business.storeEmployee.model.action.StdStoreEmpSelect;
 import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckEmp;
 import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckEmpPos;
 import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckExist;
@@ -86,7 +87,7 @@ public final class RootStoreEmpInsert implements DeciTree<StoreEmpInfo> {
 		
 		actions.add(new NodeStoreEmpInsert(option).toAction());
 		actions.add(new NodeStoreEmpInsertEWT(option).toAction());
-		actions.add(new ActionStoreEmpSelect(option));
+		actions.add(new StdStoreEmpSelect(option));
 		return actions;
 		
 		//TODO: O InsertEWT pode gerar conflitos. Imagine que um empregado j� esteja lotado em uma outra loja.

@@ -3,6 +3,7 @@ package br.com.gda.business.storeEmployee.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
@@ -43,12 +44,9 @@ public final class StoreEmpUpdateSingle implements DaoStmt<StoreEmpInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean IGNORE_RECORD_MODE = true;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new StoreEmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -95,10 +93,13 @@ public final class StoreEmpUpdateSingle implements DaoStmt<StoreEmpInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<StoreEmpInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreEmpInfo recordInfo) throws SQLException {
+			Timestamp lastChanged = null;
+			if(recordInfo.lastChanged != null)
+				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
 			
-			int i = 1;
-			stmt.setLong(i++, recordInfo.codPositionStore);
+			int i = 1;			
 			stmt.setString(i++, recordInfo.recordMode);
+			stmt.setTimestamp(i++, lastChanged);
 			
 			return stmt;
 		}		

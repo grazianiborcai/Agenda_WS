@@ -1,4 +1,4 @@
-package br.com.gda.business.storeEmployee.model.decisionTree;
+package br.com.gda.business.storeEmployee.model.action;
 
 import java.sql.Connection;
 import java.util.List;
@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class HandlerStoreEmpSelect extends ActionLazyTemplate<StoreEmpInfo, StoreEmpInfo> {
+public final class LazyStoreEmpSelect extends ActionLazyTemplate<StoreEmpInfo, StoreEmpInfo> {
 	
-	public HandlerStoreEmpSelect(Connection conn, String schemaName) {
+	public LazyStoreEmpSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class HandlerStoreEmpSelect extends ActionLazyTemplate<StoreEmpInfo
 	
 	
 	@Override protected  ActionStd<StoreEmpInfo> getInstanceOfActionHook(DeciTreeOption<StoreEmpInfo> option) {
-		return new ActionStoreEmpSelect(option);
+		return new StdStoreEmpSelect(option);
 	}
 	
 	

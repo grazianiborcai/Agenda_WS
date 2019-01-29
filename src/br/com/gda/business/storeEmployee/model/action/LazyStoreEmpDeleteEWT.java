@@ -1,4 +1,4 @@
-package br.com.gda.business.storeEmployee.model.decisionTree;
+package br.com.gda.business.storeEmployee.model.action;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -17,12 +17,12 @@ import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerStoreEmpDeleteEWT extends ActionLazyTemplate<StoreEmpInfo, EmpWTimeInfo> {
+public final class LazyStoreEmpDeleteEWT extends ActionLazyTemplate<StoreEmpInfo, EmpWTimeInfo> {
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public HandlerStoreEmpDeleteEWT(Connection conn, String schemaName) {
+	public LazyStoreEmpDeleteEWT(Connection conn, String schemaName) {
 		super(conn, schemaName);
 		this.conn = conn;
 		this.schemaName = schemaName;

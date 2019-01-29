@@ -19,7 +19,7 @@ public final class StoreEmpCheckWrite extends ModelCheckerTemplateSimple<StoreEm
 		if (   recordInfo.codOwner 			<= 0 	
 			|| recordInfo.codStore 			<= 0
 			|| recordInfo.codEmployee		<= 0  	
-			|| recordInfo.codPositionStore	<= 0	)
+			|| recordInfo.codPosition	<= 0	)
 			
 			return FAILED;
 		

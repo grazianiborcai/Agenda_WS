@@ -42,7 +42,7 @@ final class EmpVisiMergeAddress implements InfoMergerVisitor<EmpInfo, AddressInf
 
 		return sourceTwo;
 	}
-	
+		
 	
 	
 	@Override public boolean shouldWrite(AddressInfo sourceOne, EmpInfo sourceTwo) {

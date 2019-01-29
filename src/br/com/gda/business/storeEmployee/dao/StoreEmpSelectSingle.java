@@ -3,16 +3,14 @@ package br.com.gda.business.storeEmployee.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
-import br.com.gda.dao.DaoDictionary;
 import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinColumn;
 import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -24,9 +22,7 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 
 public final class StoreEmpSelectSingle implements DaoStmt<StoreEmpInfo> {	
 	private final String LT_STORE_EMPLOYEE = DaoDbTable.STORE_EMP_TABLE;	
-	private final String RT_EMPLOYEE = DaoDbTable.EMP_TABLE;	
-	private final String RT_STORE = DaoDbTable.STORE_TABLE;	
-	private final String RT_POSITION_TEXT = DaoDbTable.POSITION_TEXT_TABLE;
+	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<StoreEmpInfo> stmtSql;
 	private DaoStmtOption<StoreEmpInfo> stmtOption;
@@ -56,12 +52,9 @@ public final class StoreEmpSelectSingle implements DaoStmt<StoreEmpInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new StoreEmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -70,102 +63,18 @@ public final class StoreEmpSelectSingle implements DaoStmt<StoreEmpInfo> {
 	
 	
 	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinPositionText());		
-		joins.add(buildJoinStore());	
-		joins.add(buildJoinEmployee());
+		List<DaoJoin> joins = new ArrayList<>();
+		joins.add(buildJoinLanguage());	
 		return joins;
 	}
 	
 	
 	
-	private DaoJoin buildJoinPositionText() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_STORE_EMPLOYEE;
-		oneColumn.leftColumnName = StoreEmpDbTableColumn.COL_COD_POSITION_STORE;
-		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_POSITION;
-		joinColumns.add(oneColumn);
-		
-		
+	private DaoJoin buildJoinLanguage() {
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_POSITION_TEXT;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(RT_POSITION_TEXT);
-		
-		return join;
-	}
-	
-	
-	
-	private String buildJoinConstraintText(String rightTableName) {
-		StringBuilder constrainClause = new StringBuilder(); 
-		
-		constrainClause.append(rightTableName);
-		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append(MasterDataDbTableColumn.COL_COD_LANGUAGE);
-		constrainClause.append(DaoDictionary.SPACE);
-		constrainClause.append(DaoDictionary.EQUAL);
-		constrainClause.append(DaoDictionary.SPACE);
-		constrainClause.append(DaoDictionary.QUOTE);
-		constrainClause.append(this.stmtOption.recordInfo.codLanguage);
-		constrainClause.append(DaoDictionary.QUOTE);
-		
-		return constrainClause.toString();
-	}
-	
-	
-	
-	private DaoJoin buildJoinStore() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		DaoJoinColumn oneColumn;
-		
-		oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_STORE_EMPLOYEE;
-		oneColumn.leftColumnName = StoreEmpDbTableColumn.COL_COD_OWNER;
-		oneColumn.rightColumnName = StoreEmpDbTableColumn.COL_COD_OWNER;
-		joinColumns.add(oneColumn);
-		
-		oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_STORE_EMPLOYEE;
-		oneColumn.leftColumnName = StoreEmpDbTableColumn.COL_COD_STORE;
-		oneColumn.rightColumnName = StoreEmpDbTableColumn.COL_COD_STORE;
-		joinColumns.add(oneColumn);
-		
-		
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_STORE;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = null;
-		
-		return join;
-	}
-	
-	
-	private DaoJoin buildJoinEmployee() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		DaoJoinColumn oneColumn;
-		
-		oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_STORE_EMPLOYEE;
-		oneColumn.leftColumnName = StoreEmpDbTableColumn.COL_COD_OWNER;
-		oneColumn.rightColumnName = StoreEmpDbTableColumn.COL_COD_OWNER;
-		joinColumns.add(oneColumn);
-		
-		oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_STORE_EMPLOYEE;
-		oneColumn.leftColumnName = StoreEmpDbTableColumn.COL_COD_EMPLOYEE;
-		oneColumn.rightColumnName = StoreEmpDbTableColumn.COL_COD_EMPLOYEE;
-		joinColumns.add(oneColumn);
-		
-		
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_EMPLOYEE;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
+		join.rightTableName = RT_LANGU;
+		join.joinType = DaoJoinType.CROSS_JOIN;
+		join.joinColumns = null;
 		join.constraintClause = null;
 		
 		return join;
@@ -213,10 +122,8 @@ public final class StoreEmpSelectSingle implements DaoStmt<StoreEmpInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<StoreEmpInfo> {
+		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String COL_POSITION_TEXT = DaoDbTable.POSITION_TEXT_TABLE + "." + StoreEmpDbTableColumn.COL_NAME;
-		private final String COL_STORE_NAME = DaoDbTable.STORE_TABLE + "." + StoreEmpDbTableColumn.COL_NAME;
-		private final String COL_EMPLOYEE_NAME = DaoDbTable.EMP_TABLE + "." + StoreEmpDbTableColumn.COL_NAME;
 		
 		@Override public List<StoreEmpInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreEmpInfo> finalResult = new ArrayList<>();
@@ -229,11 +136,18 @@ public final class StoreEmpSelectSingle implements DaoStmt<StoreEmpInfo> {
 				dataInfo.codOwner = stmtResult.getLong(StoreEmpDbTableColumn.COL_COD_OWNER);
 				dataInfo.codStore = stmtResult.getLong(StoreEmpDbTableColumn.COL_COD_STORE);
 				dataInfo.codEmployee = stmtResult.getLong(StoreEmpDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.codPositionStore = stmtResult.getLong(StoreEmpDbTableColumn.COL_COD_POSITION_STORE);
-				dataInfo.txtPositionStore = stmtResult.getString(COL_POSITION_TEXT);
-				dataInfo.nameStore = stmtResult.getString(COL_STORE_NAME);	
-				dataInfo.nameEmployee = stmtResult.getString(COL_EMPLOYEE_NAME);	
-				dataInfo.recordMode = stmtResult.getString(StoreEmpDbTableColumn.COL_RECORD_MODE);							
+				dataInfo.codPosition = stmtResult.getInt(StoreEmpDbTableColumn.COL_COD_POSITION);
+				dataInfo.recordMode = stmtResult.getString(StoreEmpDbTableColumn.COL_RECORD_MODE);		
+				
+				
+				stmtResult.getString(StoreEmpDbTableColumn.COL_COD_LANGUAGE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codLanguage = stmtResult.getString(StoreEmpDbTableColumn.COL_COD_LANGUAGE);
+				
+				
+				Timestamp lastChanged = stmtResult.getTimestamp(StoreEmpDbTableColumn.COL_LAST_CHANGED);
+				if (lastChanged != null)
+					dataInfo.lastChanged = lastChanged.toLocalDateTime();
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

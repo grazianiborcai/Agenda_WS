@@ -1,5 +1,6 @@
 package br.com.gda.business.storeEmployee.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
@@ -12,9 +13,10 @@ public final class StoreEmpInfo extends InfoRecord implements Cloneable {
 	public String nameStore;	
 	public long codEmployee;
 	public String nameEmployee;
-	public long codPositionStore;
-	public String txtPositionStore;
+	public int codPosition;
+	public String txtPosition;
 	public String codLanguage;
+	public LocalDateTime lastChanged;
 	public String recordMode;
 	
 	
@@ -22,7 +24,7 @@ public final class StoreEmpInfo extends InfoRecord implements Cloneable {
 		this.codOwner = DefaultValue.number();
 		this.codStore = DefaultValue.number();
 		this.codEmployee = DefaultValue.number();
-		this.codPositionStore = DefaultValue.number();
+		this.codPosition = DefaultValue.number();
 		this.codLanguage = DefaultValue.language();
 		this.recordMode = RecordMode.RECORD_OK;		
 	}

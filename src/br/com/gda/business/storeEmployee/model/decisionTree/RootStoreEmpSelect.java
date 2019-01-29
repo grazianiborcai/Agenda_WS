@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
+import br.com.gda.business.storeEmployee.model.action.StdStoreEmpSelect;
 import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootStoreEmpSelect implements DeciTree<StoreEmpInfo> {
 	private List<ActionStd<StoreEmpInfo>> buildActionsOnPassed(DeciTreeOption<StoreEmpInfo> option) {
 		List<ActionStd<StoreEmpInfo>> actions = new ArrayList<>();
 		
-		actions.add(new ActionStoreEmpSelect(option));
+		actions.add(new StdStoreEmpSelect(option));
 		return actions;
 	}
 	
