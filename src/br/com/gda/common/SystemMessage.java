@@ -434,4 +434,9 @@ public final class SystemMessage {
 	// Pay Partner-Owner
 	public static final String PAY_PARTNER_OWNER_IS_NULL = "Pay-Partner-Owner's country is blank";
 	public static final String PAY_PARTNER_OWNER_IS_FILLED = "Pay-Partner-Owner's country is not blank";
+	
+	
+	
+	// User Password
+	public static final String USER_PASSWORD_OR_USERNAME_IS_INVALID = "Invalid Password or Username";
 }

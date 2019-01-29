@@ -56,6 +56,9 @@ import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
 import br.com.gda.payService.payPartnerOwner.model.PayparOwnerModelSelect;
 import br.com.gda.payService.payPartnerStore.info.PayparStoreInfo;
 import br.com.gda.payService.payPartnerStore.model.PayparStoreModelSelect;
+import br.com.gda.security.userPassword.info.UpswdInfo;
+import br.com.gda.security.userPassword.model.UpswdModelInsert;
+import br.com.gda.security.userPassword.model.UpswdModelAuth;
 
 @Path("/Test")
 public class TestResource {
@@ -91,6 +94,8 @@ public class TestResource {
 	private static final String SELECT_PAY_PARTNER_OWNER = "/selectPayPartnerOwner";
 	private static final String INSERT_COMPANY = "/insertCompany";
 	private static final String UPDATE_COMPANY = "/updateCompany";
+	private static final String INSERT_USER_PASSWORD = "/insertUserPassword";
+	private static final String AUTH_USER_PASSWORD = "/authUserPassword";
 	
 	
 	
@@ -563,4 +568,36 @@ public class TestResource {
 		model.executeRequest();
 		return model.getResponse();	
 	}	
+	
+	
+	
+	@POST
+	@Path(INSERT_USER_PASSWORD)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertUserPassword(String incomingData) {
+		
+		
+		Model model = new UpswdModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();	
+	}
+	
+	
+	
+	@GET
+	@Path(AUTH_USER_PASSWORD)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response authUserPassword(@HeaderParam("codOwner") long codOwner,
+			                         @HeaderParam("codUser") long codUser,
+			                         @HeaderParam("password") String password) {
+
+		UpswdInfo recordInfo = new UpswdInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codUser = codUser;
+		recordInfo.password = password;
+		
+		Model model = new UpswdModelAuth(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
 }

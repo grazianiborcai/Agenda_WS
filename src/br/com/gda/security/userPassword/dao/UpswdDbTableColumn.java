@@ -1,4 +1,4 @@
-package br.com.gda.business.storeEmployee.dao;
+package br.com.gda.security.userPassword.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -8,20 +8,18 @@ import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 
-public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
+public final class UpswdDbTableColumn extends DaoDbTableColumnTemplate {
 	
-	public static final String COL_COD_EMPLOYEE = "cod_employee";
-	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_POSITION = "cod_position";
-	public static final String COL_COD_STORE = "cod_store";
+	public static final String COL_COD_OWNER = "cod_owner";	
+	public static final String COL_COD_USER = "cod_user";
 	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_RECORD_MODE = "record_mode";
+	public static final String COL_PASSWORD = "hash1";
+	public static final String COL_SALT = "hash2";
 	
 
 	Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public StoreEmpDbTableColumn() {
+	public UpswdDbTableColumn() {
 		super();
 	}
 	
@@ -38,7 +36,7 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	private void buildStoreEmployeeTable() {
-		final String TABLE_NAME = DaoDbTable.STORE_EMP_TABLE;
+		final String TABLE_NAME = DaoDbTable.USER_PASSWORD_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
@@ -53,7 +51,7 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_STORE;
+		oneColumn.columnName = COL_COD_USER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -61,41 +59,25 @@ public final class StoreEmpDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_EMPLOYEE;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.columnName = COL_PASSWORD;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_POSITION;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.columnName = COL_SALT;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_RECORD_MODE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_LAST_CHANGED;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
