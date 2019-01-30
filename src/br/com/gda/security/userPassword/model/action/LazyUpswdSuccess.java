@@ -9,9 +9,9 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 
-public final class LazyUpswdKeepStore extends ActionLazyTemplate<UpswdInfo, UpswdInfo> {
+public final class LazyUpswdSuccess extends ActionLazyTemplate<UpswdInfo, UpswdInfo> {
 	
-	public LazyUpswdKeepStore(Connection conn, String schemaName) {
+	public LazyUpswdSuccess(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -23,8 +23,8 @@ public final class LazyUpswdKeepStore extends ActionLazyTemplate<UpswdInfo, Upsw
 	
 	
 	
-	@Override protected ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
-		return new StdUpswdKeepUpswd(option);
+	@Override protected  ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
+		return new StdUpswdSuccess(option);
 	}
 	
 	

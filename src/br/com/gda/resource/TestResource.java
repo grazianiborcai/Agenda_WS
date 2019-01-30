@@ -58,7 +58,9 @@ import br.com.gda.payService.payPartnerStore.info.PayparStoreInfo;
 import br.com.gda.payService.payPartnerStore.model.PayparStoreModelSelect;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 import br.com.gda.security.userPassword.model.UpswdModelInsert;
+import br.com.gda.security.userPassword.model.UpswdModelUpdate;
 import br.com.gda.security.userPassword.model.UpswdModelAuth;
+import br.com.gda.security.userPassword.model.UpswdModelDelete;
 
 @Path("/Test")
 public class TestResource {
@@ -96,6 +98,8 @@ public class TestResource {
 	private static final String UPDATE_COMPANY = "/updateCompany";
 	private static final String INSERT_USER_PASSWORD = "/insertUserPassword";
 	private static final String AUTH_USER_PASSWORD = "/authUserPassword";
+	private static final String UPDATE_USER_PASSWORD = "/updateUserPassword";
+	private static final String DELETE_USER_PASSWORD = "/deleteUserPassword";
 	
 	
 	
@@ -597,6 +601,37 @@ public class TestResource {
 		recordInfo.password = password;
 		
 		Model model = new UpswdModelAuth(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(UPDATE_USER_PASSWORD)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateUserPassword(String incomingData) {
+		
+		
+		Model model = new UpswdModelUpdate(incomingData);
+		model.executeRequest();
+		return model.getResponse();	
+	}	
+	
+	
+	
+	@DELETE
+	@Path(DELETE_USER_PASSWORD)
+	public Response deleteUserPassword(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+			                           @HeaderParam("codUser")  @DefaultValue("-1") long codUser,
+			                           @HeaderParam("password") String password) {
+		
+		UpswdInfo recordInfo = new UpswdInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codUser = codUser;
+		recordInfo.password = password;
+		
+		Model model = new UpswdModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Base64;
 import java.util.List;
 
 import br.com.gda.dao.DaoDbTable;
@@ -97,9 +98,27 @@ public final class UpswdUpdateSingle implements DaoStmt<UpswdInfo> {
 			if(recordInfo.lastChanged != null)
 				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
 			
+			
+			String strHash;
+			if (recordInfo.hash == null) {
+				strHash = null;
+			} else {
+				strHash = Base64.getEncoder().encodeToString(recordInfo.hash);
+			}
+				
+
+			String strSalt;
+			if (recordInfo.salt == null) {
+				strSalt = null;
+			} else {
+				strSalt = Base64.getEncoder().encodeToString(recordInfo.salt);
+			}
+			
+			
 			int i = 1;			
-			stmt.setString(i++, new String(recordInfo.hash));
-			stmt.setString(i++, new String(recordInfo.salt));
+			
+			stmt.setString(i++, new String(strHash));
+			stmt.setString(i++, new String(strSalt));
 			stmt.setTimestamp(i++, lastChanged);
 			
 			return stmt;

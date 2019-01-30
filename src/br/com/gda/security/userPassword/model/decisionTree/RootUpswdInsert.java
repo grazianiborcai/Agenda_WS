@@ -19,6 +19,7 @@ import br.com.gda.security.userPassword.model.action.LazyUpswdEnforceHash;
 import br.com.gda.security.userPassword.model.action.LazyUpswdEnforceLength;
 import br.com.gda.security.userPassword.model.action.LazyUpswdEnforceSalt;
 import br.com.gda.security.userPassword.model.action.LazyUpswdInsert;
+import br.com.gda.security.userPassword.model.action.LazyUpswdSuccess;
 import br.com.gda.security.userPassword.model.action.StdUpswdEnforceLChanged;
 import br.com.gda.security.userPassword.model.checker.UpswdCheckExist;
 import br.com.gda.security.userPassword.model.checker.UpswdCheckOwner;
@@ -93,11 +94,13 @@ public final class RootUpswdInsert implements DeciTree<UpswdInfo> {
 		ActionLazy<UpswdInfo> enforceSalt = new LazyUpswdEnforceSalt(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> enforceHash = new LazyUpswdEnforceHash(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> insert = new LazyUpswdInsert(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLength);
 		enforceLength.addPostAction(enforceSalt);
 		enforceSalt.addPostAction(enforceHash);				
 		enforceHash.addPostAction(insert);
+		insert.addPostAction(success);
 		
 		actions.add(enforceLChanged);	
 		return actions;

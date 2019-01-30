@@ -57,14 +57,14 @@ public final class RootUpswdAuth implements DeciTree<UpswdInfo> {
 	private List<ActionStd<UpswdInfo>> buildActionsOnPassed(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> select = new StdUpswdKeepUpswd(option);
+		ActionStd<UpswdInfo> keepAttr = new StdUpswdKeepUpswd(option);
 		ActionLazy<UpswdInfo> enforceHashToMatch = new LazyUpswdEnforceHashToMatch(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> nodeMatch = new LazyUpswdNodeMatch(option.conn, option.schemaName);
 		
-		select.addPostAction(enforceHashToMatch);		
+		keepAttr.addPostAction(enforceHashToMatch);		
 		enforceHashToMatch.addPostAction(nodeMatch);
 		
-		actions.add(select);		
+		actions.add(keepAttr);		
 		return actions;
 	}
 	

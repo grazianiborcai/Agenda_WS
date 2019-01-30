@@ -17,12 +17,14 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 import br.com.gda.security.userPassword.model.action.LazyUpswdEnforceHash;
 import br.com.gda.security.userPassword.model.action.LazyUpswdEnforceLength;
+import br.com.gda.security.userPassword.model.action.LazyUpswdEnforcePassword;
 import br.com.gda.security.userPassword.model.action.LazyUpswdEnforceSalt;
+import br.com.gda.security.userPassword.model.action.LazyUpswdSuccess;
 import br.com.gda.security.userPassword.model.action.LazyUpswdUpdate;
 import br.com.gda.security.userPassword.model.action.StdUpswdEnforceLChanged;
 import br.com.gda.security.userPassword.model.checker.UpswdCheckExist;
 import br.com.gda.security.userPassword.model.checker.UpswdCheckOwner;
-import br.com.gda.security.userPassword.model.checker.UpswdCheckWrite;
+import br.com.gda.security.userPassword.model.checker.UpswdCheckUpdate;
 
 public final class RootUpswdUpdate implements DeciTree<UpswdInfo> {
 	private DeciTree<UpswdInfo> tree;
@@ -50,7 +52,7 @@ public final class RootUpswdUpdate implements DeciTree<UpswdInfo> {
 		ModelChecker<UpswdInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new UpswdCheckWrite();
+		checker = new UpswdCheckUpdate();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -75,18 +77,23 @@ public final class RootUpswdUpdate implements DeciTree<UpswdInfo> {
 	private List<ActionStd<UpswdInfo>> buildActionsOnPassed(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
+		ActionStd<UpswdInfo> auth = new RootUpswdAuth(option).toAction();
 		ActionStd<UpswdInfo> enforceLChanged = new StdUpswdEnforceLChanged(option);
 		ActionLazy<UpswdInfo> enforceLength = new LazyUpswdEnforceLength(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> enforcePassword = new LazyUpswdEnforcePassword(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> enforceSalt = new LazyUpswdEnforceSalt(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> enforceHash = new LazyUpswdEnforceHash(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> update = new LazyUpswdUpdate(option.conn, option.schemaName);
-		//TODO: select
+		ActionLazy<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLength);
-		enforceLength.addPostAction(enforceSalt);
+		enforceLength.addPostAction(enforcePassword);
+		enforcePassword.addPostAction(enforceSalt);
 		enforceSalt.addPostAction(enforceHash);				
 		enforceHash.addPostAction(update);
+		update.addPostAction(success);
 		
+		actions.add(auth);
 		actions.add(enforceLChanged);	
 		return actions;
 	}

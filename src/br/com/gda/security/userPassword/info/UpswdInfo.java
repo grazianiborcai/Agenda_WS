@@ -9,6 +9,7 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codUser;
 	public String password;
+	public String passwordToChange;
 	public byte[] hash;
 	public byte[] salt;
 	public byte[] hashToMatch;
