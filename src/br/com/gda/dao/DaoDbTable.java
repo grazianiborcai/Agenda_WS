@@ -26,6 +26,7 @@ public final class DaoDbTable {
 	public static final String EMP_TABLE = "employee";	
 	public static final String EMP_WT_TABLE = "employee_working_time";
 	public static final String EMP_LD_TABLE = "employee_leave_time";
+	public static final String EMPOS_TABLE = "emp_position";
 	public static final String ENTITY_CATEG_TABLE = "entity_categ";
 	public static final String ENTITY_CATEG_TEXT_TABLE = "entity_categ_text";
 	public static final String FEE_CATEG_TABLE = "fee_categ";
@@ -71,7 +72,6 @@ public final class DaoDbTable {
 	public static final String SNAPSHOT_HDR_TABLE = "snapshot_header";
 	public static final String STATE_TABLE = "state";
 	public static final String STATE_TEXT_TABLE = "state_text";
-	public static final String STORE_EMP_TABLE = "store_emp";
 	public static final String STORE_TABLE = "store";
 	public static final String STORE_LD_TABLE = "store_leave_time";
 	public static final String STORE_WT_TABLE = "store_working_time";

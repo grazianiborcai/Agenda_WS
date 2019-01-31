@@ -155,9 +155,6 @@ public final class SystemMessage {
 	public static final String STORE_NOT_FOUND = "Store's data not found on DB";
 	public static final String STORE_CNPJ_ALREADY_EXIST = "Store's CNPJ already exist on DB";	
 	public static final String STORE_CNPJ_NOT_FOUND = "Store's CNPJ not found on DB";
-	public static final String STORE_EMP_ALREADY_EXIST = "Store-Employee's data already exist on DB";
-	public static final String STORE_EMP_FLAGGED_AS_DELETED = "Store-Employee's data is flagged as deleted on DB";	
-	public static final String STORE_EMP_NOT_FOUND = "Store-Employee's data not found on DB";
 	public static final String STORE_FEE_ALREADY_EXIST = "Store's fee data already exist on DB";
 	public static final String STORE_FEE_NOT_FOUND = "Store's fee data not found on DB";
 	public static final String STORE_MAT_ALREADY_EXIST = "Store's material data already exist on DB";
@@ -439,4 +436,11 @@ public final class SystemMessage {
 	
 	// User Password
 	public static final String USER_PASSWORD_OR_USERNAME_IS_INVALID = "Invalid Password or Username";
+	
+	
+	
+	// Employee Position
+	public static final String EMPOS_ALREADY_EXIST = "Employee-Position's data already exist on DB";
+	public static final String EMPOS_FLAGGED_AS_DELETED = "Employee-Position's data is flagged as deleted on DB";	
+	public static final String EMPOS_NOT_FOUND = "Employee-Position's data not found on DB";
 }

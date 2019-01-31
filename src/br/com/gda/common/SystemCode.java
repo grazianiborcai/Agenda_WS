@@ -42,9 +42,6 @@ public final class SystemCode {
 	public static final int STORE_CNPJ_NOT_FOUND						= 1101;
 	public static final int STORE_ALREADY_EXIST 						= 1102;
 	public static final int STORE_NOT_FOUND 							= 1103;
-	public static final int STORE_EMP_ALREADY_EXIST 					= 1104;
-	public static final int STORE_EMP_NOT_FOUND 						= 1105;
-	public static final int STORE_EMP_FLAGGED_AS_DELETED 				= 1106;	
 	public static final int STORE_MAT_EMP_ALREADY_EXIST 				= 1107;
 	public static final int STORE_MAT_EMP_NOT_FOUND 					= 1108;
 	public static final int STORE_MAT_EMP_FLAGGED_AS_DELETED 			= 1109;
@@ -341,4 +338,9 @@ public final class SystemCode {
 	
 	//User Password
 	public static final int USER_PASSWORD_OR_USERNAME_IS_INVALID		= 2600;
+	
+	// Employee Position
+	public static final int EMPOS_ALREADY_EXIST 						= 2650;
+	public static final int EMPOS_NOT_FOUND 							= 2651;
+	public static final int EMPOS_FLAGGED_AS_DELETED 					= 2652;	
 }

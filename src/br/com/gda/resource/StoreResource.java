@@ -28,11 +28,6 @@ import br.com.gda.business.store.model.StoreModelDelete;
 import br.com.gda.business.store.model.StoreModelInsert;
 import br.com.gda.business.store.model.StoreModelSelect;
 import br.com.gda.business.store.model.StoreModelUpdate;
-import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
-import br.com.gda.business.storeEmployee.model.StoreEmpModelDelete;
-import br.com.gda.business.storeEmployee.model.StoreEmpModelInsert;
-import br.com.gda.business.storeEmployee.model.StoreEmpModelSelect;
-import br.com.gda.business.storeEmployee.model.StoreEmpModelUpdate;
 import br.com.gda.business.storeLeaveDate.info.StoreLDateInfo;
 import br.com.gda.business.storeLeaveDate.model.StoreLDateModelDelete;
 import br.com.gda.business.storeLeaveDate.model.StoreLDateModelInsert;
@@ -58,10 +53,6 @@ public class StoreResource {
 	private static final String SELECT_STORE_MAT_EMP = "/selectStoreMatEmp";
 	private static final String INSERT_STORE_MAT_EMP = "/insertStoreMatEmp";
 	private static final String DELETE_STORE_MAT_EMP = "/deleteStoreMatEmp";
-	private static final String SELECT_STORE_EMP = "/selectStoreEmployee";
-	private static final String INSERT_STORE_EMP = "/insertStoreEmployee";
-	private static final String UPDATE_STORE_EMP = "/updateStoreEmployee";
-	private static final String DELETE_STORE_EMP = "/deleteStoreEmployee";
 	private static final String SELECT_STORE_FEE = "/selectStoreFee";
 	private static final String SELECT_STORE_WTIME = "/selectStoreWorkTime";
 	private static final String INSERT_STORE_WTIME = "/insertStoreWorkTime";
@@ -128,66 +119,6 @@ public class StoreResource {
 		recordInfo.codStore = codStore;
 		
 		Model model = new StoreModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@GET
-	@Path(SELECT_STORE_EMP)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectStoreEmp(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-			                       @HeaderParam("codStore") @DefaultValue("-1") int codStore) {
-		StoreEmpInfo recordInfo = new StoreEmpInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		
-		Model model = new StoreEmpModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@POST
-	@Path(INSERT_STORE_EMP)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertStoreEmp(String incomingData) {
-		
-		Model model = new StoreEmpModelInsert(incomingData);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@POST
-	@Path(UPDATE_STORE_EMP)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateStoreEmp(String incomingData) {
-		Model storeEmpUpdate = new StoreEmpModelUpdate(incomingData);
-		storeEmpUpdate.executeRequest();
-		return storeEmpUpdate.getResponse();
-	}
-	
-	
-	
-	@DELETE
-	@Path(DELETE_STORE_EMP)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteStoreEmp(@HeaderParam("codOwner")         @DefaultValue("-1") long codOwner, 
-			                       @HeaderParam("codStore")         @DefaultValue("-1") int codStore,
-			                       @HeaderParam("codEmployee")      @DefaultValue("-1") long codEmployee,
-			                       @HeaderParam("codPositionStore") @DefaultValue("-1") int codPositionStore) {
-		
-		StoreEmpInfo recordInfo = new StoreEmpInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		recordInfo.codEmployee = codEmployee;
-		recordInfo.codPosition = codPositionStore;
-		
-		Model model = new StoreEmpModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

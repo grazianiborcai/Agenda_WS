@@ -25,6 +25,11 @@ import br.com.gda.business.employeeLeaveDate.model.EmpLDateModelDelete;
 import br.com.gda.business.employeeLeaveDate.model.EmpLDateModelInsert;
 import br.com.gda.business.employeeLeaveDate.model.EmpLDateModelSelect;
 import br.com.gda.business.employeeLeaveDate.model.EmpLDateModelUpdate;
+import br.com.gda.business.employeePosition.info.EmposInfo;
+import br.com.gda.business.employeePosition.model.EmposModelDelete;
+import br.com.gda.business.employeePosition.model.EmposModelInsert;
+import br.com.gda.business.employeePosition.model.EmposModelSelect;
+import br.com.gda.business.employeePosition.model.EmposModelUpdate;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelDelete;
 import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelInsert;
@@ -32,7 +37,6 @@ import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelSelect;
 import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelUpdate;
 import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.business.employeeWorkTimeConflict.model.EmpCoModelSelect;
-import br.com.gda.legacy.model.EmployeeModel;
 import br.com.gda.model.Model;
 
 @Path("/Employee")
@@ -41,7 +45,6 @@ public class EmployeeResource {
 	private static final String UPDATE_EMP = "/updateEmployee";
 	private static final String DELETE_EMP = "/deleteEmployee";
 	private static final String SELECT_EMP = "/selectEmployee";
-	private static final String LOGIN_EMP = "/loginEmployee";
 	private static final String INSERT_WORK_TIME = "/insertWorkTime";
 	private static final String UPDATE_WORK_TIME = "/updateWorkTime";
 	private static final String SELECT_WORK_TIME = "/selectWorkTime";
@@ -51,6 +54,10 @@ public class EmployeeResource {
 	private static final String UPDATE_LEAVE_DATE = "/updateLeaveDate";
 	private static final String SELECT_LEAVE_DATE = "/selectLeaveDate";
 	private static final String DELETE_LEAVE_DATE = "/deleteLeaveDate";
+	private static final String SELECT_EMP_POSITION = "/selectEmployeePosition";
+	private static final String INSERT_EMP_POSITION = "/insertEmployeePosition";
+	private static final String UPDATE_EMP_POSITION = "/updateEmployeePosition";
+	private static final String DELETE_EMP_POSITION = "/deleteEmployeePosition";
 	
 	
 	
@@ -66,9 +73,9 @@ public class EmployeeResource {
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
 		
-		Model modelSelect = new EmpWTimeModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new EmpWTimeModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -78,9 +85,9 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertWorkTime(String incomingData) {
 		
-		Model modelInsert = new EmpWTimeModelInsert(incomingData);
-		modelInsert.executeRequest();
-		return modelInsert.getResponse();
+		Model model = new EmpWTimeModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -90,9 +97,9 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateWorkTime(String incomingData) {
 		
-		Model modelUpdate = new EmpWTimeModelUpdate(incomingData);
-		modelUpdate.executeRequest();
-		return modelUpdate.getResponse();
+		Model model = new EmpWTimeModelUpdate(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -111,9 +118,9 @@ public class EmployeeResource {
 		recordInfo.codEmployee = codEmployee;
 		recordInfo.codWeekday = codWeekday;
 		
-		Model modelDelete = new EmpWTimeModelDelete(recordInfo);
-		modelDelete.executeRequest();
-		return modelDelete.getResponse();
+		Model model = new EmpWTimeModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -136,9 +143,9 @@ public class EmployeeResource {
 		recordInfo.beginTime = LocalTime.parse(beginTime, DateTimeFormatter.ISO_LOCAL_TIME);
 		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
 		
-		Model modelSelect = new EmpCoModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new EmpCoModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -161,9 +168,9 @@ public class EmployeeResource {
 			recordInfo.dateValidTo = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
 		}
 		
-		Model modelSelect = new EmpLDateModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new EmpLDateModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -173,9 +180,9 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertLeaveDate(String incomingData) {
 		
-		Model modelInsert = new EmpLDateModelInsert(incomingData);
-		modelInsert.executeRequest();
-		return modelInsert.getResponse();
+		Model model = new EmpLDateModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -185,9 +192,9 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateLeaveDate(String incomingData) {
 		
-		Model modelUpdate = new EmpLDateModelUpdate(incomingData);
-		modelUpdate.executeRequest();
-		return modelUpdate.getResponse();
+		Model model = new EmpLDateModelUpdate(incomingData);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -208,9 +215,9 @@ public class EmployeeResource {
 		recordInfo.dateValidFrom = LocalDate.parse(dateValidFrom, DateTimeFormatter.ISO_LOCAL_DATE);
 		recordInfo.timeValidFrom = LocalTime.parse(timeValidFrom, DateTimeFormatter.ISO_LOCAL_TIME);
 		
-		Model modelDelete = new EmpLDateModelDelete(recordInfo);
-		modelDelete.executeRequest();
-		return modelDelete.getResponse();
+		Model model = new EmpLDateModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -250,21 +257,10 @@ public class EmployeeResource {
 		recordInfo.codOwner = codOwner;
 		recordInfo.codEmployee = codEmployee;
 		
-		Model modelDelete = new EmpModelDelete(recordInfo);
-		modelDelete.executeRequest();
-		return modelDelete.getResponse();
-	}
-	
-	
-	
-	@GET																										
-	@Path(LOGIN_EMP)																							
-	@Produces(MediaType.APPLICATION_JSON)																		
-	public Response loginOwner(@HeaderParam("codOwner") long codOwner, @HeaderParam("email") String email, @HeaderParam("password") String password) {
-		//TODO: um mesmo empregado pode estar em mais de um estabelecimento. Retornar uma lista com todos os Owner para seleÃ§Ã£o
-		//TODO: nÃ£o retornar o password
-		return new EmployeeModel().loginEmployee(codOwner, email, password);											
-	}		
+		Model model = new EmpModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}	
 
 	
 	
@@ -274,15 +270,76 @@ public class EmployeeResource {
 	public Response selectEmployee(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
 								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee) {
 		
-		//TODO: O Android está chamando esse método para obter os empregados. Verificar se StoreEmployee é mais apropriado
+		//TODO: O Android estï¿½ chamando esse mï¿½todo para obter os empregados. Verificar se StoreEmployee ï¿½ mais apropriado
 		
 		
 		EmpInfo recordInfo = new EmpInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codEmployee = codEmployee;
 		
-		Model modelSelect = new EmpModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new EmpModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_EMP_POSITION)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectEmpos(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codStore") @DefaultValue("-1") int codStore) {
+		
+		EmposInfo recordInfo = new EmposInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		
+		Model model = new EmposModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_EMP_POSITION)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response insertEmpos(String incomingData) {
+		
+		Model model = new EmposModelInsert(incomingData);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(UPDATE_EMP_POSITION)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateEmpos(String incomingData) {
+		Model storeEmpUpdate = new EmposModelUpdate(incomingData);
+		storeEmpUpdate.executeRequest();
+		return storeEmpUpdate.getResponse();
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_EMP_POSITION)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteEmpos(@HeaderParam("codOwner")         @DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codStore")         @DefaultValue("-1") int codStore,
+			                    @HeaderParam("codEmployee")      @DefaultValue("-1") long codEmployee,
+			                    @HeaderParam("codPositionStore") @DefaultValue("-1") int codPositionStore) {
+		
+		EmposInfo recordInfo = new EmposInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codPosition = codPositionStore;
+		
+		Model model = new EmposModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 }

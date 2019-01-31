@@ -21,7 +21,7 @@ import br.com.gda.business.masterData.info.CountryInfo;
 import br.com.gda.business.masterData.info.CountryLegalInfo;
 import br.com.gda.business.masterData.info.CountryPhoneInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
-import br.com.gda.business.masterData.info.EmpPosInfo;
+import br.com.gda.business.masterData.info.PositionInfo;
 import br.com.gda.business.masterData.info.EntityCategInfo;
 import br.com.gda.business.masterData.info.FeeCategInfo;
 import br.com.gda.business.masterData.info.GenderInfo;
@@ -42,7 +42,7 @@ import br.com.gda.business.masterData.model.CountryLegalModelSelect;
 import br.com.gda.business.masterData.model.CountryModelSelect;
 import br.com.gda.business.masterData.model.CountryPhoneModelSelect;
 import br.com.gda.business.masterData.model.CurrencyModelSelect;
-import br.com.gda.business.masterData.model.EmpPosModelSelect;
+import br.com.gda.business.masterData.model.PositionModelSelect;
 import br.com.gda.business.masterData.model.EntityCategModelSelect;
 import br.com.gda.business.masterData.model.FeeCategModelSelect;
 import br.com.gda.business.masterData.model.GenderModelSelect;
@@ -55,7 +55,7 @@ import br.com.gda.model.Model;
 
 @Path("/MasterData")
 public final class MasterDataResource {
-	private static final String SELECT_EMPLOYEE_POSTION = "/selectEmpPosition";
+	private static final String SELECT_POSTION = "/selectPosition";
 	private static final String SELECT_MATERIAL_UNIT = "/selectMatUnit";
 	private static final String SELECT_MATERIAL_TYPE = "/selectMatType";
 	private static final String SELECT_MATERIAL_CATEG = "/selectMatCategory";
@@ -79,16 +79,16 @@ public final class MasterDataResource {
 	
 	
 	@GET
-	@Path(SELECT_EMPLOYEE_POSTION)
+	@Path(SELECT_POSTION)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectEmpPosition(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
-			                          @HeaderParam("codPosition") @DefaultValue("-1") long codPosition) {
+	public Response selectPosition(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                       @HeaderParam("codPosition") @DefaultValue("-1") int codPosition) {
 		
-		EmpPosInfo recordInfo = new EmpPosInfo();
+		PositionInfo recordInfo = new PositionInfo();
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codPosition = codPosition;
 		
-		Model model = new EmpPosModelSelect(recordInfo);
+		Model model = new PositionModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

@@ -1,28 +1,28 @@
-package br.com.gda.business.employeeWorkTime.model.checker;
+package br.com.gda.business.employeePosition.model.checker;
 
 import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
-import br.com.gda.business.employeePosition.model.checker.EmposCheckExist;
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
+import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.checker.StoreCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class EmpWTimeCheckSE implements ModelChecker<EmpWTimeInfo> {
+public final class EmposCheckStore implements ModelChecker<EmposInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmposInfo> checker;
+	private ModelChecker<StoreInfo> checker;
 	
 	
-	public EmpWTimeCheckSE(ModelCheckerOption option) {
-		checker = new EmposCheckExist(option);
+	public EmposCheckStore(ModelCheckerOption option) {
+		checker = new StoreCheckExist(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<EmpWTimeInfo> recordInfos) {
-		for (EmpWTimeInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<EmposInfo> recordInfos) {
+		for (EmposInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -32,8 +32,8 @@ public final class EmpWTimeCheckSE implements ModelChecker<EmpWTimeInfo> {
 
 	
 	
-	@Override public boolean check(EmpWTimeInfo recordInfo) {
-		return checker.check(EmposInfo.copyFrom(recordInfo));
+	@Override public boolean check(EmposInfo recordInfo) {
+		return checker.check(StoreInfo.copyFrom(recordInfo));
 	}
 
 	

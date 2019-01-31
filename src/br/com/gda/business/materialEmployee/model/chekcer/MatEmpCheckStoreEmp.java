@@ -2,9 +2,9 @@ package br.com.gda.business.materialEmployee.model.chekcer;
 
 import java.util.List;
 
+import br.com.gda.business.employeePosition.info.EmposInfo;
+import br.com.gda.business.employeePosition.model.checker.EmposCheckExist;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.business.storeEmployee.info.StoreEmpInfo;
-import br.com.gda.business.storeEmployee.model.checker.StoreEmpCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
@@ -12,11 +12,11 @@ public final class MatEmpCheckStoreEmp implements ModelChecker<MatEmpInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoreEmpInfo> checker;
+	private ModelChecker<EmposInfo> checker;
 	
 	
 	public MatEmpCheckStoreEmp(ModelCheckerOption option) {
-		checker = new StoreEmpCheckExist(option);
+		checker = new EmposCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class MatEmpCheckStoreEmp implements ModelChecker<MatEmpInfo> {
 	
 	
 	@Override public boolean check(MatEmpInfo recordInfo) {
-		return checker.check(StoreEmpInfo.copyFrom(recordInfo));
+		return checker.check(EmposInfo.copyFrom(recordInfo));
 	}
 
 	
