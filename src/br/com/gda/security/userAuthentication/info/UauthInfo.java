@@ -1,4 +1,4 @@
-package br.com.gda.security.userPassword.info;
+package br.com.gda.security.userAuthentication.info;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,34 +6,34 @@ import java.util.List;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class UpswdInfo extends InfoRecord implements Cloneable {
+public final class UauthInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codUser;
 	public String password;
-	public String passwordToChange;
-	public byte[] hash;
-	public byte[] salt;
-	public byte[] hashToMatch;
-	public int hashLength;
-	public LocalDateTime lastChanged;
+	public String resource_uri;
+	public boolean isAuth;
+	public boolean hasRole;	
+	public LocalDateTime lastLogin;
+	public String codLanguage;
 	
 	
 	
-	public UpswdInfo() {
+	public UauthInfo() {
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	
 	
-	public static UpswdInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, UpswdInfo.class);
+	public static UauthInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, UauthInfo.class);
 	}
 	
 	
 	
-	public static List<UpswdInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, UpswdInfo.class);
+	public static List<UauthInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, UauthInfo.class);
 	}
 	
 	
@@ -60,11 +60,11 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof UpswdInfo))
+		if (!(o instanceof UauthInfo))
 			return false;
 		
 		
-		UpswdInfo obj = (UpswdInfo) o;		
+		UauthInfo obj = (UauthInfo) o;		
 		return (codOwner == obj.codOwner && codUser == obj.codUser);
 	}
 }
