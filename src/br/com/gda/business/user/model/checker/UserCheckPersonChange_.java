@@ -13,9 +13,9 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class UserCheckPersonChange extends ModelCheckerTemplateAction<UserInfo> {
+public final class UserCheckPersonChange_ extends ModelCheckerTemplateAction<UserInfo> {
 	
-	public UserCheckPersonChange(ModelCheckerOption option) {
+	public UserCheckPersonChange_(ModelCheckerOption option) {
 		super(option);
 	}
 	

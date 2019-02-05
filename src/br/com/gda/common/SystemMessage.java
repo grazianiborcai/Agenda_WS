@@ -287,7 +287,8 @@ public final class SystemMessage {
 	public static final String PERSON_EMAIL_NOT_CHANGED = "e-mail not changed";	
 	public static final String PERSON_EMAIL_NOT_FOUND = "e-email not found on DB";
 	public static final String PERSON_IS_NULL = "Person is blank";
-	public static final String PERSON_IS_FILLED = "Person is not blank";
+	public static final String PERSON_IS_FILLED = "Person is not blank";	
+	public static final String PERSON_MISMATCH = "Person code mismatch";
 	public static final String PERSON_NOT_FOUND = "Person not found on DB";	
 	public static final String PERSON_TECH_FIELD_SHOULD_BE_EMPTY = "Person: technical fields shouldn't be filled";	
 	
@@ -423,6 +424,7 @@ public final class SystemMessage {
 	public static final String COMPANY_CNPJ_NOT_FOUND = "CNPJ not found on DB";
 	public static final String COMPANY_IS_NULL = "Company is blank";
 	public static final String COMPANY_IS_FILLED = "Company is not blank";
+	public static final String COMPANY_MISMATCH = "Company code mismatch";
 	public static final String COMPANY_NOT_FOUND = "Company not found on DB";	
 	public static final String COMPANY_TECH_FIELD_SHOULD_BE_EMPTY = "Company: technical fields shouldn't be filled";
 	

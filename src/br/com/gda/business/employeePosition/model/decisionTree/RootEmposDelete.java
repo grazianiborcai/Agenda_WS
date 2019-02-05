@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeePosition.model.action.StdEmposDelete;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckExist;
-import br.com.gda.business.employeePosition.model.checker.EmposCheckKey;
+import br.com.gda.business.employeePosition.model.checker.EmposCheckDelete;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -44,7 +44,7 @@ public final class RootEmposDelete implements DeciTree<EmposInfo> {
 		final boolean KEY_NOT_NULL = true;	
 		checkerOption = new ModelCheckerOption();
 		checkerOption.expectedResult = KEY_NOT_NULL;		
-		checker = new EmposCheckKey(checkerOption);
+		checker = new EmposCheckDelete(checkerOption);
 		queue.add(checker);
 		
 		final boolean EXIST_ON_DB = true;	
@@ -62,9 +62,12 @@ public final class RootEmposDelete implements DeciTree<EmposInfo> {
 	
 	private List<ActionStd<EmposInfo>> buildActionsOnPassed(DeciTreeOption<EmposInfo> option) {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
-		actions.add(new StdEmposDelete(option));
-		actions.add(new NodeEmposDeleteEWT(option).toAction());
-		return actions;
+		
+		ActionStd<EmposInfo> delete = new StdEmposDelete(option);
+		
+		actions.add(delete);
+		return actions;		
+		//actions.add(new NodeEmposDeleteEWT(option).toAction());		
 	}
 	
 	

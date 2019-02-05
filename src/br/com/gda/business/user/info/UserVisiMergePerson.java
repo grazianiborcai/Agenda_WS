@@ -3,14 +3,13 @@ package br.com.gda.business.user.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.personCustomer.info.PersonCusInfo;
-import br.com.gda.business.user.info.UserInfo;
+import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class UserVisitorPersonCus implements InfoMergerVisitor<UserInfo, PersonCusInfo, UserInfo> {
+final class UserVisiMergePerson implements InfoMergerVisitor<UserInfo, PersonInfo, UserInfo> {
 
-	@Override public UserInfo writeRecord(PersonCusInfo sourceOne, UserInfo sourceTwo) {
+	@Override public UserInfo writeRecord(PersonInfo sourceOne, UserInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		UserInfo clonedInfo = makeClone(sourceTwo);
@@ -19,7 +18,7 @@ final class UserVisitorPersonCus implements InfoMergerVisitor<UserInfo, PersonCu
 	
 	
 	
-	private void checkArgument(PersonCusInfo sourceOne, UserInfo sourceTwo) {
+	private void checkArgument(PersonInfo sourceOne, UserInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -38,16 +37,29 @@ final class UserVisitorPersonCus implements InfoMergerVisitor<UserInfo, PersonCu
 	
 	
 	
-	private UserInfo merge(PersonCusInfo sourceOne, UserInfo sourceTwo) {
-		sourceTwo.codCustomer = sourceOne.codCustomer;
+	private UserInfo merge(PersonInfo sourceOne, UserInfo sourceTwo) {
+		sourceTwo.personData = makeClone(sourceOne);
+		sourceTwo.codPerson = sourceOne.codPerson;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(PersonCusInfo sourceOne, UserInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	private PersonInfo makeClone(PersonInfo recordInfo) {
+		try {
+			return (PersonInfo) recordInfo.clone();
+			
+		} catch (Exception e) {
+			logException(e);
+			throw new IllegalStateException(e); 
+		}
 	}	
+	
+	
+	
+	@Override public boolean shouldWrite(PersonInfo sourceOne, UserInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner);
+	}
 	
 	
 	

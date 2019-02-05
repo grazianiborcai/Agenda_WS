@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.action.LazyUserEnforceAddressKey;
 import br.com.gda.business.user.model.action.LazyUserEnforceEntityCateg;
+import br.com.gda.business.user.model.action.LazyUserEnforcePersonKey;
 import br.com.gda.business.user.model.action.LazyUserEnforcePhoneKey;
 import br.com.gda.business.user.model.action.LazyUserInsert;
 import br.com.gda.business.user.model.action.LazyUserInsertPerson;
@@ -73,8 +74,6 @@ public final class RootUserInsert implements DeciTree<UserInfo> {
 		checker = new UserCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		//TODO: verificar se Addresses e customer possuem o mesmo codigo
-		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -91,16 +90,18 @@ public final class RootUserInsert implements DeciTree<UserInfo> {
 		
 		ActionStd<UserInfo> enforceLChanged = new StdUserEnforceLChanged(option);
 		ActionLazy<UserInfo> enforceEntityCateg = new LazyUserEnforceEntityCateg(option.conn, option.schemaName);
+		ActionLazy<UserInfo> enforcePersonKey = new LazyUserEnforcePersonKey(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> insertPerson = new LazyUserInsertPerson(option.conn, option.schemaName);
 		ActionLazy<UserInfo> insertUser = new LazyUserInsert(option.conn, option.schemaName);
 		ActionLazy<UserInfo> enforceAddressKey = new LazyUserEnforceAddressKey(option.conn, option.schemaName);
 		ActionLazy<UserInfo> upsertAddress = new LazyUserNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<UserInfo> enforcePhoneKey = new LazyUserEnforcePhoneKey(option.conn, option.schemaName);
 		ActionLazy<UserInfo> upsertPhone = new LazyUserNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionLazy<UserInfo> selectUser = new LazyUserRootSelect(option.conn, option.schemaName);	
+		ActionLazy<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(enforceEntityCateg);
-		enforceEntityCateg.addPostAction(insertPerson);
+		enforceEntityCateg.addPostAction(enforcePersonKey);
+		enforcePersonKey.addPostAction(insertPerson);
 		insertPerson.addPostAction(insertUser);		
 		
 		insertUser.addPostAction(enforceAddressKey);
@@ -109,7 +110,7 @@ public final class RootUserInsert implements DeciTree<UserInfo> {
 		insertUser.addPostAction(enforcePhoneKey);
 		enforcePhoneKey.addPostAction(upsertPhone);	
 		
-		insertUser.addPostAction(selectUser);
+		insertUser.addPostAction(select);
 		
 		actions.add(enforceLChanged);	
 		return actions;

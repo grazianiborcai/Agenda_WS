@@ -16,7 +16,8 @@ public final class UserCheckInsert extends ModelCheckerTemplateSimple<UserInfo> 
 	
 	
 	@Override protected boolean checkHook(UserInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner <= 0 )
+		if ( recordInfo.codOwner    <= 0 	||
+			 recordInfo.codLanguage == null		)
 			return FAILED;
 		
 		

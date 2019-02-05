@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
-import br.com.gda.business.employeePosition.model.action.StdEmposSelect;
-import br.com.gda.business.employeePosition.model.action.StdEmposUpdate;
+import br.com.gda.business.employeePosition.model.action.LazyEmposUpdate;
+import br.com.gda.business.employeePosition.model.action.StdEmposEnforceLChanged;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckEmp;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckPosition;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckExist;
+import br.com.gda.business.employeePosition.model.checker.EmposCheckOwner;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckStore;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -52,6 +54,13 @@ public final class RootEmposUpdate implements DeciTree<EmposInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmposCheckOwner(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmposCheckPosition(checkerOption);
 		queue.add(checker);	
 		
@@ -84,8 +93,15 @@ public final class RootEmposUpdate implements DeciTree<EmposInfo> {
 	private List<ActionStd<EmposInfo>> buildActionsOnPassed(DeciTreeOption<EmposInfo> option) {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmposUpdate(option));
-		actions.add(new StdEmposSelect(option));
+		ActionStd<EmposInfo> enforceLChanged = new StdEmposEnforceLChanged(option);
+		ActionLazy<EmposInfo> update = new LazyEmposUpdate(option.conn, option.schemaName);
+		ActionStd<EmposInfo> select = new RootEmposSelect(option).toAction();
+		
+		enforceLChanged.addPostAction(update);
+		
+		actions.add(enforceLChanged);
+		actions.add(select);
+		
 		return actions;
 	}
 	

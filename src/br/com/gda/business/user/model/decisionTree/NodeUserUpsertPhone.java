@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
+import br.com.gda.business.user.model.action.LazyUserUpsertPhone;
+import br.com.gda.business.user.model.action.StdUserEnforcePhoneKey;
 import br.com.gda.business.user.model.action.StdUserSuccess;
-import br.com.gda.business.user.model.action.StdUserUpsertPhone;
 import br.com.gda.business.user.model.checker.UserCheckHasPhone;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -37,7 +39,7 @@ public final class NodeUserUpsertPhone implements DeciTree<UserInfo> {
 	
 	
 	private ModelChecker<UserInfo> buildDecisionChecker(DeciTreeOption<UserInfo> option) {
-		final boolean HAS_ADDRESS = true;
+		final boolean HAS_PHONE = true;
 		
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserInfo> checker;
@@ -46,7 +48,7 @@ public final class NodeUserUpsertPhone implements DeciTree<UserInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_ADDRESS;		
+		checkerOption.expectedResult = HAS_PHONE;		
 		checker = new UserCheckHasPhone(checkerOption);
 		queue.add(checker);	
 		
@@ -64,7 +66,12 @@ public final class NodeUserUpsertPhone implements DeciTree<UserInfo> {
 	private List<ActionStd<UserInfo>> buildActionsOnPassed(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdUserUpsertPhone(option));		
+		ActionStd<UserInfo> enforcePhoneKey = new StdUserEnforcePhoneKey(option);
+		ActionLazy<UserInfo> upsertPhone = new LazyUserUpsertPhone(option.conn, option.schemaName);	
+		
+		enforcePhoneKey.addPostAction(upsertPhone);
+		
+		actions.add(enforcePhoneKey);		
 		return actions;
 	}
 	

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.person.info.PersonCopier;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.decisionTree.RootPersonUpdate;
 import br.com.gda.business.user.info.UserInfo;
@@ -24,7 +25,7 @@ final class VisiUserUpdatePerson extends ActionVisitorTemplateAction<UserInfo, P
 		List<PersonInfo> results = new ArrayList<>();
 		
 		for (UserInfo eachRecord : recordInfos) {
-			results.add(PersonInfo.copyFrom(eachRecord));
+			results.add(PersonCopier.copyFromUser(eachRecord));
 		}		
 		
 		return results;

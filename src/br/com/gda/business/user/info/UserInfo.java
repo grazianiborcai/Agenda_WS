@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
@@ -15,13 +16,14 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public long codUser;
 	public long codPerson;
 	public long codCustomer;
-	public String cpf;
-	public String name;
-	public String codEntityCateg;
-	public int codGender;
-	public String txtGender;
-	public LocalDate birthDate;
-	public String email;
+	public String cpf;						//TODO: remover
+	public String name;						//TODO: remover
+	public String codEntityCateg;			//TODO: remover
+	public int codGender;					//TODO: remover
+	public String txtGender;				//TODO: remover
+	public LocalDate birthDate;				//TODO: remover
+	public String email;					//TODO: remover
+	public PersonInfo personData;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
 	public String codLanguage;
@@ -35,6 +37,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codGender = DefaultValue.gender();
+		personData = DefaultValue.object();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		codLanguage = DefaultValue.language();		
@@ -60,6 +63,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		
 		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
 		deepCopy.phones = clonePhones(deepCopy.phones);
+		deepCopy.personData = clonePerson(deepCopy.personData);
 		
 		return deepCopy;
 	}
@@ -94,6 +98,15 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		}
 		
 		return deepPhones;
+	}
+	
+	
+	
+	private PersonInfo clonePerson(PersonInfo personToClone) throws CloneNotSupportedException {
+		if (personToClone == null)
+			return null;
+		
+		return (PersonInfo) personToClone.clone();
 	}
 	
 	

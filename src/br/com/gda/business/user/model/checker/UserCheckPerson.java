@@ -2,6 +2,7 @@ package br.com.gda.business.user.model.checker;
 
 import java.util.List;
 
+import br.com.gda.business.person.info.PersonCopier;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.checker.PersonCheckExist;
 import br.com.gda.business.user.info.UserInfo;
@@ -33,7 +34,7 @@ public final class UserCheckPerson implements ModelChecker<UserInfo> {
 	
 	
 	@Override public boolean check(UserInfo recordInfo) {
-		return checker.check(PersonInfo.copyFrom(recordInfo));
+		return checker.check(PersonCopier.copyFromUser(recordInfo));
 	}
 
 	

@@ -72,7 +72,7 @@ public final class RootOwnerUpdate implements DeciTree<OwnerInfo> {
 
 		ActionStd<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
 		ActionLazy<OwnerInfo> enforceEntityCateg = new LazyOwnerEnforceEntityCateg(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> KeepOwner = new LazyOwnerKeepOwner(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> keepOwner = new LazyOwnerKeepOwner(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> updatePerson = new LazyOwnerNodeUpdatePerson(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> updateCompany = new LazyOwnerNodeUpdateComp(option.conn, option.schemaName);
@@ -81,13 +81,13 @@ public final class RootOwnerUpdate implements DeciTree<OwnerInfo> {
 		ActionStd<OwnerInfo> select = new RootOwnerSelect(option).toAction();		
 		
 		enforceLChanged.addPostAction(enforceEntityCateg);
-		enforceEntityCateg.addPostAction(KeepOwner);
+		enforceEntityCateg.addPostAction(keepOwner);
 		
-		KeepOwner.addPostAction(updateOwner);		
-		KeepOwner.addPostAction(updatePerson);
-		KeepOwner.addPostAction(updateCompany);		
-		KeepOwner.addPostAction(upsertAddress);		
-		KeepOwner.addPostAction(upsertPhone);
+		keepOwner.addPostAction(updateOwner);		
+		keepOwner.addPostAction(updatePerson);
+		keepOwner.addPostAction(updateCompany);		
+		keepOwner.addPostAction(upsertAddress);		
+		keepOwner.addPostAction(upsertPhone);
 		
 		actions.add(enforceLChanged);
 		actions.add(select);

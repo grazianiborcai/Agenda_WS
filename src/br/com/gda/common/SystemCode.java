@@ -224,6 +224,7 @@ public final class SystemCode {
 	public static final int PERSON_TECH_FIELD_SHOULD_BE_EMPTY			= 1772;
 	public static final int PERSON_IS_NULL								= 1773;
 	public static final int PERSON_IS_FILLED							= 1774;
+	public static final int PERSON_MISMATCH								= 1775;
 	
 	// User
 	public static final int USER_COD_IS_FILLED							= 1800;
@@ -331,6 +332,7 @@ public final class SystemCode {
 	public static final int COMPANY_CNPJ_ERASURE						= 2513;
 	public static final int COMPANY_IS_NULL								= 2514;
 	public static final int COMPANY_IS_FILLED							= 2515;
+	public static final int COMPANY_MISMATCH							= 2516;
 	
 	// Pay Partner-Owner
 	public static final int PAY_PARTNER_OWNER_IS_NULL					= 2550;

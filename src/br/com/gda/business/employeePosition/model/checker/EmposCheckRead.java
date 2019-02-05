@@ -17,10 +17,10 @@ public final class EmposCheckRead extends ModelCheckerTemplateSimple<EmposInfo> 
 	
 	@Override protected boolean checkHook(EmposInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner <= 0 )			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

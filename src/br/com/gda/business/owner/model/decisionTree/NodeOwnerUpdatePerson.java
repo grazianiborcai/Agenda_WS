@@ -6,8 +6,8 @@ import java.util.List;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.action.LazyOwnerUpdatePerson;
 import br.com.gda.business.owner.model.action.StdOwnerEnforcePersonKey;
-import br.com.gda.business.owner.model.action.StdOwnerSuccess;
 import br.com.gda.business.owner.model.checker.OwnerCheckHasPerson;
+import br.com.gda.business.owner.model.checker.OwnerCheckUpdatePerson;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -32,7 +32,7 @@ public final class NodeOwnerUpdatePerson implements DeciTree<OwnerInfo> {
 		helperOption.conn = option.conn;
 		helperOption.schemaName = option.schemaName;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
+		helperOption.actionsOnFailed = null;
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -45,6 +45,9 @@ public final class NodeOwnerUpdatePerson implements DeciTree<OwnerInfo> {
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
 		ModelCheckerOption checkerOption;	
+			
+		checker = new OwnerCheckUpdatePerson();
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
@@ -67,15 +70,6 @@ public final class NodeOwnerUpdatePerson implements DeciTree<OwnerInfo> {
 		enforcePersonKey.addPostAction(updatePerson);
 		
 		actions.add(enforcePersonKey);
-		return actions;
-	}
-	
-	
-	
-	private List<ActionStd<OwnerInfo>> buildActionsOnFailed(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
-		
-		actions.add(new StdOwnerSuccess(option));		
 		return actions;
 	}
 	

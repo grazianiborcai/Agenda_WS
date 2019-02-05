@@ -7,12 +7,12 @@ import br.com.gda.info.InfoMerger;
 
 final class UserMergerAddress extends InfoMerger<UserInfo, AddressInfo, UserInfo> {
 	public UserInfo merge(AddressInfo sourceOne, UserInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new UserVisitorAddress());
+		return super.write(sourceOne, sourceTwo, new UserVisiMergeAddress());
 	}
 	
 	
 	
 	public List<UserInfo> merge(List<AddressInfo> sourceOnes, List<UserInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new UserVisitorAddress());
+		return super.write(sourceOnes, sourceTwos, new UserVisiMergeAddress());
 	}
 }

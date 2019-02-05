@@ -327,16 +327,18 @@ public class EmployeeResource {
 	@DELETE
 	@Path(DELETE_EMP_POSITION)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteEmpos(@HeaderParam("codOwner")         @DefaultValue("-1") long codOwner, 
-			                    @HeaderParam("codStore")         @DefaultValue("-1") int codStore,
-			                    @HeaderParam("codEmployee")      @DefaultValue("-1") long codEmployee,
-			                    @HeaderParam("codPositionStore") @DefaultValue("-1") int codPositionStore) {
+	public Response deleteEmpos(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codStore")    @DefaultValue("-1") int codStore,
+			                    @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
+			                    @HeaderParam("codPosition") @DefaultValue("-1") int codPosition,
+			                    @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 		
 		EmposInfo recordInfo = new EmposInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
-		recordInfo.codPosition = codPositionStore;
+		recordInfo.codPosition = codPosition;
+		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new EmposModelDelete(recordInfo);
 		model.executeRequest();

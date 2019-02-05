@@ -91,7 +91,7 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> enforcePhoneKey = new LazyOwnerEnforcePhoneKey(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionLazy<OwnerInfo> selectOwner = new LazyOwnerRootSelect(option.conn, option.schemaName);	
+		ActionLazy<OwnerInfo> select = new LazyOwnerRootSelect(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(insertOwner);
 		insertOwner.addPostAction(enforceEntityCateg);
@@ -108,7 +108,7 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 		updateOwner.addPostAction(enforcePhoneKey);
 		enforcePhoneKey.addPostAction(upsertPhone);	
 		
-		updateOwner.addPostAction(selectOwner);
+		updateOwner.addPostAction(select);
 		
 		actions.add(enforceLChanged);	
 		return actions;
