@@ -11,6 +11,7 @@ import br.com.gda.business.store.model.action.LazyStoreNodeDeleteAddress;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeletePhone;
 import br.com.gda.business.store.model.checker.StoreCheckExist;
 import br.com.gda.business.store.model.checker.StoreCheckKey;
+import br.com.gda.business.store.model.checker.StoreCheckLangu;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -58,8 +59,15 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new StoreCheckExist(checkerOption);
+		checker = new StoreCheckLangu(checkerOption);
 		queue.add(checker);		
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new StoreCheckExist(checkerOption);
+		queue.add(checker);	
 		
 		 return new ModelCheckerQueue<StoreInfo>(queue);
 	}

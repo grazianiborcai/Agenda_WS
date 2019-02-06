@@ -11,10 +11,12 @@ import br.com.gda.business.store.model.action.LazyStoreMergePerson;
 import br.com.gda.business.store.model.action.LazyStoreMergePhone;
 import br.com.gda.business.store.model.action.LazyStoreMergeTimezone;
 import br.com.gda.business.store.model.action.StdStoreSelect;
+import br.com.gda.business.store.model.checker.StoreCheckLangu;
 import br.com.gda.business.store.model.checker.StoreCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -31,7 +33,7 @@ public final class RootStoreSelect implements DeciTree<StoreInfo> {
 	public RootStoreSelect(DeciTreeOption<StoreInfo> option) {
 		DeciTreeHelperOption<StoreInfo> helperOption = new DeciTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
@@ -41,12 +43,22 @@ public final class RootStoreSelect implements DeciTree<StoreInfo> {
 	
 	
 	
-	private ModelChecker<StoreInfo> buildDecisionChecker() {
+	private ModelChecker<StoreInfo> buildDecisionChecker(DeciTreeOption<StoreInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
+		ModelCheckerOption checkerOption;
 		
 		checker = new StoreCheckRead();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new StoreCheckLangu(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}

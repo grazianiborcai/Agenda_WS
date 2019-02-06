@@ -16,6 +16,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPerson;
 	public long codCompany;
+	public long codUser;
 	public String codEntityCateg;
 	public LocalDateTime lastChanged;
 	public String codLanguage;
@@ -32,6 +33,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codCompany = DefaultValue.number();
+		codUser = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();

@@ -8,10 +8,12 @@ import br.com.gda.business.employee.model.action.LazyEmpMergeAddress;
 import br.com.gda.business.employee.model.action.LazyEmpMergePerson;
 import br.com.gda.business.employee.model.action.LazyEmpMergePhone;
 import br.com.gda.business.employee.model.action.StdEmpSelect;
+import br.com.gda.business.employee.model.checker.EmpCheckLangu;
 import br.com.gda.business.employee.model.checker.EmpCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -27,7 +29,7 @@ public final class RootEmpSelect implements DeciTree<EmpInfo> {
 	public RootEmpSelect(DeciTreeOption<EmpInfo> option) {
 		DeciTreeHelperOption<EmpInfo> helperOption = new DeciTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
@@ -37,12 +39,22 @@ public final class RootEmpSelect implements DeciTree<EmpInfo> {
 	
 	
 	
-	private ModelChecker<EmpInfo> buildDecisionChecker() {
+	private ModelChecker<EmpInfo> buildDecisionChecker(DeciTreeOption<EmpInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
 		checker = new EmpCheckRead();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpCheckLangu(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}

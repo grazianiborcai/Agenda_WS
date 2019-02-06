@@ -19,6 +19,7 @@ import br.com.gda.business.store.model.action.LazyStoreUpdate;
 import br.com.gda.business.store.model.action.StdStoreEnforceLChanged;
 import br.com.gda.business.store.model.checker.StoreCheckCurrency;
 import br.com.gda.business.store.model.checker.StoreCheckGenField;
+import br.com.gda.business.store.model.checker.StoreCheckLangu;
 import br.com.gda.business.store.model.checker.StoreCheckOwner;
 import br.com.gda.business.store.model.checker.StoreCheckTimezone;
 import br.com.gda.business.store.model.checker.StoreCheckWrite;
@@ -71,6 +72,13 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 		
 		checker = new StoreCheckWriteAddress();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new StoreCheckLangu(checkerOption);
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

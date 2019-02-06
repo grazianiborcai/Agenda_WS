@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeePosition.model.action.StdEmposDelete;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckExist;
+import br.com.gda.business.employeePosition.model.checker.EmposCheckLangu;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckDelete;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -37,6 +38,8 @@ public final class RootEmposDelete implements DeciTree<EmposInfo> {
 	
 	
 	private ModelChecker<EmposInfo> buildDecisionChecker(DeciTreeOption<EmposInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmposInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -45,15 +48,21 @@ public final class RootEmposDelete implements DeciTree<EmposInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.expectedResult = KEY_NOT_NULL;		
 		checker = new EmposCheckDelete(checkerOption);
-		queue.add(checker);
+		queue.add(checker);		
+			
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmposCheckLangu(checkerOption);
+		queue.add(checker);		
 		
-		final boolean EXIST_ON_DB = true;	
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmposCheckExist(checkerOption);
-		queue.add(checker);		
+		queue.add(checker);	
 		
 		 return new ModelCheckerQueue<EmposInfo>(queue);
 	}

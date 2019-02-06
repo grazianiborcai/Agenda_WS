@@ -12,6 +12,7 @@ import br.com.gda.business.order.model.action.LazyOrderInsert;
 import br.com.gda.business.order.model.action.LazyOrderMergeCartSnap;
 import br.com.gda.business.order.model.action.LazyOrderMergeUserSnap;
 import br.com.gda.business.order.model.checker.OrderCheckCart;
+import br.com.gda.business.order.model.checker.OrderCheckLangu;
 import br.com.gda.business.order.model.checker.OrderCheckUser;
 import br.com.gda.business.order.model.checker.OrderCheckWrite;
 import br.com.gda.model.action.ActionStd;
@@ -51,6 +52,13 @@ public final class RootOrderPlace implements DeciTree<OrderInfo> {
 		ModelCheckerOption checkerOption;
 		
 		checker = new OrderCheckWrite();
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new OrderCheckLangu(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

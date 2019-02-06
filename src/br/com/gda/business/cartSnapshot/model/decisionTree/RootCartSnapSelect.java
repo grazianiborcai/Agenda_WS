@@ -11,10 +11,12 @@ import br.com.gda.business.cartSnapshot.model.action.LazyCartSnapNodeSelectFee;
 import br.com.gda.business.cartSnapshot.model.action.LazyCartSnapSort;
 import br.com.gda.business.cartSnapshot.model.action.MultiCartSnapJoinResult;
 import br.com.gda.business.cartSnapshot.model.action.StdCartSnapSelect;
+import br.com.gda.business.cartSnapshot.model.checker.CartSnapCheckOwner;
 import br.com.gda.business.cartSnapshot.model.checker.CartSnapCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -30,7 +32,7 @@ public final class RootCartSnapSelect implements DeciTree<CartSnapInfo> {
 	public RootCartSnapSelect(DeciTreeOption<CartSnapInfo> option) {
 		DeciTreeHelperOption<CartSnapInfo> helperOption = new DeciTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
@@ -40,11 +42,21 @@ public final class RootCartSnapSelect implements DeciTree<CartSnapInfo> {
 	
 	
 	
-	private ModelChecker<CartSnapInfo> buildDecisionChecker() {
+	private ModelChecker<CartSnapInfo> buildDecisionChecker(DeciTreeOption<CartSnapInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<CartSnapInfo>> queue = new ArrayList<>();		
-		ModelChecker<CartSnapInfo> checker;
+		ModelChecker<CartSnapInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
 		checker = new CartSnapCheckRead();
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CartSnapCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

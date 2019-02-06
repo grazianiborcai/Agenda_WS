@@ -10,6 +10,7 @@ import br.com.gda.business.employee.model.action.LazyEmpNodeDeleteAddress;
 import br.com.gda.business.employee.model.action.LazyEmpNodeDeletePhone;
 import br.com.gda.business.employee.model.checker.EmpCheckExist;
 import br.com.gda.business.employee.model.checker.EmpCheckKey;
+import br.com.gda.business.employee.model.checker.EmpCheckLangu;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -57,8 +58,15 @@ public final class RootEmpDelete implements DeciTree<EmpInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpCheckExist(checkerOption);
+		checker = new EmpCheckLangu(checkerOption);
 		queue.add(checker);		
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpCheckExist(checkerOption);
+		queue.add(checker);	
 		
 		 return new ModelCheckerQueue<EmpInfo>(queue);
 	}

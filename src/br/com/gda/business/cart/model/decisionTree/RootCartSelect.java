@@ -15,10 +15,12 @@ import br.com.gda.business.cart.model.action.LazyCartMergeWeekday;
 import br.com.gda.business.cart.model.action.LazyCartNodeFee;
 import br.com.gda.business.cart.model.action.LazyCartNodeTotal;
 import br.com.gda.business.cart.model.action.LazyCartSort;
+import br.com.gda.business.cart.model.checker.CartCheckLangu;
 import br.com.gda.business.cart.model.checker.CartCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -45,10 +47,20 @@ public final class RootCartSelect implements DeciTree<CartInfo> {
 	
 	
 	private ModelChecker<CartInfo> buildDecisionChecker(DeciTreeOption<CartInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
 		checker = new CartCheckRead();
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CartCheckLangu(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

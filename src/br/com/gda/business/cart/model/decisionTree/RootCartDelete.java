@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.checker.CartCheckDelete;
 import br.com.gda.business.cart.model.checker.CartCheckHasItem;
+import br.com.gda.business.cart.model.checker.CartCheckLangu;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -36,12 +37,20 @@ public final class RootCartDelete implements DeciTree<CartInfo> {
 	
 	private ModelChecker<CartInfo> buildDecisionChecker(DeciTreeOption<CartInfo> option) {
 		final boolean CART_HAS_ITEM = true;
+		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checker = new CartCheckDelete();
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CartCheckLangu(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

@@ -13,6 +13,7 @@ import br.com.gda.business.employee.model.action.LazyEmpUpdate;
 import br.com.gda.business.employee.model.action.StdEmpEnforceLChanged;
 import br.com.gda.business.employee.model.checker.EmpCheckExist;
 import br.com.gda.business.employee.model.checker.EmpCheckKey;
+import br.com.gda.business.employee.model.checker.EmpCheckLangu;
 import br.com.gda.business.employee.model.checker.EmpCheckOwner;
 import br.com.gda.business.employee.model.checker.EmpCheckWrite;
 import br.com.gda.model.action.ActionLazy;
@@ -60,6 +61,13 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 		checkerOption.expectedResult = KEY_NOT_NULL;
 		checker = new EmpCheckKey(checkerOption);
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpCheckLangu(checkerOption);
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

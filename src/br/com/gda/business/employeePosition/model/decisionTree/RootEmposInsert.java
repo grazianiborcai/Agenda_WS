@@ -10,6 +10,7 @@ import br.com.gda.business.employeePosition.model.action.StdEmposEnforceLChanged
 import br.com.gda.business.employeePosition.model.checker.EmposCheckEmp;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckPosition;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckExist;
+import br.com.gda.business.employeePosition.model.checker.EmposCheckLangu;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckOwner;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckStore;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckWrite;
@@ -52,6 +53,13 @@ public final class RootEmposInsert implements DeciTree<EmposInfo> {
 		
 		checker = new EmposCheckWrite();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmposCheckLangu(checkerOption);
+		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

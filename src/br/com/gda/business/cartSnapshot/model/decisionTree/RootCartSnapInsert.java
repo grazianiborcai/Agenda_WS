@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.business.cartSnapshot.model.checker.CartSnapCheckCartItm;
+import br.com.gda.business.cartSnapshot.model.checker.CartSnapCheckLangu;
 import br.com.gda.business.cartSnapshot.model.checker.CartSnapCheckOwner;
 import br.com.gda.business.cartSnapshot.model.checker.CartSnapCheckUser;
 import br.com.gda.business.cartSnapshot.model.checker.CartSnapCheckWrite;
@@ -37,7 +38,7 @@ public final class RootCartSnapInsert implements DeciTree<CartSnapInfo> {
 	
 	
 	private ModelChecker<CartSnapInfo> buildDecisionChecker(DeciTreeOption<CartSnapInfo> option) {
-		final boolean EXIST = true;
+		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<CartSnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartSnapInfo> checker;	
@@ -49,21 +50,28 @@ public final class RootCartSnapInsert implements DeciTree<CartSnapInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CartSnapCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new CartSnapCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new CartSnapCheckUser(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new CartSnapCheckCartItm(checkerOption);
 		queue.add(checker);
 		

@@ -124,6 +124,10 @@ public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codCompany = stmtResult.getLong(OwnerDbTableColumn.COL_COD_COMPANY);
 				
+				stmtResult.getLong(OwnerDbTableColumn.COL_COD_USER);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codUser = stmtResult.getLong(OwnerDbTableColumn.COL_COD_USER);
+				
 				Timestamp lastChanged = stmtResult.getTimestamp(OwnerDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();

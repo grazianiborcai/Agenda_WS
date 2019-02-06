@@ -117,6 +117,14 @@ public final class OwnerUpdateSingle implements DaoStmt<OwnerInfo> {
 				stmt.setNull(i++, Types.INTEGER);
 			}
 			
+			
+			if (recordInfo.codUser >= 0) {
+				stmt.setLong(i++, recordInfo.codUser);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
 			return stmt;
 		}		
 	}

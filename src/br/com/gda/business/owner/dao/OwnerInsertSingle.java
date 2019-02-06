@@ -89,14 +89,23 @@ public final class OwnerInsertSingle implements DaoStmt<OwnerInfo> {
 			stmt.setTimestamp(i++, lastChanged);
 			stmt.setString(i++, recordInfo.recordMode);
 			
+			
 			if (recordInfo.codPerson >= 0) {
 				stmt.setLong(i++, recordInfo.codPerson);
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}
 			
+			
 			if (recordInfo.codCompany >= 0) {
 				stmt.setLong(i++, recordInfo.codCompany);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codUser >= 0) {
+				stmt.setLong(i++, recordInfo.codUser);
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}

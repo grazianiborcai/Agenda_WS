@@ -7,10 +7,12 @@ import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.action.LazyOrderMergeCartSnap;
 import br.com.gda.business.order.model.action.LazyOrderMergeOrderStatus;
 import br.com.gda.business.order.model.action.StdOrderSelect;
+import br.com.gda.business.order.model.checker.OrderCheckLangu;
 import br.com.gda.business.order.model.checker.OrderCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -26,7 +28,7 @@ public final class RootOrderSelect implements DeciTree<OrderInfo> {
 	public RootOrderSelect(DeciTreeOption<OrderInfo> option) {
 		DeciTreeHelperOption<OrderInfo> helperOption = new DeciTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
@@ -36,11 +38,21 @@ public final class RootOrderSelect implements DeciTree<OrderInfo> {
 	
 	
 	
-	private ModelChecker<OrderInfo> buildDecisionChecker() {
+	private ModelChecker<OrderInfo> buildDecisionChecker(DeciTreeOption<OrderInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
-		ModelChecker<OrderInfo> checker;
+		ModelChecker<OrderInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
 		checker = new OrderCheckRead();
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new OrderCheckLangu(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

@@ -6,10 +6,12 @@ import java.util.List;
 import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeePosition.model.action.LazyEmposMergePosition;
 import br.com.gda.business.employeePosition.model.action.StdEmposSelect;
+import br.com.gda.business.employeePosition.model.checker.EmposCheckLangu;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -25,7 +27,7 @@ public final class RootEmposSelect implements DeciTree<EmposInfo> {
 	public RootEmposSelect(DeciTreeOption<EmposInfo> option) {
 		DeciTreeHelperOption<EmposInfo> helperOption = new DeciTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
@@ -35,12 +37,22 @@ public final class RootEmposSelect implements DeciTree<EmposInfo> {
 	
 	
 	
-	private ModelChecker<EmposInfo> buildDecisionChecker() {
+	private ModelChecker<EmposInfo> buildDecisionChecker(DeciTreeOption<EmposInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmposInfo> checker;
+		ModelCheckerOption checkerOption;
 		
 		checker = new EmposCheckRead();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmposCheckLangu(checkerOption);
+		queue.add(checker);		
 		
 		return new ModelCheckerQueue<>(queue);
 	}

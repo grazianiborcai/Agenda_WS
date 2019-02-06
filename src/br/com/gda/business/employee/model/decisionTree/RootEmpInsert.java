@@ -16,6 +16,7 @@ import br.com.gda.business.employee.model.action.LazyEmpRootSelect;
 import br.com.gda.business.employee.model.action.LazyEmpUpdate;
 import br.com.gda.business.employee.model.action.StdEmpEnforceLChanged;
 import br.com.gda.business.employee.model.checker.EmpCheckGenField;
+import br.com.gda.business.employee.model.checker.EmpCheckLangu;
 import br.com.gda.business.employee.model.checker.EmpCheckOwner;
 import br.com.gda.business.employee.model.checker.EmpCheckWrite;
 import br.com.gda.model.action.ActionLazy;
@@ -59,6 +60,13 @@ public final class RootEmpInsert implements DeciTree<EmpInfo> {
 		
 		checker = new EmpCheckGenField();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpCheckLangu(checkerOption);
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
