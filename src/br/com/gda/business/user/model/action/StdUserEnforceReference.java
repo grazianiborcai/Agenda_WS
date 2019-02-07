@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdUserEnforceEntityCateg implements ActionStd<UserInfo> {
+public final class StdUserEnforceReference implements ActionStd<UserInfo> {
 	private ActionStd<UserInfo> actionHelper;	
 	
 	
-	public StdUserEnforceEntityCateg(DeciTreeOption<UserInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiUserEnforceEntityCateg());
+	public StdUserEnforceReference(DeciTreeOption<UserInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiUserEnforceReference());
 	}
 	
 	

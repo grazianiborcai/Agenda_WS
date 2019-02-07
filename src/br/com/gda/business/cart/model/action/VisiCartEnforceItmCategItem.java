@@ -1,7 +1,7 @@
 package br.com.gda.business.cart.model.action;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.masterData.info.CartCateg;
+import br.com.gda.business.masterData.info.common.CartCateg;
 import br.com.gda.model.action.ActionVisitorTemplateEnforce;
 
 final class VisiCartEnforceItmCategItem extends ActionVisitorTemplateEnforce<CartInfo> {

@@ -121,6 +121,10 @@ public final class UserSelectSingle implements DaoStmt<UserInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPerson = stmtResult.getLong(UserDbTableColumn.COL_COD_PERSON);
 				
+				stmtResult.getString(UserDbTableColumn.COL_COD_USER_CATEG);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codUserCategory = stmtResult.getString(UserDbTableColumn.COL_COD_USER_CATEG).charAt(0);
+				
 				Timestamp lastChanged = stmtResult.getTimestamp(UserDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();	

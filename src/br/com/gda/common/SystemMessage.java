@@ -95,14 +95,16 @@ public final class SystemMessage {
 	public static final String ORDER_STATUS_NOT_FOUND = "Order Status not found on DB";
 	public static final String PAYMENT_STATUS_ALREADY_EXIST = "Payment Status already exist on DB";	
 	public static final String PAYMENT_STATUS_NOT_FOUND = "Payment Status not found on DB";
-	public static final String UNIT_ALREADY_EXIST = "Unit already exist on DB";
-	public static final String UNIT_NOT_FOUND = "Unit not found on DB";
-	public static final String WEEKDAY_ALREADY_EXIST = "Weekday already exist on DB";
-	public static final String WEEKDAY_NOT_FOUND = "Weekday not found on DB";
 	public static final String STATE_ALREADY_EXIST = "State already exist on DB";
 	public static final String STATE_NOT_FOUND = "State not found on DB";
 	public static final String TIMEZONE_ALREADY_EXIST = "Timezone already exist on DB";
 	public static final String TIMEZONE_NOT_FOUND = "Timezone not found on DB";
+	public static final String UNIT_ALREADY_EXIST = "Unit already exist on DB";
+	public static final String UNIT_NOT_FOUND = "Unit not found on DB";
+	public static final String USER_CATEG_ALREADY_EXIST = "User Category already exist on DB";
+	public static final String USER_CATEG_NOT_FOUND = "User Category not found on DB";
+	public static final String WEEKDAY_ALREADY_EXIST = "Weekday already exist on DB";
+	public static final String WEEKDAY_NOT_FOUND = "Weekday not found on DB";
 	
 
 	

@@ -1,6 +1,5 @@
 package br.com.gda.business.user.info;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +13,9 @@ import br.com.gda.info.InfoRecord;
 public final class UserInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codUser;
+	public char codUserCategory;
 	public long codPerson;
-	public long codCustomer;
-	public String cpf;						//TODO: remover
-	public String name;						//TODO: remover
-	public String codEntityCateg;			//TODO: remover
-	public int codGender;					//TODO: remover
-	public String txtGender;				//TODO: remover
-	public LocalDate birthDate;				//TODO: remover
-	public String email;					//TODO: remover
+	public long codCustomer;				//TODO: remover
 	public PersonInfo personData;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
@@ -34,9 +27,9 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public UserInfo() {
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
+		codUserCategory = DefaultValue.character();
 		codPerson = DefaultValue.number();
 		codCustomer = DefaultValue.number();
-		codGender = DefaultValue.gender();
 		personData = DefaultValue.object();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();

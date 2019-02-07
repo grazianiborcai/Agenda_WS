@@ -3,11 +3,11 @@ package br.com.gda.business.user.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.EntityCateg;
+import br.com.gda.business.masterData.info.common.UserCateg;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class UserSetterCodEntityCateg implements InfoSetter<UserInfo> {
+public final class UserSetterCategOwner implements InfoSetter<UserInfo> {
 	
 	public UserInfo setAttr(UserInfo recordInfo) {
 		checkArgument(recordInfo);
@@ -26,7 +26,7 @@ public final class UserSetterCodEntityCateg implements InfoSetter<UserInfo> {
 	
 	
 	private UserInfo setCodEntityCateg(UserInfo recordInfo) {
-		recordInfo.codEntityCateg = EntityCateg.USER.getCodEntityCateg();
+		recordInfo.codUserCategory = UserCateg.OWNER.getCodUserCateg();
 		return recordInfo;
 	}
 	

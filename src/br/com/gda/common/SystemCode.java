@@ -100,6 +100,8 @@ public final class SystemCode {
 	public static final int ORDER_STATUS_NOT_FOUND 						= 1185;
 	public static final int PAYMENT_STATUS_ALREADY_EXIST 				= 1186;
 	public static final int PAYMENT_STATUS_NOT_FOUND 					= 1187;
+	public static final int USER_CATEG_ALREADY_EXIST					= 1188;
+	public static final int USER_CATEG_NOT_FOUND						= 1189;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

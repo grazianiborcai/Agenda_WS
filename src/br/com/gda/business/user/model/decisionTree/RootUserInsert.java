@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.action.LazyUserEnforceAddressKey;
-import br.com.gda.business.user.model.action.LazyUserEnforceEntityCateg;
+import br.com.gda.business.user.model.action.LazyUserEnforceReference;
 import br.com.gda.business.user.model.action.LazyUserEnforcePersonKey;
 import br.com.gda.business.user.model.action.LazyUserEnforcePhoneKey;
 import br.com.gda.business.user.model.action.LazyUserInsert;
@@ -14,11 +14,10 @@ import br.com.gda.business.user.model.action.LazyUserNodeUpsertAddress;
 import br.com.gda.business.user.model.action.LazyUserNodeUpsertPhone;
 import br.com.gda.business.user.model.action.LazyUserRootSelect;
 import br.com.gda.business.user.model.action.StdUserEnforceLChanged;
+import br.com.gda.business.user.model.checker.UserCheckCateg;
 import br.com.gda.business.user.model.checker.UserCheckInsert;
 import br.com.gda.business.user.model.checker.UserCheckOwner;
 import br.com.gda.business.user.model.checker.UserCheckTechField;
-import br.com.gda.business.user.model.checker.UserCheckWriteAddress;
-import br.com.gda.business.user.model.checker.UserCheckWritePhone;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -61,17 +60,18 @@ public final class RootUserInsert implements DeciTree<UserInfo> {
 		checker = new UserCheckTechField();
 		queue.add(checker);
 		
-		checker = new UserCheckWritePhone();
-		queue.add(checker);
-		
-		checker = new UserCheckWriteAddress();
-		queue.add(checker);
-		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new UserCheckOwner(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new UserCheckCateg(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -89,7 +89,7 @@ public final class RootUserInsert implements DeciTree<UserInfo> {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UserInfo> enforceLChanged = new StdUserEnforceLChanged(option);
-		ActionLazy<UserInfo> enforceEntityCateg = new LazyUserEnforceEntityCateg(option.conn, option.schemaName);
+		ActionLazy<UserInfo> enforceReference = new LazyUserEnforceReference(option.conn, option.schemaName);
 		ActionLazy<UserInfo> enforcePersonKey = new LazyUserEnforcePersonKey(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> insertPerson = new LazyUserInsertPerson(option.conn, option.schemaName);
 		ActionLazy<UserInfo> insertUser = new LazyUserInsert(option.conn, option.schemaName);
@@ -99,9 +99,10 @@ public final class RootUserInsert implements DeciTree<UserInfo> {
 		ActionLazy<UserInfo> upsertPhone = new LazyUserNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);	
 		
-		enforceLChanged.addPostAction(enforceEntityCateg);
-		enforceEntityCateg.addPostAction(enforcePersonKey);
+		enforceLChanged.addPostAction(enforceReference);
+		enforceReference.addPostAction(enforcePersonKey);		
 		enforcePersonKey.addPostAction(insertPerson);
+		
 		insertPerson.addPostAction(insertUser);		
 		
 		insertUser.addPostAction(enforceAddressKey);

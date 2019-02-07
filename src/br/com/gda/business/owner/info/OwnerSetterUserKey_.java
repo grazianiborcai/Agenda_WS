@@ -9,7 +9,7 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class OwnerSetterUserKey implements InfoSetter<OwnerInfo> {
+public final class OwnerSetterUserKey_ implements InfoSetter<OwnerInfo> {
 	
 	public OwnerInfo setAttr(OwnerInfo recordInfo) {
 		checkArgument(recordInfo);

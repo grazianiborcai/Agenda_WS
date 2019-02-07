@@ -8,7 +8,7 @@ import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.info.OwnerMerger;
 import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.business.user.model.decisionTree.RootUserInsert;
+import br.com.gda.business.user.model.decisionTree.RootUserInsertOwner;
 import br.com.gda.info.InfoWritterFactory;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
@@ -34,7 +34,7 @@ final class VisiOwnerInsertUser extends ActionVisitorTemplateAction<OwnerInfo, U
 	
 	
 	@Override protected ActionStd<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
-		return new RootUserInsert(option).toAction();
+		return new RootUserInsertOwner(option).toAction();
 	}
 	
 	

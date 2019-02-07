@@ -1,6 +1,6 @@
 package br.com.gda.business.order.info;
 
-import br.com.gda.business.masterData.info.OrderStatus;
+import br.com.gda.business.masterData.info.common.OrderStatus;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 

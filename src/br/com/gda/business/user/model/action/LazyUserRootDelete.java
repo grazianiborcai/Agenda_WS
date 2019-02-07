@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.user.info.UserInfo;
+import br.com.gda.business.user.model.decisionTree.RootUserDelete;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyUserKeepUser extends ActionLazyTemplate<UserInfo, UserInfo> {
+public final class LazyUserRootDelete extends ActionLazyTemplate<UserInfo, UserInfo> {
 	
-	public LazyUserKeepUser(Connection conn, String schemaName) {
+	public LazyUserRootDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyUserKeepUser extends ActionLazyTemplate<UserInfo, UserInf
 	
 	
 	@Override protected ActionStd<UserInfo> getInstanceOfActionHook(DeciTreeOption<UserInfo> option) {
-		return new StdUserKeepUser(option);
+		return new RootUserDelete(option).toAction();
 	}
 	
 	

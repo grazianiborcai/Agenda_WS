@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.MatCategInfo;
+import br.com.gda.business.masterData.info.UserCategInfo;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoDictionary;
@@ -21,23 +21,23 @@ import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class MatCategSelectSingle implements DaoStmt<MatCategInfo> {
-	private final String LT_ATTR = DaoDbTable.MAT_CATEG_TABLE;
-	private final String RT_TEXT = DaoDbTable.MAT_CATEG_TEXT_TABLE;
+public final class UserCategSelectSingle implements DaoStmt<UserCategInfo> {
+	private final String LT_ATTR = DaoDbTable.USER_CATEG_TABLE;
+	private final String RT_TEXT = DaoDbTable.USER_CATEG_TEXT_TABLE;
 	
-	private DaoStmt<MatCategInfo> stmtSql;
-	private DaoStmtOption<MatCategInfo> stmtOption;
+	private DaoStmt<UserCategInfo> stmtSql;
+	private DaoStmtOption<UserCategInfo> stmtOption;
 	
 	
 	
-	public MatCategSelectSingle(Connection conn, MatCategInfo recordInfo, String schemaName) {
+	public UserCategSelectSingle(Connection conn, UserCategInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, MatCategInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, UserCategInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -62,7 +62,7 @@ public final class MatCategSelectSingle implements DaoStmt<MatCategInfo> {
 		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new MatCategWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new UserCategWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -81,8 +81,8 @@ public final class MatCategSelectSingle implements DaoStmt<MatCategInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_ATTR;
-		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_MAT_CATEG;
-		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_MAT_CATEG;
+		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_USER_CATEG;
+		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_USER_CATEG;
 		joinColumns.add(oneColumn);
 		
 		
@@ -139,34 +139,32 @@ public final class MatCategSelectSingle implements DaoStmt<MatCategInfo> {
 
 	
 	
-	@Override public List<MatCategInfo> getResultset() {
+	@Override public List<UserCategInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<MatCategInfo> getNewInstance() {
-		return new MatCategSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<UserCategInfo> getNewInstance() {
+		return new UserCategSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements DaoResultParser<MatCategInfo> {
+	private class ResultParser implements DaoResultParser<UserCategInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String CATEG_TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
-		@Override public List<MatCategInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<MatCategInfo> finalResult = new ArrayList<>();
+		@Override public List<UserCategInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<UserCategInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 				return finalResult;
 		
 			do {				
-				MatCategInfo dataInfo = new MatCategInfo();
-				dataInfo.codCategory = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_MAT_CATEG);
-				dataInfo.txtCategory = stmtResult.getString(CATEG_TEXT_COL);
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
+				UserCategInfo dataInfo = new UserCategInfo();
+				dataInfo.codUserCategory = stmtResult.getString(MasterDataDbTableColumn.COL_COD_USER_CATEG).charAt(0);
+				dataInfo.txtUserCategory = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

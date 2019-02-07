@@ -7,6 +7,7 @@ import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.action.LazyOwnerDelete;
 import br.com.gda.business.owner.model.action.LazyOwnerDeleteComp;
 import br.com.gda.business.owner.model.action.LazyOwnerDeletePerson;
+import br.com.gda.business.owner.model.action.LazyOwnerDeleteUser;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeDeleteAddress;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeDeletePhone;
 import br.com.gda.business.owner.model.checker.OwnerCheckDelete;
@@ -77,12 +78,14 @@ public final class RootOwnerDelete implements DeciTree<OwnerInfo> {
 		ActionLazy<OwnerInfo> deletePhone = new LazyOwnerNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deletePerson = new LazyOwnerDeletePerson(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteCompany = new LazyOwnerDeleteComp(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> deleteUser = new LazyOwnerDeleteUser(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteOwner = new LazyOwnerDelete(option.conn, option.schemaName);			
 		
 		select.addPostAction(deleteAddress);
 		select.addPostAction(deletePhone);
 		select.addPostAction(deletePerson);
 		select.addPostAction(deleteCompany);
+		select.addPostAction(deleteUser);
 		select.addPostAction(deleteOwner);
 		
 		actions.add(select);

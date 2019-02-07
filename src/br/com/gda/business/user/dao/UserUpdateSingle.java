@@ -8,6 +8,7 @@ import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
+import br.com.gda.common.DefaultValue;
 import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoOperation;
@@ -109,10 +110,18 @@ public final class UserUpdateSingle implements DaoStmt<UserInfo> {
 			
 			stmt.setTimestamp(i++, lastChanged);
 			
+			
 			if (recordInfo.codPerson >= 0) {
 				stmt.setLong(i++, recordInfo.codPerson);
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codUserCategory == DefaultValue.character()) {
+				stmt.setNull(i++, Types.VARCHAR);
+			} else {
+				stmt.setString(i++, Character.toString(recordInfo.codUserCategory));
 			}
 			
 			

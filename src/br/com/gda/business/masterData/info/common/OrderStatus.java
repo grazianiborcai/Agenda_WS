@@ -1,13 +1,13 @@
-package br.com.gda.business.masterData.info;
+package br.com.gda.business.masterData.info.common;
 
-public enum PaymentStatus {
+public enum OrderStatus {
 	CREATED("CREATED"), WAITING("WAITING"), PAID("PAID"), NOT_PAID("NOT_PAID"), CANCELLED("CANCELLED");
 	
 	
 	private final String codStatus;
 	
 	
-	private PaymentStatus(String cod) {
+	private OrderStatus(String cod) {
 		codStatus = cod;
 	}
 	

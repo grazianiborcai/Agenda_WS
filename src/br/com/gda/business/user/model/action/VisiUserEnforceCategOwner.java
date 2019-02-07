@@ -1,0 +1,14 @@
+package br.com.gda.business.user.model.action;
+
+import br.com.gda.business.user.info.UserInfo;
+import br.com.gda.business.user.info.UserSetterCategOwner;
+import br.com.gda.info.InfoSetter;
+import br.com.gda.model.action.ActionVisitorTemplateEnforce;
+
+final class VisiUserEnforceCategOwner extends ActionVisitorTemplateEnforce<UserInfo> {
+	
+	@Override protected UserInfo enforceHook(UserInfo recordInfo) {
+		InfoSetter<UserInfo> attrSetter = new UserSetterCategOwner();
+		return attrSetter.setAttr(recordInfo);
+	}
+}

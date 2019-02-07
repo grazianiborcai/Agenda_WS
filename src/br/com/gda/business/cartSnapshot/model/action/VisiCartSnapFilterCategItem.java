@@ -1,7 +1,7 @@
 package br.com.gda.business.cartSnapshot.model.action;
 
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
-import br.com.gda.business.masterData.info.CartCateg;
+import br.com.gda.business.masterData.info.common.CartCateg;
 import br.com.gda.model.action.commom.ActionVisitorTemplateFilter;
 
 final class VisiCartSnapFilterCategItem extends ActionVisitorTemplateFilter<CartSnapInfo> {

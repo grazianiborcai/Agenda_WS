@@ -25,7 +25,8 @@ final class UserCopyOwner extends InfoCopierTemplate<UserInfo, OwnerInfo>{
 		UserInfo result = new UserInfo();
 		
 		result.codOwner = source.codOwner;	
-		//result.codPerson = source.codPerson;	//TODO: removido - verificar se possivel manter
+		result.codPerson = source.codPerson;	
+		result.codUser = source.codUser;
 		result.codLanguage = source.codLanguage;
 		
 		result.personData = clonePerson(source.personData);

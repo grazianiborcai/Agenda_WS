@@ -13,6 +13,7 @@ import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.masterData.info.PaymentStatusInfo;
 import br.com.gda.business.masterData.info.StateInfo;
 import br.com.gda.business.masterData.info.TimezoneInfo;
+import br.com.gda.business.masterData.info.UserCategInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.masterData.info.AreaPhoneInfo;
 import br.com.gda.business.masterData.info.BusinessInfo;
@@ -34,6 +35,7 @@ import br.com.gda.business.masterData.model.OrderStatusModelSelect;
 import br.com.gda.business.masterData.model.PaymentStatusModelSelect;
 import br.com.gda.business.masterData.model.StateModelSelect;
 import br.com.gda.business.masterData.model.TimezoneModelSelect;
+import br.com.gda.business.masterData.model.UserCategModelSelect;
 import br.com.gda.business.masterData.model.WeekdayModelSelect;
 import br.com.gda.business.masterData.model.AreaPhoneModelSelect;
 import br.com.gda.business.masterData.model.BusinessModelSelect;
@@ -76,6 +78,7 @@ public final class MasterDataResource {
 	private static final String SELECT_STATE = "/selectState";
 	private static final String SELECT_AREA_PHONE = "/selectAreaPhone";
 	private static final String SELECT_ENTITY_CATEG = "/selectEntityCateg";
+	private static final String SELECT_USER_CATEG = "/selectUserCategory";
 	
 	
 	@GET
@@ -450,4 +453,24 @@ public final class MasterDataResource {
 		model.executeRequest();
 		return model.getResponse();
 	}	
+	
+	
+	
+	@GET
+	@Path(SELECT_USER_CATEG)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectUserCateg(@HeaderParam("codLanguage")  @DefaultValue("EN") String codLanguage, 
+			                        @HeaderParam("codUserCategory") String codUserCategory) {
+		
+		UserCategInfo recordInfo = new UserCategInfo();
+		recordInfo.codLanguage = codLanguage;
+		
+		if (codUserCategory != null)
+			recordInfo.codUserCategory = codUserCategory.charAt(0);
+		
+		
+		Model model = new UserCategModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
 }

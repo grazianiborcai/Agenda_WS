@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOwnerEnforceUserKey extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
+public final class LazyOwnerDeleteUser extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
 	
-	public LazyOwnerEnforceUserKey(Connection conn, String schemaName) {
+	public LazyOwnerDeleteUser(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOwnerEnforceUserKey extends ActionLazyTemplate<OwnerInfo,
 	
 	
 	@Override protected ActionStd<OwnerInfo> getInstanceOfActionHook(DeciTreeOption<OwnerInfo> option) {
-		return new StdOwnerEnforceUserKey(option);
+		return new StdOwnerDeleteUser(option);
 	}
 	
 	

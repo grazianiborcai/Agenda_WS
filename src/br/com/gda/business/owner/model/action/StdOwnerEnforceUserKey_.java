@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdOwnerEnforceUserKey implements ActionStd<OwnerInfo> {
+public final class StdOwnerEnforceUserKey_ implements ActionStd<OwnerInfo> {
 	private ActionStd<OwnerInfo> actionHelper;	
 	
 	
-	public StdOwnerEnforceUserKey(DeciTreeOption<OwnerInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOwnerEnforceUserKey());
+	public StdOwnerEnforceUserKey_(DeciTreeOption<OwnerInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOwnerEnforceUserKey_());
 	}
 	
 	

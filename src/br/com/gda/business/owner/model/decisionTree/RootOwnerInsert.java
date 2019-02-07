@@ -7,7 +7,6 @@ import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.action.LazyOwnerEnforceCompKey;
 import br.com.gda.business.owner.model.action.LazyOwnerEnforceEntityCateg;
 import br.com.gda.business.owner.model.action.LazyOwnerEnforcePersonKey;
-import br.com.gda.business.owner.model.action.LazyOwnerEnforceUserKey;
 import br.com.gda.business.owner.model.action.LazyOwnerInsert;
 import br.com.gda.business.owner.model.action.LazyOwnerInsertComp;
 import br.com.gda.business.owner.model.action.LazyOwnerInsertPerson;
@@ -86,7 +85,6 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 		ActionLazy<OwnerInfo> insertPerson = new LazyOwnerInsertPerson(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> enforceCompKey = new LazyOwnerEnforceCompKey(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> insertComp = new LazyOwnerInsertComp(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> enforceUserKey = new LazyOwnerEnforceUserKey(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> insertUser = new LazyOwnerInsertUser(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
@@ -94,16 +92,15 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 		ActionLazy<OwnerInfo> select = new LazyOwnerRootSelect(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(insertOwner);
-		insertOwner.addPostAction(enforceEntityCateg);
 		
+		insertOwner.addPostAction(enforceEntityCateg);		
 		enforceEntityCateg.addPostAction(enforcePersonKey);
 		enforcePersonKey.addPostAction(insertPerson);
 		
 		insertPerson.addPostAction(enforceCompKey);
 		enforceCompKey.addPostAction(insertComp);	
 		
-		insertComp.addPostAction(enforceUserKey);
-		enforceUserKey.addPostAction(insertUser);		
+		insertComp.addPostAction(insertUser);		
 		
 		insertUser.addPostAction(updateOwner);
 		

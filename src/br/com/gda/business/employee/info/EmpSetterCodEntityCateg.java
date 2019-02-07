@@ -3,7 +3,7 @@ package br.com.gda.business.employee.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.EntityCateg;
+import br.com.gda.business.masterData.info.common.EntityCateg;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 

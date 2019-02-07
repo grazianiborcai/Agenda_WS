@@ -1,4 +1,4 @@
-package br.com.gda.business.masterData.info;
+package br.com.gda.business.masterData.info.common;
 
 public enum EntityCateg {
 	CUSTOMER("C"), USER("U"), PAY_CUSTOMER("Y"), OWNER("O"), STORE("S"), EMPLOYEE("E");

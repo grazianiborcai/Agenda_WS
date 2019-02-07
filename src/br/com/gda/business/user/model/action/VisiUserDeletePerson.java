@@ -1,9 +1,9 @@
 package br.com.gda.business.user.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.person.info.PersonCopier;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.decisionTree.RootPersonDelete;
 import br.com.gda.business.user.info.UserInfo;
@@ -19,13 +19,7 @@ final class VisiUserDeletePerson extends ActionVisitorTemplateAction<UserInfo, P
 	
 	
 	@Override protected List<PersonInfo> toActionClassHook(List<UserInfo> recordInfos) {
-		List<PersonInfo> results = new ArrayList<>();
-		
-		for (UserInfo eachRecord : recordInfos) {
-			results.add(PersonInfo.copyFrom(eachRecord));
-		}		
-		
-		return results;
+		return PersonCopier.copyFromUser(recordInfos);
 	}
 	
 	

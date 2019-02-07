@@ -1,4 +1,4 @@
-package br.com.gda.business.masterData.info;
+package br.com.gda.business.masterData.info.common;
 
 public enum CartCateg {
 	ITEM('I'), TOTAL('T'), SERVICE_FEE('S');

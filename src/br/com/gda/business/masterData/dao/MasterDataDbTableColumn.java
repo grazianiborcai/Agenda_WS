@@ -29,6 +29,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_POSITION = "cod_position";
 	public static final String COL_COD_TIMEZONE = "cod_timezone";
 	public static final String COL_COD_UNIT = "unit";
+	public static final String COL_COD_USER_CATEG = "cod_user_categ";
 	public static final String COL_COD_WEEKDAY = "weekday";	
 	public static final String COL_CURRENCY_SYMBOL = "Symbol";
 	public static final String COL_DESCRIPTION = "description";
@@ -71,6 +72,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		areaPhoneTable();
 		entityCategTable();
 		payPartnerTable();
+		userCategTable();
 		
 		return tableColumns;
 	}
@@ -895,6 +897,41 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_DESCRIPTION;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private void userCategTable() {
+		final String TABLE_NAME = DaoDbTable.USER_CATEG_TABLE;
+		
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_USER_CATEG;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.USER_CATEG_TEXT_TABLE;
+		oneColumn.columnName = COL_COD_LANGUAGE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.USER_CATEG_TEXT_TABLE;
+		oneColumn.columnName = COL_NAME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
