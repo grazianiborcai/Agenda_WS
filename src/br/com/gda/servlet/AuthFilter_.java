@@ -26,7 +26,7 @@ import br.com.gda.legacy.model.EmployeeModel;
 import br.com.gda.legacy.model.OwnerModel;
 
 //TODO: melhorar as mensagens de resposta para ficar no mesmo padr�o (makeResponse)
-public class AuthFilter implements ContainerRequestFilter {
+public class AuthFilter_ implements ContainerRequestFilter {
 	private static final HashSet<String> requestAuthNotRequired = new HashSet<>();
 	HtmlRequestHeaderAttr headerAttr;
 	
@@ -136,7 +136,7 @@ public class AuthFilter implements ContainerRequestFilter {
 	
 	
 	private String[] getUsernameAndPassword(String authBasic) throws WebApplicationException {
-		String[] tempResult = BasicAuth.decode(authBasic);
+		String[] tempResult = BasicAuth_.decode(authBasic);
 		
 		if (tempResult == null || tempResult.length != 2) {
 			throw new WebApplicationException(Status.UNAUTHORIZED);

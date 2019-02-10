@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.business.user.model.action.LazyUserUpdatePerson;
-import br.com.gda.business.user.model.action.StdUserEnforcePersonKey;
+import br.com.gda.business.user.model.action.StdUserUpdatePerson;
 import br.com.gda.business.user.model.checker.UserCheckHasPerson;
-import br.com.gda.business.user.model.checker.UserCheckUpdatePerson;
-import br.com.gda.model.action.ActionLazy;
+import br.com.gda.business.user.model.checker.UserCheckPerson;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -41,20 +39,25 @@ public final class NodeUserUpdatePerson implements DeciTree<UserInfo> {
 	
 	private ModelChecker<UserInfo> buildDecisionChecker(DeciTreeOption<UserInfo> option) {
 		final boolean HAS_PERSON = true;
+		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserInfo> checker;
 		ModelCheckerOption checkerOption;	
 			
-		checker = new UserCheckUpdatePerson();
-		queue.add(checker);
-		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = HAS_PERSON;		
 		checker = new UserCheckHasPerson(checkerOption);
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new UserCheckPerson(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -64,12 +67,9 @@ public final class NodeUserUpdatePerson implements DeciTree<UserInfo> {
 	private List<ActionStd<UserInfo>> buildActionsOnPassed(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> enforcePersonKey = new StdUserEnforcePersonKey(option);
-		ActionLazy<UserInfo> updatePerson = new LazyUserUpdatePerson(option.conn, option.schemaName);
+		ActionStd<UserInfo> updatePerson = new StdUserUpdatePerson(option);
 		
-		enforcePersonKey.addPostAction(updatePerson);
-		
-		actions.add(enforcePersonKey);
+		actions.add(updatePerson);
 		return actions;
 	}
 	

@@ -116,6 +116,7 @@ public final class UserSelectSingle implements DaoStmt<UserInfo> {
 				dataInfo.codOwner = stmtResult.getLong(UserDbTableColumn.COL_COD_OWNER);
 				dataInfo.codUser = stmtResult.getLong(UserDbTableColumn.COL_COD_USER);									
 				dataInfo.recordMode = stmtResult.getString(UserDbTableColumn.COL_RECORD_MODE);
+				dataInfo.username = stmtResult.getString(UserDbTableColumn.COL_USERNAME);
 				
 				stmtResult.getLong(UserDbTableColumn.COL_COD_PERSON);
 				if (stmtResult.wasNull() == NOT_NULL)

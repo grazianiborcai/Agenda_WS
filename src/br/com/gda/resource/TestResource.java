@@ -58,6 +58,7 @@ import br.com.gda.payService.payPartnerStore.info.PayparStoreInfo;
 import br.com.gda.payService.payPartnerStore.model.PayparStoreModelSelect;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 import br.com.gda.security.userPassword.model.UpswdModelInsert;
+import br.com.gda.security.userPassword.model.UpswdModelAuthUsername;
 import br.com.gda.security.userPassword.model.UpswdModelUpdate;
 import br.com.gda.security.userPassword.model.UpswdModelAuth;
 import br.com.gda.security.userPassword.model.UpswdModelDelete;
@@ -100,6 +101,7 @@ public class TestResource {
 	private static final String AUTH_USER_PASSWORD = "/authUserPassword";
 	private static final String UPDATE_USER_PASSWORD = "/updateUserPassword";
 	private static final String DELETE_USER_PASSWORD = "/deleteUserPassword";
+	private static final String SELECT_AUTH_USERNAME = "/authUsername";
 	
 	
 	
@@ -632,6 +634,27 @@ public class TestResource {
 		recordInfo.password = password;
 		
 		Model model = new UpswdModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_AUTH_USERNAME)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response authUsername(@HeaderParam("codOwner") long codOwner,
+								 @HeaderParam("username") String username,
+								 @HeaderParam("password") String password,
+								 @HeaderParam("codLanguage") String codLanguage) {
+
+		UpswdInfo recordInfo = new UpswdInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.username = username;
+		recordInfo.password = password;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new UpswdModelAuthUsername(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

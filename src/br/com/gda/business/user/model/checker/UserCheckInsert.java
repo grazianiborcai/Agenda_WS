@@ -3,6 +3,7 @@ package br.com.gda.business.user.model.checker;
 import java.sql.Connection;
 
 import br.com.gda.business.user.info.UserInfo;
+import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
@@ -16,8 +17,14 @@ public final class UserCheckInsert extends ModelCheckerTemplateSimple<UserInfo> 
 	
 	
 	@Override protected boolean checkHook(UserInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner    <= 0 	||
-			 recordInfo.codLanguage == null		)
+		if ( recordInfo.codOwner    	<= 0 						||
+			 recordInfo.codLanguage 	== null						||
+			 recordInfo.personData 		== null						||
+			 recordInfo.codUserCategory	== DefaultValue.character()		)
+			return FAILED;
+		
+		
+		if ( recordInfo.personData.email == null )
 			return FAILED;
 		
 		

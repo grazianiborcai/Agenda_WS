@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.action.LazyUserEnforceLChanged;
+import br.com.gda.business.user.model.action.LazyUserEnforcePersonKey;
 import br.com.gda.business.user.model.action.LazyUserNodeUpdatePerson;
 import br.com.gda.business.user.model.action.LazyUserNodeUpsertAddress;
 import br.com.gda.business.user.model.action.LazyUserNodeUpsertPhone;
@@ -13,7 +14,6 @@ import br.com.gda.business.user.model.action.StdUserKeepUser;
 import br.com.gda.business.user.model.checker.UserCheckCateg;
 import br.com.gda.business.user.model.checker.UserCheckExist;
 import br.com.gda.business.user.model.checker.UserCheckOwner;
-import br.com.gda.business.user.model.checker.UserCheckPerson;
 import br.com.gda.business.user.model.checker.UserCheckWrite;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -77,13 +77,6 @@ public final class RootUserUpdate implements DeciTree<UserInfo> {
 		checker = new UserCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new UserCheckPerson(checkerOption);
-		queue.add(checker);	
-		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -94,6 +87,7 @@ public final class RootUserUpdate implements DeciTree<UserInfo> {
 
 		ActionStd<UserInfo> keepUser = new StdUserKeepUser(option);
 		ActionLazy<UserInfo> enforceLChanged = new LazyUserEnforceLChanged(option.conn, option.schemaName);		
+		ActionLazy<UserInfo> enforcePersonKey = new LazyUserEnforcePersonKey(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> updateUser = new LazyUserUpdate(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> updatePerson = new LazyUserNodeUpdatePerson(option.conn, option.schemaName);
 		ActionLazy<UserInfo> upsertAddress = new LazyUserNodeUpsertAddress(option.conn, option.schemaName);	
@@ -101,11 +95,12 @@ public final class RootUserUpdate implements DeciTree<UserInfo> {
 		ActionStd<UserInfo> select = new RootUserSelect(option).toAction();		
 		
 		keepUser.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforcePersonKey);
 		
-		enforceLChanged.addPostAction(updateUser);
-		enforceLChanged.addPostAction(updatePerson);
-		enforceLChanged.addPostAction(upsertAddress);		
-		enforceLChanged.addPostAction(upsertPhone);
+		enforcePersonKey.addPostAction(updateUser);
+		enforcePersonKey.addPostAction(updatePerson);
+		enforcePersonKey.addPostAction(upsertAddress);		
+		enforcePersonKey.addPostAction(upsertPhone);
 		
 		actions.add(keepUser);
 		actions.add(select);	

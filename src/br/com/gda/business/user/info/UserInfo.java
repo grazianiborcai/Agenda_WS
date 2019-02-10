@@ -13,9 +13,10 @@ import br.com.gda.info.InfoRecord;
 public final class UserInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codUser;
+	public String username;
 	public char codUserCategory;
 	public long codPerson;
-	public long codCustomer;				//TODO: remover
+	public long codCustomer;				//TODO: remover ?
 	public PersonInfo personData;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
@@ -110,6 +111,9 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codOwner  ^ (codOwner >>> 32));
 		result = result * 31 + (int) (codUser 	^ (codUser 	>>> 32));
 		
+		if (username != null)
+			result = result * 31 + username.hashCode();
+		
 		return result;
 	}
 	
@@ -125,6 +129,8 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		
 		
 		UserInfo obj = (UserInfo) o;		
-		return (codOwner == obj.codOwner && codUser == obj.codUser);
+		return (codOwner == obj.codOwner 				&& 
+				codUser == obj.codUser					&&
+				isStringEqual(username, obj.username)		);
 	}
 }

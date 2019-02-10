@@ -102,11 +102,9 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 		
 		insertComp.addPostAction(insertUser);		
 		
-		insertUser.addPostAction(updateOwner);
-		
+		insertUser.addPostAction(updateOwner);		
 		insertUser.addPostAction(upsertAddress);		
-		insertUser.addPostAction(upsertPhone);		
-		
+		insertUser.addPostAction(upsertPhone);			
 		insertUser.addPostAction(select);
 		
 		actions.add(enforceLChanged);	

@@ -3,18 +3,22 @@ package br.com.gda.security.userPassword.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class UpswdInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codUser;
+	public String username;
 	public String password;
 	public String passwordToChange;
 	public byte[] hash;
 	public byte[] salt;
 	public byte[] hashToMatch;
 	public int hashLength;
+	public PersonInfo personData;
+	public String codLanguage;
 	public LocalDateTime lastChanged;
 	
 	
@@ -22,6 +26,8 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 	public UpswdInfo() {
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
+		personData = DefaultValue.object();
+		codLanguage = DefaultValue.language();	
 	}
 	
 	
@@ -50,6 +56,9 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codOwner  ^ (codOwner >>> 32));
 		result = result * 31 + (int) (codUser 	^ (codUser 	>>> 32));
 		
+		if (username != null)
+			result = result * 31 + username.hashCode();
+		
 		return result;
 	}
 	
@@ -65,6 +74,8 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 		
 		
 		UpswdInfo obj = (UpswdInfo) o;		
-		return (codOwner == obj.codOwner && codUser == obj.codUser);
+		return (codOwner == obj.codOwner 	&& 
+				codUser == obj.codUser		&&
+				super.isStringEqual(username, obj.username));
 	}
 }

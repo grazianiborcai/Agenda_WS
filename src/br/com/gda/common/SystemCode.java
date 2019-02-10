@@ -235,6 +235,8 @@ public final class SystemCode {
 	public static final int USER_PERSON_CANT_BE_CHANGED					= 1803;
 	public static final int USER_ALREADY_EXIST 							= 1804;
 	public static final int USER_NOT_FOUND 								= 1805;
+	public static final int USER_USERNAME_ALREADY_EXIST 				= 1806;
+	public static final int USER_USERNAME_NOT_FOUND 					= 1807;
 	
 	// Snapshot
 	public static final int SNAPSHOT_ALREADY_EXIST 						= 1850;
@@ -342,6 +344,8 @@ public final class SystemCode {
 	
 	//User Password
 	public static final int USER_PASSWORD_OR_USERNAME_IS_INVALID		= 2600;
+	public static final int USER_PASSWORD_PERSON_IS_BLANK				= 2601;
+	public static final int USER_PASSWORD_EMAIL_IS_BLANK				= 2602;
 	
 	// Employee Position
 	public static final int EMPOS_ALREADY_EXIST 						= 2650;

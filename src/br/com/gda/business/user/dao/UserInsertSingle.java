@@ -28,8 +28,7 @@ public final class UserInsertSingle implements DaoStmt<UserInfo> {
 	
 	public UserInsertSingle(Connection conn, UserInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
-		
+		buildStmt();		
 	}
 	
 	
@@ -104,6 +103,9 @@ public final class UserInsertSingle implements DaoStmt<UserInfo> {
 			} else {
 				stmt.setString(i++, Character.toString(recordInfo.codUserCategory));
 			}
+			
+			
+			stmt.setString(i++, recordInfo.username);	
 			
 			return stmt;
 		}		

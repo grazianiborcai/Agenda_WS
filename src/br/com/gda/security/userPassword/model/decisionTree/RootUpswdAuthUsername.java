@@ -16,19 +16,16 @@ import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 import br.com.gda.security.userPassword.model.action.LazyUpswdMergeUser;
-import br.com.gda.security.userPassword.model.action.LazyUpswdNodeEmail;
-import br.com.gda.security.userPassword.model.action.LazyUpswdRootInsert;
-import br.com.gda.security.userPassword.model.action.StdUpswdEnforcePasswordRandom;
-import br.com.gda.security.userPassword.model.checker.UpswdCheckExist;
-import br.com.gda.security.userPassword.model.checker.UpswdCheckOwner;
-import br.com.gda.security.userPassword.model.checker.UpswdCheckUser;
-import br.com.gda.security.userPassword.model.checker.UpswdCheckWriteRandom;
+import br.com.gda.security.userPassword.model.action.LazyUpswdRootAuth;
+import br.com.gda.security.userPassword.model.action.StdUpswdEnforceUsernameKey;
+import br.com.gda.security.userPassword.model.checker.UpswdCheckReadUsername;
+import br.com.gda.security.userPassword.model.checker.UpswdCheckUsername;
 
-public final class RootUpswdInsertRandom implements DeciTree<UpswdInfo> {
+public final class RootUpswdAuthUsername implements DeciTree<UpswdInfo> {
 	private DeciTree<UpswdInfo> tree;
 	
 	
-	public RootUpswdInsertRandom(DeciTreeOption<UpswdInfo> option) {
+	public RootUpswdAuthUsername(DeciTreeOption<UpswdInfo> option) {
 		DeciTreeHelperOption<UpswdInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -43,34 +40,19 @@ public final class RootUpswdInsertRandom implements DeciTree<UpswdInfo> {
 	
 	private ModelChecker<UpswdInfo> buildDecisionChecker(DeciTreeOption<UpswdInfo> option) {
 		final boolean EXIST_ON_DB = true;
-		final boolean DONT_EXIST = false;
 		
 		List<ModelChecker<UpswdInfo>> queue = new ArrayList<>();		
 		ModelChecker<UpswdInfo> checker;
-		ModelCheckerOption checkerOption;		
+		ModelCheckerOption checkerOption;
 		
-		checker = new UpswdCheckWriteRandom();
+		checker = new UpswdCheckReadUsername();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new UpswdCheckOwner(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new UpswdCheckUser(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST;		
-		checker = new UpswdCheckExist(checkerOption);
+		checker = new UpswdCheckUsername(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -87,16 +69,14 @@ public final class RootUpswdInsertRandom implements DeciTree<UpswdInfo> {
 	private List<ActionStd<UpswdInfo>> buildActionsOnPassed(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> enforceRandom = new StdUpswdEnforcePasswordRandom(option);
-		ActionLazy<UpswdInfo> insert = new LazyUpswdRootInsert(option.conn, option.schemaName);
+		ActionStd<UpswdInfo> enforceUsernameKey = new StdUpswdEnforceUsernameKey(option);
 		ActionLazy<UpswdInfo> mergeUser = new LazyUpswdMergeUser(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> sendEmail = new LazyUpswdNodeEmail(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> auth = new LazyUpswdRootAuth(option.conn, option.schemaName);		
 		
-		enforceRandom.addPostAction(insert);
-		enforceRandom.addPostAction(mergeUser);
-		mergeUser.addPostAction(sendEmail);
+		enforceUsernameKey.addPostAction(mergeUser);
+		mergeUser.addPostAction(auth);
 		
-		actions.add(enforceRandom);	
+		actions.add(enforceUsernameKey);		
 		return actions;
 	}
 	

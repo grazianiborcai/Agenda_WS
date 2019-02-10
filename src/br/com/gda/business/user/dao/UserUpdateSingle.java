@@ -106,8 +106,7 @@ public final class UserUpdateSingle implements DaoStmt<UserInfo> {
 				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
 			
 			int i = 1;
-			stmt.setString(i++, recordInfo.recordMode);
-			
+			stmt.setString(i++, recordInfo.recordMode);			
 			stmt.setTimestamp(i++, lastChanged);
 			
 			
@@ -123,6 +122,9 @@ public final class UserUpdateSingle implements DaoStmt<UserInfo> {
 			} else {
 				stmt.setString(i++, Character.toString(recordInfo.codUserCategory));
 			}
+			
+			
+			stmt.setString(i++, recordInfo.username);
 			
 			
 			return stmt;

@@ -30,18 +30,13 @@ public final class UpswdSetterPasswordRandom implements InfoSetter<UpswdInfo> {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}
-		
-		
-		if (recordInfo.passwordToChange == null) {
-			logException(new NullPointerException("recordInfo.passwordToChange" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo.passwordToChange" + SystemMessage.NULL_ARGUMENT);
-		}
 	}
 	
 	
 	
 	private UpswdInfo setLength(UpswdInfo recordInfo) {
 		recordInfo.password = generateRandomPassword();
+		System.out.println(recordInfo.password);			//TODO: remover quando email estiver implementado
 		return recordInfo;
 	}
 	

@@ -39,6 +39,8 @@ final class UserVisiKeepUser implements InfoKeeperVisitor<UserInfo, UserInfo> {
 	private UserInfo keep(UserInfo sourceOne, UserInfo sourceTwo) {
 		sourceTwo.codOwner = sourceOne.codOwner;
 		sourceTwo.codPerson = sourceOne.codPerson;
+		sourceTwo.username = sourceOne.username;
+		sourceTwo.codUserCategory = sourceOne.codUserCategory;
 		return sourceTwo;
 	}
 	

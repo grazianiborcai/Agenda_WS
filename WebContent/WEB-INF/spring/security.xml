@@ -17,14 +17,25 @@
         <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
         <security:http-basic />
         <csrf disabled="true"/>
+        <custom-filter before="FORM_LOGIN_FILTER" ref="authFilter" />
     </security:http>
-    <!-- TODO: verificar se necessario STATELESS e habilitar CSRF protection -->
+    <!-- TODO: verificar se necessario STATELESS e habilitar CSRF protection 
+    "isAuthenticated()"		"hasRole('ROLE_USER')"	-->
  
-       
+         
 	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"
 		factory-method="getInstance" />
 
-    <security:authentication-manager>
+   <!-- 
+    <security:authentication-manager alias="authenticationManager">
+        <authentication-provider ref="authProvider" >
+        </authentication-provider>
+
+    </security:authentication-manager>
+   --> 
+    
+ 
+    <security:authentication-manager alias="authenticationManager">
         <security:authentication-provider>
             <security:user-service>
                 <security:user name="rest" password="rest" authorities="ROLE_USER"/>
@@ -34,6 +45,14 @@
     </security:authentication-manager>
 
 
+
+
+	<beans:bean id="authFilter" class="br.com.gda.servlet.authUser.AuthFilter">
+		<beans:property name="authenticationManager" ref="authenticationManager"/>
+	</beans:bean>
+	
+	
+	<beans:bean id="authProvider" class="br.com.gda.servlet.authUser.AuthProvider"/>
 
 
 

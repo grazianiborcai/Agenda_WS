@@ -303,6 +303,8 @@ public final class SystemMessage {
 	public static final String USER_PERSON_NOT_CHANGED = "Person not changed";
 	public static final String USER_PERSON_CANT_BE_CHANGED = "Person can't be changed";
 	public static final String USER_TECH_FIELD_SHOULD_BE_EMPTY = "User: technical fields shouldn't be filled";
+	public static final String USER_USERNAME_ALREADY_EXIST = "Username data already exist on DB";
+	public static final String USER_USERNAME_NOT_FOUND = "Username not found on DB";
 			
 	
 	
@@ -439,7 +441,9 @@ public final class SystemMessage {
 	
 	
 	// User Password
+	public static final String USER_PASSWORD_EMAIL_IS_BLANK = "User-Password: e-mail address is blank";
 	public static final String USER_PASSWORD_OR_USERNAME_IS_INVALID = "Invalid Password or Username";
+	public static final String USER_PASSWORD_PERSON_IS_BLANK = "User-Password: Person's data is blank";	
 	
 	
 	

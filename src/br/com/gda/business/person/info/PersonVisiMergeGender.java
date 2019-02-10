@@ -7,7 +7,7 @@ import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class PersonVisitorGender implements InfoMergerVisitor<PersonInfo, GenderInfo, PersonInfo> {
+final class PersonVisiMergeGender implements InfoMergerVisitor<PersonInfo, GenderInfo, PersonInfo> {
 
 	@Override public PersonInfo writeRecord(GenderInfo sourceOne, PersonInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
