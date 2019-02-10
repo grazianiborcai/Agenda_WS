@@ -20,18 +20,6 @@ public final class UserSetterUsernameKey implements InfoSetter<UserInfo> {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}
-		
-		
-		if (recordInfo.personData == null) {
-			logException(new NullPointerException("recordInfo.personData" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo.personData" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (recordInfo.personData.email == null) {
-			logException(new NullPointerException("recordInfo.personData.email" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo.personData.email" + SystemMessage.NULL_ARGUMENT);
-		}
 	}
 	
 	
@@ -39,7 +27,7 @@ public final class UserSetterUsernameKey implements InfoSetter<UserInfo> {
 	private UserInfo setUsernameKey(UserInfo recordInfo) {
 		UserInfo enforcedRecord = new UserInfo();
 		enforcedRecord.codOwner = recordInfo.codOwner;
-		recordInfo.username = recordInfo.personData.email;	
+		recordInfo.username = recordInfo.username;	
 		
 		return recordInfo;
 	}

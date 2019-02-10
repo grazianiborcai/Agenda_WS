@@ -4,6 +4,8 @@ import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.checker.UserCheckUsernameExist;
+import br.com.gda.common.SystemCode;
+import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.security.userPassword.info.UpswdInfo;
@@ -45,12 +47,14 @@ public final class UpswdCheckUsername implements ModelChecker<UpswdInfo> {
 	
 	
 	@Override public String getFailMessage() {
-		return checker.getFailMessage();
+		checker.getFailMessage();
+		return SystemMessage.USER_PASSWORD_OR_USERNAME_IS_INVALID;
 	}
 
 	
 	
 	@Override public int getFailCode() {
-		return checker.getFailCode();
+		checker.getFailCode();
+		return SystemCode.USER_PASSWORD_OR_USERNAME_IS_INVALID;
 	}
 }
