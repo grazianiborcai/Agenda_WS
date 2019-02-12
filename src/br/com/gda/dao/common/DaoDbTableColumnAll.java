@@ -1,4 +1,4 @@
-package br.com.gda.dao;
+package br.com.gda.dao.common;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -41,6 +41,8 @@ import br.com.gda.business.storeWorkTimeConflict.dao.StoreCoDbTableColumn;
 import br.com.gda.business.user.dao.UserDbTableColumn;
 import br.com.gda.business.userSnapshot.dao.UserSnapDbTableColumn;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoDbTableColumn;
 import br.com.gda.payService.payCustomer.dao.PaycusDbTableColumn;
 import br.com.gda.payService.payPartnerCountry.dao.PayparCountryDbTableColumn;
 import br.com.gda.payService.payPartnerStore.dao.PayparStoreDbTableColumn;

@@ -5,8 +5,8 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
-import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbTable;
 
 public final class PaycusDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ADDRESS_REF = "cod_address_ref";

@@ -3,10 +3,10 @@ package br.com.gda.payService.payPartnerCountry.dao;
 import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
-import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
+import br.com.gda.dao.common.DaoDbTableColumnAll;
 import br.com.gda.payService.payPartnerCountry.info.PayparCountryInfo;
 
 final class PayparCountryWhere implements DaoStmtWhere {

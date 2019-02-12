@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.dao.DaoDbTable;
-import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtParamTranslator;
+import br.com.gda.dao.common.DaoDbTable;
+import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class StoreInsertSingle implements DaoStmt<StoreInfo> {
 	private DaoStmt<StoreInfo> stmtSql;

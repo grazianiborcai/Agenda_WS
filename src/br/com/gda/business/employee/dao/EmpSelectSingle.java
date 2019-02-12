@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.dao.DaoDbTable;
-import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
@@ -19,6 +17,8 @@ import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
+import br.com.gda.dao.common.DaoDbTable;
+import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 	private final String LT_EMP = DaoDbTable.EMP_TABLE;	

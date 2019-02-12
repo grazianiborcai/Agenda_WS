@@ -9,8 +9,8 @@ import br.com.gda.business.feeStore.dao.FeeStoreDbTableColumn;
 import br.com.gda.business.material.dao.MatDbTableColumn;
 import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
 import br.com.gda.dao.DaoColumn;
-import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbTable;
 
 public final class CartSnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = CartDbTableColumn.COL_BEGIN_TIME;

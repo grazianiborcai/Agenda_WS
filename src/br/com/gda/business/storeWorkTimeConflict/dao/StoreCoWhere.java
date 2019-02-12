@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.dao.DaoColumn;
-import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.DaoWhereCondition;
 import br.com.gda.dao.DaoWhereOperator;
+import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class StoreCoWhere implements DaoStmtWhere {
 	private String whereClause;	

@@ -3,11 +3,11 @@ package br.com.gda.security.userPassword.dao;
 import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
-import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
+import br.com.gda.dao.common.DaoDbTableColumnAll;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 
 public final class UpswdWhere implements DaoStmtWhere {

@@ -5,8 +5,8 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
-import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbTable;
 
 public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_AREA_PHONE = "cod_area_phone";	
@@ -27,8 +27,10 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
 	public static final String COL_COD_PAYMENT_STATUS = "cod_payment_status";
 	public static final String COL_COD_POSITION = "cod_position";
+	public static final String COL_COD_ROLE = "cod_role";	
 	public static final String COL_COD_TIMEZONE = "cod_timezone";
 	public static final String COL_COD_UNIT = "unit";
+	public static final String COL_COD_URI = "cod_uri";
 	public static final String COL_COD_USER_CATEG = "cod_user_categ";
 	public static final String COL_COD_WEEKDAY = "weekday";	
 	public static final String COL_CURRENCY_SYMBOL = "Symbol";
@@ -73,6 +75,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		entityCategTable();
 		payPartnerTable();
 		userCategTable();
+		buildRoleUriTable();
 		
 		return tableColumns;
 	}
@@ -932,6 +935,33 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private void buildRoleUriTable() {
+		final String TABLE_NAME = DaoDbTable.ROLE_URI_TABLE;
+		
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ROLE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_URI;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

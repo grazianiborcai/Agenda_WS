@@ -6,8 +6,8 @@ import java.util.List;
 
 import br.com.gda.business.cart.dao.CartDbTableColumn;
 import br.com.gda.dao.DaoColumn;
-import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbTable;
 
 public final class ReserveDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_OWNER = CartDbTableColumn.COL_COD_OWNER;

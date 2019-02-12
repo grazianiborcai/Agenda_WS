@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.form.formAddress.info.FormAddressInfo;
-import br.com.gda.dao.DaoDbTable;
-import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -16,6 +14,8 @@ import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
+import br.com.gda.dao.common.DaoDbTable;
+import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class FormAddressSelectSingle implements DaoStmt<FormAddressInfo> {
 	private final String LT_ATTR = DaoDbTable.ADDRESS_FORM_TABLE;

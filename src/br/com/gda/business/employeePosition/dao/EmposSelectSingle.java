@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
-import br.com.gda.dao.DaoDbTable;
-import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
@@ -19,6 +17,8 @@ import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
+import br.com.gda.dao.common.DaoDbTable;
+import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class EmposSelectSingle implements DaoStmt<EmposInfo> {	
 	private final String LT_STORE_EMPLOYEE = DaoDbTable.EMPOS_TABLE;	

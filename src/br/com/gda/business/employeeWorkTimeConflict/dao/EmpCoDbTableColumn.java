@@ -5,8 +5,8 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
-import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbTable;
 
 public final class EmpCoDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	

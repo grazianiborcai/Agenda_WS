@@ -7,8 +7,8 @@ import java.util.List;
 import br.com.gda.business.address.dao.AddressDbTableColumn;
 import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
 import br.com.gda.dao.DaoColumn;
-import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbTable;
 
 public final class AddressSnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CITY = AddressDbTableColumn.COL_CITY;

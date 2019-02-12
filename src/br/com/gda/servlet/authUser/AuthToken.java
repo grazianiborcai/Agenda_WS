@@ -11,25 +11,25 @@ public final class AuthToken extends UsernamePasswordAuthenticationToken {
 	private String uri;
 	
 	
-	public AuthToken(Object principal, Object credentials, String hdrOwner, String hdrUri) {
+	public AuthToken(Object principal, Object credentials, String owner, String uri) {
 		super(principal, credentials);
 		super.setAuthenticated(false);
-		init(hdrOwner, hdrUri);
+		init(owner, uri);
 	}
 	
 	
 	
-    public AuthToken(Object principal, Object credentials, String hdrOwner, String hdrUri, Collection<? extends GrantedAuthority> authorities) {
+    public AuthToken(Object principal, Object credentials, String owner, String uri, Collection<? extends GrantedAuthority> authorities) {
             super(principal, credentials, authorities);
             super.setAuthenticated(true);
-            init(hdrOwner, hdrUri);
+            init(owner, uri);
     }
     
     
     
-    private void init(String hdrOwner, String hdrUri) {
-		owner = hdrOwner;
-		uri = hdrUri;
+    private void init(String owner, String uri) {
+		this.owner = owner;
+		this.uri = uri;
     }
     
     
@@ -43,20 +43,4 @@ public final class AuthToken extends UsernamePasswordAuthenticationToken {
     public String getUri() {
     	return uri;
     }
-	
-	
-/*	
-	private long parseOwner(String strOwner) {
-		try {		
-			if (strOwner == null)
-				return DefaultValue.number();
-			
-			return Long.valueOf(strOwner);
-			
-		
-		} catch(NumberFormatException e) {
-			return Long.valueOf(strOwner);
-		}
-	}
-*/
 }

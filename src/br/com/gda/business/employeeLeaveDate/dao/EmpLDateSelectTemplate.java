@@ -10,8 +10,6 @@ import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.dao.DaoDbTable;
-import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoJoinColumn;
 import br.com.gda.dao.DaoJoinType;
@@ -20,6 +18,8 @@ import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.common.DaoDbTable;
+import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 class EmpLDateSelectTemplate implements DaoStmt<EmpLDateInfo> {
 	private final String LT_ELT = DaoDbTable.EMP_LD_TABLE;	

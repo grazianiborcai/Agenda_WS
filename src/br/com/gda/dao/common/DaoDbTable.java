@@ -1,4 +1,4 @@
-package br.com.gda.dao;
+package br.com.gda.dao.common;
 
 public final class DaoDbTable {	
     //Tables
@@ -67,6 +67,7 @@ public final class DaoDbTable {
 	public static final String PHONE_SNAPSHOT_TABLE = "phone_snapshot";
 	public static final String POSITION_TABLE = "position";
 	public static final String POSITION_TEXT_TABLE = "position_text";
+	public static final String ROLE_URI_TABLE = "role_uri";
 	public static final String TIMEZONE_TABLE = "timezone";
 	public static final String TIMEZONE_TEXT_TABLE = "timezone_text";
 	public static final String SNAPSHOT_HDR_TABLE = "snapshot_header";

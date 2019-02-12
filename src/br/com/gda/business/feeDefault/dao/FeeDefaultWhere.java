@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.dao.DaoColumn;
-import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
+import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 final class FeeDefaultWhere implements DaoStmtWhere {
 	private String whereClause;	

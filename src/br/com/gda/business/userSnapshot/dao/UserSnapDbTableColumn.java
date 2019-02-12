@@ -7,8 +7,8 @@ import java.util.List;
 import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
 import br.com.gda.business.user.dao.UserDbTableColumn;
 import br.com.gda.dao.DaoColumn;
-import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbTable;
 
 public final class UserSnapDbTableColumn extends DaoDbTableColumnTemplate {		
 	public static final String COL_COD_OWNER = UserDbTableColumn.COL_COD_OWNER;		

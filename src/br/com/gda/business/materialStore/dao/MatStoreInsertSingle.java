@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.gda.business.materialStore.info.MatStoreInfo;
-import br.com.gda.dao.DaoDbTable;
-import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtParamTranslator;
+import br.com.gda.dao.common.DaoDbTable;
+import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class MatStoreInsertSingle implements DaoStmt<MatStoreInfo> {
 	private DaoStmt<MatStoreInfo> stmtSql;

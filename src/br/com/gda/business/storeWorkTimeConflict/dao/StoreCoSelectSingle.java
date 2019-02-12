@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
-import br.com.gda.dao.DaoDbTable;
-import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoDictionary;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoJoinColumn;
@@ -21,6 +19,8 @@ import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
+import br.com.gda.dao.common.DaoDbTable;
+import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class StoreCoSelectSingle implements DaoStmt<StoreCoInfo> {
 	private final String LT_EMPLOYEE_WORK_TIME = DaoDbTable.EMP_WT_TABLE;	

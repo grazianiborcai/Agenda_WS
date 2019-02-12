@@ -8,8 +8,6 @@ import java.sql.Time;
 import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
-import br.com.gda.dao.DaoDbTable;
-import br.com.gda.dao.DaoDbTableColumnAll;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
@@ -18,6 +16,8 @@ import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtParamTranslator;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
+import br.com.gda.dao.common.DaoDbTable;
+import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class EmpLDateUpdateSingle implements DaoStmt<EmpLDateInfo> {
 	private DaoStmt<EmpLDateInfo> stmtSql;

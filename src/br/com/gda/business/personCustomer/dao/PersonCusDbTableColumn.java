@@ -7,8 +7,8 @@ import java.util.List;
 import br.com.gda.business.customer.dao.CusDbTableColumn;
 import br.com.gda.business.person.dao.PersonDbTableColumn;
 import br.com.gda.dao.DaoColumn;
-import br.com.gda.dao.DaoDbTable;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbTable;
 
 public final class PersonCusDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ENTITY_CATEG = PersonDbTableColumn.COL_COD_ENTITY_CATEG;
