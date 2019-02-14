@@ -15,6 +15,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public long codUser;
 	public String username;
 	public char codUserCategory;
+	public String codAuthGroup;
 	public long codPerson;
 	public long codCustomer;				//TODO: remover ?
 	public PersonInfo personData;

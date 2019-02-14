@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOwnerEnforcePhoneKey_ extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
+public final class LazyOwnerEnforceAuthGroup extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
 	
-	public LazyOwnerEnforcePhoneKey_(Connection conn, String schemaName) {
+	public LazyOwnerEnforceAuthGroup(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOwnerEnforcePhoneKey_ extends ActionLazyTemplate<OwnerInf
 	
 	
 	@Override protected ActionStd<OwnerInfo> getInstanceOfActionHook(DeciTreeOption<OwnerInfo> option) {
-		return new StdOwnerEnforcePhoneKey(option);
+		return new StdOwnerEnforceAuthGroup(option);
 	}
 	
 	

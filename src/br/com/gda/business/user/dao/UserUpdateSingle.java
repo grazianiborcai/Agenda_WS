@@ -125,6 +125,7 @@ public final class UserUpdateSingle implements DaoStmt<UserInfo> {
 			
 			
 			stmt.setString(i++, recordInfo.username);
+			stmt.setString(i++, recordInfo.codAuthGroup);
 			
 			
 			return stmt;

@@ -67,6 +67,8 @@ public final class SystemMessage {
 	// Master Data
 	public static final String AREA_PHONE_ALREADY_EXIST = "Phone Area already exist on DB";
 	public static final String AREA_PHONE_NOT_FOUND = "Phone Area not found on DB";	
+	public static final String AUTH_GROUP_ALREADY_EXIST = "Authorization Group already exist on DB";
+	public static final String AUTH_GROUP_NOT_FOUND = "Authorization Group not found on DB";
 	public static final String COUNTRY_ALREADY_EXIST = "Country already exist on DB";
 	public static final String COUNTRY_NOT_FOUND = "Country not found on DB";	
 	public static final String COUNTRY_LEGAL_ALREADY_EXIST = "Legal Country already exist on DB";

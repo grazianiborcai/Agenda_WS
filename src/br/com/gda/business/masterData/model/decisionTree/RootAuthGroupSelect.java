@@ -3,9 +3,9 @@ package br.com.gda.business.masterData.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.RolurInfo;
-import br.com.gda.business.masterData.model.action.StdRolurSelect;
-import br.com.gda.business.masterData.model.checker.RolurCheckRead;
+import br.com.gda.business.masterData.info.AuthGroupInfo;
+import br.com.gda.business.masterData.model.action.StdAuthGroupSelect;
+import br.com.gda.business.masterData.model.checker.AuthGroupCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -16,12 +16,12 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootUpswdSelect implements DeciTree<RolurInfo> {
-	private DeciTree<RolurInfo> tree;
+public final class RootAuthGroupSelect implements DeciTree<AuthGroupInfo> {
+	private DeciTree<AuthGroupInfo> tree;
 	
 	
-	public RootUpswdSelect(DeciTreeOption<RolurInfo> option) {
-		DeciTreeHelperOption<RolurInfo> helperOption = new DeciTreeHelperOption<>();
+	public RootAuthGroupSelect(DeciTreeOption<AuthGroupInfo> option) {
+		DeciTreeHelperOption<AuthGroupInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker();
 		helperOption.recordInfos = option.recordInfos;
@@ -33,11 +33,11 @@ public final class RootUpswdSelect implements DeciTree<RolurInfo> {
 	
 	
 	
-	private ModelChecker<RolurInfo> buildDecisionChecker() {
-		List<ModelChecker<RolurInfo>> queue = new ArrayList<>();		
-		ModelChecker<RolurInfo> checker;
+	private ModelChecker<AuthGroupInfo> buildDecisionChecker() {
+		List<ModelChecker<AuthGroupInfo>> queue = new ArrayList<>();		
+		ModelChecker<AuthGroupInfo> checker;
 		
-		checker = new RolurCheckRead();
+		checker = new AuthGroupCheckRead();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -45,16 +45,16 @@ public final class RootUpswdSelect implements DeciTree<RolurInfo> {
 	
 	
 	
-	@Override public ActionStd<RolurInfo> toAction() {
+	@Override public ActionStd<AuthGroupInfo> toAction() {
 		return tree.toAction();
 	}
 	
 	
 	
-	private List<ActionStd<RolurInfo>> buildActionsOnPassed(DeciTreeOption<RolurInfo> option) {
-		List<ActionStd<RolurInfo>> actions = new ArrayList<>();
+	private List<ActionStd<AuthGroupInfo>> buildActionsOnPassed(DeciTreeOption<AuthGroupInfo> option) {
+		List<ActionStd<AuthGroupInfo>> actions = new ArrayList<>();
 		
-		ActionStd<RolurInfo> select = new StdRolurSelect(option);
+		ActionStd<AuthGroupInfo> select = new StdAuthGroupSelect(option);
 		
 		actions.add(select);		
 		return actions;
@@ -74,7 +74,7 @@ public final class RootUpswdSelect implements DeciTree<RolurInfo> {
 	
 	
 	
-	@Override public DeciResult<RolurInfo> getDecisionResult() {
+	@Override public DeciResult<AuthGroupInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 }

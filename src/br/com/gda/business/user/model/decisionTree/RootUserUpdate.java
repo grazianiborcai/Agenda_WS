@@ -11,6 +11,7 @@ import br.com.gda.business.user.model.action.LazyUserNodeUpsertAddress;
 import br.com.gda.business.user.model.action.LazyUserNodeUpsertPhone;
 import br.com.gda.business.user.model.action.LazyUserUpdate;
 import br.com.gda.business.user.model.action.StdUserKeepUser;
+import br.com.gda.business.user.model.checker.UserCheckAuthGroup;
 import br.com.gda.business.user.model.checker.UserCheckCateg;
 import br.com.gda.business.user.model.checker.UserCheckExist;
 import br.com.gda.business.user.model.checker.UserCheckOwner;
@@ -68,6 +69,13 @@ public final class RootUserUpdate implements DeciTree<UserInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new UserCheckCateg(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new UserCheckAuthGroup(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();

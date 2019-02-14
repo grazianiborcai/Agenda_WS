@@ -3,8 +3,8 @@ package br.com.gda.business.masterData.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.dao.RolurSelect;
-import br.com.gda.business.masterData.info.RolurInfo;
+import br.com.gda.business.masterData.dao.AuthGroupSelect;
+import br.com.gda.business.masterData.info.AuthGroupInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.action.ActionStd;
@@ -13,34 +13,34 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdRolurSelect implements ActionStd<RolurInfo> {
-	private ActionStd<RolurInfo> actionHelper;
+public final class StdAuthGroupSelect implements ActionStd<AuthGroupInfo> {
+	private ActionStd<AuthGroupInfo> actionHelper;
 	
 	
-	public StdRolurSelect(DeciTreeOption<RolurInfo> option) {
-		DaoStmtExec<RolurInfo> sqlStmtExecutor = buildStmtExec(option);
+	public StdAuthGroupSelect(DeciTreeOption<AuthGroupInfo> option) {
+		DaoStmtExec<AuthGroupInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<RolurInfo> buildStmtExec(DeciTreeOption<RolurInfo> option) {
-		List<DaoStmtExecOption<RolurInfo>> stmtExecOptions = new ArrayList<>();			
+	private DaoStmtExec<AuthGroupInfo> buildStmtExec(DeciTreeOption<AuthGroupInfo> option) {
+		List<DaoStmtExecOption<AuthGroupInfo>> stmtExecOptions = new ArrayList<>();			
 		
-		for(RolurInfo eachRecord : option.recordInfos) {
-			DaoStmtExecOption<RolurInfo> stmtExecOption = new DaoStmtExecOption<>();
+		for(AuthGroupInfo eachRecord : option.recordInfos) {
+			DaoStmtExecOption<AuthGroupInfo> stmtExecOption = new DaoStmtExecOption<>();
 			stmtExecOption.conn = option.conn;
 			stmtExecOption.recordInfo = eachRecord;
 			stmtExecOption.schemaName = option.schemaName;
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new RolurSelect(stmtExecOptions);
+		return new AuthGroupSelect(stmtExecOptions);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<RolurInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<AuthGroupInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	
@@ -52,7 +52,7 @@ public final class StdRolurSelect implements ActionStd<RolurInfo> {
 	
 	
 	
-	@Override public DeciResult<RolurInfo> getDecisionResult() {
+	@Override public DeciResult<AuthGroupInfo> getDecisionResult() {
 		return actionHelper.getDecisionResult();
 	}
 }

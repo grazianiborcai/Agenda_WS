@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.business.owner.model.action.LazyOwnerEnforceAuthGroup;
 import br.com.gda.business.owner.model.action.LazyOwnerEnforceCompKey;
 import br.com.gda.business.owner.model.action.LazyOwnerEnforceEntityCateg;
 import br.com.gda.business.owner.model.action.LazyOwnerEnforcePersonKey;
@@ -81,10 +82,11 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 		ActionStd<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
 		ActionLazy<OwnerInfo> insertOwner = new LazyOwnerInsert(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> enforceEntityCateg = new LazyOwnerEnforceEntityCateg(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> enforceAuthGroup = new LazyOwnerEnforceAuthGroup(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> enforcePersonKey = new LazyOwnerEnforcePersonKey(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> insertPerson = new LazyOwnerInsertPerson(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> enforceCompKey = new LazyOwnerEnforceCompKey(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> insertComp = new LazyOwnerInsertComp(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> insertComp = new LazyOwnerInsertComp(option.conn, option.schemaName);		
 		ActionLazy<OwnerInfo> insertUser = new LazyOwnerInsertUser(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
@@ -94,7 +96,8 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 		enforceLChanged.addPostAction(insertOwner);
 		
 		insertOwner.addPostAction(enforceEntityCateg);		
-		enforceEntityCateg.addPostAction(enforcePersonKey);
+		enforceEntityCateg.addPostAction(enforceAuthGroup);
+		enforceAuthGroup.addPostAction(enforcePersonKey);
 		enforcePersonKey.addPostAction(insertPerson);
 		
 		insertPerson.addPostAction(enforceCompKey);

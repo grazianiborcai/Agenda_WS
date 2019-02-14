@@ -13,6 +13,11 @@
         
     <!-- Debugging   
 	<security:debug />  --> 
+	
+	
+	
+	<!-- Free of authentication --> 
+	<http pattern="/**/Signup/**" security="none"/>
 
 
 
@@ -27,7 +32,8 @@
     
     <!-- TODO: habilitar CSRF protection 
     "isAuthenticated()"		"hasRole('ROLE_USER')"	
-    FORM_LOGIN_FILTER		BASIC_AUTH_FILTER	-->
+    FORM_LOGIN_FILTER		BASIC_AUTH_FILTER	
+    hasAuthority('MBM_02') or hasAuthority('MBM_03')-->
     
     
     

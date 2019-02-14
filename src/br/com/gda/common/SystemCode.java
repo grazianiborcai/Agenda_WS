@@ -102,6 +102,8 @@ public final class SystemCode {
 	public static final int PAYMENT_STATUS_NOT_FOUND 					= 1187;
 	public static final int USER_CATEG_ALREADY_EXIST					= 1188;
 	public static final int USER_CATEG_NOT_FOUND						= 1189;
+	public static final int AUTH_GROUP_ALREADY_EXIST					= 1190;
+	public static final int AUTH_GROUP_NOT_FOUND						= 1191;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

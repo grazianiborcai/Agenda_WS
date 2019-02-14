@@ -7,6 +7,8 @@ public final class DaoDbTable {
 	public static final String ADDRESS_FORM_TABLE = "address_form";
 	public static final String AREA_PHONE_TABLE = "area_phone";
 	public static final String AREA_PHONE_TEXT_TABLE = "area_phone_text";
+	public static final String AUTH_GROUP_TABLE = "auth_group";
+	public static final String AUTH_GROUP_ROLE_TABLE = "auth_group_role";
 	public static final String BUSINESS_AREA_TABLE = "business_area";
 	public static final String BUSINESS_AREA_TEXT_TABLE = "business_area_text";	
 	public static final String CART_HDR_TABLE = "shop_cart_header";
@@ -67,7 +69,6 @@ public final class DaoDbTable {
 	public static final String PHONE_SNAPSHOT_TABLE = "phone_snapshot";
 	public static final String POSITION_TABLE = "position";
 	public static final String POSITION_TEXT_TABLE = "position_text";
-	public static final String ROLE_URI_TABLE = "role_uri";
 	public static final String TIMEZONE_TABLE = "timezone";
 	public static final String TIMEZONE_TEXT_TABLE = "timezone_text";
 	public static final String SNAPSHOT_HDR_TABLE = "snapshot_header";

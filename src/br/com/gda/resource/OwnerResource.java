@@ -13,7 +13,6 @@ import javax.ws.rs.core.Response;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.OwnerModelDelete;
-import br.com.gda.business.owner.model.OwnerModelInsert;
 import br.com.gda.business.owner.model.OwnerModelSelect;
 import br.com.gda.business.owner.model.OwnerModelUpdate;
 import br.com.gda.model.Model;
@@ -21,10 +20,9 @@ import br.com.gda.model.Model;
 @Path("/Owner")
 public class OwnerResource {
 
-	private static final String INSERT_OWNER 	= "/insertOwner"	;
-	private static final String UPDATE_OWNER 	= "/updateOwner"	;
-	private static final String DELETE_OWNER 	= "/deleteOwner"	;
-	private static final String SELECT_OWNER 	= "/selectOwner"	;
+	private static final String UPDATE_OWNER = "/updateOwner";
+	private static final String DELETE_OWNER = "/deleteOwner";
+	private static final String SELECT_OWNER = "/selectOwner";
 	
 	
 	
@@ -55,18 +53,6 @@ public class OwnerResource {
 		
 		
 		Model model = new OwnerModelDelete(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-
-	
-	@POST
-	@Path(INSERT_OWNER)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertOwner(String incomingData) {		
-		
-		Model model = new OwnerModelInsert(incomingData);
 		model.executeRequest();
 		return model.getResponse();
 	}

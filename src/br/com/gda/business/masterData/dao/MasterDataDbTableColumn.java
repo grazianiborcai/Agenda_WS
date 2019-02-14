@@ -10,6 +10,8 @@ import br.com.gda.dao.common.DaoDbTable;
 
 public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_AREA_PHONE = "cod_area_phone";	
+	public static final String COL_COD_AUTH_ROLE = "cod_auth_role";
+	public static final String COL_COD_AUTH_GROUP = "cod_auth_group";
 	public static final String COL_COD_BUSINESS = "cod_business";
 	public static final String COL_COD_COUNTRY = "country";
 	public static final String COL_COD_COUNTRY_ALPHA3 = "country_alpha3";
@@ -26,11 +28,9 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ORDER_STATUS = "cod_order_status";
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
 	public static final String COL_COD_PAYMENT_STATUS = "cod_payment_status";
-	public static final String COL_COD_POSITION = "cod_position";
-	public static final String COL_COD_ROLE = "cod_role";	
+	public static final String COL_COD_POSITION = "cod_position";	
 	public static final String COL_COD_TIMEZONE = "cod_timezone";
 	public static final String COL_COD_UNIT = "unit";
-	public static final String COL_COD_URI = "cod_uri";
 	public static final String COL_COD_USER_CATEG = "cod_user_categ";
 	public static final String COL_COD_WEEKDAY = "weekday";	
 	public static final String COL_CURRENCY_SYMBOL = "Symbol";
@@ -75,7 +75,8 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		entityCategTable();
 		payPartnerTable();
 		userCategTable();
-		buildRoleUriTable();
+		authGrRoleTable();
+		authGroupTable();
 		
 		return tableColumns;
 	}
@@ -943,27 +944,46 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	
-	private void buildRoleUriTable() {
-		final String TABLE_NAME = DaoDbTable.ROLE_URI_TABLE;
+	private void authGrRoleTable() {
+		final String TABLE_NAME = DaoDbTable.AUTH_GROUP_ROLE_TABLE;
 		
 		DaoColumn oneColumn;
-		List<DaoColumn> columns = new ArrayList<>();	
+		List<DaoColumn> columns = new ArrayList<>();			
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_ROLE;
+		oneColumn.columnName = COL_COD_AUTH_GROUP;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
+		columns.add(oneColumn);		
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_URI;
+		oneColumn.columnName = COL_COD_AUTH_ROLE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
+		columns.add(oneColumn);	
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private void authGroupTable() {
+		final String TABLE_NAME = DaoDbTable.AUTH_GROUP_TABLE;
+		
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_AUTH_GROUP;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

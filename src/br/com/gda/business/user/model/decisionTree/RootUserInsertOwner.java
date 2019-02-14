@@ -55,7 +55,7 @@ public final class RootUserInsertOwner implements DeciTree<UserInfo> {
 	
 	private List<ActionStd<UserInfo>> buildActionsOnPassed(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
-		
+		//TODO: mover essa parte para dentro de Owner ?
 		ActionStd<UserInfo> enforceCategOwner = new StdUserEnforceCategOwner(option);
 		ActionLazy<UserInfo> insert = new LazyUserRootInsert(option.conn, option.schemaName);
 		

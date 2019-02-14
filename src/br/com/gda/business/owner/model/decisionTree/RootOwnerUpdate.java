@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.business.owner.model.action.LazyOwnerEnforceAuthGroup;
 import br.com.gda.business.owner.model.action.LazyOwnerEnforceEntityCateg;
 import br.com.gda.business.owner.model.action.LazyOwnerKeepOwner;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeUpdateComp;
@@ -72,6 +73,7 @@ public final class RootOwnerUpdate implements DeciTree<OwnerInfo> {
 
 		ActionStd<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
 		ActionLazy<OwnerInfo> enforceEntityCateg = new LazyOwnerEnforceEntityCateg(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> enforceAuthGroup = new LazyOwnerEnforceAuthGroup(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> keepOwner = new LazyOwnerKeepOwner(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> updatePerson = new LazyOwnerNodeUpdatePerson(option.conn, option.schemaName);
@@ -81,7 +83,8 @@ public final class RootOwnerUpdate implements DeciTree<OwnerInfo> {
 		ActionStd<OwnerInfo> select = new RootOwnerSelect(option).toAction();		
 		
 		enforceLChanged.addPostAction(enforceEntityCateg);
-		enforceEntityCateg.addPostAction(keepOwner);
+		enforceEntityCateg.addPostAction(enforceAuthGroup);
+		enforceAuthGroup.addPostAction(keepOwner);
 		
 		keepOwner.addPostAction(updateOwner);		
 		keepOwner.addPostAction(updatePerson);

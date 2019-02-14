@@ -237,12 +237,17 @@ public final class AuthFilter extends OncePerRequestFilter {
 	
 	
 	private String customGetOwner(HttpServletRequest request) {
-		return request.getHeader("codOwner").trim();
+		String owner = request.getHeader("codOwner");
+		
+		if (owner == null)
+			return null;
+		
+		return owner.trim();
 	}
 	
 	
 	
 	private String customGetUri(HttpServletRequest request) {
-		return request.getContextPath();
+		return request.getPathTranslated();
 	}
 }

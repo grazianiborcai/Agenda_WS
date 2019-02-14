@@ -1,25 +1,23 @@
-package br.com.gda.business.user.model.checker;
+package br.com.gda.business.masterData.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.user.info.UserInfo;
+import br.com.gda.business.masterData.info.AuthGrRoleInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class UserCheckWrite extends ModelCheckerTemplateSimple<UserInfo> {
+public final class AuthGrRoleCheckRead extends ModelCheckerTemplateSimple<AuthGrRoleInfo> {
 
-	public UserCheckWrite() {
+	public AuthGrRoleCheckRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(UserInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 		<= 0	|| 
-			 recordInfo.codUser			<= 0	||
-			 recordInfo.codLanguage		== null ||
-			 recordInfo.codAuthGroup	== null		)
+	@Override protected boolean checkHook(AuthGrRoleInfo recordInfo, Connection conn, String schemaName) {	
+		if (recordInfo.codAuthRole 	== null &&
+			recordInfo.codAuthGroup == null		)			
 			return FAILED;
 		
 		

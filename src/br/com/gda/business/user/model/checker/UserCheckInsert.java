@@ -20,6 +20,7 @@ public final class UserCheckInsert extends ModelCheckerTemplateSimple<UserInfo> 
 		if ( recordInfo.codOwner    	<= 0 						||
 			 recordInfo.codLanguage 	== null						||
 			 recordInfo.personData 		== null						||
+			 recordInfo.codAuthGroup 	== null						||
 			 recordInfo.codUserCategory	== DefaultValue.character()		)
 			return FAILED;
 		
