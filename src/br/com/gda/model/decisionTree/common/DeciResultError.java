@@ -7,12 +7,12 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 
-public final class DeciResultInternalError<T> implements DeciResult<T> {
+public final class DeciResultError<T> implements DeciResult<T> {
 	private final boolean FAILED = false;
 	private DeciResultHelper<T> helper;
 	
 	
-	public DeciResultInternalError() {
+	public DeciResultError() {
 		helper = new DeciResultHelper<>();
 		helper.isSuccess = FAILED;
 		helper.failCode = SystemCode.INTERNAL_ERROR;

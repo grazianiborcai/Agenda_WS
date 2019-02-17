@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdUserEnforceCategOwner implements ActionStd<UserInfo> {
+public final class StdUserMergeAuthGrRole implements ActionStd<UserInfo> {
 	private ActionStd<UserInfo> actionHelper;	
 	
 	
-	public StdUserEnforceCategOwner(DeciTreeOption<UserInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiUserEnforceCategOwner());
+	public StdUserMergeAuthGrRole(DeciTreeOption<UserInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiUserMergeAuthGrRole(option.conn, option.schemaName));
 	}
 	
 	

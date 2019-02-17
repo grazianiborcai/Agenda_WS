@@ -18,11 +18,14 @@
 	
 	<!-- Free of authentication --> 
 	<http pattern="/**/Signup/**" security="none"/>
+	<http pattern="/**/Signin/**" security="none"/>
+	<http pattern="/**/Test/**" security="none"/>
 
 
 
 	<!-- Stateless RESTful services use BASIC authentication --> 
     <security:http create-session="stateless" pattern="/**">
+        <security:intercept-url pattern="/**/Owner/**" access="hasAuthority('OWNER_WRITE')" />
         <security:intercept-url pattern="/**" access="isAuthenticated()" />
         <security:http-basic />
         <csrf disabled="true"/>

@@ -7,12 +7,12 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
 
-public final class StdUauthEnforceIsAuth implements ActionStd<UauthInfo> {
+public final class StdUauthMergeUser implements ActionStd<UauthInfo> {
 	private ActionStd<UauthInfo> actionHelper;	
 	
 	
-	public StdUauthEnforceIsAuth(DeciTreeOption<UauthInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiUauthEnforceIsAuth());
+	public StdUauthMergeUser(DeciTreeOption<UauthInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiUauthMergeUser(option.conn, option.schemaName));
 	}
 	
 	

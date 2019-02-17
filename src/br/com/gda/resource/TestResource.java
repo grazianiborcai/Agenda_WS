@@ -56,9 +56,10 @@ import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
 import br.com.gda.payService.payPartnerOwner.model.PayparOwnerModelSelect;
 import br.com.gda.payService.payPartnerStore.info.PayparStoreInfo;
 import br.com.gda.payService.payPartnerStore.model.PayparStoreModelSelect;
+import br.com.gda.security.userAuthentication.info.UauthInfo;
+import br.com.gda.security.userAuthentication.model.UauthModelAuth;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 import br.com.gda.security.userPassword.model.UpswdModelInsert;
-import br.com.gda.security.userPassword.model.UpswdModelAuthUsername;
 import br.com.gda.security.userPassword.model.UpswdModelUpdate;
 import br.com.gda.security.userPassword.model.UpswdModelAuth;
 import br.com.gda.security.userPassword.model.UpswdModelDelete;
@@ -648,13 +649,13 @@ public class TestResource {
 								 @HeaderParam("password") String password,
 								 @HeaderParam("codLanguage") String codLanguage) {
 
-		UpswdInfo recordInfo = new UpswdInfo();
+		UauthInfo recordInfo = new UauthInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.username = username;
 		recordInfo.password = password;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new UpswdModelAuthUsername(recordInfo);
+		Model model = new UauthModelAuth(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

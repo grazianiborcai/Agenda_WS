@@ -1,21 +1,22 @@
-package br.com.gda.security.userAuthentication.info;
+package br.com.gda.business.owner.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.masterData.info.common.UserCateg;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class UauthSetterIsAuth implements InfoSetter<UauthInfo> {
+public final class OwnerSetterCodUserCateg implements InfoSetter<OwnerInfo> {
 	
-	public UauthInfo setAttr(UauthInfo recordInfo) {
+	public OwnerInfo setAttr(OwnerInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setIsAuth(recordInfo);
+		return setCodUserCateg(recordInfo);
 	}
 	
 	
 	
-	private void checkArgument(UauthInfo recordInfo) {
+	private void checkArgument(OwnerInfo recordInfo) {
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
@@ -24,8 +25,8 @@ public final class UauthSetterIsAuth implements InfoSetter<UauthInfo> {
 	
 	
 	
-	private UauthInfo setIsAuth(UauthInfo recordInfo) {
-		recordInfo.isAuth = true;
+	private OwnerInfo setCodUserCateg(OwnerInfo recordInfo) {
+		recordInfo.codUserCategory = UserCateg.OWNER.getCodUserCateg();
 		return recordInfo;
 	}
 	

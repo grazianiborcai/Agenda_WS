@@ -11,7 +11,7 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
-import br.com.gda.model.decisionTree.common.DeciResultInternalError;
+import br.com.gda.model.decisionTree.common.DeciResultError;
 
 public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	protected final boolean SUCCESS = true;
@@ -186,7 +186,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 		
 		} catch (Exception e) {
 			logException(e);			
-			return new DeciResultInternalError<>();
+			return new DeciResultError<>();
 		}		
 	}
 	
@@ -205,8 +205,8 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	private void buildResultInternalError() {
-		actionResult.copyFrom(new DeciResultInternalError<>());
-		finalResult.copyFrom(new DeciResultInternalError<>());
+		actionResult.copyFrom(new DeciResultError<>());
+		finalResult.copyFrom(new DeciResultError<>());
 	}
 	
 	

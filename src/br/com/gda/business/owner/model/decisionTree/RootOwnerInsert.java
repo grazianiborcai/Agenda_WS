@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.action.LazyOwnerEnforceAuthGroup;
-import br.com.gda.business.owner.model.action.LazyOwnerEnforceCompKey;
-import br.com.gda.business.owner.model.action.LazyOwnerEnforceEntityCateg;
-import br.com.gda.business.owner.model.action.LazyOwnerEnforcePersonKey;
 import br.com.gda.business.owner.model.action.LazyOwnerInsert;
-import br.com.gda.business.owner.model.action.LazyOwnerInsertComp;
-import br.com.gda.business.owner.model.action.LazyOwnerInsertPerson;
-import br.com.gda.business.owner.model.action.LazyOwnerInsertUser;
+import br.com.gda.business.owner.model.action.LazyOwnerNodeInsertComp;
+import br.com.gda.business.owner.model.action.LazyOwnerNodeInsertPerson;
+import br.com.gda.business.owner.model.action.LazyOwnerNodeInsertUser;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeUpsertAddress;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeUpsertPhone;
 import br.com.gda.business.owner.model.action.LazyOwnerRootSelect;
@@ -81,30 +77,18 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 		
 		ActionStd<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
 		ActionLazy<OwnerInfo> insertOwner = new LazyOwnerInsert(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> enforceEntityCateg = new LazyOwnerEnforceEntityCateg(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> enforceAuthGroup = new LazyOwnerEnforceAuthGroup(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> enforcePersonKey = new LazyOwnerEnforcePersonKey(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> insertPerson = new LazyOwnerInsertPerson(option.conn, option.schemaName);	
-		ActionLazy<OwnerInfo> enforceCompKey = new LazyOwnerEnforceCompKey(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> insertComp = new LazyOwnerInsertComp(option.conn, option.schemaName);		
-		ActionLazy<OwnerInfo> insertUser = new LazyOwnerInsertUser(option.conn, option.schemaName);	
+		ActionLazy<OwnerInfo> insertPerson = new LazyOwnerNodeInsertPerson(option.conn, option.schemaName);	
+		ActionLazy<OwnerInfo> insertComp = new LazyOwnerNodeInsertComp(option.conn, option.schemaName);	
+		ActionLazy<OwnerInfo> insertUser = new LazyOwnerNodeInsertUser(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> select = new LazyOwnerRootSelect(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(insertOwner);
-		
-		insertOwner.addPostAction(enforceEntityCateg);		
-		enforceEntityCateg.addPostAction(enforceAuthGroup);
-		enforceAuthGroup.addPostAction(enforcePersonKey);
-		enforcePersonKey.addPostAction(insertPerson);
-		
-		insertPerson.addPostAction(enforceCompKey);
-		enforceCompKey.addPostAction(insertComp);	
-		
-		insertComp.addPostAction(insertUser);		
-		
+		insertOwner.addPostAction(insertPerson);		
+		insertPerson.addPostAction(insertComp);	
+		insertComp.addPostAction(insertUser);			
 		insertUser.addPostAction(updateOwner);		
 		insertUser.addPostAction(upsertAddress);		
 		insertUser.addPostAction(upsertPhone);			

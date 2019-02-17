@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.action.LazyOwnerEnforceCompKey;
-import br.com.gda.business.owner.model.action.LazyOwnerUpdateComp;
+import br.com.gda.business.owner.model.action.LazyOwnerEnforcePersonKey;
+import br.com.gda.business.owner.model.action.LazyOwnerInsertPerson;
 import br.com.gda.business.owner.model.action.StdOwnerEnforceEntityCateg;
-import br.com.gda.business.owner.model.checker.OwnerCheckHasComp;
-import br.com.gda.business.owner.model.checker.OwnerCheckUpdateComp;
+import br.com.gda.business.owner.model.checker.OwnerCheckHasPerson;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -21,19 +20,17 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeOwnerUpdateComp implements DeciTree<OwnerInfo> {
+public final class NodeOwnerInsertPerson implements DeciTree<OwnerInfo> {
 	private DeciTree<OwnerInfo> tree;
 	
 	
-	public NodeOwnerUpdateComp(DeciTreeOption<OwnerInfo> option) {
+	public NodeOwnerInsertPerson(DeciTreeOption<OwnerInfo> option) {
 		DeciTreeHelperOption<OwnerInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
-		helperOption.schemaName = option.schemaName;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = null;
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -41,23 +38,26 @@ public final class NodeOwnerUpdateComp implements DeciTree<OwnerInfo> {
 	
 	
 	private ModelChecker<OwnerInfo> buildDecisionChecker(DeciTreeOption<OwnerInfo> option) {
-		final boolean HAS_COMPANY = true;
+		final boolean HAS_PERSON = true;
 		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
 		ModelCheckerOption checkerOption;	
-			
-		checker = new OwnerCheckUpdateComp();
-		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_COMPANY;		
-		checker = new OwnerCheckHasComp(checkerOption);
+		checkerOption.expectedResult = HAS_PERSON;		
+		checker = new OwnerCheckHasPerson(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
+	}
+	
+	
+	
+	@Override public ActionStd<OwnerInfo> toAction() {
+		return tree.toAction();
 	}
 	
 	
@@ -66,13 +66,13 @@ public final class NodeOwnerUpdateComp implements DeciTree<OwnerInfo> {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStd<OwnerInfo> enforceEntityCateg = new StdOwnerEnforceEntityCateg(option);
-		ActionLazy<OwnerInfo> enforceCompKey = new LazyOwnerEnforceCompKey(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> updateCompany = new LazyOwnerUpdateComp(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> enforcePersonKey = new LazyOwnerEnforcePersonKey(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> insertPerson = new LazyOwnerInsertPerson(option.conn, option.schemaName);		
 		
-		enforceEntityCateg.addPostAction(enforceCompKey);
-		enforceCompKey.addPostAction(updateCompany);
+		enforceEntityCateg.addPostAction(enforcePersonKey);
+		enforcePersonKey.addPostAction(insertPerson);
 		
-		actions.add(enforceEntityCateg);
+		actions.add(enforceEntityCateg);	
 		return actions;
 	}
 	
@@ -92,11 +92,5 @@ public final class NodeOwnerUpdateComp implements DeciTree<OwnerInfo> {
 	
 	@Override public DeciResult<OwnerInfo> getDecisionResult() {
 		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<OwnerInfo> toAction() {
-		return tree.toAction();
 	}
 }

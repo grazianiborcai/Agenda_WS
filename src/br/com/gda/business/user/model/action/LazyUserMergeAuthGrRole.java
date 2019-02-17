@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyUserUpdatePerson_ extends ActionLazyTemplate<UserInfo, UserInfo> {
+public final class LazyUserMergeAuthGrRole extends ActionLazyTemplate<UserInfo, UserInfo> {
 	
-	public LazyUserUpdatePerson_(Connection conn, String schemaName) {
+	public LazyUserMergeAuthGrRole(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyUserUpdatePerson_ extends ActionLazyTemplate<UserInfo, Us
 	
 	
 	@Override protected ActionStd<UserInfo> getInstanceOfActionHook(DeciTreeOption<UserInfo> option) {
-		return new StdUserUpdatePerson(option);
+		return new StdUserMergeAuthGrRole(option);
 	}
 	
 	

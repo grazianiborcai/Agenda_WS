@@ -16,6 +16,7 @@ final class UpswdCopyUser extends InfoCopierTemplate<UpswdInfo, UserInfo>{
 		UpswdInfo result = new UpswdInfo();		
 		result.codOwner = source.codOwner;
 		result.codUser = source.codUser;		
+		result.username = source.username;
 		result.personData = PersonInfo.copyFrom(source.personData);
 		
 		return result;

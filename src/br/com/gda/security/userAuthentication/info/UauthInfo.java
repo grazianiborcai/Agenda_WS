@@ -1,19 +1,18 @@
 package br.com.gda.security.userAuthentication.info;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.masterData.info.AuthGrRoleInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class UauthInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codUser;
+	public String username;
 	public String password;
-	public String resource_uri;
-	public boolean isAuth;
-	public boolean hasRole;	
-	public LocalDateTime lastLogin;
+	public List<AuthGrRoleInfo> authGrRoles;
 	public String codLanguage;
 	
 	
@@ -21,6 +20,7 @@ public final class UauthInfo extends InfoRecord implements Cloneable {
 	public UauthInfo() {
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
+		authGrRoles = DefaultValue.list();
 		codLanguage = DefaultValue.language();
 	}
 	
@@ -39,7 +39,25 @@ public final class UauthInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		UauthInfo clonedRecord = (UauthInfo) super.clone();
+		clonedRecord.authGrRoles = cloneAuthGrRoles(clonedRecord.authGrRoles);
+		return clonedRecord;
+	}
+	
+	
+	
+	private List<AuthGrRoleInfo> cloneAuthGrRoles(List<AuthGrRoleInfo> authGrRolesToClone) throws CloneNotSupportedException {
+		if (authGrRolesToClone == null)
+			return null;
+		
+		List<AuthGrRoleInfo> deepAuthGrRoles = new ArrayList<>();
+		
+		for (AuthGrRoleInfo eachAuthGrRole : authGrRolesToClone) {
+			AuthGrRoleInfo clonedAuthGrRole = (AuthGrRoleInfo) eachAuthGrRole.clone();
+			deepAuthGrRoles.add(clonedAuthGrRole);
+		}
+		
+		return deepAuthGrRoles;
 	}
 	
 	
@@ -49,6 +67,9 @@ public final class UauthInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner  ^ (codOwner >>> 32));
 		result = result * 31 + (int) (codUser 	^ (codUser 	>>> 32));
+		
+		if (username != null)
+			result = result * 31 + username.hashCode();
 		
 		return result;
 	}
@@ -65,6 +86,8 @@ public final class UauthInfo extends InfoRecord implements Cloneable {
 		
 		
 		UauthInfo obj = (UauthInfo) o;		
-		return (codOwner == obj.codOwner && codUser == obj.codUser);
+		return (codOwner == obj.codOwner 	&& 
+				codUser  == obj.codUser		&&
+				super.isStringEqual(username, obj.username));
 	}
 }

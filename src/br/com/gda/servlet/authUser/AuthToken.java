@@ -5,42 +5,64 @@ import java.util.Collection;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 
+import br.com.gda.common.DefaultValue;
+
 public final class AuthToken extends UsernamePasswordAuthenticationToken {
 	private static final long serialVersionUID = 1L;
-	private String owner;
-	private String uri;
+	private long codOwner;
+	private String codLanguage;
 	
 	
-	public AuthToken(Object principal, Object credentials, String owner, String uri) {
+	public AuthToken(Object principal, Object credentials, String owner, String language) {
 		super(principal, credentials);
 		super.setAuthenticated(false);
-		init(owner, uri);
+		initOwner(owner);
+		initLanguage(language);
 	}
 	
 	
 	
-    public AuthToken(Object principal, Object credentials, String owner, String uri, Collection<? extends GrantedAuthority> authorities) {
-            super(principal, credentials, authorities);
-            super.setAuthenticated(true);
-            init(owner, uri);
+    public AuthToken(Object principal, Object credentials, String owner, String language, Collection<? extends GrantedAuthority> authorities) {
+        super(principal, credentials, authorities);
+        super.setAuthenticated(true);
+        initOwner(owner);
+        initLanguage(language);
     }
     
     
     
-    private void init(String owner, String uri) {
-		this.owner = owner;
-		this.uri = uri;
+    private void initOwner(String owner) {
+		try {
+	    	if (owner == null) {
+				codOwner = DefaultValue.number();
+	    	} else {	    	
+	    		codOwner = Long.valueOf(owner);
+	    	}
+		
+		} catch (NumberFormatException e) {
+			codOwner = DefaultValue.number();
+		}
     }
     
     
     
-    public String getOwner() {
-    	return owner;
+    private void initLanguage(String language) {
+    	if (language == null) {
+    		codLanguage = DefaultValue.language();
+    	} else {
+    		codLanguage = language;
+    	}
     }
     
     
     
-    public String getUri() {
-    	return uri;
+    public long getCodOwner() {
+    	return codOwner;
+    }
+    
+    
+    
+    public String getCodLanguage() {
+    	return codLanguage;
     }
 }

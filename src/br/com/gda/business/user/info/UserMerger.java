@@ -3,6 +3,7 @@ package br.com.gda.business.user.info;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.masterData.info.AuthGrRoleInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.personCustomer.info.PersonCusInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
@@ -40,26 +41,37 @@ public final class UserMerger extends InfoWritterFactory<UserInfo> {
 	
 	
 	
+	static public UserInfo merge(AuthGrRoleInfo sourceOne, UserInfo sourceTwo) {
+		return new UserMergerAuthGrRole().merge(sourceOne, sourceTwo);
+	}	
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<UserInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
-		if (sourceOnes.get(0) instanceof AddressInfo 	&&
+		if (sourceOnes.get(0) instanceof AddressInfo 		&&
 			sourceTwos.get(0) instanceof UserInfo		)
 			return new UserMergerAddress().merge((List<AddressInfo>) sourceOnes, (List<UserInfo>) sourceTwos);
 		
 		
-		if (sourceOnes.get(0) instanceof PhoneInfo 		&&
+		if (sourceOnes.get(0) instanceof PhoneInfo 			&&
 			sourceTwos.get(0) instanceof UserInfo		)
 			return new UserMergerPhone().merge((List<PhoneInfo>) sourceOnes, (List<UserInfo>) sourceTwos);	
 		
 		
-		if (sourceOnes.get(0) instanceof PersonInfo 	&&
+		if (sourceOnes.get(0) instanceof PersonInfo 		&&
 			sourceTwos.get(0) instanceof UserInfo		)
 			return new UserMergerPerson().merge((List<PersonInfo>) sourceOnes, (List<UserInfo>) sourceTwos);	
 		
 		
-		if (sourceOnes.get(0) instanceof PersonCusInfo 	&&
+		if (sourceOnes.get(0) instanceof PersonCusInfo 		&&
 			sourceTwos.get(0) instanceof UserInfo		)
 			return new UserMergerPersonCus().merge((List<PersonCusInfo>) sourceOnes, (List<UserInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof AuthGrRoleInfo 	&&
+			sourceTwos.get(0) instanceof UserInfo		)
+			return new UserMergerAuthGrRole().merge((List<AuthGrRoleInfo>) sourceOnes, (List<UserInfo>) sourceTwos);
 		
 		return null;
 	}

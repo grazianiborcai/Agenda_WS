@@ -29,6 +29,7 @@ final class UserCopyOwner extends InfoCopierTemplate<UserInfo, OwnerInfo>{
 		result.codUser = source.codUser;
 		result.codAuthGroup = source.codAuthGroup;
 		result.codLanguage = source.codLanguage;
+		result.codUserCategory = source.codUserCategory;
 		
 		result.personData = clonePerson(source.personData);
 		result.addresses = cloneAddresses(source.addresses);

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.masterData.info.AuthGrRoleInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.DefaultValue;
@@ -21,6 +22,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public PersonInfo personData;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
+	public List<AuthGrRoleInfo> authGrRoles;
 	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
@@ -33,6 +35,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		personData = DefaultValue.object();
+		authGrRoles = DefaultValue.list();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		codLanguage = DefaultValue.language();		
@@ -59,6 +62,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
 		deepCopy.phones = clonePhones(deepCopy.phones);
 		deepCopy.personData = clonePerson(deepCopy.personData);
+		deepCopy.authGrRoles = cloneAuthGrRoles(deepCopy.authGrRoles);
 		
 		return deepCopy;
 	}
@@ -102,6 +106,22 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 			return null;
 		
 		return (PersonInfo) personToClone.clone();
+	}
+	
+	
+	
+	private List<AuthGrRoleInfo> cloneAuthGrRoles(List<AuthGrRoleInfo> authGrRolesToClone) throws CloneNotSupportedException {
+		if (authGrRolesToClone == null)
+			return null;
+		
+		List<AuthGrRoleInfo> deepAuthGrRoles = new ArrayList<>();
+		
+		for (AuthGrRoleInfo eachAuthGrRole : authGrRolesToClone) {
+			AuthGrRoleInfo clonedAuthGrRole = (AuthGrRoleInfo) eachAuthGrRole.clone();
+			deepAuthGrRoles.add(clonedAuthGrRole);
+		}
+		
+		return deepAuthGrRoles;
 	}
 	
 	

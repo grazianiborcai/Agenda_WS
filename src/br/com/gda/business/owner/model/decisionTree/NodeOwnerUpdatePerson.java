@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.business.owner.model.action.LazyOwnerEnforceEntityCateg;
 import br.com.gda.business.owner.model.action.LazyOwnerUpdatePerson;
 import br.com.gda.business.owner.model.action.StdOwnerEnforcePersonKey;
 import br.com.gda.business.owner.model.checker.OwnerCheckHasPerson;
@@ -65,9 +66,11 @@ public final class NodeOwnerUpdatePerson implements DeciTree<OwnerInfo> {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStd<OwnerInfo> enforcePersonKey = new StdOwnerEnforcePersonKey(option);
+		ActionLazy<OwnerInfo> enforceEntityCateg = new LazyOwnerEnforceEntityCateg(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> updatePerson = new LazyOwnerUpdatePerson(option.conn, option.schemaName);
 		
-		enforcePersonKey.addPostAction(updatePerson);
+		enforcePersonKey.addPostAction(enforceEntityCateg);
+		enforceEntityCateg.addPostAction(updatePerson);
 		
 		actions.add(enforcePersonKey);
 		return actions;

@@ -17,7 +17,7 @@ public final class UauthCheckRead extends ModelCheckerTemplateSimple<UauthInfo> 
 	
 	@Override protected boolean checkHook(UauthInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.codUser		<= 0 	||
+			recordInfo.username		== null	||
 			recordInfo.password		== null	||
 			recordInfo.codLanguage 	== null		)			
 			return FAILED;

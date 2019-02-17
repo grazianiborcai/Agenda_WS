@@ -14,8 +14,9 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
-import br.com.gda.security.userAuthentication.model.action.LazyUauthEnforceIsAuth;
-import br.com.gda.security.userAuthentication.model.action.StdUauthSelectUpswd;
+import br.com.gda.security.userAuthentication.model.action.LazyUauthAuthenticateUpswd;
+import br.com.gda.security.userAuthentication.model.action.LazyUauthMergeUser;
+import br.com.gda.security.userAuthentication.model.action.StdUauthEnforceCodUser;
 import br.com.gda.security.userAuthentication.model.checker.UauthCheckRead;
 
 public final class RootUauthAuth implements DeciTree<UauthInfo> {
@@ -56,12 +57,14 @@ public final class RootUauthAuth implements DeciTree<UauthInfo> {
 	private List<ActionStd<UauthInfo>> buildActionsOnPassed(DeciTreeOption<UauthInfo> option) {
 		List<ActionStd<UauthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UauthInfo> authUserPassword = new StdUauthSelectUpswd(option);
-		ActionLazy<UauthInfo> enforceIsAuth = new LazyUauthEnforceIsAuth(option.conn, option.schemaName);
+		ActionStd<UauthInfo> enforceCodUser = new StdUauthEnforceCodUser(option);
+		ActionLazy<UauthInfo> authenticateUpswd = new LazyUauthAuthenticateUpswd(option.conn, option.schemaName);
+		ActionLazy<UauthInfo>  mergeUser = new LazyUauthMergeUser(option.conn, option.schemaName);
 		
-		authUserPassword.addPostAction(enforceIsAuth);	
+		enforceCodUser.addPostAction(authenticateUpswd);	
+		enforceCodUser.addPostAction(mergeUser);
 		
-		actions.add(authUserPassword);		
+		actions.add(enforceCodUser);		
 		return actions;
 	}
 	

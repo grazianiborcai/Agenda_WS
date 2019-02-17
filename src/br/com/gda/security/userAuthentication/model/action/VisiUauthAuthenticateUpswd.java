@@ -6,16 +6,16 @@ import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
 import br.com.gda.security.userPassword.info.UpswdInfo;
-import br.com.gda.security.userPassword.model.decisionTree.RootUpswdAuth;
+import br.com.gda.security.userPassword.model.decisionTree.RootUpswdAuthUsername;
 
-final class VisiUauthSelectUpswd extends ActionVisitorTemplateAction<UauthInfo, UpswdInfo> {
-	public VisiUauthSelectUpswd(Connection conn, String schemaName) {
+final class VisiUauthAuthenticateUpswd extends ActionVisitorTemplateAction<UauthInfo, UpswdInfo> {
+	public VisiUauthAuthenticateUpswd(Connection conn, String schemaName) {
 		super(conn, schemaName, UauthInfo.class, UpswdInfo.class);
 	}
 	
 	
 	
 	@Override protected ActionStd<UpswdInfo> getActionHook(DeciTreeOption<UpswdInfo> option) {
-		return new RootUpswdAuth(option).toAction();
+		return new RootUpswdAuthUsername(option).toAction();
 	}
 }

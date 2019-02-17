@@ -9,9 +9,9 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
 
-public final class LazyUauthEnforceIsAuth extends ActionLazyTemplate<UauthInfo, UauthInfo> {
+public final class LazyUauthAuthenticateUpswd extends ActionLazyTemplate<UauthInfo, UauthInfo> {
 	
-	public LazyUauthEnforceIsAuth(Connection conn, String schemaName) {
+	public LazyUauthAuthenticateUpswd(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyUauthEnforceIsAuth extends ActionLazyTemplate<UauthInfo, 
 	
 	
 	@Override protected ActionStd<UauthInfo> getInstanceOfActionHook(DeciTreeOption<UauthInfo> option) {
-		return new StdUauthEnforceIsAuth(option);
+		return new StdUauthAuthenticateUpswd(option);
 	}
 	
 	

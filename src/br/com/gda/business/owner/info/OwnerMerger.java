@@ -5,7 +5,6 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.person.info.PersonInfo;
-import br.com.gda.business.personUser.info.PersonUserInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoWritterFactory;
@@ -32,12 +31,6 @@ public final class OwnerMerger extends InfoWritterFactory<OwnerInfo> {
 	
 	static public OwnerInfo merge(PersonInfo sourceOne, OwnerInfo sourceTwo) {
 		return new OwnerMergerPerson().merge(sourceOne, sourceTwo);
-	}	
-	
-	
-	
-	static public OwnerInfo merge(PersonUserInfo sourceOne, OwnerInfo sourceTwo) {
-		return new OwnerMergerPersonUser().merge(sourceOne, sourceTwo);
 	}		
 	
 	
@@ -69,11 +62,6 @@ public final class OwnerMerger extends InfoWritterFactory<OwnerInfo> {
 		if (sourceOnes.get(0) instanceof PersonInfo 	&&
 			sourceTwos.get(0) instanceof OwnerInfo		)
 			return new OwnerMergerPerson().merge((List<PersonInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof PersonUserInfo &&
-			sourceTwos.get(0) instanceof OwnerInfo		)
-			return new OwnerMergerPersonUser().merge((List<PersonUserInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
 		
 		
 		if (sourceOnes.get(0) instanceof CompInfo 		&&

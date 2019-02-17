@@ -1,22 +1,22 @@
-package br.com.gda.business.user.info;
+package br.com.gda.security.userAuthentication.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.common.UserCateg;
+import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class UserSetterCategOwner implements InfoSetter<UserInfo> {
+public final class UauthSetterCodUser implements InfoSetter<UauthInfo> {
 	
-	public UserInfo setAttr(UserInfo recordInfo) {
+	public UauthInfo setAttr(UauthInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setCodEntityCateg(recordInfo);
+		return setCodUser(recordInfo);
 	}
 	
 	
 	
-	private void checkArgument(UserInfo recordInfo) {
+	private void checkArgument(UauthInfo recordInfo) {
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
@@ -25,8 +25,8 @@ public final class UserSetterCategOwner implements InfoSetter<UserInfo> {
 	
 	
 	
-	private UserInfo setCodEntityCateg(UserInfo recordInfo) {
-		recordInfo.codUserCategory = UserCateg.OWNER.getCodUserCateg();
+	private UauthInfo setCodUser(UauthInfo recordInfo) {
+		recordInfo.codUser = DefaultValue.number();
 		return recordInfo;
 	}
 	

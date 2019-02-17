@@ -63,13 +63,13 @@ public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 		ActionLazy<OwnerInfo> mergeComp = new LazyOwnerMergeComp(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> mergeAddress = new LazyOwnerMergeAddress(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> mergePhone = new LazyOwnerMergePhone(option.conn, option.schemaName);
-		//ActionLazy<OwnerInfo> mergePersonUser = new LazyOwnerMergePersonUser(option.conn, option.schemaName);
+		//ActionLazy<OwnerInfo> mergeUser = new LazyOwnerMergeUser(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeComp);
 		mergeComp.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
-		//mergePhone.addPostAction(mergePersonUser);
+		//mergePhone.addPostAction(mergeUser);
 		
 		actions.add(select);
 		return actions;

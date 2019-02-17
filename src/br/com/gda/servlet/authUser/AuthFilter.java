@@ -229,9 +229,9 @@ public final class AuthFilter extends OncePerRequestFilter {
 	
 	private AuthToken customGetAuthenticationToken(String username, String password, HttpServletRequest request) {
 		String owner = customGetOwner(request);
-		String uri = customGetUri(request);
+		String language = customGetLanguage(request);
 		
-		return new AuthToken(username, password, owner, uri);
+		return new AuthToken(username, password, owner, language);
 	}
 	
 	
@@ -247,7 +247,12 @@ public final class AuthFilter extends OncePerRequestFilter {
 	
 	
 	
-	private String customGetUri(HttpServletRequest request) {
-		return request.getPathTranslated();
+	private String customGetLanguage(HttpServletRequest request) {
+		String language = request.getHeader("codLanguage");
+		
+		if (language == null)
+			return null;
+		
+		return language.trim();
 	}
 }

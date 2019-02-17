@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdOwnerMergePersonUser implements ActionStd<OwnerInfo> {
+public final class StdOwnerEnforceUserCateg implements ActionStd<OwnerInfo> {
 	private ActionStd<OwnerInfo> actionHelper;	
 	
 	
-	public StdOwnerMergePersonUser(DeciTreeOption<OwnerInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOwnerMergePersonUser(option.conn, option.schemaName));
+	public StdOwnerEnforceUserCateg(DeciTreeOption<OwnerInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOwnerEnforceUserCateg());
 	}
 	
 	
