@@ -29,6 +29,7 @@
         <security:intercept-url pattern="/**" access="isAuthenticated()" />
         <security:http-basic />
         <csrf disabled="true"/>
+        <custom-filter after="SECURITY_CONTEXT_FILTER" ref="ownerFilter" />
         <custom-filter before="BASIC_AUTH_FILTER" ref="authFilter" />
     </security:http>
     
@@ -44,6 +45,11 @@
 	<beans:bean id="authFilter"
 		class="br.com.gda.servlet.authUser.AuthFilter">
 		<beans:constructor-arg ref="authenticationManager"/>
+	</beans:bean> 
+	
+	
+	<beans:bean id="ownerFilter"
+		class="br.com.gda.servlet.header.OwnerFilter">
 	</beans:bean> 
 
 

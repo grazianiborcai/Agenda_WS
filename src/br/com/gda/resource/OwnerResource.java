@@ -18,17 +18,16 @@ import br.com.gda.business.owner.model.OwnerModelUpdate;
 import br.com.gda.model.Model;
 
 @Path("/Owner")
+@Produces(MediaType.APPLICATION_JSON)
 public class OwnerResource {
-
-	private static final String UPDATE_OWNER = "/updateOwner";
-	private static final String DELETE_OWNER = "/deleteOwner";
 	private static final String SELECT_OWNER = "/selectOwner";
+	private static final String DELETE_OWNER = "/deleteOwner";
+	private static final String UPDATE_OWNER = "/updateOwner";
 	
 	
 	
 	@GET
-	@Path(SELECT_OWNER)
-	@Produces(MediaType.APPLICATION_JSON)
+	@Path(SELECT_OWNER)	
 	public Response selectOwner(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 			                    @HeaderParam("codLanguage") String codLanguage) {
 		

@@ -68,7 +68,7 @@ public final class RootUpswdAuthUsername implements DeciTree<UpswdInfo> {
 	
 	private List<ActionStd<UpswdInfo>> buildActionsOnPassed(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
-		
+		//TODO: Criar uma VIEW para melhorar performance ?
 		ActionStd<UpswdInfo> enforceUsernameKey = new StdUpswdEnforceUsernameKey(option);
 		ActionLazy<UpswdInfo> mergeUser = new LazyUpswdMergeUser(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> auth = new LazyUpswdRootAuth(option.conn, option.schemaName);		
