@@ -35,6 +35,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	public String line5;
 	public String line6;
 	public String line7;
+	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public String codForm;
@@ -53,6 +54,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 		codOwnerRef = DefaultValue.number();
 		longitude = DefaultValue.number();
 		latitude = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 		isDeleted = DefaultValue.boole();
 	}
@@ -60,7 +62,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	
 	
 	public static AddressInfo copyFrom(Object sourceObj) {
-		if (isPayCus(sourceObj))
+		if (isPayCus(sourceObj))								//TODO: Mover para Copier
 			return copyFromPayCus(sourceObj);
 		
 		return copyFrom(sourceObj, AddressInfo.class);
@@ -69,7 +71,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	
 	
 	public static List<AddressInfo> copyFrom(List<?> sourceObjs) {
-		if (isPayCus(sourceObjs))
+		if (isPayCus(sourceObjs))								//TODO: Mover para Copier
 			return copyFromPayCus(sourceObjs);
 		
 		return copyFrom(sourceObjs, AddressInfo.class);

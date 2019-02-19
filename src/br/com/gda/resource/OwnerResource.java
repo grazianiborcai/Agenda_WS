@@ -28,8 +28,8 @@ public class OwnerResource {
 	
 	@GET
 	@Path(SELECT_OWNER)	
-	public Response selectOwner(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-			                    @HeaderParam("codLanguage") String codLanguage) {
+	public Response selectOwner(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 		
 		OwnerInfo recordInfo = new OwnerInfo();
 		recordInfo.codOwner = codOwner;
@@ -45,10 +45,12 @@ public class OwnerResource {
 
 	@DELETE
 	@Path(DELETE_OWNER)
-	public Response deleteOwner(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner) {
+	public Response deleteOwner(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+			                    @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 
 		OwnerInfo recordInfo = new OwnerInfo();
 		recordInfo.codOwner = codOwner;
+		recordInfo.codLanguage = codLanguage;
 		
 		
 		Model model = new OwnerModelDelete(recordInfo);

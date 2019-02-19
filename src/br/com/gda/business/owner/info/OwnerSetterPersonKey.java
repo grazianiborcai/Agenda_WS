@@ -34,6 +34,7 @@ public final class OwnerSetterPersonKey implements InfoSetter<OwnerInfo> {
 		recordInfo.personData.codOwner = recordInfo.codOwner;
 		recordInfo.personData.codPerson = recordInfo.codPerson;
 		recordInfo.personData.codEntityCateg = recordInfo.codEntityCateg;
+		recordInfo.personData.codLanguage = recordInfo.codLanguage;
 		
 		return recordInfo;
 	}

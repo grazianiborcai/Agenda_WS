@@ -29,6 +29,7 @@ public final class OwnerSetterAddressKey implements InfoSetter<OwnerInfo> {
 		for (AddressInfo eachAddress : recordInfo.addresses) {
 			eachAddress.codOwner = recordInfo.codOwner;
 			eachAddress.codOwnerRef = recordInfo.codOwner;
+			eachAddress.codLanguage = recordInfo.codLanguage;
 		}
 		
 		return recordInfo;

@@ -40,6 +40,7 @@ final class OwnerVisiKeepOwner implements InfoKeeperVisitor<OwnerInfo, OwnerInfo
 		sourceTwo.codOwner = sourceOne.codOwner;
 		sourceTwo.codPerson = sourceOne.codPerson;
 		sourceTwo.codCompany = sourceOne.codCompany;
+		sourceTwo.codUser = sourceOne.codUser;
 		return sourceTwo;
 	}
 	

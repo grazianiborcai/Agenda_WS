@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.action.LazyOwnerEnforceEntityCateg;
+import br.com.gda.business.owner.model.action.LazyOwnerEnforcePersonKey;
 import br.com.gda.business.owner.model.action.LazyOwnerUpdatePerson;
-import br.com.gda.business.owner.model.action.StdOwnerEnforcePersonKey;
+import br.com.gda.business.owner.model.action.StdOwnerEnforceEntityCateg;
 import br.com.gda.business.owner.model.checker.OwnerCheckHasPerson;
 import br.com.gda.business.owner.model.checker.OwnerCheckUpdatePerson;
 import br.com.gda.model.action.ActionLazy;
@@ -65,14 +65,14 @@ public final class NodeOwnerUpdatePerson implements DeciTree<OwnerInfo> {
 	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> enforcePersonKey = new StdOwnerEnforcePersonKey(option);
-		ActionLazy<OwnerInfo> enforceEntityCateg = new LazyOwnerEnforceEntityCateg(option.conn, option.schemaName);
+		ActionStd<OwnerInfo> enforceEntityCateg = new StdOwnerEnforceEntityCateg(option);
+		ActionLazy<OwnerInfo> enforcePersonKey = new LazyOwnerEnforcePersonKey(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> updatePerson = new LazyOwnerUpdatePerson(option.conn, option.schemaName);
 		
-		enforcePersonKey.addPostAction(enforceEntityCateg);
-		enforceEntityCateg.addPostAction(updatePerson);
+		enforceEntityCateg.addPostAction(enforcePersonKey);
+		enforcePersonKey.addPostAction(updatePerson);
 		
-		actions.add(enforcePersonKey);
+		actions.add(enforceEntityCateg);
 		return actions;
 	}
 	

@@ -10,12 +10,12 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.HttpMethod;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.filter.GenericFilterBean;
-import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.json.JsonToList;
 import br.com.gda.model.ModelHelper;
@@ -32,7 +32,7 @@ public final class OwnerFilter extends GenericFilterBean {
 		HttpServletRequest requestWrapper = new RequestWrapper(request);	
 		String owner = getOwner(requestWrapper);
 		
-		if (shouldFilter(owner)) {
+		if (shouldFilter(requestWrapper, owner)) {
 			if (isParamValid(owner, requestWrapper) == false) {
 				((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED);	//TODO: melhorar resposta
 				return;
@@ -56,12 +56,16 @@ public final class OwnerFilter extends GenericFilterBean {
 	
 	
 	
-	private boolean shouldFilter(String owner) {
-		if (owner == null) {
+	private boolean shouldFilter(HttpServletRequest request, String owner) {
+		if (owner == null)
 			return false; 
-		} else {
-			return true;
-		}
+		
+		
+		if (request.getMethod().equals(HttpMethod.GET))
+			return false;
+		
+		
+		return true;
 	}
     
     
@@ -69,7 +73,7 @@ public final class OwnerFilter extends GenericFilterBean {
     private boolean isParamValid(String owner, HttpServletRequest request) {
     	long codOwner = stringToLong(owner);    	
     	String body = getRequestBody(request);    	
-    	List<OwnerInfo> codOwners = parseRawInfo(body);
+    	List<HdparamInfo> codOwners = parseRawInfo(body);
     	
     	if (codOwners == null)
     		return true;
@@ -77,7 +81,7 @@ public final class OwnerFilter extends GenericFilterBean {
     	if (codOwners.isEmpty())
     		return true;
     	
-    	for (OwnerInfo eachOwner : codOwners) {
+    	for (HdparamInfo eachOwner : codOwners) {
     		if (eachOwner.codOwner != codOwner) {
     			return false;
     		}
@@ -116,8 +120,8 @@ public final class OwnerFilter extends GenericFilterBean {
     
     
     
-	private List<OwnerInfo> parseRawInfo(String requestBody) {
-		JsonToList<OwnerInfo> parser = new JsonToList<>(OwnerInfo.class);
+	private List<HdparamInfo> parseRawInfo(String requestBody) {
+		JsonToList<HdparamInfo> parser = new JsonToList<>(HdparamInfo.class);
 		return parser.parse(requestBody);
 	}
 	
