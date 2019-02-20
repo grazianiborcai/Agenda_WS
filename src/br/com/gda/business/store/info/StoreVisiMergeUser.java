@@ -1,4 +1,4 @@
-package br.com.gda.business.owner.info;
+package br.com.gda.business.store.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,27 +7,27 @@ import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class OwnerVisiMergeUser implements InfoMergerVisitor<OwnerInfo, UserInfo, OwnerInfo> {
+final class StoreVisiMergeUser implements InfoMergerVisitor<StoreInfo, UserInfo, StoreInfo> {
 
-	@Override public OwnerInfo writeRecord(UserInfo sourceOne, OwnerInfo sourceTwo) {
+	@Override public StoreInfo writeRecord(UserInfo sourceOne, StoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		OwnerInfo clonedInfo = makeClone(sourceTwo);
+		StoreInfo clonedInfo = makeClone(sourceTwo);
 		return merge(sourceOne, clonedInfo);
 	}
 	
 	
 	
-	private void checkArgument(UserInfo sourceOne, OwnerInfo sourceTwo) {
+	private void checkArgument(UserInfo sourceOne, StoreInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private OwnerInfo makeClone(OwnerInfo recordInfo) {
+	private StoreInfo makeClone(StoreInfo recordInfo) {
 		try {
-			return (OwnerInfo) recordInfo.clone();
+			return (StoreInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -37,7 +37,7 @@ final class OwnerVisiMergeUser implements InfoMergerVisitor<OwnerInfo, UserInfo,
 	
 	
 	
-	private OwnerInfo merge(UserInfo sourceOne, OwnerInfo sourceTwo) {
+	private StoreInfo merge(UserInfo sourceOne, StoreInfo sourceTwo) {
 		sourceTwo.userData = makeClone(sourceOne);
 		sourceTwo.codUser = sourceOne.codUser;
 		sourceTwo.codAuthGroup = sourceOne.codAuthGroup;
@@ -59,7 +59,7 @@ final class OwnerVisiMergeUser implements InfoMergerVisitor<OwnerInfo, UserInfo,
 	
 	
 	
-	@Override public boolean shouldWrite(UserInfo sourceOne, OwnerInfo sourceTwo) {
+	@Override public boolean shouldWrite(UserInfo sourceOne, StoreInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	

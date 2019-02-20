@@ -15,12 +15,15 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public abstract class DeciTreeTemplate<T> implements DeciTree<T> {
+public abstract class DeciTreeOneCallTemplate<T> implements DeciTree<T> {
+	private final boolean RESULT_FAILED = false;
+	private final boolean RESULT_SUCCESS = true;
+	
 	private DeciTree<T> helper;
 	private DeciTreeOption<T> option;
 	
 	
-	public DeciTreeTemplate(T recordInfo) {
+	public DeciTreeOneCallTemplate(T recordInfo) {
 		this(recordToList(recordInfo));
 	}
 	
@@ -34,7 +37,7 @@ public abstract class DeciTreeTemplate<T> implements DeciTree<T> {
 	
 	
 	
-	public DeciTreeTemplate(List<T> recordInfos) {
+	public DeciTreeOneCallTemplate(List<T> recordInfos) {
 		checkArgument(recordInfos);
 		init(recordInfos);
 	}
@@ -91,6 +94,7 @@ public abstract class DeciTreeTemplate<T> implements DeciTree<T> {
 	
 	@Override public void makeDecision() {
 		helper.makeDecision();
+		closeTransaction(getDecisionResult());
 	}	
 	
 	
@@ -109,6 +113,43 @@ public abstract class DeciTreeTemplate<T> implements DeciTree<T> {
 	
 	@Override public ActionStd<T> toAction() {
 		return helper.toAction();
+	}
+	
+	
+	
+	private void closeTransaction(DeciResult<T> treeResult) {
+		if (treeResult.isSuccess() == RESULT_SUCCESS) 
+			commitWork();
+			
+		if (treeResult.isSuccess() == RESULT_FAILED) 
+			rollback();
+		
+		DbConnection.closeConnection(option.conn);
+	}
+	
+	
+	
+	private void commitWork() {
+		try {
+			option.conn.commit();
+		
+		} catch (Exception e) {
+			logException(e);
+			rollback();
+			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
+		}
+	}
+	
+	
+	
+	private void rollback() {
+		try {
+			option.conn.rollback();
+			
+		} catch (Exception e) {
+			logException(e);
+			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
+		}
 	}
 	
 	

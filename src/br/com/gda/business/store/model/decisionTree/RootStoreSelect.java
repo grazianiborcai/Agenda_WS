@@ -10,6 +10,7 @@ import br.com.gda.business.store.model.action.LazyStoreMergeCurrency;
 import br.com.gda.business.store.model.action.LazyStoreMergePerson;
 import br.com.gda.business.store.model.action.LazyStoreMergePhone;
 import br.com.gda.business.store.model.action.LazyStoreMergeTimezone;
+import br.com.gda.business.store.model.action.LazyStoreMergeUser;
 import br.com.gda.business.store.model.action.StdStoreSelect;
 import br.com.gda.business.store.model.checker.StoreCheckLangu;
 import br.com.gda.business.store.model.checker.StoreCheckRead;
@@ -67,7 +68,7 @@ public final class RootStoreSelect implements DeciTree<StoreInfo> {
 	
 	private List<ActionStd<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
-		//TODO: Incluir usuario
+
 		ActionStd<StoreInfo> select = new StdStoreSelect(option);
 		ActionLazy<StoreInfo> mergeCurrency = new LazyStoreMergeCurrency(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> mergeTimezone = new LazyStoreMergeTimezone(option.conn, option.schemaName);
@@ -75,7 +76,7 @@ public final class RootStoreSelect implements DeciTree<StoreInfo> {
 		ActionLazy<StoreInfo> mergeComp = new LazyStoreMergeComp(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> mergeAddress = new LazyStoreMergeAddress(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> mergePhone = new LazyStoreMergePhone(option.conn, option.schemaName);
-		//ActionLazy<StoreInfo> mergePersonUser = new LazyOwnerMergePersonUser(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> mergeUser = new LazyStoreMergeUser(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone);
@@ -83,7 +84,7 @@ public final class RootStoreSelect implements DeciTree<StoreInfo> {
 		mergePerson.addPostAction(mergeComp);
 		mergeComp.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
-		//mergePhone.addPostAction(mergePersonUser);
+		mergePhone.addPostAction(mergeUser);
 		
 		actions.add(select);
 		return actions;

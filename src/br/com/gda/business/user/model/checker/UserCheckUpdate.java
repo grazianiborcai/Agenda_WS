@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class UserCheckWrite extends ModelCheckerTemplateSimple<UserInfo> {
+public final class UserCheckUpdate extends ModelCheckerTemplateSimple<UserInfo> {
 
-	public UserCheckWrite() {
+	public UserCheckUpdate() {
 		super();
 	}
 	

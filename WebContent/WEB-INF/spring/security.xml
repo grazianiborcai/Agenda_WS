@@ -26,6 +26,9 @@
 	<!-- Stateless RESTful services use BASIC authentication --> 
     <security:http create-session="stateless" pattern="/**">
         <security:intercept-url pattern="/**/Owner/**" access="hasAuthority('OWNER_WRITE')" />
+        <security:intercept-url pattern="/**/Store/insert**" access="hasAuthority('STORE_WRITE')" />
+        <security:intercept-url pattern="/**/Store/update**" access="hasAuthority('STORE_WRITE')" />
+        <security:intercept-url pattern="/**/Store/select**" access="hasAuthority('STORE_READ')" />
         <security:intercept-url pattern="/**" access="isAuthenticated()" />
         <security:http-basic />
         <csrf disabled="true"/>

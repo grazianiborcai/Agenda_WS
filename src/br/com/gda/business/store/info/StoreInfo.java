@@ -16,9 +16,12 @@ import br.com.gda.info.InfoRecord;
 public final class StoreInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
+	public long codUser;
 	public long codPerson;
 	public long codCompany;
 	public String codEntityCateg;
+	public char codUserCategory;
+	public String codAuthGroup;
 	public String codCurr;
 	public String txtCurr;
 	public String codTimezone;
@@ -37,8 +40,10 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public StoreInfo() {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
+		codUser = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codCompany = DefaultValue.number();
+		codUserCategory = DefaultValue.character();
 		codLanguage = DefaultValue.language();
 		recordMode = RecordMode.RECORD_OK;
 		userData = DefaultValue.object();
@@ -69,6 +74,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		deepCopy.phones = clonePhones(deepCopy.phones);
 		deepCopy.personData = clonePerson(deepCopy.personData);
 		deepCopy.companyData = cloneCompany(deepCopy.companyData);
+		deepCopy.userData = cloneUser(deepCopy.userData);
 		
 		return deepCopy;
 	}
@@ -121,6 +127,15 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 			return null;
 		
 		return (CompInfo) companyToClone.clone();
+	}
+	
+	
+	
+	private UserInfo cloneUser(UserInfo userToClone) throws CloneNotSupportedException {
+		if (userToClone == null)
+			return null;
+		
+		return (UserInfo) userToClone.clone();
 	}
 	
 	

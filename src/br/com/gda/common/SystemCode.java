@@ -60,6 +60,7 @@ public final class SystemCode {
 	public static final int STORE_WTIME_LEAVE_FOUND						= 1122;
 	public static final int STORE_FEE_ALREADY_EXIST 					= 1123;
 	public static final int STORE_FEE_NOT_FOUND 						= 1124;
+	public static final int STORE_TECH_FIELD_SHOULD_BE_EMPTY			= 1125;
 	
 	// Master Data
 	public static final int EMP_POS_ALREADY_EXIST						= 1150;

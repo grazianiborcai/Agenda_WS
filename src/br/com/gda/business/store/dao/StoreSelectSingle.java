@@ -150,6 +150,11 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 					dataInfo.codCompany = stmtResult.getLong(StoreDbTableColumn.COL_COD_COMPANY);
 				
 				
+				stmtResult.getLong(StoreDbTableColumn.COL_COD_USER);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codUser = stmtResult.getLong(StoreDbTableColumn.COL_COD_USER);
+				
+				
 				stmtResult.getString(StoreDbTableColumn.COL_COD_LANGUAGE);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codLanguage = stmtResult.getString(StoreDbTableColumn.COL_COD_LANGUAGE);

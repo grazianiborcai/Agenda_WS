@@ -3,7 +3,6 @@ package br.com.gda.security.userPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -15,10 +14,9 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.userPassword.info.UpswdInfo;
-import br.com.gda.security.userPassword.model.action.LazyUpswdSuccess;
 import br.com.gda.security.userPassword.model.action.StdUpswdDelete;
+import br.com.gda.security.userPassword.model.checker.UpswdCheckDelete;
 import br.com.gda.security.userPassword.model.checker.UpswdCheckExist;
-import br.com.gda.security.userPassword.model.checker.UpswdCheckWrite;
 
 public final class RootUpswdDelete implements DeciTree<UpswdInfo> {
 	private DeciTree<UpswdInfo> tree;
@@ -45,7 +43,7 @@ public final class RootUpswdDelete implements DeciTree<UpswdInfo> {
 		ModelChecker<UpswdInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new UpswdCheckWrite();
+		checker = new UpswdCheckDelete();
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
@@ -69,14 +67,7 @@ public final class RootUpswdDelete implements DeciTree<UpswdInfo> {
 	private List<ActionStd<UpswdInfo>> buildActionsOnPassed(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> auth = new RootUpswdAuth(option).toAction();
-		ActionStd<UpswdInfo> delete = new StdUpswdDelete(option);
-		ActionLazy<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
-		
-		delete.addPostAction(success);
-		
-		
-		actions.add(auth);
+		ActionStd<UpswdInfo> delete = new StdUpswdDelete(option);		
 		actions.add(delete);
 		
 		return actions;

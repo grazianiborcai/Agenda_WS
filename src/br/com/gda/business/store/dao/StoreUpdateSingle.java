@@ -120,6 +120,13 @@ public final class StoreUpdateSingle implements DaoStmt<StoreInfo> {
 			stmt.setString(i++, recordInfo.codTimezone);
 			stmt.setString(i++, recordInfo.recordMode);
 			
+			
+			if (recordInfo.codUser >= 0) {
+				stmt.setLong(i++, recordInfo.codUser);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
 			return stmt;
 		}		
 	}

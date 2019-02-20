@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.decisionTree.common.DeciTreeTemplate;
+import br.com.gda.model.decisionTree.common.DeciTreeOneCallTemplate;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
 import br.com.gda.security.userAuthentication.model.decisionTree.RootUauthAuth;
 
-final class AuthDeciTree extends DeciTreeTemplate<UauthInfo> {
+final class AuthDeciTree extends DeciTreeOneCallTemplate<UauthInfo> {
 
 	public AuthDeciTree(UauthInfo recordInfo) {
 		super(recordInfo);

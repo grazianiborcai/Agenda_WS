@@ -72,7 +72,7 @@ public final class RootOwnerDelete implements DeciTree<OwnerInfo> {
 	
 	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
-		
+		//TODO: Delete Store
 		ActionStd<OwnerInfo> select = new RootOwnerSelect(option).toAction();
 		ActionLazy<OwnerInfo> deleteAddress = new LazyOwnerNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deletePhone = new LazyOwnerNodeDeletePhone(option.conn, option.schemaName);

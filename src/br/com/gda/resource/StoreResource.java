@@ -44,6 +44,7 @@ import br.com.gda.legacy.model.StoreModel;
 import br.com.gda.model.Model;
 
 @Path("/Store")
+@Produces(MediaType.APPLICATION_JSON)
 public class StoreResource {
 
 	private static final String INSERT_STORE = "/insertStore";
@@ -71,7 +72,6 @@ public class StoreResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStore(String incomingData) {
 		//TODO: verificar fluxo: Store com status inativo/eliminado
-		//TODO: campos latitude e longitude não setão sendo preenchidos
 		//TODO: n�o tem campos de hor�rio de funcionamento
 		Model model = new StoreModelInsert(incomingData);
 		model.executeRequest();
@@ -109,7 +109,6 @@ public class StoreResource {
 	
 	@GET
 	@Path(SELECT_STORE)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectStore(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 			                    @HeaderParam("codStore") @DefaultValue("-1") int codStore) {
 
@@ -127,7 +126,6 @@ public class StoreResource {
 	
 	@GET
 	@Path(SELECT_STORE_FEE)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectStoreFee(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner,
 								   @HeaderParam("codStore") @DefaultValue("-1") long codStore,
 								   @HeaderParam("codFeeCateg") String codFeeCateg) {
@@ -148,7 +146,6 @@ public class StoreResource {
 	
 	@GET
 	@Path(SELECT_STORE_LOCATION)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectStoreLoc(@DefaultValue("Z") @HeaderParam("zoneId") String zoneId,
 			@HeaderParam("codOwner") List<Long> codOwner, @QueryParam("codStore") List<Integer> codStore,
 			@QueryParam("cnpj") List<String> cnpj, @QueryParam("inscEstadual") List<String> inscEstadual,
@@ -176,7 +173,6 @@ public class StoreResource {
 	
 	@GET
 	@Path(SELECT_STORE_MAT_EMP)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectStoreMatEmp(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
 			                          @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
 			                          @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
@@ -237,7 +233,6 @@ public class StoreResource {
 	
 	@GET
 	@Path(SELECT_STORE_WTIME)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectStoreWTime(@HeaderParam("codOwner")   @DefaultValue("-1") long codOwner, 
 			                         @HeaderParam("codStore")   @DefaultValue("-1") int codStore,
 			                         @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday) {
@@ -298,7 +293,6 @@ public class StoreResource {
 	
 	@GET
 	@Path(SELECT_STORE_LDATE)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectStoreLDate(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 			                         @HeaderParam("codStore") @DefaultValue("-1") int codStore,
 			                         @HeaderParam("date")	  @DefaultValue("1900-01-01") String date) {
@@ -366,7 +360,6 @@ public class StoreResource {
 	
 	@GET
 	@Path(SELECT_STORE_WT_CONFLICT)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectStoreWTimeConflict(@HeaderParam("codOwner")   @DefaultValue("-1") long codOwner, 
 			                                 @HeaderParam("codStore")   @DefaultValue("-1") int codStore,
 			                                 @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday,

@@ -9,6 +9,7 @@ import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.personUser.info.PersonUserInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoWritterFactory;
 
 public final class StoreMerger extends InfoWritterFactory<StoreInfo> {	
@@ -61,6 +62,12 @@ public final class StoreMerger extends InfoWritterFactory<StoreInfo> {
 	
 	
 	
+	static public StoreInfo merge(UserInfo sourceOne, StoreInfo sourceTwo) {
+		return new StoreMergerUser().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<StoreInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
 		if (sourceOnes.get(0) instanceof AddressInfo 		&&
@@ -96,6 +103,11 @@ public final class StoreMerger extends InfoWritterFactory<StoreInfo> {
 		if (sourceOnes.get(0) instanceof CurrencyInfo 		&&
 			sourceTwos.get(0) instanceof StoreInfo		)
 			return new StoreMergerCurrency().merge((List<CurrencyInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
+		
+		
+		if (sourceOnes.get(0) instanceof UserInfo 			&&
+			sourceTwos.get(0) instanceof StoreInfo		)
+			return new StoreMergerUser().merge((List<UserInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
 		
 		return null;
 	}

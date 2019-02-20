@@ -15,7 +15,7 @@ import br.com.gda.business.user.model.checker.UserCheckAuthGroup;
 import br.com.gda.business.user.model.checker.UserCheckCateg;
 import br.com.gda.business.user.model.checker.UserCheckExist;
 import br.com.gda.business.user.model.checker.UserCheckOwner;
-import br.com.gda.business.user.model.checker.UserCheckWrite;
+import br.com.gda.business.user.model.checker.UserCheckUpdate;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -54,7 +54,7 @@ public final class RootUserUpdate implements DeciTree<UserInfo> {
 		ModelChecker<UserInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new UserCheckWrite();
+		checker = new UserCheckUpdate();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

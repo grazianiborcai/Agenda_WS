@@ -6,10 +6,11 @@ import java.util.List;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.action.LazyUserDelete;
 import br.com.gda.business.user.model.action.LazyUserDeletePerson;
+import br.com.gda.business.user.model.action.LazyUserDeleteUpswd;
 import br.com.gda.business.user.model.action.LazyUserNodeDeleteAddress;
 import br.com.gda.business.user.model.action.LazyUserNodeDeletePhone;
 import br.com.gda.business.user.model.checker.UserCheckExist;
-import br.com.gda.business.user.model.checker.UserCheckWrite;
+import br.com.gda.business.user.model.checker.UserCheckDelete;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootUserDelete implements DeciTree<UserInfo> {
 		ModelChecker<UserInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new UserCheckWrite();
+		checker = new UserCheckDelete();
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
@@ -75,11 +76,13 @@ public final class RootUserDelete implements DeciTree<UserInfo> {
 		ActionLazy<UserInfo> deleteAddress = new LazyUserNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazy<UserInfo> deletePhone = new LazyUserNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<UserInfo> deleteUser = new LazyUserDelete(option.conn, option.schemaName);	
+		ActionLazy<UserInfo> deletePassword = new LazyUserDeleteUpswd(option.conn, option.schemaName);	
 		ActionLazy<UserInfo> deletePerson = new LazyUserDeletePerson(option.conn, option.schemaName);
 		
 		select.addPostAction(deleteAddress);
 		select.addPostAction(deletePhone);
 		select.addPostAction(deleteUser);
+		select.addPostAction(deletePassword);
 		select.addPostAction(deletePerson);
 		
 		actions.add(select);

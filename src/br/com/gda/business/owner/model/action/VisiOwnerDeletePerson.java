@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.business.person.info.PersonCopier;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.decisionTree.RootPersonDelete;
 import br.com.gda.model.action.ActionStd;
@@ -22,7 +23,7 @@ final class VisiOwnerDeletePerson extends ActionVisitorTemplateAction<OwnerInfo,
 		List<PersonInfo> results = new ArrayList<>();
 		
 		for (OwnerInfo eachRecord : recordInfos) {
-			results.add(PersonInfo.copyFrom(eachRecord));
+			results.add(PersonCopier.copyFromOwner(eachRecord));
 		}		
 		
 		return results;

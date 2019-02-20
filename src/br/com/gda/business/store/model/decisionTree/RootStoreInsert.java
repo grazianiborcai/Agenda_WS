@@ -4,21 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.action.LazyStoreEnforceAddressKey;
-import br.com.gda.business.store.model.action.LazyStoreEnforceCompKey;
-import br.com.gda.business.store.model.action.LazyStoreEnforceEntityCateg;
-import br.com.gda.business.store.model.action.LazyStoreEnforcePersonKey;
-import br.com.gda.business.store.model.action.LazyStoreEnforcePhoneKey;
 import br.com.gda.business.store.model.action.LazyStoreInsert;
-import br.com.gda.business.store.model.action.LazyStoreInsertComp;
-import br.com.gda.business.store.model.action.LazyStoreInsertPerson;
+import br.com.gda.business.store.model.action.LazyStoreNodeInsertComp;
+import br.com.gda.business.store.model.action.LazyStoreNodeInsertPerson;
+import br.com.gda.business.store.model.action.LazyStoreNodeInsertUser;
 import br.com.gda.business.store.model.action.LazyStoreNodeUpsertAddress;
 import br.com.gda.business.store.model.action.LazyStoreNodeUpsertPhone;
 import br.com.gda.business.store.model.action.LazyStoreRootSelect;
 import br.com.gda.business.store.model.action.LazyStoreUpdate;
 import br.com.gda.business.store.model.action.StdStoreEnforceLChanged;
 import br.com.gda.business.store.model.checker.StoreCheckCurrency;
-import br.com.gda.business.store.model.checker.StoreCheckGenField;
+import br.com.gda.business.store.model.checker.StoreCheckTechField;
 import br.com.gda.business.store.model.checker.StoreCheckLangu;
 import br.com.gda.business.store.model.checker.StoreCheckOwner;
 import br.com.gda.business.store.model.checker.StoreCheckTimezone;
@@ -64,7 +60,7 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 		checker = new StoreCheckWrite();
 		queue.add(checker);
 		
-		checker = new StoreCheckGenField();
+		checker = new StoreCheckTechField();
 		queue.add(checker);
 		
 		checker = new StoreCheckWritePhone();
@@ -111,34 +107,22 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 		
 		ActionStd<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
 		ActionLazy<StoreInfo> insertStore = new LazyStoreInsert(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> enforceEntityCateg = new LazyStoreEnforceEntityCateg(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> enforcePersonKey = new LazyStoreEnforcePersonKey(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> insertPerson = new LazyStoreInsertPerson(option.conn, option.schemaName);	
-		ActionLazy<StoreInfo> enforceCompKey = new LazyStoreEnforceCompKey(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> insertComp = new LazyStoreInsertComp(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> updateStore = new LazyStoreUpdate(option.conn, option.schemaName);	
-		ActionLazy<StoreInfo> enforceAddressKey = new LazyStoreEnforceAddressKey(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> insertPerson = new LazyStoreNodeInsertPerson(option.conn, option.schemaName);	
+		ActionLazy<StoreInfo> insertComp = new LazyStoreNodeInsertComp(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> insertUser = new LazyStoreNodeInsertUser(option.conn, option.schemaName);	
+		ActionLazy<StoreInfo> updateStore = new LazyStoreUpdate(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> enforcePhoneKey = new LazyStoreEnforcePhoneKey(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionLazy<StoreInfo> selectStore = new LazyStoreRootSelect(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(insertStore);
-		insertStore.addPostAction(enforceEntityCateg);
-		enforceEntityCateg.addPostAction(enforcePersonKey);
-		enforcePersonKey.addPostAction(insertPerson);
-		
-		insertPerson.addPostAction(enforceCompKey);
-		enforceCompKey.addPostAction(insertComp);		
-		insertComp.addPostAction(updateStore);
-		
-		updateStore.addPostAction(enforceAddressKey);
-		enforceAddressKey.addPostAction(upsertAddress);
-		
-		updateStore.addPostAction(enforcePhoneKey);
-		enforcePhoneKey.addPostAction(upsertPhone);	
-		
-		updateStore.addPostAction(selectStore);
+		insertStore.addPostAction(insertPerson);		
+		insertPerson.addPostAction(insertComp);		
+		insertComp.addPostAction(insertUser);
+		insertUser.addPostAction(updateStore);		
+		insertUser.addPostAction(upsertAddress);		
+		insertUser.addPostAction(upsertPhone);			
+		insertUser.addPostAction(selectStore);
 		
 		actions.add(enforceLChanged);	
 		return actions;

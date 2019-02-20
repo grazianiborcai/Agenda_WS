@@ -7,11 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreCheckGenField extends ModelCheckerTemplateSimple<StoreInfo> {
-	private final boolean AUTO_GEN_FIELD_NOT_NULL = false;
-	private final boolean EMPTY_AUTO_GEN_FIELD = true;
+public final class StoreCheckTechField extends ModelCheckerTemplateSimple<StoreInfo> {
 	
-	public StoreCheckGenField() {
+	public StoreCheckTechField() {
 		super();
 	}
 	
@@ -19,20 +17,20 @@ public final class StoreCheckGenField extends ModelCheckerTemplateSimple<StoreIn
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codStore >= 0 )			
-			return AUTO_GEN_FIELD_NOT_NULL;		
+			return super.FAILED;		
 		
-		return EMPTY_AUTO_GEN_FIELD;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.AUTO_GENERATED_FIELD_IS_NOT_EMPTY;
+		return SystemMessage.STORE_TECH_FIELD_SHOULD_BE_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.AUTO_GENERATED_FIELD_IS_NOT_EMPTY;
+		return SystemCode.STORE_TECH_FIELD_SHOULD_BE_EMPTY;
 	}
 }

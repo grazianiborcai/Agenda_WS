@@ -14,12 +14,14 @@ import br.com.gda.business.owner.model.action.LazyOwnerRootSelect;
 import br.com.gda.business.owner.model.action.LazyOwnerUpdate;
 import br.com.gda.business.owner.model.action.StdOwnerEnforceLChanged;
 import br.com.gda.business.owner.model.checker.OwnerCheckInsert;
+import br.com.gda.business.owner.model.checker.OwnerCheckLangu;
 import br.com.gda.business.owner.model.checker.OwnerCheckTechField;
 import br.com.gda.business.owner.model.checker.OwnerCheckWriteAddress;
 import br.com.gda.business.owner.model.checker.OwnerCheckWritePhone;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -46,8 +48,11 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 	
 	
 	private ModelChecker<OwnerInfo> buildDecisionChecker(DeciTreeOption<OwnerInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
-		ModelChecker<OwnerInfo> checker;	
+		ModelChecker<OwnerInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
 		checker = new OwnerCheckInsert();
 		queue.add(checker);
@@ -60,6 +65,13 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 		
 		checker = new OwnerCheckWriteAddress();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new OwnerCheckLangu(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}

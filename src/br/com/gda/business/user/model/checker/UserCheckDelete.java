@@ -1,24 +1,24 @@
-package br.com.gda.business.owner.model.checker;
+package br.com.gda.business.user.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class OwnerCheckInsert extends ModelCheckerTemplateSimple<OwnerInfo> {
+public final class UserCheckDelete extends ModelCheckerTemplateSimple<UserInfo> {
 
-	public OwnerCheckInsert() {
+	public UserCheckDelete() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(OwnerInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.personData 	== null ||
-			 recordInfo.companyData == null ||
-			 recordInfo.codLanguage == null 	)
+	@Override protected boolean checkHook(UserInfo recordInfo, Connection conn, String schemaName) {	
+		if ( recordInfo.codOwner 		<= 0	|| 
+			 recordInfo.codUser			<= 0	||
+			 recordInfo.codLanguage		== null		)
 			return FAILED;
 		
 		

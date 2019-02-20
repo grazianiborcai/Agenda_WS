@@ -19,8 +19,8 @@ public final class CompCheckKey extends ModelCheckerTemplateSimple<CompInfo> {
 	
 	
 	@Override protected boolean checkHook(CompInfo recordInfo, Connection conn, String schemaName) {	
-		if (    recordInfo.codOwner 	>= 0 
-			 && recordInfo.codCompany	>= 0 )			
+		if ( recordInfo.codOwner 	>= 0	&&
+			 recordInfo.codCompany	>= 0 		)			
 			return KEY_NOT_NULL;		
 		
 		return EMPTY_KEY;
