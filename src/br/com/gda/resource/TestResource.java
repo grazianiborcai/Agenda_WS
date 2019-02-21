@@ -26,6 +26,8 @@ import br.com.gda.business.feeStore.model.FeeStoreModelSelectService;
 import br.com.gda.business.materialSnapshot.info.MatSnapInfo;
 import br.com.gda.business.materialSnapshot.model.MatSnapModelInsert;
 import br.com.gda.business.materialSnapshot.model.MatSnapModelSelect;
+import br.com.gda.business.ownerStore.info.OwntoreInfo;
+import br.com.gda.business.ownerStore.model.OwntoreModelSelect;
 import br.com.gda.business.person.model.PersonModelInsert;
 import br.com.gda.business.person.model.PersonModelUpdate;
 import br.com.gda.business.personCustomer.info.PersonCusInfo;
@@ -103,6 +105,7 @@ public class TestResource {
 	private static final String UPDATE_USER_PASSWORD = "/updateUserPassword";
 	private static final String DELETE_USER_PASSWORD = "/deleteUserPassword";
 	private static final String SELECT_AUTH_USERNAME = "/authUsername";
+	private static final String SELECT_OWNER_STORE = "/selectOwnerStore";
 	
 	
 	
@@ -656,6 +659,23 @@ public class TestResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new UauthModelAuth(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_OWNER_STORE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectOwnerStore(@HeaderParam("codOwner") long codOwner,
+								     @HeaderParam("codLanguage") String codLanguage) {
+
+		OwntoreInfo recordInfo = new OwntoreInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new OwntoreModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
