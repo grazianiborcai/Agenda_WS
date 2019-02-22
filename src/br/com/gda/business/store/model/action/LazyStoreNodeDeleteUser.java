@@ -3,15 +3,16 @@ package br.com.gda.business.store.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.decisionTree.NodeStoreDeleteUser;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoreDeletePerson extends ActionLazyTemplate<StoreInfo, StoreInfo> {
-	
-	public LazyStoreDeletePerson(Connection conn, String schemaName) {
+public final class LazyStoreNodeDeleteUser extends ActionLazyTemplate<StoreInfo, StoreInfo> {
+
+	public LazyStoreNodeDeleteUser(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -23,8 +24,8 @@ public final class LazyStoreDeletePerson extends ActionLazyTemplate<StoreInfo, S
 	
 	
 	
-	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
-		return new StdStoreDeletePerson(option);
+	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+		return new NodeStoreDeleteUser(option).toAction();
 	}
 	
 	

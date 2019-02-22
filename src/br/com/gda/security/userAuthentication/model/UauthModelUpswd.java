@@ -13,15 +13,15 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
-import br.com.gda.security.userAuthentication.model.decisionTree.RootUauthAuth;
+import br.com.gda.security.userAuthentication.model.decisionTree.RootUauthUpswd;
 
-public final class UauthModelAuth implements Model {
+public final class UauthModelUpswd implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public UauthModelAuth(UauthInfo recordInfo) {
+	public UauthModelUpswd(UauthInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -65,7 +65,7 @@ public final class UauthModelAuth implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<UauthInfo> {		
 		@Override public DeciTree<UauthInfo> getInstance(DeciTreeOption<UauthInfo> option) {
-			return new RootUauthAuth(option);
+			return new RootUauthUpswd(option);
 		}		
 	}
 }

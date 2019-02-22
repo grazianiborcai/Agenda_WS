@@ -10,7 +10,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.gda.model.Model;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
-import br.com.gda.security.userAuthentication.model.UauthModelAuth;
+import br.com.gda.security.userAuthentication.model.UauthModelUpswd;
 
 @Path("/Login")
 public class LoginResource {
@@ -32,7 +32,7 @@ public class LoginResource {
 		recordInfo.password = password;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new UauthModelAuth(recordInfo);
+		Model model = new UauthModelUpswd(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

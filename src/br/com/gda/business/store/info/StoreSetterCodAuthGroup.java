@@ -26,7 +26,7 @@ public final class StoreSetterCodAuthGroup implements InfoSetter<StoreInfo> {
 	
 	
 	private StoreInfo setCodAuthGrRole(StoreInfo recordInfo) {
-		recordInfo.codAuthGroup = AuthGroup.STORE.getCodAuthGroup();
+		recordInfo.codAuthGroup = AuthGroup.STORE_MANAGER.getCodAuthGroup();
 		return recordInfo;
 	}
 	

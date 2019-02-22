@@ -6,7 +6,7 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.common.DeciTreeOneCallTemplate;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
-import br.com.gda.security.userAuthentication.model.decisionTree.RootUauthAuth;
+import br.com.gda.security.userAuthentication.model.decisionTree.RootUauthUpswd;
 
 final class AuthDeciTree extends DeciTreeOneCallTemplate<UauthInfo> {
 
@@ -23,6 +23,6 @@ final class AuthDeciTree extends DeciTreeOneCallTemplate<UauthInfo> {
 	
 	
 	@Override protected DeciTree<UauthInfo> getTreeHook(DeciTreeOption<UauthInfo> optionTree) {
-		return new RootUauthAuth(optionTree);
+		return new RootUauthUpswd(optionTree);
 	}
 }

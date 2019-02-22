@@ -240,6 +240,8 @@ public final class SystemCode {
 	public static final int USER_NOT_FOUND 								= 1805;
 	public static final int USER_USERNAME_ALREADY_EXIST 				= 1806;
 	public static final int USER_USERNAME_NOT_FOUND 					= 1807;
+	public static final int USER_IS_NULL								= 1808;
+	public static final int USER_IS_FILLED								= 1809;
 	
 	// Snapshot
 	public static final int SNAPSHOT_ALREADY_EXIST 						= 1850;
@@ -354,4 +356,8 @@ public final class SystemCode {
 	public static final int EMPOS_ALREADY_EXIST 						= 2650;
 	public static final int EMPOS_NOT_FOUND 							= 2651;
 	public static final int EMPOS_FLAGGED_AS_DELETED 					= 2652;	
+	
+	// Owner-Store
+	public static final int OWNER_STORE_IS_NULL							= 2700;
+	public static final int OWNER_STORE_IS_FILLED						= 2701;
 }

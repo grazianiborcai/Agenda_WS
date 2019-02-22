@@ -244,20 +244,20 @@ public final class SystemMessage {
 	
 	
 	// Address
-	public static final String ADDRESS_IS_NULL = "Address is blank";
-	public static final String ADDRESS_IS_FILLED = "Address is not blank";
-	public static final String ADDRESS_NOT_FOUND = "Address not found on DB";
 	public static final String ADDRESS_ALREADY_EXIST = "Address already exist";
-	public static final String ADDRESS_IS_NEW = "New Address record";
-	public static final String ADDRESS_IS_OLD = "Old Address record";
-	public static final String ADDRESS_WITHOUT_REFERENCE = "No reference added to Address";
-	public static final String ADDRESS_MULTIPLE_REFERENCE = "Address has multiple references";
-	public static final String ADDRESS_FLAG_DELETE_TRUE = "Address flagged to deletion";
-	public static final String ADDRESS_FLAG_DELETE_FALSE = "No Address flagged to deletion";
-	public static final String ADDRESS_LIMIT_EXCEEDED = "Address limit exceeded. Delete old addresses before adding new ones";
-	public static final String ADDRESS_COD_IS_FILLED = "Code Address should be blank";
 	public static final String ADDRESS_COD_IS_BLANK = "Code Address is blank";
+	public static final String ADDRESS_COD_IS_FILLED = "Code Address should be blank";
+	public static final String ADDRESS_FLAG_DELETE_FALSE = "No Address flagged to deletion";
+	public static final String ADDRESS_FLAG_DELETE_TRUE = "Address flagged to deletion";
+	public static final String ADDRESS_IS_FILLED = "Address is not blank";
+	public static final String ADDRESS_IS_NEW = "New Address record";
+	public static final String ADDRESS_IS_NULL = "Address is blank";
+	public static final String ADDRESS_IS_OLD = "Old Address record";
+	public static final String ADDRESS_LIMIT_EXCEEDED = "Address limit exceeded. Delete old addresses before adding new ones";
+	public static final String ADDRESS_MULTIPLE_REFERENCE = "Address has multiple references";
+	public static final String ADDRESS_NOT_FOUND = "Address not found on DB";
 	public static final String ADDRESS_TECH_FIELD_SHOULD_BE_EMPTY = "Address: technical fields shouldn't be filled";
+	public static final String ADDRESS_WITHOUT_REFERENCE = "No reference added to Address";
 			
 	
 	
@@ -302,6 +302,8 @@ public final class SystemMessage {
 	// User
 	public static final String USER_ALREADY_EXIST = "User's data already exist on DB";
 	public static final String USER_COD_IS_FILLED = "Code User should be blank";
+	public static final String USER_IS_NULL = "User is blank";
+	public static final String USER_IS_FILLED = "User is not blank";	
 	public static final String USER_NOT_FOUND = "User's data not found on DB";
 	public static final String USER_PERSON_NOT_CHANGED = "Person not changed";
 	public static final String USER_PERSON_CANT_BE_CHANGED = "Person can't be changed";
@@ -454,4 +456,10 @@ public final class SystemMessage {
 	public static final String EMPOS_ALREADY_EXIST = "Employee-Position's data already exist on DB";
 	public static final String EMPOS_FLAGGED_AS_DELETED = "Employee-Position's data is flagged as deleted on DB";	
 	public static final String EMPOS_NOT_FOUND = "Employee-Position's data not found on DB";
+	
+	
+	
+	// Owner-Store
+	public static final String OWNER_STORE_IS_FILLED = "Owner-Store is not blank";
+	public static final String OWNER_STORE_IS_NULL = "Owner-Store is blank";
 }

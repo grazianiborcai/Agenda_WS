@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.action.LazyOwnerMergeAddress;
-import br.com.gda.business.owner.model.action.LazyOwnerMergeComp;
-import br.com.gda.business.owner.model.action.LazyOwnerMergeOwntore;
-import br.com.gda.business.owner.model.action.LazyOwnerMergePerson;
-import br.com.gda.business.owner.model.action.LazyOwnerMergePhone;
-import br.com.gda.business.owner.model.action.LazyOwnerMergeUser;
-import br.com.gda.business.owner.model.action.StdOwnerSelect;
-import br.com.gda.business.owner.model.checker.OwnerCheckLangu;
-import br.com.gda.business.owner.model.checker.OwnerCheckRead;
-import br.com.gda.model.action.ActionLazy;
+import br.com.gda.business.owner.model.action.StdOwnerDeleteStore;
+import br.com.gda.business.owner.model.action.StdOwnerSuccess;
+import br.com.gda.business.owner.model.checker.OwnerCheckHasOwntore;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -25,16 +18,18 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
-	private DeciTree<OwnerInfo> tree;		
-		
-	public RootOwnerSelect(DeciTreeOption<OwnerInfo> option) {
+public final class NodeOwnerDeleteStore implements DeciTree<OwnerInfo> {
+	private DeciTree<OwnerInfo> tree;
+	
+	
+	public NodeOwnerDeleteStore(DeciTreeOption<OwnerInfo> option) {
 		DeciTreeHelperOption<OwnerInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
+		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -42,20 +37,17 @@ public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 	
 	
 	private ModelChecker<OwnerInfo> buildDecisionChecker(DeciTreeOption<OwnerInfo> option) {
-		final boolean EXIST_ON_DB = true;
+		final boolean HAS_OWNTORE = true;
 		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
-		ModelCheckerOption checkerOption;
-		
-		checker = new OwnerCheckRead();
-		queue.add(checker);
+		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new OwnerCheckLangu(checkerOption);
+		checkerOption.expectedResult = HAS_OWNTORE;		
+		checker = new OwnerCheckHasOwntore(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -71,23 +63,19 @@ public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 	
 	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
-
-		ActionStd<OwnerInfo> select = new StdOwnerSelect(option);
-		ActionLazy<OwnerInfo> mergePerson = new LazyOwnerMergePerson(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> mergeComp = new LazyOwnerMergeComp(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> mergeAddress = new LazyOwnerMergeAddress(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> mergePhone = new LazyOwnerMergePhone(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> mergeUser = new LazyOwnerMergeUser(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> mergeOwntore = new LazyOwnerMergeOwntore(option.conn, option.schemaName);
 		
-		select.addPostAction(mergePerson);
-		mergePerson.addPostAction(mergeComp);
-		mergeComp.addPostAction(mergeAddress);
-		mergeAddress.addPostAction(mergePhone);
-		mergePhone.addPostAction(mergeUser);
-		mergeUser.addPostAction(mergeOwntore);
+		ActionStd<OwnerInfo> deleteStore = new StdOwnerDeleteStore(option);
 		
-		actions.add(select);
+		actions.add(deleteStore);		
+		return actions;
+	}
+	
+	
+	
+	private List<ActionStd<OwnerInfo>> buildActionsOnFailed(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
+		
+		actions.add(new StdOwnerSuccess(option));		
 		return actions;
 	}
 	
@@ -109,4 +97,3 @@ public final class RootOwnerSelect implements DeciTree<OwnerInfo> {
 		return tree.getDecisionResult();
 	}
 }
-	

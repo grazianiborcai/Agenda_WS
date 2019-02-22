@@ -59,7 +59,7 @@ import br.com.gda.payService.payPartnerOwner.model.PayparOwnerModelSelect;
 import br.com.gda.payService.payPartnerStore.info.PayparStoreInfo;
 import br.com.gda.payService.payPartnerStore.model.PayparStoreModelSelect;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
-import br.com.gda.security.userAuthentication.model.UauthModelAuth;
+import br.com.gda.security.userAuthentication.model.UauthModelUpswd;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 import br.com.gda.security.userPassword.model.UpswdModelInsert;
 import br.com.gda.security.userPassword.model.UpswdModelUpdate;
@@ -658,7 +658,7 @@ public class TestResource {
 		recordInfo.password = password;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new UauthModelAuth(recordInfo);
+		Model model = new UauthModelUpswd(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

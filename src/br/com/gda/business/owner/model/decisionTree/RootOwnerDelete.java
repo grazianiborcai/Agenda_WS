@@ -10,6 +10,7 @@ import br.com.gda.business.owner.model.action.LazyOwnerDeletePerson;
 import br.com.gda.business.owner.model.action.LazyOwnerDeleteUser;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeDeleteAddress;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeDeletePhone;
+import br.com.gda.business.owner.model.action.LazyOwnerNodeDeleteStore;
 import br.com.gda.business.owner.model.checker.OwnerCheckDelete;
 import br.com.gda.business.owner.model.checker.OwnerCheckExist;
 import br.com.gda.model.action.ActionLazy;
@@ -72,13 +73,14 @@ public final class RootOwnerDelete implements DeciTree<OwnerInfo> {
 	
 	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
-		//TODO: Delete Store
+		
 		ActionStd<OwnerInfo> select = new RootOwnerSelect(option).toAction();
 		ActionLazy<OwnerInfo> deleteAddress = new LazyOwnerNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deletePhone = new LazyOwnerNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deletePerson = new LazyOwnerDeletePerson(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteCompany = new LazyOwnerDeleteComp(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteUser = new LazyOwnerDeleteUser(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> deleteStore = new LazyOwnerNodeDeleteStore(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteOwner = new LazyOwnerDelete(option.conn, option.schemaName);			
 		
 		select.addPostAction(deleteAddress);
@@ -86,6 +88,7 @@ public final class RootOwnerDelete implements DeciTree<OwnerInfo> {
 		select.addPostAction(deletePerson);
 		select.addPostAction(deleteCompany);
 		select.addPostAction(deleteUser);
+		select.addPostAction(deleteStore);
 		select.addPostAction(deleteOwner);
 		
 		actions.add(select);

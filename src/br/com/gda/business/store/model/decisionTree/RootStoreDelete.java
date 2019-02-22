@@ -5,10 +5,11 @@ import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.action.LazyStoreDelete;
-import br.com.gda.business.store.model.action.LazyStoreDeleteComp;
-import br.com.gda.business.store.model.action.LazyStoreDeletePerson;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeleteAddress;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeleteComp;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeletePerson;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeletePhone;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeleteUser;
 import br.com.gda.business.store.model.checker.StoreCheckExist;
 import br.com.gda.business.store.model.checker.StoreCheckKey;
 import br.com.gda.business.store.model.checker.StoreCheckLangu;
@@ -80,14 +81,16 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 		ActionStd<StoreInfo> select = new RootStoreSelect(option).toAction();
 		ActionLazy<StoreInfo> deleteAddress = new LazyStoreNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deletePhone = new LazyStoreNodeDeletePhone(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> deletePerson = new LazyStoreDeletePerson(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> deleteCompany = new LazyStoreDeleteComp(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deletePerson = new LazyStoreNodeDeletePerson(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deleteCompany = new LazyStoreNodeDeleteComp(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deleteUser = new LazyStoreNodeDeleteUser(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deleteStore = new LazyStoreDelete(option.conn, option.schemaName);			
 		
 		select.addPostAction(deleteAddress);
 		select.addPostAction(deletePhone);
 		select.addPostAction(deletePerson);
 		select.addPostAction(deleteCompany);
+		select.addPostAction(deleteUser);
 		select.addPostAction(deleteStore);
 		
 		actions.add(select);		

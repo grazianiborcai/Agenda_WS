@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.company.info.CompInfo;
+import br.com.gda.business.ownerStore.info.OwntoreInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
@@ -47,6 +48,12 @@ public final class OwnerMerger extends InfoWritterFactory<OwnerInfo> {
 	
 	
 	
+	static public OwnerInfo merge(OwntoreInfo sourceOne, OwnerInfo sourceTwo) {
+		return new OwnerMergerOwntore().merge(sourceOne, sourceTwo);
+	}	
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<OwnerInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
 		if (sourceOnes.get(0) instanceof AddressInfo 	&&
@@ -72,6 +79,11 @@ public final class OwnerMerger extends InfoWritterFactory<OwnerInfo> {
 		if (sourceOnes.get(0) instanceof UserInfo 		&&
 			sourceTwos.get(0) instanceof OwnerInfo		)
 			return new OwnerMergerUser().merge((List<UserInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
+		
+		
+		if (sourceOnes.get(0) instanceof OwntoreInfo	&&
+			sourceTwos.get(0) instanceof OwnerInfo		)
+			return new OwnerMergerOwntore().merge((List<OwntoreInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
 		
 		return null;
 	}

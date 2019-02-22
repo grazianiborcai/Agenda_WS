@@ -19,11 +19,11 @@ import br.com.gda.security.userAuthentication.model.action.LazyUauthMergeUser;
 import br.com.gda.security.userAuthentication.model.action.StdUauthEnforceCodUser;
 import br.com.gda.security.userAuthentication.model.checker.UauthCheckRead;
 
-public final class RootUauthAuth implements DeciTree<UauthInfo> {
+public final class RootUauthUpswd implements DeciTree<UauthInfo> {
 	private DeciTree<UauthInfo> tree;
 	
 	
-	public RootUauthAuth(DeciTreeOption<UauthInfo> option) {
+	public RootUauthUpswd(DeciTreeOption<UauthInfo> option) {
 		DeciTreeHelperOption<UauthInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker();

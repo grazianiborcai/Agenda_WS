@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.company.info.CompInfo;
+import br.com.gda.business.ownerStore.info.OwntoreInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
@@ -28,6 +29,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public UserInfo userData;
 	public CompInfo companyData;
 	public PersonInfo personData;
+	public List<OwntoreInfo> owntores;
 	
 	
 	
@@ -44,6 +46,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 		userData = DefaultValue.object();
 		companyData = DefaultValue.object();
 		personData = DefaultValue.object();
+		owntores = DefaultValue.list();
 	}
 	
 	
@@ -68,6 +71,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 		deepCopy.personData = clonePerson(deepCopy.personData);
 		deepCopy.companyData = cloneCompany(deepCopy.companyData);
 		deepCopy.userData = cloneUser(deepCopy.userData);
+		deepCopy.owntores = cloneOwntores(deepCopy.owntores);
 		
 		return deepCopy;
 	}
@@ -129,6 +133,22 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 			return null;
 		
 		return (UserInfo) userToClone.clone();
+	}
+	
+	
+	
+	private List<OwntoreInfo> cloneOwntores(List<OwntoreInfo> storesToClone) throws CloneNotSupportedException {
+		if (storesToClone == null)
+			return null;
+		
+		List<OwntoreInfo> deepStones = new ArrayList<>();
+		
+		for (OwntoreInfo eachPhone : storesToClone) {
+			OwntoreInfo clonedPhone = (OwntoreInfo) eachPhone.clone();
+			deepStones.add(clonedPhone);
+		}
+		
+		return deepStones;
 	}
 	
 	
