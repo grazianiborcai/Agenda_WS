@@ -17,20 +17,30 @@
 	
 	
 	<!-- Free of authentication --> 
-	<http pattern="/**/Signup/**" security="none"/>
-	<http pattern="/**/Signin/**" security="none"/>
-	<http pattern="/**/Test/**" security="none"/>
+	<http pattern="/**/Signup/**"        security="none"/>
+	<http pattern="/**/Signin/user.html" security="none"/>
+	<http pattern="/**/Test/**"          security="none"/>
+	
+	
+	
+	<!-- BASIC authentication --> 
+    <security:http create-session="stateless" pattern="/**Signin**">
+    	<security:intercept-url pattern="/**" access="isAuthenticated()" />
+        <security:http-basic />
+        <csrf disabled="true"/>
+        <custom-filter before="BASIC_AUTH_FILTER" ref="authFilter" />
+    </security:http>
+    
 
 
-
-	<!-- Stateless RESTful services use BASIC authentication --> 
+	<!-- JWT Token authentication --> 
     <security:http create-session="stateless" pattern="/**">
-        <security:intercept-url pattern="/**/Owner/**" access="hasAuthority('OWNER_WRITE')" />
+        <security:intercept-url pattern="/**/Owner/**"       access="hasAuthority('OWNER_WRITE')" />
         <security:intercept-url pattern="/**/Store/insert**" access="hasAuthority('STORE_INSERT')" />
         <security:intercept-url pattern="/**/Store/update**" access="hasAuthority('STORE_UPDATE')" />
         <security:intercept-url pattern="/**/Store/delete**" access="hasAuthority('STORE_DELETE')" />
         <security:intercept-url pattern="/**/Store/select**" access="hasAuthority('STORE_READ')" />
-        <security:intercept-url pattern="/**" access="isAuthenticated()" />
+        <security:intercept-url pattern="/**"                access="isAuthenticated()" />
         <security:http-basic />
         <csrf disabled="true"/>
         <custom-filter after="SECURITY_CONTEXT_FILTER" ref="ownerFilter" />

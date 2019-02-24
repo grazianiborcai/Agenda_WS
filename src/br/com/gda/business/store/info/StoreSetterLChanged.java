@@ -30,7 +30,7 @@ public final class StoreSetterLChanged implements InfoSetter<StoreInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	

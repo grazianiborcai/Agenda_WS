@@ -22,7 +22,7 @@ public final class PlanCheckDate extends ModelCheckerTemplateSimple<PlanInfo> {
 		if (recordInfo.datas == null || recordInfo.datas.isEmpty())			
 			return FAILED;
 		
-		LocalDate dateNow = DefaultValue.dateNow();
+		LocalDate dateNow = DefaultValue.localDateNow();
 		
 		
 		for (PlanDataInfo eachData: recordInfo.datas) {

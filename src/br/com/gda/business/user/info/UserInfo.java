@@ -150,8 +150,8 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		
 		
 		UserInfo obj = (UserInfo) o;		
-		return (codOwner == obj.codOwner 				&& 
-				codUser == obj.codUser					&&
-				isStringEqual(username, obj.username)		);
+		return (codOwner == obj.codOwner 	&& 
+				codUser == obj.codUser		&&
+				super.isStringEqual(username, obj.username)	);
 	}
 }

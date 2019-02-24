@@ -30,7 +30,7 @@ public final class PhoneSetterLChanged implements InfoSetter<PhoneInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	

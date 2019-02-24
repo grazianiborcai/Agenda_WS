@@ -18,16 +18,16 @@ public final class UserCheckWriteAddress extends ModelCheckerTemplateSimple<User
 	
 	@Override protected boolean checkHook(UserInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.addresses == null)
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		if (recordInfo.addresses.isEmpty())
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		for (AddressInfo eachAddress : recordInfo.addresses) {
-			if (checkAddress(eachAddress) == FAILED)
-				return FAILED;
+			if (checkAddress(eachAddress) == super.FAILED)
+				return super.FAILED;
 		}
 		
 		

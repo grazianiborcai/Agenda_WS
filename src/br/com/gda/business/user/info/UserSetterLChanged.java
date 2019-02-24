@@ -30,7 +30,7 @@ public final class UserSetterLChanged implements InfoSetter<UserInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	

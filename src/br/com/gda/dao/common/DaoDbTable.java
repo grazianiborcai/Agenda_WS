@@ -97,4 +97,5 @@ public final class DaoDbTable {
 	public static final String PERSON_USER_VIEW = "view_person_user";	
 	public static final String RESERVE_VIEW = "view_reserve";	
 	public static final String STORE_WT_CONFLICT_VIEW = "view_store_working_time";
+	public static final String USERNAME_VIEW = "view_username";
 }

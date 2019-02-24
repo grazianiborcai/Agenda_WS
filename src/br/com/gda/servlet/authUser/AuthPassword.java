@@ -8,15 +8,15 @@ import br.com.gda.model.decisionTree.common.DeciTreeOneCallTemplate;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
 import br.com.gda.security.userAuthentication.model.decisionTree.RootUauthUpswd;
 
-final class AuthDeciTree extends DeciTreeOneCallTemplate<UauthInfo> {
+final class AuthPassword extends DeciTreeOneCallTemplate<UauthInfo> {
 
-	public AuthDeciTree(UauthInfo recordInfo) {
+	public AuthPassword(UauthInfo recordInfo) {
 		super(recordInfo);
 	}
 	
 	
 	
-	public AuthDeciTree(List<UauthInfo> recordInfos) {
+	public AuthPassword(List<UauthInfo> recordInfos) {
 		super(recordInfos);
 	}
 	

@@ -20,10 +20,10 @@ public final class UserCheckUpdate extends ModelCheckerTemplateSimple<UserInfo> 
 			 recordInfo.codUser			<= 0	||
 			 recordInfo.codLanguage		== null ||
 			 recordInfo.codAuthGroup	== null		)
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

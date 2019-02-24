@@ -30,7 +30,7 @@ public final class AddressSetterLChanged implements InfoSetter<AddressInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	

@@ -25,6 +25,6 @@ public final class CartSetterLChanged implements InfoSetter<CartInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 }

@@ -18,16 +18,16 @@ public final class UserCheckWritePhone extends ModelCheckerTemplateSimple<UserIn
 	
 	@Override protected boolean checkHook(UserInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.phones == null)
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		if (recordInfo.phones.isEmpty())
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		for (PhoneInfo eachPhone : recordInfo.phones) {
-			if (checkPhone(eachPhone) == FAILED)
-				return FAILED;
+			if (checkPhone(eachPhone) == super.FAILED)
+				return super.FAILED;
 		}
 		
 		

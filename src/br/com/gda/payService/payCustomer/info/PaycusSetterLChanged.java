@@ -30,7 +30,7 @@ public final class PaycusSetterLChanged implements InfoSetter<PaycusInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	

@@ -25,6 +25,6 @@ public final class OrderSetterLChanged implements InfoSetter<OrderInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 }

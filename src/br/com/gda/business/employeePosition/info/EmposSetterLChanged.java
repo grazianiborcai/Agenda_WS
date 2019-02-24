@@ -30,7 +30,7 @@ public final class EmposSetterLChanged implements InfoSetter<EmposInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	

@@ -30,7 +30,7 @@ public final class EmpSetterLChanged implements InfoSetter<EmpInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	

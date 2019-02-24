@@ -30,7 +30,7 @@ public final class MatSetterLChanged implements InfoSetter<MatInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	

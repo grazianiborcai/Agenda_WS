@@ -30,7 +30,7 @@ public final class CusSetterLChanged implements InfoSetter<CusInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	

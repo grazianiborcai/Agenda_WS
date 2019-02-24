@@ -462,4 +462,10 @@ public final class SystemMessage {
 	// Owner-Store
 	public static final String OWNER_STORE_IS_FILLED = "Owner-Store is not blank";
 	public static final String OWNER_STORE_IS_NULL = "Owner-Store is blank";
+	
+	
+	
+	// Username
+	public static final String USERNAME_ALREADY_EXIST = "Username data already exist on DB";
+	public static final String USERNAME_NOT_FOUND = "Username data not found on DB";
 }

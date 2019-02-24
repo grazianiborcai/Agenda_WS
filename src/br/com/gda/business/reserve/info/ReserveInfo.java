@@ -40,7 +40,7 @@ public final class ReserveInfo extends InfoRecord implements Cloneable {
 	
 	
 	private void computeValidTimePast() {		
-		timeValidTo = DefaultValue.dateTimeNow();
+		timeValidTo = DefaultValue.localDateTimeNow();
 		timeValidFrom = timeValidTo.minusMinutes(TIME_SPAN);
 	}
 	
@@ -50,7 +50,7 @@ public final class ReserveInfo extends InfoRecord implements Cloneable {
 		timeValidFrom = lastChanged;
 		
 		if (timeValidFrom == null)
-			timeValidFrom = DefaultValue.dateTimeNow();		
+			timeValidFrom = DefaultValue.localDateTimeNow();		
 		
 		timeValidTo = timeValidFrom.plusMinutes(TIME_SPAN);
 	}

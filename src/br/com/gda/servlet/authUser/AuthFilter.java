@@ -2,7 +2,6 @@ package br.com.gda.servlet.authUser;
 
 import java.io.IOException;
 import java.util.Base64;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +21,10 @@ import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.Assert;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.security.jwtToken.info.JwtokenInfo;
 
 
 //Copy from org.springframework.security.web.authentication.www.BasicAuthenticationFilter
@@ -97,7 +100,7 @@ public final class AuthFilter extends OncePerRequestFilter {
 
 				this.rememberMeServices.loginSuccess(request, response, authResult);
 
-				onSuccessfulAuthentication(request, response, authResult);
+				onSuccessfulAuthentication(request, response, authResult, authRequest);
 			}
 
 		}
@@ -172,7 +175,8 @@ public final class AuthFilter extends OncePerRequestFilter {
 
 	
 	
-	protected void onSuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, Authentication authResult) throws IOException {
+	protected void onSuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, Authentication authResult, AuthToken authRequest) throws IOException {
+		customAddJwtToken(response, authRequest);
 	}
 
 	
@@ -230,8 +234,9 @@ public final class AuthFilter extends OncePerRequestFilter {
 	private AuthToken customGetAuthenticationToken(String username, String password, HttpServletRequest request) {
 		String owner = customGetOwner(request);
 		String language = customGetLanguage(request);
+		String platform = customGetPlatform(request);
 		
-		return new AuthToken(username, password, owner, language);
+		return new AuthToken(username, password, owner, language, platform);
 	}
 	
 	
@@ -247,6 +252,17 @@ public final class AuthFilter extends OncePerRequestFilter {
 	
 	
 	
+	private String customGetPlatform(HttpServletRequest request) {
+		String platform = request.getHeader("codPlatform");
+		
+		if (platform == null)
+			return null;
+		
+		return platform.trim();
+	}
+	
+	
+	
 	private String customGetLanguage(HttpServletRequest request) {
 		String language = request.getHeader("codLanguage");
 		
@@ -254,5 +270,44 @@ public final class AuthFilter extends OncePerRequestFilter {
 			return null;
 		
 		return language.trim();
+	}
+	
+	
+	
+	private void customAddJwtToken(HttpServletResponse response, AuthToken authToken) { 
+		String HEADER_STRING = "Authorization";
+		String TOKEN_PREFIX = "Bearer";
+		
+		String jwtToken = customGenerateJwtToken(authToken);
+		
+		response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jwtToken);
+	}
+	
+	
+	
+	private String customGenerateJwtToken(AuthToken authToken) {
+		AuthToken customAuthToken = (AuthToken) authToken;
+		
+		JwtokenInfo jwtoken = new JwtokenInfo();
+		jwtoken.codOwner = customAuthToken.getCodOwner();
+		jwtoken.username = customAuthToken.getName();
+		jwtoken.codPlatform = customAuthToken.getCodPlatform();
+		
+		DeciTree<JwtokenInfo> jwtokenGenerate = new AuthJwtGenerate(jwtoken);	
+		jwtokenGenerate.makeDecision();
+		customCheckJwtTokenGeneration(jwtokenGenerate.getDecisionResult());
+		
+		
+		return jwtokenGenerate.getDecisionResult().getResultset().get(0).token;
+	}
+	
+	
+	
+	private void customCheckJwtTokenGeneration(DeciResult<JwtokenInfo> deciResult) {
+		if (deciResult.isSuccess() == false)
+			throw new IllegalStateException("melhorar isso aqui"); 			//TODO: melhorar
+		
+		if (deciResult.hasResultset() == false)
+			throw new IllegalStateException("melhorar isso aqui"); 			//TODO: melhorar
 	}
 }

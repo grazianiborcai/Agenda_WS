@@ -30,7 +30,7 @@ public final class AgeInfo extends InfoRecord implements Cloneable {
 	public AgeInfo(int minuteToFade) {
 		checkArgument(minuteToFade);
 		
-		LocalDateTime dateTime = DefaultValue.dateTimeNow();
+		LocalDateTime dateTime = DefaultValue.localDateTimeNow();
 		dateTime = dateTime.minusMinutes(minuteToFade);
 		date = dateTime.toLocalDate();
 		time = dateTime.toLocalTime();

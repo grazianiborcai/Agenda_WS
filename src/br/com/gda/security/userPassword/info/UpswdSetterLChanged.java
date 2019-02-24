@@ -30,7 +30,7 @@ public final class UpswdSetterLChanged implements InfoSetter<UpswdInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	

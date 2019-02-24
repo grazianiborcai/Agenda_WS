@@ -22,14 +22,14 @@ public final class UserCheckInsert extends ModelCheckerTemplateSimple<UserInfo> 
 			 recordInfo.personData 		== null						||
 			 recordInfo.codAuthGroup 	== null						||
 			 recordInfo.codUserCategory	== DefaultValue.character()		)
-			return FAILED;
+			return super.FAILED;
 		
 		
 		if ( recordInfo.personData.email == null )
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

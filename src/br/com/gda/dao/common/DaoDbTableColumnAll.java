@@ -48,6 +48,7 @@ import br.com.gda.payService.payCustomer.dao.PaycusDbTableColumn;
 import br.com.gda.payService.payPartnerCountry.dao.PayparCountryDbTableColumn;
 import br.com.gda.payService.payPartnerStore.dao.PayparStoreDbTableColumn;
 import br.com.gda.security.userPassword.dao.UpswdDbTableColumn;
+import br.com.gda.security.username.dao.UsernameDbTableColumn;
 
 public final class DaoDbTableColumnAll {
 	private static Hashtable<String, List<DaoColumn>> tableColumns;
@@ -104,6 +105,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CompDbTableColumn());
 		addTable(new UpswdDbTableColumn());
 		addTable(new OwntoreDbTableColumn());
+		addTable(new UsernameDbTableColumn());
 	}
 	
 	

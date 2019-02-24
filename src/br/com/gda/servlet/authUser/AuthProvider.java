@@ -16,7 +16,6 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
 
 public final class AuthProvider implements AuthenticationProvider {
-
 	
 	@Override public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		AuthToken token = (AuthToken) authentication;
@@ -29,7 +28,7 @@ public final class AuthProvider implements AuthenticationProvider {
 	
 	private List<GrantedAuthority> authUser(AuthToken token) {
 		UauthInfo recordInfo = makeRecordInfo(token);
-		DeciTree<UauthInfo> deciTree = new AuthDeciTree(recordInfo);
+		DeciTree<UauthInfo> deciTree = new AuthPassword(recordInfo);
 		
 		deciTree.makeDecision();		
 		return extractRoles(deciTree.getDecisionResult());

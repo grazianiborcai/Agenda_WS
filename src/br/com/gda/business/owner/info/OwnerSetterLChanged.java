@@ -30,7 +30,7 @@ public final class OwnerSetterLChanged implements InfoSetter<OwnerInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	

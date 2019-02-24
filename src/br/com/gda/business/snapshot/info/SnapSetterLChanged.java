@@ -30,7 +30,7 @@ public final class SnapSetterLChanged implements InfoSetter<SnapInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	

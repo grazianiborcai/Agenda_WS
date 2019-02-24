@@ -6,11 +6,15 @@ import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.com.gda.helper.RecordMode;
 
 public final class DefaultValue {
+	private static final ZoneOffset TIME_ZONE = ZoneOffset.UTC;
+	
+	
 	public static int number() {
 		return -1;
 	}
@@ -53,20 +57,27 @@ public final class DefaultValue {
 	
 	
 	
-	public static LocalDate dateNow() {
-		return dateTimeNow().toLocalDate();
+	public static Date dateNow() {
+		LocalDateTime now = localDateTimeNow();		
+		return Date.from(now.atZone(TIME_ZONE).toInstant());
 	}
 	
 	
 	
-	public static LocalTime timeNow() {
-		return dateTimeNow().toLocalTime();
+	public static LocalDate localDateNow() {
+		return localDateTimeNow().toLocalDate();
 	}
 	
 	
 	
-	public static LocalDateTime dateTimeNow() {
-		ZonedDateTime nowUtc = ZonedDateTime.now(ZoneOffset.UTC);
+	public static LocalTime localTimeNow() {
+		return localDateTimeNow().toLocalTime();
+	}
+	
+	
+	
+	public static LocalDateTime localDateTimeNow() {
+		ZonedDateTime nowUtc = ZonedDateTime.now(TIME_ZONE);
 		return nowUtc.toLocalDateTime();
 	}
 	

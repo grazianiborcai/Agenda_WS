@@ -38,7 +38,7 @@ public final class OrderSetterExtid implements InfoSetter<OrderInfo> {
 	
 	private String getClockTime() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYYMMddHHmmss");
-		return DefaultValue.dateTimeNow().format(formatter);
+		return DefaultValue.localDateTimeNow().format(formatter);
 	}
 	
 	

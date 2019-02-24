@@ -19,10 +19,10 @@ public final class UserCheckDelete extends ModelCheckerTemplateSimple<UserInfo> 
 		if ( recordInfo.codOwner 		<= 0	|| 
 			 recordInfo.codUser			<= 0	||
 			 recordInfo.codLanguage		== null		)
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

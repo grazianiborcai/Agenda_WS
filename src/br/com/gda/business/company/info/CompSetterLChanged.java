@@ -30,7 +30,7 @@ public final class CompSetterLChanged implements InfoSetter<CompInfo> {
 	
 	
 	private LocalDateTime genLastChanged() {
-		return DefaultValue.dateTimeNow();
+		return DefaultValue.localDateTimeNow();
 	}
 	
 	
