@@ -3,6 +3,7 @@ package br.com.gda.security.username.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -13,6 +14,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.username.info.UsernameInfo;
+import br.com.gda.security.username.model.action.LazyUsernameMergeAuthGrRole;
 import br.com.gda.security.username.model.action.StdUsernameSelect;
 import br.com.gda.security.username.model.checker.UsernameCheckRead;
 
@@ -55,6 +57,9 @@ public final class RootUsernameSelect implements DeciTree<UsernameInfo> {
 		List<ActionStd<UsernameInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UsernameInfo> select = new StdUsernameSelect(option);
+		ActionLazy<UsernameInfo> mergeAuthGrRole = new LazyUsernameMergeAuthGrRole(option.conn, option.schemaName);
+		
+		select.addPostAction(mergeAuthGrRole);
 		
 		actions.add(select);
 		return actions;

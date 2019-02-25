@@ -1,7 +1,6 @@
 package br.com.gda.security.jwtToken.info;
 
 import java.util.Date;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,7 +9,9 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
 public final class JwtokenSetterExpiration implements InfoSetter<JwtokenInfo> {
-	private final long EXPIRATION_TIME = 10000;
+	private final int MINUTE = 60000;
+	private final int HOUR = MINUTE * 60;
+	private final long EXPIRATION_TIME = HOUR * 4;
 	
 	
 	public JwtokenInfo setAttr(JwtokenInfo recordInfo) {

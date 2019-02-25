@@ -14,12 +14,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
-import br.com.gda.security.jwtToken.model.action.LazyJwtokenEnforceExpiration;
-import br.com.gda.security.jwtToken.model.action.LazyJwtokenEnforceToken;
-import br.com.gda.security.jwtToken.model.action.LazyJwtokenEnforceTokenMirror;
+import br.com.gda.security.jwtToken.model.action.LazyJwtokenEnforceAlgo;
 import br.com.gda.security.jwtToken.model.action.LazyJwtokenNodeValidate;
+import br.com.gda.security.jwtToken.model.action.StdJwtokenEnforceAlgo;
 import br.com.gda.security.jwtToken.model.action.StdJwtokenEnforceSecret;
-import br.com.gda.security.jwtToken.model.checker.JwtokenCheckValidate;
+import br.com.gda.security.jwtToken.model.checker.JwtokenCheckHasEncoded;
 
 public final class RootJwtokenValidate implements DeciTree<JwtokenInfo> {
 	private DeciTree<JwtokenInfo> tree;
@@ -42,7 +41,7 @@ public final class RootJwtokenValidate implements DeciTree<JwtokenInfo> {
 		List<ModelChecker<JwtokenInfo>> queue = new ArrayList<>();		
 		ModelChecker<JwtokenInfo> checker;
 		
-		checker = new JwtokenCheckValidate();
+		checker = new JwtokenCheckHasEncoded();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -60,15 +59,11 @@ public final class RootJwtokenValidate implements DeciTree<JwtokenInfo> {
 		List<ActionStd<JwtokenInfo>> actions = new ArrayList<>();
 		
 		ActionStd<JwtokenInfo> enforceSecret = new StdJwtokenEnforceSecret(option);
-		ActionLazy<JwtokenInfo> enforceExpiration = new LazyJwtokenEnforceExpiration(option.conn, option.schemaName);
-		ActionLazy<JwtokenInfo> enforceTokenMirror = new LazyJwtokenEnforceTokenMirror(option.conn, option.schemaName);
-		ActionLazy<JwtokenInfo> enforceToken = new LazyJwtokenEnforceToken(option.conn, option.schemaName);
+		ActionLazy<JwtokenInfo> enforceAlgo = new LazyJwtokenEnforceAlgo(option.conn, option.schemaName);
 		ActionLazy<JwtokenInfo> validate = new LazyJwtokenNodeValidate(option.conn, option.schemaName);
 		
-		enforceSecret.addPostAction(enforceExpiration);
-		enforceExpiration.addPostAction(enforceTokenMirror);
-		enforceTokenMirror.addPostAction(enforceToken);
-		enforceToken.addPostAction(validate);
+		enforceSecret.addPostAction(enforceAlgo);
+		enforceAlgo.addPostAction(validate);
 		
 		actions.add(enforceSecret);
 		return actions;

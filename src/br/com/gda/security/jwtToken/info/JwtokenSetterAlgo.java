@@ -5,12 +5,13 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
+import io.jsonwebtoken.SignatureAlgorithm;
 
-public final class JwtokenSetterTokenMirror implements InfoSetter<JwtokenInfo> {
+public final class JwtokenSetterAlgo implements InfoSetter<JwtokenInfo> {	
 	
 	public JwtokenInfo setAttr(JwtokenInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setTokenMirror(recordInfo);
+		return setSecret(recordInfo);
 	}
 	
 	
@@ -20,18 +21,12 @@ public final class JwtokenSetterTokenMirror implements InfoSetter<JwtokenInfo> {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}
-		
-		
-		if (recordInfo.token == null) {
-			logException(new NullPointerException("recordInfo.token" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo.token" + SystemMessage.NULL_ARGUMENT);
-		}
 	}
 	
 	
 	
-	private JwtokenInfo setTokenMirror(JwtokenInfo recordInfo) {
-		recordInfo.tokenMirror = recordInfo.token;
+	private JwtokenInfo setSecret(JwtokenInfo recordInfo) {
+		recordInfo.algo = SignatureAlgorithm.HS512;
 		return recordInfo;
 	}
 	

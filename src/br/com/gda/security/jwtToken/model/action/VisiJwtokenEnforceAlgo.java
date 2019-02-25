@@ -3,12 +3,12 @@ package br.com.gda.security.jwtToken.model.action;
 import br.com.gda.info.InfoSetter;
 import br.com.gda.model.action.ActionVisitorTemplateEnforce;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
-import br.com.gda.security.jwtToken.info.JwtokenSetterTokenMirror;
+import br.com.gda.security.jwtToken.info.JwtokenSetterAlgo;
 
-final class VisiJwtokenEnforceTokenMirror extends ActionVisitorTemplateEnforce<JwtokenInfo> {
+final class VisiJwtokenEnforceAlgo extends ActionVisitorTemplateEnforce<JwtokenInfo> {
 	
 	@Override protected JwtokenInfo enforceHook(JwtokenInfo recordInfo) {
-		InfoSetter<JwtokenInfo> attrSetter = new JwtokenSetterTokenMirror();
+		InfoSetter<JwtokenInfo> attrSetter = new JwtokenSetterAlgo();
 		return attrSetter.setAttr(recordInfo);
 	}
 }

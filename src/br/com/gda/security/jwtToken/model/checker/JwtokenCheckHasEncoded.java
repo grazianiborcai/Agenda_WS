@@ -7,20 +7,16 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 
-public final class JwtokenCheckValidate extends ModelCheckerTemplateSimple<JwtokenInfo> {
+public final class JwtokenCheckHasEncoded extends ModelCheckerTemplateSimple<JwtokenInfo> {
 
-	public JwtokenCheckValidate() {
+	public JwtokenCheckHasEncoded() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(JwtokenInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 		<= 0 	||
-			recordInfo.username 		== null	||
-			recordInfo.codPlatform		== null	||
-			recordInfo.expirationTime	== null ||
-			recordInfo.token			== null		)			
+		if (recordInfo.tokenEncoded == null)			
 			return super.FAILED;	
 		
 		return super.SUCCESS;

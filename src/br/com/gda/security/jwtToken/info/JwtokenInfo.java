@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 public final class JwtokenInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -12,8 +13,9 @@ public final class JwtokenInfo extends InfoRecord implements Cloneable {
 	public String codPlatform;	
 	public Date expirationTime;
 	public String secret;
+	public SignatureAlgorithm algo;
 	public String token;
-	public String tokenMirror;
+	public String tokenEncoded;
 	
 	
 	public JwtokenInfo() {

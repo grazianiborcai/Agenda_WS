@@ -1,4 +1,4 @@
-package br.com.gda.servlet.authUser;
+package br.com.gda.servlet.authentication;
 
 import java.io.IOException;
 import java.util.Base64;
@@ -28,7 +28,7 @@ import br.com.gda.security.jwtToken.info.JwtokenInfo;
 
 
 //Copy from org.springframework.security.web.authentication.www.BasicAuthenticationFilter
-public final class AuthFilter extends OncePerRequestFilter {
+public final class AuthFilterPwrd extends OncePerRequestFilter {
 	private AuthenticationDetailsSource<HttpServletRequest, ?> authenticationDetailsSource = new WebAuthenticationDetailsSource();
 	private AuthenticationEntryPoint authenticationEntryPoint;
 	private AuthenticationManager authenticationManager;
@@ -37,7 +37,7 @@ public final class AuthFilter extends OncePerRequestFilter {
 	private String credentialsCharset = "UTF-8";
 
 	
-	public AuthFilter(AuthenticationManager authenticationManager) {
+	public AuthFilterPwrd(AuthenticationManager authenticationManager) {
 		Assert.notNull(authenticationManager, "authenticationManager cannot be null");
 		this.authenticationManager = authenticationManager;
 		this.ignoreFailure = true;
@@ -45,7 +45,7 @@ public final class AuthFilter extends OncePerRequestFilter {
 
 	
 	
-	public AuthFilter(AuthenticationManager authenticationManager, AuthenticationEntryPoint authenticationEntryPoint) {
+	public AuthFilterPwrd(AuthenticationManager authenticationManager, AuthenticationEntryPoint authenticationEntryPoint) {
 		Assert.notNull(authenticationManager, "authenticationManager cannot be null");
 		Assert.notNull(authenticationEntryPoint, "authenticationEntryPoint cannot be null");
 		this.authenticationManager = authenticationManager;

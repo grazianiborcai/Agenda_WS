@@ -7,12 +7,12 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 
-public final class StdJwtokenEnforceTokenMirror implements ActionStd<JwtokenInfo> {
+public final class StdJwtokenEnforceAlgo implements ActionStd<JwtokenInfo> {
 	private ActionStd<JwtokenInfo> actionHelper;	
 	
 	
-	public StdJwtokenEnforceTokenMirror(DeciTreeOption<JwtokenInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiJwtokenEnforceTokenMirror());
+	public StdJwtokenEnforceAlgo(DeciTreeOption<JwtokenInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiJwtokenEnforceAlgo());
 	}
 	
 	

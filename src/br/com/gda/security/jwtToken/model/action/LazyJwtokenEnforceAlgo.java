@@ -9,9 +9,9 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 
-public final class LazyJwtokenEnforceTokenMirror extends ActionLazyTemplate<JwtokenInfo, JwtokenInfo> {
+public final class LazyJwtokenEnforceAlgo extends ActionLazyTemplate<JwtokenInfo, JwtokenInfo> {
 	
-	public LazyJwtokenEnforceTokenMirror(Connection conn, String schemaName) {
+	public LazyJwtokenEnforceAlgo(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyJwtokenEnforceTokenMirror extends ActionLazyTemplate<Jwto
 	
 	
 	@Override protected ActionStd<JwtokenInfo> getInstanceOfActionHook(DeciTreeOption<JwtokenInfo> option) {
-		return new StdJwtokenEnforceTokenMirror(option);
+		return new StdJwtokenEnforceAlgo(option);
 	}
 	
 	

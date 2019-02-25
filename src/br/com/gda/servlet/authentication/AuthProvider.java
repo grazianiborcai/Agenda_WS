@@ -1,4 +1,4 @@
-package br.com.gda.servlet.authUser;
+package br.com.gda.servlet.authentication;
 
 import java.util.ArrayList;
 import java.util.List;

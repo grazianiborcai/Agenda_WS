@@ -58,6 +58,8 @@ import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
 import br.com.gda.payService.payPartnerOwner.model.PayparOwnerModelSelect;
 import br.com.gda.payService.payPartnerStore.info.PayparStoreInfo;
 import br.com.gda.payService.payPartnerStore.model.PayparStoreModelSelect;
+import br.com.gda.security.jwtToken.info.JwtokenInfo;
+import br.com.gda.security.jwtToken.model.JwtokenModelValidate;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
 import br.com.gda.security.userAuthentication.model.UauthModelUpswd;
 import br.com.gda.security.userPassword.info.UpswdInfo;
@@ -106,6 +108,7 @@ public class TestResource {
 	private static final String DELETE_USER_PASSWORD = "/deleteUserPassword";
 	private static final String SELECT_AUTH_USERNAME = "/authUsername";
 	private static final String SELECT_OWNER_STORE = "/selectOwnerStore";
+	private static final String JWTOKEN_VALIDATE = "/jwtokenValidate";
 	
 	
 	
@@ -677,6 +680,21 @@ public class TestResource {
 		
 		Model model = new OwntoreModelSelect(recordInfo);
 		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(JWTOKEN_VALIDATE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response jwtokenValidate(@HeaderParam("tokenEncoded") String tokenEncoded) {
+
+		JwtokenInfo recordInfo = new JwtokenInfo();
+		recordInfo.tokenEncoded = tokenEncoded;
+		
+		Model model = new JwtokenModelValidate(recordInfo);
+		model.executeRequest();	
 		return model.getResponse();
 	}
 }

@@ -14,6 +14,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
+import br.com.gda.security.jwtToken.model.action.LazyJwtokenEnforceAlgo;
 import br.com.gda.security.jwtToken.model.action.LazyJwtokenEnforceExpiration;
 import br.com.gda.security.jwtToken.model.action.LazyJwtokenEnforceToken;
 import br.com.gda.security.jwtToken.model.action.StdJwtokenEnforceSecret;
@@ -59,10 +60,12 @@ public final class RootJwtokenGenerate implements DeciTree<JwtokenInfo> {
 		
 		ActionStd<JwtokenInfo> enforceSecret = new StdJwtokenEnforceSecret(option);
 		ActionLazy<JwtokenInfo> enforceExpiration = new LazyJwtokenEnforceExpiration(option.conn, option.schemaName);
+		ActionLazy<JwtokenInfo> enforceAlgo = new LazyJwtokenEnforceAlgo(option.conn, option.schemaName);
 		ActionLazy<JwtokenInfo> enforceToken = new LazyJwtokenEnforceToken(option.conn, option.schemaName);
 		
 		enforceSecret.addPostAction(enforceExpiration);
-		enforceExpiration.addPostAction(enforceToken);
+		enforceExpiration.addPostAction(enforceAlgo);
+		enforceAlgo.addPostAction(enforceToken);
 		
 		actions.add(enforceSecret);
 		return actions;

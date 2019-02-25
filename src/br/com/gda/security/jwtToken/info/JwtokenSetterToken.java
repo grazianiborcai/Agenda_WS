@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 
 public final class JwtokenSetterToken implements InfoSetter<JwtokenInfo> {
 	
@@ -52,6 +51,12 @@ public final class JwtokenSetterToken implements InfoSetter<JwtokenInfo> {
 			logException(new NullPointerException("recordInfo.secret" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo.secret" + SystemMessage.NULL_ARGUMENT);
 		}
+		
+		
+		if (recordInfo.algo == null) {
+			logException(new NullPointerException("recordInfo.algo" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("recordInfo.algo" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
@@ -61,7 +66,7 @@ public final class JwtokenSetterToken implements InfoSetter<JwtokenInfo> {
 										 .claim("codOwner", Long.toString(recordInfo.codOwner))			   
 										 .claim("username",recordInfo.username)	
 										 .setExpiration(recordInfo.expirationTime)				               
-										 .signWith(SignatureAlgorithm.HS512, recordInfo.secret)
+										 .signWith(recordInfo.algo, recordInfo.secret)
 										 .compact();
 		return recordInfo;
 	}

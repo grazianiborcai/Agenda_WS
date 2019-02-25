@@ -468,4 +468,10 @@ public final class SystemMessage {
 	// Username
 	public static final String USERNAME_ALREADY_EXIST = "Username data already exist on DB";
 	public static final String USERNAME_NOT_FOUND = "Username data not found on DB";
+	
+	
+	
+	// Token
+	public static final String TOKEN_IS_EXPIRED = "Token is expired";
+	public static final String TOKEN_IS_INVALID = "Token is invalid";
 }
