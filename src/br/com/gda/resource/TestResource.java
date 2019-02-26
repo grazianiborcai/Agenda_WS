@@ -60,6 +60,8 @@ import br.com.gda.payService.payPartnerStore.info.PayparStoreInfo;
 import br.com.gda.payService.payPartnerStore.model.PayparStoreModelSelect;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 import br.com.gda.security.jwtToken.model.JwtokenModelValidate;
+import br.com.gda.security.tokenAuthentication.info.TauthInfo;
+import br.com.gda.security.tokenAuthentication.model.TauthModelToken;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
 import br.com.gda.security.userAuthentication.model.UauthModelUpswd;
 import br.com.gda.security.userPassword.info.UpswdInfo;
@@ -109,6 +111,7 @@ public class TestResource {
 	private static final String SELECT_AUTH_USERNAME = "/authUsername";
 	private static final String SELECT_OWNER_STORE = "/selectOwnerStore";
 	private static final String JWTOKEN_VALIDATE = "/jwtokenValidate";
+	private static final String TOKEN_AUTH = "/tokenAuth";
 	
 	
 	
@@ -691,9 +694,26 @@ public class TestResource {
 	public Response jwtokenValidate(@HeaderParam("tokenEncoded") String tokenEncoded) {
 
 		JwtokenInfo recordInfo = new JwtokenInfo();
-		recordInfo.tokenEncoded = tokenEncoded;
+		recordInfo.tokenToVerify = tokenEncoded;
 		
 		Model model = new JwtokenModelValidate(recordInfo);
+		model.executeRequest();	
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(TOKEN_AUTH)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response tokenAuth(@HeaderParam("tokenEncoded") String tokenEncoded,
+			                  @HeaderParam("codLanguage")  String codLanguage) {
+
+		TauthInfo recordInfo = new TauthInfo();
+		recordInfo.tokenToVerify = tokenEncoded;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new TauthModelToken(recordInfo);
 		model.executeRequest();	
 		return model.getResponse();
 	}

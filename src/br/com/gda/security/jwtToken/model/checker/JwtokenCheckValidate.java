@@ -7,16 +7,16 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 
-public final class JwtokenCheckHasEncoded extends ModelCheckerTemplateSimple<JwtokenInfo> {
+public final class JwtokenCheckValidate extends ModelCheckerTemplateSimple<JwtokenInfo> {
 
-	public JwtokenCheckHasEncoded() {
+	public JwtokenCheckValidate() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(JwtokenInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.tokenEncoded == null)			
+		if (recordInfo.tokenToVerify == null)			
 			return super.FAILED;	
 		
 		return super.SUCCESS;

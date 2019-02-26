@@ -15,7 +15,7 @@ public final class JwtokenInfo extends InfoRecord implements Cloneable {
 	public String secret;
 	public SignatureAlgorithm algo;
 	public String token;
-	public String tokenEncoded;
+	public String tokenToVerify;
 	
 	
 	public JwtokenInfo() {

@@ -3,6 +3,7 @@ package br.com.gda.security.tokenAuthentication.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -13,7 +14,8 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.tokenAuthentication.info.TauthInfo;
-import br.com.gda.security.tokenAuthentication.model.action.StdTauthMergeUsername;
+import br.com.gda.security.tokenAuthentication.model.action.LazyTauthMergeUsername;
+import br.com.gda.security.tokenAuthentication.model.action.StdTauthMergeJwtoken;
 import br.com.gda.security.tokenAuthentication.model.action.StdTauthValidateJwtoken;
 import br.com.gda.security.tokenAuthentication.model.checker.TauthCheckRead;
 
@@ -55,11 +57,14 @@ public final class RootTauthToken implements DeciTree<TauthInfo> {
 	private List<ActionStd<TauthInfo>> buildActionsOnPassed(DeciTreeOption<TauthInfo> option) {
 		List<ActionStd<TauthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<TauthInfo> validateToken = new StdTauthValidateJwtoken(option);
-		ActionStd<TauthInfo> mergeUsername = new StdTauthMergeUsername(option);
+		ActionStd<TauthInfo> validateJwtoken = new StdTauthValidateJwtoken(option);
+		ActionStd<TauthInfo> mergeJwtoken = new StdTauthMergeJwtoken(option);
+		ActionLazy<TauthInfo> mergeUsername = new LazyTauthMergeUsername(option.conn, option.schemaName);
 		
-		actions.add(validateToken);		
-		actions.add(mergeUsername);	
+		mergeJwtoken.addPostAction(mergeUsername);
+		
+		actions.add(validateJwtoken);		
+		actions.add(mergeJwtoken);	
 		return actions;
 	}
 	

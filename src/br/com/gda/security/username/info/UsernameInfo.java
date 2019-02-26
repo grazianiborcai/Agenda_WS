@@ -11,6 +11,7 @@ public final class UsernameInfo extends InfoRecord implements Cloneable {
 	public long codUser;
 	public String username;
 	public char codUserCategory;
+	public String codAuthGroup;
 	public List<AuthGrRoleInfo> authGrRoles;
 	public String recordMode;
 	

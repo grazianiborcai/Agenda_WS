@@ -70,12 +70,12 @@
 
 	<!-- Authentication -->
     <security:authentication-manager alias="authenticationManager">
-        <authentication-provider ref="authProvider" >
+        <authentication-provider ref="authProviderPwrd" >
         </authentication-provider>
     </security:authentication-manager>
     
     
-    <beans:bean id="authProvider" class="br.com.gda.servlet.authentication.AuthProvider"/>
+    <beans:bean id="authProviderPwrd" class="br.com.gda.servlet.authentication.AuthProviderPwrd"/>
  
 
     

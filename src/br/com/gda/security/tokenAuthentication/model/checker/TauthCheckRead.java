@@ -16,14 +16,12 @@ public final class TauthCheckRead extends ModelCheckerTemplateSimple<TauthInfo> 
 	
 	
 	@Override protected boolean checkHook(TauthInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.token	== null	||
-			recordInfo.username	== null ||
-			recordInfo.username == null	||
-			recordInfo.codOwner <= 0)			
+		if (recordInfo.tokenToVerify 	== null	||
+			recordInfo.codLanguage 		== null		)			
 			return super.FAILED;	
 		
 		
-		return super.FAILED;
+		return super.SUCCESS;
 	}
 	
 	

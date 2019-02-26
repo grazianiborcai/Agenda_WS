@@ -114,6 +114,7 @@ public final class UsernameSelectSingle implements DaoStmt<UsernameInfo> {
 				dataInfo.codUser = stmtResult.getLong(UsernameDbTableColumn.COL_COD_USER);									
 				dataInfo.recordMode = stmtResult.getString(UsernameDbTableColumn.COL_RECORD_MODE);
 				dataInfo.username = stmtResult.getString(UsernameDbTableColumn.COL_USERNAME);
+				dataInfo.codAuthGroup = stmtResult.getString(UsernameDbTableColumn.COL_COD_AUTH_GROUP);
 				
 				stmtResult.getString(UsernameDbTableColumn.COL_COD_USER_CATEG);
 				if (stmtResult.wasNull() == NOT_NULL)

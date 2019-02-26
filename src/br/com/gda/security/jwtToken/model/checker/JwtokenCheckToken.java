@@ -6,6 +6,7 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
+import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 
 public final class JwtokenCheckToken extends ModelCheckerTemplateSimple<JwtokenInfo> {
@@ -17,8 +18,9 @@ public final class JwtokenCheckToken extends ModelCheckerTemplateSimple<JwtokenI
 	
 	
 	@Override protected boolean checkHook(JwtokenInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.tokenEncoded	== null	||
-			recordInfo.secret		== null		)			
+		if (recordInfo.tokenToVerify	== null	||
+			recordInfo.secret		== null ||
+			recordInfo.algo			== null)			
 			return super.FAILED;	
 		
 		return checkToken(recordInfo);
@@ -28,10 +30,18 @@ public final class JwtokenCheckToken extends ModelCheckerTemplateSimple<JwtokenI
 	
 	private boolean checkToken(JwtokenInfo recordInfo) {
 		try {
-			Jwts.parser().setSigningKey(recordInfo.secret)
-			             .parse(recordInfo.tokenEncoded);
+			Jwt<?, ?> parsedToken = Jwts.parser()
+					                    .setSigningKey(recordInfo.secret)
+                                        .parse(recordInfo.tokenToVerify);			
 			
-			return super.SUCCESS;
+			
+			Object algo = parsedToken.getHeader().get("alg");
+			
+			if (recordInfo.algo.getValue().equals(algo))
+				return super.SUCCESS;
+			
+			
+			return super.FAILED;
 		
 		} catch (Exception e) {
 			return super.FAILED;

@@ -12,7 +12,7 @@ public final class TauthInfo extends InfoRecord implements Cloneable {
 	public String username;
 	public List<AuthGrRoleInfo> authGrRoles;
 	public String codLanguage;
-	public String token; 
+	public String tokenToVerify; 
 	
 	
 	public TauthInfo() {

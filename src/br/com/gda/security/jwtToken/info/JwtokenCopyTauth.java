@@ -13,7 +13,7 @@ final class JwtokenCopyTauth extends InfoCopierTemplate<JwtokenInfo, TauthInfo>{
 	
 	@Override protected JwtokenInfo makeCopyHook(TauthInfo source) {
 		JwtokenInfo result = new JwtokenInfo();
-		result.tokenEncoded = source.token;		
+		result.tokenToVerify = source.tokenToVerify;		
 		return result;
 	}
 }

@@ -9,6 +9,7 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class UsernameDbTableColumn extends DaoDbTableColumnTemplate {	
+	public static final String COL_COD_AUTH_GROUP = "cod_auth_group";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_USER = "cod_user";
 	public static final String COL_COD_USER_CATEG = "cod_user_categ";	
@@ -73,6 +74,14 @@ public final class UsernameDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.USER_TABLE;
 		oneColumn.columnName = COL_COD_USER_CATEG;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.USER_TABLE;
+		oneColumn.columnName = COL_COD_AUTH_GROUP;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -13,9 +13,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import br.com.gda.business.masterData.info.AuthGrRoleInfo;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.security.tokenAuthentication.info.TauthInfo;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
 
-public final class AuthProvider implements AuthenticationProvider {
+public final class AuthProviderJwtoken implements AuthenticationProvider {
 	
 	@Override public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		AuthToken token = (AuthToken) authentication;
@@ -27,8 +28,8 @@ public final class AuthProvider implements AuthenticationProvider {
 	
 	
 	private List<GrantedAuthority> authUser(AuthToken token) {
-		UauthInfo recordInfo = makeRecordInfo(token);
-		DeciTree<UauthInfo> deciTree = new AuthPassword(recordInfo);
+		TauthInfo recordInfo = makeRecordInfo(token);
+		DeciTree<TauthInfo> deciTree = new AuthJwtoken(recordInfo);
 		
 		deciTree.makeDecision();		
 		return extractRoles(deciTree.getDecisionResult());
@@ -36,8 +37,8 @@ public final class AuthProvider implements AuthenticationProvider {
 	
 	
 	
-	private UauthInfo makeRecordInfo(AuthToken token) {
-		UauthInfo recordInfo = new UauthInfo();
+	private TauthInfo makeRecordInfo(AuthToken token) {
+		TauthInfo recordInfo = new TauthInfo();
 		recordInfo.codOwner = token.getCodOwner();
 		recordInfo.username = token.getName();
 		recordInfo.password = token.getCredentials().toString();
