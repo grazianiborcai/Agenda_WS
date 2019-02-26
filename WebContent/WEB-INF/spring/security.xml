@@ -24,8 +24,8 @@
 	
 	
 	<!-- BASIC authentication --> 
-    <security:http create-session="stateless" pattern="/**/Home**">
-    	<security:intercept-url pattern="/**" access="isAuthenticated()" />
+    <security:http create-session="stateless" pattern="/**/Home/**">
+    	 <security:intercept-url pattern="/**" access="isAuthenticated()" />
         <security:http-basic />
         <csrf disabled="true"/>
         <!-- TODO: filtro para verificar param obrigatorios no cabecalho --> 
@@ -45,8 +45,8 @@
         <security:http-basic />
         <csrf disabled="true"/>
         <custom-filter after="SECURITY_CONTEXT_FILTER" ref="ownerFilter" />
-        <custom-filter before="BASIC_AUTH_FILTER" ref="authFilterPwrd" />
-    </security:http>
+        <custom-filter before="BASIC_AUTH_FILTER" ref="authFilterJwtoken" />
+    </security:http> 
     
     
     <!-- TODO: habilitar CSRF protection 
@@ -59,7 +59,16 @@
     <!-- Filter Bean -->
 	<beans:bean id="authFilterPwrd"
 		class="br.com.gda.servlet.authentication.AuthFilterPwrd">
-		<beans:constructor-arg ref="authenticationManager"/>
+		<beans:constructor-arg ref="authenticationManagerPwrd"/>
+		<beans:constructor-arg ref="authEntryPointPwrd"/>
+	</beans:bean> 
+	
+	<beans:bean id="authEntryPointPwrd" class="br.com.gda.servlet.authentication.AuthEntryPointPwrd"/>
+	
+	
+	<beans:bean id="authFilterJwtoken"
+		class="br.com.gda.servlet.authentication.AuthFilterJwtoken">
+		<beans:constructor-arg ref="authenticationManagerJwtoken"/>
 	</beans:bean> 
 	
 	
@@ -68,31 +77,24 @@
 	</beans:bean> 
 
 
-	<!-- Authentication -->
-    <security:authentication-manager alias="authenticationManager">
+	<!-- Authentication Provider - Basic -->
+    <security:authentication-manager alias="authenticationManagerPwrd" id="authenticationManagerPwrd">
         <authentication-provider ref="authProviderPwrd" >
         </authentication-provider>
     </security:authentication-manager>
     
     
-    <beans:bean id="authProviderPwrd" class="br.com.gda.servlet.authentication.AuthProviderPwrd"/>
- 
-
+    <beans:bean id="authProviderPwrd" class="br.com.gda.servlet.authentication.AuthProviderPwrd"/>    
     
-    <!--
-   	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"
-		factory-method="getInstance" />
-   
-   
-    <security:authentication-manager alias="authenticationManager">
-        <security:authentication-provider>
-            <security:user-service>
-                <security:user name="rest" password="rest" authorities="ROLE_USER"/>
-            </security:user-service>
-            <password-encoder ref="passwordEncoder" />
-        </security:authentication-provider>
-    </security:authentication-manager>
-    -->
+    
+	<!-- Authentication Provider - Token -->
+    <security:authentication-manager alias="authenticationManagerJwtoken" id="authenticationManagerJwtoken">
+        <authentication-provider ref="authProviderJwtoken" >
+        </authentication-provider>
+    </security:authentication-manager> 
+    
+    
+    <beans:bean id="authProviderJwtoken" class="br.com.gda.servlet.authentication.AuthProviderJwtoken"/>
 
 
 </beans:beans>

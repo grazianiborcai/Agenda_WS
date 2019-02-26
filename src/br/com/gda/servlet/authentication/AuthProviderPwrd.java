@@ -3,6 +3,7 @@ package br.com.gda.servlet.authentication;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,13 +21,13 @@ public final class AuthProviderPwrd implements AuthenticationProvider {
 	@Override public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		AuthToken token = (AuthToken) authentication;
 		
-        List<GrantedAuthority> roles = authUser(token);        
+        List<GrantedAuthority> roles = authUser(token);                
         return new UsernamePasswordAuthenticationToken(token.getName(), token.getName(), roles);
 	}
 	
 	
 	
-	private List<GrantedAuthority> authUser(AuthToken token) {
+	private List<GrantedAuthority> authUser(AuthToken token) throws AuthenticationException {
 		UauthInfo recordInfo = makeRecordInfo(token);
 		DeciTree<UauthInfo> deciTree = new AuthPassword(recordInfo);
 		
@@ -48,13 +49,13 @@ public final class AuthProviderPwrd implements AuthenticationProvider {
 	
 	
 	
-	private List<GrantedAuthority> extractRoles(DeciResult<UauthInfo> treeResult) {
+	private List<GrantedAuthority> extractRoles(DeciResult<UauthInfo> treeResult) throws AuthenticationException {
 		if (treeResult.isSuccess() == false)
-			return null;
+			throw new AuthenticationCredentialsNotFoundException("Invalid Credentials!");	//TODO: melhorar mensagem
 		
 		
 		if (treeResult.hasResultset() == false)
-			return null;
+			throw new AuthenticationCredentialsNotFoundException("Invalid Credentials!");	//TODO: melhorar mensagem
 		
 		
 		List<UauthInfo> resultSets = treeResult.getResultset();
