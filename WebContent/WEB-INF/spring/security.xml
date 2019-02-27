@@ -28,7 +28,6 @@
     	 <security:intercept-url pattern="/**" access="isAuthenticated()" />
         <security:http-basic />
         <csrf disabled="true"/>
-        <!-- TODO: filtro para verificar param obrigatorios no cabecalho --> 
         <custom-filter before="BASIC_AUTH_FILTER" ref="authFilterPwrd" />
     </security:http>
     
@@ -44,7 +43,6 @@
         <security:intercept-url pattern="/**"                access="isAuthenticated()" />
         <security:http-basic />
         <csrf disabled="true"/>
-        <custom-filter after="SECURITY_CONTEXT_FILTER" ref="ownerFilter" />
         <custom-filter before="BASIC_AUTH_FILTER" ref="authFilterJwtoken" />
     </security:http> 
     
@@ -70,19 +68,13 @@
 		class="br.com.gda.servlet.authentication.AuthFilterJwtoken">
 		<beans:constructor-arg ref="authenticationManagerJwtoken"/>
 	</beans:bean> 
-	
-	
-	<beans:bean id="ownerFilter"
-		class="br.com.gda.servlet.header.OwnerFilter">
-	</beans:bean> 
 
 
 	<!-- Authentication Provider - Basic -->
     <security:authentication-manager alias="authenticationManagerPwrd" id="authenticationManagerPwrd">
         <authentication-provider ref="authProviderPwrd" >
         </authentication-provider>
-    </security:authentication-manager>
-    
+    </security:authentication-manager>    
     
     <beans:bean id="authProviderPwrd" class="br.com.gda.servlet.authentication.AuthProviderPwrd"/>    
     
@@ -91,10 +83,7 @@
     <security:authentication-manager alias="authenticationManagerJwtoken" id="authenticationManagerJwtoken">
         <authentication-provider ref="authProviderJwtoken" >
         </authentication-provider>
-    </security:authentication-manager> 
-    
+    </security:authentication-manager>     
     
     <beans:bean id="authProviderJwtoken" class="br.com.gda.servlet.authentication.AuthProviderJwtoken"/>
-
-
 </beans:beans>

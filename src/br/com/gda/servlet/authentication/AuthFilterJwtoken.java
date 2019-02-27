@@ -22,9 +22,10 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.tokenAuthentication.info.TauthInfo;
 
 public final class AuthFilterJwtoken extends BasicAuthenticationFilter {
-	private String HEADER_STRING = "Authorization";
-	final String TOKEN_PREFIX = "Bearer ";
+	private final String HEADER_STRING = "Authorization";
+	private final String TOKEN_PREFIX = "Bearer ";
 
+	
 	public AuthFilterJwtoken(AuthenticationManager authenticationManager, AuthenticationEntryPoint authenticationEntryPoint) {
 		super(authenticationManager, authenticationEntryPoint);
 	}
@@ -37,53 +38,63 @@ public final class AuthFilterJwtoken extends BasicAuthenticationFilter {
 	
 	
 	
-	@Override protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-        String header = req.getHeader(HEADER_STRING);
-
-        if (header == null || !header.startsWith(TOKEN_PREFIX)) {
-        	((HttpServletResponse) res).sendError(HttpServletResponse.SC_UNAUTHORIZED);	//TODO: melhorar resposta
+	@Override protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {        
+		TauthInfo tauth = jwtokenAuthentication(req);        
+        
+        if (tauth == null) {
+        	res = onError(res);
             return;
         }
-
-        UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
         
-        
-        if (authentication == null) {
-        	((HttpServletResponse) res).sendError(HttpServletResponse.SC_UNAUTHORIZED);	//TODO: melhorar resposta
-            return;
-        }
-
+        UsernamePasswordAuthenticationToken authentication = getAuthenticationToken(tauth);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         chain.doFilter(req, res);
     }
-
-	
-	
-    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
-        String token = request.getHeader(HEADER_STRING);        
-        TauthInfo tauth = jwtokenAuthentication(token);
-        
-        if (tauth == null)
-        	return null;
-        
-        List<GrantedAuthority> resultRoles = extractRoles(tauth);        
-        return new UsernamePasswordAuthenticationToken(tauth.username, null, resultRoles);
+    
+    
+    
+    private TauthInfo jwtokenAuthentication(HttpServletRequest request) {
+    	String token = getTokenHeader(request);  
+    	
+        if (token == null) 
+    		return null;
+    	
+    	return authenticateToken(token);
     }
     
     
     
-    private TauthInfo jwtokenAuthentication(String token) {
-    	if (token == null)
-    		return null;
+    private String getTokenHeader(HttpServletRequest request) {
+    	String tokenHeader = request.getHeader(HEADER_STRING);  
     	
-    	TauthInfo tauth = new TauthInfo();
-    	tauth.tokenToVerify = token;
+        if (tokenHeader == null || tokenHeader.startsWith(TOKEN_PREFIX) == false) 
+    		return null;
+        
+        return tokenHeader.replace(TOKEN_PREFIX, "");
+    }
+    
+    
+    
+    private TauthInfo authenticateToken(String token) {
+    	TauthInfo tauth = makeRecord(token);
     	
     	DeciTree<TauthInfo> authenticator = new AuthJwtoken(tauth);
     	authenticator.makeDecision();
     	
-    	DeciResult<TauthInfo> result = authenticator.getDecisionResult();
-    	
+    	return parseResult(authenticator.getDecisionResult());
+    }
+    
+    
+    
+    private TauthInfo makeRecord(String token) {
+    	TauthInfo tauth = new TauthInfo();
+    	tauth.tokenToVerify = token;
+    	return tauth;
+    }
+    
+    
+    
+    private TauthInfo parseResult(DeciResult<TauthInfo> result) {
     	if (result.isSuccess() == false)
     		return null;
     	
@@ -95,7 +106,14 @@ public final class AuthFilterJwtoken extends BasicAuthenticationFilter {
     
     
     
-    private List<GrantedAuthority> extractRoles(TauthInfo tauth) {
+    private UsernamePasswordAuthenticationToken getAuthenticationToken(TauthInfo tauth) {
+        List<GrantedAuthority> resultRoles = parseRoles(tauth);        
+        return new UsernamePasswordAuthenticationToken(tauth.username, null, resultRoles);
+    }
+    
+    
+    
+    private List<GrantedAuthority> parseRoles(TauthInfo tauth) {
         List<GrantedAuthority> resultRoles = new ArrayList<>();
         
 		for (AuthGrRoleInfo eachAuthGrRole : tauth.authGrRoles) {
@@ -104,5 +122,12 @@ public final class AuthFilterJwtoken extends BasicAuthenticationFilter {
 		}
 		
 		return resultRoles;
+    }
+    
+    
+    
+    private HttpServletResponse onError(HttpServletResponse res) throws IOException {
+    	((HttpServletResponse) res).sendError(HttpServletResponse.SC_UNAUTHORIZED);	//TODO: melhorar resposta
+    	return res;
     }
 }

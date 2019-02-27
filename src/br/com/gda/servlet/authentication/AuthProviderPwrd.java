@@ -29,10 +29,12 @@ public final class AuthProviderPwrd implements AuthenticationProvider {
 	
 	private List<GrantedAuthority> authUser(AuthToken token) throws AuthenticationException {
 		UauthInfo recordInfo = makeRecordInfo(token);
-		DeciTree<UauthInfo> deciTree = new AuthPassword(recordInfo);
+		DeciTree<UauthInfo> authenticator = new AuthPassword(recordInfo);
 		
-		deciTree.makeDecision();		
-		return extractRoles(deciTree.getDecisionResult());
+		authenticator.makeDecision();		
+		checkResult(authenticator.getDecisionResult());
+		
+		return parseRoles(authenticator.getDecisionResult().getResultset());
 	}
 	
 	
@@ -49,16 +51,24 @@ public final class AuthProviderPwrd implements AuthenticationProvider {
 	
 	
 	
-	private List<GrantedAuthority> extractRoles(DeciResult<UauthInfo> treeResult) throws AuthenticationException {
+	private void checkResult(DeciResult<UauthInfo> treeResult) throws AuthenticationException {
 		if (treeResult.isSuccess() == false)
-			throw new AuthenticationCredentialsNotFoundException("Invalid Credentials!");	//TODO: melhorar mensagem
+			onError();
 		
 		
 		if (treeResult.hasResultset() == false)
-			throw new AuthenticationCredentialsNotFoundException("Invalid Credentials!");	//TODO: melhorar mensagem
-		
-		
-		List<UauthInfo> resultSets = treeResult.getResultset();
+			onError();
+	}
+	
+	
+	
+	private void onError() throws AuthenticationException {
+		throw new AuthenticationCredentialsNotFoundException("Invalid Credentials!");	//TODO: melhorar mensagem
+	}
+	
+	
+	
+	private List<GrantedAuthority> parseRoles(List<UauthInfo> resultSets) throws AuthenticationException {
 		List<GrantedAuthority> resultRoles = new ArrayList<>();
 		
 		for (UauthInfo eachSet : resultSets) {
