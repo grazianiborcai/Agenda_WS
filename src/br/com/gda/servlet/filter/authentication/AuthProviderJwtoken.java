@@ -1,4 +1,4 @@
-package br.com.gda.servlet.authentication;
+package br.com.gda.servlet.filter.authentication;
 
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationProvider;

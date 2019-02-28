@@ -28,7 +28,7 @@ public class OwnerResource {
 	
 	@GET
 	@Path(SELECT_OWNER)	
-	public Response selectOwner(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
+	public Response selectOwner(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
 			                    @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 		
 		OwnerInfo recordInfo = new OwnerInfo();

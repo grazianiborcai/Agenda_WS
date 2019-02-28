@@ -40,6 +40,7 @@ final class TauthVisiMergeJwtoken implements InfoMergerVisitor<TauthInfo, Jwtoke
 	private TauthInfo merge(JwtokenInfo sourceOne, TauthInfo sourceTwo) {
 		sourceTwo.codOwner = sourceOne.codOwner;
 		sourceTwo.username = sourceOne.username;
+		sourceTwo.codPlatform = sourceOne.codPlatform;
 		
 		return sourceTwo;
 	}

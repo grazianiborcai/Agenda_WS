@@ -1,4 +1,4 @@
-package br.com.gda.servlet.authentication;
+package br.com.gda.servlet.filter.authentication;
 
 import java.util.List;
 
@@ -8,15 +8,15 @@ import br.com.gda.model.decisionTree.common.DeciTreeOneCallTemplate;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
 import br.com.gda.security.userAuthentication.model.decisionTree.RootUauthUpswd;
 
-final class AuthPassword extends DeciTreeOneCallTemplate<UauthInfo> {
+final class AuthPwrd extends DeciTreeOneCallTemplate<UauthInfo> {
 
-	public AuthPassword(UauthInfo recordInfo) {
+	public AuthPwrd(UauthInfo recordInfo) {
 		super(recordInfo);
 	}
 	
 	
 	
-	public AuthPassword(List<UauthInfo> recordInfos) {
+	public AuthPwrd(List<UauthInfo> recordInfos) {
 		super(recordInfos);
 	}
 	

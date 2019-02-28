@@ -10,6 +10,7 @@ public final class TauthInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codUser;
 	public String username;
+	public String codPlatform;
 	public List<AuthGrRoleInfo> authGrRoles;
 	public String codLanguage;
 	public String tokenToVerify; 
@@ -51,6 +52,9 @@ public final class TauthInfo extends InfoRecord implements Cloneable {
 		if (username != null)
 			result = result * 31 + username.hashCode();
 		
+		if (codPlatform != null)
+			result = result * 31 + codPlatform.hashCode();
+		
 		return result;
 	}
 	
@@ -68,6 +72,7 @@ public final class TauthInfo extends InfoRecord implements Cloneable {
 		TauthInfo obj = (TauthInfo) o;		
 		return (codOwner == obj.codOwner && 
 				codUser  == obj.codUser  && 
-				super.isStringEqual(username, obj.username));
+				super.isStringEqual(username,    obj.username) 		&&
+				super.isStringEqual(codPlatform, obj.codPlatform)		);
 	}
 }

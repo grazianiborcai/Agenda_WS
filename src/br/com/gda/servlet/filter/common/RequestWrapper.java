@@ -1,4 +1,4 @@
-package br.com.gda.servlet.header;
+package br.com.gda.servlet.filter.common;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;

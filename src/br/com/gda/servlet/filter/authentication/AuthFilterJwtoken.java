@@ -1,9 +1,8 @@
-package br.com.gda.servlet.authentication;
+package br.com.gda.servlet.filter.authentication;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +19,8 @@ import br.com.gda.business.masterData.info.AuthGrRoleInfo;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.tokenAuthentication.info.TauthInfo;
+import br.com.gda.servlet.filter.common.HeaderParam;
+import br.com.gda.servlet.filter.common.HeaderRequestWrapper;
 
 public final class AuthFilterJwtoken extends BasicAuthenticationFilter {
 	private final String HEADER_STRING = "Authorization";
@@ -46,6 +47,7 @@ public final class AuthFilterJwtoken extends BasicAuthenticationFilter {
             return;
         }
         
+        req = addTokenParam(req, tauth);
         UsernamePasswordAuthenticationToken authentication = getAuthenticationToken(tauth);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         chain.doFilter(req, res);
@@ -129,5 +131,17 @@ public final class AuthFilterJwtoken extends BasicAuthenticationFilter {
     private HttpServletResponse onError(HttpServletResponse res) throws IOException {
     	((HttpServletResponse) res).sendError(HttpServletResponse.SC_UNAUTHORIZED);	//TODO: melhorar resposta
     	return res;
+    }
+    
+    
+    
+    private HttpServletRequest addTokenParam(HttpServletRequest req, TauthInfo tauth) {
+    	HeaderRequestWrapper wrappedRequest = new HeaderRequestWrapper((HttpServletRequest)req);
+    	
+        wrappedRequest.addHeader(HeaderParam.TOKEN_OWNER, String.valueOf(tauth.codOwner));
+        wrappedRequest.addHeader(HeaderParam.TOKEN_USERNAME, tauth.username);
+        wrappedRequest.addHeader(HeaderParam.TOKEN_PLATFORM, tauth.codPlatform);
+
+    	return wrappedRequest;
     }
 }

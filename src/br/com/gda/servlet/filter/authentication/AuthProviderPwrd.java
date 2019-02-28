@@ -1,4 +1,4 @@
-package br.com.gda.servlet.authentication;
+package br.com.gda.servlet.filter.authentication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public final class AuthProviderPwrd implements AuthenticationProvider {
 	
 	private List<GrantedAuthority> authUser(AuthToken token) throws AuthenticationException {
 		UauthInfo recordInfo = makeRecordInfo(token);
-		DeciTree<UauthInfo> authenticator = new AuthPassword(recordInfo);
+		DeciTree<UauthInfo> authenticator = new AuthPwrd(recordInfo);
 		
 		authenticator.makeDecision();		
 		checkResult(authenticator.getDecisionResult());

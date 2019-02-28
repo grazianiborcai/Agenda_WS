@@ -1,4 +1,4 @@
-package br.com.gda.servlet.authentication;
+package br.com.gda.servlet.filter.authentication;
 
 import java.util.List;
 
@@ -6,23 +6,23 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.common.DeciTreeOneCallTemplate;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
-import br.com.gda.security.jwtToken.model.decisionTree.RootJwtokenParse;
+import br.com.gda.security.jwtToken.model.decisionTree.RootJwtokenGenerate;
 
-final class AuthJwtParse extends DeciTreeOneCallTemplate<JwtokenInfo> {
+final class AuthJwtGenerate extends DeciTreeOneCallTemplate<JwtokenInfo> {
 
-	public AuthJwtParse(JwtokenInfo recordInfo) {
+	public AuthJwtGenerate(JwtokenInfo recordInfo) {
 		super(recordInfo);
 	}
 	
 	
 	
-	public AuthJwtParse(List<JwtokenInfo> recordInfos) {
+	public AuthJwtGenerate(List<JwtokenInfo> recordInfos) {
 		super(recordInfos);
 	}
 	
 	
 	
 	@Override protected DeciTree<JwtokenInfo> getTreeHook(DeciTreeOption<JwtokenInfo> optionTree) {
-		return new RootJwtokenParse(optionTree);
+		return new RootJwtokenGenerate(optionTree);
 	}
 }

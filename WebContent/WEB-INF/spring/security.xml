@@ -43,6 +43,7 @@
         <security:intercept-url pattern="/**"                access="isAuthenticated()" />
         <security:http-basic />
         <csrf disabled="true"/>
+        <custom-filter after="SECURITY_CONTEXT_FILTER" ref="tokenParamFilter" />
         <custom-filter before="BASIC_AUTH_FILTER" ref="authFilterJwtoken" />
     </security:http> 
     
@@ -56,17 +57,22 @@
     
     <!-- Filter Bean -->
 	<beans:bean id="authFilterPwrd"
-		class="br.com.gda.servlet.authentication.AuthFilterPwrd">
+		class="br.com.gda.servlet.filter.authentication.AuthFilterPwrd">
 		<beans:constructor-arg ref="authenticationManagerPwrd"/>
 		<beans:constructor-arg ref="authEntryPointPwrd"/>
 	</beans:bean> 
 	
-	<beans:bean id="authEntryPointPwrd" class="br.com.gda.servlet.authentication.AuthEntryPointPwrd"/>
+	<beans:bean id="authEntryPointPwrd" class="br.com.gda.servlet.filter.authentication.AuthEntryPointPwrd"/>
 	
 	
 	<beans:bean id="authFilterJwtoken"
-		class="br.com.gda.servlet.authentication.AuthFilterJwtoken">
+		class="br.com.gda.servlet.filter.authentication.AuthFilterJwtoken">
 		<beans:constructor-arg ref="authenticationManagerJwtoken"/>
+	</beans:bean> 
+	
+	
+	<beans:bean id="tokenParamFilter"
+		class="br.com.gda.servlet.filter.header.TokenParamFilter">
 	</beans:bean> 
 
 
@@ -76,7 +82,7 @@
         </authentication-provider>
     </security:authentication-manager>    
     
-    <beans:bean id="authProviderPwrd" class="br.com.gda.servlet.authentication.AuthProviderPwrd"/>    
+    <beans:bean id="authProviderPwrd" class="br.com.gda.servlet.filter.authentication.AuthProviderPwrd"/>    
     
     
 	<!-- Authentication Provider - Token -->
@@ -85,5 +91,5 @@
         </authentication-provider>
     </security:authentication-manager>     
     
-    <beans:bean id="authProviderJwtoken" class="br.com.gda.servlet.authentication.AuthProviderJwtoken"/>
+    <beans:bean id="authProviderJwtoken" class="br.com.gda.servlet.filter.authentication.AuthProviderJwtoken"/>
 </beans:beans>
