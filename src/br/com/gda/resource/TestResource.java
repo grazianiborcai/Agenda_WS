@@ -1,5 +1,6 @@
 package br.com.gda.resource;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -7,6 +8,7 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -118,10 +120,10 @@ public class TestResource {
 	@POST
 	@Path(INSERT_ADDRESS)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertAddress(String incomingData) {
+	public Response insertAddress(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new AddressModelInsert(incomingData);
+		Model model = new AddressModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -131,10 +133,10 @@ public class TestResource {
 	@POST
 	@Path(UPDATE_ADDRESS)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateAddress(String incomingData) {
+	public Response updateAddress(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new AddressModelUpdate(incomingData);
+		Model model = new AddressModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -144,10 +146,10 @@ public class TestResource {
 	@POST
 	@Path(INSERT_PHONE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertPhone(String incomingData) {
+	public Response insertPhone(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new PhoneModelInsert(incomingData);
+		Model model = new PhoneModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -157,10 +159,10 @@ public class TestResource {
 	@POST
 	@Path(UPDATE_PHONE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updatePhone(String incomingData) {
+	public Response updatePhone(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new PhoneModelUpdate(incomingData);
+		Model model = new PhoneModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -191,10 +193,10 @@ public class TestResource {
 	@POST
 	@Path(INSERT_PERSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertPerson(String incomingData) {
+	public Response insertPerson(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new PersonModelInsert(incomingData);
+		Model model = new PersonModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -204,10 +206,10 @@ public class TestResource {
 	@POST
 	@Path(UPDATE_PERSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updatePerson(String incomingData) {
+	public Response updatePerson(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new PersonModelUpdate(incomingData);
+		Model model = new PersonModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}	
@@ -272,10 +274,10 @@ public class TestResource {
 	@POST
 	@Path(INSERT_ADDRESS_SNAPSHOT)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertAddressSnapshot(String incomingData) {
+	public Response insertAddressSnapshot(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new AddressSnapModelInsert(incomingData);
+		Model model = new AddressSnapModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -302,10 +304,10 @@ public class TestResource {
 	@POST
 	@Path(INSERT_PHONE_SNAPSHOT)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertPhoneSnapshot(String incomingData) {
+	public Response insertPhoneSnapshot(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new PhoneSnapModelInsert(incomingData);
+		Model model = new PhoneSnapModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -332,10 +334,10 @@ public class TestResource {
 	@POST
 	@Path(INSERT_PERSON_SNAPSHOT)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertPersonSnapshot(String incomingData) {
+	public Response insertPersonSnapshot(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new PersonSnapModelInsert(incomingData);
+		Model model = new PersonSnapModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -345,10 +347,10 @@ public class TestResource {
 	@POST
 	@Path(INSERT_USER_SNAPSHOT)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertUserSnapshot(String incomingData) {
+	public Response insertUserSnapshot(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new UserSnapModelInsert(incomingData);
+		Model model = new UserSnapModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -412,10 +414,10 @@ public class TestResource {
 	@POST
 	@Path(INSERT_MATERIAL_SNAPSHOT)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertMatSnapshot(String incomingData) {
+	public Response insertMatSnapshot(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new MatSnapModelInsert(incomingData);
+		Model model = new MatSnapModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -442,10 +444,10 @@ public class TestResource {
 	@POST
 	@Path(INSERT_CART_SNAPSHOT)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertCartSnapshot(String incomingData) {
+	public Response insertCartSnapshot(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new CartSnapModelInsert(incomingData);
+		Model model = new CartSnapModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	} 
@@ -472,10 +474,10 @@ public class TestResource {
 	@POST
 	@Path(INSERT_PAY_CUSTOMER)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertPayCustomer(String incomingData) {
+	public Response insertPayCustomer(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new PaycusModelInsert(incomingData);
+		Model model = new PaycusModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	} 
@@ -564,10 +566,10 @@ public class TestResource {
 	@POST
 	@Path(INSERT_COMPANY)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertCompany(String incomingData) {
+	public Response insertCompany(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new CompModelInsert(incomingData);
+		Model model = new CompModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -577,10 +579,10 @@ public class TestResource {
 	@POST
 	@Path(UPDATE_COMPANY)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateCompany(String incomingData) {
+	public Response updateCompany(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new CompModelUpdate(incomingData);
+		Model model = new CompModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}	
@@ -590,10 +592,10 @@ public class TestResource {
 	@POST
 	@Path(INSERT_USER_PASSWORD)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertUserPassword(String incomingData) {
+	public Response insertUserPassword(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new UpswdModelInsert(incomingData);
+		Model model = new UpswdModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -622,10 +624,10 @@ public class TestResource {
 	@POST
 	@Path(UPDATE_USER_PASSWORD)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateUserPassword(String incomingData) {
+	public Response updateUserPassword(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new UpswdModelUpdate(incomingData);
+		Model model = new UpswdModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}	

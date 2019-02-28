@@ -1,5 +1,6 @@
 package br.com.gda.resource;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -8,6 +9,7 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -33,8 +35,7 @@ public class OwnerResource {
 		
 		OwnerInfo recordInfo = new OwnerInfo();
 		recordInfo.codOwner = codOwner;
-		recordInfo.codLanguage = codLanguage;
-		
+		recordInfo.codLanguage = codLanguage;		
 		
 		Model model = new OwnerModelSelect(recordInfo);
 		model.executeRequest();
@@ -45,13 +46,12 @@ public class OwnerResource {
 
 	@DELETE
 	@Path(DELETE_OWNER)
-	public Response deleteOwner(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+	public Response deleteOwner(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
 			                    @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 
 		OwnerInfo recordInfo = new OwnerInfo();
 		recordInfo.codOwner = codOwner;
-		recordInfo.codLanguage = codLanguage;
-		
+		recordInfo.codLanguage = codLanguage;		
 		
 		Model model = new OwnerModelDelete(recordInfo);
 		model.executeRequest();
@@ -63,9 +63,9 @@ public class OwnerResource {
 	@POST
 	@Path(UPDATE_OWNER)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateOwner(String incomingData) {
+	public Response updateOwner(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new OwnerModelUpdate(incomingData);
+		Model model = new OwnerModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}

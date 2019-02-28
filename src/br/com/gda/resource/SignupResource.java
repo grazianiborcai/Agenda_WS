@@ -1,8 +1,10 @@
 package br.com.gda.resource;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -18,9 +20,9 @@ public class SignupResource {
 	@POST
 	@Path(OWNER)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response signupOwner(String incomingData) {		
+	public Response signupOwner(@Context HttpServletRequest request, String incomingData) {		
 		
-		Model model = new OwnerModelInsert(incomingData);
+		Model model = new OwnerModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}

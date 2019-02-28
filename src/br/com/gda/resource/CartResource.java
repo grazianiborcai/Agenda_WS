@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -11,6 +12,7 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -35,9 +37,9 @@ public final class CartResource {
 	@POST
 	@Path(INSERT_CART)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertCart(String incomingData) {
+	public Response insertCart(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new CartModelInsert(incomingData);
+		Model model = new CartModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -47,9 +49,9 @@ public final class CartResource {
 	@POST
 	@Path(UPDATE_CART)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateCart(String incomingData) {
+	public Response updateCart(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new CartModelUpdate(incomingData);
+		Model model = new CartModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}

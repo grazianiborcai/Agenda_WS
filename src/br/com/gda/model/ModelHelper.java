@@ -3,9 +3,11 @@ package br.com.gda.model;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +17,10 @@ import br.com.gda.common.DbConnection;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.json.JsonResponseMaker;
 import br.com.gda.json.JsonToList;
+import br.com.gda.model.common.ModelRequestCheckerOwner;
+import br.com.gda.model.common.ModelRequestCheckerUsername;
 import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -32,10 +37,22 @@ public class ModelHelper<T> implements Model {
 	private DeciTreeFactory<T> treeFactory;
 	
 	
-	
-	public static <T> Model factory(ModelOption<T> option, String incomingData) {
+	/*
+	public static <T> Model factory(ModelOption<T> option, String incomingData) {		// TODO: Remover
 		try {
-			return new ModelHelper<T>(option, incomingData);
+			return new ModelHelper<T>(option, incomingData, null);
+			
+		} catch (Exception e) {
+			logException(e);
+			return new ModelFailed();
+		}
+	}*/
+	
+	
+	
+	public static <T> Model factory(ModelOption<T> option, String incomingData, HttpServletRequest request) {
+		try {
+			return new ModelHelper<T>(option, incomingData, request);
 			
 		} catch (Exception e) {
 			logException(e);
@@ -57,10 +74,11 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private ModelHelper(ModelOption<T> option, String incomingData) {		
-		checkArgument(option, incomingData);
+	private ModelHelper(ModelOption<T> option, String incomingData, HttpServletRequest request) {		
+		checkArgument(option, incomingData, request);
 		List<T> recordInfos = parseRawInfo(incomingData, option.infoRecordClass);
 		init(option, recordInfos);	
+		checkRequest(recordInfos, request);
 	}
 	
 	
@@ -72,11 +90,18 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private void checkArgument(ModelOption<T> option, String incomingData) {
+	private void checkArgument(ModelOption<T> option, String incomingData, HttpServletRequest request) {
 		if (incomingData == null) {
 			logException(new NullPointerException("incomingData" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("incomingData" + SystemMessage.NULL_ARGUMENT);
 		}
+		
+		
+		if (request == null) {
+			logException(new NullPointerException("request" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("request" + SystemMessage.NULL_ARGUMENT);
+		}
+		
 		
 		checkOption(option);
 	}
@@ -127,6 +152,37 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
+	private boolean checkRequest(List<T> recordInfos, HttpServletRequest request) {
+		boolean result = checkRequestOwner(recordInfos, request);
+		
+		if (result == true)
+			result = checkRequestUsername(recordInfos, request);
+		
+		
+		if (result == false) {
+			addUnauthorizedResult();
+			tryToCloseTransaction(getLastTreeResult());
+		}				
+		
+		return result;
+	}
+	
+	
+	
+	private boolean checkRequestOwner(List<T> recordInfos, HttpServletRequest request) {
+		ModelRequestChecker reqChecker = new ModelRequestCheckerOwner(request);
+		return reqChecker.isValid(recordInfos);
+	}
+	
+	
+	
+	private boolean checkRequestUsername(List<T> recordInfos, HttpServletRequest request) {
+		ModelRequestChecker reqChecker = new ModelRequestCheckerUsername(request);
+		return reqChecker.isValid(recordInfos);
+	}
+	
+	
+	
 	private List<T> parseRawInfo(String rawInfo, Class<T> infoRecordClass) {
 		JsonToList<T> parser = new JsonToList<>(infoRecordClass);
 		return parser.parse(rawInfo);
@@ -150,10 +206,15 @@ public class ModelHelper<T> implements Model {
 		recordInfos = records;			
 		treeResults = new ArrayList<>();
 	}
-
 	
 	
-	@Override public boolean executeRequest() {
+	
+	@Override public boolean executeRequest() {		
+		if (hasTreeResult(treeResults)) {
+			DeciResult<T> lastResult = getLastTreeResult();
+			return lastResult.isSuccess();
+		}		
+		
 		return tryToExecuteRequest();
 	}
 	
@@ -226,12 +287,6 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private void addTreeResult(DeciResult<T> treeResult) {
-		treeResults.add(treeResult);
-	}
-	
-	
-	
 	private DeciResult<T> getLastTreeResult() {
 		int lasElem = treeResults.size() - 1;		
 		return treeResults.get(lasElem);
@@ -241,6 +296,17 @@ public class ModelHelper<T> implements Model {
 	
 	private boolean shouldStop(DeciResult<T> treeResult) {
 		return (treeResult.isSuccess() == RESULT_FAILED);
+	}
+	
+	
+	
+	private void tryToCloseTransaction(DeciResult<T> treeResult) {
+		try {
+			closeTransaction(treeResult);
+			
+		} catch (SQLException e) {
+			logException(e);
+		}
 	}
 	
 	
@@ -318,6 +384,28 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
+	private void addUnauthorizedResult() {
+		Response.Status htmlStatus = Response.Status.UNAUTHORIZED;
+		DeciResultHelper<T> resultHelper = new DeciResultHelper<>();
+		
+		resultHelper.resultset = Collections.emptyList();
+		resultHelper.failMessage = htmlStatus.toString();
+		resultHelper.failCode = htmlStatus.getStatusCode();
+		resultHelper.isSuccess = false;
+		resultHelper.hasResultset = false;
+		
+		addTreeResult(resultHelper);			
+		makeResponse(resultHelper.failMessage, resultHelper.failCode, htmlStatus);
+	}
+	
+	
+	
+	private void addTreeResult(DeciResult<T> treeResult) {
+		treeResults.add(treeResult);
+	}
+	
+	
+	
 	private void makeResponse(String msg, int msgCode, Response.Status htmlStatus) {		
 		makeResponse(msg, msgCode, htmlStatus, new Object());
 	}
@@ -338,11 +426,29 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private void checkState(Response state) {
-		if (state == null) {
+	private void checkState(Response resp) {
+		if (hasResponse(resp) == false) {
 			logException(new IllegalStateException(SystemMessage.NO_RESPONSE));
 			throw new IllegalStateException(SystemMessage.NO_RESPONSE);
 		}
+	}
+	
+	
+	
+	private boolean hasResponse(Response res) {
+		if (res == null)
+			return false;
+		
+		return true;
+	}
+	
+	
+	
+	private boolean hasTreeResult(List<DeciResult<T>> results) {
+		if (results.isEmpty())
+			return false;
+		
+		return true;
 	}
 	
 	

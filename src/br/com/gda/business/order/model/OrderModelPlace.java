@@ -2,6 +2,7 @@ package br.com.gda.business.order.model;
 
 import java.sql.Connection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.order.info.OrderInfo;
@@ -21,9 +22,9 @@ public final class OrderModelPlace implements Model {
 	private String schemaName;
 	
 	
-	public OrderModelPlace(String incomingData) {
+	public OrderModelPlace(String incomingData, HttpServletRequest request) {
 		initialize();
-		buildHelper(incomingData);
+		buildHelper(incomingData, request);
 	}
 	
 	
@@ -35,7 +36,7 @@ public final class OrderModelPlace implements Model {
 	
 	
 	
-	private void buildHelper(String incomingData) {
+	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<OrderInfo> helperOption = new ModelOption<>();
 		
 		helperOption.infoRecordClass = OrderInfo.class;
@@ -43,7 +44,7 @@ public final class OrderModelPlace implements Model {
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper.factory(helperOption, incomingData);
+		helper = ModelHelper.factory(helperOption, incomingData, request);
 	}
 
 

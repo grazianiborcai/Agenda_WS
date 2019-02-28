@@ -2,6 +2,7 @@ package br.com.gda.payService.payCustomer.model;
 
 import java.sql.Connection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.common.DbConnection;
@@ -21,9 +22,9 @@ public final class PaycusModelUpdate implements Model {
 	private String schemaName;
 	
 	
-	public PaycusModelUpdate(String incomingData) {
+	public PaycusModelUpdate(String incomingData, HttpServletRequest request) {
 		initialize();
-		buildHelper(incomingData);
+		buildHelper(incomingData, request);
 	}
 	
 	
@@ -35,7 +36,7 @@ public final class PaycusModelUpdate implements Model {
 	
 	
 	
-	private void buildHelper(String incomingData) {
+	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<PaycusInfo> helperOption = new ModelOption<>();
 		
 		helperOption.infoRecordClass = PaycusInfo.class;
@@ -43,7 +44,7 @@ public final class PaycusModelUpdate implements Model {
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper.factory(helperOption, incomingData);
+		helper = ModelHelper.factory(helperOption, incomingData, request);
 	}
 
 

@@ -2,6 +2,7 @@ package br.com.gda.business.address.model;
 
 import java.sql.Connection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.address.info.AddressInfo;
@@ -24,9 +25,9 @@ public final class AddressModelInsert implements Model {
 	private String schemaName;
 	
 	
-	public AddressModelInsert(String incomingData) {
+	public AddressModelInsert(String incomingData, HttpServletRequest request) {
 		initialize();
-		buildHelper(incomingData);
+		buildHelper(incomingData, request);
 	}
 	
 	
@@ -38,7 +39,7 @@ public final class AddressModelInsert implements Model {
 	
 	
 	
-	private void buildHelper(String incomingData) {
+	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<AddressInfo> helperOption = new ModelOption<>();
 		
 		helperOption.infoRecordClass = AddressInfo.class;
@@ -46,7 +47,7 @@ public final class AddressModelInsert implements Model {
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper.factory(helperOption, incomingData);
+		helper = ModelHelper.factory(helperOption, incomingData, request);
 	}
 
 

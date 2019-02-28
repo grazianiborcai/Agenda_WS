@@ -2,6 +2,7 @@ package br.com.gda.business.personSnapshot.model;
 
 import java.sql.Connection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
@@ -21,9 +22,9 @@ public final class PersonSnapModelInsert implements Model {
 	private String schemaName;
 	
 	
-	public PersonSnapModelInsert(String incomingData) {
+	public PersonSnapModelInsert(String incomingData, HttpServletRequest request) {
 		initialize();
-		buildHelper(incomingData);
+		buildHelper(incomingData, request);
 	}
 	
 	
@@ -35,7 +36,7 @@ public final class PersonSnapModelInsert implements Model {
 	
 	
 	
-	private void buildHelper(String incomingData) {
+	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<PersonSnapInfo> helperOption = new ModelOption<>();
 		
 		helperOption.infoRecordClass = PersonSnapInfo.class;
@@ -43,7 +44,7 @@ public final class PersonSnapModelInsert implements Model {
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper.factory(helperOption, incomingData);
+		helper = ModelHelper.factory(helperOption, incomingData, request);
 	}
 
 

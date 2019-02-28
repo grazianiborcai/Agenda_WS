@@ -1,11 +1,13 @@
 package br.com.gda.resource;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -46,9 +48,9 @@ public final class OrderResource {
 	@POST
 	@Path(PLACE_ORDER)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response orderPlace(String incomingData) {
+	public Response orderPlace(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new OrderModelPlace(incomingData);
+		Model model = new OrderModelPlace(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}

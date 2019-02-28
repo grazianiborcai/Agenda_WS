@@ -84,7 +84,7 @@ public final class RootUserDelete implements DeciTree<UserInfo> {
 		select.addPostAction(deleteUser);
 		select.addPostAction(deletePassword);
 		select.addPostAction(deletePerson);
-		
+		//TODO: delete token
 		actions.add(select);
 		
 		return actions;

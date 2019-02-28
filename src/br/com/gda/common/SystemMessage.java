@@ -22,6 +22,7 @@ public final class SystemMessage {
 	
 	// System
 	public static final String ACTION_NOT_EXECUTED = "Action has not been executed";
+	public static final String ACTION_ALREADY_EXECUTED = "Action has already been executed";
 	public static final String ACTION_NOT_INIT = " is NULL or EMPTY. Action was not initialized as expected";
 	public static final String AGED_DATE = "Date is in the past";
 	public static final String ARGUMENT_DONT_MATCH = " arguments don't match";
@@ -33,6 +34,7 @@ public final class SystemMessage {
 	public static final String DATA_NOT_FOUND = "Data not found";
 	public static final String EMPTY_ARGUMENT = " argument is empty";
 	public static final String EMPTY_COLUMNS = "No columns for this given builder were passed";
+	public static final String HEADER_PARAM_NOT_FOUND = "No Header param found for: ";	
 	public static final String INTERNAL_ERROR = "Ops... something went wrong";	
 	public static final String KEEP_NOT_ALLOWED = "Keep operation not allowed";
 	public static final String KEY_FIELD_IS_EMPTY = "Key field should not be null";

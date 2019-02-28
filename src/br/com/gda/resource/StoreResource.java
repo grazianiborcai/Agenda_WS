@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -14,6 +15,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -70,10 +72,10 @@ public class StoreResource {
 	@POST
 	@Path(INSERT_STORE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertStore(String incomingData) {
+	public Response insertStore(@Context HttpServletRequest request, String incomingData) {
 		//TODO: verificar fluxo: Store com status inativo/eliminado
 		//TODO: n�o tem campos de hor�rio de funcionamento
-		Model model = new StoreModelInsert(incomingData);
+		Model model = new StoreModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -83,9 +85,9 @@ public class StoreResource {
 	@POST
 	@Path(UPDATE_STORE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateStore(String incomingData) {
+	public Response updateStore(@Context HttpServletRequest request, String incomingData) {
 		//TODO: falta inativar/ativar um Store
-		Model model = new StoreModelUpdate(incomingData);
+		Model model = new StoreModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -202,9 +204,9 @@ public class StoreResource {
 	@POST
 	@Path(INSERT_STORE_MAT_EMP)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertStoreMatEmp(String incomingData) {
+	public Response insertStoreMatEmp(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new MatEmpModelInsert(incomingData);
+		Model model = new MatEmpModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -252,9 +254,9 @@ public class StoreResource {
 	@POST
 	@Path(INSERT_STORE_WTIME)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertStoreWTime(String incomingData) {
+	public Response insertStoreWTime(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new StoreWTimeModelInsert(incomingData);
+		Model model = new StoreWTimeModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -282,9 +284,9 @@ public class StoreResource {
 	@POST
 	@Path(UPDATE_STORE_WTIME)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateStoreWTime(String incomingData) {
+	public Response updateStoreWTime(@Context HttpServletRequest request, String incomingData) {
 
-		Model model = new StoreWTimeModelUpdate(incomingData);
+		Model model = new StoreWTimeModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -316,9 +318,9 @@ public class StoreResource {
 	@POST
 	@Path(INSERT_STORE_LDATE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertStoreLDate(String incomingData) {
+	public Response insertStoreLDate(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new StoreLDateModelInsert(incomingData);
+		Model model = new StoreLDateModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -328,9 +330,9 @@ public class StoreResource {
 	@POST
 	@Path(UPDATE_STORE_LDATE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateStoreLDate(String incomingData) {
+	public Response updateStoreLDate(@Context HttpServletRequest request, String incomingData) {
 
-		Model model = new StoreLDateModelUpdate(incomingData);
+		Model model = new StoreLDateModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}

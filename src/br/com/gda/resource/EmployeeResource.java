@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -12,6 +13,7 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -83,9 +85,9 @@ public class EmployeeResource {
 	@POST
 	@Path(INSERT_WORK_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertWorkTime(String incomingData) {
+	public Response insertWorkTime(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmpWTimeModelInsert(incomingData);
+		Model model = new EmpWTimeModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -95,9 +97,9 @@ public class EmployeeResource {
 	@POST
 	@Path(UPDATE_WORK_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateWorkTime(String incomingData) {
+	public Response updateWorkTime(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmpWTimeModelUpdate(incomingData);
+		Model model = new EmpWTimeModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -178,9 +180,9 @@ public class EmployeeResource {
 	@POST
 	@Path(INSERT_LEAVE_DATE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertLeaveDate(String incomingData) {
+	public Response insertLeaveDate(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmpLDateModelInsert(incomingData);
+		Model model = new EmpLDateModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -190,9 +192,9 @@ public class EmployeeResource {
 	@POST
 	@Path(UPDATE_LEAVE_DATE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateLeaveDate(String incomingData) {
+	public Response updateLeaveDate(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmpLDateModelUpdate(incomingData);
+		Model model = new EmpLDateModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -226,10 +228,10 @@ public class EmployeeResource {
 	@POST
 	@Path(INSERT_EMP)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertEmployee(String incomingData) {
+	public Response insertEmployee(@Context HttpServletRequest request, String incomingData) {
 		//TODO: horário do empregado. Se nulo, então pegar da Store	
 		//TODO: position (ex: cabelereiro, manicuro) não deviria ficar na tab empregado, mas somente na store_emp. Assim um empregado pode ter mais de uma position na loja
-		Model employeeInsert = new EmpModelInsert(incomingData);
+		Model employeeInsert = new EmpModelInsert(incomingData, request);
 		employeeInsert.executeRequest();
 		return employeeInsert.getResponse();
 	}
@@ -238,9 +240,9 @@ public class EmployeeResource {
 	@POST
 	@Path(UPDATE_EMP)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateOwner(String incomingData) {
+	public Response updateOwner(@Context HttpServletRequest request, String incomingData) {
 		//TODO: mudanã de password não pode ser por esse serviço
-		Model employeeUpdate = new EmpModelUpdate(incomingData);
+		Model employeeUpdate = new EmpModelUpdate(incomingData, request);
 		employeeUpdate.executeRequest();
 		return employeeUpdate.getResponse();
 	}
@@ -304,9 +306,9 @@ public class EmployeeResource {
 	@POST
 	@Path(INSERT_EMP_POSITION)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertEmpos(String incomingData) {
+	public Response insertEmpos(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmposModelInsert(incomingData);
+		Model model = new EmposModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -316,8 +318,8 @@ public class EmployeeResource {
 	@POST
 	@Path(UPDATE_EMP_POSITION)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateEmpos(String incomingData) {
-		Model storeEmpUpdate = new EmposModelUpdate(incomingData);
+	public Response updateEmpos(@Context HttpServletRequest request, String incomingData) {
+		Model storeEmpUpdate = new EmposModelUpdate(incomingData, request);
 		storeEmpUpdate.executeRequest();
 		return storeEmpUpdate.getResponse();
 	}

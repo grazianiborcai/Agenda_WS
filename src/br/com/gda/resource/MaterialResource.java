@@ -1,5 +1,6 @@
 package br.com.gda.resource;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -8,6 +9,7 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -41,9 +43,9 @@ public class MaterialResource {
 	@POST
 	@Path(INSERT_MATERIAL)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertMaterial(String incomingData) {	
+	public Response insertMaterial(@Context HttpServletRequest request, String incomingData) {	
 		
-		Model modelInsert = new MatModelInsert(incomingData);
+		Model modelInsert = new MatModelInsert(incomingData, request);
 		modelInsert.executeRequest();
 		return modelInsert.getResponse();
 	}
@@ -53,9 +55,9 @@ public class MaterialResource {
 	@POST
 	@Path(UPDATE_MATERIAL)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateMaterial(String incomingData) {
+	public Response updateMaterial(@Context HttpServletRequest request, String incomingData) {
 
-		Model modelUpdate = new MatModelUpdate(incomingData);
+		Model modelUpdate = new MatModelUpdate(incomingData, request);
 		modelUpdate.executeRequest();
 		return modelUpdate.getResponse();
 	}
@@ -126,9 +128,9 @@ public class MaterialResource {
 	@POST
 	@Path(INSERT_MAT_STORE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertMatStore(String incomingData) {
+	public Response insertMatStore(@Context HttpServletRequest request, String incomingData) {
 		
-		Model modelInsert = new MatStoreModelInsert(incomingData);
+		Model modelInsert = new MatStoreModelInsert(incomingData, request);
 		modelInsert.executeRequest();
 		return modelInsert.getResponse();
 	}
