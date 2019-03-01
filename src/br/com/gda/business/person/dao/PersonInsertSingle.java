@@ -105,6 +105,12 @@ public final class PersonInsertSingle implements DaoStmt<PersonInfo> {
 			stmt.setTimestamp(i++, lastChanged);
 			stmt.setString(i++, recordInfo.codEntityCateg);
 			
+			if (DaoFormatter.boxNumber(recordInfo.lastChangedBy) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.lastChangedBy);
+			}
+			
 			return stmt;
 		}		
 	}

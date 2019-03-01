@@ -5,14 +5,13 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.business.user.model.decisionTree.NodeUserInsert;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyUserNodeInsert extends ActionLazyTemplate<UserInfo, UserInfo> {
+public final class LazyUserEnforceLChangedBy extends ActionLazyTemplate<UserInfo, UserInfo> {
 	
-	public LazyUserNodeInsert(Connection conn, String schemaName) {
+	public LazyUserEnforceLChangedBy(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyUserNodeInsert extends ActionLazyTemplate<UserInfo, UserI
 	
 	
 	@Override protected ActionStd<UserInfo> getInstanceOfActionHook(DeciTreeOption<UserInfo> option) {
-		return new NodeUserInsert(option).toAction();
+		return new StdUserEnforceLChangedBy(option);
 	}
 	
 	

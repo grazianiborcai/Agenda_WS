@@ -128,6 +128,10 @@ public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
 				
+				stmtResult.getLong(PersonDbTableColumn.COL_LAST_CHANGED_BY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.lastChangedBy = stmtResult.getInt(PersonDbTableColumn.COL_LAST_CHANGED_BY);
+				
 				Date tempDate = stmtResult.getDate(PersonDbTableColumn.COL_COD_BIRTH_DATE);
 				if (tempDate != null)
 					dataInfo.birthDate = tempDate.toLocalDate();

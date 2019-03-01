@@ -4,18 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.business.user.model.action.LazyUserEnforceAddressKey;
-import br.com.gda.business.user.model.action.LazyUserEnforceReference;
-import br.com.gda.business.user.model.action.LazyUserEnforceUsername;
-import br.com.gda.business.user.model.action.LazyUserEnforcePersonKey;
-import br.com.gda.business.user.model.action.LazyUserEnforcePhoneKey;
-import br.com.gda.business.user.model.action.LazyUserInsertPerson;
 import br.com.gda.business.user.model.action.LazyUserInsertUpswd;
-import br.com.gda.business.user.model.action.LazyUserNodeInsert;
+import br.com.gda.business.user.model.action.LazyUserNodeInsertPerson;
 import br.com.gda.business.user.model.action.LazyUserNodeUpsertAddress;
 import br.com.gda.business.user.model.action.LazyUserNodeUpsertPhone;
 import br.com.gda.business.user.model.action.LazyUserRootSelect;
-import br.com.gda.business.user.model.action.StdUserEnforceLChanged;
+import br.com.gda.business.user.model.action.LazyUserUpdate;
 import br.com.gda.business.user.model.checker.UserCheckAuthGroup;
 import br.com.gda.business.user.model.checker.UserCheckCateg;
 import br.com.gda.business.user.model.checker.UserCheckInsert;
@@ -97,37 +91,23 @@ public final class RootUserInsert implements DeciTree<UserInfo> {
 	
 	private List<ActionStd<UserInfo>> buildActionsOnPassed(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
-		
-		ActionStd<UserInfo> enforceLChanged = new StdUserEnforceLChanged(option);
-		ActionLazy<UserInfo> enforceUsername = new LazyUserEnforceUsername(option.conn, option.schemaName);
-		ActionLazy<UserInfo> enforceReference = new LazyUserEnforceReference(option.conn, option.schemaName);
-		ActionLazy<UserInfo> enforcePersonKey = new LazyUserEnforcePersonKey(option.conn, option.schemaName);		
-		ActionLazy<UserInfo> insertPerson = new LazyUserInsertPerson(option.conn, option.schemaName);
-		ActionLazy<UserInfo> insertUser = new LazyUserNodeInsert(option.conn, option.schemaName);
-		ActionLazy<UserInfo> insertPassword = new LazyUserInsertUpswd(option.conn, option.schemaName);
-		ActionLazy<UserInfo> enforceAddressKey = new LazyUserEnforceAddressKey(option.conn, option.schemaName);
+		//TODO: Insert token
+		ActionStd<UserInfo> insertUser = new NodeUserInsert(option).toAction();			
+		ActionLazy<UserInfo> insertPerson = new LazyUserNodeInsertPerson(option.conn, option.schemaName);		
+		ActionLazy<UserInfo> updateUser = new LazyUserUpdate(option.conn, option.schemaName);
+		ActionLazy<UserInfo> insertPassword = new LazyUserInsertUpswd(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> upsertAddress = new LazyUserNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazy<UserInfo> enforcePhoneKey = new LazyUserEnforcePhoneKey(option.conn, option.schemaName);
 		ActionLazy<UserInfo> upsertPhone = new LazyUserNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);	
 		
-		enforceLChanged.addPostAction(enforceUsername);
-		enforceUsername.addPostAction(enforceReference);
-		enforceReference.addPostAction(enforcePersonKey);		
-		enforcePersonKey.addPostAction(insertPerson);		
-		insertPerson.addPostAction(insertUser);		
+		insertUser.addPostAction(insertPerson);
+		insertPerson.addPostAction(updateUser);				
+		updateUser.addPostAction(insertPassword);			
+		updateUser.addPostAction(upsertAddress);		
+		updateUser.addPostAction(upsertPhone);			
+		updateUser.addPostAction(select);
 		
-		insertUser.addPostAction(insertPassword);	
-		
-		insertUser.addPostAction(enforceAddressKey);
-		enforceAddressKey.addPostAction(upsertAddress);
-		
-		insertUser.addPostAction(enforcePhoneKey);
-		enforcePhoneKey.addPostAction(upsertPhone);	
-		
-		insertUser.addPostAction(select);
-		
-		actions.add(enforceLChanged);	
+		actions.add(insertUser);	
 		return actions;
 	}
 	

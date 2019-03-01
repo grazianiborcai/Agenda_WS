@@ -26,6 +26,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
+	public long lastChangedBy;
 	
 	
 	public UserInfo() {
@@ -40,6 +41,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		phones = DefaultValue.list();
 		codLanguage = DefaultValue.language();		
 		recordMode = DefaultValue.recordMode();		
+		lastChangedBy = DefaultValue.number();
 	}
 	
 	

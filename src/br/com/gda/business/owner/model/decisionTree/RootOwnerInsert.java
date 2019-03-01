@@ -90,24 +90,24 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 		
 		ActionStd<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
 		ActionLazy<OwnerInfo> insertOwner = new LazyOwnerInsert(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> insertPerson = new LazyOwnerNodeInsertPerson(option.conn, option.schemaName);	
-		ActionLazy<OwnerInfo> insertComp = new LazyOwnerNodeInsertComp(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> insertUser = new LazyOwnerNodeInsertUser(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> enforceLChangedBy = new LazyOwnerEnforceLChangedBy(option.conn, option.schemaName);	
+		ActionLazy<OwnerInfo> insertPerson = new LazyOwnerNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> insertComp = new LazyOwnerNodeInsertComp(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> select = new LazyOwnerRootSelect(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(insertOwner);
-		insertOwner.addPostAction(insertPerson);		
-		insertPerson.addPostAction(insertComp);	
-		insertComp.addPostAction(insertUser);			
+		insertOwner.addPostAction(insertUser);
 		insertUser.addPostAction(enforceLChangedBy);	
-		enforceLChangedBy.addPostAction(updateOwner);
-		insertUser.addPostAction(upsertAddress);		
-		insertUser.addPostAction(upsertPhone);			
-		insertUser.addPostAction(select);
+		enforceLChangedBy.addPostAction(insertPerson);		
+		insertPerson.addPostAction(updateOwner);		
+		updateOwner.addPostAction(insertComp);	
+		updateOwner.addPostAction(upsertAddress);		
+		updateOwner.addPostAction(upsertPhone);			
+		updateOwner.addPostAction(select);
 		
 		actions.add(enforceLChanged);	
 		return actions;

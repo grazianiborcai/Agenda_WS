@@ -4,16 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.business.user.model.action.LazyUserEnforceLChangedBy;
-import br.com.gda.business.user.model.action.LazyUserEnforceReference;
-import br.com.gda.business.user.model.action.LazyUserEnforceUsername;
-import br.com.gda.business.user.model.action.LazyUserInsert;
-import br.com.gda.business.user.model.action.StdUserEnforceLChanged;
-import br.com.gda.business.user.model.checker.UserCheckUsernameExist;
+import br.com.gda.business.user.model.action.LazyUserInsertPerson;
+import br.com.gda.business.user.model.action.StdUserEnforcePersonKey;
+import br.com.gda.business.user.model.checker.UserCheckDummy;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -22,11 +18,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeUserInsert implements DeciTree<UserInfo> {
+public final class NodeUserInsertPerson implements DeciTree<UserInfo> {
 	private DeciTree<UserInfo> tree;
 	
 	
-	public NodeUserInsert(DeciTreeOption<UserInfo> option) {
+	public NodeUserInsertPerson(DeciTreeOption<UserInfo> option) {
 		DeciTreeHelperOption<UserInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -40,18 +36,11 @@ public final class NodeUserInsert implements DeciTree<UserInfo> {
 	
 	
 	private ModelChecker<UserInfo> buildDecisionChecker(DeciTreeOption<UserInfo> option) {
-		final boolean DONT_EXIST = false;
-		
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
-		ModelChecker<UserInfo> checker;
-		ModelCheckerOption checkerOption;		
+		ModelChecker<UserInfo> checker;	
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST;		
-		checker = new UserCheckUsernameExist(checkerOption);
-		queue.add(checker);	
+		checker = new UserCheckDummy();
+		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -67,18 +56,12 @@ public final class NodeUserInsert implements DeciTree<UserInfo> {
 	private List<ActionStd<UserInfo>> buildActionsOnPassed(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> enforceLChanged = new StdUserEnforceLChanged(option);
-		ActionLazy<UserInfo> enforceUsername = new LazyUserEnforceUsername(option.conn, option.schemaName);
-		ActionLazy<UserInfo> enforceReference = new LazyUserEnforceReference(option.conn, option.schemaName);		
-		ActionLazy<UserInfo> insertUser = new LazyUserInsert(option.conn, option.schemaName);
-		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserEnforceLChangedBy(option.conn, option.schemaName);
+		ActionStd<UserInfo> enforcePersonKey = new StdUserEnforcePersonKey(option);	
+		ActionLazy<UserInfo> insertPerson = new LazyUserInsertPerson(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(enforceUsername);
-		enforceUsername.addPostAction(enforceReference);
-		enforceReference.addPostAction(insertUser);
-		insertUser.addPostAction(enforceLChangedBy);
+		enforcePersonKey.addPostAction(insertPerson);
 		
-		actions.add(enforceLChanged);	
+		actions.add(enforcePersonKey);	
 		return actions;
 	}
 	
