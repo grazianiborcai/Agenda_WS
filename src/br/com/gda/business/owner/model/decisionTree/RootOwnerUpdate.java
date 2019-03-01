@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.action.LazyOwnerKeepOwner;
+import br.com.gda.business.owner.model.action.LazyOwnerMergeUsername;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeUpdateComp;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeUpdatePerson;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeUpsertAddress;
@@ -70,6 +71,7 @@ public final class RootOwnerUpdate implements DeciTree<OwnerInfo> {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 
 		ActionStd<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
+		ActionLazy<OwnerInfo> mergeLChangedBy = new LazyOwnerMergeUsername(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> keepOwner = new LazyOwnerKeepOwner(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> updatePerson = new LazyOwnerNodeUpdatePerson(option.conn, option.schemaName);
@@ -78,7 +80,8 @@ public final class RootOwnerUpdate implements DeciTree<OwnerInfo> {
 		ActionLazy<OwnerInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionStd<OwnerInfo> select = new RootOwnerSelect(option).toAction();		
 		
-		enforceLChanged.addPostAction(keepOwner);
+		enforceLChanged.addPostAction(mergeLChangedBy);
+		mergeLChangedBy.addPostAction(keepOwner);
 		
 		keepOwner.addPostAction(updateOwner);		
 		keepOwner.addPostAction(updatePerson);

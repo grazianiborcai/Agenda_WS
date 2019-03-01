@@ -46,17 +46,7 @@ public abstract class ModelRequestChecker {
 	
 	private String parseParamValue(HttpServletRequest request, String paramName) {
 		String result = request.getHeader(paramName);
-		checkParamValue(result);
 		return result;
-	}
-	
-	
-	
-	private void checkParamValue(String paramValue) {
-		if (paramValue == null) {
-			logException(new NullPointerException("paramValue" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("paramValue" + SystemMessage.NULL_ARGUMENT);
-		}	
 	}
 	
 	
@@ -103,10 +93,10 @@ public abstract class ModelRequestChecker {
 	private boolean isValid(Object recordInfo, String fieldName, String paramValue) {
 		try {
 			Field field = recordInfo.getClass().getDeclaredField(fieldName);			
-			String fieldValue = String.valueOf(field.get(recordInfo));
+			String fieldValue = (String) field.get(recordInfo);
 			
 			if (fieldValue == null)
-				return false;
+				return true;
 			
 			return fieldValue.equals(paramValue);
 		

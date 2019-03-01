@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.business.owner.model.action.LazyOwnerEnforceLChangedBy;
 import br.com.gda.business.owner.model.action.LazyOwnerInsert;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeInsertComp;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeInsertPerson;
@@ -92,6 +93,7 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 		ActionLazy<OwnerInfo> insertPerson = new LazyOwnerNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> insertComp = new LazyOwnerNodeInsertComp(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> insertUser = new LazyOwnerNodeInsertUser(option.conn, option.schemaName);	
+		ActionLazy<OwnerInfo> enforceLChangedBy = new LazyOwnerEnforceLChangedBy(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);	
@@ -101,7 +103,8 @@ public final class RootOwnerInsert implements DeciTree<OwnerInfo> {
 		insertOwner.addPostAction(insertPerson);		
 		insertPerson.addPostAction(insertComp);	
 		insertComp.addPostAction(insertUser);			
-		insertUser.addPostAction(updateOwner);		
+		insertUser.addPostAction(enforceLChangedBy);	
+		enforceLChangedBy.addPostAction(updateOwner);
 		insertUser.addPostAction(upsertAddress);		
 		insertUser.addPostAction(upsertPhone);			
 		insertUser.addPostAction(select);

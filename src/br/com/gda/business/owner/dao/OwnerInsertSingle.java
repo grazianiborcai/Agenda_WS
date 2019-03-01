@@ -110,6 +110,13 @@ public final class OwnerInsertSingle implements DaoStmt<OwnerInfo> {
 				stmt.setNull(i++, Types.INTEGER);
 			}
 			
+			
+			if (recordInfo.lastChangedBy >= 0) {
+				stmt.setLong(i++, recordInfo.lastChangedBy);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
 			return stmt;
 		}		
 	}
