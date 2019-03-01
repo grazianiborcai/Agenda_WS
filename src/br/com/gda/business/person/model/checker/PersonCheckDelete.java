@@ -7,17 +7,19 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class PersonCheckRead extends ModelCheckerTemplateSimple<PersonInfo> {
-
-	public PersonCheckRead() {
+public final class PersonCheckDelete extends ModelCheckerTemplateSimple<PersonInfo> {
+	
+	public PersonCheckDelete() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PersonInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner  <= 0 ||
-			 recordInfo.codPerson <= 0		)			
+		if (    recordInfo.codOwner 		<= 0 
+			 || recordInfo.codPerson		<= 0
+			 || recordInfo.username			== null
+			 || recordInfo.codLanguage		== null	)			
 			return super.FAILED;		
 		
 		return super.SUCCESS;

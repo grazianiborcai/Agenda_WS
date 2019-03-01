@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -120,15 +121,23 @@ public final class UserSelectSingle implements DaoStmt<UserInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPerson = stmtResult.getLong(UserDbTableColumn.COL_COD_PERSON);
 				
+				
 				stmtResult.getString(UserDbTableColumn.COL_COD_USER_CATEG);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codUserCategory = stmtResult.getString(UserDbTableColumn.COL_COD_USER_CATEG).charAt(0);
+				
+				
+				stmtResult.getLong(OwnerDbTableColumn.COL_LAST_CHANGED_BY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.lastChangedBy = stmtResult.getLong(OwnerDbTableColumn.COL_LAST_CHANGED_BY);
+				
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(UserDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
 
-				finalResult.add(dataInfo);
+				
+				finalResult.add(dataInfo);				
 			} while (stmtResult.next());
 			
 			return finalResult;

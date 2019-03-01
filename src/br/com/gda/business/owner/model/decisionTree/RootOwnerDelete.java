@@ -8,9 +8,13 @@ import br.com.gda.business.owner.model.action.LazyOwnerDelete;
 import br.com.gda.business.owner.model.action.LazyOwnerDeleteComp;
 import br.com.gda.business.owner.model.action.LazyOwnerDeletePerson;
 import br.com.gda.business.owner.model.action.LazyOwnerDeleteUser;
+import br.com.gda.business.owner.model.action.LazyOwnerEnforceLChanged;
+import br.com.gda.business.owner.model.action.LazyOwnerMergeUsername;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeDeleteAddress;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeDeletePhone;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeDeleteStore;
+import br.com.gda.business.owner.model.action.LazyOwnerUpdate;
+import br.com.gda.business.owner.model.action.StdOwnerMergeToDelete;
 import br.com.gda.business.owner.model.checker.OwnerCheckDelete;
 import br.com.gda.business.owner.model.checker.OwnerCheckExist;
 import br.com.gda.model.action.ActionLazy;
@@ -74,7 +78,10 @@ public final class RootOwnerDelete implements DeciTree<OwnerInfo> {
 	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> select = new RootOwnerSelect(option).toAction();
+		ActionStd<OwnerInfo> mergeToDelete = new StdOwnerMergeToDelete(option);
+		ActionLazy<OwnerInfo> enforceLChanged = new LazyOwnerEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> enforceLChangedBy = new LazyOwnerMergeUsername(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> update = new LazyOwnerUpdate(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteAddress = new LazyOwnerNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deletePhone = new LazyOwnerNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deletePerson = new LazyOwnerDeletePerson(option.conn, option.schemaName);
@@ -83,15 +90,19 @@ public final class RootOwnerDelete implements DeciTree<OwnerInfo> {
 		ActionLazy<OwnerInfo> deleteStore = new LazyOwnerNodeDeleteStore(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteOwner = new LazyOwnerDelete(option.conn, option.schemaName);			
 		
-		select.addPostAction(deleteAddress);
-		select.addPostAction(deletePhone);
-		select.addPostAction(deletePerson);
-		select.addPostAction(deleteCompany);
-		select.addPostAction(deleteUser);
-		select.addPostAction(deleteStore);
-		select.addPostAction(deleteOwner);
+		mergeToDelete.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(update);
 		
-		actions.add(select);
+		update.addPostAction(deleteAddress);
+		update.addPostAction(deletePhone);
+		update.addPostAction(deletePerson);
+		update.addPostAction(deleteCompany);
+		update.addPostAction(deleteUser);
+		update.addPostAction(deleteStore);
+		update.addPostAction(deleteOwner);
+		
+		actions.add(mergeToDelete);
 		
 		return actions;
 	}

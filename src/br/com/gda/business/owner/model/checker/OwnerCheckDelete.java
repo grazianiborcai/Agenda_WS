@@ -17,7 +17,8 @@ public final class OwnerCheckDelete extends ModelCheckerTemplateSimple<OwnerInfo
 	
 	@Override protected boolean checkHook(OwnerInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codLanguage	== null		)
+			 recordInfo.codLanguage	== null	||
+			 recordInfo.username	== null)
 			return FAILED;
 		
 		

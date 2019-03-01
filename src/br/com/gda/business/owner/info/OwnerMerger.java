@@ -61,6 +61,12 @@ public final class OwnerMerger extends InfoWritterFactory<OwnerInfo> {
 	
 	
 	
+	static public OwnerInfo merge(OwnerInfo sourceOne, OwnerInfo sourceTwo) {
+		return new OwnerMergerToDelete().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<OwnerInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
 		if (sourceOnes.get(0) instanceof AddressInfo 	&&
@@ -96,6 +102,11 @@ public final class OwnerMerger extends InfoWritterFactory<OwnerInfo> {
 		if (sourceOnes.get(0) instanceof UsernameInfo	&&
 			sourceTwos.get(0) instanceof OwnerInfo		)
 			return new OwnerMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
+		
+		
+		if (sourceOnes.get(0) instanceof OwnerInfo		&&
+			sourceTwos.get(0) instanceof OwnerInfo		)
+			return new OwnerMergerToDelete().merge((List<OwnerInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
 		
 		return null;
 	}

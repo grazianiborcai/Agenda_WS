@@ -13,7 +13,7 @@ final class PersonCopyUser extends InfoCopierTemplate<PersonInfo, UserInfo>{
 	
 	@Override protected PersonInfo makeCopyHook(UserInfo source) {
 		PersonInfo result = PersonInfo.copyFrom(source.personData);
-		result.lastChangedBy = source.lastChangedBy;
+		result.username = source.username;
 		return result;
 	}
 }

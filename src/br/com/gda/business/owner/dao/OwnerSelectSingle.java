@@ -116,25 +116,31 @@ public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
 				dataInfo.codOwner = stmtResult.getLong(OwnerDbTableColumn.COL_COD_OWNER);
 				dataInfo.recordMode = stmtResult.getString(OwnerDbTableColumn.COL_RECORD_MODE);
 				
+				
 				stmtResult.getLong(OwnerDbTableColumn.COL_COD_PERSON);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPerson = stmtResult.getLong(OwnerDbTableColumn.COL_COD_PERSON);
+				
 				
 				stmtResult.getLong(OwnerDbTableColumn.COL_COD_COMPANY);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codCompany = stmtResult.getLong(OwnerDbTableColumn.COL_COD_COMPANY);
 				
+				
 				stmtResult.getLong(OwnerDbTableColumn.COL_COD_USER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codUser = stmtResult.getLong(OwnerDbTableColumn.COL_COD_USER);
+				
 				
 				stmtResult.getLong(OwnerDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.lastChangedBy = stmtResult.getLong(OwnerDbTableColumn.COL_LAST_CHANGED_BY);
 				
+				
 				Timestamp lastChanged = stmtResult.getTimestamp(OwnerDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
+				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

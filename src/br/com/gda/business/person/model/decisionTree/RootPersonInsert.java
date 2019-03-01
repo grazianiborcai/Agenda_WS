@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.action.LazyPersonInsert;
+import br.com.gda.business.person.model.action.LazyPersonMergeUsername;
 import br.com.gda.business.person.model.action.StdPersonEnforceLChanged;
 import br.com.gda.business.person.model.checker.PersonCheckEntityCateg;
 import br.com.gda.business.person.model.checker.PersonCheckGender;
@@ -91,9 +92,11 @@ public final class RootPersonInsert implements DeciTree<PersonInfo> {
 		ActionStd<PersonInfo> nodeL1 = new NodePersonInsertL1(option).toAction();	
 		ActionStd<PersonInfo> nodeL2 = new NodePersonInsertL2(option).toAction();	
 		ActionStd<PersonInfo> enforceLChanged = new StdPersonEnforceLChanged(option);
+		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> insert = new LazyPersonInsert(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(insert);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(insert);
 		
 		actions.add(nodeL1);	
 		actions.add(nodeL2);

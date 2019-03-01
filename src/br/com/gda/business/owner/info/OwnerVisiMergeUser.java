@@ -42,6 +42,7 @@ final class OwnerVisiMergeUser implements InfoMergerVisitor<OwnerInfo, UserInfo,
 		sourceTwo.codUser = sourceOne.codUser;
 		sourceTwo.codAuthGroup = sourceOne.codAuthGroup;
 		sourceTwo.codUserCategory = sourceOne.codUserCategory;
+		sourceTwo.username = sourceOne.username;
 		return sourceTwo;
 	}
 	

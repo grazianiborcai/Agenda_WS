@@ -8,6 +8,7 @@ import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.personCustomer.info.PersonCusInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.security.username.info.UsernameInfo;
 
 public final class UserMerger extends InfoWritterFactory<UserInfo> {	
 	
@@ -47,6 +48,18 @@ public final class UserMerger extends InfoWritterFactory<UserInfo> {
 	
 	
 	
+	static public UserInfo merge(UserInfo sourceOne, UserInfo sourceTwo) {
+		return new UserMergerToDelete().merge(sourceOne, sourceTwo);
+	}	
+	
+	
+	
+	static public UserInfo merge(UsernameInfo sourceOne, UserInfo sourceTwo) {
+		return new UserMergerUsername().merge(sourceOne, sourceTwo);
+	}	
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<UserInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
 		if (sourceOnes.get(0) instanceof AddressInfo 		&&
@@ -72,6 +85,16 @@ public final class UserMerger extends InfoWritterFactory<UserInfo> {
 		if (sourceOnes.get(0) instanceof AuthGrRoleInfo 	&&
 			sourceTwos.get(0) instanceof UserInfo		)
 			return new UserMergerAuthGrRole().merge((List<AuthGrRoleInfo>) sourceOnes, (List<UserInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof UserInfo 			&&
+			sourceTwos.get(0) instanceof UserInfo		)
+			return new UserMergerToDelete().merge((List<UserInfo>) sourceOnes, (List<UserInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof UsernameInfo 		&&
+			sourceTwos.get(0) instanceof UserInfo		)
+			return new UserMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<UserInfo>) sourceTwos);
 		
 		return null;
 	}

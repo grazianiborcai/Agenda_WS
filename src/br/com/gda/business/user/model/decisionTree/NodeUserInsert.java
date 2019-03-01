@@ -71,7 +71,7 @@ public final class NodeUserInsert implements DeciTree<UserInfo> {
 		ActionLazy<UserInfo> enforceUsername = new LazyUserEnforceUsername(option.conn, option.schemaName);
 		ActionLazy<UserInfo> enforceReference = new LazyUserEnforceReference(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> insertUser = new LazyUserInsert(option.conn, option.schemaName);
-		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserEnforceLChangedBy(option.conn, option.schemaName);
+		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserEnforceLChangedBy(option.conn, option.schemaName);	//TODO: trocar pelo mergerUsername ?
 		
 		enforceLChanged.addPostAction(enforceUsername);
 		enforceUsername.addPostAction(enforceReference);

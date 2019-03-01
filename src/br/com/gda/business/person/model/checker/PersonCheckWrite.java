@@ -18,7 +18,7 @@ public final class PersonCheckWrite extends ModelCheckerTemplateSimple<PersonInf
 	@Override protected boolean checkHook(PersonInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 			<= 0  					
 			|| recordInfo.codGender 		<= 0	
-			|| recordInfo.lastChangedBy		<= 0
+			|| recordInfo.username			== null
 			|| recordInfo.name 				== null
 			|| recordInfo.codEntityCateg	== null )
 			

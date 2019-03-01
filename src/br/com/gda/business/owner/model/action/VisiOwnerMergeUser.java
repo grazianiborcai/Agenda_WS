@@ -26,7 +26,7 @@ final class VisiOwnerMergeUser extends ActionVisitorTemplateMerge<OwnerInfo, Use
 	
 	
 	
-	protected List<UserInfo> toActionClassHook(List<OwnerInfo> recordInfos) {
+	@Override protected List<UserInfo> toActionClassHook(List<OwnerInfo> recordInfos) {
 		return UserCopier.copyFromOwnerKey(recordInfos);	
 	}
 	

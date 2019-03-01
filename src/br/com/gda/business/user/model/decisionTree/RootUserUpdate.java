@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.action.LazyUserEnforceLChanged;
 import br.com.gda.business.user.model.action.LazyUserEnforcePersonKey;
+import br.com.gda.business.user.model.action.LazyUserEnforceUsername;
 import br.com.gda.business.user.model.action.LazyUserNodeUpdatePerson;
 import br.com.gda.business.user.model.action.LazyUserNodeUpsertAddress;
 import br.com.gda.business.user.model.action.LazyUserNodeUpsertPhone;
@@ -94,7 +95,8 @@ public final class RootUserUpdate implements DeciTree<UserInfo> {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 
 		ActionStd<UserInfo> keepUser = new StdUserKeepUser(option);
-		ActionLazy<UserInfo> enforceLChanged = new LazyUserEnforceLChanged(option.conn, option.schemaName);		
+		ActionLazy<UserInfo> enforceLChanged = new LazyUserEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserEnforceUsername(option.conn, option.schemaName);
 		ActionLazy<UserInfo> enforcePersonKey = new LazyUserEnforcePersonKey(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> updateUser = new LazyUserUpdate(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> updatePerson = new LazyUserNodeUpdatePerson(option.conn, option.schemaName);
@@ -103,7 +105,8 @@ public final class RootUserUpdate implements DeciTree<UserInfo> {
 		ActionStd<UserInfo> select = new RootUserSelect(option).toAction();		
 		
 		keepUser.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforcePersonKey);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(enforcePersonKey);
 		
 		enforcePersonKey.addPostAction(updateUser);
 		enforcePersonKey.addPostAction(updatePerson);

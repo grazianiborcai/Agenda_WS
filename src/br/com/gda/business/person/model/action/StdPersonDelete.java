@@ -12,7 +12,7 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-
+//TODO: Colocar no padrao
 public final class StdPersonDelete implements ActionStd<PersonInfo> {
 	ActionStd<PersonInfo> actionHelper;
 	

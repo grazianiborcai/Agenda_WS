@@ -7,8 +7,12 @@ import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.action.LazyUserDelete;
 import br.com.gda.business.user.model.action.LazyUserDeletePerson;
 import br.com.gda.business.user.model.action.LazyUserDeleteUpswd;
+import br.com.gda.business.user.model.action.LazyUserEnforceLChanged;
+import br.com.gda.business.user.model.action.LazyUserMergeUsername;
 import br.com.gda.business.user.model.action.LazyUserNodeDeleteAddress;
 import br.com.gda.business.user.model.action.LazyUserNodeDeletePhone;
+import br.com.gda.business.user.model.action.LazyUserUpdate;
+import br.com.gda.business.user.model.action.StdUserMergeToDelete;
 import br.com.gda.business.user.model.checker.UserCheckExist;
 import br.com.gda.business.user.model.checker.UserCheckDelete;
 import br.com.gda.model.action.ActionLazy;
@@ -72,20 +76,26 @@ public final class RootUserDelete implements DeciTree<UserInfo> {
 	private List<ActionStd<UserInfo>> buildActionsOnPassed(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> select = new RootUserSelect(option).toAction();
+		ActionStd<UserInfo> mergeToDelete = new StdUserMergeToDelete(option);
+		ActionLazy<UserInfo> enforceLChanged = new LazyUserEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserMergeUsername(option.conn, option.schemaName);
+		ActionLazy<UserInfo> updateUser = new LazyUserUpdate(option.conn, option.schemaName);
 		ActionLazy<UserInfo> deleteAddress = new LazyUserNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazy<UserInfo> deletePhone = new LazyUserNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<UserInfo> deleteUser = new LazyUserDelete(option.conn, option.schemaName);	
 		ActionLazy<UserInfo> deletePassword = new LazyUserDeleteUpswd(option.conn, option.schemaName);	
 		ActionLazy<UserInfo> deletePerson = new LazyUserDeletePerson(option.conn, option.schemaName);
 		
-		select.addPostAction(deleteAddress);
-		select.addPostAction(deletePhone);
-		select.addPostAction(deleteUser);
-		select.addPostAction(deletePassword);
-		select.addPostAction(deletePerson);
+		mergeToDelete.addPostAction(enforceLChanged);		
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(updateUser);
+		updateUser.addPostAction(deleteAddress);		
+		updateUser.addPostAction(deletePhone);
+		updateUser.addPostAction(deleteUser);
+		updateUser.addPostAction(deletePassword);
+		updateUser.addPostAction(deletePerson);
 		//TODO: delete token ? Ou colocar dentro de password ? 
-		actions.add(select);
+		actions.add(mergeToDelete);
 		
 		return actions;
 	}

@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
-import br.com.gda.business.person.model.action.StdPersonDelete;
+import br.com.gda.business.person.model.action.LazyPersonDelete;
+import br.com.gda.business.person.model.action.LazyPersonEnforceLChanged;
+import br.com.gda.business.person.model.action.LazyPersonMergeUsername;
+import br.com.gda.business.person.model.action.LazyPersonUpdate;
+import br.com.gda.business.person.model.action.StdPersonMergeToDelete;
+import br.com.gda.business.person.model.checker.PersonCheckDelete;
 import br.com.gda.business.person.model.checker.PersonCheckExist;
-import br.com.gda.business.person.model.checker.PersonCheckKey;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -38,15 +43,12 @@ public final class RootPersonDelete implements DeciTree<PersonInfo> {
 	
 	private ModelChecker<PersonInfo> buildDecisionChecker(DeciTreeOption<PersonInfo> option) {
 		final boolean EXIST_ON_DB = true;
-		final boolean KEY_NOT_NULL = true;	
 		
 		List<ModelChecker<PersonInfo>> queue = new ArrayList<>();		
 		ModelChecker<PersonInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = KEY_NOT_NULL;
-		checker = new PersonCheckKey(checkerOption);
+		checker = new PersonCheckDelete();
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
@@ -70,8 +72,18 @@ public final class RootPersonDelete implements DeciTree<PersonInfo> {
 	private List<ActionStd<PersonInfo>> buildActionsOnPassed(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> delete = new StdPersonDelete(option);	
-		actions.add(delete);
+		ActionStd<PersonInfo> mergeToDelete = new StdPersonMergeToDelete(option);	
+		ActionLazy<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> updatePerson = new LazyPersonUpdate(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> deletePerson = new LazyPersonDelete(option.conn, option.schemaName);
+		
+		mergeToDelete.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(updatePerson);
+		updatePerson.addPostAction(deletePerson);
+		
+		actions.add(mergeToDelete);
 		
 		return actions;
 	}

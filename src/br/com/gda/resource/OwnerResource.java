@@ -46,12 +46,14 @@ public class OwnerResource {
 
 	@DELETE
 	@Path(DELETE_OWNER)
-	public Response deleteOwner(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
-			                    @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+	public Response deleteOwner(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long   codOwner,
+								@HeaderParam("TOKEN_USERNAME")                     String username,
+			                    @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
 
 		OwnerInfo recordInfo = new OwnerInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codLanguage = codLanguage;		
+		recordInfo.username = username;	
 		
 		Model model = new OwnerModelDelete(recordInfo);
 		model.executeRequest();
