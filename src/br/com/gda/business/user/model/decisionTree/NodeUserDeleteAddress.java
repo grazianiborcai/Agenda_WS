@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.action.LazyUserDeleteAddress;
+import br.com.gda.business.user.model.action.LazyUserEnforceAddressKey;
 import br.com.gda.business.user.model.action.StdUserMergeAddress;
 import br.com.gda.business.user.model.action.StdUserSuccess;
 import br.com.gda.business.user.model.checker.UserCheckAddressExist;
@@ -67,9 +68,11 @@ public final class NodeUserDeleteAddress implements DeciTree<UserInfo> {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UserInfo> mergeAddress = new StdUserMergeAddress(option);
+		ActionLazy<UserInfo> enforceAddressKey = new LazyUserEnforceAddressKey(option.conn, option.schemaName);
 		ActionLazy<UserInfo> deleteAddress = new LazyUserDeleteAddress(option.conn, option.schemaName);
 		
-		mergeAddress.addPostAction(deleteAddress);
+		mergeAddress.addPostAction(enforceAddressKey);
+		enforceAddressKey.addPostAction(deleteAddress);
 		
 		actions.add(mergeAddress);		
 		return actions;

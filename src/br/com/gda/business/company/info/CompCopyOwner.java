@@ -13,6 +13,7 @@ final class CompCopyOwner extends InfoCopierTemplate<CompInfo, OwnerInfo>{
 	
 	@Override protected CompInfo makeCopyHook(OwnerInfo source) {
 		CompInfo result = CompInfo.copyFrom(source.companyData);
+		result.username = source.username;
 		return result;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.action.LazyUserDeletePhone;
+import br.com.gda.business.user.model.action.LazyUserEnforcePhoneKey;
 import br.com.gda.business.user.model.action.StdUserMergePhone;
 import br.com.gda.business.user.model.action.StdUserSuccess;
 import br.com.gda.business.user.model.checker.UserCheckPhoneExist;
@@ -66,12 +67,14 @@ public final class NodeUserDeletePhone implements DeciTree<UserInfo> {
 	private List<ActionStd<UserInfo>> buildActionsOnPassed(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> mergeAddress = new StdUserMergePhone(option);
-		ActionLazy<UserInfo> deleteAddress = new LazyUserDeletePhone(option.conn, option.schemaName);
+		ActionStd<UserInfo> mergePhone = new StdUserMergePhone(option);
+		ActionLazy<UserInfo> enforcePhoneKey = new LazyUserEnforcePhoneKey(option.conn, option.schemaName);
+		ActionLazy<UserInfo> deletePhone = new LazyUserDeletePhone(option.conn, option.schemaName);
 		
-		mergeAddress.addPostAction(deleteAddress);
+		mergePhone.addPostAction(enforcePhoneKey);
+		enforcePhoneKey.addPostAction(deletePhone);
 		
-		actions.add(mergeAddress);		
+		actions.add(mergePhone);		
 		return actions;
 	}
 	

@@ -26,6 +26,12 @@ public final class PhoneMerger extends InfoWritterFactory<PhoneInfo> {
 	
 	
 	
+	static public PhoneInfo merge(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
+		return new PhoneMergerToDelete().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<PhoneInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {				
 		if (sourceOnes.get(0) instanceof FormPhoneInfo 	&&
@@ -36,6 +42,11 @@ public final class PhoneMerger extends InfoWritterFactory<PhoneInfo> {
 		if (sourceOnes.get(0) instanceof CountryPhoneInfo 	&&
 			sourceTwos.get(0) instanceof PhoneInfo		)
 			return new PhoneMergerCountryPhone().merge((List<CountryPhoneInfo>) sourceOnes, (List<PhoneInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof PhoneInfo 	&&
+			sourceTwos.get(0) instanceof PhoneInfo		)
+			return new PhoneMergerToDelete().merge((List<PhoneInfo>) sourceOnes, (List<PhoneInfo>) sourceTwos);
 		
 		
 		return null;

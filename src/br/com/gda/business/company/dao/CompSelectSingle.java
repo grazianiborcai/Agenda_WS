@@ -103,8 +103,9 @@ public final class CompSelectSingle implements DaoStmt<CompInfo> {
 	
 	private static class ResultParser implements DaoResultParser<CompInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
+		private final boolean NOT_NULL = false;
 		
-		@Override public List<CompInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+		@Override public List<CompInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {			
 			List<CompInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
@@ -127,6 +128,12 @@ public final class CompSelectSingle implements DaoStmt<CompInfo> {
 				Timestamp lastChanged = stmtResult.getTimestamp(CompDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
+				
+				
+				stmtResult.getLong(CompDbTableColumn.COL_LAST_CHANGED_BY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.lastChangedBy = stmtResult.getInt(CompDbTableColumn.COL_LAST_CHANGED_BY);
+				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

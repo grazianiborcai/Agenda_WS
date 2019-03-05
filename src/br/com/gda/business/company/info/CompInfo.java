@@ -21,13 +21,16 @@ public final class CompInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
+	public long lastChangedBy;
+	public String username;
 	
 	
 	public CompInfo() {
 		codOwner = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		codLanguage = DefaultValue.language();		
-		recordMode = DefaultValue.recordMode();		
+		recordMode = DefaultValue.recordMode();	
+		lastChangedBy = DefaultValue.number();
 	}
 	
 	

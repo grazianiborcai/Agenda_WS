@@ -38,6 +38,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
+	public long lastChangedBy;
 	public String codForm;
 	public boolean isDeleted;
 	
@@ -56,6 +57,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 		latitude = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
+		lastChangedBy = DefaultValue.number();
 		isDeleted = DefaultValue.boole();
 	}
 	

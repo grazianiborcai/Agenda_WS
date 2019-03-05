@@ -23,6 +23,7 @@ public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_DISTRICT = "district";
 	public static final String COL_LATITUDE = "latitude";
 	public static final String COL_LAST_CHANGED = "last_changed";
+	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
 	public static final String COL_LINE1 = "line1";
 	public static final String COL_LINE2 = "line2";
 	public static final String COL_LINE3 = "line3";
@@ -271,6 +272,14 @@ public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_OWNER_REF;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_LAST_CHANGED_BY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

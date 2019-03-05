@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.company.info.CompInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -112,7 +114,14 @@ public final class CompUpdateSingle implements DaoStmt<CompInfo> {
 			stmt.setString(i++, recordInfo.codCountryLegal);
 			stmt.setString(i++, recordInfo.inscrEst);
 			stmt.setString(i++, recordInfo.inscrMun);
-			stmt.setString(i++, recordInfo.razaoSocial);			
+			stmt.setString(i++, recordInfo.razaoSocial);	
+			
+			
+			if (DaoFormatter.boxNumber(recordInfo.lastChangedBy) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.lastChangedBy);
+			}
 			
 			return stmt;
 		}		

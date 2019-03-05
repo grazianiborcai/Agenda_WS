@@ -17,6 +17,7 @@ public final class CompCheckWrite extends ModelCheckerTemplateSimple<CompInfo> {
 	
 	@Override protected boolean checkHook(CompInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 			<= 0	
+			|| recordInfo.username			== null
 			|| recordInfo.name 				== null
 			|| recordInfo.codCountryLegal	== null
 			|| recordInfo.codEntityCateg	== null )

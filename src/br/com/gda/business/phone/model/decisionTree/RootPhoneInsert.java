@@ -9,13 +9,13 @@ import br.com.gda.business.phone.model.action.LazymapPhoneMergeForm;
 import br.com.gda.business.phone.model.action.LazymapPhoneNodeInsert;
 import br.com.gda.business.phone.model.action.StdPhoneMergeCountryPhone;
 import br.com.gda.business.phone.model.checker.PhoneCheckCountryPhone;
+import br.com.gda.business.phone.model.checker.PhoneCheckInsert;
 import br.com.gda.business.phone.model.checker.PhoneCheckLength;
 import br.com.gda.business.phone.model.checker.PhoneCheckLimit;
 import br.com.gda.business.phone.model.checker.PhoneCheckOwner;
 import br.com.gda.business.phone.model.checker.PhoneCheckRefMulti;
 import br.com.gda.business.phone.model.checker.PhoneCheckRefWrite;
 import br.com.gda.business.phone.model.checker.PhoneCheckTechField;
-import br.com.gda.business.phone.model.checker.PhoneCheckWrite;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -52,7 +52,7 @@ public final class RootPhoneInsert implements DeciTree<PhoneInfo> {
 		ModelChecker<PhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new PhoneCheckWrite();
+		checker = new PhoneCheckInsert();
 		queue.add(checker);
 		
 		checker = new PhoneCheckTechField();

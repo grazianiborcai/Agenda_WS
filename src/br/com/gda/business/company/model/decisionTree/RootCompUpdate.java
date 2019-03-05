@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.company.info.CompInfo;
+import br.com.gda.business.company.model.action.LazyCompMergeUsername;
 import br.com.gda.business.company.model.action.LazyCompUpdate;
 import br.com.gda.business.company.model.action.StdCompEnforceLChanged;
 import br.com.gda.business.company.model.checker.CompCheckCountry;
@@ -101,9 +102,11 @@ public final class RootCompUpdate implements DeciTree<CompInfo> {
 		
 		ActionStd<CompInfo> nodeL1 = new NodeCompUpdateL1(option).toAction();	
 		ActionStd<CompInfo> enforceLChanged = new StdCompEnforceLChanged(option);
+		ActionLazy<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
 		ActionLazy<CompInfo> update = new LazyCompUpdate(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(update);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(update);
 		
 		actions.add(nodeL1);
 		actions.add(enforceLChanged);

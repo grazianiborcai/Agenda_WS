@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -168,6 +169,10 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 				Timestamp lastChanged = stmtResult.getTimestamp(AddressDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();		
+				
+				stmtResult.getLong(OwnerDbTableColumn.COL_LAST_CHANGED_BY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.lastChangedBy = stmtResult.getLong(OwnerDbTableColumn.COL_LAST_CHANGED_BY);
 				
 				
 				finalResult.add(dataInfo);

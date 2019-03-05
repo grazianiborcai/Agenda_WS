@@ -1,7 +1,9 @@
 package br.com.gda.business.user.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
+import br.com.gda.business.address.info.AddressCopier;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
 import br.com.gda.business.user.info.UserInfo;
@@ -20,6 +22,12 @@ final class VisiUserMergeAddress extends ActionVisitorTemplateMerge<UserInfo, Ad
 	
 	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
 		return RootAddressSelect.class;
+	}
+	
+	
+	
+	@Override protected List<AddressInfo> toActionClassHook(List<UserInfo> recordInfos) {
+		return AddressCopier.copyFromUserKey(recordInfos);	
 	}
 	
 	

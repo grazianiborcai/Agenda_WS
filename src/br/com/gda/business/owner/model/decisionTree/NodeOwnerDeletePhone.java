@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.action.StdOwnerDeletePhone;
+import br.com.gda.business.owner.model.action.LazyOwnerDeletePhone;
+import br.com.gda.business.owner.model.action.StdOwnerEnforcePhoneKey;
 import br.com.gda.business.owner.model.action.StdOwnerSuccess;
 import br.com.gda.business.owner.model.checker.OwnerCheckHasPhone;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -64,9 +66,12 @@ public final class NodeOwnerDeletePhone implements DeciTree<OwnerInfo> {
 	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> deleteAddress = new StdOwnerDeletePhone(option);
+		ActionStd<OwnerInfo> enforcePhoneKey = new StdOwnerEnforcePhoneKey(option);
+		ActionLazy<OwnerInfo> deletePhone = new LazyOwnerDeletePhone(option.conn, option.schemaName);
 		
-		actions.add(deleteAddress);		
+		enforcePhoneKey.addPostAction(deletePhone);
+		
+		actions.add(enforcePhoneKey);		
 		return actions;
 	}
 	

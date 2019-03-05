@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.payService.payCustomer.info.PaycusInfo;
 
@@ -61,6 +62,20 @@ public final class AddressCopier {
 	
 	public static List<AddressInfo> copyFromEmp(List<EmpInfo> sources) {
 		InfoCopier<AddressInfo, EmpInfo> copier = new AddressCopyEmp();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static AddressInfo copyFromUserKey(UserInfo source) {
+		InfoCopier<AddressInfo, UserInfo> copier = new AddressCopyUserKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddressInfo> copyFromUserKey(List<UserInfo> sources) {
+		InfoCopier<AddressInfo, UserInfo> copier = new AddressCopyUserKey();
 		return copier.makeCopy(sources);
 	}
 }

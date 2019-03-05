@@ -19,11 +19,22 @@ public final class AddressMerger extends InfoWritterFactory<AddressInfo> {
 	
 	
 	
+	static public AddressInfo merge(AddressInfo sourceOne, AddressInfo sourceTwo) {
+		return new AddressMergerToDelete().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<AddressInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {				
 		if (sourceOnes.get(0) instanceof FormAddressInfo 	&&
-			sourceTwos.get(0) instanceof AddressInfo		)
+			sourceTwos.get(0) instanceof AddressInfo			)
 			return new AddressMergerForm().merge((List<FormAddressInfo>) sourceOnes, (List<AddressInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof AddressInfo 	&&
+			sourceTwos.get(0) instanceof AddressInfo			)
+			return new AddressMergerToDelete().merge((List<AddressInfo>) sourceOnes, (List<AddressInfo>) sourceTwos);
 		
 		return null;
 	}

@@ -16,9 +16,10 @@ public final class AddressCheckUpdate extends ModelCheckerTemplateSimple<Address
 	
 	
 	@Override protected boolean checkHook(AddressInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codAddress 	<= 0 	||
-			 recordInfo.codCountry 	== null		)		
+		if ( recordInfo.codOwner 		<= 0 	||
+			 recordInfo.codAddress 		<= 0 	||
+			 recordInfo.lastChangedBy 	<= 0 	||
+			 recordInfo.codCountry 		== null		)		
 			
 			return super.FAILED;
 		

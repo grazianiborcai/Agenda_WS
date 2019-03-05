@@ -16,8 +16,9 @@ public final class AddressCheckDelete extends ModelCheckerTemplateSimple<Address
 	
 	
 	@Override protected boolean checkHook(AddressInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner   <= 0 ||
-			 recordInfo.codAddress <= 0 )			
+		if ( recordInfo.codOwner   		<= 0 ||
+			 recordInfo.codAddress 		<= 0 ||
+			 recordInfo.lastChangedBy 	<= 0		)			
 			return super.FAILED;
 		
 		

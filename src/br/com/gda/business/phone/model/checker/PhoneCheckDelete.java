@@ -16,8 +16,9 @@ public final class PhoneCheckDelete extends ModelCheckerTemplateSimple<PhoneInfo
 	
 	
 	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner   	<= 0 ||
-			 recordInfo.codPhone	<= 0 )			
+		if ( recordInfo.codOwner   		<= 0 ||
+			 recordInfo.lastChangedBy 	<= 0 ||
+			 recordInfo.codPhone		<= 0 	)			
 			return super.FAILED;
 		
 		

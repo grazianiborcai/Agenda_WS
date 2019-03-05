@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.phone.model.action.StdPhoneDelete;
+import br.com.gda.business.phone.model.action.LazyPhoneDelete;
+import br.com.gda.business.phone.model.action.LazyPhoneEnforceLChanged;
+import br.com.gda.business.phone.model.action.LazyPhoneUpdate;
+import br.com.gda.business.phone.model.action.StdPhoneMergeToDelete;
 import br.com.gda.business.phone.model.checker.PhoneCheckDelete;
 import br.com.gda.business.phone.model.checker.PhoneCheckExist;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -59,9 +63,17 @@ public final class RootPhoneDelete implements DeciTree<PhoneInfo> {
 	
 	private List<ActionStd<PhoneInfo>> buildActionsOnPassed(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
-		//TODO: LCHANGED
-		ActionStd<PhoneInfo> delete = new StdPhoneDelete(option);		
-		actions.add(delete);		
+		
+		ActionStd<PhoneInfo> mergeToDelete = new StdPhoneMergeToDelete(option);	
+		ActionLazy<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> update = new LazyPhoneUpdate(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> delete = new LazyPhoneDelete(option.conn, option.schemaName);
+		
+		mergeToDelete.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(update);
+		update.addPostAction(delete);
+		
+		actions.add(mergeToDelete);		
 		
 		return actions;
 	}

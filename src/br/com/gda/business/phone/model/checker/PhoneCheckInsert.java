@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class PhoneCheckWrite extends ModelCheckerTemplateSimple<PhoneInfo> {
+public final class PhoneCheckInsert extends ModelCheckerTemplateSimple<PhoneInfo> {
 
-	public PhoneCheckWrite() {
+	public PhoneCheckInsert() {
 		super();
 	}
 	
@@ -18,6 +18,7 @@ public final class PhoneCheckWrite extends ModelCheckerTemplateSimple<PhoneInfo>
 	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 		<= 0 	||
 			 recordInfo.codCountryPhone	<= 0	||
+			 recordInfo.lastChangedBy 	<= 0 	||
 			 recordInfo.fullNumber		== null		)	
 			
 			return super.FAILED;
