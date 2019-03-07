@@ -29,6 +29,7 @@ public final class StoreSetterPhoneKey implements InfoSetter<StoreInfo> {
 		for (PhoneInfo eachAddress : recordInfo.phones) {
 			eachAddress.codOwner = recordInfo.codOwner;
 			eachAddress.codStore = recordInfo.codStore;
+			eachAddress.lastChangedBy = recordInfo.lastChangedBy;
 		}
 		
 		return recordInfo;

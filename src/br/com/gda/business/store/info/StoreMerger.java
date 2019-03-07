@@ -11,6 +11,7 @@ import br.com.gda.business.personUser.info.PersonUserInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.security.username.info.UsernameInfo;
 
 public final class StoreMerger extends InfoWritterFactory<StoreInfo> {	
 	
@@ -68,6 +69,12 @@ public final class StoreMerger extends InfoWritterFactory<StoreInfo> {
 	
 	
 	
+	static public StoreInfo merge(UsernameInfo sourceOne, StoreInfo sourceTwo) {
+		return new StoreMergerUsername().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<StoreInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
 		if (sourceOnes.get(0) instanceof AddressInfo 		&&
@@ -108,6 +115,12 @@ public final class StoreMerger extends InfoWritterFactory<StoreInfo> {
 		if (sourceOnes.get(0) instanceof UserInfo 			&&
 			sourceTwos.get(0) instanceof StoreInfo		)
 			return new StoreMergerUser().merge((List<UserInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
+		
+		
+		
+		if (sourceOnes.get(0) instanceof UsernameInfo 		&&
+			sourceTwos.get(0) instanceof StoreInfo		)
+			return new StoreMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
 		
 		return null;
 	}

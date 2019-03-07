@@ -360,6 +360,8 @@ public final class SystemCode {
 	// Owner-Store
 	public static final int OWNER_STORE_IS_NULL							= 2700;
 	public static final int OWNER_STORE_IS_FILLED						= 2701;
+	public static final int OWNER_STORE_ALREADY_EXIST					= 2702;
+	public static final int OWNER_STORE_NOT_FOUND						= 2703;
 	
 	// Username
 	public static final int USERNAME_ALREADY_EXIST 						= 2750;

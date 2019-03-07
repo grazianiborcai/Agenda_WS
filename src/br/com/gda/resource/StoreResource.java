@@ -111,10 +111,9 @@ public class StoreResource {
 	
 	@GET
 	@Path(SELECT_STORE)
-	public Response selectStore(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-			                    @HeaderParam("codStore") @DefaultValue("-1") int codStore) {
+	public Response selectStore(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codStore")    @DefaultValue("-1") int codStore) {
 
-		//TODO: precisa investigar a chamada do iOS para que o refactoring aqui não quebre a chamada iOS
 		StoreInfo recordInfo = new StoreInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;

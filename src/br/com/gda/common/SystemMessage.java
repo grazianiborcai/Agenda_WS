@@ -462,8 +462,10 @@ public final class SystemMessage {
 	
 	
 	// Owner-Store
+	public static final String OWNER_STORE_ALREADY_EXIST = "Owner-Store data already exist on DB";	
 	public static final String OWNER_STORE_IS_FILLED = "Owner-Store is not blank";
 	public static final String OWNER_STORE_IS_NULL = "Owner-Store is blank";
+	public static final String OWNER_STORE_NOT_FOUND = "Owner-Store data not found on DB";
 	
 	
 	

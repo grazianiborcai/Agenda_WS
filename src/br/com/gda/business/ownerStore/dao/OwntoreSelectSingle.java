@@ -55,7 +55,7 @@ public final class OwntoreSelectSingle implements DaoStmt<OwntoreInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new OwntoreWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -166,6 +166,11 @@ public final class OwntoreSelectSingle implements DaoStmt<OwntoreInfo> {
 				dataInfo.codOwner = stmtResult.getLong(OwntoreDbTableColumn.COL_COD_OWNER);
 				dataInfo.codStore = stmtResult.getLong(OwntoreDbTableColumn.COL_COD_STORE);
 				dataInfo.recordMode = stmtResult.getString(OwntoreDbTableColumn.COL_RECORD_MODE);	
+				
+				
+				stmtResult.getLong(OwntoreDbTableColumn.COL_COD_USER);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codUser = stmtResult.getLong(OwntoreDbTableColumn.COL_COD_USER);
 				
 				
 				stmtResult.getString(OwntoreDbTableColumn.COL_COD_LANGUAGE);

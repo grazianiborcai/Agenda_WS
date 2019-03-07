@@ -1,22 +1,22 @@
-package br.com.gda.business.store.info;
+package br.com.gda.security.storeAuthorization.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class StoreSetterAddressKey implements InfoSetter<StoreInfo> {
+public final class StorauthSetterCategOwnerKey implements InfoSetter<StorauthInfo> {
 	
-	public StoreInfo setAttr(StoreInfo recordInfo) {
+	public StorauthInfo setAttr(StorauthInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setAddressKey(recordInfo);
+		return setCategOwnerKey(recordInfo);
 	}
 	
 	
 	
-	private void checkArgument(StoreInfo recordInfo) {
+	private void checkArgument(StorauthInfo recordInfo) {
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
@@ -25,13 +25,8 @@ public final class StoreSetterAddressKey implements InfoSetter<StoreInfo> {
 	
 	
 	
-	private StoreInfo setAddressKey(StoreInfo recordInfo) {
-		for (AddressInfo eachAddress : recordInfo.addresses) {
-			eachAddress.codOwner = recordInfo.codOwner;
-			eachAddress.codStore = recordInfo.codStore;
-			eachAddress.lastChangedBy = recordInfo.lastChangedBy;
-		}
-		
+	private StorauthInfo setCategOwnerKey(StorauthInfo recordInfo) {
+		recordInfo.codUser = DefaultValue.number();		
 		return recordInfo;
 	}
 	

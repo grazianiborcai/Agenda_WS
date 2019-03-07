@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.action.LazyStoreInsert;
+import br.com.gda.business.store.model.action.LazyStoreMergeUsername;
 import br.com.gda.business.store.model.action.LazyStoreNodeInsertComp;
 import br.com.gda.business.store.model.action.LazyStoreNodeInsertPerson;
 import br.com.gda.business.store.model.action.LazyStoreNodeInsertUser;
@@ -104,8 +105,9 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 	
 	private List<ActionStd<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
-		
+		//TODO: permitir que outro usuario seja associado ou inves de sempre criar um novo ?
 		ActionStd<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
+		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> insertStore = new LazyStoreInsert(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> insertPerson = new LazyStoreNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazy<StoreInfo> insertComp = new LazyStoreNodeInsertComp(option.conn, option.schemaName);
@@ -115,7 +117,8 @@ public final class RootStoreInsert implements DeciTree<StoreInfo> {
 		ActionLazy<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionLazy<StoreInfo> selectStore = new LazyStoreRootSelect(option.conn, option.schemaName);	
 		
-		enforceLChanged.addPostAction(insertStore);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(insertStore);
 		insertStore.addPostAction(insertPerson);		
 		insertPerson.addPostAction(insertComp);		
 		insertComp.addPostAction(insertUser);

@@ -62,6 +62,8 @@ import br.com.gda.payService.payPartnerStore.info.PayparStoreInfo;
 import br.com.gda.payService.payPartnerStore.model.PayparStoreModelSelect;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 import br.com.gda.security.jwtToken.model.JwtokenModelValidate;
+import br.com.gda.security.storeAuthorization.info.StorauthInfo;
+import br.com.gda.security.storeAuthorization.model.StorauthModelSelect;
 import br.com.gda.security.tokenAuthentication.info.TauthInfo;
 import br.com.gda.security.tokenAuthentication.model.TauthModelToken;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
@@ -114,6 +116,7 @@ public class TestResource {
 	private static final String SELECT_OWNER_STORE = "/selectOwnerStore";
 	private static final String JWTOKEN_VALIDATE = "/jwtokenValidate";
 	private static final String TOKEN_AUTH = "/tokenAuth";
+	private static final String SELECT_STORAUTH = "/authStorauth";
 	
 	
 	
@@ -717,6 +720,27 @@ public class TestResource {
 		
 		Model model = new TauthModelToken(recordInfo);
 		model.executeRequest();	
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STORAUTH)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStorauth(@HeaderParam("codOwner") long codOwner,
+								   @HeaderParam("codStore") long codStore,
+								   @HeaderParam("username") String username,
+								   @HeaderParam("codLanguage") String codLanguage) {
+
+		StorauthInfo recordInfo = new StorauthInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new StorauthModelSelect(recordInfo);
+		model.executeRequest();
 		return model.getResponse();
 	}
 }

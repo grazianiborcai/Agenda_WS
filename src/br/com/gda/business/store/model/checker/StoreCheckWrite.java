@@ -21,6 +21,7 @@ public final class StoreCheckWrite extends ModelCheckerTemplateSimple<StoreInfo>
 			|| recordInfo.companyData 	== null
 			|| recordInfo.codLanguage 	== null
 			|| recordInfo.codCurr 		== null
+			|| recordInfo.username 		== null 
 			|| recordInfo.codTimezone	== null	)
 			
 			return FAILED;

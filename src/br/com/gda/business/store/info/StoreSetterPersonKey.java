@@ -34,6 +34,7 @@ public final class StoreSetterPersonKey implements InfoSetter<StoreInfo> {
 		recordInfo.personData.codOwner = recordInfo.codOwner;
 		recordInfo.personData.codPerson = recordInfo.codPerson;
 		recordInfo.personData.codEntityCateg = recordInfo.codEntityCateg;
+		recordInfo.personData.username = recordInfo.username;
 		
 		return recordInfo;
 	}

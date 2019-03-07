@@ -33,6 +33,8 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public CompInfo companyData;
 	public PersonInfo personData;
 	public LocalDateTime lastChanged;
+	public long lastChangedBy;
+	public String username;
 	public String recordMode;
 
 	
@@ -51,6 +53,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		personData = DefaultValue.object();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
+		lastChangedBy = DefaultValue.number();
 	}
 	
 	
