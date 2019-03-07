@@ -111,12 +111,14 @@ public class StoreResource {
 	
 	@GET
 	@Path(SELECT_STORE)
-	public Response selectStore(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
-			                    @HeaderParam("codStore")    @DefaultValue("-1") int codStore) {
+	public Response selectStore(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codStore")       @DefaultValue("-1") int codStore,
+			                    @HeaderParam("TOKEN_USERNAME") String username) {
 
 		StoreInfo recordInfo = new StoreInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
+		recordInfo.username = username;
 		
 		Model model = new StoreModelSelect(recordInfo);
 		model.executeRequest();

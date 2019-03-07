@@ -370,4 +370,7 @@ public final class SystemCode {
 	// Token
 	public static final int TOKEN_IS_INVALID 							= 2800;
 	public static final int TOKEN_IS_EXPIRED 							= 2801;
+	
+	// Store-Authorization
+	public static final int STORE_AUTH_NOT_AUTHORIZED 					= 2850;
 }

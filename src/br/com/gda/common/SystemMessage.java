@@ -478,4 +478,9 @@ public final class SystemMessage {
 	// Token
 	public static final String TOKEN_IS_EXPIRED = "Token is expired";
 	public static final String TOKEN_IS_INVALID = "Token is invalid";
+	
+	
+	
+	// Store-Authorization
+	public static final String STORE_AUTH_NOT_AUTHORIZED = "Store-Authorization: not authorized";
 }
