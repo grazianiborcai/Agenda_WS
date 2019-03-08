@@ -12,7 +12,6 @@ import br.com.gda.business.store.model.action.LazyStoreMergePhone;
 import br.com.gda.business.store.model.action.LazyStoreMergeTimezone;
 import br.com.gda.business.store.model.action.LazyStoreMergeUser;
 import br.com.gda.business.store.model.action.StdStoreSelect;
-import br.com.gda.business.store.model.checker.StoreCheckExist;
 import br.com.gda.business.store.model.checker.StoreCheckLangu;
 import br.com.gda.business.store.model.checker.StoreCheckRead;
 import br.com.gda.business.store.model.checker.StoreCheckStorauth;
@@ -62,13 +61,6 @@ public final class RootStoreSelect implements DeciTree<StoreInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoreCheckLangu(checkerOption);
 		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new StoreCheckExist(checkerOption);
-		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

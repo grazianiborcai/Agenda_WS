@@ -30,6 +30,7 @@ public final class StoreSetterAddressKey implements InfoSetter<StoreInfo> {
 			eachAddress.codOwner = recordInfo.codOwner;
 			eachAddress.codStore = recordInfo.codStore;
 			eachAddress.lastChangedBy = recordInfo.lastChangedBy;
+			eachAddress.codLanguage = recordInfo.codLanguage;
 		}
 		
 		return recordInfo;

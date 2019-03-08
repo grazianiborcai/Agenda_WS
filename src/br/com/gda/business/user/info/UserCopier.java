@@ -62,4 +62,18 @@ public final class UserCopier {
 		InfoCopier<UserInfo, StoreInfo> copier = new UserCopyStoreKey();
 		return copier.makeCopy(sources);
 	}
+	
+	
+	
+	public static UserInfo copyToDelete(UserInfo source) {
+		InfoCopier<UserInfo, UserInfo> copier = new UserCopyToDelete();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UserInfo> copyToDelete(List<UserInfo> sources) {
+		InfoCopier<UserInfo, UserInfo> copier = new UserCopyToDelete();
+		return copier.makeCopy(sources);
+	}
 }

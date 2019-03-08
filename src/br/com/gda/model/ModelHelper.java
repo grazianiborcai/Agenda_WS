@@ -34,20 +34,7 @@ public class ModelHelper<T> implements Model {
 	private String schemaName;
 	private Response response;
 	private List<DeciResult<T>> treeResults;
-	private DeciTreeFactory<T> treeFactory;
-	
-	
-	/*
-	public static <T> Model factory(ModelOption<T> option, String incomingData) {		// TODO: Remover
-		try {
-			return new ModelHelper<T>(option, incomingData, null);
-			
-		} catch (Exception e) {
-			logException(e);
-			return new ModelFailed();
-		}
-	}*/
-	
+	private DeciTreeFactory<T> treeFactory;	
 	
 	
 	public static <T> Model factory(ModelOption<T> option, String incomingData, HttpServletRequest request) {

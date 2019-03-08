@@ -163,6 +163,11 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 				Timestamp lastChanged = stmtResult.getTimestamp(StoreDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
+				
+				
+				stmtResult.getLong(StoreDbTableColumn.COL_LAST_CHANGED_BY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.lastChangedBy = stmtResult.getLong(StoreDbTableColumn.COL_LAST_CHANGED_BY);
 		
 				
 				finalResult.add(dataInfo);

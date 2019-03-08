@@ -96,11 +96,14 @@ public class StoreResource {
 	
 	@DELETE
 	@Path(DELETE_STORE)
-	public Response deleteStore(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-			                    @HeaderParam("codStore") @DefaultValue("-1") long codStore) {
+	public Response deleteStore(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codStore")       @DefaultValue("-1") long codStore,
+			                    @HeaderParam("TOKEN_USERNAME") String username) {
+		
 		StoreInfo recordInfo = new StoreInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
+		recordInfo.username = username;
 		
 		Model model = new StoreModelDelete(recordInfo);
 		model.executeRequest();

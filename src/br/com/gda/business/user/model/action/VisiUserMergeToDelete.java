@@ -1,7 +1,9 @@
 package br.com.gda.business.user.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
+import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.info.UserMerger;
 import br.com.gda.business.user.model.decisionTree.RootUserSelect;
@@ -19,6 +21,12 @@ final class VisiUserMergeToDelete extends ActionVisitorTemplateMerge<UserInfo, U
 	
 	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
 		return RootUserSelect.class;
+	}
+	
+	
+	
+	@Override protected List<UserInfo> toActionClassHook(List<UserInfo> recordInfos) {
+		return UserCopier.copyToDelete(recordInfos);	
 	}
 	
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.action.LazyStoreEnforceEntityCateg;
 import br.com.gda.business.store.model.action.LazyStoreKeepStore;
+import br.com.gda.business.store.model.action.LazyStoreMergeUsername;
 import br.com.gda.business.store.model.action.LazyStoreNodeUpdateComp;
 import br.com.gda.business.store.model.action.LazyStoreNodeUpdatePerson;
 import br.com.gda.business.store.model.action.LazyStoreNodeUpsertAddress;
@@ -110,6 +111,7 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
 		ActionStd<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
+		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> enforceEntityCateg = new LazyStoreEnforceEntityCateg(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> keepStore = new LazyStoreKeepStore(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> updateStore = new LazyStoreUpdate(option.conn, option.schemaName);	
@@ -119,7 +121,8 @@ public final class RootStoreUpdate implements DeciTree<StoreInfo> {
 		ActionLazy<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionStd<StoreInfo> select = new RootStoreSelect(option).toAction();		
 		
-		enforceLChanged.addPostAction(enforceEntityCateg);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(enforceEntityCateg);
 		enforceEntityCateg.addPostAction(keepStore);
 		
 		keepStore.addPostAction(updateStore);		

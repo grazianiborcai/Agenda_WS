@@ -75,6 +75,12 @@ public final class StoreMerger extends InfoWritterFactory<StoreInfo> {
 	
 	
 	
+	static public StoreInfo merge(StoreInfo sourceOne, StoreInfo sourceTwo) {
+		return new StoreMergerToDelete().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<StoreInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
 		if (sourceOnes.get(0) instanceof AddressInfo 		&&
@@ -114,13 +120,17 @@ public final class StoreMerger extends InfoWritterFactory<StoreInfo> {
 		
 		if (sourceOnes.get(0) instanceof UserInfo 			&&
 			sourceTwos.get(0) instanceof StoreInfo		)
-			return new StoreMergerUser().merge((List<UserInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
-		
+			return new StoreMergerUser().merge((List<UserInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);			
 		
 		
 		if (sourceOnes.get(0) instanceof UsernameInfo 		&&
 			sourceTwos.get(0) instanceof StoreInfo		)
 			return new StoreMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
+		
+		
+		if (sourceOnes.get(0) instanceof StoreInfo 			&&
+			sourceTwos.get(0) instanceof StoreInfo		)
+			return new StoreMergerToDelete().merge((List<StoreInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
 		
 		return null;
 	}

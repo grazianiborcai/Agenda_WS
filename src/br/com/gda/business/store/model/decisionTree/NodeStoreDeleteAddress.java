@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.action.StdStoreDeleteAddress;
+import br.com.gda.business.store.model.action.LazyStoreDeleteAddress;
+import br.com.gda.business.store.model.action.StdStoreEnforceAddressKey;
 import br.com.gda.business.store.model.action.StdStoreSuccess;
 import br.com.gda.business.store.model.checker.StoreCheckHasAddress;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -64,9 +66,12 @@ public final class NodeStoreDeleteAddress implements DeciTree<StoreInfo> {
 	private List<ActionStd<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> deleteAddress = new StdStoreDeleteAddress(option);
+		ActionStd<StoreInfo> enforceAddressKey = new StdStoreEnforceAddressKey(option);
+		ActionLazy<StoreInfo> deleteAddress = new LazyStoreDeleteAddress(option.conn, option.schemaName);
 		
-		actions.add(deleteAddress);		
+		enforceAddressKey.addPostAction(deleteAddress);
+		
+		actions.add(enforceAddressKey);		
 		return actions;
 	}
 	

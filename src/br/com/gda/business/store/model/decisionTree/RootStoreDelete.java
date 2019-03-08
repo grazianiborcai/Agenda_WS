@@ -5,13 +5,17 @@ import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.action.LazyStoreDelete;
+import br.com.gda.business.store.model.action.LazyStoreEnforceLChanged;
+import br.com.gda.business.store.model.action.LazyStoreMergeUsername;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeleteAddress;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeleteComp;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeletePerson;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeletePhone;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeleteUser;
+import br.com.gda.business.store.model.action.LazyStoreUpdate;
+import br.com.gda.business.store.model.action.StdStoreMergeToDelete;
+import br.com.gda.business.store.model.checker.StoreCheckDelete;
 import br.com.gda.business.store.model.checker.StoreCheckExist;
-import br.com.gda.business.store.model.checker.StoreCheckKey;
 import br.com.gda.business.store.model.checker.StoreCheckLangu;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -45,15 +49,12 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 	
 	private ModelChecker<StoreInfo> buildDecisionChecker(DeciTreeOption<StoreInfo> option) {
 		final boolean EXIST_ON_DB = true;
-		final boolean KEY_NOT_NULL = true;	
 		
 		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = KEY_NOT_NULL;
-		checker = new StoreCheckKey(checkerOption);
+		checker = new StoreCheckDelete();
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
@@ -78,7 +79,10 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 	private List<ActionStd<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> select = new RootStoreSelect(option).toAction();
+		ActionStd<StoreInfo> mergeToDelete = new StdStoreMergeToDelete(option);
+		ActionLazy<StoreInfo> enforceLChanged = new LazyStoreEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> update = new LazyStoreUpdate(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deleteAddress = new LazyStoreNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deletePhone = new LazyStoreNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deletePerson = new LazyStoreNodeDeletePerson(option.conn, option.schemaName);
@@ -86,14 +90,18 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 		ActionLazy<StoreInfo> deleteUser = new LazyStoreNodeDeleteUser(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deleteStore = new LazyStoreDelete(option.conn, option.schemaName);			
 		
-		select.addPostAction(deleteAddress);
-		select.addPostAction(deletePhone);
-		select.addPostAction(deletePerson);
-		select.addPostAction(deleteCompany);
-		select.addPostAction(deleteUser);
-		select.addPostAction(deleteStore);
+		mergeToDelete.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(update);
 		
-		actions.add(select);		
+		update.addPostAction(deleteAddress);
+		update.addPostAction(deletePhone);
+		update.addPostAction(deletePerson);
+		update.addPostAction(deleteCompany);
+		update.addPostAction(deleteUser);
+		update.addPostAction(deleteStore);
+		
+		actions.add(mergeToDelete);		
 		return actions;
 	}
 	

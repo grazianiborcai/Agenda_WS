@@ -95,6 +95,7 @@ public final class RootUserDelete implements DeciTree<UserInfo> {
 		updateUser.addPostAction(deletePassword);
 		updateUser.addPostAction(deletePerson);
 		//TODO: delete token ? Ou colocar dentro de password ? 
+		//TODO: enviar email ao usuario informando que sua conta foi eliminada
 		actions.add(mergeToDelete);
 		
 		return actions;

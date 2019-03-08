@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.action.StdStoreDeleteComp;
+import br.com.gda.business.store.model.action.LazyStoreDeleteComp;
+import br.com.gda.business.store.model.action.StdStoreEnforceCompKey;
 import br.com.gda.business.store.model.action.StdStoreSuccess;
 import br.com.gda.business.store.model.checker.StoreCheckHasComp;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -64,9 +66,12 @@ public final class NodeStoreDeleteComp implements DeciTree<StoreInfo> {
 	private List<ActionStd<StoreInfo>> buildActionsOnPassed(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> deleteCompany = new StdStoreDeleteComp(option);
+		ActionStd<StoreInfo> enforceCompanyKey = new StdStoreEnforceCompKey(option);
+		ActionLazy<StoreInfo> deleteCompany = new LazyStoreDeleteComp(option.conn, option.schemaName);
 		
-		actions.add(deleteCompany);		
+		enforceCompanyKey.addPostAction(deleteCompany);
+		
+		actions.add(enforceCompanyKey);		
 		return actions;
 	}
 	

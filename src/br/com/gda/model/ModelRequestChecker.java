@@ -92,12 +92,12 @@ public abstract class ModelRequestChecker {
 	
 	private boolean isValid(Object recordInfo, String fieldName, String paramValue) {
 		try {
-			Field field = recordInfo.getClass().getDeclaredField(fieldName);			
-			String fieldValue = String.valueOf(field.get(recordInfo));
+			Field field = recordInfo.getClass().getDeclaredField(fieldName);
 			
-			if (fieldValue == null)
-				return true;
+			if (field.get(recordInfo) == null) 
+				return true;			
 			
+			String fieldValue = String.valueOf(field.get(recordInfo));			
 			return fieldValue.equals(paramValue);
 		
 		} catch (Exception e) {
