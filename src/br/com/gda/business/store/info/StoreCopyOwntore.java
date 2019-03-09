@@ -15,6 +15,7 @@ final class StoreCopyOwntore extends InfoCopierTemplate<StoreInfo, OwntoreInfo>{
 		StoreInfo result = new StoreInfo();
 		result.codOwner = source.codOwner;
 		result.codStore = source.codStore;
+		result.username = source.username;
 		result.codLanguage = source.codLanguage;
 		return result;
 	}

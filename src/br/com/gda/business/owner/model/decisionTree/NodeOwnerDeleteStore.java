@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.action.StdOwnerDeleteStore;
+import br.com.gda.business.owner.model.action.LazyOwnerDeleteStore;
+import br.com.gda.business.owner.model.action.StdOwnerEnforceOwntoreKey;
 import br.com.gda.business.owner.model.action.StdOwnerSuccess;
 import br.com.gda.business.owner.model.checker.OwnerCheckHasOwntore;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -64,9 +66,12 @@ public final class NodeOwnerDeleteStore implements DeciTree<OwnerInfo> {
 	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> deleteStore = new StdOwnerDeleteStore(option);
+		ActionStd<OwnerInfo> enforceOwntoreKey = new StdOwnerEnforceOwntoreKey(option);
+		ActionLazy<OwnerInfo> deleteStore = new LazyOwnerDeleteStore(option.conn, option.schemaName);
 		
-		actions.add(deleteStore);		
+		enforceOwntoreKey.addPostAction(deleteStore);
+		
+		actions.add(enforceOwntoreKey);		
 		return actions;
 	}
 	

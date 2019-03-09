@@ -9,6 +9,7 @@ public final class OwntoreInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codUser;
+	public String username;
 	public String codLanguage;
 	public String recordMode;
 	

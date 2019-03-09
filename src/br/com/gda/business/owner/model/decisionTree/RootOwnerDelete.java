@@ -86,8 +86,8 @@ public final class RootOwnerDelete implements DeciTree<OwnerInfo> {
 		ActionLazy<OwnerInfo> deletePhone = new LazyOwnerNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deletePerson = new LazyOwnerDeletePerson(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteCompany = new LazyOwnerDeleteComp(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> deleteUser = new LazyOwnerDeleteUser(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteStore = new LazyOwnerNodeDeleteStore(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> deleteUser = new LazyOwnerDeleteUser(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteOwner = new LazyOwnerDelete(option.conn, option.schemaName);			
 		
 		mergeToDelete.addPostAction(enforceLChanged);
@@ -97,9 +97,9 @@ public final class RootOwnerDelete implements DeciTree<OwnerInfo> {
 		update.addPostAction(deleteAddress);
 		update.addPostAction(deletePhone);
 		update.addPostAction(deletePerson);
-		update.addPostAction(deleteCompany);
-		update.addPostAction(deleteUser);
+		update.addPostAction(deleteCompany);		
 		update.addPostAction(deleteStore);
+		update.addPostAction(deleteUser);
 		update.addPostAction(deleteOwner);
 		
 		actions.add(mergeToDelete);

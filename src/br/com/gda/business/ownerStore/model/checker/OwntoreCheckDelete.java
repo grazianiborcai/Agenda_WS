@@ -18,6 +18,7 @@ public final class OwntoreCheckDelete extends ModelCheckerTemplateSimple<Owntore
 	@Override protected boolean checkHook(OwntoreInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	|| 
 			recordInfo.codStore 	<= 0 	|| 
+			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null		)	
 			
 			return FAILED;

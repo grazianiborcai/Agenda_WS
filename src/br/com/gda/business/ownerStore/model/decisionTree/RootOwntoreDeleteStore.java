@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.ownerStore.info.OwntoreInfo;
-import br.com.gda.business.ownerStore.model.action.StdOwntoreDeleteStore;
+import br.com.gda.business.ownerStore.model.action.LazyOwntoreDeleteStore;
+import br.com.gda.business.ownerStore.model.action.StdOwntoreMergeToDelete;
 import br.com.gda.business.ownerStore.model.checker.OwntoreCheckDelete;
 import br.com.gda.business.ownerStore.model.checker.OwntoreCheckLangu;
 import br.com.gda.business.ownerStore.model.checker.OwntoreCheckStore;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -69,9 +71,12 @@ public final class RootOwntoreDeleteStore implements DeciTree<OwntoreInfo> {
 	private List<ActionStd<OwntoreInfo>> buildActionsOnPassed(DeciTreeOption<OwntoreInfo> option) {
 		List<ActionStd<OwntoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<OwntoreInfo> deleteStore = new StdOwntoreDeleteStore(option);
+		ActionStd<OwntoreInfo> mergeToDelete = new StdOwntoreMergeToDelete(option);
+		ActionLazy<OwntoreInfo> deleteStore = new LazyOwntoreDeleteStore(option.conn, option.schemaName);
 		
-		actions.add(deleteStore);
+		mergeToDelete.addPostAction(deleteStore);
+		
+		actions.add(mergeToDelete);
 		return actions;
 	}
 	
