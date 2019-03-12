@@ -8,8 +8,8 @@ import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeMerger;
 import br.com.gda.business.employeeWorkTime.model.decisionTree.RootEmpWTimeDelete;
-import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.business.storeWorkTime.model.decisionTree.RootStoreWTimeSelect;
+import br.com.gda.business.storeWorkTime.info.StowotmInfo;
+import br.com.gda.business.storeWorkTime.model.decisionTree.RootStowotmSelect;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -31,31 +31,31 @@ public final class LazyEmposDeleteEWT extends ActionLazyTemplate<EmposInfo, EmpW
 	
 	
 	@Override protected List<EmpWTimeInfo> translateRecordInfosHook(List<EmposInfo> recordInfos) {
-		List<StoreWTimeInfo> storeWTs = getStoreWTime(recordInfos);
+		List<StowotmInfo> storeWTs = getStoreWTime(recordInfos);
 		return merge(recordInfos, storeWTs);
 	}
 	
 	
 	
-	private List<StoreWTimeInfo> getStoreWTime(List<EmposInfo> recordInfos) {
-		DeciTree<StoreWTimeInfo> treeSelect = new RootStoreWTimeSelect(makeStoreWTOption(recordInfos));
+	private List<StowotmInfo> getStoreWTime(List<EmposInfo> recordInfos) {
+		DeciTree<StowotmInfo> treeSelect = new RootStowotmSelect(makeStoreWTOption(recordInfos));
 		treeSelect.makeDecision();
 		return treeSelect.getDecisionResult().getResultset();
 	}
 	
 	
 	
-	private DeciTreeOption<StoreWTimeInfo> makeStoreWTOption(List<EmposInfo> recordInfos) {
-		DeciTreeOption<StoreWTimeInfo> option = new DeciTreeOption<>();
+	private DeciTreeOption<StowotmInfo> makeStoreWTOption(List<EmposInfo> recordInfos) {
+		DeciTreeOption<StowotmInfo> option = new DeciTreeOption<>();
 		option.conn = this.conn;
 		option.schemaName = this.schemaName;
-		option.recordInfos = StoreWTimeInfo.copyFrom(recordInfos);		
+		option.recordInfos = StowotmInfo.copyFrom(recordInfos);		
 		return option;
 	}
 	
 	
 	
-	private List<EmpWTimeInfo> merge(List<EmposInfo> storeEmps, List<StoreWTimeInfo> storeWTs) {
+	private List<EmpWTimeInfo> merge(List<EmposInfo> storeEmps, List<StowotmInfo> storeWTs) {
 		return new EmpWTimeMerger().merge(storeEmps, storeWTs);
 	}
 	

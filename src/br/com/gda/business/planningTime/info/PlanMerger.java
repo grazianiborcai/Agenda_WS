@@ -7,7 +7,7 @@ import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
+import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.info.InfoWritterFactory;
 
 public final class PlanMerger extends InfoWritterFactory<PlanInfo> {	
@@ -18,7 +18,7 @@ public final class PlanMerger extends InfoWritterFactory<PlanInfo> {
 	
 	
 	
-	public PlanInfo merge(PlanInfo sourceOne, StoreWTimeInfo sourceTwo) {
+	public PlanInfo merge(PlanInfo sourceOne, StowotmInfo sourceTwo) {
 		return new PlanMergerSWT().merge(sourceOne, sourceTwo);
 	}
 	
@@ -63,8 +63,8 @@ public final class PlanMerger extends InfoWritterFactory<PlanInfo> {
 	@SuppressWarnings("unchecked")
 	@Override protected List<PlanInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {		
 		if (sourceOnes.get(0) instanceof PlanInfo 	&&
-			sourceTwos.get(0) instanceof StoreWTimeInfo		)
-			return new PlanMergerSWT().merge((List<PlanInfo>) sourceOnes, (List<StoreWTimeInfo>) sourceTwos);
+			sourceTwos.get(0) instanceof StowotmInfo		)
+			return new PlanMergerSWT().merge((List<PlanInfo>) sourceOnes, (List<StowotmInfo>) sourceTwos);
 		
 		
 		if (sourceOnes.get(0) instanceof PlanInfo 	&&

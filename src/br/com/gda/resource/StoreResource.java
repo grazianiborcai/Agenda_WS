@@ -3,8 +3,6 @@ package br.com.gda.resource;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -14,7 +12,6 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -35,14 +32,13 @@ import br.com.gda.business.storeLeaveDate.model.StoreLDateModelDelete;
 import br.com.gda.business.storeLeaveDate.model.StoreLDateModelInsert;
 import br.com.gda.business.storeLeaveDate.model.StoreLDateModelSelect;
 import br.com.gda.business.storeLeaveDate.model.StoreLDateModelUpdate;
-import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.business.storeWorkTime.model.StoreWTimeModelDelete;
-import br.com.gda.business.storeWorkTime.model.StoreWTimeModelInsert;
-import br.com.gda.business.storeWorkTime.model.StoreWTimeModelSelect;
-import br.com.gda.business.storeWorkTime.model.StoreWTimeModelUpdate;
+import br.com.gda.business.storeWorkTime.info.StowotmInfo;
+import br.com.gda.business.storeWorkTime.model.StowotmModelDelete;
+import br.com.gda.business.storeWorkTime.model.StowotmModelInsert;
+import br.com.gda.business.storeWorkTime.model.StowotmModelSelect;
+import br.com.gda.business.storeWorkTime.model.StowotmModelUpdate;
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.business.storeWorkTimeConflict.model.StoreCoModelSelect;
-import br.com.gda.legacy.model.StoreModel;
 import br.com.gda.model.Model;
 
 @Path("/Store")
@@ -65,7 +61,6 @@ public class StoreResource {
 	private static final String INSERT_STORE_LDATE = "/insertStoreLeaveDate";
 	private static final String UPDATE_STORE_LDATE = "/updateStoreLeaveDate";
 	private static final String DELETE_STORE_LDATE = "/deleteStoreLeaveDate";
-	private static final String SELECT_STORE_LOCATION = "/selectStoreLoc";
 	private static final String SELECT_STORE_WT_CONFLICT = "/selectStoreWorkTimeConflict";
 
 	
@@ -73,8 +68,7 @@ public class StoreResource {
 	@Path(INSERT_STORE)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStore(@Context HttpServletRequest request, String incomingData) {
-		//TODO: verificar fluxo: Store com status inativo/eliminado
-		//TODO: n�o tem campos de hor�rio de funcionamento
+		
 		Model model = new StoreModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
@@ -86,7 +80,7 @@ public class StoreResource {
 	@Path(UPDATE_STORE)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateStore(@Context HttpServletRequest request, String incomingData) {
-		//TODO: falta inativar/ativar um Store
+		
 		Model model = new StoreModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
@@ -146,33 +140,6 @@ public class StoreResource {
 		Model model = new FeeStoreModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
-	}
-
-	
-	
-	@GET
-	@Path(SELECT_STORE_LOCATION)
-	public Response selectStoreLoc(@DefaultValue("Z") @HeaderParam("zoneId") String zoneId,
-			@HeaderParam("codOwner") List<Long> codOwner, @QueryParam("codStore") List<Integer> codStore,
-			@QueryParam("cnpj") List<String> cnpj, @QueryParam("inscEstadual") List<String> inscEstadual,
-			@QueryParam("inscMunicipal") List<String> inscMunicipal,
-			@QueryParam("razaoSocial") List<String> razaoSocial, @QueryParam("name") List<String> name,
-			@QueryParam("address1") List<String> address1, @QueryParam("address2") List<String> address2,
-			@QueryParam("postalcode") List<Integer> postalcode, @QueryParam("city") List<String> city,
-			@QueryParam("country") List<String> country, @QueryParam("state") List<String> state,
-			@QueryParam("phone") List<String> phone, @QueryParam("codCurr") List<String> codCurr,
-			@DefaultValue(" ") @QueryParam("recordMode") List<String> recordMode,
-			@QueryParam("language") List<String> language,
-			@DefaultValue("true") @QueryParam("withMaterial") Boolean withMaterial,
-			@DefaultValue("true") @QueryParam("withEmployee") Boolean withEmployee,
-			@QueryParam("latitude") String latitude, @QueryParam("longitude") String longitude) {
-
-		Float latitudeF = Float.parseFloat(latitude);
-		Float longitudeF = Float.parseFloat(longitude);
-
-		return new StoreModel().selectStoreResponseLoc(codOwner, codStore, cnpj, inscEstadual, inscMunicipal,
-				razaoSocial, name, address1, address2, postalcode, city, country, state, phone, codCurr, recordMode,
-				language, withMaterial, withEmployee, zoneId, latitudeF, longitudeF);
 	}
 	
 	
@@ -243,12 +210,12 @@ public class StoreResource {
 			                         @HeaderParam("codStore")   @DefaultValue("-1") int codStore,
 			                         @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday) {
 
-		StoreWTimeInfo recordInfo = new StoreWTimeInfo();
+		StowotmInfo recordInfo = new StowotmInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codWeekday = codWeekday;
 		
-		Model model = new StoreWTimeModelSelect(recordInfo);
+		Model model = new StowotmModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -260,7 +227,7 @@ public class StoreResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStoreWTime(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new StoreWTimeModelInsert(incomingData, request);
+		Model model = new StowotmModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -269,16 +236,18 @@ public class StoreResource {
 	
 	@DELETE
 	@Path(DELETE_STORE_WTIME)
-	public Response deleteStoreWTime(@HeaderParam("codOwner")   @DefaultValue("-1") long codOwner, 
-			                         @HeaderParam("codStore")   @DefaultValue("-1") int codStore,
-			                         @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday) {
+	public Response deleteStoreWTime(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore")    @DefaultValue("-1") int codStore,
+			                         @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday,
+			                         @HeaderParam("TOKEN_USERNAME") String username) {
 		
-		StoreWTimeInfo recordInfo = new StoreWTimeInfo();
+		StowotmInfo recordInfo = new StowotmInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codWeekday = codWeekday;
+		recordInfo.username = username;
 		
-		Model model = new StoreWTimeModelDelete(recordInfo);
+		Model model = new StowotmModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -290,7 +259,7 @@ public class StoreResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateStoreWTime(@Context HttpServletRequest request, String incomingData) {
 
-		Model model = new StoreWTimeModelUpdate(incomingData, request);
+		Model model = new StowotmModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}

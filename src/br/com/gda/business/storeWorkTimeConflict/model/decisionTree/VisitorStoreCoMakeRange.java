@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.business.storeWorkTime.model.decisionTree.RootStoreWTimeSelect;
+import br.com.gda.business.storeWorkTime.info.StowotmInfo;
+import br.com.gda.business.storeWorkTime.model.decisionTree.RootStowotmSelect;
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.common.TimeRange;
@@ -47,7 +47,7 @@ final class VisitorStoreCoMakeRange implements ActionVisitorEnforce<StoreCoInfo>
 	
 	private void buildRange(List<StoreCoInfo> recordInfos) {		
 		for (StoreCoInfo eachRecord : recordInfos) {			
-			StoreWTimeInfo storeWTime = getStoreWTime(eachRecord);
+			StowotmInfo storeWTime = getStoreWTime(eachRecord);
 			
 			TimeRange timeRange = new TimeRange(storeWTime.beginTime, storeWTime.endTime);
 			List<TimeRange> timeRanges = timeRange.getMissingRanges(eachRecord.beginTime, eachRecord.endTime);
@@ -74,16 +74,16 @@ final class VisitorStoreCoMakeRange implements ActionVisitorEnforce<StoreCoInfo>
 	
 	
 	
-	private StoreWTimeInfo getStoreWTime(StoreCoInfo recordInfo) {
-		DeciTreeOption<StoreWTimeInfo> option = new DeciTreeOption<>();
+	private StowotmInfo getStoreWTime(StoreCoInfo recordInfo) {
+		DeciTreeOption<StowotmInfo> option = new DeciTreeOption<>();
 		option.conn = conn;
 		option.schemaName = schemaName;
 		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(StoreWTimeInfo.copyFrom(recordInfo));
+		option.recordInfos.add(StowotmInfo.copyFrom(recordInfo));
 		
-		DeciTree<StoreWTimeInfo> select = new RootStoreWTimeSelect(option);	
+		DeciTree<StowotmInfo> select = new RootStowotmSelect(option);	
 		select.makeDecision();
-		List<StoreWTimeInfo> resultset = select.getDecisionResult().getResultset();
+		List<StowotmInfo> resultset = select.getDecisionResult().getResultset();
 		
 		checkResultset(resultset);		
 		return resultset.get(0);
@@ -91,7 +91,7 @@ final class VisitorStoreCoMakeRange implements ActionVisitorEnforce<StoreCoInfo>
 	
 	
 	
-	private void checkResultset(List<StoreWTimeInfo> resultset) {
+	private void checkResultset(List<StowotmInfo> resultset) {
 		if (resultset.isEmpty())
 			throw new IllegalStateException(SystemMessage.STORE_WTIME_NOT_FOUND);
 		

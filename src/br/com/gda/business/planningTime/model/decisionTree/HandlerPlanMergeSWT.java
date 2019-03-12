@@ -7,15 +7,15 @@ import java.util.List;
 import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.info.PlanMerger;
-import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.business.storeWorkTime.model.decisionTree.RootStoreWTimeSelect;
+import br.com.gda.business.storeWorkTime.info.StowotmInfo;
+import br.com.gda.business.storeWorkTime.model.decisionTree.RootStowotmSelect;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerPlanMergeSWT extends ActionLazyTemplate<PlanInfo, StoreWTimeInfo> {
+final class HandlerPlanMergeSWT extends ActionLazyTemplate<PlanInfo, StowotmInfo> {
 	private List<PlanInfo> originalInfos;
 	
 	
@@ -25,11 +25,11 @@ final class HandlerPlanMergeSWT extends ActionLazyTemplate<PlanInfo, StoreWTimeI
 	
 	
 	
-	@Override protected List<StoreWTimeInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
+	@Override protected List<StowotmInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
 		originalInfos = recordInfos;
 		
 		List<PlanDataInfo> collectedInfo = collectDataInfo(recordInfos);
-		return StoreWTimeInfo.copyFrom(collectedInfo);
+		return StowotmInfo.copyFrom(collectedInfo);
 	}
 	
 	
@@ -46,13 +46,13 @@ final class HandlerPlanMergeSWT extends ActionLazyTemplate<PlanInfo, StoreWTimeI
 	
 	
 	
-	@Override protected ActionStd<StoreWTimeInfo> getInstanceOfActionHook(DeciTreeOption<StoreWTimeInfo> option) {
-		return new RootStoreWTimeSelect(option).toAction();
+	@Override protected ActionStd<StowotmInfo> getInstanceOfActionHook(DeciTreeOption<StowotmInfo> option) {
+		return new RootStowotmSelect(option).toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<PlanInfo> translateResultHook(DeciResult<StoreWTimeInfo> result) {
+	@Override protected DeciResult<PlanInfo> translateResultHook(DeciResult<StowotmInfo> result) {
 		DeciResultHelper<PlanInfo> resultHelper = new DeciResultHelper<>();
 		resultHelper.copyWithoutResultset(result);
 		

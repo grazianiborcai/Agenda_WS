@@ -2,6 +2,7 @@ package br.com.gda.dao;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -42,6 +43,17 @@ public final class DaoFormatter {
 		
 		if (localDate != null) 
 			resultDate = Date.valueOf(localDate);		
+		
+		return resultDate;
+	}
+	
+	
+	
+	public static Timestamp localToSqlTimestamp(LocalDateTime localDateTime) {
+		Timestamp resultDate = null;
+		
+		if (localDateTime != null) 
+			resultDate = Timestamp.valueOf(localDateTime);		
 		
 		return resultDate;
 	}

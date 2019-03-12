@@ -4,13 +4,13 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
+import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class PlanMergeVisitorSWT implements InfoMergerVisitor<PlanInfo, PlanInfo, StoreWTimeInfo> {
+final class PlanMergeVisitorSWT implements InfoMergerVisitor<PlanInfo, PlanInfo, StowotmInfo> {
 
-	@Override public PlanInfo writeRecord(PlanInfo sourceOne, StoreWTimeInfo sourceTwo) {
+	@Override public PlanInfo writeRecord(PlanInfo sourceOne, StowotmInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		PlanInfo resultInfo = new PlanInfo();	
@@ -32,14 +32,14 @@ final class PlanMergeVisitorSWT implements InfoMergerVisitor<PlanInfo, PlanInfo,
 	
 	
 	
-	private void checkArgument(PlanInfo sourceOne, StoreWTimeInfo sourceTwo) {		
+	private void checkArgument(PlanInfo sourceOne, StowotmInfo sourceTwo) {		
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private boolean shouldMerge(PlanDataInfo planData, StoreWTimeInfo storeWTime) {
+	private boolean shouldMerge(PlanDataInfo planData, StowotmInfo storeWTime) {
 		if (planData.codStore == storeWTime.codStore &&
 			planData.codWeekday == storeWTime.codWeekday )
 			return true;
@@ -49,7 +49,7 @@ final class PlanMergeVisitorSWT implements InfoMergerVisitor<PlanInfo, PlanInfo,
 	
 	
 	
-	private List<PlanDataInfo> mergeStoreWTime(PlanDataInfo planData, StoreWTimeInfo storeWTime) {
+	private List<PlanDataInfo> mergeStoreWTime(PlanDataInfo planData, StowotmInfo storeWTime) {
 		PlanDataInfo resultInfo = makeClone(planData);
 		resultInfo.beginTime = LocalTime.of(storeWTime.beginTime.getHour(), storeWTime.beginTime.getMinute());
 		resultInfo.endTime = LocalTime.of(storeWTime.endTime.getHour(), storeWTime.endTime.getMinute());
@@ -72,7 +72,7 @@ final class PlanMergeVisitorSWT implements InfoMergerVisitor<PlanInfo, PlanInfo,
 
 
 
-	@Override public boolean shouldWrite(PlanInfo sourceOne, StoreWTimeInfo sourceTwo) {
+	@Override public boolean shouldWrite(PlanInfo sourceOne, StowotmInfo sourceTwo) {
 		if (sourceTwo.beginTime == null)
 			return false;
 		

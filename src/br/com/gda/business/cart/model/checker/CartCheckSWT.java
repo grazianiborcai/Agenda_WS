@@ -3,8 +3,8 @@ package br.com.gda.business.cart.model.checker;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.storeWorkTime.info.StoreWTimeInfo;
-import br.com.gda.business.storeWorkTime.model.checker.StoreWTimeCheckSWT;
+import br.com.gda.business.storeWorkTime.info.StowotmInfo;
+import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckSWT;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
@@ -12,11 +12,11 @@ public final class CartCheckSWT implements ModelChecker<CartInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoreWTimeInfo> checker;
+	private ModelChecker<StowotmInfo> checker;
 	
 	
 	public CartCheckSWT(ModelCheckerOption option) {
-		checker = new StoreWTimeCheckSWT(option);
+		checker = new StowotmCheckSWT(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class CartCheckSWT implements ModelChecker<CartInfo> {
 	
 	
 	@Override public boolean check(CartInfo recordInfo) {
-		return checker.check(StoreWTimeInfo.copyFrom(recordInfo));
+		return checker.check(StowotmInfo.copyFrom(recordInfo));
 	}
 
 	

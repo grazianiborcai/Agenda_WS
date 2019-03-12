@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.info.InfoCopier;
 
 public final class UsernameCopier {
@@ -31,6 +32,20 @@ public final class UsernameCopier {
 	
 	public static List<UsernameInfo> copyFromStore(List<StoreInfo> sources) {
 		InfoCopier<UsernameInfo, StoreInfo> copier = new UsernameCopyStore();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static UsernameInfo copyFromStowotm(StowotmInfo source) {
+		InfoCopier<UsernameInfo, StowotmInfo> copier = new UsernameCopyStowotm();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromStowotm(List<StowotmInfo> sources) {
+		InfoCopier<UsernameInfo, StowotmInfo> copier = new UsernameCopyStowotm();
 		return copier.makeCopy(sources);
 	}
 }
