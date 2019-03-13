@@ -485,4 +485,10 @@ public final class SystemMessage {
 	
 	// Store-Authorization
 	public static final String STORE_AUTH_NOT_AUTHORIZED = "Store-Authorization: not authorized";
+	
+	
+	
+	// Store-Time
+	public static final String STORE_TIME_IS_EMPTY = "Store-time is blank";
+	public static final String STORE_TIME_IS_FILLED = "Store-time is not blank";
 }

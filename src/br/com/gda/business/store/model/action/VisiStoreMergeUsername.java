@@ -26,7 +26,7 @@ final class VisiStoreMergeUsername extends ActionVisitorTemplateMerge<StoreInfo,
 	
 	
 	
-	protected List<UsernameInfo> toActionClassHook(List<StoreInfo> recordInfos) {
+	@Override protected List<UsernameInfo> toActionClassHook(List<StoreInfo> recordInfos) {
 		return UsernameCopier.copyFromStore(recordInfos);	
 	}
 	

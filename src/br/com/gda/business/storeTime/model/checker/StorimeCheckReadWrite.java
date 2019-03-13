@@ -1,21 +1,21 @@
-package br.com.gda.business.store.model.checker;
+package br.com.gda.business.storeTime.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.storeTime.info.StorimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoreCheckRead extends ModelCheckerTemplateSimple<StoreInfo> {
+public final class StorimeCheckReadWrite extends ModelCheckerTemplateSimple<StorimeInfo> {
 
-	public StoreCheckRead() {
+	public StorimeCheckReadWrite() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(StorimeInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	|| 
 			recordInfo.codStore 	<= 0 	|| 
 			recordInfo.username 	== null ||

@@ -46,6 +46,8 @@ import br.com.gda.business.phone.model.PhoneModelUpdate;
 import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
 import br.com.gda.business.phoneSnapshot.model.PhoneSnapModelInsert;
 import br.com.gda.business.phoneSnapshot.model.PhoneSnapModelSelect;
+import br.com.gda.business.storeTime.info.StorimeInfo;
+import br.com.gda.business.storeTime.model.StorimeModelSelect;
 import br.com.gda.business.userSnapshot.info.UserSnapInfo;
 import br.com.gda.business.userSnapshot.model.UserSnapModelInsert;
 import br.com.gda.business.userSnapshot.model.UserSnapModelSelect;
@@ -117,6 +119,7 @@ public class TestResource {
 	private static final String JWTOKEN_VALIDATE = "/jwtokenValidate";
 	private static final String TOKEN_AUTH = "/tokenAuth";
 	private static final String SELECT_STORAUTH = "/authStorauth";
+	private static final String SELECT_STORIME = "/authStorime";
 	
 	
 	
@@ -740,6 +743,27 @@ public class TestResource {
 		recordInfo.username = username;
 		
 		Model model = new StorauthModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STORIME)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStorime(@HeaderParam("codOwner") long codOwner,
+								  @HeaderParam("codStore") long codStore,
+								  @HeaderParam("username") String username,
+								  @HeaderParam("codLanguage") String codLanguage) {
+
+		StorimeInfo recordInfo = new StorimeInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new StorimeModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
