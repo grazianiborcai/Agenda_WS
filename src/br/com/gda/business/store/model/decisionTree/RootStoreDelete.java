@@ -11,6 +11,7 @@ import br.com.gda.business.store.model.action.LazyStoreNodeDeleteAddress;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeleteComp;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeletePerson;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeletePhone;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeleteStowotm;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeleteUser;
 import br.com.gda.business.store.model.action.LazyStoreUpdate;
 import br.com.gda.business.store.model.action.StdStoreMergeToDelete;
@@ -83,6 +84,7 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 		ActionLazy<StoreInfo> enforceLChanged = new LazyStoreEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> update = new LazyStoreUpdate(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deleteStowotm = new LazyStoreNodeDeleteStowotm(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deleteAddress = new LazyStoreNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deletePhone = new LazyStoreNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deletePerson = new LazyStoreNodeDeletePerson(option.conn, option.schemaName);
@@ -94,6 +96,7 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
 		
+		update.addPostAction(deleteStowotm);
 		update.addPostAction(deleteAddress);
 		update.addPostAction(deletePhone);
 		update.addPostAction(deletePerson);

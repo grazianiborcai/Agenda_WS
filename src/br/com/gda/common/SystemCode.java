@@ -63,6 +63,8 @@ public final class SystemCode {
 	public static final int STORE_TECH_FIELD_SHOULD_BE_EMPTY			= 1125;
 	public static final int STORE_WTIME_FLAG_DELETE_TRUE				= 1126;
 	public static final int STORE_WTIME_FLAG_DELETE_FALSE				= 1127;
+	public static final int STORE_WTIME_HAVE_ITEM 						= 1128;
+	public static final int STORE_WTIME_IS_EMPTY 						= 1129;	
 	
 	// Master Data
 	public static final int EMP_POS_ALREADY_EXIST						= 1150;

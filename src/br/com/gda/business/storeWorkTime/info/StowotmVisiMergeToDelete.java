@@ -45,8 +45,7 @@ final class StowotmVisiMergeToDelete implements InfoMergerVisitor<StowotmInfo, S
 	
 	@Override public boolean shouldWrite(StowotmInfo sourceOne, StowotmInfo sourceTwo) {		
 		return (sourceOne.codOwner 	 == sourceTwo.codOwner	&& 
-				sourceOne.codStore 	 == sourceTwo.codStore	&&
-				sourceOne.codWeekday == sourceTwo.codWeekday	);
+				sourceOne.codStore 	 == sourceTwo.codStore	);
 	}
 	
 	

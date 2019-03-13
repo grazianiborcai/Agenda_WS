@@ -177,12 +177,14 @@ public final class SystemMessage {
 	public static final String STORE_WTIME_FLAG_DELETE_TRUE = "Store's working time flagged to deletion";
 	public static final String STORE_WTIME_FLAG_DELETE_FALSE = "No Store's working time flagged to deletion";
 	public static final String STORE_WTIME_FLAGGED_AS_DELETED = "Store working time data is flagged as deleted on DB";	
+	public static final String STORE_WTIME_HAVE_ITEM = "Store's working time has items";
+	public static final String STORE_WTIME_IS_EMPTY = "Store's working time is empty";
 	public static final String STORE_WTIME_LEAVE_FOUND = "There is a store's leave date for selected time";
 	public static final String STORE_WTIME_NO_LEAVE_FOUND = "Selected time is free of store's leave dates";
 	public static final String STORE_WTIME_NOT_FOUND = "Store's working time not found on DB";
 	public static final String STORE_WTIME_VALID_WORKHOUR = "Selected time is valid for Store working time range";	
 	public static final String STORE_WTIME_WORKHOUR_OUT_OF_RANGE = "Selected time is out of range of Store working time";
-
+		
 	
 	
 	// Customer

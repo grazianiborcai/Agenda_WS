@@ -150,7 +150,7 @@ public class StoreResource {
 			                          @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
 			                          @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
 								      @HeaderParam("codMaterial") @DefaultValue("-1") long codMat, 
-								      @HeaderParam("codLanguage") String codLanguage) {
+								      @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 
 
 		MatEmpInfo recordInfo = new MatEmpInfo();
@@ -206,14 +206,18 @@ public class StoreResource {
 	
 	@GET
 	@Path(SELECT_STORE_WTIME)
-	public Response selectStoreWTime(@HeaderParam("codOwner")   @DefaultValue("-1") long codOwner, 
-			                         @HeaderParam("codStore")   @DefaultValue("-1") int codStore,
-			                         @HeaderParam("codWeekday") @DefaultValue("-1") int codWeekday) {
+	public Response selectStoreWTime(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore")    @DefaultValue("-1") int codStore,
+			                         @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday,			                         
+			                         @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                         @HeaderParam("TOKEN_USERNAME") String username) {
 
 		StowotmInfo recordInfo = new StowotmInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codWeekday = codWeekday;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
 		
 		Model model = new StowotmModelSelect(recordInfo);
 		model.executeRequest();
@@ -239,12 +243,14 @@ public class StoreResource {
 	public Response deleteStoreWTime(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
 			                         @HeaderParam("codStore")    @DefaultValue("-1") int codStore,
 			                         @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday,
+			                         @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                         @HeaderParam("TOKEN_USERNAME") String username) {
 		
 		StowotmInfo recordInfo = new StowotmInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codWeekday = codWeekday;
+		recordInfo.codLanguage = codLanguage;
 		recordInfo.username = username;
 		
 		Model model = new StowotmModelDelete(recordInfo);
