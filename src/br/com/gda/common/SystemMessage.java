@@ -165,6 +165,8 @@ public final class SystemMessage {
 	public static final String STORE_FEE_NOT_FOUND = "Store's fee data not found on DB";
 	public static final String STORE_LDATE_ALREADY_EXIST = "Store's leave date already exist on DB";
 	public static final String STORE_LDATE_FLAGGED_AS_DELETED = "Store leave date data is flagged as deleted on DB";	
+	public static final String STORE_LDATE_HAVE_ITEM = "Store's leave date has items";
+	public static final String STORE_LDATE_IS_EMPTY = "Store's leave date is empty";
 	public static final String STORE_LDATE_NOT_FOUND = "Store's leave date not found on DB";
 	public static final String STORE_MAT_ALREADY_EXIST = "Store's material data already exist on DB";
 	public static final String STORE_MAT_EMP_ALREADY_EXIST = "Employee's material data already exist on DB";	
@@ -184,9 +186,9 @@ public final class SystemMessage {
 	public static final String STORE_WTIME_NOT_FOUND = "Store's working time not found on DB";
 	public static final String STORE_WTIME_VALID_WORKHOUR = "Selected time is valid for Store working time range";	
 	public static final String STORE_WTIME_WORKHOUR_OUT_OF_RANGE = "Selected time is out of range of Store working time";
+	
+
 		
-	
-	
 	// Customer
 	public static final String CUS_ALREADY_EXIST = "Customer's data already exist on DB";	
 	public static final String CUS_CPF_ALREADY_EXIST = "Customer's CPF already exist on DB";	

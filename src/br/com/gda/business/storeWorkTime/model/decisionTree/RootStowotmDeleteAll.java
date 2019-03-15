@@ -40,6 +40,8 @@ public final class RootStowotmDeleteAll implements DeciTree<StowotmInfo> {
 	
 	
 	private ModelChecker<StowotmInfo> buildDecisionChecker(DeciTreeOption<StowotmInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<StowotmInfo>> queue = new ArrayList<>();		
 		ModelChecker<StowotmInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -47,7 +49,6 @@ public final class RootStowotmDeleteAll implements DeciTree<StowotmInfo> {
 		checker = new StowotmCheckDeleteAll();
 		queue.add(checker);
 		
-		final boolean EXIST_ON_DB = true;	
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;

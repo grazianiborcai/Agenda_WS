@@ -36,7 +36,7 @@ import br.com.gda.business.phoneSnapshot.dao.PhoneSnapDbTableColumn;
 import br.com.gda.business.reserve.dao.ReserveDbTableColumn;
 import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
-import br.com.gda.business.storeLeaveDate.dao.StoreLDateDbTableColumn;
+import br.com.gda.business.storeLeaveDate.dao.StolevateDbTableColumn;
 import br.com.gda.business.storeWorkTime.dao.StowotmDbTableColumn;
 import br.com.gda.business.storeWorkTimeConflict.dao.StoreCoDbTableColumn;
 import br.com.gda.business.user.dao.UserDbTableColumn;
@@ -71,7 +71,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmposDbTableColumn());
 		addTable(new MasterDataDbTableColumn());
 		addTable(new StowotmDbTableColumn());
-		addTable(new StoreLDateDbTableColumn());
+		addTable(new StolevateDbTableColumn());
 		addTable(new EmpWTimeDbTableColumn());
 		addTable(new EmpLDateDbTableColumn());
 		addTable(new EmpCoDbTableColumn());
