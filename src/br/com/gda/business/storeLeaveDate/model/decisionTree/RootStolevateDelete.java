@@ -8,7 +8,7 @@ import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateDelete;
 import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateEnforceLChanged;
 import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateMergeUsername;
 import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateUpdate;
-import br.com.gda.business.storeLeaveDate.model.action.StdStolevateMergeToDelete;
+import br.com.gda.business.storeLeaveDate.model.action.StdStolevateMergeToDeleteKey;
 import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckExist;
 import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckStorauth;
 import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckDelete;
@@ -74,7 +74,7 @@ public final class RootStolevateDelete implements DeciTree<StolevateInfo> {
 	private List<ActionStd<StolevateInfo>> buildActionsOnPassed(DeciTreeOption<StolevateInfo> option) {
 		List<ActionStd<StolevateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StolevateInfo> mergeToDelete = new StdStolevateMergeToDelete(option);
+		ActionStd<StolevateInfo> mergeToDelete = new StdStolevateMergeToDeleteKey(option);
 		ActionLazy<StolevateInfo> enforceLChanged = new LazyStolevateEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StolevateInfo> enforceLChangedBy = new LazyStolevateMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StolevateInfo> update = new LazyStolevateUpdate(option.conn, option.schemaName);

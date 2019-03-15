@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.business.storeLeaveDate.model.action.StdStolevateEnforceDel;
-import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateSelect;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateSelectKey;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -24,7 +24,7 @@ public final class StolevateCheckSoftDelete extends ModelCheckerTemplateAction<S
 		DeciTreeOption<StolevateInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
 		ActionStd<StolevateInfo> actionSelect = new StdStolevateEnforceDel(option);
-		actionSelect.addPostAction(new LazyStolevateSelect(conn, schemaName));		
+		actionSelect.addPostAction(new LazyStolevateSelectKey(conn, schemaName));		
 		return actionSelect;
 	}
 	
