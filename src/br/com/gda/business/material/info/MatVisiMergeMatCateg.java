@@ -3,13 +3,13 @@ package br.com.gda.business.material.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.CurrencyInfo;
+import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class MatVisitorCurrency implements InfoMergerVisitor<MatInfo, CurrencyInfo, MatInfo> {
+final class MatVisiMergeMatCateg implements InfoMergerVisitor<MatInfo, MatCategInfo, MatInfo> {
 
-	@Override public MatInfo writeRecord(CurrencyInfo sourceOne, MatInfo sourceTwo) {
+	@Override public MatInfo writeRecord(MatCategInfo sourceOne, MatInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		MatInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class MatVisitorCurrency implements InfoMergerVisitor<MatInfo, CurrencyInf
 	
 	
 	
-	private void checkArgument(CurrencyInfo sourceOne, MatInfo sourceTwo) {
+	private void checkArgument(MatCategInfo sourceOne, MatInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,17 +37,17 @@ final class MatVisitorCurrency implements InfoMergerVisitor<MatInfo, CurrencyInf
 	
 	
 	
-	private MatInfo merge(CurrencyInfo sourceOne, MatInfo sourceTwo) {
-		sourceTwo.codCurr = sourceOne.codCurr;
-		sourceTwo.txtCurr = sourceOne.txtCurr;
+	private MatInfo merge(MatCategInfo sourceOne, MatInfo sourceTwo) {
+		sourceTwo.codCategory = sourceOne.codCategory;
+		sourceTwo.txtCategory = sourceOne.txtCategory;
 
 		return sourceTwo;
 	}
 
 
 	
-	@Override public boolean shouldWrite(CurrencyInfo sourceOne, MatInfo sourceTwo) {
-		return (sourceTwo.codCurr.equals(sourceOne.codCurr));
+	@Override public boolean shouldWrite(MatCategInfo sourceOne, MatInfo sourceTwo) {
+		return (sourceOne.codCategory == sourceTwo.codCategory);
 	}		
 	
 	

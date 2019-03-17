@@ -7,12 +7,12 @@ import br.com.gda.info.InfoMerger;
 
 final class MatMergerCurrency extends InfoMerger<MatInfo, CurrencyInfo, MatInfo> {
 	public MatInfo merge(CurrencyInfo sourceOne, MatInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new MatVisitorCurrency());
+		return super.write(sourceOne, sourceTwo, new MatVisiMergeCurrency());
 	}
 	
 	
 	
 	public List<MatInfo> merge(List<CurrencyInfo> sourceOnes, List<MatInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new MatVisitorCurrency());
+		return super.write(sourceOnes, sourceTwos, new MatVisiMergeCurrency());
 	}
 }

@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
 public final class MatInfo extends InfoRecord implements Cloneable {
@@ -30,6 +29,8 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public boolean isLocked;
 	public String recordMode;
 	public LocalDateTime lastChanged;
+	public long lastChangedBy;
+	public String username;
 	
 	//TODO: testar material precisao com mais de 2 casas decimais
 	
@@ -45,7 +46,8 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 		codBusiness = DefaultValue.number();	
 		codLanguage = DefaultValue.language();
 		isLocked = DefaultValue.boole();
-		recordMode = RecordMode.RECORD_OK;	
+		recordMode = DefaultValue.recordMode();	
+		lastChangedBy = DefaultValue.number();
 	}
 	
 	

@@ -26,7 +26,8 @@ public final class MatCheckWrite extends ModelCheckerTemplateSimple<MatInfo> {
 			|| recordInfo.codCurr		== null
 			|| recordInfo.codUnit		== null
 			|| recordInfo.codGroup		<= 0
-			|| recordInfo.codLanguage	== null	)
+			|| recordInfo.codLanguage	== null
+			|| recordInfo.username		== null	)
 			
 			return FAILED;
 		

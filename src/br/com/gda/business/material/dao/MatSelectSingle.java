@@ -54,12 +54,9 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new MatWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -154,10 +151,11 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<MatInfo> {
+		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String MAT_TEXT_COL = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_NAME;
-		private final String MAT_LANGU_COL = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_COD_LANGUAGE;
-		private final String MAT_DESCR_COL = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_DESCRIPTION;
+		private final String COL_NAME = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_NAME;
+		private final String COL_LANGU = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_COD_LANGUAGE;
+		private final String COL_DESCR = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_DESCRIPTION;
 		
 		@Override public List<MatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatInfo> finalResult = new ArrayList<>();
@@ -169,8 +167,8 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 				MatInfo dataInfo = new MatInfo();
 				dataInfo.codOwner = stmtResult.getLong(MatDbTableColumn.COL_COD_OWNER);
 				dataInfo.codMat = stmtResult.getLong(MatDbTableColumn.COL_COD_MATERIAL);
-				dataInfo.txtMat = stmtResult.getString(MAT_TEXT_COL);
-				dataInfo.description = stmtResult.getString(MAT_DESCR_COL);
+				dataInfo.txtMat = stmtResult.getString(COL_NAME);
+				dataInfo.description = stmtResult.getString(COL_DESCR);
 				dataInfo.codType = stmtResult.getInt(MatDbTableColumn.COL_COD_TYPE);
 				dataInfo.codCategory = stmtResult.getInt(MatDbTableColumn.COL_COD_CATEGORY);
 				dataInfo.price = stmtResult.getDouble(MatDbTableColumn.COL_PRICE);
@@ -178,13 +176,19 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 				dataInfo.codCurr = stmtResult.getString(MatDbTableColumn.COL_COD_CURRRENCY);
 				dataInfo.codUnit = stmtResult.getString(MatDbTableColumn.COL_COD_UNIT);	
 				dataInfo.codGroup = stmtResult.getInt(MatDbTableColumn.COL_COD_GROUP);
-				dataInfo.codLanguage = stmtResult.getString(MAT_LANGU_COL);	
+				dataInfo.codLanguage = stmtResult.getString(COL_LANGU);	
 				dataInfo.isLocked = stmtResult.getBoolean(MatDbTableColumn.COL_IS_LOCKED);	
 				dataInfo.recordMode = stmtResult.getString(MatDbTableColumn.COL_RECORD_MODE);
+				
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(MatDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
+				
+				
+				stmtResult.getLong(MatDbTableColumn.COL_LAST_CHANGED_BY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.lastChangedBy = stmtResult.getLong(MatDbTableColumn.COL_LAST_CHANGED_BY);
 				
 				
 				finalResult.add(dataInfo);

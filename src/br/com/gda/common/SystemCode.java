@@ -111,6 +111,8 @@ public final class SystemCode {
 	public static final int USER_CATEG_NOT_FOUND						= 1189;
 	public static final int AUTH_GROUP_ALREADY_EXIST					= 1190;
 	public static final int AUTH_GROUP_NOT_FOUND						= 1191;
+	public static final int MAT_MOV_TYPE_ALREADY_EXIST					= 1192;
+	public static final int MAT_MOV_TYPE_NOT_FOUND						= 1193;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
@@ -383,4 +385,15 @@ public final class SystemCode {
 	// Store-Time
 	public static final int STORE_TIME_IS_EMPTY							= 2900;
 	public static final int STORE_TIME_IS_FILLED						= 2901;
+	
+	//Material Movement
+	public static final int MAT_MOV_ALREADY_EXIST 						= 2950;
+	public static final int MAT_MOV_NOT_FOUND 							= 2951;
+	public static final int MAT_MOV_TECH_FIELD_SHOULD_BE_EMPTY			= 2952;
+	
+	//Material Stock
+	public static final int MAT_STOCK_ALREADY_EXIST 					= 3000;
+	public static final int MAT_STOCK_NOT_FOUND 						= 3001;
+	public static final int MAT_STOCK_NO_BALANCE 						= 3002;
+	public static final int MAT_STOCK_LIMIT_EXCEEDED					= 3003;
 }

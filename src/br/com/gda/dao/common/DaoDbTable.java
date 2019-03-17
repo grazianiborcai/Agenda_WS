@@ -43,6 +43,10 @@ public final class DaoDbTable {
 	public static final String MAT_EMP_TABLE = "employee_material";
 	public static final String MAT_GROUP_TABLE = "material_group";
 	public static final String MAT_GROUP_TEXT_TABLE = "material_group_text";
+	public static final String MAT_MOV_TYPE_TABLE = "material_movement_type";
+	public static final String MAT_MOV_TYPE_TEXT_TABLE = "material_movement_type_text";
+	public static final String MAT_MOVEMENT_TABLE = "material_movement";
+	public static final String MAT_STOCK_TABLE = "material_stock";
 	public static final String MAT_STORE_TABLE = "material_store";
 	public static final String MAT_TABLE = "material";
 	public static final String MAT_SNAPSHOT_TABLE = "material_snapshot";

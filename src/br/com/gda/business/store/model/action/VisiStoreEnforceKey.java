@@ -1,29 +1,14 @@
 package br.com.gda.business.store.model.action;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.model.action.ActionVisitorEnforce;
+import br.com.gda.business.store.info.StoreSetterKey;
+import br.com.gda.info.InfoSetter;
+import br.com.gda.model.action.ActionVisitorTemplateEnforce;
 
-final class VisiStoreEnforceKey implements ActionVisitorEnforce<StoreInfo> {
+final class VisiStoreEnforceKey extends ActionVisitorTemplateEnforce<StoreInfo> {
 	
-	@Override public List<StoreInfo> executeTransformation(List<StoreInfo> recordInfos) {
-		List<StoreInfo> resultRecords = new ArrayList<>();		
-		
-		for (StoreInfo eachRecord : recordInfos) {
-			resultRecords.add(enforce(eachRecord));
-		}
-		
-		return resultRecords;
-	}	
-	
-	
-	
-	private StoreInfo enforce(StoreInfo recordInfo) {
-		StoreInfo enforcedRecord = new StoreInfo();
-		enforcedRecord.codOwner = recordInfo.codOwner;
-		enforcedRecord.codStore = recordInfo.codStore;
-		return enforcedRecord;
+	@Override protected StoreInfo enforceHook(StoreInfo recordInfo) {
+		InfoSetter<StoreInfo> attrSetter = new StoreSetterKey();
+		return attrSetter.setAttr(recordInfo);
 	}
 }

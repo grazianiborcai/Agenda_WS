@@ -29,6 +29,7 @@ import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.business.masterData.info.MatGroupInfo;
+import br.com.gda.business.masterData.info.MatmovTypeInfo;
 import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.model.MatUnitModelSelect;
 import br.com.gda.business.masterData.model.OrderStatusModelSelect;
@@ -51,6 +52,7 @@ import br.com.gda.business.masterData.model.GenderModelSelect;
 import br.com.gda.business.masterData.model.LanguModelSelect;
 import br.com.gda.business.masterData.model.MatCategModelSelect;
 import br.com.gda.business.masterData.model.MatGroupModelSelect;
+import br.com.gda.business.masterData.model.MatmovTypeModelSelect;
 import br.com.gda.business.masterData.model.MatTypeModelSelect;
 import br.com.gda.model.Model;
 
@@ -79,6 +81,7 @@ public final class MasterDataResource {
 	private static final String SELECT_AREA_PHONE = "/selectAreaPhone";
 	private static final String SELECT_ENTITY_CATEG = "/selectEntityCateg";
 	private static final String SELECT_USER_CATEG = "/selectUserCategory";
+	private static final String SELECT_MAT_MOV_TYPE = "/selectMatmovType";
 	
 	
 	@GET
@@ -470,6 +473,26 @@ public final class MasterDataResource {
 		
 		
 		Model model = new UserCategModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_MAT_MOV_TYPE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectMatmovType(@HeaderParam("codLanguage")  @DefaultValue("EN") String codLanguage, 
+			                        @HeaderParam("codMatMovType") String codMatMovType) {
+		
+		MatmovTypeInfo recordInfo = new MatmovTypeInfo();
+		recordInfo.codLanguage = codLanguage;
+		
+		if (codMatMovType != null)
+			recordInfo.codMatmovType = codMatMovType.charAt(0);
+		
+		
+		Model model = new MatmovTypeModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

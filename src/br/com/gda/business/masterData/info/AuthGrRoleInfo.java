@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.gda.info.InfoRecord;
 
-public final class AuthGrRoleInfo  extends InfoRecord implements Cloneable {
+public final class AuthGrRoleInfo extends InfoRecord implements Cloneable {
 	public String codAuthGroup;
 	public String codAuthRole;	
 	

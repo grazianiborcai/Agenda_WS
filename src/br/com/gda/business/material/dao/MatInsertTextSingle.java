@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
@@ -86,6 +87,13 @@ public final class MatInsertTextSingle implements DaoStmt<MatInfo> {
 			stmt.setString(i++, recordInfo.txtMat);
 			stmt.setString(i++, recordInfo.description);
 			stmt.setTimestamp(i++, lastChanged);
+			
+			
+			if (recordInfo.lastChangedBy >= 0) {
+				stmt.setLong(i++, recordInfo.lastChangedBy);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
 			
 			return stmt;
 		}		

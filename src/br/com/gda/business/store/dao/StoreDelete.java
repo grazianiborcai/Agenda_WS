@@ -19,8 +19,7 @@ public final class StoreDelete implements DaoStmtExec<StoreInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

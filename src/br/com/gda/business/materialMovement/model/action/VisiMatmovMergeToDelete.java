@@ -1,0 +1,29 @@
+package br.com.gda.business.materialMovement.model.action;
+
+import java.sql.Connection;
+
+import br.com.gda.business.materialMovement.info.MatmovInfo;
+import br.com.gda.business.materialMovement.info.MatmovMerger;
+import br.com.gda.business.materialMovement.model.decisionTree.RootMatmovSelect;
+import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.decisionTree.DeciTree;
+
+final class VisiMatmovMergeToDelete extends ActionVisitorTemplateMerge<MatmovInfo, MatmovInfo> {
+	
+	public VisiMatmovMergeToDelete(Connection conn, String schemaName) {
+		super(conn, schemaName, MatmovInfo.class);
+	}
+	
+	
+	
+	@Override protected Class<? extends DeciTree<MatmovInfo>> getTreeClassHook() {
+		return RootMatmovSelect.class;
+	}
+	
+	
+	
+	@Override protected Class<? extends InfoWritterFactory<MatmovInfo>> getMergerClassHook() {
+		return MatmovMerger.class;
+	}
+}

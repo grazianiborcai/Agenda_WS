@@ -26,6 +26,7 @@ public final class SystemMessage {
 	public static final String ACTION_NOT_INIT = " is NULL or EMPTY. Action was not initialized as expected";
 	public static final String AGED_DATE = "Date is in the past";
 	public static final String ARGUMENT_DONT_MATCH = " arguments don't match";
+	public static final String ARGUMENT_NOT_FOUND = " argument not found";
 	public static final String BAD_DATE = "Invalid date";	
 	public static final String BAD_TIME_RANGE = "Invalid time range";	
 	public static final String CLASS_MISMATCH = "Class type mismatch";	
@@ -91,8 +92,10 @@ public final class SystemMessage {
 	public static final String LANGUAGE_NOT_FOUND = "Language not found on DB";
 	public static final String MAT_CATEG_ALREADY_EXIST = "Category already exist on DB";
 	public static final String MAT_CATEG_NOT_FOUND = "Category not found on DB";
-	public static final String MAT_GROUP_ALREADY_EXIST = "Group already exist on DB";
-	public static final String MAT_GROUP_NOT_FOUND = "Group not found on DB";	
+	public static final String MAT_GROUP_ALREADY_EXIST = "Material Group already exist on DB";
+	public static final String MAT_GROUP_NOT_FOUND = "Material Group not found on DB";		
+	public static final String MAT_MOV_TYPE_ALREADY_EXIST = "Material Movement Type already exist on DB";
+	public static final String MAT_MOV_TYPE_NOT_FOUND = "Material Movement Type not found on DB";		
 	public static final String MAT_TYPE_ALREADY_EXIST = "Type already exist on DB";	
 	public static final String MAT_TYPE_NOT_FOUND = "Type not found on DB";	
 	public static final String ORDER_STATUS_ALREADY_EXIST = "Order Status already exist on DB";	
@@ -495,4 +498,19 @@ public final class SystemMessage {
 	// Store-Time
 	public static final String STORE_TIME_IS_EMPTY = "Store-time is blank";
 	public static final String STORE_TIME_IS_FILLED = "Store-time is not blank";
+	
+	
+	
+	// Material Movement
+	public static final String MAT_MOV_ALREALDY_EXIST = "Material movement data already exist on DB";	
+	public static final String MAT_MOV_NOT_FOUND = "Material movement data not found on DB";
+	public static final String MAT_MOV_TECH_FIELD_SHOULD_BE_EMPTY = "Material movement: technical fields shouldn't be filled";
+	
+	
+	
+	// Material Stock
+	public static final String MAT_STOCK_ALREALDY_EXIST = "Material Stock data already exist on DB";	
+	public static final String MAT_STOCK_NOT_FOUND = "Material Stock data not found on DB";
+	public static final String MAT_STOCK_NO_BALANCE = "No stock balance";
+	public static final String MAT_STOCK_LIMIT_EXCEEDED = "Material Stock: limit exceeded";
 }
