@@ -53,7 +53,11 @@
         <security:intercept-url pattern="/**/Employee/delete**" 				access="hasAuthority('EMPLOYEE_WRITE')" />
         <security:intercept-url pattern="/**/Employee/select**" 				access="hasAuthority('EMPLOYEE_READ')" 	/>        
         <security:intercept-url pattern="/**/Material/insertMatmov" 			access="hasAuthority('MAT_MOV_WRITE')"	/>
-        <security:intercept-url pattern="/**/Material/selectMatmov" 			access="hasAuthority('MAT_MOV_READ')"	/>
+        <security:intercept-url pattern="/**/Material/selectMatmov" 			access="hasAuthority('MAT_MOV_READ')"	/>        
+        <security:intercept-url pattern="/**/Material/deleteMatStore" 			access="hasAuthority('MAT_STORE_WRITE')"/>
+        <security:intercept-url pattern="/**/Material/updateMatStore" 			access="hasAuthority('MAT_STORE_WRITE')"/>
+        <security:intercept-url pattern="/**/Material/insertMatStore" 			access="hasAuthority('MAT_STORE_WRITE')"/>
+        <security:intercept-url pattern="/**/Material/selectMatStore" 			access="isAuthenticated()"				/>
         <security:intercept-url pattern="/**/Material/insert**" 				access="hasAuthority('MATERIAL_WRITE')"	/>
         <security:intercept-url pattern="/**/Material/update**" 				access="hasAuthority('MATERIAL_WRITE')" />
         <security:intercept-url pattern="/**/Material/delete**" 				access="hasAuthority('MATERIAL_WRITE')" />

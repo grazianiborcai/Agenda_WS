@@ -119,4 +119,18 @@ public final class DaoFormatter {
 		
 		return number;
 	}
+	
+	
+	
+	public static float longToDecimal(long number) {
+		float result = number;
+		result = result / 100;
+		return result;
+	}
+	
+	
+	
+	public static long decimalToLong(float number) {
+		return (long) number * 100;
+	}
 }

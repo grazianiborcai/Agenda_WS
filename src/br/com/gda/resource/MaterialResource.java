@@ -21,10 +21,11 @@ import br.com.gda.business.material.model.MatModelUpdate;
 import br.com.gda.business.materialMovement.info.MatmovInfo;
 import br.com.gda.business.materialMovement.model.MatmovModelInsert;
 import br.com.gda.business.materialMovement.model.MatmovModelSelect;
-import br.com.gda.business.materialStore.info.MatStoreInfo;
-import br.com.gda.business.materialStore.model.MatStoreModelDelete;
-import br.com.gda.business.materialStore.model.MatStoreModelInsert;
-import br.com.gda.business.materialStore.model.MatStoreModelSelect;
+import br.com.gda.business.materialStore.info.MatoreInfo;
+import br.com.gda.business.materialStore.model.MatoreModelDelete;
+import br.com.gda.business.materialStore.model.MatoreModelInsert;
+import br.com.gda.business.materialStore.model.MatoreModelSelect;
+import br.com.gda.business.materialStore.model.MatoreModelUpdate;
 import br.com.gda.model.Model;
 
 @Path("/Material")
@@ -35,6 +36,7 @@ public class MaterialResource {
 	private static final String SELECT_MATERIAL = "/selectMaterial";	
 	private static final String SELECT_MAT_STORE = "/selectMatStore";
 	private static final String INSERT_MAT_STORE = "/insertMatStore";
+	private static final String UPDATE_MAT_STORE = "/updateMatStore";
 	private static final String DELETE_MAT_STORE = "/deleteMatStore";
 	private static final String INSERT_MAT_MOV = "/insertMatmov";
 	private static final String SELECT_MAT_MOV = "/selectMatmov";
@@ -109,20 +111,21 @@ public class MaterialResource {
 	@GET
 	@Path(SELECT_MAT_STORE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMatStore(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-			                       @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
-								   @HeaderParam("codMaterial") @DefaultValue("-1") long codMat, 
-								   @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+	public Response selectMatore(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
+			                     @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
+								 @HeaderParam("codMaterial") @DefaultValue("-1") long codMat, 
+								 @HeaderParam("TOKEN_USERNAME") String username,
+								 @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 
 
-		MatStoreInfo recordInfo = new MatStoreInfo();
+		MatoreInfo recordInfo = new MatoreInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codMat = codMat;
+		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
-		
-		Model modelSelect = new MatStoreModelSelect(recordInfo);
+		Model modelSelect = new MatoreModelSelect(recordInfo);
 		modelSelect.executeRequest();
 		return modelSelect.getResponse();
 	}
@@ -132,30 +135,45 @@ public class MaterialResource {
 	@POST
 	@Path(INSERT_MAT_STORE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertMatStore(@Context HttpServletRequest request, String incomingData) {
+	public Response insertMatore(@Context HttpServletRequest request, String incomingData) {
 		
-		Model modelInsert = new MatStoreModelInsert(incomingData, request);
+		Model modelInsert = new MatoreModelInsert(incomingData, request);
 		modelInsert.executeRequest();
 		return modelInsert.getResponse();
 	}
 	
 	
 	
+	@POST
+	@Path(UPDATE_MAT_STORE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateMatore(@Context HttpServletRequest request, String incomingData) {
+
+		Model modelUpdate = new MatoreModelUpdate(incomingData, request);
+		modelUpdate.executeRequest();
+		return modelUpdate.getResponse();
+	}	
+	
+	
+	
 	@DELETE
 	@Path(DELETE_MAT_STORE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteMatStore(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-			                       @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
-								   @HeaderParam("codMaterial") @DefaultValue("-1") long codMat) {
+	public Response deleteMatore(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner,
+			                     @HeaderParam("codStore")    	@DefaultValue("-1") long codStore,
+								 @HeaderParam("codMaterial") 	@DefaultValue("-1") long codMat,
+								 @HeaderParam("TOKEN_USERNAME") String username,
+								 @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
 
-
-		MatStoreInfo recordInfo = new MatStoreInfo();
+		MatoreInfo recordInfo = new MatoreInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codMat = codMat;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model modelSelect = new MatStoreModelDelete(recordInfo);
+		Model modelSelect = new MatoreModelDelete(recordInfo);
 		modelSelect.executeRequest();
 		return modelSelect.getResponse();
 	}

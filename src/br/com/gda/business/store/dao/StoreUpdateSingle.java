@@ -8,6 +8,7 @@ import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -95,9 +96,7 @@ public final class StoreUpdateSingle implements DaoStmt<StoreInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<StoreInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreInfo recordInfo) throws SQLException {			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);
 			
 			int i = 1;
 			

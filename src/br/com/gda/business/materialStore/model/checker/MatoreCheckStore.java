@@ -1,28 +1,28 @@
-package br.com.gda.business.cart.model.checker;
+package br.com.gda.business.materialStore.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.materialStore.info.MatoreInfo;
-import br.com.gda.business.materialStore.model.checker.MatoreCheckExist;
+import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.checker.StoreCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class CartCheckMS implements ModelChecker<CartInfo> {
+public final class MatoreCheckStore implements ModelChecker<MatoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatoreInfo> checker;
+	private ModelChecker<StoreInfo> checker;
 	
 	
-	public CartCheckMS(ModelCheckerOption option) {
-		checker = new MatoreCheckExist(option);
+	public MatoreCheckStore(ModelCheckerOption option) {
+		checker = new StoreCheckExist(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<CartInfo> recordInfos) {
-		for (CartInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<MatoreInfo> recordInfos) {
+		for (MatoreInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -32,8 +32,8 @@ public final class CartCheckMS implements ModelChecker<CartInfo> {
 
 	
 	
-	@Override public boolean check(CartInfo recordInfo) {
-		return checker.check(MatoreInfo.copyFrom(recordInfo));
+	@Override public boolean check(MatoreInfo recordInfo) {
+		return checker.check(StoreInfo.copyFrom(recordInfo));
 	}
 
 	
