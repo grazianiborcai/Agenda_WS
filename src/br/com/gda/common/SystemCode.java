@@ -53,9 +53,6 @@ public final class SystemCode {
 	public static final int STORE_LDATE_FLAGGED_AS_DELETED 				= 1115;	
 	public static final int STORE_WTIME_VALID_WORKHOUR					= 1116;
 	public static final int STORE_WTIME_WORKHOUR_OUT_OF_RANGE			= 1117;
-	public static final int STORE_MAT_ALREADY_EXIST 					= 1118;
-	public static final int STORE_MAT_NOT_FOUND 						= 1119;
-	public static final int STORE_MAT_FLAGGED_AS_DELETED 				= 1120;
 	public static final int STORE_WTIME_NO_LEAVE_FOUND					= 1121;
 	public static final int STORE_WTIME_LEAVE_FOUND						= 1122;
 	public static final int STORE_FEE_ALREADY_EXIST 					= 1123;
@@ -396,4 +393,11 @@ public final class SystemCode {
 	public static final int MAT_STOCK_NOT_FOUND 						= 3001;
 	public static final int MAT_STOCK_NO_BALANCE 						= 3002;
 	public static final int MAT_STOCK_LIMIT_EXCEEDED					= 3003;
+	
+	//Material Store
+	public static final int MAT_STORE_PRICE_INCONSISTENCY				= 3050;
+	public static final int MAT_STORE_MAT_CATEG_IS_NULL					= 3051;
+	public static final int MAT_STORE_FLAGGED_AS_DELETED 				= 3052;
+	public static final int MAT_STORE_ALREADY_EXIST 					= 3053;
+	public static final int MAT_STORE_NOT_FOUND 						= 3054;
 }

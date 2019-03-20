@@ -44,12 +44,12 @@ public final class MatoreCheckSoftDelete extends ModelCheckerTemplateAction<Mato
 	
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {	
-		return SystemMessage.STORE_MAT_FLAGGED_AS_DELETED;
+		return SystemMessage.MAT_STORE_FLAGGED_AS_DELETED;
 	}
 	
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		return SystemCode.STORE_MAT_FLAGGED_AS_DELETED;	
+		return SystemCode.MAT_STORE_FLAGGED_AS_DELETED;	
 	}
 }

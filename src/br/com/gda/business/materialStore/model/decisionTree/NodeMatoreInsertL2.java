@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.gda.business.materialStore.info.MatoreInfo;
 import br.com.gda.business.materialStore.model.action.LazyMatoreInsert;
 import br.com.gda.business.materialStore.model.action.LazyMatoreMergeUsername;
-import br.com.gda.business.materialStore.model.action.LazyMatoreSelect;
 import br.com.gda.business.materialStore.model.action.LazyMatoreUpdate;
 import br.com.gda.business.materialStore.model.action.StdMatoreEnforceLChanged;
 import br.com.gda.business.materialStore.model.checker.MatoreCheckSoftDelete;
@@ -22,11 +21,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class NodeMatoreInsert implements DeciTree<MatoreInfo> {
+public final class NodeMatoreInsertL2 implements DeciTree<MatoreInfo> {
 	private DeciTree<MatoreInfo> tree;
 	
 	
-	public NodeMatoreInsert(DeciTreeOption<MatoreInfo> option) {
+	public NodeMatoreInsertL2(DeciTreeOption<MatoreInfo> option) {
 		DeciTreeHelperOption<MatoreInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -65,13 +64,14 @@ final class NodeMatoreInsert implements DeciTree<MatoreInfo> {
 		ActionStd<MatoreInfo> enforceLChanged = new StdMatoreEnforceLChanged(option);
 		ActionLazy<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> insert = new LazyMatoreInsert(option.conn, option.schemaName);
-		ActionLazy<MatoreInfo> select = new LazyMatoreSelect(option.conn, option.schemaName);
+		ActionStd<MatoreInfo> select = new RootMatoreSelect(option).toAction();
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(insert);
-		insert.addPostAction(select);
 		
 		actions.add(enforceLChanged);
+		actions.add(select);
+		
 		return actions;
 	}
 	
@@ -83,13 +83,14 @@ final class NodeMatoreInsert implements DeciTree<MatoreInfo> {
 		ActionStd<MatoreInfo> enforceLChanged = new StdMatoreEnforceLChanged(option);
 		ActionLazy<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> update = new LazyMatoreUpdate(option.conn, option.schemaName);
-		ActionLazy<MatoreInfo> select = new LazyMatoreSelect(option.conn, option.schemaName);
+		ActionStd<MatoreInfo> select = new RootMatoreSelect(option).toAction();
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
-		update.addPostAction(select);
-				
+
 		actions.add(enforceLChanged);
+		actions.add(select);
+
 		return actions;
 	}
 	

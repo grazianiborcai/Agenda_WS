@@ -1,23 +1,17 @@
 package br.com.gda.business.materialStore.model.checker;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-import br.com.gda.business.materialStore.dao.MatoreSelect;
 import br.com.gda.business.materialStore.info.MatoreInfo;
+import br.com.gda.business.materialStore.model.decisionTree.RootMatoreSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.dao.DaoStmtExec;
-import br.com.gda.dao.DaoStmtExecOption;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class MatoreCheckExist extends ModelCheckerTemplateSimple<MatoreInfo> {
-	private final boolean RECORD_EXIST = true;
-	private final boolean NO_ENTRY_FOUND_ON_DB = false;
-	
+public final class MatoreCheckExist extends ModelCheckerTemplateAction<MatoreInfo> {
 	
 	public MatoreCheckExist(ModelCheckerOption option) {
 		super(option);
@@ -25,58 +19,40 @@ public final class MatoreCheckExist extends ModelCheckerTemplateSimple<MatoreInf
 	
 	
 	
-	@Override protected boolean checkHook(MatoreInfo recordInfo, Connection conn, String schemaName) {	
-		try {
-			List<MatoreInfo> resultset = executeStmt(recordInfo, conn, schemaName);
-			
-			if (resultset == null || resultset.isEmpty())
-				return NO_ENTRY_FOUND_ON_DB;
-			
-			return RECORD_EXIST;
-			
-		} catch (Exception e) {
-			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
-		}
+	@Override protected ActionStd<MatoreInfo> buildActionHook(MatoreInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<MatoreInfo> option = buildOption(recordInfo, conn, schemaName);
+		
+		ActionStd<MatoreInfo> select = new RootMatoreSelect(option).toAction();
+		return select;
 	}
 	
 	
 	
-	private List<MatoreInfo> executeStmt(MatoreInfo recordInfo, Connection conn, String schemaName) throws SQLException {
-		DaoStmtExec<MatoreInfo> stmtExecutor = buildStmtExecutor(recordInfo, conn, schemaName);
+	private DeciTreeOption<MatoreInfo> buildOption(MatoreInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<MatoreInfo> option = new DeciTreeOption<>();
+		option.recordInfos = new ArrayList<>();
+		option.recordInfos.add(recordInfo);
+		option.conn = conn;
+		option.schemaName = schemaName;
 		
-		stmtExecutor.executeStmt();
-		return stmtExecutor.getResultset();
+		return option;
 	}
 	
 	
 	
-	private DaoStmtExec<MatoreInfo> buildStmtExecutor(MatoreInfo recordInfo, Connection conn, String schemaName) {
-		DaoStmtExecOption<MatoreInfo> stmtExecOption = new DaoStmtExecOption<>();
-		stmtExecOption.conn = conn;
-		stmtExecOption.recordInfo = recordInfo;
-		stmtExecOption.schemaName = schemaName;
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.MAT_STORE_ALREADY_EXIST)
+			return SystemMessage.MAT_STORE_ALREADY_EXIST;
 		
-		List<DaoStmtExecOption<MatoreInfo>> stmtExecOptions = new ArrayList<>();
-		stmtExecOptions.add(stmtExecOption);
-		
-		return new MatoreSelect(stmtExecOptions);
+		return SystemMessage.MAT_STORE_NOT_FOUND;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.STORE_MAT_ALREADY_EXIST)
-			return SystemMessage.STORE_MAT_ALREADY_EXIST;
-		
-		return SystemMessage.STORE_MAT_NOT_FOUND;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == RECORD_EXIST)
-			return SystemCode.STORE_MAT_ALREADY_EXIST;	
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
+		if (checkerResult == super.ALREADY_EXIST)
+			return SystemCode.MAT_STORE_ALREADY_EXIST;	
 			
-		return SystemCode.STORE_MAT_NOT_FOUND;
+		return SystemCode.MAT_STORE_NOT_FOUND;
 	}
 }

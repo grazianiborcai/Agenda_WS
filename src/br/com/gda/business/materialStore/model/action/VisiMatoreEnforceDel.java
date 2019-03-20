@@ -1,39 +1,14 @@
 package br.com.gda.business.materialStore.model.action;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.gda.business.materialStore.info.MatoreInfo;
-import br.com.gda.helper.RecordMode;
-import br.com.gda.model.action.ActionVisitorEnforce;
+import br.com.gda.business.materialStore.info.MatoreSetterDel;
+import br.com.gda.info.InfoSetter;
+import br.com.gda.model.action.ActionVisitorTemplateEnforce;
 
-final class VisiMatoreEnforceDel implements ActionVisitorEnforce<MatoreInfo> {
+final class VisiMatoreEnforceDel extends ActionVisitorTemplateEnforce<MatoreInfo> {
 	
-	@Override public List<MatoreInfo> executeTransformation(List<MatoreInfo> recordInfos) {
-		List<MatoreInfo> resultRecords = new ArrayList<>();		
-		
-		for (MatoreInfo eachRecord : recordInfos) {
-			resultRecords.add(enforce(eachRecord));
-		}
-		
-		return resultRecords;
-	}	
-	
-	
-	
-	private MatoreInfo enforce(MatoreInfo recordInfo) {
-		MatoreInfo enforcedInfo = makeClone(recordInfo);
-		enforcedInfo.recordMode = RecordMode.RECORD_DELETED;
-		return enforcedInfo;
-	}
-	
-	
-	
-	private MatoreInfo makeClone(MatoreInfo recordInfo) {
-		try {
-			return (MatoreInfo) recordInfo.clone();
-		} catch (CloneNotSupportedException e) {
-			throw new IllegalStateException(e);
-		}
+	@Override protected MatoreInfo enforceHook(MatoreInfo recordInfo) {
+		InfoSetter<MatoreInfo> attrSetter = new MatoreSetterDel();
+		return attrSetter.setAttr(recordInfo);
 	}
 }

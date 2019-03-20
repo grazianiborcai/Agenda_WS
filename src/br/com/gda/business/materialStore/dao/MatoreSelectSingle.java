@@ -138,14 +138,6 @@ public final class MatoreSelectSingle implements DaoStmt<MatoreInfo> {
 				dataInfo.codOwner = stmtResult.getLong(MatoreDbTableColumn.COL_COD_OWNER);
 				dataInfo.codStore = stmtResult.getLong(MatoreDbTableColumn.COL_COD_STORE);
 				dataInfo.codMat = stmtResult.getLong(MatoreDbTableColumn.COL_COD_MATERIAL);
-				dataInfo.matPrice = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE));
-				dataInfo.matPrice1 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_1));
-				dataInfo.matPrice2 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_2));
-				dataInfo.matPrice3 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_3));
-				dataInfo.matPrice4 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_4));
-				dataInfo.matPrice5 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_5));
-				dataInfo.matPrice6 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_6));
-				dataInfo.matPrice7 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_7));
 				dataInfo.recordMode = stmtResult.getString(MatoreDbTableColumn.COL_RECORD_MODE);			
 				dataInfo.codLanguage = stmtResult.getString(MatoreDbTableColumn.COL_COD_LANGUAGE);	
 				
@@ -158,6 +150,46 @@ public final class MatoreSelectSingle implements DaoStmt<MatoreInfo> {
 				stmtResult.getLong(StoreDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.lastChangedBy = stmtResult.getLong(StoreDbTableColumn.COL_LAST_CHANGED_BY);
+				
+				
+				stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.matPrice = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE));
+				
+				
+				stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_1);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.matPrice1 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_1));
+				
+				
+				stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_2);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.matPrice2 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_2));
+				
+				
+				stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_3);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.matPrice3 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_3));
+				
+				
+				stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_4);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.matPrice4 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_4));
+				
+				
+				stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_5);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.matPrice5 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_5));
+				
+				
+				stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_6);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.matPrice6 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_6));
+				
+				
+				stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_7);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.matPrice7 = DaoFormatter.decimalToLong(stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE_7));
 
 				
 				finalResult.add(dataInfo);

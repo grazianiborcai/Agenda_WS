@@ -48,6 +48,7 @@ public final class MatoreUpdateSingle implements DaoStmt<MatoreInfo> {
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new MatoreWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -97,22 +98,72 @@ public final class MatoreUpdateSingle implements DaoStmt<MatoreInfo> {
 			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);
 			
 			int i = 1;
-			stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice));			
-			stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice1));
-			stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice2));
-			stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice3));
-			stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice4));
-			stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice5));
-			stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice6));
-			stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice7));			
+			if (recordInfo.matPrice >= 0) {
+				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice));
+			} else {
+				stmt.setNull(i++, Types.FLOAT);
+			}
+			
+			
+			if (recordInfo.matPrice1 >= 0) {
+				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice1));
+			} else {
+				stmt.setNull(i++, Types.FLOAT);
+			}
+			
+			
+			if (recordInfo.matPrice2 >= 0) {
+				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice2));
+			} else {
+				stmt.setNull(i++, Types.FLOAT);
+			}
+			
+			
+			if (recordInfo.matPrice3 >= 0) {
+				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice3));
+			} else {
+				stmt.setNull(i++, Types.FLOAT);
+			}
+			
+			
+			if (recordInfo.matPrice4 >= 0) {
+				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice4));
+			} else {
+				stmt.setNull(i++, Types.FLOAT);
+			}
+			
+			
+			if (recordInfo.matPrice5 >= 0) {
+				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice5));
+			} else {
+				stmt.setNull(i++, Types.FLOAT);
+			}
+			
+			
+			if (recordInfo.matPrice6 >= 0) {
+				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice6));
+			} else {
+				stmt.setNull(i++, Types.FLOAT);
+			}
+			
+			
+			if (recordInfo.matPrice7 >= 0) {
+				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice7));
+			} else {
+				stmt.setNull(i++, Types.FLOAT);
+			}
+			
+			
 			stmt.setString(i++, recordInfo.recordMode);
 			stmt.setTimestamp(i++, lastChanged);
+			
 			
 			if (recordInfo.lastChangedBy >= 0) {
 				stmt.setLong(i++, recordInfo.lastChangedBy);
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}
+			
 			
 			return stmt;
 		}		

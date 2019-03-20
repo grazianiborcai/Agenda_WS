@@ -171,12 +171,9 @@ public final class SystemMessage {
 	public static final String STORE_LDATE_HAVE_ITEM = "Store's leave date has items";
 	public static final String STORE_LDATE_IS_EMPTY = "Store's leave date is empty";
 	public static final String STORE_LDATE_NOT_FOUND = "Store's leave date not found on DB";
-	public static final String STORE_MAT_ALREADY_EXIST = "Store's material data already exist on DB";
 	public static final String STORE_MAT_EMP_ALREADY_EXIST = "Employee's material data already exist on DB";	
 	public static final String STORE_MAT_EMP_FLAGGED_AS_DELETED = "Employee's material data is flagged as deleted on DB";
 	public static final String STORE_MAT_EMP_NOT_FOUND = "Employee's material data not found on DB";	
-	public static final String STORE_MAT_FLAGGED_AS_DELETED = "Store's material data is flagged as deleted on DB";
-	public static final String STORE_MAT_NOT_FOUND = "Store's material data not found on DB";	
 	public static final String STORE_TECH_FIELD_SHOULD_BE_EMPTY = "Store: technical fields shouldn't be filled";
 	public static final String STORE_WTIME_ALREADY_EXIST = "Store's working time already exist on DB";
 	public static final String STORE_WTIME_FLAG_DELETE_TRUE = "Store's working time flagged to deletion";
@@ -513,4 +510,13 @@ public final class SystemMessage {
 	public static final String MAT_STOCK_NOT_FOUND = "Material Stock data not found on DB";
 	public static final String MAT_STOCK_NO_BALANCE = "No stock balance";
 	public static final String MAT_STOCK_LIMIT_EXCEEDED = "Material Stock: limit exceeded";
+	
+	
+	
+	// Material Store
+	public static final String MAT_STORE_ALREADY_EXIST = "Material-Store's data already exist on DB";
+	public static final String MAT_STORE_FLAGGED_AS_DELETED = "Store's material data is flagged as deleted on DB";
+	public static final String MAT_STORE_MAT_CATEG_IS_NULL = "Material-Store: Material Category is empty";
+	public static final String MAT_STORE_NOT_FOUND = "Material-Store's data not found on DB";	
+	public static final String MAT_STORE_PRICE_INCONSISTENCY = "Price is not filled correctly for the given material category";	
 }

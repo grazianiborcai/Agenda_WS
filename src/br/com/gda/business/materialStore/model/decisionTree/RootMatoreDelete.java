@@ -10,6 +10,7 @@ import br.com.gda.business.materialStore.model.action.LazyMatoreMergeUsername;
 import br.com.gda.business.materialStore.model.action.LazyMatoreUpdate;
 import br.com.gda.business.materialStore.model.action.StdMatoreMergeToDelete;
 import br.com.gda.business.materialStore.model.checker.MatoreCheckExist;
+import br.com.gda.business.materialStore.model.checker.MatoreCheckStorauth;
 import br.com.gda.business.materialStore.model.checker.MatoreCheckWrite;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -55,6 +56,12 @@ public final class RootMatoreDelete implements DeciTree<MatoreInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new MatoreCheckExist(checkerOption);
+		queue.add(checker);		
+		
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new MatoreCheckStorauth(checkerOption);
 		queue.add(checker);		
 		
 		//TODO: Verificar conflito com MatEmp ou eliminar MatEmp impactados

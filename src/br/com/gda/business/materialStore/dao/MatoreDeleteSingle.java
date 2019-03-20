@@ -46,6 +46,7 @@ public final class MatoreDeleteSingle implements DaoStmt<MatoreInfo> {
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;	
 		
 		

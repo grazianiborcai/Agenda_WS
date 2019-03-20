@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialStore.info.MatoreInfo;
+import br.com.gda.business.materialStore.model.action.LazyMatoreNodeInsertL1;
+import br.com.gda.business.materialStore.model.action.StdMatoreMergeMat;
 import br.com.gda.business.materialStore.model.checker.MatoreCheckExist;
 import br.com.gda.business.materialStore.model.checker.MatoreCheckMat;
 import br.com.gda.business.materialStore.model.checker.MatoreCheckOwner;
-import br.com.gda.business.materialStore.model.checker.MatoreCheckPrice;
+import br.com.gda.business.materialStore.model.checker.MatoreCheckStorauth;
 import br.com.gda.business.materialStore.model.checker.MatoreCheckStore;
 import br.com.gda.business.materialStore.model.checker.MatoreCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -49,9 +52,6 @@ public final class RootMatoreInsert implements DeciTree<MatoreInfo> {
 		checker = new MatoreCheckWrite();
 		queue.add(checker);
 		
-		checker = new MatoreCheckPrice();
-		queue.add(checker);
-		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
@@ -80,6 +80,12 @@ public final class RootMatoreInsert implements DeciTree<MatoreInfo> {
 		checker = new MatoreCheckExist(checkerOption);
 		queue.add(checker);	
 		
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new MatoreCheckStorauth(checkerOption);
+		queue.add(checker);	
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -88,7 +94,12 @@ public final class RootMatoreInsert implements DeciTree<MatoreInfo> {
 	private List<ActionStd<MatoreInfo>> buildActionsOnPassed(DeciTreeOption<MatoreInfo> option) {
 		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new NodeMatoreInsert(option).toAction());	
+		ActionStd<MatoreInfo> mergeMat = new StdMatoreMergeMat(option);
+		ActionLazy<MatoreInfo> nodeInsert = new LazyMatoreNodeInsertL1(option.conn, option.schemaName);
+		
+		mergeMat.addPostAction(nodeInsert);
+		
+		actions.add(mergeMat);	
 		return actions;
 	}
 	
