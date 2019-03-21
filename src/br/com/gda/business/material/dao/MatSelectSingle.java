@@ -170,7 +170,7 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 				dataInfo.txtMat = stmtResult.getString(COL_NAME);
 				dataInfo.description = stmtResult.getString(COL_DESCR);
 				dataInfo.codType = stmtResult.getInt(MatDbTableColumn.COL_COD_TYPE);
-				dataInfo.codCategory = stmtResult.getInt(MatDbTableColumn.COL_COD_CATEGORY);
+				dataInfo.codMatCateg = stmtResult.getInt(MatDbTableColumn.COL_COD_CATEGORY);
 				dataInfo.price = stmtResult.getDouble(MatDbTableColumn.COL_PRICE);
 				dataInfo.priceUnit = stmtResult.getInt(MatDbTableColumn.COL_PRICE_UNIT);				
 				dataInfo.codCurr = stmtResult.getString(MatDbTableColumn.COL_COD_CURRRENCY);

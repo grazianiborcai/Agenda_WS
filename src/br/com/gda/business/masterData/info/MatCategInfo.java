@@ -6,13 +6,13 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class MatCategInfo extends InfoRecord implements Cloneable {
-	public int codCategory;
-	public String txtCategory;
+	public int codMatCateg;
+	public String txtMatCateg;
 	public String codLanguage;
 	
 	
 	public MatCategInfo() {
-		this.codCategory = DefaultValue.number();
+		this.codMatCateg = DefaultValue.number();
 		this.codLanguage = DefaultValue.language();
 	}
 	
@@ -39,7 +39,7 @@ public final class MatCategInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + codCategory;
+		result = result * 31 + codMatCateg;
 		
 		return result;
 	}
@@ -56,6 +56,6 @@ public final class MatCategInfo extends InfoRecord implements Cloneable {
 		
 		
 		MatCategInfo obj = (MatCategInfo) o;		
-		return (codCategory == obj.codCategory);
+		return (codMatCateg == obj.codMatCateg);
 	}
 }

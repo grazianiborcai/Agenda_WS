@@ -500,6 +500,7 @@ public final class SystemMessage {
 	
 	// Material Movement
 	public static final String MAT_MOV_ALREALDY_EXIST = "Material movement data already exist on DB";	
+	public static final String MAT_MOV_MAT_CATEG_ILLEGAL = "Material movement: material category not allowed";
 	public static final String MAT_MOV_NOT_FOUND = "Material movement data not found on DB";
 	public static final String MAT_MOV_TECH_FIELD_SHOULD_BE_EMPTY = "Material movement: technical fields shouldn't be filled";
 	
@@ -519,4 +520,5 @@ public final class SystemMessage {
 	public static final String MAT_STORE_MAT_CATEG_IS_NULL = "Material-Store: Material Category is empty";
 	public static final String MAT_STORE_NOT_FOUND = "Material-Store's data not found on DB";	
 	public static final String MAT_STORE_PRICE_INCONSISTENCY = "Price is not filled correctly for the given material category";	
+	public static final String MAT_STORE_STOCK_NOT_EMPTY = "Material-Store: stock is not empty for the given material";	
 }

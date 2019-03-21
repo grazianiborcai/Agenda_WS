@@ -20,7 +20,7 @@ public final class MatCheckWrite extends ModelCheckerTemplateSimple<MatInfo> {
 			|| recordInfo.txtMat		== null 	
 			|| recordInfo.description 	== null	
 			|| recordInfo.codType 		<= 0
-			|| recordInfo.codCategory	<= 0
+			|| recordInfo.codMatCateg	<= 0
 			|| recordInfo.price			<= 0
 			|| recordInfo.priceUnit		<= 0
 			|| recordInfo.codCurr		== null

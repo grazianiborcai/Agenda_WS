@@ -387,6 +387,7 @@ public final class SystemCode {
 	public static final int MAT_MOV_ALREADY_EXIST 						= 2950;
 	public static final int MAT_MOV_NOT_FOUND 							= 2951;
 	public static final int MAT_MOV_TECH_FIELD_SHOULD_BE_EMPTY			= 2952;
+	public static final int MAT_MOV_MAT_CATEG_ILLEGAL					= 2953;
 	
 	//Material Stock
 	public static final int MAT_STOCK_ALREADY_EXIST 					= 3000;
@@ -400,4 +401,5 @@ public final class SystemCode {
 	public static final int MAT_STORE_FLAGGED_AS_DELETED 				= 3052;
 	public static final int MAT_STORE_ALREADY_EXIST 					= 3053;
 	public static final int MAT_STORE_NOT_FOUND 						= 3054;
+	public static final int MAT_STORE_STOCK_NOT_EMPTY					= 3055;
 }

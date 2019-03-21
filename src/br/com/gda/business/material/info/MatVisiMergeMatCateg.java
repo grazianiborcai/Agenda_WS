@@ -38,8 +38,8 @@ final class MatVisiMergeMatCateg implements InfoMergerVisitor<MatInfo, MatCategI
 	
 	
 	private MatInfo merge(MatCategInfo sourceOne, MatInfo sourceTwo) {
-		sourceTwo.codCategory = sourceOne.codCategory;
-		sourceTwo.txtCategory = sourceOne.txtCategory;
+		sourceTwo.codMatCateg = sourceOne.codMatCateg;
+		sourceTwo.txtMatCateg = sourceOne.txtMatCateg;
 
 		return sourceTwo;
 	}
@@ -47,7 +47,7 @@ final class MatVisiMergeMatCateg implements InfoMergerVisitor<MatInfo, MatCategI
 
 	
 	@Override public boolean shouldWrite(MatCategInfo sourceOne, MatInfo sourceTwo) {
-		return (sourceOne.codCategory == sourceTwo.codCategory);
+		return (sourceOne.codMatCateg == sourceTwo.codMatCateg);
 	}		
 	
 	

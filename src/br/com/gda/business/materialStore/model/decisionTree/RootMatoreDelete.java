@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialStore.info.MatoreInfo;
-import br.com.gda.business.materialStore.model.action.LazyMatoreDelete;
 import br.com.gda.business.materialStore.model.action.LazyMatoreEnforceLChanged;
+import br.com.gda.business.materialStore.model.action.LazyMatoreMergeMatock;
 import br.com.gda.business.materialStore.model.action.LazyMatoreMergeUsername;
-import br.com.gda.business.materialStore.model.action.LazyMatoreUpdate;
+import br.com.gda.business.materialStore.model.action.LazyMatoreNodeDelete;
 import br.com.gda.business.materialStore.model.action.StdMatoreMergeToDelete;
 import br.com.gda.business.materialStore.model.checker.MatoreCheckExist;
 import br.com.gda.business.materialStore.model.checker.MatoreCheckStorauth;
@@ -76,13 +76,13 @@ public final class RootMatoreDelete implements DeciTree<MatoreInfo> {
 		ActionStd<MatoreInfo> mergeToDelete = new StdMatoreMergeToDelete(option);
 		ActionLazy<MatoreInfo> enforceLChanged = new LazyMatoreEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatoreInfo> update = new LazyMatoreUpdate(option.conn, option.schemaName);
-		ActionLazy<MatoreInfo> delete = new LazyMatoreDelete(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> mergeMatock = new LazyMatoreMergeMatock(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> nodeDelete = new LazyMatoreNodeDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(update);
-		update.addPostAction(delete);
+		enforceLChangedBy.addPostAction(mergeMatock);
+		mergeMatock.addPostAction(nodeDelete);
 		
 		actions.add(mergeToDelete);
 		return actions;

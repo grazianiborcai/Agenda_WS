@@ -13,8 +13,8 @@ final class MatoreVisitorMat implements InfoMergerVisitor<MatoreInfo, MatInfo, M
 		resultInfo.txtMat = sourceOne.txtMat;
 		resultInfo.codType = sourceOne.codType;
 		resultInfo.txtType = sourceOne.txtType;
-		resultInfo.codCategory = sourceOne.codCategory;
-		resultInfo.txtCategory = sourceOne.txtCategory;
+		resultInfo.codMatCateg = sourceOne.codMatCateg;
+		resultInfo.txtMatCateg = sourceOne.txtMatCateg;
 		resultInfo.priceUnit = sourceOne.priceUnit;
 		resultInfo.codUnit = sourceOne.codUnit;
 		resultInfo.txtUnit = sourceOne.txtUnit;

@@ -38,8 +38,8 @@ final class MatSnapVisitorMatCateg implements InfoMergerVisitor<MatSnapInfo, Mat
 	
 	
 	private MatSnapInfo merge(MatCategInfo sourceOne, MatSnapInfo sourceTwo) {
-		sourceTwo.codCategory = sourceOne.codCategory;
-		sourceTwo.txtCategory = sourceOne.txtCategory;
+		sourceTwo.codCategory = sourceOne.codMatCateg;
+		sourceTwo.txtCategory = sourceOne.txtMatCateg;
 
 		return sourceTwo;
 	}
@@ -47,7 +47,7 @@ final class MatSnapVisitorMatCateg implements InfoMergerVisitor<MatSnapInfo, Mat
 
 	
 	@Override public boolean shouldWrite(MatCategInfo sourceOne, MatSnapInfo sourceTwo) {
-		return (sourceOne.codCategory == sourceTwo.codCategory);
+		return (sourceOne.codMatCateg == sourceTwo.codCategory);
 	}		
 	
 	

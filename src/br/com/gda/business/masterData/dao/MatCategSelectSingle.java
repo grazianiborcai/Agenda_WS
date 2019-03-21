@@ -164,8 +164,8 @@ public final class MatCategSelectSingle implements DaoStmt<MatCategInfo> {
 		
 			do {				
 				MatCategInfo dataInfo = new MatCategInfo();
-				dataInfo.codCategory = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_MAT_CATEG);
-				dataInfo.txtCategory = stmtResult.getString(CATEG_TEXT_COL);
+				dataInfo.codMatCateg = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_MAT_CATEG);
+				dataInfo.txtMatCateg = stmtResult.getString(CATEG_TEXT_COL);
 				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
 				
 				finalResult.add(dataInfo);				

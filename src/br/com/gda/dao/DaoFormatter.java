@@ -131,6 +131,7 @@ public final class DaoFormatter {
 	
 	
 	public static long decimalToLong(float number) {
-		return (long) number * 100;
+		float result = number * 100;
+		return (long) result;
 	}
 }

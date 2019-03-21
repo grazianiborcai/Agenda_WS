@@ -94,7 +94,7 @@ public final class RootMatockInsert implements DeciTree<MatockInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new MatockCheckStorauth(checkerOption);
 		queue.add(checker);	
-
+		//TODO: verificar categoria material - somente Produto
 		return new ModelCheckerQueue<>(queue);
 	}
 	

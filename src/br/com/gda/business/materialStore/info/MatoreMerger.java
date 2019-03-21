@@ -2,6 +2,7 @@ package br.com.gda.business.materialStore.info;
 
 import java.util.List;
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.materialStock.info.MatockInfo;
 import br.com.gda.info.InfoWritterFactory;
 import br.com.gda.security.username.info.UsernameInfo;
 
@@ -25,6 +26,12 @@ public final class MatoreMerger extends InfoWritterFactory<MatoreInfo> {
 	
 	
 	
+	static public MatoreInfo merge(MatockInfo sourceOne, MatoreInfo sourceTwo) {
+		return new MatoreMergerMatock().merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<MatoreInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {		
 		if (sourceOnes.get(0) instanceof MatInfo 		&&
@@ -40,6 +47,11 @@ public final class MatoreMerger extends InfoWritterFactory<MatoreInfo> {
 		if (sourceOnes.get(0) instanceof MatoreInfo 	&&
 			sourceTwos.get(0) instanceof MatoreInfo		)
 			return new MatoreMergerToDelete().merge((List<MatoreInfo>) sourceOnes, (List<MatoreInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof MatockInfo 	&&
+			sourceTwos.get(0) instanceof MatoreInfo			)
+			return new MatoreMergerMatock().merge((List<MatockInfo>) sourceOnes, (List<MatoreInfo>) sourceTwos);
 		
 		return null;
 	}

@@ -195,16 +195,18 @@ public class MaterialResource {
 	@GET
 	@Path(SELECT_MAT_MOV)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMatmov(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+	public Response selectMatmov(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
 								 @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
 								 @HeaderParam("codMaterial") @DefaultValue("-1") long codMat,
+								 @HeaderParam("TOKEN_USERNAME") String username,
 								 @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 
-
+		//TODO: desabilitar esse endpoint ?
 		MatmovInfo recordInfo = new MatmovInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codMat = codMat;
+		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
 		

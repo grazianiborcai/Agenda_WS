@@ -25,7 +25,7 @@ final class VisiMatFilterNonServ implements ActionVisitorEnforce<MatInfo> {
 	
 	
 	private boolean shouldAdd(MatInfo recordInfo) {
-		if (recordInfo.codCategory == 2)
+		if (recordInfo.codMatCateg == 2)
 			return OK;
 		
 		return FAIL;

@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.materialMovement.info.MatmovInfo;
 import br.com.gda.business.materialMovement.model.action.LazyMatmovEnforcePostingDate;
-import br.com.gda.business.materialMovement.model.action.LazyMatmovInsert;
+import br.com.gda.business.materialMovement.model.action.LazyMatmovMergeMat;
 import br.com.gda.business.materialMovement.model.action.LazyMatmovMergeUsername;
-import br.com.gda.business.materialMovement.model.action.LazyMatmovRootSelect;
-import br.com.gda.business.materialMovement.model.action.LazyMatmovUpsertMatock;
+import br.com.gda.business.materialMovement.model.action.LazyMatmovNodeInsert;
 import br.com.gda.business.materialMovement.model.action.StdMatmovEnforceLChanged;
 import br.com.gda.business.materialMovement.model.checker.MatmovCheckInsert;
 import br.com.gda.business.materialMovement.model.checker.MatmovCheckLangu;
 import br.com.gda.business.materialMovement.model.checker.MatmovCheckMat;
 import br.com.gda.business.materialMovement.model.checker.MatmovCheckMatmovType;
+import br.com.gda.business.materialMovement.model.checker.MatmovCheckMatore;
 import br.com.gda.business.materialMovement.model.checker.MatmovCheckOwner;
 import br.com.gda.business.materialMovement.model.checker.MatmovCheckStorauth;
 import br.com.gda.business.materialMovement.model.checker.MatmovCheckStore;
@@ -101,7 +101,14 @@ public final class RootMatmovInsert implements DeciTree<MatmovInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new MatmovCheckStorauth(checkerOption);
 		queue.add(checker);	
-		//TODO: Check MatStore
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new MatmovCheckMatore(checkerOption);
+		queue.add(checker);	
+		
 		//TODO: posting date + recordmode
 		//TODO: lock table for update
 		//TODO: check limit
@@ -115,16 +122,14 @@ public final class RootMatmovInsert implements DeciTree<MatmovInfo> {
 
 		ActionStd<MatmovInfo> enforceLChanged = new StdMatmovEnforceLChanged(option);
 		ActionLazy<MatmovInfo> enforceLChangedBy = new LazyMatmovMergeUsername(option.conn, option.schemaName);
+		ActionLazy<MatmovInfo> mergeMat = new LazyMatmovMergeMat(option.conn, option.schemaName);
 		ActionLazy<MatmovInfo> enforcePostingDate = new LazyMatmovEnforcePostingDate(option.conn, option.schemaName);
-		ActionLazy<MatmovInfo> insert = new LazyMatmovInsert(option.conn, option.schemaName);
-		ActionLazy<MatmovInfo> upsertStock = new LazyMatmovUpsertMatock(option.conn, option.schemaName);
-		ActionLazy<MatmovInfo> select = new LazyMatmovRootSelect(option.conn, option.schemaName);	
+		ActionLazy<MatmovInfo> nodeInsert = new LazyMatmovNodeInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(enforcePostingDate);
-		enforcePostingDate.addPostAction(insert);
-		insert.addPostAction(upsertStock);
-		insert.addPostAction(select);
+		enforceLChangedBy.addPostAction(mergeMat);		
+		mergeMat.addPostAction(enforcePostingDate);
+		enforcePostingDate.addPostAction(nodeInsert);
 		
 		actions.add(enforceLChanged);	
 		return actions;

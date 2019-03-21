@@ -13,8 +13,8 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public String description;
 	public int codType;
 	public String txtType;
-	public int codCategory;
-	public String txtCategory;
+	public int codMatCateg;
+	public String txtMatCateg;
 	public double price;
 	public int priceUnit;
 	public String codCurr;
@@ -39,7 +39,7 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codType = DefaultValue.number();
-		codCategory = DefaultValue.number();
+		codMatCateg = DefaultValue.number();
 		price = DefaultValue.number();
 		priceUnit = 1;
 		codGroup = DefaultValue.number();		

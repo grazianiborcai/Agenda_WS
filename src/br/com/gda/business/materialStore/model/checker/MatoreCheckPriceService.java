@@ -17,7 +17,7 @@ public final class MatoreCheckPriceService extends ModelCheckerTemplateSimple<Ma
 	
 	
 	@Override protected boolean checkHook(MatoreInfo recordInfo, Connection conn, String schemaName) {	
-		if (shouldCheck(recordInfo.codCategory) == false)
+		if (shouldCheck(recordInfo.codMatCateg) == false)
 			return super.SUCCESS;
 		
 		
@@ -41,7 +41,7 @@ public final class MatoreCheckPriceService extends ModelCheckerTemplateSimple<Ma
 	
 	
 	private boolean shouldCheck(int codCategory) {
-		if (MatCateg.SERVICE.getCodCategory() == codCategory)
+		if (MatCateg.SERVICE.getCodMatCateg() == codCategory)
 			return true;
 		
 		return false;

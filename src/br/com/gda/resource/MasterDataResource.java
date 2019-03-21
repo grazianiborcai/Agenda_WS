@@ -143,7 +143,7 @@ public final class MasterDataResource {
 		
 		MatCategInfo recordInfo = new MatCategInfo();
 		recordInfo.codLanguage = codLanguage;
-		recordInfo.codCategory = codCategory;
+		recordInfo.codMatCateg = codCategory;
 		
 		Model model = new MatCategModelSelect(recordInfo);
 		model.executeRequest();

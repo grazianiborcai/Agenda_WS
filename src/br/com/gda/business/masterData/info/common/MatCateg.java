@@ -8,24 +8,24 @@ import br.com.gda.common.SystemMessage;
 public enum MatCateg {
 	PRODUCT(1), SERVICE(2);	
 	
-	private final int codCategory;
+	private final int codMatCateg;
 	
 	
 	private MatCateg(int cod) {
-		codCategory = cod;
+		codMatCateg = cod;
 	}
 	
 	
 	
-	public int getCodCategory() {
-		return codCategory;
+	public int getCodMatCateg() {
+		return codMatCateg;
 	}
 	
 	
 	
 	static public MatCateg getMatCateg(int cod) {
 		for(MatCateg eachElem : MatCateg.values()) {
-			if (eachElem.getCodCategory() == cod)
+			if (eachElem.getCodMatCateg() == cod)
 				return eachElem;
 		}
 		

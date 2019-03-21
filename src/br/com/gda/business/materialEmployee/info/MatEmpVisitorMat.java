@@ -13,8 +13,8 @@ final class MatEmpVisitorMat implements InfoMergerVisitor<MatEmpInfo, MatInfo, M
 		resultInfo.txtMat = sourceOne.txtMat;
 		resultInfo.codType = sourceOne.codType;
 		resultInfo.txtType = sourceOne.txtType;
-		resultInfo.codCategory = sourceOne.codCategory;
-		resultInfo.txtCategory = sourceOne.txtCategory;
+		resultInfo.codCategory = sourceOne.codMatCateg;
+		resultInfo.txtCategory = sourceOne.txtMatCateg;
 		resultInfo.priceUnit = sourceOne.priceUnit;
 		resultInfo.codUnit = sourceOne.codUnit;
 		resultInfo.txtUnit = sourceOne.txtUnit;

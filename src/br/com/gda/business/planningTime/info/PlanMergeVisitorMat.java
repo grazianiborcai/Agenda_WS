@@ -69,8 +69,8 @@ final class PlanMergeVisitorMat implements InfoMergerVisitor<PlanInfo, PlanInfo,
 		copyMat.description = mat.description;
 		copyMat.codType = mat.codType;
 		copyMat.txtType = mat.txtType;
-		copyMat.codCategory = mat.codCategory;
-		copyMat.txtCategory = mat.txtCategory;
+		copyMat.codMatCateg = mat.codMatCateg;
+		copyMat.txtMatCateg = mat.txtMatCateg;
 		copyMat.price = mat.price;
 		copyMat.priceUnit = mat.priceUnit;
 		copyMat.codCurr = mat.codCurr;

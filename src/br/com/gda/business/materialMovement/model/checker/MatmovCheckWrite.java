@@ -20,10 +20,10 @@ public final class MatmovCheckWrite extends ModelCheckerTemplateSimple<MatmovInf
 			 recordInfo.codLanguage == null	||
 			 recordInfo.codOwner	<= 0	||
 			 recordInfo.codMatmov	<= 0		)			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

@@ -13,8 +13,8 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 	public String txtMat;
 	public int codType;
 	public String txtType;
-	public int codCategory;
-	public String txtCategory;
+	public int codMatCateg;
+	public String txtMatCateg;
 	public long matPrice;
 	public long matPrice1;
 	public long matPrice2;
@@ -23,6 +23,7 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 	public long matPrice5;
 	public long matPrice6;
 	public long matPrice7;
+	public int quantityStock;
 	public int priceUnit;
 	public String codUnit;
 	public String txtUnit;
@@ -39,7 +40,7 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();	
 		codMat = DefaultValue.number();
 		codType = DefaultValue.number();
-		codCategory = DefaultValue.number();
+		codMatCateg = DefaultValue.number();
 		priceUnit = DefaultValue.number();
 		matPrice = DefaultValue.number();
 		matPrice1 = DefaultValue.number();
@@ -49,6 +50,7 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 		matPrice5 = DefaultValue.number();
 		matPrice6 = DefaultValue.number();
 		matPrice7 = DefaultValue.number();
+		quantityStock = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
