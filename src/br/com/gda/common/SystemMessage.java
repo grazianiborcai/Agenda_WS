@@ -123,6 +123,10 @@ public final class SystemMessage {
 	public static final String MAT_NOT_SERVICE	= "Material's category is not a service";
 	public static final String MAT_SERVICE = "Material's category is a service";
 	public static final String MAT_TEXT_ALREADY_EXIST = "Material text data already exist on DB";
+	public static final String MAT_TEXT_DEFAULT_CANT_BE_DELETED = "Material text flagged as default can't be deleted";
+	public static final String MAT_TEXT_HAS_DEFAULT = "Material text already has a default set";
+	public static final String MAT_TEXT_HAS_NO_DEFAULT = "Material text has no default set";
+	public static final String MAT_TEXT_NOT_DEFAULT = "Material text data not marked as default";
 	public static final String MAT_TEXT_NOT_FOUND = "Material text data not found on DB";
 	public static final String MAT_UNIT_EACH_INCONSISTENCY = "Material: Unit Price should be 1 for Each";
 	public static final String MAT_UNIT_INCONSISTENCY = "Material: Unit of Measure is not valid for the given Material Category";

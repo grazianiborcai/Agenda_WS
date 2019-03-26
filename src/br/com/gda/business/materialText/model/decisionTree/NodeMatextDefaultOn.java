@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialText.info.MatextInfo;
-import br.com.gda.business.materialText.model.action.LazyMatextNodeDelete;
-import br.com.gda.business.materialText.model.action.StdMatextMergeToDelete;
-import br.com.gda.business.materialText.model.checker.MatextCheckDelete;
-import br.com.gda.business.materialText.model.checker.MatextCheckExist;
+import br.com.gda.business.materialText.model.action.LazyMatextEnforceDefaultOff;
+import br.com.gda.business.materialText.model.action.LazyMatextSelect;
+import br.com.gda.business.materialText.model.action.LazyMatextUpdate;
+import br.com.gda.business.materialText.model.action.StdMatextEnforceMatKey;
+import br.com.gda.business.materialText.model.action.StdMatextSuccess;
+import br.com.gda.business.materialText.model.checker.MatextCheckHasDefault;
+import br.com.gda.business.materialText.model.checker.MatextCheckIsDefault;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -20,18 +23,18 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootMatextDelete implements DeciTree<MatextInfo> {
+public final class NodeMatextDefaultOn implements DeciTree<MatextInfo> {
 	private DeciTree<MatextInfo> tree;
 	
 	
-	public RootMatextDelete(DeciTreeOption<MatextInfo> option) {
+	public NodeMatextDefaultOn(DeciTreeOption<MatextInfo> option) {
 		DeciTreeHelperOption<MatextInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
+		helperOption.actionsOnFailed = buildActionsOnFailed(option);
+		helperOption.conn = option.conn;
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -39,37 +42,51 @@ public final class RootMatextDelete implements DeciTree<MatextInfo> {
 	
 	
 	private ModelChecker<MatextInfo> buildDecisionChecker(DeciTreeOption<MatextInfo> option) {
-		final boolean EXIST_ON_DB = true;	
+		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatextInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checkerOption = new ModelCheckerOption();
-		checker = new MatextCheckDelete();
+		checker = new MatextCheckIsDefault();
 		queue.add(checker);
-			
+		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new MatextCheckExist(checkerOption);
-		queue.add(checker);		
-
-		return new ModelCheckerQueue<MatextInfo>(queue);
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new MatextCheckHasDefault(checkerOption);
+		queue.add(checker);
+		
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
 	
 	private List<ActionStd<MatextInfo>> buildActionsOnPassed(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
+		//TODO: incluir MergeToUpdate e adicionar LChanged e ChangedBy
+		ActionStd<MatextInfo> enforceMatKey = new StdMatextEnforceMatKey(option);
+		ActionLazy<MatextInfo> select = new LazyMatextSelect(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> enforceDefaultOff = new LazyMatextEnforceDefaultOff(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> update = new LazyMatextUpdate(option.conn, option.schemaName);
 		
-		ActionStd<MatextInfo> mergeToDelete = new StdMatextMergeToDelete(option);
-		ActionLazy<MatextInfo> nodeDelete = new LazyMatextNodeDelete(option.conn, option.schemaName);
+		enforceMatKey.addPostAction(select);
+		select.addPostAction(enforceDefaultOff);
+		enforceDefaultOff.addPostAction(update);
 		
-		mergeToDelete.addPostAction(nodeDelete);
+		actions.add(enforceMatKey);
+		return actions;
+	}
+	
+	
+	
+	private List<ActionStd<MatextInfo>> buildActionsOnFailed(DeciTreeOption<MatextInfo> option) {
+		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
+
+		ActionStd<MatextInfo> success = new StdMatextSuccess(option);		
+		actions.add(success);
 		
-		actions.add(mergeToDelete);
 		return actions;
 	}
 	

@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.materialText.info.MatextInfo;
-import br.com.gda.business.materialText.model.action.LazyMatextInsert;
 import br.com.gda.business.materialText.model.action.LazyMatextMergeUsername;
-import br.com.gda.business.materialText.model.action.LazyMatextRootSelect;
+import br.com.gda.business.materialText.model.action.LazyMatextNodeHasDefault;
+import br.com.gda.business.materialText.model.action.LazyMatextNodeInsert;
 import br.com.gda.business.materialText.model.action.StdMatextEnforceLChanged;
 import br.com.gda.business.materialText.model.checker.MatextCheckExist;
 import br.com.gda.business.materialText.model.checker.MatextCheckLangu;
@@ -89,16 +89,20 @@ public final class RootMatextInsert implements DeciTree<MatextInfo> {
 	private List<ActionStd<MatextInfo>> buildActionsOnPassed(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();		
 		
+		ActionStd<MatextInfo> nodeDefaultOn = new NodeMatextDefaultOn(option).toAction();	
 		ActionStd<MatextInfo> enforceLChanged = new StdMatextEnforceLChanged(option);	
 		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatextInfo> insert = new LazyMatextInsert(option.conn, option.schemaName);	
-		ActionLazy<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);		
+		ActionLazy<MatextInfo> insert = new LazyMatextNodeInsert(option.conn, option.schemaName);	
+		ActionLazy<MatextInfo> nodeHasDefault = new LazyMatextNodeHasDefault(option.conn, option.schemaName);
+		ActionStd<MatextInfo> select = new RootMatextSelect(option).toAction();		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(insert);
-		insert.addPostAction(select);	
+		insert.addPostAction(nodeHasDefault);
 		
-		actions.add(enforceLChanged);		
+		actions.add(nodeDefaultOn);
+		actions.add(enforceLChanged);
+		actions.add(select);
 		return actions;
 	}
 	

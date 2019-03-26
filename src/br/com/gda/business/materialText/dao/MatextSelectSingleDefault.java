@@ -1,14 +1,15 @@
 package br.com.gda.business.materialText.dao;
 
 import java.sql.Connection;
+
 import br.com.gda.business.materialText.info.MatextInfo;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 
-public final class MatextSelectSingle extends MatextSelectTemplate {
+public final class MatextSelectSingleDefault extends MatextSelectTemplate {
 
-	public MatextSelectSingle(Connection conn, MatextInfo recordInfo, String schemaName) {
+	public MatextSelectSingleDefault(Connection conn, MatextInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -16,16 +17,16 @@ public final class MatextSelectSingle extends MatextSelectTemplate {
 	
 	@Override protected String buildWhereClauseHook() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new MatextWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new MatextWhereDefault(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 
 	
 	
 	@Override public DaoStmt<MatextInfo> getNewInstance() {
-		return new MatextSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new MatextSelectSingleDefault(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 }

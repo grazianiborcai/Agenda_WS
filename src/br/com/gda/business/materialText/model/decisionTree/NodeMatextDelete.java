@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialText.info.MatextInfo;
-import br.com.gda.business.materialText.model.action.LazyMatextNodeDelete;
-import br.com.gda.business.materialText.model.action.StdMatextMergeToDelete;
-import br.com.gda.business.materialText.model.checker.MatextCheckDelete;
+import br.com.gda.business.materialText.model.action.LazyMatextDelete;
+import br.com.gda.business.materialText.model.action.LazyMatextMergeUsername;
+import br.com.gda.business.materialText.model.action.LazyMatextUpdate;
+import br.com.gda.business.materialText.model.action.StdMatextEnforceLChanged;
+import br.com.gda.business.materialText.model.checker.MatextCheckDeleteDefault;
 import br.com.gda.business.materialText.model.checker.MatextCheckExist;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -20,11 +22,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootMatextDelete implements DeciTree<MatextInfo> {
+public final class NodeMatextDelete implements DeciTree<MatextInfo> {
 	private DeciTree<MatextInfo> tree;
 	
 	
-	public RootMatextDelete(DeciTreeOption<MatextInfo> option) {
+	public NodeMatextDelete(DeciTreeOption<MatextInfo> option) {
 		DeciTreeHelperOption<MatextInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -46,7 +48,7 @@ public final class RootMatextDelete implements DeciTree<MatextInfo> {
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
-		checker = new MatextCheckDelete();
+		checker = new MatextCheckDeleteDefault();
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
@@ -64,12 +66,16 @@ public final class RootMatextDelete implements DeciTree<MatextInfo> {
 	private List<ActionStd<MatextInfo>> buildActionsOnPassed(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextInfo> mergeToDelete = new StdMatextMergeToDelete(option);
-		ActionLazy<MatextInfo> nodeDelete = new LazyMatextNodeDelete(option.conn, option.schemaName);
+		ActionStd<MatextInfo> enforceLChanged = new StdMatextEnforceLChanged(option);
+		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> update = new LazyMatextUpdate(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> delete = new LazyMatextDelete(option.conn, option.schemaName);
 		
-		mergeToDelete.addPostAction(nodeDelete);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(update);
+		update.addPostAction(delete);
 		
-		actions.add(mergeToDelete);
+		actions.add(enforceLChanged);
 		return actions;
 	}
 	

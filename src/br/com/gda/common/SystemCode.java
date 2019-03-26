@@ -122,6 +122,10 @@ public final class SystemCode {
 	public static final int MAT_UNIT_INCONSISTENCY						= 1207;
 	public static final int MAT_CATEG_CANT_BE_CHANGED					= 1208;	
 	public static final int MAT_CATEG_NOT_CHANGED						= 1209;	
+	public static final int MAT_TEXT_NOT_DEFAULT						= 1210;
+	public static final int MAT_TEXT_HAS_NO_DEFAULT						= 1211;
+	public static final int MAT_TEXT_HAS_DEFAULT						= 1212;
+	public static final int MAT_TEXT_DEFAULT_CANT_BE_DELETED			= 1213;
 	
 	// Owner
 	public static final int OWNER_ALREADY_EXIST							= 1250;
