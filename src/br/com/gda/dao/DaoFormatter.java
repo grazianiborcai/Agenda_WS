@@ -134,4 +134,13 @@ public final class DaoFormatter {
 		float result = number * 100;
 		return (long) result;
 	}
+	
+	
+	
+	public static String booleanToString(boolean boole) {
+		if (boole == false)
+			return "0";
+		
+		return "1";
+	}
 }

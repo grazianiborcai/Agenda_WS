@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialSnapshot.info.MatSnapInfo;
-import br.com.gda.business.materialSnapshot.model.action.LazyMatSnapMergeCurrency;
 import br.com.gda.business.materialSnapshot.model.action.LazyMatSnapMergeMatCateg;
 import br.com.gda.business.materialSnapshot.model.action.LazyMatSnapMergeMatGroup;
 import br.com.gda.business.materialSnapshot.model.action.LazyMatSnapMergeMatType;
@@ -64,14 +63,12 @@ public final class RootMatSnapSelect implements DeciTree<MatSnapInfo> {
 		ActionLazy<MatSnapInfo> mergeMatType = new LazyMatSnapMergeMatType(option.conn, option.schemaName);
 		ActionLazy<MatSnapInfo> mergeMatCateg = new LazyMatSnapMergeMatCateg(option.conn, option.schemaName);
 		ActionLazy<MatSnapInfo> mergeMatGroup = new LazyMatSnapMergeMatGroup(option.conn, option.schemaName);
-		ActionLazy<MatSnapInfo> mergeCurrency = new LazyMatSnapMergeCurrency(option.conn, option.schemaName);
 		ActionLazy<MatSnapInfo> mergeMatUnit = new LazyMatSnapMergeMatUnit(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatType);
 		mergeMatType.addPostAction(mergeMatCateg);
 		mergeMatCateg.addPostAction(mergeMatGroup);
-		mergeMatGroup.addPostAction(mergeCurrency);
-		mergeCurrency.addPostAction(mergeMatUnit);
+		mergeMatGroup.addPostAction(mergeMatUnit);
 		
 		actions.add(select);
 		return actions;

@@ -9,6 +9,7 @@ import br.com.gda.business.material.model.action.LazyMatRootSelect;
 import br.com.gda.business.material.model.action.LazyMatUpdateAttr;
 import br.com.gda.business.material.model.action.StdMatEnforceLChanged;
 import br.com.gda.business.material.model.checker.MatCheckCateg;
+import br.com.gda.business.material.model.checker.MatCheckCategChange;
 import br.com.gda.business.material.model.checker.MatCheckCurrency;
 import br.com.gda.business.material.model.checker.MatCheckExist;
 import br.com.gda.business.material.model.checker.MatCheckGroup;
@@ -17,6 +18,9 @@ import br.com.gda.business.material.model.checker.MatCheckLangu;
 import br.com.gda.business.material.model.checker.MatCheckOwner;
 import br.com.gda.business.material.model.checker.MatCheckType;
 import br.com.gda.business.material.model.checker.MatCheckUnit;
+import br.com.gda.business.material.model.checker.MatCheckUnitEach;
+import br.com.gda.business.material.model.checker.MatCheckUnitProduct;
+import br.com.gda.business.material.model.checker.MatCheckUnitService;
 import br.com.gda.business.material.model.checker.MatCheckWrite;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -49,6 +53,7 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 	
 	private ModelChecker<MatInfo> buildDecisionChecker(DeciTreeOption<MatInfo> option) {
 		final boolean EXIST_ON_DB = true;
+		final boolean NOT_CHANGED = true;
 		
 		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatInfo> checker;
@@ -58,6 +63,15 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 		queue.add(checker);
 		
 		checker = new MatCheckKey();
+		queue.add(checker);
+		
+		checker = new MatCheckUnitEach();
+		queue.add(checker);
+		
+		checker = new MatCheckUnitService();
+		queue.add(checker);
+		
+		checker = new MatCheckUnitProduct();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -116,6 +130,14 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 		checker = new MatCheckExist(checkerOption);
 		queue.add(checker);		
 		
+		new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = NOT_CHANGED;		
+		checker = new MatCheckCategChange(checkerOption);
+		queue.add(checker);	
+		
+		//TODO: Como tratar Update se o material ja estiver no carrinho de compras ?
 		return new ModelCheckerQueue<>(queue);
 	}
 	

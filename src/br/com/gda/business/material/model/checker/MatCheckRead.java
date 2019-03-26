@@ -18,10 +18,10 @@ public final class MatCheckRead extends ModelCheckerTemplateSimple<MatInfo> {
 	@Override protected boolean checkHook(MatInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.codLanguage 	== null		)			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

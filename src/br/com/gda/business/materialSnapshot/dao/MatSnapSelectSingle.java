@@ -179,9 +179,7 @@ public final class MatSnapSelectSingle implements DaoStmt<MatSnapInfo> {
 				dataInfo.description = stmtResult.getString(MAT_DESCR_COL);
 				dataInfo.codType = stmtResult.getInt(MatSnapDbTableColumn.COL_COD_TYPE);
 				dataInfo.codCategory = stmtResult.getInt(MatSnapDbTableColumn.COL_COD_CATEGORY);
-				dataInfo.price = stmtResult.getDouble(MatSnapDbTableColumn.COL_PRICE);
-				dataInfo.priceUnit = stmtResult.getInt(MatSnapDbTableColumn.COL_PRICE_UNIT);				
-				dataInfo.codCurr = stmtResult.getString(MatSnapDbTableColumn.COL_COD_CURRRENCY);
+				dataInfo.priceUnit = stmtResult.getInt(MatSnapDbTableColumn.COL_PRICE_UNIT);	
 				dataInfo.codUnit = stmtResult.getString(MatSnapDbTableColumn.COL_COD_UNIT);	
 				dataInfo.codGroup = stmtResult.getInt(MatSnapDbTableColumn.COL_COD_GROUP);
 				dataInfo.codLanguage = stmtResult.getString(MAT_LANGU_COL);	

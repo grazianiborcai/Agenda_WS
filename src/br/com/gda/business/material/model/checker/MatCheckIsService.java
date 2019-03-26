@@ -13,9 +13,9 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class MatCheckServ extends ModelCheckerTemplateAction<MatInfo> {
+public final class MatCheckIsService extends ModelCheckerTemplateAction<MatInfo> {
 	
-	public MatCheckServ(ModelCheckerOption option) {
+	public MatCheckIsService(ModelCheckerOption option) {
 		super(option);
 	}
 	

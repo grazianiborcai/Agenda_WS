@@ -44,6 +44,10 @@ public final class MatWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codGroup));
 					break;
 					
+				case MatDbTableColumn.COL_COD_CATEGORY :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMatCateg));
+					break;
+					
 				case MatDbTableColumn.COL_COD_LANGUAGE :
 					if (tableName == DaoDbTable.MAT_TEXT_TABLE)
 						builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);

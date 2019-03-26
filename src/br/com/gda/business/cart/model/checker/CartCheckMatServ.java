@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.checker.MatCheckServ;
+import br.com.gda.business.material.model.checker.MatCheckIsService;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
@@ -16,7 +16,7 @@ public final class CartCheckMatServ implements ModelChecker<CartInfo> {
 	
 	
 	public CartCheckMatServ(ModelCheckerOption option) {
-		checker = new MatCheckServ(option);
+		checker = new MatCheckIsService(option);
 	}
 	
 	

@@ -26,6 +26,10 @@ import br.com.gda.business.materialStore.model.MatoreModelDelete;
 import br.com.gda.business.materialStore.model.MatoreModelInsert;
 import br.com.gda.business.materialStore.model.MatoreModelSelect;
 import br.com.gda.business.materialStore.model.MatoreModelUpdate;
+import br.com.gda.business.materialText.info.MatextInfo;
+import br.com.gda.business.materialText.model.MatextModelDelete;
+import br.com.gda.business.materialText.model.MatextModelSelect;
+import br.com.gda.business.materialText.model.MatextModelUpsert;
 import br.com.gda.model.Model;
 
 @Path("/Material")
@@ -40,6 +44,9 @@ public class MaterialResource {
 	private static final String DELETE_MAT_STORE = "/deleteMatStore";
 	private static final String INSERT_MAT_MOV = "/insertMatmov";
 	private static final String SELECT_MAT_MOV = "/selectMatmov";
+	private static final String UPSERT_MATERIAL_TEXT = "/upsertMaterialText";
+	private static final String DELETE_MATERIAL_TEXT = "/deleteMaterialText";
+	private static final String SELECT_MATERIAL_TEXT = "/selectMaterialText";	
 
 	
 	@POST
@@ -47,9 +54,9 @@ public class MaterialResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertMaterial(@Context HttpServletRequest request, String incomingData) {	
 		
-		Model modelInsert = new MatModelInsert(incomingData, request);
-		modelInsert.executeRequest();
-		return modelInsert.getResponse();
+		Model model = new MatModelInsert(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -59,9 +66,9 @@ public class MaterialResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateMaterial(@Context HttpServletRequest request, String incomingData) {
 
-		Model modelUpdate = new MatModelUpdate(incomingData, request);
-		modelUpdate.executeRequest();
-		return modelUpdate.getResponse();
+		Model model = new MatModelUpdate(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -80,9 +87,9 @@ public class MaterialResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model modelDelete = new MatModelDelete(recordInfo);
-		modelDelete.executeRequest();
-		return modelDelete.getResponse();
+		Model model = new MatModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -90,20 +97,22 @@ public class MaterialResource {
 	@GET
 	@Path(SELECT_MATERIAL)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMaterial(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+	public Response selectMaterial(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
 								   @HeaderParam("codMaterial") @DefaultValue("-1") long codMat, 
-								   @HeaderParam("codLanguage") @DefaultValue("-1") String codLanguage) {
+								   @HeaderParam("TOKEN_USERNAME") String username,
+								   @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 
 
 		MatInfo recordInfo = new MatInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codMat = codMat;
 		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
 		
 		
-		Model modelSelect = new MatModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new MatModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -125,9 +134,9 @@ public class MaterialResource {
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model modelSelect = new MatoreModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new MatoreModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -137,9 +146,9 @@ public class MaterialResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertMatore(@Context HttpServletRequest request, String incomingData) {
 		
-		Model modelInsert = new MatoreModelInsert(incomingData, request);
-		modelInsert.executeRequest();
-		return modelInsert.getResponse();
+		Model model = new MatoreModelInsert(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -149,9 +158,9 @@ public class MaterialResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateMatore(@Context HttpServletRequest request, String incomingData) {
 
-		Model modelUpdate = new MatoreModelUpdate(incomingData, request);
-		modelUpdate.executeRequest();
-		return modelUpdate.getResponse();
+		Model model = new MatoreModelUpdate(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
 	}	
 	
 	
@@ -173,9 +182,9 @@ public class MaterialResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model modelSelect = new MatoreModelDelete(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new MatoreModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -185,9 +194,9 @@ public class MaterialResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertMatmov(@Context HttpServletRequest request, String incomingData) {	
 		
-		Model modelInsert = new MatmovModelInsert(incomingData, request);
-		modelInsert.executeRequest();
-		return modelInsert.getResponse();
+		Model model = new MatmovModelInsert(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
@@ -210,8 +219,64 @@ public class MaterialResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model modelSelect = new MatmovModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
+		Model model = new MatmovModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(UPSERT_MATERIAL_TEXT)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response upsertMaterialText(@Context HttpServletRequest request, String incomingData) {
+
+		Model model = new MatextModelUpsert(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_MATERIAL_TEXT)
+	public Response deleteMaterialText(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                           @HeaderParam("codMaterial")    @DefaultValue("-1") long codMat,
+			                           @HeaderParam("TOKEN_USERNAME") String username,
+			                           @HeaderParam("codLanguage")    String codLanguage) {
+		
+		MatextInfo recordInfo = new MatextInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codMat = codMat;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
+		
+		
+		Model model = new MatextModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_MATERIAL_TEXT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectMaterialText(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
+								       @HeaderParam("codMaterial") @DefaultValue("-1") long codMat, 
+								       @HeaderParam("TOKEN_USERNAME") String username,
+								       @HeaderParam("codLanguage") String codLanguage) {
+
+
+		MatextInfo recordInfo = new MatextInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codMat = codMat;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		
+		Model model = new MatextModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
 	}
 }

@@ -1,18 +1,18 @@
 package br.com.gda.business.material.model.action;
 
-import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdMatMergeCurrency implements ActionStd<MatInfo> {
+public final class StdMatEnforceCategKey implements ActionStd<MatInfo> {
 	private ActionStd<MatInfo> actionHelper;	
 	
 	
-	public StdMatMergeCurrency(DeciTreeOption<MatInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiMatMergeCurrency(option.conn, option.schemaName));
+	public StdMatEnforceCategKey(DeciTreeOption<MatInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiMatEnforceCategKey());
 	}
 	
 	

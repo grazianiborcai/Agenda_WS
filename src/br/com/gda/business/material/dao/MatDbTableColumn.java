@@ -11,7 +11,6 @@ import br.com.gda.dao.common.DaoDbTable;
 public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BUSINESS = "cod_business";
 	public static final String COL_COD_CATEGORY = "cod_category";
-	public static final String COL_COD_CURRRENCY = "cod_curr";
 	public static final String COL_COD_GROUP = "cod_group";
 	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_MATERIAL = "cod_material";
@@ -23,7 +22,6 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
 	public static final String COL_NAME = "name";
 	public static final String COL_IS_LOCKED = "is_locked";
-	public static final String COL_PRICE = "price";
 	public static final String COL_PRICE_UNIT = "price_unit";
 	public static final String COL_RECORD_MODE = "record_mode";
 	
@@ -71,14 +69,6 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_PRICE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_TYPE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
@@ -88,14 +78,6 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_CATEGORY;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_CURRRENCY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -17,6 +17,9 @@ import br.com.gda.business.material.model.checker.MatCheckLangu;
 import br.com.gda.business.material.model.checker.MatCheckOwner;
 import br.com.gda.business.material.model.checker.MatCheckType;
 import br.com.gda.business.material.model.checker.MatCheckUnit;
+import br.com.gda.business.material.model.checker.MatCheckUnitEach;
+import br.com.gda.business.material.model.checker.MatCheckUnitProduct;
+import br.com.gda.business.material.model.checker.MatCheckUnitService;
 import br.com.gda.business.material.model.checker.MatCheckWrite;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
@@ -58,6 +61,15 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 		queue.add(checker);
 		
 		checker = new MatCheckGenField();
+		queue.add(checker);
+		
+		checker = new MatCheckUnitEach();
+		queue.add(checker);
+		
+		checker = new MatCheckUnitService();
+		queue.add(checker);
+		
+		checker = new MatCheckUnitProduct();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

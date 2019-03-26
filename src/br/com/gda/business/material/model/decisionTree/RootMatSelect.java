@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.action.LazyMatMergeCurrency;
 import br.com.gda.business.material.model.action.LazyMatMergeMatCateg;
 import br.com.gda.business.material.model.action.LazyMatMergeMatGroup;
 import br.com.gda.business.material.model.action.LazyMatMergeMatType;
@@ -58,14 +57,12 @@ public final class RootMatSelect implements DeciTree<MatInfo> {
 		ActionLazy<MatInfo> mergeMatType = new LazyMatMergeMatType(option.conn, option.schemaName);
 		ActionLazy<MatInfo> mergeMatCateg = new LazyMatMergeMatCateg(option.conn, option.schemaName);
 		ActionLazy<MatInfo> mergeMatGroup = new LazyMatMergeMatGroup(option.conn, option.schemaName);
-		ActionLazy<MatInfo> mergeCurrency = new LazyMatMergeCurrency(option.conn, option.schemaName);
 		ActionLazy<MatInfo> mergeMatUnit = new LazyMatMergeMatUnit(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatType);
 		mergeMatType.addPostAction(mergeMatCateg);
 		mergeMatCateg.addPostAction(mergeMatGroup);
-		mergeMatGroup.addPostAction(mergeCurrency);
-		mergeCurrency.addPostAction(mergeMatUnit);
+		mergeMatGroup.addPostAction(mergeMatUnit);
 		
 		actions.add(select);
 		return actions;

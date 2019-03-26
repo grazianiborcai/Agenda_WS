@@ -44,7 +44,7 @@ public final class MatCheckExist extends ModelCheckerTemplateAction<MatInfo> {
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
 		if (makeFailCodeHook(checkerResult) == SystemCode.MAT_ALREADY_EXIST)
-			return SystemMessage.MAT_ALREALDY_EXIST;
+			return SystemMessage.MAT_ALREADY_EXIST;
 		
 		return SystemMessage.MAT_NOT_FOUND;
 	}

@@ -2,7 +2,6 @@ package br.com.gda.business.material.info;
 
 import java.util.List;
 
-import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.business.masterData.info.MatTypeInfo;
@@ -32,12 +31,6 @@ public final class MatMerger extends InfoWritterFactory<MatInfo> {
 	
 	static public MatInfo merge(MatGroupInfo sourceOne, MatInfo sourceTwo) {
 		return new MatMergerMatGroup().merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	static public MatInfo merge(CurrencyInfo sourceOne, MatInfo sourceTwo) {
-		return new MatMergerCurrency().merge(sourceOne, sourceTwo);
 	}
 	
 	
@@ -75,11 +68,6 @@ public final class MatMerger extends InfoWritterFactory<MatInfo> {
 		if (sourceOnes.get(0) instanceof MatGroupInfo 	&&
 			sourceTwos.get(0) instanceof MatInfo		)
 			return new MatMergerMatGroup().merge((List<MatGroupInfo>) sourceOnes, (List<MatInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof CurrencyInfo 	&&
-			sourceTwos.get(0) instanceof MatInfo		)
-			return new MatMergerCurrency().merge((List<CurrencyInfo>) sourceOnes, (List<MatInfo>) sourceTwos);
 		
 		
 		if (sourceOnes.get(0) instanceof MatUnitInfo 	&&

@@ -86,7 +86,7 @@ public final class RootMatoreUpdate implements DeciTree<MatoreInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new MatoreCheckStorauth(checkerOption);
 		queue.add(checker);	
-		
+		//TODO: criar Endpoint par modificar precos de todas as lojas ao mesmo tempo. Pode ser necessario converter moedas
 		return new ModelCheckerQueue<>(queue);
 	}
 	

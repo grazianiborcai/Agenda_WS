@@ -6,7 +6,6 @@ import java.util.List;
 
 import br.com.gda.business.cart.dao.CartDbTableColumn;
 import br.com.gda.business.feeStore.dao.FeeStoreDbTableColumn;
-import br.com.gda.business.material.dao.MatDbTableColumn;
 import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
@@ -14,7 +13,7 @@ import br.com.gda.dao.common.DaoDbTable;
 
 public final class CartSnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = CartDbTableColumn.COL_BEGIN_TIME;
-	public static final String COL_COD_CURRRENCY = MatDbTableColumn.COL_COD_CURRRENCY;
+	public static final String COL_COD_CURRRENCY = "cod_curr";
 	public static final String COL_COD_CUSTOMER = CartDbTableColumn.COL_COD_CUSTOMER;
 	public static final String COL_COD_EMPLOYEE = CartDbTableColumn.COL_COD_EMPLOYEE;
 	public static final String COL_COD_FEE_CATEG = FeeStoreDbTableColumn.COL_COD_FEE_CATEG;
@@ -30,7 +29,7 @@ public final class CartSnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_END_TIME = CartDbTableColumn.COL_END_TIME;
 	public static final String COL_ITEM_NUMBER = CartDbTableColumn.COL_ITEM_NUMBER;
 	public static final String COL_LAST_CHANGED = CartDbTableColumn.COL_LAST_CHANGED;
-	public static final String COL_PRICE = MatDbTableColumn.COL_PRICE;
+	public static final String COL_PRICE = "price";
 	public static final String COL_QUANTITY = CartDbTableColumn.COL_QUANTITY;
 	
 	

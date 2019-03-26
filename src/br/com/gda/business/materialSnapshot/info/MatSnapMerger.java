@@ -2,7 +2,6 @@ package br.com.gda.business.materialSnapshot.info;
 
 import java.util.List;
 
-import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.business.masterData.info.MatTypeInfo;
@@ -33,12 +32,6 @@ public final class MatSnapMerger extends InfoWritterFactory<MatSnapInfo> {
 	
 	static public MatSnapInfo merge(MatGroupInfo sourceOne, MatSnapInfo sourceTwo) {
 		return new MatSnapMergerMatGroup().merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	static public MatSnapInfo merge(CurrencyInfo sourceOne, MatSnapInfo sourceTwo) {
-		return new MatSnapMergerCurrency().merge(sourceOne, sourceTwo);
 	}
 	
 	
@@ -76,11 +69,6 @@ public final class MatSnapMerger extends InfoWritterFactory<MatSnapInfo> {
 		if (sourceOnes.get(0) instanceof MatGroupInfo 	&&
 			sourceTwos.get(0) instanceof MatSnapInfo		)
 			return new MatSnapMergerMatGroup().merge((List<MatGroupInfo>) sourceOnes, (List<MatSnapInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof CurrencyInfo 	&&
-			sourceTwos.get(0) instanceof MatSnapInfo		)
-			return new MatSnapMergerCurrency().merge((List<CurrencyInfo>) sourceOnes, (List<MatSnapInfo>) sourceTwos);
 		
 		
 		if (sourceOnes.get(0) instanceof MatUnitInfo 	&&

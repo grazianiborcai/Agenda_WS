@@ -17,10 +17,10 @@ public final class MatSnapInfo extends InfoRecord implements Cloneable {
 	public String txtType;
 	public int codCategory;
 	public String txtCategory;
-	public double price;
+	public double price;			//TODO: Remover
 	public int priceUnit;
-	public String codCurr;
-	public String txtCurr;
+	public String codCurr;			//TODO: Remover
+	public String txtCurr;			//TODO: Remover
 	public String codUnit;
 	public String txtUnit;
 	public int codGroup;

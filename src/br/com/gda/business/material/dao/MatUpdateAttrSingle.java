@@ -100,10 +100,8 @@ public final class MatUpdateAttrSingle implements DaoStmt<MatInfo> {
 				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
 			
 			int i = 1;
-			stmt.setDouble(i++, recordInfo.price);
 			stmt.setInt(i++, recordInfo.codType);
 			stmt.setInt(i++, recordInfo.codMatCateg);
-			stmt.setString(i++, recordInfo.codCurr);
 			stmt.setString(i++, recordInfo.codUnit);
 			stmt.setInt(i++, recordInfo.priceUnit);
 			stmt.setInt(i++, recordInfo.codGroup);

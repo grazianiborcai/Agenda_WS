@@ -118,6 +118,10 @@ public final class SystemCode {
 	public static final int MAT_TEXT_NOT_FOUND							= 1203;	
 	public static final int MAT_SERVICE									= 1204;
 	public static final int MAT_NOT_SERVICE								= 1205;
+	public static final int MAT_UNIT_EACH_INCONSISTENCY					= 1206;
+	public static final int MAT_UNIT_INCONSISTENCY						= 1207;
+	public static final int MAT_CATEG_CANT_BE_CHANGED					= 1208;	
+	public static final int MAT_CATEG_NOT_CHANGED						= 1209;	
 	
 	// Owner
 	public static final int OWNER_ALREADY_EXIST							= 1250;

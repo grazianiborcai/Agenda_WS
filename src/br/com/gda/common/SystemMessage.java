@@ -116,12 +116,16 @@ public final class SystemMessage {
 
 	
 	// Material
-	public static final String MAT_ALREALDY_EXIST = "Material data already exist on DB";	
+	public static final String MAT_ALREADY_EXIST = "Material data already exist on DB";
+	public static final String MAT_CATEG_CANT_BE_CHANGED = "Material: Category can't be changed";
+	public static final String MAT_CATEG_NOT_CHANGED = "Material: Category not changed";
 	public static final String MAT_NOT_FOUND = "Material data not found on DB";
 	public static final String MAT_NOT_SERVICE	= "Material's category is not a service";
 	public static final String MAT_SERVICE = "Material's category is a service";
 	public static final String MAT_TEXT_ALREADY_EXIST = "Material text data already exist on DB";
 	public static final String MAT_TEXT_NOT_FOUND = "Material text data not found on DB";
+	public static final String MAT_UNIT_EACH_INCONSISTENCY = "Material: Unit Price should be 1 for Each";
+	public static final String MAT_UNIT_INCONSISTENCY = "Material: Unit of Measure is not valid for the given Material Category";
 	
 	
 	

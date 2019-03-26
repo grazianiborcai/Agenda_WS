@@ -58,8 +58,8 @@ public final class RootMatDelete implements DeciTree<MatInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new MatCheckExist(checkerOption);
 		queue.add(checker);		
-		
-		 return new ModelCheckerQueue<MatInfo>(queue);
+		//TODO: eliminar mat-store
+		return new ModelCheckerQueue<MatInfo>(queue);
 	}
 	
 	

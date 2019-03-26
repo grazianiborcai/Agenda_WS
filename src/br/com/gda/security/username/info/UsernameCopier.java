@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.materialMovement.info.MatmovInfo;
 import br.com.gda.business.materialStore.info.MatoreInfo;
+import br.com.gda.business.materialText.info.MatextInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
@@ -106,6 +107,20 @@ public final class UsernameCopier {
 	
 	public static List<UsernameInfo> copyFromMatore(List<MatoreInfo> sources) {
 		InfoCopier<UsernameInfo, MatoreInfo> copier = new UsernameCopyMatore();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static UsernameInfo copyFromMatext(MatextInfo source) {
+		InfoCopier<UsernameInfo, MatextInfo> copier = new UsernameCopyMatext();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromMatext(List<MatextInfo> sources) {
+		InfoCopier<UsernameInfo, MatextInfo> copier = new UsernameCopyMatext();
 		return copier.makeCopy(sources);
 	}
 }

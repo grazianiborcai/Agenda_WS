@@ -26,6 +26,7 @@ import br.com.gda.business.materialMovement.dao.MatmovDbTableColumn;
 import br.com.gda.business.materialSnapshot.dao.MatSnapDbTableColumn;
 import br.com.gda.business.materialStock.dao.MatockDbTableColumn;
 import br.com.gda.business.materialStore.dao.MatoreDbTableColumn;
+import br.com.gda.business.materialText.dao.MatextDbTableColumn;
 import br.com.gda.business.order.dao.OrderDbTableColumn;
 import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.business.ownerStore.dao.OwntoreDbTableColumn;
@@ -67,6 +68,7 @@ public final class DaoDbTableColumnAll {
 		tableColumns = new Hashtable<>();
 		
 		addTable(new MatDbTableColumn());
+		addTable(new MatextDbTableColumn());
 		addTable(new MatEmpDbTableColumn());
 		addTable(new MatSnapDbTableColumn());
 		addTable(new StoreDbTableColumn());

@@ -83,10 +83,8 @@ public final class MatSnapInsertAttrSingle implements DaoStmt<MatSnapInfo> {
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codSnapshot);
 			stmt.setLong(i++, recordInfo.codMat);
-			stmt.setDouble(i++, recordInfo.price);
 			stmt.setInt(i++, recordInfo.codType);
 			stmt.setInt(i++, recordInfo.codCategory);
-			stmt.setString(i++, recordInfo.codCurr);
 			stmt.setString(i++, recordInfo.codUnit);
 			stmt.setInt(i++, recordInfo.priceUnit);
 			stmt.setInt(i++, recordInfo.codGroup);

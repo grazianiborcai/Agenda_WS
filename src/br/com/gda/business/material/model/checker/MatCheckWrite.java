@@ -21,18 +21,16 @@ public final class MatCheckWrite extends ModelCheckerTemplateSimple<MatInfo> {
 			|| recordInfo.description 	== null	
 			|| recordInfo.codType 		<= 0
 			|| recordInfo.codMatCateg	<= 0
-			|| recordInfo.price			<= 0
 			|| recordInfo.priceUnit		<= 0
-			|| recordInfo.codCurr		== null
 			|| recordInfo.codUnit		== null
 			|| recordInfo.codGroup		<= 0
 			|| recordInfo.codLanguage	== null
 			|| recordInfo.username		== null	)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

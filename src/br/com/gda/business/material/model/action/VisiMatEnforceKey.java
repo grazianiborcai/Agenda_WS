@@ -1,29 +1,14 @@
 package br.com.gda.business.material.model.action;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.model.action.ActionVisitorEnforce;
+import br.com.gda.business.material.info.MatSetterKey;
+import br.com.gda.info.InfoSetter;
+import br.com.gda.model.action.ActionVisitorTemplateEnforce;
 
-final class VisiMatEnforceKey implements ActionVisitorEnforce<MatInfo> {
+final class VisiMatEnforceKey extends ActionVisitorTemplateEnforce<MatInfo> {
 	
-	@Override public List<MatInfo> executeTransformation(List<MatInfo> recordInfos) {
-		List<MatInfo> resultRecords = new ArrayList<>();		
-		
-		for (MatInfo eachRecord : recordInfos) {
-			resultRecords.add(enforce(eachRecord));
-		}
-		
-		return resultRecords;
-	}	
-	
-	
-	
-	private MatInfo enforce(MatInfo recordInfo) {
-		MatInfo enforcedRecord = new MatInfo();
-		enforcedRecord.codOwner = recordInfo.codOwner;
-		enforcedRecord.codMat   = recordInfo.codMat;
-		return enforcedRecord;
+	@Override protected MatInfo enforceHook(MatInfo recordInfo) {
+		InfoSetter<MatInfo> attrSetter = new MatSetterKey();
+		return attrSetter.setAttr(recordInfo);
 	}
 }
