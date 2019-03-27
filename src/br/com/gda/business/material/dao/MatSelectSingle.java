@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.dao.DaoDictionary;
 import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinColumn;
 import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -24,7 +22,7 @@ import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	private final String LT_MAT = DaoDbTable.MAT_TABLE;	
-	private final String RT_MAT_TEXT = DaoDbTable.MAT_TEXT_TABLE;
+	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<MatInfo> stmtSql;
 	private DaoStmtOption<MatInfo> stmtOption;
@@ -66,47 +64,20 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	
 	private List<DaoJoin> buildJoins() {
 		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinMatText());
+		joins.add(buildJoinLanguage());		
 		return joins;
 	}
 	
 	
 	
-	private DaoJoin buildJoinMatText() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_MAT;
-		oneColumn.leftColumnName = MatDbTableColumn.COL_COD_MATERIAL;
-		oneColumn.rightColumnName = MatDbTableColumn.COL_COD_MATERIAL;
-		joinColumns.add(oneColumn);
-		
-		
+	private DaoJoin buildJoinLanguage() {
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_MAT_TEXT;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(join.rightTableName);
+		join.rightTableName = RT_LANGU;
+		join.joinType = DaoJoinType.CROSS_JOIN;
+		join.joinColumns = null;
+		join.constraintClause = null;
 		
 		return join;
-	}
-	
-	
-	
-	private String buildJoinConstraintText(String rightTableName) {
-		StringBuilder constrainClause = new StringBuilder(); 
-		
-		constrainClause.append(rightTableName);
-		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append(MatDbTableColumn.COL_COD_LANGUAGE);
-		constrainClause.append(DaoDictionary.SPACE);
-		constrainClause.append(DaoDictionary.EQUAL);
-		constrainClause.append(DaoDictionary.SPACE);
-		constrainClause.append(DaoDictionary.QUOTE);
-		constrainClause.append(this.stmtOption.recordInfo.codLanguage);
-		constrainClause.append(DaoDictionary.QUOTE);
-		
-		return constrainClause.toString();
 	}
 	
 	
@@ -153,9 +124,6 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	private static class ResultParser implements DaoResultParser<MatInfo> {
 		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String COL_NAME = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_NAME;
-		private final String COL_LANGU = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_COD_LANGUAGE;
-		private final String COL_DESCR = DaoDbTable.MAT_TEXT_TABLE + "." + MatDbTableColumn.COL_DESCRIPTION;
 		
 		@Override public List<MatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatInfo> finalResult = new ArrayList<>();
@@ -167,14 +135,12 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 				MatInfo dataInfo = new MatInfo();
 				dataInfo.codOwner = stmtResult.getLong(MatDbTableColumn.COL_COD_OWNER);
 				dataInfo.codMat = stmtResult.getLong(MatDbTableColumn.COL_COD_MATERIAL);
-				dataInfo.txtMat = stmtResult.getString(COL_NAME);
-				dataInfo.description = stmtResult.getString(COL_DESCR);
 				dataInfo.codType = stmtResult.getInt(MatDbTableColumn.COL_COD_TYPE);
 				dataInfo.codMatCateg = stmtResult.getInt(MatDbTableColumn.COL_COD_CATEGORY);
 				dataInfo.priceUnit = stmtResult.getInt(MatDbTableColumn.COL_PRICE_UNIT);	
 				dataInfo.codUnit = stmtResult.getString(MatDbTableColumn.COL_COD_UNIT);	
 				dataInfo.codGroup = stmtResult.getInt(MatDbTableColumn.COL_COD_GROUP);
-				dataInfo.codLanguage = stmtResult.getString(COL_LANGU);	
+				dataInfo.codLanguage = stmtResult.getString(MatDbTableColumn.COL_COD_LANGUAGE);	
 				dataInfo.isLocked = stmtResult.getBoolean(MatDbTableColumn.COL_IS_LOCKED);	
 				dataInfo.recordMode = stmtResult.getString(MatDbTableColumn.COL_RECORD_MODE);
 				

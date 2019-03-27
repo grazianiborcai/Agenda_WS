@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatFilterNullText extends ActionLazyTemplate<MatInfo, MatInfo> {
+public final class LazyMatInsert extends ActionLazyTemplate<MatInfo, MatInfo> {
 	
-	public LazyMatFilterNullText(Connection conn, String schemaName) {
+	public LazyMatInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -23,8 +23,8 @@ public final class LazyMatFilterNullText extends ActionLazyTemplate<MatInfo, Mat
 	
 	
 	
-	@Override protected ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
-		return new StdMatFilterNullText(option);
+	@Override protected  ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
+		return new StdMatInsert(option);
 	}
 	
 	

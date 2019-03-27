@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.action.LazyMatInsertAttr;
-import br.com.gda.business.material.model.action.LazyMatInsertText;
+import br.com.gda.business.material.model.action.LazyMatInsert;
+import br.com.gda.business.material.model.action.LazyMatInsertMatext;
 import br.com.gda.business.material.model.action.LazyMatMergeUsername;
 import br.com.gda.business.material.model.action.LazyMatRootSelect;
 import br.com.gda.business.material.model.action.StdMatEnforceLChanged;
@@ -132,14 +132,14 @@ public final class RootMatInsert implements DeciTree<MatInfo> {
 		
 		ActionStd<MatInfo> enforceLChanged = new StdMatEnforceLChanged(option);	
 		ActionLazy<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatInfo> insertAttr = new LazyMatInsertAttr(option.conn, option.schemaName);	
-		ActionLazy<MatInfo> insertTxt = new LazyMatInsertText(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> insertMat = new LazyMatInsert(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> insertDefaultMatext = new LazyMatInsertMatext(option.conn, option.schemaName);	
 		ActionLazy<MatInfo> select = new LazyMatRootSelect(option.conn, option.schemaName);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(insertAttr);
-		insertAttr.addPostAction(insertTxt);
-		insertTxt.addPostAction(select);	
+		enforceLChangedBy.addPostAction(insertMat);
+		insertMat.addPostAction(insertDefaultMatext);
+		insertDefaultMatext.addPostAction(select);	
 		
 		actions.add(enforceLChanged);		
 		return actions;

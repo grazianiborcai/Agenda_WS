@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.action.LazyMatNodeUpdateText;
 import br.com.gda.business.material.model.action.LazyMatRootSelect;
-import br.com.gda.business.material.model.action.LazyMatUpdateAttr;
+import br.com.gda.business.material.model.action.LazyMatUpdate;
+import br.com.gda.business.material.model.action.LazyMatUpsertMatext;
 import br.com.gda.business.material.model.action.StdMatEnforceLChanged;
 import br.com.gda.business.material.model.checker.MatCheckCateg;
 import br.com.gda.business.material.model.checker.MatCheckCategChange;
@@ -147,13 +147,13 @@ public final class RootMatUpdate implements DeciTree<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 
 		ActionStd<MatInfo> enforceLChanged = new StdMatEnforceLChanged(option);	
-		ActionLazy<MatInfo> updateAttr = new LazyMatUpdateAttr(option.conn, option.schemaName);
-		ActionLazy<MatInfo> updateText = new LazyMatNodeUpdateText(option.conn, option.schemaName);
+		ActionLazy<MatInfo> updateMat = new LazyMatUpdate(option.conn, option.schemaName);
+		ActionLazy<MatInfo> upsertMatext = new LazyMatUpsertMatext(option.conn, option.schemaName);
 		ActionLazy<MatInfo> select = new LazyMatRootSelect(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(updateAttr);
-		updateAttr.addPostAction(updateText);
-		updateText.addPostAction(select);
+		enforceLChanged.addPostAction(updateMat);
+		updateMat.addPostAction(upsertMatext);
+		upsertMatext.addPostAction(select);
 		
 		actions.add(enforceLChanged);
 		return actions;

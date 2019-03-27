@@ -29,6 +29,7 @@ public final class MatextSetterMatKey implements InfoSetter<MatextInfo> {
 		enforcedRecord.codOwner = recordInfo.codOwner;
 		enforcedRecord.codMat = recordInfo.codMat;
 		enforcedRecord.codLanguage = null;
+		enforcedRecord.username = recordInfo.username;
 		
 		return enforcedRecord;
 	}

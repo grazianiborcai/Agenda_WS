@@ -3,7 +3,7 @@ package br.com.gda.business.material.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.material.dao.MatInsertText;
+import br.com.gda.business.material.dao.MatUpdate;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
@@ -13,11 +13,11 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdMatInsertText implements ActionStd<MatInfo> {
+public final class StdMatUpdate implements ActionStd<MatInfo> {
 	private ActionStd<MatInfo> actionHelper;
 	
 	
-	public StdMatInsertText(DeciTreeOption<MatInfo> option) {
+	public StdMatUpdate(DeciTreeOption<MatInfo> option) {
 		DaoStmtExec<MatInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
@@ -35,7 +35,7 @@ public final class StdMatInsertText implements ActionStd<MatInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new MatInsertText(stmtExecOptions);
+		return new MatUpdate(stmtExecOptions);
 	}
 	
 	

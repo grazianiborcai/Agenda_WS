@@ -17,10 +17,8 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_TYPE = "cod_type";
 	public static final String COL_COD_UNIT = "unit";
-	public static final String COL_DESCRIPTION = "description";	
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
-	public static final String COL_NAME = "name";
 	public static final String COL_IS_LOCKED = "is_locked";
 	public static final String COL_PRICE_UNIT = "price_unit";
 	public static final String COL_RECORD_MODE = "record_mode";
@@ -38,7 +36,6 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 		tableColumns = new Hashtable<>();
 		
 		buildMatTable();	
-		buildMatTextTable();
 		
 		return tableColumns;
 	}
@@ -140,93 +137,10 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.MAT_TEXT_TABLE;
-		oneColumn.columnName = COL_NAME;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.MAT_TEXT_TABLE;
-		oneColumn.columnName = COL_DESCRIPTION;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.MAT_TEXT_TABLE;
+		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
 		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private void buildMatTextTable() {
-		final String TABLE_NAME = DaoDbTable.MAT_TEXT_TABLE;
-		
-		DaoColumn oneColumn;
-		List<DaoColumn> columns = new ArrayList<>();	
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_OWNER;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_MATERIAL;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_NAME;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_DESCRIPTION;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_LAST_CHANGED;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_LAST_CHANGED_BY;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

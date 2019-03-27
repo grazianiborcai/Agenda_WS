@@ -5,14 +5,13 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.decisionTree.NodeMatUpdateText;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatNodeUpdateText extends ActionLazyTemplate<MatInfo, MatInfo> {
+public final class LazyMatMergeMatext extends ActionLazyTemplate<MatInfo, MatInfo> {
 	
-	public LazyMatNodeUpdateText(Connection conn, String schemaName) {
+	public LazyMatMergeMatext(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyMatNodeUpdateText extends ActionLazyTemplate<MatInfo, Mat
 	
 	
 	@Override protected ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
-		return new NodeMatUpdateText(option).toAction();
+		return new StdMatMergeMatext(option);
 	}
 	
 	

@@ -18,12 +18,12 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class MatUpdateTextSingle implements DaoStmt<MatInfo> {
+public final class MatUpdateSingle implements DaoStmt<MatInfo> {
 	private DaoStmt<MatInfo> stmtSql;
 	private DaoStmtOption<MatInfo> stmtOption;
 	
 	
-	public MatUpdateTextSingle(Connection conn, MatInfo recordInfo, String schemaName) {
+	public MatUpdateSingle(Connection conn, MatInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
@@ -35,7 +35,7 @@ public final class MatUpdateTextSingle implements DaoStmt<MatInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.MAT_TEXT_TABLE;
+		this.stmtOption.tableName = DaoDbTable.MAT_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;
@@ -63,8 +63,7 @@ public final class MatUpdateTextSingle implements DaoStmt<MatInfo> {
 	
 
 	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
+		stmtSql.generateStmt();		
 	}
 
 	
@@ -88,7 +87,7 @@ public final class MatUpdateTextSingle implements DaoStmt<MatInfo> {
 	
 	
 	@Override public DaoStmt<MatInfo> getNewInstance() {
-		return new MatUpdateTextSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new MatUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -101,8 +100,13 @@ public final class MatUpdateTextSingle implements DaoStmt<MatInfo> {
 				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
 			
 			int i = 1;
-			stmt.setString(i++, recordInfo.txtMat);
-			stmt.setString(i++, recordInfo.description);
+			stmt.setInt(i++, recordInfo.codType);
+			stmt.setInt(i++, recordInfo.codMatCateg);
+			stmt.setString(i++, recordInfo.codUnit);
+			stmt.setInt(i++, recordInfo.priceUnit);
+			stmt.setInt(i++, recordInfo.codGroup);
+			stmt.setBoolean(i++, recordInfo.isLocked);
+			stmt.setString(i++, recordInfo.recordMode);
 			stmt.setTimestamp(i++, lastChanged);
 			
 			if (recordInfo.lastChangedBy >= 0) {

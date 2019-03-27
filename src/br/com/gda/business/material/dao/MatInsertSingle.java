@@ -2,13 +2,16 @@ package br.com.gda.business.material.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
@@ -16,13 +19,13 @@ import br.com.gda.dao.DaoStmtParamTranslator;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class MatInsertTextSingle implements DaoStmt<MatInfo> {
+public final class MatInsertSingle implements DaoStmt<MatInfo> {
 	private DaoStmt<MatInfo> stmtSql;
 	private DaoStmtOption<MatInfo> stmtOption;
 	
 	
 	
-	public MatInsertTextSingle(Connection conn, MatInfo recordInfo, String schemaName) {
+	public MatInsertSingle(Connection conn, MatInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
@@ -34,10 +37,10 @@ public final class MatInsertTextSingle implements DaoStmt<MatInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.MAT_TEXT_TABLE;
+		this.stmtOption.tableName = DaoDbTable.MAT_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = null;
+		this.stmtOption.resultParser = new ResultParser(recordInfo);
 		this.stmtOption.whereClause = null;
 	}
 	
@@ -82,12 +85,14 @@ public final class MatInsertTextSingle implements DaoStmt<MatInfo> {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
-			stmt.setLong(i++, recordInfo.codMat);
-			stmt.setString(i++, recordInfo.codLanguage);
-			stmt.setString(i++, recordInfo.txtMat);
-			stmt.setString(i++, recordInfo.description);
+			stmt.setInt(i++, recordInfo.codType);
+			stmt.setInt(i++, recordInfo.codMatCateg);
+			stmt.setString(i++, recordInfo.codUnit);
+			stmt.setInt(i++, recordInfo.priceUnit);
+			stmt.setInt(i++, recordInfo.codGroup);
+			stmt.setBoolean(i++, recordInfo.isLocked);
+			stmt.setString(i++, recordInfo.recordMode);
 			stmt.setTimestamp(i++, lastChanged);
-			
 			
 			if (recordInfo.lastChangedBy >= 0) {
 				stmt.setLong(i++, recordInfo.lastChangedBy);
@@ -102,6 +107,27 @@ public final class MatInsertTextSingle implements DaoStmt<MatInfo> {
 	
 	
 	@Override public DaoStmt<MatInfo> getNewInstance() {
-		return new MatInsertTextSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+		return new MatInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	}
+	
+	
+	
+	
+	
+	private static class ResultParser implements DaoResultParser<MatInfo> {
+		private MatInfo recordInfo;
+		
+		public ResultParser(MatInfo recordToParse) {
+			recordInfo = recordToParse;
+		}
+		
+		
+		
+		@Override public List<MatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<MatInfo> finalResult = new ArrayList<>();
+			recordInfo.codMat = lastId;
+			finalResult.add(recordInfo);			
+			return finalResult;
+		}
 	}
 }

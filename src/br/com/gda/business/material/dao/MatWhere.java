@@ -8,7 +8,6 @@ import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
-import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class MatWhere implements DaoStmtWhere {
@@ -49,8 +48,7 @@ public final class MatWhere implements DaoStmtWhere {
 					break;
 					
 				case MatDbTableColumn.COL_COD_LANGUAGE :
-					if (tableName == DaoDbTable.MAT_TEXT_TABLE)
-						builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 					
 				case MatDbTableColumn.COL_RECORD_MODE :

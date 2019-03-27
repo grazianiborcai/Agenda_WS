@@ -3,14 +3,13 @@ package br.com.gda.business.materialText.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.materialText.info.MatextInfo;
-import br.com.gda.business.materialText.model.action.StdMatextSelect;
-import br.com.gda.business.materialText.model.action.StdMatextSelectDefault;
-import br.com.gda.business.materialText.model.checker.MatextCheckExist;
-import br.com.gda.business.materialText.model.checker.MatextCheckRead;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.business.materialText.info.MatextInfo;
+import br.com.gda.business.materialText.model.action.LazyMatextRootInsert;
+import br.com.gda.business.materialText.model.action.StdMatextEnforceDefaultOn;
+import br.com.gda.business.materialText.model.checker.MatextCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -19,18 +18,17 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootMatextSelect implements DeciTree<MatextInfo> {
+public final class RootMatextInsertDefault implements DeciTree<MatextInfo> {
 	private DeciTree<MatextInfo> tree;
 	
 	
-	public RootMatextSelect(DeciTreeOption<MatextInfo> option) {
+	public RootMatextInsertDefault(DeciTreeOption<MatextInfo> option) {
 		DeciTreeHelperOption<MatextInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -38,20 +36,10 @@ public final class RootMatextSelect implements DeciTree<MatextInfo> {
 	
 	
 	private ModelChecker<MatextInfo> buildDecisionChecker(DeciTreeOption<MatextInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatextInfo> checker;
-		ModelCheckerOption checkerOption;
+		ModelChecker<MatextInfo> checker;	
 		
-		checker = new MatextCheckRead();
-		queue.add(checker);		
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new MatextCheckExist(checkerOption);
+		checker = new MatextCheckWrite();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -60,22 +48,14 @@ public final class RootMatextSelect implements DeciTree<MatextInfo> {
 	
 	
 	private List<ActionStd<MatextInfo>> buildActionsOnPassed(DeciTreeOption<MatextInfo> option) {
-		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
+		List<ActionStd<MatextInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MatextInfo> select = new StdMatextSelect(option);
+		ActionStd<MatextInfo> enforceDefaultOn = new StdMatextEnforceDefaultOn(option);	
+		ActionLazy<MatextInfo> rootInsert = new LazyMatextRootInsert(option.conn, option.schemaName);
 		
-		actions.add(select);
-		return actions;
-	}
-	
-	
-	
-	private List<ActionStd<MatextInfo>> buildActionsOnFailed(DeciTreeOption<MatextInfo> option) {
-		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
+		enforceDefaultOn.addPostAction(rootInsert);
 		
-		ActionStd<MatextInfo> selectDefault = new StdMatextSelectDefault(option);
-		
-		actions.add(selectDefault);
+		actions.add(enforceDefaultOn);
 		return actions;
 	}
 	

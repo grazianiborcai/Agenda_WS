@@ -8,12 +8,12 @@ import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecHelper;
 import br.com.gda.dao.DaoStmtExecOption;
 
-public final class MatInsertAttr implements DaoStmtExec<MatInfo> {
+public final class MatInsert implements DaoStmtExec<MatInfo> {
 	private DaoStmtExec<MatInfo> helper;
 	
 	
-	public MatInsertAttr(List<DaoStmtExecOption<MatInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, MatInsertAttrSingle.class, MatInfo.class);
+	public MatInsert(List<DaoStmtExecOption<MatInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, MatInsertSingle.class, MatInfo.class);
 	}
 	
 	

@@ -7,7 +7,8 @@ import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.action.LazyMatDelete;
 import br.com.gda.business.material.model.action.LazyMatEnforceLChanged;
 import br.com.gda.business.material.model.action.LazyMatMergeUsername;
-import br.com.gda.business.material.model.action.LazyMatUpdateAttr;
+import br.com.gda.business.material.model.action.LazyMatUpdate;
+import br.com.gda.business.material.model.action.StdMatDeleteMatext;
 import br.com.gda.business.material.model.action.StdMatMergeToDelete;
 import br.com.gda.business.material.model.checker.MatCheckDelete;
 import br.com.gda.business.material.model.checker.MatCheckExist;
@@ -67,10 +68,11 @@ public final class RootMatDelete implements DeciTree<MatInfo> {
 	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
+		ActionStd<MatInfo> deleteMatext = new StdMatDeleteMatext(option);
 		ActionStd<MatInfo> mergeToDelete = new StdMatMergeToDelete(option);
 		ActionLazy<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatInfo> updateAttr = new LazyMatUpdateAttr(option.conn, option.schemaName);
+		ActionLazy<MatInfo> updateAttr = new LazyMatUpdate(option.conn, option.schemaName);
 		ActionLazy<MatInfo> delete = new LazyMatDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
@@ -78,6 +80,7 @@ public final class RootMatDelete implements DeciTree<MatInfo> {
 		enforceLChangedBy.addPostAction(updateAttr);
 		updateAttr.addPostAction(delete);
 		
+		actions.add(deleteMatext);
 		actions.add(mergeToDelete);
 		return actions;
 	}

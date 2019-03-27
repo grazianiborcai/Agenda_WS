@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatInsertText extends ActionLazyTemplate<MatInfo, MatInfo> {
+public final class LazyMatUpdate extends ActionLazyTemplate<MatInfo, MatInfo> {
 	
-	public LazyMatInsertText(Connection conn, String schemaName) {
+	public LazyMatUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyMatInsertText extends ActionLazyTemplate<MatInfo, MatInfo
 	
 	
 	@Override protected  ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
-		return new StdMatInsertText(option);
+		return new StdMatUpdate(option);
 	}
 	
 	

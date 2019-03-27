@@ -3,15 +3,15 @@ package br.com.gda.business.material.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatUpdateText extends ActionLazyTemplate<MatInfo, MatInfo> {
+public final class LazyMatUpsertMatext extends ActionLazyTemplate<MatInfo, MatInfo> {
 	
-	public LazyMatUpdateText(Connection conn, String schemaName) {
+	public LazyMatUpsertMatext(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -23,8 +23,8 @@ public final class LazyMatUpdateText extends ActionLazyTemplate<MatInfo, MatInfo
 	
 	
 	
-	@Override protected  ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
-		return new StdMatUpdateText(option);
+	@Override protected ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
+		return new StdMatUpsertMatext(option);
 	}
 	
 	

@@ -1,18 +1,18 @@
 package br.com.gda.business.material.model.action;
 
-import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionStdHelperAction;
+import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdMatFilterNullText implements ActionStd<MatInfo> {
+public final class StdMatInsertMatext implements ActionStd<MatInfo> {
 	private ActionStd<MatInfo> actionHelper;	
 	
 	
-	public StdMatFilterNullText(DeciTreeOption<MatInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiMatFilterNullText());
+	public StdMatInsertMatext(DeciTreeOption<MatInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiMatInsertMatext(option.conn, option.schemaName));
 	}
 	
 	
