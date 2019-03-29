@@ -81,6 +81,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	public void makeDecision() {
+		//TODO: loop por registro
 		boolean checkResult = checkCondition(recordInfos, checker);
 		
 		if (checkResult == RESULT_SUCCESS)

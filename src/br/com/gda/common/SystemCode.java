@@ -64,6 +64,8 @@ public final class SystemCode {
 	public static final int STORE_WTIME_IS_EMPTY 						= 1129;	
 	public static final int STORE_LDATE_HAVE_ITEM 						= 1130;
 	public static final int STORE_LDATE_IS_EMPTY 						= 1131;	
+	public static final int STORE_HAS_ITEM 								= 1132;	
+	public static final int STORE_NO_ITEM_FOUND 						= 1133;	
 	
 	// Master Data
 	public static final int EMP_POS_ALREADY_EXIST						= 1150;
@@ -126,6 +128,8 @@ public final class SystemCode {
 	public static final int MAT_TEXT_HAS_NO_DEFAULT						= 1211;
 	public static final int MAT_TEXT_HAS_DEFAULT						= 1212;
 	public static final int MAT_TEXT_DEFAULT_CANT_BE_DELETED			= 1213;
+	public static final int MAT_HAS_ITEM								= 1214;
+	public static final int MAT_NO_ITEM_FOUND							= 1215;
 	
 	// Owner
 	public static final int OWNER_ALREADY_EXIST							= 1250;

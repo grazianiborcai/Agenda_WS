@@ -119,6 +119,8 @@ public final class SystemMessage {
 	public static final String MAT_ALREADY_EXIST = "Material data already exist on DB";
 	public static final String MAT_CATEG_CANT_BE_CHANGED = "Material: Category can't be changed";
 	public static final String MAT_CATEG_NOT_CHANGED = "Material: Category not changed";
+	public static final String MAT_HAS_ITEM = "Material data found on DB";
+	public static final String MAT_NO_ITEM_FOUND = "No Material data found on DB";
 	public static final String MAT_NOT_FOUND = "Material data not found on DB";
 	public static final String MAT_NOT_SERVICE	= "Material's category is not a service";
 	public static final String MAT_SERVICE = "Material's category is a service";
@@ -132,7 +134,7 @@ public final class SystemMessage {
 	public static final String MAT_UNIT_INCONSISTENCY = "Material: Unit of Measure is not valid for the given Material Category";
 	
 	
-	
+		
 	// Owner
 	public static final String OWNER_ALREADY_EXIST = "Owner data already exist on DB";	
 	public static final String OWNER_NOT_FOUND = "Owner data not found on DB";
@@ -169,6 +171,7 @@ public final class SystemMessage {
 			
 	// Store		
 	public static final String STORE_ALREALDY_EXIST = "Store's data already exist on DB";	
+	public static final String STORE_HAS_ITEM = "Store data found on DB";
 	public static final String STORE_NOT_FOUND = "Store's data not found on DB";
 	public static final String STORE_CNPJ_ALREADY_EXIST = "Store's CNPJ already exist on DB";	
 	public static final String STORE_CNPJ_NOT_FOUND = "Store's CNPJ not found on DB";
@@ -182,6 +185,7 @@ public final class SystemMessage {
 	public static final String STORE_MAT_EMP_ALREADY_EXIST = "Employee's material data already exist on DB";	
 	public static final String STORE_MAT_EMP_FLAGGED_AS_DELETED = "Employee's material data is flagged as deleted on DB";
 	public static final String STORE_MAT_EMP_NOT_FOUND = "Employee's material data not found on DB";	
+	public static final String STORE_NO_ITEM_FOUND = "No Store data found on DB";
 	public static final String STORE_TECH_FIELD_SHOULD_BE_EMPTY = "Store: technical fields shouldn't be filled";
 	public static final String STORE_WTIME_ALREADY_EXIST = "Store's working time already exist on DB";
 	public static final String STORE_WTIME_FLAG_DELETE_TRUE = "Store's working time flagged to deletion";
@@ -194,6 +198,7 @@ public final class SystemMessage {
 	public static final String STORE_WTIME_NOT_FOUND = "Store's working time not found on DB";
 	public static final String STORE_WTIME_VALID_WORKHOUR = "Selected time is valid for Store working time range";	
 	public static final String STORE_WTIME_WORKHOUR_OUT_OF_RANGE = "Selected time is out of range of Store working time";
+	
 	
 
 		

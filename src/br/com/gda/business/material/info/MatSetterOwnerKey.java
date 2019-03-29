@@ -1,4 +1,4 @@
-package br.com.gda.business.store.info;
+package br.com.gda.business.material.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,16 +6,16 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class StoreSetterKey implements InfoSetter<StoreInfo> {
+public final class MatSetterOwnerKey implements InfoSetter<MatInfo> {
 	
-	public StoreInfo setAttr(StoreInfo recordInfo) {
+	public MatInfo setAttr(MatInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setKey(recordInfo);
+		return setCategKey(recordInfo);
 	}
 	
 	
 	
-	private void checkArgument(StoreInfo recordInfo) {
+	private void checkArgument(MatInfo recordInfo) {
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
@@ -24,13 +24,12 @@ public final class StoreSetterKey implements InfoSetter<StoreInfo> {
 	
 	
 	
-	private StoreInfo setKey(StoreInfo recordInfo) {
-		StoreInfo result = new StoreInfo();
-		result.codOwner = recordInfo.codOwner;
-		result.codStore = recordInfo.codStore;
-		result.username = recordInfo.username;
-		result.codLanguage = recordInfo.codLanguage;
-		return result;
+	private MatInfo setCategKey(MatInfo recordInfo) {
+		MatInfo enforcedRecord = new MatInfo();
+		enforcedRecord.codOwner = recordInfo.codOwner;
+		enforcedRecord.codLanguage = recordInfo.codLanguage;
+		
+		return enforcedRecord;
 	}
 	
 	

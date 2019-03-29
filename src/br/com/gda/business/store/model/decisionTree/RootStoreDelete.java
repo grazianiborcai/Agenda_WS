@@ -9,6 +9,7 @@ import br.com.gda.business.store.model.action.LazyStoreEnforceLChanged;
 import br.com.gda.business.store.model.action.LazyStoreMergeUsername;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeleteAddress;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeleteComp;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeleteMatore;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeletePerson;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeletePhone;
 import br.com.gda.business.store.model.action.LazyStoreNodeDeleteStolevate;
@@ -41,8 +42,7 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
+		helperOption.actionsOnPassed = buildActionsOnPassed(option);		
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -87,6 +87,7 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 		ActionLazy<StoreInfo> update = new LazyStoreUpdate(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deleteStowotm = new LazyStoreNodeDeleteStowotm(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deleteStolevate = new LazyStoreNodeDeleteStolevate(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deleteMatore = new LazyStoreNodeDeleteMatore(option.conn, option.schemaName);		
 		ActionLazy<StoreInfo> deleteAddress = new LazyStoreNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deletePhone = new LazyStoreNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deletePerson = new LazyStoreNodeDeletePerson(option.conn, option.schemaName);
@@ -100,6 +101,7 @@ public final class RootStoreDelete implements DeciTree<StoreInfo> {
 		
 		update.addPostAction(deleteStowotm);
 		update.addPostAction(deleteStolevate);
+		update.addPostAction(deleteMatore);
 		update.addPostAction(deleteAddress);
 		update.addPostAction(deletePhone);
 		update.addPostAction(deletePerson);

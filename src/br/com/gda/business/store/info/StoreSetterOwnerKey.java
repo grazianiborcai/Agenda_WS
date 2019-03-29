@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class StoreSetterKey implements InfoSetter<StoreInfo> {
+public final class StoreSetterOwnerKey implements InfoSetter<StoreInfo> {
 	
 	public StoreInfo setAttr(StoreInfo recordInfo) {
 		checkArgument(recordInfo);
@@ -27,7 +27,6 @@ public final class StoreSetterKey implements InfoSetter<StoreInfo> {
 	private StoreInfo setKey(StoreInfo recordInfo) {
 		StoreInfo result = new StoreInfo();
 		result.codOwner = recordInfo.codOwner;
-		result.codStore = recordInfo.codStore;
 		result.username = recordInfo.username;
 		result.codLanguage = recordInfo.codLanguage;
 		return result;
