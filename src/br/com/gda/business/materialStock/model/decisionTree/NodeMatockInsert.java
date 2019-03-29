@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.materialStock.info.MatockInfo;
 import br.com.gda.business.materialStock.model.action.StdMatockInsert;
+import br.com.gda.business.materialStock.model.checker.MatockCheckInsert;
 import br.com.gda.business.materialStock.model.checker.MatockCheckLimit;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -38,6 +39,9 @@ public final class NodeMatockInsert implements DeciTree<MatockInfo> {
 		ModelChecker<MatockInfo> checker;
 		
 		checker = new MatockCheckLimit();
+		queue.add(checker);
+		
+		checker = new MatockCheckInsert();
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);

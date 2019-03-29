@@ -26,12 +26,12 @@ public final class MatoreCheckPriceService extends ModelCheckerTemplateSimple<Ma
 		
 		
 		if (   recordInfo.matPrice1 <= 0
-			&& recordInfo.matPrice2 <= 0
-			&& recordInfo.matPrice3 <= 0
-			&& recordInfo.matPrice4 <= 0
-			&& recordInfo.matPrice5 <= 0
-			&& recordInfo.matPrice6 <= 0
-			&& recordInfo.matPrice7 <= 0	)			
+			|| recordInfo.matPrice2 <= 0
+			|| recordInfo.matPrice3 <= 0
+			|| recordInfo.matPrice4 <= 0
+			|| recordInfo.matPrice5 <= 0
+			|| recordInfo.matPrice6 <= 0
+			|| recordInfo.matPrice7 <= 0	)			
 			return super.FAILED;
 		
 		

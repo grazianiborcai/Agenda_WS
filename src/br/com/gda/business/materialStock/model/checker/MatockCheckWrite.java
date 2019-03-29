@@ -24,10 +24,10 @@ public final class MatockCheckWrite extends ModelCheckerTemplateSimple<MatockInf
 			 recordInfo.codMat				<= 0						||
 			 recordInfo.codMatmovType		== DefaultValue.character() ||
 			 recordInfo.quantityToUpdate	<= 0							)			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

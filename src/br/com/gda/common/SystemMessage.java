@@ -511,6 +511,7 @@ public final class SystemMessage {
 	public static final String MAT_MOV_MAT_CATEG_ILLEGAL = "Material movement: material category not allowed";
 	public static final String MAT_MOV_NOT_FOUND = "Material movement data not found on DB";
 	public static final String MAT_MOV_TECH_FIELD_SHOULD_BE_EMPTY = "Material movement: technical fields shouldn't be filled";
+	public static final String MAT_MOV_TYPE_NOT_ALLOWED = "Material movement type not allowed";
 	
 	
 	

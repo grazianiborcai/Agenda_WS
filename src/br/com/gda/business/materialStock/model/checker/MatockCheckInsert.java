@@ -2,41 +2,37 @@ package br.com.gda.business.materialStock.model.checker;
 
 import java.sql.Connection;
 
+import br.com.gda.business.masterData.info.common.MatmovType;
 import br.com.gda.business.materialStock.info.MatockInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatockCheckRead extends ModelCheckerTemplateSimple<MatockInfo> {
+public final class MatockCheckInsert extends ModelCheckerTemplateSimple<MatockInfo> {
 
-	public MatockCheckRead() {
+	public MatockCheckInsert() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(MatockInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0 	|| 
-			recordInfo.codStore 	<= 0 	|| 
-			recordInfo.codMat 		<= 0 	|| 
-			recordInfo.username 	== null ||
-			recordInfo.codLanguage 	== null		)	
+		if (MatmovType.INCOME.getCodMatmovType() == recordInfo.codMatmovType)
+			return super.SUCCESS;
 			
-			return super.FAILED;
 		
-		
-		return super.SUCCESS;
+		return super.FAILED;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.MAT_MOV_TYPE_NOT_ALLOWED;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.MAT_MOV_TYPE_NOT_ALLOWED;
 	}
 }

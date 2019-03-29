@@ -396,6 +396,7 @@ public final class SystemCode {
 	public static final int MAT_MOV_NOT_FOUND 							= 2951;
 	public static final int MAT_MOV_TECH_FIELD_SHOULD_BE_EMPTY			= 2952;
 	public static final int MAT_MOV_MAT_CATEG_ILLEGAL					= 2953;
+	public static final int MAT_MOV_TYPE_NOT_ALLOWED					= 2954;
 	
 	//Material Stock
 	public static final int MAT_STOCK_ALREADY_EXIST 					= 3000;

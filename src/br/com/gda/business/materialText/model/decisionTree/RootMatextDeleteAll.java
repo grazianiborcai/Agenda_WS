@@ -5,10 +5,13 @@ import java.util.List;
 
 import br.com.gda.business.materialText.info.MatextInfo;
 import br.com.gda.business.materialText.model.action.LazyMatextDelete;
-import br.com.gda.business.materialText.model.action.LazyMatextSelect;
+import br.com.gda.business.materialText.model.action.LazyMatextEnforceLChanged;
+import br.com.gda.business.materialText.model.action.LazyMatextMergeToDelete;
+import br.com.gda.business.materialText.model.action.LazyMatextMergeUsername;
+import br.com.gda.business.materialText.model.action.LazyMatextUpdate;
 import br.com.gda.business.materialText.model.action.StdMatextEnforceMatKey;
 import br.com.gda.business.materialText.model.checker.MatextCheckDelete;
-import br.com.gda.business.materialText.model.checker.MatextCheckExist;
+import br.com.gda.business.materialText.model.checker.MatextCheckHasItem;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -53,7 +56,7 @@ public final class RootMatextDeleteAll implements DeciTree<MatextInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new MatextCheckExist(checkerOption);
+		checker = new MatextCheckHasItem(checkerOption);
 		queue.add(checker);		
 
 		return new ModelCheckerQueue<MatextInfo>(queue);
@@ -63,13 +66,19 @@ public final class RootMatextDeleteAll implements DeciTree<MatextInfo> {
 	
 	private List<ActionStd<MatextInfo>> buildActionsOnPassed(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
-		//TODO: adicionar LastChangedBy e LastChanged
+
 		ActionStd<MatextInfo> enforceMatKey = new StdMatextEnforceMatKey(option);
-		ActionLazy<MatextInfo> select = new LazyMatextSelect(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> mergeToDelete = new LazyMatextMergeToDelete(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> enforceLChanged = new LazyMatextEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> update = new LazyMatextUpdate(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> delete = new LazyMatextDelete(option.conn, option.schemaName);
 		
-		enforceMatKey.addPostAction(select);
-		select.addPostAction(delete);
+		enforceMatKey.addPostAction(mergeToDelete);
+		mergeToDelete.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(update);
+		update.addPostAction(delete);
 		
 		actions.add(enforceMatKey);
 		return actions;

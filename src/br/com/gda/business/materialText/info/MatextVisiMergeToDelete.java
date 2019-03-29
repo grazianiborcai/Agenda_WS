@@ -25,7 +25,6 @@ final class MatextVisiMergeToDelete implements InfoMergerVisitor<MatextInfo, Mat
 	private MatextInfo merge(MatextInfo sourceOne, MatextInfo sourceTwo) {
 		MatextInfo result = makeClone(sourceOne);		
 		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
 		return result;
 	}
 	
@@ -43,14 +42,9 @@ final class MatextVisiMergeToDelete implements InfoMergerVisitor<MatextInfo, Mat
 	
 	
 	
-	@Override public boolean shouldWrite(MatextInfo sourceOne, MatextInfo sourceTwo) {		
-		if (sourceOne.codLanguage == null ||
-			sourceTwo.codLanguage == null)
-			return false;
-		
+	@Override public boolean shouldWrite(MatextInfo sourceOne, MatextInfo sourceTwo) {	
 		return (sourceOne.codOwner == sourceTwo.codOwner	&& 
-				sourceOne.codMat   == sourceTwo.codMat		&&
-				sourceOne.codLanguage.equals(sourceTwo.codLanguage));
+				sourceOne.codMat   == sourceTwo.codMat			);
 	}
 	
 	

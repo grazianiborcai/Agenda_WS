@@ -16,8 +16,7 @@ public final class MatockCheckBalance extends ModelCheckerTemplateSimple<MatockI
 	
 	
 	@Override protected boolean checkHook(MatockInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.quantityStock < 0 )	
-			
+		if (recordInfo.quantityStock < 0 )				
 			return FAILED;
 		
 		

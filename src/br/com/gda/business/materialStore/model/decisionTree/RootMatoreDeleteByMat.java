@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialStore.info.MatoreInfo;
-import br.com.gda.business.materialStore.model.action.StdMatoreUpdate;
-import br.com.gda.business.materialStore.model.checker.MatoreCheckHasMatCateg;
-import br.com.gda.business.materialStore.model.checker.MatoreCheckPriceProduct;
-import br.com.gda.business.materialStore.model.checker.MatoreCheckPriceService;
+import br.com.gda.business.materialStore.model.action.LazyMatoreRootDelete;
+import br.com.gda.business.materialStore.model.action.StdMatoreMergeToDelete;
+import br.com.gda.business.materialStore.model.checker.MatoreCheckDeleteByMat;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -18,18 +18,17 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeMatoreUpdate implements DeciTree<MatoreInfo> {
+public final class RootMatoreDeleteByMat implements DeciTree<MatoreInfo> {
 	private DeciTree<MatoreInfo> tree;
 	
 	
-	public NodeMatoreUpdate(DeciTreeOption<MatoreInfo> option) {
+	public RootMatoreDeleteByMat(DeciTreeOption<MatoreInfo> option) {
 		DeciTreeHelperOption<MatoreInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = null;
+		helperOption.actionsOnPassed = buildActionsOnPassed(option);		
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -40,29 +39,23 @@ public final class NodeMatoreUpdate implements DeciTree<MatoreInfo> {
 		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatoreInfo> checker;
 		
-		checker = new MatoreCheckHasMatCateg();
-		queue.add(checker);	
-		
-		checker = new MatoreCheckPriceService();
+		checker = new MatoreCheckDeleteByMat();
 		queue.add(checker);
 		
-		checker = new MatoreCheckPriceProduct();
-		queue.add(checker);
-		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerQueue<MatoreInfo>(queue);
 	}
 	
 	
 	
 	private List<ActionStd<MatoreInfo>> buildActionsOnPassed(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
+		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MatoreInfo> update = new StdMatoreUpdate(option);
-		ActionStd<MatoreInfo> select = new RootMatoreSelect(option).toAction();
-
-		actions.add(update);
-		actions.add(select);
-				
+		ActionStd<MatoreInfo> mergeToDelete = new StdMatoreMergeToDelete(option);
+		ActionLazy<MatoreInfo> rootDelete = new LazyMatoreRootDelete(option.conn, option.schemaName);
+		
+		mergeToDelete.addPostAction(rootDelete);
+		
+		actions.add(mergeToDelete);
 		return actions;
 	}
 	

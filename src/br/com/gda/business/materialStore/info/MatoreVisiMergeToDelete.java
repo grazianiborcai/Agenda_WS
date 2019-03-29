@@ -44,8 +44,7 @@ final class MatoreVisiMergeToDelete implements InfoMergerVisitor<MatoreInfo, Mat
 	
 	
 	@Override public boolean shouldWrite(MatoreInfo sourceOne, MatoreInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner	&& 
-				sourceOne.codStore == sourceTwo.codStore		);
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	

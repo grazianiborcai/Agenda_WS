@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialStore.info.MatoreInfo;
-import br.com.gda.business.materialStore.model.checker.MatoreHasMatCateg;
+import br.com.gda.business.materialStore.model.checker.MatoreCheckHasMatCateg;
 import br.com.gda.business.materialStore.model.checker.MatoreCheckPriceProduct;
 import br.com.gda.business.materialStore.model.checker.MatoreCheckPriceService;
 import br.com.gda.model.action.ActionStd;
@@ -39,7 +39,7 @@ public final class NodeMatoreInsertL1 implements DeciTree<MatoreInfo> {
 		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatoreInfo> checker;
 		
-		checker = new MatoreHasMatCateg();
+		checker = new MatoreCheckHasMatCateg();
 		queue.add(checker);	
 		
 		checker = new MatoreCheckPriceService();

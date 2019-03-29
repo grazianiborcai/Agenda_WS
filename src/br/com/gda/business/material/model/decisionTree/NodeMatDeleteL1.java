@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.checker.MatCheckDelete;
-import br.com.gda.business.material.model.checker.MatCheckExist;
+import br.com.gda.business.material.model.action.StdMatDeleteMatore;
+import br.com.gda.business.material.model.checker.MatCheckMatore;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -17,17 +17,18 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootMatDelete implements DeciTree<MatInfo> {
+public final class NodeMatDeleteL1 implements DeciTree<MatInfo> {
 	private DeciTree<MatInfo> tree;
 	
 	
-	public RootMatDelete(DeciTreeOption<MatInfo> option) {
+	public NodeMatDeleteL1(DeciTreeOption<MatInfo> option) {
 		DeciTreeHelperOption<MatInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);		
+		helperOption.actionsOnPassed = buildActionsOnPassed(option);	
+		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -35,21 +36,17 @@ public final class RootMatDelete implements DeciTree<MatInfo> {
 	
 	
 	private ModelChecker<MatInfo> buildDecisionChecker(DeciTreeOption<MatInfo> option) {
-		final boolean EXIST_ON_DB = true;
+		final boolean DONT_EXIST = false;
 		
 		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
-		checker = new MatCheckDelete();
-		queue.add(checker);
-			
-		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new MatCheckExist(checkerOption);
+		checkerOption.expectedResult = DONT_EXIST;		
+		checker = new MatCheckMatore(checkerOption);
 		queue.add(checker);	
 
 		return new ModelCheckerQueue<MatInfo>(queue);
@@ -60,9 +57,22 @@ public final class RootMatDelete implements DeciTree<MatInfo> {
 	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatInfo> nodeL1 = new NodeMatDeleteL1(option).toAction();
+		ActionStd<MatInfo> nodeL2 = new NodeMatDeleteL2(option).toAction();
 		
-		actions.add(nodeL1);
+		actions.add(nodeL2);
+		return actions;
+	}
+	
+	
+	
+	private List<ActionStd<MatInfo>> buildActionsOnFailed(DeciTreeOption<MatInfo> option) {
+		List<ActionStd<MatInfo>> actions = new ArrayList<>();
+		
+		ActionStd<MatInfo> deleteMatore = new StdMatDeleteMatore(option);
+		ActionStd<MatInfo> nodeL2 = new NodeMatDeleteL2(option).toAction();
+		
+		actions.add(deleteMatore);
+		actions.add(nodeL2);
 		return actions;
 	}
 	
