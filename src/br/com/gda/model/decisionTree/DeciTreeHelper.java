@@ -60,10 +60,10 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 			throw new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT);
 		}
 		
-		//TODO: ILLEGAL ARGUMENT ???
+		
 		if (option.recordInfos.isEmpty()) {
-			logException(new NullPointerException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT));
-			throw new NullPointerException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT);
+			logException(new IllegalArgumentException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT));
+			throw new IllegalArgumentException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT);
 		}
 	}
 	
