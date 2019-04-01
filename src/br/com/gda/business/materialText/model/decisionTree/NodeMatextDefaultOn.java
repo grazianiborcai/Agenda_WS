@@ -16,32 +16,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeMatextDefaultOn implements DeciTree<MatextInfo> {
-	private DeciTree<MatextInfo> tree;
-	
+public final class NodeMatextDefaultOn extends DeciTreeWriteTemplate<MatextInfo> {
 	
 	public NodeMatextDefaultOn(DeciTreeOption<MatextInfo> option) {
-		DeciTreeHelperOption<MatextInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
-		helperOption.conn = option.conn;
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<MatextInfo> buildDecisionChecker(DeciTreeOption<MatextInfo> option) {
+	@Override protected ModelChecker<MatextInfo> buildDecisionCheckerHook(DeciTreeOption<MatextInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
@@ -63,7 +49,7 @@ public final class NodeMatextDefaultOn implements DeciTree<MatextInfo> {
 	
 	
 	
-	private List<ActionStd<MatextInfo>> buildActionsOnPassed(DeciTreeOption<MatextInfo> option) {
+	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 		//TODO: incluir MergeToUpdate e adicionar LChanged e ChangedBy
 		ActionStd<MatextInfo> enforceMatKey = new StdMatextEnforceMatKey(option);
@@ -81,36 +67,12 @@ public final class NodeMatextDefaultOn implements DeciTree<MatextInfo> {
 	
 	
 	
-	private List<ActionStd<MatextInfo>> buildActionsOnFailed(DeciTreeOption<MatextInfo> option) {
+	@Override protected List<ActionStd<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 
 		ActionStd<MatextInfo> success = new StdMatextSuccess(option);		
 		actions.add(success);
 		
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<MatextInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<MatextInfo> toAction() {
-		return tree.toAction();
 	}
 }

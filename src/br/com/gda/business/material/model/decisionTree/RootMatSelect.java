@@ -15,31 +15,18 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public final class RootMatSelect implements DeciTree<MatInfo> {
-	private DeciTree<MatInfo> tree;
-	
+public final class RootMatSelect extends DeciTreeReadTemplate<MatInfo> {
 	
 	public RootMatSelect(DeciTreeOption<MatInfo> option) {
-		DeciTreeHelperOption<MatInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<MatInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<MatInfo> buildDecisionCheckerHook(DeciTreeOption<MatInfo> option) {
 		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatInfo> checker;
 		
@@ -51,7 +38,7 @@ public final class RootMatSelect implements DeciTree<MatInfo> {
 	
 	
 	
-	private List<ActionStd<MatInfo>> buildActionsOnPassed(DeciTreeOption<MatInfo> option) {
+	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
 		ActionStd<MatInfo> select = new StdMatSelect(option);
@@ -69,29 +56,5 @@ public final class RootMatSelect implements DeciTree<MatInfo> {
 		
 		actions.add(select);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<MatInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<MatInfo> toAction() {
-		return tree.toAction();
 	}
 }
