@@ -11,32 +11,19 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
 
-public final class RootOwntoreSelect implements DeciTree<OwntoreInfo> {
-	private DeciTree<OwntoreInfo> tree;
-	
-	
+public final class RootOwntoreSelect extends DeciTreeReadTemplate<OwntoreInfo> {
+
 	public RootOwntoreSelect(DeciTreeOption<OwntoreInfo> option) {
-		DeciTreeHelperOption<OwntoreInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<OwntoreInfo> buildDecisionChecker(DeciTreeOption<OwntoreInfo> option) {
+	@Override protected ModelChecker<OwntoreInfo> buildDecisionCheckerHook(DeciTreeOption<OwntoreInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<OwntoreInfo>> queue = new ArrayList<>();		
@@ -58,36 +45,12 @@ public final class RootOwntoreSelect implements DeciTree<OwntoreInfo> {
 	
 	
 	
-	private List<ActionStd<OwntoreInfo>> buildActionsOnPassed(DeciTreeOption<OwntoreInfo> option) {
+	@Override protected List<ActionStd<OwntoreInfo>> buildActionsOnPassedHook(DeciTreeOption<OwntoreInfo> option) {
 		List<ActionStd<OwntoreInfo>> actions = new ArrayList<>();
 
 		ActionStd<OwntoreInfo> select = new StdOwntoreSelect(option);
 		
 		actions.add(select);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<OwntoreInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<OwntoreInfo> toAction() {
-		return tree.toAction();
 	}
 }

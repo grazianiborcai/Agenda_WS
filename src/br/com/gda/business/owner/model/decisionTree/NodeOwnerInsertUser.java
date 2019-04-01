@@ -12,31 +12,18 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeOwnerInsertUser implements DeciTree<OwnerInfo> {
-	private DeciTree<OwnerInfo> tree;
-	
+public final class NodeOwnerInsertUser extends DeciTreeWriteTemplate<OwnerInfo> {
 	
 	public NodeOwnerInsertUser(DeciTreeOption<OwnerInfo> option) {
-		DeciTreeHelperOption<OwnerInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<OwnerInfo> buildDecisionChecker(DeciTreeOption<OwnerInfo> option) {
+	@Override protected ModelChecker<OwnerInfo> buildDecisionCheckerHook(DeciTreeOption<OwnerInfo> option) {
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;	
 		
@@ -48,13 +35,7 @@ public final class NodeOwnerInsertUser implements DeciTree<OwnerInfo> {
 	
 	
 	
-	@Override public ActionStd<OwnerInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
+	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStd<OwnerInfo> enforceAuthGroup = new StdOwnerEnforceAuthGroup(option);
@@ -66,23 +47,5 @@ public final class NodeOwnerInsertUser implements DeciTree<OwnerInfo> {
 		
 		actions.add(enforceAuthGroup);	
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<OwnerInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

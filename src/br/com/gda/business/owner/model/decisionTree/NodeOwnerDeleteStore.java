@@ -6,39 +6,24 @@ import java.util.List;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.action.LazyOwnerDeleteStore;
 import br.com.gda.business.owner.model.action.StdOwnerEnforceOwntoreKey;
-import br.com.gda.business.owner.model.action.StdOwnerSuccess;
 import br.com.gda.business.owner.model.checker.OwnerCheckHasOwntore;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeOwnerDeleteStore implements DeciTree<OwnerInfo> {
-	private DeciTree<OwnerInfo> tree;
-	
+public final class NodeOwnerDeleteStore extends DeciTreeWriteTemplate<OwnerInfo> {
 	
 	public NodeOwnerDeleteStore(DeciTreeOption<OwnerInfo> option) {
-		DeciTreeHelperOption<OwnerInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<OwnerInfo> buildDecisionChecker(DeciTreeOption<OwnerInfo> option) {
+	@Override protected ModelChecker<OwnerInfo> buildDecisionCheckerHook(DeciTreeOption<OwnerInfo> option) {
 		final boolean HAS_OWNTORE = true;
 		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
@@ -57,13 +42,7 @@ public final class NodeOwnerDeleteStore implements DeciTree<OwnerInfo> {
 	
 	
 	
-	@Override public ActionStd<OwnerInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
+	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStd<OwnerInfo> enforceOwntoreKey = new StdOwnerEnforceOwntoreKey(option);
@@ -73,32 +52,5 @@ public final class NodeOwnerDeleteStore implements DeciTree<OwnerInfo> {
 		
 		actions.add(enforceOwntoreKey);		
 		return actions;
-	}
-	
-	
-	
-	private List<ActionStd<OwnerInfo>> buildActionsOnFailed(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
-		
-		actions.add(new StdOwnerSuccess(option));		
-		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<OwnerInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

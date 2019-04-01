@@ -13,31 +13,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeOwnerInsertPerson implements DeciTree<OwnerInfo> {
-	private DeciTree<OwnerInfo> tree;
-	
+public final class NodeOwnerInsertPerson extends DeciTreeWriteTemplate<OwnerInfo> {
 	
 	public NodeOwnerInsertPerson(DeciTreeOption<OwnerInfo> option) {
-		DeciTreeHelperOption<OwnerInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<OwnerInfo> buildDecisionChecker(DeciTreeOption<OwnerInfo> option) {
+	@Override protected ModelChecker<OwnerInfo> buildDecisionCheckerHook(DeciTreeOption<OwnerInfo> option) {
 		final boolean HAS_PERSON = true;
 		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
@@ -56,13 +43,7 @@ public final class NodeOwnerInsertPerson implements DeciTree<OwnerInfo> {
 	
 	
 	
-	@Override public ActionStd<OwnerInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<OwnerInfo>> buildActionsOnPassed(DeciTreeOption<OwnerInfo> option) {
+	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStd<OwnerInfo> enforceEntityCateg = new StdOwnerEnforceEntityCateg(option);
@@ -74,23 +55,5 @@ public final class NodeOwnerInsertPerson implements DeciTree<OwnerInfo> {
 		
 		actions.add(enforceEntityCateg);	
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<OwnerInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }
