@@ -26,9 +26,9 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.decisionTree.DeciTreeTemplate;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootStoreDelete extends DeciTreeTemplate<StoreInfo> {	
+public final class RootStoreDelete extends DeciTreeWriteTemplate<StoreInfo> {	
 	
 	public RootStoreDelete(DeciTreeOption<StoreInfo> option) {
 		super(option);

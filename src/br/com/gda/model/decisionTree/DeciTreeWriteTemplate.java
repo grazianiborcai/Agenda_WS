@@ -11,13 +11,13 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 
-public abstract class DeciTreeTemplate<T> implements DeciTree<T> {
+public abstract class DeciTreeWriteTemplate<T> implements DeciTree<T> {
 	private DeciTree<T> currentTree;
 	private List<DeciTree<T>> trees;
 	private Iterator<DeciTree<T>> itr;
 	
 	
-	public DeciTreeTemplate(DeciTreeOption<T> option) {
+	public DeciTreeWriteTemplate(DeciTreeOption<T> option) {
 		checkArgument(option);
 		trees = buildTrees(option);
 		
