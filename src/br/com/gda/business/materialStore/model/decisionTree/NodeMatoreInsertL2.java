@@ -14,32 +14,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeMatoreInsertL2 implements DeciTree<MatoreInfo> {
-	private DeciTree<MatoreInfo> tree;
-	
+public final class NodeMatoreInsertL2 extends DeciTreeWriteTemplate<MatoreInfo> {
 	
 	public NodeMatoreInsertL2(DeciTreeOption<MatoreInfo> option) {
-		DeciTreeHelperOption<MatoreInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<MatoreInfo> buildDecisionChecker(DeciTreeOption<MatoreInfo> option) {
+	@Override protected ModelChecker<MatoreInfo> buildDecisionCheckerHook(DeciTreeOption<MatoreInfo> option) {
 		final boolean NOT_DELETED = false;	
 		
 		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
@@ -58,7 +44,7 @@ public final class NodeMatoreInsertL2 implements DeciTree<MatoreInfo> {
 	
 	
 	
-	private List<ActionStd<MatoreInfo>> buildActionsOnPassed(DeciTreeOption<MatoreInfo> option) {
+	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
 		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
 		
 		ActionStd<MatoreInfo> enforceLChanged = new StdMatoreEnforceLChanged(option);
@@ -77,7 +63,7 @@ public final class NodeMatoreInsertL2 implements DeciTree<MatoreInfo> {
 	
 	
 	
-	private List<ActionStd<MatoreInfo>> buildActionsOnFailed(DeciTreeOption<MatoreInfo> option) {
+	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnFailedHook(DeciTreeOption<MatoreInfo> option) {
 		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
 		
 		ActionStd<MatoreInfo> enforceLChanged = new StdMatoreEnforceLChanged(option);
@@ -92,29 +78,5 @@ public final class NodeMatoreInsertL2 implements DeciTree<MatoreInfo> {
 		actions.add(select);
 
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<MatoreInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<MatoreInfo> toAction() {
-		return tree.toAction();
 	}
 }
