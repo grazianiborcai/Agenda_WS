@@ -134,13 +134,38 @@ public abstract class DeciTreeWriteTemplate<T> implements DeciTree<T> {
 	
 	
 	@Override public DeciResult<T> getDecisionResult() {
-		return currentTree.getDecisionResult();
+		return makeDeciResult();
+	}
+	
+	
+	
+	private DeciResult<T> makeDeciResult() {
+		if (currentTree.getDecisionResult().isSuccess() == false)
+			return currentTree.getDecisionResult();
+		
+		DeciResultHelper<T> result = new DeciResultHelper<>();
+		result.copyWithoutResultset(currentTree.getDecisionResult());
+		
+		for (DeciTree<T> eachTree : trees) {		
+			result = mergeResultset(eachTree.getDecisionResult(), result);
+		}
+		
+		return result;
+	}
+	
+	
+	
+	private DeciResultHelper<T> mergeResultset(DeciResult<T> source, DeciResultHelper<T> target) {
+		if (source.hasResultset())
+			target.resultset.addAll(source.getResultset());
+		
+		return target;
 	}
 	
 	
 	
 	@Override public ActionStd<T> toAction() {
-		return currentTree.toAction();
+		return new DeciTreeAdapter<>(trees);
 	}
 	
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.action.LazyOwnerDeleteStore;
 import br.com.gda.business.owner.model.action.StdOwnerEnforceOwntoreKey;
+import br.com.gda.business.owner.model.action.StdOwnerSuccess;
 import br.com.gda.business.owner.model.checker.OwnerCheckHasOwntore;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -51,6 +52,15 @@ public final class NodeOwnerDeleteStore extends DeciTreeWriteTemplate<OwnerInfo>
 		enforceOwntoreKey.addPostAction(deleteStore);
 		
 		actions.add(enforceOwntoreKey);		
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
+		
+		actions.add(new StdOwnerSuccess(option));		
 		return actions;
 	}
 }
