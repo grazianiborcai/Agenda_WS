@@ -153,6 +153,11 @@ public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
 				
 				
+				stmtResult.getLong(EmpDbTableColumn.COL_LAST_CHANGED_BY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.lastChangedBy = stmtResult.getLong(EmpDbTableColumn.COL_LAST_CHANGED_BY);
+				
+				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
 			

@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.action.LazyEmpEnforceEntityCateg;
 import br.com.gda.business.employee.model.action.LazyEmpKeepEmp;
+import br.com.gda.business.employee.model.action.LazyEmpMergeUsername;
 import br.com.gda.business.employee.model.action.LazyEmpNodeUpdatePerson;
 import br.com.gda.business.employee.model.action.LazyEmpNodeUpsertAddress;
 import br.com.gda.business.employee.model.action.LazyEmpNodeUpsertPhone;
@@ -21,32 +22,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootEmpUpdate implements DeciTree<EmpInfo> {
-	private DeciTree<EmpInfo> tree;
-	
+public final class RootEmpUpdate extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	public RootEmpUpdate(DeciTreeOption<EmpInfo> option) {
-		DeciTreeHelperOption<EmpInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.schemaName = option.schemaName;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmpInfo> buildDecisionChecker(DeciTreeOption<EmpInfo> option) {
+	@Override protected ModelChecker<EmpInfo> buildDecisionCheckerHook(DeciTreeOption<EmpInfo> option) {
 		final boolean EXIST_ON_DB = true;			
 		final boolean KEY_NOT_NULL = true;	
 		
@@ -88,10 +75,11 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 	
 	
 	
-	private List<ActionStd<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
+	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 
 		ActionStd<EmpInfo> enforceLChanged = new StdEmpEnforceLChanged(option);
+		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceEntityCateg = new LazyEmpEnforceEntityCateg(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> keepEmployee = new LazyEmpKeepEmp(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> updateEmployee = new LazyEmpUpdate(option.conn, option.schemaName);	
@@ -100,7 +88,8 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 		ActionLazy<EmpInfo> upsertPhone = new LazyEmpNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionStd<EmpInfo> select = new RootEmpSelect(option).toAction();		
 		
-		enforceLChanged.addPostAction(enforceEntityCateg);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(enforceEntityCateg);
 		enforceEntityCateg.addPostAction(keepEmployee);
 		
 		keepEmployee.addPostAction(updateEmployee);		
@@ -111,29 +100,5 @@ public final class RootEmpUpdate implements DeciTree<EmpInfo> {
 		actions.add(enforceLChanged);
 		actions.add(select);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmpInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<EmpInfo> toAction() {
-		return tree.toAction();
 	}
 }

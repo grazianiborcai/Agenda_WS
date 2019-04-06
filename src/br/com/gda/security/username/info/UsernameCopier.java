@@ -3,6 +3,7 @@ package br.com.gda.security.username.info;
 
 import java.util.List;
 
+import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.materialMovement.info.MatmovInfo;
 import br.com.gda.business.materialStore.info.MatoreInfo;
@@ -121,6 +122,20 @@ public final class UsernameCopier {
 	
 	public static List<UsernameInfo> copyFromMatext(List<MatextInfo> sources) {
 		InfoCopier<UsernameInfo, MatextInfo> copier = new UsernameCopyMatext();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static UsernameInfo copyFromEmp(EmpInfo source) {
+		InfoCopier<UsernameInfo, EmpInfo> copier = new UsernameCopyEmp();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromEmp(List<EmpInfo> sources) {
+		InfoCopier<UsernameInfo, EmpInfo> copier = new UsernameCopyEmp();
 		return copier.makeCopy(sources);
 	}
 }

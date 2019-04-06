@@ -145,6 +145,7 @@ public abstract class DeciTreeWriteTemplate<T> implements DeciTree<T> {
 		
 		DeciResultHelper<T> result = new DeciResultHelper<>();
 		result.copyWithoutResultset(currentTree.getDecisionResult());
+		result.resultset = new ArrayList<>();
 		
 		for (DeciTree<T> eachTree : trees) {		
 			result = mergeResultset(eachTree.getDecisionResult(), result);
@@ -155,7 +156,7 @@ public abstract class DeciTreeWriteTemplate<T> implements DeciTree<T> {
 	
 	
 	
-	private DeciResultHelper<T> mergeResultset(DeciResult<T> source, DeciResultHelper<T> target) {
+	private DeciResultHelper<T> mergeResultset(DeciResult<T> source, DeciResultHelper<T> target) {		
 		if (source.hasResultset())
 			target.resultset.addAll(source.getResultset());
 		

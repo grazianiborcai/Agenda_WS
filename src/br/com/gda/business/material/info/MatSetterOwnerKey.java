@@ -28,6 +28,7 @@ public final class MatSetterOwnerKey implements InfoSetter<MatInfo> {
 		MatInfo enforcedRecord = new MatInfo();
 		enforcedRecord.codOwner = recordInfo.codOwner;
 		enforcedRecord.codLanguage = recordInfo.codLanguage;
+		enforcedRecord.username = recordInfo.username;
 		
 		return enforcedRecord;
 	}

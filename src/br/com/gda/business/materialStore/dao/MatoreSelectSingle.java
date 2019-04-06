@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialStore.info.MatoreInfo;
-import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoJoinType;
@@ -142,14 +141,14 @@ public final class MatoreSelectSingle implements DaoStmt<MatoreInfo> {
 				dataInfo.codLanguage = stmtResult.getString(MatoreDbTableColumn.COL_COD_LANGUAGE);	
 				
 				
-				Timestamp lastChanged = stmtResult.getTimestamp(StoreDbTableColumn.COL_LAST_CHANGED);
+				Timestamp lastChanged = stmtResult.getTimestamp(MatoreDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
 				
 				
-				stmtResult.getLong(StoreDbTableColumn.COL_LAST_CHANGED_BY);
+				stmtResult.getLong(MatoreDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(StoreDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.lastChangedBy = stmtResult.getLong(MatoreDbTableColumn.COL_LAST_CHANGED_BY);
 				
 				
 				stmtResult.getFloat(MatoreDbTableColumn.COL_PRICE);

@@ -231,9 +231,9 @@ public class EmployeeResource {
 	public Response insertEmployee(@Context HttpServletRequest request, String incomingData) {
 		//TODO: horário do empregado. Se nulo, então pegar da Store	
 		//TODO: position (ex: cabelereiro, manicuro) não deviria ficar na tab empregado, mas somente na store_emp. Assim um empregado pode ter mais de uma position na loja
-		Model employeeInsert = new EmpModelInsert(incomingData, request);
-		employeeInsert.executeRequest();
-		return employeeInsert.getResponse();
+		Model model = new EmpModelInsert(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
 	}
 
 	
@@ -242,9 +242,9 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateOwner(@Context HttpServletRequest request, String incomingData) {
 		//TODO: mudanã de password não pode ser por esse serviço
-		Model employeeUpdate = new EmpModelUpdate(incomingData, request);
-		employeeUpdate.executeRequest();
-		return employeeUpdate.getResponse();
+		Model model = new EmpModelUpdate(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
 	}
 
 	
@@ -319,9 +319,9 @@ public class EmployeeResource {
 	@Path(UPDATE_EMP_POSITION)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateEmpos(@Context HttpServletRequest request, String incomingData) {
-		Model storeEmpUpdate = new EmposModelUpdate(incomingData, request);
-		storeEmpUpdate.executeRequest();
-		return storeEmpUpdate.getResponse();
+		Model model = new EmposModelUpdate(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
 	}
 	
 	
