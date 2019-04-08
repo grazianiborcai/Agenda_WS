@@ -3,6 +3,7 @@ package br.com.gda.business.user.info;
 
 import java.util.List;
 
+import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.user.info.UserInfo;
@@ -60,6 +61,34 @@ public final class UserCopier {
 	
 	public static List<UserInfo> copyFromStoreKey(List<StoreInfo> sources) {
 		InfoCopier<UserInfo, StoreInfo> copier = new UserCopyStoreKey();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static UserInfo copyFromEmp(EmpInfo source) {
+		InfoCopier<UserInfo, EmpInfo> copier = new UserCopyEmp();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UserInfo> copyFromEmpKey(List<EmpInfo> sources) {
+		InfoCopier<UserInfo, EmpInfo> copier = new UserCopyEmpKey();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static UserInfo copyFromEmpKey(EmpInfo source) {
+		InfoCopier<UserInfo, EmpInfo> copier = new UserCopyEmpKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UserInfo> copyFromEmp(List<EmpInfo> sources) {
+		InfoCopier<UserInfo, EmpInfo> copier = new UserCopyEmp();
 		return copier.makeCopy(sources);
 	}
 	

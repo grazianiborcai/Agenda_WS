@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoWritterFactory;
 import br.com.gda.security.username.info.UsernameInfo;
 
@@ -43,6 +44,12 @@ public final class EmpMerger extends InfoWritterFactory<EmpInfo> {
 	static public EmpInfo merge(EmpInfo sourceOne, EmpInfo sourceTwo) {
 		return new EmpMergerToDelete().merge(sourceOne, sourceTwo);
 	}	
+	
+	
+	
+	static public EmpInfo merge(UserInfo sourceOne, EmpInfo sourceTwo) {
+		return new EmpMergerUser().merge(sourceOne, sourceTwo);
+	}	
 
 	
 	
@@ -68,9 +75,14 @@ public final class EmpMerger extends InfoWritterFactory<EmpInfo> {
 			return new EmpMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<EmpInfo>) sourceTwos);	
 		
 		
-		if (sourceOnes.get(0) instanceof EmpInfo 		&&
+		if (sourceOnes.get(0) instanceof EmpInfo 			&&
 			sourceTwos.get(0) instanceof EmpInfo		)
 			return new EmpMergerToDelete().merge((List<EmpInfo>) sourceOnes, (List<EmpInfo>) sourceTwos);	
+		
+		
+		if (sourceOnes.get(0) instanceof UserInfo 			&&
+			sourceTwos.get(0) instanceof EmpInfo		)
+			return new EmpMergerUser().merge((List<UserInfo>) sourceOnes, (List<EmpInfo>) sourceTwos);	
 			
 		
 		return null;

@@ -1,7 +1,7 @@
 package br.com.gda.business.masterData.info.common;
 
 public enum AuthGroup {
-	OWNER("OWNER"), STORE_MANAGER("STORE_MANAGER");
+	OWNER("OWNER"), STORE_MANAGER("STORE_MANAGER"), EMPLOYEE("EMPLOYEE");
 	
 	private final String codAuthGroup;
 	

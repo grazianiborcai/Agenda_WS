@@ -24,7 +24,7 @@ public final class LazyEmpNodeUpsertAddress extends ActionLazyTemplate<EmpInfo, 
 	
 	
 	
-	@Override protected  ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
+	@Override protected ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
 		return new NodeEmpUpsertAddress(option).toAction();
 	}
 	

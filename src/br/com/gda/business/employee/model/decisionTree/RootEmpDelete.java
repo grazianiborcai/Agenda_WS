@@ -10,10 +10,11 @@ import br.com.gda.business.employee.model.action.LazyEmpEnforceLChanged;
 import br.com.gda.business.employee.model.action.LazyEmpMergeUsername;
 import br.com.gda.business.employee.model.action.LazyEmpNodeDeleteAddress;
 import br.com.gda.business.employee.model.action.LazyEmpNodeDeletePhone;
+import br.com.gda.business.employee.model.action.LazyEmpNodeDeleteUser;
 import br.com.gda.business.employee.model.action.LazyEmpUpdate;
 import br.com.gda.business.employee.model.action.StdEmpMergeToDelete;
+import br.com.gda.business.employee.model.checker.EmpCheckDelete;
 import br.com.gda.business.employee.model.checker.EmpCheckExist;
-import br.com.gda.business.employee.model.checker.EmpCheckKey;
 import br.com.gda.business.employee.model.checker.EmpCheckLangu;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -33,15 +34,12 @@ public final class RootEmpDelete extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	@Override protected ModelChecker<EmpInfo> buildDecisionCheckerHook(DeciTreeOption<EmpInfo> option) {
 		final boolean EXIST_ON_DB = true;
-		final boolean KEY_NOT_NULL = true;	
 		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = KEY_NOT_NULL;
-		checker = new EmpCheckKey(checkerOption);
+		checker = new EmpCheckDelete();
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
@@ -73,6 +71,7 @@ public final class RootEmpDelete extends DeciTreeWriteTemplate<EmpInfo> {
 		ActionLazy<EmpInfo> deleteAddress = new LazyEmpNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deletePhone = new LazyEmpNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deletePerson = new LazyEmpDeletePerson(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deleteUser = new LazyEmpNodeDeleteUser(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deleteStore = new LazyEmpDelete(option.conn, option.schemaName);	
 		//TODO: delete Employee-Store
 		mergeToDelete.addPostAction(enforceLChanged);
@@ -82,6 +81,7 @@ public final class RootEmpDelete extends DeciTreeWriteTemplate<EmpInfo> {
 		update.addPostAction(deleteAddress);
 		update.addPostAction(deletePhone);
 		update.addPostAction(deletePerson);
+		update.addPostAction(deleteUser);
 		update.addPostAction(deleteStore);
 		
 		actions.add(mergeToDelete);		

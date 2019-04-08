@@ -10,7 +10,6 @@ import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.DefaultValue;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
 public final class StoreInfo extends InfoRecord implements Cloneable {
@@ -47,7 +46,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		codCompany = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
 		codLanguage = DefaultValue.language();
-		recordMode = RecordMode.RECORD_OK;
+		recordMode = DefaultValue.recordMode();
 		userData = DefaultValue.object();
 		companyData = DefaultValue.object();
 		personData = DefaultValue.object();

@@ -7,15 +7,19 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.DefaultValue;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
 public final class EmpInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
 	public long codPerson;
+	public long codUser;
 	public String codEntityCateg;
+	public char codUserCategory;
+	public String codAuthGroup;	
+	public UserInfo userData;
 	public PersonInfo personData;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
@@ -30,8 +34,11 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codPerson = DefaultValue.number();
+		codUser = DefaultValue.number();
+		codUserCategory = DefaultValue.character();
+		userData = DefaultValue.object();
 		codLanguage = DefaultValue.language();
-		recordMode = RecordMode.RECORD_OK;
+		recordMode = DefaultValue.recordMode();
 		personData = DefaultValue.object();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
@@ -58,6 +65,7 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
 		deepCopy.phones = clonePhones(deepCopy.phones);
 		deepCopy.personData = clonePerson(deepCopy.personData);
+		deepCopy.userData = cloneUser(deepCopy.userData);
 
 		return deepCopy;	
 	}  
@@ -101,6 +109,15 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 			return null;
 		
 		return (PersonInfo) personToClone.clone();
+	}
+	
+	
+	
+	private UserInfo cloneUser(UserInfo userToClone) throws CloneNotSupportedException {
+		if (userToClone == null)
+			return null;
+		
+		return (UserInfo) userToClone.clone();
 	}
 	
 	

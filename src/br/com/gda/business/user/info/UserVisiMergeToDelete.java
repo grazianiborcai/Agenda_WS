@@ -24,7 +24,7 @@ final class UserVisiMergeToDelete implements InfoMergerVisitor<UserInfo, UserInf
 	
 	private UserInfo merge(UserInfo sourceOne, UserInfo sourceTwo) {
 		UserInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
+		result.lastChangedBy = sourceTwo.lastChangedBy;
 		result.codLanguage = sourceTwo.codLanguage;
 		return result;
 	}

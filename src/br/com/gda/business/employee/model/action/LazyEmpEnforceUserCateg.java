@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpUpdate extends ActionLazyTemplate<EmpInfo, EmpInfo> {
-
-	public LazyEmpUpdate(Connection conn, String schemaName) {
+public final class LazyEmpEnforceUserCateg extends ActionLazyTemplate<EmpInfo, EmpInfo> {
+	
+	public LazyEmpEnforceUserCateg(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyEmpUpdate extends ActionLazyTemplate<EmpInfo, EmpInfo> {
 	
 	
 	@Override protected ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
-		return new StdEmpUpdate(option);
+		return new StdEmpEnforceUserCateg(option);
 	}
 	
 	

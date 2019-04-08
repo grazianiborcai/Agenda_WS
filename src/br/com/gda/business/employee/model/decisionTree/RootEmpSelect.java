@@ -7,6 +7,7 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.action.LazyEmpMergeAddress;
 import br.com.gda.business.employee.model.action.LazyEmpMergePerson;
 import br.com.gda.business.employee.model.action.LazyEmpMergePhone;
+import br.com.gda.business.employee.model.action.LazyEmpMergeUser;
 import br.com.gda.business.employee.model.action.StdEmpSelect;
 import br.com.gda.business.employee.model.checker.EmpCheckLangu;
 import br.com.gda.business.employee.model.checker.EmpCheckRead;
@@ -50,17 +51,17 @@ public final class RootEmpSelect extends DeciTreeReadTemplate<EmpInfo> {
 	
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
-		//TODO: Incluir usuario
+
 		ActionStd<EmpInfo> select = new StdEmpSelect(option);
 		ActionLazy<EmpInfo> mergePerson = new LazyEmpMergePerson(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> mergeAddress = new LazyEmpMergeAddress(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> mergePhone = new LazyEmpMergePhone(option.conn, option.schemaName);
-		//ActionLazy<EmpInfo> mergePersonUser = new LazyOwnerMergePersonUser(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> mergeUser = new LazyEmpMergeUser(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
-		//mergePhone.addPostAction(mergePersonUser);
+		mergePhone.addPostAction(mergeUser);
 		
 		actions.add(select);
 		return actions;

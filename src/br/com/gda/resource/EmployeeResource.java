@@ -251,13 +251,17 @@ public class EmployeeResource {
 	
 	@DELETE
 	@Path(DELETE_EMP)
-	public Response deleteEmployee(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee) {
+	public Response deleteEmployee(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner,
+								   @HeaderParam("codEmployee") 	  @DefaultValue("-1") int codEmployee,
+								   @HeaderParam("TOKEN_USERNAME") String username,
+								   @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
 		
 		//TODO: atualizar StoreEmployee
 		EmpInfo recordInfo = new EmpInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codEmployee = codEmployee;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new EmpModelDelete(recordInfo);
 		model.executeRequest();

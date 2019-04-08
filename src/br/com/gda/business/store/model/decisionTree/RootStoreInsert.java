@@ -93,6 +93,7 @@ public final class RootStoreInsert extends DeciTreeWriteTemplate<StoreInfo> {
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		//TODO: permitir que outro usuario seja associado ou inves de sempre criar um novo ?
+		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
 		ActionStd<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
 		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> insertStore = new LazyStoreInsert(option.conn, option.schemaName);

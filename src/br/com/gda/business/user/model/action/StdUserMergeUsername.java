@@ -7,7 +7,7 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdUserMergeUsername implements ActionStd<UserInfo> {
+public final class StdUserMergeUsername implements ActionStd<UserInfo> {
 	private ActionStd<UserInfo> actionHelper;	
 	
 	

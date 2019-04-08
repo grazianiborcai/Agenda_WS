@@ -138,6 +138,11 @@ public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 				dataInfo.recordMode = stmtResult.getString(EmpDbTableColumn.COL_RECORD_MODE);	
 				
 				
+				stmtResult.getLong(EmpDbTableColumn.COL_COD_USER);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codUser = stmtResult.getLong(EmpDbTableColumn.COL_COD_USER);
+				
+				
 				stmtResult.getLong(EmpDbTableColumn.COL_COD_PERSON);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPerson = stmtResult.getLong(EmpDbTableColumn.COL_COD_PERSON);

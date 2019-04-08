@@ -11,7 +11,7 @@ public final class EmpSetterPhoneKey implements InfoSetter<EmpInfo> {
 	
 	public EmpInfo setAttr(EmpInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setAddressKey(recordInfo);
+		return setPhoneKey(recordInfo);
 	}
 	
 	
@@ -25,10 +25,12 @@ public final class EmpSetterPhoneKey implements InfoSetter<EmpInfo> {
 	
 	
 	
-	private EmpInfo setAddressKey(EmpInfo recordInfo) {
-		for (PhoneInfo eachAddress : recordInfo.phones) {
-			eachAddress.codOwner = recordInfo.codOwner;
-			eachAddress.codEmployee = recordInfo.codEmployee;
+	private EmpInfo setPhoneKey(EmpInfo recordInfo) {
+		for (PhoneInfo eachPhone : recordInfo.phones) {
+			eachPhone.codOwner = recordInfo.codOwner;
+			eachPhone.codEmployee = recordInfo.codEmployee;
+			eachPhone.codLanguage = recordInfo.codLanguage;
+			eachPhone.lastChangedBy = recordInfo.lastChangedBy;
 		}
 		
 		return recordInfo;

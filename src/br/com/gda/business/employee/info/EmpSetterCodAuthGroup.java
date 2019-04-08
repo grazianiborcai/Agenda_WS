@@ -3,15 +3,15 @@ package br.com.gda.business.employee.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.masterData.info.common.AuthGroup;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class EmpSetterAddressKey implements InfoSetter<EmpInfo> {
+public final class EmpSetterCodAuthGroup implements InfoSetter<EmpInfo> {
 	
 	public EmpInfo setAttr(EmpInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setAddressKey(recordInfo);
+		return setCodAuthGrRole(recordInfo);
 	}
 	
 	
@@ -25,14 +25,8 @@ public final class EmpSetterAddressKey implements InfoSetter<EmpInfo> {
 	
 	
 	
-	private EmpInfo setAddressKey(EmpInfo recordInfo) {
-		for (AddressInfo eachAddress : recordInfo.addresses) {
-			eachAddress.codOwner = recordInfo.codOwner;
-			eachAddress.codEmployee = recordInfo.codEmployee;
-			eachAddress.codLanguage = recordInfo.codLanguage;
-			eachAddress.lastChangedBy = recordInfo.lastChangedBy;
-		}
-		
+	private EmpInfo setCodAuthGrRole(EmpInfo recordInfo) {
+		recordInfo.codAuthGroup = AuthGroup.EMPLOYEE.getCodAuthGroup();
 		return recordInfo;
 	}
 	
