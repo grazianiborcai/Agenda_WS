@@ -16,6 +16,7 @@ public final class EmposDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_POSITION = "cod_position";
 	public static final String COL_COD_STORE = "cod_store";
 	public static final String COL_LAST_CHANGED = "last_changed";
+	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
 	public static final String COL_RECORD_MODE = "record_mode";
 	
 
@@ -86,6 +87,14 @@ public final class EmposDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_LAST_CHANGED;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_LAST_CHANGED_BY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

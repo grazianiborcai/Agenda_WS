@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
+import br.com.gda.business.employeePosition.model.action.LazyEmposMergeUsername;
 import br.com.gda.business.employeePosition.model.action.LazyEmposUpdate;
 import br.com.gda.business.employeePosition.model.action.StdEmposEnforceLChanged;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckEmp;
@@ -18,31 +19,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootEmposUpdate implements DeciTree<EmposInfo> {
-	private DeciTree<EmposInfo> tree;
-	
+public final class RootEmposUpdate extends DeciTreeWriteTemplate<EmposInfo> {
 	
 	public RootEmposUpdate(DeciTreeOption<EmposInfo> option) {
-		DeciTreeHelperOption<EmposInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.conn = option.conn;
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmposInfo> buildDecisionChecker(DeciTreeOption<EmposInfo> option) {
+	@Override protected ModelChecker<EmposInfo> buildDecisionCheckerHook(DeciTreeOption<EmposInfo> option) {
 		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmposInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -98,42 +86,20 @@ public final class RootEmposUpdate implements DeciTree<EmposInfo> {
 	
 	
 	
-	private List<ActionStd<EmposInfo>> buildActionsOnPassed(DeciTreeOption<EmposInfo> option) {
+	@Override protected List<ActionStd<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
 		ActionStd<EmposInfo> enforceLChanged = new StdEmposEnforceLChanged(option);
+		ActionLazy<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> update = new LazyEmposUpdate(option.conn, option.schemaName);
 		ActionStd<EmposInfo> select = new RootEmposSelect(option).toAction();
 		
-		enforceLChanged.addPostAction(update);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(update);
 		
 		actions.add(enforceLChanged);
 		actions.add(select);
 		
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmposInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<EmposInfo> toAction() {
-		return tree.toAction();
 	}
 }

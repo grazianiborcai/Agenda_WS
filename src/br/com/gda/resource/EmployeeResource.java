@@ -293,12 +293,18 @@ public class EmployeeResource {
 	@GET
 	@Path(SELECT_EMP_POSITION)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectEmpos(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-			                    @HeaderParam("codStore") @DefaultValue("-1") int codStore) {
+	public Response selectEmpos(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codStore") 	@DefaultValue("-1") int codStore,
+			                    @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
+			                    @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,
+			                    @HeaderParam("TOKEN_USERNAME") String username) {
 		
 		EmposInfo recordInfo = new EmposInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
 		
 		Model model = new EmposModelSelect(recordInfo);
 		model.executeRequest();
@@ -333,11 +339,12 @@ public class EmployeeResource {
 	@DELETE
 	@Path(DELETE_EMP_POSITION)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteEmpos(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
-			                    @HeaderParam("codStore")    @DefaultValue("-1") int codStore,
-			                    @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
-			                    @HeaderParam("codPosition") @DefaultValue("-1") int codPosition,
-			                    @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+	public Response deleteEmpos(@HeaderParam("TOKEN_OWNER")     @DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codStore")    	@DefaultValue("-1") int codStore,
+			                    @HeaderParam("codEmployee") 	@DefaultValue("-1") long codEmployee,
+			                    @HeaderParam("codPosition") 	@DefaultValue("-1") int codPosition,
+			                    @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage,
+			                    @HeaderParam("TOKEN_USERNAME") String username) {
 		
 		EmposInfo recordInfo = new EmposInfo();
 		recordInfo.codOwner = codOwner;
@@ -345,6 +352,7 @@ public class EmployeeResource {
 		recordInfo.codEmployee = codEmployee;
 		recordInfo.codPosition = codPosition;
 		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
 		
 		Model model = new EmposModelDelete(recordInfo);
 		model.executeRequest();

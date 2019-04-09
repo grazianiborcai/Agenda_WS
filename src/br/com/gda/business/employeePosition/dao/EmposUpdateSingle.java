@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
@@ -62,8 +63,7 @@ public final class EmposUpdateSingle implements DaoStmt<EmposInfo> {
 	
 
 	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
+		stmtSql.generateStmt();		
 	}
 
 	
@@ -101,6 +101,14 @@ public final class EmposUpdateSingle implements DaoStmt<EmposInfo> {
 			int i = 1;			
 			stmt.setString(i++, recordInfo.recordMode);
 			stmt.setTimestamp(i++, lastChanged);
+			
+			
+			if (recordInfo.lastChangedBy >= 0) {
+				stmt.setLong(i++, recordInfo.lastChangedBy);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
 			
 			return stmt;
 		}		

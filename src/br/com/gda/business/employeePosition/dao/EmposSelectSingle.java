@@ -149,6 +149,12 @@ public final class EmposSelectSingle implements DaoStmt<EmposInfo> {
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
 				
+				
+				stmtResult.getLong(EmposDbTableColumn.COL_LAST_CHANGED_BY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.lastChangedBy = stmtResult.getLong(EmposDbTableColumn.COL_LAST_CHANGED_BY);
+				
+				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
 			

@@ -7,12 +7,12 @@ import br.com.gda.info.InfoMerger;
 
 final class EmposMergerPosition extends InfoMerger<EmposInfo, PositionInfo, EmposInfo> {
 	public EmposInfo merge(PositionInfo sourceOne, EmposInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new EmposVisitorPosition());
+		return super.write(sourceOne, sourceTwo, new EmposVisiMergePosition());
 	}
 	
 	
 	
 	public List<EmposInfo> merge(List<PositionInfo> sourceOnes, List<EmposInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new EmposVisitorPosition());
+		return super.write(sourceOnes, sourceTwos, new EmposVisiMergePosition());
 	}
 }

@@ -35,40 +35,44 @@
 
 	<!-- JWT Token authentication --> 
     <security:http create-session="stateless" pattern="/**">    
-        <security:intercept-url pattern="/**/Owner/**"       					access="hasAuthority('OWNER_WRITE')" 	/>
-    	<security:intercept-url pattern="/**/Store/updateStoreWorkTime" 		access="hasAuthority('STORE_UPDATE')" 	/>
-    	<security:intercept-url pattern="/**/Store/insertStoreWorkTime" 		access="hasAuthority('STORE_UPDATE')" 	/>
-    	<security:intercept-url pattern="/**/Store/deleteStoreWorkTime" 		access="hasAuthority('STORE_UPDATE')" 	/>
-    	<security:intercept-url pattern="/**/Store/selectStoreWorkTime" 		access="hasAuthority('STORE_READ')" 	/>     
-    	<security:intercept-url pattern="/**/Store/updateStoreLeaveDate" 		access="hasAuthority('STORE_UPDATE')" 	/>
-    	<security:intercept-url pattern="/**/Store/insertStoreLeaveDate" 		access="hasAuthority('STORE_UPDATE')" 	/>
-    	<security:intercept-url pattern="/**/Store/deleteStoreLeaveDate" 		access="hasAuthority('STORE_UPDATE')" 	/>
-    	<security:intercept-url pattern="/**/Store/selectStoreLeaveDate" 		access="hasAuthority('STORE_READ')" 	/>   
-        <security:intercept-url pattern="/**/Store/insert**" 					access="hasAuthority('STORE_INSERT')" 	/>
-        <security:intercept-url pattern="/**/Store/update**" 					access="hasAuthority('STORE_UPDATE')" 	/>
-        <security:intercept-url pattern="/**/Store/delete**" 					access="hasAuthority('STORE_DELETE')" 	/>
-        <security:intercept-url pattern="/**/Store/select**" 					access="hasAuthority('STORE_READ')" 	/>        
-        <security:intercept-url pattern="/**/Employee/insert**" 				access="hasAuthority('EMPLOYEE_WRITE')"	/>
-        <security:intercept-url pattern="/**/Employee/update**" 				access="hasAuthority('EMPLOYEE_WRITE')" />
-        <security:intercept-url pattern="/**/Employee/delete**" 				access="hasAuthority('EMPLOYEE_WRITE')" />
-        <security:intercept-url pattern="/**/Employee/select**" 				access="hasAuthority('EMPLOYEE_READ')" 	/>        
-        <security:intercept-url pattern="/**/Material/insertMatmov" 			access="hasAuthority('MAT_MOV_WRITE')"	/>
-        <security:intercept-url pattern="/**/Material/selectMatmov" 			access="hasAuthority('MAT_MOV_READ')"	/>        
-        <security:intercept-url pattern="/**/Material/deleteMatStore" 			access="hasAuthority('MAT_STORE_WRITE')"/>
-        <security:intercept-url pattern="/**/Material/updateMatStore" 			access="hasAuthority('MAT_STORE_WRITE')"/>
-        <security:intercept-url pattern="/**/Material/insertMatStore" 			access="hasAuthority('MAT_STORE_WRITE')"/>
-        <security:intercept-url pattern="/**/Material/selectMatStore" 			access="isAuthenticated()"				/>
-        <security:intercept-url pattern="/**/Material/insert**" 				access="hasAuthority('MATERIAL_WRITE')"	/>
-        <security:intercept-url pattern="/**/Material/update**" 				access="hasAuthority('MATERIAL_WRITE')" />
-        <security:intercept-url pattern="/**/Material/upsert**" 				access="hasAuthority('MATERIAL_WRITE')" />
-        <security:intercept-url pattern="/**/Material/delete**" 				access="hasAuthority('MATERIAL_WRITE')" />
-        <security:intercept-url pattern="/**/Material/select**" 				access="isAuthenticated()" 				/>        
-        <security:intercept-url pattern="/**/Employee/insertEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"	/>
-        <security:intercept-url pattern="/**/Employee/updateEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"	/>
-        <security:intercept-url pattern="/**/Employee/deleteEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"	/>
-        <security:intercept-url pattern="/**/Employee/select**"					access="isAuthenticated()" 				/>          
-        <security:intercept-url pattern="/**/MasterData/**"						access="isAuthenticated()" 				/>               
-        <security:intercept-url pattern="/**"                					access="isAuthenticated()" 				/>
+        <security:intercept-url pattern="/**/Owner/**"       					access="hasAuthority('OWNER_WRITE')" 				/>
+    	<security:intercept-url pattern="/**/Store/updateStoreWorkTime" 		access="hasAuthority('STORE_UPDATE')" 				/>
+    	<security:intercept-url pattern="/**/Store/insertStoreWorkTime" 		access="hasAuthority('STORE_UPDATE')" 				/>
+    	<security:intercept-url pattern="/**/Store/deleteStoreWorkTime" 		access="hasAuthority('STORE_UPDATE')" 				/>
+    	<security:intercept-url pattern="/**/Store/selectStoreWorkTime" 		access="hasAuthority('STORE_READ')" 				/> 
+    	<security:intercept-url pattern="/**/Store/updateStoreLeaveDate" 		access="hasAuthority('STORE_UPDATE')" 				/>
+    	<security:intercept-url pattern="/**/Store/insertStoreLeaveDate" 		access="hasAuthority('STORE_UPDATE')" 				/>
+    	<security:intercept-url pattern="/**/Store/deleteStoreLeaveDate" 		access="hasAuthority('STORE_UPDATE')" 				/>
+    	<security:intercept-url pattern="/**/Store/selectStoreLeaveDate" 		access="hasAuthority('STORE_READ')" 				/>
+        <security:intercept-url pattern="/**/Store/insert**" 					access="hasAuthority('STORE_INSERT')" 				/>
+        <security:intercept-url pattern="/**/Store/update**" 					access="hasAuthority('STORE_UPDATE')" 				/>
+        <security:intercept-url pattern="/**/Store/delete**" 					access="hasAuthority('STORE_DELETE')" 				/>
+        <security:intercept-url pattern="/**/Store/select**" 					access="hasAuthority('STORE_READ')" 				/>
+        <security:intercept-url pattern="/**/Employee/insert**" 				access="hasAuthority('EMPLOYEE_WRITE')"				/>
+        <security:intercept-url pattern="/**/Employee/update**" 				access="hasAuthority('EMPLOYEE_WRITE')" 			/>
+        <security:intercept-url pattern="/**/Employee/delete**" 				access="hasAuthority('EMPLOYEE_WRITE')" 			/>
+        <security:intercept-url pattern="/**/Employee/select**" 				access="hasAuthority('EMPLOYEE_READ')" 				/>        
+        <security:intercept-url pattern="/**/Material/insertMatmov" 			access="hasAuthority('MAT_MOV_WRITE')"				/>
+        <security:intercept-url pattern="/**/Material/selectMatmov" 			access="hasAuthority('MAT_MOV_READ')"				/>        
+        <security:intercept-url pattern="/**/Material/deleteMatStore" 			access="hasAuthority('MAT_STORE_WRITE')"			/>
+        <security:intercept-url pattern="/**/Material/updateMatStore" 			access="hasAuthority('MAT_STORE_WRITE')"			/>
+        <security:intercept-url pattern="/**/Material/insertMatStore" 			access="hasAuthority('MAT_STORE_WRITE')"			/>
+        <security:intercept-url pattern="/**/Material/selectMatStore" 			access="isAuthenticated()"							/>
+        <security:intercept-url pattern="/**/Material/insert**" 				access="hasAuthority('MATERIAL_WRITE')"				/>
+        <security:intercept-url pattern="/**/Material/update**" 				access="hasAuthority('MATERIAL_WRITE')" 			/>
+        <security:intercept-url pattern="/**/Material/upsert**" 				access="hasAuthority('MATERIAL_WRITE')" 			/>
+        <security:intercept-url pattern="/**/Material/delete**" 				access="hasAuthority('MATERIAL_WRITE')" 			/>
+        <security:intercept-url pattern="/**/Material/select**" 				access="isAuthenticated()" 							/>        
+        <security:intercept-url pattern="/**/Employee/insertEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"				/>
+        <security:intercept-url pattern="/**/Employee/updateEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"				/>
+        <security:intercept-url pattern="/**/Employee/deleteEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"				/>        
+        <security:intercept-url pattern="/**/Employee/insertEmployeePosition"	access="hasAuthority('EMPLOYEE_POSITION_WRITE')"	/>
+        <security:intercept-url pattern="/**/Employee/updateEmployeePosition"	access="hasAuthority('EMPLOYEE_POSITION_WRITE')"	/>
+        <security:intercept-url pattern="/**/Employee/deleteEmployeePosition"	access="hasAuthority('EMPLOYEE_POSITION_WRITE')"	/>
+        <security:intercept-url pattern="/**/Employee/selectEmployeePosition"	access="hasAuthority('EMPLOYEE_POSITION_READ')" 	/>           
+        <security:intercept-url pattern="/**/Employee/select**"					access="isAuthenticated()" 							/>
+        <security:intercept-url pattern="/**/MasterData/**"						access="isAuthenticated()" 							/>     
+        <security:intercept-url pattern="/**"                					access="isAuthenticated()" 							/>
         <security:http-basic />
         <csrf disabled="true"/>
         <custom-filter after="SECURITY_CONTEXT_FILTER" ref="tokenParamFilter" />

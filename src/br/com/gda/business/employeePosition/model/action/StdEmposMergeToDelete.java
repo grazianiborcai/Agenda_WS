@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdEmposEnforceDel implements ActionStd<EmposInfo> {
+public final class StdEmposMergeToDelete implements ActionStd<EmposInfo> {
 	private ActionStd<EmposInfo> actionHelper;	
 	
 	
-	public StdEmposEnforceDel(DeciTreeOption<EmposInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiEmposEnforceDel());
+	public StdEmposMergeToDelete(DeciTreeOption<EmposInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiEmposMergeToDelete(option.conn, option.schemaName));
 	}
 	
 	

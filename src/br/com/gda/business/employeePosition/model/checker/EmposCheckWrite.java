@@ -20,7 +20,8 @@ public final class EmposCheckWrite extends ModelCheckerTemplateSimple<EmposInfo>
 			|| recordInfo.codStore 		<= 0
 			|| recordInfo.codEmployee	<= 0  	
 			|| recordInfo.codPosition	<= 0
-			|| recordInfo.codLanguage	== null	)
+			|| recordInfo.codLanguage	== null	
+			|| recordInfo.username		== null)
 			
 			return FAILED;
 		

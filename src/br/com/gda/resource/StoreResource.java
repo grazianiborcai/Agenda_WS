@@ -90,13 +90,15 @@ public class StoreResource {
 	
 	@DELETE
 	@Path(DELETE_STORE)
-	public Response deleteStore(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
-			                    @HeaderParam("codStore")       @DefaultValue("-1") long codStore,
+	public Response deleteStore(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codStore")       	@DefaultValue("-1") long codStore,
+			                    @HeaderParam("codLanguage")		@DefaultValue("EN") String codLanguage,
 			                    @HeaderParam("TOKEN_USERNAME") String username) {
 		
 		StoreInfo recordInfo = new StoreInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
+		recordInfo.codLanguage = codLanguage;
 		recordInfo.username = username;
 		
 		Model model = new StoreModelDelete(recordInfo);
@@ -110,11 +112,13 @@ public class StoreResource {
 	@Path(SELECT_STORE)
 	public Response selectStore(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
 			                    @HeaderParam("codStore")       @DefaultValue("-1") int codStore,
+			                    @HeaderParam("codLanguage")	   @DefaultValue("EN") String codLanguage,
 			                    @HeaderParam("TOKEN_USERNAME") String username) {
 
 		StoreInfo recordInfo = new StoreInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
+		recordInfo.codLanguage = codLanguage;
 		recordInfo.username = username;
 		
 		Model model = new StoreModelSelect(recordInfo);

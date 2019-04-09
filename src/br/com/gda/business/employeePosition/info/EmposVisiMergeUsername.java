@@ -3,13 +3,13 @@ package br.com.gda.business.employeePosition.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.PositionInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.security.username.info.UsernameInfo;
 
-final class EmposVisitorPosition implements InfoMergerVisitor<EmposInfo, PositionInfo, EmposInfo> {
+final class EmposVisiMergeUsername implements InfoMergerVisitor<EmposInfo, UsernameInfo, EmposInfo> {
 
-	@Override public EmposInfo writeRecord(PositionInfo sourceOne, EmposInfo sourceTwo) {
+	@Override public EmposInfo writeRecord(UsernameInfo sourceOne, EmposInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		EmposInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class EmposVisitorPosition implements InfoMergerVisitor<EmposInfo, Positio
 	
 	
 	
-	private void checkArgument(PositionInfo sourceOne, EmposInfo sourceTwo) {
+	private void checkArgument(UsernameInfo sourceOne, EmposInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,16 +37,20 @@ final class EmposVisitorPosition implements InfoMergerVisitor<EmposInfo, Positio
 	
 	
 	
-	private EmposInfo merge(PositionInfo sourceOne, EmposInfo sourceTwo) {
-		sourceTwo.txtPosition = sourceOne.txtPosition;
-
+	private EmposInfo merge(UsernameInfo sourceOne, EmposInfo sourceTwo) {
+		sourceTwo.lastChangedBy = sourceOne.codUser;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(PositionInfo sourceOne, EmposInfo sourceTwo) {
-		return (sourceOne.codPosition == sourceTwo.codPosition);
+	@Override public boolean shouldWrite(UsernameInfo sourceOne, EmposInfo sourceTwo) {
+		if (sourceOne.username == null ||
+			sourceTwo.username == null		)
+			return false;
+		
+		return (sourceOne.codOwner == sourceTwo.codOwner		&&
+				sourceOne.username.equals(sourceTwo.username)		);
 	}
 	
 	

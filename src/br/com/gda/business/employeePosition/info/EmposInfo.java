@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
 public final class EmposInfo extends InfoRecord implements Cloneable {
@@ -17,6 +16,8 @@ public final class EmposInfo extends InfoRecord implements Cloneable {
 	public String txtPosition;
 	public String codLanguage;
 	public LocalDateTime lastChanged;
+	public long lastChangedBy;
+	public String username;
 	public String recordMode;
 	
 	
@@ -25,8 +26,9 @@ public final class EmposInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codPosition = DefaultValue.number();
+		lastChangedBy = DefaultValue.number();
 		codLanguage = DefaultValue.language();
-		recordMode = RecordMode.RECORD_OK;		
+		recordMode = DefaultValue.recordMode();		
 	}
 	
 	
