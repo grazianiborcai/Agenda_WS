@@ -476,6 +476,8 @@ public final class SystemMessage {
 	// Employee Position
 	public static final String EMPOS_ALREADY_EXIST = "Employee-Position's data already exist on DB";
 	public static final String EMPOS_FLAGGED_AS_DELETED = "Employee-Position's data is flagged as deleted on DB";	
+	public static final String EMPOS_HAS_ITEM = "Employee-Position's data found on DB";
+	public static final String EMPOS_NO_ITEM_FOUND = "No Employee-Position's data found on DB";
 	public static final String EMPOS_NOT_FOUND = "Employee-Position's data not found on DB";
 	
 	

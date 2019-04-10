@@ -31,7 +31,6 @@ import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeePosition.model.EmposModelDelete;
 import br.com.gda.business.employeePosition.model.EmposModelInsert;
 import br.com.gda.business.employeePosition.model.EmposModelSelect;
-import br.com.gda.business.employeePosition.model.EmposModelUpdate;
 import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
 import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelDelete;
 import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelInsert;
@@ -58,7 +57,6 @@ public class EmployeeResource {
 	private static final String DELETE_LEAVE_DATE = "/deleteLeaveDate";
 	private static final String SELECT_EMP_POSITION = "/selectEmployeePosition";
 	private static final String INSERT_EMP_POSITION = "/insertEmployeePosition";
-	private static final String UPDATE_EMP_POSITION = "/updateEmployeePosition";
 	private static final String DELETE_EMP_POSITION = "/deleteEmployeePosition";
 	
 	
@@ -319,17 +317,6 @@ public class EmployeeResource {
 	public Response insertEmpos(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new EmposModelInsert(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@POST
-	@Path(UPDATE_EMP_POSITION)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateEmpos(@Context HttpServletRequest request, String incomingData) {
-		Model model = new EmposModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}

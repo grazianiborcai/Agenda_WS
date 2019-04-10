@@ -2,16 +2,13 @@ package br.com.gda.business.employeePosition.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.dao.DaoOperation;
-import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
@@ -41,7 +38,7 @@ public final class EmposInsertSingle implements DaoStmt<EmposInfo> {
 		this.stmtOption.tableName = DaoDbTable.EMPOS_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser();
+		this.stmtOption.resultParser = null;
 		this.stmtOption.whereClause = null;
 	}
 	
@@ -108,16 +105,5 @@ public final class EmposInsertSingle implements DaoStmt<EmposInfo> {
 	
 	@Override public DaoStmt<EmposInfo> getNewInstance() {
 		return new EmposInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	private class ResultParser implements DaoResultParser<EmposInfo> {
-		@Override public List<EmposInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<EmposInfo> finalResult = new ArrayList<>();
-			EmposInfo recordInfo = new EmposInfo();
-			finalResult.add(recordInfo);			
-			return finalResult;
-		}
 	}
 }

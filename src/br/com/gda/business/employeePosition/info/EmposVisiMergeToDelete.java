@@ -44,8 +44,7 @@ final class EmposVisiMergeToDelete implements InfoMergerVisitor<EmposInfo, Empos
 	
 	
 	@Override public boolean shouldWrite(EmposInfo sourceOne, EmposInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner	&& 
-				sourceOne.codStore == sourceTwo.codStore		);
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.action.LazyEmpDelete;
+import br.com.gda.business.employee.model.action.LazyEmpDeleteEmpos;
 import br.com.gda.business.employee.model.action.LazyEmpDeletePerson;
 import br.com.gda.business.employee.model.action.LazyEmpEnforceLChanged;
 import br.com.gda.business.employee.model.action.LazyEmpMergeUsername;
@@ -72,8 +73,9 @@ public final class RootEmpDelete extends DeciTreeWriteTemplate<EmpInfo> {
 		ActionLazy<EmpInfo> deletePhone = new LazyEmpNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deletePerson = new LazyEmpDeletePerson(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deleteUser = new LazyEmpNodeDeleteUser(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> deleteStore = new LazyEmpDelete(option.conn, option.schemaName);	
-		//TODO: delete Employee-Store
+		ActionLazy<EmpInfo> deleteEmpos = new LazyEmpDeleteEmpos(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deleteEmployee = new LazyEmpDelete(option.conn, option.schemaName);	
+
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
@@ -82,7 +84,8 @@ public final class RootEmpDelete extends DeciTreeWriteTemplate<EmpInfo> {
 		update.addPostAction(deletePhone);
 		update.addPostAction(deletePerson);
 		update.addPostAction(deleteUser);
-		update.addPostAction(deleteStore);
+		update.addPostAction(deleteEmpos);
+		update.addPostAction(deleteEmployee);
 		
 		actions.add(mergeToDelete);		
 		return actions;
