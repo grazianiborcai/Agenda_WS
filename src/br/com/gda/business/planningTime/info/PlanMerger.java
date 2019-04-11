@@ -2,7 +2,7 @@ package br.com.gda.business.planningTime.info;
 
 import java.util.List;
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
+import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.materialEmployee.info.MatEmpInfo;
@@ -30,7 +30,7 @@ public final class PlanMerger extends InfoWritterFactory<PlanInfo> {
 	
 	
 	
-	public PlanInfo merge(PlanInfo sourceOne, EmpWTimeInfo sourceTwo) {
+	public PlanInfo merge(PlanInfo sourceOne, EmpwotmInfo sourceTwo) {
 		return new PlanMergerEWT().merge(sourceOne, sourceTwo);
 	}
 	
@@ -73,8 +73,8 @@ public final class PlanMerger extends InfoWritterFactory<PlanInfo> {
 		
 		
 		if (sourceOnes.get(0) instanceof PlanInfo 	&&
-			sourceTwos.get(0) instanceof EmpWTimeInfo		)
-			return new PlanMergerEWT().merge((List<PlanInfo>) sourceOnes, (List<EmpWTimeInfo>) sourceTwos);
+			sourceTwos.get(0) instanceof EmpwotmInfo		)
+			return new PlanMergerEWT().merge((List<PlanInfo>) sourceOnes, (List<EmpwotmInfo>) sourceTwos);
 		
 		
 		if (sourceOnes.get(0) instanceof PlanInfo 	&&

@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeMerger;
-import br.com.gda.business.employeeWorkTime.model.decisionTree.RootEmpWTimeDelete;
+import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
+import br.com.gda.business.employeeWorkTime.info.EmpwotmMerger;
+import br.com.gda.business.employeeWorkTime.model.decisionTree.RootEmpwotmDelete;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.business.storeWorkTime.model.decisionTree.RootStowotmSelect;
 import br.com.gda.model.action.ActionStd;
@@ -17,7 +17,7 @@ import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmposDeleteEWT extends ActionLazyTemplate<EmposInfo, EmpWTimeInfo> {
+public final class LazyEmposDeleteEWT extends ActionLazyTemplate<EmposInfo, EmpwotmInfo> {
 	private Connection conn;
 	private String schemaName;
 	
@@ -30,7 +30,7 @@ public final class LazyEmposDeleteEWT extends ActionLazyTemplate<EmposInfo, EmpW
 	
 	
 	
-	@Override protected List<EmpWTimeInfo> translateRecordInfosHook(List<EmposInfo> recordInfos) {
+	@Override protected List<EmpwotmInfo> translateRecordInfosHook(List<EmposInfo> recordInfos) {
 		List<StowotmInfo> storeWTs = getStoreWTime(recordInfos);
 		return merge(recordInfos, storeWTs);
 	}
@@ -55,19 +55,19 @@ public final class LazyEmposDeleteEWT extends ActionLazyTemplate<EmposInfo, EmpW
 	
 	
 	
-	private List<EmpWTimeInfo> merge(List<EmposInfo> storeEmps, List<StowotmInfo> storeWTs) {
-		return new EmpWTimeMerger().merge(storeEmps, storeWTs);
+	private List<EmpwotmInfo> merge(List<EmposInfo> storeEmps, List<StowotmInfo> storeWTs) {
+		return new EmpwotmMerger().merge(storeEmps, storeWTs);
 	}
 	
 	
 	
-	@Override protected  ActionStd<EmpWTimeInfo> getInstanceOfActionHook(DeciTreeOption<EmpWTimeInfo> option) {
-		return new RootEmpWTimeDelete(option).toAction();
+	@Override protected  ActionStd<EmpwotmInfo> getInstanceOfActionHook(DeciTreeOption<EmpwotmInfo> option) {
+		return new RootEmpwotmDelete(option).toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<EmposInfo> translateResultHook(DeciResult<EmpWTimeInfo> result) {
+	@Override protected DeciResult<EmposInfo> translateResultHook(DeciResult<EmpwotmInfo> result) {
 		DeciResultHelper<EmposInfo> resultHelper = new DeciResultHelper<>();
 		resultHelper.copyWithoutResultset(result);
 		

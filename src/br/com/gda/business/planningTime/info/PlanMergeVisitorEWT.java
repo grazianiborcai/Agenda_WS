@@ -4,13 +4,13 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
+import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class PlanMergeVisitorEWT implements InfoMergerVisitor<PlanInfo, PlanInfo, EmpWTimeInfo> {
+final class PlanMergeVisitorEWT implements InfoMergerVisitor<PlanInfo, PlanInfo, EmpwotmInfo> {
 
-	@Override public PlanInfo writeRecord(PlanInfo sourceOne, EmpWTimeInfo sourceTwo) {
+	@Override public PlanInfo writeRecord(PlanInfo sourceOne, EmpwotmInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		PlanInfo resultInfo = new PlanInfo();	
@@ -32,14 +32,14 @@ final class PlanMergeVisitorEWT implements InfoMergerVisitor<PlanInfo, PlanInfo,
 	
 	
 	
-	private void checkArgument(PlanInfo sourceOne, EmpWTimeInfo sourceTwo) {
+	private void checkArgument(PlanInfo sourceOne, EmpwotmInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private boolean shouldMerge(PlanDataInfo planData, EmpWTimeInfo empWTime) {
+	private boolean shouldMerge(PlanDataInfo planData, EmpwotmInfo empWTime) {
 		if (planData.beginTime.isAfter(empWTime.beginTime) ||
 			planData.endTime.isBefore(empWTime.endTime))
 			return false;
@@ -55,7 +55,7 @@ final class PlanMergeVisitorEWT implements InfoMergerVisitor<PlanInfo, PlanInfo,
 	
 	
 	
-	private List<PlanDataInfo> mergeEmpWTime(PlanDataInfo planData, EmpWTimeInfo empWTime) {
+	private List<PlanDataInfo> mergeEmpWTime(PlanDataInfo planData, EmpwotmInfo empWTime) {
 		PlanDataInfo dataResult = makeClone(planData);
 		
 		dataResult.codEmployee = empWTime.codEmployee;
@@ -80,7 +80,7 @@ final class PlanMergeVisitorEWT implements InfoMergerVisitor<PlanInfo, PlanInfo,
 
 
 	
-	@Override public boolean shouldWrite(PlanInfo sourceOne, EmpWTimeInfo sourceTwo) {
+	@Override public boolean shouldWrite(PlanInfo sourceOne, EmpwotmInfo sourceTwo) {
 		if (sourceTwo.beginTime == null)
 			return false;
 		

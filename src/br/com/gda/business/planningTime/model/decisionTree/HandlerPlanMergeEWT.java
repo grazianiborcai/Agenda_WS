@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.business.employeeWorkTime.model.decisionTree.RootEmpWTimeSelect;
+import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
+import br.com.gda.business.employeeWorkTime.model.decisionTree.RootEmpwotmSelect;
 import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.info.PlanMerger;
@@ -15,7 +15,7 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerPlanMergeEWT extends ActionLazyTemplate<PlanInfo, EmpWTimeInfo> {
+final class HandlerPlanMergeEWT extends ActionLazyTemplate<PlanInfo, EmpwotmInfo> {
 	private List<PlanInfo> originalInfos;
 	
 	
@@ -25,11 +25,11 @@ final class HandlerPlanMergeEWT extends ActionLazyTemplate<PlanInfo, EmpWTimeInf
 	
 	
 	
-	@Override protected List<EmpWTimeInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
+	@Override protected List<EmpwotmInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
 		originalInfos = recordInfos;
 		
 		List<PlanDataInfo> collectedInfo = collectDataInfo(recordInfos);
-		return EmpWTimeInfo.copyFrom(collectedInfo);
+		return EmpwotmInfo.copyFrom(collectedInfo);
 	}
 	
 	
@@ -46,13 +46,13 @@ final class HandlerPlanMergeEWT extends ActionLazyTemplate<PlanInfo, EmpWTimeInf
 	
 	
 	
-	@Override protected ActionStd<EmpWTimeInfo> getInstanceOfActionHook(DeciTreeOption<EmpWTimeInfo> option) {
-		return new RootEmpWTimeSelect(option).toAction();
+	@Override protected ActionStd<EmpwotmInfo> getInstanceOfActionHook(DeciTreeOption<EmpwotmInfo> option) {
+		return new RootEmpwotmSelect(option).toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<PlanInfo> translateResultHook(DeciResult<EmpWTimeInfo> result) {
+	@Override protected DeciResult<PlanInfo> translateResultHook(DeciResult<EmpwotmInfo> result) {
 		DeciResultHelper<PlanInfo> resultHelper = new DeciResultHelper<>();
 		resultHelper.copyWithoutResultset(result);
 		

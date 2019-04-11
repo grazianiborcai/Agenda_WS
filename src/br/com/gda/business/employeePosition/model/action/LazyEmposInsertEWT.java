@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeMerger;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpWTimeCheckEWTC;
-import br.com.gda.business.employeeWorkTime.model.decisionTree.RootEmpWTimeInsert;
+import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
+import br.com.gda.business.employeeWorkTime.info.EmpwotmMerger;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckEWTC;
+import br.com.gda.business.employeeWorkTime.model.decisionTree.RootEmpwotmInsert;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.business.storeWorkTime.model.decisionTree.RootStowotmSelect;
 import br.com.gda.model.action.ActionStd;
@@ -21,14 +21,14 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.common.DeciTreeDummy;
 
-public final class LazyEmposInsertEWT extends ActionLazyTemplate<EmposInfo, EmpWTimeInfo> {
+public final class LazyEmposInsertEWT extends ActionLazyTemplate<EmposInfo, EmpwotmInfo> {
 	private final boolean SUCCESS = true;
 	private final boolean DONT_EXIST_ON_DB = false;
 	
 	private Connection conn;
 	private String schemaName;
-	private ModelChecker<EmpWTimeInfo> checker;	
-	private List<EmpWTimeInfo> validRecords;
+	private ModelChecker<EmpwotmInfo> checker;	
+	private List<EmpwotmInfo> validRecords;
 	
 	
 	public LazyEmposInsertEWT(Connection conn, String schemaName) {
@@ -50,14 +50,14 @@ public final class LazyEmposInsertEWT extends ActionLazyTemplate<EmposInfo, EmpW
 		checkerOption.conn = conn;
 		checkerOption.schemaName = schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new EmpWTimeCheckEWTC(checkerOption);
+		checker = new EmpwotmCheckEWTC(checkerOption);
 	}
 	
 	
 	
-	@Override protected List<EmpWTimeInfo> translateRecordInfosHook(List<EmposInfo> recordInfos) {
+	@Override protected List<EmpwotmInfo> translateRecordInfosHook(List<EmposInfo> recordInfos) {
 		List<StowotmInfo> storeWTs = getStoreWTime(recordInfos);
-		List<EmpWTimeInfo> mergedRecords = merge(recordInfos, storeWTs);
+		List<EmpwotmInfo> mergedRecords = merge(recordInfos, storeWTs);
 		return filterOutConflict(mergedRecords);
 	}
 	
@@ -81,14 +81,14 @@ public final class LazyEmposInsertEWT extends ActionLazyTemplate<EmposInfo, EmpW
 	
 	
 	
-	private List<EmpWTimeInfo> merge(List<EmposInfo> storeEmps, List<StowotmInfo> storeWTs) {
-		return new EmpWTimeMerger().merge(storeEmps, storeWTs);
+	private List<EmpwotmInfo> merge(List<EmposInfo> storeEmps, List<StowotmInfo> storeWTs) {
+		return new EmpwotmMerger().merge(storeEmps, storeWTs);
 	}
 	
 	
 	
-	private List<EmpWTimeInfo> filterOutConflict(List<EmpWTimeInfo> recordInfos) {
-		for (EmpWTimeInfo eachRecord: recordInfos) {
+	private List<EmpwotmInfo> filterOutConflict(List<EmpwotmInfo> recordInfos) {
+		for (EmpwotmInfo eachRecord: recordInfos) {
 			boolean checkResult = checker.check(eachRecord);
 			
 			if (checkResult == SUCCESS)
@@ -100,28 +100,28 @@ public final class LazyEmposInsertEWT extends ActionLazyTemplate<EmposInfo, EmpW
 	
 	
 	
-	@Override protected ActionStd<EmpWTimeInfo> getInstanceOfActionHook(DeciTreeOption<EmpWTimeInfo> option) {
+	@Override protected ActionStd<EmpwotmInfo> getInstanceOfActionHook(DeciTreeOption<EmpwotmInfo> option) {
 		if (validRecords.isEmpty()) 
 			return getDummyAction();
 		
 		
-		return new RootEmpWTimeInsert(option).toAction();
+		return new RootEmpwotmInsert(option).toAction();
 	}
 	
 	
 	
-	private ActionStd<EmpWTimeInfo> getDummyAction() {		
-		EmpWTimeInfo emptyRecord = new EmpWTimeInfo();
-		List<EmpWTimeInfo> resultset = new ArrayList<>();
+	private ActionStd<EmpwotmInfo> getDummyAction() {		
+		EmpwotmInfo emptyRecord = new EmpwotmInfo();
+		List<EmpwotmInfo> resultset = new ArrayList<>();
 		resultset.add(emptyRecord);
 		
-		DeciTreeDummy<EmpWTimeInfo> dummyTree = new DeciTreeDummy<>(resultset);
+		DeciTreeDummy<EmpwotmInfo> dummyTree = new DeciTreeDummy<>(resultset);
 		return dummyTree.toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<EmposInfo> translateResultHook(DeciResult<EmpWTimeInfo> result) {
+	@Override protected DeciResult<EmposInfo> translateResultHook(DeciResult<EmpwotmInfo> result) {
 		DeciResultHelper<EmposInfo> resultHelper = new DeciResultHelper<>();
 		resultHelper.copyWithoutResultset(result);
 		

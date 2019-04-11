@@ -13,7 +13,7 @@ import br.com.gda.business.customer.dao.CusDbTableColumn;
 import br.com.gda.business.employee.dao.EmpDbTableColumn;
 import br.com.gda.business.employeeLeaveDate.dao.EmpLDateDbTableColumn;
 import br.com.gda.business.employeePosition.dao.EmposDbTableColumn;
-import br.com.gda.business.employeeWorkTime.dao.EmpWTimeDbTableColumn;
+import br.com.gda.business.employeeWorkTime.dao.EmpwotmDbTableColumn;
 import br.com.gda.business.employeeWorkTimeConflict.dao.EmpCoDbTableColumn;
 import br.com.gda.business.feeDefault.dao.FeeDefaultDbTableColumn;
 import br.com.gda.business.feeStore.dao.FeeStoreDbTableColumn;
@@ -76,7 +76,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new MasterDataDbTableColumn());
 		addTable(new StowotmDbTableColumn());
 		addTable(new StolevateDbTableColumn());
-		addTable(new EmpWTimeDbTableColumn());
+		addTable(new EmpwotmDbTableColumn());
 		addTable(new EmpLDateDbTableColumn());
 		addTable(new EmpCoDbTableColumn());
 		addTable(new StoreCoDbTableColumn());

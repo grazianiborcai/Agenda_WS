@@ -11,6 +11,7 @@ import br.com.gda.business.employeePosition.model.action.LazyEmposUpdate;
 import br.com.gda.business.employeePosition.model.action.StdEmposMergeToDelete;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckExist;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckLangu;
+import br.com.gda.business.employeePosition.model.checker.EmposCheckStorauth;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckDelete;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -53,6 +54,13 @@ public final class RootEmposDelete extends DeciTreeWriteTemplate<EmposInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmposCheckExist(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmposCheckStorauth(checkerOption);
 		queue.add(checker);	
 		
 		 return new ModelCheckerQueue<EmposInfo>(queue);

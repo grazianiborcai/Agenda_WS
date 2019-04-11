@@ -10,6 +10,7 @@ import br.com.gda.business.employeePosition.model.action.LazyEmposRootSelect;
 import br.com.gda.business.employeePosition.model.action.StdEmposEnforceLChanged;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckEmp;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckPosition;
+import br.com.gda.business.employeePosition.model.checker.EmposCheckStorauth;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckExist;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckLangu;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckOwner;
@@ -83,7 +84,14 @@ public final class RootEmposInsert extends DeciTreeWriteTemplate<EmposInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new EmposCheckEmp(checkerOption);
 		queue.add(checker);	
-		//TODO: check Auth-Store
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmposCheckStorauth(checkerOption);
+		queue.add(checker);	
+
 		return new ModelCheckerQueue<>(queue);
 	}
 	

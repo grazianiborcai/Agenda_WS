@@ -31,11 +31,11 @@ import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeePosition.model.EmposModelDelete;
 import br.com.gda.business.employeePosition.model.EmposModelInsert;
 import br.com.gda.business.employeePosition.model.EmposModelSelect;
-import br.com.gda.business.employeeWorkTime.info.EmpWTimeInfo;
-import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelDelete;
-import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelInsert;
-import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelSelect;
-import br.com.gda.business.employeeWorkTime.model.EmpWTimeModelUpdate;
+import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
+import br.com.gda.business.employeeWorkTime.model.EmpwotmModelDelete;
+import br.com.gda.business.employeeWorkTime.model.EmpwotmModelInsert;
+import br.com.gda.business.employeeWorkTime.model.EmpwotmModelSelect;
+import br.com.gda.business.employeeWorkTime.model.EmpwotmModelUpdate;
 import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
 import br.com.gda.business.employeeWorkTimeConflict.model.EmpCoModelSelect;
 import br.com.gda.model.Model;
@@ -68,12 +68,12 @@ public class EmployeeResource {
 								   @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
 								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee) {
 		
-		EmpWTimeInfo recordInfo = new EmpWTimeInfo();
+		EmpwotmInfo recordInfo = new EmpwotmInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
 		
-		Model model = new EmpWTimeModelSelect(recordInfo);
+		Model model = new EmpwotmModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -85,7 +85,7 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertWorkTime(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmpWTimeModelInsert(incomingData, request);
+		Model model = new EmpwotmModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -97,7 +97,7 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateWorkTime(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmpWTimeModelUpdate(incomingData, request);
+		Model model = new EmpwotmModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -112,13 +112,13 @@ public class EmployeeResource {
 								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
 								   @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday) {
 		
-		EmpWTimeInfo recordInfo = new EmpWTimeInfo();
+		EmpwotmInfo recordInfo = new EmpwotmInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
 		recordInfo.codWeekday = codWeekday;
 		
-		Model model = new EmpWTimeModelDelete(recordInfo);
+		Model model = new EmpwotmModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
