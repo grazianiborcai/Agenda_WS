@@ -22,11 +22,11 @@ import br.com.gda.business.employee.model.EmpModelDelete;
 import br.com.gda.business.employee.model.EmpModelInsert;
 import br.com.gda.business.employee.model.EmpModelSelect;
 import br.com.gda.business.employee.model.EmpModelUpdate;
-import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
-import br.com.gda.business.employeeLeaveDate.model.EmpLDateModelDelete;
-import br.com.gda.business.employeeLeaveDate.model.EmpLDateModelInsert;
-import br.com.gda.business.employeeLeaveDate.model.EmpLDateModelSelect;
-import br.com.gda.business.employeeLeaveDate.model.EmpLDateModelUpdate;
+import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
+import br.com.gda.business.employeeLeaveDate.model.EmplevateModelDelete;
+import br.com.gda.business.employeeLeaveDate.model.EmplevateModelInsert;
+import br.com.gda.business.employeeLeaveDate.model.EmplevateModelSelect;
+import br.com.gda.business.employeeLeaveDate.model.EmplevateModelUpdate;
 import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeePosition.model.EmposModelDelete;
 import br.com.gda.business.employeePosition.model.EmposModelInsert;
@@ -166,7 +166,7 @@ public class EmployeeResource {
 								    @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
 								    @HeaderParam("date")	    @DefaultValue("1900-01-01") String date) {
 		
-		EmpLDateInfo recordInfo = new EmpLDateInfo();
+		EmplevateInfo recordInfo = new EmplevateInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
@@ -176,7 +176,7 @@ public class EmployeeResource {
 			recordInfo.dateValidTo = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
 		}
 		
-		Model model = new EmpLDateModelSelect(recordInfo);
+		Model model = new EmplevateModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -188,7 +188,7 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertLeaveDate(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmpLDateModelInsert(incomingData, request);
+		Model model = new EmplevateModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -200,7 +200,7 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateLeaveDate(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmpLDateModelUpdate(incomingData, request);
+		Model model = new EmplevateModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -216,14 +216,14 @@ public class EmployeeResource {
 								    @HeaderParam("dateValidFrom") @DefaultValue("1900-01-01") String dateValidFrom,
 			                        @HeaderParam("timeValidFrom") @DefaultValue("12:00") String timeValidFrom) {
 		
-		EmpLDateInfo recordInfo = new EmpLDateInfo();
+		EmplevateInfo recordInfo = new EmplevateInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
 		recordInfo.dateValidFrom = LocalDate.parse(dateValidFrom, DateTimeFormatter.ISO_LOCAL_DATE);
 		recordInfo.timeValidFrom = LocalTime.parse(timeValidFrom, DateTimeFormatter.ISO_LOCAL_TIME);
 		
-		Model model = new EmpLDateModelDelete(recordInfo);
+		Model model = new EmplevateModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

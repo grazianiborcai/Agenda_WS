@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
-import br.com.gda.business.employeeLeaveDate.model.decisionTree.RootEmpLDateSelect;
+import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
+import br.com.gda.business.employeeLeaveDate.model.decisionTree.RootEmplevateSelect;
 import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.info.PlanPruner;
@@ -15,7 +15,7 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerPlanPruneELD extends ActionLazyTemplate<PlanInfo, EmpLDateInfo> {
+final class HandlerPlanPruneELD extends ActionLazyTemplate<PlanInfo, EmplevateInfo> {
 	private List<PlanInfo> originalInfos;
 	
 	
@@ -25,12 +25,12 @@ final class HandlerPlanPruneELD extends ActionLazyTemplate<PlanInfo, EmpLDateInf
 	
 	
 	
-	@Override protected List<EmpLDateInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
+	@Override protected List<EmplevateInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
 		originalInfos = recordInfos;		
 		List<PlanDataInfo> collectedInfo = collectDataInfo(recordInfos);
 		
-		List<EmpLDateInfo> empLdates = new ArrayList<>();
-		empLdates.addAll(EmpLDateInfo.copyFrom(collectedInfo));
+		List<EmplevateInfo> empLdates = new ArrayList<>();
+		empLdates.addAll(EmplevateInfo.copyFrom(collectedInfo));
 		
 		return empLdates;
 	}
@@ -49,13 +49,13 @@ final class HandlerPlanPruneELD extends ActionLazyTemplate<PlanInfo, EmpLDateInf
 	
 	
 	
-	@Override protected ActionStd<EmpLDateInfo> getInstanceOfActionHook(DeciTreeOption<EmpLDateInfo> option) {
-		return new RootEmpLDateSelect(option).toAction();
+	@Override protected ActionStd<EmplevateInfo> getInstanceOfActionHook(DeciTreeOption<EmplevateInfo> option) {
+		return new RootEmplevateSelect(option).toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<PlanInfo> translateResultHook(DeciResult<EmpLDateInfo> result) {
+	@Override protected DeciResult<PlanInfo> translateResultHook(DeciResult<EmplevateInfo> result) {
 		DeciResultHelper<PlanInfo> resultHelper = new DeciResultHelper<>();		
 		
 		if (result.hasResultset()) {

@@ -1,12 +1,12 @@
 package br.com.gda.business.planningTime.info;
 
-import br.com.gda.business.employeeLeaveDate.info.EmpLDateInfo;
+import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class PlanPruneVisitorELD implements InfoMergerVisitor<PlanInfo, PlanInfo, EmpLDateInfo> {
+final class PlanPruneVisitorELD implements InfoMergerVisitor<PlanInfo, PlanInfo, EmplevateInfo> {
 	
-	@Override public PlanInfo writeRecord(PlanInfo sourceOne, EmpLDateInfo sourceTwo) {
+	@Override public PlanInfo writeRecord(PlanInfo sourceOne, EmplevateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		PlanInfo resultInfo = new PlanInfo();	
@@ -26,14 +26,14 @@ final class PlanPruneVisitorELD implements InfoMergerVisitor<PlanInfo, PlanInfo,
 	
 	
 	
-	private void checkArgument(PlanInfo sourceOne, EmpLDateInfo sourceTwo) {		
+	private void checkArgument(PlanInfo sourceOne, EmplevateInfo sourceTwo) {		
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private boolean shouldPrune(PlanDataInfo planData, EmpLDateInfo empLDate) {
+	private boolean shouldPrune(PlanDataInfo planData, EmplevateInfo empLDate) {
 		if (planData.codStore    == empLDate.codStore    &&
 			planData.codEmployee == empLDate.codEmployee &&
 			isTimeRangeOverlap(planData, empLDate))
@@ -44,7 +44,7 @@ final class PlanPruneVisitorELD implements InfoMergerVisitor<PlanInfo, PlanInfo,
 	
 	
 	
-	private boolean isTimeRangeOverlap(PlanDataInfo plan, EmpLDateInfo empLDate) {
+	private boolean isTimeRangeOverlap(PlanDataInfo plan, EmplevateInfo empLDate) {
 	
 		if ((plan.date.isAfter(empLDate.dateValidFrom)      || plan.date.isEqual(empLDate.dateValidFrom)) 	  &&
 			(plan.date.isBefore(empLDate.dateValidTo)       || plan.date.isEqual(empLDate.dateValidTo)) 	  &&
@@ -64,7 +64,7 @@ final class PlanPruneVisitorELD implements InfoMergerVisitor<PlanInfo, PlanInfo,
 
 
 
-	@Override public boolean shouldWrite(PlanInfo sourceOne, EmpLDateInfo sourceTwo) {
+	@Override public boolean shouldWrite(PlanInfo sourceOne, EmplevateInfo sourceTwo) {
 		if (sourceTwo.dateValidFrom == null)
 			return false;
 		
