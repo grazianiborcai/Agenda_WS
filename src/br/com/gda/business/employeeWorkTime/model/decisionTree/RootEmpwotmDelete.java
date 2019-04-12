@@ -9,10 +9,10 @@ import br.com.gda.business.employeeWorkTime.model.action.LazyEmpwotmEnforceLChan
 import br.com.gda.business.employeeWorkTime.model.action.LazyEmpwotmMergeUsername;
 import br.com.gda.business.employeeWorkTime.model.action.LazyEmpwotmUpdate;
 import br.com.gda.business.employeeWorkTime.model.action.StdEmpwotmMergeToDelete;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckDelete;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckExist;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckStorauth;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckWrite;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -36,7 +36,7 @@ public final class RootEmpwotmDelete extends DeciTreeWriteTemplate<EmpwotmInfo> 
 		ModelChecker<EmpwotmInfo> checker;
 		ModelCheckerOption checkerOption = new ModelCheckerOption();
 		
-		checker = new EmpwotmCheckWrite();
+		checker = new EmpwotmCheckDelete();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

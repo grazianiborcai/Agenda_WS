@@ -160,10 +160,12 @@ public final class SystemMessage {
 	public static final String EMP_NOT_FOUND = "Employee's data not found on DB";	
 	public static final String EMP_SINGLE_ENTRY_FOUND = "Single entry found for Employee's data selection";
 	public static final String EMP_WTIME_ALREALDY_EXIST = "Employee's working time data already exist on DB";
-	public static final String EMP_WTIME_FLAGGED_AS_DELETED = "Employee's working time data is flagged as deleted on DB";			
+	public static final String EMP_WTIME_FLAGGED_AS_DELETED = "Employee's working time data is flagged as deleted on DB";		
+	public static final String EMP_WTIME_INVALID_RANGE = "Employee's working time range is invalid";	
 	public static final String EMP_WTIME_NO_RANGE_FOUND = "Employee's working time range not found on DB";	
 	public static final String EMP_WTIME_NOT_FOUND = "Employee's working time data not found on DB";	
 	public static final String EMP_WTIME_RANGE_CONFLICT = "Employee's working time range conflict";	
+	public static final String EMP_WTIME_RANGE_TOO_SHORT = "Employee's working time range is too short";
 	public static final String EMP_WTIME_VALID_WORKHOUR = "Selected time is valid for Employee working time range";	
 	public static final String EMP_WTIME_WORKHOUR_OUT_OF_RANGE = "Selected time is out of range of Employee working time";
 	

@@ -6,45 +6,37 @@ import java.util.List;
 import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckEmp;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckExist;
-import br.com.gda.business.employeeWorkTime.model.action.StdEmpwotmSelect;
-import br.com.gda.business.employeeWorkTime.model.action.StdEmpwotmUpdate;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
+import br.com.gda.business.employeeWorkTime.model.action.LazyEmpwotmMergeUsername;
+import br.com.gda.business.employeeWorkTime.model.action.LazyEmpwotmUpdate;
+import br.com.gda.business.employeeWorkTime.model.action.StdEmpwotmEnforceLChanged;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckEWTC;
-import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckKey;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckOwner;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckRange;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckRangeLen;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckStorauth;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckStore;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckEmpos;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckStowotm;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckWeekday;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootEmpwotmUpdate implements DeciTree<EmpwotmInfo> {
-	private DeciTree<EmpwotmInfo> tree;
-	
+public final class RootEmpwotmUpdate extends DeciTreeWriteTemplate<EmpwotmInfo> {
 	
 	public RootEmpwotmUpdate(DeciTreeOption<EmpwotmInfo> option) {
-		DeciTreeHelperOption<EmpwotmInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.conn = option.conn;
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmpwotmInfo> buildDecisionChecker(DeciTreeOption<EmpwotmInfo> option) {
+	@Override protected ModelChecker<EmpwotmInfo> buildDecisionCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
 		final boolean EXIST_ON_DB = true;	
 		final boolean DONT_EXIST_ON_DB = false;
 		
@@ -55,8 +47,18 @@ public final class RootEmpwotmUpdate implements DeciTree<EmpwotmInfo> {
 		checker = new EmpwotmCheckWrite();
 		queue.add(checker);
 		
-		checker = new EmpwotmCheckKey();
+		checker = new EmpwotmCheckRange();
 		queue.add(checker);
+
+		checker = new EmpwotmCheckRangeLen();
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpwotmCheckLangu(checkerOption);
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
@@ -114,40 +116,32 @@ public final class RootEmpwotmUpdate implements DeciTree<EmpwotmInfo> {
 		checker = new EmpwotmCheckEWTC(checkerOption);
 		queue.add(checker);	
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpwotmCheckStorauth(checkerOption);
+		queue.add(checker);	
+
 		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
 	
-	private List<ActionStd<EmpwotmInfo>> buildActionsOnPassed(DeciTreeOption<EmpwotmInfo> option) {
+	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmpwotmUpdate(option));
-		actions.add(new StdEmpwotmSelect(option));
-		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
+		ActionStd<EmpwotmInfo> enforceLChanged = new StdEmpwotmEnforceLChanged(option);
+		ActionLazy<EmpwotmInfo> enforceLChangedBy = new LazyEmpwotmMergeUsername(option.conn, option.schemaName);
+		ActionLazy<EmpwotmInfo> update = new LazyEmpwotmUpdate(option.conn, option.schemaName);
+		ActionStd<EmpwotmInfo> select = new RootEmpwotmSelect(option).toAction();
 		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmpwotmInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<EmpwotmInfo> toAction() {
-		return tree.toAction();
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(update);
+		
+		actions.add(enforceLChanged);
+		actions.add(select);
+		
+		return actions;
 	}
 }

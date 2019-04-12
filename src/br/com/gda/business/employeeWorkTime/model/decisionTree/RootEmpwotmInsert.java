@@ -12,6 +12,8 @@ import br.com.gda.business.employeeWorkTime.model.action.LazyEmpwotmRootSelect;
 import br.com.gda.business.employeeWorkTime.model.action.StdEmpwotmEnforceLChanged;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckEWTC;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckOwner;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckRange;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckRangeLen;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckStorauth;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckStore;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckEmpos;
@@ -44,6 +46,12 @@ public final class RootEmpwotmInsert extends DeciTreeWriteTemplate<EmpwotmInfo> 
 		ModelCheckerOption checkerOption;
 		
 		checker = new EmpwotmCheckWrite();
+		queue.add(checker);
+		
+		checker = new EmpwotmCheckRange();
+		queue.add(checker);
+		
+		checker = new EmpwotmCheckRangeLen();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

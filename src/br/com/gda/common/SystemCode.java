@@ -26,6 +26,8 @@ public final class SystemCode {
 	public static final int EMP_WTIME_NO_RANGE_FOUND 					= 1004;
 	public static final int EMP_WTIME_VALID_WORKHOUR					= 1005;
 	public static final int EMP_WTIME_WORKHOUR_OUT_OF_RANGE				= 1006;
+	public static final int EMP_WTIME_INVALID_RANGE						= 1007;
+	public static final int EMP_WTIME_RANGE_TOO_SHORT					= 1008;
 	
 	// Employee
 	public static final int EMP_ALREADY_EXIST 							= 1050;

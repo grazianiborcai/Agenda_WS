@@ -5,74 +5,51 @@ import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.gda.business.employeeWorkTime.model.action.StdEmpwotmSelect;
+import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
 import br.com.gda.business.employeeWorkTime.model.checker.EmpwotmCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public final class RootEmpwotmSelect implements DeciTree<EmpwotmInfo> {
-	private DeciTree<EmpwotmInfo> tree;
-	
+public final class RootEmpwotmSelect extends DeciTreeReadTemplate<EmpwotmInfo> {
 	
 	public RootEmpwotmSelect(DeciTreeOption<EmpwotmInfo> option) {
-		DeciTreeHelperOption<EmpwotmInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmpwotmInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<EmpwotmInfo> buildDecisionCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<EmpwotmInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpwotmInfo> checker;
+		ModelCheckerOption checkerOption;
 		
 		checker = new EmpwotmCheckRead();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpwotmCheckLangu(checkerOption);
+		queue.add(checker);		
 		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
 	
-	@Override public ActionStd<EmpwotmInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<EmpwotmInfo>> buildActionsOnPassed(DeciTreeOption<EmpwotmInfo> option) {
+	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmpwotmSelect(option));
-		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
+		ActionStd<EmpwotmInfo> select = new StdEmpwotmSelect(option);
 		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmpwotmInfo> getDecisionResult() {
-		return tree.getDecisionResult();
+		actions.add(select);
+		return actions;
 	}
 }

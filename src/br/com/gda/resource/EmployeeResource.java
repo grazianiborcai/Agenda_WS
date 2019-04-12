@@ -64,14 +64,18 @@ public class EmployeeResource {
 	@GET
 	@Path(SELECT_WORK_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response selectWorkTime(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-								   @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
-								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee) {
+	public Response selectWorkTime(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner,
+								   @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
+								   @HeaderParam("codEmployee") 		@DefaultValue("-1") int codEmployee,
+								   @HeaderParam("TOKEN_USERNAME") 	String username,
+								   @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
 		
 		EmpwotmInfo recordInfo = new EmpwotmInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new EmpwotmModelSelect(recordInfo);
 		model.executeRequest();
@@ -107,16 +111,20 @@ public class EmployeeResource {
 	@DELETE
 	@Path(DELETE_WORK_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)	
-	public Response deleteWorkTime(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-								   @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
-								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
-								   @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday) {
+	public Response deleteWorkTime(@HeaderParam("TOKEN_OWNER") 		@DefaultValue("-1") long codOwner,
+								   @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
+								   @HeaderParam("codEmployee") 		@DefaultValue("-1") int codEmployee,
+								   @HeaderParam("codWeekday")  		@DefaultValue("-1") int codWeekday,
+								   @HeaderParam("TOKEN_USERNAME") 	String username,
+								   @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
 		
 		EmpwotmInfo recordInfo = new EmpwotmInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
 		recordInfo.codWeekday = codWeekday;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new EmpwotmModelDelete(recordInfo);
 		model.executeRequest();
