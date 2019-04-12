@@ -7,6 +7,7 @@ import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeePosition.model.action.LazyEmposDelete;
 import br.com.gda.business.employeePosition.model.action.LazyEmposEnforceLChanged;
 import br.com.gda.business.employeePosition.model.action.LazyEmposMergeUsername;
+import br.com.gda.business.employeePosition.model.action.LazyEmposNodeDeleteEmpwotm;
 import br.com.gda.business.employeePosition.model.action.LazyEmposUpdate;
 import br.com.gda.business.employeePosition.model.action.StdEmposMergeToDelete;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckExist;
@@ -31,12 +32,12 @@ public final class RootEmposDelete extends DeciTreeWriteTemplate<EmposInfo> {
 	
 	@Override protected ModelChecker<EmposInfo> buildDecisionCheckerHook(DeciTreeOption<EmposInfo> option) {
 		final boolean EXIST_ON_DB = true;
+		final boolean KEY_NOT_NULL = true;	
 		
 		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmposInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		final boolean KEY_NOT_NULL = true;	
 		checkerOption = new ModelCheckerOption();
 		checkerOption.expectedResult = KEY_NOT_NULL;		
 		checker = new EmposCheckDelete(checkerOption);
@@ -75,15 +76,16 @@ public final class RootEmposDelete extends DeciTreeWriteTemplate<EmposInfo> {
 		ActionLazy<EmposInfo> enforceLChanged = new LazyEmposEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> update = new LazyEmposUpdate(option.conn, option.schemaName);
-		ActionLazy<EmposInfo> delete = new LazyEmposDelete(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> deleteEmpwotm = new LazyEmposNodeDeleteEmpwotm(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> deleteEmpos = new LazyEmposDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
-		update.addPostAction(delete);
+		update.addPostAction(deleteEmpwotm);
+		update.addPostAction(deleteEmpos);
 		
 		actions.add(mergeToDelete);
 		return actions;		
-		//actions.add(new NodeEmposDeleteEWT(option).toAction());		
 	}
 }

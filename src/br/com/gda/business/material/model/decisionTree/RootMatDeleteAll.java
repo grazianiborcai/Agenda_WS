@@ -7,7 +7,6 @@ import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.action.LazyMatMergeToDelete;
 import br.com.gda.business.material.model.action.LazyMatRootDelete;
 import br.com.gda.business.material.model.action.StdMatEnforceOwnerKey;
-import br.com.gda.business.material.model.action.StdMatSuccess;
 import br.com.gda.business.material.model.checker.MatCheckDeleteAll;
 import br.com.gda.business.material.model.checker.MatCheckHasItem;
 import br.com.gda.model.action.ActionLazy;
@@ -60,17 +59,6 @@ public final class RootMatDeleteAll extends DeciTreeWriteTemplate<MatInfo> {
 		mergeToDelete.addPostAction(rootDelete);
 		
 		actions.add(enforceOwnerKey);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<MatInfo>> buildActionsOnFailedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStd<MatInfo>> actions = new ArrayList<>();
-		
-		ActionStd<MatInfo> success = new StdMatSuccess(option);
-		
-		actions.add(success);
 		return actions;
 	}
 }

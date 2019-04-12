@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employee.model.decisionTree.NodeEmpDeleteEmpos;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpDeleteEmpos extends ActionLazyTemplate<EmpInfo, EmpInfo> {
+public final class LazyEmpNodeDeleteEmpos extends ActionLazyTemplate<EmpInfo, EmpInfo> {
 	
-	public LazyEmpDeleteEmpos(Connection conn, String schemaName) {
+	public LazyEmpNodeDeleteEmpos(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyEmpDeleteEmpos extends ActionLazyTemplate<EmpInfo, EmpInf
 	
 	
 	@Override protected ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
-		return new StdEmpDeleteEmpos(option);
+		return new NodeEmpDeleteEmpos(option).toAction();
 	}
 	
 	

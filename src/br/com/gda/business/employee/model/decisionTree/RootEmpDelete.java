@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.action.LazyEmpDelete;
-import br.com.gda.business.employee.model.action.LazyEmpDeleteEmpos;
+import br.com.gda.business.employee.model.action.LazyEmpNodeDeleteEmpos;
 import br.com.gda.business.employee.model.action.LazyEmpDeletePerson;
 import br.com.gda.business.employee.model.action.LazyEmpEnforceLChanged;
 import br.com.gda.business.employee.model.action.LazyEmpMergeUsername;
@@ -73,7 +73,7 @@ public final class RootEmpDelete extends DeciTreeWriteTemplate<EmpInfo> {
 		ActionLazy<EmpInfo> deletePhone = new LazyEmpNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deletePerson = new LazyEmpDeletePerson(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deleteUser = new LazyEmpNodeDeleteUser(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> deleteEmpos = new LazyEmpDeleteEmpos(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deleteEmpos = new LazyEmpNodeDeleteEmpos(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deleteEmployee = new LazyEmpDelete(option.conn, option.schemaName);	
 
 		mergeToDelete.addPostAction(enforceLChanged);

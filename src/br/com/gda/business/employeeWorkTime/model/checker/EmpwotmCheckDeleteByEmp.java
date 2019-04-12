@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmpwotmCheckRead extends ModelCheckerTemplateSimple<EmpwotmInfo> {
+public final class EmpwotmCheckDeleteByEmp extends ModelCheckerTemplateSimple<EmpwotmInfo> {
 
-	public EmpwotmCheckRead() {
+	public EmpwotmCheckDeleteByEmp() {
 		super();
 	}
 	
@@ -17,12 +17,14 @@ public final class EmpwotmCheckRead extends ModelCheckerTemplateSimple<EmpwotmIn
 	
 	@Override protected boolean checkHook(EmpwotmInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.codLanguage	== null		)
+			recordInfo.codEmployee 	<= 0 	||
+			recordInfo.codLanguage	== null ||
+			recordInfo.username		== null		)
 			
-			return super.FAILED;
+			return FAILED;
 		
 		
-		return super.SUCCESS;
+		return SUCCESS;
 	}
 	
 	

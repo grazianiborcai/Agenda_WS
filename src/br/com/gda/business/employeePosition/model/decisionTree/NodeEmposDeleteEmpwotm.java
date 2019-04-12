@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
-import br.com.gda.business.employeePosition.model.action.LazyEmposDeleteEWT;
+import br.com.gda.business.employeePosition.model.action.StdEmposDeleteEmpwotm;
 import br.com.gda.business.employeePosition.model.action.StdEmposSuccess;
-import br.com.gda.business.employeePosition.model.checker.EmposCheckEWT;
+import br.com.gda.business.employeePosition.model.checker.EmposCheckHasEmpwotm;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -18,11 +18,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class NodeEmposDeleteEWT_ implements DeciTree<EmposInfo> {
+public final class NodeEmposDeleteEmpwotm implements DeciTree<EmposInfo> {
 	private DeciTree<EmposInfo> tree;
 	
 	
-	public NodeEmposDeleteEWT_(DeciTreeOption<EmposInfo> option) {
+	public NodeEmposDeleteEmpwotm(DeciTreeOption<EmposInfo> option) {
 		DeciTreeHelperOption<EmposInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -37,7 +37,7 @@ final class NodeEmposDeleteEWT_ implements DeciTree<EmposInfo> {
 	
 	
 	private ModelChecker<EmposInfo> buildDecisionChecker(DeciTreeOption<EmposInfo> option) {
-		final boolean EXIST_ON_DB = true;	
+		final boolean HAS_WORK_TIME = true;
 		
 		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmposInfo> checker;
@@ -46,8 +46,8 @@ final class NodeEmposDeleteEWT_ implements DeciTree<EmposInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmposCheckEWT(checkerOption);
+		checkerOption.expectedResult = HAS_WORK_TIME;		
+		checker = new EmposCheckHasEmpwotm(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -55,17 +55,27 @@ final class NodeEmposDeleteEWT_ implements DeciTree<EmposInfo> {
 	
 	
 	
+	@Override public ActionStd<EmposInfo> toAction() {
+		return tree.toAction();
+	}
+	
+	
+	
 	private List<ActionStd<EmposInfo>> buildActionsOnPassed(DeciTreeOption<EmposInfo> option) {
-		List<ActionStd<EmposInfo>> actions = new ArrayList<>();		
-		actions.add(new LazyEmposDeleteEWT(option.conn, option.schemaName).toAction(option.recordInfos));
+		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
+		
+		ActionStd<EmposInfo> deleteEmpwotm = new StdEmposDeleteEmpwotm(option);
+		
+		actions.add(deleteEmpwotm);		
 		return actions;
 	}
 	
 	
 	
 	private List<ActionStd<EmposInfo>> buildActionsOnFailed(DeciTreeOption<EmposInfo> option) {
-		List<ActionStd<EmposInfo>> actions = new ArrayList<>();		
-		actions.add(new StdEmposSuccess(option));
+		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
+		
+		actions.add(new StdEmposSuccess(option));		
 		return actions;
 	}
 	
@@ -85,11 +95,5 @@ final class NodeEmposDeleteEWT_ implements DeciTree<EmposInfo> {
 	
 	@Override public DeciResult<EmposInfo> getDecisionResult() {
 		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<EmposInfo> toAction() {
-		return tree.toAction();
 	}
 }

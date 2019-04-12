@@ -7,7 +7,6 @@ import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeePosition.model.action.LazyEmposMergeToDelete;
 import br.com.gda.business.employeePosition.model.action.LazyEmposRootDelete;
 import br.com.gda.business.employeePosition.model.action.StdEmposEnforceEmpKey;
-import br.com.gda.business.employeePosition.model.action.StdEmposSuccess;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckDeleteByEmp;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckHasEmpItem;
 import br.com.gda.model.action.ActionLazy;
@@ -60,17 +59,6 @@ public final class RootEmposDeleteByEmp extends DeciTreeWriteTemplate<EmposInfo>
 		mergeToDelete.addPostAction(rootDelete);
 		
 		actions.add(enforceEmpKey);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<EmposInfo>> buildActionsOnFailedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
-		
-		ActionStd<EmposInfo> success = new StdEmposSuccess(option);
-		
-		actions.add(success);
 		return actions;
 	}
 }
