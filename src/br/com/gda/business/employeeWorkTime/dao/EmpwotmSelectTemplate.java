@@ -11,6 +11,7 @@ import java.util.List;
 import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.dao.DaoJoin;
+import br.com.gda.dao.DaoJoinColumn;
 import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -23,6 +24,7 @@ import br.com.gda.dao.common.DaoDbTableColumnAll;
 class EmpwotmSelectTemplate implements DaoStmt<EmpwotmInfo> {
 	private final String LT_EMPLOYEE_WORK_TIME = DaoDbTable.EMP_WT_TABLE;	
 	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
+	private final String RT_STORE = DaoDbTable.STORE_TABLE;
 	
 	private DaoStmt<EmpwotmInfo> stmtSql;
 	private DaoStmtOption<EmpwotmInfo> stmtOption;
@@ -61,6 +63,7 @@ class EmpwotmSelectTemplate implements DaoStmt<EmpwotmInfo> {
 	private List<DaoJoin> buildJoins() {
 		List<DaoJoin> joins = new ArrayList<>();		
 		joins.add(buildJoinLanguage());		
+		joins.add(buildJoinStore());
 		return joins;
 	}
 	
@@ -71,6 +74,32 @@ class EmpwotmSelectTemplate implements DaoStmt<EmpwotmInfo> {
 		join.rightTableName = RT_LANGU;
 		join.joinType = DaoJoinType.CROSS_JOIN;
 		join.joinColumns = null;
+		join.constraintClause = null;
+		
+		return join;
+	}
+	
+	
+	
+	private DaoJoin buildJoinStore() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
+		
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
+		oneColumn.leftTableName = LT_EMPLOYEE_WORK_TIME;
+		oneColumn.leftColumnName = EmpwotmDbTableColumn.COL_COD_OWNER;
+		oneColumn.rightColumnName = EmpwotmDbTableColumn.COL_COD_OWNER;
+		joinColumns.add(oneColumn);
+		
+		oneColumn.leftTableName = LT_EMPLOYEE_WORK_TIME;
+		oneColumn.leftColumnName = EmpwotmDbTableColumn.COL_COD_STORE;
+		oneColumn.rightColumnName = EmpwotmDbTableColumn.COL_COD_STORE;
+		joinColumns.add(oneColumn);
+		
+		
+		DaoJoin join = new DaoJoin();
+		join.rightTableName = RT_STORE;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
+		join.joinColumns = joinColumns;
 		join.constraintClause = null;
 		
 		return join;
@@ -132,6 +161,7 @@ class EmpwotmSelectTemplate implements DaoStmt<EmpwotmInfo> {
 				dataInfo.codWeekday = stmtResult.getInt(EmpwotmDbTableColumn.COL_WEEKDAY);
 				dataInfo.recordMode = stmtResult.getString(EmpwotmDbTableColumn.COL_RECORD_MODE);
 				dataInfo.codLanguage = stmtResult.getString(EmpwotmDbTableColumn.COL_COD_LANGUAGE);	
+				dataInfo.codTimezone = stmtResult.getString(EmpwotmDbTableColumn.COL_COD_TIME_ZONE);	
 				
 				Time tempTime = stmtResult.getTime(EmpwotmDbTableColumn.COL_BEGIN_TIME);
 				if (tempTime != null)

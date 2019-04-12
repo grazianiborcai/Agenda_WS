@@ -3,6 +3,8 @@ package br.com.gda.business.employeeWorkTime.info;
 import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
+import br.com.gda.business.masterData.info.TimezoneInfo;
+import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.info.InfoWritterFactory;
 import br.com.gda.security.username.info.UsernameInfo;
@@ -31,6 +33,18 @@ public final class EmpwotmMerger extends InfoWritterFactory<EmpwotmInfo> {
 		return new EmpwotmMergerToDelete().merge(sourceOne, sourceTwo);
 	}
 	
+	
+	
+	public EmpwotmInfo merge(WeekdayInfo sourceOne, EmpwotmInfo sourceTwo) {
+		return new EmpwotmMergerWeekday().merge(sourceOne, sourceTwo);
+	}	
+	
+	
+	
+	public EmpwotmInfo merge(TimezoneInfo sourceOne, EmpwotmInfo sourceTwo) {
+		return new EmpwotmMergerTimezone().merge(sourceOne, sourceTwo);
+	}	
+	
 		
 	
 	@SuppressWarnings("unchecked")
@@ -48,6 +62,16 @@ public final class EmpwotmMerger extends InfoWritterFactory<EmpwotmInfo> {
 		if (sourceOnes.get(0) instanceof EmpwotmInfo 	&&
 			sourceTwos.get(0) instanceof EmpwotmInfo		)
 			return new EmpwotmMergerToDelete().merge((List<EmpwotmInfo>) sourceOnes, (List<EmpwotmInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof WeekdayInfo 	&&
+			sourceTwos.get(0) instanceof EmpwotmInfo		)
+			return new EmpwotmMergerWeekday().merge((List<WeekdayInfo>) sourceOnes, (List<EmpwotmInfo>) sourceTwos);
+		
+		
+		if (sourceOnes.get(0) instanceof TimezoneInfo 	&&
+			sourceTwos.get(0) instanceof EmpwotmInfo		)
+			return new EmpwotmMergerTimezone().merge((List<TimezoneInfo>) sourceOnes, (List<EmpwotmInfo>) sourceTwos);
 		
 		return null;
 	} 

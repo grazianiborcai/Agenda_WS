@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
@@ -14,6 +15,7 @@ public final class EmpwotmDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_OWNER = "cod_owner";	
 	public static final String COL_COD_STORE = "cod_store";
+	public static final String COL_COD_TIME_ZONE = StoreDbTableColumn.COL_COD_TIME_ZONE;
 	public static final String COL_END_TIME = "end_time";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";	
@@ -119,6 +121,14 @@ public final class EmpwotmDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
 		oneColumn.columnName = COL_COD_LANGUAGE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.STORE_TABLE;
+		oneColumn.columnName = COL_COD_TIME_ZONE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;

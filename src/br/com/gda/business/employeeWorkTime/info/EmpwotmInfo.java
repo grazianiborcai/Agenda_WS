@@ -16,6 +16,7 @@ public class EmpwotmInfo extends InfoRecord implements Cloneable {
 	public LocalTime beginTime;
 	public LocalTime endTime;
 	public String codTimezone;
+	public String txtTimezone;
 	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
