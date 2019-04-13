@@ -16,12 +16,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
+import br.com.gda.business.employeeMaterial.model.EmpmatModelDelete;
+import br.com.gda.business.employeeMaterial.model.EmpmatModelInsert;
+import br.com.gda.business.employeeMaterial.model.EmpmatModelSelect;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.business.feeStore.model.FeeStoreModelSelect;
-import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.business.materialEmployee.model.MatEmpModelDelete;
-import br.com.gda.business.materialEmployee.model.MatEmpModelInsert;
-import br.com.gda.business.materialEmployee.model.MatEmpModelSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.StoreModelDelete;
 import br.com.gda.business.store.model.StoreModelInsert;
@@ -157,7 +157,7 @@ public class StoreResource {
 								      @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 
 
-		MatEmpInfo recordInfo = new MatEmpInfo();
+		EmpmatInfo recordInfo = new EmpmatInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
@@ -165,7 +165,7 @@ public class StoreResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model modelSelect = new MatEmpModelSelect(recordInfo);
+		Model modelSelect = new EmpmatModelSelect(recordInfo);
 		modelSelect.executeRequest();
 		return modelSelect.getResponse();
 	}
@@ -181,7 +181,7 @@ public class StoreResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertStoreMatEmp(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new MatEmpModelInsert(incomingData, request);
+		Model model = new EmpmatModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -195,13 +195,13 @@ public class StoreResource {
             						  @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
             						  @HeaderParam("codMaterial") @DefaultValue("-1") long codMat) {
 		
-		MatEmpInfo recordInfo = new MatEmpInfo();
+		EmpmatInfo recordInfo = new EmpmatInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
 		recordInfo.codMat = codMat;
 		
-		Model model = new MatEmpModelDelete(recordInfo);
+		Model model = new EmpmatModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

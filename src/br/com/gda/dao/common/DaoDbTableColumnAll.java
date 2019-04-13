@@ -12,6 +12,7 @@ import br.com.gda.business.company.dao.CompDbTableColumn;
 import br.com.gda.business.customer.dao.CusDbTableColumn;
 import br.com.gda.business.employee.dao.EmpDbTableColumn;
 import br.com.gda.business.employeeLeaveDate.dao.EmplevateDbTableColumn;
+import br.com.gda.business.employeeMaterial.dao.EmpmatDbTableColumn;
 import br.com.gda.business.employeePosition.dao.EmposDbTableColumn;
 import br.com.gda.business.employeeWorkTime.dao.EmpwotmDbTableColumn;
 import br.com.gda.business.employeeWorkTimeConflict.dao.EmpCoDbTableColumn;
@@ -21,7 +22,6 @@ import br.com.gda.business.form.formAddress.dao.FormAddressDbTableColumn;
 import br.com.gda.business.form.formPhone.dao.FormPhoneDbTableColumn;
 import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.material.dao.MatDbTableColumn;
-import br.com.gda.business.materialEmployee.dao.MatEmpDbTableColumn;
 import br.com.gda.business.materialMovement.dao.MatmovDbTableColumn;
 import br.com.gda.business.materialSnapshot.dao.MatSnapDbTableColumn;
 import br.com.gda.business.materialStock.dao.MatockDbTableColumn;
@@ -69,7 +69,7 @@ public final class DaoDbTableColumnAll {
 		
 		addTable(new MatDbTableColumn());
 		addTable(new MatextDbTableColumn());
-		addTable(new MatEmpDbTableColumn());
+		addTable(new EmpmatDbTableColumn());
 		addTable(new MatSnapDbTableColumn());
 		addTable(new StoreDbTableColumn());
 		addTable(new EmposDbTableColumn());

@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.materialEmployee.info.MatEmpInfo;
-import br.com.gda.business.materialEmployee.model.decisionTree.RootMatEmpSelect;
+import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
+import br.com.gda.business.employeeMaterial.model.decisionTree.RootEmpmatSelect;
 import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.business.planningTime.info.PlanInfo;
 import br.com.gda.business.planningTime.info.PlanMerger;
@@ -15,7 +15,7 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class HandlerPlanMergeME extends ActionLazyTemplate<PlanInfo, MatEmpInfo> {
+final class HandlerPlanMergeME extends ActionLazyTemplate<PlanInfo, EmpmatInfo> {
 	private List<PlanInfo> originalInfos;
 	
 	
@@ -25,11 +25,11 @@ final class HandlerPlanMergeME extends ActionLazyTemplate<PlanInfo, MatEmpInfo> 
 	
 	
 	
-	@Override protected List<MatEmpInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
+	@Override protected List<EmpmatInfo> translateRecordInfosHook(List<PlanInfo> recordInfos) {
 		originalInfos = recordInfos;
 		
 		List<PlanDataInfo> collectedInfo = collectDataInfo(recordInfos);
-		return MatEmpInfo.copyFrom(collectedInfo);
+		return EmpmatInfo.copyFrom(collectedInfo);
 	}
 	
 	
@@ -46,13 +46,13 @@ final class HandlerPlanMergeME extends ActionLazyTemplate<PlanInfo, MatEmpInfo> 
 	
 	
 	
-	@Override protected ActionStd<MatEmpInfo> getInstanceOfActionHook(DeciTreeOption<MatEmpInfo> option) {
-		return new RootMatEmpSelect(option).toAction();
+	@Override protected ActionStd<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
+		return new RootEmpmatSelect(option).toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<PlanInfo> translateResultHook(DeciResult<MatEmpInfo> result) {
+	@Override protected DeciResult<PlanInfo> translateResultHook(DeciResult<EmpmatInfo> result) {
 		DeciResultHelper<PlanInfo> resultHelper = new DeciResultHelper<>();
 		resultHelper.copyWithoutResultset(result);
 		

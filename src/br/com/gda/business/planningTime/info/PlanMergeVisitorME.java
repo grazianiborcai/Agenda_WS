@@ -3,13 +3,13 @@ package br.com.gda.business.planningTime.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.materialEmployee.info.MatEmpInfo;
+import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class PlanMergeVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, MatEmpInfo> {
+final class PlanMergeVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, EmpmatInfo> {
 	
-	@Override public PlanInfo writeRecord(PlanInfo sourceOne, MatEmpInfo sourceTwo) {
+	@Override public PlanInfo writeRecord(PlanInfo sourceOne, EmpmatInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		PlanInfo resultInfo = new PlanInfo();	
@@ -31,14 +31,14 @@ final class PlanMergeVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, 
 	
 	
 	
-	private void checkArgument(PlanInfo sourceOne, MatEmpInfo sourceTwo) {
+	private void checkArgument(PlanInfo sourceOne, EmpmatInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private boolean shouldMerge(PlanDataInfo planData, MatEmpInfo matEmp) {
+	private boolean shouldMerge(PlanDataInfo planData, EmpmatInfo matEmp) {
 		if (planData.codStore    == matEmp.codStore 	&&
 			planData.codEmployee == matEmp.codEmployee 	&&
 			isMatService(matEmp)						&&
@@ -52,7 +52,7 @@ final class PlanMergeVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, 
 	
 	
 	
-	private boolean isMatService(MatEmpInfo matEmp) {
+	private boolean isMatService(EmpmatInfo matEmp) {
 		if (matEmp.codCategory == 2)
 			return true;
 		
@@ -61,7 +61,7 @@ final class PlanMergeVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, 
 	
 	
 	
-	private boolean isTimeUnit(MatEmpInfo matEmp) {
+	private boolean isTimeUnit(EmpmatInfo matEmp) {
 		if (matEmp.codUnit.equals("MIN"))
 			return true;
 		
@@ -70,7 +70,7 @@ final class PlanMergeVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, 
 	
 	
 	
-	private List<PlanDataInfo> mergeMatEmp(PlanDataInfo planData, MatEmpInfo matEmp) {
+	private List<PlanDataInfo> mergeMatEmp(PlanDataInfo planData, EmpmatInfo matEmp) {
 		PlanDataInfo dataResult = makeClone(planData);
 		
 		dataResult.codMat = matEmp.codMat;	
@@ -94,7 +94,7 @@ final class PlanMergeVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, 
 
 
 
-	@Override public boolean shouldWrite(PlanInfo sourceOne, MatEmpInfo sourceTwo) {
+	@Override public boolean shouldWrite(PlanInfo sourceOne, EmpmatInfo sourceTwo) {
 		if (sourceTwo.codMat <= 0)
 			return false;
 		
