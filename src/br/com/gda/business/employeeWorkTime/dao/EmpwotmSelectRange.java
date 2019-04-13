@@ -19,8 +19,7 @@ public final class EmpwotmSelectRange implements DaoStmtExec<EmpwotmInfo> {
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		helper.executeStmt();
-		
+		helper.executeStmt();		
 	}
 
 	

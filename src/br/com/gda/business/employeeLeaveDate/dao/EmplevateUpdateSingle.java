@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
@@ -45,13 +47,11 @@ public final class EmplevateUpdateSingle implements DaoStmt<EmplevateInfo> {
 	
 	
 	
-	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean IGNORE_RECORD_MODE = true;
-		
+	private String buildWhereClause() {		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;
 		
 		DaoStmtWhere whereClause = new EmplevateWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -100,12 +100,20 @@ public final class EmplevateUpdateSingle implements DaoStmt<EmplevateInfo> {
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmplevateInfo recordInfo) throws SQLException {			
 			Time endTime = DaoFormatter.localToSqlTime(recordInfo.timeValidTo);	
 			Date endDate = DaoFormatter.localToSqlDate(recordInfo.dateValidTo);	
+			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);
 			
 			int i = 1;
 			stmt.setDate(i++, endDate);
 			stmt.setTime(i++, endTime);
 			stmt.setString(i++, recordInfo.description);
 			stmt.setString(i++, recordInfo.recordMode);
+			stmt.setTimestamp(i++, lastChanged);
+			
+			if (recordInfo.lastChangedBy >= 0) {
+				stmt.setLong(i++, recordInfo.lastChangedBy);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
 			
 			return stmt;
 		}		

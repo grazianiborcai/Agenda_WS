@@ -7,6 +7,7 @@ import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeePosition.model.action.LazyEmposDelete;
 import br.com.gda.business.employeePosition.model.action.LazyEmposEnforceLChanged;
 import br.com.gda.business.employeePosition.model.action.LazyEmposMergeUsername;
+import br.com.gda.business.employeePosition.model.action.LazyEmposNodeDeleteEmplevate;
 import br.com.gda.business.employeePosition.model.action.LazyEmposNodeDeleteEmpwotm;
 import br.com.gda.business.employeePosition.model.action.LazyEmposUpdate;
 import br.com.gda.business.employeePosition.model.action.StdEmposMergeToDelete;
@@ -77,12 +78,14 @@ public final class RootEmposDelete extends DeciTreeWriteTemplate<EmposInfo> {
 		ActionLazy<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> update = new LazyEmposUpdate(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> deleteEmpwotm = new LazyEmposNodeDeleteEmpwotm(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> deleteEmplevate = new LazyEmposNodeDeleteEmplevate(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> deleteEmpos = new LazyEmposDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
 		update.addPostAction(deleteEmpwotm);
+		update.addPostAction(deleteEmplevate);
 		update.addPostAction(deleteEmpos);
 		
 		actions.add(mergeToDelete);

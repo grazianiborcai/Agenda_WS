@@ -18,7 +18,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class NodeEmplevateInsert implements DeciTree<EmplevateInfo> {
+public final class NodeEmplevateInsert implements DeciTree<EmplevateInfo> {
 	private DeciTree<EmplevateInfo> tree;
 	
 	
@@ -28,6 +28,7 @@ final class NodeEmplevateInsert implements DeciTree<EmplevateInfo> {
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
+		helperOption.schemaName = option.schemaName;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
 		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		

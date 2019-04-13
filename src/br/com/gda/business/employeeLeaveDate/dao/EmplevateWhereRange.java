@@ -70,6 +70,10 @@ final class EmplevateWhereRange implements DaoStmtWhere {
 				case EmplevateDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn,recordInfo.recordMode);
 					break;
+					
+				case EmplevateDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 		
@@ -115,6 +119,10 @@ final class EmplevateWhereRange implements DaoStmtWhere {
 					
 				case EmplevateDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn,recordInfo.recordMode);
+					break;
+					
+				case EmplevateDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
 		}		

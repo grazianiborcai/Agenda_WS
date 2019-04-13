@@ -18,7 +18,7 @@ import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class EmplevateDeleteSingle implements DaoStmt<EmplevateInfo> {
-	private final String LT_EMPLOYEE_LEAVE_DATE = DaoDbTable.EMP_LD_TABLE;	
+	private final String LT_EMP_LD = DaoDbTable.EMP_LD_TABLE;	
 	
 	private DaoStmt<EmplevateInfo> stmtSql;
 	private DaoStmtOption<EmplevateInfo> stmtOption;	
@@ -36,7 +36,7 @@ public final class EmplevateDeleteSingle implements DaoStmt<EmplevateInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_EMPLOYEE_LEAVE_DATE;
+		this.stmtOption.tableName = LT_EMP_LD;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -46,13 +46,10 @@ public final class EmplevateDeleteSingle implements DaoStmt<EmplevateInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;	
-		
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;	
+		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;
 		
 		DaoStmtWhere whereClause = new EmplevateWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

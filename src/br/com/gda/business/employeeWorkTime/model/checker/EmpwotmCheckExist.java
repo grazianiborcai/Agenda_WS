@@ -42,7 +42,7 @@ public class EmpwotmCheckExist extends ModelCheckerTemplateAction<EmpwotmInfo> {
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
 		if (makeFailCodeHook(checkerResult) == SystemCode.EMP_WTIME_ALREADY_EXIST)
-			return SystemMessage.EMP_WTIME_ALREALDY_EXIST;
+			return SystemMessage.EMP_WTIME_ALREADY_EXIST;
 		
 		return SystemMessage.EMP_WTIME_NOT_FOUND;
 	}

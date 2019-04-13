@@ -8,14 +8,14 @@ import br.com.gda.business.employeePosition.model.checker.EmposCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class EmplevateCheckStoreEmp implements ModelChecker<EmplevateInfo> {
+public final class EmplevateCheckEmpos implements ModelChecker<EmplevateInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<EmposInfo> checker;
 	
 	
-	public EmplevateCheckStoreEmp(ModelCheckerOption option) {
+	public EmplevateCheckEmpos(ModelCheckerOption option) {
 		checker = new EmposCheckExist(option);
 	}
 	

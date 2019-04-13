@@ -4,75 +4,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
+import br.com.gda.business.employeeLeaveDate.model.action.LazyEmplevateMergeTimezone;
 import br.com.gda.business.employeeLeaveDate.model.action.StdEmplevateSelect;
+import br.com.gda.business.employeeLeaveDate.model.checker.EmplevateCheckLangu;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmplevateCheckRead;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public class RootEmplevateSelect implements DeciTree<EmplevateInfo> {
-	private DeciTree<EmplevateInfo> tree;
-	
+public class RootEmplevateSelect extends DeciTreeReadTemplate<EmplevateInfo> {
 	
 	public RootEmplevateSelect(DeciTreeOption<EmplevateInfo> option) {
-		DeciTreeHelperOption<EmplevateInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmplevateInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<EmplevateInfo> buildDecisionCheckerHook(DeciTreeOption<EmplevateInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<EmplevateInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmplevateInfo> checker;
+		ModelCheckerOption checkerOption;
 		
 		checker = new EmplevateCheckRead();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmplevateCheckLangu(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
 	
-	@Override public ActionStd<EmplevateInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<EmplevateInfo>> buildActionsOnPassed(DeciTreeOption<EmplevateInfo> option) {
+	@Override protected List<ActionStd<EmplevateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplevateInfo> option) {
 		List<ActionStd<EmplevateInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmplevateSelect(option));
-		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
+		ActionStd<EmplevateInfo> select = new StdEmplevateSelect(option);
+		ActionLazy<EmplevateInfo> mergeTimezone = new LazyEmplevateMergeTimezone(option.conn, option.schemaName);
 		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmplevateInfo> getDecisionResult() {
-		return tree.getDecisionResult();
+		select.addPostAction(mergeTimezone);
+		
+		actions.add(select);
+		return actions;
 	}
 }

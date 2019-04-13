@@ -22,7 +22,9 @@ public final class EmplevateCheckWrite extends ModelCheckerTemplateSimple<Emplev
 			|| recordInfo.dateValidFrom		== null
 			|| recordInfo.dateValidTo		== null
 			|| recordInfo.timeValidFrom		== null
-			|| recordInfo.timeValidTo		== null		)
+			|| recordInfo.timeValidTo		== null
+			|| recordInfo.username			== null
+			|| recordInfo.codLanguage		== null	)
 			
 			return FAILED;
 		

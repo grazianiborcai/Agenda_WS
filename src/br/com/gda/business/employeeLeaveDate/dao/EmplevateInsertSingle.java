@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
@@ -81,6 +83,7 @@ public final class EmplevateInsertSingle implements DaoStmt<EmplevateInfo> {
 			Time endTime = DaoFormatter.localToSqlTime(recordInfo.timeValidTo);				
 			Date beginDate = DaoFormatter.localToSqlDate(recordInfo.dateValidFrom);
 			Date endDate = DaoFormatter.localToSqlDate(recordInfo.dateValidTo);	
+			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
@@ -92,6 +95,13 @@ public final class EmplevateInsertSingle implements DaoStmt<EmplevateInfo> {
 			stmt.setTime(i++, endTime);
 			stmt.setString(i++, recordInfo.description);
 			stmt.setString(i++, recordInfo.recordMode);
+			stmt.setTimestamp(i++, lastChanged);
+			
+			if (recordInfo.lastChangedBy >= 0) {
+				stmt.setLong(i++, recordInfo.lastChangedBy);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
 			
 			return stmt;
 		}		

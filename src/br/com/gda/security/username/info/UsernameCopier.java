@@ -4,6 +4,7 @@ package br.com.gda.security.username.info;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.gda.business.material.info.MatInfo;
@@ -166,6 +167,20 @@ public final class UsernameCopier {
 	
 	public static List<UsernameInfo> copyFromEmpwotm(List<EmpwotmInfo> sources) {
 		InfoCopier<UsernameInfo, EmpwotmInfo> copier = new UsernameCopyEmpwotm();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static UsernameInfo copyFromEmplevate(EmplevateInfo source) {
+		InfoCopier<UsernameInfo, EmplevateInfo> copier = new UsernameCopyEmplevate();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromEmplevate(List<EmplevateInfo> sources) {
+		InfoCopier<UsernameInfo, EmplevateInfo> copier = new UsernameCopyEmplevate();
 		return copier.makeCopy(sources);
 	}
 }

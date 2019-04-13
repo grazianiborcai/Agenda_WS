@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,8 @@ import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 class EmplevateSelectTemplate implements DaoStmt<EmplevateInfo> {
-	private final String LT_ELT = DaoDbTable.EMP_LD_TABLE;	
+	private final String LT_EMP_LD = DaoDbTable.EMP_LD_TABLE;	
+	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	private final String RT_STORE = DaoDbTable.STORE_TABLE;
 	
 	private DaoStmt<EmplevateInfo> stmtSql;
@@ -42,7 +44,7 @@ class EmplevateSelectTemplate implements DaoStmt<EmplevateInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_ELT;
+		this.stmtOption.tableName = LT_EMP_LD;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -61,8 +63,21 @@ class EmplevateSelectTemplate implements DaoStmt<EmplevateInfo> {
 	
 	private List<DaoJoin> buildJoins() {
 		List<DaoJoin> joins = new ArrayList<>();		
+		joins.add(buildJoinLanguage());	
 		joins.add(buildJoinStore());		
 		return joins;
+	}
+	
+	
+	
+	private DaoJoin buildJoinLanguage() {
+		DaoJoin join = new DaoJoin();
+		join.rightTableName = RT_LANGU;
+		join.joinType = DaoJoinType.CROSS_JOIN;
+		join.joinColumns = null;
+		join.constraintClause = null;
+		
+		return join;
 	}
 	
 	
@@ -71,7 +86,12 @@ class EmplevateSelectTemplate implements DaoStmt<EmplevateInfo> {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_ELT;
+		oneColumn.leftTableName = LT_EMP_LD;
+		oneColumn.leftColumnName = EmplevateDbTableColumn.COL_COD_OWNER;
+		oneColumn.rightColumnName = EmplevateDbTableColumn.COL_COD_OWNER;
+		joinColumns.add(oneColumn);
+		
+		oneColumn.leftTableName = LT_EMP_LD;
 		oneColumn.leftColumnName = EmplevateDbTableColumn.COL_COD_STORE;
 		oneColumn.rightColumnName = EmplevateDbTableColumn.COL_COD_STORE;
 		joinColumns.add(oneColumn);
@@ -125,8 +145,8 @@ class EmplevateSelectTemplate implements DaoStmt<EmplevateInfo> {
 	
 	
 	private class ResultParser implements DaoResultParser<EmplevateInfo> {
+		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TIMEZONE_COL = DaoDbTable.STORE_TABLE + "." + EmplevateDbTableColumn.COL_COD_TIMEZONE;
 		
 		@Override public List<EmplevateInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmplevateInfo> finalResult = new ArrayList<>();
@@ -139,9 +159,10 @@ class EmplevateSelectTemplate implements DaoStmt<EmplevateInfo> {
 				dataInfo.codOwner = stmtResult.getLong(EmplevateDbTableColumn.COL_COD_OWNER);
 				dataInfo.codStore = stmtResult.getLong(EmplevateDbTableColumn.COL_COD_STORE);
 				dataInfo.codEmployee = stmtResult.getLong(EmplevateDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.codTimezone = stmtResult.getString(TIMEZONE_COL);
+				dataInfo.codTimezone = stmtResult.getString(EmplevateDbTableColumn.COL_COD_TIMEZONE);
 				dataInfo.recordMode = stmtResult.getString(EmplevateDbTableColumn.COL_RECORD_MODE);	
 				dataInfo.description = stmtResult.getString(EmplevateDbTableColumn.COL_DESCRIPTION);	
+				dataInfo.codLanguage = stmtResult.getString(EmplevateDbTableColumn.COL_COD_LANGUAGE);	
 				
 				Time tempTime = stmtResult.getTime(EmplevateDbTableColumn.COL_TM_VALID_FROM);
 				if (tempTime != null)
@@ -158,6 +179,14 @@ class EmplevateSelectTemplate implements DaoStmt<EmplevateInfo> {
 				tempDate = stmtResult.getDate(EmplevateDbTableColumn.COL_DT_VALID_TO);
 				if (tempDate != null)
 					dataInfo.dateValidTo = tempDate.toLocalDate();		
+				
+				Timestamp lastChanged = stmtResult.getTimestamp(EmplevateDbTableColumn.COL_LAST_CHANGED);
+				if (lastChanged != null)
+					dataInfo.lastChanged = lastChanged.toLocalDateTime();
+				
+				stmtResult.getLong(EmplevateDbTableColumn.COL_LAST_CHANGED_BY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.lastChangedBy = stmtResult.getLong(EmplevateDbTableColumn.COL_LAST_CHANGED_BY);
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

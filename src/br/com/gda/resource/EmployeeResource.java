@@ -55,9 +55,9 @@ public class EmployeeResource {
 	private static final String UPDATE_LEAVE_DATE = "/updateLeaveDate";
 	private static final String SELECT_LEAVE_DATE = "/selectLeaveDate";
 	private static final String DELETE_LEAVE_DATE = "/deleteLeaveDate";
-	private static final String SELECT_EMP_POSITION = "/selectEmployeePosition";
-	private static final String INSERT_EMP_POSITION = "/insertEmployeePosition";
-	private static final String DELETE_EMP_POSITION = "/deleteEmployeePosition";
+	private static final String SELECT_EMP_POSITION = "/selectPosition";
+	private static final String INSERT_EMP_POSITION = "/insertPosition";
+	private static final String DELETE_EMP_POSITION = "/deletePosition";
 	
 	
 	
@@ -161,15 +161,19 @@ public class EmployeeResource {
 	@GET
 	@Path(SELECT_LEAVE_DATE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response selectLeaveDate(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+	public Response selectLeaveDate(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
 								    @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
 								    @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
-								    @HeaderParam("date")	    @DefaultValue("1900-01-01") String date) {
+								    @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,				                    
+								    @HeaderParam("date")	    @DefaultValue("1900-01-01") String date,
+								    @HeaderParam("TOKEN_USERNAME") String username) {
 		
 		EmplevateInfo recordInfo = new EmplevateInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
 		
 		if (date.equals("1900-01-01") == false) {
 			recordInfo.dateValidFrom = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
@@ -210,11 +214,13 @@ public class EmployeeResource {
 	@DELETE
 	@Path(DELETE_LEAVE_DATE)
 	@Consumes(MediaType.APPLICATION_JSON)	
-	public Response deleteLeaveDate(@HeaderParam("codOwner")      @DefaultValue("-1") long codOwner,
+	public Response deleteLeaveDate(@HeaderParam("TOKEN_OWNER")   @DefaultValue("-1") long codOwner,
 								    @HeaderParam("codStore")      @DefaultValue("-1") long codStore,
 								    @HeaderParam("codEmployee")   @DefaultValue("-1") int codEmployee,
 								    @HeaderParam("dateValidFrom") @DefaultValue("1900-01-01") String dateValidFrom,
-			                        @HeaderParam("timeValidFrom") @DefaultValue("12:00") String timeValidFrom) {
+			                        @HeaderParam("timeValidFrom") @DefaultValue("12:00") String timeValidFrom,
+			                        @HeaderParam("codLanguage")	  @DefaultValue("EN") String codLanguage,
+				                    @HeaderParam("TOKEN_USERNAME") String username) {
 		
 		EmplevateInfo recordInfo = new EmplevateInfo();
 		recordInfo.codOwner = codOwner;
@@ -222,6 +228,8 @@ public class EmployeeResource {
 		recordInfo.codEmployee = codEmployee;
 		recordInfo.dateValidFrom = LocalDate.parse(dateValidFrom, DateTimeFormatter.ISO_LOCAL_DATE);
 		recordInfo.timeValidFrom = LocalTime.parse(timeValidFrom, DateTimeFormatter.ISO_LOCAL_TIME);
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
 		
 		Model model = new EmplevateModelDelete(recordInfo);
 		model.executeRequest();
@@ -246,8 +254,8 @@ public class EmployeeResource {
 	@POST
 	@Path(UPDATE_EMP)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateOwner(@Context HttpServletRequest request, String incomingData) {
-		//TODO: mudanã de password não pode ser por esse serviço
+	public Response updateEmployee(@Context HttpServletRequest request, String incomingData) {
+
 		Model model = new EmpModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
@@ -262,7 +270,6 @@ public class EmployeeResource {
 								   @HeaderParam("TOKEN_USERNAME") String username,
 								   @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
 		
-		//TODO: atualizar StoreEmployee
 		EmpInfo recordInfo = new EmpInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codEmployee = codEmployee;
@@ -279,15 +286,16 @@ public class EmployeeResource {
 	@GET
 	@Path(SELECT_EMP)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectEmployee(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-								   @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee) {
-		
-		//TODO: O Android est� chamando esse m�todo para obter os empregados. Verificar se StoreEmployee � mais apropriado
-		
+	public Response selectEmployee(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner,
+								   @HeaderParam("codEmployee") 	@DefaultValue("-1") int codEmployee,
+								   @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,
+				                   @HeaderParam("TOKEN_USERNAME") String username) {
 		
 		EmpInfo recordInfo = new EmpInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codEmployee = codEmployee;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
 		
 		Model model = new EmpModelSelect(recordInfo);
 		model.executeRequest();

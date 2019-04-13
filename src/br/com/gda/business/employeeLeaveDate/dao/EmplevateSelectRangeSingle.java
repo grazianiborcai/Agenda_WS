@@ -15,12 +15,9 @@ public final class EmplevateSelectRangeSingle extends EmplevateSelectTemplate {
 	
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmplevateInfo recordInfo) {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean IGNORE_RECORD_MODE = true;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new EmplevateWhereRange(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();

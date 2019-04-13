@@ -1,6 +1,7 @@
 package br.com.gda.business.employeeLeaveDate.info;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -8,7 +9,6 @@ import java.util.List;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.common.DefaultValue;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
 public final class EmplevateInfo extends InfoRecord implements Cloneable {
@@ -20,9 +20,13 @@ public final class EmplevateInfo extends InfoRecord implements Cloneable {
 	public LocalTime timeValidFrom;
 	public LocalTime timeValidTo;
 	public String codTimezone;
+	public String txtTimezone;
 	public String description;
 	public String codLanguage;
 	public String recordMode;
+	public LocalDateTime lastChanged;
+	public long lastChangedBy;
+	public String username;
 	
 	
 	public EmplevateInfo() {
@@ -30,11 +34,12 @@ public final class EmplevateInfo extends InfoRecord implements Cloneable {
 		this.codStore = DefaultValue.number();
 		this.codEmployee = DefaultValue.number();
 		this.codLanguage = DefaultValue.language();
-		this.recordMode = RecordMode.RECORD_OK;
+		this.recordMode = DefaultValue.recordMode();
+		lastChangedBy = DefaultValue.number();
 	}
 	
 	
-	
+	//TODO: mover para Copier
 	public static EmplevateInfo copyFrom(Object sourceObj) {
 		if (isPlanData(sourceObj))
 			return copyFromPlanData(sourceObj);

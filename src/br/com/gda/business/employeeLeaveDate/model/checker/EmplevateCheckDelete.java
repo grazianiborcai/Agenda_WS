@@ -7,11 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmplevateCheckKey extends ModelCheckerTemplateSimple<EmplevateInfo> {
-	private final boolean KEY_NOT_NULL = true;
-	private final boolean EMPTY_KEY = false;
+public final class EmplevateCheckDelete extends ModelCheckerTemplateSimple<EmplevateInfo> {
 	
-	public EmplevateCheckKey() {
+	public EmplevateCheckDelete() {
 		super();
 	}
 	
@@ -22,27 +20,23 @@ public final class EmplevateCheckKey extends ModelCheckerTemplateSimple<Emplevat
 			 || recordInfo.codStore  	 <= 0 
 			 || recordInfo.codEmployee 	 <= 0 
 			 || recordInfo.dateValidFrom == null
-			 || recordInfo.timeValidFrom == null	)			
-			return EMPTY_KEY;		
+			 || recordInfo.timeValidFrom == null		
+			 || recordInfo.codLanguage	 == null 
+			 ||	recordInfo.username		 == null		)
+			return super.FAILED;		
 		
-		return KEY_NOT_NULL;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		if (makeFailureCodeHook(checkerResult) == SystemCode.KEY_FIELD_NOT_NULL)
-			return SystemMessage.KEY_FIELD_NOT_NULL;
-		
-		return SystemMessage.KEY_FIELD_IS_EMPTY;
+		return SystemMessage.MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == KEY_NOT_NULL)
-			return SystemCode.KEY_FIELD_NOT_NULL;				
-		
-		return SystemCode.KEY_FIELD_IS_EMPTY;
+		return SystemCode.MANDATORY_FIELD_EMPTY;
 	}
 }

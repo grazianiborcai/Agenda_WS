@@ -18,8 +18,6 @@ import br.com.gda.dao.DaoStmtParamTranslator;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-
-
 public final class EmpwotmInsertSingle implements DaoStmt<EmpwotmInfo> {
 	private DaoStmt<EmpwotmInfo> stmtSql;
 	private DaoStmtOption<EmpwotmInfo> stmtOption;	
