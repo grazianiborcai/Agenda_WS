@@ -26,6 +26,7 @@ public final class DaoDbTable {
 	public static final String CURRENCY_TEXT_TABLE = "currency_unit_text";	
 	public static final String CUS_TABLE = "customer";
 	public static final String EMP_TABLE = "employee";	
+	public static final String EMP_MAT_TABLE = "employee_material";
 	public static final String EMP_WT_TABLE = "employee_working_time";
 	public static final String EMP_LD_TABLE = "employee_leave_time";
 	public static final String EMPOS_TABLE = "emp_position";
@@ -39,8 +40,7 @@ public final class DaoDbTable {
 	public static final String GENDER_TEXT_TABLE = "gender_text";
 	public static final String LANGUAGE_TABLE = "language";
 	public static final String MAT_CATEG_TABLE = "material_category";			
-	public static final String MAT_CATEG_TEXT_TABLE = "material_category_text";	
-	public static final String MAT_EMP_TABLE = "employee_material";
+	public static final String MAT_CATEG_TEXT_TABLE = "material_category_text";		
 	public static final String MAT_GROUP_TABLE = "material_group";
 	public static final String MAT_GROUP_TEXT_TABLE = "material_group_text";
 	public static final String MAT_MOV_TYPE_TABLE = "material_movement_type";

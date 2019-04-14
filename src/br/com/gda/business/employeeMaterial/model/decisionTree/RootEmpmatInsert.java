@@ -4,43 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckEmp;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckEmpos;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckExist;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckMat;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckMatStore;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckOwner;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckStore;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckWrite;
+import br.com.gda.business.employeeMaterial.model.action.LazyEmpmatMergeUsername;
+import br.com.gda.business.employeeMaterial.model.action.LazyEmpmatNodeInsert;
+import br.com.gda.business.employeeMaterial.model.action.LazyEmpmatRootSelect;
+import br.com.gda.business.employeeMaterial.model.action.StdEmpmatEnforceLChanged;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckEmp;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckExist;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckLangu;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckMat;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckOwner;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootEmpmatInsert implements DeciTree<EmpmatInfo> {
-	private DeciTree<EmpmatInfo> tree;
-	
+public final class RootEmpmatInsert extends DeciTreeWriteTemplate<EmpmatInfo> {
 	
 	public RootEmpmatInsert(DeciTreeOption<EmpmatInfo> option) {
-		DeciTreeHelperOption<EmpmatInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmpmatInfo> buildDecisionChecker(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected ModelChecker<EmpmatInfo> buildDecisionCheckerHook(DeciTreeOption<EmpmatInfo> option) {
 		final boolean EXIST_ON_DB = true;	
 		final boolean DONT_EXIST_ON_DB = false;
 		
@@ -55,14 +45,14 @@ public final class RootEmpmatInsert implements DeciTree<EmpmatInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpmatCheckOwner(checkerOption);
+		checker = new EmpmatCheckLangu(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpmatCheckStore(checkerOption);
+		checker = new EmpmatCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
@@ -82,57 +72,29 @@ public final class RootEmpmatInsert implements DeciTree<EmpmatInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpmatCheckEmpos(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpmatCheckMatStore(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
 		checker = new EmpmatCheckExist(checkerOption);
 		queue.add(checker);	
-		
+		//TODO: verificar se material e servico
 		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
 	
-	private List<ActionStd<EmpmatInfo>> buildActionsOnPassed(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
-		actions.add(new NodeEmpmatInsert(option).toAction());	
-		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
+		ActionStd<EmpmatInfo> enforceLChanged = new StdEmpmatEnforceLChanged(option);
+		ActionLazy<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> nodeInsert = new LazyEmpmatNodeInsert(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> select = new LazyEmpmatRootSelect(option.conn, option.schemaName);
 		
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(nodeInsert);
+		nodeInsert.addPostAction(select);
 
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmpmatInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<EmpmatInfo> toAction() {
-		return tree.toAction();
+		
+		actions.add(enforceLChanged);
+		return actions;
 	}
 }

@@ -4,75 +4,60 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
-import br.com.gda.business.employeeMaterial.model.action.StdEmpmatSelectAll_;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckRead;
+import br.com.gda.business.employeeMaterial.model.action.LazyEmpmatMergeEmp;
+import br.com.gda.business.employeeMaterial.model.action.LazyEmpmatMergeMat;
+import br.com.gda.business.employeeMaterial.model.action.StdEmpmatSelect;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckLangu;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckRead;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public final class RootEmpmatSelect implements DeciTree<EmpmatInfo> {
-	private DeciTree<EmpmatInfo> tree;
-	
+public final class RootEmpmatSelect extends DeciTreeReadTemplate<EmpmatInfo> {
 	
 	public RootEmpmatSelect(DeciTreeOption<EmpmatInfo> option) {
-		DeciTreeHelperOption<EmpmatInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmpmatInfo> buildDecisionChecker(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected ModelChecker<EmpmatInfo> buildDecisionCheckerHook(DeciTreeOption<EmpmatInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<EmpmatInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpmatInfo> checker;
+		ModelCheckerOption checkerOption;
 		
 		checker = new EmpmatCheckRead();
 		queue.add(checker);
-
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpmatCheckLangu(checkerOption);
+		queue.add(checker);		
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
 	
-	private List<ActionStd<EmpmatInfo>> buildActionsOnPassed(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmpmatSelectAll_(option));
-		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
+		ActionStd<EmpmatInfo> select = new StdEmpmatSelect(option);
+		ActionLazy<EmpmatInfo> mergeMat = new LazyEmpmatMergeMat(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> mergeEmp = new LazyEmpmatMergeEmp(option.conn, option.schemaName);
 		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmpmatInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<EmpmatInfo> toAction() {
-		return tree.toAction();
+		select.addPostAction(mergeMat);
+		mergeMat.addPostAction(mergeEmp);
+		
+		actions.add(select);
+		return actions;
 	}
 }

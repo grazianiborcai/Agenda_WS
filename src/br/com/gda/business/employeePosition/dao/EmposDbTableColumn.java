@@ -9,7 +9,6 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class EmposDbTableColumn extends DaoDbTableColumnTemplate {
-	
 	public static final String COL_COD_EMPLOYEE = "cod_employee";
 	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_OWNER = "cod_owner";

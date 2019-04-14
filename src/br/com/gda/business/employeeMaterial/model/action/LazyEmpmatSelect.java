@@ -23,7 +23,7 @@ public final class LazyEmpmatSelect extends ActionLazyTemplate<EmpmatInfo, Empma
 	
 	
 	
-	@Override protected  ActionStd<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected ActionStd<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
 		return new StdEmpmatSelect(option);
 	}
 	

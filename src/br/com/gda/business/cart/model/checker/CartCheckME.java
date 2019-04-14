@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckExist;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 

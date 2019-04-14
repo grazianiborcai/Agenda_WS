@@ -1,4 +1,4 @@
-package br.com.gda.business.employeeMaterial.model.chekcer;
+package br.com.gda.business.employeeMaterial.model.checker;
 
 import java.sql.Connection;
 
@@ -7,18 +7,21 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmpmatCheckRead extends ModelCheckerTemplateSimple<EmpmatInfo> {
+public final class EmpmatCheckWrite extends ModelCheckerTemplateSimple<EmpmatInfo> {
 
-	public EmpmatCheckRead() {
+	public EmpmatCheckWrite() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EmpmatInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner    <= 0
-			|| recordInfo.codStore    <= 0
-			|| recordInfo.codLanguage == null)			
+		if (   recordInfo.codOwner 		<= 0 
+			|| recordInfo.codEmployee	<= 0  	
+			|| recordInfo.codMat		<= 0
+			|| recordInfo.username		== null
+			|| recordInfo.codLanguage	== null )
+			
 			return FAILED;
 		
 		

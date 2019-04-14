@@ -5,10 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
 import br.com.gda.business.employeeMaterial.model.action.StdEmpmatInsert;
-import br.com.gda.business.employeeMaterial.model.action.StdEmpmatSelectAll_;
 import br.com.gda.business.employeeMaterial.model.action.StdEmpmatUpdate;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckSoftDelete;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckWrite;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckSoftDelete;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckWrite;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -20,7 +19,7 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class NodeEmpmatInsert implements DeciTree<EmpmatInfo> {
+public final class NodeEmpmatInsert implements DeciTree<EmpmatInfo> {
 	private DeciTree<EmpmatInfo> tree;
 	
 	
@@ -64,7 +63,6 @@ final class NodeEmpmatInsert implements DeciTree<EmpmatInfo> {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmpmatInsert(option));
-		actions.add(new StdEmpmatSelectAll_(option));
 		return actions;
 	}
 	
@@ -74,7 +72,6 @@ final class NodeEmpmatInsert implements DeciTree<EmpmatInfo> {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmpmatUpdate(option));
-		actions.add(new StdEmpmatSelectAll_(option));
 		return actions;
 	}
 	

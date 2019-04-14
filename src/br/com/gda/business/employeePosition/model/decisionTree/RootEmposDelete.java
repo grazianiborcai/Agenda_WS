@@ -33,14 +33,14 @@ public final class RootEmposDelete extends DeciTreeWriteTemplate<EmposInfo> {
 	
 	@Override protected ModelChecker<EmposInfo> buildDecisionCheckerHook(DeciTreeOption<EmposInfo> option) {
 		final boolean EXIST_ON_DB = true;
-		final boolean KEY_NOT_NULL = true;	
+		final boolean NOT_NULL = true;	
 		
 		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmposInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = KEY_NOT_NULL;		
+		checkerOption.expectedResult = NOT_NULL;		
 		checker = new EmposCheckDelete(checkerOption);
 		queue.add(checker);		
 			
@@ -65,7 +65,7 @@ public final class RootEmposDelete extends DeciTreeWriteTemplate<EmposInfo> {
 		checker = new EmposCheckStorauth(checkerOption);
 		queue.add(checker);	
 		
-		 return new ModelCheckerQueue<EmposInfo>(queue);
+		return new ModelCheckerQueue<EmposInfo>(queue);
 	}
 	
 	

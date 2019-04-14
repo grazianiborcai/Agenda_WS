@@ -1,14 +1,13 @@
 package br.com.gda.business.employeeMaterial.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
 public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public long codStore;		
 	public long codEmployee;
 	public String nameEmployee;
 	public long codMat;
@@ -22,12 +21,14 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	public String txtUnit;
 	public String codLanguage;
 	public String recordMode;
+	public LocalDateTime lastChanged;
+	public long lastChangedBy;
+	public String username;
 	
 	
 	
 	public EmpmatInfo() {
-		codOwner = DefaultValue.number();
-		codStore = DefaultValue.number();		
+		codOwner = DefaultValue.number();	
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codMat = DefaultValue.number();
@@ -35,7 +36,8 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 		codCategory = DefaultValue.number();
 		priceUnit = DefaultValue.number();
 		codLanguage = DefaultValue.language();
-		recordMode = RecordMode.RECORD_OK;
+		recordMode = DefaultValue.recordMode();
+		lastChangedBy = DefaultValue.number();
 	}
 	
 	
@@ -62,7 +64,6 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 		int result = 17;
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
-		result = result * 31 + (int) (codStore    ^ (codStore    >>> 32));
 		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
 		result = result * 31 + (int) (codMat 	  ^ (codMat 	 >>> 32));
 		
@@ -82,7 +83,6 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 		
 		EmpmatInfo obj = (EmpmatInfo) o;		
 		return (codOwner 	== obj.codOwner 	&& 
-				codStore 	== obj.codStore 	&&
 				codEmployee == obj.codEmployee 	&&
 				codMat 		== obj.codMat);
 	}

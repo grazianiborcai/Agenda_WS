@@ -1,22 +1,22 @@
-package br.com.gda.business.employeeMaterial.model.chekcer;
+package br.com.gda.business.employeeMaterial.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.checker.EmpCheckExist;
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
+import br.com.gda.business.masterData.info.LanguInfo;
+import br.com.gda.business.masterData.model.checker.LanguCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class EmpmatCheckEmp implements ModelChecker<EmpmatInfo> {
+public final class EmpmatCheckLangu implements ModelChecker<EmpmatInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmpInfo> checker;
+	private ModelChecker<LanguInfo> checker;
 	
 	
-	public EmpmatCheckEmp(ModelCheckerOption option) {
-		checker = new EmpCheckExist(option);
+	public EmpmatCheckLangu(ModelCheckerOption option) {
+		checker = new LanguCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class EmpmatCheckEmp implements ModelChecker<EmpmatInfo> {
 	
 	
 	@Override public boolean check(EmpmatInfo recordInfo) {
-		return checker.check(EmpInfo.copyFrom(recordInfo));
+		return checker.check(LanguInfo.copyFrom(recordInfo));
 	}
 
 	

@@ -3,13 +3,12 @@ package br.com.gda.business.employeeMaterial.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
-import br.com.gda.dao.DaoDictionary;
 import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinColumn;
 import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -22,7 +21,7 @@ import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
-	static private final String LT_MAT_EMP = DaoDbTable.MAT_EMP_TABLE;
+	static private final String LT_EMP_MAT = DaoDbTable.EMP_MAT_TABLE;
 	static private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<EmpmatInfo> stmtSql;
@@ -41,7 +40,7 @@ public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_MAT_EMP;
+		this.stmtOption.tableName = LT_EMP_MAT;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
@@ -52,12 +51,9 @@ public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new EmpmatWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -74,33 +70,13 @@ public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 	
 	
 	private DaoJoin buildJoinLanguage() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
 		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = buildJoinConstraintText(join.rightTableName);
+		join.joinType = DaoJoinType.CROSS_JOIN;
+		join.joinColumns = null;
+		join.constraintClause = null;
 		
 		return join;
-	}
-	
-	
-	
-	private String buildJoinConstraintText(String rightTableName) {
-		StringBuilder constrainClause = new StringBuilder(); 
-		
-		constrainClause.append(rightTableName);
-		constrainClause.append(DaoDictionary.PERIOD);
-		constrainClause.append("Language");
-		constrainClause.append(DaoDictionary.SPACE);
-		constrainClause.append(DaoDictionary.EQUAL);
-		constrainClause.append(DaoDictionary.SPACE);
-		constrainClause.append(DaoDictionary.QUOTE);
-		constrainClause.append(this.stmtOption.recordInfo.codLanguage);
-		constrainClause.append(DaoDictionary.QUOTE);
-		
-		return constrainClause.toString();
 	}
 	
 	
@@ -145,8 +121,8 @@ public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<EmpmatInfo> {
+		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String LANGU_COL = RT_LANGU + "." + "Language";
 		
 		@Override public List<EmpmatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpmatInfo> finalResult = new ArrayList<>();
@@ -156,12 +132,21 @@ public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 			
 			do {
 				EmpmatInfo dataInfo = new EmpmatInfo();
-				dataInfo.codOwner = stmtResult.getLong("cod_owner");
-				dataInfo.codStore = stmtResult.getLong("Cod_store");
-				dataInfo.codEmployee = stmtResult.getLong("Cod_employee");
-				dataInfo.codMat = stmtResult.getLong("Cod_material");
-				dataInfo.recordMode = stmtResult.getString("Record_mode");	
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);	
+				dataInfo.codOwner = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_OWNER);
+				dataInfo.codEmployee = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_EMPLOYEE);
+				dataInfo.codMat = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_MATERIAL);
+				dataInfo.recordMode = stmtResult.getString(EmpmatDbTableColumn.COL_RECORD_MODE);	
+				dataInfo.codLanguage = stmtResult.getString(EmpmatDbTableColumn.COL_COD_LANGUAGE);	
+				
+				
+				Timestamp lastChanged = stmtResult.getTimestamp(EmpmatDbTableColumn.COL_LAST_CHANGED);
+				if (lastChanged != null)
+					dataInfo.lastChanged = lastChanged.toLocalDateTime();
+				
+				
+				stmtResult.getLong(EmpmatDbTableColumn.COL_LAST_CHANGED_BY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.lastChangedBy = stmtResult.getLong(EmpmatDbTableColumn.COL_LAST_CHANGED_BY);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

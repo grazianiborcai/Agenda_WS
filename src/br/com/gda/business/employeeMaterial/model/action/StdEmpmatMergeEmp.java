@@ -3,20 +3,16 @@ package br.com.gda.business.employeeMaterial.model.action;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
 import br.com.gda.model.action.ActionLazy;
+import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpmatSelectAll_ implements ActionStd<EmpmatInfo> {
-	private ActionStd<EmpmatInfo> actionHelper;
+public final class StdEmpmatMergeEmp implements ActionStd<EmpmatInfo> {
+	private ActionStd<EmpmatInfo> actionHelper;	
 	
 	
-	public StdEmpmatSelectAll_(DeciTreeOption<EmpmatInfo> option) {
-		actionHelper = new StdEmpmatSelect(option);
-		LazyEmpmatMergeMat mergeMaterial = new LazyEmpmatMergeMat(option.conn, option.schemaName);
-		VisiEmpmatMergeEmp mergeEmployee = new VisiEmpmatMergeEmp(option.conn, option.schemaName);	
-		
-		actionHelper.addPostAction(mergeMaterial);
-		mergeMaterial.addPostAction(mergeEmployee);
+	public StdEmpmatMergeEmp(DeciTreeOption<EmpmatInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiEmpmatMergeEmp(option.conn, option.schemaName));
 	}
 	
 	

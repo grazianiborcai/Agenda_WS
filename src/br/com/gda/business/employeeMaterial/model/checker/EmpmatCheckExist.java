@@ -1,4 +1,4 @@
-package br.com.gda.business.employeeMaterial.model.chekcer;
+package br.com.gda.business.employeeMaterial.model.checker;
 
 import java.sql.Connection;
 import java.util.ArrayList;

@@ -39,7 +39,7 @@ final class PlanMergeVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, 
 	
 	
 	private boolean shouldMerge(PlanDataInfo planData, EmpmatInfo matEmp) {
-		if (planData.codStore    == matEmp.codStore 	&&
+		if (//planData.codStore    == matEmp.codStore 	&&
 			planData.codEmployee == matEmp.codEmployee 	&&
 			isMatService(matEmp)						&&
 			isTimeUnit(matEmp))
@@ -98,8 +98,8 @@ final class PlanMergeVisitorME implements InfoMergerVisitor<PlanInfo, PlanInfo, 
 		if (sourceTwo.codMat <= 0)
 			return false;
 		
-		if (sourceTwo.codStore <= 0)
-			return false;
+	//	if (sourceTwo.codStore <= 0)
+	//		return false;
 		
 		if (sourceTwo.codEmployee <= 0)
 			return false;

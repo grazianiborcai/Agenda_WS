@@ -1,28 +1,28 @@
-package br.com.gda.business.employeeMaterial.model.chekcer;
+package br.com.gda.business.employee.model.checker;
 
 import java.util.List;
 
+import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
-import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.checker.StoreCheckExist;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckHasEmpItem;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class EmpmatCheckStore implements ModelChecker<EmpmatInfo> {
+public final class EmpCheckHasEmpmat implements ModelChecker<EmpInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoreInfo> checker;
+	private ModelChecker<EmpmatInfo> checker;
 	
 	
-	public EmpmatCheckStore(ModelCheckerOption option) {
-		checker = new StoreCheckExist(option);
+	public EmpCheckHasEmpmat(ModelCheckerOption option) {
+		checker = new EmpmatCheckHasEmpItem(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<EmpmatInfo> recordInfos) {
-		for (EmpmatInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<EmpInfo> recordInfos) {
+		for (EmpInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -32,8 +32,8 @@ public final class EmpmatCheckStore implements ModelChecker<EmpmatInfo> {
 
 	
 	
-	@Override public boolean check(EmpmatInfo recordInfo) {
-		return checker.check(StoreInfo.copyFrom(recordInfo));
+	@Override public boolean check(EmpInfo recordInfo) {
+		return checker.check(EmpmatInfo.copyFrom(recordInfo));
 	}
 
 	

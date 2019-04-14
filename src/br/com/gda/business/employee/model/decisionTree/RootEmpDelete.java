@@ -10,6 +10,7 @@ import br.com.gda.business.employee.model.action.LazyEmpDeletePerson;
 import br.com.gda.business.employee.model.action.LazyEmpEnforceLChanged;
 import br.com.gda.business.employee.model.action.LazyEmpMergeUsername;
 import br.com.gda.business.employee.model.action.LazyEmpNodeDeleteAddress;
+import br.com.gda.business.employee.model.action.LazyEmpNodeDeleteEmpmat;
 import br.com.gda.business.employee.model.action.LazyEmpNodeDeletePhone;
 import br.com.gda.business.employee.model.action.LazyEmpNodeDeleteUser;
 import br.com.gda.business.employee.model.action.LazyEmpUpdate;
@@ -69,22 +70,24 @@ public final class RootEmpDelete extends DeciTreeWriteTemplate<EmpInfo> {
 		ActionLazy<EmpInfo> enforceLChanged = new LazyEmpEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> update = new LazyEmpUpdate(option.conn, option.schemaName);		
+		ActionLazy<EmpInfo> deleteEmpos = new LazyEmpNodeDeleteEmpos(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> deleteEmpmat = new LazyEmpNodeDeleteEmpmat(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deleteAddress = new LazyEmpNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deletePhone = new LazyEmpNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deletePerson = new LazyEmpDeletePerson(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deleteUser = new LazyEmpNodeDeleteUser(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> deleteEmpos = new LazyEmpNodeDeleteEmpos(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> deleteEmployee = new LazyEmpDelete(option.conn, option.schemaName);	
 
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
 		
+		update.addPostAction(deleteEmpos);
+		update.addPostAction(deleteEmpmat);
 		update.addPostAction(deleteAddress);
 		update.addPostAction(deletePhone);
 		update.addPostAction(deletePerson);
 		update.addPostAction(deleteUser);
-		update.addPostAction(deleteEmpos);
 		update.addPostAction(deleteEmployee);
 		
 		actions.add(mergeToDelete);		

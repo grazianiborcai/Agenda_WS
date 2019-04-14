@@ -37,7 +37,7 @@ public final class NodeEmpDeleteEmpos implements DeciTree<EmpInfo> {
 	
 	
 	private ModelChecker<EmpInfo> buildDecisionChecker(DeciTreeOption<EmpInfo> option) {
-		final boolean HAS_WORK_TIME = true;
+		final boolean HAS_STORE_POSITION = true;
 		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
@@ -46,7 +46,7 @@ public final class NodeEmpDeleteEmpos implements DeciTree<EmpInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_WORK_TIME;		
+		checkerOption.expectedResult = HAS_STORE_POSITION;		
 		checker = new EmpCheckHasEmpos(checkerOption);
 		queue.add(checker);	
 		

@@ -27,6 +27,10 @@ import br.com.gda.business.employeeLeaveDate.model.EmplevateModelDelete;
 import br.com.gda.business.employeeLeaveDate.model.EmplevateModelInsert;
 import br.com.gda.business.employeeLeaveDate.model.EmplevateModelSelect;
 import br.com.gda.business.employeeLeaveDate.model.EmplevateModelUpdate;
+import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
+import br.com.gda.business.employeeMaterial.model.EmpmatModelDelete;
+import br.com.gda.business.employeeMaterial.model.EmpmatModelInsert;
+import br.com.gda.business.employeeMaterial.model.EmpmatModelSelect;
 import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeePosition.model.EmposModelDelete;
 import br.com.gda.business.employeePosition.model.EmposModelInsert;
@@ -58,6 +62,9 @@ public class EmployeeResource {
 	private static final String SELECT_EMP_POSITION = "/selectPosition";
 	private static final String INSERT_EMP_POSITION = "/insertPosition";
 	private static final String DELETE_EMP_POSITION = "/deletePosition";
+	private static final String SELECT_EMP_MATERIAL = "/selectMaterial";
+	private static final String INSERT_EMP_MATERIAL = "/insertMaterial";
+	private static final String DELETE_EMP_MATERIAL = "/deleteMaterial";
 	
 	
 	
@@ -358,6 +365,64 @@ public class EmployeeResource {
 		recordInfo.username = username;
 		
 		Model model = new EmposModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_EMP_MATERIAL)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectEmpmat(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
+			                     @HeaderParam("codMaterial") @DefaultValue("-1") int codMaterial,
+			                     @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
+			                     @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                     @HeaderParam("TOKEN_USERNAME") String username) {
+		
+		EmpmatInfo recordInfo = new EmpmatInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codMat = codMaterial;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new EmpmatModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_EMP_MATERIAL)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response insertEmpmat(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new EmpmatModelInsert(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_EMP_MATERIAL)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteEmpmat(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                     @HeaderParam("codMaterial")   	@DefaultValue("-1") int codMaterial,
+			                     @HeaderParam("codEmployee") 	@DefaultValue("-1") long codEmployee,
+			                     @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage,
+			                     @HeaderParam("TOKEN_USERNAME") String username) {
+		
+		EmpmatInfo recordInfo = new EmpmatInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codMat = codMaterial;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new EmpmatModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

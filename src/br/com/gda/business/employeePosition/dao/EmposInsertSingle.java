@@ -8,6 +8,7 @@ import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -24,8 +25,7 @@ public final class EmposInsertSingle implements DaoStmt<EmposInfo> {
 	
 	public EmposInsertSingle(Connection conn, EmposInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
-		
+		buildStmt();		
 	}
 	
 	
@@ -77,9 +77,7 @@ public final class EmposInsertSingle implements DaoStmt<EmposInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<EmposInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmposInfo recordInfo) throws SQLException {
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);

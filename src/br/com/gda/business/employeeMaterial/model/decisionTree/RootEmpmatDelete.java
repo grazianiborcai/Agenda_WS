@@ -4,87 +4,74 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
-import br.com.gda.business.employeeMaterial.model.action.StdEmpmatDelete;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckExist;
-import br.com.gda.business.employeeMaterial.model.chekcer.EmpmatCheckWrite;
+import br.com.gda.business.employeeMaterial.model.action.LazyEmpmatDelete;
+import br.com.gda.business.employeeMaterial.model.action.LazyEmpmatEnforceLChanged;
+import br.com.gda.business.employeeMaterial.model.action.LazyEmpmatMergeUsername;
+import br.com.gda.business.employeeMaterial.model.action.LazyEmpmatUpdate;
+import br.com.gda.business.employeeMaterial.model.action.StdEmpmatMergeToDelete;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckExist;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckLangu;
+import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootEmpmatDelete implements DeciTree<EmpmatInfo> {
-	private DeciTree<EmpmatInfo> tree;
-	
+public final class RootEmpmatDelete extends DeciTreeWriteTemplate<EmpmatInfo> {
 	
 	public RootEmpmatDelete(DeciTreeOption<EmpmatInfo> option) {
-		DeciTreeHelperOption<EmpmatInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmpmatInfo> buildDecisionChecker(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected ModelChecker<EmpmatInfo> buildDecisionCheckerHook(DeciTreeOption<EmpmatInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<EmpmatInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpmatInfo> checker;
-		
+		ModelCheckerOption checkerOption;
+			
 		checker = new EmpmatCheckWrite();
-		queue.add(checker);
-		
-		final boolean EXIST_ON_DB = true;	
-		ModelCheckerOption checkerOption = new ModelCheckerOption();
+		queue.add(checker);		
+			
+		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;
-		
-		checker = new EmpmatCheckExist(checkerOption);
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpmatCheckLangu(checkerOption);
 		queue.add(checker);		
 		
-		 return new ModelCheckerQueue<EmpmatInfo>(queue);
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new EmpmatCheckExist(checkerOption);
+		queue.add(checker);	
+		
+		return new ModelCheckerQueue<EmpmatInfo>(queue);
 	}
 	
 	
 	
-	private List<ActionStd<EmpmatInfo>> buildActionsOnPassed(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmpmatDelete(option));
-		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
+		ActionStd<EmpmatInfo> mergeToDelete = new StdEmpmatMergeToDelete(option);
+		ActionLazy<EmpmatInfo> enforceLChanged = new LazyEmpmatEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> update = new LazyEmpmatUpdate(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> deleteEmpmat = new LazyEmpmatDelete(option.conn, option.schemaName);
 		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmpmatInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<EmpmatInfo> toAction() {
-		return tree.toAction();
+		mergeToDelete.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(update);
+		update.addPostAction(deleteEmpmat);
+		
+		actions.add(mergeToDelete);
+		return actions;	
 	}
 }

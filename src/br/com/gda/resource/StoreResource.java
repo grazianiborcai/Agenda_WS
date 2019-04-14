@@ -16,10 +16,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
-import br.com.gda.business.employeeMaterial.model.EmpmatModelDelete;
-import br.com.gda.business.employeeMaterial.model.EmpmatModelInsert;
-import br.com.gda.business.employeeMaterial.model.EmpmatModelSelect;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.business.feeStore.model.FeeStoreModelSelect;
 import br.com.gda.business.store.info.StoreInfo;
@@ -49,9 +45,6 @@ public class StoreResource {
 	private static final String UPDATE_STORE = "/updateStore";
 	private static final String DELETE_STORE = "/deleteStore";
 	private static final String SELECT_STORE = "/selectStore";
-	private static final String SELECT_STORE_MAT_EMP = "/selectStoreMatEmp";
-	private static final String INSERT_STORE_MAT_EMP = "/insertStoreMatEmp";
-	private static final String DELETE_STORE_MAT_EMP = "/deleteStoreMatEmp";
 	private static final String SELECT_STORE_FEE = "/selectStoreFee";
 	private static final String SELECT_STORE_WTIME = "/selectStoreWorkTime";
 	private static final String INSERT_STORE_WTIME = "/insertStoreWorkTime";
@@ -142,66 +135,6 @@ public class StoreResource {
 			recordInfo.codFeeCateg = codFeeCateg.charAt(0);
 		
 		Model model = new FeeStoreModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@GET
-	@Path(SELECT_STORE_MAT_EMP)
-	public Response selectStoreMatEmp(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-			                          @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
-			                          @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
-								      @HeaderParam("codMaterial") @DefaultValue("-1") long codMat, 
-								      @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
-
-
-		EmpmatInfo recordInfo = new EmpmatInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		recordInfo.codEmployee = codEmployee;
-		recordInfo.codMat = codMat;
-		recordInfo.codLanguage = codLanguage;
-		
-		
-		Model modelSelect = new EmpmatModelSelect(recordInfo);
-		modelSelect.executeRequest();
-		return modelSelect.getResponse();
-	}
-	
-	
-	
-
-	
-	
-	
-	@POST
-	@Path(INSERT_STORE_MAT_EMP)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertStoreMatEmp(@Context HttpServletRequest request, String incomingData) {
-		
-		Model model = new EmpmatModelInsert(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@DELETE
-	@Path(DELETE_STORE_MAT_EMP)
-	public Response deleteStoreMatEmp(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-            						  @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
-            						  @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
-            						  @HeaderParam("codMaterial") @DefaultValue("-1") long codMat) {
-		
-		EmpmatInfo recordInfo = new EmpmatInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		recordInfo.codEmployee = codEmployee;
-		recordInfo.codMat = codMat;
-		
-		Model model = new EmpmatModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
