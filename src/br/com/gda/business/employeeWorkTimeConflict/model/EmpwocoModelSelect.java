@@ -4,8 +4,8 @@ import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
-import br.com.gda.business.employeeWorkTimeConflict.model.decisionTree.RootEmpCoSelect;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpwocoInfo;
+import br.com.gda.business.employeeWorkTimeConflict.model.decisionTree.RootEmpwocoSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpCoModelSelect implements Model {
+public final class EmpwocoModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public EmpCoModelSelect(EmpCoInfo recordInfo) {
+	public EmpwocoModelSelect(EmpwocoInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class EmpCoModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(EmpCoInfo recordInfo) {
-		ModelOption<EmpCoInfo> helperOption = new ModelOption<>();
+	private void buildHelper(EmpwocoInfo recordInfo) {
+		ModelOption<EmpwocoInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpCoInfo.class;
+		helperOption.infoRecordClass = EmpwocoInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class EmpCoModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<EmpCoInfo> {		
-		@Override public DeciTree<EmpCoInfo> getInstance(DeciTreeOption<EmpCoInfo> option) {
-			return new RootEmpCoSelect(option);
+	private static class TreeFactory implements DeciTreeFactory<EmpwocoInfo> {		
+		@Override public DeciTree<EmpwocoInfo> getInstance(DeciTreeOption<EmpwocoInfo> option) {
+			return new RootEmpwocoSelect(option);
 		}			
 	}
 }

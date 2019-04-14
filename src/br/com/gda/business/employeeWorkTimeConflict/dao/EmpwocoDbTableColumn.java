@@ -4,14 +4,27 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class EmpCoDbTableColumn extends DaoDbTableColumnTemplate {
+public final class EmpwocoDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_BEGIN_TIME = "begin_time";
+	public static final String COL_COD_EMPLOYEE = "cod_employee";
+	public static final String COL_COD_LANGUAGE = "language";
+	public static final String COL_COD_OWNER = "cod_owner";	
+	public static final String COL_COD_STORE = "cod_store";
+	public static final String COL_COD_TIME_ZONE = StoreDbTableColumn.COL_COD_TIME_ZONE;
+	public static final String COL_END_TIME = "end_time";
+	public static final String COL_LAST_CHANGED = "last_changed";
+	public static final String COL_LAST_CHANGED_BY = "last_changed_by";	
+	public static final String COL_RECORD_MODE = "record_mode";
+	public static final String COL_WEEKDAY = "weekday";
+	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public EmpCoDbTableColumn() {
+	public EmpwocoDbTableColumn() {
 		super();
 	}
 	
@@ -20,14 +33,14 @@ public final class EmpCoDbTableColumn extends DaoDbTableColumnTemplate {
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();
 		
-		employeeWorkTimeTable();
+		employeeWorkTimeConflictTable();
 		
 		return tableColumns;
 	}
 	
 	
 	
-	private void employeeWorkTimeTable() {
+	private void employeeWorkTimeConflictTable() {
 		final String TABLE_NAME = DaoDbTable.EMP_WT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -35,7 +48,7 @@ public final class EmpCoDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_owner";
+		oneColumn.columnName = COL_COD_OWNER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -43,7 +56,7 @@ public final class EmpCoDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_store";
+		oneColumn.columnName = COL_COD_STORE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -51,7 +64,7 @@ public final class EmpCoDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "cod_employee";
+		oneColumn.columnName = COL_COD_EMPLOYEE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -59,7 +72,7 @@ public final class EmpCoDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "weekday";
+		oneColumn.columnName = COL_WEEKDAY;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -67,7 +80,7 @@ public final class EmpCoDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "begin_time";
+		oneColumn.columnName = COL_BEGIN_TIME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -75,7 +88,7 @@ public final class EmpCoDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "end_time";
+		oneColumn.columnName = COL_END_TIME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -83,15 +96,15 @@ public final class EmpCoDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = "record_mode";
+		oneColumn.columnName = COL_RECORD_MODE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.WEEKDAY_TEXT_TABLE;
-		oneColumn.columnName = "Name";
+		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
+		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -99,7 +112,7 @@ public final class EmpCoDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.STORE_TABLE;
-		oneColumn.columnName = "Cod_timezone";
+		oneColumn.columnName = COL_COD_TIME_ZONE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;

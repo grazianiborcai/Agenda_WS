@@ -99,7 +99,7 @@ public final class RootStowotmUpdate implements DeciTree<StowotmInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StowotmCheckStorauth(checkerOption);
 		queue.add(checker);
-		
+		//TODO: Verificar conflito com Employee
 		return new ModelCheckerQueue<>(queue);
 	}
 	

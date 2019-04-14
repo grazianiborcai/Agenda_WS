@@ -56,7 +56,7 @@ public final class RootEmpwotmSelect extends DeciTreeReadTemplate<EmpwotmInfo> {
 		
 		select.addPostAction(mergeWeekday);
 		mergeWeekday.addPostAction(mergeTimezone);
-		
+		//TODO: considerar limitar o horario do Employee com o Store, pois este ultimo pode sofre Update e entrar em conflito com o primeiro
 		actions.add(select);
 		return actions;
 	}

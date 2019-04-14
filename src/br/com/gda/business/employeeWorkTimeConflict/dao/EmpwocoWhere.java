@@ -2,7 +2,7 @@ package br.com.gda.business.employeeWorkTimeConflict.dao;
 
 import java.util.List;
 
-import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
@@ -12,7 +12,7 @@ import br.com.gda.dao.DaoWhereCondition;
 import br.com.gda.dao.DaoWhereOperator;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-final class EmpCoWhere implements DaoStmtWhere {
+final class EmpwocoWhere implements DaoStmtWhere {
 	private String whereClause;	
 	private DaoWhereBuilder builderKey;
 	private DaoWhereBuilder builderBeginTime;
@@ -20,13 +20,13 @@ final class EmpCoWhere implements DaoStmtWhere {
 	private DaoWhereBuilder builderBeginEndTime;
 	
 	
-	public EmpCoWhere(DaoWhereBuilderOption whereOption, String tableName, EmpCoInfo recordInfo) {
+	public EmpwocoWhere(DaoWhereBuilderOption whereOption, String tableName, EmpwocoInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, EmpCoInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, EmpwocoInfo recordInfo) {
 		builderKey = DaoWhereBuilder.factory(whereOption);		
 		builderBeginTime = DaoWhereBuilder.factory(whereOption);
 		builderEndTime = DaoWhereBuilder.factory(whereOption);		
@@ -51,39 +51,43 @@ final class EmpCoWhere implements DaoStmtWhere {
 	
 	
 	
-	private void generateKey(DaoColumn column, EmpCoInfo recordInfo) {
+	private void generateKey(DaoColumn column, EmpwocoInfo recordInfo) {
 		switch(column.columnName) {
-		case "cod_owner" :
+		case EmpwocoDbTableColumn.COL_COD_OWNER :
 			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codOwner));
 			break;
 			
-		case "cod_store" :
+		case EmpwocoDbTableColumn.COL_COD_STORE :
 			builderKey.addClauseAnd(column, DaoFormatter.numberToString(recordInfo.codStore), DaoWhereCondition.NOT_EQUAL);
 			break;			
 
-		case "cod_employee" :
+		case EmpwocoDbTableColumn.COL_COD_EMPLOYEE :
 			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codEmployee));
 			break;
 			
-		case "weekday" :
+		case EmpwocoDbTableColumn.COL_WEEKDAY :
 			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codWeekday));
 			break;
 			
-		case "record_mode" :
+		case EmpwocoDbTableColumn.COL_RECORD_MODE :
 			builderKey.addClauseEqualAnd(column, recordInfo.recordMode);
+			break;
+			
+		case EmpwocoDbTableColumn.COL_COD_LANGUAGE :
+			builderKey.addClauseEqualAnd(column, recordInfo.codLanguage);
 			break;
 		}
 	}
 	
 	
 	
-	private void generateBeginTime(DaoColumn column, EmpCoInfo recordInfo) {
+	private void generateBeginTime(DaoColumn column, EmpwocoInfo recordInfo) {
 		switch(column.columnName) {
-		case "begin_time" :
+		case EmpwocoDbTableColumn.COL_BEGIN_TIME :
 			builderBeginTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
 			break;
 			
-		case "end_time" :
+		case EmpwocoDbTableColumn.COL_END_TIME :
 			builderBeginTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);
 			break;
 		}
@@ -91,13 +95,13 @@ final class EmpCoWhere implements DaoStmtWhere {
 	
 	
 	
-	private void generateEndTime(DaoColumn column, EmpCoInfo recordInfo) {
+	private void generateEndTime(DaoColumn column, EmpwocoInfo recordInfo) {
 		switch(column.columnName) {
-		case "begin_time" :
+		case EmpwocoDbTableColumn.COL_BEGIN_TIME :
 			builderEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
 			break;
 			
-		case "end_time" :
+		case EmpwocoDbTableColumn.COL_END_TIME :
 			builderEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
 			break;
 		}
@@ -105,13 +109,13 @@ final class EmpCoWhere implements DaoStmtWhere {
 	
 	
 	
-	private void generateBeginEndTime(DaoColumn column, EmpCoInfo recordInfo) {
+	private void generateBeginEndTime(DaoColumn column, EmpwocoInfo recordInfo) {
 		switch(column.columnName) {
-		case "begin_time" :
+		case EmpwocoDbTableColumn.COL_BEGIN_TIME :
 			builderBeginEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);
 			break;
 			
-		case "end_time" :
+		case EmpwocoDbTableColumn.COL_END_TIME :
 			builderBeginEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
 			break;
 		}

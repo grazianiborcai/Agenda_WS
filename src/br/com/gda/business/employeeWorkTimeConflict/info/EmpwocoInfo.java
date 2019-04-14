@@ -4,10 +4,9 @@ import java.time.LocalTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
-public final class EmpCoInfo extends InfoRecord implements Cloneable {
+public final class EmpwocoInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codEmployee;
@@ -16,35 +15,36 @@ public final class EmpCoInfo extends InfoRecord implements Cloneable {
 	public LocalTime beginTime;
 	public LocalTime endTime;
 	public String codTimezone;
+	public String txtTimezone;
 	public String codLanguage;
 	public String recordMode;
 	
 	
-	public EmpCoInfo() {
-		this.codOwner = DefaultValue.number();
-		this.codStore = DefaultValue.number();
-		this.codEmployee = DefaultValue.number();
-		this.codWeekday = DefaultValue.number();
-		this.codLanguage = DefaultValue.language();
-		this.recordMode = RecordMode.RECORD_OK;
+	public EmpwocoInfo() {
+		codOwner = DefaultValue.number();
+		codStore = DefaultValue.number();
+		codEmployee = DefaultValue.number();
+		codWeekday = DefaultValue.number();
+		codLanguage = DefaultValue.language();
+		recordMode = DefaultValue.recordMode();
 	}
 	
 	
 	
-	public static EmpCoInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, EmpCoInfo.class);
+	public static EmpwocoInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, EmpwocoInfo.class);
 	}
 	
 	
 	
-	public static List<EmpCoInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, EmpCoInfo.class);
+	public static List<EmpwocoInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, EmpwocoInfo.class);
 	}
 	
 	
 	
 	@Override public Object clone()throws CloneNotSupportedException {  
-		EmpCoInfo deepCopy = (EmpCoInfo) super.clone();  		
+		EmpwocoInfo deepCopy = (EmpwocoInfo) super.clone();  		
 		
 		LocalTime cloneBeginTime = null;		
 		if (beginTime != null) 
@@ -81,11 +81,11 @@ public final class EmpCoInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof EmpCoInfo))
+		if (!(o instanceof EmpwocoInfo))
 			return false;
 		
 		
-		EmpCoInfo obj = (EmpCoInfo) o;		
+		EmpwocoInfo obj = (EmpwocoInfo) o;		
 		return (codOwner 	== obj.codOwner 	&& 
 				codStore 	== obj.codStore 	&&
 				codEmployee == obj.codEmployee 	&&

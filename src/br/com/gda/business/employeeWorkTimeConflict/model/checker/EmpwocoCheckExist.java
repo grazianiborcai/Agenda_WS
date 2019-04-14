@@ -2,8 +2,8 @@ package br.com.gda.business.employeeWorkTimeConflict.model.checker;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
-import br.com.gda.business.employeeWorkTimeConflict.model.decisionTree.RootEmpCoSelect;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpwocoInfo;
+import br.com.gda.business.employeeWorkTimeConflict.model.decisionTree.RootEmpwocoSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -11,25 +11,25 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpCoCheckExist extends ModelCheckerTemplateAction<EmpCoInfo> {
+public final class EmpwocoCheckExist extends ModelCheckerTemplateAction<EmpwocoInfo> {
 
-	public EmpCoCheckExist(ModelCheckerOption option) {
+	public EmpwocoCheckExist(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected ActionStd<EmpCoInfo> buildActionHook(EmpCoInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<EmpCoInfo> option = buildOption(recordInfo, conn, schemaName);
+	@Override protected ActionStd<EmpwocoInfo> buildActionHook(EmpwocoInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<EmpwocoInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<EmpCoInfo> actionSelect = new RootEmpCoSelect(option).toAction();
+		ActionStd<EmpwocoInfo> actionSelect = new RootEmpwocoSelect(option).toAction();
 		return actionSelect;
 	}
 	
 	
 	
-	private DeciTreeOption<EmpCoInfo> buildOption(EmpCoInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<EmpCoInfo> option = new DeciTreeOption<>();
+	private DeciTreeOption<EmpwocoInfo> buildOption(EmpwocoInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<EmpwocoInfo> option = new DeciTreeOption<>();
 		option.recordInfos = new ArrayList<>();
 		option.recordInfos.add(recordInfo);
 		option.conn = conn;

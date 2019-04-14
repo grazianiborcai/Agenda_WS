@@ -40,8 +40,8 @@ import br.com.gda.business.employeeWorkTime.model.EmpwotmModelDelete;
 import br.com.gda.business.employeeWorkTime.model.EmpwotmModelInsert;
 import br.com.gda.business.employeeWorkTime.model.EmpwotmModelSelect;
 import br.com.gda.business.employeeWorkTime.model.EmpwotmModelUpdate;
-import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
-import br.com.gda.business.employeeWorkTimeConflict.model.EmpCoModelSelect;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpwocoInfo;
+import br.com.gda.business.employeeWorkTimeConflict.model.EmpwocoModelSelect;
 import br.com.gda.model.Model;
 
 @Path("/Employee")
@@ -143,14 +143,14 @@ public class EmployeeResource {
 	@GET
 	@Path(SELECT_WT_CONFLICT)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response selectWTConflict(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+	public Response selectWTConflict(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
 								     @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
 								     @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
 								     @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday,
 								     @HeaderParam("beginTime")   @DefaultValue("12:00") String beginTime,
 	                                 @HeaderParam("endTime")     @DefaultValue("12:00") String endTime) {
 		
-		EmpCoInfo recordInfo = new EmpCoInfo();
+		EmpwocoInfo recordInfo = new EmpwocoInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
@@ -158,7 +158,7 @@ public class EmployeeResource {
 		recordInfo.beginTime = LocalTime.parse(beginTime, DateTimeFormatter.ISO_LOCAL_TIME);
 		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
 		
-		Model model = new EmpCoModelSelect(recordInfo);
+		Model model = new EmpwocoModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

@@ -3,20 +3,20 @@ package br.com.gda.business.employeeWorkTime.model.checker;
 import java.util.List;
 
 import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.gda.business.employeeWorkTimeConflict.info.EmpCoInfo;
-import br.com.gda.business.employeeWorkTimeConflict.model.checker.EmpCoCheckExist;
+import br.com.gda.business.employeeWorkTimeConflict.info.EmpwocoInfo;
+import br.com.gda.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class EmpwotmCheckEWTC implements ModelChecker<EmpwotmInfo> {
+public final class EmpwotmCheckEmpwoco implements ModelChecker<EmpwotmInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmpCoInfo> checker;
+	private ModelChecker<EmpwocoInfo> checker;
 	
 	
-	public EmpwotmCheckEWTC(ModelCheckerOption option) {
-		checker = new EmpCoCheckExist(option);
+	public EmpwotmCheckEmpwoco(ModelCheckerOption option) {
+		checker = new EmpwocoCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class EmpwotmCheckEWTC implements ModelChecker<EmpwotmInfo> {
 	
 	
 	@Override public boolean check(EmpwotmInfo recordInfo) {
-		return checker.check(EmpCoInfo.copyFrom(recordInfo));
+		return checker.check(EmpwocoInfo.copyFrom(recordInfo));
 	}
 
 	
