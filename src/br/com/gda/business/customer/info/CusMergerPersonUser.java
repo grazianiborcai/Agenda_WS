@@ -7,12 +7,12 @@ import br.com.gda.info.InfoMerger;
 
 final class CusMergerPersonUser extends InfoMerger<CusInfo, PersonUserInfo, CusInfo> {
 	public CusInfo merge(PersonUserInfo sourceOne, CusInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new CusVisitorPersonUser());
+		return super.write(sourceOne, sourceTwo, new CusVisiMergePersonUser());
 	}
 	
 	
 	
 	public List<CusInfo> merge(List<PersonUserInfo> sourceOnes, List<CusInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new CusVisitorPersonUser());
+		return super.write(sourceOnes, sourceTwos, new CusVisiMergePersonUser());
 	}
 }

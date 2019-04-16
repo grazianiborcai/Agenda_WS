@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.action.LazyCusSelect;
-import br.com.gda.business.customer.model.action.StdCusEnforcePersonChange;
+import br.com.gda.business.customer.model.action.StdCusEnforcePersonChange_;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -13,9 +13,9 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class CusCheckPersonChange extends ModelCheckerTemplateAction<CusInfo> {
+public final class CusCheckPersonChange_ extends ModelCheckerTemplateAction<CusInfo> {
 	
-	public CusCheckPersonChange(ModelCheckerOption option) {
+	public CusCheckPersonChange_(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -24,7 +24,7 @@ public final class CusCheckPersonChange extends ModelCheckerTemplateAction<CusIn
 	@Override protected ActionStd<CusInfo> buildActionHook(CusInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CusInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<CusInfo> actionSelect = new StdCusEnforcePersonChange(option);
+		ActionStd<CusInfo> actionSelect = new StdCusEnforcePersonChange_(option);
 		actionSelect.addPostAction(new LazyCusSelect(conn, schemaName));
 		return actionSelect;
 	}

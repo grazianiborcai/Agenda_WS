@@ -18,27 +18,27 @@ public final class OwnerCheckWriteAddress extends ModelCheckerTemplateSimple<Own
 	
 	@Override protected boolean checkHook(OwnerInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.addresses == null)
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		if (recordInfo.addresses.isEmpty())
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		for (AddressInfo eachAddress : recordInfo.addresses) {
-			if (checkAddress(eachAddress) == FAILED)
-				return FAILED;
+			if (checkAddress(eachAddress) == super.FAILED)
+				return super.FAILED;
 		}
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	private boolean checkAddress(AddressInfo address) {
 		if (address.codAddress <= 0)
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		return FAILED;
 	}

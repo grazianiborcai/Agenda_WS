@@ -7,7 +7,7 @@ import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.model.action.ActionVisitorEnforce;
 
 final class VisiOwnerEnforceKey implements ActionVisitorEnforce<OwnerInfo> {
-	
+	//TODO: Mover para Setter
 	@Override public List<OwnerInfo> executeTransformation(List<OwnerInfo> recordInfos) {
 		List<OwnerInfo> resultRecords = new ArrayList<>();		
 		

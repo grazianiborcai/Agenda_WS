@@ -8,6 +8,7 @@ import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -45,14 +46,10 @@ public final class CusUpdateSingle implements DaoStmt<CusInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean IGNORE_NON_PK = true;
-		final boolean IGNORE_RECORD_MODE = true;		
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
-		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;
 		
 		DaoStmtWhere whereClause = new CusWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -99,18 +96,29 @@ public final class CusUpdateSingle implements DaoStmt<CusInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<CusInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusInfo recordInfo) throws SQLException {	
-			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);
 			
 			int i = 1;
-			stmt.setString(i++, recordInfo.recordMode);
-			
+			stmt.setString(i++, recordInfo.recordMode);			
 			stmt.setTimestamp(i++, lastChanged);
+			
 			
 			if (recordInfo.codPerson >= 0) {
 				stmt.setLong(i++, recordInfo.codPerson);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.lastChangedBy >= 0) {
+				stmt.setLong(i++, recordInfo.lastChangedBy);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codUser >= 0) {
+				stmt.setLong(i++, recordInfo.codUser);
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}

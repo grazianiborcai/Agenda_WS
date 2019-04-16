@@ -1,0 +1,36 @@
+package br.com.gda.business.customer.info;
+
+import java.util.List;
+
+import br.com.gda.info.InfoWritterFactory;
+
+public final class CusKeeper extends InfoWritterFactory<CusInfo> {	
+	
+	public CusKeeper() {
+		super(new CusUniquifier());
+	}
+	
+	
+	
+	@Override protected boolean isKeeperHook() {
+		return super.ENABLED;
+	}
+	
+	
+	
+	static public CusInfo keep(CusInfo sourceOne, CusInfo sourceTwo) {
+		return new CusKeeperEmp().keep(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override protected List<CusInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
+		if (sourceOnes.get(0) instanceof CusInfo 	&&
+			sourceTwos.get(0) instanceof CusInfo		)
+			return new CusKeeperEmp().keep((List<CusInfo>) sourceOnes, (List<CusInfo>) sourceTwos);
+		
+		
+		return null;
+	}
+}

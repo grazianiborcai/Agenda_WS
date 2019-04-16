@@ -85,8 +85,7 @@ public final class EmposInsertSingle implements DaoStmt<EmposInfo> {
 			stmt.setLong(i++, recordInfo.codEmployee);
 			stmt.setInt(i++, recordInfo.codPosition);
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setTimestamp(i++, lastChanged);
-			
+			stmt.setTimestamp(i++, lastChanged);			
 			
 			if (recordInfo.lastChangedBy >= 0) {
 				stmt.setLong(i++, recordInfo.lastChangedBy);

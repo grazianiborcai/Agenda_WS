@@ -64,9 +64,9 @@ public final class NodeEmpDeletePhone implements DeciTree<EmpInfo> {
 	private List<ActionStd<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpInfo> deleteAddress = new StdEmpDeletePhone(option);
+		ActionStd<EmpInfo> deletePhone = new StdEmpDeletePhone(option);
 		
-		actions.add(deleteAddress);		
+		actions.add(deletePhone);		
 		return actions;
 	}
 	

@@ -3,13 +3,13 @@ package br.com.gda.business.customer.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class CusVisitorAddress implements InfoMergerVisitor<CusInfo, AddressInfo, CusInfo> {
+final class CusVisiMergePerson implements InfoMergerVisitor<CusInfo, PersonInfo, CusInfo> {
 
-	@Override public CusInfo writeRecord(AddressInfo sourceOne, CusInfo sourceTwo) {
+	@Override public CusInfo writeRecord(PersonInfo sourceOne, CusInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		CusInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class CusVisitorAddress implements InfoMergerVisitor<CusInfo, AddressInfo,
 	
 	
 	
-	private void checkArgument(AddressInfo sourceOne, CusInfo sourceTwo) {
+	private void checkArgument(PersonInfo sourceOne, CusInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,17 +37,29 @@ final class CusVisitorAddress implements InfoMergerVisitor<CusInfo, AddressInfo,
 	
 	
 	
-	private CusInfo merge(AddressInfo sourceOne, CusInfo sourceTwo) {
-		sourceTwo.addresses.add(sourceOne);
-
+	private CusInfo merge(PersonInfo sourceOne, CusInfo sourceTwo) {
+		sourceTwo.personData = makeClone(sourceOne);
+		sourceTwo.codPerson = sourceOne.codPerson;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(AddressInfo sourceOne, CusInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codCustomer == sourceTwo.codCustomer);
+	private PersonInfo makeClone(PersonInfo recordInfo) {
+		try {
+			return (PersonInfo) recordInfo.clone();
+			
+		} catch (Exception e) {
+			logException(e);
+			throw new IllegalStateException(e); 
+		}
 	}	
+	
+	
+	
+	@Override public boolean shouldWrite(PersonInfo sourceOne, CusInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner);
+	}
 	
 	
 	

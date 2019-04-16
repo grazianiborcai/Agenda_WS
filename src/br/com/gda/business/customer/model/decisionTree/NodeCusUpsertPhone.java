@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.business.customer.model.action.LazyCusUpsertPhone;
+import br.com.gda.business.customer.model.action.StdCusEnforcePhoneKey;
 import br.com.gda.business.customer.model.action.StdCusSuccess;
-import br.com.gda.business.customer.model.action.StdCusUpsertPhone;
 import br.com.gda.business.customer.model.checker.CusCheckHasPhone;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -64,7 +66,12 @@ public final class NodeCusUpsertPhone implements DeciTree<CusInfo> {
 	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdCusUpsertPhone(option));		
+		ActionStd<CusInfo> enforcePhoneKey = new StdCusEnforcePhoneKey(option);
+		ActionLazy<CusInfo> upsertPhone = new LazyCusUpsertPhone(option.conn, option.schemaName);	
+		
+		enforcePhoneKey.addPostAction(upsertPhone);
+		
+		actions.add(enforcePhoneKey);		
 		return actions;
 	}
 	

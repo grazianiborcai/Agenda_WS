@@ -7,7 +7,7 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.model.action.ActionVisitorEnforce;
 
 final class VisiEmpEnforceKey implements ActionVisitorEnforce<EmpInfo> {
-	
+	//TODO: Mover para Setter
 	@Override public List<EmpInfo> executeTransformation(List<EmpInfo> recordInfos) {
 		List<EmpInfo> resultRecords = new ArrayList<>();		
 		

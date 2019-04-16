@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -80,19 +81,30 @@ public final class CusInsertSingle implements DaoStmt<CusInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<CusInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusInfo recordInfo) throws SQLException {
-			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
+			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);		
-			stmt.setString(i++, recordInfo.recordMode);
-			
+			stmt.setString(i++, recordInfo.recordMode);			
 			stmt.setTimestamp(i++, lastChanged);
+			
 			
 			if (recordInfo.codPerson >= 0) {
 				stmt.setLong(i++, recordInfo.codPerson);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.lastChangedBy >= 0) {
+				stmt.setLong(i++, recordInfo.lastChangedBy);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codUser >= 0) {
+				stmt.setLong(i++, recordInfo.codUser);
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}

@@ -18,29 +18,29 @@ public final class OwnerCheckWritePhone extends ModelCheckerTemplateSimple<Owner
 	
 	@Override protected boolean checkHook(OwnerInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.phones == null)
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		if (recordInfo.phones.isEmpty())
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		for (PhoneInfo eachPhone : recordInfo.phones) {
-			if (checkPhone(eachPhone) == FAILED)
-				return FAILED;
+			if (checkPhone(eachPhone) == super.FAILED)
+				return super.FAILED;
 		}
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	private boolean checkPhone(PhoneInfo phone) {
 		if (phone.codPhone <= 0)
-			return SUCCESS;
+			return super.SUCCESS;
 		
-		return FAILED;
+		return super.FAILED;
 	}
 	
 	

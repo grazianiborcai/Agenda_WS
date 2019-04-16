@@ -3,13 +3,13 @@ package br.com.gda.business.customer.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class CusVisitorPerson implements InfoMergerVisitor<CusInfo, PersonInfo, CusInfo> {
+final class CusVisiMergeAddress implements InfoMergerVisitor<CusInfo, AddressInfo, CusInfo> {
 
-	@Override public CusInfo writeRecord(PersonInfo sourceOne, CusInfo sourceTwo) {
+	@Override public CusInfo writeRecord(AddressInfo sourceOne, CusInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		CusInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class CusVisitorPerson implements InfoMergerVisitor<CusInfo, PersonInfo, C
 	
 	
 	
-	private void checkArgument(PersonInfo sourceOne, CusInfo sourceTwo) {
+	private void checkArgument(AddressInfo sourceOne, CusInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,24 +37,17 @@ final class CusVisitorPerson implements InfoMergerVisitor<CusInfo, PersonInfo, C
 	
 	
 	
-	private CusInfo merge(PersonInfo sourceOne, CusInfo sourceTwo) {
-		sourceTwo.codPerson = sourceOne.codPerson;
-		sourceTwo.cpf = sourceOne.cpf;
-		sourceTwo.name = sourceOne.name;
-		sourceTwo.codGender = sourceOne.codGender;
-		sourceTwo.txtGender = sourceOne.txtGender;
-		sourceTwo.codEntityCateg = sourceOne.codEntityCateg;
-		sourceTwo.birthDate = sourceOne.birthDate;
-		sourceTwo.email = sourceOne.email;
+	private CusInfo merge(AddressInfo sourceOne, CusInfo sourceTwo) {
+		sourceTwo.addresses.add(sourceOne);
 
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(PersonInfo sourceOne, CusInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
+	@Override public boolean shouldWrite(AddressInfo sourceOne, CusInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codCustomer == sourceTwo.codCustomer);
+	}	
 	
 	
 	

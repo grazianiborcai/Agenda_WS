@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.action.LazyCusDeletePhone;
-import br.com.gda.business.customer.model.action.StdCusMergePhone;
+import br.com.gda.business.customer.model.action.StdCusDeletePhone;
 import br.com.gda.business.customer.model.action.StdCusSuccess;
-import br.com.gda.business.customer.model.checker.CusCheckPhoneExist;
-import br.com.gda.model.action.ActionLazy;
+import br.com.gda.business.customer.model.checker.CusCheckHasPhone;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -39,7 +37,7 @@ public final class NodeCusDeletePhone implements DeciTree<CusInfo> {
 	
 	
 	private ModelChecker<CusInfo> buildDecisionChecker(DeciTreeOption<CusInfo> option) {
-		final boolean EXIST = true;
+		final boolean HAS_PHONE = true;
 		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
@@ -48,8 +46,8 @@ public final class NodeCusDeletePhone implements DeciTree<CusInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;		
-		checker = new CusCheckPhoneExist(checkerOption);
+		checkerOption.expectedResult = HAS_PHONE;		
+		checker = new CusCheckHasPhone(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -66,12 +64,9 @@ public final class NodeCusDeletePhone implements DeciTree<CusInfo> {
 	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> mergeAddress = new StdCusMergePhone(option);
-		ActionLazy<CusInfo> deleteAddress = new LazyCusDeletePhone(option.conn, option.schemaName);
+		ActionStd<CusInfo> deletePhone = new StdCusDeletePhone(option);
 		
-		mergeAddress.addPostAction(deleteAddress);
-		
-		actions.add(mergeAddress);		
+		actions.add(deletePhone);		
 		return actions;
 	}
 	

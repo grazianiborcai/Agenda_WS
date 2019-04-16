@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.action.LazyCusDeleteAddress;
-import br.com.gda.business.customer.model.action.StdCusMergeAddress;
+import br.com.gda.business.customer.model.action.StdCusDeleteAddress;
 import br.com.gda.business.customer.model.action.StdCusSuccess;
-import br.com.gda.business.customer.model.checker.CusCheckAddressExist;
-import br.com.gda.model.action.ActionLazy;
+import br.com.gda.business.customer.model.checker.CusCheckHasAddress;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -39,7 +37,7 @@ public final class NodeCusDeleteAddress implements DeciTree<CusInfo> {
 	
 	
 	private ModelChecker<CusInfo> buildDecisionChecker(DeciTreeOption<CusInfo> option) {
-		final boolean EXIST = true;
+		final boolean HAS_ADDRESS = true;
 		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
@@ -48,8 +46,8 @@ public final class NodeCusDeleteAddress implements DeciTree<CusInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;		
-		checker = new CusCheckAddressExist(checkerOption);
+		checkerOption.expectedResult = HAS_ADDRESS;		
+		checker = new CusCheckHasAddress(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -66,12 +64,9 @@ public final class NodeCusDeleteAddress implements DeciTree<CusInfo> {
 	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> mergeAddress = new StdCusMergeAddress(option);
-		ActionLazy<CusInfo> deleteAddress = new LazyCusDeleteAddress(option.conn, option.schemaName);
+		ActionStd<CusInfo> deleteAddress = new StdCusDeleteAddress(option);
 		
-		mergeAddress.addPostAction(deleteAddress);
-		
-		actions.add(mergeAddress);		
+		actions.add(deleteAddress);		
 		return actions;
 	}
 	

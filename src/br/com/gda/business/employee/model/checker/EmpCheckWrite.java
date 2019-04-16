@@ -20,10 +20,10 @@ public final class EmpCheckWrite extends ModelCheckerTemplateSimple<EmpInfo> {
 			 recordInfo.codLanguage == null	||
 			 recordInfo.username 	== null		)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

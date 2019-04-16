@@ -47,8 +47,7 @@ public final class EmposDeleteSingle implements DaoStmt<EmposInfo> {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;	
-		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;
-		
+		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;		
 		
 		DaoStmtWhere whereClause = new EmposWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

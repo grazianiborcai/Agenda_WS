@@ -29,6 +29,8 @@ public final class CusSetterPhoneKey implements InfoSetter<CusInfo> {
 		for (PhoneInfo eachAddress : recordInfo.phones) {
 			eachAddress.codOwner = recordInfo.codOwner;
 			eachAddress.codCustomer = recordInfo.codCustomer;
+			eachAddress.codLanguage = recordInfo.codLanguage;
+			eachAddress.lastChangedBy = recordInfo.lastChangedBy;
 		}
 		
 		return recordInfo;

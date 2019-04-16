@@ -7,11 +7,11 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCusEnforcePersonChange implements ActionStd<CusInfo> {
+public final class StdCusEnforcePersonChange_ implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusEnforcePersonChange(DeciTreeOption<CusInfo> option) {			
+	public StdCusEnforcePersonChange_(DeciTreeOption<CusInfo> option) {			
 		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusEnforcePersonChange());
 	}
 	

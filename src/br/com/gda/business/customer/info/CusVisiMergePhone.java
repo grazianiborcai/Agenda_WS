@@ -7,7 +7,7 @@ import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class CusVisitorPhone implements InfoMergerVisitor<CusInfo, PhoneInfo, CusInfo> {
+final class CusVisiMergePhone implements InfoMergerVisitor<CusInfo, PhoneInfo, CusInfo> {
 
 	@Override public CusInfo writeRecord(PhoneInfo sourceOne, CusInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.action.StdCusUpsertAddress;
+import br.com.gda.business.customer.model.action.LazyCusUpsertAddress;
+import br.com.gda.business.customer.model.action.StdCusEnforceAddressKey;
 import br.com.gda.business.customer.model.action.StdCusSuccess;
 import br.com.gda.business.customer.model.checker.CusCheckHasAddress;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -64,7 +66,12 @@ public final class NodeCusUpsertAddress implements DeciTree<CusInfo> {
 	private List<ActionStd<CusInfo>> buildActionsOnPassed(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdCusUpsertAddress(option));		
+		ActionStd<CusInfo> enforceAddressKey = new StdCusEnforceAddressKey(option);
+		ActionLazy<CusInfo> upsertAddress = new LazyCusUpsertAddress(option.conn, option.schemaName);
+		
+		enforceAddressKey.addPostAction(upsertAddress);
+		
+		actions.add(enforceAddressKey);		
 		return actions;
 	}
 	
