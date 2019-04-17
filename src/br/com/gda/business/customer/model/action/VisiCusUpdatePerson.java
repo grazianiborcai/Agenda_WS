@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.info.CusMerger;
+import br.com.gda.business.person.info.PersonCopier;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.decisionTree.RootPersonUpdate;
 import br.com.gda.info.InfoWritterFactory;
@@ -24,7 +25,7 @@ final class VisiCusUpdatePerson extends ActionVisitorTemplateAction<CusInfo, Per
 		List<PersonInfo> results = new ArrayList<>();
 		
 		for (CusInfo eachRecord : recordInfos) {
-			results.add(PersonInfo.copyFrom(eachRecord));
+			results.add(PersonCopier.copyFromCus(eachRecord));
 		}		
 		
 		return results;

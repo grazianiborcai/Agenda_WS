@@ -1,6 +1,5 @@
 package br.com.gda.business.customer.info;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +16,9 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public long codCustomer;
 	public long codPerson;
 	public long codUser;
-	public String cpf;				//TODO: Remover
-	public String name;				//TODO: Remover
 	public String codEntityCateg;
 	public char codUserCategory;
 	public String codAuthGroup;
-	public int codGender;			//TODO: Remover
-	public String txtGender;		//TODO: Remover
-	public LocalDate birthDate;		//TODO: Remover
-	public String email;			//TODO: Remover
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
 	public String codLanguage;
@@ -42,7 +35,6 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codUser = DefaultValue.number();
-		codGender = DefaultValue.gender();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		codUserCategory = DefaultValue.character();

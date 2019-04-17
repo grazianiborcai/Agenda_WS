@@ -7,7 +7,6 @@ import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.action.LazyCusInsert;
 import br.com.gda.business.customer.model.action.LazyCusMergeUsername;
 import br.com.gda.business.customer.model.action.LazyCusNodeInsertPerson;
-import br.com.gda.business.customer.model.action.LazyCusNodeInsertUser;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpsertAddress;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpsertPhone;
 import br.com.gda.business.customer.model.action.LazyCusRootSelect;
@@ -75,12 +74,12 @@ public final class RootCusInsert extends DeciTreeWriteTemplate<CusInfo> {
 	
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
-		
+		//TODO: Inserir usuario ? Desenhar fluxo
 		ActionStd<CusInfo> enforceLChanged = new StdCusEnforceLChanged(option);
 		ActionLazy<CusInfo> mergeLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);	
 		ActionLazy<CusInfo> insertCustomer = new LazyCusInsert(option.conn, option.schemaName);
 		ActionLazy<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
-		ActionLazy<CusInfo> insertUser = new LazyCusNodeInsertUser(option.conn, option.schemaName);	
+		//ActionLazy<CusInfo> insertUser = new LazyCusNodeInsertUser(option.conn, option.schemaName);	
 		ActionLazy<CusInfo> updateCustomer = new LazyCusUpdate(option.conn, option.schemaName);
 		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
@@ -89,8 +88,8 @@ public final class RootCusInsert extends DeciTreeWriteTemplate<CusInfo> {
 		enforceLChanged.addPostAction(mergeLChangedBy);
 		mergeLChangedBy.addPostAction(insertCustomer);
 		insertCustomer.addPostAction(insertPerson);
-		insertPerson.addPostAction(insertUser);	
-		insertUser.addPostAction(updateCustomer);
+		insertPerson.addPostAction(updateCustomer);	
+		//insertUser.addPostAction(updateCustomer);
 		updateCustomer.addPostAction(upsertAddress);		
 		updateCustomer.addPostAction(upsertPhone);			
 		updateCustomer.addPostAction(selectCustomer);

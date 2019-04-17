@@ -18,18 +18,14 @@ import br.com.gda.business.customer.model.CusModelDelete;
 import br.com.gda.business.customer.model.CusModelInsert;
 import br.com.gda.business.customer.model.CusModelSelect;
 import br.com.gda.business.customer.model.CusModelUpdate;
-import br.com.gda.legacy.model.CustomerModel;
 import br.com.gda.model.Model;
 
 @Path("/Customer")
 public class CustomerResource {
-
 	private static final String INSERT_CUSTOMER = "/insertCustomer";
 	private static final String UPDATE_CUSTOMER = "/updateCustomer";
 	private static final String DELETE_CUSTOMER = "/deleteCustomer";
 	private static final String SELECT_CUSTOMER = "/selectCustomer";
-	private static final String LOGIN_CUSTOMER = "/loginCustomer";
-	private static final String CHANGE_PASSWORD = "/changePassword";
 
 	
 	
@@ -59,14 +55,16 @@ public class CustomerResource {
 	
 	@DELETE
 	@Path(DELETE_CUSTOMER)
-	public Response deleteCustomer(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-								   @HeaderParam("codCustomer") @DefaultValue("-1") long codCustomer,
-								   @HeaderParam("codPerson")   @DefaultValue("-1") long codPerson) {
+	public Response deleteCustomer(@HeaderParam("TOKEN_OWNER") 		@DefaultValue("-1") long codOwner,
+								   @HeaderParam("codCustomer") 		@DefaultValue("-1") long codCustomer,
+								   @HeaderParam("TOKEN_USERNAME")	String username,
+								   @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
 
 		CusInfo recordInfo = new CusInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codCustomer = codCustomer;
-		recordInfo.codPerson = codPerson;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new CusModelDelete(recordInfo);
 		model.executeRequest();
@@ -78,35 +76,19 @@ public class CustomerResource {
 	@GET
 	@Path(SELECT_CUSTOMER)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectCustomer(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-			                       @HeaderParam("codCustomer") @DefaultValue("-1") long codCustomer) {
+	public Response selectCustomer(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner,
+			                       @HeaderParam("codCustomer") 		@DefaultValue("-1") long codCustomer,
+			                       @HeaderParam("TOKEN_USERNAME")	String username,
+								   @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
 
 		CusInfo recordInfo = new CusInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codCustomer = codCustomer;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new CusModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
-
-	
-	
-	@GET
-	@Path(LOGIN_CUSTOMER)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response loginCustomer(@HeaderParam("email") String email, @HeaderParam("password") String password) {
-
-		return new CustomerModel().selectCustomerResponse(email, password);
-	}
-
-	@GET
-	@Path(CHANGE_PASSWORD)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response changePassword(@HeaderParam("codCustomer") Long codCustomer,
-			@HeaderParam("newPassword") String newPassword) {
-
-		return new CustomerModel().changePassword(codCustomer, newPassword);
-	}
-
 }

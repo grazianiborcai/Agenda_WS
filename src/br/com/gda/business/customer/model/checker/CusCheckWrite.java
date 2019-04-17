@@ -18,7 +18,6 @@ public final class CusCheckWrite extends ModelCheckerTemplateSimple<CusInfo> {
 	@Override protected boolean checkHook(CusInfo recordInfo, Connection conn, String schemaName) {	
 		if (    recordInfo.codOwner 	<= 0 
 			 || recordInfo.codCustomer	<= 0
-			 || recordInfo.codPerson	<= 0
 			 || recordInfo.codLanguage  == null	
 			 || recordInfo.username 	== null	)
 			return super.FAILED;

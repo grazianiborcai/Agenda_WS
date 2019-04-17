@@ -70,7 +70,7 @@ public class EmployeeResource {
 	
 	@GET
 	@Path(SELECT_WORK_TIME)
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectWorkTime(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner,
 								   @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
 								   @HeaderParam("codEmployee") 		@DefaultValue("-1") int codEmployee,
@@ -117,7 +117,7 @@ public class EmployeeResource {
 	
 	@DELETE
 	@Path(DELETE_WORK_TIME)
-	@Consumes(MediaType.APPLICATION_JSON)	
+	@Produces(MediaType.APPLICATION_JSON)	
 	public Response deleteWorkTime(@HeaderParam("TOKEN_OWNER") 		@DefaultValue("-1") long codOwner,
 								   @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
 								   @HeaderParam("codEmployee") 		@DefaultValue("-1") int codEmployee,
