@@ -11,33 +11,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeUserUpdatePerson implements DeciTree<UserInfo> {
-	private DeciTree<UserInfo> tree;
-	
+public final class NodeUserUpdatePerson extends DeciTreeWriteTemplate<UserInfo> {
 	
 	public NodeUserUpdatePerson(DeciTreeOption<UserInfo> option) {
-		DeciTreeHelperOption<UserInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.schemaName = option.schemaName;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = null;
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<UserInfo> buildDecisionChecker(DeciTreeOption<UserInfo> option) {
+	@Override protected ModelChecker<UserInfo> buildDecisionCheckerHook(DeciTreeOption<UserInfo> option) {
 		final boolean HAS_PERSON = true;
 		final boolean EXIST_ON_DB = true;
 		
@@ -64,36 +49,12 @@ public final class NodeUserUpdatePerson implements DeciTree<UserInfo> {
 	
 	
 	
-	private List<ActionStd<UserInfo>> buildActionsOnPassed(DeciTreeOption<UserInfo> option) {
+	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UserInfo> updatePerson = new StdUserUpdatePerson(option);
 		
 		actions.add(updatePerson);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<UserInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<UserInfo> toAction() {
-		return tree.toAction();
 	}
 }

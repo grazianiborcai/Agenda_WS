@@ -22,6 +22,7 @@ import br.com.gda.business.cartSnapshot.model.CartSnapModelInsert;
 import br.com.gda.business.cartSnapshot.model.CartSnapModelSelect;
 import br.com.gda.business.company.model.CompModelInsert;
 import br.com.gda.business.company.model.CompModelUpdate;
+import br.com.gda.business.customerSearch.model.CusarchModelSelect_;
 import br.com.gda.business.feeStore.info.FeeStoreInfo;
 import br.com.gda.business.feeStore.model.FeeStoreModelSelect;
 import br.com.gda.business.feeStore.model.FeeStoreModelSelectService;
@@ -120,6 +121,7 @@ public class TestResource {
 	private static final String TOKEN_AUTH = "/tokenAuth";
 	private static final String SELECT_STORAUTH = "/authStorauth";
 	private static final String SELECT_STORIME = "/authStorime";
+	private static final String CUSTOMER_SEARCH = "/customerSearch";
 	
 	
 	
@@ -767,4 +769,17 @@ public class TestResource {
 		model.executeRequest();
 		return model.getResponse();
 	}
+	
+	
+	
+	@POST
+	@Path(CUSTOMER_SEARCH)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response CustomerSearch(@Context HttpServletRequest request, String incomingData) {
+		
+		
+		Model model = new CusarchModelSelect_(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();	
+	}	
 }

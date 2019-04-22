@@ -13,32 +13,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeUserUpsertAddress implements DeciTree<UserInfo> {
-	private DeciTree<UserInfo> tree;
-	
+public final class NodeUserUpsertAddress extends DeciTreeWriteTemplate<UserInfo> {
 	
 	public NodeUserUpsertAddress(DeciTreeOption<UserInfo> option) {
-		DeciTreeHelperOption<UserInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<UserInfo> buildDecisionChecker(DeciTreeOption<UserInfo> option) {
+	@Override protected ModelChecker<UserInfo> buildDecisionCheckerHook(DeciTreeOption<UserInfo> option) {
 		final boolean HAS_ADDRESS = true;
 		
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
@@ -57,13 +43,7 @@ public final class NodeUserUpsertAddress implements DeciTree<UserInfo> {
 	
 	
 	
-	@Override public ActionStd<UserInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<UserInfo>> buildActionsOnPassed(DeciTreeOption<UserInfo> option) {
+	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UserInfo> enforceAddressKey = new StdUserEnforceAddressKey(option);
@@ -77,28 +57,10 @@ public final class NodeUserUpsertAddress implements DeciTree<UserInfo> {
 	
 	
 	
-	private List<ActionStd<UserInfo>> buildActionsOnFailed(DeciTreeOption<UserInfo> option) {
+	@Override protected List<ActionStd<UserInfo>> buildActionsOnFailedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdUserSuccess(option));		
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<UserInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

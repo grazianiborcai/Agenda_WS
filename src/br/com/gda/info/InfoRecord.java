@@ -96,6 +96,21 @@ public abstract class InfoRecord implements Cloneable {
 	
 	
 	
+	protected boolean isRecordEqual(InfoRecord recordOne, InfoRecord recordTwo) {
+		try {
+			if (recordOne == null && recordTwo == null)
+				return true;
+			
+			return recordOne.equals(recordTwo);
+			
+		} catch (Exception e) {
+			logException(e);
+			return false;
+		}
+	}
+	
+	
+	
 	private void logException(Exception e) {
 		Logger logger = LogManager.getLogger(this.getClass());
 		logger.error(e.getMessage(), e);

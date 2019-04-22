@@ -15,6 +15,7 @@ import br.com.gda.model.Model;
 public class SignupResource {
 
 	private static final String OWNER = "/owner";	
+	//private static final String CUSTOMER = "/customer";	
 	
 	
 	@POST
