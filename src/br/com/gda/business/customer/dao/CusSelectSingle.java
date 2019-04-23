@@ -142,9 +142,9 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPerson = stmtResult.getLong(CusDbTableColumn.COL_COD_PERSON);					
 				
-				stmtResult.getLong(CusDbTableColumn.COL_COD_PERSON);
+				stmtResult.getLong(CusDbTableColumn.COL_COD_USER);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPerson = stmtResult.getLong(CusDbTableColumn.COL_COD_PERSON);
+					dataInfo.codUser = stmtResult.getLong(CusDbTableColumn.COL_COD_USER);
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(CusDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)

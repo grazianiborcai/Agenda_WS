@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class CusCheckInsertUser extends ModelCheckerTemplateSimple<CusInfo> {
+public final class CusCheckNodeInsert extends ModelCheckerTemplateSimple<CusInfo> {
 
-	public CusCheckInsertUser() {
+	public CusCheckNodeInsert() {
 		super();
 	}
 	
@@ -18,16 +18,11 @@ public final class CusCheckInsertUser extends ModelCheckerTemplateSimple<CusInfo
 	@Override protected boolean checkHook(CusInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner	<= 0	||
 			 recordInfo.personData 	== null ||
-			 recordInfo.username 	== null ||
 			 recordInfo.codLanguage == null 	)
-			return super.FAILED;
-		
-		
-		if (recordInfo.personData.email == null)
-			return super.FAILED;
-		
-		
-		return super.SUCCESS;
+				return super.FAILED;
+			
+			
+			return super.SUCCESS;
 	}
 	
 	

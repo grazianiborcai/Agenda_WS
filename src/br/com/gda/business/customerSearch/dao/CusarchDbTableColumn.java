@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.gda.business.customer.dao.CusDbTableColumn;
 import br.com.gda.business.person.dao.PersonDbTableColumn;
+import br.com.gda.business.phone.dao.PhoneDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
@@ -16,11 +17,14 @@ public final class CusarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_GENDER = PersonDbTableColumn.COL_COD_GENDER;
 	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_OWNER = CusDbTableColumn.COL_COD_OWNER;
-	public static final String COL_COD_PERSON = PersonDbTableColumn.COL_COD_PERSON;		
+	public static final String COL_COD_PERSON = PersonDbTableColumn.COL_COD_PERSON;	
+	public static final String COL_COD_USER = CusDbTableColumn.COL_COD_USER;	
+	public static final String COL_COUNTRY_PHONE = PhoneDbTableColumn.COL_COUNTRY_PHONE;
 	public static final String COL_CPF = PersonDbTableColumn.COL_CPF;
 	public static final String COL_EMAIL = PersonDbTableColumn.COL_EMAIL;
+	public static final String COL_FULL_NUMBER = PhoneDbTableColumn.COL_FULL_NUMBER;
 	public static final String COL_RECORD_MODE = CusDbTableColumn.COL_RECORD_MODE;	
-	
+		
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
@@ -87,6 +91,14 @@ public final class CusarchDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.CUS_TABLE;
+		oneColumn.columnName = COL_COD_USER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_CPF;
 		oneColumn.isPK = NEGATIVE;
@@ -105,6 +117,22 @@ public final class CusarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_RECORD_MODE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.PHONE_TABLE;
+		oneColumn.columnName = COL_COUNTRY_PHONE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.PHONE_TABLE;
+		oneColumn.columnName = COL_FULL_NUMBER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

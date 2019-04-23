@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class CusCheckInsertUser extends ModelCheckerTemplateSimple<CusInfo> {
+public final class CusCheckSignup extends ModelCheckerTemplateSimple<CusInfo> {
 
-	public CusCheckInsertUser() {
+	public CusCheckSignup() {
 		super();
 	}
 	

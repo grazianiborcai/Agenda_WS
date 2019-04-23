@@ -3,6 +3,7 @@ package br.com.gda.business.customer.info;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.customerSearch.info.CusarchInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.personUser.info.PersonUserInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
@@ -60,6 +61,12 @@ public final class CusMerger extends InfoWritterFactory<CusInfo> {
 	
 	
 	
+	static public CusInfo merge(CusarchInfo sourceOne, CusInfo sourceTwo) {
+		return new CusMergerCusarch().merge(sourceOne, sourceTwo);
+	}		
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override protected List<CusInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
 		if (sourceOnes.get(0) instanceof AddressInfo 		&&
@@ -95,6 +102,11 @@ public final class CusMerger extends InfoWritterFactory<CusInfo> {
 		if (sourceOnes.get(0) instanceof CusInfo 			&&
 			sourceTwos.get(0) instanceof CusInfo				)
 			return new CusMergerToDelete().merge((List<CusInfo>) sourceOnes, (List<CusInfo>) sourceTwos);	
+		
+		
+		if (sourceOnes.get(0) instanceof CusarchInfo 		&&
+			sourceTwos.get(0) instanceof CusInfo				)
+			return new CusMergerCusarch().merge((List<CusarchInfo>) sourceOnes, (List<CusInfo>) sourceTwos);	
 		
 		return null;
 	}

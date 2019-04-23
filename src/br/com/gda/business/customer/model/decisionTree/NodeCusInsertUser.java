@@ -7,7 +7,6 @@ import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.action.LazyCusEnforceUserCateg;
 import br.com.gda.business.customer.model.action.LazyCusInsertUser;
 import br.com.gda.business.customer.model.action.StdCusEnforceAuthGroup;
-import br.com.gda.business.customer.model.action.StdCusSuccess;
 import br.com.gda.business.customer.model.checker.CusCheckInsertUser;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -47,15 +46,6 @@ public final class NodeCusInsertUser extends DeciTreeWriteTemplate<CusInfo> {
 		enforceUserCateg.addPostAction(insertUser);	
 		
 		actions.add(enforceAuthGroup);	
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();
-		
-		actions.add(new StdCusSuccess(option));		
 		return actions;
 	}
 }

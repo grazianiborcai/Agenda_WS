@@ -4,24 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.action.LazyCusInsert;
-import br.com.gda.business.customer.model.action.LazyCusMergeUsername;
-import br.com.gda.business.customer.model.action.LazyCusNodeInsertPerson;
-import br.com.gda.business.customer.model.action.LazyCusNodeUpsertAddress;
-import br.com.gda.business.customer.model.action.LazyCusNodeUpsertPhone;
-import br.com.gda.business.customer.model.action.LazyCusRootSelect;
-import br.com.gda.business.customer.model.action.LazyCusUpdate;
-import br.com.gda.business.customer.model.action.StdCusEnforceLChanged;
-import br.com.gda.business.customer.model.checker.CusCheckTechField;
-import br.com.gda.business.customer.model.checker.CusCheckOwner;
 import br.com.gda.business.customer.model.checker.CusCheckInsert;
-import br.com.gda.business.customer.model.checker.CusCheckLangu;
-import br.com.gda.business.customer.model.checker.CusCheckWriteAddress;
-import br.com.gda.business.customer.model.checker.CusCheckWritePhone;
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
@@ -34,38 +19,12 @@ public final class RootCusInsert extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
+	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
-		ModelChecker<CusInfo> checker;
-		ModelCheckerOption checkerOption;		
+		ModelChecker<CusInfo> checker;		
 		
 		checker = new CusCheckInsert();
 		queue.add(checker);
-		
-		checker = new CusCheckTechField();
-		queue.add(checker);
-		
-		checker = new CusCheckWritePhone();
-		queue.add(checker);
-		
-		checker = new CusCheckWriteAddress();
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new CusCheckLangu(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new CusCheckOwner(checkerOption);
-		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -74,27 +33,10 @@ public final class RootCusInsert extends DeciTreeWriteTemplate<CusInfo> {
 	
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
-		//TODO: Inserir usuario ? Desenhar fluxo
-		ActionStd<CusInfo> enforceLChanged = new StdCusEnforceLChanged(option);
-		ActionLazy<CusInfo> mergeLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);	
-		ActionLazy<CusInfo> insertCustomer = new LazyCusInsert(option.conn, option.schemaName);
-		ActionLazy<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
-		//ActionLazy<CusInfo> insertUser = new LazyCusNodeInsertUser(option.conn, option.schemaName);	
-		ActionLazy<CusInfo> updateCustomer = new LazyCusUpdate(option.conn, option.schemaName);
-		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionLazy<CusInfo> selectCustomer = new LazyCusRootSelect(option.conn, option.schemaName);	
 		
-		enforceLChanged.addPostAction(mergeLChangedBy);
-		mergeLChangedBy.addPostAction(insertCustomer);
-		insertCustomer.addPostAction(insertPerson);
-		insertPerson.addPostAction(updateCustomer);	
-		//insertUser.addPostAction(updateCustomer);
-		updateCustomer.addPostAction(upsertAddress);		
-		updateCustomer.addPostAction(upsertPhone);			
-		updateCustomer.addPostAction(selectCustomer);
+		ActionStd<CusInfo> nodeInsert = new NodeCusInsert(option).toAction();
 		
-		actions.add(enforceLChanged);	
+		actions.add(nodeInsert);	
 		return actions;
 	}
 }

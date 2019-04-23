@@ -23,6 +23,7 @@ import br.com.gda.dao.common.DaoDbTableColumnAll;
 public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 	private final String LT_CUS = DaoDbTable.CUS_TABLE;
 	private final String RT_PERSON = DaoDbTable.PERSON_TABLE;	
+	private final String RT_PHONE = DaoDbTable.PHONE_TABLE;	
 	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<CusarchInfo> stmtSql;
@@ -66,6 +67,7 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 	private List<DaoJoin> buildJoins() {
 		List<DaoJoin> joins = new ArrayList<>();		
 		joins.add(buildJoinPerson());
+		joins.add(buildJoinPhone());
 		joins.add(buildJoinLanguage());	
 		return joins;
 	}
@@ -96,7 +98,40 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 		
 		DaoJoin join = new DaoJoin();
 		join.rightTableName = RT_PERSON;
-		join.joinType = DaoJoinType.INNER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
+		join.joinColumns = joinColumns;
+		join.constraintClause = null;
+		
+		return join;
+	}
+	
+	
+	
+	private DaoJoin buildJoinPhone() {
+		List<DaoJoinColumn> joinColumns = new ArrayList<>();
+		
+		DaoJoinColumn oneColumn = new DaoJoinColumn();
+		oneColumn.leftTableName = LT_CUS;
+		oneColumn.leftColumnName = CusarchDbTableColumn.COL_COD_OWNER;
+		oneColumn.rightColumnName = CusarchDbTableColumn.COL_COD_OWNER;
+		joinColumns.add(oneColumn);
+		
+		oneColumn = new DaoJoinColumn();
+		oneColumn.leftTableName = LT_CUS;
+		oneColumn.leftColumnName = CusarchDbTableColumn.COL_COD_CUSTOMER;
+		oneColumn.rightColumnName = CusarchDbTableColumn.COL_COD_CUSTOMER;
+		joinColumns.add(oneColumn);
+		
+		oneColumn = new DaoJoinColumn();
+		oneColumn.leftTableName = LT_CUS;
+		oneColumn.leftColumnName = CusarchDbTableColumn.COL_RECORD_MODE;
+		oneColumn.rightColumnName = CusarchDbTableColumn.COL_RECORD_MODE;
+		joinColumns.add(oneColumn);
+		
+		
+		DaoJoin join = new DaoJoin();
+		join.rightTableName = RT_PHONE;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = joinColumns;
 		join.constraintClause = null;
 		
@@ -154,6 +189,7 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 	
 	
 	private class ResultParser implements DaoResultParser<CusarchInfo> {
+		private final boolean NOT_NULL = false;	
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		
@@ -169,6 +205,10 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 				dataInfo.codCustomer = stmtResult.getLong(CusarchDbTableColumn.COL_COD_CUSTOMER);	
 				dataInfo.codLanguage = stmtResult.getString(CusarchDbTableColumn.COL_COD_LANGUAGE);	
 				dataInfo.recordMode = stmtResult.getString(CusarchDbTableColumn.COL_RECORD_MODE);
+				
+				stmtResult.getLong(CusarchDbTableColumn.COL_COD_USER);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codUser = stmtResult.getLong(CusarchDbTableColumn.COL_COD_USER);
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

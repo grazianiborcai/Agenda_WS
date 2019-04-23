@@ -11,6 +11,7 @@ import br.com.gda.info.InfoRecord;
 public final class CusarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCustomer;
+	public long codUser;
 	public String codEntityCateg;
 	public AddressInfo addressData;
 	public PhoneInfo phoneData;
@@ -23,6 +24,7 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 	public CusarchInfo() {
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
+		codUser = DefaultValue.number();
 		codLanguage = DefaultValue.language();	
 		recordMode = DefaultValue.recordMode();	
 		addressData = DefaultValue.object();
@@ -66,6 +68,7 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
+		result = result * 31 + (int) (codUser 	  ^ (codUser 	 >>> 32));
 		
 		if (addressData != null)
 			result = result * 31 + addressData.hashCode();
@@ -93,6 +96,7 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 		CusarchInfo obj = (CusarchInfo) o;		
 		return (codOwner    == obj.codOwner 	&& 
 				codCustomer == obj.codCustomer	&&
+				codUser 	== obj.codUser		&&
 				super.isRecordEqual(phoneData  , obj.phoneData  )	&&
 				super.isRecordEqual(personData , obj.personData )	&&
 				super.isRecordEqual(addressData, obj.addressData)		);
