@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.checker.CusCheckHasUser;
+import br.com.gda.business.customer.model.action.LazyCusNodeInsertL2;
+import br.com.gda.business.customer.model.checker.CusCheckHasCus;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -21,7 +23,7 @@ public final class NodeCusSignupL2 extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {
-		final boolean DONT_HAVE_USER = false;
+		final boolean DONT_HAVE_CUSTOMER = false;
 		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
@@ -30,8 +32,8 @@ public final class NodeCusSignupL2 extends DeciTreeWriteTemplate<CusInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_HAVE_USER;	
-		checker = new CusCheckHasUser(checkerOption);
+		checkerOption.expectedResult = DONT_HAVE_CUSTOMER;	
+		checker = new CusCheckHasCus(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -43,9 +45,22 @@ public final class NodeCusSignupL2 extends DeciTreeWriteTemplate<CusInfo> {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CusInfo> insertUser = new NodeCusInsertUser(option).toAction();
-		//TODO: Update Customer
+		ActionLazy<CusInfo> insertCustomer = new LazyCusNodeInsertL2(option.conn, option.schemaName);
+
+		insertUser.addPostAction(insertCustomer);
 		
 		actions.add(insertUser);	
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStd<CusInfo>> actions = new ArrayList<>();
+		
+		ActionStd<CusInfo> nodeSignupL3 = new NodeCusSignupL3(option).toAction();
+		
+		actions.add(nodeSignupL3);		
 		return actions;
 	}
 }

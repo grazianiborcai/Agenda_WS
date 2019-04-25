@@ -26,9 +26,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCusInsert extends DeciTreeWriteTemplate<CusInfo> {
+public final class NodeCusInsertL2 extends DeciTreeWriteTemplate<CusInfo> {
 
-	public NodeCusInsert(DeciTreeOption<CusInfo> option) {
+	public NodeCusInsertL2(DeciTreeOption<CusInfo> option) {
 		super(option);
 	}
 	

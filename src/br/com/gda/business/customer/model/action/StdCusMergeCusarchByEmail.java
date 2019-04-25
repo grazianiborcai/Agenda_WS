@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCusMergeCusarch implements ActionStd<CusInfo> {
+public final class StdCusMergeCusarchByEmail implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusMergeCusarch(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusMergeCusarch(option.conn, option.schemaName));
+	public StdCusMergeCusarchByEmail(DeciTreeOption<CusInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusMergeCusarchByEmail(option.conn, option.schemaName));
 	}
 	
 	

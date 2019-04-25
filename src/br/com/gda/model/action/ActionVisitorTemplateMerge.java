@@ -64,7 +64,7 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 		addRecordToOption(recordInfos);
 		List<S> selectedInfos = selectToMerge();
 		
-		return merge(recordInfos, selectedInfos);
+		return mergeHook(recordInfos, selectedInfos);
 	}	
 	
 	
@@ -134,6 +134,13 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 			return treeResult.getResultset();
 		
 		return Collections.emptyList();
+	}
+	
+	
+	
+	protected List<T> mergeHook(List<T> recordInfos, List<S> selectedInfos) {	
+		//Template method: default behavior
+		return merge(recordInfos, selectedInfos);
 	}
 	
 	

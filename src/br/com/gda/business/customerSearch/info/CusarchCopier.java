@@ -18,4 +18,18 @@ public final class CusarchCopier {
 		InfoCopier<CusarchInfo, CusInfo> copier = new CusarchCopyCusEmail();
 		return copier.makeCopy(sources);
 	}
+	
+	
+	
+	public static CusarchInfo copyFromCusCpf(CusInfo source) {
+		InfoCopier<CusarchInfo, CusInfo> copier = new CusarchCopyCusCpf();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<CusarchInfo> copyFromCusCpf(List<CusInfo> sources) {
+		InfoCopier<CusarchInfo, CusInfo> copier = new CusarchCopyCusCpf();
+		return copier.makeCopy(sources);
+	}
 }

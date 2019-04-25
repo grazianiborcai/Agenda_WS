@@ -7,7 +7,10 @@ import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.checker.CusCheckTechField;
 import br.com.gda.business.customer.model.checker.CusCheckOwner;
 import br.com.gda.business.customer.model.checker.CusCheckSignup;
+import br.com.gda.business.customer.model.action.LazyCusNodeSignupL1;
+import br.com.gda.business.customer.model.action.StdCusMergeCusarchByEmail;
 import br.com.gda.business.customer.model.checker.CusCheckLangu;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -57,10 +60,13 @@ public final class RootCusSignup extends DeciTreeWriteTemplate<CusInfo> {
 	
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
-
-		ActionStd<CusInfo> nodeSignupL1 = new NodeCusSignupL1(option).toAction();
+		//TODO: mesmo CPF mas email diferente :: da erro
+		ActionStd<CusInfo> searchCustomerByEmail = new StdCusMergeCusarchByEmail(option);
+		ActionLazy<CusInfo> nodeSignupL1 = new LazyCusNodeSignupL1(option.conn, option.schemaName);
 		
-		actions.add(nodeSignupL1);	
+		searchCustomerByEmail.addPostAction(nodeSignupL1);
+		
+		actions.add(searchCustomerByEmail);	
 		return actions;
 	}
 }

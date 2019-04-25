@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.action.LazyUserEnforceLChangedBy;
 import br.com.gda.business.user.model.action.LazyUserEnforceReference;
-import br.com.gda.business.user.model.action.LazyUserEnforceUsername;
 import br.com.gda.business.user.model.action.LazyUserInsert;
 import br.com.gda.business.user.model.action.StdUserEnforceLChanged;
 import br.com.gda.business.user.model.checker.UserCheckUsernameExist;
@@ -49,13 +48,11 @@ public final class NodeUserInsert extends DeciTreeWriteTemplate<UserInfo> {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UserInfo> enforceLChanged = new StdUserEnforceLChanged(option);
-		ActionLazy<UserInfo> enforceUsername = new LazyUserEnforceUsername(option.conn, option.schemaName);
 		ActionLazy<UserInfo> enforceReference = new LazyUserEnforceReference(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> insertUser = new LazyUserInsert(option.conn, option.schemaName);
 		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserEnforceLChangedBy(option.conn, option.schemaName);	//TODO: trocar pelo mergerUsername ?
 		
-		enforceLChanged.addPostAction(enforceUsername);
-		enforceUsername.addPostAction(enforceReference);
+		enforceLChanged.addPostAction(enforceReference);
 		enforceReference.addPostAction(insertUser);
 		insertUser.addPostAction(enforceLChangedBy);
 		

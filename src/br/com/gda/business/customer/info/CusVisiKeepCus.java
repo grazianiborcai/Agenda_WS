@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoKeeperVisitor;
 
-final class CusVisiKeepEmp implements InfoKeeperVisitor<CusInfo, CusInfo> {
+final class CusVisiKeepCus implements InfoKeeperVisitor<CusInfo, CusInfo> {
 
 	@Override public CusInfo keepAtribute(CusInfo sourceOne, CusInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

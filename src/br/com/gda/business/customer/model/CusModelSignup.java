@@ -16,13 +16,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class CusModelInsertUser implements Model {
+public final class CusModelSignup implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public CusModelInsertUser(String incomingData, HttpServletRequest request) {
+	public CusModelSignup(String incomingData, HttpServletRequest request) {
 		initialize();
 		buildHelper(incomingData, request);
 	}

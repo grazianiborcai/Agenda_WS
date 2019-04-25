@@ -163,6 +163,8 @@ public final class SystemCode {
 	public static final int CUS_DONT_HAS_CUSTOMER						= 1362;
 	public static final int CUS_HAS_USER								= 1363;
 	public static final int CUS_DONT_HAS_USER							= 1364;
+	public static final int CUS_HAS_EMAIL								= 1365;
+	public static final int CUS_DONT_HAS_EMAIL							= 1366;
 	
 	// Cart
 	public static final int CART_ALREADY_EXIST							= 1400;

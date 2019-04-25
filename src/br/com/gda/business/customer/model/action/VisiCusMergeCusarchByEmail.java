@@ -12,9 +12,9 @@ import br.com.gda.info.InfoWritterFactory;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCusMergeCusarch extends ActionVisitorTemplateMerge<CusInfo, CusarchInfo> {
+final class VisiCusMergeCusarchByEmail extends ActionVisitorTemplateMerge<CusInfo, CusarchInfo> {
 	
-	public VisiCusMergeCusarch(Connection conn, String schemaName) {
+	public VisiCusMergeCusarchByEmail(Connection conn, String schemaName) {
 		super(conn, schemaName, CusarchInfo.class);
 	}
 	

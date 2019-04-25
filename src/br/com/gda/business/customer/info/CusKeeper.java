@@ -19,7 +19,7 @@ public final class CusKeeper extends InfoWritterFactory<CusInfo> {
 	
 	
 	static public CusInfo keep(CusInfo sourceOne, CusInfo sourceTwo) {
-		return new CusKeeperEmp().keep(sourceOne, sourceTwo);
+		return new CusKeeperCus().keep(sourceOne, sourceTwo);
 	}
 	
 	
@@ -28,7 +28,7 @@ public final class CusKeeper extends InfoWritterFactory<CusInfo> {
 	@Override protected List<CusInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
 		if (sourceOnes.get(0) instanceof CusInfo 	&&
 			sourceTwos.get(0) instanceof CusInfo		)
-			return new CusKeeperEmp().keep((List<CusInfo>) sourceOnes, (List<CusInfo>) sourceTwos);
+			return new CusKeeperCus().keep((List<CusInfo>) sourceOnes, (List<CusInfo>) sourceTwos);
 		
 		
 		return null;

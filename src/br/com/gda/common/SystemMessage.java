@@ -209,12 +209,14 @@ public final class SystemMessage {
 	public static final String CUS_CPF_ALREADY_EXIST = "Customer's CPF already exist on DB";	
 	public static final String CUS_CPF_NOT_FOUND = "Customer's CPF not found on DB";	
 	public static final String CUS_DONT_HAS_CUSTOMER = "No Customer found";	
+	public static final String CUS_DONT_HAS_EMAIL = "Customer: no e-mail provided";	
 	public static final String CUS_DONT_HAS_USER = "Customer: No User found";	
 	public static final String CUS_EMAIL_ALREADY_EXIST = "Customer's e-email already exist on DB";	
 	public static final String CUS_EMAIL_CHANGED = "Customer's e-mail changed";	
 	public static final String CUS_EMAIL_NOT_FOUND = "Customer's e-email not found on DB";	
 	public static final String CUS_EMAIL_NOT_CHANGED = "Customer's e-mail not changed";	
 	public static final String CUS_HAS_CUSTOMER = "Customer already created. Try to recover your credentials";	
+	public static final String CUS_HAS_EMAIL = "Customer: e-mail address provided";
 	public static final String CUS_HAS_USER = "User already created. Try to recover your credentials";	
 	public static final String CUS_NOT_FOUND = "Customer's data not found on DB";		
 	public static final String CUS_PERSON_CANT_BE_CHANGED = "Person can't be changed";	

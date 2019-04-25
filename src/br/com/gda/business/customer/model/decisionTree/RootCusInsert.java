@@ -34,9 +34,9 @@ public final class RootCusInsert extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> nodeInsert = new NodeCusInsert(option).toAction();
+		ActionStd<CusInfo> nodeInsertL1 = new NodeCusInsertL1(option).toAction();
 		
-		actions.add(nodeInsert);	
+		actions.add(nodeInsertL1);	
 		return actions;
 	}
 }
