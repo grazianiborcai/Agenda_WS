@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -130,10 +130,10 @@ public abstract class ActionVisitorTemplateKeep<T extends InfoRecord, S extends 
 		
 		
 		try {			
-			Class<? extends InfoWritterFactory<T>> keeperClass = getKeeperClassHook();
+			Class<? extends InfoWritterFactory_<T>> keeperClass = getKeeperClassHook();
 			Method met = keeperClass.getMethod("keep", List.class, List.class);
 			
-			InfoWritterFactory<T> writterInstance = keeperClass.getConstructor().newInstance();
+			InfoWritterFactory_<T> writterInstance = keeperClass.getConstructor().newInstance();
 			return (List<T>) met.invoke(writterInstance, new Object[] {selectedInfos, recordInfos});
 				
 			} catch (Exception e) {
@@ -144,7 +144,7 @@ public abstract class ActionVisitorTemplateKeep<T extends InfoRecord, S extends 
 	
 	
 	
-	protected Class<? extends InfoWritterFactory<T>> getKeeperClassHook() {
+	protected Class<? extends InfoWritterFactory_<T>> getKeeperClassHook() {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);

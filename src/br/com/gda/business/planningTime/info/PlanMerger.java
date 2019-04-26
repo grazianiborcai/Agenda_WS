@@ -8,9 +8,9 @@ import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class PlanMerger extends InfoWritterFactory<PlanInfo> {	
+public final class PlanMerger extends InfoWritterFactory_<PlanInfo> {	
 	
 	public PlanMerger() {
 		super(new PlanUniquifier());

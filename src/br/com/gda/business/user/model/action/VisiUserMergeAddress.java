@@ -8,7 +8,7 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.info.UserMerger;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -32,7 +32,7 @@ final class VisiUserMergeAddress extends ActionVisitorTemplateMerge<UserInfo, Ad
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<UserInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<UserInfo>> getMergerClassHook() {
 		return UserMerger.class;
 	}
 }

@@ -7,10 +7,10 @@ import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.business.materialText.info.MatextInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class MatMerger extends InfoWritterFactory<MatInfo> {	
+public final class MatMerger extends InfoWritterFactory_<MatInfo> {	
 	
 	public MatMerger() {
 		super(new MatUniquifier());

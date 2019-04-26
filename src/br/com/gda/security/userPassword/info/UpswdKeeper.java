@@ -2,9 +2,9 @@ package br.com.gda.security.userPassword.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class UpswdKeeper extends InfoWritterFactory<UpswdInfo> {	
+public final class UpswdKeeper extends InfoWritterFactory_<UpswdInfo> {	
 	
 	public UpswdKeeper() {
 		super(new UpswdUniquifier());

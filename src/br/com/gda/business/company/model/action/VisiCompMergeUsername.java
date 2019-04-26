@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.company.info.CompMerger;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameInfo;
@@ -24,7 +24,7 @@ final class VisiCompMergeUsername extends ActionVisitorTemplateMerge<CompInfo, U
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<CompInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<CompInfo>> getMergerClassHook() {
 		return CompMerger.class;
 	}
 }

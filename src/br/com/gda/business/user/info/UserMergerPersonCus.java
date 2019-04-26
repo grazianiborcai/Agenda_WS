@@ -3,9 +3,9 @@ package br.com.gda.business.user.info;
 import java.util.List;
 
 import br.com.gda.business.personCustomer.info.PersonCusInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class UserMergerPersonCus extends InfoMerger<UserInfo, PersonCusInfo, UserInfo> {
+final class UserMergerPersonCus extends InfoMerger_<UserInfo, PersonCusInfo, UserInfo> {
 	public UserInfo merge(PersonCusInfo sourceOne, UserInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new UserVisiMergePersonCus());
 	}

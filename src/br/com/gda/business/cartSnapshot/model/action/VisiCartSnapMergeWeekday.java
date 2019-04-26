@@ -6,7 +6,7 @@ import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.business.cartSnapshot.info.CartSnapMerger;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootWeekdaySelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -24,7 +24,7 @@ final class VisiCartSnapMergeWeekday extends ActionVisitorTemplateMerge<CartSnap
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<CartSnapInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<CartSnapInfo>> getMergerClassHook() {
 		return CartSnapMerger.class;
 	}
 }

@@ -3,9 +3,9 @@ package br.com.gda.business.cartSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class CartSnapMergerWeekday extends InfoMerger<CartSnapInfo, WeekdayInfo, CartSnapInfo> {
+final class CartSnapMergerWeekday extends InfoMerger_<CartSnapInfo, WeekdayInfo, CartSnapInfo> {
 	public CartSnapInfo merge(WeekdayInfo sourceOne, CartSnapInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new CartSnapVisitorWeekday());
 	}

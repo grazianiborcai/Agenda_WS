@@ -7,7 +7,7 @@ import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.decisionTree.RootMatSelect;
 import br.com.gda.business.materialStore.info.MatoreInfo;
 import br.com.gda.business.materialStore.info.MatoreMerger;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -31,7 +31,7 @@ final class VisiMatoreMergeMat extends ActionVisitorTemplateMerge<MatoreInfo, Ma
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<MatoreInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<MatoreInfo>> getMergerClassHook() {
 		return MatoreMerger.class;
 	}
 }

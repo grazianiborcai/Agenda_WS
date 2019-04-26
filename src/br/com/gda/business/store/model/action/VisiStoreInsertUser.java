@@ -9,7 +9,7 @@ import br.com.gda.business.store.info.StoreMerger;
 import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserInsert;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -40,7 +40,7 @@ final class VisiStoreInsertUser extends ActionVisitorTemplateAction<StoreInfo, U
 	
 	
 	@Override protected List<StoreInfo> toBaseClassHook(List<StoreInfo> baseInfos, List<UserInfo> results) {
-		InfoWritterFactory<StoreInfo> merger = new StoreMerger();		
+		InfoWritterFactory_<StoreInfo> merger = new StoreMerger();		
 		return merger.merge(results, baseInfos);
 	}
 }

@@ -6,7 +6,7 @@ import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootCurrencySelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -24,7 +24,7 @@ final class VisiCartMergeCurrency extends ActionVisitorTemplateMerge<CartInfo, C
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<CartInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<CartInfo>> getMergerClassHook() {
 		return CartMerger.class;
 	}
 }

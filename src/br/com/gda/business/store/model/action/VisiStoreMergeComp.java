@@ -6,7 +6,7 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.company.model.decisionTree.RootCompSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.info.StoreMerger;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -24,7 +24,7 @@ final class VisiStoreMergeComp extends ActionVisitorTemplateMerge<StoreInfo, Com
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<StoreInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<StoreInfo>> getMergerClassHook() {
 		return StoreMerger.class;
 	}
 }

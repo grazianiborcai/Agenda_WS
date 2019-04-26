@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmMerger;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
@@ -32,7 +32,7 @@ final class VisiStowotmMergeUsername extends ActionVisitorTemplateMerge<StowotmI
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<StowotmInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<StowotmInfo>> getMergerClassHook() {
 		return StowotmMerger.class;
 	}
 }

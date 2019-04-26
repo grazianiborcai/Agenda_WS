@@ -2,9 +2,9 @@ package br.com.gda.business.materialMovement.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class MatmovMergerToDelete extends InfoMerger<MatmovInfo, MatmovInfo, MatmovInfo> {
+final class MatmovMergerToDelete extends InfoMerger_<MatmovInfo, MatmovInfo, MatmovInfo> {
 	public MatmovInfo merge(MatmovInfo sourceOne, MatmovInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new MatmovVisiMergeToDelete());
 	}

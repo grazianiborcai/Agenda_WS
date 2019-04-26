@@ -8,7 +8,7 @@ import br.com.gda.business.employee.info.EmpMerger;
 import br.com.gda.business.phone.info.PhoneCopier;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.decisionTree.RootPhoneSelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -26,7 +26,7 @@ final class VisiEmpMergePhone extends ActionVisitorTemplateMerge<EmpInfo, PhoneI
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<EmpInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<EmpInfo>> getMergerClassHook() {
 		return EmpMerger.class;
 	}
 	

@@ -3,10 +3,10 @@ package br.com.gda.security.storeAuthorization.info;
 import java.util.List;
 
 import br.com.gda.business.ownerStore.info.OwntoreInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class StorauthMerger extends InfoWritterFactory<StorauthInfo> {	
+public final class StorauthMerger extends InfoWritterFactory_<StorauthInfo> {	
 	
 	public StorauthMerger() {
 		super();

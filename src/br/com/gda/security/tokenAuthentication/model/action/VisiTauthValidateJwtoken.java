@@ -3,7 +3,7 @@ package br.com.gda.security.tokenAuthentication.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -33,7 +33,7 @@ final class VisiTauthValidateJwtoken extends ActionVisitorTemplateAction<TauthIn
 	
 	
 	@Override protected List<TauthInfo> toBaseClassHook(List<TauthInfo> baseInfos, List<JwtokenInfo> results) {
-		InfoWritterFactory<TauthInfo> merger = new TauthMerger();		
+		InfoWritterFactory_<TauthInfo> merger = new TauthMerger();		
 		return merger.merge(results, baseInfos);
 	}
 }

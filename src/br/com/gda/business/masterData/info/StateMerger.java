@@ -2,9 +2,9 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class StateMerger extends InfoWritterFactory<StateInfo> {	
+public final class StateMerger extends InfoWritterFactory_<StateInfo> {	
 	
 	public StateMerger() {
 		super(new StateUniquifier());

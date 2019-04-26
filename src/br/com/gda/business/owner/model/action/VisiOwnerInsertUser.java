@@ -9,7 +9,7 @@ import br.com.gda.business.owner.info.OwnerMerger;
 import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserInsert;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -40,7 +40,7 @@ final class VisiOwnerInsertUser extends ActionVisitorTemplateAction<OwnerInfo, U
 	
 	
 	@Override protected List<OwnerInfo> toBaseClassHook(List<OwnerInfo> baseInfos, List<UserInfo> results) {
-		InfoWritterFactory<OwnerInfo> merger = new OwnerMerger();		
+		InfoWritterFactory_<OwnerInfo> merger = new OwnerMerger();		
 		return merger.merge(results, baseInfos);
 	}
 }

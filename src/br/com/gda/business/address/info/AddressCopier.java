@@ -3,6 +3,7 @@ package br.com.gda.business.address.info;
 
 import java.util.List;
 
+import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
@@ -76,6 +77,20 @@ public final class AddressCopier {
 	
 	public static List<AddressInfo> copyFromUserKey(List<UserInfo> sources) {
 		InfoCopier<AddressInfo, UserInfo> copier = new AddressCopyUserKey();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static AddressInfo copyFromCus(CusInfo source) {
+		InfoCopier<AddressInfo, CusInfo> copier = new AddressCopyCus();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddressInfo> copyFromCus(List<CusInfo> sources) {
+		InfoCopier<AddressInfo, CusInfo> copier = new AddressCopyCus();
 		return copier.makeCopy(sources);
 	}
 }

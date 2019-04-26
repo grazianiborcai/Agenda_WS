@@ -5,7 +5,7 @@ import br.com.gda.business.customerSearch.info.CusarchInfo;
 import br.com.gda.business.customerSearch.info.CusarchMerger;
 import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootLanguSelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -23,7 +23,7 @@ final class VisiCusarchMergeLangu extends ActionVisitorTemplateMerge<CusarchInfo
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<CusarchInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<CusarchInfo>> getMergerClassHook() {
 		return CusarchMerger.class;
 	}
 }

@@ -5,7 +5,7 @@ import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.info.MatMerger;
 import br.com.gda.business.materialText.info.MatextInfo;
 import br.com.gda.business.materialText.model.decisionTree.RootMatextSelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -23,7 +23,7 @@ final class VisiMatMergeMatext extends ActionVisitorTemplateMerge<MatInfo, Matex
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<MatInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<MatInfo>> getMergerClassHook() {
 		return MatMerger.class;
 	}
 }

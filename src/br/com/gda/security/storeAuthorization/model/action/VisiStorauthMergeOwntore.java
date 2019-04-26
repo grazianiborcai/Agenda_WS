@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import br.com.gda.business.ownerStore.info.OwntoreInfo;
 import br.com.gda.business.ownerStore.model.decisionTree.RootOwntoreSelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
@@ -24,7 +24,7 @@ final class VisiStorauthMergeOwntore extends ActionVisitorTemplateMerge<Storauth
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<StorauthInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<StorauthInfo>> getMergerClassHook() {
 		return StorauthMerger.class;
 	}
 }

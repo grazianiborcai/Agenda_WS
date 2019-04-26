@@ -6,7 +6,7 @@ import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
 import br.com.gda.business.personSnapshot.model.decisionTree.RootPersonSnapSelect;
 import br.com.gda.business.userSnapshot.info.UserSnapInfo;
 import br.com.gda.business.userSnapshot.info.UserSnapMerger;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -24,7 +24,7 @@ final class VisiUserSnapMergePersonSnap extends ActionVisitorTemplateMerge<UserS
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<UserSnapInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<UserSnapInfo>> getMergerClassHook() {
 		return UserSnapMerger.class;
 	}
 }

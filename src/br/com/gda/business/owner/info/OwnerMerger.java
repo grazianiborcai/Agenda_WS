@@ -8,10 +8,10 @@ import br.com.gda.business.ownerStore.info.OwntoreInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class OwnerMerger extends InfoWritterFactory<OwnerInfo> {	
+public final class OwnerMerger extends InfoWritterFactory_<OwnerInfo> {	
 	
 	public OwnerMerger() {
 		super(new OwnerUniquifier());

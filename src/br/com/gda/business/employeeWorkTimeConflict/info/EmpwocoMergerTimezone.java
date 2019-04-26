@@ -3,9 +3,9 @@ package br.com.gda.business.employeeWorkTimeConflict.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.TimezoneInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class EmpwocoMergerTimezone extends InfoMerger<EmpwocoInfo, TimezoneInfo, EmpwocoInfo> {
+final class EmpwocoMergerTimezone extends InfoMerger_<EmpwocoInfo, TimezoneInfo, EmpwocoInfo> {
 	public EmpwocoInfo merge(TimezoneInfo sourceOne, EmpwocoInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new EmpwocoVisiMergeTimezone());
 	}

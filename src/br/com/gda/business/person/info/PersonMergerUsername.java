@@ -2,10 +2,10 @@ package br.com.gda.business.person.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class PersonMergerUsername extends InfoMerger<PersonInfo, UsernameInfo, PersonInfo> {
+final class PersonMergerUsername extends InfoMerger_<PersonInfo, UsernameInfo, PersonInfo> {
 	public PersonInfo merge(UsernameInfo sourceOne, PersonInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new PersonVisiMergeUsername());
 	}

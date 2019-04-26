@@ -6,7 +6,7 @@ import br.com.gda.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.gda.business.employeeWorkTimeConflict.info.EmpwocoMerger;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootTimezoneSelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -24,7 +24,7 @@ final class VisiEmpwocoMergeTimezone extends ActionVisitorTemplateMerge<EmpwocoI
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<EmpwocoInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<EmpwocoInfo>> getMergerClassHook() {
 		return EmpwocoMerger.class;
 	}
 }

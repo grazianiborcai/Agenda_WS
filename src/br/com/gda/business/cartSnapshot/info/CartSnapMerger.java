@@ -9,9 +9,9 @@ import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.materialSnapshot.info.MatSnapInfo;
 import br.com.gda.business.snapshot.info.SnapInfo;
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class CartSnapMerger extends InfoWritterFactory<CartSnapInfo> {	
+public final class CartSnapMerger extends InfoWritterFactory_<CartSnapInfo> {	
 	
 	public CartSnapMerger() {
 		super(new CartSnapUniquifier());

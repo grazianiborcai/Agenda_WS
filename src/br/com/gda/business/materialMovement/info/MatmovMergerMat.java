@@ -3,9 +3,9 @@ package br.com.gda.business.materialMovement.info;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class MatmovMergerMat extends InfoMerger<MatmovInfo, MatInfo, MatmovInfo> {
+final class MatmovMergerMat extends InfoMerger_<MatmovInfo, MatInfo, MatmovInfo> {
 	public MatmovInfo merge(MatInfo sourceOne, MatmovInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new MatmovVisiMergeMat());
 	}

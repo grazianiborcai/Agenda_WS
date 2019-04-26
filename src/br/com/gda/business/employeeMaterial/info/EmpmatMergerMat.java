@@ -3,9 +3,9 @@ package br.com.gda.business.employeeMaterial.info;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class EmpmatMergerMat extends InfoMerger<EmpmatInfo, MatInfo, EmpmatInfo> {
+final class EmpmatMergerMat extends InfoMerger_<EmpmatInfo, MatInfo, EmpmatInfo> {
 	public EmpmatInfo merge(MatInfo sourceOne, EmpmatInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new EmpmatVisiMergeMat());
 	}

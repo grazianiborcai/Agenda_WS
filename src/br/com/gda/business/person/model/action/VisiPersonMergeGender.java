@@ -6,7 +6,7 @@ import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootGenderSelect;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.info.PersonMerger;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -24,7 +24,7 @@ final class VisiPersonMergeGender extends ActionVisitorTemplateMerge<PersonInfo,
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<PersonInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<PersonInfo>> getMergerClassHook() {
 		return PersonMerger.class;
 	}
 }

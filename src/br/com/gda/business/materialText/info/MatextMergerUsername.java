@@ -2,10 +2,10 @@ package br.com.gda.business.materialText.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class MatextMergerUsername extends InfoMerger<MatextInfo, UsernameInfo, MatextInfo> {
+final class MatextMergerUsername extends InfoMerger_<MatextInfo, UsernameInfo, MatextInfo> {
 	public MatextInfo merge(UsernameInfo sourceOne, MatextInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new MatextVisiMergeUsername());
 	}

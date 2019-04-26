@@ -4,10 +4,10 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.business.person.info.PersonInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class PersonMerger extends InfoWritterFactory<PersonInfo> {	
+public final class PersonMerger extends InfoWritterFactory_<PersonInfo> {	
 	
 	public PersonMerger() {
 		super();

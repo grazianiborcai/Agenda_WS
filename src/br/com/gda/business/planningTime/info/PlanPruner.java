@@ -6,9 +6,9 @@ import br.com.gda.business.age.info.AgeInfo;
 import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.gda.business.reserve.info.ReserveInfo;
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class PlanPruner extends InfoWritterFactory<PlanInfo> {
+public final class PlanPruner extends InfoWritterFactory_<PlanInfo> {
 
 	public PlanInfo prune(PlanInfo sourceOne, StolevateInfo sourceTwo) {
 		return new PlanPrunerSLD().prune(sourceOne, sourceTwo);

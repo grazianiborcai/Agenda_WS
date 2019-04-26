@@ -3,9 +3,9 @@ package br.com.gda.security.userAuthentication.info;
 import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class UauthMerger extends InfoWritterFactory<UauthInfo> {	
+public final class UauthMerger extends InfoWritterFactory_<UauthInfo> {	
 	
 	public UauthMerger() {
 		super();

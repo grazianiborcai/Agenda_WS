@@ -6,10 +6,10 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class EmpMerger extends InfoWritterFactory<EmpInfo> {	
+public final class EmpMerger extends InfoWritterFactory_<EmpInfo> {	
 	
 	public EmpMerger() {
 		super(new EmpUniquifier());

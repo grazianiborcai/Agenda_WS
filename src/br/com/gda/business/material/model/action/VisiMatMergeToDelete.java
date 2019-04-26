@@ -5,7 +5,7 @@ import java.sql.Connection;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.info.MatMerger;
 import br.com.gda.business.material.model.decisionTree.RootMatSelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -23,7 +23,7 @@ final class VisiMatMergeToDelete extends ActionVisitorTemplateMerge<MatInfo, Mat
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<MatInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<MatInfo>> getMergerClassHook() {
 		return MatMerger.class;
 	}
 }

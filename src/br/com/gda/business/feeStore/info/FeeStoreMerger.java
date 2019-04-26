@@ -3,9 +3,9 @@ package br.com.gda.business.feeStore.info;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class FeeStoreMerger extends InfoWritterFactory<FeeStoreInfo> {	
+public final class FeeStoreMerger extends InfoWritterFactory_<FeeStoreInfo> {	
 	
 	public FeeStoreMerger() {
 		super();

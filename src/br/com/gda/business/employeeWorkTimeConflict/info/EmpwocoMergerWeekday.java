@@ -3,9 +3,9 @@ package br.com.gda.business.employeeWorkTimeConflict.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class EmpwocoMergerWeekday extends InfoMerger<EmpwocoInfo, WeekdayInfo, EmpwocoInfo> {
+final class EmpwocoMergerWeekday extends InfoMerger_<EmpwocoInfo, WeekdayInfo, EmpwocoInfo> {
 	public EmpwocoInfo merge(WeekdayInfo sourceOne, EmpwocoInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new EmpwocoVisiMergeWeekday());
 	}

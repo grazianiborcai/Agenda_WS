@@ -2,9 +2,9 @@ package br.com.gda.business.user.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class UserKeeper extends InfoWritterFactory<UserInfo> {	
+public final class UserKeeper extends InfoWritterFactory_<UserInfo> {	
 	
 	public UserKeeper() {
 		super(new UserUniquifier());

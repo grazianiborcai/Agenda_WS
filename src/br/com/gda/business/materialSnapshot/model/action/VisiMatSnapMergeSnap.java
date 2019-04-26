@@ -6,7 +6,7 @@ import br.com.gda.business.materialSnapshot.info.MatSnapInfo;
 import br.com.gda.business.materialSnapshot.info.MatSnapMerger;
 import br.com.gda.business.snapshot.info.SnapInfo;
 import br.com.gda.business.snapshot.model.decisionTree.RootSnapInsert;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -24,7 +24,7 @@ final class VisiMatSnapMergeSnap extends ActionVisitorTemplateMerge<MatSnapInfo,
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<MatSnapInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<MatSnapInfo>> getMergerClassHook() {
 		return MatSnapMerger.class;
 	}
 }

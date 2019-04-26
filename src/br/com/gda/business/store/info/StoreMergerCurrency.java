@@ -3,9 +3,9 @@ package br.com.gda.business.store.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.CurrencyInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class StoreMergerCurrency extends InfoMerger<StoreInfo, CurrencyInfo, StoreInfo> {
+final class StoreMergerCurrency extends InfoMerger_<StoreInfo, CurrencyInfo, StoreInfo> {
 	public StoreInfo merge(CurrencyInfo sourceOne, StoreInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new StoreVisiMergeCurrency());
 	}

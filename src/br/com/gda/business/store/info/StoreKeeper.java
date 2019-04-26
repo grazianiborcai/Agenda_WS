@@ -2,9 +2,9 @@ package br.com.gda.business.store.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class StoreKeeper extends InfoWritterFactory<StoreInfo> {	
+public final class StoreKeeper extends InfoWritterFactory_<StoreInfo> {	
 	
 	public StoreKeeper() {
 		super(new StoreUniquifier());

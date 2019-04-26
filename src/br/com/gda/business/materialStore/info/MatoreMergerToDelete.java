@@ -2,9 +2,9 @@ package br.com.gda.business.materialStore.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class MatoreMergerToDelete extends InfoMerger<MatoreInfo, MatoreInfo, MatoreInfo> {
+final class MatoreMergerToDelete extends InfoMerger_<MatoreInfo, MatoreInfo, MatoreInfo> {
 	public MatoreInfo merge(MatoreInfo sourceOne, MatoreInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new MatoreVisiMergeToDelete());
 	}

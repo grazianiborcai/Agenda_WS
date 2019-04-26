@@ -2,7 +2,7 @@ package br.com.gda.security.tokenAuthentication.model.action;
 
 import java.sql.Connection;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.tokenAuthentication.info.TauthInfo;
@@ -24,7 +24,7 @@ final class VisiTauthMergeUsername extends ActionVisitorTemplateMerge<TauthInfo,
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<TauthInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<TauthInfo>> getMergerClassHook() {
 		return TauthMerger.class;
 	}
 }

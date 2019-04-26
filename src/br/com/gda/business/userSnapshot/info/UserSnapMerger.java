@@ -8,9 +8,9 @@ import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
 import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
 import br.com.gda.business.snapshot.info.SnapInfo;
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class UserSnapMerger extends InfoWritterFactory<UserSnapInfo> {	
+public final class UserSnapMerger extends InfoWritterFactory_<UserSnapInfo> {	
 	
 	public UserSnapMerger() {
 		super(new UserSnapUniquifier());

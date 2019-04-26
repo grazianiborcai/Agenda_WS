@@ -2,9 +2,9 @@ package br.com.gda.business.material.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class MatMergerToDelete extends InfoMerger<MatInfo, MatInfo, MatInfo> {
+final class MatMergerToDelete extends InfoMerger_<MatInfo, MatInfo, MatInfo> {
 	public MatInfo merge(MatInfo sourceOne, MatInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new MatVisiMergeToDelete());
 	}

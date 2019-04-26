@@ -4,9 +4,9 @@ import java.util.List;
 
 import br.com.gda.business.form.formPhone.info.FormPhoneInfo;
 import br.com.gda.business.masterData.info.CountryPhoneInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class PhoneMerger extends InfoWritterFactory<PhoneInfo> {	
+public final class PhoneMerger extends InfoWritterFactory_<PhoneInfo> {	
 	
 	public PhoneMerger() {
 		super(new PhoneUniquifier());

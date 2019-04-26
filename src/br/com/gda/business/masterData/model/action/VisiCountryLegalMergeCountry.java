@@ -6,7 +6,7 @@ import br.com.gda.business.masterData.info.CountryInfo;
 import br.com.gda.business.masterData.info.CountryLegalInfo;
 import br.com.gda.business.masterData.info.CountryLegalMerger;
 import br.com.gda.business.masterData.model.decisionTree.RootCountrySelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -24,7 +24,7 @@ final class VisiCountryLegalMergeCountry extends ActionVisitorTemplateMerge<Coun
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<CountryLegalInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<CountryLegalInfo>> getMergerClassHook() {
 		return CountryLegalMerger.class;
 	}
 }

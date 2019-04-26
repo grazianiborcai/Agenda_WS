@@ -2,9 +2,9 @@ package br.com.gda.business.materialStock.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class MatockMerger extends InfoWritterFactory<MatockInfo> {	
+public final class MatockMerger extends InfoWritterFactory_<MatockInfo> {	
 	
 	public MatockMerger() {
 		super(new MatockUniquifier());

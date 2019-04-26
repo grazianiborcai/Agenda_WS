@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserSelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
@@ -24,7 +24,7 @@ final class VisiUauthMergeUser extends ActionVisitorTemplateMerge<UauthInfo, Use
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<UauthInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<UauthInfo>> getMergerClassHook() {
 		return UauthMerger.class;
 	}
 }

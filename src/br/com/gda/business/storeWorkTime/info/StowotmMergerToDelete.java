@@ -2,9 +2,9 @@ package br.com.gda.business.storeWorkTime.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class StowotmMergerToDelete extends InfoMerger<StowotmInfo, StowotmInfo, StowotmInfo> {
+final class StowotmMergerToDelete extends InfoMerger_<StowotmInfo, StowotmInfo, StowotmInfo> {
 	public StowotmInfo merge(StowotmInfo sourceOne, StowotmInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new StowotmVisiMergeToDelete());
 	}

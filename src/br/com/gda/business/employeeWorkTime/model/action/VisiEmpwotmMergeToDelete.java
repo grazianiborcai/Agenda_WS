@@ -5,7 +5,7 @@ import java.sql.Connection;
 import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.gda.business.employeeWorkTime.info.EmpwotmMerger;
 import br.com.gda.business.employeeWorkTime.model.decisionTree.RootEmpwotmSelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -23,7 +23,7 @@ final class VisiEmpwotmMergeToDelete extends ActionVisitorTemplateMerge<EmpwotmI
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<EmpwotmInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<EmpwotmInfo>> getMergerClassHook() {
 		return EmpwotmMerger.class;
 	}
 }

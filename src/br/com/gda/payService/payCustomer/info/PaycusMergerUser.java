@@ -3,9 +3,9 @@ package br.com.gda.payService.payCustomer.info;
 import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class PaycusMergerUser extends InfoMerger<PaycusInfo, UserInfo, PaycusInfo> {
+final class PaycusMergerUser extends InfoMerger_<PaycusInfo, UserInfo, PaycusInfo> {
 	public PaycusInfo merge(UserInfo sourceOne, PaycusInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new PaycusVisiUser());
 	}

@@ -8,19 +8,19 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 
-public abstract class InfoWritterFactory<T> {
+public abstract class InfoWritterFactory_<T> {
 	protected final boolean ENABLED = true;
 	protected final boolean DISABLED = false;
 	
 	private InfoUniquifier<T> resultUniquifier;
 	
 	
-	protected InfoWritterFactory() {	
+	protected InfoWritterFactory_() {	
 		resultUniquifier = null;
 	}
 	
 	
-	protected InfoWritterFactory(InfoUniquifier<T> uniquifier) {
+	protected InfoWritterFactory_(InfoUniquifier<T> uniquifier) {
 		checkArgument(uniquifier);
 		
 		resultUniquifier = uniquifier;

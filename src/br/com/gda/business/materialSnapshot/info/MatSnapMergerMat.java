@@ -3,9 +3,9 @@ package br.com.gda.business.materialSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class MatSnapMergerMat extends InfoMerger<MatSnapInfo, MatInfo, MatSnapInfo> {
+final class MatSnapMergerMat extends InfoMerger_<MatSnapInfo, MatInfo, MatSnapInfo> {
 	public MatSnapInfo merge(MatInfo sourceOne, MatSnapInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new MatSnapVisitorMat());
 	}

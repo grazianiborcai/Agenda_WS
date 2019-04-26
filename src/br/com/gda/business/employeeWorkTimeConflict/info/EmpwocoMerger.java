@@ -4,9 +4,9 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class EmpwocoMerger extends InfoWritterFactory<EmpwocoInfo> {
+public final class EmpwocoMerger extends InfoWritterFactory_<EmpwocoInfo> {
 	
 	public EmpwocoMerger() {
 		super(new EmpwocoUniquifier());

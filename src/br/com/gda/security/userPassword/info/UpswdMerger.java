@@ -3,9 +3,9 @@ package br.com.gda.security.userPassword.info;
 import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class UpswdMerger extends InfoWritterFactory<UpswdInfo> {	
+public final class UpswdMerger extends InfoWritterFactory_<UpswdInfo> {	
 	
 	public UpswdMerger() {
 		super();

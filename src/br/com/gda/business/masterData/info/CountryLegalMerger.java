@@ -2,9 +2,9 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class CountryLegalMerger extends InfoWritterFactory<CountryLegalInfo> {	
+public final class CountryLegalMerger extends InfoWritterFactory_<CountryLegalInfo> {	
 	
 	public CountryLegalMerger() {
 		super(new CountryLegalUniquifier());

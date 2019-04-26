@@ -3,9 +3,9 @@ package br.com.gda.security.username.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.AuthGrRoleInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class UsernameMerger extends InfoWritterFactory<UsernameInfo> {	
+public final class UsernameMerger extends InfoWritterFactory_<UsernameInfo> {	
 	
 	public UsernameMerger() {
 		super(new UsernameUniquifier());

@@ -6,9 +6,9 @@ import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.snapshot.info.SnapInfo;
 import br.com.gda.business.userSnapshot.info.UserSnapInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class OrderMerger extends InfoWritterFactory<OrderInfo> {	
+public final class OrderMerger extends InfoWritterFactory_<OrderInfo> {	
 	
 	public OrderMerger() {
 		super(new OrderUniquifier());

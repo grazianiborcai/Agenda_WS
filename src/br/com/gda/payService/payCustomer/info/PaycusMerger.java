@@ -7,10 +7,10 @@ import br.com.gda.business.masterData.info.PayparInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
 
-public final class PaycusMerger extends InfoWritterFactory<PaycusInfo> {	
+public final class PaycusMerger extends InfoWritterFactory_<PaycusInfo> {	
 	
 	public PaycusMerger() {
 		super(new PaycusUniquifier());

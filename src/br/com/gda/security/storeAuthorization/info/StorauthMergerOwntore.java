@@ -3,9 +3,9 @@ package br.com.gda.security.storeAuthorization.info;
 import java.util.List;
 
 import br.com.gda.business.ownerStore.info.OwntoreInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class StorauthMergerOwntore extends InfoMerger<StorauthInfo, OwntoreInfo, StorauthInfo> {
+final class StorauthMergerOwntore extends InfoMerger_<StorauthInfo, OwntoreInfo, StorauthInfo> {
 	public StorauthInfo merge(OwntoreInfo sourceOne, StorauthInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new StorauthVisiMergeOwntore());
 	}

@@ -3,11 +3,11 @@ package br.com.gda.business.materialStore.info;
 import java.util.List;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.materialStock.info.MatockInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.username.info.UsernameInfo;
 
 
-public final class MatoreMerger extends InfoWritterFactory<MatoreInfo> {	
+public final class MatoreMerger extends InfoWritterFactory_<MatoreInfo> {	
 	static public MatoreInfo merge(MatInfo sourceOne, MatoreInfo sourceTwo) {
 		return new MatoreMergerMat().merge(sourceOne, sourceTwo);
 	}

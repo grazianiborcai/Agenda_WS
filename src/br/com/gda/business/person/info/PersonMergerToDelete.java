@@ -2,9 +2,9 @@ package br.com.gda.business.person.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class PersonMergerToDelete extends InfoMerger<PersonInfo, PersonInfo, PersonInfo> {
+final class PersonMergerToDelete extends InfoMerger_<PersonInfo, PersonInfo, PersonInfo> {
 	public PersonInfo merge(PersonInfo sourceOne, PersonInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new PersonVisiMergeToDelete());
 	}

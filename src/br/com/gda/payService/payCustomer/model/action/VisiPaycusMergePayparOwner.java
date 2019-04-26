@@ -2,7 +2,7 @@ package br.com.gda.payService.payCustomer.model.action;
 
 import java.sql.Connection;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.payService.payCustomer.info.PaycusInfo;
@@ -24,7 +24,7 @@ final class VisiPaycusMergePayparOwner extends ActionVisitorTemplateMerge<Paycus
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<PaycusInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<PaycusInfo>> getMergerClassHook() {
 		return PaycusMerger.class;
 	}
 }

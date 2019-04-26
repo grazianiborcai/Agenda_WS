@@ -2,10 +2,10 @@ package br.com.gda.business.company.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class CompMergerUsername extends InfoMerger<CompInfo, UsernameInfo, CompInfo> {
+final class CompMergerUsername extends InfoMerger_<CompInfo, UsernameInfo, CompInfo> {
 	public CompInfo merge(UsernameInfo sourceOne, CompInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new CompVisiMergeUsername());
 	}

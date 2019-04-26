@@ -2,9 +2,9 @@ package br.com.gda.business.user.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class UserMergerToDelete extends InfoMerger<UserInfo, UserInfo, UserInfo> {
+final class UserMergerToDelete extends InfoMerger_<UserInfo, UserInfo, UserInfo> {
 	public UserInfo merge(UserInfo sourceOne, UserInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new UserVisiMergeToDelete());
 	}

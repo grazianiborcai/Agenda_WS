@@ -2,9 +2,9 @@ package br.com.gda.business.owner.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class OwnerMergerToDelete extends InfoMerger<OwnerInfo, OwnerInfo, OwnerInfo> {
+final class OwnerMergerToDelete extends InfoMerger_<OwnerInfo, OwnerInfo, OwnerInfo> {
 	public OwnerInfo merge(OwnerInfo sourceOne, OwnerInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new OwnerVisiMergeToDelete());
 	}

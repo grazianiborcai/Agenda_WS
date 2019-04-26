@@ -1,11 +1,11 @@
 package br.com.gda.business.customer.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.info.CusMerger;
 import br.com.gda.business.customer.model.decisionTree.RootCusSelect;
-import br.com.gda.info.InfoWritterFactory;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -23,7 +23,7 @@ final class VisiCusMergeToDelete extends ActionVisitorTemplateMerge<CusInfo, Cus
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<CusInfo>> getMergerClassHook() {
-		return CusMerger.class;
+	@Override protected List<CusInfo> mergeHook(List<CusInfo> recordInfos, List<CusInfo> selectedInfos) {	
+		return CusMerger.mergeToDelete(selectedInfos, recordInfos);
 	}
 }

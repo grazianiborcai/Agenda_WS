@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.info.StoreKeeper;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateKeep;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -25,7 +25,7 @@ final class VisiStoreKeepStore extends ActionVisitorTemplateKeep<StoreInfo, Stor
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<StoreInfo>> getKeeperClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<StoreInfo>> getKeeperClassHook() {
 		return StoreKeeper.class;
 	}
 }

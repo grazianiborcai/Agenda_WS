@@ -5,9 +5,9 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.form.formAddress.info.FormAddressInfo;
 import br.com.gda.business.snapshot.info.SnapInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class AddressSnapMerger extends InfoWritterFactory<AddressSnapInfo> {	
+public final class AddressSnapMerger extends InfoWritterFactory_<AddressSnapInfo> {	
 	
 	public AddressSnapMerger() {
 		super(new AddressSnapUniquifier());

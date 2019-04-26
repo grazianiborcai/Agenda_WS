@@ -3,9 +3,9 @@ package br.com.gda.business.customerSearch.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.LanguInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class CusarchMerger extends InfoWritterFactory<CusarchInfo> {	
+public final class CusarchMerger extends InfoWritterFactory_<CusarchInfo> {	
 	
 	public CusarchMerger() {
 		super(new CusarchUniquifier());

@@ -5,7 +5,7 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.decisionTree.RootEmpSelect;
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
 import br.com.gda.business.employeeMaterial.info.EmpmatMerger;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -23,7 +23,7 @@ final class VisiEmpmatMergeEmp extends ActionVisitorTemplateMerge<EmpmatInfo, Em
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<EmpmatInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<EmpmatInfo>> getMergerClassHook() {
 		return EmpmatMerger.class;
 	}
 }

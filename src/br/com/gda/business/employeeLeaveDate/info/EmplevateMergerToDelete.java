@@ -2,9 +2,9 @@ package br.com.gda.business.employeeLeaveDate.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class EmplevateMergerToDelete extends InfoMerger<EmplevateInfo, EmplevateInfo, EmplevateInfo> {
+final class EmplevateMergerToDelete extends InfoMerger_<EmplevateInfo, EmplevateInfo, EmplevateInfo> {
 	public EmplevateInfo merge(EmplevateInfo sourceOne, EmplevateInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new EmplevateVisiMergeToDelete());
 	}

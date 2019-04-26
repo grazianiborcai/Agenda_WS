@@ -10,10 +10,10 @@ import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.personUser.info.PersonUserInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class StoreMerger extends InfoWritterFactory<StoreInfo> {	
+public final class StoreMerger extends InfoWritterFactory_<StoreInfo> {	
 	
 	public StoreMerger() {
 		super(new StoreUniquifier());

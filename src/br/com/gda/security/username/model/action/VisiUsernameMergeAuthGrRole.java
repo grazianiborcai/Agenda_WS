@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import br.com.gda.business.masterData.info.AuthGrRoleInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootAuthGrRoleSelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameInfo;
@@ -24,7 +24,7 @@ final class VisiUsernameMergeAuthGrRole extends ActionVisitorTemplateMerge<Usern
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<UsernameInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<UsernameInfo>> getMergerClassHook() {
 		return UsernameMerger.class;
 	}
 }

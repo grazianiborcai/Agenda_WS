@@ -2,10 +2,10 @@ package br.com.gda.business.company.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class CompMerger extends InfoWritterFactory<CompInfo> {	
+public final class CompMerger extends InfoWritterFactory_<CompInfo> {	
 	
 	public CompMerger() {
 		super();

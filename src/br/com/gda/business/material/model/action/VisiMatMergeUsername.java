@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.info.MatMerger;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
@@ -32,7 +32,7 @@ final class VisiMatMergeUsername extends ActionVisitorTemplateMerge<MatInfo, Use
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<MatInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<MatInfo>> getMergerClassHook() {
 		return MatMerger.class;
 	}
 }

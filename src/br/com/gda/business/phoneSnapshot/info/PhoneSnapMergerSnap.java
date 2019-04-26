@@ -3,9 +3,9 @@ package br.com.gda.business.phoneSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.snapshot.info.SnapInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class PhoneSnapMergerSnap extends InfoMerger<PhoneSnapInfo, SnapInfo, PhoneSnapInfo> {
+final class PhoneSnapMergerSnap extends InfoMerger_<PhoneSnapInfo, SnapInfo, PhoneSnapInfo> {
 	public PhoneSnapInfo merge(SnapInfo sourceOne, PhoneSnapInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new PhoneSnapVisitorSnap());
 	}

@@ -4,9 +4,9 @@ import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class EmpwotmMergerStowotm extends InfoMerger<EmpwotmInfo, EmposInfo, StowotmInfo> {
+final class EmpwotmMergerStowotm extends InfoMerger_<EmpwotmInfo, EmposInfo, StowotmInfo> {
 	public EmpwotmInfo merge(EmposInfo sourceOne, StowotmInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new EmpwotmVisiMergeStowotm());
 	}

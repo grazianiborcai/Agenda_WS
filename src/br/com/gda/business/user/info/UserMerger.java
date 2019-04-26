@@ -7,10 +7,10 @@ import br.com.gda.business.masterData.info.AuthGrRoleInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.personCustomer.info.PersonCusInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class UserMerger extends InfoWritterFactory<UserInfo> {	
+public final class UserMerger extends InfoWritterFactory_<UserInfo> {	
 	
 	public UserMerger() {
 		super(new UserUniquifier());

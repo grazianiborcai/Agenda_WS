@@ -6,7 +6,7 @@ import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.decisionTree.RootPersonInsert;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -39,7 +39,7 @@ final class VisiPaycusInsertPerson extends ActionVisitorTemplateAction<PaycusInf
 	
 	
 	@Override protected List<PaycusInfo> toBaseClassHook(List<PaycusInfo> baseInfos, List<PersonInfo> results) {
-		InfoWritterFactory<PaycusInfo> merger = new PaycusMerger();		
+		InfoWritterFactory_<PaycusInfo> merger = new PaycusMerger();		
 		return merger.merge(results, baseInfos);
 	}
 }

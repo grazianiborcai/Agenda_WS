@@ -2,9 +2,9 @@ package br.com.gda.business.phone.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class PhoneMergerToDelete extends InfoMerger<PhoneInfo, PhoneInfo, PhoneInfo> {
+final class PhoneMergerToDelete extends InfoMerger_<PhoneInfo, PhoneInfo, PhoneInfo> {
 	public PhoneInfo merge(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new PhoneVisiMergeToDelete());
 	}

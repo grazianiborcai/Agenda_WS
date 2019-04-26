@@ -2,11 +2,11 @@ package br.com.gda.security.tokenAuthentication.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class TauthMerger extends InfoWritterFactory<TauthInfo> {	
+public final class TauthMerger extends InfoWritterFactory_<TauthInfo> {	
 	
 	public TauthMerger() {
 		super(new TauthUniquifier());

@@ -3,9 +3,9 @@ package br.com.gda.business.address.info;
 import java.util.List;
 
 import br.com.gda.business.form.formAddress.info.FormAddressInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class AddressMerger extends InfoWritterFactory<AddressInfo> {	
+public final class AddressMerger extends InfoWritterFactory_<AddressInfo> {	
 	
 	public AddressMerger() {
 		super(new AddressUniquifier());

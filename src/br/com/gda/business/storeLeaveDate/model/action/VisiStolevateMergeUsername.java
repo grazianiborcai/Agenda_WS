@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.business.storeLeaveDate.info.StolevateMerger;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
@@ -32,7 +32,7 @@ final class VisiStolevateMergeUsername extends ActionVisitorTemplateMerge<Stolev
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<StolevateInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<StolevateInfo>> getMergerClassHook() {
 		return StolevateMerger.class;
 	}
 }

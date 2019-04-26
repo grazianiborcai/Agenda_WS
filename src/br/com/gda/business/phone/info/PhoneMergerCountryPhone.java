@@ -3,9 +3,9 @@ package br.com.gda.business.phone.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.CountryPhoneInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class PhoneMergerCountryPhone extends InfoMerger<PhoneInfo, CountryPhoneInfo, PhoneInfo> {
+final class PhoneMergerCountryPhone extends InfoMerger_<PhoneInfo, CountryPhoneInfo, PhoneInfo> {
 	public PhoneInfo merge(CountryPhoneInfo sourceOne, PhoneInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new PhoneVisitorCountryPhone());
 	}

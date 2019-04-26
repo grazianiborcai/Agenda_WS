@@ -9,7 +9,6 @@ import br.com.gda.business.customer.info.CusMerger;
 import br.com.gda.business.person.info.PersonCopier;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.decisionTree.RootPersonInsert;
-import br.com.gda.info.InfoWritterFactory;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -40,7 +39,6 @@ final class VisiCusInsertPerson extends ActionVisitorTemplateAction<CusInfo, Per
 	
 	
 	@Override protected List<CusInfo> toBaseClassHook(List<CusInfo> baseInfos, List<PersonInfo> results) {
-		InfoWritterFactory<CusInfo> merger = new CusMerger();		
-		return merger.merge(results, baseInfos);
+		return CusMerger.mergeWithPerson(results, baseInfos);
 	}
 }

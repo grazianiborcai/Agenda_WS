@@ -2,6 +2,7 @@ package br.com.gda.business.phone.info;
 
 import java.util.List;
 
+import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
@@ -60,6 +61,20 @@ public final class PhoneCopier {
 	
 	public static List<PhoneInfo> copyFromEmp(List<EmpInfo> sources) {
 		InfoCopier<PhoneInfo, EmpInfo> copier = new PhoneCopyEmp();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static PhoneInfo copyFromCus(CusInfo source) {
+		InfoCopier<PhoneInfo, CusInfo> copier = new PhoneCopyCus();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhoneInfo> copyFromCus(List<CusInfo> sources) {
+		InfoCopier<PhoneInfo, CusInfo> copier = new PhoneCopyCus();
 		return copier.makeCopy(sources);
 	}
 }

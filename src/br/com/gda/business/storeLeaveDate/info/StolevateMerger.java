@@ -3,10 +3,10 @@ package br.com.gda.business.storeLeaveDate.info;
 import java.util.List;
 
 import br.com.gda.business.planningTime.info.PlanDataInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class StolevateMerger extends InfoWritterFactory<StolevateInfo> {
+public final class StolevateMerger extends InfoWritterFactory_<StolevateInfo> {
 	
 	public StolevateMerger() {
 		super(new StolevateUniquifier());

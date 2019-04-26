@@ -2,7 +2,7 @@ package br.com.gda.security.userPassword.model.action;
 
 import java.sql.Connection;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateKeep;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -25,7 +25,7 @@ final class VisiUpswdKeepUpswd extends ActionVisitorTemplateKeep<UpswdInfo, Upsw
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<UpswdInfo>> getKeeperClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<UpswdInfo>> getKeeperClassHook() {
 		return UpswdKeeper.class;
 	}
 }

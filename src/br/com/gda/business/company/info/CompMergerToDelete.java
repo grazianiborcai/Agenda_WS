@@ -2,9 +2,9 @@ package br.com.gda.business.company.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class CompMergerToDelete extends InfoMerger<CompInfo, CompInfo, CompInfo> {
+final class CompMergerToDelete extends InfoMerger_<CompInfo, CompInfo, CompInfo> {
 	public CompInfo merge(CompInfo sourceOne, CompInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new CompVisiMergeToDelete());
 	}

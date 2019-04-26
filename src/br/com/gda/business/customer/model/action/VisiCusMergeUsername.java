@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.info.CusMerger;
-import br.com.gda.info.InfoWritterFactory;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
@@ -32,7 +31,7 @@ final class VisiCusMergeUsername extends ActionVisitorTemplateMerge<CusInfo, Use
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<CusInfo>> getMergerClassHook() {
-		return CusMerger.class;
+	@Override protected List<CusInfo> mergeHook(List<CusInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
+		return CusMerger.mergeWithUsername(selectedInfos, recordInfos);
 	}
 }

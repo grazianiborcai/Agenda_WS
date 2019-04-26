@@ -3,9 +3,9 @@ package br.com.gda.payService.payPartnerCountry.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.PayparInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class PayparCountryMerger extends InfoWritterFactory<PayparCountryInfo> {	
+public final class PayparCountryMerger extends InfoWritterFactory_<PayparCountryInfo> {	
 	
 	public PayparCountryMerger() {
 		super(new PayparCountryUniquifier());

@@ -3,9 +3,9 @@ package br.com.gda.business.personSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.GenderInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class PersonSnapMergerGender extends InfoMerger<PersonSnapInfo, GenderInfo, PersonSnapInfo> {
+final class PersonSnapMergerGender extends InfoMerger_<PersonSnapInfo, GenderInfo, PersonSnapInfo> {
 	public PersonSnapInfo merge(GenderInfo sourceOne, PersonSnapInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new PersonSnapVisitorGender());
 	}

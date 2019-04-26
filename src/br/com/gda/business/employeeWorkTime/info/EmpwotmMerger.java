@@ -6,10 +6,10 @@ import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class EmpwotmMerger extends InfoWritterFactory<EmpwotmInfo> {
+public final class EmpwotmMerger extends InfoWritterFactory_<EmpwotmInfo> {
 	
 	public EmpwotmMerger() {
 		super(new EmpwotmUniquifier());

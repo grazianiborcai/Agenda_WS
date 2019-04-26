@@ -5,7 +5,7 @@ import java.sql.Connection;
 import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.gda.business.employeeLeaveDate.info.EmplevateMerger;
 import br.com.gda.business.employeeLeaveDate.model.decisionTree.RootEmplevateSelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -23,7 +23,7 @@ final class VisiEmplevateMergeToDelete extends ActionVisitorTemplateMerge<Emplev
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<EmplevateInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<EmplevateInfo>> getMergerClassHook() {
 		return EmplevateMerger.class;
 	}
 }

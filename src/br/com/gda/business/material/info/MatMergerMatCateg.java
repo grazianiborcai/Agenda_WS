@@ -3,9 +3,9 @@ package br.com.gda.business.material.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.MatCategInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class MatMergerMatCateg extends InfoMerger<MatInfo, MatCategInfo, MatInfo> {
+final class MatMergerMatCateg extends InfoMerger_<MatInfo, MatCategInfo, MatInfo> {
 	public MatInfo merge(MatCategInfo sourceOne, MatInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new MatVisiMergeMatCateg());
 	}

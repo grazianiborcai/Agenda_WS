@@ -2,10 +2,10 @@ package br.com.gda.security.storeAuthorization.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class StorauthMergerUsername extends InfoMerger<StorauthInfo, UsernameInfo, StorauthInfo> {
+final class StorauthMergerUsername extends InfoMerger_<StorauthInfo, UsernameInfo, StorauthInfo> {
 	public StorauthInfo merge(UsernameInfo sourceOne, StorauthInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new StorauthVisiMergeUsername());
 	}

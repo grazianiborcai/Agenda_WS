@@ -2,10 +2,10 @@ package br.com.gda.business.employeePosition.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class EmposMergerUsername extends InfoMerger<EmposInfo, UsernameInfo, EmposInfo> {
+final class EmposMergerUsername extends InfoMerger_<EmposInfo, UsernameInfo, EmposInfo> {
 	public EmposInfo merge(UsernameInfo sourceOne, EmposInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new EmposVisiMergeUsername());
 	}

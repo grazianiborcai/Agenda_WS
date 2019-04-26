@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import br.com.gda.business.masterData.info.PayparInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootPayparSelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.payService.payPartnerCountry.info.PayparCountryInfo;
@@ -24,7 +24,7 @@ final class VisiPayparCountryMergePaypar extends ActionVisitorTemplateMerge<Payp
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<PayparCountryInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<PayparCountryInfo>> getMergerClassHook() {
 		return PayparCountryMerger.class;
 	}
 }

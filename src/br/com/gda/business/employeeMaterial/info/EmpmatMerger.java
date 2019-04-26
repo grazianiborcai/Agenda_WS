@@ -4,10 +4,10 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class EmpmatMerger extends InfoWritterFactory<EmpmatInfo> {
+public final class EmpmatMerger extends InfoWritterFactory_<EmpmatInfo> {
 	
 	public EmpmatMerger() {
 		super(new EmpmatUniquifier());

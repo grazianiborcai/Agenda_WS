@@ -5,7 +5,7 @@ import java.sql.Connection;
 import br.com.gda.business.materialStock.info.MatockInfo;
 import br.com.gda.business.materialStock.info.MatockMerger;
 import br.com.gda.business.materialStock.model.decisionTree.RootMatockSelect;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -23,7 +23,7 @@ final class VisiMatockMergeToUpdate extends ActionVisitorTemplateMerge<MatockInf
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<MatockInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<MatockInfo>> getMergerClassHook() {
 		return MatockMerger.class;
 	}
 }

@@ -2,9 +2,9 @@ package br.com.gda.business.materialStock.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class MatockMergerToUpdate extends InfoMerger<MatockInfo, MatockInfo, MatockInfo> {
+final class MatockMergerToUpdate extends InfoMerger_<MatockInfo, MatockInfo, MatockInfo> {
 	public MatockInfo merge(MatockInfo sourceOne, MatockInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new MatockVisiMergeToUpdate());
 	}

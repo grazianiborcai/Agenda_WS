@@ -3,9 +3,9 @@ package br.com.gda.business.employeeLeaveDate.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.TimezoneInfo;
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class EmplevateMergerTimezone extends InfoMerger<EmplevateInfo, TimezoneInfo, EmplevateInfo> {
+final class EmplevateMergerTimezone extends InfoMerger_<EmplevateInfo, TimezoneInfo, EmplevateInfo> {
 	public EmplevateInfo merge(TimezoneInfo sourceOne, EmplevateInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new EmplevateVisiMergeTimezone());
 	}

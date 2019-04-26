@@ -2,9 +2,9 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class StateMergerCountry extends InfoMerger<StateInfo, CountryInfo, StateInfo> {
+final class StateMergerCountry extends InfoMerger_<StateInfo, CountryInfo, StateInfo> {
 	public StateInfo merge(CountryInfo sourceOne, StateInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new StateVisiCountry());
 	}

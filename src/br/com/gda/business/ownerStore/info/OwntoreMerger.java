@@ -3,9 +3,9 @@ package br.com.gda.business.ownerStore.info;
 import java.util.List;
 
 import br.com.gda.business.ownerStore.info.OwntoreInfo;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class OwntoreMerger extends InfoWritterFactory<OwntoreInfo> {	
+public final class OwntoreMerger extends InfoWritterFactory_<OwntoreInfo> {	
 	
 	public OwntoreMerger() {
 		super(new OwntoreUniquifier());

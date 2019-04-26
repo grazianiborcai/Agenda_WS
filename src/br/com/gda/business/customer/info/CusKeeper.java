@@ -2,9 +2,9 @@ package br.com.gda.business.customer.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 
-public final class CusKeeper extends InfoWritterFactory<CusInfo> {	
+public final class CusKeeper extends InfoWritterFactory_<CusInfo> {	
 	
 	public CusKeeper() {
 		super(new CusUniquifier());

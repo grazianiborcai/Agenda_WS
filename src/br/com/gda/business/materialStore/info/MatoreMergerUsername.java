@@ -2,10 +2,10 @@ package br.com.gda.business.materialStore.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class MatoreMergerUsername extends InfoMerger<MatoreInfo, UsernameInfo, MatoreInfo> {
+final class MatoreMergerUsername extends InfoMerger_<MatoreInfo, UsernameInfo, MatoreInfo> {
 	public MatoreInfo merge(UsernameInfo sourceOne, MatoreInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new MatoreVisiMergeUsername());
 	}

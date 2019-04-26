@@ -2,9 +2,9 @@ package br.com.gda.business.storeLeaveDate.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger;
+import br.com.gda.info.InfoMerger_;
 
-final class StolevateMergerToDelete extends InfoMerger<StolevateInfo, StolevateInfo, StolevateInfo> {
+final class StolevateMergerToDelete extends InfoMerger_<StolevateInfo, StolevateInfo, StolevateInfo> {
 	public StolevateInfo merge(StolevateInfo sourceOne, StolevateInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new StolevateVisiMergeToDelete());
 	}

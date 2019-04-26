@@ -8,7 +8,7 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.info.StoreMerger;
-import br.com.gda.info.InfoWritterFactory;
+import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -26,7 +26,7 @@ final class VisiStoreMergeAddress extends ActionVisitorTemplateMerge<StoreInfo, 
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory<StoreInfo>> getMergerClassHook() {
+	@Override protected Class<? extends InfoWritterFactory_<StoreInfo>> getMergerClassHook() {
 		return StoreMerger.class;
 	}
 	
