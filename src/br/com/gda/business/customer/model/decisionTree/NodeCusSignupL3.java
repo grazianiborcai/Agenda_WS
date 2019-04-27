@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.action.LazyCusRootUpdate_;
+import br.com.gda.business.customer.model.action.LazyCusMergeToUpdateUser;
+import br.com.gda.business.customer.model.action.LazyCusRootUpdate;
 import br.com.gda.business.customer.model.checker.CusCheckHasUser;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -45,9 +46,11 @@ public final class NodeCusSignupL3 extends DeciTreeWriteTemplate<CusInfo> {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CusInfo> insertUser = new NodeCusInsertUser(option).toAction();
-		ActionLazy<CusInfo> updateCustomer = new LazyCusRootUpdate_(option.conn, option.schemaName);
+		ActionLazy<CusInfo> mergeToUpdateUser = new LazyCusMergeToUpdateUser(option.conn, option.schemaName);
+		ActionLazy<CusInfo> updateCustomer = new LazyCusRootUpdate(option.conn, option.schemaName);
 		
-		insertUser.addPostAction(updateCustomer);
+		insertUser.addPostAction(mergeToUpdateUser);
+		mergeToUpdateUser.addPostAction(updateCustomer);
 		
 		actions.add(insertUser);	
 		return actions;

@@ -3,16 +3,15 @@ package br.com.gda.business.customer.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.decisionTree.RootCusUpdate;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCusRootUpdate_ extends ActionLazyTemplate<CusInfo, CusInfo> {
+public final class LazyCusMergeToUpdateUser extends ActionLazyTemplate<CusInfo, CusInfo> {
 	
-	public LazyCusRootUpdate_(Connection conn, String schemaName) {
+	public LazyCusMergeToUpdateUser(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyCusRootUpdate_ extends ActionLazyTemplate<CusInfo, CusInf
 	
 	
 	@Override protected ActionStd<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
-		return new RootCusUpdate(option).toAction();
+		return new StdCusMergeToUpdateUser(option);
 	}
 	
 	
