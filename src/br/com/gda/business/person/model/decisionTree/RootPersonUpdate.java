@@ -12,6 +12,7 @@ import br.com.gda.business.person.model.checker.PersonCheckExist;
 import br.com.gda.business.person.model.checker.PersonCheckGender;
 import br.com.gda.business.person.model.checker.PersonCheckWrite;
 import br.com.gda.business.person.model.checker.PersonCheckKey;
+import br.com.gda.business.person.model.checker.PersonCheckLangu;
 import br.com.gda.business.person.model.checker.PersonCheckOwner;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -57,6 +58,13 @@ public final class RootPersonUpdate implements DeciTree<PersonInfo> {
 		checkerOption.expectedResult = KEY_NOT_NULL;
 		checker = new PersonCheckKey(checkerOption);
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new PersonCheckLangu(checkerOption);
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

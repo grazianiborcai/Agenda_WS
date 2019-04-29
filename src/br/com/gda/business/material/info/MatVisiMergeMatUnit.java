@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class MatVisiMergeMatUnit implements InfoMergerVisitor<MatInfo, MatUnitInfo, MatInfo> {
+final class MatVisiMergeMatUnit implements InfoMergerVisitor_<MatInfo, MatUnitInfo, MatInfo> {
 
 	@Override public MatInfo writeRecord(MatUnitInfo sourceOne, MatInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

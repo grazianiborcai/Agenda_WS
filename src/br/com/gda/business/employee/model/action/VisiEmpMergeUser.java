@@ -8,7 +8,6 @@ import br.com.gda.business.employee.info.EmpMerger;
 import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserSelect;
-import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -32,7 +31,7 @@ final class VisiEmpMergeUser extends ActionVisitorTemplateMerge<EmpInfo, UserInf
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<EmpInfo>> getMergerClassHook() {
-		return EmpMerger.class;
+	@Override protected List<EmpInfo> mergeHook(List<EmpInfo> recordInfos, List<UserInfo> selectedInfos) {	
+		return EmpMerger.mergeWithUser(selectedInfos, recordInfos);
 	}
 }

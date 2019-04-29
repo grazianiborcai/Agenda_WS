@@ -27,6 +27,8 @@ import br.com.gda.business.employeeLeaveDate.model.EmplevateModelDelete;
 import br.com.gda.business.employeeLeaveDate.model.EmplevateModelInsert;
 import br.com.gda.business.employeeLeaveDate.model.EmplevateModelSelect;
 import br.com.gda.business.employeeLeaveDate.model.EmplevateModelUpdate;
+import br.com.gda.business.employeeList.info.EmplisInfo;
+import br.com.gda.business.employeeList.model.EmplisModelSelect;
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
 import br.com.gda.business.employeeMaterial.model.EmpmatModelDelete;
 import br.com.gda.business.employeeMaterial.model.EmpmatModelInsert;
@@ -50,6 +52,7 @@ public class EmployeeResource {
 	private static final String UPDATE_EMP = "/updateEmployee";
 	private static final String DELETE_EMP = "/deleteEmployee";
 	private static final String SELECT_EMP = "/selectEmployee";
+	private static final String SELECT_EMP_LIST = "/selectEmployeeList";
 	private static final String INSERT_WORK_TIME = "/insertWorkTime";
 	private static final String UPDATE_WORK_TIME = "/updateWorkTime";
 	private static final String SELECT_WORK_TIME = "/selectWorkTime";
@@ -305,6 +308,27 @@ public class EmployeeResource {
 		recordInfo.username = username;
 		
 		Model model = new EmpModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_EMP_LIST)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectEmplis(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner,
+								 @HeaderParam("codEmployee") 	@DefaultValue("-1") int codEmployee,
+								 @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,
+				                 @HeaderParam("TOKEN_USERNAME") String username) {
+		
+		EmplisInfo recordInfo = new EmplisInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new EmplisModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

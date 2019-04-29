@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.planningTime.info.PlanDataInfo;
+import br.com.gda.business.planningTime_.info.PlanDataInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;

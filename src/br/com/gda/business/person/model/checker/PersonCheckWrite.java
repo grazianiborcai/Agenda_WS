@@ -20,6 +20,7 @@ public final class PersonCheckWrite extends ModelCheckerTemplateSimple<PersonInf
 			|| recordInfo.codGender 		<= 0	
 			|| recordInfo.username			== null
 			|| recordInfo.name 				== null
+			|| recordInfo.codLanguage		== null
 			|| recordInfo.codEntityCateg	== null )
 			
 			return FAILED;

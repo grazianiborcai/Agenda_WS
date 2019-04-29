@@ -2,8 +2,8 @@ package br.com.gda.payService.payCustomer.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.personUser.info.PersonUserInfo;
-import br.com.gda.business.personUser.model.checker.PersonUserCheckExist;
+import br.com.gda.business.personUser_.info.PersonUserInfo;
+import br.com.gda.business.personUser_.model.checker.PersonUserCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.payService.payCustomer.info.PaycusInfo;

@@ -13,9 +13,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.planningTime.info.PlanDataInfo;
-import br.com.gda.business.planningTime.info.PlanInfo;
-import br.com.gda.business.planningTime.model.PlanModelSelect;
+import br.com.gda.business.planningTime_.info.PlanDataInfo;
+import br.com.gda.business.planningTime_.info.PlanInfo;
+import br.com.gda.business.planningTime_.model.PlanModelSelect;
 import br.com.gda.model.Model;
 
 @Path("/PlanningTime")
@@ -26,11 +26,12 @@ public final class PlanningTimeResource {
 	@GET
 	@Path(SELECT_PLAN_TIME)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectPlanTime(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
-								   @HeaderParam("codStore")    @DefaultValue("-1") long codStore, 
-								   @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee, 
-								   @HeaderParam("date")        @DefaultValue("1900-01-01") String date,
-			                       @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+	public Response selectPlanTime(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+								   @HeaderParam("codStore")    		@DefaultValue("-1") long codStore, 
+								   @HeaderParam("codEmployee") 		@DefaultValue("-1") long codEmployee, 
+								   @HeaderParam("date")        		@DefaultValue("1900-01-01") String date,
+								   @HeaderParam("TOKEN_USERNAME")	String username,
+			                       @HeaderParam("codLanguage") 		@DefaultValue("EN") String codLanguage) {
 		
 		PlanDataInfo dataInfo = new PlanDataInfo();
 		dataInfo.codOwner = codOwner;
@@ -38,6 +39,7 @@ public final class PlanningTimeResource {
 		dataInfo.codEmployee = codEmployee;
 		dataInfo.date = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
 		dataInfo.codLanguage = codLanguage;
+		dataInfo.username = username;
 		
 		List<PlanDataInfo> dataInfos = new ArrayList<>();
 		dataInfos.add(dataInfo);

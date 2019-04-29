@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.PayparInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class PayparStoreVisitorPaypar implements InfoMergerVisitor<PayparStoreInfo, PayparInfo, PayparStoreInfo> {
+final class PayparStoreVisitorPaypar implements InfoMergerVisitor_<PayparStoreInfo, PayparInfo, PayparStoreInfo> {
 	private final boolean SUCCESS = true;
 	private final boolean FAILED = false;
 

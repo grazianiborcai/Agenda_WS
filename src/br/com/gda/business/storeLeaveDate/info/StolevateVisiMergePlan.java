@@ -2,11 +2,11 @@ package br.com.gda.business.storeLeaveDate.info;
 
 import java.time.LocalDate;
 
-import br.com.gda.business.planningTime.info.PlanDataInfo;
+import br.com.gda.business.planningTime_.info.PlanDataInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class StolevateVisiMergePlan implements InfoMergerVisitor<StolevateInfo, PlanDataInfo, StolevateInfo> {
+final class StolevateVisiMergePlan implements InfoMergerVisitor_<StolevateInfo, PlanDataInfo, StolevateInfo> {
 
 	@Override public StolevateInfo writeRecord(PlanDataInfo sourceOne, StolevateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

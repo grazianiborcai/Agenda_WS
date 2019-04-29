@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.info.EmpMerger;
-import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
@@ -32,7 +31,7 @@ final class VisiEmpMergeUsername extends ActionVisitorTemplateMerge<EmpInfo, Use
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<EmpInfo>> getMergerClassHook() {
-		return EmpMerger.class;
+	@Override protected List<EmpInfo> mergeHook(List<EmpInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
+		return EmpMerger.mergeWithUsername(selectedInfos, recordInfos);
 	}
 }

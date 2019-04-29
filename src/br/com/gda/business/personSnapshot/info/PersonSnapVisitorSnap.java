@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.snapshot.info.SnapInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class PersonSnapVisitorSnap implements InfoMergerVisitor<PersonSnapInfo, SnapInfo, PersonSnapInfo> {
+final class PersonSnapVisitorSnap implements InfoMergerVisitor_<PersonSnapInfo, SnapInfo, PersonSnapInfo> {
 
 	@Override public PersonSnapInfo writeRecord(SnapInfo sourceOne, PersonSnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

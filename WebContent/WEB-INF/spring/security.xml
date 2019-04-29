@@ -44,6 +44,7 @@
     	<security:intercept-url pattern="/**/Store/insertStoreLeaveDate" 		access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/deleteStoreLeaveDate" 		access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/selectStoreLeaveDate" 		access="hasAuthority('STORE_READ')" 				/>
+    	<security:intercept-url pattern="/**/Store/selectStoreList" 			access="isAuthenticated()" 							/>    	
         <security:intercept-url pattern="/**/Store/insert**" 					access="hasAuthority('STORE_INSERT')" 				/>
         <security:intercept-url pattern="/**/Store/update**" 					access="hasAuthority('STORE_UPDATE')" 				/>
         <security:intercept-url pattern="/**/Store/delete**" 					access="hasAuthority('STORE_DELETE')" 				/>
@@ -77,7 +78,8 @@
         <security:intercept-url pattern="/**/Employee/selectWorkTimeConflict"	access="hasAuthority('EMPLOYEE_TIME_READ')" 		/>
         <security:intercept-url pattern="/**/Employee/insertMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_WRITE')"	/>
         <security:intercept-url pattern="/**/Employee/deleteMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_WRITE')"	/>
-        <security:intercept-url pattern="/**/Employee/selectMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_READ')" 	/>         
+        <security:intercept-url pattern="/**/Employee/selectMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_READ')" 	/>       
+        <security:intercept-url pattern="/**/Employee/selectList"				access="isAuthenticated()" 							/>             
         <security:intercept-url pattern="/**/Employee/insert**" 				access="hasAuthority('EMPLOYEE_WRITE')"				/>
         <security:intercept-url pattern="/**/Employee/update**" 				access="hasAuthority('EMPLOYEE_WRITE')" 			/>
         <security:intercept-url pattern="/**/Employee/delete**" 				access="hasAuthority('EMPLOYEE_WRITE')" 			/>

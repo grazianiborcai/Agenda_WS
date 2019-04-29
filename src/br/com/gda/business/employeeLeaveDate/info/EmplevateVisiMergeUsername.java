@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class EmplevateVisiMergeUsername implements InfoMergerVisitor<EmplevateInfo, UsernameInfo, EmplevateInfo> {
+final class EmplevateVisiMergeUsername implements InfoMergerVisitor_<EmplevateInfo, UsernameInfo, EmplevateInfo> {
 
 	@Override public EmplevateInfo writeRecord(UsernameInfo sourceOne, EmplevateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

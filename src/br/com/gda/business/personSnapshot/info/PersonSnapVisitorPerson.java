@@ -2,9 +2,9 @@ package br.com.gda.business.personSnapshot.info;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class PersonSnapVisitorPerson implements InfoMergerVisitor<PersonSnapInfo, PersonInfo, PersonSnapInfo> {
+final class PersonSnapVisitorPerson implements InfoMergerVisitor_<PersonSnapInfo, PersonInfo, PersonSnapInfo> {
 
 	@Override public PersonSnapInfo writeRecord(PersonInfo sourceOne, PersonSnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

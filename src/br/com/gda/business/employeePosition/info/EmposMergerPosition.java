@@ -1,18 +1,19 @@
 package br.com.gda.business.employeePosition.info;
 
-import java.util.List;
-
 import br.com.gda.business.masterData.info.PositionInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class EmposMergerPosition extends InfoMerger_<EmposInfo, PositionInfo, EmposInfo> {
-	public EmposInfo merge(PositionInfo sourceOne, EmposInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new EmposVisiMergePosition());
+final class EmposMergerPosition extends InfoMergerTemplate<EmposInfo, PositionInfo> {
+
+	@Override protected InfoMergerVisitorV2<EmposInfo, PositionInfo> getVisitorHook() {
+		return new EmposVisiMergePosition();
 	}
 	
 	
 	
-	public List<EmposInfo> merge(List<PositionInfo> sourceOnes, List<EmposInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new EmposVisiMergePosition());
+	@Override protected InfoUniquifier<EmposInfo> getUniquifierHook() {
+		return new EmposUniquifier();
 	}
 }

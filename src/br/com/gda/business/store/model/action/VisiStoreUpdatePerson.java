@@ -9,7 +9,6 @@ import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.decisionTree.RootPersonUpdate;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.info.StoreMerger;
-import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -40,7 +39,6 @@ final class VisiStoreUpdatePerson extends ActionVisitorTemplateAction<StoreInfo,
 	
 	
 	@Override protected List<StoreInfo> toBaseClassHook(List<StoreInfo> baseInfos, List<PersonInfo> results) {
-		InfoWritterFactory_<StoreInfo> merger = new StoreMerger();		
-		return merger.merge(results, baseInfos);
+		return StoreMerger.mergeWithPerson(results, baseInfos);
 	}
 }

@@ -9,7 +9,6 @@ import br.com.gda.business.employee.info.EmpMerger;
 import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserInsert;
-import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -40,7 +39,6 @@ final class VisiEmpInsertUser extends ActionVisitorTemplateAction<EmpInfo, UserI
 	
 	
 	@Override protected List<EmpInfo> toBaseClassHook(List<EmpInfo> baseInfos, List<UserInfo> results) {
-		InfoWritterFactory_<EmpInfo> merger = new EmpMerger();		
-		return merger.merge(results, baseInfos);
+		return EmpMerger.mergeWithUser(results, baseInfos);
 	}
 }

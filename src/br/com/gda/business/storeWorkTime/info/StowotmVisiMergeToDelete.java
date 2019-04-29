@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class StowotmVisiMergeToDelete implements InfoMergerVisitor<StowotmInfo, StowotmInfo, StowotmInfo> {
+final class StowotmVisiMergeToDelete implements InfoMergerVisitor_<StowotmInfo, StowotmInfo, StowotmInfo> {
 
 	@Override public StowotmInfo writeRecord(StowotmInfo sourceOne, StowotmInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

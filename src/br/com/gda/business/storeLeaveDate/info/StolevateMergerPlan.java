@@ -2,7 +2,7 @@ package br.com.gda.business.storeLeaveDate.info;
 
 import java.util.List;
 
-import br.com.gda.business.planningTime.info.PlanDataInfo;
+import br.com.gda.business.planningTime_.info.PlanDataInfo;
 import br.com.gda.info.InfoMerger_;
 
 final class StolevateMergerPlan extends InfoMerger_<StolevateInfo, PlanDataInfo, StolevateInfo> {

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.dao.DaoJoin;
+import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -21,6 +23,7 @@ import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
 	private final String LT_PERSON = DaoDbTable.PERSON_TABLE;
+	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<PersonInfo> stmtSql;
 	private DaoStmtOption<PersonInfo> stmtOption;
@@ -44,7 +47,7 @@ public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+		this.stmtOption.joins = buildJoins();
 	}
 	
 	
@@ -56,6 +59,26 @@ public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
 		
 		DaoStmtWhere whereClause = new PersonWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
+	}
+	
+	
+	
+	private List<DaoJoin> buildJoins() {
+		List<DaoJoin> joins = new ArrayList<>();		
+		joins.add(buildJoinLanguage());		
+		return joins;
+	}
+	
+	
+	
+	private DaoJoin buildJoinLanguage() {
+		DaoJoin join = new DaoJoin();
+		join.rightTableName = RT_LANGU;
+		join.joinType = DaoJoinType.CROSS_JOIN;
+		join.joinColumns = null;
+		join.constraintClause = null;
+		
+		return join;
 	}
 	
 	
@@ -119,6 +142,7 @@ public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
 				dataInfo.email = stmtResult.getString(PersonDbTableColumn.COL_EMAIL);						
 				dataInfo.recordMode = stmtResult.getString(PersonDbTableColumn.COL_RECORD_MODE);
 				dataInfo.codEntityCateg = stmtResult.getString(PersonDbTableColumn.COL_COD_ENTITY_CATEG);
+				dataInfo.codLanguage = stmtResult.getString(PersonDbTableColumn.COL_COD_LANGUAGE);	
 				
 				stmtResult.getInt(PersonDbTableColumn.COL_COD_GENDER);
 				if (stmtResult.wasNull() == NOT_NULL)

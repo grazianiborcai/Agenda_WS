@@ -1,18 +1,19 @@
 package br.com.gda.business.store.info;
 
-import java.util.List;
-
 import br.com.gda.business.masterData.info.TimezoneInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class StoreMergerTimezone extends InfoMerger_<StoreInfo, TimezoneInfo, StoreInfo> {
-	public StoreInfo merge(TimezoneInfo sourceOne, StoreInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new StoreVisiMergeTimezone());
+final class StoreMergerTimezone extends InfoMergerTemplate<StoreInfo, TimezoneInfo> {
+
+	@Override protected InfoMergerVisitorV2<StoreInfo, TimezoneInfo> getVisitorHook() {
+		return new StoreVisiMergeTimezone();
 	}
 	
 	
 	
-	public List<StoreInfo> merge(List<TimezoneInfo> sourceOnes, List<StoreInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new StoreVisiMergeTimezone());
+	@Override protected InfoUniquifier<StoreInfo> getUniquifierHook() {
+		return new StoreUniquifier();
 	}
 }

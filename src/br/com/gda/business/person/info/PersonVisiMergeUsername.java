@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class PersonVisiMergeUsername implements InfoMergerVisitor<PersonInfo, UsernameInfo, PersonInfo> {
+final class PersonVisiMergeUsername implements InfoMergerVisitor_<PersonInfo, UsernameInfo, PersonInfo> {
 
 	@Override public PersonInfo writeRecord(UsernameInfo sourceOne, PersonInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

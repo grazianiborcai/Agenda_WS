@@ -7,131 +7,133 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.person.info.PersonInfo;
-import br.com.gda.business.personUser.info.PersonUserInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class StoreMerger extends InfoWritterFactory_<StoreInfo> {	
-	
-	public StoreMerger() {
-		super(new StoreUniquifier());
+public final class StoreMerger {
+	public static StoreInfo mergeWithAddress(AddressInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, AddressInfo> merger = new StoreMergerAddress();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public StoreInfo merge(AddressInfo sourceOne, StoreInfo sourceTwo) {
-		return new StoreMergerAddress().merge(sourceOne, sourceTwo);
+	public static List<StoreInfo> mergeWithAddress(List<AddressInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, AddressInfo> merger = new StoreMergerAddress();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	static public StoreInfo merge(PhoneInfo sourceOne, StoreInfo sourceTwo) {
-		return new StoreMergerPhone().merge(sourceOne, sourceTwo);
-	}	
-	
-	
-	
-	static public StoreInfo merge(PersonInfo sourceOne, StoreInfo sourceTwo) {
-		return new StoreMergerPerson().merge(sourceOne, sourceTwo);
-	}	
-	
-	
-	
-	static public StoreInfo merge(PersonUserInfo sourceOne, StoreInfo sourceTwo) {
-		return new StoreMergerPersonUser().merge(sourceOne, sourceTwo);
-	}		
-	
-	
-	
-	static public StoreInfo merge(CompInfo sourceOne, StoreInfo sourceTwo) {
-		return new StoreMergerComp().merge(sourceOne, sourceTwo);
-	}	
-	
-	
-	
-	static public StoreInfo merge(TimezoneInfo sourceOne, StoreInfo sourceTwo) {
-		return new StoreMergerTimezone().merge(sourceOne, sourceTwo);
-	}	
-	
-	
-	
-	static public StoreInfo merge(CurrencyInfo sourceOne, StoreInfo sourceTwo) {
-		return new StoreMergerCurrency().merge(sourceOne, sourceTwo);
+	public static StoreInfo mergeWithComp(CompInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, CompInfo> merger = new StoreMergerComp();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public StoreInfo merge(UserInfo sourceOne, StoreInfo sourceTwo) {
-		return new StoreMergerUser().merge(sourceOne, sourceTwo);
+	public static List<StoreInfo> mergeWithComp(List<CompInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, CompInfo> merger = new StoreMergerComp();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	static public StoreInfo merge(UsernameInfo sourceOne, StoreInfo sourceTwo) {
-		return new StoreMergerUsername().merge(sourceOne, sourceTwo);
+	public static StoreInfo mergeWithCurrency(CurrencyInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, CurrencyInfo> merger = new StoreMergerCurrency();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public StoreInfo merge(StoreInfo sourceOne, StoreInfo sourceTwo) {
-		return new StoreMergerToDelete().merge(sourceOne, sourceTwo);
+	public static List<StoreInfo> mergeWithCurrency(List<CurrencyInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, CurrencyInfo> merger = new StoreMergerCurrency();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	@Override protected List<StoreInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
-		if (sourceOnes.get(0) instanceof AddressInfo 		&&
-			sourceTwos.get(0) instanceof StoreInfo		)
-			return new StoreMergerAddress().merge((List<AddressInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof PhoneInfo 			&&
-			sourceTwos.get(0) instanceof StoreInfo		)
-			return new StoreMergerPhone().merge((List<PhoneInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof PersonInfo 		&&
-			sourceTwos.get(0) instanceof StoreInfo		)
-			return new StoreMergerPerson().merge((List<PersonInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof PersonUserInfo 	&&
-			sourceTwos.get(0) instanceof StoreInfo		)
-			return new StoreMergerPersonUser().merge((List<PersonUserInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof CompInfo 			&&
-			sourceTwos.get(0) instanceof StoreInfo		)
-			return new StoreMergerComp().merge((List<CompInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof TimezoneInfo 		&&
-			sourceTwos.get(0) instanceof StoreInfo		)
-			return new StoreMergerTimezone().merge((List<TimezoneInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof CurrencyInfo 		&&
-			sourceTwos.get(0) instanceof StoreInfo		)
-			return new StoreMergerCurrency().merge((List<CurrencyInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof UserInfo 			&&
-			sourceTwos.get(0) instanceof StoreInfo		)
-			return new StoreMergerUser().merge((List<UserInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);			
-		
-		
-		if (sourceOnes.get(0) instanceof UsernameInfo 		&&
-			sourceTwos.get(0) instanceof StoreInfo		)
-			return new StoreMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof StoreInfo 			&&
-			sourceTwos.get(0) instanceof StoreInfo		)
-			return new StoreMergerToDelete().merge((List<StoreInfo>) sourceOnes, (List<StoreInfo>) sourceTwos);	
-		
-		return null;
+	public static StoreInfo mergeWithPerson(PersonInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, PersonInfo> merger = new StoreMergerPerson();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StoreInfo> mergeWithPerson(List<PersonInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, PersonInfo> merger = new StoreMergerPerson();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static StoreInfo mergeWithPhone(PhoneInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, PhoneInfo> merger = new StoreMergerPhone();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StoreInfo> mergeWithPhone(List<PhoneInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, PhoneInfo> merger = new StoreMergerPhone();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static StoreInfo mergeWithTimezone(TimezoneInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, TimezoneInfo> merger = new StoreMergerTimezone();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StoreInfo> mergeWithTimezone(List<TimezoneInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, TimezoneInfo> merger = new StoreMergerTimezone();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static StoreInfo mergeWithUser(UserInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, UserInfo> merger = new StoreMergerUser();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StoreInfo> mergeWithUser(List<UserInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, UserInfo> merger = new StoreMergerUser();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static StoreInfo mergeWithUsername(UsernameInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, UsernameInfo> merger = new StoreMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StoreInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, UsernameInfo> merger = new StoreMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static StoreInfo mergeToDelete(StoreInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, StoreInfo> merger = new StoreMergerToDelete();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StoreInfo> mergeToDelete(List<StoreInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, StoreInfo> merger = new StoreMergerToDelete();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

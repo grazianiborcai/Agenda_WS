@@ -10,7 +10,7 @@ import br.com.gda.common.SystemMessage;
 
 public abstract class InfoMerger_<T  extends InfoRecord, K extends InfoRecord, S extends InfoRecord> {
 	
-	protected List<T> write(List<K> sourceOnes, List<S> sourceTwos, InfoMergerVisitor<T,K,S> visitor) {
+	protected List<T> write(List<K> sourceOnes, List<S> sourceTwos, InfoMergerVisitor_<T,K,S> visitor) {
 		checkArgument(sourceOnes, sourceTwos);		
 		List<T> results = new ArrayList<>();
 		
@@ -57,7 +57,7 @@ public abstract class InfoMerger_<T  extends InfoRecord, K extends InfoRecord, S
 	
 	
 	
-	private T tryToWrite(K sourceOne, S sourceTwo, InfoMergerVisitor<T,K,S> visitor) {
+	private T tryToWrite(K sourceOne, S sourceTwo, InfoMergerVisitor_<T,K,S> visitor) {
 		try {
 			return write(sourceOne, sourceTwo, visitor);
 			
@@ -70,7 +70,7 @@ public abstract class InfoMerger_<T  extends InfoRecord, K extends InfoRecord, S
 	
 	
 	@SuppressWarnings("unchecked")
-	protected T write(K sourceOne, S sourceTwo, InfoMergerVisitor<T,K,S> visitor) {
+	protected T write(K sourceOne, S sourceTwo, InfoMergerVisitor_<T,K,S> visitor) {
 		checkArgument(sourceOne, sourceTwo, visitor);
 		
 		K clonedSourceOne = (K) makeClone(sourceOne);
@@ -80,7 +80,7 @@ public abstract class InfoMerger_<T  extends InfoRecord, K extends InfoRecord, S
 	
 	
 	
-	private void checkArgument(K sourceOne, S sourceTwo, InfoMergerVisitor<T,K,S> visitor) {
+	private void checkArgument(K sourceOne, S sourceTwo, InfoMergerVisitor_<T,K,S> visitor) {
 		if (sourceOne == null) {
 			logException(new NullPointerException("sourceOne" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("sourceOne" + SystemMessage.NULL_ARGUMENT);

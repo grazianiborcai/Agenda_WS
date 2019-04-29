@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.PayparInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class PaycusVisiPaypar implements InfoMergerVisitor<PaycusInfo, PayparInfo, PaycusInfo> {
+final class PaycusVisiPaypar implements InfoMergerVisitor_<PaycusInfo, PayparInfo, PaycusInfo> {
 	@Override public PaycusInfo writeRecord(PayparInfo sourceOne, PaycusInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		

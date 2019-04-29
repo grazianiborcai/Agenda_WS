@@ -3,9 +3,9 @@ package br.com.gda.business.employeeWorkTime.info;
 import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class EmpwotmVisiMergeStowotm implements InfoMergerVisitor<EmpwotmInfo, EmposInfo, StowotmInfo> {
+final class EmpwotmVisiMergeStowotm implements InfoMergerVisitor_<EmpwotmInfo, EmposInfo, StowotmInfo> {
 
 	@Override public EmpwotmInfo writeRecord(EmposInfo sourceOne, StowotmInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

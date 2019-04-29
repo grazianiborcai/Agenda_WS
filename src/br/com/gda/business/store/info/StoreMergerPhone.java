@@ -1,18 +1,19 @@
 package br.com.gda.business.store.info;
 
-import java.util.List;
-
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class StoreMergerPhone extends InfoMerger_<StoreInfo, PhoneInfo, StoreInfo> {
-	public StoreInfo merge(PhoneInfo sourceOne, StoreInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new StoreVisiMergePhone());
+final class StoreMergerPhone extends InfoMergerTemplate<StoreInfo, PhoneInfo> {
+
+	@Override protected InfoMergerVisitorV2<StoreInfo, PhoneInfo> getVisitorHook() {
+		return new StoreVisiMergePhone();
 	}
 	
 	
 	
-	public List<StoreInfo> merge(List<PhoneInfo> sourceOnes, List<StoreInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new StoreVisiMergePhone());
+	@Override protected InfoUniquifier<StoreInfo> getUniquifierHook() {
+		return new StoreUniquifier();
 	}
 }

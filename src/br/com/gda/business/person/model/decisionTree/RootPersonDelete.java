@@ -11,6 +11,7 @@ import br.com.gda.business.person.model.action.LazyPersonUpdate;
 import br.com.gda.business.person.model.action.StdPersonMergeToDelete;
 import br.com.gda.business.person.model.checker.PersonCheckDelete;
 import br.com.gda.business.person.model.checker.PersonCheckExist;
+import br.com.gda.business.person.model.checker.PersonCheckLangu;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -50,6 +51,13 @@ public final class RootPersonDelete implements DeciTree<PersonInfo> {
 		
 		checker = new PersonCheckDelete();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new PersonCheckLangu(checkerOption);
+		queue.add(checker);	
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

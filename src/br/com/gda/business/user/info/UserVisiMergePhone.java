@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class UserVisiMergePhone implements InfoMergerVisitor<UserInfo, PhoneInfo, UserInfo> {
+final class UserVisiMergePhone implements InfoMergerVisitor_<UserInfo, PhoneInfo, UserInfo> {
 
 	@Override public UserInfo writeRecord(PhoneInfo sourceOne, UserInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

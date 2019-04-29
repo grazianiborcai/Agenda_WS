@@ -6,10 +6,12 @@ import java.util.List;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.action.LazyPersonMergeGender;
 import br.com.gda.business.person.model.action.StdPersonSelect;
+import br.com.gda.business.person.model.checker.PersonCheckLangu;
 import br.com.gda.business.person.model.checker.PersonCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -25,7 +27,7 @@ public final class RootPersonSelect implements DeciTree<PersonInfo> {
 	public RootPersonSelect(DeciTreeOption<PersonInfo> option) {
 		DeciTreeHelperOption<PersonInfo> helperOption = new DeciTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionChecker();
+		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
@@ -35,12 +37,22 @@ public final class RootPersonSelect implements DeciTree<PersonInfo> {
 	
 	
 	
-	private ModelChecker<PersonInfo> buildDecisionChecker() {
+	private ModelChecker<PersonInfo> buildDecisionChecker(DeciTreeOption<PersonInfo> option) {
+		final boolean EXIST_ON_DB = true;	
+		
 		List<ModelChecker<PersonInfo>> queue = new ArrayList<>();		
 		ModelChecker<PersonInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
 		checker = new PersonCheckRead();
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new PersonCheckLangu(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}

@@ -1,17 +1,18 @@
 package br.com.gda.business.employee.info;
 
-import java.util.List;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-import br.com.gda.info.InfoMerger_;
+final class EmpMergerToDelete extends InfoMergerTemplate<EmpInfo, EmpInfo> {
 
-final class EmpMergerToDelete extends InfoMerger_<EmpInfo, EmpInfo, EmpInfo> {
-	public EmpInfo merge(EmpInfo sourceOne, EmpInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new EmpVisiMergeToDelete());
+	@Override protected InfoMergerVisitorV2<EmpInfo, EmpInfo> getVisitorHook() {
+		return new EmpVisiMergeToDelete();
 	}
 	
 	
 	
-	public List<EmpInfo> merge(List<EmpInfo> sourceOnes, List<EmpInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new EmpVisiMergeToDelete());
+	@Override protected InfoUniquifier<EmpInfo> getUniquifierHook() {
+		return new EmpUniquifier();
 	}
 }

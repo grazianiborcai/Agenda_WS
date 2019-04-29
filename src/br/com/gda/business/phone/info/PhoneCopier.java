@@ -6,6 +6,7 @@ import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.payService.payCustomer.info.PaycusInfo;
 
@@ -47,6 +48,20 @@ public final class PhoneCopier {
 	
 	public static List<PhoneInfo> copyFromStore(List<StoreInfo> sources) {
 		InfoCopier<PhoneInfo, StoreInfo> copier = new PhoneCopyStore();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static PhoneInfo copyFromStolis(StolisInfo source) {
+		InfoCopier<PhoneInfo, StolisInfo> copier = new PhoneCopyStolis();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhoneInfo> copyFromStolis(List<StolisInfo> sources) {
+		InfoCopier<PhoneInfo, StolisInfo> copier = new PhoneCopyStolis();
 		return copier.makeCopy(sources);
 	}
 	

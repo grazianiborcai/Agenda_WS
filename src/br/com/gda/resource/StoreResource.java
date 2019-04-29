@@ -28,6 +28,8 @@ import br.com.gda.business.storeLeaveDate.model.StolevateModelDelete;
 import br.com.gda.business.storeLeaveDate.model.StolevateModelInsert;
 import br.com.gda.business.storeLeaveDate.model.StolevateModelSelect;
 import br.com.gda.business.storeLeaveDate.model.StolevateModelUpdate;
+import br.com.gda.business.storeList.info.StolisInfo;
+import br.com.gda.business.storeList.model.StolisModelSelect;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.business.storeWorkTime.model.StowotmModelDelete;
 import br.com.gda.business.storeWorkTime.model.StowotmModelInsert;
@@ -45,6 +47,7 @@ public class StoreResource {
 	private static final String UPDATE_STORE = "/updateStore";
 	private static final String DELETE_STORE = "/deleteStore";
 	private static final String SELECT_STORE = "/selectStore";
+	private static final String SELECT_STORE_LIST = "/selectStoreList";
 	private static final String SELECT_STORE_FEE = "/selectStoreFee";
 	private static final String SELECT_STORE_WTIME = "/selectStoreWorkTime";
 	private static final String INSERT_STORE_WTIME = "/insertStoreWorkTime";
@@ -115,6 +118,26 @@ public class StoreResource {
 		recordInfo.username = username;
 		
 		Model model = new StoreModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STORE_LIST)
+	public Response selectStolis(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                     @HeaderParam("codStore")       @DefaultValue("-1") int codStore,
+			                     @HeaderParam("codLanguage")	   @DefaultValue("EN") String codLanguage,
+			                     @HeaderParam("TOKEN_USERNAME") String username) {
+
+		StolisInfo recordInfo = new StolisInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new StolisModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

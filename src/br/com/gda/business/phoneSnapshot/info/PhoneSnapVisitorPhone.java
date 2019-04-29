@@ -2,9 +2,9 @@ package br.com.gda.business.phoneSnapshot.info;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class PhoneSnapVisitorPhone implements InfoMergerVisitor<PhoneSnapInfo, PhoneInfo, PhoneSnapInfo> {
+final class PhoneSnapVisitorPhone implements InfoMergerVisitor_<PhoneSnapInfo, PhoneInfo, PhoneSnapInfo> {
 
 	@Override public PhoneSnapInfo writeRecord(PhoneInfo sourceOne, PhoneSnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -2,9 +2,9 @@ package br.com.gda.business.cartSnapshot.info;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class CartSnapVisitorCart implements InfoMergerVisitor<CartSnapInfo, CartInfo, CartSnapInfo> {
+final class CartSnapVisitorCart implements InfoMergerVisitor_<CartSnapInfo, CartInfo, CartSnapInfo> {
 
 	@Override public CartSnapInfo writeRecord(CartInfo sourceOne, CartSnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

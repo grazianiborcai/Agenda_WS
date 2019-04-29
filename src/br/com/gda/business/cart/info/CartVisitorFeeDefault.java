@@ -3,9 +3,9 @@ package br.com.gda.business.cart.info;
 import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.business.masterData.info.common.CartCateg;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class CartVisitorFeeDefault implements InfoMergerVisitor<CartInfo, FeeDefaultInfo, CartInfo> {
+final class CartVisitorFeeDefault implements InfoMergerVisitor_<CartInfo, FeeDefaultInfo, CartInfo> {
 
 	@Override public CartInfo writeRecord(FeeDefaultInfo sourceOne, CartInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.snapshot.info.SnapInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class CartSnapVisitorSnap implements InfoMergerVisitor<CartSnapInfo, SnapInfo, CartSnapInfo> {
+final class CartSnapVisitorSnap implements InfoMergerVisitor_<CartSnapInfo, SnapInfo, CartSnapInfo> {
 
 	@Override public CartSnapInfo writeRecord(SnapInfo sourceOne, CartSnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

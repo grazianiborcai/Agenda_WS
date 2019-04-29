@@ -2,7 +2,7 @@ package br.com.gda.business.employeeLeaveDate.info;
 
 import java.time.LocalDate;
 
-import br.com.gda.business.planningTime.info.PlanDataInfo;
+import br.com.gda.business.planningTime_.info.PlanDataInfo;
 import br.com.gda.info.InfoCopierTemplate;
 import br.com.gda.info.InfoUniquifyHelper;
 

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class CusarchVisiMergeLangu implements InfoMergerVisitor<CusarchInfo, LanguInfo, CusarchInfo> {
+final class CusarchVisiMergeLangu implements InfoMergerVisitor_<CusarchInfo, LanguInfo, CusarchInfo> {
 
 	@Override public CusarchInfo writeRecord(LanguInfo sourceOne, CusarchInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

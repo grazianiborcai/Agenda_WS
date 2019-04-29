@@ -8,7 +8,6 @@ import br.com.gda.business.store.info.StoreMerger;
 import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserSelect;
-import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -32,7 +31,7 @@ final class VisiStoreMergeUser extends ActionVisitorTemplateMerge<StoreInfo, Use
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<StoreInfo>> getMergerClassHook() {
-		return StoreMerger.class;
+	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> recordInfos, List<UserInfo> selectedInfos) {	
+		return StoreMerger.mergeWithUser(selectedInfos, recordInfos);
 	}
 }

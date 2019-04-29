@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoMergerVisitorV2;
 
-final class CusVisiMergeToDelete implements InfoMergerVisitor<CusInfo, CusInfo, CusInfo> {
+final class CusVisiMergeToDelete implements InfoMergerVisitorV2<CusInfo, CusInfo> {
 
 	@Override public CusInfo writeRecord(CusInfo sourceOne, CusInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
