@@ -15,6 +15,7 @@ final class PhoneCopyCus extends InfoCopierTemplate<PhoneInfo, CusInfo>{
 		PhoneInfo result = new PhoneInfo();
 		result.codOwner = source.codOwner;
 		result.codCustomer = source.codCustomer;
+		result.codLanguage = source.codLanguage;
 		return result;
 	}
 }

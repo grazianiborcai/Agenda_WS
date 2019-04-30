@@ -5,25 +5,24 @@ import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.info.PhoneMerger;
-import br.com.gda.business.phone.model.decisionTree.RootPhoneSelect;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
-import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiPhoneMergeToDelete extends ActionVisitorTemplateMerge<PhoneInfo, PhoneInfo> {
+final class VisiPhoneMergeToSelect extends ActionVisitorTemplateMerge<PhoneInfo, PhoneInfo> {
 	
-	public VisiPhoneMergeToDelete(Connection conn, String schemaName) {
+	public VisiPhoneMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, PhoneInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
-		return RootPhoneSelect.class;
+	@Override protected Class<? extends ActionStd<PhoneInfo>> getActionClassHook() {
+		return StdPhoneSelect.class;
 	}
 	
 	
 	
 	@Override protected List<PhoneInfo> mergeHook(List<PhoneInfo> recordInfos, List<PhoneInfo> selectedInfos) {	
-		return PhoneMerger.mergeToDelete(selectedInfos, recordInfos);
+		return PhoneMerger.mergeToSelect(selectedInfos, recordInfos);
 	}
 }

@@ -15,6 +15,7 @@ final class PhoneCopyStolis extends InfoCopierTemplate<PhoneInfo, StolisInfo>{
 		PhoneInfo result = new PhoneInfo();
 		result.codOwner = source.codOwner;
 		result.codStore = source.codStore;
+		result.codLanguage = source.codLanguage;
 		return result;
 	}
 }

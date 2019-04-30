@@ -16,6 +16,7 @@ final class PhoneCopyPayCusRef extends InfoCopierTemplate<PhoneInfo, PaycusInfo>
 		result.codOwner = source.codOwner;
 		result.codPhone = source.codPhoneRef;
 		result.codUser = source.codUser;
+		result.codLanguage = source.codLanguage;
 		return result;
 	}
 }

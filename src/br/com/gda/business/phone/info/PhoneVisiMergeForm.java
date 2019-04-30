@@ -3,29 +3,29 @@ package br.com.gda.business.phone.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.CountryPhoneInfo;
+import br.com.gda.business.form.formPhone.info.FormPhoneInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 
-final class PhoneVisitorCountryPhone implements InfoMergerVisitor_<PhoneInfo, CountryPhoneInfo, PhoneInfo> {
+final class PhoneVisiMergeForm implements InfoMergerVisitorV2<PhoneInfo, FormPhoneInfo> {
 
-	@Override public PhoneInfo writeRecord(CountryPhoneInfo sourceOne, PhoneInfo sourceTwo) {
+	@Override public PhoneInfo writeRecord(FormPhoneInfo sourceOne, PhoneInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(CountryPhoneInfo sourceOne, PhoneInfo sourceTwo) {
+	private void checkArgument(FormPhoneInfo sourceOne, PhoneInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private PhoneInfo merge(CountryPhoneInfo sourceOne, PhoneInfo sourceTwo) {
+	private PhoneInfo merge(FormPhoneInfo sourceOne, PhoneInfo sourceTwo) {
 		PhoneInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.codCountry = sourceOne.codCountry;		
+		resultInfo.codForm = sourceOne.codForm;
 		
 		return resultInfo;
 	}
@@ -50,8 +50,8 @@ final class PhoneVisitorCountryPhone implements InfoMergerVisitor_<PhoneInfo, Co
 	}
 
 
-
-	@Override public boolean shouldWrite(CountryPhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		return (sourceOne.codCountryPhone == sourceTwo.codCountryPhone);
+	
+	@Override public boolean shouldWrite(FormPhoneInfo sourceOne, PhoneInfo sourceTwo) {
+		return sourceOne.codCountry.equals(sourceTwo.codCountry);
 	}
 }

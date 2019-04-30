@@ -4,51 +4,60 @@ import java.util.List;
 
 import br.com.gda.business.form.formPhone.info.FormPhoneInfo;
 import br.com.gda.business.masterData.info.CountryPhoneInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 
-public final class PhoneMerger extends InfoWritterFactory_<PhoneInfo> {	
-	
-	public PhoneMerger() {
-		super(new PhoneUniquifier());
+public final class PhoneMerger {
+	public static PhoneInfo mergeWithCountryPhone(CountryPhoneInfo sourceOne, PhoneInfo sourceTwo) {
+		InfoMerger<PhoneInfo, CountryPhoneInfo> merger = new PhoneMergerCountryPhone();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public PhoneInfo merge(FormPhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		return new PhoneMergerForm().merge(sourceOne, sourceTwo);
+	public static List<PhoneInfo> mergeWithCountryPhone(List<CountryPhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
+		InfoMerger<PhoneInfo, CountryPhoneInfo> merger = new PhoneMergerCountryPhone();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	static public PhoneInfo merge(CountryPhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		return new PhoneMergerCountryPhone().merge(sourceOne, sourceTwo);
+	public static PhoneInfo mergeWithForm(FormPhoneInfo sourceOne, PhoneInfo sourceTwo) {
+		InfoMerger<PhoneInfo, FormPhoneInfo> merger = new PhoneMergerForm();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public PhoneInfo merge(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		return new PhoneMergerToDelete().merge(sourceOne, sourceTwo);
+	public static List<PhoneInfo> mergeWithForm(List<FormPhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
+		InfoMerger<PhoneInfo, FormPhoneInfo> merger = new PhoneMergerForm();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	@Override protected List<PhoneInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {				
-		if (sourceOnes.get(0) instanceof FormPhoneInfo 	&&
-			sourceTwos.get(0) instanceof PhoneInfo		)
-			return new PhoneMergerForm().merge((List<FormPhoneInfo>) sourceOnes, (List<PhoneInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof CountryPhoneInfo 	&&
-			sourceTwos.get(0) instanceof PhoneInfo		)
-			return new PhoneMergerCountryPhone().merge((List<CountryPhoneInfo>) sourceOnes, (List<PhoneInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof PhoneInfo 	&&
-			sourceTwos.get(0) instanceof PhoneInfo		)
-			return new PhoneMergerToDelete().merge((List<PhoneInfo>) sourceOnes, (List<PhoneInfo>) sourceTwos);
-		
-		
-		return null;
+	public static PhoneInfo mergeToDelete(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
+		InfoMerger<PhoneInfo, PhoneInfo> merger = new PhoneMergerToDelete();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PhoneInfo> mergeToDelete(List<PhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
+		InfoMerger<PhoneInfo, PhoneInfo> merger = new PhoneMergerToDelete();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static PhoneInfo mergeToSelect(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
+		InfoMerger<PhoneInfo, PhoneInfo> merger = new PhoneMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PhoneInfo> mergeToSelect(List<PhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
+		InfoMerger<PhoneInfo, PhoneInfo> merger = new PhoneMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

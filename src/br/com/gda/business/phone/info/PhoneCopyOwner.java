@@ -16,6 +16,7 @@ final class PhoneCopyOwner extends InfoCopierTemplate<PhoneInfo, OwnerInfo>{
 		result.codOwner = source.codOwner;
 		result.codOwnerRef = source.codOwner;
 		result.lastChangedBy = source.lastChangedBy;
+		result.codLanguage = source.codLanguage;
 		return result;
 	}
 }

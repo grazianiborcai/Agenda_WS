@@ -15,6 +15,7 @@ final class PhoneCopyEmp extends InfoCopierTemplate<PhoneInfo, EmpInfo>{
 		PhoneInfo result = new PhoneInfo();
 		result.codOwner = source.codOwner;
 		result.codEmployee = source.codEmployee;
+		result.codLanguage = source.codLanguage;
 		return result;
 	}
 }

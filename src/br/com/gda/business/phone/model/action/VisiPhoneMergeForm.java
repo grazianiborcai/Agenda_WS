@@ -1,12 +1,12 @@
 package br.com.gda.business.phone.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.gda.business.form.formPhone.info.FormPhoneInfo;
 import br.com.gda.business.form.formPhone.model.decisionTree.RootFormPhoneSelect;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.info.PhoneMerger;
-import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -24,7 +24,7 @@ final class VisiPhoneMergeForm extends ActionVisitorTemplateMerge<PhoneInfo, For
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<PhoneInfo>> getMergerClassHook() {
-		return PhoneMerger.class;
+	@Override protected List<PhoneInfo> mergeHook(List<PhoneInfo> recordInfos, List<FormPhoneInfo> selectedInfos) {	
+		return PhoneMerger.mergeWithForm(selectedInfos, recordInfos);
 	}
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.LazymapPhoneMergeCountryPhone;
 import br.com.gda.business.phone.model.action.LazymapPhoneMergeForm;
-import br.com.gda.business.phone.model.action.StdPhoneSelect;
+import br.com.gda.business.phone.model.action.StdPhoneMergeToSelect;
 import br.com.gda.business.phone.model.checker.PhoneCheckRead;
 import br.com.gda.business.phone.model.checker.PhoneCheckRefRead;
 import br.com.gda.model.action.ActionLazy;
@@ -55,7 +55,7 @@ public final class RootPhoneSelect implements DeciTree<PhoneInfo> {
 	private List<ActionStd<PhoneInfo>> buildActionsOnPassed(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> select = new StdPhoneSelect(option);	
+		ActionStd<PhoneInfo> select = new StdPhoneMergeToSelect(option);	
 		ActionLazy<PhoneInfo> mergeCountryPhone = new LazymapPhoneMergeCountryPhone(option.conn, option.schemaName);
 		ActionLazy<PhoneInfo> mergeForm = new LazymapPhoneMergeForm(option.conn, option.schemaName);
 

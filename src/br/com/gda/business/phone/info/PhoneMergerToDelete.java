@@ -1,17 +1,18 @@
 package br.com.gda.business.phone.info;
 
-import java.util.List;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-import br.com.gda.info.InfoMerger_;
+final class PhoneMergerToDelete extends InfoMergerTemplate<PhoneInfo, PhoneInfo> {
 
-final class PhoneMergerToDelete extends InfoMerger_<PhoneInfo, PhoneInfo, PhoneInfo> {
-	public PhoneInfo merge(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new PhoneVisiMergeToDelete());
+	@Override protected InfoMergerVisitorV2<PhoneInfo, PhoneInfo> getVisitorHook() {
+		return new PhoneVisiMergeToDelete();
 	}
 	
 	
 	
-	public List<PhoneInfo> merge(List<PhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new PhoneVisiMergeToDelete());
+	@Override protected InfoUniquifier<PhoneInfo> getUniquifierHook() {
+		return new PhoneUniquifier();
 	}
 }
