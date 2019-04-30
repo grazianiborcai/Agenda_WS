@@ -15,6 +15,7 @@ final class AddressCopyStore extends InfoCopierTemplate<AddressInfo, StoreInfo>{
 		AddressInfo result = new AddressInfo();
 		result.codOwner = source.codOwner;
 		result.codStore = source.codStore;
+		result.codLanguage = source.codLanguage;
 		return result;
 	}
 }

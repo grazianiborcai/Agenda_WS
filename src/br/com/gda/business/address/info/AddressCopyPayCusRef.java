@@ -16,6 +16,7 @@ final class AddressCopyPayCusRef extends InfoCopierTemplate<AddressInfo, PaycusI
 		result.codOwner = source.codOwner;
 		result.codAddress = source.codAddressRef;
 		result.codUser = source.codUser;
+		result.codLanguage = source.codLanguage;
 		return result;
 	}
 }

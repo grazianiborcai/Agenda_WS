@@ -43,8 +43,7 @@ final class UserVisiMergeToSelect implements InfoMergerVisitorV2<UserInfo, UserI
 	
 	
 	@Override public boolean shouldWrite(UserInfo sourceOne, UserInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner	&&
-				sourceOne.codUser  == sourceTwo.codUser			);
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	

@@ -1,11 +1,11 @@
 package br.com.gda.business.address.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.info.AddressMerger;
 import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
-import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -23,7 +23,7 @@ final class VisiAddressMergeToDelete extends ActionVisitorTemplateMerge<AddressI
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<AddressInfo>> getMergerClassHook() {
-		return AddressMerger.class;
+	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> recordInfos, List<AddressInfo> selectedInfos) {
+		return AddressMerger.mergeToDelete(selectedInfos, recordInfos);
 	}
 }

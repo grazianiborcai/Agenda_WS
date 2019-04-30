@@ -3,30 +3,32 @@ package br.com.gda.business.address.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.masterData.info.CountryInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class AddressVisiMergeToDelete implements InfoMergerVisitorV2<AddressInfo, AddressInfo> {
+final class AddressVisiMergeCountry implements InfoMergerVisitorV2<AddressInfo, CountryInfo> {
 
-	@Override public AddressInfo writeRecord(AddressInfo sourceOne, AddressInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
+	@Override public AddressInfo writeRecord(CountryInfo sourceOne, AddressInfo sourceTwo) {
+		checkArgument(sourceOne, sourceTwo);
+		
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(AddressInfo sourceOne, AddressInfo sourceTwo) {
+	private void checkArgument(CountryInfo sourceOne, AddressInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private AddressInfo merge(AddressInfo sourceOne, AddressInfo sourceTwo) {
-		AddressInfo result = makeClone(sourceOne);		
-		result.lastChangedBy = sourceTwo.lastChangedBy;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	private AddressInfo merge(CountryInfo sourceOne, AddressInfo sourceTwo) {
+		AddressInfo resultInfo = makeClone(sourceTwo);
+		resultInfo.txtCountry = sourceOne.txtCountry;
+		
+		return resultInfo;
 	}
 	
 	
@@ -43,8 +45,8 @@ final class AddressVisiMergeToDelete implements InfoMergerVisitorV2<AddressInfo,
 	
 	
 	
-	@Override public boolean shouldWrite(AddressInfo sourceOne, AddressInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	@Override public boolean shouldWrite(CountryInfo sourceOne, AddressInfo sourceTwo) {
+		return sourceOne.codCountry.equals(sourceTwo.codCountry);
 	}
 	
 	

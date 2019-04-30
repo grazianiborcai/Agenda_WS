@@ -1,17 +1,18 @@
 package br.com.gda.business.address.info;
 
-import java.util.List;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-import br.com.gda.info.InfoMerger_;
+final class AddressMergerToDelete extends InfoMergerTemplate<AddressInfo, AddressInfo> {
 
-final class AddressMergerToDelete extends InfoMerger_<AddressInfo, AddressInfo, AddressInfo> {
-	public AddressInfo merge(AddressInfo sourceOne, AddressInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new AddressVisiMergeToDelete());
+	@Override protected InfoMergerVisitorV2<AddressInfo, AddressInfo> getVisitorHook() {
+		return new AddressVisiMergeToDelete();
 	}
 	
 	
 	
-	public List<AddressInfo> merge(List<AddressInfo> sourceOnes, List<AddressInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new AddressVisiMergeToDelete());
+	@Override protected InfoUniquifier<AddressInfo> getUniquifierHook() {
+		return new AddressUniquifier();
 	}
 }

@@ -15,6 +15,7 @@ final class AddressCopyCus extends InfoCopierTemplate<AddressInfo, CusInfo>{
 		AddressInfo result = new AddressInfo();
 		result.codOwner = source.codOwner;
 		result.codCustomer = source.codCustomer;
+		result.codLanguage = source.codLanguage;
 		return result;
 	}
 }

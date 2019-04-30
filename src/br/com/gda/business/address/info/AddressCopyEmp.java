@@ -15,6 +15,7 @@ final class AddressCopyEmp extends InfoCopierTemplate<AddressInfo, EmpInfo>{
 		AddressInfo result = new AddressInfo();
 		result.codOwner = source.codOwner;
 		result.codEmployee = source.codEmployee;
+		result.codLanguage = source.codLanguage;
 		return result;
 	}
 }

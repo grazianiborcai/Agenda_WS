@@ -1,14 +1,14 @@
 package br.com.gda.business.address.info;
 
-import br.com.gda.business.form.formAddress.info.FormAddressInfo;
+import br.com.gda.business.masterData.info.StateInfo;
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.info.InfoUniquifier;
 
-final class AddressMergerForm extends InfoMergerTemplate<AddressInfo, FormAddressInfo> {
+final class AddressMergerState extends InfoMergerTemplate<AddressInfo, StateInfo> {
 
-	@Override protected InfoMergerVisitorV2<AddressInfo, FormAddressInfo> getVisitorHook() {
-		return new AddressVisiMergeForm();
+	@Override protected InfoMergerVisitorV2<AddressInfo, StateInfo> getVisitorHook() {
+		return new AddressVisiMergeState();
 	}
 	
 	

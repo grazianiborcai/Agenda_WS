@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class AddressVisiMergeToDelete implements InfoMergerVisitorV2<AddressInfo, AddressInfo> {
+final class AddressVisiMergeToSelect implements InfoMergerVisitorV2<AddressInfo, AddressInfo> {
 
 	@Override public AddressInfo writeRecord(AddressInfo sourceOne, AddressInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

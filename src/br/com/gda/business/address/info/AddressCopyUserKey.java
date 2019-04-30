@@ -16,6 +16,7 @@ final class AddressCopyUserKey extends InfoCopierTemplate<AddressInfo, UserInfo>
 		result.codOwner = source.codOwner;
 		result.codUser = source.codUser;
 		result.lastChangedBy = source.lastChangedBy;
+		result.codLanguage = source.codLanguage;
 		return result;
 	}
 }

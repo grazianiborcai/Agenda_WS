@@ -6,8 +6,9 @@ import java.util.List;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.address.model.action.LazyAddressMergeCountry;
 import br.com.gda.business.address.model.action.LazymapAddressMergeForm;
-import br.com.gda.business.address.model.action.StdAddressSelect;
+import br.com.gda.business.address.model.action.StdAddressMergeToSelect;
 import br.com.gda.business.address.model.checker.AddressCheckRead;
 import br.com.gda.business.address.model.checker.AddressCheckRefRead;
 import br.com.gda.model.checker.ModelChecker;
@@ -54,12 +55,16 @@ public final class RootAddressSelect implements DeciTree<AddressInfo> {
 	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> select = new StdAddressSelect(option);		
+		ActionStd<AddressInfo> select = new StdAddressMergeToSelect(option);		
 		ActionLazy<AddressInfo> mergeForm = new LazymapAddressMergeForm(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> mergeCountry = new LazyAddressMergeCountry(option.conn, option.schemaName);
+		//ActionLazy<AddressInfo> mergeState = new LazyAddressMergeState(option.conn, option.schemaName);
 		
-		select.addPostAction(mergeForm);		
-		actions.add(select);	
+		select.addPostAction(mergeForm);	
+		mergeForm.addPostAction(mergeCountry);
+		//mergeCountry.addPostAction(mergeState);
 		
+		actions.add(select);			
 		return actions;
 	}
 	
