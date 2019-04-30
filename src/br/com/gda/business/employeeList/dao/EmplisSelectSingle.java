@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeList.info.EmplisInfo;
-import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -21,8 +19,7 @@ import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class EmplisSelectSingle implements DaoStmt<EmplisInfo> {
-	private final String LT_EMP = DaoDbTable.EMP_TABLE;	
-	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
+	private final String LT_EMP = DaoDbTable.EMP_TABLE;
 	
 	private DaoStmt<EmplisInfo> stmtSql;
 	private DaoStmtOption<EmplisInfo> stmtOption;
@@ -46,7 +43,7 @@ public final class EmplisSelectSingle implements DaoStmt<EmplisInfo> {
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = buildJoins();
+		this.stmtOption.joins = null;
 	}
 	
 	
@@ -58,26 +55,6 @@ public final class EmplisSelectSingle implements DaoStmt<EmplisInfo> {
 		
 		DaoStmtWhere whereClause = new EmplisWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();
-		joins.add(buildJoinLanguage());		
-		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
 	}
 
 	
@@ -141,11 +118,6 @@ public final class EmplisSelectSingle implements DaoStmt<EmplisInfo> {
 				stmtResult.getLong(EmplisDbTableColumn.COL_COD_PERSON);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPerson = stmtResult.getLong(EmplisDbTableColumn.COL_COD_PERSON);
-				
-				
-				stmtResult.getString(EmplisDbTableColumn.COL_COD_LANGUAGE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codLanguage = stmtResult.getString(EmplisDbTableColumn.COL_COD_LANGUAGE);
 				
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(EmplisDbTableColumn.COL_LAST_CHANGED);

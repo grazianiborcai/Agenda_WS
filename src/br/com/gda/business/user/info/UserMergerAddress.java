@@ -1,18 +1,19 @@
 package br.com.gda.business.user.info;
 
-import java.util.List;
-
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class UserMergerAddress extends InfoMerger_<UserInfo, AddressInfo, UserInfo> {
-	public UserInfo merge(AddressInfo sourceOne, UserInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new UserVisiMergeAddress());
+final class UserMergerAddress extends InfoMergerTemplate<UserInfo, AddressInfo> {
+
+	@Override protected InfoMergerVisitorV2<UserInfo, AddressInfo> getVisitorHook() {
+		return new UserVisiMergeAddress();
 	}
 	
 	
 	
-	public List<UserInfo> merge(List<AddressInfo> sourceOnes, List<UserInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new UserVisiMergeAddress());
+	@Override protected InfoUniquifier<UserInfo> getUniquifierHook() {
+		return new UserUniquifier();
 	}
 }

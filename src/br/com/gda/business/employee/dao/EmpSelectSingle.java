@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -22,7 +20,6 @@ import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 	private final String LT_EMP = DaoDbTable.EMP_TABLE;	
-	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<EmpInfo> stmtSql;
 	private DaoStmtOption<EmpInfo> stmtOption;
@@ -46,7 +43,7 @@ public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = buildJoins();
+		this.stmtOption.joins = null;
 	}
 	
 	
@@ -58,26 +55,6 @@ public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 		
 		DaoStmtWhere whereClause = new EmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();
-		joins.add(buildJoinLanguage());		
-		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
 	}
 
 	
@@ -146,11 +123,6 @@ public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 				stmtResult.getLong(EmpDbTableColumn.COL_COD_PERSON);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPerson = stmtResult.getLong(EmpDbTableColumn.COL_COD_PERSON);
-				
-				
-				stmtResult.getString(EmpDbTableColumn.COL_COD_LANGUAGE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codLanguage = stmtResult.getString(EmpDbTableColumn.COL_COD_LANGUAGE);
 				
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(EmpDbTableColumn.COL_LAST_CHANGED);

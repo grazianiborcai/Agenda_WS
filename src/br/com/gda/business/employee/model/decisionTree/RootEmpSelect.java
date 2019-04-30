@@ -8,7 +8,7 @@ import br.com.gda.business.employee.model.action.LazyEmpMergeAddress;
 import br.com.gda.business.employee.model.action.LazyEmpMergePerson;
 import br.com.gda.business.employee.model.action.LazyEmpMergePhone;
 import br.com.gda.business.employee.model.action.LazyEmpMergeUser;
-import br.com.gda.business.employee.model.action.StdEmpSelect;
+import br.com.gda.business.employee.model.action.StdEmpMergeToSelect;
 import br.com.gda.business.employee.model.checker.EmpCheckLangu;
 import br.com.gda.business.employee.model.checker.EmpCheckRead;
 import br.com.gda.model.action.ActionLazy;
@@ -52,7 +52,7 @@ public final class RootEmpSelect extends DeciTreeReadTemplate<EmpInfo> {
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmpInfo> select = new StdEmpSelect(option);
+		ActionStd<EmpInfo> select = new StdEmpMergeToSelect(option);
 		ActionLazy<EmpInfo> mergePerson = new LazyEmpMergePerson(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> mergeAddress = new LazyEmpMergeAddress(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> mergePhone = new LazyEmpMergePhone(option.conn, option.schemaName);

@@ -9,7 +9,7 @@ import br.com.gda.business.user.model.action.LazyUserMergeAuthGrRole;
 import br.com.gda.business.user.model.action.LazyUserMergePerson;
 import br.com.gda.business.user.model.action.LazyUserMergePersonCus;
 import br.com.gda.business.user.model.action.LazyUserMergePhone;
-import br.com.gda.business.user.model.action.StdUserSelect;
+import br.com.gda.business.user.model.action.StdUserMergeToSelect;
 import br.com.gda.business.user.model.checker.UserCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -41,7 +41,7 @@ public final class RootUserSelect extends DeciTreeReadTemplate<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> select = new StdUserSelect(option);
+		ActionStd<UserInfo> select = new StdUserMergeToSelect(option);
 		ActionLazy<UserInfo> mergePerson = new LazyUserMergePerson(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergeAddress = new LazyUserMergeAddress(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergePhone = new LazyUserMergePhone(option.conn, option.schemaName);

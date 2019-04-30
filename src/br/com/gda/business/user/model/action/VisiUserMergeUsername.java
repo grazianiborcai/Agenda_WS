@@ -1,10 +1,10 @@
 package br.com.gda.business.user.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.info.UserMerger;
-import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameInfo;
@@ -24,7 +24,7 @@ final class VisiUserMergeUsername extends ActionVisitorTemplateMerge<UserInfo, U
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<UserInfo>> getMergerClassHook() {
-		return UserMerger.class;
+	@Override protected List<UserInfo> mergeHook(List<UserInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
+		return UserMerger.mergeWithUsername(selectedInfos, recordInfos);
 	}
 }

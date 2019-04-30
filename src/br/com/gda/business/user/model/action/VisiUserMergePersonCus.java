@@ -1,12 +1,12 @@
 package br.com.gda.business.user.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.gda.business.personCustomer.info.PersonCusInfo;
 import br.com.gda.business.personCustomer.model.decisionTree.RootPersonCusSelect;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.info.UserMerger;
-import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -24,7 +24,8 @@ final class VisiUserMergePersonCus extends ActionVisitorTemplateMerge<UserInfo, 
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<UserInfo>> getMergerClassHook() {
-		return UserMerger.class;
+	
+	@Override protected List<UserInfo> mergeHook(List<UserInfo> recordInfos, List<PersonCusInfo> selectedInfos) {	
+		return UserMerger.mergeWithPersonCus(selectedInfos, recordInfos);
 	}
 }

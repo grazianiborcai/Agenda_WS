@@ -108,6 +108,19 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	
 	private ActionStd<S> buildAction() {
+		if (hasTreeClass())
+			return buildActionTree();		
+		
+		if (hasActionClass())
+			return buildActionStd();		
+		
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
+		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	}
+	
+	
+	
+	private ActionStd<S> buildActionTree() {
 		try {
 			Class<? extends DeciTree<S>> actionClass = getTreeClassHook();
 			Constructor<? extends DeciTree<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
@@ -121,10 +134,48 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	
 	
+	private ActionStd<S> buildActionStd() {
+		try {
+			Class<? extends ActionStd<S>> actionClass = getActionClassHook();
+			Constructor<? extends ActionStd<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
+			return (ActionStd<S>) actionConstru.newInstance(selOption);
+				
+			} catch (Exception e) {
+				logException(e);
+				throw new IllegalArgumentException(e);
+			}
+	}
+	
+	
+	
+	private boolean hasTreeClass() {
+		if (getTreeClassHook() == null)
+			return false;
+		
+		return true;
+	}
+	
+	
+	
 	protected Class<? extends DeciTree<S>> getTreeClassHook() {
-		//Template method to be overridden by subclasses
-		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+		//Template method: default behavior
+		return null;
+	}
+	
+	
+	
+	private boolean hasActionClass() {
+		if (getActionClassHook() == null)
+			return false;
+		
+		return true;
+	}
+	
+	
+	
+	protected Class<? extends ActionStd<S>> getActionClassHook() {
+		//Template method: default behavior
+		return null;
 	}
 	
 	

@@ -1,4 +1,4 @@
-package br.com.gda.business.person.info;
+package br.com.gda.business.user.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,34 +6,33 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class PersonVisiMergeToDelete implements InfoMergerVisitorV2<PersonInfo, PersonInfo> {
+final class UserVisiMergeToSelect implements InfoMergerVisitorV2<UserInfo, UserInfo> {
 
-	@Override public PersonInfo writeRecord(PersonInfo sourceOne, PersonInfo sourceTwo) {
+	@Override public UserInfo writeRecord(UserInfo sourceOne, UserInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(PersonInfo sourceOne, PersonInfo sourceTwo) {
+	private void checkArgument(UserInfo sourceOne, UserInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private PersonInfo merge(PersonInfo sourceOne, PersonInfo sourceTwo) {
-		PersonInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
+	private UserInfo merge(UserInfo sourceOne, UserInfo sourceTwo) {
+		UserInfo result = makeClone(sourceOne);		
 		result.codLanguage = sourceTwo.codLanguage;
 		return result;
 	}
 	
 	
 	
-	private PersonInfo makeClone(PersonInfo recordInfo) {
+	private UserInfo makeClone(UserInfo recordInfo) {
 		try {
-			return (PersonInfo) recordInfo.clone();
+			return (UserInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -43,9 +42,9 @@ final class PersonVisiMergeToDelete implements InfoMergerVisitorV2<PersonInfo, P
 	
 	
 	
-	@Override public boolean shouldWrite(PersonInfo sourceOne, PersonInfo sourceTwo) {		
-		return (sourceOne.codOwner  == sourceTwo.codOwner 	&&
-				sourceOne.codPerson == sourceTwo.codPerson		);
+	@Override public boolean shouldWrite(UserInfo sourceOne, UserInfo sourceTwo) {		
+		return (sourceOne.codOwner == sourceTwo.codOwner	&&
+				sourceOne.codUser  == sourceTwo.codUser			);
 	}
 	
 	

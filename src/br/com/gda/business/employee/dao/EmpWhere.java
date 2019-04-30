@@ -38,10 +38,6 @@ final class EmpWhere implements DaoStmtWhere {
 			case EmpDbTableColumn.COL_RECORD_MODE :
 				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 				break;
-				
-			case EmpDbTableColumn.COL_COD_LANGUAGE :
-				builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
-				break;
 			}
 		}		
 		

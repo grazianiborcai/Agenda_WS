@@ -4,10 +4,10 @@ import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.info.InfoUniquifier;
 
-final class UserMergerToDelete extends InfoMergerTemplate<UserInfo, UserInfo> {
+final class UserMergerToSelect extends InfoMergerTemplate<UserInfo, UserInfo> {
 
 	@Override protected InfoMergerVisitorV2<UserInfo, UserInfo> getVisitorHook() {
-		return new UserVisiMergeToDelete();
+		return new UserVisiMergeToSelect();
 	}
 	
 	

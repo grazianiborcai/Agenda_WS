@@ -1,4 +1,4 @@
-package br.com.gda.business.person.info;
+package br.com.gda.business.employee.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,24 +6,24 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class PersonVisiMergeToDelete implements InfoMergerVisitorV2<PersonInfo, PersonInfo> {
+final class EmpVisiMergeToSelect implements InfoMergerVisitorV2<EmpInfo, EmpInfo> {
 
-	@Override public PersonInfo writeRecord(PersonInfo sourceOne, PersonInfo sourceTwo) {
+	@Override public EmpInfo writeRecord(EmpInfo sourceOne, EmpInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(PersonInfo sourceOne, PersonInfo sourceTwo) {
+	private void checkArgument(EmpInfo sourceOne, EmpInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private PersonInfo merge(PersonInfo sourceOne, PersonInfo sourceTwo) {
-		PersonInfo result = makeClone(sourceOne);		
+	private EmpInfo merge(EmpInfo sourceOne, EmpInfo sourceTwo) {
+		EmpInfo result = makeClone(sourceOne);		
 		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
 		return result;
@@ -31,9 +31,9 @@ final class PersonVisiMergeToDelete implements InfoMergerVisitorV2<PersonInfo, P
 	
 	
 	
-	private PersonInfo makeClone(PersonInfo recordInfo) {
+	private EmpInfo makeClone(EmpInfo recordInfo) {
 		try {
-			return (PersonInfo) recordInfo.clone();
+			return (EmpInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -43,9 +43,8 @@ final class PersonVisiMergeToDelete implements InfoMergerVisitorV2<PersonInfo, P
 	
 	
 	
-	@Override public boolean shouldWrite(PersonInfo sourceOne, PersonInfo sourceTwo) {		
-		return (sourceOne.codOwner  == sourceTwo.codOwner 	&&
-				sourceOne.codPerson == sourceTwo.codPerson		);
+	@Override public boolean shouldWrite(EmpInfo sourceOne, EmpInfo sourceTwo) {		
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	

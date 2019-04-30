@@ -11,7 +11,6 @@ import br.com.gda.dao.common.DaoDbTable;
 
 public final class EmplisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_EMPLOYEE = EmpDbTableColumn.COL_COD_EMPLOYEE;
-	public static final String COL_COD_LANGUAGE = EmpDbTableColumn.COL_COD_LANGUAGE;
 	public static final String COL_COD_OWNER = EmpDbTableColumn.COL_COD_OWNER;
 	public static final String COL_COD_PERSON = EmpDbTableColumn.COL_COD_PERSON;
 	public static final String COL_LAST_CHANGED = EmpDbTableColumn.COL_LAST_CHANGED;
@@ -86,14 +85,6 @@ public final class EmplisDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_LAST_CHANGED_BY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

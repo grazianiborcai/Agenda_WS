@@ -3,14 +3,13 @@ package br.com.gda.business.user.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.personCustomer.info.PersonCusInfo;
-import br.com.gda.business.user.info.UserInfo;
+import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class UserVisiMergePersonCus implements InfoMergerVisitorV2<UserInfo, PersonCusInfo> {
+final class UserVisiMergeAddress_ implements InfoMergerVisitor_<UserInfo, AddressInfo, UserInfo> {
 
-	@Override public UserInfo writeRecord(PersonCusInfo sourceOne, UserInfo sourceTwo) {
+	@Override public UserInfo writeRecord(AddressInfo sourceOne, UserInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		UserInfo clonedInfo = makeClone(sourceTwo);
@@ -19,7 +18,7 @@ final class UserVisiMergePersonCus implements InfoMergerVisitorV2<UserInfo, Pers
 	
 	
 	
-	private void checkArgument(PersonCusInfo sourceOne, UserInfo sourceTwo) {
+	private void checkArgument(AddressInfo sourceOne, UserInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -38,15 +37,16 @@ final class UserVisiMergePersonCus implements InfoMergerVisitorV2<UserInfo, Pers
 	
 	
 	
-	private UserInfo merge(PersonCusInfo sourceOne, UserInfo sourceTwo) {
-		sourceTwo.codCustomer = sourceOne.codCustomer;
+	private UserInfo merge(AddressInfo sourceOne, UserInfo sourceTwo) {
+		sourceTwo.addresses.add(sourceOne);
+
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(PersonCusInfo sourceOne, UserInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	@Override public boolean shouldWrite(AddressInfo sourceOne, UserInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codUser == sourceTwo.codUser);
 	}	
 	
 	

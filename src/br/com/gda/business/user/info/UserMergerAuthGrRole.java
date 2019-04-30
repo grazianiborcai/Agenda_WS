@@ -1,18 +1,19 @@
 package br.com.gda.business.user.info;
 
-import java.util.List;
-
 import br.com.gda.business.masterData.info.AuthGrRoleInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class UserMergerAuthGrRole extends InfoMerger_<UserInfo, AuthGrRoleInfo, UserInfo> {
-	public UserInfo merge(AuthGrRoleInfo sourceOne, UserInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new UserVisiMergeAuthGrRole());
+final class UserMergerAuthGrRole extends InfoMergerTemplate<UserInfo, AuthGrRoleInfo> {
+
+	@Override protected InfoMergerVisitorV2<UserInfo, AuthGrRoleInfo> getVisitorHook() {
+		return new UserVisiMergeAuthGrRole();
 	}
 	
 	
 	
-	public List<UserInfo> merge(List<AuthGrRoleInfo> sourceOnes, List<UserInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new UserVisiMergeAuthGrRole());
+	@Override protected InfoUniquifier<UserInfo> getUniquifierHook() {
+		return new UserUniquifier();
 	}
 }

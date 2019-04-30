@@ -17,4 +17,18 @@ public final class EmplisMerger {
 		InfoMerger<EmplisInfo, PersonInfo> merger = new EmplisMergerPerson();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static EmplisInfo mergeToSelect(EmplisInfo sourceOne, EmplisInfo sourceTwo) {
+		InfoMerger<EmplisInfo, EmplisInfo> merger = new EmplisMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<EmplisInfo> mergeToSelect(List<EmplisInfo> sourceOnes, List<EmplisInfo> sourceTwos) {
+		InfoMerger<EmplisInfo, EmplisInfo> merger = new EmplisMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

@@ -91,4 +91,18 @@ public final class EmpMerger {
 		InfoMerger<EmpInfo, EmpInfo> merger = new EmpMergerToDelete();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static EmpInfo mergeToSelect(EmpInfo sourceOne, EmpInfo sourceTwo) {
+		InfoMerger<EmpInfo, EmpInfo> merger = new EmpMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<EmpInfo> mergeToSelect(List<EmpInfo> sourceOnes, List<EmpInfo> sourceTwos) {
+		InfoMerger<EmpInfo, EmpInfo> merger = new EmpMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }
