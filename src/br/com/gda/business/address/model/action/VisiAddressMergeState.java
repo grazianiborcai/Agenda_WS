@@ -7,10 +7,10 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.info.AddressMerger;
 import br.com.gda.business.masterData.info.StateInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootStateSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiAddressMergeState extends ActionVisitorTemplateMerge<AddressInfo, StateInfo> {
+final class VisiAddressMergeState extends ActionVisitorTemplateMerge_<AddressInfo, StateInfo> {
 	
 	public VisiAddressMergeState(Connection conn, String schemaName) {
 		super(conn, schemaName, StateInfo.class);

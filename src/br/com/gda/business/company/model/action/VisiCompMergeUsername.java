@@ -5,12 +5,12 @@ import java.sql.Connection;
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.company.info.CompMerger;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiCompMergeUsername extends ActionVisitorTemplateMerge<CompInfo, UsernameInfo> {
+final class VisiCompMergeUsername extends ActionVisitorTemplateMerge_<CompInfo, UsernameInfo> {
 	
 	public VisiCompMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);

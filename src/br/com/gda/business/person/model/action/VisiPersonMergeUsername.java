@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.info.PersonMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiPersonMergeUsername extends ActionVisitorTemplateMerge<PersonInfo, UsernameInfo> {
+final class VisiPersonMergeUsername extends ActionVisitorTemplateMerge_<PersonInfo, UsernameInfo> {
 	
 	public VisiPersonMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);

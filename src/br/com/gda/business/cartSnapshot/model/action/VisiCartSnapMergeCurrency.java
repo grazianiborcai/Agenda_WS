@@ -7,10 +7,10 @@ import br.com.gda.business.cartSnapshot.info.CartSnapMerger;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootCurrencySelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCartSnapMergeCurrency extends ActionVisitorTemplateMerge<CartSnapInfo, CurrencyInfo> {
+final class VisiCartSnapMergeCurrency extends ActionVisitorTemplateMerge_<CartSnapInfo, CurrencyInfo> {
 	
 	public VisiCartSnapMergeCurrency(Connection conn, String schemaName) {
 		super(conn, schemaName, CurrencyInfo.class);

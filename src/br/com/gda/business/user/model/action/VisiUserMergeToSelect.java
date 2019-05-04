@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.info.UserMerger;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 
-final class VisiUserMergeToSelect extends ActionVisitorTemplateMerge<UserInfo, UserInfo> {
+final class VisiUserMergeToSelect extends ActionVisitorTemplateMerge_<UserInfo, UserInfo> {
 	
 	public VisiUserMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class);

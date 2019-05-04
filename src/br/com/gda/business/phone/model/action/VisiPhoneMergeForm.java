@@ -7,10 +7,10 @@ import br.com.gda.business.form.formPhone.info.FormPhoneInfo;
 import br.com.gda.business.form.formPhone.model.decisionTree.RootFormPhoneSelect;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.info.PhoneMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiPhoneMergeForm extends ActionVisitorTemplateMerge<PhoneInfo, FormPhoneInfo> {
+final class VisiPhoneMergeForm extends ActionVisitorTemplateMerge_<PhoneInfo, FormPhoneInfo> {
 	
 	public VisiPhoneMergeForm(Connection conn, String schemaName) {
 		super(conn, schemaName, FormPhoneInfo.class);

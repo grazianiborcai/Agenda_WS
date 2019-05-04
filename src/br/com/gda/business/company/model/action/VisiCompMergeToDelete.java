@@ -6,10 +6,10 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.company.info.CompMerger;
 import br.com.gda.business.company.model.decisionTree.RootCompSelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCompMergeToDelete extends ActionVisitorTemplateMerge<CompInfo, CompInfo> {
+final class VisiCompMergeToDelete extends ActionVisitorTemplateMerge_<CompInfo, CompInfo> {
 	
 	public VisiCompMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, CompInfo.class);

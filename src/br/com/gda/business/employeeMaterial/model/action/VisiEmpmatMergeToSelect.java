@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
 import br.com.gda.business.employeeMaterial.info.EmpmatMerger;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 
-final class VisiEmpmatMergeToSelect extends ActionVisitorTemplateMerge<EmpmatInfo, EmpmatInfo> {
+final class VisiEmpmatMergeToSelect extends ActionVisitorTemplateMerge_<EmpmatInfo, EmpmatInfo> {
 	
 	public VisiEmpmatMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, EmpmatInfo.class);

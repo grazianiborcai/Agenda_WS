@@ -8,10 +8,10 @@ import br.com.gda.business.material.model.decisionTree.RootMatSelect;
 import br.com.gda.business.materialStore.info.MatoreInfo;
 import br.com.gda.business.materialStore.info.MatoreMerger;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiMatoreMergeMat extends ActionVisitorTemplateMerge<MatoreInfo, MatInfo> {
+final class VisiMatoreMergeMat extends ActionVisitorTemplateMerge_<MatoreInfo, MatInfo> {
 	
 	public VisiMatoreMergeMat(Connection conn, String schemaName) {
 		super(conn, schemaName, MatInfo.class);

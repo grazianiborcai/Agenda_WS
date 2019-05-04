@@ -7,10 +7,10 @@ import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootGenderSelect;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.info.PersonMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiPersonMergeGender extends ActionVisitorTemplateMerge<PersonInfo, GenderInfo> {
+final class VisiPersonMergeGender extends ActionVisitorTemplateMerge_<PersonInfo, GenderInfo> {
 	
 	public VisiPersonMergeGender(Connection conn, String schemaName) {
 		super(conn, schemaName, GenderInfo.class);

@@ -8,10 +8,10 @@ import br.com.gda.business.customer.info.CusMerger;
 import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCusMergeUser extends ActionVisitorTemplateMerge<CusInfo, UserInfo> {
+final class VisiCusMergeUser extends ActionVisitorTemplateMerge_<CusInfo, UserInfo> {
 	
 	public VisiCusMergeUser(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class);

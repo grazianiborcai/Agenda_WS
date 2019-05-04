@@ -9,10 +9,10 @@ import br.com.gda.business.ownerStore.info.OwntoreCopier;
 import br.com.gda.business.ownerStore.info.OwntoreInfo;
 import br.com.gda.business.ownerStore.model.decisionTree.RootOwntoreSelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiOwnerMergeOwntore extends ActionVisitorTemplateMerge<OwnerInfo, OwntoreInfo> {
+final class VisiOwnerMergeOwntore extends ActionVisitorTemplateMerge_<OwnerInfo, OwntoreInfo> {
 	
 	public VisiOwnerMergeOwntore(Connection conn, String schemaName) {
 		super(conn, schemaName, OwntoreInfo.class);

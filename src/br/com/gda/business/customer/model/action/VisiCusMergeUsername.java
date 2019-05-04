@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.info.CusMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiCusMergeUsername extends ActionVisitorTemplateMerge<CusInfo, UsernameInfo> {
+final class VisiCusMergeUsername extends ActionVisitorTemplateMerge_<CusInfo, UsernameInfo> {
 	
 	public VisiCusMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);

@@ -6,10 +6,10 @@ import br.com.gda.business.materialStore.info.MatoreInfo;
 import br.com.gda.business.materialStore.info.MatoreMerger;
 import br.com.gda.business.materialStore.model.decisionTree.RootMatoreSelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiMatoreMergeToDelete extends ActionVisitorTemplateMerge<MatoreInfo, MatoreInfo> {
+final class VisiMatoreMergeToDelete extends ActionVisitorTemplateMerge_<MatoreInfo, MatoreInfo> {
 	
 	public VisiMatoreMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, MatoreInfo.class);

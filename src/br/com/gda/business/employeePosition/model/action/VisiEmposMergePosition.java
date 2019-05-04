@@ -7,10 +7,10 @@ import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeePosition.info.EmposMerger;
 import br.com.gda.business.masterData.info.PositionInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootPositionSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiEmposMergePosition extends ActionVisitorTemplateMerge<EmposInfo, PositionInfo> {
+final class VisiEmposMergePosition extends ActionVisitorTemplateMerge_<EmposInfo, PositionInfo> {
 	
 	public VisiEmposMergePosition(Connection conn, String schemaName) {
 		super(conn, schemaName, PositionInfo.class);

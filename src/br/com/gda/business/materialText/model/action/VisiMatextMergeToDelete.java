@@ -8,10 +8,10 @@ import br.com.gda.business.materialText.info.MatextInfo;
 import br.com.gda.business.materialText.info.MatextMerger;
 import br.com.gda.business.materialText.model.decisionTree.RootMatextSelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiMatextMergeToDelete extends ActionVisitorTemplateMerge<MatextInfo, MatextInfo> {
+final class VisiMatextMergeToDelete extends ActionVisitorTemplateMerge_<MatextInfo, MatextInfo> {
 	
 	public VisiMatextMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, MatextInfo.class);

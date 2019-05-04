@@ -8,10 +8,10 @@ import br.com.gda.business.employee.info.EmpMerger;
 import br.com.gda.business.phone.info.PhoneCopier;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.decisionTree.RootPhoneSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiEmpMergePhone extends ActionVisitorTemplateMerge<EmpInfo, PhoneInfo> {
+final class VisiEmpMergePhone extends ActionVisitorTemplateMerge_<EmpInfo, PhoneInfo> {
 	
 	public VisiEmpMergePhone(Connection conn, String schemaName) {
 		super(conn, schemaName, PhoneInfo.class);

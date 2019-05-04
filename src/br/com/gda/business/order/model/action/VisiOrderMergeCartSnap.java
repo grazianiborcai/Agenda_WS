@@ -7,10 +7,10 @@ import br.com.gda.business.cartSnapshot.model.decisionTree.RootCartSnapSelect;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.info.OrderMerger;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiOrderMergeCartSnap extends ActionVisitorTemplateMerge<OrderInfo, CartSnapInfo> {
+final class VisiOrderMergeCartSnap extends ActionVisitorTemplateMerge_<OrderInfo, CartSnapInfo> {
 	
 	public VisiOrderMergeCartSnap(Connection conn, String schemaName) {
 		super(conn, schemaName, CartSnapInfo.class);

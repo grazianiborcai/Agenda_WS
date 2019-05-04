@@ -7,10 +7,10 @@ import br.com.gda.business.masterData.model.decisionTree.RootMatUnitSelect;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.info.MatMerger;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiMatMergeMatUnit extends ActionVisitorTemplateMerge<MatInfo, MatUnitInfo> {
+final class VisiMatMergeMatUnit extends ActionVisitorTemplateMerge_<MatInfo, MatUnitInfo> {
 	
 	public VisiMatMergeMatUnit(Connection conn, String schemaName) {
 		super(conn, schemaName, MatUnitInfo.class);

@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
 import br.com.gda.business.employeeMaterial.info.EmpmatMerger;
 import br.com.gda.business.employeeMaterial.model.decisionTree.RootEmpmatSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiEmpmatMergeToDelete extends ActionVisitorTemplateMerge<EmpmatInfo, EmpmatInfo> {
+final class VisiEmpmatMergeToDelete extends ActionVisitorTemplateMerge_<EmpmatInfo, EmpmatInfo> {
 	
 	public VisiEmpmatMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, EmpmatInfo.class);

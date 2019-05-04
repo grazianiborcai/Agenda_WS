@@ -11,17 +11,19 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
-import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorEnforce<T> {
+public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorMerge<T> {
+	public static boolean MERGE_WHEN_EMPTY = true;
+	public static boolean DONT_MERGE_WHEN_EMPTY = false;
+	
 	private DeciTreeOption<S> selOption;
 	private Class<S> sClazz;
 	
 
-	public ActionVisitorTemplateMerge(Connection conn, String schemaName, Class<S> clazz) {
+	public ActionVisitorTemplateMergeV2(Connection conn, String schemaName, Class<S> clazz) {
 		checkArgument(conn, schemaName, clazz);
 		makeOption(conn, schemaName);
 		
@@ -64,7 +66,10 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 		addRecordToOption(recordInfos);
 		List<S> selectedInfos = selectToMerge();
 		
-		return mergeHook(recordInfos, selectedInfos);
+		if(shouldMerge(selectedInfos))		
+			return mergeHook(recordInfos, selectedInfos);
+		
+		return Collections.emptyList();
 	}	
 	
 	
@@ -189,40 +194,31 @@ public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends
 	
 	
 	
-	protected List<T> mergeHook(List<T> recordInfos, List<S> selectedInfos) {	
-		//Template method: default behavior
-		return merge(recordInfos, selectedInfos);
-	}
-	
-	
-	//TODO: metodo abaixo obsoleto. eliminar
-	@SuppressWarnings("unchecked")
-	private List<T> merge(List<T> recordInfos, List<S> selectedInfos) {		
-		//TODO: Mover regra para dentro de Merger ???
-		if (selectedInfos.isEmpty())
-			return recordInfos;
+	private boolean shouldMerge(List<S> selectedInfos) {
+		boolean mergeWhenEmpty = shouldMergeWhenEmptyHook();
 		
+		if(selectedInfos.isEmpty())
+			return mergeWhenEmpty;
 		
-		try {			
-			Class<? extends InfoWritterFactory_<T>> mergerClass = getMergerClassHook();
-			Method met = mergerClass.getMethod("merge", List.class, List.class);
-			
-			InfoWritterFactory_<T> writterInstance = mergerClass.getConstructor().newInstance();
-			return (List<T>) met.invoke(writterInstance, new Object[] {selectedInfos, recordInfos});
-				
-			} catch (Exception e) {
-				logException(e);
-				throw new IllegalArgumentException(e);
-			}
+		return true;
 	}
 	
 	
 	
-	protected Class<? extends InfoWritterFactory_<T>> getMergerClassHook() {
+	protected boolean shouldMergeWhenEmptyHook() {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
+	
+	
+	
+	protected List<T> mergeHook(List<T> recordInfos, List<S> selectedInfos) {	
+		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
+		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	}
+
 	
 	
 	

@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.employeeList.info.EmplisMerger;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 
-final class VisiEmplisMergeToSelect extends ActionVisitorTemplateMerge<EmplisInfo, EmplisInfo> {
+final class VisiEmplisMergeToSelect extends ActionVisitorTemplateMerge_<EmplisInfo, EmplisInfo> {
 	
 	public VisiEmplisMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, EmplisInfo.class);

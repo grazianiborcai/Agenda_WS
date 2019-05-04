@@ -9,10 +9,10 @@ import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserSelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiOwnerMergeUser extends ActionVisitorTemplateMerge<OwnerInfo, UserInfo> {
+final class VisiOwnerMergeUser extends ActionVisitorTemplateMerge_<OwnerInfo, UserInfo> {
 	
 	public VisiOwnerMergeUser(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class);

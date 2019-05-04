@@ -7,10 +7,10 @@ import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.decisionTree.RootMatSelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCartMergeMat extends ActionVisitorTemplateMerge<CartInfo, MatInfo> {
+final class VisiCartMergeMat extends ActionVisitorTemplateMerge_<CartInfo, MatInfo> {
 	
 	public VisiCartMergeMat(Connection conn, String schemaName) {
 		super(conn, schemaName, MatInfo.class);

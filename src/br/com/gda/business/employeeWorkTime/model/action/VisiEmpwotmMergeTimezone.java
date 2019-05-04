@@ -6,10 +6,10 @@ import br.com.gda.business.employeeWorkTime.info.EmpwotmMerger;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootTimezoneSelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiEmpwotmMergeTimezone extends ActionVisitorTemplateMerge<EmpwotmInfo, TimezoneInfo> {
+final class VisiEmpwotmMergeTimezone extends ActionVisitorTemplateMerge_<EmpwotmInfo, TimezoneInfo> {
 	
 	public VisiEmpwotmMergeTimezone(Connection conn, String schemaName) {
 		super(conn, schemaName, TimezoneInfo.class);

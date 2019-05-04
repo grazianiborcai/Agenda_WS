@@ -7,10 +7,10 @@ import br.com.gda.business.employeeWorkTimeConflict.info.EmpwocoMerger;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootWeekdaySelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiEmpwocoMergeWeekday extends ActionVisitorTemplateMerge<EmpwocoInfo, WeekdayInfo> {
+final class VisiEmpwocoMergeWeekday extends ActionVisitorTemplateMerge_<EmpwocoInfo, WeekdayInfo> {
 	
 	public VisiEmpwocoMergeWeekday(Connection conn, String schemaName) {
 		super(conn, schemaName, WeekdayInfo.class);

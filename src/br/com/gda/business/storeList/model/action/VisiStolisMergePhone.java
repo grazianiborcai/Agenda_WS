@@ -8,10 +8,10 @@ import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.decisionTree.RootPhoneSelect;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.business.storeList.info.StolisMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiStolisMergePhone extends ActionVisitorTemplateMerge<StolisInfo, PhoneInfo> {
+final class VisiStolisMergePhone extends ActionVisitorTemplateMerge_<StolisInfo, PhoneInfo> {
 	
 	public VisiStolisMergePhone(Connection conn, String schemaName) {
 		super(conn, schemaName, PhoneInfo.class);

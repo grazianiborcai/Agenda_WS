@@ -8,10 +8,10 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.info.StoreMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiStoreMergeAddress extends ActionVisitorTemplateMerge<StoreInfo, AddressInfo> {
+final class VisiStoreMergeAddress extends ActionVisitorTemplateMerge_<StoreInfo, AddressInfo> {
 	
 	public VisiStoreMergeAddress(Connection conn, String schemaName) {
 		super(conn, schemaName, AddressInfo.class);

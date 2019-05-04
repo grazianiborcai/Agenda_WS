@@ -24,6 +24,7 @@ final class PlanataVisiMergeToSelect implements InfoMergerVisitorV2<PlanataInfo,
 	
 	private PlanataInfo merge(PlanataInfo sourceOne, PlanataInfo sourceTwo) {
 		PlanataInfo result = makeClone(sourceOne);		
+		result.date = sourceTwo.date;
 		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
 		return result;

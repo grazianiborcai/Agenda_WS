@@ -6,10 +6,10 @@ import br.com.gda.business.materialMovement.info.MatmovInfo;
 import br.com.gda.business.materialMovement.info.MatmovMerger;
 import br.com.gda.business.materialMovement.model.decisionTree.RootMatmovSelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiMatmovMergeToDelete extends ActionVisitorTemplateMerge<MatmovInfo, MatmovInfo> {
+final class VisiMatmovMergeToDelete extends ActionVisitorTemplateMerge_<MatmovInfo, MatmovInfo> {
 	
 	public VisiMatmovMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, MatmovInfo.class);

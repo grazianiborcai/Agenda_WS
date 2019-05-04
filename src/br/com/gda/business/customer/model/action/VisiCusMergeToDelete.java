@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.info.CusMerger;
 import br.com.gda.business.customer.model.decisionTree.RootCusSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCusMergeToDelete extends ActionVisitorTemplateMerge<CusInfo, CusInfo> {
+final class VisiCusMergeToDelete extends ActionVisitorTemplateMerge_<CusInfo, CusInfo> {
 	
 	public VisiCusMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, CusInfo.class);

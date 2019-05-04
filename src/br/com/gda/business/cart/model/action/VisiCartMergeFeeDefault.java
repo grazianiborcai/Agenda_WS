@@ -7,10 +7,10 @@ import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.business.feeDefault.model.decisionTree.RootFeeDefaultSelectService;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCartMergeFeeDefault extends ActionVisitorTemplateMerge<CartInfo, FeeDefaultInfo> {
+final class VisiCartMergeFeeDefault extends ActionVisitorTemplateMerge_<CartInfo, FeeDefaultInfo> {
 	
 	public VisiCartMergeFeeDefault(Connection conn, String schemaName) {
 		super(conn, schemaName, FeeDefaultInfo.class);

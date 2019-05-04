@@ -6,10 +6,10 @@ import br.com.gda.business.materialStock.model.decisionTree.RootMatockSelect;
 import br.com.gda.business.materialStore.info.MatoreInfo;
 import br.com.gda.business.materialStore.info.MatoreMerger;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiMatoreMergeMatock extends ActionVisitorTemplateMerge<MatoreInfo, MatockInfo> {
+final class VisiMatoreMergeMatock extends ActionVisitorTemplateMerge_<MatoreInfo, MatockInfo> {
 	
 	public VisiMatoreMergeMatock(Connection conn, String schemaName) {
 		super(conn, schemaName, MatockInfo.class);

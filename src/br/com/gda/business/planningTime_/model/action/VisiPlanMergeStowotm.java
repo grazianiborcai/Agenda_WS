@@ -7,10 +7,10 @@ import br.com.gda.business.planningTime_.info.PlanInfo;
 import br.com.gda.business.planningTime_.info.PlanMerger;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.business.storeWorkTime.model.decisionTree.RootStowotmSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiPlanMergeStowotm extends ActionVisitorTemplateMerge<PlanInfo, StowotmInfo> {
+final class VisiPlanMergeStowotm extends ActionVisitorTemplateMerge_<PlanInfo, StowotmInfo> {
 	
 	public VisiPlanMergeStowotm(Connection conn, String schemaName) {
 		super(conn, schemaName, StowotmInfo.class);

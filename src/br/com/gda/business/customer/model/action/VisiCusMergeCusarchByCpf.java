@@ -8,10 +8,10 @@ import br.com.gda.business.customer.info.CusMerger;
 import br.com.gda.business.customerSearch.info.CusarchCopier;
 import br.com.gda.business.customerSearch.info.CusarchInfo;
 import br.com.gda.business.customerSearch.model.decisionTree.RootCusarchSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCusMergeCusarchByCpf extends ActionVisitorTemplateMerge<CusInfo, CusarchInfo> {
+final class VisiCusMergeCusarchByCpf extends ActionVisitorTemplateMerge_<CusInfo, CusarchInfo> {
 	
 	public VisiCusMergeCusarchByCpf(Connection conn, String schemaName) {
 		super(conn, schemaName, CusarchInfo.class);

@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.info.AddressMerger;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 
-final class VisiAddressMergeToSelect extends ActionVisitorTemplateMerge<AddressInfo, AddressInfo> {
+final class VisiAddressMergeToSelect extends ActionVisitorTemplateMerge_<AddressInfo, AddressInfo> {
 	
 	public VisiAddressMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, AddressInfo.class);

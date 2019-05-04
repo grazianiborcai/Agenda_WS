@@ -7,10 +7,10 @@ import br.com.gda.business.personSnapshot.info.PersonSnapMerger;
 import br.com.gda.business.snapshot.info.SnapInfo;
 import br.com.gda.business.snapshot.model.decisionTree.RootSnapInsert;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiPersonSnapMergeSnap extends ActionVisitorTemplateMerge<PersonSnapInfo, SnapInfo> {
+final class VisiPersonSnapMergeSnap extends ActionVisitorTemplateMerge_<PersonSnapInfo, SnapInfo> {
 	
 	public VisiPersonSnapMergeSnap(Connection conn, String schemaName) {
 		super(conn, schemaName, SnapInfo.class);

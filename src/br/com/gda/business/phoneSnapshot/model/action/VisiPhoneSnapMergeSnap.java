@@ -7,10 +7,10 @@ import br.com.gda.business.phoneSnapshot.info.PhoneSnapMerger;
 import br.com.gda.business.snapshot.info.SnapInfo;
 import br.com.gda.business.snapshot.model.decisionTree.RootSnapInsert;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiPhoneSnapMergeSnap extends ActionVisitorTemplateMerge<PhoneSnapInfo, SnapInfo> {
+final class VisiPhoneSnapMergeSnap extends ActionVisitorTemplateMerge_<PhoneSnapInfo, SnapInfo> {
 	
 	public VisiPhoneSnapMergeSnap(Connection conn, String schemaName) {
 		super(conn, schemaName, SnapInfo.class);

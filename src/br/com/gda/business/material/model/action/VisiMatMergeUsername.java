@@ -6,13 +6,13 @@ import java.util.List;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.info.MatMerger;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiMatMergeUsername extends ActionVisitorTemplateMerge<MatInfo, UsernameInfo> {
+final class VisiMatMergeUsername extends ActionVisitorTemplateMerge_<MatInfo, UsernameInfo> {
 	
 	public VisiMatMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);

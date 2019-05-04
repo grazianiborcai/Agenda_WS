@@ -7,10 +7,10 @@ import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootWeekdaySelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCartMergeWeekday extends ActionVisitorTemplateMerge<CartInfo, WeekdayInfo> {
+final class VisiCartMergeWeekday extends ActionVisitorTemplateMerge_<CartInfo, WeekdayInfo> {
 	
 	public VisiCartMergeWeekday(Connection conn, String schemaName) {
 		super(conn, schemaName, WeekdayInfo.class);

@@ -7,10 +7,10 @@ import br.com.gda.business.addressSnapshot.info.AddressSnapMerger;
 import br.com.gda.business.snapshot.info.SnapInfo;
 import br.com.gda.business.snapshot.model.decisionTree.RootSnapInsert;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiAddressSnapMergeSnap extends ActionVisitorTemplateMerge<AddressSnapInfo, SnapInfo> {
+final class VisiAddressSnapMergeSnap extends ActionVisitorTemplateMerge_<AddressSnapInfo, SnapInfo> {
 	
 	public VisiAddressSnapMergeSnap(Connection conn, String schemaName) {
 		super(conn, schemaName, SnapInfo.class);

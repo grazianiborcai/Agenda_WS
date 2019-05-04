@@ -6,13 +6,13 @@ import java.util.List;
 import br.com.gda.business.materialMovement.info.MatmovInfo;
 import br.com.gda.business.materialMovement.info.MatmovMerger;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiMatmovMergeUsername extends ActionVisitorTemplateMerge<MatmovInfo, UsernameInfo> {
+final class VisiMatmovMergeUsername extends ActionVisitorTemplateMerge_<MatmovInfo, UsernameInfo> {
 	
 	public VisiMatmovMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);

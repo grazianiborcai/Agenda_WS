@@ -7,10 +7,10 @@ import br.com.gda.business.masterData.model.decisionTree.RootMatCategSelect;
 import br.com.gda.business.materialSnapshot.info.MatSnapInfo;
 import br.com.gda.business.materialSnapshot.info.MatSnapMerger;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiMatSnapMergeMatCateg extends ActionVisitorTemplateMerge<MatSnapInfo, MatCategInfo> {
+final class VisiMatSnapMergeMatCateg extends ActionVisitorTemplateMerge_<MatSnapInfo, MatCategInfo> {
 	
 	public VisiMatSnapMergeMatCateg(Connection conn, String schemaName) {
 		super(conn, schemaName, MatCategInfo.class);

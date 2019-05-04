@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
 import br.com.gda.business.employeeMaterial.info.EmpmatMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiEmpmatMergeUsername extends ActionVisitorTemplateMerge<EmpmatInfo, UsernameInfo> {
+final class VisiEmpmatMergeUsername extends ActionVisitorTemplateMerge_<EmpmatInfo, UsernameInfo> {
 	
 	public VisiEmpmatMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);

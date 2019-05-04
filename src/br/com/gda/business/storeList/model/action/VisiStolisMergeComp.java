@@ -7,10 +7,10 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.company.model.decisionTree.RootCompSelect;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.business.storeList.info.StolisMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiStolisMergeComp extends ActionVisitorTemplateMerge<StolisInfo, CompInfo> {
+final class VisiStolisMergeComp extends ActionVisitorTemplateMerge_<StolisInfo, CompInfo> {
 	
 	public VisiStolisMergeComp(Connection conn, String schemaName) {
 		super(conn, schemaName, CompInfo.class);

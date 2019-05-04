@@ -7,10 +7,10 @@ import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootCurrencySelect;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.business.storeList.info.StolisMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiStolisMergeCurrency extends ActionVisitorTemplateMerge<StolisInfo, CurrencyInfo> {
+final class VisiStolisMergeCurrency extends ActionVisitorTemplateMerge_<StolisInfo, CurrencyInfo> {
 	
 	public VisiStolisMergeCurrency(Connection conn, String schemaName) {
 		super(conn, schemaName, CurrencyInfo.class);

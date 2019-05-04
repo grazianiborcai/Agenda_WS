@@ -7,10 +7,10 @@ import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootCartCategSelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCartMergeCartCateg extends ActionVisitorTemplateMerge<CartInfo, CartCategInfo> {
+final class VisiCartMergeCartCateg extends ActionVisitorTemplateMerge_<CartInfo, CartCategInfo> {
 	
 	public VisiCartMergeCartCateg(Connection conn, String schemaName) {
 		super(conn, schemaName, CartCategInfo.class);

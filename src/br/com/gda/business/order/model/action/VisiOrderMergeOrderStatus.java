@@ -7,10 +7,10 @@ import br.com.gda.business.masterData.model.decisionTree.RootOrderStatusSelect;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.info.OrderMerger;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiOrderMergeOrderStatus extends ActionVisitorTemplateMerge<OrderInfo, OrderStatusInfo> {
+final class VisiOrderMergeOrderStatus extends ActionVisitorTemplateMerge_<OrderInfo, OrderStatusInfo> {
 	
 	public VisiOrderMergeOrderStatus(Connection conn, String schemaName) {
 		super(conn, schemaName, OrderStatusInfo.class);

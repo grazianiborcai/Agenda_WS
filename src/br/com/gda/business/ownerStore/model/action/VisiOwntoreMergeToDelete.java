@@ -5,10 +5,10 @@ import br.com.gda.business.ownerStore.info.OwntoreInfo;
 import br.com.gda.business.ownerStore.info.OwntoreMerger;
 import br.com.gda.business.ownerStore.model.decisionTree.RootOwntoreSelect;
 import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge;
+import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiOwntoreMergeToDelete extends ActionVisitorTemplateMerge<OwntoreInfo, OwntoreInfo> {
+final class VisiOwntoreMergeToDelete extends ActionVisitorTemplateMerge_<OwntoreInfo, OwntoreInfo> {
 	
 	public VisiOwntoreMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, OwntoreInfo.class);
