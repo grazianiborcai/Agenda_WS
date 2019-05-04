@@ -38,6 +38,7 @@ import br.com.gda.business.personSnapshot.dao.PersonSnapDbTableColumn;
 import br.com.gda.business.personUser_.dao.PersonUserDbTableColumn;
 import br.com.gda.business.phone.dao.PhoneDbTableColumn;
 import br.com.gda.business.phoneSnapshot.dao.PhoneSnapDbTableColumn;
+import br.com.gda.business.planingData.dao.PlanataDbTableColumn;
 import br.com.gda.business.reserve.dao.ReserveDbTableColumn;
 import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
@@ -118,6 +119,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new MatmovDbTableColumn());
 		addTable(new MatockDbTableColumn());
 		addTable(new CusarchDbTableColumn());
+		addTable(new PlanataDbTableColumn());
 	}
 	
 	

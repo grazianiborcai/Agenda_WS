@@ -4,64 +4,75 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class EmpmatMerger extends InfoWritterFactory_<EmpmatInfo> {
-	
-	public EmpmatMerger() {
-		super(new EmpmatUniquifier());
+public final class EmpmatMerger {
+	public static EmpmatInfo mergeWithEmp(EmpInfo sourceOne, EmpmatInfo sourceTwo) {
+		InfoMerger<EmpmatInfo, EmpInfo> merger = new EmpmatMergerEmp();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public EmpmatInfo merge(MatInfo sourceOne, EmpmatInfo sourceTwo) {
-		return new EmpmatMergerMat().merge(sourceOne, sourceTwo);
+	public static List<EmpmatInfo> mergeWithEmp(List<EmpInfo> sourceOnes, List<EmpmatInfo> sourceTwos) {
+		InfoMerger<EmpmatInfo, EmpInfo> merger = new EmpmatMergerEmp();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	public EmpmatInfo merge(EmpInfo sourceOne, EmpmatInfo sourceTwo) {
-		return new EmpmatMergerEmp().merge(sourceOne, sourceTwo);
+	public static EmpmatInfo mergeWithMat(MatInfo sourceOne, EmpmatInfo sourceTwo) {
+		InfoMerger<EmpmatInfo, MatInfo> merger = new EmpmatMergerMat();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public EmpmatInfo merge(UsernameInfo sourceOne, EmpmatInfo sourceTwo) {
-		return new EmpmatMergerUsername().merge(sourceOne, sourceTwo);
+	public static List<EmpmatInfo> mergeWithMat(List<MatInfo> sourceOnes, List<EmpmatInfo> sourceTwos) {
+		InfoMerger<EmpmatInfo, MatInfo> merger = new EmpmatMergerMat();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	public EmpmatInfo merge(EmpmatInfo sourceOne, EmpmatInfo sourceTwo) {
-		return new EmpmatMergerToDelete().merge(sourceOne, sourceTwo);
+	public static EmpmatInfo mergeWithUsername(UsernameInfo sourceOne, EmpmatInfo sourceTwo) {
+		InfoMerger<EmpmatInfo, UsernameInfo> merger = new EmpmatMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
+	public static List<EmpmatInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<EmpmatInfo> sourceTwos) {
+		InfoMerger<EmpmatInfo, UsernameInfo> merger = new EmpmatMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 	
-	@SuppressWarnings("unchecked")
-	@Override protected List<EmpmatInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {		
-		if (sourceOnes.get(0) instanceof EmpInfo 		&&
-			sourceTwos.get(0) instanceof EmpmatInfo			)
-			return new EmpmatMergerEmp().merge((List<EmpInfo>) sourceOnes, (List<EmpmatInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof MatInfo 		&&
-			sourceTwos.get(0) instanceof EmpmatInfo			)
-			return new EmpmatMergerMat().merge((List<MatInfo>) sourceOnes, (List<EmpmatInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof UsernameInfo 	&&
-			sourceTwos.get(0) instanceof EmpmatInfo			)
-			return new EmpmatMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<EmpmatInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof EmpmatInfo 	&&
-			sourceTwos.get(0) instanceof EmpmatInfo			)
-			return new EmpmatMergerToDelete().merge((List<EmpmatInfo>) sourceOnes, (List<EmpmatInfo>) sourceTwos);
-		
-		
-		return null;
-	} 
+	
+	
+	public static EmpmatInfo mergeToDelete(EmpmatInfo sourceOne, EmpmatInfo sourceTwo) {
+		InfoMerger<EmpmatInfo, EmpmatInfo> merger = new EmpmatMergerToDelete();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<EmpmatInfo> mergeToDelete(List<EmpmatInfo> sourceOnes, List<EmpmatInfo> sourceTwos) {
+		InfoMerger<EmpmatInfo, EmpmatInfo> merger = new EmpmatMergerToDelete();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static EmpmatInfo mergeToSelect(EmpmatInfo sourceOne, EmpmatInfo sourceTwo) {
+		InfoMerger<EmpmatInfo, EmpmatInfo> merger = new EmpmatMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<EmpmatInfo> mergeToSelect(List<EmpmatInfo> sourceOnes, List<EmpmatInfo> sourceTwos) {
+		InfoMerger<EmpmatInfo, EmpmatInfo> merger = new EmpmatMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

@@ -1,5 +1,8 @@
 package br.com.gda.resource;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -47,6 +50,8 @@ import br.com.gda.business.phone.model.PhoneModelUpdate;
 import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
 import br.com.gda.business.phoneSnapshot.model.PhoneSnapModelInsert;
 import br.com.gda.business.phoneSnapshot.model.PhoneSnapModelSelect;
+import br.com.gda.business.planingData.info.PlanataInfo;
+import br.com.gda.business.planingData.model.PlanataModelSelect;
 import br.com.gda.business.storeTime_.info.StorimeInfo;
 import br.com.gda.business.storeTime_.model.StorimeModelSelect;
 import br.com.gda.business.userSnapshot.info.UserSnapInfo;
@@ -122,6 +127,7 @@ public class TestResource {
 	private static final String SELECT_STORAUTH = "/authStorauth";
 	private static final String SELECT_STORIME = "/authStorime";
 	private static final String CUSTOMER_SEARCH = "/customerSearch";
+	private static final String SELECT_PLANING_DATA = "/selectPlaningData";
 	
 	
 	
@@ -782,4 +788,27 @@ public class TestResource {
 		model.executeRequest();
 		return model.getResponse();	
 	}	
+	
+	
+	
+	@GET
+	@Path(SELECT_PLANING_DATA)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPlanata(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner,
+								  @HeaderParam("codStore") @DefaultValue("-1") long codStore,
+								  @HeaderParam("date") @DefaultValue("1900-01-01") String date,
+								  @HeaderParam("username") String username,
+								  @HeaderParam("codLanguage") String codLanguage) {
+
+		PlanataInfo recordInfo = new PlanataInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.date = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new PlanataModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
 }

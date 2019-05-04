@@ -1,11 +1,12 @@
 package br.com.gda.business.employeeMaterial.model.action;
 
 import java.sql.Connection;
+import java.util.List;
+
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
 import br.com.gda.business.employeeMaterial.info.EmpmatMerger;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.decisionTree.RootMatSelect;
-import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -23,7 +24,7 @@ final class VisiEmpmatMergeMat extends ActionVisitorTemplateMerge<EmpmatInfo, Ma
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<EmpmatInfo>> getMergerClassHook() {
-		return EmpmatMerger.class;
+	@Override protected List<EmpmatInfo> mergeHook(List<EmpmatInfo> recordInfos, List<MatInfo> selectedInfos) {	
+		return EmpmatMerger.mergeWithMat(selectedInfos, recordInfos);
 	}
 }

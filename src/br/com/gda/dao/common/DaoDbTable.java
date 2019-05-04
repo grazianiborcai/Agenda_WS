@@ -100,7 +100,8 @@ public final class DaoDbTable {
 	public static final String OWNER_STORE_VIEW = "owner_store";
 	public static final String PERSON_CUS_VIEW = "view_person_customer";
 	public static final String PERSON_SEARCH_VIEW = "view_person_search";
-	public static final String PERSON_USER_VIEW = "view_person_user";	
+	public static final String PERSON_USER_VIEW = "view_person_user";
+	public static final String PLANING_DATA_VIEW = "planing_data_list";
 	public static final String RESERVE_VIEW = "view_reserve";	
 	public static final String STORE_LIST_VIEW = "view_store_list";
 	public static final String STORE_WT_CONFLICT_VIEW = "view_store_working_time";

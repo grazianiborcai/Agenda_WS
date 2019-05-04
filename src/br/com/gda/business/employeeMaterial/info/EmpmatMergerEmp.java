@@ -1,18 +1,19 @@
 package br.com.gda.business.employeeMaterial.info;
 
-import java.util.List;
-
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class EmpmatMergerEmp extends InfoMerger_<EmpmatInfo, EmpInfo, EmpmatInfo> {
-	public EmpmatInfo merge(EmpInfo sourceOne, EmpmatInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new EmpmatVisiMergeEmp());
+final class EmpmatMergerEmp extends InfoMergerTemplate<EmpmatInfo, EmpInfo> {
+
+	@Override protected InfoMergerVisitorV2<EmpmatInfo, EmpInfo> getVisitorHook() {
+		return new EmpmatVisiMergeEmp();
 	}
 	
 	
 	
-	public List<EmpmatInfo> merge(List<EmpInfo> sourceOnes, List<EmpmatInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new EmpmatVisiMergeEmp());
+	@Override protected InfoUniquifier<EmpmatInfo> getUniquifierHook() {
+		return new EmpmatUniquifier();
 	}
 }

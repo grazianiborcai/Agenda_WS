@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class EmpmatVisiMergeToDelete implements InfoMergerVisitorV2<EmpmatInfo, EmpmatInfo> {
+final class EmpmatVisiMergeToSelect implements InfoMergerVisitorV2<EmpmatInfo, EmpmatInfo> {
 
 	@Override public EmpmatInfo writeRecord(EmpmatInfo sourceOne, EmpmatInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

@@ -5,25 +5,24 @@ import java.util.List;
 
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
 import br.com.gda.business.employeeMaterial.info.EmpmatMerger;
-import br.com.gda.business.employeeMaterial.model.decisionTree.RootEmpmatSelect;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateMerge;
-import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiEmpmatMergeToDelete extends ActionVisitorTemplateMerge<EmpmatInfo, EmpmatInfo> {
+final class VisiEmpmatMergeToSelect extends ActionVisitorTemplateMerge<EmpmatInfo, EmpmatInfo> {
 	
-	public VisiEmpmatMergeToDelete(Connection conn, String schemaName) {
+	public VisiEmpmatMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, EmpmatInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<EmpmatInfo>> getTreeClassHook() {
-		return RootEmpmatSelect.class;
+	@Override protected Class<? extends ActionStd<EmpmatInfo>> getActionClassHook() {
+		return StdEmpmatSelect.class;
 	}
 	
 	
 	
 	@Override protected List<EmpmatInfo> mergeHook(List<EmpmatInfo> recordInfos, List<EmpmatInfo> selectedInfos) {	
-		return EmpmatMerger.mergeToDelete(selectedInfos, recordInfos);
+		return EmpmatMerger.mergeToSelect(selectedInfos, recordInfos);
 	}
 }

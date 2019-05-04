@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
-import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -22,7 +20,6 @@ import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 	static private final String LT_EMP_MAT = DaoDbTable.EMP_MAT_TABLE;
-	static private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<EmpmatInfo> stmtSql;
 	private DaoStmtOption<EmpmatInfo> stmtOption;	
@@ -45,7 +42,7 @@ public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = buildJoins();
+		this.stmtOption.joins = null;
 	}
 	
 	
@@ -57,26 +54,6 @@ public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 		
 		DaoStmtWhere whereClause = new EmpmatWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinLanguage());	
-		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
 	}
 	
 	
@@ -136,7 +113,6 @@ public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 				dataInfo.codEmployee = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_EMPLOYEE);
 				dataInfo.codMat = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_MATERIAL);
 				dataInfo.recordMode = stmtResult.getString(EmpmatDbTableColumn.COL_RECORD_MODE);	
-				dataInfo.codLanguage = stmtResult.getString(EmpmatDbTableColumn.COL_COD_LANGUAGE);	
 				
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(EmpmatDbTableColumn.COL_LAST_CHANGED);

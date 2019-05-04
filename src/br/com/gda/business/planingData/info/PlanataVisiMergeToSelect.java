@@ -1,4 +1,4 @@
-package br.com.gda.business.employeeMaterial.info;
+package br.com.gda.business.planingData.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,24 +6,24 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class EmpmatVisiMergeToDelete implements InfoMergerVisitorV2<EmpmatInfo, EmpmatInfo> {
+final class PlanataVisiMergeToSelect implements InfoMergerVisitorV2<PlanataInfo, PlanataInfo> {
 
-	@Override public EmpmatInfo writeRecord(EmpmatInfo sourceOne, EmpmatInfo sourceTwo) {
+	@Override public PlanataInfo writeRecord(PlanataInfo sourceOne, PlanataInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(EmpmatInfo sourceOne, EmpmatInfo sourceTwo) {
+	private void checkArgument(PlanataInfo sourceOne, PlanataInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private EmpmatInfo merge(EmpmatInfo sourceOne, EmpmatInfo sourceTwo) {
-		EmpmatInfo result = makeClone(sourceOne);		
+	private PlanataInfo merge(PlanataInfo sourceOne, PlanataInfo sourceTwo) {
+		PlanataInfo result = makeClone(sourceOne);		
 		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
 		return result;
@@ -31,9 +31,9 @@ final class EmpmatVisiMergeToDelete implements InfoMergerVisitorV2<EmpmatInfo, E
 	
 	
 	
-	private EmpmatInfo makeClone(EmpmatInfo recordInfo) {
+	private PlanataInfo makeClone(PlanataInfo recordInfo) {
 		try {
-			return (EmpmatInfo) recordInfo.clone();
+			return (PlanataInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -43,7 +43,7 @@ final class EmpmatVisiMergeToDelete implements InfoMergerVisitorV2<EmpmatInfo, E
 	
 	
 	
-	@Override public boolean shouldWrite(EmpmatInfo sourceOne, EmpmatInfo sourceTwo) {		
+	@Override public boolean shouldWrite(PlanataInfo sourceOne, PlanataInfo sourceTwo) {		
 		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
