@@ -1,17 +1,18 @@
 package br.com.gda.business.employeeLeaveDate.info;
 
-import java.util.List;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-import br.com.gda.info.InfoMerger_;
+final class EmplevateMergerToDelete extends InfoMergerTemplate<EmplevateInfo, EmplevateInfo> {
 
-final class EmplevateMergerToDelete extends InfoMerger_<EmplevateInfo, EmplevateInfo, EmplevateInfo> {
-	public EmplevateInfo merge(EmplevateInfo sourceOne, EmplevateInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new EmplevateVisiMergeToDelete());
+	@Override protected InfoMergerVisitorV2<EmplevateInfo, EmplevateInfo> getVisitorHook() {
+		return new EmplevateVisiMergeToDelete();
 	}
 	
 	
 	
-	public List<EmplevateInfo> merge(List<EmplevateInfo> sourceOnes, List<EmplevateInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new EmplevateVisiMergeToDelete());
+	@Override protected InfoUniquifier<EmplevateInfo> getUniquifierHook() {
+		return new EmplevateUniquifier();
 	}
 }

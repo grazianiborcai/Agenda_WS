@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class EmplevateVisiMergeToDelete implements InfoMergerVisitorV2<EmplevateInfo, EmplevateInfo> {
+final class EmplevateVisiMergeToSelect implements InfoMergerVisitorV2<EmplevateInfo, EmplevateInfo> {
 
 	@Override public EmplevateInfo writeRecord(EmplevateInfo sourceOne, EmplevateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

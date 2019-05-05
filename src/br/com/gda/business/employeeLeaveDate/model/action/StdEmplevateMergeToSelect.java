@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdEmplevateMergeUsername implements ActionStd<EmplevateInfo> {
+public final class StdEmplevateMergeToSelect implements ActionStd<EmplevateInfo> {
 	private ActionStd<EmplevateInfo> actionHelper;	
 	
 	
-	public StdEmplevateMergeUsername(DeciTreeOption<EmplevateInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmplevateMergeUsername(option.conn, option.schemaName));
+	public StdEmplevateMergeToSelect(DeciTreeOption<EmplevateInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmplevateMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

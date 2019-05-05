@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.gda.business.employeeLeaveDate.model.action.LazyEmplevateMergeTimezone;
-import br.com.gda.business.employeeLeaveDate.model.action.StdEmplevateSelect;
+import br.com.gda.business.employeeLeaveDate.model.action.StdEmplevateMergeToSelect;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmplevateCheckLangu;
 import br.com.gda.business.employeeLeaveDate.model.checker.EmplevateCheckRead;
 import br.com.gda.model.action.ActionLazy;
@@ -49,7 +49,7 @@ public class RootEmplevateSelect extends DeciTreeReadTemplate<EmplevateInfo> {
 	@Override protected List<ActionStd<EmplevateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplevateInfo> option) {
 		List<ActionStd<EmplevateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmplevateInfo> select = new StdEmplevateSelect(option);
+		ActionStd<EmplevateInfo> select = new StdEmplevateMergeToSelect(option);
 		ActionLazy<EmplevateInfo> mergeTimezone = new LazyEmplevateMergeTimezone(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeTimezone);

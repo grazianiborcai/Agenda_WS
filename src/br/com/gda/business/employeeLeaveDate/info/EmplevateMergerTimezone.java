@@ -1,18 +1,19 @@
 package br.com.gda.business.employeeLeaveDate.info;
 
-import java.util.List;
-
 import br.com.gda.business.masterData.info.TimezoneInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class EmplevateMergerTimezone extends InfoMerger_<EmplevateInfo, TimezoneInfo, EmplevateInfo> {
-	public EmplevateInfo merge(TimezoneInfo sourceOne, EmplevateInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new EmplevateVisiMergeTimezone());
+final class EmplevateMergerTimezone extends InfoMergerTemplate<EmplevateInfo, TimezoneInfo> {
+
+	@Override protected InfoMergerVisitorV2<EmplevateInfo, TimezoneInfo> getVisitorHook() {
+		return new EmplevateVisiMergeTimezone();
 	}
 	
 	
 	
-	public List<EmplevateInfo> merge(List<TimezoneInfo> sourceOnes, List<EmplevateInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new EmplevateVisiMergeTimezone());
+	@Override protected InfoUniquifier<EmplevateInfo> getUniquifierHook() {
+		return new EmplevateUniquifier();
 	}
 }
