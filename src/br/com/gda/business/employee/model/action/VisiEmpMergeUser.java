@@ -8,10 +8,10 @@ import br.com.gda.business.employee.info.EmpMerger;
 import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiEmpMergeUser extends ActionVisitorTemplateMerge_<EmpInfo, UserInfo> {
+final class VisiEmpMergeUser extends ActionVisitorTemplateMergeV2<EmpInfo, UserInfo> {
 	
 	public VisiEmpMergeUser(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class);
@@ -33,5 +33,11 @@ final class VisiEmpMergeUser extends ActionVisitorTemplateMerge_<EmpInfo, UserIn
 	
 	@Override protected List<EmpInfo> mergeHook(List<EmpInfo> recordInfos, List<UserInfo> selectedInfos) {	
 		return EmpMerger.mergeWithUser(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

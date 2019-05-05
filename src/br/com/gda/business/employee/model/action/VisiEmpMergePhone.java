@@ -8,10 +8,10 @@ import br.com.gda.business.employee.info.EmpMerger;
 import br.com.gda.business.phone.info.PhoneCopier;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.decisionTree.RootPhoneSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiEmpMergePhone extends ActionVisitorTemplateMerge_<EmpInfo, PhoneInfo> {
+final class VisiEmpMergePhone extends ActionVisitorTemplateMergeV2<EmpInfo, PhoneInfo> {
 	
 	public VisiEmpMergePhone(Connection conn, String schemaName) {
 		super(conn, schemaName, PhoneInfo.class);
@@ -33,5 +33,11 @@ final class VisiEmpMergePhone extends ActionVisitorTemplateMerge_<EmpInfo, Phone
 	
 	@Override protected List<EmpInfo> mergeHook(List<EmpInfo> recordInfos, List<PhoneInfo> selectedInfos) {	
 		return EmpMerger.mergeWithPhone(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

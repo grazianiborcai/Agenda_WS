@@ -8,10 +8,10 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.info.EmpMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiEmpMergeAddress extends ActionVisitorTemplateMerge_<EmpInfo, AddressInfo> {
+final class VisiEmpMergeAddress extends ActionVisitorTemplateMergeV2<EmpInfo, AddressInfo> {
 	
 	public VisiEmpMergeAddress(Connection conn, String schemaName) {
 		super(conn, schemaName, AddressInfo.class);
@@ -33,5 +33,11 @@ final class VisiEmpMergeAddress extends ActionVisitorTemplateMerge_<EmpInfo, Add
 	
 	@Override protected List<EmpInfo> mergeHook(List<EmpInfo> recordInfos, List<AddressInfo> selectedInfos) {	
 		return EmpMerger.mergeWithAddress(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }
