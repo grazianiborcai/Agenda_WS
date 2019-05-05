@@ -5,9 +5,8 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.info.CusMerger;
-import br.com.gda.business.customer.model.decisionTree.RootCusSelect;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
-import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiCusMergeToSelect extends ActionVisitorTemplateMergeV2<CusInfo, CusInfo> {
 	
@@ -17,8 +16,8 @@ final class VisiCusMergeToSelect extends ActionVisitorTemplateMergeV2<CusInfo, C
 	
 	
 	
-	@Override protected Class<? extends DeciTree<CusInfo>> getTreeClassHook() {
-		return RootCusSelect.class;
+	@Override protected Class<? extends ActionStd<CusInfo>> getActionClassHook() {
+		return StdCusSelect.class;
 	}
 	
 	
