@@ -3,28 +3,32 @@ package br.com.gda.business.customerSearch.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.LanguInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 
-public final class CusarchMerger extends InfoWritterFactory_<CusarchInfo> {	
-	
-	public CusarchMerger() {
-		super(new CusarchUniquifier());
+public final class CusarchMerger {
+	public static CusarchInfo mergeWithLangu(LanguInfo sourceOne, CusarchInfo sourceTwo) {
+		InfoMerger<CusarchInfo, LanguInfo> merger = new CusarchMergerLangu();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public CusarchInfo merge(LanguInfo sourceOne, CusarchInfo sourceTwo) {
-		return new CusarchMergerLangu().merge(sourceOne, sourceTwo);
+	public static List<CusarchInfo> mergeWithLangu(List<LanguInfo> sourceOnes, List<CusarchInfo> sourceTwos) {
+		InfoMerger<CusarchInfo, LanguInfo> merger = new CusarchMergerLangu();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static CusarchInfo mergeToSelect(CusarchInfo sourceOne, CusarchInfo sourceTwo) {
+		InfoMerger<CusarchInfo, CusarchInfo> merger = new CusarchMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CusarchInfo> mergeToSelect(List<CusarchInfo> sourceOnes, List<CusarchInfo> sourceTwos) {
+		InfoMerger<CusarchInfo, CusarchInfo> merger = new CusarchMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}	
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	@Override protected List<CusarchInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {			
-		if (sourceOnes.get(0) instanceof LanguInfo 		&&
-			sourceTwos.get(0) instanceof CusarchInfo		)
-			return new CusarchMergerLangu().merge((List<LanguInfo>) sourceOnes, (List<CusarchInfo>) sourceTwos);
-		
-		return null;
-	}
 }

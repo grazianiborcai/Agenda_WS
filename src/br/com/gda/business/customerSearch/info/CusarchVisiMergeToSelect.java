@@ -3,13 +3,12 @@ package br.com.gda.business.customerSearch.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class CusarchVisiMergeLangu implements InfoMergerVisitorV2<CusarchInfo, LanguInfo> {
+final class CusarchVisiMergeToSelect implements InfoMergerVisitorV2<CusarchInfo, CusarchInfo> {
 
-	@Override public CusarchInfo writeRecord(LanguInfo sourceOne, CusarchInfo sourceTwo) {
+	@Override public CusarchInfo writeRecord(CusarchInfo sourceOne, CusarchInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		CusarchInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +17,7 @@ final class CusarchVisiMergeLangu implements InfoMergerVisitorV2<CusarchInfo, La
 	
 	
 	
-	private void checkArgument(LanguInfo sourceOne, CusarchInfo sourceTwo) {
+	private void checkArgument(CusarchInfo sourceOne, CusarchInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,20 +36,16 @@ final class CusarchVisiMergeLangu implements InfoMergerVisitorV2<CusarchInfo, La
 	
 	
 	
-	private CusarchInfo merge(LanguInfo sourceOne, CusarchInfo sourceTwo) {
+	private CusarchInfo merge(CusarchInfo sourceOne, CusarchInfo sourceTwo) {
 		sourceTwo.codLanguage = sourceOne.codLanguage;
+		sourceTwo.username = sourceOne.username;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(LanguInfo sourceOne, CusarchInfo sourceTwo) {
-		if (sourceOne.codLanguage == null ||
-			sourceTwo.codLanguage == null		)
-			return false;
-		
-		
-		return (sourceOne.codLanguage.equals(sourceTwo.codLanguage));
+	@Override public boolean shouldWrite(CusarchInfo sourceOne, CusarchInfo sourceTwo) {
+		return true;
 	}
 	
 	

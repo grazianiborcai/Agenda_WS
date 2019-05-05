@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdCusarchMergeLangu implements ActionStd<CusarchInfo> {
+final class StdCusarchMergeToSelect implements ActionStd<CusarchInfo> {
 	private ActionStd<CusarchInfo> actionHelper;	
 	
 	
-	public StdCusarchMergeLangu(DeciTreeOption<CusarchInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCusarchMergeLangu(option.conn, option.schemaName));
+	public StdCusarchMergeToSelect(DeciTreeOption<CusarchInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCusarchMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

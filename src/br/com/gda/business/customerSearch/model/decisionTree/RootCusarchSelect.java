@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.customerSearch.info.CusarchInfo;
 import br.com.gda.business.customerSearch.model.action.LazyCusarchMergeLangu;
-import br.com.gda.business.customerSearch.model.action.LazyCusarchSelect;
+import br.com.gda.business.customerSearch.model.action.LazyCusarchMergeToSelect;
 import br.com.gda.business.customerSearch.model.action.StdCusarchEnforceEntityCateg;
 import br.com.gda.business.customerSearch.model.checker.CusarchCheckRead;
 import br.com.gda.model.action.ActionLazy;
@@ -39,7 +39,7 @@ public final class RootCusarchSelect extends DeciTreeReadTemplate<CusarchInfo> {
 		List<ActionStd<CusarchInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CusarchInfo> enforceEntityCateg = new StdCusarchEnforceEntityCateg(option);
-		ActionLazy<CusarchInfo> select = new LazyCusarchSelect(option.conn, option.schemaName);
+		ActionLazy<CusarchInfo> select = new LazyCusarchMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<CusarchInfo> mergeLangu = new LazyCusarchMergeLangu(option.conn, option.schemaName);
 		
 		enforceEntityCateg.addPostAction(select);
