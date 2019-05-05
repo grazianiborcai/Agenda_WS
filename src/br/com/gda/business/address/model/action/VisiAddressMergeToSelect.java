@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.info.AddressMerger;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 
-final class VisiAddressMergeToSelect extends ActionVisitorTemplateMerge_<AddressInfo, AddressInfo> {
+final class VisiAddressMergeToSelect extends ActionVisitorTemplateMergeV2<AddressInfo, AddressInfo> {
 	
 	public VisiAddressMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, AddressInfo.class);
@@ -24,5 +24,11 @@ final class VisiAddressMergeToSelect extends ActionVisitorTemplateMerge_<Address
 	
 	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> recordInfos, List<AddressInfo> selectedInfos) {	
 		return AddressMerger.mergeToSelect(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

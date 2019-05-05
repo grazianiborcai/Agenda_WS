@@ -7,10 +7,10 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.info.AddressMerger;
 import br.com.gda.business.masterData.info.StateInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootStateSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiAddressMergeState extends ActionVisitorTemplateMerge_<AddressInfo, StateInfo> {
+final class VisiAddressMergeState extends ActionVisitorTemplateMergeV2<AddressInfo, StateInfo> {
 	
 	public VisiAddressMergeState(Connection conn, String schemaName) {
 		super(conn, schemaName, StateInfo.class);
@@ -26,5 +26,11 @@ final class VisiAddressMergeState extends ActionVisitorTemplateMerge_<AddressInf
 	
 	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> recordInfos, List<StateInfo> selectedInfos) {
 		return AddressMerger.mergeWithState(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }
