@@ -7,10 +7,10 @@ import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.info.CusMerger;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.decisionTree.RootPersonSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCusMergePerson extends ActionVisitorTemplateMerge_<CusInfo, PersonInfo> {
+final class VisiCusMergePerson extends ActionVisitorTemplateMergeV2<CusInfo, PersonInfo> {
 	
 	public VisiCusMergePerson(Connection conn, String schemaName) {
 		super(conn, schemaName, PersonInfo.class);
@@ -26,5 +26,11 @@ final class VisiCusMergePerson extends ActionVisitorTemplateMerge_<CusInfo, Pers
 	
 	@Override protected List<CusInfo> mergeHook(List<CusInfo> recordInfos, List<PersonInfo> selectedInfos) {	
 		return CusMerger.mergeWithPerson(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

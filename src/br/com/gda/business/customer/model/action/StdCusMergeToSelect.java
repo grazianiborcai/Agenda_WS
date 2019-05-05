@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCusMergePhone implements ActionStd<CusInfo> {
+public final class StdCusMergeToSelect implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusMergePhone(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCusMergePhone(option.conn, option.schemaName));
+	public StdCusMergeToSelect(DeciTreeOption<CusInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCusMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

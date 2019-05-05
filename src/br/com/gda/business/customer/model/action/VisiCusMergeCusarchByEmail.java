@@ -8,10 +8,10 @@ import br.com.gda.business.customer.info.CusMerger;
 import br.com.gda.business.customerSearch.info.CusarchCopier;
 import br.com.gda.business.customerSearch.info.CusarchInfo;
 import br.com.gda.business.customerSearch.model.decisionTree.RootCusarchSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCusMergeCusarchByEmail extends ActionVisitorTemplateMerge_<CusInfo, CusarchInfo> {
+final class VisiCusMergeCusarchByEmail extends ActionVisitorTemplateMergeV2<CusInfo, CusarchInfo> {
 	
 	public VisiCusMergeCusarchByEmail(Connection conn, String schemaName) {
 		super(conn, schemaName, CusarchInfo.class);
@@ -33,5 +33,11 @@ final class VisiCusMergeCusarchByEmail extends ActionVisitorTemplateMerge_<CusIn
 	
 	@Override protected List<CusInfo> mergeHook(List<CusInfo> recordInfos, List<CusarchInfo> selectedInfos) {	
 		return CusMerger.mergeWithCusarch(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

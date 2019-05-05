@@ -8,7 +8,7 @@ import br.com.gda.business.customer.model.action.LazyCusMergeAddress;
 import br.com.gda.business.customer.model.action.LazyCusMergePerson;
 import br.com.gda.business.customer.model.action.LazyCusMergePhone;
 import br.com.gda.business.customer.model.action.LazyCusMergeUser;
-import br.com.gda.business.customer.model.action.StdCusSelect;
+import br.com.gda.business.customer.model.action.StdCusMergeToSelect;
 import br.com.gda.business.customer.model.checker.CusCheckLangu;
 import br.com.gda.business.customer.model.checker.CusCheckRead;
 import br.com.gda.model.action.ActionLazy;
@@ -52,7 +52,7 @@ public final class RootCusSelect extends DeciTreeReadTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> select = new StdCusSelect(option);
+		ActionStd<CusInfo> select = new StdCusMergeToSelect(option);
 		ActionLazy<CusInfo> mergePerson = new LazyCusMergePerson(option.conn, option.schemaName);
 		ActionLazy<CusInfo> mergeAddress = new LazyCusMergeAddress(option.conn, option.schemaName);
 		ActionLazy<CusInfo> mergePhone = new LazyCusMergePhone(option.conn, option.schemaName);

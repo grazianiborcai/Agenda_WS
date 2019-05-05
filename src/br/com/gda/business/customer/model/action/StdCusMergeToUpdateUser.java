@@ -3,7 +3,7 @@ package br.com.gda.business.customer.model.action;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -12,7 +12,7 @@ public final class StdCusMergeToUpdateUser implements ActionStd<CusInfo> {
 	
 	
 	public StdCusMergeToUpdateUser(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusMergeToUpdateUser(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCusMergeToUpdateUser(option.conn, option.schemaName));
 	}
 	
 	

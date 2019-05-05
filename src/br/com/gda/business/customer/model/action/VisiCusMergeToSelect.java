@@ -9,9 +9,9 @@ import br.com.gda.business.customer.model.decisionTree.RootCusSelect;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCusMergeToDelete extends ActionVisitorTemplateMergeV2<CusInfo, CusInfo> {
+final class VisiCusMergeToSelect extends ActionVisitorTemplateMergeV2<CusInfo, CusInfo> {
 	
-	public VisiCusMergeToDelete(Connection conn, String schemaName) {
+	public VisiCusMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, CusInfo.class);
 	}
 	
@@ -24,7 +24,7 @@ final class VisiCusMergeToDelete extends ActionVisitorTemplateMergeV2<CusInfo, C
 	
 	
 	@Override protected List<CusInfo> mergeHook(List<CusInfo> recordInfos, List<CusInfo> selectedInfos) {	
-		return CusMerger.mergeToDelete(selectedInfos, recordInfos);
+		return CusMerger.mergeToSelect(selectedInfos, recordInfos);
 	}
 	
 	
