@@ -7,10 +7,10 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.decisionTree.RootEmpSelect;
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
 import br.com.gda.business.employeeMaterial.info.EmpmatMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiEmpmatMergeEmp extends ActionVisitorTemplateMerge_<EmpmatInfo, EmpInfo> {
+final class VisiEmpmatMergeEmp extends ActionVisitorTemplateMergeV2<EmpmatInfo, EmpInfo> {
 	
 	public VisiEmpmatMergeEmp(Connection conn, String schemaName) {
 		super(conn, schemaName, EmpInfo.class);
@@ -26,5 +26,11 @@ final class VisiEmpmatMergeEmp extends ActionVisitorTemplateMerge_<EmpmatInfo, E
 	
 	@Override protected List<EmpmatInfo> mergeHook(List<EmpmatInfo> recordInfos, List<EmpInfo> selectedInfos) {	
 		return EmpmatMerger.mergeWithEmp(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }
