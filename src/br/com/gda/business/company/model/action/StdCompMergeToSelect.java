@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCompMergeToDelete implements ActionStd<CompInfo> {
+public final class StdCompMergeToSelect implements ActionStd<CompInfo> {
 	private ActionStd<CompInfo> actionHelper;	
 	
 	
-	public StdCompMergeToDelete(DeciTreeOption<CompInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCompMergeToDelete(option.conn, option.schemaName));
+	public StdCompMergeToSelect(DeciTreeOption<CompInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCompMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

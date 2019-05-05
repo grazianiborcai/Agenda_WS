@@ -1,18 +1,12 @@
 package br.com.gda.business.company.info;
 
-import java.util.List;
-
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class CompMergerUsername extends InfoMerger_<CompInfo, UsernameInfo, CompInfo> {
-	public CompInfo merge(UsernameInfo sourceOne, CompInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new CompVisiMergeUsername());
-	}
+final class CompMergerUsername extends InfoMergerTemplate<CompInfo, UsernameInfo> {
 	
-	
-	
-	public List<CompInfo> merge(List<UsernameInfo> sourceOnes, List<CompInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new CompVisiMergeUsername());
+	@Override protected InfoMergerVisitorV2<CompInfo, UsernameInfo> getVisitorHook() {
+		return new CompVisiMergeUsername();
 	}
 }

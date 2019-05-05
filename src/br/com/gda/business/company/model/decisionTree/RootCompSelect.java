@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.company.info.CompInfo;
-import br.com.gda.business.company.model.action.StdCompSelect;
+import br.com.gda.business.company.model.action.StdCompMergeToSelect;
 import br.com.gda.business.company.model.checker.CompCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -54,7 +54,7 @@ public final class RootCompSelect implements DeciTree<CompInfo> {
 	private List<ActionStd<CompInfo>> buildActionsOnPassed(DeciTreeOption<CompInfo> option) {
 		List<ActionStd<CompInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CompInfo> select = new StdCompSelect(option);	
+		ActionStd<CompInfo> select = new StdCompMergeToSelect(option);	
 		actions.add(select);
 		
 		return actions;

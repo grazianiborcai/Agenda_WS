@@ -2,41 +2,47 @@ package br.com.gda.business.company.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class CompMerger extends InfoWritterFactory_<CompInfo> {	
-	
-	public CompMerger() {
-		super();
+public final class CompMerger {
+	public static CompInfo mergeWithUsername(UsernameInfo sourceOne, CompInfo sourceTwo) {
+		InfoMerger<CompInfo, UsernameInfo> merger = new CompMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public CompInfo merge(CompInfo sourceOne, CompInfo sourceTwo) {
-		return new CompMergerToDelete().merge(sourceOne, sourceTwo);
+	public static List<CompInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<CompInfo> sourceTwos) {
+		InfoMerger<CompInfo, UsernameInfo> merger = new CompMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	static public CompInfo merge(UsernameInfo sourceOne, CompInfo sourceTwo) {
-		return new CompMergerUsername().merge(sourceOne, sourceTwo);
+	public static CompInfo mergeToDelete(CompInfo sourceOne, CompInfo sourceTwo) {
+		InfoMerger<CompInfo, CompInfo> merger = new CompMergerToDelete();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	@Override protected List<CompInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
-		if (sourceOnes.get(0) instanceof CompInfo 	&&
-			sourceTwos.get(0) instanceof CompInfo		)
-			return new CompMergerToDelete().merge((List<CompInfo>) sourceOnes, (List<CompInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof UsernameInfo 	&&
-			sourceTwos.get(0) instanceof CompInfo		)
-			return new CompMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<CompInfo>) sourceTwos);
-		
-		
-		return null;
+	public static List<CompInfo> mergeToDelete(List<CompInfo> sourceOnes, List<CompInfo> sourceTwos) {
+		InfoMerger<CompInfo, CompInfo> merger = new CompMergerToDelete();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static CompInfo mergeToSelect(CompInfo sourceOne, CompInfo sourceTwo) {
+		InfoMerger<CompInfo, CompInfo> merger = new CompMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CompInfo> mergeToSelect(List<CompInfo> sourceOnes, List<CompInfo> sourceTwos) {
+		InfoMerger<CompInfo, CompInfo> merger = new CompMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

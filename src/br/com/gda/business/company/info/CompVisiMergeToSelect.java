@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class CompVisiMergeToDelete implements InfoMergerVisitorV2<CompInfo, CompInfo> {
+final class CompVisiMergeToSelect implements InfoMergerVisitorV2<CompInfo, CompInfo> {
 
 	@Override public CompInfo writeRecord(CompInfo sourceOne, CompInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
@@ -44,8 +44,7 @@ final class CompVisiMergeToDelete implements InfoMergerVisitorV2<CompInfo, CompI
 	
 	
 	@Override public boolean shouldWrite(CompInfo sourceOne, CompInfo sourceTwo) {		
-		return (sourceOne.codOwner   == sourceTwo.codOwner 		&&
-				sourceOne.codCompany == sourceTwo.codCompany		);
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	

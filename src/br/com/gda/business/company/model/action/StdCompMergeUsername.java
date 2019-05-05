@@ -3,7 +3,7 @@ package br.com.gda.business.company.model.action;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -12,7 +12,7 @@ final class StdCompMergeUsername implements ActionStd<CompInfo> {
 	
 	
 	public StdCompMergeUsername(DeciTreeOption<CompInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCompMergeUsername(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCompMergeUsername(option.conn, option.schemaName));
 	}
 	
 	

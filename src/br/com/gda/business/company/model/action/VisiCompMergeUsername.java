@@ -1,16 +1,16 @@
 package br.com.gda.business.company.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.company.info.CompMerger;
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiCompMergeUsername extends ActionVisitorTemplateMerge_<CompInfo, UsernameInfo> {
+final class VisiCompMergeUsername extends ActionVisitorTemplateMergeV2<CompInfo, UsernameInfo> {
 	
 	public VisiCompMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
@@ -24,7 +24,13 @@ final class VisiCompMergeUsername extends ActionVisitorTemplateMerge_<CompInfo, 
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<CompInfo>> getMergerClassHook() {
-		return CompMerger.class;
+	@Override protected List<CompInfo> mergeHook(List<CompInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
+		return CompMerger.mergeWithUsername(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

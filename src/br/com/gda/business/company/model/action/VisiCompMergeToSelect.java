@@ -9,9 +9,9 @@ import br.com.gda.business.company.model.decisionTree.RootCompSelect;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCompMergeToDelete extends ActionVisitorTemplateMergeV2<CompInfo, CompInfo> {
+final class VisiCompMergeToSelect extends ActionVisitorTemplateMergeV2<CompInfo, CompInfo> {
 	
-	public VisiCompMergeToDelete(Connection conn, String schemaName) {
+	public VisiCompMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, CompInfo.class);
 	}
 	
@@ -24,7 +24,7 @@ final class VisiCompMergeToDelete extends ActionVisitorTemplateMergeV2<CompInfo,
 	
 	
 	@Override protected List<CompInfo> mergeHook(List<CompInfo> recordInfos, List<CompInfo> selectedInfos) {	
-		return CompMerger.mergeToDelete(selectedInfos, recordInfos);
+		return CompMerger.mergeToSelect(selectedInfos, recordInfos);
 	}
 	
 	
