@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdEmposMergeUsername implements ActionStd<EmposInfo> {
+public final class StdEmposMergeToSelect implements ActionStd<EmposInfo> {
 	private ActionStd<EmposInfo> actionHelper;	
 	
 	
-	public StdEmposMergeUsername(DeciTreeOption<EmposInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmposMergeUsername(option.conn, option.schemaName));
+	public StdEmposMergeToSelect(DeciTreeOption<EmposInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmposMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

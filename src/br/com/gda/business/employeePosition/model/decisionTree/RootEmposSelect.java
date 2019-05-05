@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.business.employeePosition.model.action.LazyEmposMergePosition;
-import br.com.gda.business.employeePosition.model.action.StdEmposSelect;
+import br.com.gda.business.employeePosition.model.action.StdEmposMergeToSelect;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckLangu;
 import br.com.gda.business.employeePosition.model.checker.EmposCheckRead;
 import br.com.gda.model.action.ActionLazy;
@@ -49,7 +49,7 @@ public final class RootEmposSelect extends DeciTreeReadTemplate<EmposInfo> {
 	@Override protected List<ActionStd<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmposInfo> select	= new StdEmposSelect(option);
+		ActionStd<EmposInfo> select	= new StdEmposMergeToSelect(option);
 		ActionLazy<EmposInfo> mergePosition = new LazyEmposMergePosition(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePosition);

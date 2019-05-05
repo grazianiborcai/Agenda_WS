@@ -46,4 +46,18 @@ public final class EmposMerger {
 		InfoMerger<EmposInfo, EmposInfo> merger = new EmposMergerToDelete();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static EmposInfo mergeToSelect(EmposInfo sourceOne, EmposInfo sourceTwo) {
+		InfoMerger<EmposInfo, EmposInfo> merger = new EmposMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<EmposInfo> mergeToSelect(List<EmposInfo> sourceOnes, List<EmposInfo> sourceTwos) {
+		InfoMerger<EmposInfo, EmposInfo> merger = new EmposMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }
