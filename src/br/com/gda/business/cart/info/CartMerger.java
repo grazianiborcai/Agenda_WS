@@ -3,7 +3,7 @@ package br.com.gda.business.cart.info;
 import java.util.List;
 
 import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
-import br.com.gda.business.feeStore.info.FeeStoreInfo;
+import br.com.gda.business.feeStore.info.FeetoreInfo;
 import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
@@ -39,7 +39,7 @@ public final class CartMerger extends InfoWritterFactory_<CartInfo> {
 	
 	
 	
-	static public CartInfo merge(FeeStoreInfo sourceOne, CartInfo sourceTwo) {
+	static public CartInfo merge(FeetoreInfo sourceOne, CartInfo sourceTwo) {
 		return new CartMergerFeeStore().merge(sourceOne, sourceTwo);
 	}
 	
@@ -92,9 +92,9 @@ public final class CartMerger extends InfoWritterFactory_<CartInfo> {
 			return new CartMergerWeekday().merge((List<WeekdayInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
 		
 		
-		if (sourceOnes.get(0) instanceof FeeStoreInfo 		&&
+		if (sourceOnes.get(0) instanceof FeetoreInfo 		&&
 			sourceTwos.get(0) instanceof CartInfo		)
-			return new CartMergerFeeStore().merge((List<FeeStoreInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
+			return new CartMergerFeeStore().merge((List<FeetoreInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
 		
 		
 		if (sourceOnes.get(0) instanceof FeeDefaultInfo 	&&

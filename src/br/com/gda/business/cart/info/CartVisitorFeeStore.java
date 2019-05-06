@@ -1,13 +1,13 @@
 package br.com.gda.business.cart.info;
 
-import br.com.gda.business.feeStore.info.FeeStoreInfo;
+import br.com.gda.business.feeStore.info.FeetoreInfo;
 import br.com.gda.business.masterData.info.common.CartCateg;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor_;
 
-final class CartVisitorFeeStore implements InfoMergerVisitor_<CartInfo, FeeStoreInfo, CartInfo> {
+final class CartVisitorFeeStore implements InfoMergerVisitor_<CartInfo, FeetoreInfo, CartInfo> {
 
-	@Override public CartInfo writeRecord(FeeStoreInfo sourceOne, CartInfo sourceTwo) {
+	@Override public CartInfo writeRecord(FeetoreInfo sourceOne, CartInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		CartInfo resultInfo = CartInfo.copyFrom(sourceOne);
@@ -26,14 +26,14 @@ final class CartVisitorFeeStore implements InfoMergerVisitor_<CartInfo, FeeStore
 	
 	
 	
-	private void checkArgument(FeeStoreInfo sourceOne, CartInfo sourceTwo) {
+	private void checkArgument(FeetoreInfo sourceOne, CartInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 
 
 	
-	@Override public boolean shouldWrite(FeeStoreInfo sourceOne, CartInfo sourceTwo) {
+	@Override public boolean shouldWrite(FeetoreInfo sourceOne, CartInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codStore == sourceTwo.codStore);
 	}
 }

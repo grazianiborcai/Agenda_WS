@@ -8,7 +8,7 @@ import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class FeeStoreDbTableColumn extends DaoDbTableColumnTemplate {
+public final class FeetoreDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_STORE = "cod_store";
 	public static final String COL_COD_FEE_CATEG = "cod_fee_categ";
@@ -18,7 +18,7 @@ public final class FeeStoreDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
 	
-	public FeeStoreDbTableColumn() {
+	public FeetoreDbTableColumn() {
 		super();
 	}
 	

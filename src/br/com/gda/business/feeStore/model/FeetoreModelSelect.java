@@ -4,8 +4,8 @@ import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.feeStore.info.FeeStoreInfo;
-import br.com.gda.business.feeStore.model.decisionTree.RootFeeStoreSelectService;
+import br.com.gda.business.feeStore.info.FeetoreInfo;
+import br.com.gda.business.feeStore.model.decisionTree.RootFeetoreSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class FeeStoreModelSelectService implements Model {
+public final class FeetoreModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public FeeStoreModelSelectService(FeeStoreInfo recordInfo) {
+	public FeetoreModelSelect(FeetoreInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class FeeStoreModelSelectService implements Model {
 	
 	
 	
-	private void buildHelper(FeeStoreInfo recordInfo) {
-		ModelOption<FeeStoreInfo> helperOption = new ModelOption<>();
+	private void buildHelper(FeetoreInfo recordInfo) {
+		ModelOption<FeetoreInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = FeeStoreInfo.class;
+		helperOption.infoRecordClass = FeetoreInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class FeeStoreModelSelectService implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<FeeStoreInfo> {		
-		@Override public DeciTree<FeeStoreInfo> getInstance(DeciTreeOption<FeeStoreInfo> option) {
-			return new RootFeeStoreSelectService(option);
+	private static class TreeFactory implements DeciTreeFactory<FeetoreInfo> {		
+		@Override public DeciTree<FeetoreInfo> getInstance(DeciTreeOption<FeetoreInfo> option) {
+			return new RootFeetoreSelect(option);
 		}			
 	}
 }

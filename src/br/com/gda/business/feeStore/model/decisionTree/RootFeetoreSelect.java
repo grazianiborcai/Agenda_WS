@@ -3,8 +3,8 @@ package br.com.gda.business.feeStore.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.feeStore.info.FeeStoreInfo;
-import br.com.gda.business.feeStore.model.action.StdFeeStoreSelect;
+import br.com.gda.business.feeStore.info.FeetoreInfo;
+import br.com.gda.business.feeStore.model.action.StdFeetoreMergeToSelect;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckFeeCateg;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckOwner;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckRead;
@@ -20,12 +20,12 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootFeeStoreSelect implements DeciTree<FeeStoreInfo> {
-	private DeciTree<FeeStoreInfo> tree;
+public final class RootFeetoreSelect implements DeciTree<FeetoreInfo> {
+	private DeciTree<FeetoreInfo> tree;
 	
 	
-	public RootFeeStoreSelect(DeciTreeOption<FeeStoreInfo> option) {
-		DeciTreeHelperOption<FeeStoreInfo> helperOption = new DeciTreeHelperOption<>();
+	public RootFeetoreSelect(DeciTreeOption<FeetoreInfo> option) {
+		DeciTreeHelperOption<FeetoreInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
@@ -37,11 +37,11 @@ public final class RootFeeStoreSelect implements DeciTree<FeeStoreInfo> {
 	
 	
 	
-	private ModelChecker<FeeStoreInfo> buildDecisionChecker(DeciTreeOption<FeeStoreInfo> option) {
+	private ModelChecker<FeetoreInfo> buildDecisionChecker(DeciTreeOption<FeetoreInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
-		List<ModelChecker<FeeStoreInfo>> queue = new ArrayList<>();		
-		ModelChecker<FeeStoreInfo> checker;
+		List<ModelChecker<FeetoreInfo>> queue = new ArrayList<>();		
+		ModelChecker<FeetoreInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checker = new FeeStoreCheckRead();
@@ -73,10 +73,12 @@ public final class RootFeeStoreSelect implements DeciTree<FeeStoreInfo> {
 	
 	
 	
-	private List<ActionStd<FeeStoreInfo>> buildActionsOnPassed(DeciTreeOption<FeeStoreInfo> option) {
-		List<ActionStd<FeeStoreInfo>> actions = new ArrayList<>();
+	private List<ActionStd<FeetoreInfo>> buildActionsOnPassed(DeciTreeOption<FeetoreInfo> option) {
+		List<ActionStd<FeetoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdFeeStoreSelect(option));
+		ActionStd<FeetoreInfo> select = new StdFeetoreMergeToSelect(option);
+		actions.add(select);
+		
 		return actions;
 	}
 	
@@ -94,13 +96,13 @@ public final class RootFeeStoreSelect implements DeciTree<FeeStoreInfo> {
 	
 	
 	
-	@Override public DeciResult<FeeStoreInfo> getDecisionResult() {
+	@Override public DeciResult<FeetoreInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
 	
 	
-	@Override public ActionStd<FeeStoreInfo> toAction() {
+	@Override public ActionStd<FeetoreInfo> toAction() {
 		return tree.toAction();
 	}
 }

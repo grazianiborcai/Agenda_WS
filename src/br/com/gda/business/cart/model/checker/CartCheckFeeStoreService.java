@@ -3,7 +3,7 @@ package br.com.gda.business.cart.model.checker;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.feeStore.info.FeeStoreInfo;
+import br.com.gda.business.feeStore.info.FeetoreInfo;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckExistService;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -12,7 +12,7 @@ public final class CartCheckFeeStoreService implements ModelChecker<CartInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<FeeStoreInfo> checker;
+	private ModelChecker<FeetoreInfo> checker;
 	
 	
 	public CartCheckFeeStoreService(ModelCheckerOption option) {
@@ -33,7 +33,7 @@ public final class CartCheckFeeStoreService implements ModelChecker<CartInfo> {
 	
 	
 	@Override public boolean check(CartInfo recordInfo) {
-		return checker.check(FeeStoreInfo.copyFrom(recordInfo));
+		return checker.check(FeetoreInfo.copyFrom(recordInfo));
 	}
 
 	

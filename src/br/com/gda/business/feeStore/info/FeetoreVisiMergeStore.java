@@ -5,14 +5,14 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 
-final class FeeStoreVisitorStore implements InfoMergerVisitor_<FeeStoreInfo, StoreInfo, FeeStoreInfo> {
+final class FeetoreVisiMergeStore implements InfoMergerVisitorV2<FeetoreInfo, StoreInfo> {
 
-	@Override public FeeStoreInfo writeRecord(StoreInfo sourceOne, FeeStoreInfo sourceTwo) {
+	@Override public FeetoreInfo writeRecord(StoreInfo sourceOne, FeetoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		FeeStoreInfo resultInfo = makeClone(sourceTwo);
+		FeetoreInfo resultInfo = makeClone(sourceTwo);
 		resultInfo.codCurr = sourceOne.codCurr;
 
 		return resultInfo;
@@ -20,16 +20,16 @@ final class FeeStoreVisitorStore implements InfoMergerVisitor_<FeeStoreInfo, Sto
 	
 	
 	
-	private void checkArgument(StoreInfo sourceOne, FeeStoreInfo sourceTwo) {
+	private void checkArgument(StoreInfo sourceOne, FeetoreInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private FeeStoreInfo makeClone(FeeStoreInfo recordInfo) {
+	private FeetoreInfo makeClone(FeetoreInfo recordInfo) {
 		try {
-			return (FeeStoreInfo) recordInfo.clone();
+			return (FeetoreInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -39,7 +39,7 @@ final class FeeStoreVisitorStore implements InfoMergerVisitor_<FeeStoreInfo, Sto
 
 
 
-	@Override public boolean shouldWrite(StoreInfo sourceOne, FeeStoreInfo sourceTwo) {
+	@Override public boolean shouldWrite(StoreInfo sourceOne, FeetoreInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codStore == sourceTwo.codStore);
 	}
 	

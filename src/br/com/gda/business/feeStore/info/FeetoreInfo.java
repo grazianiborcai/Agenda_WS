@@ -5,32 +5,35 @@ import java.util.List;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class FeeStoreInfo extends InfoRecord implements Cloneable {
+public final class FeetoreInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
 	public char codFeeCateg;
 	public String txtFeeCateg;
 	public String codCurr;
 	public double price;
+	public String codLanguage;
+	public String username;
 	
 	
-	public FeeStoreInfo() {
+	public FeetoreInfo() {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codFeeCateg = DefaultValue.character();
 		price = DefaultValue.number();
+		codLanguage = DefaultValue.recordMode();
 	}
 	
 	
 	
-	public static FeeStoreInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, FeeStoreInfo.class);
+	public static FeetoreInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, FeetoreInfo.class);
 	}
 	
 	
 	
-	public static List<FeeStoreInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, FeeStoreInfo.class);
+	public static List<FeetoreInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, FeetoreInfo.class);
 	}
 	
 	
@@ -58,11 +61,11 @@ public final class FeeStoreInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof FeeStoreInfo))
+		if (!(o instanceof FeetoreInfo))
 			return false;
 		
 		
-		FeeStoreInfo obj = (FeeStoreInfo) o;		
+		FeetoreInfo obj = (FeetoreInfo) o;		
 		return (codOwner == obj.codOwner &&
 				codStore == obj.codStore &&
 				codFeeCateg == obj.codFeeCateg);

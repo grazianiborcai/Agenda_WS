@@ -2,8 +2,8 @@ package br.com.gda.business.feeStore.model.checker;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import br.com.gda.business.feeStore.info.FeeStoreInfo;
-import br.com.gda.business.feeStore.model.decisionTree.RootFeeStoreSelectService;
+import br.com.gda.business.feeStore.info.FeetoreInfo;
+import br.com.gda.business.feeStore.model.decisionTree.RootFeetoreSelectService;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -11,7 +11,7 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class FeeStoreCheckExistService extends ModelCheckerTemplateAction<FeeStoreInfo> {
+public final class FeeStoreCheckExistService extends ModelCheckerTemplateAction<FeetoreInfo> {
 	
 	public FeeStoreCheckExistService(ModelCheckerOption option) {
 		super(option);
@@ -19,17 +19,17 @@ public final class FeeStoreCheckExistService extends ModelCheckerTemplateAction<
 	
 
 	
-	@Override protected ActionStd<FeeStoreInfo> buildActionHook(FeeStoreInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<FeeStoreInfo> option = buildActionOption(recordInfo, conn, schemaName);
+	@Override protected ActionStd<FeetoreInfo> buildActionHook(FeetoreInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<FeetoreInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<FeeStoreInfo> select = new RootFeeStoreSelectService(option).toAction();
+		ActionStd<FeetoreInfo> select = new RootFeetoreSelectService(option).toAction();
 		return select;
 	}
 	
 	
 	
-	private DeciTreeOption<FeeStoreInfo> buildActionOption(FeeStoreInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<FeeStoreInfo> option = new DeciTreeOption<>();
+	private DeciTreeOption<FeetoreInfo> buildActionOption(FeetoreInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<FeetoreInfo> option = new DeciTreeOption<>();
 		option.recordInfos = new ArrayList<>();
 		option.recordInfos.add(recordInfo);
 		option.conn = conn;

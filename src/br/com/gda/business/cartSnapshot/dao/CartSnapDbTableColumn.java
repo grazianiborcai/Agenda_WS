@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.business.cart.dao.CartDbTableColumn;
-import br.com.gda.business.feeStore.dao.FeeStoreDbTableColumn;
+import br.com.gda.business.feeStore.dao.FeetoreDbTableColumn;
 import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
@@ -16,7 +16,7 @@ public final class CartSnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CURRRENCY = "cod_curr";
 	public static final String COL_COD_CUSTOMER = CartDbTableColumn.COL_COD_CUSTOMER;
 	public static final String COL_COD_EMPLOYEE = CartDbTableColumn.COL_COD_EMPLOYEE;
-	public static final String COL_COD_FEE_CATEG = FeeStoreDbTableColumn.COL_COD_FEE_CATEG;
+	public static final String COL_COD_FEE_CATEG = FeetoreDbTableColumn.COL_COD_FEE_CATEG;
 	public static final String COL_COD_ITEM_CATEG = CartDbTableColumn.COL_COD_ITEM_CATEG;
 	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_MATERIAL = CartDbTableColumn.COL_COD_MATERIAL;

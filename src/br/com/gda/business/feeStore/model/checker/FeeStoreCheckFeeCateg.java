@@ -2,13 +2,13 @@ package br.com.gda.business.feeStore.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.feeStore.info.FeeStoreInfo;
+import br.com.gda.business.feeStore.info.FeetoreInfo;
 import br.com.gda.business.masterData.info.FeeCategInfo;
 import br.com.gda.business.masterData.model.checker.FeeCategCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class FeeStoreCheckFeeCateg implements ModelChecker<FeeStoreInfo> {
+public final class FeeStoreCheckFeeCateg implements ModelChecker<FeetoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
@@ -21,8 +21,8 @@ public final class FeeStoreCheckFeeCateg implements ModelChecker<FeeStoreInfo> {
 	
 	
 	
-	@Override public boolean check(List<FeeStoreInfo> recordInfos) {
-		for (FeeStoreInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<FeetoreInfo> recordInfos) {
+		for (FeetoreInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -32,7 +32,7 @@ public final class FeeStoreCheckFeeCateg implements ModelChecker<FeeStoreInfo> {
 
 	
 	
-	@Override public boolean check(FeeStoreInfo recordInfo) {
+	@Override public boolean check(FeetoreInfo recordInfo) {
 		return checker.check(FeeCategInfo.copyFrom(recordInfo));
 	}
 

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.feeStore.info.FeeStoreInfo;
+import br.com.gda.business.feeStore.info.FeetoreInfo;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -18,22 +18,22 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class FeeStoreSelectSingle implements DaoStmt<FeeStoreInfo> {
+public final class FeetoreSelectSingle implements DaoStmt<FeetoreInfo> {
 	private final static String LT_ATTR = DaoDbTable.FEE_STORE_TABLE;
 	
-	private DaoStmt<FeeStoreInfo> stmtSql;
-	private DaoStmtOption<FeeStoreInfo> stmtOption;
+	private DaoStmt<FeetoreInfo> stmtSql;
+	private DaoStmtOption<FeetoreInfo> stmtOption;
 	
 	
 	
-	public FeeStoreSelectSingle(Connection conn, FeeStoreInfo recordInfo, String schemaName) {
+	public FeetoreSelectSingle(Connection conn, FeetoreInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, FeeStoreInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, FeetoreInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -56,7 +56,7 @@ public final class FeeStoreSelectSingle implements DaoStmt<FeeStoreInfo> {
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new FeeStoreWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new FeetoreWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -93,14 +93,14 @@ public final class FeeStoreSelectSingle implements DaoStmt<FeeStoreInfo> {
 
 	
 	
-	@Override public List<FeeStoreInfo> getResultset() {
+	@Override public List<FeetoreInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<FeeStoreInfo> getNewInstance() {
-		return new FeeStoreSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<FeetoreInfo> getNewInstance() {
+		return new FeetoreSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -108,21 +108,21 @@ public final class FeeStoreSelectSingle implements DaoStmt<FeeStoreInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<FeeStoreInfo> {
+	private static class ResultParser implements DaoResultParser<FeetoreInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<FeeStoreInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<FeeStoreInfo> finalResult = new ArrayList<>();
+		@Override public List<FeetoreInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<FeetoreInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 					return finalResult;
 			
 			do {
-				FeeStoreInfo dataInfo = new FeeStoreInfo();
-				dataInfo.codOwner = stmtResult.getLong(FeeStoreDbTableColumn.COL_COD_OWNER);
-				dataInfo.codStore = stmtResult.getLong(FeeStoreDbTableColumn.COL_COD_STORE);
-				dataInfo.codFeeCateg = stmtResult.getString(FeeStoreDbTableColumn.COL_COD_FEE_CATEG).charAt(0);
-				dataInfo.price = stmtResult.getDouble(FeeStoreDbTableColumn.COL_VALUE);
+				FeetoreInfo dataInfo = new FeetoreInfo();
+				dataInfo.codOwner = stmtResult.getLong(FeetoreDbTableColumn.COL_COD_OWNER);
+				dataInfo.codStore = stmtResult.getLong(FeetoreDbTableColumn.COL_COD_STORE);
+				dataInfo.codFeeCateg = stmtResult.getString(FeetoreDbTableColumn.COL_COD_FEE_CATEG).charAt(0);
+				dataInfo.price = stmtResult.getDouble(FeetoreDbTableColumn.COL_VALUE);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -3,9 +3,9 @@ package br.com.gda.business.feeStore.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.feeStore.info.FeeStoreInfo;
-import br.com.gda.business.feeStore.model.action.LazyFeeStoreSelect;
-import br.com.gda.business.feeStore.model.action.StdFeeStoreEnforceCategServ;
+import br.com.gda.business.feeStore.info.FeetoreInfo;
+import br.com.gda.business.feeStore.model.action.LazyFeetoreRootSelect;
+import br.com.gda.business.feeStore.model.action.StdFeetoreEnforceCategServ;
 import br.com.gda.business.feeStore.model.checker.FeeStoreCheckReadCateg;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -18,12 +18,12 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootFeeStoreSelectService implements DeciTree<FeeStoreInfo> {
-	private DeciTree<FeeStoreInfo> tree;
+public final class RootFeetoreSelectService implements DeciTree<FeetoreInfo> {
+	private DeciTree<FeetoreInfo> tree;
 	
 	
-	public RootFeeStoreSelectService(DeciTreeOption<FeeStoreInfo> option) {
-		DeciTreeHelperOption<FeeStoreInfo> helperOption = new DeciTreeHelperOption<>();
+	public RootFeetoreSelectService(DeciTreeOption<FeetoreInfo> option) {
+		DeciTreeHelperOption<FeetoreInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
@@ -35,9 +35,9 @@ public final class RootFeeStoreSelectService implements DeciTree<FeeStoreInfo> {
 	
 	
 	
-	private ModelChecker<FeeStoreInfo> buildDecisionChecker(DeciTreeOption<FeeStoreInfo> option) {		
-		List<ModelChecker<FeeStoreInfo>> queue = new ArrayList<>();		
-		ModelChecker<FeeStoreInfo> checker;
+	private ModelChecker<FeetoreInfo> buildDecisionChecker(DeciTreeOption<FeetoreInfo> option) {		
+		List<ModelChecker<FeetoreInfo>> queue = new ArrayList<>();		
+		ModelChecker<FeetoreInfo> checker;
 		
 		checker = new FeeStoreCheckReadCateg();
 		queue.add(checker);
@@ -47,13 +47,13 @@ public final class RootFeeStoreSelectService implements DeciTree<FeeStoreInfo> {
 	
 	
 	
-	private List<ActionStd<FeeStoreInfo>> buildActionsOnPassed(DeciTreeOption<FeeStoreInfo> option) {
-		List<ActionStd<FeeStoreInfo>> actions = new ArrayList<>();
+	private List<ActionStd<FeetoreInfo>> buildActionsOnPassed(DeciTreeOption<FeetoreInfo> option) {
+		List<ActionStd<FeetoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FeeStoreInfo> enforceCateg = new StdFeeStoreEnforceCategServ(option);
-		ActionLazy<FeeStoreInfo> mergeMat = new LazyFeeStoreSelect(option.conn, option.schemaName);
+		ActionStd<FeetoreInfo> enforceCateg = new StdFeetoreEnforceCategServ(option);
+		ActionLazy<FeetoreInfo> select = new LazyFeetoreRootSelect(option.conn, option.schemaName);
 		
-		enforceCateg.addPostAction(mergeMat);		
+		enforceCateg.addPostAction(select);		
 		
 		actions.add(enforceCateg);
 		return actions;
@@ -73,13 +73,13 @@ public final class RootFeeStoreSelectService implements DeciTree<FeeStoreInfo> {
 	
 	
 	
-	@Override public DeciResult<FeeStoreInfo> getDecisionResult() {
+	@Override public DeciResult<FeetoreInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
 	
 	
-	@Override public ActionStd<FeeStoreInfo> toAction() {
+	@Override public ActionStd<FeetoreInfo> toAction() {
 		return tree.toAction();
 	}
 }

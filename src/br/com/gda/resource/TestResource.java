@@ -26,9 +26,9 @@ import br.com.gda.business.cartSnapshot.model.CartSnapModelSelect;
 import br.com.gda.business.company.model.CompModelInsert;
 import br.com.gda.business.company.model.CompModelUpdate;
 import br.com.gda.business.customerSearch.model.CusarchModelSelect_;
-import br.com.gda.business.feeStore.info.FeeStoreInfo;
-import br.com.gda.business.feeStore.model.FeeStoreModelSelect;
-import br.com.gda.business.feeStore.model.FeeStoreModelSelectService;
+import br.com.gda.business.feeStore.info.FeetoreInfo;
+import br.com.gda.business.feeStore.model.FeetoreModelSelect;
+import br.com.gda.business.feeStore.model.FeetoreModelSelectService;
 import br.com.gda.business.materialSnapshot.info.MatSnapInfo;
 import br.com.gda.business.materialSnapshot.model.MatSnapModelInsert;
 import br.com.gda.business.materialSnapshot.model.MatSnapModelSelect;
@@ -395,13 +395,13 @@ public class TestResource {
 								   @HeaderParam("codStore") @DefaultValue("-1") long codStore,
 								   @HeaderParam("codFeeCateg") String codFeeCateg) {
 
-		FeeStoreInfo recordInfo = new FeeStoreInfo();
+		FeetoreInfo recordInfo = new FeetoreInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		if (codFeeCateg != null)
 			recordInfo.codFeeCateg = codFeeCateg.charAt(0);
 		
-		Model model = new FeeStoreModelSelect(recordInfo);
+		Model model = new FeetoreModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}	
@@ -414,11 +414,11 @@ public class TestResource {
 	public Response selectFeeStoreService(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 								          @HeaderParam("codStore") @DefaultValue("-1") long codStore) {
 
-		FeeStoreInfo recordInfo = new FeeStoreInfo();
+		FeetoreInfo recordInfo = new FeetoreInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		
-		Model model = new FeeStoreModelSelectService(recordInfo);
+		Model model = new FeetoreModelSelectService(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}	
