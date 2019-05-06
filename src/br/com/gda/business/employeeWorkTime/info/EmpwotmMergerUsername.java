@@ -1,18 +1,19 @@
 package br.com.gda.business.employeeWorkTime.info;
 
-import java.util.List;
-
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class EmpwotmMergerUsername extends InfoMerger_<EmpwotmInfo, UsernameInfo, EmpwotmInfo> {
-	public EmpwotmInfo merge(UsernameInfo sourceOne, EmpwotmInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new EmpwotmVisiMergeUsername());
+final class EmpwotmMergerUsername extends InfoMergerTemplate<EmpwotmInfo, UsernameInfo> {
+
+	@Override protected InfoMergerVisitorV2<EmpwotmInfo, UsernameInfo> getVisitorHook() {
+		return new EmpwotmVisiMergeUsername();
 	}
 	
 	
 	
-	public List<EmpwotmInfo> merge(List<UsernameInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new EmpwotmVisiMergeUsername());
+	@Override protected InfoUniquifier<EmpwotmInfo> getUniquifierHook() {
+		return new EmpwotmUniquifier();
 	}
 }

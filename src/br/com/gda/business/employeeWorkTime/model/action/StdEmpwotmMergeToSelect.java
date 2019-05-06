@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpwotmMergeToDelete implements ActionStd<EmpwotmInfo> {
+public final class StdEmpwotmMergeToSelect implements ActionStd<EmpwotmInfo> {
 	private ActionStd<EmpwotmInfo> actionHelper;	
 	
 	
-	public StdEmpwotmMergeToDelete(DeciTreeOption<EmpwotmInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpwotmMergeToDelete(option.conn, option.schemaName));
+	public StdEmpwotmMergeToSelect(DeciTreeOption<EmpwotmInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpwotmMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

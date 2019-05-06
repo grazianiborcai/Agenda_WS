@@ -4,10 +4,10 @@ import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.info.InfoUniquifier;
 
-final class EmpwotmMergerToDelete extends InfoMergerTemplate<EmpwotmInfo, EmpwotmInfo> {
+final class EmpwotmMergerToSelect extends InfoMergerTemplate<EmpwotmInfo, EmpwotmInfo> {
 
 	@Override protected InfoMergerVisitorV2<EmpwotmInfo, EmpwotmInfo> getVisitorHook() {
-		return new EmpwotmVisiMergeToDelete();
+		return new EmpwotmVisiMergeToSelect();
 	}
 	
 	

@@ -1,18 +1,19 @@
 package br.com.gda.business.employeeWorkTime.info;
 
-import java.util.List;
-
 import br.com.gda.business.masterData.info.WeekdayInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class EmpwotmMergerWeekday extends InfoMerger_<EmpwotmInfo, WeekdayInfo, EmpwotmInfo> {
-	public EmpwotmInfo merge(WeekdayInfo sourceOne, EmpwotmInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new EmpwotmVisiMergeWeekday());
+final class EmpwotmMergerWeekday extends InfoMergerTemplate<EmpwotmInfo, WeekdayInfo> {
+
+	@Override protected InfoMergerVisitorV2<EmpwotmInfo, WeekdayInfo> getVisitorHook() {
+		return new EmpwotmVisiMergeWeekday();
 	}
 	
 	
 	
-	public List<EmpwotmInfo> merge(List<WeekdayInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new EmpwotmVisiMergeWeekday());
+	@Override protected InfoUniquifier<EmpwotmInfo> getUniquifierHook() {
+		return new EmpwotmUniquifier();
 	}
 }
