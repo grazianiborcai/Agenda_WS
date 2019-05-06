@@ -1,18 +1,19 @@
 package br.com.gda.business.employeeWorkTimeConflict.info;
 
-import java.util.List;
-
 import br.com.gda.business.masterData.info.TimezoneInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class EmpwocoMergerTimezone extends InfoMerger_<EmpwocoInfo, TimezoneInfo, EmpwocoInfo> {
-	public EmpwocoInfo merge(TimezoneInfo sourceOne, EmpwocoInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new EmpwocoVisiMergeTimezone());
+final class EmpwocoMergerTimezone extends InfoMergerTemplate<EmpwocoInfo, TimezoneInfo> {
+
+	@Override protected InfoMergerVisitorV2<EmpwocoInfo, TimezoneInfo> getVisitorHook() {
+		return new EmpwocoVisiMergeTimezone();
 	}
 	
 	
 	
-	public List<EmpwocoInfo> merge(List<TimezoneInfo> sourceOnes, List<EmpwocoInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new EmpwocoVisiMergeTimezone());
+	@Override protected InfoUniquifier<EmpwocoInfo> getUniquifierHook() {
+		return new EmpwocoUniquifier();
 	}
 }

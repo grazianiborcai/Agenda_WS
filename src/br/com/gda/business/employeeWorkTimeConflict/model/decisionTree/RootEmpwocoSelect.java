@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.gda.business.employeeWorkTimeConflict.model.action.LazyEmpwocoMergeTimezone;
 import br.com.gda.business.employeeWorkTimeConflict.model.action.LazyEmpwocoMergeWeekday;
-import br.com.gda.business.employeeWorkTimeConflict.model.action.StdEmpwocoSelect;
+import br.com.gda.business.employeeWorkTimeConflict.model.action.StdEmpwocoMergeToSelect;
 import br.com.gda.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -38,7 +38,7 @@ public final class RootEmpwocoSelect extends DeciTreeReadTemplate<EmpwocoInfo> {
 	@Override protected List<ActionStd<EmpwocoInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwocoInfo> option) {
 		List<ActionStd<EmpwocoInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwocoInfo> select = new StdEmpwocoSelect(option);
+		ActionStd<EmpwocoInfo> select = new StdEmpwocoMergeToSelect(option);
 		ActionLazy<EmpwocoInfo> mergeWeekday = new LazyEmpwocoMergeWeekday(option.conn, option.schemaName);
 		ActionLazy<EmpwocoInfo> mergeTimezone = new LazyEmpwocoMergeTimezone(option.conn, option.schemaName);
 		

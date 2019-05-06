@@ -18,6 +18,7 @@ public final class EmpwocoInfo extends InfoRecord implements Cloneable {
 	public String txtTimezone;
 	public String codLanguage;
 	public String recordMode;
+	public String username;
 	
 	
 	public EmpwocoInfo() {

@@ -3,13 +3,13 @@ package br.com.gda.business.employeeWorkTimeConflict.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.WeekdayInfo;
+import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class EmpwocoVisiMergeWeekday implements InfoMergerVisitorV2<EmpwocoInfo, WeekdayInfo> {
+final class EmpwocoVisiMergeTimezone_ implements InfoMergerVisitor_<EmpwocoInfo, TimezoneInfo, EmpwocoInfo> {
 
-	@Override public EmpwocoInfo writeRecord(WeekdayInfo sourceOne, EmpwocoInfo sourceTwo) {
+	@Override public EmpwocoInfo writeRecord(TimezoneInfo sourceOne, EmpwocoInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		EmpwocoInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class EmpwocoVisiMergeWeekday implements InfoMergerVisitorV2<EmpwocoInfo, 
 	
 	
 	
-	private void checkArgument(WeekdayInfo sourceOne, EmpwocoInfo sourceTwo) {
+	private void checkArgument(TimezoneInfo sourceOne, EmpwocoInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,15 +37,15 @@ final class EmpwocoVisiMergeWeekday implements InfoMergerVisitorV2<EmpwocoInfo, 
 	
 	
 	
-	private EmpwocoInfo merge(WeekdayInfo sourceOne, EmpwocoInfo sourceTwo) {
-		sourceTwo.txtWeekday = sourceOne.txtWeekday;
+	private EmpwocoInfo merge(TimezoneInfo sourceOne, EmpwocoInfo sourceTwo) {
+		sourceTwo.txtTimezone = sourceOne.txtTimezone;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(WeekdayInfo sourceOne, EmpwocoInfo sourceTwo) {		
-		return (sourceOne.codWeekday == sourceTwo.codWeekday		&&
+	@Override public boolean shouldWrite(TimezoneInfo sourceOne, EmpwocoInfo sourceTwo) {		
+		return (sourceOne.codTimezone.equals(sourceTwo.codTimezone)	&&
 				sourceOne.codLanguage.equals(sourceTwo.codLanguage)		);
 	}
 	

@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpwocoMergeTimezone implements ActionStd<EmpwocoInfo> {
+public final class StdEmpwocoMergeToSelect implements ActionStd<EmpwocoInfo> {
 	private ActionStd<EmpwocoInfo> actionHelper;	
 	
 	
-	public StdEmpwocoMergeTimezone(DeciTreeOption<EmpwocoInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpwocoMergeTimezone(option.conn, option.schemaName));
+	public StdEmpwocoMergeToSelect(DeciTreeOption<EmpwocoInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpwocoMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	
