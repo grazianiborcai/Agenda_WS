@@ -5,14 +5,13 @@ import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.info.MatMerger;
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiMatMergeUsername extends ActionVisitorTemplateMerge_<MatInfo, UsernameInfo> {
+final class VisiMatMergeUsername extends ActionVisitorTemplateMergeV2<MatInfo, UsernameInfo> {
 	
 	public VisiMatMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
@@ -32,7 +31,13 @@ final class VisiMatMergeUsername extends ActionVisitorTemplateMerge_<MatInfo, Us
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<MatInfo>> getMergerClassHook() {
-		return MatMerger.class;
+	@Override protected List<MatInfo> mergeHook(List<MatInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
+		return MatMerger.mergeWithUsername(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

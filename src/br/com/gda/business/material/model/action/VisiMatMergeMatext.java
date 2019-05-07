@@ -1,15 +1,16 @@
 package br.com.gda.business.material.model.action;
 
 import java.sql.Connection;
+import java.util.List;
+
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.info.MatMerger;
 import br.com.gda.business.materialText.info.MatextInfo;
 import br.com.gda.business.materialText.model.decisionTree.RootMatextSelect;
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiMatMergeMatext extends ActionVisitorTemplateMerge_<MatInfo, MatextInfo> {
+final class VisiMatMergeMatext extends ActionVisitorTemplateMergeV2<MatInfo, MatextInfo> {
 	
 	public VisiMatMergeMatext(Connection conn, String schemaName) {
 		super(conn, schemaName, MatextInfo.class);
@@ -23,7 +24,13 @@ final class VisiMatMergeMatext extends ActionVisitorTemplateMerge_<MatInfo, Mate
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<MatInfo>> getMergerClassHook() {
-		return MatMerger.class;
+	@Override protected List<MatInfo> mergeHook(List<MatInfo> recordInfos, List<MatextInfo> selectedInfos) {	
+		return MatMerger.mergeWithMatext(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

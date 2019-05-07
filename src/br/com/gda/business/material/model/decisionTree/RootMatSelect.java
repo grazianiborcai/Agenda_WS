@@ -9,7 +9,7 @@ import br.com.gda.business.material.model.action.LazyMatMergeMatGroup;
 import br.com.gda.business.material.model.action.LazyMatMergeMatType;
 import br.com.gda.business.material.model.action.LazyMatMergeMatUnit;
 import br.com.gda.business.material.model.action.LazyMatMergeMatext;
-import br.com.gda.business.material.model.action.StdMatSelect;
+import br.com.gda.business.material.model.action.StdMatMergeToSelect;
 import br.com.gda.business.material.model.checker.MatCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -41,7 +41,7 @@ public final class RootMatSelect extends DeciTreeReadTemplate<MatInfo> {
 	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatInfo> select = new StdMatSelect(option);
+		ActionStd<MatInfo> select = new StdMatMergeToSelect(option);
 		ActionLazy<MatInfo> mergeMatType = new LazyMatMergeMatType(option.conn, option.schemaName);
 		ActionLazy<MatInfo> mergeMatCateg = new LazyMatMergeMatCateg(option.conn, option.schemaName);
 		ActionLazy<MatInfo> mergeMatGroup = new LazyMatMergeMatGroup(option.conn, option.schemaName);

@@ -1,18 +1,19 @@
 package br.com.gda.business.material.info;
 
-import java.util.List;
-
 import br.com.gda.business.masterData.info.MatTypeInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class MatMergerMatType extends InfoMerger_<MatInfo, MatTypeInfo, MatInfo> {
-	public MatInfo merge(MatTypeInfo sourceOne, MatInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new MatVisiMergeMatType());
+final class MatMergerMatType extends InfoMergerTemplate<MatInfo, MatTypeInfo> {
+
+	@Override protected InfoMergerVisitorV2<MatInfo, MatTypeInfo> getVisitorHook() {
+		return new MatVisiMergeMatType();
 	}
 	
 	
 	
-	public List<MatInfo> merge(List<MatTypeInfo> sourceOnes, List<MatInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new MatVisiMergeMatType());
+	@Override protected InfoUniquifier<MatInfo> getUniquifierHook() {
+		return new MatUniquifier();
 	}
 }
