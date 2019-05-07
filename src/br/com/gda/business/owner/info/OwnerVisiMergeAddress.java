@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 
-final class OwnerVisiMergeAddress implements InfoMergerVisitor_<OwnerInfo, AddressInfo, OwnerInfo> {
+final class OwnerVisiMergeAddress implements InfoMergerVisitorV2<OwnerInfo, AddressInfo> {
 
 	@Override public OwnerInfo writeRecord(AddressInfo sourceOne, OwnerInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

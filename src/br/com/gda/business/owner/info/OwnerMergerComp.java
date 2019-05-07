@@ -1,18 +1,19 @@
 package br.com.gda.business.owner.info;
 
-import java.util.List;
-
 import br.com.gda.business.company.info.CompInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class OwnerMergerComp extends InfoMerger_<OwnerInfo, CompInfo, OwnerInfo> {
-	public OwnerInfo merge(CompInfo sourceOne, OwnerInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new OwnerVisiMergeComp());
+final class OwnerMergerComp extends InfoMergerTemplate<OwnerInfo, CompInfo> {
+
+	@Override protected InfoMergerVisitorV2<OwnerInfo, CompInfo> getVisitorHook() {
+		return new OwnerVisiMergeComp();
 	}
 	
 	
 	
-	public List<OwnerInfo> merge(List<CompInfo> sourceOnes, List<OwnerInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new OwnerVisiMergeComp());
+	@Override protected InfoUniquifier<OwnerInfo> getUniquifierHook() {
+		return new OwnerUniquifier();
 	}
 }

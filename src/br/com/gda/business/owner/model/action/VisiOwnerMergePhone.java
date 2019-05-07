@@ -8,11 +8,10 @@ import br.com.gda.business.owner.info.OwnerMerger;
 import br.com.gda.business.phone.info.PhoneCopier;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.decisionTree.RootPhoneSelect;
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiOwnerMergePhone extends ActionVisitorTemplateMerge_<OwnerInfo, PhoneInfo> {
+final class VisiOwnerMergePhone extends ActionVisitorTemplateMergeV2<OwnerInfo, PhoneInfo> {
 	
 	public VisiOwnerMergePhone(Connection conn, String schemaName) {
 		super(conn, schemaName, PhoneInfo.class);
@@ -26,13 +25,19 @@ final class VisiOwnerMergePhone extends ActionVisitorTemplateMerge_<OwnerInfo, P
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<OwnerInfo>> getMergerClassHook() {
-		return OwnerMerger.class;
-	}
-	
-	
-	
 	@Override protected List<PhoneInfo> toActionClassHook(List<OwnerInfo> recordInfos) {
 		return PhoneCopier.copyFromOwner(recordInfos);	
 	}
+	
+	
+	
+	@Override protected List<OwnerInfo> mergeHook(List<OwnerInfo> recordInfos, List<PhoneInfo> selectedInfos) {	
+		return OwnerMerger.mergeWithPhone(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+	}	
 }

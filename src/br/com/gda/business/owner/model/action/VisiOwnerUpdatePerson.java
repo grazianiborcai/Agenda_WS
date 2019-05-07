@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.info.OwnerMerger;
+import br.com.gda.business.owner.info.OwnerMerger_;
 import br.com.gda.business.person.info.PersonCopier;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.decisionTree.RootPersonUpdate;
@@ -40,7 +40,7 @@ final class VisiOwnerUpdatePerson extends ActionVisitorTemplateAction<OwnerInfo,
 	
 	
 	@Override protected List<OwnerInfo> toBaseClassHook(List<OwnerInfo> baseInfos, List<PersonInfo> results) {
-		InfoWritterFactory_<OwnerInfo> merger = new OwnerMerger();		
+		InfoWritterFactory_<OwnerInfo> merger = new OwnerMerger_();		
 		return merger.merge(results, baseInfos);
 	}
 }

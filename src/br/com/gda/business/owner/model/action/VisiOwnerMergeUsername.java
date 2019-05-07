@@ -5,14 +5,13 @@ import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.info.OwnerMerger;
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiOwnerMergeUsername extends ActionVisitorTemplateMerge_<OwnerInfo, UsernameInfo> {
+final class VisiOwnerMergeUsername extends ActionVisitorTemplateMergeV2<OwnerInfo, UsernameInfo> {
 	
 	public VisiOwnerMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
@@ -32,7 +31,13 @@ final class VisiOwnerMergeUsername extends ActionVisitorTemplateMerge_<OwnerInfo
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<OwnerInfo>> getMergerClassHook() {
-		return OwnerMerger.class;
+	@Override protected List<OwnerInfo> mergeHook(List<OwnerInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
+		return OwnerMerger.mergeWithUsername(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

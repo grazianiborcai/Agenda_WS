@@ -10,7 +10,7 @@ import br.com.gda.business.owner.model.action.LazyOwnerMergeOwntore;
 import br.com.gda.business.owner.model.action.LazyOwnerMergePerson;
 import br.com.gda.business.owner.model.action.LazyOwnerMergePhone;
 import br.com.gda.business.owner.model.action.LazyOwnerMergeUser;
-import br.com.gda.business.owner.model.action.StdOwnerSelect;
+import br.com.gda.business.owner.model.action.StdOwnerMergeToSelect;
 import br.com.gda.business.owner.model.checker.OwnerCheckLangu;
 import br.com.gda.business.owner.model.checker.OwnerCheckRead;
 import br.com.gda.model.action.ActionLazy;
@@ -54,7 +54,7 @@ public final class RootOwnerSelect extends DeciTreeReadTemplate<OwnerInfo> {
 	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 
-		ActionStd<OwnerInfo> select = new StdOwnerSelect(option);
+		ActionStd<OwnerInfo> select = new StdOwnerMergeToSelect(option);
 		ActionLazy<OwnerInfo> mergePerson = new LazyOwnerMergePerson(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> mergeComp = new LazyOwnerMergeComp(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> mergeAddress = new LazyOwnerMergeAddress(option.conn, option.schemaName);

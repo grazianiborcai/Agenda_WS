@@ -8,11 +8,10 @@ import br.com.gda.business.owner.info.OwnerMerger;
 import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserSelect;
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiOwnerMergeUser extends ActionVisitorTemplateMerge_<OwnerInfo, UserInfo> {
+final class VisiOwnerMergeUser extends ActionVisitorTemplateMergeV2<OwnerInfo, UserInfo> {
 	
 	public VisiOwnerMergeUser(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class);
@@ -32,7 +31,13 @@ final class VisiOwnerMergeUser extends ActionVisitorTemplateMerge_<OwnerInfo, Us
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<OwnerInfo>> getMergerClassHook() {
-		return OwnerMerger.class;
+	@Override protected List<OwnerInfo> mergeHook(List<OwnerInfo> recordInfos, List<UserInfo> selectedInfos) {	
+		return OwnerMerger.mergeWithUser(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

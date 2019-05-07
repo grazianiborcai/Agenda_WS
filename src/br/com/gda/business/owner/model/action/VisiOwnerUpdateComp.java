@@ -8,7 +8,7 @@ import br.com.gda.business.company.info.CompCopier;
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.company.model.decisionTree.RootCompUpdate;
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.info.OwnerMerger;
+import br.com.gda.business.owner.info.OwnerMerger_;
 import br.com.gda.info.InfoWritterFactory_;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
@@ -40,7 +40,7 @@ final class VisiOwnerUpdateComp extends ActionVisitorTemplateAction<OwnerInfo, C
 	
 	
 	@Override protected List<OwnerInfo> toBaseClassHook(List<OwnerInfo> baseInfos, List<CompInfo> results) {
-		InfoWritterFactory_<OwnerInfo> merger = new OwnerMerger();		
+		InfoWritterFactory_<OwnerInfo> merger = new OwnerMerger_();		
 		return merger.merge(results, baseInfos);
 	}
 }

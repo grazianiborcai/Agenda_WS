@@ -3,7 +3,7 @@ package br.com.gda.business.owner.model.action;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -12,7 +12,7 @@ final class StdOwnerMergeUser implements ActionStd<OwnerInfo> {
 	
 	
 	public StdOwnerMergeUser(DeciTreeOption<OwnerInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOwnerMergeUser(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOwnerMergeUser(option.conn, option.schemaName));
 	}
 	
 	

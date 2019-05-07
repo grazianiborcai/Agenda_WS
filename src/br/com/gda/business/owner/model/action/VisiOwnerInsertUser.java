@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.info.OwnerMerger;
+import br.com.gda.business.owner.info.OwnerMerger_;
 import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserInsert;
@@ -40,7 +40,7 @@ final class VisiOwnerInsertUser extends ActionVisitorTemplateAction<OwnerInfo, U
 	
 	
 	@Override protected List<OwnerInfo> toBaseClassHook(List<OwnerInfo> baseInfos, List<UserInfo> results) {
-		InfoWritterFactory_<OwnerInfo> merger = new OwnerMerger();		
+		InfoWritterFactory_<OwnerInfo> merger = new OwnerMerger_();		
 		return merger.merge(results, baseInfos);
 	}
 }

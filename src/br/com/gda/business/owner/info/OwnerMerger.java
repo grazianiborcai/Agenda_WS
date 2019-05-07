@@ -8,106 +8,131 @@ import br.com.gda.business.ownerStore.info.OwntoreInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class OwnerMerger extends InfoWritterFactory_<OwnerInfo> {	
-	
-	public OwnerMerger() {
-		super(new OwnerUniquifier());
+public final class OwnerMerger {
+	public static OwnerInfo mergeWithAddress(AddressInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, AddressInfo> merger = new OwnerMergerAddress();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public OwnerInfo merge(AddressInfo sourceOne, OwnerInfo sourceTwo) {
-		return new OwnerMergerAddress().merge(sourceOne, sourceTwo);
+	public static List<OwnerInfo> mergeWithAddress(List<AddressInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, AddressInfo> merger = new OwnerMergerAddress();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	static public OwnerInfo merge(PhoneInfo sourceOne, OwnerInfo sourceTwo) {
-		return new OwnerMergerPhone().merge(sourceOne, sourceTwo);
-	}	
-	
-	
-	
-	static public OwnerInfo merge(PersonInfo sourceOne, OwnerInfo sourceTwo) {
-		return new OwnerMergerPerson().merge(sourceOne, sourceTwo);
-	}		
-	
-	
-	
-	static public OwnerInfo merge(CompInfo sourceOne, OwnerInfo sourceTwo) {
-		return new OwnerMergerComp().merge(sourceOne, sourceTwo);
-	}	
-	
-	
-	
-	static public OwnerInfo merge(UserInfo sourceOne, OwnerInfo sourceTwo) {
-		return new OwnerMergerUser().merge(sourceOne, sourceTwo);
-	}	
-	
-	
-	
-	static public OwnerInfo merge(OwntoreInfo sourceOne, OwnerInfo sourceTwo) {
-		return new OwnerMergerOwntore().merge(sourceOne, sourceTwo);
-	}	
-	
-	
-	
-	static public OwnerInfo merge(UsernameInfo sourceOne, OwnerInfo sourceTwo) {
-		return new OwnerMergerUsername().merge(sourceOne, sourceTwo);
-	}	
-	
-	
-	
-	static public OwnerInfo merge(OwnerInfo sourceOne, OwnerInfo sourceTwo) {
-		return new OwnerMergerToDelete().merge(sourceOne, sourceTwo);
+	public static OwnerInfo mergeWithComp(CompInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, CompInfo> merger = new OwnerMergerComp();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	@Override protected List<OwnerInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
-		if (sourceOnes.get(0) instanceof AddressInfo 	&&
-			sourceTwos.get(0) instanceof OwnerInfo		)
-			return new OwnerMergerAddress().merge((List<AddressInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof PhoneInfo 		&&
-			sourceTwos.get(0) instanceof OwnerInfo		)
-			return new OwnerMergerPhone().merge((List<PhoneInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof PersonInfo 	&&
-			sourceTwos.get(0) instanceof OwnerInfo		)
-			return new OwnerMergerPerson().merge((List<PersonInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof CompInfo 		&&
-			sourceTwos.get(0) instanceof OwnerInfo		)
-			return new OwnerMergerComp().merge((List<CompInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof UserInfo 		&&
-			sourceTwos.get(0) instanceof OwnerInfo		)
-			return new OwnerMergerUser().merge((List<UserInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof OwntoreInfo	&&
-			sourceTwos.get(0) instanceof OwnerInfo		)
-			return new OwnerMergerOwntore().merge((List<OwntoreInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof UsernameInfo	&&
-			sourceTwos.get(0) instanceof OwnerInfo		)
-			return new OwnerMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
-		
-		
-		if (sourceOnes.get(0) instanceof OwnerInfo		&&
-			sourceTwos.get(0) instanceof OwnerInfo		)
-			return new OwnerMergerToDelete().merge((List<OwnerInfo>) sourceOnes, (List<OwnerInfo>) sourceTwos);	
-		
-		return null;
+	public static List<OwnerInfo> mergeWithComp(List<CompInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, CompInfo> merger = new OwnerMergerComp();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static OwnerInfo mergeWithOwntore(OwntoreInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, OwntoreInfo> merger = new OwnerMergerOwntore();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwnerInfo> mergeWithOwntore(List<OwntoreInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, OwntoreInfo> merger = new OwnerMergerOwntore();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static OwnerInfo mergeWithPerson(PersonInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, PersonInfo> merger = new OwnerMergerPerson();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwnerInfo> mergeWithPerson(List<PersonInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, PersonInfo> merger = new OwnerMergerPerson();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
+	public static OwnerInfo mergeWithPhone(PhoneInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, PhoneInfo> merger = new OwnerMergerPhone();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwnerInfo> mergeWithPhone(List<PhoneInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, PhoneInfo> merger = new OwnerMergerPhone();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
+	public static OwnerInfo mergeWithUser(UserInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, UserInfo> merger = new OwnerMergerUser();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwnerInfo> mergeWithUser(List<UserInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, UserInfo> merger = new OwnerMergerUser();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
+	public static OwnerInfo mergeWithUsername(UsernameInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, UsernameInfo> merger = new OwnerMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwnerInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, UsernameInfo> merger = new OwnerMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
+	public static OwnerInfo mergeToSelect(OwnerInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, OwnerInfo> merger = new OwnerMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwnerInfo> mergeToSelect(List<OwnerInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, OwnerInfo> merger = new OwnerMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
+	public static OwnerInfo mergeToDelete(OwnerInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, OwnerInfo> merger = new OwnerMergerToDelete();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwnerInfo> mergeToDelete(List<OwnerInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, OwnerInfo> merger = new OwnerMergerToDelete();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 }

@@ -5,26 +5,25 @@ import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.info.OwnerMerger;
-import br.com.gda.business.owner.model.decisionTree.RootOwnerSelect;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
-import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiOwnerMergeToDelete extends ActionVisitorTemplateMergeV2<OwnerInfo, OwnerInfo> {
+final class VisiOwnerMergeToSelect extends ActionVisitorTemplateMergeV2<OwnerInfo, OwnerInfo> {
 	
-	public VisiOwnerMergeToDelete(Connection conn, String schemaName) {
+	public VisiOwnerMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, OwnerInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<OwnerInfo>> getTreeClassHook() {
-		return RootOwnerSelect.class;
+	@Override protected Class<? extends ActionStd<OwnerInfo>> getActionClassHook() {
+		return StdOwnerSelect.class;
 	}
 	
 	
 	
 	@Override protected List<OwnerInfo> mergeHook(List<OwnerInfo> recordInfos, List<OwnerInfo> selectedInfos) {	
-		return OwnerMerger.mergeToDelete(selectedInfos, recordInfos);
+		return OwnerMerger.mergeToSelect(selectedInfos, recordInfos);
 	}
 	
 	
