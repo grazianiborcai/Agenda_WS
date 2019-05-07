@@ -40,7 +40,7 @@ final class FeetoreVisiMergeToSelect implements InfoMergerVisitorV2<FeetoreInfo,
 
 
 	@Override public boolean shouldWrite(FeetoreInfo sourceOne, FeetoreInfo sourceTwo) {
-		return true;
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	
