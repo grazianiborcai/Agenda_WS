@@ -44,7 +44,7 @@ final class CompVisiMergeToSelect implements InfoMergerVisitorV2<CompInfo, CompI
 	
 	
 	@Override public boolean shouldWrite(CompInfo sourceOne, CompInfo sourceTwo) {		
-		return true;
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	
