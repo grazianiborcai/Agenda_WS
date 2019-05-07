@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdOwntoreMergeToDelete implements ActionStd<OwntoreInfo> {
+public final class StdOwntoreMergeToSelect implements ActionStd<OwntoreInfo> {
 	private ActionStd<OwntoreInfo> actionHelper;	
 	
 	
-	public StdOwntoreMergeToDelete(DeciTreeOption<OwntoreInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOwntoreMergeToDelete(option.conn, option.schemaName));
+	public StdOwntoreMergeToSelect(DeciTreeOption<OwntoreInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOwntoreMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

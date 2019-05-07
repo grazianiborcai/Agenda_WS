@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.ownerStore.info.OwntoreInfo;
-import br.com.gda.business.ownerStore.model.action.StdOwntoreSelect;
+import br.com.gda.business.ownerStore.model.action.StdOwntoreMergeToSelect;
 import br.com.gda.business.ownerStore.model.checker.OwntoreCheckLangu;
 import br.com.gda.business.ownerStore.model.checker.OwntoreCheckRead;
 import br.com.gda.model.action.ActionStd;
@@ -48,7 +48,7 @@ public final class RootOwntoreSelect extends DeciTreeReadTemplate<OwntoreInfo> {
 	@Override protected List<ActionStd<OwntoreInfo>> buildActionsOnPassedHook(DeciTreeOption<OwntoreInfo> option) {
 		List<ActionStd<OwntoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<OwntoreInfo> select = new StdOwntoreSelect(option);
+		ActionStd<OwntoreInfo> select = new StdOwntoreMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

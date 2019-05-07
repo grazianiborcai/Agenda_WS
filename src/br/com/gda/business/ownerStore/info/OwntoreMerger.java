@@ -2,30 +2,32 @@ package br.com.gda.business.ownerStore.info;
 
 import java.util.List;
 
-import br.com.gda.business.ownerStore.info.OwntoreInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 
-public final class OwntoreMerger extends InfoWritterFactory_<OwntoreInfo> {	
-	
-	public OwntoreMerger() {
-		super(new OwntoreUniquifier());
+public final class OwntoreMerger {
+	public static OwntoreInfo mergeToDelete(OwntoreInfo sourceOne, OwntoreInfo sourceTwo) {
+		InfoMerger<OwntoreInfo, OwntoreInfo> merger = new OwntoreMergerToDelete();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public OwntoreInfo merge(OwntoreInfo sourceOne, OwntoreInfo sourceTwo) {
-		return new OwntoreMergerToDelete().merge(sourceOne, sourceTwo);
+	public static List<OwntoreInfo> mergeToDelete(List<OwntoreInfo> sourceOnes, List<OwntoreInfo> sourceTwos) {
+		InfoMerger<OwntoreInfo, OwntoreInfo> merger = new OwntoreMergerToDelete();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	@Override protected List<OwntoreInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
-		
-		if (sourceOnes.get(0) instanceof OwntoreInfo	&&
-			sourceTwos.get(0) instanceof OwntoreInfo		)
-			return new OwntoreMergerToDelete().merge((List<OwntoreInfo>) sourceOnes, (List<OwntoreInfo>) sourceTwos);	
-		
-		return null;
+	public static OwntoreInfo mergeToSelect(OwntoreInfo sourceOne, OwntoreInfo sourceTwo) {
+		InfoMerger<OwntoreInfo, OwntoreInfo> merger = new OwntoreMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwntoreInfo> mergeToSelect(List<OwntoreInfo> sourceOnes, List<OwntoreInfo> sourceTwos) {
+		InfoMerger<OwntoreInfo, OwntoreInfo> merger = new OwntoreMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 }
