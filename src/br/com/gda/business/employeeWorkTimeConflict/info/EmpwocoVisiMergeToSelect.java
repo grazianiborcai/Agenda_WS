@@ -45,7 +45,7 @@ final class EmpwocoVisiMergeToSelect implements InfoMergerVisitorV2<EmpwocoInfo,
 	
 	
 	@Override public boolean shouldWrite(EmpwocoInfo sourceOne, EmpwocoInfo sourceTwo) {		
-		return true;
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	
