@@ -44,7 +44,7 @@ final class MatmovVisiMergeToSelect implements InfoMergerVisitorV2<MatmovInfo, M
 	
 	
 	@Override public boolean shouldWrite(MatmovInfo sourceOne, MatmovInfo sourceTwo) {		
-		return true;
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	
