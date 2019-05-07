@@ -7,11 +7,10 @@ import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.decisionTree.RootMatSelect;
 import br.com.gda.business.materialStore.info.MatoreInfo;
 import br.com.gda.business.materialStore.info.MatoreMerger;
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiMatoreMergeMat extends ActionVisitorTemplateMerge_<MatoreInfo, MatInfo> {
+final class VisiMatoreMergeMat extends ActionVisitorTemplateMergeV2<MatoreInfo, MatInfo> {
 	
 	public VisiMatoreMergeMat(Connection conn, String schemaName) {
 		super(conn, schemaName, MatInfo.class);
@@ -31,7 +30,13 @@ final class VisiMatoreMergeMat extends ActionVisitorTemplateMerge_<MatoreInfo, M
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<MatoreInfo>> getMergerClassHook() {
-		return MatoreMerger.class;
+	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> recordInfos, List<MatInfo> selectedInfos) {	
+		return MatoreMerger.mergeWithMat(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

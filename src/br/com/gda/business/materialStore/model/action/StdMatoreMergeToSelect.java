@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdMatoreMergeUsername implements ActionStd<MatoreInfo> {
+public final class StdMatoreMergeToSelect implements ActionStd<MatoreInfo> {
 	private ActionStd<MatoreInfo> actionHelper;	
 	
 	
-	public StdMatoreMergeUsername(DeciTreeOption<MatoreInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatoreMergeUsername(option.conn, option.schemaName));
+	public StdMatoreMergeToSelect(DeciTreeOption<MatoreInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatoreMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

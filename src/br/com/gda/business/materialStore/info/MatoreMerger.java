@@ -1,58 +1,78 @@
 package br.com.gda.business.materialStore.info;
 
 import java.util.List;
+
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.materialStock.info.MatockInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
-
-public final class MatoreMerger extends InfoWritterFactory_<MatoreInfo> {	
-	static public MatoreInfo merge(MatInfo sourceOne, MatoreInfo sourceTwo) {
-		return new MatoreMergerMat().merge(sourceOne, sourceTwo);
+public final class MatoreMerger {
+	public static MatoreInfo mergeWithMat(MatInfo sourceOne, MatoreInfo sourceTwo) {
+		InfoMerger<MatoreInfo, MatInfo> merger = new MatoreMergerMat();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public MatoreInfo merge(UsernameInfo sourceOne, MatoreInfo sourceTwo) {
-		return new MatoreMergerUsername().merge(sourceOne, sourceTwo);
+	public static List<MatoreInfo> mergeWithMat(List<MatInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
+		InfoMerger<MatoreInfo, MatInfo> merger = new MatoreMergerMat();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	static public MatoreInfo merge(MatoreInfo sourceOne, MatoreInfo sourceTwo) {
-		return new MatoreMergerToDelete().merge(sourceOne, sourceTwo);
+	public static MatoreInfo mergeWithMatock(MatockInfo sourceOne, MatoreInfo sourceTwo) {
+		InfoMerger<MatoreInfo, MatockInfo> merger = new MatoreMergerMatock();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public MatoreInfo merge(MatockInfo sourceOne, MatoreInfo sourceTwo) {
-		return new MatoreMergerMatock().merge(sourceOne, sourceTwo);
+	public static List<MatoreInfo> mergeWithMatock(List<MatockInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
+		InfoMerger<MatoreInfo, MatockInfo> merger = new MatoreMergerMatock();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	@Override protected List<MatoreInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {		
-		if (sourceOnes.get(0) instanceof MatInfo 		&&
-			sourceTwos.get(0) instanceof MatoreInfo			)
-			return new MatoreMergerMat().merge((List<MatInfo>) sourceOnes, (List<MatoreInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof UsernameInfo 	&&
-			sourceTwos.get(0) instanceof MatoreInfo			)
-			return new MatoreMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<MatoreInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof MatoreInfo 	&&
-			sourceTwos.get(0) instanceof MatoreInfo		)
-			return new MatoreMergerToDelete().merge((List<MatoreInfo>) sourceOnes, (List<MatoreInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof MatockInfo 	&&
-			sourceTwos.get(0) instanceof MatoreInfo			)
-			return new MatoreMergerMatock().merge((List<MatockInfo>) sourceOnes, (List<MatoreInfo>) sourceTwos);
-		
-		return null;
+	public static MatoreInfo mergeWithUsername(UsernameInfo sourceOne, MatoreInfo sourceTwo) {
+		InfoMerger<MatoreInfo, UsernameInfo> merger = new MatoreMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatoreInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
+		InfoMerger<MatoreInfo, UsernameInfo> merger = new MatoreMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static MatoreInfo mergeToSelect(MatoreInfo sourceOne, MatoreInfo sourceTwo) {
+		InfoMerger<MatoreInfo, MatoreInfo> merger = new MatoreMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatoreInfo> mergeToSelect(List<MatoreInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
+		InfoMerger<MatoreInfo, MatoreInfo> merger = new MatoreMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static MatoreInfo mergeToDelete(MatoreInfo sourceOne, MatoreInfo sourceTwo) {
+		InfoMerger<MatoreInfo, MatoreInfo> merger = new MatoreMergerToDelete();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatoreInfo> mergeToDelete(List<MatoreInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
+		InfoMerger<MatoreInfo, MatoreInfo> merger = new MatoreMergerToDelete();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

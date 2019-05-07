@@ -2,9 +2,9 @@ package br.com.gda.business.materialStore.info;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 
-final class MatoreVisitorMat implements InfoMergerVisitor_<MatoreInfo, MatInfo, MatoreInfo> {
+final class MatoreVisiMergeMat implements InfoMergerVisitorV2<MatoreInfo, MatInfo> {
 
 	@Override public MatoreInfo writeRecord(MatInfo sourceOne, MatoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
