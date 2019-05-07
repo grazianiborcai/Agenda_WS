@@ -9,9 +9,9 @@ import br.com.gda.business.materialMovement.model.decisionTree.RootMatmovSelect;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiMatmovMergeToDelete extends ActionVisitorTemplateMergeV2<MatmovInfo, MatmovInfo> {
+final class VisiMatmovMergeToSelect extends ActionVisitorTemplateMergeV2<MatmovInfo, MatmovInfo> {
 	
-	public VisiMatmovMergeToDelete(Connection conn, String schemaName) {
+	public VisiMatmovMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, MatmovInfo.class);
 	}
 	
@@ -24,7 +24,7 @@ final class VisiMatmovMergeToDelete extends ActionVisitorTemplateMergeV2<MatmovI
 	
 	
 	@Override protected List<MatmovInfo> mergeHook(List<MatmovInfo> recordInfos, List<MatmovInfo> selectedInfos) {	
-		return MatmovMerger.mergeToDelete(selectedInfos, recordInfos);
+		return MatmovMerger.mergeToSelect(selectedInfos, recordInfos);
 	}
 	
 	

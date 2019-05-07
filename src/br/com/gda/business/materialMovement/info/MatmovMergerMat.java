@@ -1,18 +1,19 @@
 package br.com.gda.business.materialMovement.info;
 
-import java.util.List;
-
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class MatmovMergerMat extends InfoMerger_<MatmovInfo, MatInfo, MatmovInfo> {
-	public MatmovInfo merge(MatInfo sourceOne, MatmovInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new MatmovVisiMergeMat());
+final class MatmovMergerMat extends InfoMergerTemplate<MatmovInfo, MatInfo> {
+
+	@Override protected InfoMergerVisitorV2<MatmovInfo, MatInfo> getVisitorHook() {
+		return new MatmovVisiMergeMat();
 	}
 	
 	
 	
-	public List<MatmovInfo> merge(List<MatInfo> sourceOnes, List<MatmovInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new MatmovVisiMergeMat());
+	@Override protected InfoUniquifier<MatmovInfo> getUniquifierHook() {
+		return new MatmovUniquifier();
 	}
 }

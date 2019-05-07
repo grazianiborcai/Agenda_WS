@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialMovement.info.MatmovInfo;
-import br.com.gda.business.materialMovement.model.action.StdMatmovSelect;
+import br.com.gda.business.materialMovement.model.action.StdMatmovMergeToSelect;
 import br.com.gda.business.materialMovement.model.checker.MatmovCheckLangu;
 import br.com.gda.business.materialMovement.model.checker.MatmovCheckRead;
 import br.com.gda.business.materialMovement.model.checker.MatmovCheckStorauth;
@@ -69,7 +69,7 @@ public final class RootMatmovSelect implements DeciTree<MatmovInfo> {
 	private List<ActionStd<MatmovInfo>> buildActionsOnPassed(DeciTreeOption<MatmovInfo> option) {
 		List<ActionStd<MatmovInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatmovInfo> select = new StdMatmovSelect(option);
+		ActionStd<MatmovInfo> select = new StdMatmovMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

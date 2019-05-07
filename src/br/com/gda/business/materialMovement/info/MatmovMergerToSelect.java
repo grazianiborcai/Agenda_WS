@@ -3,12 +3,12 @@ package br.com.gda.business.materialMovement.info;
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.info.InfoUniquifier;
-import br.com.gda.security.username.info.UsernameInfo;
 
-final class MatmovMergerUsername extends InfoMergerTemplate<MatmovInfo, UsernameInfo> {
 
-	@Override protected InfoMergerVisitorV2<MatmovInfo, UsernameInfo> getVisitorHook() {
-		return new MatmovVisiMergeUsername();
+final class MatmovMergerToSelect extends InfoMergerTemplate<MatmovInfo, MatmovInfo> {
+
+	@Override protected InfoMergerVisitorV2<MatmovInfo, MatmovInfo> getVisitorHook() {
+		return new MatmovVisiMergeToSelect();
 	}
 	
 	

@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdMatmovMergeMat implements ActionStd<MatmovInfo> {
+public final class StdMatmovMergeToSelect implements ActionStd<MatmovInfo> {
 	private ActionStd<MatmovInfo> actionHelper;	
 	
 	
-	public StdMatmovMergeMat(DeciTreeOption<MatmovInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatmovMergeMat(option.conn, option.schemaName));
+	public StdMatmovMergeToSelect(DeciTreeOption<MatmovInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatmovMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

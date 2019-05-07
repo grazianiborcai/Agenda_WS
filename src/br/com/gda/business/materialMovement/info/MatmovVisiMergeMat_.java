@@ -3,13 +3,13 @@ package br.com.gda.business.materialMovement.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
-import br.com.gda.security.username.info.UsernameInfo;
+import br.com.gda.info.InfoMergerVisitor_;
 
-final class MatmovVisiMergeUsername implements InfoMergerVisitorV2<MatmovInfo, UsernameInfo> {
+final class MatmovVisiMergeMat_ implements InfoMergerVisitor_<MatmovInfo, MatInfo, MatmovInfo> {
 
-	@Override public MatmovInfo writeRecord(UsernameInfo sourceOne, MatmovInfo sourceTwo) {
+	@Override public MatmovInfo writeRecord(MatInfo sourceOne, MatmovInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		MatmovInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class MatmovVisiMergeUsername implements InfoMergerVisitorV2<MatmovInfo, U
 	
 	
 	
-	private void checkArgument(UsernameInfo sourceOne, MatmovInfo sourceTwo) {
+	private void checkArgument(MatInfo sourceOne, MatmovInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,20 +37,16 @@ final class MatmovVisiMergeUsername implements InfoMergerVisitorV2<MatmovInfo, U
 	
 	
 	
-	private MatmovInfo merge(UsernameInfo sourceOne, MatmovInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
+	private MatmovInfo merge(MatInfo sourceOne, MatmovInfo sourceTwo) {
+		sourceTwo.codMatCateg = sourceOne.codMatCateg;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, MatmovInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
-		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+	@Override public boolean shouldWrite(MatInfo sourceOne, MatmovInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner	&&
+				sourceOne.codMat   == sourceTwo.codMat			);
 	}
 	
 	
