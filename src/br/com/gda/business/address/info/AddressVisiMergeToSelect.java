@@ -44,7 +44,7 @@ final class AddressVisiMergeToSelect implements InfoMergerVisitorV2<AddressInfo,
 	
 	
 	@Override public boolean shouldWrite(AddressInfo sourceOne, AddressInfo sourceTwo) {		
-		return true;
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	
