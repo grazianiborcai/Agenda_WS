@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class MatockVisiMergeToUpdate implements InfoMergerVisitorV2<MatockInfo, MatockInfo> {
+final class MatockVisiMergeToSelect implements InfoMergerVisitorV2<MatockInfo, MatockInfo> {
 
 	@Override public MatockInfo writeRecord(MatockInfo sourceOne, MatockInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
@@ -23,9 +23,7 @@ final class MatockVisiMergeToUpdate implements InfoMergerVisitorV2<MatockInfo, M
 	
 	
 	private MatockInfo merge(MatockInfo sourceOne, MatockInfo sourceTwo) {
-		MatockInfo result = makeClone(sourceOne);		
-		result.quantityToUpdate = sourceTwo.quantityToUpdate;
-		result.codMatmovType = sourceTwo.codMatmovType;
+		MatockInfo result = makeClone(sourceOne);
 		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
 		return result;
@@ -46,9 +44,7 @@ final class MatockVisiMergeToUpdate implements InfoMergerVisitorV2<MatockInfo, M
 	
 	
 	@Override public boolean shouldWrite(MatockInfo sourceOne, MatockInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner	&& 
-				sourceOne.codStore == sourceTwo.codStore	&&
-				sourceOne.codMat   == sourceTwo.codMat		);
+		return true;
 	}
 	
 	

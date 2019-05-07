@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialStock.info.MatockInfo;
-import br.com.gda.business.materialStock.model.action.StdMatockSelect;
+import br.com.gda.business.materialStock.model.action.StdMatockMergeToSelect;
 import br.com.gda.business.materialStock.model.checker.MatockCheckLangu;
 import br.com.gda.business.materialStock.model.checker.MatockCheckRead;
 import br.com.gda.business.materialStock.model.checker.MatockCheckStorauth;
@@ -69,7 +69,7 @@ public final class RootMatockSelect implements DeciTree<MatockInfo> {
 	private List<ActionStd<MatockInfo>> buildActionsOnPassed(DeciTreeOption<MatockInfo> option) {
 		List<ActionStd<MatockInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatockInfo> select = new StdMatockSelect(option);
+		ActionStd<MatockInfo> select = new StdMatockMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

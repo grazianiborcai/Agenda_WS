@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdMatockMergeToUpdate implements ActionStd<MatockInfo> {
+public final class StdMatockMergeToSelect implements ActionStd<MatockInfo> {
 	private ActionStd<MatockInfo> actionHelper;	
 	
 	
-	public StdMatockMergeToUpdate(DeciTreeOption<MatockInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatockMergeToUpdate(option.conn, option.schemaName));
+	public StdMatockMergeToSelect(DeciTreeOption<MatockInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatockMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

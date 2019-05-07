@@ -4,10 +4,10 @@ import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.info.InfoUniquifier;
 
-final class MatockMergerToUpdate extends InfoMergerTemplate<MatockInfo, MatockInfo> {
+final class MatockMergerToSelect extends InfoMergerTemplate<MatockInfo, MatockInfo> {
 
 	@Override protected InfoMergerVisitorV2<MatockInfo, MatockInfo> getVisitorHook() {
-		return new MatockVisiMergeToUpdate();
+		return new MatockVisiMergeToSelect();
 	}
 	
 	
