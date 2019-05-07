@@ -2,41 +2,47 @@ package br.com.gda.business.materialText.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class MatextMerger extends InfoWritterFactory_<MatextInfo> {	
-	
-	public MatextMerger() {
-		super(new MatextUniquifier());
+public final class MatextMerger {
+	public static MatextInfo mergeWithUsername(UsernameInfo sourceOne, MatextInfo sourceTwo) {
+		InfoMerger<MatextInfo, UsernameInfo> merger = new MatextMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public MatextInfo merge(UsernameInfo sourceOne, MatextInfo sourceTwo) {
-		return new MatextMergerUsername().merge(sourceOne, sourceTwo);
+	public static List<MatextInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<MatextInfo> sourceTwos) {
+		InfoMerger<MatextInfo, UsernameInfo> merger = new MatextMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	static public MatextInfo merge(MatextInfo sourceOne, MatextInfo sourceTwo) {
-		return new MatextMergerToDelete().merge(sourceOne, sourceTwo);
+	public static MatextInfo mergeToSelect(MatextInfo sourceOne, MatextInfo sourceTwo) {
+		InfoMerger<MatextInfo, MatextInfo> merger = new MatextMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	@Override protected List<MatextInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
-		if (sourceOnes.get(0) instanceof UsernameInfo 	&&
-			sourceTwos.get(0) instanceof MatextInfo		)
-			return new MatextMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<MatextInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof MatextInfo	 	&&
-			sourceTwos.get(0) instanceof MatextInfo		)
-			return new MatextMergerToDelete().merge((List<MatextInfo>) sourceOnes, (List<MatextInfo>) sourceTwos);
-		
-		
-		return null;
+	public static List<MatextInfo> mergeToSelect(List<MatextInfo> sourceOnes, List<MatextInfo> sourceTwos) {
+		InfoMerger<MatextInfo, MatextInfo> merger = new MatextMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static MatextInfo mergeToDelete(MatextInfo sourceOne, MatextInfo sourceTwo) {
+		InfoMerger<MatextInfo, MatextInfo> merger = new MatextMergerToDelete();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatextInfo> mergeToDelete(List<MatextInfo> sourceOnes, List<MatextInfo> sourceTwos) {
+		InfoMerger<MatextInfo, MatextInfo> merger = new MatextMergerToDelete();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

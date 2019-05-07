@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdMatextMergeToDelete implements ActionStd<MatextInfo> {
+public final class StdMatextMergeToSelect implements ActionStd<MatextInfo> {
 	private ActionStd<MatextInfo> actionHelper;	
 	
 	
-	public StdMatextMergeToDelete(DeciTreeOption<MatextInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatextMergeToDelete(option.conn, option.schemaName));
+	public StdMatextMergeToSelect(DeciTreeOption<MatextInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatextMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

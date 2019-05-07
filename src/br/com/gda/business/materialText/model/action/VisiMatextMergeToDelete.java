@@ -7,11 +7,10 @@ import br.com.gda.business.materialText.info.MatextCopier;
 import br.com.gda.business.materialText.info.MatextInfo;
 import br.com.gda.business.materialText.info.MatextMerger;
 import br.com.gda.business.materialText.model.decisionTree.RootMatextSelect;
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiMatextMergeToDelete extends ActionVisitorTemplateMerge_<MatextInfo, MatextInfo> {
+final class VisiMatextMergeToDelete extends ActionVisitorTemplateMergeV2<MatextInfo, MatextInfo> {
 	
 	public VisiMatextMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, MatextInfo.class);
@@ -31,7 +30,13 @@ final class VisiMatextMergeToDelete extends ActionVisitorTemplateMerge_<MatextIn
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<MatextInfo>> getMergerClassHook() {
-		return MatextMerger.class;
+	@Override protected List<MatextInfo> mergeHook(List<MatextInfo> recordInfos, List<MatextInfo> selectedInfos) {	
+		return MatextMerger.mergeToDelete(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

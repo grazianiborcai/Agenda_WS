@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialText.info.MatextInfo;
-import br.com.gda.business.materialText.model.action.StdMatextSelect;
+import br.com.gda.business.materialText.model.action.StdMatextMergeToSelect;
 import br.com.gda.business.materialText.model.action.StdMatextSelectDefault;
 import br.com.gda.business.materialText.model.checker.MatextCheckExist;
 import br.com.gda.business.materialText.model.checker.MatextCheckRead;
@@ -48,7 +48,7 @@ public final class RootMatextSelect extends DeciTreeReadTemplate<MatextInfo> {
 	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextInfo> select = new StdMatextSelect(option);
+		ActionStd<MatextInfo> select = new StdMatextMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

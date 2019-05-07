@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class MatextVisiMergeToDelete implements InfoMergerVisitorV2<MatextInfo, MatextInfo> {
+final class MatextVisiMergeToSelect implements InfoMergerVisitorV2<MatextInfo, MatextInfo> {
 
 	@Override public MatextInfo writeRecord(MatextInfo sourceOne, MatextInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
@@ -43,8 +43,7 @@ final class MatextVisiMergeToDelete implements InfoMergerVisitorV2<MatextInfo, M
 	
 	
 	@Override public boolean shouldWrite(MatextInfo sourceOne, MatextInfo sourceTwo) {	
-		return (sourceOne.codOwner == sourceTwo.codOwner	&& 
-				sourceOne.codMat   == sourceTwo.codMat			);
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	
