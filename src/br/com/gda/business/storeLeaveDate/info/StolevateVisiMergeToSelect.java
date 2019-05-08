@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class StolevateVisiMergeToDelete implements InfoMergerVisitorV2<StolevateInfo, StolevateInfo> {
+final class StolevateVisiMergeToSelect implements InfoMergerVisitorV2<StolevateInfo, StolevateInfo> {
 
 	@Override public StolevateInfo writeRecord(StolevateInfo sourceOne, StolevateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
@@ -44,8 +44,7 @@ final class StolevateVisiMergeToDelete implements InfoMergerVisitorV2<StolevateI
 	
 	
 	@Override public boolean shouldWrite(StolevateInfo sourceOne, StolevateInfo sourceTwo) {		
-		return (sourceOne.codOwner 	 == sourceTwo.codOwner	&& 
-				sourceOne.codStore 	 == sourceTwo.codStore	);
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	

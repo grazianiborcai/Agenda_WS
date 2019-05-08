@@ -5,14 +5,13 @@ import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.business.storeLeaveDate.info.StolevateMerger;
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiStolevateMergeUsername extends ActionVisitorTemplateMerge_<StolevateInfo, UsernameInfo> {
+final class VisiStolevateMergeUsername extends ActionVisitorTemplateMergeV2<StolevateInfo, UsernameInfo> {
 	
 	public VisiStolevateMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
@@ -32,7 +31,13 @@ final class VisiStolevateMergeUsername extends ActionVisitorTemplateMerge_<Stole
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<StolevateInfo>> getMergerClassHook() {
-		return StolevateMerger.class;
+	@Override protected List<StolevateInfo> mergeHook(List<StolevateInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
+		return StolevateMerger.mergeWithUsername(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

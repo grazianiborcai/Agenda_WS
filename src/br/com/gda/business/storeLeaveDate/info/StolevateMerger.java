@@ -3,52 +3,61 @@ package br.com.gda.business.storeLeaveDate.info;
 import java.util.List;
 
 import br.com.gda.business.planningTime_.info.PlanDataInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class StolevateMerger extends InfoWritterFactory_<StolevateInfo> {
-	
-	public StolevateMerger() {
-		super(new StolevateUniquifier());
+public final class StolevateMerger {
+	public static StolevateInfo mergeWithPlan(PlanDataInfo sourceOne, StolevateInfo sourceTwo) {
+		InfoMerger<StolevateInfo, PlanDataInfo> merger = new StolevateMergerPlan();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public StolevateInfo merge(PlanDataInfo sourceOne, StolevateInfo sourceTwo) {
-		return new StolevateMergerPlan().merge(sourceOne, sourceTwo);		
+	public static List<StolevateInfo> mergeWithPlan(List<PlanDataInfo> sourceOnes, List<StolevateInfo> sourceTwos) {
+		InfoMerger<StolevateInfo, PlanDataInfo> merger = new StolevateMergerPlan();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	public StolevateInfo merge(StolevateInfo sourceOne, StolevateInfo sourceTwo) {
-		return new StolevateMergerToDelete().merge(sourceOne, sourceTwo);		
+	public static StolevateInfo mergeWithUsername(UsernameInfo sourceOne, StolevateInfo sourceTwo) {
+		InfoMerger<StolevateInfo, UsernameInfo> merger = new StolevateMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public StolevateInfo merge(UsernameInfo sourceOne, StolevateInfo sourceTwo) {
-		return new StolevateMergerUsername().merge(sourceOne, sourceTwo);		
+	public static List<StolevateInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<StolevateInfo> sourceTwos) {
+		InfoMerger<StolevateInfo, UsernameInfo> merger = new StolevateMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	@Override protected List<StolevateInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {		
-		if (sourceOnes.get(0) instanceof PlanDataInfo 	&&
-			sourceTwos.get(0) instanceof StolevateInfo		)
-			return new StolevateMergerPlan().merge((List<PlanDataInfo>) sourceOnes, (List<StolevateInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof StolevateInfo 	&&
-			sourceTwos.get(0) instanceof StolevateInfo		)
-			return new StolevateMergerToDelete().merge((List<StolevateInfo>) sourceOnes, (List<StolevateInfo>) sourceTwos);		
-		
-		
-		if (sourceOnes.get(0) instanceof UsernameInfo 	&&
-			sourceTwos.get(0) instanceof StolevateInfo		)
-			return new StolevateMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<StolevateInfo>) sourceTwos);
-		
-		
-		return null;
-	}		
+	public static StolevateInfo mergeToSelect(StolevateInfo sourceOne, StolevateInfo sourceTwo) {
+		InfoMerger<StolevateInfo, StolevateInfo> merger = new StolevateMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StolevateInfo> mergeToSelect(List<StolevateInfo> sourceOnes, List<StolevateInfo> sourceTwos) {
+		InfoMerger<StolevateInfo, StolevateInfo> merger = new StolevateMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static StolevateInfo mergeToDeleteSelect(StolevateInfo sourceOne, StolevateInfo sourceTwo) {
+		InfoMerger<StolevateInfo, StolevateInfo> merger = new StolevateMergerToDelete();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StolevateInfo> mergeToDelete(List<StolevateInfo> sourceOnes, List<StolevateInfo> sourceTwos) {
+		InfoMerger<StolevateInfo, StolevateInfo> merger = new StolevateMergerToDelete();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

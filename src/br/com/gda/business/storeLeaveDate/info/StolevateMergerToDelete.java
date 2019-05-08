@@ -1,17 +1,18 @@
 package br.com.gda.business.storeLeaveDate.info;
 
-import java.util.List;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-import br.com.gda.info.InfoMerger_;
+final class StolevateMergerToDelete extends InfoMergerTemplate<StolevateInfo, StolevateInfo> {
 
-final class StolevateMergerToDelete extends InfoMerger_<StolevateInfo, StolevateInfo, StolevateInfo> {
-	public StolevateInfo merge(StolevateInfo sourceOne, StolevateInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new StolevateVisiMergeToDelete());
+	@Override protected InfoMergerVisitorV2<StolevateInfo, StolevateInfo> getVisitorHook() {
+		return new StolevateVisiMergeToDelete();
 	}
 	
 	
 	
-	public List<StolevateInfo> merge(List<StolevateInfo> sourceOnes, List<StolevateInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new StolevateVisiMergeToDelete());
+	@Override protected InfoUniquifier<StolevateInfo> getUniquifierHook() {
+		return new StolevateUniquifier();
 	}
 }

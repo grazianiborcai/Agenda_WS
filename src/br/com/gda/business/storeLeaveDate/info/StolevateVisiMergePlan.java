@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 import br.com.gda.business.planningTime_.info.PlanDataInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 
-final class StolevateVisiMergePlan implements InfoMergerVisitor_<StolevateInfo, PlanDataInfo, StolevateInfo> {
+final class StolevateVisiMergePlan implements InfoMergerVisitorV2<StolevateInfo, PlanDataInfo> {
 
 	@Override public StolevateInfo writeRecord(PlanDataInfo sourceOne, StolevateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

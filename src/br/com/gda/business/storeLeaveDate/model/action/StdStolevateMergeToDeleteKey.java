@@ -3,7 +3,7 @@ package br.com.gda.business.storeLeaveDate.model.action;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -12,7 +12,7 @@ public final class StdStolevateMergeToDeleteKey implements ActionStd<StolevateIn
 	
 	
 	public StdStolevateMergeToDeleteKey(DeciTreeOption<StolevateInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiStolevateMergeToDeleteKey(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStolevateMergeToDeleteKey(option.conn, option.schemaName));
 	}
 	
 	

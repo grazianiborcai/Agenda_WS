@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.model.action.StdStolevateSelect;
+import br.com.gda.business.storeLeaveDate.model.action.StdStolevateMergeToSelect;
 import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -48,7 +48,7 @@ public final class RootStolevateSelect implements DeciTree<StolevateInfo> {
 	private List<ActionStd<StolevateInfo>> buildActionsOnPassed(DeciTreeOption<StolevateInfo> option) {
 		List<ActionStd<StolevateInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdStolevateSelect(option));
+		actions.add(new StdStolevateMergeToSelect(option));
 		return actions;
 	}
 	

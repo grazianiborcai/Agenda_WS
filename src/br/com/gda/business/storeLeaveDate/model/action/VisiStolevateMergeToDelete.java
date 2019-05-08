@@ -1,15 +1,15 @@
 package br.com.gda.business.storeLeaveDate.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.business.storeLeaveDate.info.StolevateMerger;
 import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStolevateSelect;
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiStolevateMergeToDelete extends ActionVisitorTemplateMerge_<StolevateInfo, StolevateInfo> {
+final class VisiStolevateMergeToDelete extends ActionVisitorTemplateMergeV2<StolevateInfo, StolevateInfo> {
 	
 	public VisiStolevateMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, StolevateInfo.class);
@@ -23,7 +23,13 @@ final class VisiStolevateMergeToDelete extends ActionVisitorTemplateMerge_<Stole
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<StolevateInfo>> getMergerClassHook() {
-		return StolevateMerger.class;
+	@Override protected List<StolevateInfo> mergeHook(List<StolevateInfo> recordInfos, List<StolevateInfo> selectedInfos) {	
+		return StolevateMerger.mergeToDelete(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }
