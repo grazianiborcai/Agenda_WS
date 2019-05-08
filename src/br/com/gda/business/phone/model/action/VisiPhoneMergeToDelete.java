@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.info.PhoneMerger;
 import br.com.gda.business.phone.model.decisionTree.RootPhoneSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiPhoneMergeToDelete extends ActionVisitorTemplateMerge_<PhoneInfo, PhoneInfo> {
+final class VisiPhoneMergeToDelete extends ActionVisitorTemplateMergeV2<PhoneInfo, PhoneInfo> {
 	
 	public VisiPhoneMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, PhoneInfo.class);
@@ -25,5 +25,11 @@ final class VisiPhoneMergeToDelete extends ActionVisitorTemplateMerge_<PhoneInfo
 	
 	@Override protected List<PhoneInfo> mergeHook(List<PhoneInfo> recordInfos, List<PhoneInfo> selectedInfos) {	
 		return PhoneMerger.mergeToDelete(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

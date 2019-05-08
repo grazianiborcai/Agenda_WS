@@ -3,7 +3,7 @@ package br.com.gda.business.phone.model.action;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -12,7 +12,7 @@ public final class StdPhoneMergeForm implements ActionStd<PhoneInfo> {
 	
 	
 	public StdPhoneMergeForm(DeciTreeOption<PhoneInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiPhoneMergeForm(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPhoneMergeForm(option.conn, option.schemaName));
 	}
 	
 	
