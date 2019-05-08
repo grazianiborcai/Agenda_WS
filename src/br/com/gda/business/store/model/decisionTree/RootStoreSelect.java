@@ -11,7 +11,7 @@ import br.com.gda.business.store.model.action.LazyStoreMergePerson;
 import br.com.gda.business.store.model.action.LazyStoreMergePhone;
 import br.com.gda.business.store.model.action.LazyStoreMergeTimezone;
 import br.com.gda.business.store.model.action.LazyStoreMergeUser;
-import br.com.gda.business.store.model.action.StdStoreSelect;
+import br.com.gda.business.store.model.action.StdStoreMergeToSelect;
 import br.com.gda.business.store.model.checker.StoreCheckLangu;
 import br.com.gda.business.store.model.checker.StoreCheckRead;
 import br.com.gda.business.store.model.checker.StoreCheckStorauth;
@@ -64,7 +64,7 @@ public final class RootStoreSelect extends DeciTreeReadTemplate<StoreInfo> {
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> select = new StdStoreSelect(option);
+		ActionStd<StoreInfo> select = new StdStoreMergeToSelect(option);
 		ActionLazy<StoreInfo> mergeCurrency = new LazyStoreMergeCurrency(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> mergeTimezone = new LazyStoreMergeTimezone(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> mergePerson = new LazyStoreMergePerson(option.conn, option.schemaName);

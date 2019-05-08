@@ -7,10 +7,10 @@ import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootCurrencySelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.info.StoreMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiStoreMergeCurrency extends ActionVisitorTemplateMerge_<StoreInfo, CurrencyInfo> {
+final class VisiStoreMergeCurrency extends ActionVisitorTemplateMergeV2<StoreInfo, CurrencyInfo> {
 	
 	public VisiStoreMergeCurrency(Connection conn, String schemaName) {
 		super(conn, schemaName, CurrencyInfo.class);
@@ -26,5 +26,11 @@ final class VisiStoreMergeCurrency extends ActionVisitorTemplateMerge_<StoreInfo
 	
 	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> recordInfos, List<CurrencyInfo> selectedInfos) {	
 		return StoreMerger.mergeWithCurrency(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

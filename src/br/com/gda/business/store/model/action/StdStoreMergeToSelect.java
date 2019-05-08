@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdStoreMergeComp implements ActionStd<StoreInfo> {
+public final class StdStoreMergeToSelect implements ActionStd<StoreInfo> {
 	private ActionStd<StoreInfo> actionHelper;	
 	
 	
-	public StdStoreMergeComp(DeciTreeOption<StoreInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStoreMergeComp(option.conn, option.schemaName));
+	public StdStoreMergeToSelect(DeciTreeOption<StoreInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStoreMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

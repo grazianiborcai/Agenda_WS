@@ -136,4 +136,18 @@ public final class StoreMerger {
 		InfoMerger<StoreInfo, StoreInfo> merger = new StoreMergerToDelete();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static StoreInfo mergeToSelect(StoreInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, StoreInfo> merger = new StoreMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StoreInfo> mergeToSelect(List<StoreInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, StoreInfo> merger = new StoreMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }
