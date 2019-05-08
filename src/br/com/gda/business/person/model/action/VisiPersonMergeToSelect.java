@@ -5,26 +5,25 @@ import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.info.PersonMerger;
-import br.com.gda.business.person.model.decisionTree.RootPersonSelect;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
-import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiPersonMergeToDelete extends ActionVisitorTemplateMergeV2<PersonInfo, PersonInfo> {
+final class VisiPersonMergeToSelect extends ActionVisitorTemplateMergeV2<PersonInfo, PersonInfo> {
 	
-	public VisiPersonMergeToDelete(Connection conn, String schemaName) {
+	public VisiPersonMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, PersonInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<PersonInfo>> getTreeClassHook() {
-		return RootPersonSelect.class;
+	@Override protected Class<? extends ActionStd<PersonInfo>> getActionClassHook() {
+		return StdPersonSelect.class;
 	}
 	
 	
 	
 	@Override protected List<PersonInfo> mergeHook(List<PersonInfo> recordInfos, List<PersonInfo> selectedInfos) {	
-		return PersonMerger.mergeToDelete(selectedInfos, recordInfos);
+		return PersonMerger.mergeToSelect(selectedInfos, recordInfos);
 	}
 	
 	

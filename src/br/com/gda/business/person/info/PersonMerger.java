@@ -46,4 +46,18 @@ public final class PersonMerger {
 		InfoMerger<PersonInfo, PersonInfo> merger = new PersonMergerToDelete();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static PersonInfo mergeToSelect(PersonInfo sourceOne, PersonInfo sourceTwo) {
+		InfoMerger<PersonInfo, PersonInfo> merger = new PersonMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PersonInfo> mergeToSelect(List<PersonInfo> sourceOnes, List<PersonInfo> sourceTwos) {
+		InfoMerger<PersonInfo, PersonInfo> merger = new PersonMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

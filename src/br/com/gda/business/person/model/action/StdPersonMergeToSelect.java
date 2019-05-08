@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdPersonMergeUsername implements ActionStd<PersonInfo> {
+public final class StdPersonMergeToSelect implements ActionStd<PersonInfo> {
 	private ActionStd<PersonInfo> actionHelper;	
 	
 	
-	public StdPersonMergeUsername(DeciTreeOption<PersonInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPersonMergeUsername(option.conn, option.schemaName));
+	public StdPersonMergeToSelect(DeciTreeOption<PersonInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPersonMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	
