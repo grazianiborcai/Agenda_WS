@@ -3,40 +3,33 @@ package br.com.gda.security.storeAuthorization.info;
 import java.util.List;
 
 import br.com.gda.business.ownerStore.info.OwntoreInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class StorauthMerger extends InfoWritterFactory_<StorauthInfo> {	
-	
-	public StorauthMerger() {
-		super();
+public final class StorauthMerger {
+	public static StorauthInfo mergeWithUsername(UsernameInfo sourceOne, StorauthInfo sourceTwo) {
+		InfoMerger<StorauthInfo, UsernameInfo> merger = new StorauthMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public StorauthInfo merge(UsernameInfo sourceOne, StorauthInfo sourceTwo) {
-		return new StorauthMergerUsername().merge(sourceOne, sourceTwo);
+	public static List<StorauthInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<StorauthInfo> sourceTwos) {
+		InfoMerger<StorauthInfo, UsernameInfo> merger = new StorauthMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	static public StorauthInfo merge(OwntoreInfo sourceOne, StorauthInfo sourceTwo) {
-		return new StorauthMergerOwntore().merge(sourceOne, sourceTwo);
+	public static StorauthInfo mergeWithOwntore(OwntoreInfo sourceOne, StorauthInfo sourceTwo) {
+		InfoMerger<StorauthInfo, OwntoreInfo> merger = new StorauthMergerOwntore();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	@Override protected List<StorauthInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
-		if (sourceOnes.get(0) instanceof UsernameInfo 	&&
-			sourceTwos.get(0) instanceof StorauthInfo		)
-			return new StorauthMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<StorauthInfo>) sourceTwos);		
-		
-		
-		if (sourceOnes.get(0) instanceof OwntoreInfo 	&&
-			sourceTwos.get(0) instanceof StorauthInfo		)
-			return new StorauthMergerOwntore().merge((List<OwntoreInfo>) sourceOnes, (List<StorauthInfo>) sourceTwos);	
-		
-		return null;
+	public static List<StorauthInfo> mergeWithOwntore(List<OwntoreInfo> sourceOnes, List<StorauthInfo> sourceTwos) {
+		InfoMerger<StorauthInfo, OwntoreInfo> merger = new StorauthMergerOwntore();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

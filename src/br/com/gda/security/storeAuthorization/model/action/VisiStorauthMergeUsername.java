@@ -1,16 +1,16 @@
 package br.com.gda.security.storeAuthorization.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
 import br.com.gda.security.storeAuthorization.info.StorauthMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiStorauthMergeUsername extends ActionVisitorTemplateMerge_<StorauthInfo, UsernameInfo> {
+final class VisiStorauthMergeUsername extends ActionVisitorTemplateMergeV2<StorauthInfo, UsernameInfo> {
 	
 	public VisiStorauthMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
@@ -24,7 +24,13 @@ final class VisiStorauthMergeUsername extends ActionVisitorTemplateMerge_<Storau
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<StorauthInfo>> getMergerClassHook() {
-		return StorauthMerger.class;
+	@Override protected List<StorauthInfo> mergeHook(List<StorauthInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
+		return StorauthMerger.mergeWithUsername(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }
