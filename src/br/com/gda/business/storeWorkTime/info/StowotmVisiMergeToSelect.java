@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class StowotmVisiMergeToDelete implements InfoMergerVisitorV2<StowotmInfo, StowotmInfo> {
+final class StowotmVisiMergeToSelect implements InfoMergerVisitorV2<StowotmInfo, StowotmInfo> {
 
 	@Override public StowotmInfo writeRecord(StowotmInfo sourceOne, StowotmInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
@@ -44,8 +44,7 @@ final class StowotmVisiMergeToDelete implements InfoMergerVisitorV2<StowotmInfo,
 	
 	
 	@Override public boolean shouldWrite(StowotmInfo sourceOne, StowotmInfo sourceTwo) {		
-		return (sourceOne.codOwner 	 == sourceTwo.codOwner	&& 
-				sourceOne.codStore 	 == sourceTwo.codStore	);
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	

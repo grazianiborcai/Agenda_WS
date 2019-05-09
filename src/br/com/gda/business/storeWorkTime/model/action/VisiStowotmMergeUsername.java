@@ -5,14 +5,13 @@ import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmMerger;
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiStowotmMergeUsername extends ActionVisitorTemplateMerge_<StowotmInfo, UsernameInfo> {
+final class VisiStowotmMergeUsername extends ActionVisitorTemplateMergeV2<StowotmInfo, UsernameInfo> {
 	
 	public VisiStowotmMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
@@ -32,7 +31,13 @@ final class VisiStowotmMergeUsername extends ActionVisitorTemplateMerge_<Stowotm
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<StowotmInfo>> getMergerClassHook() {
-		return StowotmMerger.class;
+	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
+		return StowotmMerger.mergeWithUsername(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

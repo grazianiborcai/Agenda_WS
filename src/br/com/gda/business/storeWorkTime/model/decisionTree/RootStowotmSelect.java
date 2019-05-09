@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
-import br.com.gda.business.storeWorkTime.model.action.StdStowotmSelect;
+import br.com.gda.business.storeWorkTime.model.action.StdStowotmMergeToSelect;
 import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -48,7 +48,7 @@ public final class RootStowotmSelect implements DeciTree<StowotmInfo> {
 	private List<ActionStd<StowotmInfo>> buildActionsOnPassed(DeciTreeOption<StowotmInfo> option) {
 		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdStowotmSelect(option));
+		actions.add(new StdStowotmMergeToSelect(option));
 		return actions;
 	}
 	

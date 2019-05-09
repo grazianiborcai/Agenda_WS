@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdStowotmMergeToDelete implements ActionStd<StowotmInfo> {
+public final class StdStowotmMergeToSelect implements ActionStd<StowotmInfo> {
 	private ActionStd<StowotmInfo> actionHelper;	
 	
 	
-	public StdStowotmMergeToDelete(DeciTreeOption<StowotmInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStowotmMergeToDelete(option.conn, option.schemaName));
+	public StdStowotmMergeToSelect(DeciTreeOption<StowotmInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStowotmMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	
