@@ -7,10 +7,10 @@ import br.com.gda.business.user.info.UserCopier;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.info.UserMerger;
 import br.com.gda.business.user.model.decisionTree.RootUserSelect;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiUserMergeToDelete extends ActionVisitorTemplateMerge_<UserInfo, UserInfo> {
+final class VisiUserMergeToDelete extends ActionVisitorTemplateMergeV2<UserInfo, UserInfo> {
 	
 	public VisiUserMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class);
@@ -32,5 +32,11 @@ final class VisiUserMergeToDelete extends ActionVisitorTemplateMerge_<UserInfo, 
 	
 	@Override protected List<UserInfo> mergeHook(List<UserInfo> recordInfos, List<UserInfo> selectedInfos) {	
 		return UserMerger.mergeToDelete(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

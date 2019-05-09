@@ -8,10 +8,10 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.info.UserMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiUserMergeAddress extends ActionVisitorTemplateMerge_<UserInfo, AddressInfo> {
+final class VisiUserMergeAddress extends ActionVisitorTemplateMergeV2<UserInfo, AddressInfo> {
 	
 	public VisiUserMergeAddress(Connection conn, String schemaName) {
 		super(conn, schemaName, AddressInfo.class);
@@ -34,4 +34,10 @@ final class VisiUserMergeAddress extends ActionVisitorTemplateMerge_<UserInfo, A
 	@Override protected List<UserInfo> mergeHook(List<UserInfo> recordInfos, List<AddressInfo> selectedInfos) {	
 		return UserMerger.mergeWithAddress(selectedInfos, recordInfos);
 	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+	}	
 }
