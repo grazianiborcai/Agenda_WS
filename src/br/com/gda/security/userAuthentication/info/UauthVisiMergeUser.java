@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 
-final class UauthVisiMergeUser implements InfoMergerVisitor_<UauthInfo, UserInfo, UauthInfo> {
+final class UauthVisiMergeUser implements InfoMergerVisitorV2<UauthInfo, UserInfo> {
 
 	@Override public UauthInfo writeRecord(UserInfo sourceOne, UauthInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

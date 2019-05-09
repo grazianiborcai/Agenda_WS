@@ -3,29 +3,18 @@ package br.com.gda.security.userAuthentication.info;
 import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 
-public final class UauthMerger extends InfoWritterFactory_<UauthInfo> {	
-	
-	public UauthMerger() {
-		super();
+public final class UauthMerger {
+	public static UauthInfo mergeWithUser(UserInfo sourceOne, UauthInfo sourceTwo) {
+		InfoMerger<UauthInfo, UserInfo> merger = new UauthMergerUser();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public UauthInfo merge(UserInfo sourceOne, UauthInfo sourceTwo) {
-		return new UauthMergerUser().merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	@Override protected List<UauthInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
-		if (sourceOnes.get(0) instanceof UserInfo 	&&
-			sourceTwos.get(0) instanceof UauthInfo		)
-			return new UauthMergerUser().merge((List<UserInfo>) sourceOnes, (List<UauthInfo>) sourceTwos);
-		
-		
-		return null;
+	public static List<UauthInfo> mergeWithUser(List<UserInfo> sourceOnes, List<UauthInfo> sourceTwos) {
+		InfoMerger<UauthInfo, UserInfo> merger = new UauthMergerUser();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

@@ -1,18 +1,19 @@
 package br.com.gda.security.userAuthentication.info;
 
-import java.util.List;
-
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class UauthMergerUser extends InfoMerger_<UauthInfo, UserInfo, UauthInfo> {
-	public UauthInfo merge(UserInfo sourceOne, UauthInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new UauthVisiMergeUser());
+final class UauthMergerUser extends InfoMergerTemplate<UauthInfo, UserInfo> {
+
+	@Override protected InfoMergerVisitorV2<UauthInfo, UserInfo> getVisitorHook() {
+		return new UauthVisiMergeUser();
 	}
 	
 	
 	
-	public List<UauthInfo> merge(List<UserInfo> sourceOnes, List<UauthInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new UauthVisiMergeUser());
+	@Override protected InfoUniquifier<UauthInfo> getUniquifierHook() {
+		return new UauthUniquifier();
 	}
 }

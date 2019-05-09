@@ -2,7 +2,7 @@ package br.com.gda.security.userAuthentication.model.action;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.userAuthentication.info.UauthInfo;
@@ -12,7 +12,7 @@ public final class StdUauthMergeUser implements ActionStd<UauthInfo> {
 	
 	
 	public StdUauthMergeUser(DeciTreeOption<UauthInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiUauthMergeUser(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiUauthMergeUser(option.conn, option.schemaName));
 	}
 	
 	
