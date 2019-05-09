@@ -1,16 +1,16 @@
 package br.com.gda.security.userPassword.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserSelect;
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 import br.com.gda.security.userPassword.info.UpswdMerger;
 
-final class VisiUpswdMergeUser extends ActionVisitorTemplateMerge_<UpswdInfo, UserInfo> {
+final class VisiUpswdMergeUser extends ActionVisitorTemplateMergeV2<UpswdInfo, UserInfo> {
 	
 	public VisiUpswdMergeUser(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class);
@@ -24,7 +24,13 @@ final class VisiUpswdMergeUser extends ActionVisitorTemplateMerge_<UpswdInfo, Us
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<UpswdInfo>> getMergerClassHook() {
-		return UpswdMerger.class;
+	@Override protected List<UpswdInfo> mergeHook(List<UpswdInfo> recordInfos, List<UserInfo> selectedInfos) {	
+		return UpswdMerger.mergeWithUser(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

@@ -1,18 +1,19 @@
 package br.com.gda.security.userPassword.info;
 
-import java.util.List;
-
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class UpswdMergerUser extends InfoMerger_<UpswdInfo, UserInfo, UpswdInfo> {
-	public UpswdInfo merge(UserInfo sourceOne, UpswdInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new UpswdVisiMergeUser());
+final class UpswdMergerUser extends InfoMergerTemplate<UpswdInfo, UserInfo> {
+
+	@Override protected InfoMergerVisitorV2<UpswdInfo, UserInfo> getVisitorHook() {
+		return new UpswdVisiMergeUser();
 	}
 	
 	
 	
-	public List<UpswdInfo> merge(List<UserInfo> sourceOnes, List<UpswdInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new UpswdVisiMergeUser());
+	@Override protected InfoUniquifier<UpswdInfo> getUniquifierHook() {
+		return new UpswdUniquifier();
 	}
 }
