@@ -3,7 +3,7 @@ package br.com.gda.business.storeList.model.action;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -12,7 +12,7 @@ final class StdStolisMergeComp implements ActionStd<StolisInfo> {
 	
 	
 	public StdStolisMergeComp(DeciTreeOption<StolisInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiStolisMergeComp(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStolisMergeComp(option.conn, option.schemaName));
 	}
 	
 	

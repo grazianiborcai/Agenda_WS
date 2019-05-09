@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdStolisMergeCurrency implements ActionStd<StolisInfo> {
+public final class StdStolisMergeToSelect implements ActionStd<StolisInfo> {
 	private ActionStd<StolisInfo> actionHelper;	
 	
 	
-	public StdStolisMergeCurrency(DeciTreeOption<StolisInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStolisMergeCurrency(option.conn, option.schemaName));
+	public StdStolisMergeToSelect(DeciTreeOption<StolisInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStolisMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

@@ -77,4 +77,18 @@ public final class StolisMerger {
 		InfoMerger<StolisInfo, TimezoneInfo> merger = new StolisMergerTimezone();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static StolisInfo mergeToSelect(StolisInfo sourceOne, StolisInfo sourceTwo) {
+		InfoMerger<StolisInfo, StolisInfo> merger = new StolisMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StolisInfo> mergeToSelect(List<StolisInfo> sourceOnes, List<StolisInfo> sourceTwos) {
+		InfoMerger<StolisInfo, StolisInfo> merger = new StolisMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

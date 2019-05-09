@@ -7,10 +7,10 @@ import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootTimezoneSelect;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.business.storeList.info.StolisMerger;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiStolisMergeTimezone extends ActionVisitorTemplateMerge_<StolisInfo, TimezoneInfo> {
+final class VisiStolisMergeTimezone extends ActionVisitorTemplateMergeV2<StolisInfo, TimezoneInfo> {
 	
 	public VisiStolisMergeTimezone(Connection conn, String schemaName) {
 		super(conn, schemaName, TimezoneInfo.class);
@@ -26,5 +26,11 @@ final class VisiStolisMergeTimezone extends ActionVisitorTemplateMerge_<StolisIn
 	
 	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> recordInfos, List<TimezoneInfo> selectedInfos) {	
 		return StolisMerger.mergeWithTimezone(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }
