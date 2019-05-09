@@ -2,42 +2,35 @@ package br.com.gda.security.tokenAuthentication.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory_;
+
+import br.com.gda.info.InfoMerger;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class TauthMerger extends InfoWritterFactory_<TauthInfo> {	
-	
-	public TauthMerger() {
-		super(new TauthUniquifier());
+public final class TauthMerger {
+	public static TauthInfo mergeWithJwtoken(JwtokenInfo sourceOne, TauthInfo sourceTwo) {
+		InfoMerger<TauthInfo, JwtokenInfo> merger = new TauthMergerJwtoken();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public TauthInfo merge(UsernameInfo sourceOne, TauthInfo sourceTwo) {
-		return new TauthMergerUsername().merge(sourceOne, sourceTwo);
-	}	
+	public static List<TauthInfo> mergeWithJwtoken(List<JwtokenInfo> sourceOnes, List<TauthInfo> sourceTwos) {
+		InfoMerger<TauthInfo, JwtokenInfo> merger = new TauthMergerJwtoken();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 	
 	
 	
-	static public TauthInfo merge(JwtokenInfo sourceOne, TauthInfo sourceTwo) {
-		return new TauthMergerJwtoken().merge(sourceOne, sourceTwo);
-	}	
+	public static TauthInfo mergeWithUsername(UsernameInfo sourceOne, TauthInfo sourceTwo) {
+		InfoMerger<TauthInfo, UsernameInfo> merger = new TauthMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	@Override protected List<TauthInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
-		
-		if (sourceOnes.get(0) instanceof UsernameInfo 	&&
-			sourceTwos.get(0) instanceof TauthInfo		)
-			return new TauthMergerUsername().merge((List<UsernameInfo>) sourceOnes, (List<TauthInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof JwtokenInfo 	&&
-			sourceTwos.get(0) instanceof TauthInfo		)
-			return new TauthMergerJwtoken().merge((List<JwtokenInfo>) sourceOnes, (List<TauthInfo>) sourceTwos);
-		
-		return null;
+	public static List<TauthInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<TauthInfo> sourceTwos) {
+		InfoMerger<TauthInfo, UsernameInfo> merger = new TauthMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

@@ -3,8 +3,7 @@ package br.com.gda.security.tokenAuthentication.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.jwtToken.info.JwtokenCopier;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
@@ -12,7 +11,7 @@ import br.com.gda.security.jwtToken.model.decisionTree.RootJwtokenParse;
 import br.com.gda.security.tokenAuthentication.info.TauthInfo;
 import br.com.gda.security.tokenAuthentication.info.TauthMerger;
 
-final class VisiTauthMergeJwtoken extends ActionVisitorTemplateMerge_<TauthInfo, JwtokenInfo> {
+final class VisiTauthMergeJwtoken extends ActionVisitorTemplateMergeV2<TauthInfo, JwtokenInfo> {
 	
 	public VisiTauthMergeJwtoken(Connection conn, String schemaName) {
 		super(conn, schemaName, JwtokenInfo.class);
@@ -32,7 +31,13 @@ final class VisiTauthMergeJwtoken extends ActionVisitorTemplateMerge_<TauthInfo,
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<TauthInfo>> getMergerClassHook() {
-		return TauthMerger.class;
+	@Override protected List<TauthInfo> mergeHook(List<TauthInfo> recordInfos, List<JwtokenInfo> selectedInfos) {	
+		return TauthMerger.mergeWithJwtoken(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

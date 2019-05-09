@@ -1,18 +1,19 @@
 package br.com.gda.security.tokenAuthentication.info;
 
-import java.util.List;
-
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 
-final class TauthMergerJwtoken extends InfoMerger_<TauthInfo, JwtokenInfo, TauthInfo> {
-	public TauthInfo merge(JwtokenInfo sourceOne, TauthInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new TauthVisiMergeJwtoken());
+final class TauthMergerJwtoken extends InfoMergerTemplate<TauthInfo, JwtokenInfo> {
+
+	@Override protected InfoMergerVisitorV2<TauthInfo, JwtokenInfo> getVisitorHook() {
+		return new TauthVisiMergeJwtoken();
 	}
 	
 	
 	
-	public List<TauthInfo> merge(List<JwtokenInfo> sourceOnes, List<TauthInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new TauthVisiMergeJwtoken());
+	@Override protected InfoUniquifier<TauthInfo> getUniquifierHook() {
+		return new TauthUniquifier();
 	}
 }

@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 
-final class TauthVisiMergeJwtoken implements InfoMergerVisitor_<TauthInfo, JwtokenInfo, TauthInfo> {
+final class TauthVisiMergeJwtoken implements InfoMergerVisitorV2<TauthInfo, JwtokenInfo> {
 
 	@Override public TauthInfo writeRecord(JwtokenInfo sourceOne, TauthInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
