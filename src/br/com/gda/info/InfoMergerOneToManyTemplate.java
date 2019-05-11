@@ -11,20 +11,20 @@ import br.com.gda.common.SystemMessage;
 public abstract class InfoMergerOneToManyTemplate<T extends InfoRecord, K extends InfoRecord> implements InfoMergerOneToMany<T, K> {	
 	
 	@Override public List<T> merge(List<K> sourceOnes, List<T> sourceTwos) {
-		InfoMergerVisitorOneToMany<T,K> visitor = getVisitorHook();
+		InfoMergerOneToManyVisitor<T,K> visitor = getVisitorHook();
 		return write(sourceOnes, sourceTwos, visitor);
 	}
 	
 	
 	
 	@Override public List<T> merge(K sourceOne, T sourceTwo) {
-		InfoMergerVisitorOneToMany<T,K> visitor = getVisitorHook();
+		InfoMergerOneToManyVisitor<T,K> visitor = getVisitorHook();
 		return write(sourceOne, sourceTwo, visitor);
 	}
 	
 	
 	
-	protected InfoMergerVisitorOneToMany<T,K> getVisitorHook() {
+	protected InfoMergerOneToManyVisitor<T,K> getVisitorHook() {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
@@ -32,7 +32,7 @@ public abstract class InfoMergerOneToManyTemplate<T extends InfoRecord, K extend
 	
 	
 	
-	private List<T> write(List<K> sourceOnes, List<T> sourceTwos, InfoMergerVisitorOneToMany<T,K> visitor) {
+	private List<T> write(List<K> sourceOnes, List<T> sourceTwos, InfoMergerOneToManyVisitor<T,K> visitor) {
 		checkArgument(sourceOnes, sourceTwos);		
 		
 		if (isEmpty(sourceOnes, sourceTwos))
@@ -67,7 +67,7 @@ public abstract class InfoMergerOneToManyTemplate<T extends InfoRecord, K extend
 
 	
 	
-	private List<T> write(K sourceOne, T sourceTwo, InfoMergerVisitorOneToMany<T,K> visitor) {
+	private List<T> write(K sourceOne, T sourceTwo, InfoMergerOneToManyVisitor<T,K> visitor) {
 		try {
 			return tryTowrite(sourceOne, sourceTwo, visitor);
 			
@@ -80,7 +80,7 @@ public abstract class InfoMergerOneToManyTemplate<T extends InfoRecord, K extend
 	
 	
 	@SuppressWarnings("unchecked")
-	private List<T> tryTowrite(K sourceOne, T sourceTwo, InfoMergerVisitorOneToMany<T,K> visitor) {
+	private List<T> tryTowrite(K sourceOne, T sourceTwo, InfoMergerOneToManyVisitor<T,K> visitor) {
 		checkArgument(sourceOne, sourceTwo, visitor);
 		
 		K clonedSourceOne = (K) makeClone(sourceOne);
@@ -123,7 +123,7 @@ public abstract class InfoMergerOneToManyTemplate<T extends InfoRecord, K extend
 	
 	
 	
-	private void checkArgument(K sourceOne, T sourceTwo, InfoMergerVisitorOneToMany<T,K> visitor) {
+	private void checkArgument(K sourceOne, T sourceTwo, InfoMergerOneToManyVisitor<T,K> visitor) {
 		if (sourceOne == null) {
 			logException(new NullPointerException("sourceOne" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("sourceOne" + SystemMessage.NULL_ARGUMENT);
