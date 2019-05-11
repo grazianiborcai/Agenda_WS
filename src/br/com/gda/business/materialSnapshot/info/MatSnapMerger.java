@@ -8,7 +8,7 @@ import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.info.MatUnitInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.snapshot.info.SnapInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 
 public final class MatSnapMerger extends InfoWritterFactory_<MatSnapInfo> {	
 	

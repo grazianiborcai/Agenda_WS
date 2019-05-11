@@ -3,7 +3,7 @@ package br.com.gda.business.order.info;
 import java.util.List;
 
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class OrderMergerCartSnap extends InfoMerger_<OrderInfo, CartSnapInfo, OrderInfo> {
 	public OrderInfo merge(CartSnapInfo sourceOne, OrderInfo sourceTwo) {

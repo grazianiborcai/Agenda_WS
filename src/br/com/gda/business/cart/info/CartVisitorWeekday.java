@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class CartVisitorWeekday implements InfoMergerVisitor_<CartInfo, WeekdayInfo, CartInfo> {
 

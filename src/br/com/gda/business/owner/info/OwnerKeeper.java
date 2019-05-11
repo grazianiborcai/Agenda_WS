@@ -2,7 +2,7 @@ package br.com.gda.business.owner.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 
 public final class OwnerKeeper extends InfoWritterFactory_<OwnerInfo> {	
 	

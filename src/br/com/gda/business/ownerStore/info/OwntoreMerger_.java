@@ -3,7 +3,7 @@ package br.com.gda.business.ownerStore.info;
 import java.util.List;
 
 import br.com.gda.business.ownerStore.info.OwntoreInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 
 public final class OwntoreMerger_ extends InfoWritterFactory_<OwntoreInfo> {	
 	

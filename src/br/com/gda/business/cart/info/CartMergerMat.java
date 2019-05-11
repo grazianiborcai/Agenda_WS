@@ -3,7 +3,7 @@ package br.com.gda.business.cart.info;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class CartMergerMat extends InfoMerger_<CartInfo, MatInfo, CartInfo> {
 	public CartInfo merge(MatInfo sourceOne, CartInfo sourceTwo) {

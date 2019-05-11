@@ -6,7 +6,7 @@ import br.com.gda.business.age.info.AgeInfo;
 import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.gda.business.reserve.info.ReserveInfo;
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 
 public final class PlanPruner extends InfoWritterFactory_<PlanInfo> {
 

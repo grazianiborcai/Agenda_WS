@@ -6,7 +6,7 @@ import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootGenderSelect;
 import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
 import br.com.gda.business.personSnapshot.info.PersonSnapMerger;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 

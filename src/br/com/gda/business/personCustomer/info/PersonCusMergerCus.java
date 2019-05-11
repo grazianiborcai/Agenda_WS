@@ -3,7 +3,7 @@ package br.com.gda.business.personCustomer.info;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class PersonCusMergerCus extends InfoMerger_<PersonCusInfo, CusInfo, PersonCusInfo> {
 	public PersonCusInfo merge(CusInfo sourceOne, PersonCusInfo sourceTwo) {

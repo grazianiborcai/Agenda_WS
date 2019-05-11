@@ -2,7 +2,7 @@ package br.com.gda.business.planningTime_.info;
 
 import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class PlanPruneVisitorELD implements InfoMergerVisitor_<PlanInfo, PlanInfo, EmplevateInfo> {
 	

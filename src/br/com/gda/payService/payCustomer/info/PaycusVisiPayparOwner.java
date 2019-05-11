@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
 
 final class PaycusVisiPayparOwner implements InfoMergerVisitor_<PaycusInfo, PayparOwnerInfo, PaycusInfo> {

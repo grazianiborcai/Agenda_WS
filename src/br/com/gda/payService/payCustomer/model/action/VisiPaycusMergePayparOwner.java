@@ -2,7 +2,7 @@ package br.com.gda.payService.payCustomer.model.action;
 
 import java.sql.Connection;
 
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.payService.payCustomer.info.PaycusInfo;

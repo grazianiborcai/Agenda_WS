@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.form.formAddress.info.FormAddressInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class AddressSnapVisitorForm implements InfoMergerVisitor_<AddressSnapInfo, FormAddressInfo, AddressSnapInfo> {
 

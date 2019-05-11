@@ -3,7 +3,7 @@ package br.com.gda.business.cartSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.CurrencyInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class CartSnapMergerCurrency extends InfoMerger_<CartSnapInfo, CurrencyInfo, CartSnapInfo> {
 	public CartSnapInfo merge(CurrencyInfo sourceOne, CartSnapInfo sourceTwo) {

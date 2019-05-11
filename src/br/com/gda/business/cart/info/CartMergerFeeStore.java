@@ -3,7 +3,7 @@ package br.com.gda.business.cart.info;
 import java.util.List;
 
 import br.com.gda.business.feeStore.info.FeetoreInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class CartMergerFeeStore extends InfoMerger_<CartInfo, FeetoreInfo, CartInfo> {
 	public CartInfo merge(FeetoreInfo sourceOne, CartInfo sourceTwo) {

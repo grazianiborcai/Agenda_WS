@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.info.EmpKeeper;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateKeep;
 import br.com.gda.model.decisionTree.DeciTreeOption;

@@ -2,7 +2,7 @@ package br.com.gda.business.materialSnapshot.info;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class MatSnapVisitorMat implements InfoMergerVisitor_<MatSnapInfo, MatInfo, MatSnapInfo> {
 

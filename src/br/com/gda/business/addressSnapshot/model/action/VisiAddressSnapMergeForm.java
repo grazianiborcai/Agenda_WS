@@ -6,7 +6,7 @@ import br.com.gda.business.addressSnapshot.info.AddressSnapInfo;
 import br.com.gda.business.addressSnapshot.info.AddressSnapMerger;
 import br.com.gda.business.form.formAddress.info.FormAddressInfo;
 import br.com.gda.business.form.formAddress.model.decisionTree.RootFormAddressSelect;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 

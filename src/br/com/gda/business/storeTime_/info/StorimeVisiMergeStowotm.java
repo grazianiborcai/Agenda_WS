@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class StorimeVisiMergeStowotm implements InfoMergerVisitor_<StorimeInfo, StowotmInfo, StorimeInfo> {
 

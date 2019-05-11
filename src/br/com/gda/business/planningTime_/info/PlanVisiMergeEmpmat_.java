@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class PlanVisiMergeEmpmat_ implements InfoMergerVisitor_<PlanInfo, PlanInfo, EmpmatInfo> {
 	

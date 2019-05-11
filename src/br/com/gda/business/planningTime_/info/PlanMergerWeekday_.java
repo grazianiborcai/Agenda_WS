@@ -3,7 +3,7 @@ package br.com.gda.business.planningTime_.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class PlanMergerWeekday_ extends InfoMerger_<PlanInfo, PlanInfo, WeekdayInfo> {
 	public PlanInfo merge(PlanInfo sourceOne, WeekdayInfo sourceTwo) {

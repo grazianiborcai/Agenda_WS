@@ -3,7 +3,7 @@ package br.com.gda.business.storeTime_.info;
 import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class StorimeMergerStowotm extends InfoMerger_<StorimeInfo, StowotmInfo, StorimeInfo> {
 	public StorimeInfo merge(StowotmInfo sourceOne, StorimeInfo sourceTwo) {

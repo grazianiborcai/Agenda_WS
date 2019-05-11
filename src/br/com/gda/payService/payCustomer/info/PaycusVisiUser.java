@@ -9,7 +9,7 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class PaycusVisiUser implements InfoMergerVisitor_<PaycusInfo, UserInfo, PaycusInfo> {
 	private final boolean SUCCESS = true;

@@ -3,7 +3,7 @@ package br.com.gda.business.phoneSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class PhoneSnapMergerPhone extends InfoMerger_<PhoneSnapInfo, PhoneInfo, PhoneSnapInfo> {
 	public PhoneSnapInfo merge(PhoneInfo sourceOne, PhoneSnapInfo sourceTwo) {

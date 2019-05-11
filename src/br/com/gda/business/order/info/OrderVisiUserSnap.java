@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.userSnapshot.info.UserSnapInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class OrderVisiUserSnap implements InfoMergerVisitor_<OrderInfo, UserSnapInfo, OrderInfo> {
 

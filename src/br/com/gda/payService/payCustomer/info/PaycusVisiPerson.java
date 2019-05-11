@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class PaycusVisiPerson implements InfoMergerVisitor_<PaycusInfo, PersonInfo, PaycusInfo> {
 

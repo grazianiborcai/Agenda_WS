@@ -3,7 +3,7 @@ package br.com.gda.payService.payCustomer.info;
 import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class PaycusMergerPerson extends InfoMerger_<PaycusInfo, PersonInfo, PaycusInfo> {
 	public PaycusInfo merge(PersonInfo sourceOne, PaycusInfo sourceTwo) {

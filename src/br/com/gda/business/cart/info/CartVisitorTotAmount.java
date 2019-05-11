@@ -3,7 +3,7 @@ package br.com.gda.business.cart.info;
 import br.com.gda.business.masterData.info.common.CartCateg;
 import br.com.gda.business.totalAmount.info.TotAmountInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class CartVisitorTotAmount implements InfoMergerVisitor_<CartInfo, TotAmountInfo, CartInfo> {
 

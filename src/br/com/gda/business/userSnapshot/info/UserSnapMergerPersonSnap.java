@@ -3,7 +3,7 @@ package br.com.gda.business.userSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class UserSnapMergerPersonSnap extends InfoMerger_<UserSnapInfo, PersonSnapInfo, UserSnapInfo> {
 	public UserSnapInfo merge(PersonSnapInfo sourceOne, UserSnapInfo sourceTwo) {

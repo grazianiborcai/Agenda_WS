@@ -2,7 +2,7 @@ package br.com.gda.business.addressSnapshot.info;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class AddressSnapVisitorAddress implements InfoMergerVisitor_<AddressSnapInfo, AddressInfo, AddressSnapInfo> {
 

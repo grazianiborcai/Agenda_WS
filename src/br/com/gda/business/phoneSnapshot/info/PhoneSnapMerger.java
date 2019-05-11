@@ -6,7 +6,7 @@ import br.com.gda.business.form.formPhone.info.FormPhoneInfo;
 import br.com.gda.business.masterData.info.CountryPhoneInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.snapshot.info.SnapInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 
 public final class PhoneSnapMerger extends InfoWritterFactory_<PhoneSnapInfo> {	
 	

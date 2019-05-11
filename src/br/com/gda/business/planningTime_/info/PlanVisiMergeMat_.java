@@ -6,7 +6,7 @@ import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class PlanVisiMergeMat_ implements InfoMergerVisitor_<PlanInfo, PlanInfo, MatInfo> {
 

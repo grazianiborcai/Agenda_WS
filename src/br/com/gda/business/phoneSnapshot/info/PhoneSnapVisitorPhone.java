@@ -2,7 +2,7 @@ package br.com.gda.business.phoneSnapshot.info;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class PhoneSnapVisitorPhone implements InfoMergerVisitor_<PhoneSnapInfo, PhoneInfo, PhoneSnapInfo> {
 

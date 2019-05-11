@@ -6,7 +6,7 @@ import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootCartCategSelect;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 

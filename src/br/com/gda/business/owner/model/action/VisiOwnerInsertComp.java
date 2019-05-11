@@ -9,7 +9,7 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.company.model.decisionTree.RootCompInsert;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.info.OwnerMerger_;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;

@@ -11,7 +11,7 @@ import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.totalAmount.info.TotAmountInfo;
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 
 public final class CartMerger extends InfoWritterFactory_<CartInfo> {	
 	

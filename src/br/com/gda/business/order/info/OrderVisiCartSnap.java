@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class OrderVisiCartSnap implements InfoMergerVisitor_<OrderInfo, CartSnapInfo, OrderInfo> {
 

@@ -3,7 +3,7 @@ package br.com.gda.business.addressSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.form.formAddress.info.FormAddressInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class AddressSnapMergerForm extends InfoMerger_<AddressSnapInfo, FormAddressInfo, AddressSnapInfo> {
 	public AddressSnapInfo merge(FormAddressInfo sourceOne, AddressSnapInfo sourceTwo) {

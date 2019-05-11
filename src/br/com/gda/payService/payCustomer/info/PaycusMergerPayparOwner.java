@@ -2,7 +2,7 @@ package br.com.gda.payService.payCustomer.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
 
 final class PaycusMergerPayparOwner extends InfoMerger_<PaycusInfo, PayparOwnerInfo, PaycusInfo> {

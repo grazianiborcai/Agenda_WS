@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 

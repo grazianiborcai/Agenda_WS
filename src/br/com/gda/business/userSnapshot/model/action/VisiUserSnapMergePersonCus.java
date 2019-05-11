@@ -6,7 +6,7 @@ import br.com.gda.business.personCustomer.info.PersonCusInfo;
 import br.com.gda.business.personCustomer.model.decisionTree.RootPersonCusSelect;
 import br.com.gda.business.userSnapshot.info.UserSnapInfo;
 import br.com.gda.business.userSnapshot.info.UserSnapMerger;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 

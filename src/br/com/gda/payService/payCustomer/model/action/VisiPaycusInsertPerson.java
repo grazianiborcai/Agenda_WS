@@ -6,7 +6,7 @@ import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.decisionTree.RootPersonInsert;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;

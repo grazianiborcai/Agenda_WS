@@ -2,7 +2,7 @@ package br.com.gda.business.user.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 
 public final class UserKeeper extends InfoWritterFactory_<UserInfo> {	
 	

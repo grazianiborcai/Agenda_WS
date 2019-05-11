@@ -8,7 +8,7 @@ import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
 import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
 import br.com.gda.business.snapshot.info.SnapInfo;
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 
 public final class UserSnapMerger extends InfoWritterFactory_<UserSnapInfo> {	
 	

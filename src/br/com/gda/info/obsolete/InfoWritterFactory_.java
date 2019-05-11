@@ -1,4 +1,4 @@
-package br.com.gda.info;
+package br.com.gda.info.obsolete;
 
 import java.util.Collections;
 import java.util.List;
@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
+import br.com.gda.info.InfoUniquifier;
 
 public abstract class InfoWritterFactory_<T> {
 	protected final boolean ENABLED = true;

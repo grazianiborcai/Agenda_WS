@@ -3,7 +3,7 @@ package br.com.gda.payService.payPartnerStore.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.PayparInfo;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 
 public final class PayparStoreMerger extends InfoWritterFactory_<PayparStoreInfo> {	
 	

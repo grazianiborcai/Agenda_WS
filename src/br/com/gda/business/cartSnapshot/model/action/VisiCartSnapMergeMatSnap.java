@@ -6,7 +6,7 @@ import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.business.cartSnapshot.info.CartSnapMerger;
 import br.com.gda.business.materialSnapshot.info.MatSnapInfo;
 import br.com.gda.business.materialSnapshot.model.decisionTree.RootMatSnapSelect;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 

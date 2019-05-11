@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserSelect;
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.obsolete.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.payService.payCustomer.info.PaycusInfo;

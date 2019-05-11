@@ -3,7 +3,7 @@ package br.com.gda.business.personSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.GenderInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class PersonSnapMergerGender extends InfoMerger_<PersonSnapInfo, GenderInfo, PersonSnapInfo> {
 	public PersonSnapInfo merge(GenderInfo sourceOne, PersonSnapInfo sourceTwo) {

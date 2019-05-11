@@ -3,7 +3,7 @@ package br.com.gda.business.cartSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
-import br.com.gda.info.InfoMerger_;
+import br.com.gda.info.obsolete.InfoMerger_;
 
 final class CartSnapMergerWeekday extends InfoMerger_<CartSnapInfo, WeekdayInfo, CartSnapInfo> {
 	public CartSnapInfo merge(WeekdayInfo sourceOne, CartSnapInfo sourceTwo) {

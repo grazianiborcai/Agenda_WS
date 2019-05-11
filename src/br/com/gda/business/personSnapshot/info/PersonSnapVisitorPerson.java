@@ -2,7 +2,7 @@ package br.com.gda.business.personSnapshot.info;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitor_;
+import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
 final class PersonSnapVisitorPerson implements InfoMergerVisitor_<PersonSnapInfo, PersonInfo, PersonSnapInfo> {
 
