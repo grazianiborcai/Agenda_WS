@@ -1,17 +1,18 @@
 package br.com.gda.business.masterData.info;
 
-import java.util.List;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-import br.com.gda.info.InfoMerger_;
+final class CountryLegalMergerCountry extends InfoMergerTemplate<CountryLegalInfo, CountryInfo> {
 
-final class CountryLegalMergerCountry extends InfoMerger_<CountryLegalInfo, CountryInfo, CountryLegalInfo> {
-	public CountryLegalInfo merge(CountryInfo sourceOne, CountryLegalInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new CountryLegalVisiCountry());
+	@Override protected InfoMergerVisitorV2<CountryLegalInfo, CountryInfo> getVisitorHook() {
+		return new CountryLegalVisiMergeCountry();
 	}
 	
 	
 	
-	public List<CountryLegalInfo> merge(List<CountryInfo> sourceOnes, List<CountryLegalInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new CountryLegalVisiCountry());
+	@Override protected InfoUniquifier<CountryLegalInfo> getUniquifierHook() {
+		return new CountryLegalUniquifier();
 	}
 }

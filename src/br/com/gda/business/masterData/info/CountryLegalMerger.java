@@ -2,29 +2,18 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 
-public final class CountryLegalMerger extends InfoWritterFactory_<CountryLegalInfo> {	
-	
-	public CountryLegalMerger() {
-		super(new CountryLegalUniquifier());
+public final class CountryLegalMerger {	
+	public static CountryLegalInfo mergeWithCountry(CountryInfo sourceOne, CountryLegalInfo sourceTwo) {
+		InfoMerger<CountryLegalInfo, CountryInfo> merger = new CountryLegalMergerCountry();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public CountryLegalInfo merge(CountryInfo sourceOne, CountryLegalInfo sourceTwo) {
-		return new CountryLegalMergerCountry().merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	@Override protected List<CountryLegalInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {				
-		if (sourceOnes.get(0) instanceof CountryInfo 		&&
-			sourceTwos.get(0) instanceof CountryLegalInfo		)
-			return new CountryLegalMergerCountry().merge((List<CountryInfo>) sourceOnes, (List<CountryLegalInfo>) sourceTwos);
-		
-		
-		return null;
+	public static List<CountryLegalInfo> mergeWithCountry(List<CountryInfo> sourceOnes, List<CountryLegalInfo> sourceTwos) {
+		InfoMerger<CountryLegalInfo, CountryInfo> merger = new CountryLegalMergerCountry();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 }
