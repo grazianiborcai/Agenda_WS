@@ -3,9 +3,9 @@ package br.com.gda.business.planningTime_.info;
 import java.util.List;
 
 import br.com.gda.business.reserve.info.ReserveInfo;
-import br.com.gda.info.InfoPruner;
+import br.com.gda.info.InfoPruner_;
 
-final class PlanPrunerReserve extends InfoPruner<PlanInfo, ReserveInfo> {
+final class PlanPrunerReserve extends InfoPruner_<PlanInfo, ReserveInfo> {
 	public PlanInfo prune(PlanInfo sourceOne, ReserveInfo sourceTwo) {
 		return super.prune(sourceOne, sourceTwo, new PlanPruneVisitorReserve());
 	}

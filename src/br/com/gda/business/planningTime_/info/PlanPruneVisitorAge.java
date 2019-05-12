@@ -29,4 +29,10 @@ final class PlanPruneVisitorAge implements InfoPrunerVisitor<PlanInfo, AgeInfo> 
 	private boolean shouldPrune(PlanDataInfo planData, AgeInfo ageChecker) {
 		return ageChecker.isAged(planData);
 	}
+
+
+	
+	@Override public boolean shouldPrune(PlanInfo sourceOne, AgeInfo sourceTwo) {
+		return true;
+	}
 }

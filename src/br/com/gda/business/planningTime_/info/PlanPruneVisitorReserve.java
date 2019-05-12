@@ -61,4 +61,10 @@ final class PlanPruneVisitorReserve implements InfoPrunerVisitor<PlanInfo, Reser
 		ReserveInfo itemToCheck = ReserveInfo.copyFrom(planData);
 		return reserve.equals(itemToCheck);
 	}
+	
+	
+	
+	@Override public boolean shouldPrune(PlanInfo sourceOne, ReserveInfo sourceTwo) {
+		return true;
+	}
 }
