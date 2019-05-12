@@ -37,7 +37,7 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 	}
 	
 	
-	
+	//TODO: Mover para Copier
 	public static StolevateInfo copyFrom(Object sourceObj) {
 		if (isPlanData(sourceObj))
 			return copyFromPlanData(sourceObj);
@@ -85,13 +85,13 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 	
 	@SuppressWarnings("unchecked")
 	private static List<StolevateInfo> copyFromPlanData(List<?> sourceObjs) {
-		return new StolevateCopyPlan().makeCopy( (List<PlanDataInfo>)sourceObjs);
+		return new StolevateCopyPlan_().makeCopy( (List<PlanDataInfo>)sourceObjs);
 	}
 	
 	
 	
 	private static StolevateInfo copyFromPlanData(Object sourceObj) {
-		return new StolevateCopyPlan().makeCopy( (PlanDataInfo)sourceObj);
+		return new StolevateCopyPlan_().makeCopy( (PlanDataInfo)sourceObj);
 	}
 	
 	

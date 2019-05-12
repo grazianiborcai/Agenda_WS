@@ -6,9 +6,9 @@ import br.com.gda.business.planningTime_.info.PlanDataInfo;
 import br.com.gda.info.InfoCopierTemplate;
 import br.com.gda.info.InfoUniquifyHelper;
 
-final class StolevateCopyPlan extends InfoCopierTemplate<StolevateInfo, PlanDataInfo>{
+final class StolevateCopyPlan_ extends InfoCopierTemplate<StolevateInfo, PlanDataInfo>{
 	
-	public StolevateCopyPlan() {
+	public StolevateCopyPlan_() {
 		super(new InfoUniquifyHelper<StolevateInfo>());
 	}
 	
