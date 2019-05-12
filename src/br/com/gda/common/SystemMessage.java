@@ -58,6 +58,7 @@ public final class SystemMessage {
 	public static final String NULL_CONN = "Conn is null";
 	public static final String NULL_SCHEMA = "Schema name is null";	
 	public static final String OBJ_NOT_INITIALIED = "Object was not initialized or operartion not applicable for current state";
+	public static final String PRUNE_NOT_ALLOWED = "Prune operation not allowed";
 	public static final String POSITIVE_NUM_EXPECTED = " should be positive and greater than zero";	
 	public static final String REQUEST_FAILED = "It was not possible to complete your request";
 	public static final String REQUEST_NOT_EXECUTED = "Request has not been executed";
