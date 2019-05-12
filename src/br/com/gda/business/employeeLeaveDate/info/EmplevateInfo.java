@@ -87,13 +87,13 @@ public final class EmplevateInfo extends InfoRecord implements Cloneable {
 	
 	@SuppressWarnings("unchecked")
 	private static List<EmplevateInfo> copyFromPlanData(List<?> sourceObjs) {
-		return new EmplevateCopyPlan().makeCopy( (List<PlanDataInfo>)sourceObjs);
+		return new EmplevateCopyPlan_().makeCopy( (List<PlanDataInfo>)sourceObjs);
 	}
 	
 	
 	
 	private static EmplevateInfo copyFromPlanData(Object sourceObj) {
-		return new EmplevateCopyPlan().makeCopy( (PlanDataInfo)sourceObj);
+		return new EmplevateCopyPlan_().makeCopy( (PlanDataInfo)sourceObj);
 	}
 	
 	
