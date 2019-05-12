@@ -66,7 +66,7 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 		if(shouldPrune(selectedInfos))		
 			return pruneHook(recordInfos, selectedInfos);
 		
-		return Collections.emptyList();
+		return recordInfos;
 	}	
 	
 	
