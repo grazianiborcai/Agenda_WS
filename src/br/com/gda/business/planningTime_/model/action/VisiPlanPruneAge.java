@@ -3,7 +3,7 @@ package br.com.gda.business.planningTime_.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.age.info.AgeInfo;
+import br.com.gda.business.age_.info.AgeInfo;
 import br.com.gda.business.planningTime_.info.PlanInfo;
 import br.com.gda.business.planningTime_.info.PlanPruner;
 import br.com.gda.model.action.ActionVisitorEnforce;

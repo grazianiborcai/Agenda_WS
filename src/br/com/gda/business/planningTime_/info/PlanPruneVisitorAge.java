@@ -1,6 +1,6 @@
 package br.com.gda.business.planningTime_.info;
 
-import br.com.gda.business.age.info.AgeInfo;
+import br.com.gda.business.age_.info.AgeInfo;
 import br.com.gda.info.InfoPrunerVisitor;
 
 final class PlanPruneVisitorAge implements InfoPrunerVisitor<PlanInfo, AgeInfo> {
