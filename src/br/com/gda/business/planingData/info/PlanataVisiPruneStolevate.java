@@ -1,12 +1,12 @@
 package br.com.gda.business.planingData.info;
 
-import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoPrunerVisitor;
 
-final class PlanataVisiPruneEmplevate implements InfoPrunerVisitor<PlanataInfo, EmplevateInfo> {
+final class PlanataVisiPruneStolevate implements InfoPrunerVisitor<PlanataInfo, StolevateInfo> {
 	
-	@Override public PlanataInfo pruneRecord(PlanataInfo sourceOne, EmplevateInfo sourceTwo) {
+	@Override public PlanataInfo pruneRecord(PlanataInfo sourceOne, StolevateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		if (hasTimeOverlap(sourceOne, sourceTwo))
@@ -17,14 +17,14 @@ final class PlanataVisiPruneEmplevate implements InfoPrunerVisitor<PlanataInfo, 
 	
 	
 	
-	private void checkArgument(PlanataInfo sourceOne, EmplevateInfo sourceTwo) {
+	private void checkArgument(PlanataInfo sourceOne, StolevateInfo sourceTwo) {
 		if (shouldPrune(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.PRUNE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private boolean hasTimeOverlap(PlanataInfo planata, EmplevateInfo emplevate) {
+	private boolean hasTimeOverlap(PlanataInfo planata, StolevateInfo emplevate) {
 		
 		if ((planata.date.isAfter(emplevate.dateValidFrom)      || planata.date.isEqual(emplevate.dateValidFrom)) 	  &&
 			(planata.date.isBefore(emplevate.dateValidTo)       || planata.date.isEqual(emplevate.dateValidTo)) 	  &&
@@ -44,10 +44,9 @@ final class PlanataVisiPruneEmplevate implements InfoPrunerVisitor<PlanataInfo, 
 
 
 	
-	@Override public boolean shouldPrune(PlanataInfo sourceOne, EmplevateInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner	&&
-				sourceOne.codStore 		== sourceTwo.codStore	&&
-				sourceOne.codEmployee 	== sourceTwo.codEmployee	);
+	@Override public boolean shouldPrune(PlanataInfo sourceOne, StolevateInfo sourceTwo) {
+		return (sourceOne.codOwner 	== sourceTwo.codOwner	&&
+				sourceOne.codStore 	== sourceTwo.codStore		);
 	}
 
 }

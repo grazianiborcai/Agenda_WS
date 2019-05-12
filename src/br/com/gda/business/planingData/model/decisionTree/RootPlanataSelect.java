@@ -8,6 +8,7 @@ import br.com.gda.business.planingData.info.PlanataInfo;
 import br.com.gda.business.planingData.model.action.LazyPlanataMergeMat;
 import br.com.gda.business.planingData.model.action.LazyPlanataMergeToSelect;
 import br.com.gda.business.planingData.model.action.LazyPlanataPruneEmplevate;
+import br.com.gda.business.planingData.model.action.LazyPlanataPruneStolevate;
 import br.com.gda.business.planingData.model.action.StdPlanataEnforceWeekday;
 import br.com.gda.business.planingData.model.checker.PlanataCheckDate;
 import br.com.gda.business.planingData.model.checker.PlanataCheckRead;
@@ -60,28 +61,16 @@ public class RootPlanataSelect implements DeciTree<PlanataInfo> {
 		ActionLazy<PlanataInfo> select = new LazyPlanataMergeToSelect(option.conn, option.schemaName);		
 		ActionLazy<PlanataInfo> mergeMat = new LazyPlanataMergeMat(option.conn, option.schemaName);	
 		ActionLazy<PlanataInfo> pruneEmplevate = new LazyPlanataPruneEmplevate(option.conn, option.schemaName);
-//		ActionLazy<PlanataInfo> mergeSWT = new LazyPlanMergeSWT(option.conn, option.schemaName);
-//		ActionLazy<PlanataInfo> mergeEWT = new LazyPlanMergeEWT(option.conn, option.schemaName);
-//		ActionLazy<PlanataInfo> mergeEmp = new LazyPlanMergeEmp(option.conn, option.schemaName);
-//		ActionLazy<PlanataInfo> mergeME = new LazyPlanMergeME(option.conn, option.schemaName);
-//		ActionLazy<PlanataInfo> mergeMat = new LazyPlanMergeMat(option.conn, option.schemaName);			
-//		ActionLazy<PlanataInfo> pruneSLD = new LazyPlanPruneSLD(option.conn, option.schemaName);		
-//		ActionLazy<PlanataInfo> pruneELD = new LazyPlanPruneELD(option.conn, option.schemaName);			
-//		ActionLazy<PlanataInfo> mergeWeekday = new LazyPlanMergeWeekday(option.conn, option.schemaName);
+		ActionLazy<PlanataInfo> pruneStolevate = new LazyPlanataPruneStolevate(option.conn, option.schemaName);
 //		ActionLazy<PlanataInfo> pruneAge = new LazyPlanPruneAge(option.conn, option.schemaName);
 //		ActionLazy<PlanataInfo> pruneReserve = new LazyPlanPruneReserve(option.conn, option.schemaName);
 		
 		enforceWeekday.addPostAction(select);
 		select.addPostAction(mergeMat);
 		mergeMat.addPostAction(pruneEmplevate);
-	/*	mergeStore.addPostAction(mergeSWT);
-		mergeSWT.addPostAction(mergeEWT);
-		mergeEWT.addPostAction(mergeEmp);
-		mergeEmp.addPostAction(mergeME);
-		mergeME.addPostAction(mergeMat);
-		mergeMat.addPostAction(pruneSLD);
-		pruneSLD.addPostAction(pruneELD);
-		pruneELD.addPostAction(mergeWeekday);
+		pruneEmplevate.addPostAction(pruneStolevate);
+		
+	/*	
 		mergeWeekday.addPostAction(pruneAge);
 		pruneAge.addPostAction(pruneReserve); **/
 		
