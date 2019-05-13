@@ -1,4 +1,4 @@
-package br.com.gda.info;
+package br.com.gda.info.obsolete;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
+import br.com.gda.info.InfoPrunerVisitor;
 
 public abstract class InfoPruner_<T,S> {
 	protected List<T> prune(List<T> sourceOnes, List<S> sourceTwos, InfoPrunerVisitor<T,S> visitor) {
