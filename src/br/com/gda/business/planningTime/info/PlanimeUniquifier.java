@@ -1,0 +1,77 @@
+package br.com.gda.business.planningTime.info;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.masterData.info.WeekdayInfo;
+import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.planingData.info.PlanataInfo;
+import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.common.DefaultValue;
+import br.com.gda.info.InfoUniquifier;
+
+final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
+	private List<StoreInfo> allStores;
+	private List<MatInfo> allMaterials;
+	private List<EmpInfo> allEmployees;
+	private List<WeekdayInfo> allWeekdays;
+	private List<PlanataInfo> allPlanatas;	
+	private List<PlanimeInfo> results; 
+	
+	
+	@Override public List<PlanimeInfo> uniquify(List<PlanimeInfo> infoRecords) {
+		init();
+		collect(infoRecords);
+		removeDuplicate();
+		makeResult();
+		
+		return results;
+	}
+	
+	
+	
+	private void init() {
+		allStores = DefaultValue.list();
+		allMaterials = DefaultValue.list();
+		allEmployees = DefaultValue.list();
+		allWeekdays = DefaultValue.list();
+		allPlanatas = DefaultValue.list();
+		results = DefaultValue.list();
+	}
+	
+	
+	
+	private void collect(List<PlanimeInfo> recordInfos) {		
+		for (PlanimeInfo eachRecord : recordInfos) {
+			allStores.addAll(eachRecord.stores);
+			allMaterials.addAll(eachRecord.materials);
+			allEmployees.addAll(eachRecord.employees);
+			allWeekdays.addAll(eachRecord.weekdays);
+			allPlanatas.addAll(eachRecord.planatas);
+		}		
+	}
+	
+	
+	
+	private void removeDuplicate() {
+		allStores = allStores.stream().distinct().collect(Collectors.toList());		
+		allMaterials = allMaterials.stream().distinct().collect(Collectors.toList());
+		allEmployees = allEmployees.stream().distinct().collect(Collectors.toList());
+		allWeekdays = allWeekdays.stream().distinct().collect(Collectors.toList());
+		allPlanatas = allPlanatas.stream().distinct().collect(Collectors.toList());
+	}
+	
+	
+	
+	private void makeResult() {
+		PlanimeInfo tempResult = new PlanimeInfo();
+		tempResult.stores = allStores;
+		tempResult.materials = allMaterials;
+		tempResult.employees = allEmployees;
+		tempResult.weekdays = allWeekdays;
+		tempResult.planatas = allPlanatas;
+		
+		results.add(tempResult);
+	}
+}
