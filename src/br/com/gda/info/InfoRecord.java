@@ -111,6 +111,21 @@ public abstract class InfoRecord implements Cloneable {
 	
 	
 	
+	protected boolean isListEqual(List<? extends InfoRecord> listOne, List<? extends InfoRecord> listTwo) {
+		try {
+			if (listOne == null && listTwo == null)
+				return true;
+			
+			return listOne.equals(listTwo);
+			
+		} catch (Exception e) {
+			logException(e);
+			return false;
+		}
+	}
+	
+	
+	
 	private void logException(Exception e) {
 		Logger logger = LogManager.getLogger(this.getClass());
 		logger.error(e.getMessage(), e);
