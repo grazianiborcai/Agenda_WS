@@ -1,6 +1,6 @@
 package br.com.gda.business.storeLeaveDate.info;
 
-import br.com.gda.business.planningTime_.info.PlanDataInfo;
+import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.info.InfoUniquifier;

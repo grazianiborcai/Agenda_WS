@@ -2,7 +2,7 @@ package br.com.gda.business.storeLeaveDate.info;
 
 import java.time.LocalDate;
 
-import br.com.gda.business.planningTime_.info.PlanDataInfo;
+import br.com.gda.business.planningTime.info.PlanDataInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
