@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.planningTime_.info.PlanDataInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
@@ -41,9 +40,6 @@ public final class EmplevateInfo extends InfoRecord implements Cloneable {
 	
 	//TODO: mover para Copier
 	public static EmplevateInfo copyFrom(Object sourceObj) {
-		if (isPlanData(sourceObj))
-			return copyFromPlanData(sourceObj);
-		
 		if (isCart(sourceObj))
 			return copyFromCart(sourceObj);
 		
@@ -53,47 +49,10 @@ public final class EmplevateInfo extends InfoRecord implements Cloneable {
 	
 	
 	public static List<EmplevateInfo> copyFrom(List<?> sourceObjs) {
-		if (isPlanData(sourceObjs))
-			return copyFromPlanData(sourceObjs);
-		
 		if (isCart(sourceObjs))
 			return copyFromCart(sourceObjs);
 		
 		return copyFrom(sourceObjs, EmplevateInfo.class);
-	}
-	
-	
-	
-	private static boolean isPlanData(List<?> sourceObjs) {
-		if (sourceObjs == null || sourceObjs.isEmpty())
-			return false;
-		
-		return isPlanData(sourceObjs.get(0));
-	}
-	
-	
-	
-	private static boolean isPlanData(Object sourceObj) {
-		if (sourceObj == null)
-			return false;
-		
-		if (sourceObj instanceof PlanDataInfo)
-			return true;
-		
-		return false;
-	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	private static List<EmplevateInfo> copyFromPlanData(List<?> sourceObjs) {
-		return new EmplevateCopyPlan_().makeCopy( (List<PlanDataInfo>)sourceObjs);
-	}
-	
-	
-	
-	private static EmplevateInfo copyFromPlanData(Object sourceObj) {
-		return new EmplevateCopyPlan_().makeCopy( (PlanDataInfo)sourceObj);
 	}
 	
 	
