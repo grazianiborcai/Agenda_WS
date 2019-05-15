@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyPlanimeMergeStore extends ActionLazyTemplate<PlanimeInfo, PlanimeInfo> {
+public final class LazyPlanimeMergeStolis extends ActionLazyTemplate<PlanimeInfo, PlanimeInfo> {
 
-	public LazyPlanimeMergeStore(Connection conn, String schemaName) {
+	public LazyPlanimeMergeStolis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPlanimeMergeStore extends ActionLazyTemplate<PlanimeInfo,
 	
 	
 	@Override protected ActionStd<PlanimeInfo> getInstanceOfActionHook(DeciTreeOption<PlanimeInfo> option) {
-		return new StdPlanimeMergeStore(option);
+		return new StdPlanimeMergeStolis(option);
 	}
 	
 	

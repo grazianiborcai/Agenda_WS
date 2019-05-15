@@ -88,7 +88,8 @@
         <security:intercept-url pattern="/**/Customer/update**" 				access="hasAuthority('CUSTOMER_WRITE')" 			/>
         <security:intercept-url pattern="/**/Customer/delete**" 				access="hasAuthority('CUSTOMER_WRITE')" 			/>
         <security:intercept-url pattern="/**/Customer/select**" 				access="hasAuthority('CUSTOMER_READ')" 				/>
-        <security:intercept-url pattern="/**/MasterData/**"						access="isAuthenticated()" 							/>     
+        <security:intercept-url pattern="/**/MasterData/**"						access="isAuthenticated()" 							/>  
+        <security:intercept-url pattern="/**/PlanningTime**"					access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**"                					access="isAuthenticated()" 							/>
         <security:http-basic />
         <csrf disabled="true"/>

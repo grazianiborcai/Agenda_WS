@@ -3,33 +3,33 @@ package br.com.gda.business.planningTime.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class PlanimeVisiMergeEmp implements InfoMergerVisitorV2<PlanimeInfo, EmpInfo> {
+final class PlanimeVisiMergeStolis implements InfoMergerVisitorV2<PlanimeInfo, StolisInfo> {
 
-	@Override public PlanimeInfo writeRecord(EmpInfo sourceOne, PlanimeInfo sourceTwo) {
+	@Override public PlanimeInfo writeRecord(StolisInfo sourceOne, PlanimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 				
-		EmpInfo clonedEmployee = makeClone(sourceOne);
-		sourceTwo.employees.add(clonedEmployee);
+		StolisInfo clonedStore = makeClone(sourceOne);
+		sourceTwo.stores.add(clonedStore);
 		
 		return sourceTwo;
 	}
 	
 	
 	
-	private void checkArgument(EmpInfo sourceOne, PlanimeInfo sourceTwo) {	
+	private void checkArgument(StolisInfo sourceOne, PlanimeInfo sourceTwo) {		
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private EmpInfo makeClone(EmpInfo employee) {
+	private StolisInfo makeClone(StolisInfo store) {
 		try {
-			return (EmpInfo) employee.clone();
+			return (StolisInfo) store.clone();
 			
 		} catch (CloneNotSupportedException e) {
 			logException(e);
@@ -39,7 +39,7 @@ final class PlanimeVisiMergeEmp implements InfoMergerVisitorV2<PlanimeInfo, EmpI
 
 
 
-	@Override public boolean shouldWrite(EmpInfo sourceOne, PlanimeInfo sourceTwo) {
+	@Override public boolean shouldWrite(StolisInfo sourceOne, PlanimeInfo sourceTwo) {		
 		return true;
 	}
 	

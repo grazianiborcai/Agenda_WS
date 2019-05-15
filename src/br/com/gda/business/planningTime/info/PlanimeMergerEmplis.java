@@ -1,14 +1,14 @@
 package br.com.gda.business.planningTime.info;
 
-import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.info.InfoUniquifier;
 
-final class PlanimeMergerEmp extends InfoMergerTemplate<PlanimeInfo, EmpInfo> {
+final class PlanimeMergerEmplis extends InfoMergerTemplate<PlanimeInfo, EmplisInfo> {
 
-	@Override protected InfoMergerVisitorV2<PlanimeInfo, EmpInfo> getVisitorHook() {
-		return new PlanimeVisiMergeEmp();
+	@Override protected InfoMergerVisitorV2<PlanimeInfo, EmplisInfo> getVisitorHook() {
+		return new PlanimeVisiMergeEmplis();
 	}
 	
 	

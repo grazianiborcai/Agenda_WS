@@ -3,18 +3,18 @@ package br.com.gda.business.planningTime.info;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.planingData.info.PlanataInfo;
-import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoUniquifier;
 
 final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
-	private List<StoreInfo> allStores;
+	private List<StolisInfo> allStores;
 	private List<MatInfo> allMaterials;
-	private List<EmpInfo> allEmployees;
+	private List<EmplisInfo> allEmployees;
 	private List<WeekdayInfo> allWeekdays;
 	private List<PlanataInfo> allPlanatas;	
 	private List<PlanimeInfo> results; 

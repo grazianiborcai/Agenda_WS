@@ -4,11 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.planingData.info.PlanataInfo;
-import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
@@ -17,9 +17,9 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public String username;
 	public List<LocalDate> dates;
-	public List<StoreInfo> stores;
+	public List<StolisInfo> stores;
 	public List<MatInfo> materials;
-	public List<EmpInfo> employees;
+	public List<EmplisInfo> employees;
 	public List<WeekdayInfo> weekdays;
 	public List<PlanataInfo> planatas;	
 	
@@ -73,14 +73,14 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<StoreInfo> cloneStores(List<StoreInfo> stores) throws CloneNotSupportedException {
+	private List<StolisInfo> cloneStores(List<StolisInfo> stores) throws CloneNotSupportedException {
 		if (stores == null)
 			return stores;		
 		
-		List<StoreInfo> clones = new ArrayList<>();
+		List<StolisInfo> clones = new ArrayList<>();
 		
-		for (StoreInfo eachStore : stores) {
-			StoreInfo clonedRecord = (StoreInfo) eachStore.clone();
+		for (StolisInfo eachStore : stores) {
+			StolisInfo clonedRecord = (StolisInfo) eachStore.clone();
 			clones.add(clonedRecord);
 		}
 		
@@ -105,14 +105,14 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<EmpInfo> cloneEmployees(List<EmpInfo> employees) throws CloneNotSupportedException {
+	private List<EmplisInfo> cloneEmployees(List<EmplisInfo> employees) throws CloneNotSupportedException {
 		if (employees == null)
 			return employees;		
 		
-		List<EmpInfo> clones = new ArrayList<>();
+		List<EmplisInfo> clones = new ArrayList<>();
 		
-		for (EmpInfo eachEmployee : employees) {
-			EmpInfo clonedRecord = (EmpInfo) eachEmployee.clone();
+		for (EmplisInfo eachEmployee : employees) {
+			EmplisInfo clonedRecord = (EmplisInfo) eachEmployee.clone();
 			clones.add(clonedRecord);
 		}
 		

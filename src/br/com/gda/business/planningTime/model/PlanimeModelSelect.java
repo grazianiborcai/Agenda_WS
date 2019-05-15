@@ -2,6 +2,7 @@ package br.com.gda.business.planningTime.model;
 
 import java.sql.Connection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.planningTime.info.PlanimeInfo;
@@ -21,9 +22,9 @@ public final class PlanimeModelSelect implements Model {
 	private String schemaName;
 	
 	
-	public PlanimeModelSelect(PlanimeInfo recordInfo) {
+	public PlanimeModelSelect(String incomingData, HttpServletRequest request) {
 		initialize();
-		buildHelper(recordInfo);
+		buildHelper(incomingData, request);
 	}
 	
 	
@@ -35,7 +36,7 @@ public final class PlanimeModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(PlanimeInfo recordInfo) {
+	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<PlanimeInfo> helperOption = new ModelOption<>();
 		
 		helperOption.infoRecordClass = PlanimeInfo.class;
@@ -43,7 +44,7 @@ public final class PlanimeModelSelect implements Model {
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper.factory(helperOption, recordInfo);	
+		helper = ModelHelper.factory(helperOption, incomingData, request);	
 	}
 	
 	

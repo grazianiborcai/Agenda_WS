@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdPlanimeMergeEmp implements ActionStd<PlanimeInfo> {
+final class StdPlanimeMergeEmplis implements ActionStd<PlanimeInfo> {
 	private ActionStd<PlanimeInfo> actionHelper;	
 	
 	
-	public StdPlanimeMergeEmp(DeciTreeOption<PlanimeInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPlanimeMergeEmp(option.conn, option.schemaName));
+	public StdPlanimeMergeEmplis(DeciTreeOption<PlanimeInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPlanimeMergeEmplis(option.conn, option.schemaName));
 	}
 	
 	

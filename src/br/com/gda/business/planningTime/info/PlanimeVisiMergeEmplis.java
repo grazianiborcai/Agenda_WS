@@ -3,33 +3,33 @@ package br.com.gda.business.planningTime.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class PlanimeVisiMergeStore implements InfoMergerVisitorV2<PlanimeInfo, StoreInfo> {
+final class PlanimeVisiMergeEmplis implements InfoMergerVisitorV2<PlanimeInfo, EmplisInfo> {
 
-	@Override public PlanimeInfo writeRecord(StoreInfo sourceOne, PlanimeInfo sourceTwo) {
+	@Override public PlanimeInfo writeRecord(EmplisInfo sourceOne, PlanimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 				
-		StoreInfo clonedStore = makeClone(sourceOne);
-		sourceTwo.stores.add(clonedStore);
+		EmplisInfo clonedEmployee = makeClone(sourceOne);
+		sourceTwo.employees.add(clonedEmployee);
 		
 		return sourceTwo;
 	}
 	
 	
 	
-	private void checkArgument(StoreInfo sourceOne, PlanimeInfo sourceTwo) {		
+	private void checkArgument(EmplisInfo sourceOne, PlanimeInfo sourceTwo) {	
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private StoreInfo makeClone(StoreInfo store) {
+	private EmplisInfo makeClone(EmplisInfo employee) {
 		try {
-			return (StoreInfo) store.clone();
+			return (EmplisInfo) employee.clone();
 			
 		} catch (CloneNotSupportedException e) {
 			logException(e);
@@ -39,7 +39,7 @@ final class PlanimeVisiMergeStore implements InfoMergerVisitorV2<PlanimeInfo, St
 
 
 
-	@Override public boolean shouldWrite(StoreInfo sourceOne, PlanimeInfo sourceTwo) {		
+	@Override public boolean shouldWrite(EmplisInfo sourceOne, PlanimeInfo sourceTwo) {
 		return true;
 	}
 	

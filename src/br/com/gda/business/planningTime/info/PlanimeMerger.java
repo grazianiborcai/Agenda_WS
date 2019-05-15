@@ -2,23 +2,23 @@ package br.com.gda.business.planningTime.info;
 
 import java.util.List;
 
-import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.planingData.info.PlanataInfo;
-import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoMerger;
 
 public final class PlanimeMerger {
-	public static PlanimeInfo mergeWithEmp(EmpInfo sourceOne, PlanimeInfo sourceTwo) {
-		InfoMerger<PlanimeInfo, EmpInfo> merger = new PlanimeMergerEmp();		
+	public static PlanimeInfo mergeWithEmplis(EmplisInfo sourceOne, PlanimeInfo sourceTwo) {
+		InfoMerger<PlanimeInfo, EmplisInfo> merger = new PlanimeMergerEmplis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<PlanimeInfo> mergeWithEmp(List<EmpInfo> sourceOnes, List<PlanimeInfo> sourceTwos) {
-		InfoMerger<PlanimeInfo, EmpInfo> merger = new PlanimeMergerEmp();		
+	public static List<PlanimeInfo> mergeWithEmplis(List<EmplisInfo> sourceOnes, List<PlanimeInfo> sourceTwos) {
+		InfoMerger<PlanimeInfo, EmplisInfo> merger = new PlanimeMergerEmplis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
@@ -38,15 +38,15 @@ public final class PlanimeMerger {
 	
 	
 	
-	public static PlanimeInfo mergeWithStore(StoreInfo sourceOne, PlanimeInfo sourceTwo) {
-		InfoMerger<PlanimeInfo, StoreInfo> merger = new PlanimeMergerStore();		
+	public static PlanimeInfo mergeWithStolis(StolisInfo sourceOne, PlanimeInfo sourceTwo) {
+		InfoMerger<PlanimeInfo, StolisInfo> merger = new PlanimeMergerStolis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<PlanimeInfo> mergeWithStore(List<StoreInfo> sourceOnes, List<PlanimeInfo> sourceTwos) {
-		InfoMerger<PlanimeInfo, StoreInfo> merger = new PlanimeMergerStore();		
+	public static List<PlanimeInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<PlanimeInfo> sourceTwos) {
+		InfoMerger<PlanimeInfo, StolisInfo> merger = new PlanimeMergerStolis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

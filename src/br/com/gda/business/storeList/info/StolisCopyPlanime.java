@@ -1,4 +1,4 @@
-package br.com.gda.business.store.info;
+package br.com.gda.business.storeList.info;
 
 
 import java.util.ArrayList;
@@ -8,19 +8,19 @@ import br.com.gda.business.planingData.info.PlanataInfo;
 import br.com.gda.business.planningTime.info.PlanimeInfo;
 import br.com.gda.info.InfoCopierOneToManyTemplate;
 
-final class StoreCopyPlanime extends InfoCopierOneToManyTemplate<StoreInfo, PlanimeInfo>{
+final class StolisCopyPlanime extends InfoCopierOneToManyTemplate<StolisInfo, PlanimeInfo>{
 	
-	public StoreCopyPlanime() {
+	public StolisCopyPlanime() {
 		super();
 	}
 	
 	
 	
-	@Override protected List<StoreInfo> makeCopyHook(PlanimeInfo source) {
-		List<StoreInfo> results = new ArrayList<>();
+	@Override protected List<StolisInfo> makeCopyHook(PlanimeInfo source) {
+		List<StolisInfo> results = new ArrayList<>();
 		
 		for (PlanataInfo eachPlanata : source.planatas) {
-			StoreInfo oneResult = new StoreInfo();
+			StolisInfo oneResult = new StolisInfo();
 			oneResult.codOwner = eachPlanata.codOwner;
 			oneResult.codStore = eachPlanata.codStore;
 			oneResult.codLanguage = eachPlanata.codLanguage;
