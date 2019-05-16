@@ -4,26 +4,26 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.addressSnapshot.info.AddressSnapInfo;
-import br.com.gda.business.addressSnapshot.model.decisionTree.RootAddressSnapInsert;
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
+import br.com.gda.business.addressSnapshot.model.decisionTree.RootAddresnapInsert;
 import br.com.gda.business.userSnapshot.info.UserSnapInfo;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class VisiUserSnapInsertAddressSnap extends ActionVisitorTemplateAction<UserSnapInfo, AddressSnapInfo> {
+final class VisiUserSnapInsertAddressSnap extends ActionVisitorTemplateAction<UserSnapInfo, AddresnapInfo> {
 	public VisiUserSnapInsertAddressSnap(Connection conn, String schemaName) {
-		super(conn, schemaName, UserSnapInfo.class, AddressSnapInfo.class);
+		super(conn, schemaName, UserSnapInfo.class, AddresnapInfo.class);
 	}
 	
 	
 	
-	@Override protected List<AddressSnapInfo> toActionClassHook(List<UserSnapInfo> recordInfos) {
-		List<AddressSnapInfo> results = new ArrayList<>();
+	@Override protected List<AddresnapInfo> toActionClassHook(List<UserSnapInfo> recordInfos) {
+		List<AddresnapInfo> results = new ArrayList<>();
 		
 		for (UserSnapInfo eachRecord : recordInfos) {
-			for (AddressSnapInfo eachAddress : eachRecord.addresses) {
-				results.add(AddressSnapInfo.copyFrom(eachAddress));
+			for (AddresnapInfo eachAddress : eachRecord.addresses) {
+				results.add(AddresnapInfo.copyFrom(eachAddress));
 			}
 		}		
 		
@@ -32,13 +32,13 @@ final class VisiUserSnapInsertAddressSnap extends ActionVisitorTemplateAction<Us
 	
 	
 	
-	@Override protected ActionStd<AddressSnapInfo> getActionHook(DeciTreeOption<AddressSnapInfo> option) {
-		return new RootAddressSnapInsert(option).toAction();
+	@Override protected ActionStd<AddresnapInfo> getActionHook(DeciTreeOption<AddresnapInfo> option) {
+		return new RootAddresnapInsert(option).toAction();
 	}
 	
 	
 	
-	@Override protected List<UserSnapInfo> toBaseClassHook(List<UserSnapInfo> baseInfos, List<AddressSnapInfo> results) {
+	@Override protected List<UserSnapInfo> toBaseClassHook(List<UserSnapInfo> baseInfos, List<AddresnapInfo> results) {
 		return baseInfos;
 	}
 }

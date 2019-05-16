@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.addressSnapshot.info.AddressSnapInfo;
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
@@ -23,7 +23,7 @@ public final class UserSnapInfo extends InfoRecord implements Cloneable {
 	public String txtGender;
 	public LocalDate birthDate;
 	public String email;
-	public List<AddressSnapInfo> addresses;
+	public List<AddresnapInfo> addresses;
 	public List<PhoneSnapInfo> phones;
 	public String codLanguage;
 	public String recordMode;
@@ -68,14 +68,14 @@ public final class UserSnapInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<AddressSnapInfo> cloneAddresses(List<AddressSnapInfo> addresses) throws CloneNotSupportedException {
+	private List<AddresnapInfo> cloneAddresses(List<AddresnapInfo> addresses) throws CloneNotSupportedException {
 		if (addresses == null)
 			return null;
 		
-		List<AddressSnapInfo> deepAddresses = new ArrayList<>();
+		List<AddresnapInfo> deepAddresses = new ArrayList<>();
 		
-		for (AddressSnapInfo eachAddress : addresses) {
-			AddressSnapInfo clonedAddress = (AddressSnapInfo) eachAddress.clone();
+		for (AddresnapInfo eachAddress : addresses) {
+			AddresnapInfo clonedAddress = (AddresnapInfo) eachAddress.clone();
 			deepAddresses.add(clonedAddress);
 		}
 		

@@ -1,68 +1,58 @@
-package br.com.gda.business.address.dao;
+package br.com.gda.business.addressSnapshot.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtParamTranslator;
-import br.com.gda.dao.DaoStmtWhere;
-import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class AddressUpdateSingle implements DaoStmt<AddressInfo> {
-	private DaoStmt<AddressInfo> stmtSql;
-	private DaoStmtOption<AddressInfo> stmtOption;
+public final class AddresnapInsertSingle implements DaoStmt<AddresnapInfo> {
+	private DaoStmt<AddresnapInfo> stmtSql;
+	private DaoStmtOption<AddresnapInfo> stmtOption;
 	
 	
-	public AddressUpdateSingle(Connection conn, AddressInfo recordInfo, String schemaName) {
+	
+	public AddresnapInsertSingle(Connection conn, AddresnapInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, AddressInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, AddresnapInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.ADDRESS_TABLE;
+		this.stmtOption.tableName = DaoDbTable.ADDRESS_SNAPSHOT_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = null;
-		this.stmtOption.whereClause = buildWhereClause();
-	}
-	
-	
-	
-	private String buildWhereClause() {
-		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;
-		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;
-		
-		DaoStmtWhere whereClause = new AddressWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
-		return whereClause.getWhereClause();
+		this.stmtOption.resultParser = new ResultParser(recordInfo);
+		this.stmtOption.whereClause = null;
 	}
 	
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
 	}
+		
 	
 	
-
 	@Override public void generateStmt() throws SQLException {
 		stmtSql.generateStmt();		
 	}
@@ -81,27 +71,23 @@ public final class AddressUpdateSingle implements DaoStmt<AddressInfo> {
 
 	
 	
-	@Override public List<AddressInfo> getResultset() {
+	@Override public List<AddresnapInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<AddressInfo> getNewInstance() {
-		return new AddressUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	private class ParamTranslator implements DaoStmtParamTranslator<AddressInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, AddressInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements DaoStmtParamTranslator<AddresnapInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, AddresnapInfo recordInfo) throws SQLException {
 			
 			Timestamp lastChanged = null;
 			if(recordInfo.lastChanged != null)
 				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
 			
-			
 			int i = 1;
+			stmt.setLong(i++, recordInfo.codOwner);
+			stmt.setLong(i++, recordInfo.codAddress);
+			
 			
 			if (DaoFormatter.boxNumber(recordInfo.codStore) == null) {
 				stmt.setNull(i++, Types.INTEGER);
@@ -138,7 +124,8 @@ public final class AddressUpdateSingle implements DaoStmt<AddressInfo> {
 				stmt.setNull(i++, Types.FLOAT);
 			} else {
 				stmt.setFloat(i++, recordInfo.latitude);
-			}			
+			}
+			
 			
 			
 			if (DaoFormatter.boxNumber(recordInfo.longitude) == null) {
@@ -165,36 +152,35 @@ public final class AddressUpdateSingle implements DaoStmt<AddressInfo> {
 				stmt.setLong(i++, recordInfo.codUser);
 			}	
 			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codPayCustomer) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codPayCustomer);
-			}	
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codOwnerRef) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codOwnerRef);
-			}	
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.lastChangedBy) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codSnapshot);
-			}
-			
-			
+
 			return stmt;
 		}		
+	}
+	
+	
+	
+	@Override public DaoStmt<AddresnapInfo> getNewInstance() {
+		return new AddresnapInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	}
+	
+	
+	
+	
+	
+	private static class ResultParser implements DaoResultParser<AddresnapInfo> {
+		private AddresnapInfo recordInfo;
+		
+		public ResultParser(AddresnapInfo recordToParse) {
+			recordInfo = recordToParse;
+		}
+		
+		
+		
+		@Override public List<AddresnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<AddresnapInfo> finalResult = new ArrayList<>();
+			recordInfo.codSnapshot = lastId;
+			finalResult.add(recordInfo);			
+			return finalResult;
+		}
 	}
 }

@@ -1,22 +1,19 @@
-package br.com.gda.business.address.info;
+package br.com.gda.business.addressSnapshot.info;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
-import br.com.gda.payService.payCustomer.info.PaycusInfo;
 
-public final class AddressInfo extends InfoRecord implements Cloneable {
+public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public long codAddress;
 	public long codSnapshot;
+	public long codAddress;
 	public long codCustomer;
 	public long codStore;
 	public long codEmployee;
 	public long codUser;
-	public long codPayCustomer;
-	public long codOwnerRef;
 	public String codCountry;
 	public String txtCountry;
 	public String codState;
@@ -36,83 +33,37 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	public String line5;
 	public String line6;
 	public String line7;
-	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
-	public long lastChangedBy;
 	public String codForm;
 	public boolean isDeleted;
 	
 	
 	
-	public AddressInfo() {
+	public AddresnapInfo() {
 		codOwner = DefaultValue.number();
-		codAddress = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
+		codAddress = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codUser = DefaultValue.number();
-		codPayCustomer = DefaultValue.number();
-		codOwnerRef = DefaultValue.number();
 		longitude = DefaultValue.number();
 		latitude = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
-		lastChangedBy = DefaultValue.number();
 		isDeleted = DefaultValue.boole();
 	}
 	
 	
 	
-	public static AddressInfo copyFrom(Object sourceObj) {
-		if (isPayCus(sourceObj))								//TODO: Mover para Copier
-			return copyFromPayCus(sourceObj);
-		
-		return copyFrom(sourceObj, AddressInfo.class);
+	public static AddresnapInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, AddresnapInfo.class);
 	}
 	
 	
 	
-	public static List<AddressInfo> copyFrom(List<?> sourceObjs) {
-		if (isPayCus(sourceObjs))								//TODO: Mover para Copier
-			return copyFromPayCus(sourceObjs);
-		
-		return copyFrom(sourceObjs, AddressInfo.class);
-	}	
-	
-	
-	
-	private static boolean isPayCus(List<?> sourceObjs) {
-		if (sourceObjs == null || sourceObjs.isEmpty())
-			return false;
-		
-		return isPayCus(sourceObjs.get(0));
-	}
-	
-	
-	
-	private static boolean isPayCus(Object sourceObj) {
-		if (sourceObj == null)
-			return false;
-		
-		if (sourceObj instanceof PaycusInfo)
-			return true;
-		
-		return false;
-	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	private static List<AddressInfo> copyFromPayCus(List<?> sourceObjs) {
-		return new AddressCopyPayCus().makeCopy( (List<PaycusInfo>)sourceObjs);
-	}
-	
-	
-	
-	private static AddressInfo copyFromPayCus(Object sourceObj) {
-		return new AddressCopyPayCus().makeCopy( (PaycusInfo)sourceObj);
+	public static List<AddresnapInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, AddresnapInfo.class);
 	}
 	
 	
@@ -126,14 +77,12 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner 	 		^ (codOwner   		>>> 32));
-		result = result * 31 + (int) (codAddress 		^ (codAddress 		>>> 32));		
-		result = result * 31 + (int) (codCustomer 		^ (codCustomer 		>>> 32));
-		result = result * 31 + (int) (codStore 			^ (codStore 		>>> 32));
-		result = result * 31 + (int) (codEmployee 		^ (codEmployee 		>>> 32));
-		result = result * 31 + (int) (codUser 			^ (codUser 			>>> 32));
-		result = result * 31 + (int) (codPayCustomer 	^ (codPayCustomer 	>>> 32));
-		result = result * 31 + (int) (codOwnerRef 		^ (codOwnerRef 		>>> 32));
+		result = result * 31 + (int) (codOwner 	 	^ (codOwner   	>>> 32));
+		result = result * 31 + (int) (codSnapshot 	^ (codSnapshot  >>> 32));
+		result = result * 31 + (int) (codAddress 	^ (codAddress 	>>> 32));		
+		result = result * 31 + (int) (codCustomer 	^ (codCustomer 	>>> 32));
+		result = result * 31 + (int) (codStore 		^ (codStore 	>>> 32));
+		result = result * 31 + (int) (codEmployee 	^ (codEmployee 	>>> 32));
 		
 		if (codCountry != null)
 			result = result * 31 + codCountry.hashCode();
@@ -191,19 +140,17 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof AddressInfo))
+		if (!(o instanceof AddresnapInfo))
 			return false;
 		
 		
-		AddressInfo obj = (AddressInfo) o;		
-		return (codOwner 		== obj.codOwner 					&& 
-				codAddress 		== obj.codAddress					&&
-				codCustomer		== obj.codCustomer					&&
-				codStore		== obj.codStore						&&
-				codEmployee		== obj.codEmployee					&&
-				codUser			== obj.codUser						&&
-				codPayCustomer	== obj.codPayCustomer				&&
-				codOwnerRef		== obj.codOwnerRef					&&
+		AddresnapInfo obj = (AddresnapInfo) o;		
+		return (codOwner 	== obj.codOwner 						&& 
+				codSnapshot == obj.codSnapshot 						&& 
+				codAddress 	== obj.codAddress						&&
+				codCustomer	== obj.codCustomer						&&
+				codStore	== obj.codStore							&&
+				codEmployee	== obj.codEmployee						&&
 				super.isStringEqual(codCountry, obj.codCountry)		&&				
 				super.isStringEqual(codState, obj.codState)			&&
 				super.isStringEqual(city, obj.city)					&&

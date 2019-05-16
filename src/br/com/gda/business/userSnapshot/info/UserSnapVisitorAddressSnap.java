@@ -3,13 +3,13 @@ package br.com.gda.business.userSnapshot.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.addressSnapshot.info.AddressSnapInfo;
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
-final class UserSnapVisitorAddressSnap implements InfoMergerVisitor_<UserSnapInfo, AddressSnapInfo, UserSnapInfo> {
+final class UserSnapVisitorAddressSnap implements InfoMergerVisitor_<UserSnapInfo, AddresnapInfo, UserSnapInfo> {
 
-	@Override public UserSnapInfo writeRecord(AddressSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	@Override public UserSnapInfo writeRecord(AddresnapInfo sourceOne, UserSnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		UserSnapInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class UserSnapVisitorAddressSnap implements InfoMergerVisitor_<UserSnapInf
 	
 	
 	
-	private void checkArgument(AddressSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	private void checkArgument(AddresnapInfo sourceOne, UserSnapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,7 +37,7 @@ final class UserSnapVisitorAddressSnap implements InfoMergerVisitor_<UserSnapInf
 	
 	
 	
-	private UserSnapInfo merge(AddressSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	private UserSnapInfo merge(AddresnapInfo sourceOne, UserSnapInfo sourceTwo) {
 		sourceTwo.addresses.add(sourceOne);
 
 		return sourceTwo;
@@ -45,7 +45,7 @@ final class UserSnapVisitorAddressSnap implements InfoMergerVisitor_<UserSnapInf
 	
 	
 	
-	@Override public boolean shouldWrite(AddressSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	@Override public boolean shouldWrite(AddresnapInfo sourceOne, UserSnapInfo sourceTwo) {
 		return (sourceOne.codOwner 		== sourceTwo.codOwner 		&& 
 				sourceOne.codUser		== sourceTwo.codUser  		&&
 				sourceOne.codSnapshot	== sourceTwo.codSnapshot		);

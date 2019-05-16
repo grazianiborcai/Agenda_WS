@@ -2,6 +2,7 @@ package br.com.gda.business.address.info;
 
 import java.util.List;
 
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.form.formAddress.info.FormAddressInfo;
 import br.com.gda.business.masterData.info.CountryInfo;
 import br.com.gda.business.masterData.info.StateInfo;
@@ -45,6 +46,20 @@ public final class AddressMerger {
 	
 	public static List<AddressInfo> mergeWithState(List<StateInfo> sourceOnes, List<AddressInfo> sourceTwos) {
 		InfoMerger<AddressInfo, StateInfo> merger = new AddressMergerState();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static AddressInfo mergeWithAddresnap(AddresnapInfo sourceOne, AddressInfo sourceTwo) {
+		InfoMerger<AddressInfo, AddresnapInfo> merger = new AddressMergerAddresnap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<AddressInfo> mergeWithAddresnap(List<AddresnapInfo> sourceOnes, List<AddressInfo> sourceTwos) {
+		InfoMerger<AddressInfo, AddresnapInfo> merger = new AddressMergerAddresnap();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

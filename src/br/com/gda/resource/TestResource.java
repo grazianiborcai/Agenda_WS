@@ -17,9 +17,9 @@ import javax.ws.rs.core.Response;
 
 import br.com.gda.business.address.model.AddressModelInsert;
 import br.com.gda.business.address.model.AddressModelUpdate;
-import br.com.gda.business.addressSnapshot.info.AddressSnapInfo;
-import br.com.gda.business.addressSnapshot.model.AddressSnapModelInsert;
-import br.com.gda.business.addressSnapshot.model.AddressSnapModelSelect;
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
+import br.com.gda.business.addressSnapshot.model.AddresnapModelInsert;
+import br.com.gda.business.addressSnapshot.model.AddresnapModelSelect;
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.business.cartSnapshot.model.CartSnapModelInsert;
 import br.com.gda.business.cartSnapshot.model.CartSnapModelSelect;
@@ -274,11 +274,11 @@ public class TestResource {
 	public Response selectAddressSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
 								          @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
 
-		AddressSnapInfo recordInfo = new AddressSnapInfo();
+		AddresnapInfo recordInfo = new AddresnapInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codSnapshot = codSnapshot;
 		
-		Model model = new AddressSnapModelSelect(recordInfo);
+		Model model = new AddresnapModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -291,7 +291,7 @@ public class TestResource {
 	public Response insertAddressSnapshot(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new AddressSnapModelInsert(incomingData, request);
+		Model model = new AddresnapModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
