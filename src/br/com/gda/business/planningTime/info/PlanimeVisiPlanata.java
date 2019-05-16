@@ -40,6 +40,7 @@ final class PlanimeVisiPlanata implements InfoMergerVisitorV2<PlanimeInfo, Plana
 	private PlanimeInfo merge(PlanataInfo sourceOne, PlanimeInfo sourceTwo) {
 		PlanataInfo clonedRecord = makeClone(sourceOne);
 		sourceTwo.planatas.add(clonedRecord);
+		sourceTwo.dates.add(clonedRecord.date);
 		return sourceTwo;
 	}
 	
