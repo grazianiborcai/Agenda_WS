@@ -23,10 +23,10 @@ public final class PersonCheckWrite extends ModelCheckerTemplateSimple<PersonInf
 			|| recordInfo.codLanguage		== null
 			|| recordInfo.codEntityCateg	== null )
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
