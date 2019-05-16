@@ -19,7 +19,7 @@ final class VisiEmpUpdatePerson extends ActionVisitorTemplateAction<EmpInfo, Per
 	}
 	
 	
-	
+	//TODO: aplicar Template
 	@Override protected List<PersonInfo> toActionClassHook(List<EmpInfo> recordInfos) {
 		List<PersonInfo> results = new ArrayList<>();
 		

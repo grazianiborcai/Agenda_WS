@@ -24,7 +24,7 @@ public final class LazyEmpEnforceEntityCateg extends ActionLazyTemplate<EmpInfo,
 	
 	
 	@Override protected ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
-		return new StdEmpEnforceUserCateg(option);
+		return new StdEmpEnforceEntityCateg(option);
 	}
 	
 	
