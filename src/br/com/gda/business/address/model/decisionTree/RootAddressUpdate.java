@@ -41,7 +41,7 @@ public final class RootAddressUpdate implements DeciTree<AddressInfo> {
 	}
 	
 	
-	
+	//TODO: O Update / Upsertdel sempre geram entradas no snapshot. Incluir assinatura para identificar mudancas ?
 	private ModelChecker<AddressInfo> buildDecisionChecker(DeciTreeOption<AddressInfo> option) {
 		final boolean EXIST = true;
 		

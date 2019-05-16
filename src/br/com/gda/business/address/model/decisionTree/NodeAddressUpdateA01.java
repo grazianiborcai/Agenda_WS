@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.action.StdAddressUpdate;
+import br.com.gda.business.address.model.action.LazyAddressUpdate;
+import br.com.gda.business.address.model.action.StdAddressInsertAddresnap;
 import br.com.gda.business.address.model.checker.AddressCheckState;
 import br.com.gda.business.address.model.checker.AddressCheckWriteA01;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -61,9 +63,12 @@ public final class NodeAddressUpdateA01 implements DeciTree<AddressInfo> {
 	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AddressInfo> update = new StdAddressUpdate(option);	
+		ActionStd<AddressInfo> insertAddresnap = new StdAddressInsertAddresnap(option);	
+		ActionLazy<AddressInfo> update = new LazyAddressUpdate(option.conn, option.schemaName);
 		
-		actions.add(update);		
+		insertAddresnap.addPostAction(update);
+		
+		actions.add(insertAddresnap);		
 		return actions;
 	}
 	
