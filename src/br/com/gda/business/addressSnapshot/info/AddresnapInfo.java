@@ -14,6 +14,7 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codEmployee;
 	public long codUser;
+	public long codOwnerRef;
 	public String codCountry;
 	public String txtCountry;
 	public String codState;
@@ -33,8 +34,10 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	public String line5;
 	public String line6;
 	public String line7;
+	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
+	public long lastChangedBy;
 	public String codForm;
 	public boolean isDeleted;
 	
@@ -47,10 +50,13 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
+		codOwnerRef = DefaultValue.number();
 		codUser = DefaultValue.number();
 		longitude = DefaultValue.number();
 		latitude = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
+		lastChangedBy = DefaultValue.number();
 		isDeleted = DefaultValue.boole();
 	}
 	

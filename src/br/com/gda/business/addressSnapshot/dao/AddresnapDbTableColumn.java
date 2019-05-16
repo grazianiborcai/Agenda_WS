@@ -16,13 +16,15 @@ public final class AddresnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COUNTRY = AddressDbTableColumn.COL_COUNTRY;
 	public static final String COL_COD_CUSTOMER = AddressDbTableColumn.COL_COD_CUSTOMER;
 	public static final String COL_COD_EMPLOYEE = AddressDbTableColumn.COL_COD_EMPLOYEE;	
+	public static final String COL_COD_SNAPSHOT = AddressDbTableColumn.COL_COD_SNAPSHOT;
 	public static final String COL_COD_STORE = AddressDbTableColumn.COL_COD_STORE;
 	public static final String COL_COD_USER = AddressDbTableColumn.COL_COD_USER;
-	public static final String COL_COD_OWNER = AddressDbTableColumn.COL_COD_OWNER;
-	public static final String COL_COD_SNAPSHOT = AddressDbTableColumn.COL_COD_SNAPSHOT;
+	public static final String COL_COD_OWNER = AddressDbTableColumn.COL_COD_OWNER;	
+	public static final String COL_COD_OWNER_REF = AddressDbTableColumn.COL_COD_OWNER_REF;
 	public static final String COL_DISTRICT = AddressDbTableColumn.COL_DISTRICT;
 	public static final String COL_LATITUDE = AddressDbTableColumn.COL_LATITUDE;
 	public static final String COL_LAST_CHANGED = AddressDbTableColumn.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = AddressDbTableColumn.COL_LAST_CHANGED_BY;
 	public static final String COL_LINE1 = AddressDbTableColumn.COL_LINE1;
 	public static final String COL_LINE2 = AddressDbTableColumn.COL_LINE2;
 	public static final String COL_LINE3 = AddressDbTableColumn.COL_LINE3;
@@ -263,6 +265,22 @@ public final class AddresnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_USER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_OWNER_REF;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_LAST_CHANGED_BY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -165,6 +165,10 @@ public final class AddresnapSelectSingle implements DaoStmt<AddresnapInfo> {
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();		
 				
+				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_OWNER_REF);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codOwnerRef = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_OWNER_REF);	
+				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

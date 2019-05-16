@@ -152,6 +152,20 @@ public final class AddresnapInsertSingle implements DaoStmt<AddresnapInfo> {
 				stmt.setLong(i++, recordInfo.codUser);
 			}	
 			
+			
+			if (DaoFormatter.boxNumber(recordInfo.codOwnerRef) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codOwnerRef);
+			}	
+			
+			
+			if (DaoFormatter.boxNumber(recordInfo.lastChangedBy) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.lastChangedBy);
+			}	
+			
 
 			return stmt;
 		}		
