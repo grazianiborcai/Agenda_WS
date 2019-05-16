@@ -37,10 +37,10 @@ final class StolisVisiMergeToSelect implements InfoMergerVisitorV2<StolisInfo, S
 	
 	
 	private StolisInfo merge(StolisInfo sourceOne, StolisInfo sourceTwo) {
-		sourceOne.codLanguage = sourceTwo.codLanguage;
-		sourceOne.username = sourceTwo.username;
+		sourceTwo.codLanguage = sourceOne.codLanguage;
+		sourceTwo.username = sourceOne.username;
 
-		return sourceOne;
+		return sourceTwo;
 	}
 	
 	
