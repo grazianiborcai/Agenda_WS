@@ -12,9 +12,9 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BUSINESS = "cod_business";
 	public static final String COL_COD_CATEGORY = "cod_category";
 	public static final String COL_COD_GROUP = "cod_group";
-	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_MATERIAL = "cod_material";
 	public static final String COL_COD_OWNER = "cod_owner";
+	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
 	public static final String COL_COD_TYPE = "cod_type";
 	public static final String COL_COD_UNIT = "unit";
 	public static final String COL_LAST_CHANGED = "last_changed";
@@ -137,13 +137,13 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
-		
+
 		tableColumns.put(TABLE_NAME, columns);
 	}
 }
