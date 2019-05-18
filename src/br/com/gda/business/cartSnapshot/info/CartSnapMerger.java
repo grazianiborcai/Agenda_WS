@@ -6,7 +6,7 @@ import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
-import br.com.gda.business.materialSnapshot.info.MatSnapInfo;
+import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
 import br.com.gda.business.snapshot.info.SnapInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.info.obsolete.InfoWritterFactory_;
@@ -19,7 +19,7 @@ public final class CartSnapMerger extends InfoWritterFactory_<CartSnapInfo> {
 	
 	
 	
-	static public CartSnapInfo merge(MatSnapInfo sourceOne, CartSnapInfo sourceTwo) {
+	static public CartSnapInfo merge(MatsnapInfo sourceOne, CartSnapInfo sourceTwo) {
 		return new CartSnapMergerMatSnap().merge(sourceOne, sourceTwo);
 	}
 	
@@ -63,9 +63,9 @@ public final class CartSnapMerger extends InfoWritterFactory_<CartSnapInfo> {
 	
 	@SuppressWarnings("unchecked")
 	@Override protected List<CartSnapInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {		
-		if (sourceOnes.get(0) instanceof MatSnapInfo 			&&
+		if (sourceOnes.get(0) instanceof MatsnapInfo 			&&
 			sourceTwos.get(0) instanceof CartSnapInfo		)
-			return new CartSnapMergerMatSnap().merge((List<MatSnapInfo>) sourceOnes, (List<CartSnapInfo>) sourceTwos);
+			return new CartSnapMergerMatSnap().merge((List<MatsnapInfo>) sourceOnes, (List<CartSnapInfo>) sourceTwos);
 		
 		
 		if (sourceOnes.get(0) instanceof StoreInfo 				&&

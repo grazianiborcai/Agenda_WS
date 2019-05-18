@@ -29,9 +29,9 @@ import br.com.gda.business.customerSearch.model.CusarchModelSelect_;
 import br.com.gda.business.feeStore.info.FeetoreInfo;
 import br.com.gda.business.feeStore.model.FeetoreModelSelect;
 import br.com.gda.business.feeStore.model.FeetoreModelSelectService;
-import br.com.gda.business.materialSnapshot.info.MatSnapInfo;
-import br.com.gda.business.materialSnapshot.model.MatSnapModelInsert;
-import br.com.gda.business.materialSnapshot.model.MatSnapModelSelect;
+import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
+import br.com.gda.business.materialSnapshot.model.MatsnapModelInsert;
+import br.com.gda.business.materialSnapshot.model.MatsnapModelSelect;
 import br.com.gda.business.ownerStore.info.OwntoreInfo;
 import br.com.gda.business.ownerStore.model.OwntoreModelSelect;
 import br.com.gda.business.person.model.PersonModelInsert;
@@ -431,7 +431,7 @@ public class TestResource {
 	public Response insertMatSnapshot(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new MatSnapModelInsert(incomingData, request);
+		Model model = new MatsnapModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -444,11 +444,11 @@ public class TestResource {
 	public Response selectMatSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
 								      @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
 
-		MatSnapInfo recordInfo = new MatSnapInfo();
+		MatsnapInfo recordInfo = new MatsnapInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codSnapshot = codSnapshot;
 		
-		Model model = new MatSnapModelSelect(recordInfo);
+		Model model = new MatsnapModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

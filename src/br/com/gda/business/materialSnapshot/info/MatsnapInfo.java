@@ -1,4 +1,4 @@
-package br.com.gda.business.material.info;
+package br.com.gda.business.materialSnapshot.info;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class MatInfo extends InfoRecord implements Cloneable {
+public final class MatsnapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codSnapshot;
 	public long codMat;
@@ -16,10 +16,7 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public String txtType;
 	public int codMatCateg;
 	public String txtMatCateg;
-	public double price;			//TODO: Remover
 	public int priceUnit;
-	public String codCurr;			//TODO: Remover
-	public String txtCurr;			//TODO: Remover
 	public String codUnit;
 	public String txtUnit;
 	public int codGroup;
@@ -31,37 +28,33 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
-	public String username;
-	
-	//TODO: testar material precisao com mais de 2 casas decimais
 	
 	
-	public MatInfo() {
+	public MatsnapInfo() {
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codType = DefaultValue.number();
 		codMatCateg = DefaultValue.number();
-		price = DefaultValue.number();			//TODO: Remover	
-		priceUnit = 1;
+		priceUnit = DefaultValue.number();
 		codGroup = DefaultValue.number();		
 		codBusiness = DefaultValue.number();	
 		codLanguage = DefaultValue.language();
 		isLocked = DefaultValue.boole();
-		recordMode = DefaultValue.recordMode();	
+		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
 	}
 	
 	
 	
-	public static MatInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, MatInfo.class);
+	public static MatsnapInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, MatsnapInfo.class);
 	}
 	
 	
 	
-	public static List<MatInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, MatInfo.class);
+	public static List<MatsnapInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, MatsnapInfo.class);
 	}
 	
 	
@@ -75,8 +68,9 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner  ^ (codOwner	>>> 32));
-		result = result * 31 + (int) (codMat 	^ (codMat 	>>> 32));
+		result = result * 31 + (int) (codOwner  	^ (codOwner		>>> 32));
+		result = result * 31 + (int) (codSnapshot 	^ (codSnapshot 	>>> 32));
+		result = result * 31 + (int) (codMat 		^ (codMat 		>>> 32));
 		
 		return result;
 	}
@@ -88,11 +82,13 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof MatInfo))
+		if (!(o instanceof MatsnapInfo))
 			return false;
 		
 		
-		MatInfo obj = (MatInfo) o;		
-		return (codOwner == obj.codOwner && codMat == obj.codMat);
+		MatsnapInfo obj = (MatsnapInfo) o;		
+		return (codOwner 	== obj.codOwner 	&&
+				codSnapshot == obj.codSnapshot 	&&
+				codMat 		== obj.codMat		);
 	}
 }

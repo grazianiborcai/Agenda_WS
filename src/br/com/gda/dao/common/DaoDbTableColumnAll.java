@@ -25,10 +25,11 @@ import br.com.gda.business.form.formPhone.dao.FormPhoneDbTableColumn;
 import br.com.gda.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.gda.business.material.dao.MatDbTableColumn;
 import br.com.gda.business.materialMovement.dao.MatmovDbTableColumn;
-import br.com.gda.business.materialSnapshot.dao.MatSnapDbTableColumn;
+import br.com.gda.business.materialSnapshot.dao.MatsnapDbTableColumn;
 import br.com.gda.business.materialStock.dao.MatockDbTableColumn;
 import br.com.gda.business.materialStore.dao.MatoreDbTableColumn;
 import br.com.gda.business.materialText.dao.MatextDbTableColumn;
+import br.com.gda.business.materialTextSnapshot.dao.MatextsnapDbTableColumn;
 import br.com.gda.business.order.dao.OrderDbTableColumn;
 import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.business.ownerStore.dao.OwntoreDbTableColumn;
@@ -74,7 +75,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new MatDbTableColumn());
 		addTable(new MatextDbTableColumn());
 		addTable(new EmpmatDbTableColumn());
-		addTable(new MatSnapDbTableColumn());
+		addTable(new MatsnapDbTableColumn());
 		addTable(new StoreDbTableColumn());
 		addTable(new StolisDbTableColumn());
 		addTable(new EmposDbTableColumn());
@@ -120,6 +121,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new MatockDbTableColumn());
 		addTable(new CusarchDbTableColumn());
 		addTable(new PlanataDbTableColumn());
+		addTable(new MatextsnapDbTableColumn());
 	}
 	
 	
