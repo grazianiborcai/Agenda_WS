@@ -20,10 +20,10 @@ public final class UauthCheckRead extends ModelCheckerTemplateSimple<UauthInfo> 
 			recordInfo.username		== null	||
 			recordInfo.password		== null	||
 			recordInfo.codLanguage 	== null		)			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

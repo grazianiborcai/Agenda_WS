@@ -59,7 +59,7 @@ public final class RootUauthUpswd implements DeciTree<UauthInfo> {
 		
 		ActionStd<UauthInfo> enforceCodUser = new StdUauthEnforceCodUser(option);
 		ActionLazy<UauthInfo> authenticateUpswd = new LazyUauthAuthenticateUpswd(option.conn, option.schemaName);
-		ActionLazy<UauthInfo>  mergeUser = new LazyUauthMergeUser(option.conn, option.schemaName);
+		ActionLazy<UauthInfo> mergeUser = new LazyUauthMergeUser(option.conn, option.schemaName);
 		
 		enforceCodUser.addPostAction(authenticateUpswd);	
 		enforceCodUser.addPostAction(mergeUser);
