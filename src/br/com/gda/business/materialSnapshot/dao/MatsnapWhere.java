@@ -8,7 +8,6 @@ import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
-import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class MatsnapWhere implements DaoStmtWhere {
@@ -38,11 +37,6 @@ public final class MatsnapWhere implements DaoStmtWhere {
 					
 				case MatsnapDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
-					break;
-					
-				case MatsnapDbTableColumn.COL_COD_LANGUAGE :
-					if (tableName == DaoDbTable.MAT_TEXT_TABLE)
-						builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
 		}		

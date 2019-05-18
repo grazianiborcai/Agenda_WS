@@ -13,7 +13,6 @@ public final class MatsnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BUSINESS = MatDbTableColumn.COL_COD_BUSINESS;
 	public static final String COL_COD_CATEGORY = MatDbTableColumn.COL_COD_CATEGORY;
 	public static final String COL_COD_GROUP = MatDbTableColumn.COL_COD_GROUP;
-	public static final String COL_COD_LANGUAGE = MatDbTableColumn.COL_COD_LANGUAGE;
 	public static final String COL_COD_MATERIAL = MatDbTableColumn.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = MatDbTableColumn.COL_COD_OWNER;
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
@@ -52,18 +51,18 @@ public final class MatsnapDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_OWNER;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_OWNER;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
@@ -143,14 +142,6 @@ public final class MatsnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_LAST_CHANGED_BY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.MAT_TEXT_SNAPSHOT_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
