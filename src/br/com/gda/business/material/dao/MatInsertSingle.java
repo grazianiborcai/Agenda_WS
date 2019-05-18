@@ -100,6 +100,13 @@ public final class MatInsertSingle implements DaoStmt<MatInfo> {
 				stmt.setNull(i++, Types.INTEGER);
 			}
 			
+			
+			if (recordInfo.codSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
 			return stmt;
 		}		
 	}

@@ -6,6 +6,7 @@ import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.info.MatUnitInfo;
+import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
 import br.com.gda.business.materialText.info.MatextInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
@@ -76,6 +77,20 @@ public final class MatMerger {
 	
 	public static List<MatInfo> mergeWithMatUnit(List<MatUnitInfo> sourceOnes, List<MatInfo> sourceTwos) {
 		InfoMerger<MatInfo, MatUnitInfo> merger = new MatMergerMatUnit();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static MatInfo mergeWithMatsnap(MatsnapInfo sourceOne, MatInfo sourceTwo) {
+		InfoMerger<MatInfo, MatsnapInfo> merger = new MatMergerMatsnap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatInfo> mergeWithMatsnap(List<MatsnapInfo> sourceOnes, List<MatInfo> sourceTwos) {
+		InfoMerger<MatInfo, MatsnapInfo> merger = new MatMergerMatsnap();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

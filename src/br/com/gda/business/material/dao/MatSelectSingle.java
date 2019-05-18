@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -22,7 +20,6 @@ import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	private final String LT_MAT = DaoDbTable.MAT_TABLE;	
-	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<MatInfo> stmtSql;
 	private DaoStmtOption<MatInfo> stmtOption;
@@ -46,7 +43,7 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 		stmtOption.stmtParamTranslator = null;
 		stmtOption.resultParser = new ResultParser();
 		stmtOption.whereClause = buildWhereClause();
-		stmtOption.joins = buildJoins();
+		stmtOption.joins = null;
 	}
 	
 	
@@ -58,26 +55,6 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 		
 		DaoStmtWhere whereClause = new MatWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinLanguage());		
-		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
 	}
 	
 	
@@ -140,19 +117,21 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 				dataInfo.priceUnit = stmtResult.getInt(MatDbTableColumn.COL_PRICE_UNIT);	
 				dataInfo.codUnit = stmtResult.getString(MatDbTableColumn.COL_COD_UNIT);	
 				dataInfo.codGroup = stmtResult.getInt(MatDbTableColumn.COL_COD_GROUP);
-				dataInfo.codLanguage = stmtResult.getString(MatDbTableColumn.COL_COD_LANGUAGE);	
 				dataInfo.isLocked = stmtResult.getBoolean(MatDbTableColumn.COL_IS_LOCKED);	
 				dataInfo.recordMode = stmtResult.getString(MatDbTableColumn.COL_RECORD_MODE);
 				
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(MatDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
+					dataInfo.lastChanged = lastChanged.toLocalDateTime();				
 				
 				stmtResult.getLong(MatDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.lastChangedBy = stmtResult.getLong(MatDbTableColumn.COL_LAST_CHANGED_BY);
+				
+				stmtResult.getLong(MatDbTableColumn.COL_COD_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codSnapshot = stmtResult.getLong(MatDbTableColumn.COL_COD_SNAPSHOT);				
 				
 				
 				finalResult.add(dataInfo);
