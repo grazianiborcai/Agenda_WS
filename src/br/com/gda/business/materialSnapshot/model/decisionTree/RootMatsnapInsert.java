@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
-import br.com.gda.business.materialSnapshot.model.action.LazyMatsnapInsertMatextsnap;
 import br.com.gda.business.materialSnapshot.model.action.LazyMatsnapRootSelect;
 import br.com.gda.business.materialSnapshot.model.action.StdMatsnapInsert;
 import br.com.gda.business.materialSnapshot.model.checker.MatsnapCheckOwner;
@@ -63,12 +62,10 @@ public final class RootMatsnapInsert implements DeciTree<MatsnapInfo> {
 	private List<ActionStd<MatsnapInfo>> buildActionsOnPassed(DeciTreeOption<MatsnapInfo> option) {
 		List<ActionStd<MatsnapInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<MatsnapInfo> insert = new StdMatsnapInsert(option);
-		ActionLazy<MatsnapInfo> insertMatextsnap = new LazyMatsnapInsertMatextsnap(option.conn, option.schemaName);	
+		ActionStd<MatsnapInfo> insert = new StdMatsnapInsert(option);	
 		ActionLazy<MatsnapInfo> select = new LazyMatsnapRootSelect(option.conn, option.schemaName);	
 		
-		insert.addPostAction(insertMatextsnap);
-		insertMatextsnap.addPostAction(select);
+		insert.addPostAction(select);
 		
 		actions.add(insert);
 		return actions;

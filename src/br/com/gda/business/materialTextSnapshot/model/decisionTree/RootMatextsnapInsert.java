@@ -3,9 +3,11 @@ package br.com.gda.business.materialTextSnapshot.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.materialTextSnapshot.info.MatextsnapInfo;
-import br.com.gda.business.materialTextSnapshot.model.action.StdMatextsnapInsert;
+import br.com.gda.business.materialTextSnapshot.model.action.LazyMatextsnapInsert;
+import br.com.gda.business.materialTextSnapshot.model.action.StdMatextsnapMergeMatext;
 import br.com.gda.business.materialTextSnapshot.model.checker.MatextsnapCheckWrite;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -35,8 +37,12 @@ public final class RootMatextsnapInsert extends DeciTreeWriteTemplate<Matextsnap
 	@Override protected List<ActionStd<MatextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextsnapInfo> option) {
 		List<ActionStd<MatextsnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MatextsnapInfo> insert = new StdMatextsnapInsert(option);	
-		actions.add(insert);
+		ActionStd<MatextsnapInfo> mergeMatext = new StdMatextsnapMergeMatext(option);	
+		ActionLazy<MatextsnapInfo> insert = new LazyMatextsnapInsert(option.conn, option.schemaName);	
+		
+		mergeMatext.addPostAction(insert);
+		
+		actions.add(mergeMatext);
 		return actions;
 	}
 }

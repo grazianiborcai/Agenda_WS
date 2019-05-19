@@ -18,8 +18,7 @@ public final class MatextsnapCheckWrite extends ModelCheckerTemplateSimple<Matex
 	@Override protected boolean checkHook(MatextsnapInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 		<= 0 	
 			|| recordInfo.codMat		<= 0
-			|| recordInfo.codSnapshot	<= 0
-			|| recordInfo.codLanguage	== null	)
+			|| recordInfo.codSnapshot	<= 0	)
 			
 			return super.FAILED;
 		
