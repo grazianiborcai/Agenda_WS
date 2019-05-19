@@ -23,7 +23,7 @@ final class MatextsnapVisiMergeMatext implements InfoMergerVisitorV2<MatextsnapI
 	private MatextsnapInfo merge(MatextInfo sourceOne, MatextsnapInfo sourceTwo) {
 		MatextsnapInfo result = MatextsnapInfo.copyFrom(sourceOne);		
 		result.codSnapshot = sourceTwo.codSnapshot;		
-		return sourceTwo;
+		return result;
 	}
 	
 	
