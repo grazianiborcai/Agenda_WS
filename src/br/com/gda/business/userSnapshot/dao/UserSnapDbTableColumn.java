@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
+import br.com.gda.business.snapshot_.dao.SnapDbTableColumn;
 import br.com.gda.business.user.dao.UserDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;

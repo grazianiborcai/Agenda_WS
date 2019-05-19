@@ -1,4 +1,4 @@
-package br.com.gda.business.snapshot.info;
+package br.com.gda.business.snapshot_.info;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package br.com.gda.business.snapshot.dao;
+package br.com.gda.business.snapshot_.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

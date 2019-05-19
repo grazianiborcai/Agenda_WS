@@ -7,7 +7,7 @@ import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.info.obsolete.InfoWritterFactory_;
 

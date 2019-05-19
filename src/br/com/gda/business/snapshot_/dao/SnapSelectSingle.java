@@ -1,4 +1,4 @@
-package br.com.gda.business.snapshot.dao;
+package br.com.gda.business.snapshot_.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;

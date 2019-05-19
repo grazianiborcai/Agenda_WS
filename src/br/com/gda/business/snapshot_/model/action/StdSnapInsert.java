@@ -1,10 +1,10 @@
-package br.com.gda.business.snapshot.model.action;
+package br.com.gda.business.snapshot_.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.snapshot.dao.SnapInsert;
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.snapshot_.dao.SnapInsert;
+import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.action.ActionStd;

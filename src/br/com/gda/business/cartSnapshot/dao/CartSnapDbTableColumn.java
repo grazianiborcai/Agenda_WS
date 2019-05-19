@@ -6,7 +6,7 @@ import java.util.List;
 
 import br.com.gda.business.cart.dao.CartDbTableColumn;
 import br.com.gda.business.feeStore.dao.FeetoreDbTableColumn;
-import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
+import br.com.gda.business.snapshot_.dao.SnapDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;

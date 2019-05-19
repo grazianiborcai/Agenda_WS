@@ -1,11 +1,11 @@
-package br.com.gda.business.snapshot.model.decisionTree;
+package br.com.gda.business.snapshot_.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.snapshot.info.SnapInfo;
-import br.com.gda.business.snapshot.model.action.StdSnapSelect;
-import br.com.gda.business.snapshot.model.checker.SnapCheckRead;
+import br.com.gda.business.snapshot_.info.SnapInfo;
+import br.com.gda.business.snapshot_.model.action.StdSnapSelect;
+import br.com.gda.business.snapshot_.model.checker.SnapCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;

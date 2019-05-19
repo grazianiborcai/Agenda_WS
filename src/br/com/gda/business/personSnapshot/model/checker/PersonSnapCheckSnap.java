@@ -3,8 +3,8 @@ package br.com.gda.business.personSnapshot.model.checker;
 import java.util.List;
 
 import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
-import br.com.gda.business.snapshot.info.SnapInfo;
-import br.com.gda.business.snapshot.model.checker.SnapCheckExist;
+import br.com.gda.business.snapshot_.info.SnapInfo;
+import br.com.gda.business.snapshot_.model.checker.SnapCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 

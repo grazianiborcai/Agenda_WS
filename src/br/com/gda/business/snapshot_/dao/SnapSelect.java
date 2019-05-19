@@ -1,19 +1,19 @@
-package br.com.gda.business.snapshot.dao;
+package br.com.gda.business.snapshot_.dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecHelper;
 import br.com.gda.dao.DaoStmtExecOption;
 
-public final class SnapInsert implements DaoStmtExec<SnapInfo> {
+public final class SnapSelect implements DaoStmtExec<SnapInfo> {
 	private DaoStmtExec<SnapInfo> helper;
 	
 	
-	public SnapInsert(List<DaoStmtExecOption<SnapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, SnapInsertSingle.class, SnapInfo.class);
+	public SnapSelect(List<DaoStmtExecOption<SnapInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, SnapSelectSingle.class, SnapInfo.class);
 	}
 	
 	

@@ -2,7 +2,7 @@ package br.com.gda.business.userSnapshot.info;
 
 import java.util.List;
 
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.info.obsolete.InfoMerger_;
 
 final class UserSnapMergerSnap extends InfoMerger_<UserSnapInfo, SnapInfo, UserSnapInfo> {

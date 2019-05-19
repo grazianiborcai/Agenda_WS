@@ -1,22 +1,22 @@
-package br.com.gda.business.snapshot.model.checker;
+package br.com.gda.business.snapshot_.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class SnapCheckWrite extends ModelCheckerTemplateSimple<SnapInfo> {
+public final class SnapCheckRead extends ModelCheckerTemplateSimple<SnapInfo> {
 
-	public SnapCheckWrite() {
+	public SnapCheckRead() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(SnapInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner <= 0 )	
+		if ( recordInfo.codOwner <= 0 )			
 			return super.FAILED;
 		
 		

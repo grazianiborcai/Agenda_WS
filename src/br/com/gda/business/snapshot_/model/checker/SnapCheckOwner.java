@@ -1,10 +1,10 @@
-package br.com.gda.business.snapshot.model.checker;
+package br.com.gda.business.snapshot_.model.checker;
 
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.checker.OwnerCheckExist;
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 

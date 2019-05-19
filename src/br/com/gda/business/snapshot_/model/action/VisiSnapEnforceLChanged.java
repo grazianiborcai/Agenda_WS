@@ -1,7 +1,7 @@
-package br.com.gda.business.snapshot.model.action;
+package br.com.gda.business.snapshot_.model.action;
 
-import br.com.gda.business.snapshot.info.SnapInfo;
-import br.com.gda.business.snapshot.info.SnapSetterLChanged;
+import br.com.gda.business.snapshot_.info.SnapInfo;
+import br.com.gda.business.snapshot_.info.SnapSetterLChanged;
 import br.com.gda.info.InfoSetter;
 import br.com.gda.model.action.ActionVisitorTemplateEnforce;
 

@@ -1,10 +1,10 @@
-package br.com.gda.business.snapshot.model.checker;
+package br.com.gda.business.snapshot_.model.checker;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import br.com.gda.business.snapshot.info.SnapInfo;
-import br.com.gda.business.snapshot.model.action.StdSnapSelect;
+import br.com.gda.business.snapshot_.info.SnapInfo;
+import br.com.gda.business.snapshot_.model.action.StdSnapSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;

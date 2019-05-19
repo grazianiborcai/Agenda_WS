@@ -3,7 +3,7 @@ package br.com.gda.business.personSnapshot.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.obsolete.InfoMergerVisitor_;
 

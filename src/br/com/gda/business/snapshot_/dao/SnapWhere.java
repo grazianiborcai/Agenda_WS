@@ -1,8 +1,8 @@
-package br.com.gda.business.snapshot.dao;
+package br.com.gda.business.snapshot_.dao;
 
 import java.util.List;
 
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;

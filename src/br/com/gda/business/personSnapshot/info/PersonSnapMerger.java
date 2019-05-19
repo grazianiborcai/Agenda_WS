@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.business.person.info.PersonInfo;
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.info.obsolete.InfoWritterFactory_;
 
 public final class PersonSnapMerger extends InfoWritterFactory_<PersonSnapInfo> {	

@@ -6,7 +6,7 @@ import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.personCustomer.info.PersonCusInfo;
 import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
 import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.obsolete.InfoWritterFactory_;
 

@@ -1,10 +1,10 @@
-package br.com.gda.business.snapshot.model.action;
+package br.com.gda.business.snapshot_.model.action;
 
 import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.business.snapshot.info.SnapInfo;
+import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;

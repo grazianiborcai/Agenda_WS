@@ -41,7 +41,7 @@ import br.com.gda.business.phone.dao.PhoneDbTableColumn;
 import br.com.gda.business.phoneSnapshot.dao.PhoneSnapDbTableColumn;
 import br.com.gda.business.planingData.dao.PlanataDbTableColumn;
 import br.com.gda.business.reserve.dao.ReserveDbTableColumn;
-import br.com.gda.business.snapshot.dao.SnapDbTableColumn;
+import br.com.gda.business.snapshot_.dao.SnapDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.business.storeLeaveDate.dao.StolevateDbTableColumn;
 import br.com.gda.business.storeList.dao.StolisDbTableColumn;
