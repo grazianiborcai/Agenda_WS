@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.material.model.decisionTree.NodeMatSnapshot;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatInsertMatsnap extends ActionLazyTemplate<MatInfo, MatInfo> {
+public final class LazyMatNodeSnapshot extends ActionLazyTemplate<MatInfo, MatInfo> {
 
-	public LazyMatInsertMatsnap(Connection conn, String schemaName) {
+	public LazyMatNodeSnapshot(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyMatInsertMatsnap extends ActionLazyTemplate<MatInfo, MatI
 	
 	
 	@Override protected ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
-		return new StdMatInsertMatsnap(option);
+		return new NodeMatSnapshot(option).toAction();
 	}
 	
 	

@@ -6,10 +6,9 @@ import java.util.List;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.action.LazyMatInsert;
 import br.com.gda.business.material.model.action.LazyMatInsertMatext;
-import br.com.gda.business.material.model.action.LazyMatInsertMatsnap;
+import br.com.gda.business.material.model.action.LazyMatNodeSnapshot;
 import br.com.gda.business.material.model.action.LazyMatMergeUsername;
 import br.com.gda.business.material.model.action.LazyMatRootSelect;
-import br.com.gda.business.material.model.action.LazyMatUpdate;
 import br.com.gda.business.material.model.action.StdMatEnforceLChanged;
 import br.com.gda.business.material.model.checker.MatCheckCateg;
 import br.com.gda.business.material.model.checker.MatCheckCurrency;
@@ -122,17 +121,15 @@ public final class RootMatInsert extends DeciTreeWriteTemplate<MatInfo> {
 		ActionStd<MatInfo> enforceLChanged = new StdMatEnforceLChanged(option);	
 		ActionLazy<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatInfo> insertMat = new LazyMatInsert(option.conn, option.schemaName);	
-		ActionLazy<MatInfo> insertMatsnap = new LazyMatInsertMatsnap(option.conn, option.schemaName);
-		ActionLazy<MatInfo> update = new LazyMatUpdate(option.conn, option.schemaName);
-		ActionLazy<MatInfo> insertDefaultMatext = new LazyMatInsertMatext(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> insertMatext = new LazyMatInsertMatext(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> nodeSnapshot = new LazyMatNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<MatInfo> select = new LazyMatRootSelect(option.conn, option.schemaName);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(insertMat);
-		insertMat.addPostAction(insertMatsnap);
-		insertMatsnap.addPostAction(update);		
-		update.addPostAction(insertDefaultMatext);
-		insertDefaultMatext.addPostAction(select);	
+		insertMat.addPostAction(insertMatext);
+		insertMatext.addPostAction(nodeSnapshot);	
+		nodeSnapshot.addPostAction(select);
 		
 		actions.add(enforceLChanged);		
 		return actions;

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.material.model.action.LazyMatInsertMatsnap;
+import br.com.gda.business.material.model.action.LazyMatMergeUsername;
+import br.com.gda.business.material.model.action.LazyMatNodeSnapshot;
 import br.com.gda.business.material.model.action.LazyMatRootSelect;
 import br.com.gda.business.material.model.action.LazyMatUpdate;
 import br.com.gda.business.material.model.action.LazyMatUpsertMatext;
@@ -135,15 +136,17 @@ public final class RootMatUpdate extends DeciTreeWriteTemplate<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 
 		ActionStd<MatInfo> enforceLChanged = new StdMatEnforceLChanged(option);	
-		ActionLazy<MatInfo> insertMatsnap = new LazyMatInsertMatsnap(option.conn, option.schemaName);
+		ActionLazy<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatInfo> updateMat = new LazyMatUpdate(option.conn, option.schemaName);		
 		ActionLazy<MatInfo> upsertMatext = new LazyMatUpsertMatext(option.conn, option.schemaName);
+		ActionLazy<MatInfo> nodeSnapshot = new LazyMatNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<MatInfo> select = new LazyMatRootSelect(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(insertMatsnap);
-		insertMatsnap.addPostAction(updateMat);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(updateMat);
 		updateMat.addPostAction(upsertMatext);
-		upsertMatext.addPostAction(select);
+		upsertMatext.addPostAction(nodeSnapshot);
+		nodeSnapshot.addPostAction(select);
 		
 		actions.add(enforceLChanged);
 		return actions;
