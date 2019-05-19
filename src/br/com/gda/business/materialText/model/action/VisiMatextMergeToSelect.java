@@ -22,6 +22,12 @@ final class VisiMatextMergeToSelect extends ActionVisitorTemplateMergeV2<MatextI
 	
 	
 	
+	@Override protected List<MatextInfo> toActionClassHook(List<MatextInfo> recordInfos) {
+		return recordInfos;	
+	}	
+	
+	
+	
 	@Override protected List<MatextInfo> mergeHook(List<MatextInfo> recordInfos, List<MatextInfo> selectedInfos) {	
 		return MatextMerger.mergeToSelect(selectedInfos, recordInfos);
 	}

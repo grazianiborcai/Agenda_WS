@@ -15,6 +15,7 @@ final class MatextCopyMatextsnap extends InfoCopierTemplate<MatextInfo, Matextsn
 		MatextInfo result = new MatextInfo();
 		result.codOwner = source.codOwner;
 		result.codMat = source.codMat;
+		result.codLanguage = null;
 		return result;
 	}
 }
