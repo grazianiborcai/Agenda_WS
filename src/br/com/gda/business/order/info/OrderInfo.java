@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
-import br.com.gda.business.userSnapshot.info.UserSnapInfo;
+import br.com.gda.business.userSnapshot_.info.UserSnapInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 

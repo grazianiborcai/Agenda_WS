@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.snapshot_.info.SnapInfo;
-import br.com.gda.business.userSnapshot.info.UserSnapInfo;
+import br.com.gda.business.userSnapshot_.info.UserSnapInfo;
 import br.com.gda.info.obsolete.InfoWritterFactory_;
 
 public final class OrderMerger extends InfoWritterFactory_<OrderInfo> {	

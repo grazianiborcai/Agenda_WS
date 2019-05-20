@@ -48,7 +48,7 @@ import br.com.gda.business.storeList.dao.StolisDbTableColumn;
 import br.com.gda.business.storeWorkTime.dao.StowotmDbTableColumn;
 import br.com.gda.business.storeWorkTimeConflict.dao.StoreCoDbTableColumn;
 import br.com.gda.business.user.dao.UserDbTableColumn;
-import br.com.gda.business.userSnapshot.dao.UserSnapDbTableColumn;
+import br.com.gda.business.userSnapshot_.dao.UserSnapDbTableColumn;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumn;

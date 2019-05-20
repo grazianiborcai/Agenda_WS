@@ -3,7 +3,7 @@ package br.com.gda.business.order.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.userSnapshot.info.UserSnapInfo;
+import br.com.gda.business.userSnapshot_.info.UserSnapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.obsolete.InfoMergerVisitor_;
 

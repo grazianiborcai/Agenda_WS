@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
-import br.com.gda.business.userSnapshot.info.UserSnapInfo;
-import br.com.gda.business.userSnapshot.model.decisionTree.RootUserSnapInsert;
+import br.com.gda.business.userSnapshot_.info.UserSnapInfo;
+import br.com.gda.business.userSnapshot_.model.decisionTree.RootUserSnapInsert;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
