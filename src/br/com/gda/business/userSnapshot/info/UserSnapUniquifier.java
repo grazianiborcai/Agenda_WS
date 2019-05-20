@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
-import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
+import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.info.InfoUniquifier;
 
 final class UserSnapUniquifier implements InfoUniquifier<UserSnapInfo> {
@@ -44,7 +44,7 @@ final class UserSnapUniquifier implements InfoUniquifier<UserSnapInfo> {
 	
 	
 	private void uniquifyPhone(UserSnapInfo duple, UserSnapInfo eachRecord) {
-		List<PhoneSnapInfo> allPhones = new ArrayList<>();
+		List<PhonapInfo> allPhones = new ArrayList<>();
 		
 		allPhones.addAll(duple.phones);
 		allPhones.addAll(eachRecord.phones);

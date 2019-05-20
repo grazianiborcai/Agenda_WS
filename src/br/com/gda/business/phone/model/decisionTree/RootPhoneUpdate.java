@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.LazyPhoneEnforceLChanged;
+import br.com.gda.business.phone.model.action.LazyPhoneNodeSnapshot;
 import br.com.gda.business.phone.model.action.LazymapPhoneMergeForm;
 import br.com.gda.business.phone.model.action.LazymapPhoneNodeUpdate;
 import br.com.gda.business.phone.model.action.StdPhoneMergeCountryPhone;
@@ -96,10 +97,12 @@ public final class RootPhoneUpdate implements DeciTree<PhoneInfo> {
 		ActionLazy<PhoneInfo> mergeForm = new LazymapPhoneMergeForm(option.conn, option.schemaName);	
 		ActionLazy<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<PhoneInfo> nodeUpdate = new LazymapPhoneNodeUpdate(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> nodeSnapshot = new LazyPhoneNodeSnapshot(option.conn, option.schemaName);	
 		
 		mergeCountryPhone.addPostAction(mergeForm);
 		mergeForm.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(nodeUpdate);
+		nodeUpdate.addPostAction(nodeSnapshot);
 		
 		actions.add(mergeCountryPhone);		
 		return actions;

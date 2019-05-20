@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.form.formPhone.info.FormPhoneInfo;
 import br.com.gda.business.masterData.info.CountryPhoneInfo;
+import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.info.InfoMerger;
 
 public final class PhoneMerger {
@@ -32,6 +33,20 @@ public final class PhoneMerger {
 		InfoMerger<PhoneInfo, FormPhoneInfo> merger = new PhoneMergerForm();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static PhoneInfo mergeWithPhonap(PhonapInfo sourceOne, PhoneInfo sourceTwo) {
+		InfoMerger<PhoneInfo, PhonapInfo> merger = new PhoneMergerPhonap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PhoneInfo> mergeWithPhonap(List<PhonapInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
+		InfoMerger<PhoneInfo, PhonapInfo> merger = new PhoneMergerPhonap();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 	
 	
 	

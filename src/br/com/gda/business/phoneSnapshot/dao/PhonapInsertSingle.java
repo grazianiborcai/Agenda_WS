@@ -1,68 +1,58 @@
-package br.com.gda.business.phone.dao;
+package br.com.gda.business.phoneSnapshot.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtParamTranslator;
-import br.com.gda.dao.DaoStmtWhere;
-import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class PhoneUpdateSingle implements DaoStmt<PhoneInfo> {
-	private DaoStmt<PhoneInfo> stmtSql;
-	private DaoStmtOption<PhoneInfo> stmtOption;
+public final class PhonapInsertSingle implements DaoStmt<PhonapInfo> {
+	private DaoStmt<PhonapInfo> stmtSql;
+	private DaoStmtOption<PhonapInfo> stmtOption;
 	
 	
-	public PhoneUpdateSingle(Connection conn, PhoneInfo recordInfo, String schemaName) {
+	
+	public PhonapInsertSingle(Connection conn, PhonapInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, PhoneInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, PhonapInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.PHONE_TABLE;
+		this.stmtOption.tableName = DaoDbTable.PHONE_SNAPSHOT_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = null;
-		this.stmtOption.whereClause = buildWhereClause();
-	}
-	
-	
-	
-	private String buildWhereClause() {		
-		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;
-		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;
-		
-		DaoStmtWhere whereClause = new PhoneWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
-		return whereClause.getWhereClause();
+		this.stmtOption.resultParser = new ResultParser(recordInfo);
+		this.stmtOption.whereClause = null;
 	}
 	
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
 	}
+		
 	
 	
-
 	@Override public void generateStmt() throws SQLException {
 		stmtSql.generateStmt();		
 	}
@@ -81,27 +71,23 @@ public final class PhoneUpdateSingle implements DaoStmt<PhoneInfo> {
 
 	
 	
-	@Override public List<PhoneInfo> getResultset() {
+	@Override public List<PhonapInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<PhoneInfo> getNewInstance() {
-		return new PhoneUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	private class ParamTranslator implements DaoStmtParamTranslator<PhoneInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PhoneInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements DaoStmtParamTranslator<PhonapInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PhonapInfo recordInfo) throws SQLException {
 			
 			Timestamp lastChanged = null;
 			if(recordInfo.lastChanged != null)
 				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
 			
+			int i = 1;
+			stmt.setLong(i++, recordInfo.codOwner);
+			stmt.setLong(i++, recordInfo.codPhone);
 			
-			int i = 1;		
 			
 			if (DaoFormatter.boxNumber(recordInfo.codStore) == null) {
 				stmt.setNull(i++, Types.INTEGER);
@@ -123,6 +109,7 @@ public final class PhoneUpdateSingle implements DaoStmt<PhoneInfo> {
 				stmt.setLong(i++, recordInfo.codEmployee);
 			}
 			
+			
 			stmt.setInt(i++, recordInfo.codCountryPhone);
 			stmt.setString(i++, recordInfo.fullNumber);
 			stmt.setString(i++, recordInfo.recordMode);
@@ -137,13 +124,6 @@ public final class PhoneUpdateSingle implements DaoStmt<PhoneInfo> {
 			}	
 			
 			
-			if (DaoFormatter.boxNumber(recordInfo.codPayCustomer) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codPayCustomer);
-			}	
-			
-			
 			if (DaoFormatter.boxNumber(recordInfo.codOwnerRef) == null) {
 				stmt.setNull(i++, Types.INTEGER);
 			} else {
@@ -155,17 +135,36 @@ public final class PhoneUpdateSingle implements DaoStmt<PhoneInfo> {
 				stmt.setNull(i++, Types.INTEGER);
 			} else {
 				stmt.setLong(i++, recordInfo.lastChangedBy);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codSnapshot);
-			}
-			
-			
+			}				
+
 			return stmt;
 		}		
+	}
+	
+	
+	
+	@Override public DaoStmt<PhonapInfo> getNewInstance() {
+		return new PhonapInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	}
+	
+	
+	
+	
+	
+	private static class ResultParser implements DaoResultParser<PhonapInfo> {
+		private PhonapInfo recordInfo;
+		
+		public ResultParser(PhonapInfo recordToParse) {
+			recordInfo = recordToParse;
+		}
+		
+		
+		
+		@Override public List<PhonapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<PhonapInfo> finalResult = new ArrayList<>();
+			recordInfo.codSnapshot = lastId;
+			finalResult.add(recordInfo);			
+			return finalResult;
+		}
 	}
 }

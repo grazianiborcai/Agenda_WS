@@ -3,13 +3,13 @@ package br.com.gda.business.userSnapshot.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
+import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
-final class UserSnapVisitorPhoneSnap implements InfoMergerVisitor_<UserSnapInfo, PhoneSnapInfo, UserSnapInfo> {
+final class UserSnapVisitorPhoneSnap implements InfoMergerVisitor_<UserSnapInfo, PhonapInfo, UserSnapInfo> {
 
-	@Override public UserSnapInfo writeRecord(PhoneSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	@Override public UserSnapInfo writeRecord(PhonapInfo sourceOne, UserSnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		UserSnapInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class UserSnapVisitorPhoneSnap implements InfoMergerVisitor_<UserSnapInfo,
 	
 	
 	
-	private void checkArgument(PhoneSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	private void checkArgument(PhonapInfo sourceOne, UserSnapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,7 +37,7 @@ final class UserSnapVisitorPhoneSnap implements InfoMergerVisitor_<UserSnapInfo,
 	
 	
 	
-	private UserSnapInfo merge(PhoneSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	private UserSnapInfo merge(PhonapInfo sourceOne, UserSnapInfo sourceTwo) {
 		sourceTwo.phones.add(sourceOne);
 
 		return sourceTwo;
@@ -45,7 +45,7 @@ final class UserSnapVisitorPhoneSnap implements InfoMergerVisitor_<UserSnapInfo,
 
 
 	
-	@Override public boolean shouldWrite(PhoneSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	@Override public boolean shouldWrite(PhonapInfo sourceOne, UserSnapInfo sourceTwo) {
 		return (sourceOne.codOwner 		== sourceTwo.codOwner && 
 				sourceOne.codUser  		== sourceTwo.codUser  &&
 				sourceOne.codSnapshot	== sourceTwo.codSnapshot		);

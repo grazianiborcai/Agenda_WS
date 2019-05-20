@@ -1,4 +1,4 @@
-package br.com.gda.business.phone.info;
+package br.com.gda.business.phoneSnapshot.info;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,16 +6,15 @@ import java.util.List;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class PhoneInfo extends InfoRecord implements Cloneable {
+public final class PhonapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public long codPhone;
 	public long codSnapshot;
+	public long codPhone;
+	public long codOwnerRef;
 	public long codCustomer;
 	public long codStore;
 	public long codEmployee;
 	public long codUser;
-	public long codPayCustomer;
-	public long codOwnerRef;
 	public String codCountry;
 	public String fullNumber;
 	public int codCountryPhone;
@@ -23,40 +22,35 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	public String number;
 	public String complement;
 	public String recordMode;
-	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String codForm;
-	public boolean isDeleted;
 	
 	
-	public PhoneInfo() {
+	public PhonapInfo() {
 		codOwner = DefaultValue.number();
-		codPhone = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
+		codPhone = DefaultValue.number();
+		codOwnerRef = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codUser = DefaultValue.number();
-		codPayCustomer = DefaultValue.number();;
 		codCountryPhone = DefaultValue.number();
-		codOwnerRef = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
-		codLanguage = DefaultValue.language();
 		lastChangedBy = DefaultValue.number();
-		isDeleted = DefaultValue.boole();
 	}
 	
 	
 	
-	public static PhoneInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, PhoneInfo.class);
+	public static PhonapInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, PhonapInfo.class);
 	}
 	
 	
 	
-	public static List<PhoneInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, PhoneInfo.class);
+	public static List<PhonapInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, PhonapInfo.class);
 	}
 	
 	
@@ -70,14 +64,12 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner 			^ (codOwner 		>>> 32));
-		result = result * 31 + (int) (codPhone 			^ (codPhone 		>>> 32));		
-		result = result * 31 + (int) (codCustomer 		^ (codCustomer 		>>> 32));
-		result = result * 31 + (int) (codStore 			^ (codStore 		>>> 32));
-		result = result * 31 + (int) (codEmployee 		^ (codEmployee 		>>> 32));		
-		result = result * 31 + (int) (codUser 			^ (codUser 			>>> 32));
-		result = result * 31 + (int) (codPayCustomer 	^ (codPayCustomer 	>>> 32));
-		result = result * 31 + (int) (codOwnerRef		^ (codOwnerRef 		>>> 32));
+		result = result * 31 + (int) (codOwner 		^ (codOwner 	>>> 32));
+		result = result * 31 + (int) (codSnapshot	^ (codSnapshot 	>>> 32));
+		result = result * 31 + (int) (codPhone 		^ (codPhone 	>>> 32));		
+		result = result * 31 + (int) (codCustomer 	^ (codCustomer 	>>> 32));
+		result = result * 31 + (int) (codStore 		^ (codStore 	>>> 32));
+		result = result * 31 + (int) (codEmployee 	^ (codEmployee 	>>> 32));		
 		result = result * 31 + codCountryPhone;
 		
 		if (fullNumber != null)
@@ -93,20 +85,18 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof PhoneInfo))
+		if (!(o instanceof PhonapInfo))
 			return false;
 		
 		
-		PhoneInfo obj = (PhoneInfo) o;		
+		PhonapInfo obj = (PhonapInfo) o;		
 		return (codOwner 		== obj.codOwner 		&& 
+				codSnapshot		== obj.codSnapshot 		&& 
 				codPhone 		== obj.codPhone			&&	
 				codCustomer 	== obj.codCustomer 		&&
 				codStore		== obj.codStore			&&
 				codEmployee		== obj.codEmployee		&&
 				codCountryPhone == obj.codCountryPhone	&&
-				codUser 		== obj.codUser 			&&
-				codPayCustomer 	== obj.codPayCustomer 	&&
-				codOwnerRef 	== obj.codOwnerRef 		&& 
 				super.isStringEqual(fullNumber, obj.fullNumber));
 	}	
 }

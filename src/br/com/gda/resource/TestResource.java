@@ -47,9 +47,9 @@ import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.PhoneModelInsert;
 import br.com.gda.business.phone.model.PhoneModelSelect;
 import br.com.gda.business.phone.model.PhoneModelUpdate;
-import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
-import br.com.gda.business.phoneSnapshot.model.PhoneSnapModelInsert;
-import br.com.gda.business.phoneSnapshot.model.PhoneSnapModelSelect;
+import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
+import br.com.gda.business.phoneSnapshot.model.PhonapModelInsert;
+import br.com.gda.business.phoneSnapshot.model.PhonapModelSelect;
 import br.com.gda.business.planingData.info.PlanataInfo;
 import br.com.gda.business.planingData.model.PlanataModelSelect;
 import br.com.gda.business.storeTime_.info.StorimeInfo;
@@ -304,11 +304,11 @@ public class TestResource {
 	public Response selectPhoneSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
 								        @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
 
-		PhoneSnapInfo recordInfo = new PhoneSnapInfo();
+		PhonapInfo recordInfo = new PhonapInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codSnapshot = codSnapshot;
 		
-		Model model = new PhoneSnapModelSelect(recordInfo);
+		Model model = new PhonapModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -321,7 +321,7 @@ public class TestResource {
 	public Response insertPhoneSnapshot(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new PhoneSnapModelInsert(incomingData, request);
+		Model model = new PhonapModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}

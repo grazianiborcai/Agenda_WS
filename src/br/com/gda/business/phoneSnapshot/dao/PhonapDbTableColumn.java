@@ -1,34 +1,34 @@
-package br.com.gda.business.phone.dao;
+package br.com.gda.business.phoneSnapshot.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.gda.business.phone.dao.PhoneDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {	
-	public static final String COL_COD_CUSTOMER = "cod_customer";
-	public static final String COL_COD_EMPLOYEE = "cod_employee";	
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_OWNER_REF = "cod_owner_ref";
-	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";
-	public static final String COL_COD_PHONE = "cod_phone";
+public final class PhonapDbTableColumn extends DaoDbTableColumnTemplate {	
+	public static final String COL_COD_CUSTOMER = PhoneDbTableColumn.COL_COD_CUSTOMER;
+	public static final String COL_COD_EMPLOYEE = PhoneDbTableColumn.COL_COD_EMPLOYEE;	
+	public static final String COL_COD_OWNER = PhoneDbTableColumn.COL_COD_OWNER;
+	public static final String COL_COD_OWNER_REF = PhoneDbTableColumn.COL_COD_OWNER_REF;
+	public static final String COL_COD_PHONE = PhoneDbTableColumn.COL_COD_PHONE;
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
-	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_COD_USER = "cod_user";
-	public static final String COL_COMPLEMENT = "complement";
-	public static final String COL_COUNTRY_PHONE = "country_phone";
-	public static final String COL_FULL_NUMBER = "full_number";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
-	public static final String COL_RECORD_MODE = "record_mode";
+	public static final String COL_COD_STORE = PhoneDbTableColumn.COL_COD_STORE;
+	public static final String COL_COD_USER = PhoneDbTableColumn.COL_COD_USER;
+	public static final String COL_COMPLEMENT = PhoneDbTableColumn.COL_COMPLEMENT;
+	public static final String COL_COUNTRY_PHONE = PhoneDbTableColumn.COL_COUNTRY_PHONE;
+	public static final String COL_FULL_NUMBER = PhoneDbTableColumn.COL_FULL_NUMBER;
+	public static final String COL_LAST_CHANGED = PhoneDbTableColumn.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = PhoneDbTableColumn.COL_LAST_CHANGED_BY;
+	public static final String COL_RECORD_MODE = PhoneDbTableColumn.COL_RECORD_MODE;
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
 	
-	public PhoneDbTableColumn() {
+	public PhonapDbTableColumn() {
 		super();
 	}
 	
@@ -36,21 +36,21 @@ public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
-		buildAddressTable();	
+		buildPhoneSnapTable();	
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildAddressTable() {
-		final String TABLE_NAME = DaoDbTable.PHONE_TABLE;
+	private void buildPhoneSnapTable() {
+		final String TABLE_NAME = DaoDbTable.PHONE_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PHONE;
+		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
@@ -60,6 +60,14 @@ public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_OWNER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PHONE;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
@@ -138,14 +146,6 @@ public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PAY_CUSTOMER;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_OWNER_REF;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
@@ -155,14 +155,6 @@ public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_LAST_CHANGED_BY;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

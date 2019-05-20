@@ -156,6 +156,10 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.lastChangedBy = stmtResult.getLong(PhoneDbTableColumn.COL_LAST_CHANGED_BY);
 				
+				stmtResult.getLong(PhoneDbTableColumn.COL_COD_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_SNAPSHOT);
+				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
 			
