@@ -31,11 +31,13 @@ public class OwnerResource {
 	@GET
 	@Path(SELECT_OWNER)	
 	public Response selectOwner(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
+							    @HeaderParam("TOKEN_USERNAME")                  String username,
 			                    @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 		
 		OwnerInfo recordInfo = new OwnerInfo();
 		recordInfo.codOwner = codOwner;
-		recordInfo.codLanguage = codLanguage;		
+		recordInfo.username = username;		
+		recordInfo.codLanguage = codLanguage;	
 		
 		Model model = new OwnerModelSelect(recordInfo);
 		model.executeRequest();
