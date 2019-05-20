@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.person.model.action.LazyPersonNodeSnapshot;
 import br.com.gda.business.person.model.action.LazyPersonMergeUsername;
 import br.com.gda.business.person.model.action.LazyPersonUpdate;
 import br.com.gda.business.person.model.action.StdPersonEnforceLChanged;
@@ -113,9 +114,11 @@ public final class RootPersonUpdate implements DeciTree<PersonInfo> {
 		ActionStd<PersonInfo> enforceLChanged = new StdPersonEnforceLChanged(option);
 		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> update = new LazyPersonUpdate(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> snapshot = new LazyPersonNodeSnapshot(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
+		update.addPostAction(snapshot);
 		
 		actions.add(nodeL1);	
 		actions.add(nodeL2);

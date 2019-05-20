@@ -144,6 +144,10 @@ public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
 				dataInfo.codEntityCateg = stmtResult.getString(PersonDbTableColumn.COL_COD_ENTITY_CATEG);
 				dataInfo.codLanguage = stmtResult.getString(PersonDbTableColumn.COL_COD_LANGUAGE);	
 				
+				stmtResult.getLong(PersonDbTableColumn.COL_COD_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codSnapshot = stmtResult.getInt(PersonDbTableColumn.COL_COD_SNAPSHOT);
+				
 				stmtResult.getInt(PersonDbTableColumn.COL_COD_GENDER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codGender = stmtResult.getInt(PersonDbTableColumn.COL_COD_GENDER);

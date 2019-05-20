@@ -9,6 +9,7 @@ import br.com.gda.info.InfoRecord;
 
 public final class PersonInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public long codSnapshot;
 	public long codPerson;
 	public String cpf;
 	public String name;
@@ -26,6 +27,7 @@ public final class PersonInfo extends InfoRecord implements Cloneable {
 	
 	public PersonInfo() {
 		codOwner = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codGender = DefaultValue.gender();
 		codLanguage = DefaultValue.language();		

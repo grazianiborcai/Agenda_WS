@@ -3,10 +3,25 @@ package br.com.gda.business.person.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.GenderInfo;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class PersonMerger {
+	public static PersonInfo mergeWithPersonap(PersonapInfo sourceOne, PersonInfo sourceTwo) {
+		InfoMerger<PersonInfo, PersonapInfo> merger = new PersonMergerPersonap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PersonInfo> mergeWithPersonap(List<PersonapInfo> sourceOnes, List<PersonInfo> sourceTwos) {
+		InfoMerger<PersonInfo, PersonapInfo> merger = new PersonMergerPersonap();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static PersonInfo mergeWithGender(GenderInfo sourceOne, PersonInfo sourceTwo) {
 		InfoMerger<PersonInfo, GenderInfo> merger = new PersonMergerGender();		
 		return merger.merge(sourceOne, sourceTwo);
