@@ -4,8 +4,8 @@ import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
-import br.com.gda.business.personSnapshot.model.decisionTree.RootPersonSnapSelect;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
+import br.com.gda.business.personSnapshot.model.decisionTree.RootPersonapSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class PersonSnapModelSelect implements Model {
+public final class PersonapModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public PersonSnapModelSelect(PersonSnapInfo recordInfo) {
+	public PersonapModelSelect(PersonapInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class PersonSnapModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(PersonSnapInfo recordInfo) {
-		ModelOption<PersonSnapInfo> helperOption = new ModelOption<>();
+	private void buildHelper(PersonapInfo recordInfo) {
+		ModelOption<PersonapInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PersonSnapInfo.class;
+		helperOption.infoRecordClass = PersonapInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class PersonSnapModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<PersonSnapInfo> {		
-		@Override public DeciTree<PersonSnapInfo> getInstance(DeciTreeOption<PersonSnapInfo> option) {
-			return new RootPersonSnapSelect(option);
+	private static class TreeFactory implements DeciTreeFactory<PersonapInfo> {		
+		@Override public DeciTree<PersonapInfo> getInstance(DeciTreeOption<PersonapInfo> option) {
+			return new RootPersonapSelect(option);
 		}		
 	}
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.personCustomer.info.PersonCusInfo;
-import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
 import br.com.gda.business.phoneSnapshot.info.PhoneSnapInfo;
 import br.com.gda.business.snapshot_.info.SnapInfo;
 import br.com.gda.business.user.info.UserInfo;
@@ -36,7 +36,7 @@ public final class UserSnapMerger extends InfoWritterFactory_<UserSnapInfo> {
 	
 	
 	
-	static public UserSnapInfo merge(PersonSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	static public UserSnapInfo merge(PersonapInfo sourceOne, UserSnapInfo sourceTwo) {
 		return new UserSnapMergerPersonSnap().merge(sourceOne, sourceTwo);
 	}
 	
@@ -76,9 +76,9 @@ public final class UserSnapMerger extends InfoWritterFactory_<UserSnapInfo> {
 			return new UserSnapMergerPersonCus().merge((List<PersonCusInfo>) sourceOnes, (List<UserSnapInfo>) sourceTwos);
 		
 		
-		if (sourceOnes.get(0) instanceof PersonSnapInfo 	&&
+		if (sourceOnes.get(0) instanceof PersonapInfo 	&&
 			sourceTwos.get(0) instanceof UserSnapInfo		)
-			return new UserSnapMergerPersonSnap().merge((List<PersonSnapInfo>) sourceOnes, (List<UserSnapInfo>) sourceTwos);		
+			return new UserSnapMergerPersonSnap().merge((List<PersonapInfo>) sourceOnes, (List<UserSnapInfo>) sourceTwos);		
 		
 		
 		if (sourceOnes.get(0) instanceof PhoneSnapInfo 	&&

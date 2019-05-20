@@ -38,9 +38,9 @@ import br.com.gda.business.person.model.PersonModelInsert;
 import br.com.gda.business.person.model.PersonModelUpdate;
 import br.com.gda.business.personCustomer.info.PersonCusInfo;
 import br.com.gda.business.personCustomer.model.PersonCusModelSelect;
-import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
-import br.com.gda.business.personSnapshot.model.PersonSnapModelInsert;
-import br.com.gda.business.personSnapshot.model.PersonSnapModelSelect;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
+import br.com.gda.business.personSnapshot.model.PersonapModelInsert;
+import br.com.gda.business.personSnapshot.model.PersonapModelSelect;
 import br.com.gda.business.personUser_.info.PersonUserInfo;
 import br.com.gda.business.personUser_.model.PersonUserModelSelect;
 import br.com.gda.business.phone.info.PhoneInfo;
@@ -334,11 +334,11 @@ public class TestResource {
 	public Response selectPersonSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
 								         @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
 
-		PersonSnapInfo recordInfo = new PersonSnapInfo();
+		PersonapInfo recordInfo = new PersonapInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codSnapshot = codSnapshot;
 		
-		Model model = new PersonSnapModelSelect(recordInfo);
+		Model model = new PersonapModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -351,7 +351,7 @@ public class TestResource {
 	public Response insertPersonSnapshot(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new PersonSnapModelInsert(incomingData, request);
+		Model model = new PersonapModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}

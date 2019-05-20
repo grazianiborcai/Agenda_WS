@@ -5,8 +5,8 @@ import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
-import br.com.gda.business.personSnapshot.model.decisionTree.RootPersonSnapInsert;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
+import br.com.gda.business.personSnapshot.model.decisionTree.RootPersonapInsert;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -16,13 +16,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class PersonSnapModelInsert implements Model {
+public final class PersonapModelInsert implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public PersonSnapModelInsert(String incomingData, HttpServletRequest request) {
+	public PersonapModelInsert(String incomingData, HttpServletRequest request) {
 		initialize();
 		buildHelper(incomingData, request);
 	}
@@ -37,9 +37,9 @@ public final class PersonSnapModelInsert implements Model {
 	
 	
 	private void buildHelper(String incomingData, HttpServletRequest request) {
-		ModelOption<PersonSnapInfo> helperOption = new ModelOption<>();
+		ModelOption<PersonapInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PersonSnapInfo.class;
+		helperOption.infoRecordClass = PersonapInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -64,9 +64,9 @@ public final class PersonSnapModelInsert implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<PersonSnapInfo> {		
-		@Override public DeciTree<PersonSnapInfo> getInstance(DeciTreeOption<PersonSnapInfo> option) {
-			return new RootPersonSnapInsert(option);
+	private static class TreeFactory implements DeciTreeFactory<PersonapInfo> {		
+		@Override public DeciTree<PersonapInfo> getInstance(DeciTreeOption<PersonapInfo> option) {
+			return new RootPersonapInsert(option);
 		}			
 	}
 }

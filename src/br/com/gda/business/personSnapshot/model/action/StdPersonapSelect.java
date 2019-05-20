@@ -3,8 +3,8 @@ package br.com.gda.business.personSnapshot.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.personSnapshot.dao.PersonSnapInsert;
-import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
+import br.com.gda.business.personSnapshot.dao.PersonapSelect;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.action.ActionStd;
@@ -13,34 +13,34 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdPersonSnapInsert implements ActionStd<PersonSnapInfo> {
-	ActionStd<PersonSnapInfo> actionHelper;
+public final class StdPersonapSelect implements ActionStd<PersonapInfo> {
+	ActionStd<PersonapInfo> actionHelper;
 	
 	
-	public StdPersonSnapInsert(DeciTreeOption<PersonSnapInfo> option) {
-		DaoStmtExec<PersonSnapInfo> sqlStmtExecutor = buildStmtExec(option);
+	public StdPersonapSelect(DeciTreeOption<PersonapInfo> option) {
+		DaoStmtExec<PersonapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<PersonSnapInfo> buildStmtExec(DeciTreeOption<PersonSnapInfo> option) {
-		List<DaoStmtExecOption<PersonSnapInfo>> stmtExecOptions = new ArrayList<>();			
+	private DaoStmtExec<PersonapInfo> buildStmtExec(DeciTreeOption<PersonapInfo> option) {
+		List<DaoStmtExecOption<PersonapInfo>> stmtExecOptions = new ArrayList<>();			
 		
-		for(PersonSnapInfo eachRecord : option.recordInfos) {
-			DaoStmtExecOption<PersonSnapInfo> stmtExecOption = new DaoStmtExecOption<>();
+		for(PersonapInfo eachRecord : option.recordInfos) {
+			DaoStmtExecOption<PersonapInfo> stmtExecOption = new DaoStmtExecOption<>();
 			stmtExecOption.conn = option.conn;
 			stmtExecOption.recordInfo = eachRecord;
 			stmtExecOption.schemaName = option.schemaName;
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new PersonSnapInsert(stmtExecOptions);
+		return new PersonapSelect(stmtExecOptions);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PersonSnapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<PersonapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	
@@ -52,7 +52,7 @@ public final class StdPersonSnapInsert implements ActionStd<PersonSnapInfo> {
 	
 	
 	
-	@Override public DeciResult<PersonSnapInfo> getDecisionResult() {
+	@Override public DeciResult<PersonapInfo> getDecisionResult() {
 		return actionHelper.getDecisionResult();
 	}
 }

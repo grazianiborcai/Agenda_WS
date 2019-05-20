@@ -2,21 +2,23 @@ package br.com.gda.business.personSnapshot.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class PersonSnapCheckHasSnap extends ModelCheckerTemplateSimple<PersonSnapInfo> {
+public final class PersonapCheckWrite extends ModelCheckerTemplateSimple<PersonapInfo> {
 
-	public PersonSnapCheckHasSnap() {
+	public PersonapCheckWrite() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(PersonSnapInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codSnapshot	<= 0 )				
+	@Override protected boolean checkHook(PersonapInfo recordInfo, Connection conn, String schemaName) {	
+		if ( recordInfo.codOwner 	<= 0	||	
+			 recordInfo.codPerson 	<= 0		)
+			
 			return super.FAILED;
 		
 		
@@ -26,12 +28,12 @@ public final class PersonSnapCheckHasSnap extends ModelCheckerTemplateSimple<Per
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PERSON_SNAPSHOT_IS_NULL;
+		return SystemMessage.MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.PERSON_SNAPSHOT_IS_NULL;
+		return SystemCode.MANDATORY_FIELD_EMPTY;
 	}
 }

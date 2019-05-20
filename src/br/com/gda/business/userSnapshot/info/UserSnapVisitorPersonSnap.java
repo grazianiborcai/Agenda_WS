@@ -3,13 +3,13 @@ package br.com.gda.business.userSnapshot.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
-final class UserSnapVisitorPersonSnap implements InfoMergerVisitor_<UserSnapInfo, PersonSnapInfo, UserSnapInfo> {
+final class UserSnapVisitorPersonSnap implements InfoMergerVisitor_<UserSnapInfo, PersonapInfo, UserSnapInfo> {
 
-	@Override public UserSnapInfo writeRecord(PersonSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	@Override public UserSnapInfo writeRecord(PersonapInfo sourceOne, UserSnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		UserSnapInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class UserSnapVisitorPersonSnap implements InfoMergerVisitor_<UserSnapInfo
 	
 	
 	
-	private void checkArgument(PersonSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	private void checkArgument(PersonapInfo sourceOne, UserSnapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,7 +37,7 @@ final class UserSnapVisitorPersonSnap implements InfoMergerVisitor_<UserSnapInfo
 	
 	
 	
-	private UserSnapInfo merge(PersonSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	private UserSnapInfo merge(PersonapInfo sourceOne, UserSnapInfo sourceTwo) {
 		sourceTwo.codPerson = sourceOne.codPerson;
 		sourceTwo.cpf = sourceOne.cpf;
 		sourceTwo.name = sourceOne.name;
@@ -52,7 +52,7 @@ final class UserSnapVisitorPersonSnap implements InfoMergerVisitor_<UserSnapInfo
 	
 	
 	
-	@Override public boolean shouldWrite(PersonSnapInfo sourceOne, UserSnapInfo sourceTwo) {
+	@Override public boolean shouldWrite(PersonapInfo sourceOne, UserSnapInfo sourceTwo) {
 		return (sourceOne.codOwner 		== sourceTwo.codOwner 		&&
 				sourceOne.codSnapshot 	== sourceTwo.codSnapshot		);
 	}

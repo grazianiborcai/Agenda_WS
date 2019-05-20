@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -19,22 +19,22 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class PersonSnapSelectSingle implements DaoStmt<PersonSnapInfo> {
+public final class PersonapSelectSingle implements DaoStmt<PersonapInfo> {
 	private final String LT_PERSON = DaoDbTable.PERSON_SNAPSHOT_TABLE;
 	
-	private DaoStmt<PersonSnapInfo> stmtSql;
-	private DaoStmtOption<PersonSnapInfo> stmtOption;
+	private DaoStmt<PersonapInfo> stmtSql;
+	private DaoStmtOption<PersonapInfo> stmtOption;
 	
 	
 	
-	public PersonSnapSelectSingle(Connection conn, PersonSnapInfo recordInfo, String schemaName) {
+	public PersonapSelectSingle(Connection conn, PersonapInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, PersonSnapInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, PersonapInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -50,14 +50,11 @@ public final class PersonSnapSelectSingle implements DaoStmt<PersonSnapInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean IGNORE_RECORD_MODE = true;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new PersonSnapWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new PersonapWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -87,14 +84,14 @@ public final class PersonSnapSelectSingle implements DaoStmt<PersonSnapInfo> {
 
 	
 	
-	@Override public List<PersonSnapInfo> getResultset() {
+	@Override public List<PersonapInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<PersonSnapInfo> getNewInstance() {
-		return new PersonSnapSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<PersonapInfo> getNewInstance() {
+		return new PersonapSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -102,37 +99,41 @@ public final class PersonSnapSelectSingle implements DaoStmt<PersonSnapInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<PersonSnapInfo> {
+	private static class ResultParser implements DaoResultParser<PersonapInfo> {
 		private final boolean NOT_NULL = false;
 		
 		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<PersonSnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<PersonSnapInfo> finalResult = new ArrayList<>();
+		@Override public List<PersonapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<PersonapInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 					return finalResult;
 			
 			do {
-				PersonSnapInfo dataInfo = new PersonSnapInfo();
-				dataInfo.codOwner = stmtResult.getLong(PersonSnapDbTableColumn.COL_COD_OWNER);
-				dataInfo.codSnapshot = stmtResult.getLong(PersonSnapDbTableColumn.COL_COD_SNAPSHOT);
-				dataInfo.codPerson = stmtResult.getLong(PersonSnapDbTableColumn.COL_COD_PERSON);
-				dataInfo.cpf = stmtResult.getString(PersonSnapDbTableColumn.COL_CPF);
-				dataInfo.name = stmtResult.getString(PersonSnapDbTableColumn.COL_NAME);			
-				dataInfo.email = stmtResult.getString(PersonSnapDbTableColumn.COL_EMAIL);						
-				dataInfo.recordMode = stmtResult.getString(PersonSnapDbTableColumn.COL_RECORD_MODE);
-				dataInfo.codEntityCateg = stmtResult.getString(PersonSnapDbTableColumn.COL_COD_ENTITY_CATEG);
+				PersonapInfo dataInfo = new PersonapInfo();
+				dataInfo.codOwner = stmtResult.getLong(PersonapDbTableColumn.COL_COD_OWNER);
+				dataInfo.codSnapshot = stmtResult.getLong(PersonapDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.codPerson = stmtResult.getLong(PersonapDbTableColumn.COL_COD_PERSON);
+				dataInfo.cpf = stmtResult.getString(PersonapDbTableColumn.COL_CPF);
+				dataInfo.name = stmtResult.getString(PersonapDbTableColumn.COL_NAME);			
+				dataInfo.email = stmtResult.getString(PersonapDbTableColumn.COL_EMAIL);						
+				dataInfo.recordMode = stmtResult.getString(PersonapDbTableColumn.COL_RECORD_MODE);
+				dataInfo.codEntityCateg = stmtResult.getString(PersonapDbTableColumn.COL_COD_ENTITY_CATEG);
 				
-				stmtResult.getInt(PersonSnapDbTableColumn.COL_COD_GENDER);
+				stmtResult.getLong(PersonapDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codGender = stmtResult.getInt(PersonSnapDbTableColumn.COL_COD_GENDER);
+					dataInfo.lastChangedBy = stmtResult.getInt(PersonapDbTableColumn.COL_LAST_CHANGED_BY);
 				
-				Timestamp lastChanged = stmtResult.getTimestamp(PersonSnapDbTableColumn.COL_LAST_CHANGED);
+				stmtResult.getInt(PersonapDbTableColumn.COL_COD_GENDER);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codGender = stmtResult.getInt(PersonapDbTableColumn.COL_COD_GENDER);
+				
+				Timestamp lastChanged = stmtResult.getTimestamp(PersonapDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
 				
-				Date tempDate = stmtResult.getDate(PersonSnapDbTableColumn.COL_COD_BIRTH_DATE);
+				Date tempDate = stmtResult.getDate(PersonapDbTableColumn.COL_COD_BIRTH_DATE);
 				if (tempDate != null)
 					dataInfo.birthDate = tempDate.toLocalDate();
 				

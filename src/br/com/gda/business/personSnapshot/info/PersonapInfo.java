@@ -7,7 +7,7 @@ import java.util.List;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class PersonSnapInfo extends InfoRecord implements Cloneable {
+public final class PersonapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codSnapshot;
 	public long codPerson;
@@ -21,27 +21,29 @@ public final class PersonSnapInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
+	public long lastChangedBy;
 	
 	
-	public PersonSnapInfo() {
+	public PersonapInfo() {
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codGender = DefaultValue.gender();
 		codLanguage = DefaultValue.language();		
 		recordMode = DefaultValue.recordMode();		
+		lastChangedBy = DefaultValue.number();
 	}
 	
 	
 	
-	public static PersonSnapInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, PersonSnapInfo.class);
+	public static PersonapInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, PersonapInfo.class);
 	}
 	
 	
 	
-	public static List<PersonSnapInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, PersonSnapInfo.class);
+	public static List<PersonapInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, PersonapInfo.class);
 	}
 	
 	
@@ -82,11 +84,11 @@ public final class PersonSnapInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof PersonSnapInfo))
+		if (!(o instanceof PersonapInfo))
 			return false;
 		
 		
-		PersonSnapInfo obj = (PersonSnapInfo) o;		
+		PersonapInfo obj = (PersonapInfo) o;		
 		return (codOwner 	== obj.codOwner 	&& 
 				codSnapshot == obj.codSnapshot 	&& 
 				codPerson 	== obj.codPerson	&&

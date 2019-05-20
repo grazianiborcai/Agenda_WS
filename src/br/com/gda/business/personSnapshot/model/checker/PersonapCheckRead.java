@@ -2,20 +2,20 @@ package br.com.gda.business.personSnapshot.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.personSnapshot.info.PersonSnapInfo;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class PersonSnapCheckRead extends ModelCheckerTemplateSimple<PersonSnapInfo> {
+public final class PersonapCheckRead extends ModelCheckerTemplateSimple<PersonapInfo> {
 
-	public PersonSnapCheckRead() {
+	public PersonapCheckRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(PersonSnapInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(PersonapInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner  	 <= 0 ||
 			 recordInfo.codSnapshot  <= 0 ||
 			 recordInfo.codPerson 	 <= 0		)			
