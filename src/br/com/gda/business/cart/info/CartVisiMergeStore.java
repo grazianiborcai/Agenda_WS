@@ -3,24 +3,25 @@ package br.com.gda.business.cart.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.CurrencyInfo;
+import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.obsolete.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 
-final class CartVisitorCurrency implements InfoMergerVisitor_<CartInfo, CurrencyInfo, CartInfo> {
+final class CartVisiMergeStore implements InfoMergerVisitorV2<CartInfo, StoreInfo> {
 
-	@Override public CartInfo writeRecord(CurrencyInfo sourceOne, CartInfo sourceTwo) {
+	@Override public CartInfo writeRecord(StoreInfo sourceOne, CartInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		CartInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.txtCurr = sourceOne.txtCurr;
+		resultInfo.nameStore = "sourceOne.name";		//TODO: Ajustar nome
+		resultInfo.codTimezone = sourceOne.codTimezone;
 
 		return resultInfo;
 	}
 	
 	
 	
-	private void checkArgument(CurrencyInfo sourceOne, CartInfo sourceTwo) {
+	private void checkArgument(StoreInfo sourceOne, CartInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -39,8 +40,8 @@ final class CartVisitorCurrency implements InfoMergerVisitor_<CartInfo, Currency
 
 
 	
-	@Override public boolean shouldWrite(CurrencyInfo sourceOne, CartInfo sourceTwo) {
-		return (sourceOne.codCurr.equals(sourceTwo.codCurr));
+	@Override public boolean shouldWrite(StoreInfo sourceOne, CartInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codStore == sourceTwo.codStore);
 	}
 	
 	

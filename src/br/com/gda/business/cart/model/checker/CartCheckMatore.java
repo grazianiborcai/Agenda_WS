@@ -8,14 +8,14 @@ import br.com.gda.business.materialStore.model.checker.MatoreCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class CartCheckMS implements ModelChecker<CartInfo> {
+public final class CartCheckMatore implements ModelChecker<CartInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<MatoreInfo> checker;
 	
 	
-	public CartCheckMS(ModelCheckerOption option) {
+	public CartCheckMatore(ModelCheckerOption option) {
 		checker = new MatoreCheckExist(option);
 	}
 	

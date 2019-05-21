@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartMergeFeeStore extends ActionLazyTemplate<CartInfo, CartInfo> {
+public final class LazyCartUpdateHdr extends ActionLazyTemplate<CartInfo, CartInfo> {
 	
-	public LazyCartMergeFeeStore(Connection conn, String schemaName) {
+	public LazyCartUpdateHdr(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,12 +24,12 @@ public final class LazyCartMergeFeeStore extends ActionLazyTemplate<CartInfo, Ca
 	
 	
 	@Override protected ActionStd<CartInfo> getInstanceOfActionHook(DeciTreeOption<CartInfo> option) {
-		return new StdCartMergeFeeStore(option);
+		return new StdCartUpdateHdr(option);
 	}
 	
 	
 	
-	@Override protected DeciResult<CartInfo> translateResultHook(DeciResult<CartInfo> result) {		
+	@Override protected DeciResult<CartInfo> translateResultHook(DeciResult<CartInfo> result) {
 		return result;
 	}
 }

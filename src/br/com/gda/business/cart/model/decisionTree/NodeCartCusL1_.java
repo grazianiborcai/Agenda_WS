@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.action.StdCartSuccess;
-import br.com.gda.business.cart.model.checker.CartCheckHasPerson;
+import br.com.gda.business.cart.model.checker.CartCheckHasCus;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -16,11 +16,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeCartPersonL1 implements DeciTree<CartInfo> {
+public final class NodeCartCusL1_ implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
-	public NodeCartPersonL1(DeciTreeOption<CartInfo> option) {
+	public NodeCartCusL1_(DeciTreeOption<CartInfo> option) {
 		DeciTreeHelperOption<CartInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
@@ -38,7 +38,7 @@ public final class NodeCartPersonL1 implements DeciTree<CartInfo> {
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();
 		ModelChecker<CartInfo> checker;
 
-		checker = new CartCheckHasPerson();
+		checker = new CartCheckHasCus();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -49,7 +49,7 @@ public final class NodeCartPersonL1 implements DeciTree<CartInfo> {
 	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartInfo> nodeL2 = new NodeCartPersonL2(option).toAction();
+		ActionStd<CartInfo> nodeL2 = new NodeCartCusL2_(option).toAction();
 		actions.add(nodeL2);
 		return actions;
 	}

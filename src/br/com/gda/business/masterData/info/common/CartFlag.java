@@ -1,4 +1,4 @@
-package br.com.gda.business.cart.info;
+package br.com.gda.business.masterData.info.common;
 
 public enum CartFlag {
 	ITEM('I'), FEE('F'), TOTAL('T'), ALL('A'), NON_ITEM('N');

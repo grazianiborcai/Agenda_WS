@@ -8,14 +8,14 @@ import br.com.gda.business.user.model.checker.UserCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class CartCheckUser implements ModelChecker<CartInfo> {
+public final class CartCheckUser_ implements ModelChecker<CartInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<UserInfo> checker;
 	
 	
-	public CartCheckUser(ModelCheckerOption option) {
+	public CartCheckUser_(ModelCheckerOption option) {
 		checker = new UserCheckExist(option);
 	}
 	

@@ -16,12 +16,12 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class CartCheckExistServ extends ModelCheckerTemplateSimple<CartInfo> {
+public final class CartCheckExistServ_ extends ModelCheckerTemplateSimple<CartInfo> {
 	private final boolean RECORD_EXIST = true;
 	private final boolean NOT_FOUND = false;
 	
 	
-	public CartCheckExistServ(ModelCheckerOption option) {
+	public CartCheckExistServ_(ModelCheckerOption option) {
 		super(option);
 	}
 	

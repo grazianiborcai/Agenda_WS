@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.action.StdCartInsertHdr;
-import br.com.gda.business.cart.model.action.StdCartUpdateHdr;
-import br.com.gda.business.cart.model.checker.CartCheckExistHdr;
+import br.com.gda.business.cart.model.action.StdCartSuccess;
+import br.com.gda.business.cart.model.checker.CartCheckCus;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -18,18 +17,17 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class NodeCartUpsertHdr implements DeciTree<CartInfo> {
+public final class NodeCartCusL2_ implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
-	public NodeCartUpsertHdr(DeciTreeOption<CartInfo> option) {
+	public NodeCartCusL2_(DeciTreeOption<CartInfo> option) {
 		DeciTreeHelperOption<CartInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
 		
 		tree = new DeciTreeHelper<>(helperOption);
 	}
@@ -42,12 +40,12 @@ final class NodeCartUpsertHdr implements DeciTree<CartInfo> {
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
 		ModelCheckerOption checkerOption;
-		
+
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckExistHdr(checkerOption);
+		checker = new CartCheckCus(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -56,22 +54,10 @@ final class NodeCartUpsertHdr implements DeciTree<CartInfo> {
 	
 	
 	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
-		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
+		List<ActionStd<CartInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartInfo> updateHdr = new StdCartUpdateHdr(option);	
-		
-		actions.add(updateHdr);		
-		return actions;
-	}
-	
-	
-	
-	private List<ActionStd<CartInfo>> buildActionsOnFailed(DeciTreeOption<CartInfo> option) {
-		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
-		
-		ActionStd<CartInfo> insertHdr = new StdCartInsertHdr(option);	
-		
-		actions.add(insertHdr);		
+		ActionStd<CartInfo> success = new StdCartSuccess(option);
+		actions.add(success);
 		return actions;
 	}
 	

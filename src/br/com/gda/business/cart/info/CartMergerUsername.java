@@ -1,14 +1,14 @@
 package br.com.gda.business.cart.info;
 
-import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.info.InfoUniquifier;
+import br.com.gda.security.username.info.UsernameInfo;
 
-final class CartMergerFeeDefault extends InfoMergerTemplate<CartInfo, FeeDefaultInfo> {
+final class CartMergerUsername extends InfoMergerTemplate<CartInfo, UsernameInfo> {
 
-	@Override protected InfoMergerVisitorV2<CartInfo, FeeDefaultInfo> getVisitorHook() {
-		return new CartVisiMergeFeeDefault();
+	@Override protected InfoMergerVisitorV2<CartInfo, UsernameInfo> getVisitorHook() {
+		return new CartVisiMergeUsername();
 	}
 	
 	

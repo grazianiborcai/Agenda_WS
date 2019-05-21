@@ -5,17 +5,16 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.action.StdCartEnforceItemNext;
+import br.com.gda.business.cart.model.action.StdCartMergeUsername;
 import br.com.gda.business.cart.model.action.LazyCartEnforceItmCategItem;
 import br.com.gda.business.cart.model.action.LazyCartEnforceLChanged;
 import br.com.gda.business.cart.model.action.LazyCartMergeUser;
 import br.com.gda.business.cart.model.action.LazyCartNodetInsertL1;
-import br.com.gda.business.cart.model.checker.CartCheckExistServ;
 import br.com.gda.business.cart.model.checker.CartCheckLangu;
-import br.com.gda.business.cart.model.checker.CartCheckMS;
+import br.com.gda.business.cart.model.checker.CartCheckMatore;
 import br.com.gda.business.cart.model.checker.CartCheckMat;
 import br.com.gda.business.cart.model.checker.CartCheckOwner;
 import br.com.gda.business.cart.model.checker.CartCheckStore;
-import br.com.gda.business.cart.model.checker.CartCheckUser;
 import br.com.gda.business.cart.model.checker.CartCheckWriteRoot;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
@@ -48,7 +47,6 @@ public final class RootCartInsert implements DeciTree<CartInfo> {
 	
 	private ModelChecker<CartInfo> buildDecisionChecker(DeciTreeOption<CartInfo> option) {
 		final boolean EXIST_ON_DB = true;
-		final boolean DONT_EXIST = false;
 		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
@@ -75,13 +73,6 @@ public final class RootCartInsert implements DeciTree<CartInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckUser(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new CartCheckStore(checkerOption);
 		queue.add(checker);
 		
@@ -96,16 +87,10 @@ public final class RootCartInsert implements DeciTree<CartInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartCheckMS(checkerOption);
+		checker = new CartCheckMatore(checkerOption);
 		queue.add(checker);
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST;	
-		checker = new CartCheckExistServ(checkerOption);
-		queue.add(checker);
-		
+		//TODO: verificar serico
 		//TODO: verificar limite de itens no carrinho
 		//TODO: verificar quantidade. Somente 1 para servico. Nao pode ser negativa para todos os casos
 		//TODO: verificar valores negativos
@@ -119,11 +104,17 @@ public final class RootCartInsert implements DeciTree<CartInfo> {
 	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartInfo> nodeCus = new NodeCartCusL1(option).toAction();
-		ActionStd<CartInfo> nodePerson = new NodeCartPersonL1(option).toAction();
+		ActionStd<CartInfo> nodeHeader = new NodeCartHdr(option).toAction();
+		
+		
+		actions.add(nodeHeader);
+		return actions;
+		
+		/*
+
 		ActionStd<CartInfo> enforceItem = new StdCartEnforceItemNext(option);
 		ActionLazy<CartInfo> enforceItemCateg = new LazyCartEnforceItmCategItem(option.conn, option.schemaName);
-		ActionLazy<CartInfo> enforceLChanged = new LazyCartEnforceLChanged(option.conn, option.schemaName);
+		
 		ActionLazy<CartInfo> mergeUser = new LazyCartMergeUser(option.conn, option.schemaName);
 		ActionLazy<CartInfo> nodeL1 = new LazyCartNodetInsertL1(option.conn, option.schemaName);
 		
@@ -135,7 +126,7 @@ public final class RootCartInsert implements DeciTree<CartInfo> {
 		actions.add(nodeCus);
 		actions.add(nodePerson);
 		actions.add(enforceItem);
-		return actions;
+		return actions; */
 	}
 	
 	

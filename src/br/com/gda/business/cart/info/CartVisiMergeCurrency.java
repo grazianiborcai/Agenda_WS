@@ -3,24 +3,24 @@ package br.com.gda.business.cart.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.WeekdayInfo;
+import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.obsolete.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 
-final class CartVisitorWeekday implements InfoMergerVisitor_<CartInfo, WeekdayInfo, CartInfo> {
+final class CartVisiMergeCurrency implements InfoMergerVisitorV2<CartInfo, CurrencyInfo> {
 
-	@Override public CartInfo writeRecord(WeekdayInfo sourceOne, CartInfo sourceTwo) {
+	@Override public CartInfo writeRecord(CurrencyInfo sourceOne, CartInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		CartInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.txtWeekday = sourceOne.txtWeekday;
+		resultInfo.txtCurr = sourceOne.txtCurr;
 
 		return resultInfo;
 	}
 	
 	
 	
-	private void checkArgument(WeekdayInfo sourceOne, CartInfo sourceTwo) {
+	private void checkArgument(CurrencyInfo sourceOne, CartInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -39,8 +39,8 @@ final class CartVisitorWeekday implements InfoMergerVisitor_<CartInfo, WeekdayIn
 
 
 	
-	@Override public boolean shouldWrite(WeekdayInfo sourceOne, CartInfo sourceTwo) {
-		return (sourceOne.codWeekday == sourceTwo.codWeekday);
+	@Override public boolean shouldWrite(CurrencyInfo sourceOne, CartInfo sourceTwo) {
+		return (sourceOne.codCurr.equals(sourceTwo.codCurr));
 	}
 	
 	

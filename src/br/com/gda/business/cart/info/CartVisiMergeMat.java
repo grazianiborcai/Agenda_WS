@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.obsolete.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 
-final class CartVisitorMat implements InfoMergerVisitor_<CartInfo, MatInfo, CartInfo> {
+final class CartVisiMergeMat implements InfoMergerVisitorV2<CartInfo, MatInfo> {
 
 	@Override public CartInfo writeRecord(MatInfo sourceOne, CartInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

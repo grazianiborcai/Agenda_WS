@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.cart.info.CartFlag;
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
+import br.com.gda.business.masterData.info.common.CartFlag;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionMultiVisitorTemplate;
 

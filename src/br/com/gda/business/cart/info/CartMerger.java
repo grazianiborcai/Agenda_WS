@@ -11,117 +11,145 @@ import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.totalAmount.info.TotAmountInfo;
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.info.obsolete.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
+import br.com.gda.security.username.info.UsernameInfo;
 
-public final class CartMerger extends InfoWritterFactory_<CartInfo> {	
-	
-	public CartMerger() {
-		super(new CartUniquifier());
+public final class CartMerger {	
+	public static CartInfo mergeWithCartCateg(CartCategInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, CartCategInfo> merger = new CartMergerCartCateg();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public CartInfo merge(MatInfo sourceOne, CartInfo sourceTwo) {
-		return new CartMergerMat().merge(sourceOne, sourceTwo);
+	public static List<CartInfo> mergeWithCartCateg(List<CartCategInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, CartCategInfo> merger = new CartMergerCartCateg();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
 	
 	
-	static public CartInfo merge(StoreInfo sourceOne, CartInfo sourceTwo) {
-		return new CartMergerStore().merge(sourceOne, sourceTwo);
+	public static CartInfo mergeWithCurrency(CurrencyInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, CurrencyInfo> merger = new CartMergerCurrency();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public CartInfo merge(WeekdayInfo sourceOne, CartInfo sourceTwo) {
-		return new CartMergerWeekday().merge(sourceOne, sourceTwo);
+	public static List<CartInfo> mergeWithCurrency(List<CurrencyInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, CurrencyInfo> merger = new CartMergerCurrency();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
+	public static CartInfo mergeWithFeeDefault(FeeDefaultInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, FeeDefaultInfo> merger = new CartMergerFeeDefault();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public CartInfo merge(FeetoreInfo sourceOne, CartInfo sourceTwo) {
-		return new CartMergerFeeStore().merge(sourceOne, sourceTwo);
+	public static List<CartInfo> mergeWithFeeDefault(List<FeeDefaultInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, FeeDefaultInfo> merger = new CartMergerFeeDefault();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
+	public static CartInfo mergeWithFeetore(FeetoreInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, FeetoreInfo> merger = new CartMergerFeetore();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public CartInfo merge(FeeDefaultInfo sourceOne, CartInfo sourceTwo) {
-		return new CartMergerFeeDefault().merge(sourceOne, sourceTwo);
+	public static List<CartInfo> mergeWithFeetore(List<FeetoreInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, FeetoreInfo> merger = new CartMergerFeetore();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}			
+	
+	
+	
+	public static CartInfo mergeWithMat(MatInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, MatInfo> merger = new CartMergerMat();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public CartInfo merge(TotAmountInfo sourceOne, CartInfo sourceTwo) {
-		return new CartMergerTotAmount().merge(sourceOne, sourceTwo);
+	public static List<CartInfo> mergeWithMat(List<MatInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, MatInfo> merger = new CartMergerMat();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
+	public static CartInfo mergeWithStore(StoreInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, StoreInfo> merger = new CartMergerStore();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public CartInfo merge(UserInfo sourceOne, CartInfo sourceTwo) {
-		return new CartMergerUser().merge(sourceOne, sourceTwo);
+	public static List<CartInfo> mergeWithStore(List<StoreInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, StoreInfo> merger = new CartMergerStore();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
+	public static CartInfo mergeWithTotAmount(TotAmountInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, TotAmountInfo> merger = new CartMergerTotAmount();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public CartInfo merge(CartCategInfo sourceOne, CartInfo sourceTwo) {
-		return new CartMergerCartCateg().merge(sourceOne, sourceTwo);
+	public static List<CartInfo> mergeWithTotAmount(List<TotAmountInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, TotAmountInfo> merger = new CartMergerTotAmount();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
+	public static CartInfo mergeWithUser(UserInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, UserInfo> merger = new CartMergerUser();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public CartInfo merge(CurrencyInfo sourceOne, CartInfo sourceTwo) {
-		return new CartMergerCurrency().merge(sourceOne, sourceTwo);
+	public static List<CartInfo> mergeWithUser(List<UserInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, UserInfo> merger = new CartMergerUser();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
+	public static CartInfo mergeWithUsername(UsernameInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, UsernameInfo> merger = new CartMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	@Override protected List<CartInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {		
-		if (sourceOnes.get(0) instanceof MatInfo 			&&
-			sourceTwos.get(0) instanceof CartInfo		)
-			return new CartMergerMat().merge((List<MatInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof StoreInfo 			&&
-			sourceTwos.get(0) instanceof CartInfo		)
-			return new CartMergerStore().merge((List<StoreInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof WeekdayInfo 		&&
-			sourceTwos.get(0) instanceof CartInfo		)
-			return new CartMergerWeekday().merge((List<WeekdayInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof FeetoreInfo 		&&
-			sourceTwos.get(0) instanceof CartInfo		)
-			return new CartMergerFeeStore().merge((List<FeetoreInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof FeeDefaultInfo 	&&
-			sourceTwos.get(0) instanceof CartInfo		)
-			return new CartMergerFeeDefault().merge((List<FeeDefaultInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof TotAmountInfo 		&&
-			sourceTwos.get(0) instanceof CartInfo		)
-			return new CartMergerTotAmount().merge((List<TotAmountInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof UserInfo 			&&
-			sourceTwos.get(0) instanceof CartInfo		)
-			return new CartMergerUser().merge((List<UserInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof CartCategInfo 		&&
-			sourceTwos.get(0) instanceof CartInfo		)
-			return new CartMergerCartCateg().merge((List<CartCategInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
-		
-		
-		if (sourceOnes.get(0) instanceof CurrencyInfo 		&&
-			sourceTwos.get(0) instanceof CartInfo		)
-			return new CartMergerCurrency().merge((List<CurrencyInfo>) sourceOnes, (List<CartInfo>) sourceTwos);
-		
-		
-		return null;
+	public static List<CartInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, UsernameInfo> merger = new CartMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
+	public static CartInfo mergeWithWeekday(WeekdayInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, WeekdayInfo> merger = new CartMergerWeekday();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
+	
+	
+	
+	public static List<CartInfo> mergeWithWeekday(List<WeekdayInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, WeekdayInfo> merger = new CartMergerWeekday();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
 }

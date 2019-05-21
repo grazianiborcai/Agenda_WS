@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCartMergeCartCateg implements ActionStd<CartInfo> {
+public final class StdCartMergeFeetore implements ActionStd<CartInfo> {
 	private ActionStd<CartInfo> actionHelper;	
 	
 	
-	public StdCartMergeCartCateg(DeciTreeOption<CartInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCartMergeCartCateg(option.conn, option.schemaName));
+	public StdCartMergeFeetore(DeciTreeOption<CartInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCartMergeFeetore(option.conn, option.schemaName));
 	}
 	
 	

@@ -1,18 +1,19 @@
 package br.com.gda.business.cart.info;
 
-import java.util.List;
-
 import br.com.gda.business.masterData.info.CurrencyInfo;
-import br.com.gda.info.obsolete.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class CartMergerCurrency extends InfoMerger_<CartInfo, CurrencyInfo, CartInfo> {
-	public CartInfo merge(CurrencyInfo sourceOne, CartInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new CartVisitorCurrency());
+final class CartMergerCurrency extends InfoMergerTemplate<CartInfo, CurrencyInfo> {
+
+	@Override protected InfoMergerVisitorV2<CartInfo, CurrencyInfo> getVisitorHook() {
+		return new CartVisiMergeCurrency();
 	}
 	
 	
 	
-	public List<CartInfo> merge(List<CurrencyInfo> sourceOnes, List<CartInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new CartVisitorCurrency());
+	@Override protected InfoUniquifier<CartInfo> getUniquifierHook() {
+		return new CartUniquifier();
 	}
 }

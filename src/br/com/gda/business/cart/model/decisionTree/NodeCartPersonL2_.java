@@ -17,11 +17,11 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeCartPersonL2 implements DeciTree<CartInfo> {
+public final class NodeCartPersonL2_ implements DeciTree<CartInfo> {
 	private DeciTree<CartInfo> tree;
 	
 	
-	public NodeCartPersonL2(DeciTreeOption<CartInfo> option) {
+	public NodeCartPersonL2_(DeciTreeOption<CartInfo> option) {
 		DeciTreeHelperOption<CartInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);

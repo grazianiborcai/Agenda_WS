@@ -1,18 +1,19 @@
 package br.com.gda.business.cart.info;
 
-import java.util.List;
-
 import br.com.gda.business.masterData.info.CartCategInfo;
-import br.com.gda.info.obsolete.InfoMerger_;
+import br.com.gda.info.InfoMergerTemplate;
+import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoUniquifier;
 
-final class CartMergerCartCateg extends InfoMerger_<CartInfo, CartCategInfo, CartInfo> {
-	public CartInfo merge(CartCategInfo sourceOne, CartInfo sourceTwo) {
-		return super.write(sourceOne, sourceTwo, new CartVisitorCartCateg());
+final class CartMergerCartCateg extends InfoMergerTemplate<CartInfo, CartCategInfo> {
+
+	@Override protected InfoMergerVisitorV2<CartInfo, CartCategInfo> getVisitorHook() {
+		return new CartVisiMergeCartCateg();
 	}
 	
 	
 	
-	public List<CartInfo> merge(List<CartCategInfo> sourceOnes, List<CartInfo> sourceTwos) {		
-		return super.write(sourceOnes, sourceTwos, new CartVisitorCartCateg());
+	@Override protected InfoUniquifier<CartInfo> getUniquifierHook() {
+		return new CartUniquifier();
 	}
 }

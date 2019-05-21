@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.action.LazyCartFlagFee;
 import br.com.gda.business.cart.model.action.LazyCartMergeFeeDefault;
-import br.com.gda.business.cart.model.action.LazyCartMergeFeeStore;
+import br.com.gda.business.cart.model.action.LazyCartMergeFeetore;
 import br.com.gda.business.cart.model.action.MultiCartAddFee;
 import br.com.gda.business.cart.model.action.StdCartFirstRow;
 import br.com.gda.business.cart.model.action.StdCartFlagItem;
@@ -67,7 +67,7 @@ public final class NodeCartFee implements DeciTree<CartInfo> {
 		ActionStd<CartInfo> flagItem = new StdCartFlagItem(option);
 		ActionLazy<CartInfo> addFee = new MultiCartAddFee(option.conn, option.schemaName);
 		ActionStd<CartInfo> firstRow = new StdCartFirstRow(option);
-		ActionLazy<CartInfo> mergeFeeStore = new LazyCartMergeFeeStore(option.conn, option.schemaName);
+		ActionLazy<CartInfo> mergeFeeStore = new LazyCartMergeFeetore(option.conn, option.schemaName);
 		ActionLazy<CartInfo> flagFee = new LazyCartFlagFee(option.conn, option.schemaName);
 		
 		

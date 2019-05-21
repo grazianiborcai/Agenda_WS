@@ -1,16 +1,16 @@
 package br.com.gda.business.cart.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.decisionTree.RootUserSelect;
-import br.com.gda.info.obsolete.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCartMergeUser extends ActionVisitorTemplateMerge_<CartInfo, UserInfo> {
+final class VisiCartMergeUser extends ActionVisitorTemplateMergeV2<CartInfo, UserInfo> {
 	
 	public VisiCartMergeUser(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class);
@@ -24,7 +24,13 @@ final class VisiCartMergeUser extends ActionVisitorTemplateMerge_<CartInfo, User
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<CartInfo>> getMergerClassHook() {
-		return CartMerger.class;
+	@Override protected List<CartInfo> mergeHook(List<CartInfo> recordInfos, List<UserInfo> selectedInfos) {	
+		return CartMerger.mergeWithUser(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

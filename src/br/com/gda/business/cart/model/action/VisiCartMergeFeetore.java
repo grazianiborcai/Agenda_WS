@@ -1,18 +1,18 @@
 package br.com.gda.business.cart.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.feeStore.info.FeetoreInfo;
 import br.com.gda.business.feeStore.model.decisionTree.RootFeetoreSelectService;
-import br.com.gda.info.obsolete.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCartMergeFeeStore extends ActionVisitorTemplateMerge_<CartInfo, FeetoreInfo> {
+final class VisiCartMergeFeetore extends ActionVisitorTemplateMergeV2<CartInfo, FeetoreInfo> {
 	
-	public VisiCartMergeFeeStore(Connection conn, String schemaName) {
+	public VisiCartMergeFeetore(Connection conn, String schemaName) {
 		super(conn, schemaName, FeetoreInfo.class);
 	}
 	
@@ -24,7 +24,13 @@ final class VisiCartMergeFeeStore extends ActionVisitorTemplateMerge_<CartInfo, 
 	
 	
 	
-	@Override protected Class<? extends InfoWritterFactory_<CartInfo>> getMergerClassHook() {
-		return CartMerger.class;
+	@Override protected List<CartInfo> mergeHook(List<CartInfo> recordInfos, List<FeetoreInfo> selectedInfos) {	
+		return CartMerger.mergeWithFeetore(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

@@ -3,16 +3,16 @@ package br.com.gda.business.cart.model.action;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCartMergeFeeStore implements ActionStd<CartInfo> {
+public final class StdCartMergeUsername implements ActionStd<CartInfo> {
 	private ActionStd<CartInfo> actionHelper;	
 	
 	
-	public StdCartMergeFeeStore(DeciTreeOption<CartInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCartMergeFeeStore(option.conn, option.schemaName));
+	public StdCartMergeUsername(DeciTreeOption<CartInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCartMergeUsername(option.conn, option.schemaName));
 	}
 	
 	

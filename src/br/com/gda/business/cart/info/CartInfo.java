@@ -43,6 +43,7 @@ public final class CartInfo extends InfoRecord implements Cloneable, Comparable<
 	public String codTimezone;	
 	public String codLanguage;
 	public LocalDateTime lastChanged;
+	public String username;
 	
 	
 	
