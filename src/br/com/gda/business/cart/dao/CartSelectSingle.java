@@ -1,18 +1,13 @@
 package br.com.gda.business.cart.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinColumn;
-import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -24,9 +19,7 @@ import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class CartSelectSingle implements DaoStmt<CartInfo> {
-	private final String LT_HDR = DaoDbTable.CART_HDR_TABLE;	
-	private final String RT_ITM = DaoDbTable.CART_ITM_TABLE;
-	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
+	private final String LT_HDR = DaoDbTable.CART_HDR_TABLE;
 	
 	private DaoStmt<CartInfo> stmtSql;
 	private DaoStmtOption<CartInfo> stmtOption;
@@ -50,69 +43,18 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = buildJoins();
+		this.stmtOption.joins = null;
 	}
 	
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean IGNORE_RECORD_MODE = true;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new CartWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinCartItm());
-		joins.add(buildJoinLanguage());
-		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinCartItm() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_HDR;
-		oneColumn.leftColumnName = CartDbTableColumn.COL_COD_OWNER;
-		oneColumn.rightColumnName = CartDbTableColumn.COL_COD_OWNER;
-		joinColumns.add(oneColumn);
-		
-		oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_HDR;
-		oneColumn.leftColumnName = CartDbTableColumn.COL_COD_USER;
-		oneColumn.rightColumnName = CartDbTableColumn.COL_COD_USER;
-		joinColumns.add(oneColumn);
-		
-		
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_ITM;
-		join.joinType = DaoJoinType.INNER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = null;
-		
-		return join;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
 	}
 	
 	
@@ -170,50 +112,11 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 			do {
 				CartInfo dataInfo = new CartInfo();
 				dataInfo.codOwner = stmtResult.getLong(CartDbTableColumn.COL_COD_OWNER);	
-				dataInfo.codUser = stmtResult.getLong(CartDbTableColumn.COL_COD_USER);
-				dataInfo.itemNumber = stmtResult.getInt(CartDbTableColumn.COL_ITEM_NUMBER);	
-				dataInfo.quantity = stmtResult.getInt(CartDbTableColumn.COL_QUANTITY);				
+				dataInfo.codUser = stmtResult.getLong(CartDbTableColumn.COL_COD_USER);		
 				
 				stmtResult.getLong(CartDbTableColumn.COL_COD_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codCustomer = stmtResult.getLong(CartDbTableColumn.COL_COD_CUSTOMER);
-				
-				stmtResult.getLong(CartDbTableColumn.COL_COD_PERSON);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPerson = stmtResult.getLong(CartDbTableColumn.COL_COD_PERSON);
-				
-				stmtResult.getLong(CartDbTableColumn.COL_COD_STORE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStore = stmtResult.getLong(CartDbTableColumn.COL_COD_STORE);
-				
-				stmtResult.getLong(CartDbTableColumn.COL_COD_EMPLOYEE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployee = stmtResult.getLong(CartDbTableColumn.COL_COD_EMPLOYEE);
-				
-				stmtResult.getLong(CartDbTableColumn.COL_COD_MATERIAL);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codMat = stmtResult.getLong(CartDbTableColumn.COL_COD_MATERIAL);
-				
-				stmtResult.getString(CartDbTableColumn.COL_COD_ITEM_CATEG);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codItemCateg = stmtResult.getString(CartDbTableColumn.COL_COD_ITEM_CATEG).charAt(0);
-				
-				stmtResult.getString(CartDbTableColumn.COL_COD_LANGUAGE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codLanguage = stmtResult.getString(CartDbTableColumn.COL_COD_LANGUAGE);
-
-
-				Date date = stmtResult.getDate(CartDbTableColumn.COL_DATE);
-				if (date != null)
-					dataInfo.date = date.toLocalDate();
-				
-				Time beginTime = stmtResult.getTime(CartDbTableColumn.COL_BEGIN_TIME);
-				if (beginTime != null)
-					dataInfo.beginTime = beginTime.toLocalTime();
-				
-				Time endTime = stmtResult.getTime(CartDbTableColumn.COL_END_TIME);
-				if (endTime != null)
-					dataInfo.endTime = endTime.toLocalTime();
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(CartDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)

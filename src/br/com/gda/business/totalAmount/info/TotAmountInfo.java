@@ -2,7 +2,7 @@ package br.com.gda.business.totalAmount.info;
 
 import java.util.List;
 
-import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 

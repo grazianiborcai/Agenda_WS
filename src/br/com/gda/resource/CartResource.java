@@ -18,40 +18,26 @@ import javax.ws.rs.core.Response;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.CartModelDelete;
-import br.com.gda.business.cart.model.CartModelInsert;
+import br.com.gda.business.cart.model.CartModelUpsert;
 import br.com.gda.business.cart.model.CartModelSelect;
-import br.com.gda.business.cart.model.CartModelUpdate;
 import br.com.gda.business.reserve.info.ReserveInfo;
 import br.com.gda.business.reserve.model.ReserveModelSelect;
 import br.com.gda.model.Model;
 
 @Path("/Cart")
 public final class CartResource {
-	private static final String INSERT_CART = "/insertCart"	;
-	private static final String UPDATE_CART = "/updateCart"	;
-	private static final String SELECT_CART = "/selectCart"	;
-	private static final String DELETE_CART = "/deleteCart"	;
+	private static final String UPSERT_CART = "/upsertCart";
+	private static final String SELECT_CART = "/selectCart";
+	private static final String DELETE_CART = "/deleteCart";
 	private static final String SELECT_RESERVE = "/selectReserve";
 	
 	
 	@POST
-	@Path(INSERT_CART)
+	@Path(UPSERT_CART)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertCart(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new CartModelInsert(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();	
-	}
-	
-	
-	
-	@POST
-	@Path(UPDATE_CART)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateCart(@Context HttpServletRequest request, String incomingData) {
-		
-		Model model = new CartModelUpdate(incomingData, request);
+		Model model = new CartModelUpsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -61,13 +47,13 @@ public final class CartResource {
 	@GET
 	@Path(SELECT_CART)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectCart(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
-							   @HeaderParam("codUser")     @DefaultValue("-1") long codUser,
-							   @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+	public Response selectCart(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+			                   @HeaderParam("TOKEN_USERNAME") 	String username,
+							   @HeaderParam("codLanguage")      @DefaultValue("EN") String codLanguage) {
 		
 		CartInfo recordInfo = new CartInfo();
 		recordInfo.codOwner = codOwner;
-		recordInfo.codUser = codUser;
+		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
 		
@@ -81,17 +67,14 @@ public final class CartResource {
 	@DELETE
 	@Path(DELETE_CART)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteCart(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
-							   @HeaderParam("codCustomer") @DefaultValue("-1") long codCustomer,
-							   @HeaderParam("itemNumber")  @DefaultValue("-1") int itemNumber,
-							   @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+	public Response deleteCart(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+				               @HeaderParam("TOKEN_USERNAME") 	String username,
+							   @HeaderParam("codLanguage")      @DefaultValue("EN") String codLanguage) {
 		
 		CartInfo recordInfo = new CartInfo();
 		recordInfo.codOwner = codOwner;
-		recordInfo.codCustomer = codCustomer;
-		recordInfo.itemNumber = itemNumber;
-		recordInfo.codLanguage = codLanguage;
-		
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
 		
 		Model model = new CartModelDelete(recordInfo);
 		model.executeRequest();

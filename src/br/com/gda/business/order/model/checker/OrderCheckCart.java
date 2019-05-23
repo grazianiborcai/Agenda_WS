@@ -2,8 +2,8 @@ package br.com.gda.business.order.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.checker.CartCheckHasItem;
+import br.com.gda.business.cartItem.info.CartInfo;
+import br.com.gda.business.cart.model.checker.CartCheckExist;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -16,7 +16,7 @@ public final class OrderCheckCart implements ModelChecker<OrderInfo> {
 	
 	
 	public OrderCheckCart(ModelCheckerOption option) {
-		checker = new CartCheckHasItem(option);
+		checker = new CartCheckExist(option);
 	}
 	
 	

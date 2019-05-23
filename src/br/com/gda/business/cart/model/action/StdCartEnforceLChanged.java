@@ -7,7 +7,7 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdCartEnforceLChanged implements ActionStd<CartInfo> {
+public final class StdCartEnforceLChanged implements ActionStd<CartInfo> {
 	private ActionStd<CartInfo> actionHelper;	
 	
 	

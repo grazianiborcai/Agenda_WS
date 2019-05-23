@@ -3,7 +3,7 @@ package br.com.gda.business.employeeLeaveDate.info;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartInfo;
 import br.com.gda.info.InfoCopierTemplate;
 import br.com.gda.info.InfoUniquifyHelper;
 

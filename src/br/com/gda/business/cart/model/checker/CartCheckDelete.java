@@ -16,12 +16,14 @@ public final class CartCheckDelete extends ModelCheckerTemplateSimple<CartInfo> 
 	
 	
 	@Override protected boolean checkHook(CartInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner <= 0 || recordInfo.codCustomer	<= 0 )
+		if ( recordInfo.codOwner 	<= 0 	|| 
+			 recordInfo.codUser	 	<= 0 	||
+			 recordInfo.codLanguage == null		)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

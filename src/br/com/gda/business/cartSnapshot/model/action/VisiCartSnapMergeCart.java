@@ -2,7 +2,7 @@ package br.com.gda.business.cartSnapshot.model.action;
 
 import java.sql.Connection;
 
-import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartInfo;
 import br.com.gda.business.cart.model.decisionTree.RootCartSelect;
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.business.cartSnapshot.info.CartSnapMerger;

@@ -2,7 +2,7 @@ package br.com.gda.business.cartSnapshot.info;
 
 import java.util.List;
 
-import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartInfo;
 import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;

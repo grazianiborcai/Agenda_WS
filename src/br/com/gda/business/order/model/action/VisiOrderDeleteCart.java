@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartInfo;
 import br.com.gda.business.cart.model.decisionTree.RootCartDelete;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.model.action.ActionStd;

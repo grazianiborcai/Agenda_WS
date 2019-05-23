@@ -1,6 +1,6 @@
 package br.com.gda.business.cartSnapshot.info;
 
-import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.obsolete.InfoMergerVisitor_;
 

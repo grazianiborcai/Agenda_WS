@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.action.StdCartDelete;
 import br.com.gda.business.cart.model.checker.CartCheckDelete;
-import br.com.gda.business.cart.model.checker.CartCheckHasItem;
+import br.com.gda.business.cart.model.checker.CartCheckExist;
 import br.com.gda.business.cart.model.checker.CartCheckLangu;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -36,7 +37,6 @@ public final class RootCartDelete implements DeciTree<CartInfo> {
 	
 	
 	private ModelChecker<CartInfo> buildDecisionChecker(DeciTreeOption<CartInfo> option) {
-		final boolean CART_HAS_ITEM = true;
 		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
@@ -56,8 +56,8 @@ public final class RootCartDelete implements DeciTree<CartInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = CART_HAS_ITEM;	
-		checker = new CartCheckHasItem(checkerOption);
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CartCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -68,11 +68,9 @@ public final class RootCartDelete implements DeciTree<CartInfo> {
 	private List<ActionStd<CartInfo>> buildActionsOnPassed(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartInfo> deleteItm = new NodeCartDeleteItm(option).toAction();
-		ActionStd<CartInfo> deleteHdr = new NodeCartDeleteHdr(option).toAction();
+		ActionStd<CartInfo> delete = new StdCartDelete(option);
 		
-		actions.add(deleteItm);		
-		actions.add(deleteHdr);	
+		actions.add(delete);
 		return actions;
 	}
 	
