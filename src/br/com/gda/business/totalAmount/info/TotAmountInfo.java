@@ -2,7 +2,7 @@ package br.com.gda.business.totalAmount.info;
 
 import java.util.List;
 
-import br.com.gda.business.cartItem.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
@@ -52,7 +52,7 @@ public final class TotAmountInfo extends InfoRecord implements Cloneable {
 		if (sourceObj == null)
 			return false;
 		
-		if (sourceObj instanceof CartInfo)
+		if (sourceObj instanceof CartemInfo)
 			return true;
 		
 		return false;
@@ -62,13 +62,13 @@ public final class TotAmountInfo extends InfoRecord implements Cloneable {
 	
 	@SuppressWarnings("unchecked")
 	private static List<TotAmountInfo> copyFromCart(List<?> sourceObjs) {
-		return new TotAmountCopyCart().makeCopy( (List<CartInfo>)sourceObjs);
+		return new TotAmountCopyCart().makeCopy( (List<CartemInfo>)sourceObjs);
 	}
 	
 	
 	
 	private static TotAmountInfo copyFromCart(Object sourceObj) {
-		return new TotAmountCopyCart().makeCopy( (CartInfo)sourceObj);
+		return new TotAmountCopyCart().makeCopy( (CartemInfo)sourceObj);
 	}
 	
 	

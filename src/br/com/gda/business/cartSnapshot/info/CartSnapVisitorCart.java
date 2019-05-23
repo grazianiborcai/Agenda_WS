@@ -1,12 +1,12 @@
 package br.com.gda.business.cartSnapshot.info;
 
-import br.com.gda.business.cartItem.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
-final class CartSnapVisitorCart implements InfoMergerVisitor_<CartSnapInfo, CartInfo, CartSnapInfo> {
+final class CartSnapVisitorCart implements InfoMergerVisitor_<CartSnapInfo, CartemInfo, CartSnapInfo> {
 
-	@Override public CartSnapInfo writeRecord(CartInfo sourceOne, CartSnapInfo sourceTwo) {
+	@Override public CartSnapInfo writeRecord(CartemInfo sourceOne, CartSnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		CartSnapInfo resultInfo = CartSnapInfo.copyFrom(sourceOne);
@@ -16,14 +16,14 @@ final class CartSnapVisitorCart implements InfoMergerVisitor_<CartSnapInfo, Cart
 	
 	
 	
-	private void checkArgument(CartInfo sourceOne, CartSnapInfo sourceTwo) {
+	private void checkArgument(CartemInfo sourceOne, CartSnapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 
 
 	
-	@Override public boolean shouldWrite(CartInfo sourceOne, CartSnapInfo sourceTwo) {
+	@Override public boolean shouldWrite(CartemInfo sourceOne, CartSnapInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner	&&
 				sourceOne.codUser  == sourceTwo.codUser			);
 	}

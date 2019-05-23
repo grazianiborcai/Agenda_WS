@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import br.com.gda.business.cartItem.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
@@ -68,7 +68,7 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 		if (sourceObj == null)
 			return false;
 		
-		if (sourceObj instanceof CartInfo)
+		if (sourceObj instanceof CartemInfo)
 			return true;
 		
 		return false;
@@ -78,13 +78,13 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 	
 	@SuppressWarnings("unchecked")
 	private static List<StolevateInfo> copyFromCart(List<?> sourceObjs) {
-		return new StolevateCopyCart().makeCopy( (List<CartInfo>)sourceObjs);
+		return new StolevateCopyCart().makeCopy( (List<CartemInfo>)sourceObjs);
 	}
 	
 	
 	
 	private static StolevateInfo copyFromCart(Object sourceObj) {
-		return new StolevateCopyCart().makeCopy( (CartInfo)sourceObj);
+		return new StolevateCopyCart().makeCopy( (CartemInfo)sourceObj);
 	}
 	
 	

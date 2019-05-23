@@ -17,4 +17,18 @@ public final class CartMerger {
 		InfoMerger<CartInfo, UsernameInfo> merger = new CartMergerUsername();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}		
+	
+	
+	
+	public static CartInfo mergeToSelect(CartInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, CartInfo> merger = new CartMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CartInfo> mergeToSelect(List<CartInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, CartInfo> merger = new CartMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
 }

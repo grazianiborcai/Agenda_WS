@@ -3,11 +3,11 @@ package br.com.gda.business.employeeLeaveDate.info;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import br.com.gda.business.cartItem.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.info.InfoCopierTemplate;
 import br.com.gda.info.InfoUniquifyHelper;
 
-final class EmplevateCopyCart extends InfoCopierTemplate<EmplevateInfo, CartInfo>{
+final class EmplevateCopyCart extends InfoCopierTemplate<EmplevateInfo, CartemInfo>{
 	
 	public EmplevateCopyCart() {
 		super(new InfoUniquifyHelper<EmplevateInfo>());
@@ -15,7 +15,7 @@ final class EmplevateCopyCart extends InfoCopierTemplate<EmplevateInfo, CartInfo
 	
 	
 	
-	@Override protected EmplevateInfo makeCopyHook(CartInfo source) {
+	@Override protected EmplevateInfo makeCopyHook(CartemInfo source) {
 		EmplevateInfo result = new EmplevateInfo();
 			
 		result.codOwner = source.codOwner;	

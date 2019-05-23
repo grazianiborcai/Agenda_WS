@@ -2,7 +2,7 @@ package br.com.gda.business.cartSnapshot.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.cartItem.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.business.cart.model.checker.CartCheckExist;
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.model.checker.ModelChecker;
@@ -12,7 +12,7 @@ public final class CartSnapCheckCartItm implements ModelChecker<CartSnapInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CartInfo> checker;
+	private ModelChecker<CartemInfo> checker;
 	
 	
 	public CartSnapCheckCartItm(ModelCheckerOption option) {
@@ -33,7 +33,7 @@ public final class CartSnapCheckCartItm implements ModelChecker<CartSnapInfo> {
 	
 	
 	@Override public boolean check(CartSnapInfo recordInfo) {
-		return checker.check(CartInfo.copyFrom(recordInfo));
+		return checker.check(CartemInfo.copyFrom(recordInfo));
 	}
 
 	

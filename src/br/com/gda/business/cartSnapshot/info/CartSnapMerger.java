@@ -2,7 +2,7 @@ package br.com.gda.business.cartSnapshot.info;
 
 import java.util.List;
 
-import br.com.gda.business.cartItem.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
@@ -37,7 +37,7 @@ public final class CartSnapMerger extends InfoWritterFactory_<CartSnapInfo> {
 	
 	
 	
-	static public CartSnapInfo merge(CartInfo sourceOne, CartSnapInfo sourceTwo) {
+	static public CartSnapInfo merge(CartemInfo sourceOne, CartSnapInfo sourceTwo) {
 		return new CartSnapMergerCart().merge(sourceOne, sourceTwo);
 	}
 	
@@ -78,9 +78,9 @@ public final class CartSnapMerger extends InfoWritterFactory_<CartSnapInfo> {
 			return new CartSnapMergerWeekday().merge((List<WeekdayInfo>) sourceOnes, (List<CartSnapInfo>) sourceTwos);
 		
 		
-		if (sourceOnes.get(0) instanceof CartInfo 				&&
+		if (sourceOnes.get(0) instanceof CartemInfo 				&&
 			sourceTwos.get(0) instanceof CartSnapInfo		)
-			return new CartSnapMergerCart().merge((List<CartInfo>) sourceOnes, (List<CartSnapInfo>) sourceTwos);
+			return new CartSnapMergerCart().merge((List<CartemInfo>) sourceOnes, (List<CartSnapInfo>) sourceTwos);
 		
 		
 		if (sourceOnes.get(0) instanceof SnapInfo 				&&

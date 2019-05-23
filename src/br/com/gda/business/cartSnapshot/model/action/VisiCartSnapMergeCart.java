@@ -2,7 +2,7 @@ package br.com.gda.business.cartSnapshot.model.action;
 
 import java.sql.Connection;
 
-import br.com.gda.business.cartItem.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.business.cart.model.decisionTree.RootCartSelect;
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.business.cartSnapshot.info.CartSnapMerger;
@@ -10,15 +10,15 @@ import br.com.gda.info.obsolete.InfoWritterFactory_;
 import br.com.gda.model.action.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiCartSnapMergeCart extends ActionVisitorTemplateMerge_<CartSnapInfo, CartInfo> {
+final class VisiCartSnapMergeCart extends ActionVisitorTemplateMerge_<CartSnapInfo, CartemInfo> {
 	
 	public VisiCartSnapMergeCart(Connection conn, String schemaName) {
-		super(conn, schemaName, CartInfo.class);
+		super(conn, schemaName, CartemInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<CartInfo>> getTreeClassHook() {
+	@Override protected Class<? extends DeciTree<CartemInfo>> getTreeClassHook() {
 		return RootCartSelect.class;
 	}
 	

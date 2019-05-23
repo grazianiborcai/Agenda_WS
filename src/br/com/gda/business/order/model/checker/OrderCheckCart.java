@@ -2,7 +2,7 @@ package br.com.gda.business.order.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.cartItem.info.CartInfo;
+import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.business.cart.model.checker.CartCheckExist;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.model.checker.ModelChecker;
@@ -12,7 +12,7 @@ public final class OrderCheckCart implements ModelChecker<OrderInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CartInfo> checker;
+	private ModelChecker<CartemInfo> checker;
 	
 	
 	public OrderCheckCart(ModelCheckerOption option) {
@@ -33,7 +33,7 @@ public final class OrderCheckCart implements ModelChecker<OrderInfo> {
 	
 	
 	@Override public boolean check(OrderInfo recordInfo) {
-		return checker.check(CartInfo.copyFrom(recordInfo));
+		return checker.check(CartemInfo.copyFrom(recordInfo));
 	}
 
 	
