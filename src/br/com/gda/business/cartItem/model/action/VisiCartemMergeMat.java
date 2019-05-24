@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.business.cartItem.info.CartemMerger;
+import br.com.gda.business.material.info.MatCopier;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.material.model.decisionTree.RootMatSelect;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
@@ -20,6 +21,12 @@ final class VisiCartemMergeMat extends ActionVisitorTemplateMergeV2<CartemInfo, 
 	
 	@Override protected Class<? extends DeciTree<MatInfo>> getTreeClassHook() {
 		return RootMatSelect.class;
+	}
+	
+	
+	
+	@Override protected List<MatInfo> toActionClassHook(List<CartemInfo> recordInfos) {
+		return MatCopier.copyFromCartem(recordInfos);	
 	}
 	
 	

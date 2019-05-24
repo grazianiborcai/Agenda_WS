@@ -46,7 +46,7 @@ public final class RootMatDelete extends DeciTreeWriteTemplate<MatInfo> {
 	
 	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
-		
+		//TODO: Eliminar do carrinho de compras
 		ActionStd<MatInfo> nodeL1 = new NodeMatDeleteL1(option).toAction();
 		
 		actions.add(nodeL1);

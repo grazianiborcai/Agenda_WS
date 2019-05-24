@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.business.feeStore.info.FeetoreInfo;
-import br.com.gda.business.masterData.info.CartCategInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
@@ -14,21 +13,7 @@ import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
-public final class CartemMerger {	
-	public static CartemInfo mergeWithCartCateg(CartCategInfo sourceOne, CartemInfo sourceTwo) {
-		InfoMerger<CartemInfo, CartCategInfo> merger = new CartemMergerCartCateg();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CartemInfo> mergeWithCartCateg(List<CartCategInfo> sourceOnes, List<CartemInfo> sourceTwos) {
-		InfoMerger<CartemInfo, CartCategInfo> merger = new CartemMergerCartCateg();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
+public final class CartemMerger {
 	public static CartemInfo mergeWithCurrency(CurrencyInfo sourceOne, CartemInfo sourceTwo) {
 		InfoMerger<CartemInfo, CurrencyInfo> merger = new CartemMergerCurrency();		
 		return merger.merge(sourceOne, sourceTwo);

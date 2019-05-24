@@ -16,18 +16,18 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public long codOwner;	
 	public long codCustomer;
 	public long codUser;
-	public long codPerson;
-	public int itemNumber;
-	public char codItemCateg;
-	public String txtItemCateg;
-	public char codFeeCateg;
-	public String txtFeeCateg;
+	public boolean isDeleted;
+	public long codPerson;		//TODO: remover
+	public char codFeeCateg;	//TODO: remover
+	public String txtFeeCateg;	//TODO: remover
 	public long codStore;
 	public String nameStore;
 	public long codEmployee;
 	public String nameEmployee;
 	public long codMat;
 	public String txtMat;
+	public int codMatCateg;
+	public String txtMatCateg;
 	public double price;
 	public int priceUnit;
 	public int quantity;
@@ -51,17 +51,17 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		codOwner = DefaultValue.number();	
 		codCustomer = DefaultValue.number();
 		codPerson = DefaultValue.number();
+		isDeleted = DefaultValue.boole();
 		codUser = DefaultValue.number();
-		itemNumber = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
+		codMatCateg = DefaultValue.number();
 		price = DefaultValue.number();
 		priceUnit = DefaultValue.number();
 		quantity = DefaultValue.number();
 		codWeekday = DefaultValue.number();
 		codLanguage = DefaultValue.language();	
-		codItemCateg = DefaultValue.character();
 		codFeeCateg = DefaultValue.character();
 	}
 	
@@ -106,7 +106,6 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
 		result = result * 31 + (int) (codUser 	  ^ (codUser 	 >>> 32));
 		result = result * 31 + (int) (codPerson   ^ (codPerson   >>> 32));
-		result = result * 31 + (int) (itemNumber  ^ (itemNumber  >>> 32));
 		
 		return result;
 	}
@@ -126,8 +125,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		return (codOwner    == obj.codOwner    && 
 				codCustomer == obj.codCustomer &&
 				codPerson   == obj.codPerson   &&
-				codUser     == obj.codUser     &&
-				itemNumber  == obj.itemNumber);
+				codUser     == obj.codUser);
 	}
 
 
@@ -138,19 +136,19 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	
 		}
 
-		
+		/*
 		if (itemNumber < arg0.itemNumber)
 			return -1;
 		
 		if (itemNumber > arg0.itemNumber)
 			return 1;
 		
-		if (equals(arg0))
+		if (equals(arg0))*/
 			return 0;
 		
-		
+		/*
 		logException(new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE));
-		throw new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE);
+		throw new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE);*/
 	}
 	
 	

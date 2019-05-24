@@ -24,7 +24,7 @@ public final class LazyCartemDelete extends ActionLazyTemplate<CartemInfo, Carte
 	
 	
 	@Override protected ActionStd<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
-		return new StdCartemDeleteItm(option);
+		return new StdCartemDelete(option);
 	}
 	
 	

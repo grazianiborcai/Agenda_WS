@@ -13,7 +13,7 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdCartemInsert implements ActionStd<CartemInfo> {
+public final class StdCartemInsert implements ActionStd<CartemInfo> {
 	private ActionStd<CartemInfo> actionHelper;
 	
 	

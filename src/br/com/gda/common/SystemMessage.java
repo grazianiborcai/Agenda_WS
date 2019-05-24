@@ -229,15 +229,16 @@ public final class SystemMessage {
 	// Cart
 	public static final String CART_ALREADY_EXIST = "Cart's data already exist on DB";	
 	public static final String CART_HAVE_ITEM = "Cart still has items";	
-	public static final String CART_IS_EMPTY = "Cart is empty";
+	public static final String CART_ITEM_ALREADY_EXIST = "Cart item already exist on DB";	
+	public static final String CART_ITEM_IS_NOT_DELETED = "Cart item isn't flagged as deleted";
+	public static final String CART_ITEM_IS_NOT_SERVICE = "Cart item isn't a service";
+	public static final String CART_ITEM_NOT_FOUND = "Cart item not found on DB";	
+	public static final String CART_IS_EMPTY = "Cart is empty";	
 	public static final String CART_MAT_ALREADY_EXIST = "Material already added to Cart";	
 	public static final String CART_MAT_NOT_FOUND = "Material not found on Cart";
 	public static final String CART_NOT_FOUND = "Cart's data not found on DB";	
-	public static final String CART_ITEM_ALREADY_EXIST = "Cart item already exist on DB";	
-	public static final String CART_ITEM_NOT_FOUND = "Cart item not found on DB";
 
-	
-		
+
 	
 	// Total Amount
 	public static final String AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES = "Amount field does not have two decimal places";

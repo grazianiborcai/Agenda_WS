@@ -24,7 +24,7 @@ public final class LazyCartemUpdate extends ActionLazyTemplate<CartemInfo, Carte
 	
 	
 	@Override protected  ActionStd<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
-		return new StdCartemUpdateItm(option);
+		return new StdCartemUpdate(option);
 	}
 	
 	

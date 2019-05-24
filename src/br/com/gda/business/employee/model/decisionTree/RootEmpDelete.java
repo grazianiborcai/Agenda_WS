@@ -65,7 +65,7 @@ public final class RootEmpDelete extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
-		
+		//TODO: eliminar do carrinho de compras
 		ActionStd<EmpInfo> mergeToDelete = new StdEmpMergeToDelete(option);
 		ActionLazy<EmpInfo> enforceLChanged = new LazyEmpEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);

@@ -13,11 +13,11 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCartemUpdateItm implements ActionStd<CartemInfo> {
+public final class StdCartemUpdate implements ActionStd<CartemInfo> {
 	private ActionStd<CartemInfo> actionHelper;
 	
 	
-	public StdCartemUpdateItm(DeciTreeOption<CartemInfo> option) {
+	public StdCartemUpdate(DeciTreeOption<CartemInfo> option) {
 		DaoStmtExec<CartemInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}

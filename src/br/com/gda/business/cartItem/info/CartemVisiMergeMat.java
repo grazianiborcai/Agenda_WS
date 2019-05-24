@@ -20,6 +20,8 @@ final class CartemVisiMergeMat implements InfoMergerVisitorV2<CartemInfo, MatInf
 		resultInfo.price = sourceOne.price;
 		resultInfo.codCurr = sourceOne.codCurr;
 		resultInfo.txtCurr = sourceOne.txtCurr;
+		resultInfo.codMatCateg = sourceOne.codMatCateg;
+		resultInfo.txtMatCateg = sourceOne.txtMatCateg;
 
 		return resultInfo;
 	}
