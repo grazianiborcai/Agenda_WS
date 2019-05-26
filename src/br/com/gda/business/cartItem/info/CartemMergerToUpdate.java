@@ -1,14 +1,13 @@
 package br.com.gda.business.cartItem.info;
 
-import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.info.InfoUniquifier;
 
-final class CartemMergerStore extends InfoMergerTemplate<CartemInfo, StoreInfo> {
+final class CartemMergerToUpdate extends InfoMergerTemplate<CartemInfo, CartemInfo> {
 
-	@Override protected InfoMergerVisitorV2<CartemInfo, StoreInfo> getVisitorHook() {
-		return new CartemVisiMergeStore();
+	@Override protected InfoMergerVisitorV2<CartemInfo, CartemInfo> getVisitorHook() {
+		return new CartemVisiMergeToUpdate();
 	}
 	
 	

@@ -3,10 +3,13 @@ package br.com.gda.business.cartItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.cartItem.info.CartemInfo;
-import br.com.gda.business.cartItem.model.action.StdCartemInsert;
-import br.com.gda.business.cartItem.model.action.StdCartemUpdate;
+import br.com.gda.business.cartItem.model.action.LazyCartemInsert;
+import br.com.gda.business.cartItem.model.action.LazyCartemUpdate;
+import br.com.gda.business.cartItem.model.action.StdCartemEnforceCreatedOn;
+import br.com.gda.business.cartItem.model.action.StdCartemMergeToUpdate;
 import br.com.gda.business.cartItem.model.checker.CartemCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -44,9 +47,12 @@ public final class NodeCartemUpsert extends DeciTreeWriteTemplate<CartemInfo> {
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> update = new StdCartemUpdate(option);			
-		actions.add(update);
+		ActionStd<CartemInfo> mergeToUpdate = new StdCartemMergeToUpdate(option);	
+		ActionLazy<CartemInfo> update = new LazyCartemUpdate(option.conn, option.schemaName);			
 		
+		mergeToUpdate.addPostAction(update);
+		
+		actions.add(mergeToUpdate);		
 		return actions;
 	}
 	
@@ -55,9 +61,12 @@ public final class NodeCartemUpsert extends DeciTreeWriteTemplate<CartemInfo> {
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> insert = new StdCartemInsert(option);			
-		actions.add(insert);
+		ActionStd<CartemInfo> enforceCreatedOn = new StdCartemEnforceCreatedOn(option);	
+		ActionLazy<CartemInfo> insert = new LazyCartemInsert(option.conn, option.schemaName);	
 		
+		enforceCreatedOn.addPostAction(insert);
+		
+		actions.add(enforceCreatedOn);		
 		return actions;
 	}
 }

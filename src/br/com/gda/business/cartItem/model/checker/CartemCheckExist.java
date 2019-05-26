@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import br.com.gda.business.cartItem.info.CartemInfo;
-import br.com.gda.business.cartItem.model.action.LazyCartemSelect;
-import br.com.gda.business.cartItem.model.action.StdCartemEnforceKey;
+import br.com.gda.business.cartItem.model.action.StdCartemSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -24,8 +23,7 @@ public final class CartemCheckExist extends ModelCheckerTemplateAction<CartemInf
 	@Override protected ActionStd<CartemInfo> buildActionHook(CartemInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CartemInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<CartemInfo> actionSelect = new StdCartemEnforceKey(option);
-		actionSelect.addPostAction(new LazyCartemSelect(conn, schemaName));
+		ActionStd<CartemInfo> actionSelect = new StdCartemSelect(option);
 		return actionSelect;
 	}
 	

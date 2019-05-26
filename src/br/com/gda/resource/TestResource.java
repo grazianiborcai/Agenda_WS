@@ -20,6 +20,7 @@ import br.com.gda.business.address.model.AddressModelUpdate;
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.addressSnapshot.model.AddresnapModelInsert;
 import br.com.gda.business.addressSnapshot.model.AddresnapModelSelect;
+import br.com.gda.business.cartItem.model.CartemModelUpsert;
 import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
 import br.com.gda.business.cartSnapshot.model.CartSnapModelInsert;
 import br.com.gda.business.cartSnapshot.model.CartSnapModelSelect;
@@ -128,6 +129,7 @@ public class TestResource {
 	private static final String SELECT_STORIME = "/authStorime";
 	private static final String CUSTOMER_SEARCH = "/customerSearch";
 	private static final String SELECT_PLANING_DATA = "/selectPlaningData";
+	private static final String UPSERT_CARTEM = "/upsertCartem";
 	
 	
 	
@@ -810,5 +812,17 @@ public class TestResource {
 		Model model = new PlanataModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(UPSERT_CARTEM)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertCartem(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new CartemModelUpsert(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();	
 	}
 }

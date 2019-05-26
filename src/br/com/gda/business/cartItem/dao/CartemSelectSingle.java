@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cartItem.info.CartemInfo;
-import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinColumn;
-import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -23,10 +20,8 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class CartemSelectSingle implements DaoStmt<CartemInfo> {
-	private final String LT_HDR = DaoDbTable.CART_HDR_TABLE;	
-	private final String RT_ITM = DaoDbTable.CART_ITM_TABLE;
-	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
+public final class CartemSelectSingle implements DaoStmt<CartemInfo> {	
+	private final String LT_ITM = DaoDbTable.CART_ITM_TABLE;
 	
 	private DaoStmt<CartemInfo> stmtSql;
 	private DaoStmtOption<CartemInfo> stmtOption;
@@ -45,74 +40,23 @@ public final class CartemSelectSingle implements DaoStmt<CartemInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_HDR;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_HDR);
+		this.stmtOption.tableName = LT_ITM;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_ITM);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = buildJoins();
+		this.stmtOption.joins = null;
 	}
 	
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean IGNORE_RECORD_MODE = true;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new CartemWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinCartItm());
-		joins.add(buildJoinLanguage());
-		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinCartItm() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_HDR;
-		oneColumn.leftColumnName = CartemDbTableColumn.COL_COD_OWNER;
-		oneColumn.rightColumnName = CartemDbTableColumn.COL_COD_OWNER;
-		joinColumns.add(oneColumn);
-		
-		oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_HDR;
-		oneColumn.leftColumnName = CartemDbTableColumn.COL_COD_USER;
-		oneColumn.rightColumnName = CartemDbTableColumn.COL_COD_USER;
-		joinColumns.add(oneColumn);
-		
-		
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_ITM;
-		join.joinType = DaoJoinType.INNER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = null;
-		
-		return join;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
 	}
 	
 	
@@ -171,16 +115,7 @@ public final class CartemSelectSingle implements DaoStmt<CartemInfo> {
 				CartemInfo dataInfo = new CartemInfo();
 				dataInfo.codOwner = stmtResult.getLong(CartemDbTableColumn.COL_COD_OWNER);	
 				dataInfo.codUser = stmtResult.getLong(CartemDbTableColumn.COL_COD_USER);
-				dataInfo.itemNumber = stmtResult.getInt(CartemDbTableColumn.COL_ITEM_NUMBER);	
-				dataInfo.quantity = stmtResult.getInt(CartemDbTableColumn.COL_QUANTITY);				
-				
-				stmtResult.getLong(CartemDbTableColumn.COL_COD_CUSTOMER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(CartemDbTableColumn.COL_COD_CUSTOMER);
-				
-				stmtResult.getLong(CartemDbTableColumn.COL_COD_PERSON);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPerson = stmtResult.getLong(CartemDbTableColumn.COL_COD_PERSON);
+				dataInfo.quantity = stmtResult.getInt(CartemDbTableColumn.COL_QUANTITY);
 				
 				stmtResult.getLong(CartemDbTableColumn.COL_COD_STORE);
 				if (stmtResult.wasNull() == NOT_NULL)
@@ -193,15 +128,6 @@ public final class CartemSelectSingle implements DaoStmt<CartemInfo> {
 				stmtResult.getLong(CartemDbTableColumn.COL_COD_MATERIAL);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codMat = stmtResult.getLong(CartemDbTableColumn.COL_COD_MATERIAL);
-				
-				stmtResult.getString(CartemDbTableColumn.COL_COD_ITEM_CATEG);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codItemCateg = stmtResult.getString(CartemDbTableColumn.COL_COD_ITEM_CATEG).charAt(0);
-				
-				stmtResult.getString(CartemDbTableColumn.COL_COD_LANGUAGE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codLanguage = stmtResult.getString(CartemDbTableColumn.COL_COD_LANGUAGE);
-
 
 				Date date = stmtResult.getDate(CartemDbTableColumn.COL_DATE);
 				if (date != null)
@@ -215,9 +141,9 @@ public final class CartemSelectSingle implements DaoStmt<CartemInfo> {
 				if (endTime != null)
 					dataInfo.endTime = endTime.toLocalTime();
 				
-				Timestamp lastChanged = stmtResult.getTimestamp(CartemDbTableColumn.COL_LAST_CHANGED);
+				Timestamp lastChanged = stmtResult.getTimestamp(CartemDbTableColumn.COL_CREATED_ON);
 				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
+					dataInfo.createdOn = lastChanged.toLocalDateTime();
 				
 				
 				finalResult.add(dataInfo);

@@ -3,27 +3,29 @@ package br.com.gda.business.cartItem.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class CartemVisiMergeStore implements InfoMergerVisitorV2<CartemInfo, StoreInfo> {
+final class CartemVisiMergeToUpdate implements InfoMergerVisitorV2<CartemInfo, CartemInfo> {
 
-	@Override public CartemInfo writeRecord(StoreInfo sourceOne, CartemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		
-		CartemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.nameStore = "sourceOne.name";		//TODO: Ajustar nome
-		resultInfo.codTimezone = sourceOne.codTimezone;
-
-		return resultInfo;
+	@Override public CartemInfo writeRecord(CartemInfo sourceOne, CartemInfo sourceTwo) {
+		checkArgument(sourceOne, sourceTwo);		
+		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(StoreInfo sourceOne, CartemInfo sourceTwo) {
+	private void checkArgument(CartemInfo sourceOne, CartemInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	}
+	
+	
+	
+	private CartemInfo merge(CartemInfo sourceOne, CartemInfo sourceTwo) {
+		CartemInfo result = makeClone(sourceTwo);		
+		result.createdOn = sourceOne.createdOn;
+		return result;
 	}
 	
 	
@@ -37,11 +39,11 @@ final class CartemVisiMergeStore implements InfoMergerVisitorV2<CartemInfo, Stor
 			throw new IllegalStateException(e); 
 		}
 	}
-
-
 	
-	@Override public boolean shouldWrite(StoreInfo sourceOne, CartemInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codStore == sourceTwo.codStore);
+	
+	
+	@Override public boolean shouldWrite(CartemInfo sourceOne, CartemInfo sourceTwo) {		
+		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	
 	

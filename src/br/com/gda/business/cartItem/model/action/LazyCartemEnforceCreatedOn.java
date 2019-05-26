@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartemEnforceLChanged extends ActionLazyTemplate<CartemInfo, CartemInfo> {
+public final class LazyCartemEnforceCreatedOn extends ActionLazyTemplate<CartemInfo, CartemInfo> {
 
-	public LazyCartemEnforceLChanged(Connection conn, String schemaName) {
+	public LazyCartemEnforceCreatedOn(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCartemEnforceLChanged extends ActionLazyTemplate<CartemIn
 	
 	
 	@Override protected ActionStd<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
-		return new StdCartemEnforceLChanged(option);
+		return new StdCartemEnforceCreatedOn(option);
 	}
 	
 	

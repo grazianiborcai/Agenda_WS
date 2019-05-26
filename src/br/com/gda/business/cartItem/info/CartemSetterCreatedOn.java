@@ -6,12 +6,12 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class CartemSetterLChanged implements InfoSetter<CartemInfo> {
+public final class CartemSetterCreatedOn implements InfoSetter<CartemInfo> {
 	
 	public CartemInfo setAttr(CartemInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		recordInfo.lastChanged = genLastChanged();
+		recordInfo.createdOn = genCreatedOn();
 		return recordInfo;
 	}
 	
@@ -24,7 +24,7 @@ public final class CartemSetterLChanged implements InfoSetter<CartemInfo> {
 	
 	
 	
-	private LocalDateTime genLastChanged() {
+	private LocalDateTime genCreatedOn() {
 		return DefaultValue.localDateTimeNow();
 	}
 }

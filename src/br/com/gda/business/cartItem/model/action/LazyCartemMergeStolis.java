@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartemMergeStore extends ActionLazyTemplate<CartemInfo, CartemInfo> {
+public final class LazyCartemMergeStolis extends ActionLazyTemplate<CartemInfo, CartemInfo> {
 	
-	public LazyCartemMergeStore(Connection conn, String schemaName) {
+	public LazyCartemMergeStolis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCartemMergeStore extends ActionLazyTemplate<CartemInfo, C
 	
 	
 	@Override protected ActionStd<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
-		return new StdCartemMergeStore(option);
+		return new StdCartemMergeStolis(option);
 	}
 	
 	

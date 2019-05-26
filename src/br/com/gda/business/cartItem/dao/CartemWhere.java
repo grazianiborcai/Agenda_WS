@@ -35,20 +35,24 @@ public final class CartemWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case CartemDbTableColumn.COL_ITEM_NUMBER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.itemNumber));
+				case CartemDbTableColumn.COL_COD_STORE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
 				case CartemDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
-				case CartemDbTableColumn.COL_COD_STORE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
+				case CartemDbTableColumn.COL_COD_EMPLOYEE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
-				case CartemDbTableColumn.COL_COD_LANGUAGE :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+				case CartemDbTableColumn.COL_DATE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
+					break;
+					
+				case CartemDbTableColumn.COL_BEGIN_TIME :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime));
 					break;
 			}
 		}		

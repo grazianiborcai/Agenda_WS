@@ -8,6 +8,8 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.employeeList.info.EmplisInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
@@ -17,11 +19,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public long codCustomer;
 	public long codUser;
 	public boolean isDeleted;
-	public long codPerson;		//TODO: remover
-	public char codFeeCateg;	//TODO: remover
-	public String txtFeeCateg;	//TODO: remover
 	public long codStore;
-	public String nameStore;
 	public long codEmployee;
 	public String nameEmployee;
 	public long codMat;
@@ -40,17 +38,17 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public String txtWeekday;
 	public LocalTime beginTime;
 	public LocalTime endTime;
-	public String codTimezone;	
 	public String codLanguage;
-	public LocalDateTime lastChanged;
+	public LocalDateTime createdOn;
 	public String username;
+	public StolisInfo stolis;
+	public EmplisInfo emplis;
 	
 	
 	
 	public CartemInfo() {
 		codOwner = DefaultValue.number();	
 		codCustomer = DefaultValue.number();
-		codPerson = DefaultValue.number();
 		isDeleted = DefaultValue.boole();
 		codUser = DefaultValue.number();
 		codStore = DefaultValue.number();
@@ -62,7 +60,8 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		quantity = DefaultValue.number();
 		codWeekday = DefaultValue.number();
 		codLanguage = DefaultValue.language();	
-		codFeeCateg = DefaultValue.character();
+		stolis = DefaultValue.object();
+		emplis = DefaultValue.object();
 	}
 	
 	
@@ -91,8 +90,8 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		if (endTime != null)
 			deepCopy.endTime = LocalTime.of(endTime.getHour(), endTime.getMinute());
 		
-		if (lastChanged != null)
-			deepCopy.lastChanged = lastChanged;
+		if (createdOn != null)
+			deepCopy.createdOn = createdOn;
 		
 		return deepCopy;
 	}
@@ -105,7 +104,6 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
 		result = result * 31 + (int) (codUser 	  ^ (codUser 	 >>> 32));
-		result = result * 31 + (int) (codPerson   ^ (codPerson   >>> 32));
 		
 		return result;
 	}
@@ -124,7 +122,6 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		CartemInfo obj = (CartemInfo) o;		
 		return (codOwner    == obj.codOwner    && 
 				codCustomer == obj.codCustomer &&
-				codPerson   == obj.codPerson   &&
 				codUser     == obj.codUser);
 	}
 

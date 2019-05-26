@@ -177,6 +177,7 @@ public final class SystemCode {
 	public static final int CART_MAT_NOT_FOUND 							= 1407;
 	public static final int CART_ITEM_IS_NOT_SERVICE 					= 1408;
 	public static final int CART_ITEM_IS_NOT_DELETED 					= 1409;
+	public static final int CART_ITEM_QUANTITY_ILLEGAL					= 1410;
 
 	// Total Amount
 	public static final int AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES			= 1500;

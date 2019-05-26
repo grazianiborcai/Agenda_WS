@@ -1,15 +1,13 @@
 package br.com.gda.business.cartItem.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.cartItem.info.CartemInfo;
-import br.com.gda.common.DefaultValue;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -76,28 +74,11 @@ public class CartemInsertSingle implements DaoStmt<CartemInfo> {
 	
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<CartemInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CartemInfo recordInfo) throws SQLException {
-			
-			Time beginTime = null;
-			if (recordInfo.beginTime != null)		
-				beginTime = Time.valueOf(recordInfo.beginTime);
-			
-			
-			Time endTime = null;
-			if (recordInfo.endTime != null)		
-				endTime = Time.valueOf(recordInfo.endTime);
-			
-			
-			Date date = null;
-			if (recordInfo.date != null)		
-				date = Date.valueOf(recordInfo.date);
-			
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CartemInfo recordInfo) throws SQLException {			
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codUser);
-			stmt.setInt(i++, recordInfo.itemNumber);	
-			stmt.setInt(i++, recordInfo.quantity);
 			
 			
 			if (recordInfo.codStore >= 0) {
@@ -112,11 +93,6 @@ public class CartemInsertSingle implements DaoStmt<CartemInfo> {
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}
-						
-			
-			stmt.setTime(i++, beginTime);
-			stmt.setTime(i++, endTime);
-			stmt.setDate(i++, date);
 			
 			
 			if (recordInfo.codEmployee >= 0) {
@@ -126,12 +102,11 @@ public class CartemInsertSingle implements DaoStmt<CartemInfo> {
 			}	
 			
 			
-			if (recordInfo.codItemCateg == DefaultValue.character()) {
-				stmt.setNull(i++, Types.VARCHAR);
-			} else {
-				stmt.setString(i++, Character.toString(recordInfo.codItemCateg)); 
-			}	
-			
+			stmt.setDate(i++, DaoFormatter.localToSqlDate(recordInfo.date));
+			stmt.setTime(i++, DaoFormatter.localToSqlTime(recordInfo.beginTime));
+			stmt.setTime(i++, DaoFormatter.localToSqlTime(recordInfo.endTime));
+			stmt.setInt(i++, recordInfo.quantity);
+			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.createdOn));			
 
 			return stmt;
 		}		

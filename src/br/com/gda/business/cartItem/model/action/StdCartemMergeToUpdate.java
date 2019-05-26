@@ -1,18 +1,18 @@
 package br.com.gda.business.cartItem.model.action;
 
 import br.com.gda.business.cartItem.info.CartemInfo;
-import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCartemEnforceLChanged implements ActionStd<CartemInfo> {
+public final class StdCartemMergeToUpdate implements ActionStd<CartemInfo> {
 	private ActionStd<CartemInfo> actionHelper;	
 	
 	
-	public StdCartemEnforceLChanged(DeciTreeOption<CartemInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCartemEnforceLChanged());
+	public StdCartemMergeToUpdate(DeciTreeOption<CartemInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCartemMergeToUpdate(option.conn, option.schemaName));
 	}
 	
 	

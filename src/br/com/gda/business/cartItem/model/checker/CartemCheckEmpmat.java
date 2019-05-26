@@ -8,14 +8,14 @@ import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class CartemCheckME implements ModelChecker<CartemInfo> {
+public final class CartemCheckEmpmat implements ModelChecker<CartemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<EmpmatInfo> checker;
 	
 	
-	public CartemCheckME(ModelCheckerOption option) {
+	public CartemCheckEmpmat(ModelCheckerOption option) {
 		checker = new EmpmatCheckExist(option);
 	}
 	

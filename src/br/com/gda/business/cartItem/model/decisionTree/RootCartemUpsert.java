@@ -5,10 +5,9 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.cartItem.info.CartemInfo;
-import br.com.gda.business.cartItem.model.action.LazyCartemMergeMat;
 import br.com.gda.business.cartItem.model.action.LazyCartemNodeServiceL1;
 import br.com.gda.business.cartItem.model.action.LazyCartemNodeUpsertdel;
-import br.com.gda.business.cartItem.model.action.StdCartemEnforceLChanged;
+import br.com.gda.business.cartItem.model.action.StdCartemMergeMat;
 import br.com.gda.business.cartItem.model.checker.CartemCheckCart;
 import br.com.gda.business.cartItem.model.checker.CartemCheckLangu;
 import br.com.gda.business.cartItem.model.checker.CartemCheckMat;
@@ -80,15 +79,14 @@ public final class RootCartemUpsert extends DeciTreeWriteTemplate<CartemInfo> {
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> enforceLChanged = new StdCartemEnforceLChanged(option);
-		ActionLazy<CartemInfo> mergeMat = new LazyCartemMergeMat(option.conn, option.schemaName);
+		ActionStd<CartemInfo> mergeMat = new StdCartemMergeMat(option);
 		ActionLazy<CartemInfo> nodeService = new LazyCartemNodeServiceL1(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> nodeUpsertdel = new LazyCartemNodeUpsertdel(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(mergeMat);
 		mergeMat.addPostAction(nodeService);
 		mergeMat.addPostAction(nodeUpsertdel);
 		
+		actions.add(mergeMat);
 		return actions;
 	}
 }

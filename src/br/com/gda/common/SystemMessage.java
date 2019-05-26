@@ -233,11 +233,12 @@ public final class SystemMessage {
 	public static final String CART_ITEM_IS_NOT_DELETED = "Cart item isn't flagged as deleted";
 	public static final String CART_ITEM_IS_NOT_SERVICE = "Cart item isn't a service";
 	public static final String CART_ITEM_NOT_FOUND = "Cart item not found on DB";	
+	public static final String CART_ITEM_QUANTITY_ILLEGAL = "Service item can only have quantity equal to one";	
 	public static final String CART_IS_EMPTY = "Cart is empty";	
 	public static final String CART_MAT_ALREADY_EXIST = "Material already added to Cart";	
 	public static final String CART_MAT_NOT_FOUND = "Material not found on Cart";
 	public static final String CART_NOT_FOUND = "Cart's data not found on DB";	
-
+	
 
 	
 	// Total Amount

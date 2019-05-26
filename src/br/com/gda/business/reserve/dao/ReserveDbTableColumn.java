@@ -5,15 +5,16 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.business.cartItem.dao.CartemDbTableColumn;
+import br.com.gda.business.customer.dao.CusDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class ReserveDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_OWNER = CartemDbTableColumn.COL_COD_OWNER;
-	public static final String COL_COD_CUSTOMER = CartemDbTableColumn.COL_COD_CUSTOMER;
-	public static final String COL_LAST_CHANGED = CartemDbTableColumn.COL_LAST_CHANGED;
-	public static final String COL_ITEM_NUMBER = CartemDbTableColumn.COL_ITEM_NUMBER;
+	public static final String COL_COD_CUSTOMER = CusDbTableColumn.COL_COD_CUSTOMER;
+	public static final String COL_LAST_CHANGED = CartemDbTableColumn.COL_CREATED_ON;
+	public static final String COL_ITEM_NUMBER = "CartemDbTableColumn.COL_ITEM_NUMBER";
 	public static final String COL_COD_STORE = CartemDbTableColumn.COL_COD_STORE;
 	public static final String COL_COD_MATERIAL = CartemDbTableColumn.COL_COD_MATERIAL;
 	public static final String COL_BEGIN_TIME = CartemDbTableColumn.COL_BEGIN_TIME;
