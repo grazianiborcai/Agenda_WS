@@ -3,15 +3,16 @@ package br.com.gda.business.cartItem.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.cartItem.info.CartemInfo;
+import br.com.gda.business.cartItem.model.decisionTree.NodeCartemSelectL1;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartemMergeCurrency extends ActionLazyTemplate<CartemInfo, CartemInfo> {
+public final class LazyCartemNodeSelectL1 extends ActionLazyTemplate<CartemInfo, CartemInfo> {
 	
-	public LazyCartemMergeCurrency(Connection conn, String schemaName) {
+	public LazyCartemNodeSelectL1(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,12 +25,12 @@ public final class LazyCartemMergeCurrency extends ActionLazyTemplate<CartemInfo
 	
 	
 	@Override protected ActionStd<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
-		return new StdCartemMergeCurrency(option);
+		return new NodeCartemSelectL1(option).toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<CartemInfo> translateResultHook(DeciResult<CartemInfo> result) {		
+	@Override protected DeciResult<CartemInfo> translateResultHook(DeciResult<CartemInfo> result) {
 		return result;
 	}
 }

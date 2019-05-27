@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.employeeList.info.EmplisInfo;
+import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
@@ -23,16 +24,8 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public long codEmployee;
 	public String nameEmployee;
 	public long codMat;
-	public String txtMat;
-	public int codMatCateg;
-	public String txtMatCateg;
 	public double price;
-	public int priceUnit;
 	public int quantity;
-	public String codCurr;
-	public String txtCurr;
-	public String codUnit;
-	public String txtUnit;	
 	public LocalDate date;
 	public int codWeekday;
 	public String txtWeekday;
@@ -41,8 +34,9 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public String codLanguage;
 	public LocalDateTime createdOn;
 	public String username;
-	public StolisInfo stolis;
-	public EmplisInfo emplis;
+	public StolisInfo stolisInfo;
+	public EmplisInfo emplisInfo;
+	public MatInfo matInfo;
 	
 	
 	
@@ -54,14 +48,15 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
-		codMatCateg = DefaultValue.number();
+		//codMatCateg = DefaultValue.number();
 		price = DefaultValue.number();
-		priceUnit = DefaultValue.number();
+		//priceUnit = DefaultValue.number();
 		quantity = DefaultValue.number();
 		codWeekday = DefaultValue.number();
 		codLanguage = DefaultValue.language();	
-		stolis = DefaultValue.object();
-		emplis = DefaultValue.object();
+		stolisInfo = DefaultValue.object();
+		emplisInfo = DefaultValue.object();
+		matInfo = DefaultValue.object();
 	}
 	
 	

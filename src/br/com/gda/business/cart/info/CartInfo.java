@@ -3,6 +3,7 @@ package br.com.gda.business.cart.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
@@ -13,6 +14,7 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
+	public List<CartemInfo> cartems;
 	
 	
 	
@@ -21,6 +23,7 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codLanguage = DefaultValue.language();
+		cartems = DefaultValue.list();
 	}
 	
 	

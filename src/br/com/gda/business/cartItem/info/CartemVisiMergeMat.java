@@ -13,15 +13,7 @@ final class CartemVisiMergeMat implements InfoMergerVisitorV2<CartemInfo, MatInf
 		checkArgument(sourceOne, sourceTwo);
 		
 		CartemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.txtMat = sourceOne.txtMat;
-		resultInfo.codUnit = sourceOne.codUnit;
-		resultInfo.txtUnit = sourceOne.txtUnit;
-		resultInfo.priceUnit = sourceOne.priceUnit;
-		resultInfo.price = sourceOne.price;
-		resultInfo.codCurr = sourceOne.codCurr;
-		resultInfo.txtCurr = sourceOne.txtCurr;
-		resultInfo.codMatCateg = sourceOne.codMatCateg;
-		resultInfo.txtMatCateg = sourceOne.txtMatCateg;
+		resultInfo.matInfo = sourceOne;
 
 		return resultInfo;
 	}
@@ -48,7 +40,8 @@ final class CartemVisiMergeMat implements InfoMergerVisitorV2<CartemInfo, MatInf
 
 	
 	@Override public boolean shouldWrite(MatInfo sourceOne, CartemInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codMat == sourceTwo.codMat);
+		return (sourceOne.codOwner == sourceTwo.codOwner && 
+				sourceOne.codMat   == sourceTwo.codMat		);
 	}
 	
 	

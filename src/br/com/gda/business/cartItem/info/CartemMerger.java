@@ -5,30 +5,15 @@ import java.util.List;
 import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
 import br.com.gda.business.feeStore.info.FeetoreInfo;
-import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.materialStore.info.MatoreInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.business.totalAmount.info.TotAmountInfo;
-import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class CartemMerger {
-	public static CartemInfo mergeWithCurrency(CurrencyInfo sourceOne, CartemInfo sourceTwo) {
-		InfoMerger<CartemInfo, CurrencyInfo> merger = new CartemMergerCurrency();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CartemInfo> mergeWithCurrency(List<CurrencyInfo> sourceOnes, List<CartemInfo> sourceTwos) {
-		InfoMerger<CartemInfo, CurrencyInfo> merger = new CartemMergerCurrency();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}	
-	
-	
-	
 	public static CartemInfo mergeWithFeeDefault(FeeDefaultInfo sourceOne, CartemInfo sourceTwo) {
 		InfoMerger<CartemInfo, FeeDefaultInfo> merger = new CartemMergerFeeDefault();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -109,20 +94,6 @@ public final class CartemMerger {
 	public static List<CartemInfo> mergeWithTotAmount(List<TotAmountInfo> sourceOnes, List<CartemInfo> sourceTwos) {
 		InfoMerger<CartemInfo, TotAmountInfo> merger = new CartemMergerTotAmount();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}	
-	
-	
-	
-	public static CartemInfo mergeWithUser(UserInfo sourceOne, CartemInfo sourceTwo) {
-		InfoMerger<CartemInfo, UserInfo> merger = new CartemMergerUser();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CartemInfo> mergeWithUser(List<UserInfo> sourceOnes, List<CartemInfo> sourceTwos) {
-		InfoMerger<CartemInfo, UserInfo> merger = new CartemMergerUser();		
-		return merger.merge(sourceOnes, sourceTwos);
 	}		
 	
 	
@@ -148,10 +119,24 @@ public final class CartemMerger {
 	
 	
 	
+	public static List<CartemInfo> mergeWithMatore(List<MatoreInfo> sourceOnes, List<CartemInfo> sourceTwos) {
+		InfoMerger<CartemInfo, MatoreInfo> merger = new CartemMergerMatore();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
+	public static CartemInfo mergeWithMatore(MatoreInfo sourceOne, CartemInfo sourceTwo) {
+		InfoMerger<CartemInfo, MatoreInfo> merger = new CartemMergerMatore();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
 	public static List<CartemInfo> mergeWithWeekday(List<WeekdayInfo> sourceOnes, List<CartemInfo> sourceTwos) {
 		InfoMerger<CartemInfo, WeekdayInfo> merger = new CartemMergerWeekday();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}		
+	}	
 	
 	
 	

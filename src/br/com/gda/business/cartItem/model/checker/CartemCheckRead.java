@@ -18,12 +18,13 @@ public final class CartemCheckRead extends ModelCheckerTemplateSimple<CartemInfo
 	@Override protected boolean checkHook(CartemInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	|| 
 			 recordInfo.codUser		<= 0 	||
+			 recordInfo.username	== null ||
 			 recordInfo.codLanguage	== null		)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

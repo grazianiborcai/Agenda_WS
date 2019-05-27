@@ -13,7 +13,7 @@ final class CartemVisiMergeStolis implements InfoMergerVisitorV2<CartemInfo, Sto
 		checkArgument(sourceOne, sourceTwo);
 		
 		CartemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.stolis = sourceOne;
+		resultInfo.stolisInfo = sourceOne;
 		return resultInfo;
 	}
 	

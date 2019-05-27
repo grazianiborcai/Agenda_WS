@@ -83,7 +83,7 @@ public final class NodeCartemServiceL2 extends DeciTreeWriteTemplate<CartemInfo>
 		//TODO: check store work time
 		//TODO: check store leave time
 		//TODO: check emp leave time
-		//TODO: is valid?
+		//TODO: is valid? Pode ter mudado apos ser inserido no carrinho
 		
 		return new ModelCheckerQueue<>(queue);
 	}

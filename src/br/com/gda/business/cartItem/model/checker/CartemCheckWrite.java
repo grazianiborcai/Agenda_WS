@@ -20,6 +20,7 @@ public final class CartemCheckWrite extends ModelCheckerTemplateSimple<CartemInf
 			|| recordInfo.codStore 		<= 0
 			|| recordInfo.codMat		<= 0
 			|| recordInfo.quantity		<= 0
+			|| recordInfo.username		== null 
 			|| recordInfo.codLanguage	== null	)
 			
 			return super.FAILED;

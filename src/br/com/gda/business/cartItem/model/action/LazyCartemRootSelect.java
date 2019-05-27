@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.cartItem.info.CartemInfo;
+import br.com.gda.business.cartItem.model.decisionTree.RootCartemSelect;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartemMergeUser extends ActionLazyTemplate<CartemInfo, CartemInfo> {
+public final class LazyCartemRootSelect extends ActionLazyTemplate<CartemInfo, CartemInfo> {
 	
-	public LazyCartemMergeUser(Connection conn, String schemaName) {
+	public LazyCartemRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,12 +25,12 @@ public final class LazyCartemMergeUser extends ActionLazyTemplate<CartemInfo, Ca
 	
 	
 	@Override protected ActionStd<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
-		return new StdCartemMergeUser(option);
+		return new RootCartemSelect(option).toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<CartemInfo> translateResultHook(DeciResult<CartemInfo> result) {		
+	@Override protected DeciResult<CartemInfo> translateResultHook(DeciResult<CartemInfo> result) {
 		return result;
 	}
 }

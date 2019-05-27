@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCartemMergeUser implements ActionStd<CartemInfo> {
+public final class StdCartemMergeMatore implements ActionStd<CartemInfo> {
 	private ActionStd<CartemInfo> actionHelper;	
 	
 	
-	public StdCartemMergeUser(DeciTreeOption<CartemInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCartemMergeUser(option.conn, option.schemaName));
+	public StdCartemMergeMatore(DeciTreeOption<CartemInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCartemMergeMatore(option.conn, option.schemaName));
 	}
 	
 	

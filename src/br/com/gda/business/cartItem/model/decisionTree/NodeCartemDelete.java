@@ -5,25 +5,34 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.cartItem.info.CartemInfo;
-import br.com.gda.business.cartItem.model.checker.CartemCheckIsDeleted;
+import br.com.gda.business.cartItem.model.action.StdCartemDelete;
+import br.com.gda.business.cartItem.model.checker.CartemCheckExist;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCartemUpsertdel extends DeciTreeWriteTemplate<CartemInfo> {
+public final class NodeCartemDelete extends DeciTreeWriteTemplate<CartemInfo> {
 	
-	public NodeCartemUpsertdel(DeciTreeOption<CartemInfo> option) {
+	public NodeCartemDelete(DeciTreeOption<CartemInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected ModelChecker<CartemInfo> buildDecisionCheckerHook(DeciTreeOption<CartemInfo> option) {
+		final boolean EXIST_ON_DB = true;
+		
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartemInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new CartemCheckIsDeleted();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CartemCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -34,20 +43,9 @@ public final class NodeCartemUpsertdel extends DeciTreeWriteTemplate<CartemInfo>
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> delete = new NodeCartemDelete(option).toAction();			
-		actions.add(delete);
+		ActionStd<CartemInfo> delete = new StdCartemDelete(option);
 		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
-		
-		ActionStd<CartemInfo> rootUpsert = new NodeCartemUpsert(option).toAction();			
-		actions.add(rootUpsert);
-		
+		actions.add(delete);		
 		return actions;
 	}
 }

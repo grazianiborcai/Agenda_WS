@@ -3,17 +3,21 @@ package br.com.gda.business.cartItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.cartItem.info.CartemInfo;
-import br.com.gda.business.cartItem.model.checker.CartemCheckIsDeleted;
+import br.com.gda.business.cartItem.model.action.LazyCartemMergeMat;
+import br.com.gda.business.cartItem.model.action.LazyCartemNodeSelectL1;
+import br.com.gda.business.cartItem.model.action.StdCartemMergeToSelect;
+import br.com.gda.business.cartItem.model.checker.CartemCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCartemUpsertdel extends DeciTreeWriteTemplate<CartemInfo> {
+public final class RootCartemSelect extends DeciTreeWriteTemplate<CartemInfo> {
 	
-	public NodeCartemUpsertdel(DeciTreeOption<CartemInfo> option) {
+	public RootCartemSelect(DeciTreeOption<CartemInfo> option) {
 		super(option);
 	}
 	
@@ -21,9 +25,9 @@ public final class NodeCartemUpsertdel extends DeciTreeWriteTemplate<CartemInfo>
 	
 	@Override protected ModelChecker<CartemInfo> buildDecisionCheckerHook(DeciTreeOption<CartemInfo> option) {
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
-		ModelChecker<CartemInfo> checker;	
+		ModelChecker<CartemInfo> checker;
 		
-		checker = new CartemCheckIsDeleted();
+		checker = new CartemCheckRead();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -34,20 +38,14 @@ public final class NodeCartemUpsertdel extends DeciTreeWriteTemplate<CartemInfo>
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> delete = new NodeCartemDelete(option).toAction();			
-		actions.add(delete);
+		ActionStd<CartemInfo> select = new StdCartemMergeToSelect(option);
+		ActionLazy<CartemInfo> mergeMat = new LazyCartemMergeMat(option.conn, option.schemaName);
+		ActionLazy<CartemInfo> nodeL1 = new LazyCartemNodeSelectL1(option.conn, option.schemaName);		
 		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
+		select.addPostAction(mergeMat);
+		mergeMat.addPostAction(nodeL1);
 		
-		ActionStd<CartemInfo> rootUpsert = new NodeCartemUpsert(option).toAction();			
-		actions.add(rootUpsert);
-		
+		actions.add(select);
 		return actions;
 	}
 }

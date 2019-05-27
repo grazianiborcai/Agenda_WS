@@ -16,8 +16,12 @@ public final class CartemCheckIsService extends ModelCheckerTemplateSimple<Carte
 	
 	
 	@Override protected boolean checkHook(CartemInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codMatCateg == MatCateg.SERVICE.getCodMatCateg())
+		if(recordInfo.matInfo == null)
+			return super.FAILED;
+		
+		if (recordInfo.matInfo.codMatCateg == MatCateg.SERVICE.getCodMatCateg())
 			return super.SUCCESS;		
+		
 		
 		return super.FAILED;
 	}

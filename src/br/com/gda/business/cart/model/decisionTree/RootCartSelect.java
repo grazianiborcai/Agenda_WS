@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.action.StdCartMergeToSelect;
+import br.com.gda.business.cart.model.action.LazyCartMergeCartem;
+import br.com.gda.business.cart.model.action.LazyCartMergeToSelect;
+import br.com.gda.business.cart.model.action.StdCartMergeUsername;
 import br.com.gda.business.cart.model.checker.CartCheckLangu;
 import br.com.gda.business.cart.model.checker.CartCheckRead;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -47,9 +50,14 @@ public final class RootCartSelect extends DeciTreeReadTemplate<CartInfo> {
 	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartInfo> select = new StdCartMergeToSelect(option);
+		ActionStd<CartInfo> mergeUser = new StdCartMergeUsername(option);
+		ActionLazy<CartInfo> select = new LazyCartMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<CartInfo> mergeCartem = new LazyCartMergeCartem(option.conn, option.schemaName);
 		
-		actions.add(select);			
+		mergeUser.addPostAction(select);
+		select.addPostAction(mergeCartem);
+		
+		actions.add(mergeUser);			
 		return actions;
 	}
 }
