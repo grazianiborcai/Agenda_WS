@@ -45,7 +45,7 @@ public final class DefaultValue {
 	
 	
 	
-	public static int decimalPlace() {
+	public static int decimalPlace() {	//TODO: Remover
 		return 2;
 	}
 	

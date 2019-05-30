@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartemFlagTotal extends ActionLazyTemplate<CartemInfo, CartemInfo> {
-	
-	public LazyCartemFlagTotal(Connection conn, String schemaName) {
+public final class LazyCartemEnforceTotitem extends ActionLazyTemplate<CartemInfo, CartemInfo> {
+
+	public LazyCartemEnforceTotitem(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,12 +24,12 @@ public final class LazyCartemFlagTotal extends ActionLazyTemplate<CartemInfo, Ca
 	
 	
 	@Override protected ActionStd<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
-		return new StdCartemFlagTotal(option);
+		return new StdCartemEnforceTotitem(option);
 	}
 	
 	
 	
-	@Override protected DeciResult<CartemInfo> translateResultHook(DeciResult<CartemInfo> result) {		
+	@Override protected DeciResult<CartemInfo> translateResultHook(DeciResult<CartemInfo> result) {
 		return result;
 	}
 }

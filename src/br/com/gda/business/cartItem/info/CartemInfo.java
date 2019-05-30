@@ -26,6 +26,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public long codMat;
 	public double price;
 	public int quantity;
+	public double totitem;
 	public LocalDate date;
 	public int codWeekday;
 	public String txtWeekday;
@@ -48,10 +49,9 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
-		//codMatCateg = DefaultValue.number();
 		price = DefaultValue.number();
-		//priceUnit = DefaultValue.number();
 		quantity = DefaultValue.number();
+		totitem = DefaultValue.number();
 		codWeekday = DefaultValue.number();
 		codLanguage = DefaultValue.language();	
 		stolisInfo = DefaultValue.object();
@@ -100,6 +100,12 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
 		result = result * 31 + (int) (codUser 	  ^ (codUser 	 >>> 32));
 		
+		if (date != null)
+			result = result * 31 + (int) date.hashCode();
+		
+		if (beginTime != null)
+			result = result * 31 + (int) beginTime.hashCode();
+		
 		return result;
 	}
 	
@@ -115,9 +121,11 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		
 		
 		CartemInfo obj = (CartemInfo) o;		
-		return (codOwner    == obj.codOwner    && 
-				codCustomer == obj.codCustomer &&
-				codUser     == obj.codUser);
+		return (codOwner    == obj.codOwner    		&& 
+				codCustomer == obj.codCustomer 		&&
+				codUser     == obj.codUser			&&
+				super.isDateEqual(date, obj.date)	&&
+				super.isTimeEqual(beginTime, obj.beginTime));
 	}
 
 

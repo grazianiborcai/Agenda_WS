@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.action.LazyCartEnforceGrantotal;
 import br.com.gda.business.cart.model.action.LazyCartMergeCartem;
 import br.com.gda.business.cart.model.action.LazyCartMergeToSelect;
 import br.com.gda.business.cart.model.action.StdCartMergeUsername;
@@ -53,9 +54,11 @@ public final class RootCartSelect extends DeciTreeReadTemplate<CartInfo> {
 		ActionStd<CartInfo> mergeUser = new StdCartMergeUsername(option);
 		ActionLazy<CartInfo> select = new LazyCartMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<CartInfo> mergeCartem = new LazyCartMergeCartem(option.conn, option.schemaName);
+		ActionLazy<CartInfo> enforceGrantotal = new LazyCartEnforceGrantotal(option.conn, option.schemaName);
 		
 		mergeUser.addPostAction(select);
 		select.addPostAction(mergeCartem);
+		mergeCartem.addPostAction(enforceGrantotal);
 		
 		actions.add(mergeUser);			
 		return actions;

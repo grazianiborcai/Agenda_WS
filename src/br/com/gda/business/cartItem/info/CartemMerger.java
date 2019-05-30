@@ -9,7 +9,6 @@ import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.materialStore.info.MatoreInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
-import br.com.gda.business.totalAmount.info.TotAmountInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
@@ -81,20 +80,6 @@ public final class CartemMerger {
 		InfoMerger<CartemInfo, StolisInfo> merger = new CartemMergerStolis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
-	
-	
-	
-	public static CartemInfo mergeWithTotAmount(TotAmountInfo sourceOne, CartemInfo sourceTwo) {
-		InfoMerger<CartemInfo, TotAmountInfo> merger = new CartemMergerTotAmount();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CartemInfo> mergeWithTotAmount(List<TotAmountInfo> sourceOnes, List<CartemInfo> sourceTwos) {
-		InfoMerger<CartemInfo, TotAmountInfo> merger = new CartemMergerTotAmount();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}		
 	
 	
 	

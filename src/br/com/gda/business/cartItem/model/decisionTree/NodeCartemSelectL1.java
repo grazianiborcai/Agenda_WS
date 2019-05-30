@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.cartItem.info.CartemInfo;
+import br.com.gda.business.cartItem.model.action.LazyCartemEnforceTotitem;
 import br.com.gda.business.cartItem.model.action.LazyCartemEnforceWeekday;
 import br.com.gda.business.cartItem.model.action.LazyCartemMergeEmplis;
 import br.com.gda.business.cartItem.model.action.LazyCartemMergeMatore;
@@ -45,11 +46,13 @@ public final class NodeCartemSelectL1 extends DeciTreeWriteTemplate<CartemInfo> 
 		ActionLazy<CartemInfo> enforceWeekday = new LazyCartemEnforceWeekday(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> mergeWeekday = new LazyCartemMergeWeekday(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> mergeMatore = new LazyCartemMergeMatore(option.conn, option.schemaName);
+		ActionLazy<CartemInfo> enforceTotitem = new LazyCartemEnforceTotitem(option.conn, option.schemaName);
 		
 		mergeStolis.addPostAction(mergeEmplis);
 		mergeEmplis.addPostAction(enforceWeekday);
 		enforceWeekday.addPostAction(mergeWeekday);
 		mergeWeekday.addPostAction(mergeMatore);
+		mergeMatore.addPostAction(enforceTotitem);
 		
 		actions.add(mergeStolis);
 		return actions;
