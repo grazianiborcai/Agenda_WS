@@ -86,56 +86,56 @@ public final class MatoreInsertSingle implements DaoStmt<MatoreInfo> {
 			stmt.setLong(i++, recordInfo.codMat);
 			
 			if (recordInfo.matPrice >= 0) {
-				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice));
+				stmt.setDouble(i++, recordInfo.matPrice);
 			} else {
 				stmt.setNull(i++, Types.FLOAT);
 			}
 			
 			
 			if (recordInfo.matPrice1 >= 0) {
-				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice1));
+				stmt.setDouble(i++, recordInfo.matPrice1);
 			} else {
 				stmt.setNull(i++, Types.FLOAT);
 			}
 			
 			
 			if (recordInfo.matPrice2 >= 0) {
-				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice2));
+				stmt.setDouble(i++, recordInfo.matPrice2);
 			} else {
 				stmt.setNull(i++, Types.FLOAT);
 			}
 			
 			
 			if (recordInfo.matPrice3 >= 0) {
-				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice3));
+				stmt.setDouble(i++, recordInfo.matPrice3);
 			} else {
 				stmt.setNull(i++, Types.FLOAT);
 			}
 			
 			
 			if (recordInfo.matPrice4 >= 0) {
-				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice4));
+				stmt.setDouble(i++, recordInfo.matPrice4);
 			} else {
 				stmt.setNull(i++, Types.FLOAT);
 			}
 			
 			
 			if (recordInfo.matPrice5 >= 0) {
-				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice5));
+				stmt.setDouble(i++, recordInfo.matPrice5);
 			} else {
 				stmt.setNull(i++, Types.FLOAT);
 			}
 			
 			
 			if (recordInfo.matPrice6 >= 0) {
-				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice6));
+				stmt.setDouble(i++, recordInfo.matPrice6);
 			} else {
 				stmt.setNull(i++, Types.FLOAT);
 			}
 			
 			
 			if (recordInfo.matPrice7 >= 0) {
-				stmt.setFloat(i++, DaoFormatter.longToDecimal(recordInfo.matPrice7));
+				stmt.setDouble(i++, recordInfo.matPrice7);
 			} else {
 				stmt.setNull(i++, Types.FLOAT);
 			}
