@@ -9,31 +9,18 @@ import br.com.gda.business.feeDefault.model.checker.FeedefCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public final class RootFeedefSelect implements DeciTree<FeedefInfo> {
-	private DeciTree<FeedefInfo> tree;
-	
+public final class RootFeedefSelect extends DeciTreeReadTemplate<FeedefInfo> {
 	
 	public RootFeedefSelect(DeciTreeOption<FeedefInfo> option) {
-		DeciTreeHelperOption<FeedefInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<FeedefInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<FeedefInfo> buildDecisionCheckerHook(DeciTreeOption<FeedefInfo> option) {
 		List<ModelChecker<FeedefInfo>> queue = new ArrayList<>();		
 		ModelChecker<FeedefInfo> checker;
 		
@@ -45,34 +32,10 @@ public final class RootFeedefSelect implements DeciTree<FeedefInfo> {
 	
 	
 	
-	private List<ActionStd<FeedefInfo>> buildActionsOnPassed(DeciTreeOption<FeedefInfo> option) {
+	@Override protected List<ActionStd<FeedefInfo>> buildActionsOnPassedHook(DeciTreeOption<FeedefInfo> option) {
 		List<ActionStd<FeedefInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdFeedefSelect(option));
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<FeedefInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<FeedefInfo> toAction() {
-		return tree.toAction();
 	}
 }

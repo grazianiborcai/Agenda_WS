@@ -27,9 +27,9 @@ import br.com.gda.business.cartSnapshot.model.CartSnapModelSelect;
 import br.com.gda.business.company.model.CompModelInsert;
 import br.com.gda.business.company.model.CompModelUpdate;
 import br.com.gda.business.customerSearch.model.CusarchModelSelect_;
-import br.com.gda.business.feeStore.info.FeetoreInfo;
-import br.com.gda.business.feeStore.model.FeetoreModelSelect;
-import br.com.gda.business.feeStore.model.FeetoreModelSelectService;
+import br.com.gda.business.feeOwner.info.FeewnerInfo;
+import br.com.gda.business.feeOwner.model.FeewnerModelSelect;
+import br.com.gda.business.feeOwner.model.FeewnerModelSelectService;
 import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
 import br.com.gda.business.materialSnapshot.model.MatsnapModelInsert;
 import br.com.gda.business.materialSnapshot.model.MatsnapModelSelect;
@@ -397,13 +397,13 @@ public class TestResource {
 								   @HeaderParam("codStore") @DefaultValue("-1") long codStore,
 								   @HeaderParam("codFeeCateg") String codFeeCateg) {
 
-		FeetoreInfo recordInfo = new FeetoreInfo();
+		FeewnerInfo recordInfo = new FeewnerInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		if (codFeeCateg != null)
 			recordInfo.codFeeCateg = codFeeCateg.charAt(0);
 		
-		Model model = new FeetoreModelSelect(recordInfo);
+		Model model = new FeewnerModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}	
@@ -416,11 +416,11 @@ public class TestResource {
 	public Response selectFeeStoreService(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 								          @HeaderParam("codStore") @DefaultValue("-1") long codStore) {
 
-		FeetoreInfo recordInfo = new FeetoreInfo();
+		FeewnerInfo recordInfo = new FeewnerInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		
-		Model model = new FeetoreModelSelectService(recordInfo);
+		Model model = new FeewnerModelSelectService(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}	

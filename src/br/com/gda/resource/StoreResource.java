@@ -16,8 +16,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.feeStore.info.FeetoreInfo;
-import br.com.gda.business.feeStore.model.FeetoreModelSelect;
+import br.com.gda.business.feeOwner.info.FeewnerInfo;
+import br.com.gda.business.feeOwner.model.FeewnerModelSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.StoreModelDelete;
 import br.com.gda.business.store.model.StoreModelInsert;
@@ -150,14 +150,14 @@ public class StoreResource {
 								   @HeaderParam("codStore") @DefaultValue("-1") long codStore,
 								   @HeaderParam("codFeeCateg") String codFeeCateg) {
 		
-		FeetoreInfo recordInfo = new FeetoreInfo();
+		FeewnerInfo recordInfo = new FeewnerInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		
 		if (codFeeCateg != null)
 			recordInfo.codFeeCateg = codFeeCateg.charAt(0);
 		
-		Model model = new FeetoreModelSelect(recordInfo);
+		Model model = new FeewnerModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

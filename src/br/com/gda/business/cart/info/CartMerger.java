@@ -3,21 +3,21 @@ package br.com.gda.business.cart.info;
 import java.util.List;
 
 import br.com.gda.business.cartItem.info.CartemInfo;
-import br.com.gda.business.feeDefault.info.FeedefInfo;
+import br.com.gda.business.feeOwner.info.FeewnerInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class CartMerger {	
-	public static CartInfo mergeWithFeedef(FeedefInfo sourceOne, CartInfo sourceTwo) {
-		InfoMerger<CartInfo, FeedefInfo> merger = new CartMergerFeedef();		
+	public static CartInfo mergeWithFeewner(FeewnerInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, FeewnerInfo> merger = new CartMergerFeewner();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<CartInfo> mergeWithFeedef(List<FeedefInfo> sourceOnes, List<CartInfo> sourceTwos) {
-		InfoMerger<CartInfo, FeedefInfo> merger = new CartMergerFeedef();		
+	public static List<CartInfo> mergeWithFeewner(List<FeewnerInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, FeewnerInfo> merger = new CartMergerFeewner();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}		
 	
