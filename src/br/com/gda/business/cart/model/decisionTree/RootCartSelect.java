@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.action.LazyCartEnforceCurrency;
 import br.com.gda.business.cart.model.action.LazyCartEnforceGrantotal;
+import br.com.gda.business.cart.model.action.LazyCartEnforceItemtotal;
 import br.com.gda.business.cart.model.action.LazyCartMergeCartem;
+import br.com.gda.business.cart.model.action.LazyCartMergeCurrency;
+import br.com.gda.business.cart.model.action.LazyCartMergeFeedef;
 import br.com.gda.business.cart.model.action.LazyCartMergeToSelect;
 import br.com.gda.business.cart.model.action.StdCartMergeUsername;
 import br.com.gda.business.cart.model.checker.CartCheckLangu;
@@ -54,11 +58,19 @@ public final class RootCartSelect extends DeciTreeReadTemplate<CartInfo> {
 		ActionStd<CartInfo> mergeUser = new StdCartMergeUsername(option);
 		ActionLazy<CartInfo> select = new LazyCartMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<CartInfo> mergeCartem = new LazyCartMergeCartem(option.conn, option.schemaName);
+		ActionLazy<CartInfo> enforceCurrency = new LazyCartEnforceCurrency(option.conn, option.schemaName);
+		ActionLazy<CartInfo> mergeCurrency = new LazyCartMergeCurrency(option.conn, option.schemaName);
+		ActionLazy<CartInfo> mergeFeedef = new LazyCartMergeFeedef(option.conn, option.schemaName);
+		ActionLazy<CartInfo> enforceItemtotal = new LazyCartEnforceItemtotal(option.conn, option.schemaName);
 		ActionLazy<CartInfo> enforceGrantotal = new LazyCartEnforceGrantotal(option.conn, option.schemaName);
 		
 		mergeUser.addPostAction(select);
 		select.addPostAction(mergeCartem);
-		mergeCartem.addPostAction(enforceGrantotal);
+		mergeCartem.addPostAction(enforceCurrency);
+		enforceCurrency.addPostAction(mergeCurrency);
+		mergeCurrency.addPostAction(mergeFeedef);		
+		mergeFeedef.addPostAction(enforceItemtotal);		
+		enforceItemtotal.addPostAction(enforceGrantotal);
 		
 		actions.add(mergeUser);			
 		return actions;

@@ -3,11 +3,12 @@ package br.com.gda.business.cart.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.common.TotAmount;
 import br.com.gda.info.InfoSetter;
 
-public final class CartSetterGrantotal implements InfoSetter<CartInfo> {
+public final class CartSetterItemtotal implements InfoSetter<CartInfo> {
 	
 	public CartInfo setAttr(CartInfo recordInfo) {
 		checkArgument(recordInfo);
@@ -26,8 +27,19 @@ public final class CartSetterGrantotal implements InfoSetter<CartInfo> {
 	
 	
 	private CartInfo setGrandTotal(CartInfo recordInfo) {
-		TotAmount totAmount = new TotAmount();		
-		recordInfo.grandTotal = totAmount.computeTotal(recordInfo.itemTotal, recordInfo.feeService);		
+		TotAmount totAmount = new TotAmount();
+		int counter = 0;
+		
+		for (CartemInfo eachCartem : recordInfo.cartems) {
+			if (counter == 0) {
+				recordInfo.itemTotal = eachCartem.totitem;
+			} else {
+				recordInfo.itemTotal = totAmount.computeTotal(recordInfo.itemTotal, eachCartem.totitem);
+			}
+			
+			counter = counter + 1;
+		}
+		
 		return recordInfo;
 	}	
 	

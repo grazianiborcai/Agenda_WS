@@ -3,8 +3,6 @@ package br.com.gda.business.cartItem.info;
 import java.util.List;
 
 import br.com.gda.business.employeeList.info.EmplisInfo;
-import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
-import br.com.gda.business.feeStore.info.FeetoreInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.materialStore.info.MatoreInfo;
@@ -13,34 +11,6 @@ import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class CartemMerger {
-	public static CartemInfo mergeWithFeeDefault(FeeDefaultInfo sourceOne, CartemInfo sourceTwo) {
-		InfoMerger<CartemInfo, FeeDefaultInfo> merger = new CartemMergerFeeDefault();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CartemInfo> mergeWithFeeDefault(List<FeeDefaultInfo> sourceOnes, List<CartemInfo> sourceTwos) {
-		InfoMerger<CartemInfo, FeeDefaultInfo> merger = new CartemMergerFeeDefault();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}		
-	
-	
-	
-	public static CartemInfo mergeWithFeetore(FeetoreInfo sourceOne, CartemInfo sourceTwo) {
-		InfoMerger<CartemInfo, FeetoreInfo> merger = new CartemMergerFeetore();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CartemInfo> mergeWithFeetore(List<FeetoreInfo> sourceOnes, List<CartemInfo> sourceTwos) {
-		InfoMerger<CartemInfo, FeetoreInfo> merger = new CartemMergerFeetore();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}			
-	
-	
-	
 	public static CartemInfo mergeWithMat(MatInfo sourceOne, CartemInfo sourceTwo) {
 		InfoMerger<CartemInfo, MatInfo> merger = new CartemMergerMat();		
 		return merger.merge(sourceOne, sourceTwo);

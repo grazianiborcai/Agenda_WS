@@ -4,14 +4,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.common.TotAmount;
 import br.com.gda.info.InfoSetter;
 
-public final class CartSetterGrantotal implements InfoSetter<CartInfo> {
+public final class CartSetterCurrency implements InfoSetter<CartInfo> {
 	
 	public CartInfo setAttr(CartInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setGrandTotal(recordInfo);
+		return setCurrency(recordInfo);
 	}
 	
 	
@@ -25,9 +24,8 @@ public final class CartSetterGrantotal implements InfoSetter<CartInfo> {
 	
 	
 	
-	private CartInfo setGrandTotal(CartInfo recordInfo) {
-		TotAmount totAmount = new TotAmount();		
-		recordInfo.grandTotal = totAmount.computeTotal(recordInfo.itemTotal, recordInfo.feeService);		
+	private CartInfo setCurrency(CartInfo recordInfo) {
+		recordInfo.codCurr = "BRL";
 		return recordInfo;
 	}	
 	

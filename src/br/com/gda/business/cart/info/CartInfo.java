@@ -11,7 +11,11 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codCustomer;
 	public long codUser;
-	public double grandTotal;
+	public double itemTotal;
+	public double feeService;
+	public double grandTotal;	
+	public String codCurr;
+	public String txtCurr;
 	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
@@ -23,6 +27,8 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();	
 		codCustomer = DefaultValue.number();
 		codUser = DefaultValue.number();
+		itemTotal = DefaultValue.number();
+		feeService = 0;
 		grandTotal = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		cartems = DefaultValue.list();
