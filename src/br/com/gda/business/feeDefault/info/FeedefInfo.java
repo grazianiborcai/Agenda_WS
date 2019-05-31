@@ -5,27 +5,27 @@ import java.util.List;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class FeeDefaultInfo extends InfoRecord implements Cloneable {
+public final class FeedefInfo extends InfoRecord implements Cloneable {
 	public char codFeeCateg;
 	public String codCurr;
 	public double price;
 	
 	
-	public FeeDefaultInfo() {
+	public FeedefInfo() {
 		codFeeCateg = DefaultValue.character();
 		price = DefaultValue.number();
 	}
 	
 	
 	
-	public static FeeDefaultInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, FeeDefaultInfo.class);
+	public static FeedefInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, FeedefInfo.class);
 	}
 	
 	
 	
-	public static List<FeeDefaultInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, FeeDefaultInfo.class);
+	public static List<FeedefInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, FeedefInfo.class);
 	}
 	
 	
@@ -53,11 +53,11 @@ public final class FeeDefaultInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof FeeDefaultInfo))
+		if (!(o instanceof FeedefInfo))
 			return false;
 		
 		
-		FeeDefaultInfo obj = (FeeDefaultInfo) o;		
+		FeedefInfo obj = (FeedefInfo) o;		
 		return (codFeeCateg == obj.codFeeCateg &&
 				isStringEqual(codCurr, obj.codCurr));
 	}

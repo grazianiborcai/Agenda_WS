@@ -1,23 +1,24 @@
-package br.com.gda.business.feeStore.model.checker;
+package br.com.gda.business.feeDefault.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.feeStore.info.FeetoreInfo;
+import br.com.gda.business.feeDefault.info.FeedefInfo;
+import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class FeeStoreCheckReadCateg extends ModelCheckerTemplateSimple<FeetoreInfo> {
+public final class FeedefCheckRead extends ModelCheckerTemplateSimple<FeedefInfo> {
 
-	public FeeStoreCheckReadCateg() {
+	public FeedefCheckRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(FeetoreInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner <= 0
-			|| recordInfo.codStore <= 0 )			
+	@Override protected boolean checkHook(FeedefInfo recordInfo, Connection conn, String schemaName) {	
+		if (   recordInfo.codFeeCateg == DefaultValue.character()
+			|| recordInfo.codCurr == null )			
 			return FAILED;
 		
 		

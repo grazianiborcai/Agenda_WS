@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
+import br.com.gda.business.feeDefault.info.FeedefInfo;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -18,22 +18,22 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class FeeDefaultSelectSingle implements DaoStmt<FeeDefaultInfo> {
+public final class FeedefSelectSingle implements DaoStmt<FeedefInfo> {
 	private final static String LT_ATTR = DaoDbTable.FEE_DEFAULT_TABLE;
 	
-	private DaoStmt<FeeDefaultInfo> stmtSql;
-	private DaoStmtOption<FeeDefaultInfo> stmtOption;
+	private DaoStmt<FeedefInfo> stmtSql;
+	private DaoStmtOption<FeedefInfo> stmtOption;
 	
 	
 	
-	public FeeDefaultSelectSingle(Connection conn, FeeDefaultInfo recordInfo, String schemaName) {
+	public FeedefSelectSingle(Connection conn, FeedefInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, FeeDefaultInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, FeedefInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -49,14 +49,11 @@ public final class FeeDefaultSelectSingle implements DaoStmt<FeeDefaultInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new FeeDefaultWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new FeedefWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -93,14 +90,14 @@ public final class FeeDefaultSelectSingle implements DaoStmt<FeeDefaultInfo> {
 
 	
 	
-	@Override public List<FeeDefaultInfo> getResultset() {
+	@Override public List<FeedefInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<FeeDefaultInfo> getNewInstance() {
-		return new FeeDefaultSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<FeedefInfo> getNewInstance() {
+		return new FeedefSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -108,20 +105,20 @@ public final class FeeDefaultSelectSingle implements DaoStmt<FeeDefaultInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<FeeDefaultInfo> {
+	private static class ResultParser implements DaoResultParser<FeedefInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<FeeDefaultInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<FeeDefaultInfo> finalResult = new ArrayList<>();
+		@Override public List<FeedefInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<FeedefInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 					return finalResult;
 			
 			do {
-				FeeDefaultInfo dataInfo = new FeeDefaultInfo();
-				dataInfo.codFeeCateg = stmtResult.getString(FeeDefaultDbTableColumn.COL_COD_FEE_CATEG).charAt(0);
-				dataInfo.codCurr = stmtResult.getString(FeeDefaultDbTableColumn.COL_COD_CURRENCY);
-				dataInfo.price = stmtResult.getDouble(FeeDefaultDbTableColumn.COL_VALUE);
+				FeedefInfo dataInfo = new FeedefInfo();
+				dataInfo.codFeeCateg = stmtResult.getString(FeedefDbTableColumn.COL_COD_FEE_CATEG).charAt(0);
+				dataInfo.codCurr = stmtResult.getString(FeedefDbTableColumn.COL_COD_CURRENCY);
+				dataInfo.price = stmtResult.getDouble(FeedefDbTableColumn.COL_VALUE);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

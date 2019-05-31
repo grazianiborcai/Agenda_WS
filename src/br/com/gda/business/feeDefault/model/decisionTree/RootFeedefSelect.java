@@ -3,9 +3,9 @@ package br.com.gda.business.feeDefault.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
-import br.com.gda.business.feeDefault.model.action.StdFeeDefaultSelect;
-import br.com.gda.business.feeDefault.model.checker.FeeDefaultCheckRead;
+import br.com.gda.business.feeDefault.info.FeedefInfo;
+import br.com.gda.business.feeDefault.model.action.StdFeedefSelect;
+import br.com.gda.business.feeDefault.model.checker.FeedefCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -16,12 +16,12 @@ import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootFeeDefaultSelect implements DeciTree<FeeDefaultInfo> {
-	private DeciTree<FeeDefaultInfo> tree;
+public final class RootFeedefSelect implements DeciTree<FeedefInfo> {
+	private DeciTree<FeedefInfo> tree;
 	
 	
-	public RootFeeDefaultSelect(DeciTreeOption<FeeDefaultInfo> option) {
-		DeciTreeHelperOption<FeeDefaultInfo> helperOption = new DeciTreeHelperOption<>();
+	public RootFeedefSelect(DeciTreeOption<FeedefInfo> option) {
+		DeciTreeHelperOption<FeedefInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker();
 		helperOption.recordInfos = option.recordInfos;
@@ -33,11 +33,11 @@ public final class RootFeeDefaultSelect implements DeciTree<FeeDefaultInfo> {
 	
 	
 	
-	private ModelChecker<FeeDefaultInfo> buildDecisionChecker() {
-		List<ModelChecker<FeeDefaultInfo>> queue = new ArrayList<>();		
-		ModelChecker<FeeDefaultInfo> checker;
+	private ModelChecker<FeedefInfo> buildDecisionChecker() {
+		List<ModelChecker<FeedefInfo>> queue = new ArrayList<>();		
+		ModelChecker<FeedefInfo> checker;
 		
-		checker = new FeeDefaultCheckRead();
+		checker = new FeedefCheckRead();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -45,10 +45,10 @@ public final class RootFeeDefaultSelect implements DeciTree<FeeDefaultInfo> {
 	
 	
 	
-	private List<ActionStd<FeeDefaultInfo>> buildActionsOnPassed(DeciTreeOption<FeeDefaultInfo> option) {
-		List<ActionStd<FeeDefaultInfo>> actions = new ArrayList<>();
+	private List<ActionStd<FeedefInfo>> buildActionsOnPassed(DeciTreeOption<FeedefInfo> option) {
+		List<ActionStd<FeedefInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdFeeDefaultSelect(option));
+		actions.add(new StdFeedefSelect(option));
 		return actions;
 	}
 	
@@ -66,13 +66,13 @@ public final class RootFeeDefaultSelect implements DeciTree<FeeDefaultInfo> {
 	
 	
 	
-	@Override public DeciResult<FeeDefaultInfo> getDecisionResult() {
+	@Override public DeciResult<FeedefInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
 	
 	
-	@Override public ActionStd<FeeDefaultInfo> toAction() {
+	@Override public ActionStd<FeedefInfo> toAction() {
 		return tree.toAction();
 	}
 }

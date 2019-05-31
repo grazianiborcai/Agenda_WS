@@ -4,8 +4,8 @@ import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
-import br.com.gda.business.feeDefault.model.decisionTree.RootFeeDefaultSelect;
+import br.com.gda.business.feeDefault.info.FeedefInfo;
+import br.com.gda.business.feeDefault.model.decisionTree.RootFeedefSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class FeeDefaultModelSelect implements Model {
+public final class FeedefModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public FeeDefaultModelSelect(FeeDefaultInfo recordInfo) {
+	public FeedefModelSelect(FeedefInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class FeeDefaultModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(FeeDefaultInfo recordInfo) {
-		ModelOption<FeeDefaultInfo> helperOption = new ModelOption<>();
+	private void buildHelper(FeedefInfo recordInfo) {
+		ModelOption<FeedefInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = FeeDefaultInfo.class;
+		helperOption.infoRecordClass = FeedefInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class FeeDefaultModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<FeeDefaultInfo> {		
-		@Override public DeciTree<FeeDefaultInfo> getInstance(DeciTreeOption<FeeDefaultInfo> option) {
-			return new RootFeeDefaultSelect(option);
+	private static class TreeFactory implements DeciTreeFactory<FeedefInfo> {		
+		@Override public DeciTree<FeedefInfo> getInstance(DeciTreeOption<FeedefInfo> option) {
+			return new RootFeedefSelect(option);
 		}			
 	}
 }

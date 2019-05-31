@@ -3,8 +3,8 @@ package br.com.gda.business.feeDefault.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.feeDefault.dao.FeeDefaultSelect;
-import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
+import br.com.gda.business.feeDefault.dao.FeedefSelect;
+import br.com.gda.business.feeDefault.info.FeedefInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.action.ActionStd;
@@ -13,34 +13,34 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdFeeDefaultSelect implements ActionStd<FeeDefaultInfo> {
-	private ActionStd<FeeDefaultInfo> actionHelper;
+public final class StdFeedefSelect implements ActionStd<FeedefInfo> {
+	private ActionStd<FeedefInfo> actionHelper;
 	
 	
-	public StdFeeDefaultSelect(DeciTreeOption<FeeDefaultInfo> option) {
-		DaoStmtExec<FeeDefaultInfo> sqlStmtExecutor = buildStmtExec(option);
+	public StdFeedefSelect(DeciTreeOption<FeedefInfo> option) {
+		DaoStmtExec<FeedefInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<FeeDefaultInfo> buildStmtExec(DeciTreeOption<FeeDefaultInfo> option) {
-		List<DaoStmtExecOption<FeeDefaultInfo>> stmtExecOptions = new ArrayList<>();			
+	private DaoStmtExec<FeedefInfo> buildStmtExec(DeciTreeOption<FeedefInfo> option) {
+		List<DaoStmtExecOption<FeedefInfo>> stmtExecOptions = new ArrayList<>();			
 		
-		for(FeeDefaultInfo eachRecord : option.recordInfos) {
-			DaoStmtExecOption<FeeDefaultInfo> stmtExecOption = new DaoStmtExecOption<>();
+		for(FeedefInfo eachRecord : option.recordInfos) {
+			DaoStmtExecOption<FeedefInfo> stmtExecOption = new DaoStmtExecOption<>();
 			stmtExecOption.conn = option.conn;
 			stmtExecOption.recordInfo = eachRecord;
 			stmtExecOption.schemaName = option.schemaName;
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new FeeDefaultSelect(stmtExecOptions);
+		return new FeedefSelect(stmtExecOptions);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<FeeDefaultInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<FeedefInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	
@@ -52,7 +52,7 @@ public final class StdFeeDefaultSelect implements ActionStd<FeeDefaultInfo> {
 	
 	
 	
-	@Override public DeciResult<FeeDefaultInfo> getDecisionResult() {
+	@Override public DeciResult<FeedefInfo> getDecisionResult() {
 		return actionHelper.getDecisionResult();
 	}
 }

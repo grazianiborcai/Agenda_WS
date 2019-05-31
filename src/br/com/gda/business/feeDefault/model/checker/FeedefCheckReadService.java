@@ -2,23 +2,21 @@ package br.com.gda.business.feeDefault.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.feeDefault.info.FeeDefaultInfo;
-import br.com.gda.common.DefaultValue;
+import br.com.gda.business.feeDefault.info.FeedefInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class FeeDefaultCheckRead extends ModelCheckerTemplateSimple<FeeDefaultInfo> {
+public final class FeedefCheckReadService extends ModelCheckerTemplateSimple<FeedefInfo> {
 
-	public FeeDefaultCheckRead() {
+	public FeedefCheckReadService() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(FeeDefaultInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codFeeCateg == DefaultValue.character()
-			|| recordInfo.codCurr == null )			
+	@Override protected boolean checkHook(FeedefInfo recordInfo, Connection conn, String schemaName) {	
+		if (  recordInfo.codCurr == null )			
 			return FAILED;
 		
 		

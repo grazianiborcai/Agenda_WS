@@ -8,7 +8,7 @@ import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class FeeDefaultDbTableColumn extends DaoDbTableColumnTemplate {
+public final class FeedefDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_FEE_CATEG = "cod_fee_categ";
 	public static final String COL_COD_CURRENCY = "cod_curr";
 	public static final String COL_VALUE = "value";
@@ -17,7 +17,7 @@ public final class FeeDefaultDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
 	
-	public FeeDefaultDbTableColumn() {
+	public FeedefDbTableColumn() {
 		super();
 	}
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.feeStore.info.FeetoreInfo;
 import br.com.gda.business.feeStore.model.action.LazyFeetoreRootSelect;
 import br.com.gda.business.feeStore.model.action.StdFeetoreEnforceCategServ;
-import br.com.gda.business.feeStore.model.checker.FeeStoreCheckReadCateg;
+import br.com.gda.business.feeStore.model.checker.FeeStoreCheckReadService;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -39,7 +39,7 @@ public final class RootFeetoreSelectService implements DeciTree<FeetoreInfo> {
 		List<ModelChecker<FeetoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<FeetoreInfo> checker;
 		
-		checker = new FeeStoreCheckReadCateg();
+		checker = new FeeStoreCheckReadService();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
