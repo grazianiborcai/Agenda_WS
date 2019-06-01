@@ -116,6 +116,20 @@ public final class UserInsertSingle implements DaoStmt<UserInfo> {
 			}
 			
 			
+			if (recordInfo.codPersonSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codPersonSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
 			return stmt;
 		}		
 	}

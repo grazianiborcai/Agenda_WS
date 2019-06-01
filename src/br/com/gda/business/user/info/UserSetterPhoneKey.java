@@ -30,6 +30,7 @@ public final class UserSetterPhoneKey implements InfoSetter<UserInfo> {
 			eachAddress.codOwner = recordInfo.codOwner;
 			eachAddress.codUser = recordInfo.codUser;
 			eachAddress.lastChangedBy = recordInfo.lastChangedBy;
+			eachAddress.codLanguage = recordInfo.codLanguage;
 		}
 		
 		return recordInfo;

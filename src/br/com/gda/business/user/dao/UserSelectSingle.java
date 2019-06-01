@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -117,9 +116,19 @@ public final class UserSelectSingle implements DaoStmt<UserInfo> {
 				dataInfo.username = stmtResult.getString(UserDbTableColumn.COL_USERNAME);
 				dataInfo.codAuthGroup = stmtResult.getString(UserDbTableColumn.COL_COD_AUTH_GROUP);
 				
+				stmtResult.getLong(UserDbTableColumn.COL_COD_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codSnapshot = stmtResult.getLong(UserDbTableColumn.COL_COD_SNAPSHOT);
+				
+				
 				stmtResult.getLong(UserDbTableColumn.COL_COD_PERSON);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPerson = stmtResult.getLong(UserDbTableColumn.COL_COD_PERSON);
+				
+				
+				stmtResult.getLong(UserDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPersonSnapshot = stmtResult.getLong(UserDbTableColumn.COL_COD_PERSON_SNAPSHOT);
 				
 				
 				stmtResult.getString(UserDbTableColumn.COL_COD_USER_CATEG);
@@ -127,9 +136,9 @@ public final class UserSelectSingle implements DaoStmt<UserInfo> {
 					dataInfo.codUserCategory = stmtResult.getString(UserDbTableColumn.COL_COD_USER_CATEG).charAt(0);
 				
 				
-				stmtResult.getLong(OwnerDbTableColumn.COL_LAST_CHANGED_BY);
+				stmtResult.getLong(UserDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(OwnerDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.lastChangedBy = stmtResult.getLong(UserDbTableColumn.COL_LAST_CHANGED_BY);
 				
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(UserDbTableColumn.COL_LAST_CHANGED);

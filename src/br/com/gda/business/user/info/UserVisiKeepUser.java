@@ -41,6 +41,7 @@ final class UserVisiKeepUser implements InfoKeeperVisitor<UserInfo, UserInfo> {
 		sourceTwo.codPerson = sourceOne.codPerson;
 		sourceTwo.username = sourceOne.username;
 		sourceTwo.codUserCategory = sourceOne.codUserCategory;
+		sourceTwo.codLanguage = sourceOne.codLanguage;
 		return sourceTwo;
 	}
 	

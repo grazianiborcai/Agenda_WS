@@ -46,7 +46,8 @@ final class UserVisiMergeAddress implements InfoMergerVisitorV2<UserInfo, Addres
 	
 	
 	@Override public boolean shouldWrite(AddressInfo sourceOne, UserInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codUser == sourceTwo.codUser);
+		return (sourceOne.codOwner == sourceTwo.codOwner && 
+				sourceOne.codUser  == sourceTwo.codUser		);
 	}	
 	
 	

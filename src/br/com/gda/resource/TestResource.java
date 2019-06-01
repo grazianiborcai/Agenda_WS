@@ -21,9 +21,9 @@ import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.addressSnapshot.model.AddresnapModelInsert;
 import br.com.gda.business.addressSnapshot.model.AddresnapModelSelect;
 import br.com.gda.business.cartItem.model.CartemModelUpsert;
-import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
-import br.com.gda.business.cartSnapshot.model.CartSnapModelInsert;
-import br.com.gda.business.cartSnapshot.model.CartSnapModelSelect;
+import br.com.gda.business.cartSnapshot_.info.CartSnapInfo;
+import br.com.gda.business.cartSnapshot_.model.CartSnapModelInsert;
+import br.com.gda.business.cartSnapshot_.model.CartSnapModelSelect;
 import br.com.gda.business.company.model.CompModelInsert;
 import br.com.gda.business.company.model.CompModelUpdate;
 import br.com.gda.business.customerSearch.model.CusarchModelSelect_;
@@ -52,9 +52,6 @@ import br.com.gda.business.planingData.info.PlanataInfo;
 import br.com.gda.business.planingData.model.PlanataModelSelect;
 import br.com.gda.business.storeTime_.info.StorimeInfo;
 import br.com.gda.business.storeTime_.model.StorimeModelSelect;
-import br.com.gda.business.userSnapshot_.info.UserSnapInfo;
-import br.com.gda.business.userSnapshot_.model.UserSnapModelInsert;
-import br.com.gda.business.userSnapshot_.model.UserSnapModelSelect;
 import br.com.gda.model.Model;
 import br.com.gda.payService.payCustomer.info.PaycusInfo;
 import br.com.gda.payService.payCustomer.model.PaycusModelDelete;
@@ -98,8 +95,6 @@ public class TestResource {
 	private static final String INSERT_PHONE_SNAPSHOT = "/insertPhoneSnapshot";
 	private static final String SELECT_PERSON_SNAPSHOT = "/selectPersonSnapshot";
 	private static final String INSERT_PERSON_SNAPSHOT = "/insertPersonSnapshot";
-	private static final String INSERT_USER_SNAPSHOT = "/insertUserSnapshot";
-	private static final String SELECT_USER_SNAPSHOT = "/selectUserSnapshot";
 	private static final String INSERT_MATERIAL_SNAPSHOT = "/insertMaterialSnapshot";
 	private static final String SELECT_MATERIAL_SNAPSHOT = "/selectMaterialSnapshot";
 	private static final String INSERT_CART_SNAPSHOT = "/insertCartSnapshot";
@@ -351,36 +346,6 @@ public class TestResource {
 		Model model = new PersonapModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
-	}
-	
-	
-	
-	@POST
-	@Path(INSERT_USER_SNAPSHOT)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertUserSnapshot(@Context HttpServletRequest request, String incomingData) {
-		
-		
-		Model model = new UserSnapModelInsert(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();	
-	}
-	
-	
-	
-	@GET
-	@Path(SELECT_USER_SNAPSHOT)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectUserSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
-								       @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
-
-		UserSnapInfo recordInfo = new UserSnapInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codSnapshot = codSnapshot;
-		
-		Model model = new UserSnapModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
 	}
 	
 	

@@ -40,6 +40,7 @@ final class UserVisiMergePerson implements InfoMergerVisitorV2<UserInfo, PersonI
 	private UserInfo merge(PersonInfo sourceOne, UserInfo sourceTwo) {
 		sourceTwo.personData = makeClone(sourceOne);
 		sourceTwo.codPerson = sourceOne.codPerson;
+		sourceTwo.codPersonSnapshot = sourceOne.codSnapshot;
 		return sourceTwo;
 	}
 	

@@ -5,15 +5,14 @@ import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.action.LazyUserEnforceLChanged;
-import br.com.gda.business.user.model.action.LazyUserEnforcePersonKey;
-import br.com.gda.business.user.model.action.LazyUserEnforceUsername;
+import br.com.gda.business.user.model.action.LazyUserInsertUserap;
+import br.com.gda.business.user.model.action.LazyUserMergeUsername;
 import br.com.gda.business.user.model.action.LazyUserNodeUpdatePerson;
 import br.com.gda.business.user.model.action.LazyUserNodeUpsertAddress;
 import br.com.gda.business.user.model.action.LazyUserNodeUpsertPhone;
 import br.com.gda.business.user.model.action.LazyUserUpdate;
-import br.com.gda.business.user.model.action.StdUserKeepUser;
+import br.com.gda.business.user.model.action.StdUserMergeToUpdate;
 import br.com.gda.business.user.model.checker.UserCheckAuthGroup;
-import br.com.gda.business.user.model.checker.UserCheckCateg;
 import br.com.gda.business.user.model.checker.UserCheckExist;
 import br.com.gda.business.user.model.checker.UserCheckOwner;
 import br.com.gda.business.user.model.checker.UserCheckUpdate;
@@ -54,13 +53,6 @@ public final class RootUserUpdate extends DeciTreeWriteTemplate<UserInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new UserCheckCateg(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new UserCheckAuthGroup(checkerOption);
 		queue.add(checker);	
 		
@@ -78,27 +70,26 @@ public final class RootUserUpdate extends DeciTreeWriteTemplate<UserInfo> {
 	
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
-
-		ActionStd<UserInfo> keepUser = new StdUserKeepUser(option);
+		//TODO: permitir alterar codAuthGroup por aqui ou criar um endpoint para isso ?
+		ActionStd<UserInfo> mergeToUpdate = new StdUserMergeToUpdate(option);
 		ActionLazy<UserInfo> enforceLChanged = new LazyUserEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserEnforceUsername(option.conn, option.schemaName);
-		ActionLazy<UserInfo> enforcePersonKey = new LazyUserEnforcePersonKey(option.conn, option.schemaName);		
-		ActionLazy<UserInfo> updateUser = new LazyUserUpdate(option.conn, option.schemaName);		
+		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserMergeUsername(option.conn, option.schemaName);		
+		ActionLazy<UserInfo> updateUser = new LazyUserUpdate(option.conn, option.schemaName);
 		ActionLazy<UserInfo> updatePerson = new LazyUserNodeUpdatePerson(option.conn, option.schemaName);
+		ActionLazy<UserInfo> insertSnapshot = new LazyUserInsertUserap(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> upsertAddress = new LazyUserNodeUpsertAddress(option.conn, option.schemaName);	
 		ActionLazy<UserInfo> upsertPhone = new LazyUserNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionStd<UserInfo> select = new RootUserSelect(option).toAction();		
 		
-		keepUser.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(enforcePersonKey);
+		mergeToUpdate.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceLChangedBy);		
+		enforceLChangedBy.addPostAction(updatePerson);		
+		updatePerson.addPostAction(insertSnapshot);
+		insertSnapshot.addPostAction(updateUser);		
+		updateUser.addPostAction(upsertAddress);		
+		updateUser.addPostAction(upsertPhone);
 		
-		enforcePersonKey.addPostAction(updateUser);
-		enforcePersonKey.addPostAction(updatePerson);
-		enforcePersonKey.addPostAction(upsertAddress);		
-		enforcePersonKey.addPostAction(upsertPhone);
-		
-		actions.add(keepUser);
+		actions.add(mergeToUpdate);
 		actions.add(select);	
 		return actions;
 	}

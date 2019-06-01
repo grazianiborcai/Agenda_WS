@@ -35,6 +35,8 @@ public final class UserSetterPersonKey implements InfoSetter<UserInfo> {
 		recordInfo.personData.codOwner = recordInfo.codOwner;
 		recordInfo.personData.codPerson = recordInfo.codPerson;
 		recordInfo.personData.codEntityCateg = EntityCateg.USER.getCodEntityCateg();
+		recordInfo.personData.codLanguage = recordInfo.codLanguage;
+		recordInfo.personData.username = recordInfo.username;
 		
 		return recordInfo;
 	}

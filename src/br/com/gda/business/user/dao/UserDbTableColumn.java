@@ -12,6 +12,8 @@ public final class UserDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_AUTH_GROUP = "cod_auth_group";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_PERSON = "cod_person";
+	public static final String COL_COD_PERSON_SNAPSHOT = "cod_person_snapshot";
+	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
 	public static final String COL_COD_USER = "cod_user";
 	public static final String COL_COD_USER_CATEG = "cod_user_categ";
 	public static final String COL_LAST_CHANGED = "last_changed";
@@ -109,6 +111,22 @@ public final class UserDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_LAST_CHANGED_BY;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PERSON_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -77,12 +77,14 @@ public class UserResource {
 	@GET
 	@Path(SELECT_USER)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectUser(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner,
-			                   @HeaderParam("codUser")  @DefaultValue("-1") long codUser) {
+	public Response selectUser(@HeaderParam("TOKEN_OWNER") 		@DefaultValue("-1") long codOwner,
+							   @HeaderParam("codLanguage")		@DefaultValue("EN") String codLanguage,
+				               @HeaderParam("TOKEN_USERNAME") 	String username) {
 
 		UserInfo recordInfo = new UserInfo();
 		recordInfo.codOwner = codOwner;
-		recordInfo.codUser = codUser;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new UserModelSelect(recordInfo);
 		model.executeRequest();

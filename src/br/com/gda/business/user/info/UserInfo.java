@@ -14,10 +14,12 @@ import br.com.gda.info.InfoRecord;
 public final class UserInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codUser;
+	public long codSnapshot;
 	public String username;
 	public char codUserCategory;
 	public String codAuthGroup;
 	public long codPerson;
+	public long codPersonSnapshot;
 	public long codCustomer;				//TODO: remover ?
 	public PersonInfo personData;
 	public List<AddressInfo> addresses;
@@ -32,8 +34,10 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public UserInfo() {
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
 		codPerson = DefaultValue.number();
+		codPersonSnapshot = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		personData = DefaultValue.object();
 		authGrRoles = DefaultValue.list();

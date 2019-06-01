@@ -91,6 +91,7 @@
         <security:intercept-url pattern="/**/MasterData/**"						access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/PlanningTime**"					access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/Cart/**"							access="isAuthenticated()" 							/>  
+        <security:intercept-url pattern="/**/User/**"							access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**"                					access="isAuthenticated()" 							/>
         <security:http-basic />
         <csrf disabled="true"/>

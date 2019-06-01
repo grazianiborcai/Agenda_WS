@@ -7,6 +7,7 @@ import br.com.gda.business.masterData.info.AuthGrRoleInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.personCustomer.info.PersonCusInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
@@ -54,14 +55,14 @@ public final class UserMerger {
 	
 	
 	public static UserInfo mergeWithPersonCus(PersonCusInfo sourceOne, UserInfo sourceTwo) {
-		InfoMerger<UserInfo, PersonCusInfo> merger = new UserMergerPersonCus();		
+		InfoMerger<UserInfo, PersonCusInfo> merger = new UserMergerPersonCus_();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
 	public static List<UserInfo> mergeWithPersonCus(List<PersonCusInfo> sourceOnes, List<UserInfo> sourceTwos) {
-		InfoMerger<UserInfo, PersonCusInfo> merger = new UserMergerPersonCus();		
+		InfoMerger<UserInfo, PersonCusInfo> merger = new UserMergerPersonCus_();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
 	
@@ -95,6 +96,20 @@ public final class UserMerger {
 	
 	
 	
+	public static UserInfo mergeWithUserap(UserapInfo sourceOne, UserInfo sourceTwo) {
+		InfoMerger<UserInfo, UserapInfo> merger = new UserMergerUserap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<UserInfo> mergeWithUserap(List<UserapInfo> sourceOnes, List<UserInfo> sourceTwos) {
+		InfoMerger<UserInfo, UserapInfo> merger = new UserMergerUserap();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static UserInfo mergeToDelete(UserInfo sourceOne, UserInfo sourceTwo) {
 		InfoMerger<UserInfo, UserInfo> merger = new UserMergerToDelete();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -118,6 +133,20 @@ public final class UserMerger {
 	
 	public static List<UserInfo> mergeToSelect(List<UserInfo> sourceOnes, List<UserInfo> sourceTwos) {
 		InfoMerger<UserInfo, UserInfo> merger = new UserMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
+	public static UserInfo mergeToUpdate(UserInfo sourceOne, UserInfo sourceTwo) {
+		InfoMerger<UserInfo, UserInfo> merger = new UserMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<UserInfo> mergeToUpdate(List<UserInfo> sourceOnes, List<UserInfo> sourceTwos) {
+		InfoMerger<UserInfo, UserInfo> merger = new UserMergerToUpdate();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
 }
