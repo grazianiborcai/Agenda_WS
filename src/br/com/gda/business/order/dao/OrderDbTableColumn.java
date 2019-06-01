@@ -9,7 +9,7 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_CURRENCY = "cod_cur";
+	public static final String COL_COD_CURRENCY = "cod_curr";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = "cod_customer_snapshot";
 	public static final String COL_COD_ORDER = "cod_order";
