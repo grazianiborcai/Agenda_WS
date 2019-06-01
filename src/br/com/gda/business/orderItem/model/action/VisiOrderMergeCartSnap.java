@@ -2,8 +2,8 @@ package br.com.gda.business.orderItem.model.action;
 
 import java.sql.Connection;
 
-import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
-import br.com.gda.business.cartSnapshot.model.decisionTree.RootCartSnapSelect;
+import br.com.gda.business.cartSnapshot_.info.CartSnapInfo;
+import br.com.gda.business.cartSnapshot_.model.decisionTree.RootCartSnapSelect;
 import br.com.gda.business.orderItem.info.OrderInfo;
 import br.com.gda.business.orderItem.info.OrderMerger;
 import br.com.gda.info.obsolete.InfoWritterFactory_;

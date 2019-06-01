@@ -2,10 +2,10 @@ package br.com.gda.business.orderItem.info;
 
 import java.util.List;
 
-import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
+import br.com.gda.business.cartSnapshot_.info.CartSnapInfo;
 import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.snapshot_.info.SnapInfo;
-import br.com.gda.business.userSnapshot_.info.UserSnapInfo;
+import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.info.obsolete.InfoWritterFactory_;
 
 public final class OrderMerger extends InfoWritterFactory_<OrderInfo> {	
@@ -28,7 +28,7 @@ public final class OrderMerger extends InfoWritterFactory_<OrderInfo> {
 	
 	
 	
-	static public OrderInfo merge(UserSnapInfo sourceOne, OrderInfo sourceTwo) {
+	static public OrderInfo merge(UserapInfo sourceOne, OrderInfo sourceTwo) {
 		return new OrderMergerUserSnap().merge(sourceOne, sourceTwo);
 	}	
 	
@@ -52,9 +52,9 @@ public final class OrderMerger extends InfoWritterFactory_<OrderInfo> {
 			return new OrderMergerCartSnap().merge((List<CartSnapInfo>) sourceOnes, (List<OrderInfo>) sourceTwos);
 		
 		
-		if (sourceOnes.get(0) instanceof UserSnapInfo 			&&
+		if (sourceOnes.get(0) instanceof UserapInfo 			&&
 			sourceTwos.get(0) instanceof OrderInfo		)
-			return new OrderMergerUserSnap().merge((List<UserSnapInfo>) sourceOnes, (List<OrderInfo>) sourceTwos);
+			return new OrderMergerUserSnap().merge((List<UserapInfo>) sourceOnes, (List<OrderInfo>) sourceTwos);
 		
 		
 		if (sourceOnes.get(0) instanceof OrderStatusInfo 		&&

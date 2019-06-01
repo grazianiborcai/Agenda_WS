@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
-import br.com.gda.business.cartSnapshot.model.decisionTree.RootCartSnapInsert;
+import br.com.gda.business.cartSnapshot_.info.CartSnapInfo;
+import br.com.gda.business.cartSnapshot_.model.decisionTree.RootCartSnapInsert;
 import br.com.gda.business.orderItem.info.OrderInfo;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;

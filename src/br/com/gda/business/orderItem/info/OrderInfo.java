@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
-import br.com.gda.business.userSnapshot_.info.UserSnapInfo;
+import br.com.gda.business.cartSnapshot_.info.CartSnapInfo;
+import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
@@ -22,7 +22,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public String codLanguage;
 	public List<CartSnapInfo> cartSnaps;
-	public UserSnapInfo userSnap;
+	public UserapInfo userSnap;
 	
 	
 	public OrderInfo() {
