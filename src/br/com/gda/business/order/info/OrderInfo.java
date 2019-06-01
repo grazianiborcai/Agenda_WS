@@ -10,7 +10,7 @@ import br.com.gda.info.InfoRecord;
 public final class OrderInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codOrder;	
-	public String codOrderExternal;	
+	public String codOrderExt;	
 	public long codCustomer;
 	public long codCustomerSnapshot;
 	public long codUser;

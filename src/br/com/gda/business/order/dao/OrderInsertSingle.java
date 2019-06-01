@@ -110,7 +110,7 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 			}	
 			
 			
-			stmt.setString(i++, recordInfo.codOrderExternal);
+			stmt.setString(i++, recordInfo.codOrderExt);
 			stmt.setString(i++, recordInfo.codOrderStatus);
 			
 			

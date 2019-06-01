@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.order.info.OrderInfo;
-import br.com.gda.business.order.model.decisionTree.RootOrderUpsert;
+import br.com.gda.business.order.model.decisionTree.RootOrderInsert;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -66,7 +66,7 @@ public final class OrderModelUpsert implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<OrderInfo> {		
 		@Override public DeciTree<OrderInfo> getInstance(DeciTreeOption<OrderInfo> option) {
-			return new RootOrderUpsert(option);
+			return new RootOrderInsert(option);
 		}			
 	}
 }

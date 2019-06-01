@@ -7,7 +7,7 @@ import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.action.LazyOrderUpsertCartem;
 import br.com.gda.business.order.model.action.StdOrderEnforceCartemKey;
 import br.com.gda.business.order.model.action.StdOrderInsert;
-import br.com.gda.business.order.model.checker.OrderCheckWrite;
+import br.com.gda.business.order.model.checker.OrderCheckInsert;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -27,7 +27,7 @@ public final class NodeOrderCartem extends DeciTreeWriteTemplate<OrderInfo> {
 		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderInfo> checker;	
 		
-		checker = new OrderCheckWrite();
+		checker = new OrderCheckInsert();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
