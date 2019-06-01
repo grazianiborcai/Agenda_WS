@@ -27,9 +27,6 @@ import br.com.gda.business.cartSnapshot.model.CartSnapModelSelect;
 import br.com.gda.business.company.model.CompModelInsert;
 import br.com.gda.business.company.model.CompModelUpdate;
 import br.com.gda.business.customerSearch.model.CusarchModelSelect_;
-import br.com.gda.business.feeOwner.info.FeewnerInfo;
-import br.com.gda.business.feeOwner.model.FeewnerModelSelect;
-import br.com.gda.business.feeOwner.model.FeewnerModelSelectService;
 import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
 import br.com.gda.business.materialSnapshot.model.MatsnapModelInsert;
 import br.com.gda.business.materialSnapshot.model.MatsnapModelSelect;
@@ -103,8 +100,6 @@ public class TestResource {
 	private static final String INSERT_PERSON_SNAPSHOT = "/insertPersonSnapshot";
 	private static final String INSERT_USER_SNAPSHOT = "/insertUserSnapshot";
 	private static final String SELECT_USER_SNAPSHOT = "/selectUserSnapshot";
-	private static final String SELECT_FEE_STORE = "/selectFeeStore";
-	private static final String SELECT_FEE_STORE_SERVICE = "/selectFeeStoreService";
 	private static final String INSERT_MATERIAL_SNAPSHOT = "/insertMaterialSnapshot";
 	private static final String SELECT_MATERIAL_SNAPSHOT = "/selectMaterialSnapshot";
 	private static final String INSERT_CART_SNAPSHOT = "/insertCartSnapshot";
@@ -386,44 +381,7 @@ public class TestResource {
 		Model model = new UserSnapModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
-	}	
-	
-	
-	
-	@GET
-	@Path(SELECT_FEE_STORE)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectFeeStore(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-								   @HeaderParam("codStore") @DefaultValue("-1") long codStore,
-								   @HeaderParam("codFeeCateg") String codFeeCateg) {
-
-		FeewnerInfo recordInfo = new FeewnerInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		if (codFeeCateg != null)
-			recordInfo.codFeeCateg = codFeeCateg.charAt(0);
-		
-		Model model = new FeewnerModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}	
-	
-	
-	
-	@GET
-	@Path(SELECT_FEE_STORE_SERVICE)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectFeeStoreService(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-								          @HeaderParam("codStore") @DefaultValue("-1") long codStore) {
-
-		FeewnerInfo recordInfo = new FeewnerInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		
-		Model model = new FeewnerModelSelectService(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}	
+	}
 	
 	
 	

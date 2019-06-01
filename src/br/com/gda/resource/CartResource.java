@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.CartModelCheckout;
 import br.com.gda.business.cart.model.CartModelDelete;
 import br.com.gda.business.cart.model.CartModelUpsert;
 import br.com.gda.business.cart.model.CartModelSelect;
@@ -29,6 +30,7 @@ public final class CartResource {
 	private static final String UPSERT_CART = "/upsertCart";
 	private static final String SELECT_CART = "/selectCart";
 	private static final String DELETE_CART = "/deleteCart";
+	private static final String CHECKOUT_CART = "/checkoutCart";
 	private static final String SELECT_RESERVE = "/selectReserve";
 	
 	
@@ -80,6 +82,18 @@ public final class CartResource {
 		model.executeRequest();
 		return model.getResponse();	
 	}
+	
+	
+	
+	@POST
+	@Path(CHECKOUT_CART)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response checkoutCart(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new CartModelCheckout(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();	
+	}	
 	
 	
 	//TODO: Remover?

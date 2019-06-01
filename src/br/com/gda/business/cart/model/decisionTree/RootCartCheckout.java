@@ -5,13 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.action.StdCartMergeUsername;
-import br.com.gda.business.cart.model.action.LazyCartEnforceLChanged;
-import br.com.gda.business.cart.model.action.LazyCartNodeCartem;
-import br.com.gda.business.cart.model.action.LazyCartNodeUpsert;
-import br.com.gda.business.cart.model.action.LazyCartRootSelect;
+import br.com.gda.business.cart.model.action.LazyCartNodeCheckout;
+import br.com.gda.business.cart.model.checker.CartCheckCheckout;
 import br.com.gda.business.cart.model.checker.CartCheckLangu;
 import br.com.gda.business.cart.model.checker.CartCheckOwner;
-import br.com.gda.business.cart.model.checker.CartCheckWrite;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
@@ -20,9 +17,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootCartUpsert extends DeciTreeWriteTemplate<CartInfo> {
+public final class RootCartCheckout extends DeciTreeWriteTemplate<CartInfo> {
 	
-	public RootCartUpsert(DeciTreeOption<CartInfo> option) {
+	public RootCartCheckout(DeciTreeOption<CartInfo> option) {
 		super(option);
 	}
 	
@@ -35,7 +32,7 @@ public final class RootCartUpsert extends DeciTreeWriteTemplate<CartInfo> {
 		ModelChecker<CartInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new CartCheckWrite();
+		checker = new CartCheckCheckout();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -52,13 +49,6 @@ public final class RootCartUpsert extends DeciTreeWriteTemplate<CartInfo> {
 		checker = new CartCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		//TODO: verificar serico
-		//TODO: verificar limite de itens no carrinho
-		//TODO: verificar quantidade. Somente 1 para servico. Nao pode ser negativa para todos os casos
-		//TODO: verificar valores negativos
-		//TODO: verificar Ordem em aberto
-		//TODO: Eliminar cabecalho se nao existe item ?
-		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -68,15 +58,9 @@ public final class RootCartUpsert extends DeciTreeWriteTemplate<CartInfo> {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CartInfo> mergeUsername = new StdCartMergeUsername(option);
-		ActionLazy<CartInfo> enforceLChanged = new LazyCartEnforceLChanged(option.conn, option.schemaName);		
-		ActionLazy<CartInfo> upsert = new LazyCartNodeUpsert(option.conn, option.schemaName);
-		ActionLazy<CartInfo> cartem = new LazyCartNodeCartem(option.conn, option.schemaName);
-		ActionLazy<CartInfo> select = new LazyCartRootSelect(option.conn, option.schemaName);
+		ActionLazy<CartInfo> checkout = new LazyCartNodeCheckout(option.conn, option.schemaName);
 		
-		mergeUsername.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(upsert);
-		upsert.addPostAction(cartem);
-		cartem.addPostAction(select);
+		mergeUsername.addPostAction(checkout);
 		
 		actions.add(mergeUsername);
 		return actions;

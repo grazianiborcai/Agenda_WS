@@ -6,9 +6,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class CartCheckWrite extends ModelCheckerTemplateSimple<CartInfo> {
+public final class CartCheckCheckout extends ModelCheckerTemplateSimple<CartInfo> {
 
-	public CartCheckWrite() {
+	public CartCheckCheckout() {
 		super();
 	}
 	
@@ -17,13 +17,8 @@ public final class CartCheckWrite extends ModelCheckerTemplateSimple<CartInfo> {
 	@Override protected boolean checkHook(CartInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 		<= 0 	
 			|| recordInfo.username		== null 
-			|| recordInfo.cartems		== null
 			|| recordInfo.codLanguage 	== null )
 			
-			return super.FAILED;
-		
-		
-		if (recordInfo.cartems.isEmpty())				
 			return super.FAILED;
 		
 		

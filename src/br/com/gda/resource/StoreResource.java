@@ -16,8 +16,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.feeOwner.info.FeewnerInfo;
-import br.com.gda.business.feeOwner.model.FeewnerModelSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.StoreModelDelete;
 import br.com.gda.business.store.model.StoreModelInsert;
@@ -48,7 +46,6 @@ public class StoreResource {
 	private static final String DELETE_STORE = "/deleteStore";
 	private static final String SELECT_STORE = "/selectStore";
 	private static final String SELECT_STORE_LIST = "/selectStoreList";
-	private static final String SELECT_STORE_FEE = "/selectStoreFee";
 	private static final String SELECT_STORE_WTIME = "/selectStoreWorkTime";
 	private static final String INSERT_STORE_WTIME = "/insertStoreWorkTime";
 	private static final String DELETE_STORE_WTIME = "/deleteStoreWorkTime";
@@ -138,26 +135,6 @@ public class StoreResource {
 		recordInfo.username = username;
 		
 		Model model = new StolisModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@GET
-	@Path(SELECT_STORE_FEE)
-	public Response selectStoreFee(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner,
-								   @HeaderParam("codStore") @DefaultValue("-1") long codStore,
-								   @HeaderParam("codFeeCateg") String codFeeCateg) {
-		
-		FeewnerInfo recordInfo = new FeewnerInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		
-		if (codFeeCateg != null)
-			recordInfo.codFeeCateg = codFeeCateg.charAt(0);
-		
-		Model model = new FeewnerModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
