@@ -10,7 +10,6 @@ import br.com.gda.dao.common.DaoDbTable;
 
 public final class CartDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = "cod_customer";
-	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_USER = "cod_user";
 	public static final String COL_LAST_CHANGED = "last_changed";
