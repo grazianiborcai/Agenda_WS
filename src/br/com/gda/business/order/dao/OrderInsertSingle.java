@@ -37,7 +37,7 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.ORDER_TABLE;
+		this.stmtOption.tableName = DaoDbTable.ORDER_HDR_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser(recordInfo);
@@ -86,21 +86,57 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
+			stmt.setLong(i++, recordInfo.codUser);
+			
+			
+			if (recordInfo.codUserSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codUserSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
 			
 			
 			if (recordInfo.codCustomer >= 0) {
-				stmt.setLong(i++, recordInfo.codCustomer);	
+				stmt.setLong(i++, recordInfo.codCustomer);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			if (recordInfo.codCustomerSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codCustomerSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			stmt.setString(i++, recordInfo.codOrderExternal);
+			stmt.setString(i++, recordInfo.codOrderStatus);
+			
+			
+			if (recordInfo.itemTotal >= 0) {
+				stmt.setDouble(i++, recordInfo.itemTotal);
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}
 			
-					
-			stmt.setTimestamp(i++, lastChanged);	
-			stmt.setString(i++, recordInfo.codOrderExt);
-			stmt.setString(i++, recordInfo.codOrderStatus);
-			stmt.setLong(i++, recordInfo.codPerson);
-			stmt.setLong(i++, recordInfo.codUser);
-			stmt.setLong(i++, recordInfo.codSnapshot);
+			
+			if (recordInfo.feeService >= 0) {
+				stmt.setDouble(i++, recordInfo.feeService);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.grandTotal >= 0) {
+				stmt.setDouble(i++, recordInfo.grandTotal);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			stmt.setString(i++, recordInfo.codCurr);
+			stmt.setTimestamp(i++, lastChanged);			
 
 			return stmt;
 		}		

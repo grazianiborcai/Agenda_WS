@@ -1,0 +1,37 @@
+package br.com.gda.business.orderItem.model.checker;
+
+import java.sql.Connection;
+
+import br.com.gda.business.orderItem.info.OrderInfo;
+import br.com.gda.common.SystemCode;
+import br.com.gda.common.SystemMessage;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+
+public final class OrderCheckWrite extends ModelCheckerTemplateSimple<OrderInfo> {
+
+	public OrderCheckWrite() {
+		super();
+	}
+	
+	
+	
+	@Override protected boolean checkHook(OrderInfo recordInfo, Connection conn, String schemaName) {	
+		if ( recordInfo.codOwner <= 0 || recordInfo.codUser <= 0 )			
+			return FAILED;
+		
+		
+		return SUCCESS;
+	}
+	
+	
+	
+	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
+		return SystemMessage.MANDATORY_FIELD_EMPTY;
+	}
+	
+	
+	
+	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+		return SystemCode.MANDATORY_FIELD_EMPTY;
+	}
+}

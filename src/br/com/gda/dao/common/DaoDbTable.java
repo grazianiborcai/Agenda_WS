@@ -56,7 +56,7 @@ public final class DaoDbTable {
 	public static final String MAT_TYPE_TEXT_TABLE = "material_type_text";
 	public static final String MAT_UNIT_TABLE = "measure_unit";
 	public static final String MAT_UNIT_TEXT_TABLE = "measure_unit_text";
-	public static final String ORDER_TABLE = "order";
+	public static final String ORDER_HDR_TABLE = "order_header";
 	public static final String ORDER_STATUS_TABLE = "order_status";
 	public static final String ORDER_STATUS_TEXT_TABLE = "order_status_text";
 	public static final String OWNER_TABLE = "owner";

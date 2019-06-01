@@ -8,7 +8,7 @@ import br.com.gda.model.action.ActionVisitorTemplateEnforce;
 final class VisiOrderEnforceLChanged extends ActionVisitorTemplateEnforce<OrderInfo> {
 	
 	@Override protected OrderInfo enforceHook(OrderInfo recordInfo) {
-		InfoSetter<OrderInfo> attrSetter = new OrderSetterLChanged();
-		return attrSetter.setAttr(recordInfo);
+		InfoSetter<OrderInfo> setter = new OrderSetterLChanged();
+		return setter.setAttr(recordInfo);
 	}
 }

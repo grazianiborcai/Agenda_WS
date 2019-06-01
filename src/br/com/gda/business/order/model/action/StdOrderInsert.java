@@ -13,7 +13,7 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdOrderInsert implements ActionStd<OrderInfo> {
+public final class StdOrderInsert implements ActionStd<OrderInfo> {
 	private ActionStd<OrderInfo> actionHelper;
 	
 	

@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
-import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -21,8 +19,7 @@ import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
-	private final String LT_HDR = DaoDbTable.ORDER_TABLE;
-	private final String RT_ATTR = DaoDbTable.LANGUAGE_TABLE;
+	private final String LT_HDR = DaoDbTable.ORDER_HDR_TABLE;
 	
 	private DaoStmt<OrderInfo> stmtSql;
 	private DaoStmtOption<OrderInfo> stmtOption;
@@ -46,38 +43,15 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = buildJoins();
-	}
-	
-	
-	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinLanguage());
-		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_ATTR;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
+		this.stmtOption.joins = null;
 	}
 	
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean IGNORE_RECORD_MODE = true;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new OrderWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -86,7 +60,7 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
 	
 	
@@ -125,10 +99,11 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<OrderInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
 		private final boolean NOT_NULL = false;
+		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<OrderInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			
 			List<OrderInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
@@ -136,26 +111,40 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 			
 			do {
 				OrderInfo dataInfo = new OrderInfo();
-				dataInfo.codOwner = stmtResult.getLong(OrderDbTableColumn.COL_COD_OWNER);
-				dataInfo.codOrder = stmtResult.getLong(OrderDbTableColumn.COL_COD_ORDER);	
-				dataInfo.codUser = stmtResult.getLong(OrderDbTableColumn.COL_COD_USER);
-				dataInfo.codSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_SNAPSHOT);
-				dataInfo.codOrderExt = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_EXT);
-				dataInfo.codOrderStatus = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_STATUS);	
+				dataInfo.codOwner = stmtResult.getLong(OrderDbTableColumn.COL_COD_OWNER);	
+				dataInfo.codOrder = stmtResult.getLong(OrderDbTableColumn.COL_COD_ORDER);
+				dataInfo.codUser = stmtResult.getLong(OrderDbTableColumn.COL_COD_USER);	
+				dataInfo.codOrderExternal = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_EXTERNAL);	
+				dataInfo.codOrderStatus = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_STATUS);
+				dataInfo.codCurr = stmtResult.getString(OrderDbTableColumn.COL_COD_CURRENCY);
 				
+				stmtResult.getLong(OrderDbTableColumn.COL_COD_USER_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codUserSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_USER_SNAPSHOT);
 				
 				stmtResult.getLong(OrderDbTableColumn.COL_COD_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codCustomer = stmtResult.getLong(OrderDbTableColumn.COL_COD_CUSTOMER);
 				
-				
-				stmtResult.getString(OrderDbTableColumn.COL_COD_LANGUAGE);
+				stmtResult.getLong(OrderDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codLanguage = stmtResult.getString(OrderDbTableColumn.COL_COD_LANGUAGE);
+					dataInfo.codCustomerSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(OrderDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
+				
+				stmtResult.getDouble(OrderDbTableColumn.COL_ITEM_TOTAL);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.itemTotal = stmtResult.getDouble(OrderDbTableColumn.COL_ITEM_TOTAL);
+				
+				stmtResult.getDouble(OrderDbTableColumn.COL_FEE_SERVICE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.feeService = stmtResult.getDouble(OrderDbTableColumn.COL_FEE_SERVICE);
+				
+				stmtResult.getDouble(OrderDbTableColumn.COL_GRAND_TOTAL);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.grandTotal = stmtResult.getDouble(OrderDbTableColumn.COL_GRAND_TOTAL);				
 				
 				
 				finalResult.add(dataInfo);

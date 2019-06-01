@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
-import br.com.gda.business.order.model.action.LazyOrderMergeCartSnap;
-import br.com.gda.business.order.model.action.LazyOrderMergeOrderStatus;
-import br.com.gda.business.order.model.action.StdOrderSelect;
+import br.com.gda.business.order.model.action.LazyOrderEnforceCurrency;
+import br.com.gda.business.order.model.action.LazyOrderMergeCartem;
+import br.com.gda.business.order.model.action.LazyOrderMergeCurrency;
+import br.com.gda.business.order.model.action.LazyOrderMergeToSelect;
+import br.com.gda.business.order.model.action.StdOrderMergeUsername;
 import br.com.gda.business.order.model.checker.OrderCheckLangu;
 import br.com.gda.business.order.model.checker.OrderCheckRead;
 import br.com.gda.model.action.ActionLazy;
@@ -14,31 +16,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public final class RootOrderSelect implements DeciTree<OrderInfo> {
-	private DeciTree<OrderInfo> tree;
-	
+public final class RootOrderSelect extends DeciTreeReadTemplate<OrderInfo> {
 	
 	public RootOrderSelect(DeciTreeOption<OrderInfo> option) {
-		DeciTreeHelperOption<OrderInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<OrderInfo> buildDecisionChecker(DeciTreeOption<OrderInfo> option) {
+	@Override protected ModelChecker<OrderInfo> buildDecisionCheckerHook(DeciTreeOption<OrderInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
@@ -60,41 +49,21 @@ public final class RootOrderSelect implements DeciTree<OrderInfo> {
 	
 	
 	
-	@Override public ActionStd<OrderInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<OrderInfo>> buildActionsOnPassed(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrderInfo> select = new StdOrderSelect(option);
-		ActionLazy<OrderInfo> mergeCartSnap = new LazyOrderMergeCartSnap(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> mergeOrderStatus = new LazyOrderMergeOrderStatus(option.conn, option.schemaName);
+		ActionStd<OrderInfo> mergeUser = new StdOrderMergeUsername(option);
+		ActionLazy<OrderInfo> select = new LazyOrderMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeCartem = new LazyOrderMergeCartem(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> enforceCurrency = new LazyOrderEnforceCurrency(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeCurrency = new LazyOrderMergeCurrency(option.conn, option.schemaName);
 		
-		select.addPostAction(mergeCartSnap);
-		mergeCartSnap.addPostAction(mergeOrderStatus);
+		mergeUser.addPostAction(select);
+		select.addPostAction(mergeCartem);
+		mergeCartem.addPostAction(enforceCurrency);
+		enforceCurrency.addPostAction(mergeCurrency);
 		
-		actions.add(select);
+		actions.add(mergeUser);			
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<OrderInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

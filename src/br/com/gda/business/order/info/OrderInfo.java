@@ -1,40 +1,46 @@
 package br.com.gda.business.order.info;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.cartSnapshot.info.CartSnapInfo;
-import br.com.gda.business.userSnapshot_.info.UserSnapInfo;
+import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class OrderInfo extends InfoRecord implements Cloneable {
-	public long codOwner;
-	public long codOrder;
-	public long codPerson;
+	public long codOwner;	
+	public long codOrder;	
+	public String codOrderExternal;	
+	public long codCustomer;
+	public long codCustomerSnapshot;
 	public long codUser;
-	public long codSnapshot;
-	public String codOrderExt;
-	public long codCustomer;	
+	public long codUserSnapshot;
+	public double itemTotal;
+	public double feeService;
+	public double grandTotal;	
+	public String codCurr;
+	public String txtCurr;
 	public String codOrderStatus;
 	public String txtOrderStatus;
-	public LocalDateTime lastChanged;
 	public String codLanguage;
-	public List<CartSnapInfo> cartSnaps;
-	public UserSnapInfo userSnap;
+	public LocalDateTime lastChanged;
+	public String username;
+	public List<CartemInfo> cartems;
+	
 	
 	
 	public OrderInfo() {
-		codOwner = DefaultValue.number();
-		codOrder = DefaultValue.number();
-		codPerson = DefaultValue.number();
-		codUser = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
+		codOwner = DefaultValue.number();	
+		codOrder = DefaultValue.number();	
 		codCustomer = DefaultValue.number();
+		codCustomerSnapshot = DefaultValue.number();
+		codUser = DefaultValue.number();
+		codUserSnapshot = DefaultValue.number();
+		itemTotal = DefaultValue.number();
+		feeService = 0;
+		grandTotal = DefaultValue.number();
 		codLanguage = DefaultValue.language();
-		cartSnaps = new ArrayList<>();
-		userSnap = DefaultValue.object();
+		cartems = DefaultValue.list();
 	}
 	
 	
@@ -53,25 +59,11 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	
 	@Override public Object clone() throws CloneNotSupportedException {
 		OrderInfo deepCopy = (OrderInfo) super.clone();
-		deepCopy.cartSnaps = cloneCartItems(deepCopy.cartSnaps);
+		
+		if (lastChanged != null)
+			deepCopy.lastChanged = lastChanged;
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private List<CartSnapInfo> cloneCartItems(List<CartSnapInfo> cartItems) throws CloneNotSupportedException {
-		if (cartItems == null)
-			return null;
-		
-		List<CartSnapInfo> deepCartItems = new ArrayList<>();
-		
-		for (CartSnapInfo eachItem : cartItems) {
-			CartSnapInfo cloneItem = (CartSnapInfo) eachItem.clone();
-			deepCartItems.add(cloneItem);
-		}
-		
-		return deepCartItems;
 	}
 	
 	
@@ -79,8 +71,9 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner   ^ (codOwner   >>> 32));
-		result = result * 31 + (int) (codOrder   ^ (codOrder   >>> 32));
+		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
+		result = result * 31 + (int) (codOrder ^ (codOrder >>> 32));
+		result = result * 31 + (int) (codUser  ^ (codUser  >>> 32));
 		
 		return result;
 	}
@@ -97,7 +90,8 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		
 		
 		OrderInfo obj = (OrderInfo) o;		
-		return (codOwner   == obj.codOwner && 
-				codOrder   == obj.codOrder		);
-	}	
+		return (codOwner    == obj.codOwner && 
+				codOrder 	== obj.codOrder &&
+				codUser     == obj.codUser		);
+	}
 }

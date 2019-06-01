@@ -2,9 +2,9 @@ package br.com.gda.business.order.model.checker;
 
 import java.util.List;
 
+import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.business.masterData.model.checker.LanguCheckExist;
-import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 

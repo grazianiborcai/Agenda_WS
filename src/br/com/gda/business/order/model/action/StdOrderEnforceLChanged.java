@@ -7,7 +7,7 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdOrderEnforceLChanged implements ActionStd<OrderInfo> {
+public final class StdOrderEnforceLChanged implements ActionStd<OrderInfo> {
 	private ActionStd<OrderInfo> actionHelper;	
 	
 	

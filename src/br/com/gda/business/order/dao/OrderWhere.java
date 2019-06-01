@@ -10,7 +10,7 @@ import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-final class OrderWhere implements DaoStmtWhere {	
+public final class OrderWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
@@ -31,20 +31,12 @@ final class OrderWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case OrderDbTableColumn.COL_COD_USER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
-					break;
-					
 				case OrderDbTableColumn.COL_COD_ORDER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
 					break;
 					
-				case OrderDbTableColumn.COL_COD_ORDER_STATUS :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codOrderStatus);
-					break;
-					
-				case OrderDbTableColumn.COL_COD_LANGUAGE :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+				case OrderDbTableColumn.COL_COD_USER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 			}
 		}		

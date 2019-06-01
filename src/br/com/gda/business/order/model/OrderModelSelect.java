@@ -66,6 +66,6 @@ public final class OrderModelSelect implements Model {
 	private static class TreeFactory implements DeciTreeFactory<OrderInfo> {		
 		@Override public DeciTree<OrderInfo> getInstance(DeciTreeOption<OrderInfo> option) {
 			return new RootOrderSelect(option);
-		}		
+		}			
 	}
 }
