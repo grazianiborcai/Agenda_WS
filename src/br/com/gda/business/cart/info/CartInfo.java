@@ -1,6 +1,7 @@
 package br.com.gda.business.cart.info;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cartItem.info.CartemInfo;
@@ -51,10 +52,27 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		CartInfo deepCopy = (CartInfo) super.clone();
 		
-		if (lastChanged != null)
-			deepCopy.lastChanged = lastChanged;
+		deepCopy.lastChanged = lastChanged;
+		deepCopy.cartems = cloneCartems(cartems);
 		
 		return deepCopy;
+	}
+	
+	
+	
+	private List<CartemInfo> cloneCartems(List<CartemInfo> recordInfos) throws CloneNotSupportedException {
+		List<CartemInfo> results = new ArrayList<>();
+		
+		if (recordInfos == null)
+			return null;
+		
+		for (CartemInfo eachRecord : recordInfos) {
+			CartemInfo clonedRecord = (CartemInfo) eachRecord.clone();
+			results.add(clonedRecord);
+		}
+		
+		
+		return results;
 	}
 	
 	

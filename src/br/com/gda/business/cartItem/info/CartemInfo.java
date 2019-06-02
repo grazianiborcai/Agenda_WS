@@ -75,20 +75,49 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	@Override public Object clone() throws CloneNotSupportedException {
 		CartemInfo deepCopy = (CartemInfo) super.clone();
 		
-		if (date != null)
-			deepCopy.date = LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth());
-		
-		if (beginTime != null)
-			deepCopy.beginTime = LocalTime.of(beginTime.getHour(), beginTime.getMinute());
-		
-		if (endTime != null)
-			deepCopy.endTime = LocalTime.of(endTime.getHour(), endTime.getMinute());
-		
-		if (createdOn != null)
-			deepCopy.createdOn = createdOn;
+		deepCopy.date = LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth());
+		deepCopy.beginTime = LocalTime.of(beginTime.getHour(), beginTime.getMinute());
+		deepCopy.endTime = LocalTime.of(endTime.getHour(), endTime.getMinute());
+		deepCopy.createdOn = createdOn;
+		deepCopy.stolisData = cloneStolis(stolisData);
+		deepCopy.emplisData = cloneEmplis(emplisData);
+		deepCopy.matData = cloneMat(matData);
 		
 		return deepCopy;
 	}
+	
+	
+	
+	private MatInfo cloneMat(MatInfo recordInfo) throws CloneNotSupportedException {
+		MatInfo result = null;
+		
+		if (recordInfo != null)
+			result = (MatInfo) recordInfo.clone();
+		
+		return result;
+	}
+	
+	
+	
+	private StolisInfo cloneStolis(StolisInfo recordInfo) throws CloneNotSupportedException {
+		StolisInfo result = null;
+		
+		if (recordInfo != null)
+			result = (StolisInfo) recordInfo.clone();
+		
+		return result;
+	}
+	
+	
+	
+	private EmplisInfo cloneEmplis(EmplisInfo recordInfo) throws CloneNotSupportedException {
+		EmplisInfo result = null;
+		
+		if (recordInfo != null)
+			result = (EmplisInfo) recordInfo.clone();
+		
+		return result;
+	}	
 	
 	
 	
