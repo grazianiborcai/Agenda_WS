@@ -1,6 +1,7 @@
 package br.com.gda.business.order.info;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.orderItem.info.OrderemInfo;
@@ -60,11 +61,28 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		OrderInfo deepCopy = (OrderInfo) super.clone();
 		
-		if (lastChanged != null)
-			deepCopy.lastChanged = lastChanged;
+		deepCopy.lastChanged = lastChanged;
+		deepCopy.orderms = cloneOrderems(orderms);
 		
 		return deepCopy;
 	}
+	
+	
+	
+	private List<OrderemInfo> cloneOrderems(List<OrderemInfo> recordInfos) throws CloneNotSupportedException {
+		List<OrderemInfo> results = new ArrayList<>();
+		
+		if (recordInfos == null)
+			return null;
+		
+		for (OrderemInfo eachRecord : recordInfos) {
+			OrderemInfo clonedRecord = (OrderemInfo) eachRecord.clone();
+			results.add(clonedRecord);
+		}
+		
+		
+		return results;
+	}	
 	
 	
 	
