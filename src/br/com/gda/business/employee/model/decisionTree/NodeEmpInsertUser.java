@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.action.LazyEmpEnforceUserCateg;
 import br.com.gda.business.employee.model.action.LazyEmpInsertUser;
+import br.com.gda.business.employee.model.action.LazyEmpUpdate;
 import br.com.gda.business.employee.model.action.StdEmpEnforceAuthGroup;
 import br.com.gda.business.employee.model.checker.EmpCheckDummy;
 import br.com.gda.model.action.ActionLazy;
@@ -60,9 +61,11 @@ public final class NodeEmpInsertUser implements DeciTree<EmpInfo> {
 		ActionStd<EmpInfo> enforceAuthGroup = new StdEmpEnforceAuthGroup(option);
 		ActionLazy<EmpInfo> enforceUserCateg = new LazyEmpEnforceUserCateg(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> insertUser = new LazyEmpInsertUser(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> updateEmployee = new LazyEmpUpdate(option.conn, option.schemaName);
 		
 		enforceAuthGroup.addPostAction(enforceUserCateg);	
 		enforceUserCateg.addPostAction(insertUser);	
+		insertUser.addPostAction(updateEmployee);
 		
 		actions.add(enforceAuthGroup);	
 		return actions;

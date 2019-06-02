@@ -16,6 +16,7 @@ import br.com.gda.business.employeeLeaveDate.dao.EmplevateDbTableColumn;
 import br.com.gda.business.employeeList.dao.EmplisDbTableColumn;
 import br.com.gda.business.employeeMaterial.dao.EmpmatDbTableColumn;
 import br.com.gda.business.employeePosition.dao.EmposDbTableColumn;
+import br.com.gda.business.employeeSnapshot.dao.EmpnapDbTableColumn;
 import br.com.gda.business.employeeWorkTime.dao.EmpwotmDbTableColumn;
 import br.com.gda.business.employeeWorkTimeConflict.dao.EmpwocoDbTableColumn;
 import br.com.gda.business.feeDefault.dao.FeedefDbTableColumn;
@@ -88,6 +89,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmpwocoDbTableColumn());
 		addTable(new StoreCoDbTableColumn());
 		addTable(new EmpDbTableColumn());
+		addTable(new EmpnapDbTableColumn());
 		addTable(new EmplisDbTableColumn());
 		addTable(new CusDbTableColumn());
 		addTable(new OwnerDbTableColumn());

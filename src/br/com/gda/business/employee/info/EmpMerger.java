@@ -3,6 +3,7 @@ package br.com.gda.business.employee.info;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
@@ -21,6 +22,20 @@ public final class EmpMerger {
 		InfoMerger<EmpInfo, AddressInfo> merger = new EmpMergerAddress();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static EmpInfo mergeWithEmpnap(EmpnapInfo sourceOne, EmpInfo sourceTwo) {
+		InfoMerger<EmpInfo, EmpnapInfo> merger = new EmpMergerEmpnap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<EmpInfo> mergeWithEmpnap(List<EmpnapInfo> sourceOnes, List<EmpInfo> sourceTwos) {
+		InfoMerger<EmpInfo, EmpnapInfo> merger = new EmpMergerEmpnap();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 	
 	
 	

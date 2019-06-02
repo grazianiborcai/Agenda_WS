@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.action.LazyEmpInsert;
-import br.com.gda.business.employee.model.action.LazyEmpMergeUsername;
+import br.com.gda.business.employee.model.action.LazyEmpNodeInsertSnapshot;
 import br.com.gda.business.employee.model.action.LazyEmpNodeInsertPerson;
 import br.com.gda.business.employee.model.action.LazyEmpNodeInsertUser;
 import br.com.gda.business.employee.model.action.LazyEmpNodeUpsertAddress;
 import br.com.gda.business.employee.model.action.LazyEmpNodeUpsertPhone;
 import br.com.gda.business.employee.model.action.LazyEmpRootSelect;
-import br.com.gda.business.employee.model.action.LazyEmpUpdate;
-import br.com.gda.business.employee.model.action.StdEmpEnforceLChanged;
 import br.com.gda.business.employee.model.checker.EmpCheckGenField;
 import br.com.gda.business.employee.model.checker.EmpCheckLangu;
 import br.com.gda.business.employee.model.checker.EmpCheckOwner;
@@ -68,26 +65,22 @@ public final class RootEmpInsert extends DeciTreeWriteTemplate<EmpInfo> {
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
-		ActionStd<EmpInfo> enforceLChanged = new StdEmpEnforceLChanged(option);
-		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> insertEmployee = new LazyEmpInsert(option.conn, option.schemaName);	
+		ActionStd<EmpInfo> insertEmployee = new NodeEmpInsert(option).toAction();	
 		ActionLazy<EmpInfo> insertPerson = new LazyEmpNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazy<EmpInfo> insertUser = new LazyEmpNodeInsertUser(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> updateEmployee = new LazyEmpUpdate(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> snapshot = new LazyEmpNodeInsertSnapshot(option.conn, option.schemaName);	
 		ActionLazy<EmpInfo> upsertAddress = new LazyEmpNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> upsertPhone = new LazyEmpNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionLazy<EmpInfo> select = new LazyEmpRootSelect(option.conn, option.schemaName);	
 		
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(insertEmployee);
 		insertEmployee.addPostAction(insertPerson);		
-		insertPerson.addPostAction(insertUser);	
-		insertUser.addPostAction(updateEmployee);		
-		updateEmployee.addPostAction(upsertAddress);		
-		updateEmployee.addPostAction(upsertPhone);			
-		updateEmployee.addPostAction(select);
+		insertPerson.addPostAction(insertUser);		
+		insertUser.addPostAction(snapshot);
+		snapshot.addPostAction(upsertAddress);		
+		snapshot.addPostAction(upsertPhone);			
+		snapshot.addPostAction(select);
 		
-		actions.add(enforceLChanged);	
+		actions.add(insertEmployee);	
 		return actions;
 	}
 }

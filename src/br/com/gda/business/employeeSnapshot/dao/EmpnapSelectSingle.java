@@ -1,4 +1,4 @@
-package br.com.gda.business.employee.dao;
+package br.com.gda.business.employeeSnapshot.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -18,22 +18,22 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
-	private final String LT_EMP = DaoDbTable.EMP_TABLE;	
+public final class EmpnapSelectSingle implements DaoStmt<EmpnapInfo> {
+	private final String LT_EMP = DaoDbTable.EMP_SNAPSHOT_TABLE;	
 	
-	private DaoStmt<EmpInfo> stmtSql;
-	private DaoStmtOption<EmpInfo> stmtOption;
+	private DaoStmt<EmpnapInfo> stmtSql;
+	private DaoStmtOption<EmpnapInfo> stmtOption;
 	
 	
 	
-	public EmpSelectSingle(Connection conn, EmpInfo recordInfo, String schemaName) {
+	public EmpnapSelectSingle(Connection conn, EmpnapInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, EmpInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, EmpnapInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -53,7 +53,7 @@ public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new EmpWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new EmpnapWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 
@@ -83,14 +83,14 @@ public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 
 	
 	
-	@Override public List<EmpInfo> getResultset() {
+	@Override public List<EmpnapInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<EmpInfo> getNewInstance() {
-		return new EmpSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<EmpnapInfo> getNewInstance() {
+		return new EmpnapSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -98,46 +98,42 @@ public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<EmpInfo> {
+	private static class ResultParser implements DaoResultParser<EmpnapInfo> {
 		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<EmpInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<EmpInfo> finalResult = new ArrayList<>();
+		@Override public List<EmpnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<EmpnapInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 					return finalResult;
 			
 			do {
-				EmpInfo dataInfo = new EmpInfo();
-				dataInfo.codOwner = stmtResult.getLong(EmpDbTableColumn.COL_COD_OWNER);
-				dataInfo.codEmployee = stmtResult.getLong(EmpDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.recordMode = stmtResult.getString(EmpDbTableColumn.COL_RECORD_MODE);	
+				EmpnapInfo dataInfo = new EmpnapInfo();
+				dataInfo.codOwner = stmtResult.getLong(EmpnapDbTableColumn.COL_COD_OWNER);
+				dataInfo.codSnapshot = stmtResult.getLong(EmpnapDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.codEmployee = stmtResult.getLong(EmpnapDbTableColumn.COL_COD_EMPLOYEE);
+				dataInfo.recordMode = stmtResult.getString(EmpnapDbTableColumn.COL_RECORD_MODE);	
 				
 				
-				stmtResult.getLong(EmpDbTableColumn.COL_COD_SNAPSHOT);
+				stmtResult.getLong(EmpnapDbTableColumn.COL_COD_USER);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codSnapshot = stmtResult.getLong(EmpDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codUser = stmtResult.getLong(EmpnapDbTableColumn.COL_COD_USER);
 				
 				
-				stmtResult.getLong(EmpDbTableColumn.COL_COD_USER);
+				stmtResult.getLong(EmpnapDbTableColumn.COL_COD_PERSON);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(EmpDbTableColumn.COL_COD_USER);
+					dataInfo.codPerson = stmtResult.getLong(EmpnapDbTableColumn.COL_COD_PERSON);
 				
 				
-				stmtResult.getLong(EmpDbTableColumn.COL_COD_PERSON);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPerson = stmtResult.getLong(EmpDbTableColumn.COL_COD_PERSON);
-				
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(EmpDbTableColumn.COL_LAST_CHANGED);
+				Timestamp lastChanged = stmtResult.getTimestamp(EmpnapDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
 				
 				
-				stmtResult.getLong(EmpDbTableColumn.COL_LAST_CHANGED_BY);
+				stmtResult.getLong(EmpnapDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(EmpDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.lastChangedBy = stmtResult.getLong(EmpnapDbTableColumn.COL_LAST_CHANGED_BY);
 				
 				
 				finalResult.add(dataInfo);

@@ -1,22 +1,23 @@
-package br.com.gda.business.employee.model.checker;
+package br.com.gda.business.employeeSnapshot.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmpCheckRead extends ModelCheckerTemplateSimple<EmpInfo> {
+public final class EmpnapCheckRead extends ModelCheckerTemplateSimple<EmpnapInfo> {
 
-	public EmpCheckRead() {
+	public EmpnapCheckRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(EmpnapInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codSnapshot 	<= 0 	||
 			recordInfo.codLanguage 	== null	||
 			recordInfo.username		== null		)			
 			return FAILED;		

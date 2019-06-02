@@ -1,4 +1,4 @@
-package br.com.gda.business.employee.dao;
+package br.com.gda.business.employeeSnapshot.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -8,7 +8,7 @@ import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class EmpDbTableColumn extends DaoDbTableColumnTemplate {
+public final class EmpnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_EMPLOYEE = "cod_employee";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_PERSON = "cod_person";
@@ -21,7 +21,7 @@ public final class EmpDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public EmpDbTableColumn() {
+	public EmpnapDbTableColumn() {
 		super();
 	}
 	
@@ -36,10 +36,18 @@ public final class EmpDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	private void buildEmployeeTable() {
-		final String TABLE_NAME = DaoDbTable.EMP_TABLE;
+		final String TABLE_NAME = DaoDbTable.EMP_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_SNAPSHOT;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
+		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
@@ -54,7 +62,7 @@ public final class EmpDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_COD_EMPLOYEE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
+		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
@@ -92,14 +100,6 @@ public final class EmpDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_USER;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

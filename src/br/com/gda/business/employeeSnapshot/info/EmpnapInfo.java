@@ -1,4 +1,4 @@
-package br.com.gda.business.employee.info;
+package br.com.gda.business.employeeSnapshot.info;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class EmpInfo extends InfoRecord implements Cloneable {
+public final class EmpnapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
 	public long codSnapshot;
@@ -31,7 +31,7 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 	public String username;
 	
 	
-	public EmpInfo() {
+	public EmpnapInfo() {
 		codOwner = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
@@ -49,20 +49,20 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static EmpInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, EmpInfo.class);
+	public static EmpnapInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, EmpnapInfo.class);
 	}
 	
 	
 	
-	public static List<EmpInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, EmpInfo.class);
+	public static List<EmpnapInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, EmpnapInfo.class);
 	}
 	
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {  
-		EmpInfo deepCopy = (EmpInfo) super.clone(); 
+		EmpnapInfo deepCopy = (EmpnapInfo) super.clone(); 
 		
 		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
 		deepCopy.phones = clonePhones(deepCopy.phones);
@@ -140,11 +140,11 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof EmpInfo))
+		if (!(o instanceof EmpnapInfo))
 			return false;
 		
 		
-		EmpInfo obj = (EmpInfo) o;		
+		EmpnapInfo obj = (EmpnapInfo) o;		
 		return (codOwner == obj.codOwner && codEmployee == obj.codEmployee);
 	}
 }

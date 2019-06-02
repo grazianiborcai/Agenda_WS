@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.business.employee.model.action.LazyEmpEnforceEntityCateg;
-import br.com.gda.business.employee.model.action.LazyEmpKeepEmp;
-import br.com.gda.business.employee.model.action.LazyEmpMergeUsername;
 import br.com.gda.business.employee.model.action.LazyEmpNodeUpdatePerson;
 import br.com.gda.business.employee.model.action.LazyEmpNodeUpsertAddress;
 import br.com.gda.business.employee.model.action.LazyEmpNodeUpsertPhone;
-import br.com.gda.business.employee.model.action.LazyEmpUpdate;
-import br.com.gda.business.employee.model.action.StdEmpEnforceLChanged;
 import br.com.gda.business.employee.model.checker.EmpCheckExist;
 import br.com.gda.business.employee.model.checker.EmpCheckKey;
 import br.com.gda.business.employee.model.checker.EmpCheckLangu;
@@ -78,26 +73,17 @@ public final class RootEmpUpdate extends DeciTreeWriteTemplate<EmpInfo> {
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmpInfo> enforceLChanged = new StdEmpEnforceLChanged(option);
-		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> enforceEntityCateg = new LazyEmpEnforceEntityCateg(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> keepEmployee = new LazyEmpKeepEmp(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> updateEmployee = new LazyEmpUpdate(option.conn, option.schemaName);	
+		ActionStd<EmpInfo> updateEmployee = new NodeEmpUpdate(option).toAction();
 		ActionLazy<EmpInfo> updatePerson = new LazyEmpNodeUpdatePerson(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> upsertAddress = new LazyEmpNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> upsertPhone = new LazyEmpNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionStd<EmpInfo> select = new RootEmpSelect(option).toAction();		
 		
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(enforceEntityCateg);
-		enforceEntityCateg.addPostAction(keepEmployee);
+		updateEmployee.addPostAction(updatePerson);	
+		updatePerson.addPostAction(upsertAddress);		
+		updatePerson.addPostAction(upsertPhone);
 		
-		keepEmployee.addPostAction(updateEmployee);		
-		keepEmployee.addPostAction(updatePerson);	
-		keepEmployee.addPostAction(upsertAddress);		
-		keepEmployee.addPostAction(upsertPhone);
-		
-		actions.add(enforceLChanged);
+		actions.add(updateEmployee);
 		actions.add(select);
 		return actions;
 	}

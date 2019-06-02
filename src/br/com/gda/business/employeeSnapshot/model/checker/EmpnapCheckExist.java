@@ -1,0 +1,60 @@
+package br.com.gda.business.employeeSnapshot.model.checker;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
+import br.com.gda.business.employeeSnapshot.model.action.StdEmpnapEnforceKey;
+import br.com.gda.business.employeeSnapshot.model.action.LazyEmpnapSelect;
+import br.com.gda.common.SystemCode;
+import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.decisionTree.DeciTreeOption;
+
+public final class EmpnapCheckExist extends ModelCheckerTemplateAction<EmpnapInfo> {
+	
+	public EmpnapCheckExist(ModelCheckerOption option) {
+		super(option);
+	}
+	
+	
+	
+	@Override protected ActionStd<EmpnapInfo> buildActionHook(EmpnapInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<EmpnapInfo> option = buildOption(recordInfo, conn, schemaName);
+		
+		ActionStd<EmpnapInfo> actionSelect = new StdEmpnapEnforceKey(option);
+		actionSelect.addPostAction(new LazyEmpnapSelect(conn, schemaName));
+		return actionSelect;
+	}
+	
+	
+	
+	private DeciTreeOption<EmpnapInfo> buildOption(EmpnapInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<EmpnapInfo> option = new DeciTreeOption<>();
+		option.recordInfos = new ArrayList<>();
+		option.recordInfos.add(recordInfo);
+		option.conn = conn;
+		option.schemaName = schemaName;
+		
+		return option;
+	}
+	
+	
+	
+	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
+		if (makeFailCodeHook(checkerResult) == SystemCode.EMP_ALREADY_EXIST)
+			return SystemMessage.EMP_ALREALDY_EXIST;
+		
+		return SystemMessage.EMP_NOT_FOUND;
+	}
+	
+	
+	
+	@Override protected int makeFailCodeHook(boolean checkerResult) {
+		if (checkerResult == ALREADY_EXIST)
+			return SystemCode.EMP_ALREADY_EXIST;	
+			
+		return SystemCode.EMP_NOT_FOUND;
+	}
+}

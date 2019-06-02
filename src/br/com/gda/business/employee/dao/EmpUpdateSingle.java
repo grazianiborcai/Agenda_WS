@@ -127,6 +127,13 @@ public final class EmpUpdateSingle implements DaoStmt<EmpInfo> {
 				stmt.setNull(i++, Types.INTEGER);
 			}
 			
+			
+			if (recordInfo.codSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
 			return stmt;
 		} 
 	}

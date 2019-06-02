@@ -26,6 +26,7 @@ public final class DaoDbTable {
 	public static final String CUS_TABLE = "customer";
 	public static final String EMP_TABLE = "employee";	
 	public static final String EMP_MAT_TABLE = "employee_material";
+	public static final String EMP_SNAPSHOT_TABLE = "employee_snapshot";	
 	public static final String EMP_WT_TABLE = "employee_working_time";
 	public static final String EMP_LD_TABLE = "employee_leave_time";
 	public static final String EMPOS_TABLE = "emp_position";
