@@ -548,4 +548,13 @@ public final class SystemMessage {
 	public static final String MAT_STORE_NOT_FOUND = "Material-Store's data not found on DB";	
 	public static final String MAT_STORE_PRICE_INCONSISTENCY = "Price is not filled correctly for the given material category";	
 	public static final String MAT_STORE_STOCK_NOT_EMPTY = "Material-Store: stock is not empty for the given material";	
+	
+	
+	
+	// Order
+	public static final String ORDER_ITEM_ALREADY_EXIST = "Order item already exist on DB";	
+	public static final String ORDER_ITEM_NOT_FOUND = "Order item not found on DB";	
+	public static final String ORDER_HAVE_ITEM = "Order has items";	
+	public static final String ORDER_IS_EMPTY = "Order is empty";	
+
 }

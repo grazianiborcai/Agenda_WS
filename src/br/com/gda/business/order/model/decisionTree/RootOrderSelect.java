@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.action.LazyOrderEnforceCurrency;
-import br.com.gda.business.order.model.action.LazyOrderMergeCartem;
+import br.com.gda.business.order.model.action.LazyOrderMergeOrderem;
 import br.com.gda.business.order.model.action.LazyOrderMergeCurrency;
 import br.com.gda.business.order.model.action.LazyOrderMergeToSelect;
 import br.com.gda.business.order.model.action.StdOrderMergeUsername;
@@ -54,7 +54,7 @@ public final class RootOrderSelect extends DeciTreeReadTemplate<OrderInfo> {
 		
 		ActionStd<OrderInfo> mergeUser = new StdOrderMergeUsername(option);
 		ActionLazy<OrderInfo> select = new LazyOrderMergeToSelect(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> mergeCartem = new LazyOrderMergeCartem(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeCartem = new LazyOrderMergeOrderem(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceCurrency = new LazyOrderEnforceCurrency(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> mergeCurrency = new LazyOrderMergeCurrency(option.conn, option.schemaName);
 		

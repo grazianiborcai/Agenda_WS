@@ -12,7 +12,7 @@ public final class StdCartemSort implements ActionStd<CartemInfo> {
 	
 	
 	public StdCartemSort(DeciTreeOption<CartemInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCartemSort());
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCartemSort_());
 	}
 	
 	

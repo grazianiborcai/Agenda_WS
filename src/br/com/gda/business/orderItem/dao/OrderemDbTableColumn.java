@@ -9,16 +9,20 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_CUSTOMER = "cod_customer";
+	public static final String COL_BEGIN_TIME = "begin_time";		
+	public static final String COL_COD_EMPLOYEE = "cod_employee";	
+	public static final String COL_COD_EMPLOYEE_SNAPSHOT = "cod_employee_snapshot";	
 	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_COD_ORDER = "cod_order";
-	public static final String COL_COD_ORDER_EXT = "cod_order_external";
-	public static final String COL_COD_ORDER_STATUS = "cod_order_status";	
-	public static final String COL_COD_OWNER = "cod_owner";	
-	public static final String COL_COD_PERSON = "cod_person";
-	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
-	public static final String COL_COD_USER = "cod_user";	
-	public static final String COL_LAST_CHANGED = "last_changed";
+	public static final String COL_COD_MATERIAL = "cod_material";	
+	public static final String COL_COD_MATERIAL_SNAPSHOT = "cod_material_snapshot";
+	public static final String COL_COD_ORDER = "cod_order";	
+	public static final String COL_COD_OWNER = "cod_owner";			
+	public static final String COL_COD_STORE = "cod_store";	
+	public static final String COL_COD_STORE_SNAPSHOT = "cod_store_snapshot";			
+	public static final String COL_DATE = "date";					
+	public static final String COL_END_TIME = "end_time";			
+	public static final String COL_CREATED_ON = "created_on";		
+	public static final String COL_QUANTITY = "quantity";			
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
@@ -31,15 +35,15 @@ public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildOrderTable();
+		tableColumns = new Hashtable<>();	
+		buildOrdemTable();
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildOrderTable() {
-		final String TABLE_NAME = DaoDbTable.ORDER_HDR_TABLE;
+	private void buildOrdemTable() {
+		final String TABLE_NAME = DaoDbTable.ORDER_ITM_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
@@ -57,12 +61,52 @@ public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_COD_ORDER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
+		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_CUSTOMER;
+		oneColumn.columnName = COL_COD_STORE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_MATERIAL;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_EMPLOYEE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_DATE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_BEGIN_TIME;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_END_TIME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -70,7 +114,7 @@ public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_LAST_CHANGED;
+		oneColumn.columnName = COL_QUANTITY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -78,7 +122,7 @@ public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_ORDER_EXT;
+		oneColumn.columnName = COL_CREATED_ON;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -86,43 +130,27 @@ public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_ORDER_STATUS;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.columnName = COL_COD_STORE_SNAPSHOT;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PERSON;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.columnName = COL_COD_MATERIAL_SNAPSHOT;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_USER;
-		oneColumn.isPK = NEGATIVE;
+		oneColumn.columnName = COL_COD_EMPLOYEE_SNAPSHOT;
+		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_SNAPSHOT;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
+		columns.add(oneColumn);	
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

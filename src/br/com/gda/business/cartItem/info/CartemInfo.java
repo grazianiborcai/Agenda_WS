@@ -22,7 +22,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public boolean isDeleted;
 	public long codStore;
 	public long codEmployee;
-	public String nameEmployee;
+	public String nameEmployee;	//TODO: eliminar
 	public long codMat;
 	public double price;
 	public int quantity;

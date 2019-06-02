@@ -6,14 +6,13 @@ import java.util.List;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.action.LazyOrderEnforceExtid;
 import br.com.gda.business.order.model.action.LazyOrderEnforceLChanged;
-import br.com.gda.business.order.model.action.LazyOrderNodeCartem;
-import br.com.gda.business.order.model.action.LazyOrderNodeUpsert;
-import br.com.gda.business.order.model.action.LazyOrderRootSelect;
 import br.com.gda.business.order.model.action.StdOrderMergeUsername;
 import br.com.gda.business.order.model.checker.OrderCheckLangu;
 import br.com.gda.business.order.model.checker.OrderCheckOwner;
 import br.com.gda.business.order.model.action.LazyOrderEnforceStatusCreated;
 import br.com.gda.business.order.model.action.LazyOrderInsert;
+import br.com.gda.business.order.model.action.LazyOrderMergeUser;
+import br.com.gda.business.order.model.action.LazyOrderNodeOrderem;
 import br.com.gda.business.order.model.checker.OrderCheckCurrency;
 import br.com.gda.business.order.model.checker.OrderCheckInsert;
 import br.com.gda.model.action.ActionStd;
@@ -72,18 +71,20 @@ public final class RootOrderInsert extends DeciTreeWriteTemplate<OrderInfo> {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		
 		ActionStd<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);
+		ActionLazy<OrderInfo> mergeUser = new LazyOrderMergeUser(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<OrderInfo> enforceExtid = new LazyOrderEnforceExtid(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceStatus = new LazyOrderEnforceStatusCreated(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> insert = new LazyOrderInsert(option.conn, option.schemaName);
-		//ActionLazy<OrderInfo> cartem = new LazyOrderNodeCartem(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> orderem = new LazyOrderNodeOrderem(option.conn, option.schemaName);
 		//ActionLazy<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);
 		
-		mergeUsername.addPostAction(enforceLChanged);
+		mergeUsername.addPostAction(mergeUser);
+		mergeUser.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceExtid);
 		enforceExtid.addPostAction(enforceStatus);		
 		enforceStatus.addPostAction(insert);
-		//insert.addPostAction(cartem);
+		insert.addPostAction(orderem);
 		//cartem.addPostAction(select);
 		
 		actions.add(mergeUsername);

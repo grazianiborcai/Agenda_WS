@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.action.LazyCartUpsertCartem;
 import br.com.gda.business.cart.model.action.StdCartEnforceCartemKey;
-import br.com.gda.business.cart.model.action.StdCartInsert;
 import br.com.gda.business.cart.model.checker.CartCheckWrite;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -44,17 +43,6 @@ public final class NodeCartCartem extends DeciTreeWriteTemplate<CartInfo> {
 		enforceCartemKey.addPostAction(upsertCartem);
 		
 		actions.add(enforceCartemKey);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<CartInfo>> buildActionsOnFailedHook(DeciTreeOption<CartInfo> option) {
-		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
-		//TODO: MERGE CUSTOMER
-		ActionStd<CartInfo> insertHdr = new StdCartInsert(option);
-		
-		actions.add(insertHdr);
 		return actions;
 	}
 }

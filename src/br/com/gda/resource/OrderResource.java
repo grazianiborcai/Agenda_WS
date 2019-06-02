@@ -11,9 +11,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.orderItem.info.OrderInfo;
-import br.com.gda.business.orderItem.model.OrderModelPlace;
-import br.com.gda.business.orderItem.model.OrderModelSelect;
+import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.business.order.model.OrderModelSelect;
 import br.com.gda.model.Model;
 
 @Path("/Order")

@@ -18,15 +18,15 @@ public final class OrderCheckInsert extends ModelCheckerTemplateSimple<OrderInfo
 		if (   recordInfo.codOwner 		<= 0 	
 			|| recordInfo.grandTotal	<= 0 	
 			|| recordInfo.codCurr		== null 
-			|| recordInfo.cartems		== null 
+			|| recordInfo.orderms		== null 
 			|| recordInfo.username		== null 
-			|| recordInfo.cartems		== null
+			|| recordInfo.orderms		== null
 			|| recordInfo.codLanguage 	== null )
 			
 			return super.FAILED;
 		
 		
-		if (recordInfo.cartems.isEmpty())
+		if (recordInfo.orderms.isEmpty())
 			return super.FAILED;
 		
 		

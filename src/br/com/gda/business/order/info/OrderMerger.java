@@ -2,8 +2,9 @@ package br.com.gda.business.order.info;
 
 import java.util.List;
 
-import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
+import br.com.gda.business.orderItem.info.OrderemInfo;
+import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
@@ -22,15 +23,15 @@ public final class OrderMerger {
 	
 	
 	
-	public static OrderInfo mergeWithCartem(CartemInfo sourceOne, OrderInfo sourceTwo) {
-		InfoMerger<OrderInfo, CartemInfo> merger = new OrderMergerCartem();		
+	public static OrderInfo mergeWithOrderem(OrderemInfo sourceOne, OrderInfo sourceTwo) {
+		InfoMerger<OrderInfo, OrderemInfo> merger = new OrderMergerOrderem();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<OrderInfo> mergeWithCartem(List<CartemInfo> sourceOnes, List<OrderInfo> sourceTwos) {
-		InfoMerger<OrderInfo, CartemInfo> merger = new OrderMergerCartem();		
+	public static List<OrderInfo> mergeWithOrderem(List<OrderemInfo> sourceOnes, List<OrderInfo> sourceTwos) {
+		InfoMerger<OrderInfo, OrderemInfo> merger = new OrderMergerOrderem();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}		
 	
@@ -47,6 +48,20 @@ public final class OrderMerger {
 		InfoMerger<OrderInfo, UsernameInfo> merger = new OrderMergerUsername();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}		
+	
+	
+	
+	public static OrderInfo mergeWithUser(UserInfo sourceOne, OrderInfo sourceTwo) {
+		InfoMerger<OrderInfo, UserInfo> merger = new OrderMergerUser();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OrderInfo> mergeWithUser(List<UserInfo> sourceOnes, List<OrderInfo> sourceTwos) {
+		InfoMerger<OrderInfo, UserInfo> merger = new OrderMergerUser();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 	
 	
 	

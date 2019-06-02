@@ -21,9 +21,6 @@ import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.addressSnapshot.model.AddresnapModelInsert;
 import br.com.gda.business.addressSnapshot.model.AddresnapModelSelect;
 import br.com.gda.business.cartItem.model.CartemModelUpsert;
-import br.com.gda.business.cartSnapshot_.info.CartSnapInfo;
-import br.com.gda.business.cartSnapshot_.model.CartSnapModelInsert;
-import br.com.gda.business.cartSnapshot_.model.CartSnapModelSelect;
 import br.com.gda.business.company.model.CompModelInsert;
 import br.com.gda.business.company.model.CompModelUpdate;
 import br.com.gda.business.customerSearch.model.CusarchModelSelect_;
@@ -97,8 +94,6 @@ public class TestResource {
 	private static final String INSERT_PERSON_SNAPSHOT = "/insertPersonSnapshot";
 	private static final String INSERT_MATERIAL_SNAPSHOT = "/insertMaterialSnapshot";
 	private static final String SELECT_MATERIAL_SNAPSHOT = "/selectMaterialSnapshot";
-	private static final String INSERT_CART_SNAPSHOT = "/insertCartSnapshot";
-	private static final String SELECT_CART_SNAPSHOT = "/selectCartSnapshot";
 	private static final String INSERT_PAY_CUSTOMER = "/insertPayCustomer";
 	private static final String SELECT_PAY_CUSTOMER = "/selectPayCustomer";
 	private static final String DELETE_PAY_CUSTOMER = "/deletePayCustomer";
@@ -374,36 +369,6 @@ public class TestResource {
 		recordInfo.codSnapshot = codSnapshot;
 		
 		Model model = new MatsnapModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@POST
-	@Path(INSERT_CART_SNAPSHOT)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertCartSnapshot(@Context HttpServletRequest request, String incomingData) {
-		
-		
-		Model model = new CartSnapModelInsert(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();	
-	} 
-	
-	
-	
-	@GET
-	@Path(SELECT_CART_SNAPSHOT)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectCartSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
-								       @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
-
-		CartSnapInfo recordInfo = new CartSnapInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codSnapshot = codSnapshot;
-		
-		Model model = new CartSnapModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

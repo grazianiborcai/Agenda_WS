@@ -3,7 +3,7 @@ package br.com.gda.business.order.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import br.com.gda.business.cartItem.info.CartemInfo;
+import br.com.gda.business.orderItem.info.OrderemInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
@@ -25,7 +25,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
-	public List<CartemInfo> cartems;
+	public List<OrderemInfo> orderms;
 	
 	
 	
@@ -40,7 +40,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		feeService = 0;
 		grandTotal = DefaultValue.number();
 		codLanguage = DefaultValue.language();
-		cartems = DefaultValue.list();
+		orderms = DefaultValue.list();
 	}
 	
 	
