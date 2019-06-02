@@ -22,7 +22,6 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public boolean isDeleted;
 	public long codStore;
 	public long codEmployee;
-	public String nameEmployee;	//TODO: eliminar
 	public long codMat;
 	public double price;
 	public int quantity;
@@ -35,9 +34,9 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public String codLanguage;
 	public LocalDateTime createdOn;
 	public String username;
-	public StolisInfo stolisInfo;
-	public EmplisInfo emplisInfo;
-	public MatInfo matInfo;
+	public StolisInfo stolisData;
+	public EmplisInfo emplisData;
+	public MatInfo matData;
 	
 	
 	
@@ -54,9 +53,9 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		totitem = DefaultValue.number();
 		codWeekday = DefaultValue.number();
 		codLanguage = DefaultValue.language();	
-		stolisInfo = DefaultValue.object();
-		emplisInfo = DefaultValue.object();
-		matInfo = DefaultValue.object();
+		stolisData = DefaultValue.object();
+		emplisData = DefaultValue.object();
+		matData = DefaultValue.object();
 	}
 	
 	

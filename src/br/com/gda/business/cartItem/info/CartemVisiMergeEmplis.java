@@ -13,7 +13,7 @@ final class CartemVisiMergeEmplis implements InfoMergerVisitorV2<CartemInfo, Emp
 		checkArgument(sourceOne, sourceTwo);
 		
 		CartemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.emplisInfo = sourceOne;
+		resultInfo.emplisData = sourceOne;
 		return resultInfo;
 	}
 	

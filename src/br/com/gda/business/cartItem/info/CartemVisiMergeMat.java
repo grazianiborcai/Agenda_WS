@@ -13,7 +13,7 @@ final class CartemVisiMergeMat implements InfoMergerVisitorV2<CartemInfo, MatInf
 		checkArgument(sourceOne, sourceTwo);
 		
 		CartemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.matInfo = sourceOne;
+		resultInfo.matData = sourceOne;
 
 		return resultInfo;
 	}
