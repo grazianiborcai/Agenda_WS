@@ -13,7 +13,9 @@ final class OrderemVisiMergeStolis implements InfoMergerVisitorV2<OrderemInfo, S
 		checkArgument(sourceOne, sourceTwo);
 		
 		OrderemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.stolisInfo = sourceOne;
+		resultInfo.stolisData = sourceOne;
+		resultInfo.codCurr = sourceOne.codCurr;
+		resultInfo.txtCurr = sourceOne.txtCurr;
 		return resultInfo;
 	}
 	

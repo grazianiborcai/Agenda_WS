@@ -5,9 +5,8 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.orderItem.info.OrderemInfo;
-import br.com.gda.business.orderItem.model.action.LazyOrderemInsert;
 import br.com.gda.business.orderItem.model.action.LazyOrderemMergeMat;
-import br.com.gda.business.orderItem.model.action.LazyOrderemNodeServiceL1;
+import br.com.gda.business.orderItem.model.action.LazyOrderemNodeInsert;
 import br.com.gda.business.orderItem.model.action.StdOrderemEnforceCreatedOn;
 import br.com.gda.business.orderItem.model.checker.OrderemCheckOrder;
 import br.com.gda.business.orderItem.model.checker.OrderemCheckLangu;
@@ -77,12 +76,10 @@ public final class RootOrderemInsert extends DeciTreeWriteTemplate<OrderemInfo> 
 		
 		ActionStd<OrderemInfo> enforceCreatedOn = new StdOrderemEnforceCreatedOn(option);
 		ActionLazy<OrderemInfo> mergeMat = new LazyOrderemMergeMat(option.conn, option.schemaName);
-		ActionLazy<OrderemInfo> nodeService = new LazyOrderemNodeServiceL1(option.conn, option.schemaName);
-		ActionLazy<OrderemInfo> insert = new LazyOrderemInsert(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> nodeInsert = new LazyOrderemNodeInsert(option.conn, option.schemaName);
 		
 		enforceCreatedOn.addPostAction(mergeMat);
-		mergeMat.addPostAction(nodeService);
-		mergeMat.addPostAction(insert);
+		mergeMat.addPostAction(nodeInsert);
 		
 		actions.add(enforceCreatedOn);
 		return actions;

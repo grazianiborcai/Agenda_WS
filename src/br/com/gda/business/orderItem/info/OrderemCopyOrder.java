@@ -20,8 +20,8 @@ final class OrderemCopyOrder extends InfoCopierOneToManyTemplate<OrderemInfo, Or
 	@Override protected List<OrderemInfo> makeCopyHook(OrderInfo source) {	
 		List<OrderemInfo> results = new ArrayList<>();
 		
-		for (OrderemInfo eachCartem : source.orderms) {
-			results.add(makeClone(eachCartem));
+		for (OrderemInfo eachOrderem : source.orderms) {
+			results.add(makeClone(eachOrderem));
 		}
 		
 		return results;

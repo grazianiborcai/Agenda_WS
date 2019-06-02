@@ -128,7 +128,25 @@ public class OrderemInsertSingle implements DaoStmt<OrderemInfo> {
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}	
+			
+			
+			if (recordInfo.price >= 0) {
+				stmt.setDouble(i++, recordInfo.price);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			if (recordInfo.totitem >= 0) {
+				stmt.setDouble(i++, recordInfo.totitem);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			stmt.setString(i++, recordInfo.codCurr);
 
+			
 			return stmt;
 		}		
 	}

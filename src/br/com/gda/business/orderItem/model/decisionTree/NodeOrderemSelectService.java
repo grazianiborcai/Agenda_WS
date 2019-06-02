@@ -17,9 +17,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeOrderemSelectL1 extends DeciTreeWriteTemplate<OrderemInfo> {
+public final class NodeOrderemSelectService extends DeciTreeWriteTemplate<OrderemInfo> {
 	
-	public NodeOrderemSelectL1(DeciTreeOption<OrderemInfo> option) {
+	public NodeOrderemSelectService(DeciTreeOption<OrderemInfo> option) {
 		super(option);
 	}
 	

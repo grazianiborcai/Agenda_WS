@@ -7,6 +7,7 @@ import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.action.LazyOrderEnforceCurrency;
 import br.com.gda.business.order.model.action.LazyOrderMergeOrderem;
 import br.com.gda.business.order.model.action.LazyOrderMergeCurrency;
+import br.com.gda.business.order.model.action.LazyOrderMergeOrderStatus;
 import br.com.gda.business.order.model.action.LazyOrderMergeToSelect;
 import br.com.gda.business.order.model.action.StdOrderMergeUsername;
 import br.com.gda.business.order.model.checker.OrderCheckLangu;
@@ -57,11 +58,13 @@ public final class RootOrderSelect extends DeciTreeReadTemplate<OrderInfo> {
 		ActionLazy<OrderInfo> mergeCartem = new LazyOrderMergeOrderem(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceCurrency = new LazyOrderEnforceCurrency(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> mergeCurrency = new LazyOrderMergeCurrency(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeOrderStatus = new LazyOrderMergeOrderStatus(option.conn, option.schemaName);
 		
 		mergeUser.addPostAction(select);
 		select.addPostAction(mergeCartem);
 		mergeCartem.addPostAction(enforceCurrency);
 		enforceCurrency.addPostAction(mergeCurrency);
+		mergeCurrency.addPostAction(mergeOrderStatus);
 		
 		actions.add(mergeUser);			
 		return actions;

@@ -116,6 +116,7 @@ public final class OrderemSelectSingle implements DaoStmt<OrderemInfo> {
 				dataInfo.codOwner = stmtResult.getLong(OrderemDbTableColumn.COL_COD_OWNER);	
 				dataInfo.codOrder = stmtResult.getLong(OrderemDbTableColumn.COL_COD_ORDER);
 				dataInfo.quantity = stmtResult.getInt(OrderemDbTableColumn.COL_QUANTITY);
+				dataInfo.codCurr = stmtResult.getString(OrderemDbTableColumn.COL_COD_CURR);
 				
 				stmtResult.getLong(OrderemDbTableColumn.COL_COD_STORE);
 				if (stmtResult.wasNull() == NOT_NULL)
@@ -156,6 +157,14 @@ public final class OrderemSelectSingle implements DaoStmt<OrderemInfo> {
 				Timestamp lastChanged = stmtResult.getTimestamp(OrderemDbTableColumn.COL_CREATED_ON);
 				if (lastChanged != null)
 					dataInfo.createdOn = lastChanged.toLocalDateTime();
+				
+				stmtResult.getDouble(OrderemDbTableColumn.COL_PRICE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.price = stmtResult.getDouble(OrderemDbTableColumn.COL_PRICE);
+				
+				stmtResult.getDouble(OrderemDbTableColumn.COL_TOTAL_ITEM);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.totitem = stmtResult.getDouble(OrderemDbTableColumn.COL_TOTAL_ITEM);
 				
 				
 				finalResult.add(dataInfo);

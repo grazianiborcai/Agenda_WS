@@ -13,7 +13,7 @@ final class OrderemVisiMergeEmplis implements InfoMergerVisitorV2<OrderemInfo, E
 		checkArgument(sourceOne, sourceTwo);
 		
 		OrderemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.emplisInfo = sourceOne;
+		resultInfo.emplisData = sourceOne;
 		return resultInfo;
 	}
 	

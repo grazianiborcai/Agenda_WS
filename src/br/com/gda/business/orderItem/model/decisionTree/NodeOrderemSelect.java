@@ -3,21 +3,17 @@ package br.com.gda.business.orderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.orderItem.info.OrderemInfo;
-import br.com.gda.business.orderItem.model.action.LazyOrderemMergeMatsnap;
-import br.com.gda.business.orderItem.model.action.LazyOrderemNodeSelect;
-import br.com.gda.business.orderItem.model.action.StdOrderemMergeToSelect;
-import br.com.gda.business.orderItem.model.checker.OrderemCheckRead;
+import br.com.gda.business.orderItem.model.checker.OrderemCheckIsService;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootOrderemSelect extends DeciTreeWriteTemplate<OrderemInfo> {
+public final class NodeOrderemSelect extends DeciTreeWriteTemplate<OrderemInfo> {
 	
-	public RootOrderemSelect(DeciTreeOption<OrderemInfo> option) {
+	public NodeOrderemSelect(DeciTreeOption<OrderemInfo> option) {
 		super(option);
 	}
 	
@@ -27,7 +23,7 @@ public final class RootOrderemSelect extends DeciTreeWriteTemplate<OrderemInfo> 
 		List<ModelChecker<OrderemInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderemInfo> checker;
 		
-		checker = new OrderemCheckRead();
+		checker = new OrderemCheckIsService();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -38,14 +34,9 @@ public final class RootOrderemSelect extends DeciTreeWriteTemplate<OrderemInfo> 
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> select = new StdOrderemMergeToSelect(option);
-		ActionLazy<OrderemInfo> mergeMatsnap = new LazyOrderemMergeMatsnap(option.conn, option.schemaName);
-		ActionLazy<OrderemInfo> nodeSelect = new LazyOrderemNodeSelect(option.conn, option.schemaName);		
+		ActionStd<OrderemInfo> selectService = new NodeOrderemSelectService(option).toAction();
 		
-		select.addPostAction(mergeMatsnap);
-		mergeMatsnap.addPostAction(nodeSelect);
-		
-		actions.add(select);
+		actions.add(selectService);
 		return actions;
 	}
 }

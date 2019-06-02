@@ -4,24 +4,24 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class OrderemVisiMergeMat implements InfoMergerVisitorV2<OrderemInfo, MatInfo> {
+final class OrderemVisiMergeMatsnap implements InfoMergerVisitorV2<OrderemInfo, MatsnapInfo> {
 
-	@Override public OrderemInfo writeRecord(MatInfo sourceOne, OrderemInfo sourceTwo) {
+	@Override public OrderemInfo writeRecord(MatsnapInfo sourceOne, OrderemInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		OrderemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.matData = sourceOne;
-		resultInfo.codMatSnapshot = sourceOne.codSnapshot;
+		resultInfo.matData = MatInfo.copyFrom(sourceOne);
 
 		return resultInfo;
 	}
 	
 	
 	
-	private void checkArgument(MatInfo sourceOne, OrderemInfo sourceTwo) {
+	private void checkArgument(MatsnapInfo sourceOne, OrderemInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}	
@@ -40,9 +40,10 @@ final class OrderemVisiMergeMat implements InfoMergerVisitorV2<OrderemInfo, MatI
 
 
 	
-	@Override public boolean shouldWrite(MatInfo sourceOne, OrderemInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner && 
-				sourceOne.codMat   == sourceTwo.codMat		);
+	@Override public boolean shouldWrite(MatsnapInfo sourceOne, OrderemInfo sourceTwo) {
+		return (sourceOne.codOwner 		== sourceTwo.codOwner && 
+				sourceOne.codMat  		== sourceTwo.codMat   &&
+				sourceOne.codSnapshot   == sourceTwo.codMatSnapshot);
 	}
 	
 	

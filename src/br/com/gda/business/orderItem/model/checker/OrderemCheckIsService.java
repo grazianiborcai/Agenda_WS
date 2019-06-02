@@ -16,10 +16,10 @@ public final class OrderemCheckIsService extends ModelCheckerTemplateSimple<Orde
 	
 	
 	@Override protected boolean checkHook(OrderemInfo recordInfo, Connection conn, String schemaName) {	
-		if(recordInfo.matInfo == null)
+		if(recordInfo.matData == null)
 			return super.FAILED;
 		
-		if (recordInfo.matInfo.codMatCateg == MatCateg.SERVICE.getCodMatCateg())
+		if (recordInfo.matData.codMatCateg == MatCateg.SERVICE.getCodMatCateg())
 			return super.SUCCESS;		
 		
 		

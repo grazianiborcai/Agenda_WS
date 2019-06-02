@@ -3,6 +3,7 @@ package br.com.gda.business.order.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.CurrencyInfo;
+import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.orderItem.info.OrderemInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoMerger;
@@ -34,6 +35,20 @@ public final class OrderMerger {
 		InfoMerger<OrderInfo, OrderemInfo> merger = new OrderMergerOrderem();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}		
+	
+	
+	
+	public static OrderInfo mergeWithOrderStatus(OrderStatusInfo sourceOne, OrderInfo sourceTwo) {
+		InfoMerger<OrderInfo, OrderStatusInfo> merger = new OrderMergerOrderStatus();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OrderInfo> mergeWithOrderStatus(List<OrderStatusInfo> sourceOnes, List<OrderInfo> sourceTwos) {
+		InfoMerger<OrderInfo, OrderStatusInfo> merger = new OrderMergerOrderStatus();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 	
 	
 	

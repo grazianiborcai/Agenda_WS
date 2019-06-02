@@ -3,9 +3,11 @@ package br.com.gda.business.orderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.orderItem.info.OrderemInfo;
-import br.com.gda.business.orderItem.model.action.StdOrderemSuccess;
+import br.com.gda.business.orderItem.model.action.LazyOrderemInsert;
+import br.com.gda.business.orderItem.model.action.StdOrderemMergeStolis;
 import br.com.gda.business.orderItem.model.checker.OrderemCheckEmp;
 import br.com.gda.business.orderItem.model.checker.OrderemCheckEmpmat;
 import br.com.gda.business.orderItem.model.checker.OrderemCheckEmpos;
@@ -18,9 +20,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeOrderemServiceL2 extends DeciTreeWriteTemplate<OrderemInfo> {
+public final class NodeOrderemInsertService extends DeciTreeWriteTemplate<OrderemInfo> {
 	
-	public NodeOrderemServiceL2(DeciTreeOption<OrderemInfo> option) {
+	public NodeOrderemInsertService(DeciTreeOption<OrderemInfo> option) {
 		super(option);
 	}
 	
@@ -79,8 +81,12 @@ public final class NodeOrderemServiceL2 extends DeciTreeWriteTemplate<OrderemInf
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> success = new StdOrderemSuccess(option);			
-		actions.add(success);
+		ActionStd<OrderemInfo> mergeStolis = new StdOrderemMergeStolis(option);		
+		ActionLazy<OrderemInfo> insert = new LazyOrderemInsert(option.conn, option.schemaName);
+		
+		mergeStolis.addPostAction(insert);
+		
+		actions.add(mergeStolis);
 		
 		return actions;
 	}
