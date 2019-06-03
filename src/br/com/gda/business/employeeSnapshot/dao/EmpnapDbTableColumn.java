@@ -12,6 +12,7 @@ public final class EmpnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_EMPLOYEE = "cod_employee";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_PERSON = "cod_person";
+	public static final String COL_COD_PERSON_SNAPSHOT = "cod_person_snapshot";
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
 	public static final String COL_COD_USER = "cod_user";
 	public static final String COL_LAST_CHANGED = "last_changed";
@@ -100,6 +101,14 @@ public final class EmpnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_USER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PERSON_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

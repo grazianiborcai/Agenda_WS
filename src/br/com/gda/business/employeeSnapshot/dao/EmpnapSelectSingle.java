@@ -126,6 +126,11 @@ public final class EmpnapSelectSingle implements DaoStmt<EmpnapInfo> {
 					dataInfo.codPerson = stmtResult.getLong(EmpnapDbTableColumn.COL_COD_PERSON);
 				
 				
+				stmtResult.getLong(EmpnapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPersonSnapshot = stmtResult.getLong(EmpnapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+				
+				
 				Timestamp lastChanged = stmtResult.getTimestamp(EmpnapDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();	

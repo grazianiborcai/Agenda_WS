@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.model.action.LazyEmpEnforceEntityCateg;
-import br.com.gda.business.employee.model.action.LazyEmpInsertEmpnap;
 import br.com.gda.business.employee.model.action.LazyEmpKeepEmp;
 import br.com.gda.business.employee.model.action.LazyEmpMergeUsername;
 import br.com.gda.business.employee.model.action.LazyEmpUpdate;
@@ -45,14 +44,12 @@ public final class NodeEmpUpdate extends DeciTreeWriteTemplate<EmpInfo> {
 		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceEntityCateg = new LazyEmpEnforceEntityCateg(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> keepEmployee = new LazyEmpKeepEmp(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> insertEmpnap = new LazyEmpInsertEmpnap(option.conn, option.schemaName);	
 		ActionLazy<EmpInfo> updateEmployee = new LazyEmpUpdate(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceEntityCateg);
 		enforceEntityCateg.addPostAction(keepEmployee);
-		keepEmployee.addPostAction(insertEmpnap);
-		insertEmpnap.addPostAction(updateEmployee);	
+		keepEmployee.addPostAction(updateEmployee);	
 		
 		actions.add(enforceLChanged);
 		return actions;

@@ -130,6 +130,11 @@ public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 					dataInfo.codPerson = stmtResult.getLong(EmpDbTableColumn.COL_COD_PERSON);
 				
 				
+				stmtResult.getLong(EmpDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPersonSnapshot = stmtResult.getLong(EmpDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+				
+				
 				Timestamp lastChanged = stmtResult.getTimestamp(EmpDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();	

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employee.model.action.LazyEmpInsertEmpnap;
+import br.com.gda.business.employee.model.action.LazyEmpUpdate;
 import br.com.gda.business.employee.model.action.LazyEmpUpdatePerson;
 import br.com.gda.business.employee.model.action.StdEmpEnforcePersonKey;
 import br.com.gda.business.employee.model.action.StdEmpSuccess;
@@ -63,8 +65,12 @@ public final class NodeEmpUpdatePerson implements DeciTree<EmpInfo> {
 		
 		ActionStd<EmpInfo> enforcePersonKey = new StdEmpEnforcePersonKey(option);
 		ActionLazy<EmpInfo> updatePerson = new LazyEmpUpdatePerson(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> insertEmpnap = new LazyEmpInsertEmpnap(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> updateEnployee = new LazyEmpUpdate(option.conn, option.schemaName);	
 		
 		enforcePersonKey.addPostAction(updatePerson);
+		updatePerson.addPostAction(insertEmpnap);
+		insertEmpnap.addPostAction(updateEnployee);
 		
 		actions.add(enforcePersonKey);
 		return actions;

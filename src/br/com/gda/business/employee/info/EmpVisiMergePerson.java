@@ -40,6 +40,7 @@ final class EmpVisiMergePerson implements InfoMergerVisitorV2<EmpInfo, PersonInf
 	private EmpInfo merge(PersonInfo sourceOne, EmpInfo sourceTwo) {
 		sourceTwo.personData = makeClone(sourceOne);
 		sourceTwo.codPerson = sourceOne.codPerson;
+		sourceTwo.codPersonSnapshot = sourceOne.codSnapshot;
 		return sourceTwo;
 	}
 	
