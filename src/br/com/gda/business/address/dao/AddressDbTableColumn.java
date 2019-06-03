@@ -14,13 +14,18 @@ public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COMPLEMENT = "complement";
 	public static final String COL_COUNTRY = "country";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
+	public static final String COL_COD_CUSTOMER_SNAPSHOT = "cod_customer_snapshot";
 	public static final String COL_COD_EMPLOYEE = "cod_employee";	
+	public static final String COL_COD_EMPLOYEE_SNAPSHOT = "cod_employee_snapshot";
 	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
 	public static final String COL_COD_STORE = "cod_store";
+	public static final String COL_COD_STORE_SNAPSHOT = "cod_store_snapshot";
 	public static final String COL_COD_USER = "cod_user";
+	public static final String COL_COD_USER_SNAPSHOT = "cod_user_snapshot";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_OWNER_REF = "cod_owner_ref";
+	public static final String COL_COD_OWNER_REF_SNAPSHOT = "cod_owner_ref_snapshot";
 	public static final String COL_DISTRICT = "district";
 	public static final String COL_LATITUDE = "latitude";
 	public static final String COL_LAST_CHANGED = "last_changed";
@@ -289,6 +294,46 @@ public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_CUSTOMER_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_EMPLOYEE_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_STORE_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_USER_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_OWNER_REF_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

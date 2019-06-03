@@ -1,9 +1,16 @@
 package br.com.gda.business.address.info;
 
-import br.com.gda.business.employee.info.EmpInfo;
-import br.com.gda.info.InfoCopierTemplate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-final class AddressCopyEmp extends InfoCopierTemplate<AddressInfo, EmpInfo>{
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.info.InfoCopierOneToManyTemplate;
+
+final class AddressCopyEmp extends InfoCopierOneToManyTemplate<AddressInfo, EmpInfo>{
 	
 	public AddressCopyEmp() {
 		super();
@@ -11,11 +18,49 @@ final class AddressCopyEmp extends InfoCopierTemplate<AddressInfo, EmpInfo>{
 	
 	
 	
-	@Override protected AddressInfo makeCopyHook(EmpInfo source) {
-		AddressInfo result = new AddressInfo();
-		result.codOwner = source.codOwner;
-		result.codEmployee = source.codEmployee;
-		result.codLanguage = source.codLanguage;
-		return result;
+	@Override protected List<AddressInfo> makeCopyHook(EmpInfo source) {
+		if (shouldCopy(source) == false)
+			return Collections.emptyList();		
+		
+		List<AddressInfo> results = new ArrayList<>();
+		
+		for (AddressInfo eachRecod : source.addresses) {
+			AddressInfo clonedRecord = makeClone(eachRecod);
+			results.add(clonedRecord);
+		}
+		
+		
+		return results;
+	}
+	
+	
+	
+	private boolean shouldCopy(EmpInfo source) {
+		if (source.addresses == null)
+			return false;
+		
+		if (source.addresses.isEmpty())
+			return false;
+		
+		return true;
+	}
+	
+	
+	
+	private AddressInfo makeClone(AddressInfo recordInfo) {
+		try {
+			return (AddressInfo) recordInfo.clone();
+			
+		} catch (Exception e) {
+			logException(e);
+			throw new IllegalStateException(e); 
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

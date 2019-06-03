@@ -10,6 +10,7 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoCopier;
+import br.com.gda.info.InfoCopierOneToMany;
 import br.com.gda.payService.payCustomer.info.PaycusInfo;
 
 public final class AddressCopier {
@@ -55,9 +56,30 @@ public final class AddressCopier {
 	
 	
 	
-	public static AddressInfo copyFromEmp(EmpInfo source) {
-		InfoCopier<AddressInfo, EmpInfo> copier = new AddressCopyEmp();
+	public static List<AddressInfo> copyFromEmp(EmpInfo source) {
+		InfoCopierOneToMany<AddressInfo, EmpInfo> copier = new AddressCopyEmp();
 		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddressInfo> copyFromEmp(List<EmpInfo> sources) {
+		InfoCopierOneToMany<AddressInfo, EmpInfo> copier = new AddressCopyEmp();
+		return copier.makeCopy(sources);
+	}	
+	
+	
+	
+	public static AddressInfo copyFromEmpKey(EmpInfo source) {
+		InfoCopier<AddressInfo, EmpInfo> copier = new AddressCopyEmpKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddressInfo> copyFromEmpKey(List<EmpInfo> sources) {
+		InfoCopier<AddressInfo, EmpInfo> copier = new AddressCopyEmpKey();
+		return copier.makeCopy(sources);
 	}
 	
 	
@@ -71,13 +93,6 @@ public final class AddressCopier {
 	
 	public static List<AddressInfo> copyFromStolis(List<StolisInfo> sources) {
 		InfoCopier<AddressInfo, StolisInfo> copier = new AddressCopyStolis();
-		return copier.makeCopy(sources);
-	}
-	
-	
-	
-	public static List<AddressInfo> copyFromEmp(List<EmpInfo> sources) {
-		InfoCopier<AddressInfo, EmpInfo> copier = new AddressCopyEmp();
 		return copier.makeCopy(sources);
 	}
 	

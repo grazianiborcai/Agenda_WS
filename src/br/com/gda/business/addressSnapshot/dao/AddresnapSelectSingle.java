@@ -141,17 +141,33 @@ public final class AddresnapSelectSingle implements DaoStmt<AddresnapInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codStore = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_STORE);
 				
+				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codStoreSnapshot = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				
 				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_CUSTOMER);				
+					dataInfo.codCustomer = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_CUSTOMER);		
+				
+				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codCustomerSnapshot = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);	
 				
 				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_EMPLOYEE);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codCustomer = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_EMPLOYEE);
 				
+				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codCustomerSnapshot = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+				
 				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_USER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codUser = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_USER);	
+				
+				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_USER_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codUserSnapshot = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_USER_SNAPSHOT);	
 				
 				stmtResult.getFloat(AddresnapDbTableColumn.COL_LATITUDE);
 				if (stmtResult.wasNull() == NOT_NULL)
@@ -168,6 +184,10 @@ public final class AddresnapSelectSingle implements DaoStmt<AddresnapInfo> {
 				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_OWNER_REF);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codOwnerRef = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_OWNER_REF);	
+				
+				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codOwnerRefSnapshot = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);	
 				
 				
 				finalResult.add(dataInfo);

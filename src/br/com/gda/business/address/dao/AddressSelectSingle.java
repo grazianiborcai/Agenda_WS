@@ -137,17 +137,33 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codStore = stmtResult.getLong(AddressDbTableColumn.COL_COD_STORE);
 				
+				stmtResult.getLong(AddressDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codStoreSnapshot = stmtResult.getLong(AddressDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				
 				stmtResult.getLong(AddressDbTableColumn.COL_COD_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(AddressDbTableColumn.COL_COD_CUSTOMER);				
+					dataInfo.codCustomer = stmtResult.getLong(AddressDbTableColumn.COL_COD_CUSTOMER);	
+				
+				stmtResult.getLong(AddressDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codCustomerSnapshot = stmtResult.getLong(AddressDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 				
 				stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codEmployee = stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE);
 				
+				stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codEmployeeSnapshot = stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+				
 				stmtResult.getLong(AddressDbTableColumn.COL_COD_USER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codUser = stmtResult.getLong(AddressDbTableColumn.COL_COD_USER);	
+				
+				stmtResult.getLong(AddressDbTableColumn.COL_COD_USER_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codUserSnapshot = stmtResult.getLong(AddressDbTableColumn.COL_COD_USER_SNAPSHOT);	
 				
 				stmtResult.getLong(AddressDbTableColumn.COL_COD_PAY_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
@@ -156,6 +172,10 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 				stmtResult.getLong(AddressDbTableColumn.COL_COD_OWNER_REF);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codOwnerRef = stmtResult.getLong(AddressDbTableColumn.COL_COD_OWNER_REF);
+				
+				stmtResult.getLong(AddressDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codOwnerRefSnapshot = stmtResult.getLong(AddressDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
 				
 				stmtResult.getFloat(AddressDbTableColumn.COL_LATITUDE);
 				if (stmtResult.wasNull() == NOT_NULL)
