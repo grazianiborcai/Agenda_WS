@@ -35,6 +35,10 @@ final class EmpnapWhere implements DaoStmtWhere {
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 				break;
 				
+			case EmpnapDbTableColumn.COL_COD_SNAPSHOT :
+				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
+				break;
+				
 			case EmpnapDbTableColumn.COL_RECORD_MODE :
 				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 				break;

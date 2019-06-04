@@ -1,9 +1,9 @@
 package br.com.gda.business.employee.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.address.info.AddressCopier;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.decisionTree.RootAddressUpsertdel;
 import br.com.gda.business.employee.info.EmpInfo;
@@ -19,13 +19,7 @@ final class VisiEmpUpsertAddress extends ActionVisitorTemplateAction<EmpInfo, Ad
 	
 	
 	@Override protected List<AddressInfo> toActionClassHook(List<EmpInfo> recordInfos) {
-		List<AddressInfo> results = new ArrayList<>();
-		
-		for (EmpInfo eachRecord : recordInfos) {
-			results.addAll(eachRecord.addresses);
-		}		
-		
-		return results;
+		return AddressCopier.copyFromEmp(recordInfos);
 	}
 	
 	

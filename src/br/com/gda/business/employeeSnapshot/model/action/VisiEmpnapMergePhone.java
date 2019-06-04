@@ -26,7 +26,7 @@ final class VisiEmpnapMergePhone extends ActionVisitorTemplateMergeV2<EmpnapInfo
 	
 	
 	@Override protected List<PhoneInfo> toActionClassHook(List<EmpnapInfo> recordInfos) {
-		return PhoneCopier.copyFromEmp(recordInfos);	
+		return PhoneCopier.copyFromEmpKey(recordInfos);	
 	}
 	
 	

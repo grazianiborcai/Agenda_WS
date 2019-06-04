@@ -26,7 +26,7 @@ final class VisiEmpapMergeAddress extends ActionVisitorTemplateMergeV2<EmpnapInf
 	
 	
 	@Override protected List<AddressInfo> toActionClassHook(List<EmpnapInfo> recordInfos) {
-		return AddressCopier.copyFromEmp(recordInfos);	
+		return AddressCopier.copyFromEmpKey(recordInfos);	
 	}
 	
 	
