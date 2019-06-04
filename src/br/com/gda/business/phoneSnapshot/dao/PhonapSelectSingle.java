@@ -126,21 +126,41 @@ public final class PhonapSelectSingle implements DaoStmt<PhonapInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codStore = stmtResult.getLong(PhonapDbTableColumn.COL_COD_STORE);
 				
+				stmtResult.getLong(PhonapDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codStoreSnapshot = stmtResult.getLong(PhonapDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				
 				stmtResult.getLong(PhonapDbTableColumn.COL_COD_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(PhonapDbTableColumn.COL_COD_CUSTOMER);				
+					dataInfo.codCustomer = stmtResult.getLong(PhonapDbTableColumn.COL_COD_CUSTOMER);	
+				
+				stmtResult.getLong(PhonapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codCustomerSnapshot = stmtResult.getLong(PhonapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);	
 				
 				stmtResult.getLong(PhonapDbTableColumn.COL_COD_EMPLOYEE);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployee = stmtResult.getLong(PhonapDbTableColumn.COL_COD_EMPLOYEE);		
+					dataInfo.codEmployee = stmtResult.getLong(PhonapDbTableColumn.COL_COD_EMPLOYEE);	
+				
+				stmtResult.getLong(PhonapDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codEmployeeSnapshot = stmtResult.getLong(PhonapDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
 				
 				stmtResult.getLong(PhonapDbTableColumn.COL_COD_USER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codUser = stmtResult.getLong(PhonapDbTableColumn.COL_COD_USER);	
 				
+				stmtResult.getLong(PhonapDbTableColumn.COL_COD_USER_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codUserSnapshot = stmtResult.getLong(PhonapDbTableColumn.COL_COD_USER_SNAPSHOT);	
+				
 				stmtResult.getLong(PhonapDbTableColumn.COL_COD_OWNER_REF);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codOwnerRef = stmtResult.getLong(PhonapDbTableColumn.COL_COD_OWNER_REF);
+				
+				stmtResult.getLong(PhonapDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codOwnerRefSnapshot = stmtResult.getLong(PhonapDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
 				
 				stmtResult.getLong(PhonapDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)

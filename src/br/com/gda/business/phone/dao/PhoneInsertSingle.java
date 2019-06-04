@@ -150,6 +150,40 @@ public final class PhoneInsertSingle implements DaoStmt<PhoneInfo> {
 				stmt.setLong(i++, recordInfo.codSnapshot);
 			}
 			
+			if (DaoFormatter.boxNumber(recordInfo.codCustomerSnapshot) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codCustomerSnapshot);
+			}	
+						
+			
+			if (DaoFormatter.boxNumber(recordInfo.codEmployeeSnapshot) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codEmployeeSnapshot);
+			}	
+						
+			
+			if (DaoFormatter.boxNumber(recordInfo.codStoreSnapshot) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codStoreSnapshot);
+			}	
+						
+			
+			if (DaoFormatter.boxNumber(recordInfo.codUserSnapshot) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codUserSnapshot);
+			}	
+			
+						
+			if (DaoFormatter.boxNumber(recordInfo.codOwnerRefSnapshot) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codOwnerRefSnapshot);
+			}	
+			
 
 			return stmt;
 		}		

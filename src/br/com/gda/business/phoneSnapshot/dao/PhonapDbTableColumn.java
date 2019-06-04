@@ -11,13 +11,18 @@ import br.com.gda.dao.common.DaoDbTable;
 
 public final class PhonapDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_CUSTOMER = PhoneDbTableColumn.COL_COD_CUSTOMER;
+	public static final String COL_COD_CUSTOMER_SNAPSHOT = PhoneDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT;
 	public static final String COL_COD_EMPLOYEE = PhoneDbTableColumn.COL_COD_EMPLOYEE;	
+	public static final String COL_COD_EMPLOYEE_SNAPSHOT = PhoneDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT;	
 	public static final String COL_COD_OWNER = PhoneDbTableColumn.COL_COD_OWNER;
 	public static final String COL_COD_OWNER_REF = PhoneDbTableColumn.COL_COD_OWNER_REF;
+	public static final String COL_COD_OWNER_REF_SNAPSHOT = PhoneDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT;
 	public static final String COL_COD_PHONE = PhoneDbTableColumn.COL_COD_PHONE;
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
 	public static final String COL_COD_STORE = PhoneDbTableColumn.COL_COD_STORE;
+	public static final String COL_COD_STORE_SNAPSHOT = PhoneDbTableColumn.COL_COD_STORE_SNAPSHOT;
 	public static final String COL_COD_USER = PhoneDbTableColumn.COL_COD_USER;
+	public static final String COL_COD_USER_SNAPSHOT = PhoneDbTableColumn.COL_COD_USER_SNAPSHOT;
 	public static final String COL_COMPLEMENT = PhoneDbTableColumn.COL_COMPLEMENT;
 	public static final String COL_COUNTRY_PHONE = PhoneDbTableColumn.COL_COUNTRY_PHONE;
 	public static final String COL_FULL_NUMBER = PhoneDbTableColumn.COL_FULL_NUMBER;
@@ -159,6 +164,46 @@ public final class PhonapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_CUSTOMER_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_EMPLOYEE_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_STORE_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_USER_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_OWNER_REF_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

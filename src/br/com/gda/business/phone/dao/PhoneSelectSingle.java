@@ -49,12 +49,9 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new PhoneWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -128,17 +125,33 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codStore = stmtResult.getLong(PhoneDbTableColumn.COL_COD_STORE);
 				
+				stmtResult.getLong(PhoneDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codStoreSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				
 				stmtResult.getLong(PhoneDbTableColumn.COL_COD_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(PhoneDbTableColumn.COL_COD_CUSTOMER);				
+					dataInfo.codCustomer = stmtResult.getLong(PhoneDbTableColumn.COL_COD_CUSTOMER);			
+				
+				stmtResult.getLong(PhoneDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codCustomerSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);	
 				
 				stmtResult.getLong(PhoneDbTableColumn.COL_COD_EMPLOYEE);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codEmployee = stmtResult.getLong(PhoneDbTableColumn.COL_COD_EMPLOYEE);		
 				
+				stmtResult.getLong(PhoneDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codEmployeeSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);	
+				
 				stmtResult.getLong(PhoneDbTableColumn.COL_COD_USER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codUser = stmtResult.getLong(PhoneDbTableColumn.COL_COD_USER);	
+				
+				stmtResult.getLong(PhoneDbTableColumn.COL_COD_USER_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codUserSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_USER_SNAPSHOT);	
 				
 				stmtResult.getLong(PhoneDbTableColumn.COL_COD_PAY_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
@@ -146,7 +159,11 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 				
 				stmtResult.getLong(PhoneDbTableColumn.COL_COD_OWNER_REF);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codOwnerRef = stmtResult.getLong(PhoneDbTableColumn.COL_COD_OWNER_REF);	
+					dataInfo.codOwnerRef = stmtResult.getLong(PhoneDbTableColumn.COL_COD_OWNER_REF);
+				
+				stmtResult.getLong(PhoneDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codOwnerRefSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(PhoneDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)

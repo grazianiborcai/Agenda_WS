@@ -8,6 +8,7 @@ import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoCopier;
+import br.com.gda.info.InfoCopierOneToMany;
 import br.com.gda.payService.payCustomer.info.PaycusInfo;
 
 public final class PhoneCopier {
@@ -67,15 +68,29 @@ public final class PhoneCopier {
 	
 	
 	
-	public static PhoneInfo copyFromEmp(EmpInfo source) {
-		InfoCopier<PhoneInfo, EmpInfo> copier = new PhoneCopyEmp();
+	public static List<PhoneInfo> copyFromEmp(EmpInfo source) {
+		InfoCopierOneToMany<PhoneInfo, EmpInfo> copier = new PhoneCopyEmp();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<PhoneInfo> copyFromEmp(List<EmpInfo> sources) {
-		InfoCopier<PhoneInfo, EmpInfo> copier = new PhoneCopyEmp();
+		InfoCopierOneToMany<PhoneInfo, EmpInfo> copier = new PhoneCopyEmp();
+		return copier.makeCopy(sources);
+	}	
+	
+	
+	
+	public static PhoneInfo copyFromEmpKey(EmpInfo source) {
+		InfoCopier<PhoneInfo, EmpInfo> copier = new PhoneCopyEmpKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhoneInfo> copyFromEmpKey(List<EmpInfo> sources) {
+		InfoCopier<PhoneInfo, EmpInfo> copier = new PhoneCopyEmpKey();
 		return copier.makeCopy(sources);
 	}
 	
