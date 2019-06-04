@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpnapMergePerson extends ActionLazyTemplate<EmpnapInfo, EmpnapInfo> {
+public final class LazyEmpnapMergePhonap extends ActionLazyTemplate<EmpnapInfo, EmpnapInfo> {
 	
-	public LazyEmpnapMergePerson(Connection conn, String schemaName) {
+	public LazyEmpnapMergePhonap(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyEmpnapMergePerson extends ActionLazyTemplate<EmpnapInfo, 
 	
 	
 	@Override protected ActionStd<EmpnapInfo> getInstanceOfActionHook(DeciTreeOption<EmpnapInfo> option) {
-		return new StdEmpnapMergePerson(option);
+		return new StdEmpnapMergePhonap(option);
 	}
 	
 	

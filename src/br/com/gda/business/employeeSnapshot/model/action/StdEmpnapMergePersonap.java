@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdEmpnapMergePerson implements ActionStd<EmpnapInfo> {
+final class StdEmpnapMergePersonap implements ActionStd<EmpnapInfo> {
 	private ActionStd<EmpnapInfo> actionHelper;	
 	
 	
-	public StdEmpnapMergePerson(DeciTreeOption<EmpnapInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpnapMergePerson(option.conn, option.schemaName));
+	public StdEmpnapMergePersonap(DeciTreeOption<EmpnapInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpnapMergePersonap(option.conn, option.schemaName));
 	}
 	
 	

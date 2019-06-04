@@ -3,13 +3,13 @@ package br.com.gda.business.employeeSnapshot.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.user.info.UserInfo;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class EmpnapVisiMergeUser implements InfoMergerVisitorV2<EmpnapInfo, UserInfo> {
+final class EmpnapVisiMergePersonap implements InfoMergerVisitorV2<EmpnapInfo, PersonapInfo> {
 
-	@Override public EmpnapInfo writeRecord(UserInfo sourceOne, EmpnapInfo sourceTwo) {
+	@Override public EmpnapInfo writeRecord(PersonapInfo sourceOne, EmpnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		EmpnapInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class EmpnapVisiMergeUser implements InfoMergerVisitorV2<EmpnapInfo, UserI
 	
 	
 	
-	private void checkArgument(UserInfo sourceOne, EmpnapInfo sourceTwo) {
+	private void checkArgument(PersonapInfo sourceOne, EmpnapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,19 +37,16 @@ final class EmpnapVisiMergeUser implements InfoMergerVisitorV2<EmpnapInfo, UserI
 	
 	
 	
-	private EmpnapInfo merge(UserInfo sourceOne, EmpnapInfo sourceTwo) {
-		sourceTwo.userData = makeClone(sourceOne);
-		sourceTwo.codUser = sourceOne.codUser;
-		sourceTwo.codAuthGroup = sourceOne.codAuthGroup;
-		sourceTwo.codUserCategory = sourceOne.codUserCategory;
+	private EmpnapInfo merge(PersonapInfo sourceOne, EmpnapInfo sourceTwo) {
+		sourceTwo.personapData = makeClone(sourceOne);
 		return sourceTwo;
 	}
 	
 	
 	
-	private UserInfo makeClone(UserInfo recordInfo) {
+	private PersonapInfo makeClone(PersonapInfo recordInfo) {
 		try {
-			return (UserInfo) recordInfo.clone();
+			return (PersonapInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -59,8 +56,10 @@ final class EmpnapVisiMergeUser implements InfoMergerVisitorV2<EmpnapInfo, UserI
 	
 	
 	
-	@Override public boolean shouldWrite(UserInfo sourceOne, EmpnapInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	@Override public boolean shouldWrite(PersonapInfo sourceOne, EmpnapInfo sourceTwo) {
+		return (sourceOne.codOwner    == sourceTwo.codOwner		&&
+				sourceOne.codPerson   == sourceTwo.codPerson	&&
+				sourceOne.codSnapshot == sourceTwo.codPersonSnapshot);
 	}
 	
 	

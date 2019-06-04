@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
-import br.com.gda.business.employeeSnapshot.model.action.LazyEmpnapMergeAddress;
-import br.com.gda.business.employeeSnapshot.model.action.LazyEmpnapMergePerson;
-import br.com.gda.business.employeeSnapshot.model.action.LazyEmpnapMergePhone;
-import br.com.gda.business.employeeSnapshot.model.action.LazyEmpnapMergeUser;
+import br.com.gda.business.employeeSnapshot.model.action.LazyEmpnapMergeAddresnap;
+import br.com.gda.business.employeeSnapshot.model.action.LazyEmpnapMergePersonap;
+import br.com.gda.business.employeeSnapshot.model.action.LazyEmpnapMergePhonap;
 import br.com.gda.business.employeeSnapshot.model.action.StdEmpnapMergeToSelect;
 import br.com.gda.business.employeeSnapshot.model.checker.EmpnapCheckLangu;
 import br.com.gda.business.employeeSnapshot.model.checker.EmpnapCheckRead;
@@ -53,15 +52,13 @@ public final class RootEmpnapSelect extends DeciTreeReadTemplate<EmpnapInfo> {
 		List<ActionStd<EmpnapInfo>> actions = new ArrayList<>();
 
 		ActionStd<EmpnapInfo> select = new StdEmpnapMergeToSelect(option);
-		ActionLazy<EmpnapInfo> mergePerson = new LazyEmpnapMergePerson(option.conn, option.schemaName);
-		ActionLazy<EmpnapInfo> mergeAddress = new LazyEmpnapMergeAddress(option.conn, option.schemaName);
-		ActionLazy<EmpnapInfo> mergePhone = new LazyEmpnapMergePhone(option.conn, option.schemaName);
-		ActionLazy<EmpnapInfo> mergeUser = new LazyEmpnapMergeUser(option.conn, option.schemaName);
+		ActionLazy<EmpnapInfo> mergePerson = new LazyEmpnapMergePersonap(option.conn, option.schemaName);
+		ActionLazy<EmpnapInfo> mergeAddress = new LazyEmpnapMergeAddresnap(option.conn, option.schemaName);
+		ActionLazy<EmpnapInfo> mergePhone = new LazyEmpnapMergePhonap(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
-		mergePhone.addPostAction(mergeUser);
 		
 		actions.add(select);
 		return actions;

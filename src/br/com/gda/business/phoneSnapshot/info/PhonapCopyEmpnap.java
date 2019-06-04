@@ -1,4 +1,4 @@
-package br.com.gda.business.addressSnapshot.info;
+package br.com.gda.business.phoneSnapshot.info;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,22 +7,22 @@ import java.util.List;
 import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.gda.info.InfoCopierOneToManyTemplate;
 
-final class AddresnapCopyEmpnap extends InfoCopierOneToManyTemplate<AddresnapInfo, EmpnapInfo>{
+final class PhonapCopyEmpnap extends InfoCopierOneToManyTemplate<PhonapInfo, EmpnapInfo>{
 	
-	public AddresnapCopyEmpnap() {
+	public PhonapCopyEmpnap() {
 		super();
 	}
 	
 	
 	
-	@Override protected List<AddresnapInfo> makeCopyHook(EmpnapInfo source) {
+	@Override protected List<PhonapInfo> makeCopyHook(EmpnapInfo source) {
 		if (shouldCopy(source) == false)
 			return Collections.emptyList();		
 		
-		List<AddresnapInfo> results = new ArrayList<>();
+		List<PhonapInfo> results = new ArrayList<>();
 		
-		for (AddresnapInfo eachRecod : source.addresnaps) {
-			AddresnapInfo clonedRecord = AddresnapInfo.copyFrom(eachRecod);
+		for (PhonapInfo eachRecod : source.phonaps) {
+			PhonapInfo clonedRecord = PhonapInfo.copyFrom(eachRecod);
 			results.add(clonedRecord);
 		}
 		

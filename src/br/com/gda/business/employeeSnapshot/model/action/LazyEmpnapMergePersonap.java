@@ -5,14 +5,13 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
-import br.com.gda.business.employeeSnapshot.model.decisionTree.RootEmpnapSelect;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpnapRootSelect extends ActionLazyTemplate<EmpnapInfo, EmpnapInfo> {
-
-	public LazyEmpnapRootSelect(Connection conn, String schemaName) {
+public final class LazyEmpnapMergePersonap extends ActionLazyTemplate<EmpnapInfo, EmpnapInfo> {
+	
+	public LazyEmpnapMergePersonap(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,8 +23,8 @@ public final class LazyEmpnapRootSelect extends ActionLazyTemplate<EmpnapInfo, E
 	
 	
 	
-	@Override protected  ActionStd<EmpnapInfo> getInstanceOfActionHook(DeciTreeOption<EmpnapInfo> option) {
-		return new RootEmpnapSelect(option).toAction();
+	@Override protected ActionStd<EmpnapInfo> getInstanceOfActionHook(DeciTreeOption<EmpnapInfo> option) {
+		return new StdEmpnapMergePersonap(option);
 	}
 	
 	

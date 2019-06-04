@@ -3,13 +3,13 @@ package br.com.gda.business.employeeSnapshot.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class EmpnapVisiMergePhone implements InfoMergerVisitorV2<EmpnapInfo, PhoneInfo> {
+final class EmpnapVisiMergeAddresnap implements InfoMergerVisitorV2<EmpnapInfo, AddresnapInfo> {
 
-	@Override public EmpnapInfo writeRecord(PhoneInfo sourceOne, EmpnapInfo sourceTwo) {
+	@Override public EmpnapInfo writeRecord(AddresnapInfo sourceOne, EmpnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		EmpnapInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class EmpnapVisiMergePhone implements InfoMergerVisitorV2<EmpnapInfo, Phon
 	
 	
 	
-	private void checkArgument(PhoneInfo sourceOne, EmpnapInfo sourceTwo) {
+	private void checkArgument(AddresnapInfo sourceOne, EmpnapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,18 +37,19 @@ final class EmpnapVisiMergePhone implements InfoMergerVisitorV2<EmpnapInfo, Phon
 	
 	
 	
-	private EmpnapInfo merge(PhoneInfo sourceOne, EmpnapInfo sourceTwo) {
-		sourceTwo.phones.add(sourceOne);
+	private EmpnapInfo merge(AddresnapInfo sourceOne, EmpnapInfo sourceTwo) {
+		sourceTwo.addresnaps.add(sourceOne);
 
 		return sourceTwo;
 	}
-
-
+		
 	
-	@Override public boolean shouldWrite(PhoneInfo sourceOne, EmpnapInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner 		&&
-				sourceOne.codEmployee 	== sourceTwo.codEmployee		);
-	}		
+	
+	@Override public boolean shouldWrite(AddresnapInfo sourceOne, EmpnapInfo sourceTwo) {
+		return (sourceOne.codOwner 				== sourceTwo.codOwner 		&&
+				sourceOne.codEmployee 			== sourceTwo.codEmployee	&&
+				sourceOne.codEmployeeSnapshot 	== sourceTwo.codSnapshot		);
+	}	
 	
 	
 	

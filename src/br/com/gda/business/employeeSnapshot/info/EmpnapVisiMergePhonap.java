@@ -3,13 +3,13 @@ package br.com.gda.business.employeeSnapshot.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class EmpnapVisiMergePerson implements InfoMergerVisitorV2<EmpnapInfo, PersonInfo> {
+final class EmpnapVisiMergePhonap implements InfoMergerVisitorV2<EmpnapInfo, PhonapInfo> {
 
-	@Override public EmpnapInfo writeRecord(PersonInfo sourceOne, EmpnapInfo sourceTwo) {
+	@Override public EmpnapInfo writeRecord(PhonapInfo sourceOne, EmpnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		EmpnapInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class EmpnapVisiMergePerson implements InfoMergerVisitorV2<EmpnapInfo, Per
 	
 	
 	
-	private void checkArgument(PersonInfo sourceOne, EmpnapInfo sourceTwo) {
+	private void checkArgument(PhonapInfo sourceOne, EmpnapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,29 +37,19 @@ final class EmpnapVisiMergePerson implements InfoMergerVisitorV2<EmpnapInfo, Per
 	
 	
 	
-	private EmpnapInfo merge(PersonInfo sourceOne, EmpnapInfo sourceTwo) {
-		sourceTwo.personData = makeClone(sourceOne);
-		sourceTwo.codPerson = sourceOne.codPerson;
+	private EmpnapInfo merge(PhonapInfo sourceOne, EmpnapInfo sourceTwo) {
+		sourceTwo.phonaps.add(sourceOne);
+
 		return sourceTwo;
 	}
+
+
 	
-	
-	
-	private PersonInfo makeClone(PersonInfo recordInfo) {
-		try {
-			return (PersonInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	@Override public boolean shouldWrite(PersonInfo sourceOne, EmpnapInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
+	@Override public boolean shouldWrite(PhonapInfo sourceOne, EmpnapInfo sourceTwo) {
+		return (sourceOne.codOwner 				== sourceTwo.codOwner 		&&
+				sourceOne.codEmployee 			== sourceTwo.codEmployee	&&
+				sourceOne.codEmployeeSnapshot 	== sourceTwo.codSnapshot		);
+	}		
 	
 	
 	

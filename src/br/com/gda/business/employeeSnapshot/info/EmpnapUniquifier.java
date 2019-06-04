@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
+import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.info.InfoUniquifier;
 
 final class EmpnapUniquifier implements InfoUniquifier<EmpnapInfo> {
@@ -18,8 +18,8 @@ final class EmpnapUniquifier implements InfoUniquifier<EmpnapInfo> {
 				int dupleIndex = uniques.indexOf(eachRecord);
 				EmpnapInfo duple = uniques.get(dupleIndex);
 				
-				uniquifyAddress(duple, eachRecord);
-				uniquifyPhone(duple, eachRecord);
+				uniquifyAddresnap(duple, eachRecord);
+				uniquifyPhonap(duple, eachRecord);
 				
 			} else {
 				uniques.add(eachRecord);
@@ -32,23 +32,23 @@ final class EmpnapUniquifier implements InfoUniquifier<EmpnapInfo> {
 	
 	
 	
-	private void uniquifyAddress(EmpnapInfo duple, EmpnapInfo eachRecord) {
-		List<AddressInfo> allAddresses = new ArrayList<>();
+	private void uniquifyAddresnap(EmpnapInfo duple, EmpnapInfo eachRecord) {
+		List<AddresnapInfo> allAddresses = new ArrayList<>();
 		
-		allAddresses.addAll(duple.addresses);
-		allAddresses.addAll(eachRecord.addresses);
+		allAddresses.addAll(duple.addresnaps);
+		allAddresses.addAll(eachRecord.addresnaps);
 		
-		duple.addresses = allAddresses.stream().distinct().collect(Collectors.toList());
+		duple.addresnaps = allAddresses.stream().distinct().collect(Collectors.toList());
 	}
 	
 	
 	
-	private void uniquifyPhone(EmpnapInfo duple, EmpnapInfo eachRecord) {
-		List<PhoneInfo> allPhones = new ArrayList<>();
+	private void uniquifyPhonap(EmpnapInfo duple, EmpnapInfo eachRecord) {
+		List<PhonapInfo> allPhones = new ArrayList<>();
 		
-		allPhones.addAll(duple.phones);
-		allPhones.addAll(eachRecord.phones);
+		allPhones.addAll(duple.phonaps);
+		allPhones.addAll(eachRecord.phonaps);
 		
-		duple.phones = allPhones.stream().distinct().collect(Collectors.toList());
+		duple.phonaps = allPhones.stream().distinct().collect(Collectors.toList());
 	}
 }

@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
-import br.com.gda.business.employeeSnapshot.model.action.LazyEmpnapRootSelect;
 import br.com.gda.business.employeeSnapshot.model.action.StdEmpnapInsert;
 import br.com.gda.business.employeeSnapshot.model.checker.EmpnapCheckEmp;
 import br.com.gda.business.employeeSnapshot.model.checker.EmpnapCheckOwner;
 import br.com.gda.business.employeeSnapshot.model.checker.EmpnapCheckWrite;
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -58,9 +56,6 @@ public final class RootEmpnapInsert extends DeciTreeWriteTemplate<EmpnapInfo> {
 		List<ActionStd<EmpnapInfo>> actions = new ArrayList<>();
 
 		ActionStd<EmpnapInfo> insert = new StdEmpnapInsert(option);
-		ActionLazy<EmpnapInfo> select = new LazyEmpnapRootSelect(option.conn, option.schemaName);
-		
-	//	insert.addPostAction(select);
 		
 		actions.add(insert);	
 		return actions;

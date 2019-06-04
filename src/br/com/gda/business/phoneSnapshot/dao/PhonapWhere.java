@@ -38,6 +38,46 @@ final class PhonapWhere implements DaoStmtWhere {
 				case PhonapDbTableColumn.COL_COD_PHONE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPhone));
 					break;
+					
+				case PhonapDbTableColumn.COL_COD_CUSTOMER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
+					break;
+					
+				case PhonapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomerSnapshot));
+					break;
+					
+				case PhonapDbTableColumn.COL_COD_STORE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
+					break;
+					
+				case PhonapDbTableColumn.COL_COD_STORE_SNAPSHOT :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStoreSnapshot));
+					break;
+					
+				case PhonapDbTableColumn.COL_COD_EMPLOYEE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
+					break;
+					
+				case PhonapDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployeeSnapshot));
+					break;
+					
+				case PhonapDbTableColumn.COL_COD_USER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
+					break;
+					
+				case PhonapDbTableColumn.COL_COD_USER_SNAPSHOT :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUserSnapshot));
+					break;
+					
+				case PhonapDbTableColumn.COL_COD_OWNER_REF :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwnerRef));
+					break;
+					
+				case PhonapDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwnerRefSnapshot));
+					break;
 			}
 		}		
 		
