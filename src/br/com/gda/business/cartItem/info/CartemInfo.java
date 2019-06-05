@@ -75,9 +75,9 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	@Override public Object clone() throws CloneNotSupportedException {
 		CartemInfo deepCopy = (CartemInfo) super.clone();
 		
-		deepCopy.date = LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth());
-		deepCopy.beginTime = LocalTime.of(beginTime.getHour(), beginTime.getMinute());
-		deepCopy.endTime = LocalTime.of(endTime.getHour(), endTime.getMinute());
+		deepCopy.date = date;
+		deepCopy.beginTime = beginTime;
+		deepCopy.endTime = endTime;
 		deepCopy.createdOn = createdOn;
 		deepCopy.stolisData = cloneStolis(stolisData);
 		deepCopy.emplisData = cloneEmplis(emplisData);

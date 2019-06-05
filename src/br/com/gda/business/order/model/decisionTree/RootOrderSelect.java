@@ -55,14 +55,14 @@ public final class RootOrderSelect extends DeciTreeReadTemplate<OrderInfo> {
 		
 		ActionStd<OrderInfo> mergeUser = new StdOrderMergeUsername(option);
 		ActionLazy<OrderInfo> select = new LazyOrderMergeToSelect(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> mergeCartem = new LazyOrderMergeOrderem(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeItem = new LazyOrderMergeOrderem(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceCurrency = new LazyOrderEnforceCurrency(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> mergeCurrency = new LazyOrderMergeCurrency(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> mergeOrderStatus = new LazyOrderMergeOrderStatus(option.conn, option.schemaName);
 		
 		mergeUser.addPostAction(select);
-		select.addPostAction(mergeCartem);
-		mergeCartem.addPostAction(enforceCurrency);
+		select.addPostAction(mergeItem);
+		mergeItem.addPostAction(enforceCurrency);
 		enforceCurrency.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeOrderStatus);
 		

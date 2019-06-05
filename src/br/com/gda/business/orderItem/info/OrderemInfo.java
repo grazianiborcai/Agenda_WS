@@ -79,9 +79,9 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 	@Override public Object clone() throws CloneNotSupportedException {
 		OrderemInfo deepCopy = (OrderemInfo) super.clone();
 		
-		deepCopy.date = LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth());
-		deepCopy.beginTime = LocalTime.of(beginTime.getHour(), beginTime.getMinute());
-		deepCopy.endTime = LocalTime.of(endTime.getHour(), endTime.getMinute());
+		deepCopy.date = date;
+		deepCopy.beginTime = beginTime;
+		deepCopy.endTime = endTime;
 		deepCopy.createdOn = createdOn;
 		deepCopy.stolisData = cloneStolis(stolisData);
 		deepCopy.emplisData = cloneEmplis(emplisData);
