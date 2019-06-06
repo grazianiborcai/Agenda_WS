@@ -434,4 +434,5 @@ public final class SystemCode {
 	public static final int ORDER_IS_EMPTY 								= 4001;	
 	public static final int ORDER_ITEM_ALREADY_EXIST 					= 4002;
 	public static final int ORDER_ITEM_NOT_FOUND 						= 4003;
+	public static final int ORDER_STATUS_CHANGE_NOT_ALLOWED				= 4004;
 }

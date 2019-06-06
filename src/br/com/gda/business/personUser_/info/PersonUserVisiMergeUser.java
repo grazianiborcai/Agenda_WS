@@ -7,7 +7,7 @@ import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
-final class PersonUserVisitorUser implements InfoMergerVisitor_<PersonUserInfo, UserInfo, PersonUserInfo> {
+final class PersonUserVisiMergeUser implements InfoMergerVisitor_<PersonUserInfo, UserInfo, PersonUserInfo> {
 
 	@Override public PersonUserInfo writeRecord(UserInfo sourceOne, PersonUserInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

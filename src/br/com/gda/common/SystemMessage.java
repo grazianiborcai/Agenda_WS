@@ -556,5 +556,6 @@ public final class SystemMessage {
 	public static final String ORDER_ITEM_NOT_FOUND = "Order item not found on DB";	
 	public static final String ORDER_HAVE_ITEM = "Order has items";	
 	public static final String ORDER_IS_EMPTY = "Order is empty";	
+	public static final String ORDER_STATUS_CHANGE_NOT_ALLOWED = "Illegal operation. Invalid Status change";
 
 }
