@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdEmplisMergePerson implements ActionStd<EmplisInfo> {
+final class StdEmplisMergePersolis implements ActionStd<EmplisInfo> {
 	private ActionStd<EmplisInfo> actionHelper;	
 	
 	
-	public StdEmplisMergePerson(DeciTreeOption<EmplisInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmplisMergePerson(option.conn, option.schemaName));
+	public StdEmplisMergePersolis(DeciTreeOption<EmplisInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmplisMergePersolis(option.conn, option.schemaName));
 	}
 	
 	

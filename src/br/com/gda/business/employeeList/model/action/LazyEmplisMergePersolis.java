@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmplisMergePerson extends ActionLazyTemplate<EmplisInfo, EmplisInfo> {
+public final class LazyEmplisMergePersolis extends ActionLazyTemplate<EmplisInfo, EmplisInfo> {
 	
-	public LazyEmplisMergePerson(Connection conn, String schemaName) {
+	public LazyEmplisMergePersolis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyEmplisMergePerson extends ActionLazyTemplate<EmplisInfo, 
 	
 	
 	@Override protected ActionStd<EmplisInfo> getInstanceOfActionHook(DeciTreeOption<EmplisInfo> option) {
-		return new StdEmplisMergePerson(option);
+		return new StdEmplisMergePersolis(option);
 	}
 	
 	

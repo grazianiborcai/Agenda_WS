@@ -3,13 +3,13 @@ package br.com.gda.business.employeeList.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.personList.info.PersolisInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class EmplisVisiMergePerson implements InfoMergerVisitorV2<EmplisInfo, PersonInfo> {
+final class EmplisVisiMergePersolis implements InfoMergerVisitorV2<EmplisInfo, PersolisInfo> {
 
-	@Override public EmplisInfo writeRecord(PersonInfo sourceOne, EmplisInfo sourceTwo) {
+	@Override public EmplisInfo writeRecord(PersolisInfo sourceOne, EmplisInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		EmplisInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class EmplisVisiMergePerson implements InfoMergerVisitorV2<EmplisInfo, Per
 	
 	
 	
-	private void checkArgument(PersonInfo sourceOne, EmplisInfo sourceTwo) {
+	private void checkArgument(PersolisInfo sourceOne, EmplisInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,21 +37,14 @@ final class EmplisVisiMergePerson implements InfoMergerVisitorV2<EmplisInfo, Per
 	
 	
 	
-	private EmplisInfo merge(PersonInfo sourceOne, EmplisInfo sourceTwo) {
-		sourceTwo.personData = new PersonInfo();
-		
-		sourceTwo.personData.name = sourceOne.name;
-		sourceTwo.personData.codPerson = sourceOne.codPerson;
-		sourceTwo.personData.codGender = sourceOne.codGender;
-		sourceTwo.personData.txtGender = sourceOne.txtGender;
-		sourceTwo.personData.codLanguage = sourceOne.codLanguage;
-
+	private EmplisInfo merge(PersolisInfo sourceOne, EmplisInfo sourceTwo) {
+		sourceTwo.persolisData = sourceOne;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(PersonInfo sourceOne, EmplisInfo sourceTwo) {
+	@Override public boolean shouldWrite(PersolisInfo sourceOne, EmplisInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	

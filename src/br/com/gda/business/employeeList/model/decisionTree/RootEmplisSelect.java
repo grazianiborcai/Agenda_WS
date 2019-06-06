@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.employeeList.info.EmplisInfo;
-import br.com.gda.business.employeeList.model.action.LazyEmplisMergePerson;
+import br.com.gda.business.employeeList.model.action.LazyEmplisMergePersolis;
 import br.com.gda.business.employeeList.model.action.StdEmplisMergeToSelect;
 import br.com.gda.business.employeeList.model.checker.EmplisCheckLangu;
 import br.com.gda.business.employeeList.model.checker.EmplisCheckRead;
@@ -50,9 +50,9 @@ public final class RootEmplisSelect extends DeciTreeReadTemplate<EmplisInfo> {
 		List<ActionStd<EmplisInfo>> actions = new ArrayList<>();
 
 		ActionStd<EmplisInfo> select = new StdEmplisMergeToSelect(option);
-		ActionLazy<EmplisInfo> mergePerson = new LazyEmplisMergePerson(option.conn, option.schemaName);
+		ActionLazy<EmplisInfo> mergePersolis = new LazyEmplisMergePersolis(option.conn, option.schemaName);
 		
-		select.addPostAction(mergePerson);
+		select.addPostAction(mergePersolis);
 		
 		actions.add(select);
 		return actions;

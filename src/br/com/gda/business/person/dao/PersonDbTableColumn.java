@@ -12,7 +12,6 @@ public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BIRTH_DATE = "birth_date";
 	public static final String COL_COD_ENTITY_CATEG = "cod_entity_categ";
 	public static final String COL_COD_GENDER = "cod_gender";
-	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_PERSON = "cod_person";	
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
@@ -37,13 +36,13 @@ public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
-		buildCustomerTable();		
+		buildPersonTable();		
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildCustomerTable() {
+	private void buildPersonTable() {
 		final String TABLE_NAME = DaoDbTable.PERSON_TABLE;
 		
 		DaoColumn oneColumn;
@@ -142,14 +141,6 @@ public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

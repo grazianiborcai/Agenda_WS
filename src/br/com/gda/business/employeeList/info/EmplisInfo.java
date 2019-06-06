@@ -3,7 +3,7 @@ package br.com.gda.business.employeeList.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.personList.info.PersolisInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
@@ -11,7 +11,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
 	public long codPerson;
-	public PersonInfo personData;
+	public PersolisInfo persolisData;
 	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
@@ -25,7 +25,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
-		personData = DefaultValue.object();
+		persolisData = DefaultValue.object();
 		lastChangedBy = DefaultValue.number();
 	}
 	
@@ -46,17 +46,17 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {  
 		EmplisInfo deepCopy = (EmplisInfo) super.clone(); 
 
-		deepCopy.personData = clonePerson(deepCopy.personData);
+		deepCopy.persolisData = clonePerson(deepCopy.persolisData);
 		return deepCopy;	
 	} 
 	
 	
 	
-	private PersonInfo clonePerson(PersonInfo personToClone) throws CloneNotSupportedException {
+	private PersolisInfo clonePerson(PersolisInfo personToClone) throws CloneNotSupportedException {
 		if (personToClone == null)
 			return null;
 		
-		return (PersonInfo) personToClone.clone();
+		return (PersolisInfo) personToClone.clone();
 	}
 	
 	
