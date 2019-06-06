@@ -1,4 +1,4 @@
-package br.com.gda.info;
+package br.com.gda.info.obsolete;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 
-public abstract class InfoKeeper<T,S> {
-	protected List<T> write(List<T> sourceOnes, List<S> sourceTwos, InfoKeeperVisitor<T,S> visitor) {
+public abstract class InfoKeeper_<T,S> {
+	protected List<T> write(List<T> sourceOnes, List<S> sourceTwos, InfoKeeperVisitor_<T,S> visitor) {
 		checkArgument(sourceOnes, sourceTwos);
 		List<T> results = new ArrayList<>();
 		T oneResult = null;
@@ -44,7 +44,7 @@ public abstract class InfoKeeper<T,S> {
 	
 	
 	
-	private T tryToWrite(T sourceOne, S sourceTwo, InfoKeeperVisitor<T,S> visitor) {
+	private T tryToWrite(T sourceOne, S sourceTwo, InfoKeeperVisitor_<T,S> visitor) {
 		try {
 			return write(sourceOne, sourceTwo, visitor);
 			
@@ -83,14 +83,14 @@ public abstract class InfoKeeper<T,S> {
 	
 	
 	
-	protected T write(T sourceOne, S sourceTwo, InfoKeeperVisitor<T,S> visitor) {
+	protected T write(T sourceOne, S sourceTwo, InfoKeeperVisitor_<T,S> visitor) {
 		checkArgument(sourceOne, sourceTwo, visitor);
 		return visitor.keepAtribute(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(T sourceOne, S sourceTwo, InfoKeeperVisitor<T,S> visitor) {
+	private void checkArgument(T sourceOne, S sourceTwo, InfoKeeperVisitor_<T,S> visitor) {
 		if (sourceOne == null) {
 			logException(new NullPointerException("sourceOne" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("sourceOne" + SystemMessage.NULL_ARGUMENT);

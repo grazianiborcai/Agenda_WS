@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoKeeperVisitor;
+import br.com.gda.info.obsolete.InfoKeeperVisitor_;
 
-final class StoreVisiKeepStore implements InfoKeeperVisitor<StoreInfo, StoreInfo> {
+final class StoreVisiKeepStore implements InfoKeeperVisitor_<StoreInfo, StoreInfo> {
 
 	@Override public StoreInfo keepAtribute(StoreInfo sourceOne, StoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

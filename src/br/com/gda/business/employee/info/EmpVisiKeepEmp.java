@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoKeeperVisitor;
+import br.com.gda.info.obsolete.InfoKeeperVisitor_;
 
-final class EmpVisiKeepEmp implements InfoKeeperVisitor<EmpInfo, EmpInfo> {
+final class EmpVisiKeepEmp implements InfoKeeperVisitor_<EmpInfo, EmpInfo> {
 
 	@Override public EmpInfo keepAtribute(EmpInfo sourceOne, EmpInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -2,9 +2,9 @@ package br.com.gda.business.store.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoKeeper;
+import br.com.gda.info.obsolete.InfoKeeper_;
 
-final class StoreKeeperStore extends InfoKeeper<StoreInfo, StoreInfo> {
+final class StoreKeeperStore extends InfoKeeper_<StoreInfo, StoreInfo> {
 	public StoreInfo keep(StoreInfo sourceOne, StoreInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new StoreVisiKeepStore());
 	}

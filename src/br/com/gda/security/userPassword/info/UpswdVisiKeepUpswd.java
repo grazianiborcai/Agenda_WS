@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoKeeperVisitor;
+import br.com.gda.info.obsolete.InfoKeeperVisitor_;
 
-final class UpswdVisiKeepUpswd implements InfoKeeperVisitor<UpswdInfo, UpswdInfo> {
+final class UpswdVisiKeepUpswd implements InfoKeeperVisitor_<UpswdInfo, UpswdInfo> {
 
 	@Override public UpswdInfo keepAtribute(UpswdInfo sourceOne, UpswdInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

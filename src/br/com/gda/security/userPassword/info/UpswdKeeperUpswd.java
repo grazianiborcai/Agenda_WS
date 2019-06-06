@@ -2,9 +2,9 @@ package br.com.gda.security.userPassword.info;
 
 import java.util.List;
 
-import br.com.gda.info.InfoKeeper;
+import br.com.gda.info.obsolete.InfoKeeper_;
 
-final class UpswdKeeperUpswd extends InfoKeeper<UpswdInfo, UpswdInfo> {
+final class UpswdKeeperUpswd extends InfoKeeper_<UpswdInfo, UpswdInfo> {
 	public UpswdInfo keep(UpswdInfo sourceOne, UpswdInfo sourceTwo) {
 		return super.write(sourceOne, sourceTwo, new UpswdVisiKeepUpswd());
 	}

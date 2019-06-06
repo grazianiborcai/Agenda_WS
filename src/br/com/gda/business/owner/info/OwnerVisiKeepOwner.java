@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoKeeperVisitor;
+import br.com.gda.info.obsolete.InfoKeeperVisitor_;
 
-final class OwnerVisiKeepOwner implements InfoKeeperVisitor<OwnerInfo, OwnerInfo> {
+final class OwnerVisiKeepOwner implements InfoKeeperVisitor_<OwnerInfo, OwnerInfo> {
 
 	@Override public OwnerInfo keepAtribute(OwnerInfo sourceOne, OwnerInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
