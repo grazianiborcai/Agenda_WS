@@ -4,19 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
-import br.com.gda.business.cart.model.action.LazyCartUpsertCartem;
-import br.com.gda.business.cart.model.action.StdCartEnforceCartemKey;
+import br.com.gda.business.cart.model.action.StdCartEmptfyCartem;
 import br.com.gda.business.cart.model.checker.CartCheckWrite;
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCartCartem extends DeciTreeWriteTemplate<CartInfo> {
+public final class NodeCartEmptfy extends DeciTreeWriteTemplate<CartInfo> {
 	
-	public NodeCartCartem(DeciTreeOption<CartInfo> option) {
+	public NodeCartEmptfy(DeciTreeOption<CartInfo> option) {
 		super(option);
 	}
 	
@@ -28,7 +26,7 @@ public final class NodeCartCartem extends DeciTreeWriteTemplate<CartInfo> {
 		
 		checker = new CartCheckWrite();
 		queue.add(checker);
-		//TODO: has item ?
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -37,12 +35,12 @@ public final class NodeCartCartem extends DeciTreeWriteTemplate<CartInfo> {
 	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CartInfo> enforceCartemKey = new StdCartEnforceCartemKey(option);
-		ActionLazy<CartInfo> upsertCartem = new LazyCartUpsertCartem(option.conn, option.schemaName);
+		ActionStd<CartInfo> emptfyCartem = new StdCartEmptfyCartem(option);
+		ActionStd<CartInfo> delete = new RootCartDelete(option).toAction();
 		
-		enforceCartemKey.addPostAction(upsertCartem);
+		actions.add(emptfyCartem);
+		actions.add(delete);
 		
-		actions.add(enforceCartemKey);
 		return actions;
 	}
 }
