@@ -1,4 +1,4 @@
-package br.com.gda.business.reserve.dao;
+package br.com.gda.business.cartReserve.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.reserve.info.ReserveInfo;
+import br.com.gda.business.cartReserve.info.CarterveInfo;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoJoinColumn;
 import br.com.gda.dao.DaoJoinType;
@@ -23,29 +23,29 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class ReserveSelectSingle implements DaoStmt<ReserveInfo> {
+public final class CarterveSelectSingle implements DaoStmt<CarterveInfo> {
 	private final String LT_CART_ITM = DaoDbTable.CART_ITM_TABLE;	
 	private final String RT_CART_HDR = DaoDbTable.CART_HDR_TABLE;
 	
-	private DaoStmt<ReserveInfo> stmtSql;
-	private DaoStmtOption<ReserveInfo> stmtOption;
+	private DaoStmt<CarterveInfo> stmtSql;
+	private DaoStmtOption<CarterveInfo> stmtOption;
 	
 	
 	
-	public ReserveSelectSingle(Connection conn, ReserveInfo recordInfo, String schemaName) {
+	public CarterveSelectSingle(Connection conn, CarterveInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, ReserveInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, CarterveInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LT_CART_ITM;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.RESERVE_VIEW);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.CART_RESERVE_VIEW);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -59,7 +59,7 @@ public final class ReserveSelectSingle implements DaoStmt<ReserveInfo> {
 		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new ReserveWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new CarterveWhere(whereOption, DaoDbTable.CART_RESERVE_VIEW, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -78,14 +78,14 @@ public final class ReserveSelectSingle implements DaoStmt<ReserveInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_CART_ITM;
-		oneColumn.leftColumnName = ReserveDbTableColumn.COL_COD_OWNER;
-		oneColumn.rightColumnName = ReserveDbTableColumn.COL_COD_OWNER;
+		oneColumn.leftColumnName = CarterveDbTableColumn.COL_COD_OWNER;
+		oneColumn.rightColumnName = CarterveDbTableColumn.COL_COD_OWNER;
 		joinColumns.add(oneColumn);
 		
 		oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_CART_ITM;
-		oneColumn.leftColumnName = ReserveDbTableColumn.COL_COD_CUSTOMER;
-		oneColumn.rightColumnName = ReserveDbTableColumn.COL_COD_CUSTOMER;
+		oneColumn.leftColumnName = CarterveDbTableColumn.COL_COD_USER;
+		oneColumn.rightColumnName = CarterveDbTableColumn.COL_COD_USER;
 		joinColumns.add(oneColumn);
 		
 		
@@ -124,14 +124,14 @@ public final class ReserveSelectSingle implements DaoStmt<ReserveInfo> {
 
 	
 	
-	@Override public List<ReserveInfo> getResultset() {
+	@Override public List<CarterveInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<ReserveInfo> getNewInstance() {
-		return new ReserveSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<CarterveInfo> getNewInstance() {
+		return new CarterveSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -139,42 +139,41 @@ public final class ReserveSelectSingle implements DaoStmt<ReserveInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<ReserveInfo> {
+	private static class ResultParser implements DaoResultParser<CarterveInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<ReserveInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<ReserveInfo> finalResult = new ArrayList<>();
+		@Override public List<CarterveInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<CarterveInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 					return finalResult;
 			
 			do {
-				ReserveInfo dataInfo = new ReserveInfo();
-				dataInfo.codOwner = stmtResult.getLong(ReserveDbTableColumn.COL_COD_OWNER);
-				dataInfo.codCustomer = stmtResult.getLong(ReserveDbTableColumn.COL_COD_CUSTOMER);
-				dataInfo.itemNumber = stmtResult.getInt(ReserveDbTableColumn.COL_ITEM_NUMBER);
-				dataInfo.codStore = stmtResult.getLong(ReserveDbTableColumn.COL_COD_STORE);
-				dataInfo.codEmployee = stmtResult.getLong(ReserveDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.codMat = stmtResult.getLong(ReserveDbTableColumn.COL_COD_MATERIAL);
+				CarterveInfo dataInfo = new CarterveInfo();
+				dataInfo.codOwner = stmtResult.getLong(CarterveDbTableColumn.COL_COD_OWNER);
+				dataInfo.codCustomer = stmtResult.getLong(CarterveDbTableColumn.COL_COD_CUSTOMER);
+				dataInfo.codUser = stmtResult.getLong(CarterveDbTableColumn.COL_COD_USER);
+				dataInfo.codStore = stmtResult.getLong(CarterveDbTableColumn.COL_COD_STORE);
+				dataInfo.codEmployee = stmtResult.getLong(CarterveDbTableColumn.COL_COD_EMPLOYEE);
+				dataInfo.codMat = stmtResult.getLong(CarterveDbTableColumn.COL_COD_MATERIAL);
 
 
-				Date date = stmtResult.getDate(ReserveDbTableColumn.COL_DATE);
+				Date date = stmtResult.getDate(CarterveDbTableColumn.COL_DATE);
 				if (date != null)
 					dataInfo.date = date.toLocalDate();
 				
-				Time beginTime = stmtResult.getTime(ReserveDbTableColumn.COL_BEGIN_TIME);
+				Time beginTime = stmtResult.getTime(CarterveDbTableColumn.COL_BEGIN_TIME);
 				if (beginTime != null)
 					dataInfo.beginTime = beginTime.toLocalTime();
 				
-				Time endTime = stmtResult.getTime(ReserveDbTableColumn.COL_END_TIME);
+				Time endTime = stmtResult.getTime(CarterveDbTableColumn.COL_END_TIME);
 				if (endTime != null)
 					dataInfo.endTime = endTime.toLocalTime();
 				
-				Timestamp lastChanged = stmtResult.getTimestamp(ReserveDbTableColumn.COL_LAST_CHANGED);
+				Timestamp lastChanged = stmtResult.getTimestamp(CarterveDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				dataInfo.computeValidTime();
+	
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

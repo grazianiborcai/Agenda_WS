@@ -6,25 +6,25 @@ import java.util.List;
 
 import br.com.gda.info.InfoRecord;
 
-public final class DateInfo extends InfoRecord implements Cloneable {
+public final class DateInfo_ extends InfoRecord implements Cloneable {
 	public LocalDate date;
 	
 	
 	
-	public static DateInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, DateInfo.class);
+	public static DateInfo_ copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, DateInfo_.class);
 	}
 	
 	
 	
-	public static List<DateInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, DateInfo.class);
+	public static List<DateInfo_> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, DateInfo_.class);
 	}	
 	
 	
 	
 	@Override public Object clone()throws CloneNotSupportedException{  
-		DateInfo deepCopy = (DateInfo) super.clone();  		
+		DateInfo_ deepCopy = (DateInfo_) super.clone();  		
 				
 		LocalDate cloneDate = null;	
 		if (date != null) 
@@ -55,11 +55,11 @@ public final class DateInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof DateInfo))
+		if (!(o instanceof DateInfo_))
 			return false;
 		
 		
-		DateInfo obj = (DateInfo) o;
+		DateInfo_ obj = (DateInfo_) o;
 		
 		return (isDateEqual(date, obj.date));
 	}	

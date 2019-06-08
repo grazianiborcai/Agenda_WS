@@ -20,9 +20,9 @@ import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.business.cart.model.CartModelCheckout;
 import br.com.gda.business.cart.model.CartModelDelete;
 import br.com.gda.business.cart.model.CartModelUpsert;
+import br.com.gda.business.cartReserve.info.CarterveInfo;
+import br.com.gda.business.cartReserve.model.CarterveModelSelect;
 import br.com.gda.business.cart.model.CartModelSelect;
-import br.com.gda.business.reserve.info.ReserveInfo;
-import br.com.gda.business.reserve.model.ReserveModelSelect;
 import br.com.gda.model.Model;
 
 @Path("/Cart")
@@ -108,7 +108,7 @@ public final class CartResource {
 							      @HeaderParam("beginTime")   @DefaultValue("12:00") String beginTime,
 							      @HeaderParam("endTime")     @DefaultValue("12:00") String endTime) {
 		
-		ReserveInfo recordInfo = new ReserveInfo();
+		CarterveInfo recordInfo = new CarterveInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codMat = codMat;
 		recordInfo.codEmployee = codEmployee;
@@ -118,7 +118,7 @@ public final class CartResource {
 		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
 		
 		
-		Model model = new ReserveModelSelect(recordInfo);
+		Model model = new CarterveModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	}

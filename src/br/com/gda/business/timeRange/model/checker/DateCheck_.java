@@ -5,22 +5,22 @@ import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
-import br.com.gda.business.timeRange.info.DateInfo;
+import br.com.gda.business.timeRange.info.DateInfo_;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class DateCheck extends ModelCheckerTemplateSimple<DateInfo> {
+public final class DateCheck_ extends ModelCheckerTemplateSimple<DateInfo_> {
 	private final boolean OK = true;
 	private final boolean BAD_DATE = false;
 	
-	public DateCheck() {
+	public DateCheck_() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(DateInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(DateInfo_ recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.date == null	)
 			return BAD_DATE;	
 		
@@ -32,7 +32,7 @@ public final class DateCheck extends ModelCheckerTemplateSimple<DateInfo> {
 	
 	
 	
-	private boolean isPast(DateInfo recordInfo) {
+	private boolean isPast(DateInfo_ recordInfo) {
 		ZonedDateTime nowUtc = ZonedDateTime.now(ZoneOffset.UTC);
 		LocalDate dateUtc = nowUtc.toLocalDate();
 		

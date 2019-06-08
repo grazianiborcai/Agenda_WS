@@ -1,4 +1,4 @@
-package br.com.gda.business.reserve.info;
+package br.com.gda.business.cartReserve.info;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,12 +9,10 @@ import java.util.List;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class ReserveInfo extends InfoRecord implements Cloneable {
-	private long TIME_SPAN = 15;
-	
+public final class CarterveInfo extends InfoRecord implements Cloneable {	
 	public long codOwner;	
+	public long codUser;
 	public long codCustomer;
-	public int itemNumber;
 	public long codStore;
 	public long codEmployee;
 	public long codMat;
@@ -24,53 +22,37 @@ public final class ReserveInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public LocalDateTime timeValidFrom;
 	public LocalDateTime timeValidTo;
+	public String codLanguage;
+	public String username;
 	
 	
 	
-	public ReserveInfo() {
+	public CarterveInfo() {
 		codOwner = DefaultValue.number();	
+		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();
-		itemNumber = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();	
-		computeValidTimePast();
+		codLanguage = DefaultValue.language();
 	}
 	
 	
 	
-	private void computeValidTimePast() {		
-		timeValidTo = DefaultValue.localDateTimeNow();
-		timeValidFrom = timeValidTo.minusMinutes(TIME_SPAN);
+	public static CarterveInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, CarterveInfo.class);
 	}
 	
 	
 	
-	public void computeValidTime() {
-		timeValidFrom = lastChanged;
-		
-		if (timeValidFrom == null)
-			timeValidFrom = DefaultValue.localDateTimeNow();		
-		
-		timeValidTo = timeValidFrom.plusMinutes(TIME_SPAN);
-	}
-	
-	
-	
-	public static ReserveInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, ReserveInfo.class);
-	}
-	
-	
-	
-	public static List<ReserveInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, ReserveInfo.class);
+	public static List<CarterveInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, CarterveInfo.class);
 	}
 	
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		ReserveInfo deepCopy = (ReserveInfo) super.clone();
+		CarterveInfo deepCopy = (CarterveInfo) super.clone();
 		
 		deepCopy.date = date;
 		deepCopy.beginTime = beginTime;
@@ -116,11 +98,11 @@ public final class ReserveInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof ReserveInfo))
+		if (!(o instanceof CarterveInfo))
 			return false;
 		
 		
-		ReserveInfo obj = (ReserveInfo) o;		
+		CarterveInfo obj = (CarterveInfo) o;		
 		return (codOwner    == obj.codOwner    			&&
 				codStore 	== obj.codStore 			&&
 				codMat  	== obj.codMat	   			&&

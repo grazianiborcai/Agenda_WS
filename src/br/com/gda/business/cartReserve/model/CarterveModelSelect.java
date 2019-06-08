@@ -1,11 +1,11 @@
-package br.com.gda.business.reserve.model;
+package br.com.gda.business.cartReserve.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.reserve.info.ReserveInfo;
-import br.com.gda.business.reserve.model.decisionTree.RootReserveSelect;
+import br.com.gda.business.cartReserve.info.CarterveInfo;
+import br.com.gda.business.cartReserve.model.decisionTree.RootCarterveSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ReserveModelSelect implements Model {
+public final class CarterveModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public ReserveModelSelect(ReserveInfo recordInfo) {
+	public CarterveModelSelect(CarterveInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class ReserveModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(ReserveInfo recordInfo) {
-		ModelOption<ReserveInfo> helperOption = new ModelOption<>();
+	private void buildHelper(CarterveInfo recordInfo) {
+		ModelOption<CarterveInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = ReserveInfo.class;
+		helperOption.infoRecordClass = CarterveInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class ReserveModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<ReserveInfo> {		
-		@Override public DeciTree<ReserveInfo> getInstance(DeciTreeOption<ReserveInfo> option) {
-			return new RootReserveSelect(option);
+	private static class TreeFactory implements DeciTreeFactory<CarterveInfo> {		
+		@Override public DeciTree<CarterveInfo> getInstance(DeciTreeOption<CarterveInfo> option) {
+			return new RootCarterveSelect(option);
 		}			
 	}
 }

@@ -1,21 +1,21 @@
-package br.com.gda.business.reserve.model.checker;
+package br.com.gda.business.cartReserve.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.reserve.info.ReserveInfo;
+import br.com.gda.business.cartReserve.info.CarterveInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class ReserveCheckRead extends ModelCheckerTemplateSimple<ReserveInfo> {
+public final class CarterveCheckRead extends ModelCheckerTemplateSimple<CarterveInfo> {
 
-	public ReserveCheckRead() {
+	public CarterveCheckRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(ReserveInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(CarterveInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	|| 
 			 recordInfo.codStore	<= 0 	|| 
 			 recordInfo.codMat		<= 0 	||
@@ -24,10 +24,10 @@ public final class ReserveCheckRead extends ModelCheckerTemplateSimple<ReserveIn
 			 recordInfo.endTime		== null	||
 			 recordInfo.date		== null		)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
