@@ -34,6 +34,7 @@ import br.com.gda.business.materialText.dao.MatextDbTableColumn;
 import br.com.gda.business.materialTextSnapshot.dao.MatextsnapDbTableColumn;
 import br.com.gda.business.order.dao.OrderDbTableColumn;
 import br.com.gda.business.orderItem.dao.OrderemDbTableColumn;
+import br.com.gda.business.orderReserve.dao.OrderveDbTableColumn;
 import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.business.ownerStore.dao.OwntoreDbTableColumn;
 import br.com.gda.business.person.dao.PersonDbTableColumn;
@@ -126,6 +127,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PlanataDbTableColumn());
 		addTable(new MatextsnapDbTableColumn());
 		addTable(new CartemDbTableColumn());
+		addTable(new OrderveDbTableColumn());
 	}
 	
 	

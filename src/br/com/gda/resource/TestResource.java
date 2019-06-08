@@ -1,6 +1,7 @@
 package br.com.gda.resource;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,12 +22,16 @@ import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.addressSnapshot.model.AddresnapModelInsert;
 import br.com.gda.business.addressSnapshot.model.AddresnapModelSelect;
 import br.com.gda.business.cartItem.model.CartemModelUpsert;
+import br.com.gda.business.cartReserve.info.CarterveInfo;
+import br.com.gda.business.cartReserve.model.CarterveModelSelect;
 import br.com.gda.business.company.model.CompModelInsert;
 import br.com.gda.business.company.model.CompModelUpdate;
 import br.com.gda.business.customerSearch.model.CusarchModelSelect_;
 import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
 import br.com.gda.business.materialSnapshot.model.MatsnapModelInsert;
 import br.com.gda.business.materialSnapshot.model.MatsnapModelSelect;
+import br.com.gda.business.orderReserve.info.OrderveInfo;
+import br.com.gda.business.orderReserve.model.OrderveModelSelect;
 import br.com.gda.business.ownerStore.info.OwntoreInfo;
 import br.com.gda.business.ownerStore.model.OwntoreModelSelect;
 import br.com.gda.business.person.model.PersonModelInsert;
@@ -115,6 +120,8 @@ public class TestResource {
 	private static final String CUSTOMER_SEARCH = "/customerSearch";
 	private static final String SELECT_PLANING_DATA = "/selectPlaningData";
 	private static final String UPSERT_CARTEM = "/upsertCartem";
+	private static final String SELECT_CART_RESERVE = "/selectCartReserve";
+	private static final String SELECT_ORDER_RESERVE = "/selectOrderReserve";
 	
 	
 	
@@ -710,6 +717,62 @@ public class TestResource {
 	public Response insertCartem(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new CartemModelUpsert(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();	
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_CART_RESERVE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectReserve(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
+							      @HeaderParam("codMaterial") @DefaultValue("-1") long codMat,
+							      @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
+							      @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
+							      @HeaderParam("date")        @DefaultValue("1900-01-01") String date,
+							      @HeaderParam("beginTime")   @DefaultValue("12:00") String beginTime,
+							      @HeaderParam("endTime")     @DefaultValue("12:00") String endTime) {
+		
+		CarterveInfo recordInfo = new CarterveInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codMat = codMat;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codStore = codStore;
+		recordInfo.date = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+		recordInfo.beginTime = LocalTime.parse(beginTime, DateTimeFormatter.ISO_LOCAL_TIME);
+		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
+		
+		
+		Model model = new CarterveModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();	
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_ORDER_RESERVE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectOrderReserve(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
+							      	   @HeaderParam("codMaterial") @DefaultValue("-1") long codMat,
+							      	   @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
+							      	   @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
+							      	   @HeaderParam("date")        @DefaultValue("1900-01-01") String date,
+							      	   @HeaderParam("beginTime")   @DefaultValue("12:00") String beginTime,
+							      	   @HeaderParam("endTime")     @DefaultValue("12:00") String endTime) {
+		
+		OrderveInfo recordInfo = new OrderveInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codMat = codMat;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codStore = codStore;
+		recordInfo.date = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+		recordInfo.beginTime = LocalTime.parse(beginTime, DateTimeFormatter.ISO_LOCAL_TIME);
+		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
+		
+		
+		Model model = new OrderveModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	}
