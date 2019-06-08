@@ -487,6 +487,7 @@ public class AuthFilter_ implements ContainerRequestFilter {
 			this.app 			= app			 ;
 			this.userCode 		= "0"			 ;
 		}		
+		@SuppressWarnings("unused")
 		public MultivaluedMap<String, String> getIncomeParamMap() {
 			return incomeParamMap;
 		}
@@ -499,6 +500,7 @@ public class AuthFilter_ implements ContainerRequestFilter {
 		public void setUserCode(String userCode) {
 			this.userCode = userCode;
 		}
+		@SuppressWarnings("unused")
 		public String getEmailLogin() {
 			return emailLogin;
 		}
@@ -508,6 +510,7 @@ public class AuthFilter_ implements ContainerRequestFilter {
 		public void addParam(String paramName, String paramValue) {
 			additionalParamMap.put(paramName, paramValue);
 		}
+		@SuppressWarnings("unused")
 		public String getParamValue(String paramName) {
 			return additionalParamMap.get(paramName);
 		}
