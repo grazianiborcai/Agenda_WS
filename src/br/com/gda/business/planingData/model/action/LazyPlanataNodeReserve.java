@@ -1,0 +1,36 @@
+package br.com.gda.business.planingData.model.action;
+
+import java.sql.Connection;
+import java.util.List;
+
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.business.planingData.info.PlanataInfo;
+import br.com.gda.business.planingData.model.decisionTree.NodePlanataReserve;
+import br.com.gda.model.action.ActionLazyTemplate;
+import br.com.gda.model.decisionTree.DeciResult;
+import br.com.gda.model.decisionTree.DeciTreeOption;
+
+public final class LazyPlanataNodeReserve extends ActionLazyTemplate<PlanataInfo, PlanataInfo> {
+	
+	public LazyPlanataNodeReserve(Connection conn, String schemaName) {
+		super(conn, schemaName);
+	}
+	
+	
+	
+	@Override protected List<PlanataInfo> translateRecordInfosHook(List<PlanataInfo> recordInfos) {
+		return recordInfos;
+	}
+	
+	
+	
+	@Override protected ActionStd<PlanataInfo> getInstanceOfActionHook(DeciTreeOption<PlanataInfo> option) {
+		return new NodePlanataReserve(option).toAction();
+	}
+	
+	
+	
+	@Override protected DeciResult<PlanataInfo> translateResultHook(DeciResult<PlanataInfo> result) {
+		return result;
+	}
+}

@@ -7,6 +7,7 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.planingData.info.PlanataInfo;
 import br.com.gda.business.planingData.model.action.LazyPlanataMergeMat;
 import br.com.gda.business.planingData.model.action.LazyPlanataMergeToSelect;
+import br.com.gda.business.planingData.model.action.LazyPlanataNodeReserve;
 import br.com.gda.business.planingData.model.action.LazyPlanataPruneAged;
 import br.com.gda.business.planingData.model.action.LazyPlanataPruneEmplevate;
 import br.com.gda.business.planingData.model.action.LazyPlanataPruneStolevate;
@@ -16,31 +17,18 @@ import br.com.gda.business.planingData.model.checker.PlanataCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public class RootPlanataSelect implements DeciTree<PlanataInfo> {
-	private DeciTree<PlanataInfo> tree;
-	
+public class RootPlanataSelect extends DeciTreeReadTemplate<PlanataInfo> {
 	
 	public RootPlanataSelect(DeciTreeOption<PlanataInfo> option) {
-		DeciTreeHelperOption<PlanataInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<PlanataInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<PlanataInfo> buildDecisionCheckerHook(DeciTreeOption<PlanataInfo> option) {
 		List<ModelChecker<PlanataInfo>> queue = new ArrayList<>();		
 		ModelChecker<PlanataInfo> checker;
 		
@@ -55,7 +43,7 @@ public class RootPlanataSelect implements DeciTree<PlanataInfo> {
 	
 	
 	
-	private List<ActionStd<PlanataInfo>> buildActionsOnPassed(DeciTreeOption<PlanataInfo> option) {
+	@Override protected List<ActionStd<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
 		List<ActionStd<PlanataInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<PlanataInfo> enforceWeekday = new StdPlanataEnforceWeekday(option);		
@@ -64,42 +52,16 @@ public class RootPlanataSelect implements DeciTree<PlanataInfo> {
 		ActionLazy<PlanataInfo> pruneEmplevate = new LazyPlanataPruneEmplevate(option.conn, option.schemaName);
 		ActionLazy<PlanataInfo> pruneStolevate = new LazyPlanataPruneStolevate(option.conn, option.schemaName);
 		ActionLazy<PlanataInfo> pruneAged = new LazyPlanataPruneAged(option.conn, option.schemaName);
-//		ActionLazy<PlanataInfo> pruneReserve = new LazyPlanPruneReserve(option.conn, option.schemaName);
+		ActionLazy<PlanataInfo> pruneReserve = new LazyPlanataNodeReserve(option.conn, option.schemaName);
 		
 		enforceWeekday.addPostAction(select);
 		select.addPostAction(mergeMat);
 		mergeMat.addPostAction(pruneEmplevate);
 		pruneEmplevate.addPostAction(pruneStolevate);
 		pruneStolevate.addPostAction(pruneAged);
-		
-	/*	
-		pruneAge.addPostAction(pruneReserve); **/
+		pruneAged.addPostAction(pruneReserve);
 		
 		actions.add(enforceWeekday);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<PlanataInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<PlanataInfo> toAction() {
-		return tree.toAction();
 	}
 }

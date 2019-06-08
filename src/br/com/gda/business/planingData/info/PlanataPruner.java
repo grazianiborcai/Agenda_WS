@@ -2,7 +2,9 @@ package br.com.gda.business.planingData.info;
 
 import java.util.List;
 
+import br.com.gda.business.cartReserve.info.CarterveInfo;
 import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
+import br.com.gda.business.orderReserve.info.OrderveInfo;
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.info.InfoPruner;
 import br.com.gda.info.InfoPrunerSelf;
@@ -26,4 +28,18 @@ public final class PlanataPruner {
 		InfoPrunerSelf<PlanataInfo> pruner = new PlanataPrunerAged();		
 		return pruner.prune(source);
 	}
+	
+	
+	
+	public static List<PlanataInfo> pruneWithCarterve(List<PlanataInfo> sourceOne, List<CarterveInfo> sourceTwo) {
+		InfoPruner<PlanataInfo, CarterveInfo> pruner = new PlanataPrunerCarterve();		
+		return pruner.prune(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PlanataInfo> pruneWithOrderve(List<PlanataInfo> sourceOne, List<OrderveInfo> sourceTwo) {
+		InfoPruner<PlanataInfo, OrderveInfo> pruner = new PlanataPrunerOrderve();		
+		return pruner.prune(sourceOne, sourceTwo);
+	}	
 }
