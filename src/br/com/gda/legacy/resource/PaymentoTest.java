@@ -1,15 +1,6 @@
 package br.com.gda.legacy.resource;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.security.Security;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.ws.rs.GET;
@@ -19,22 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.paypal.api.payments.CreditCardToken;
-import com.paypal.api.payments.FundingInstrument;
-import com.paypal.api.payments.Payer;
-import com.paypal.api.payments.RedirectUrls;
-import com.paypal.api.payments.Transaction;
-import com.paypal.base.rest.OAuthTokenCredential;
-import com.paypal.base.rest.PayPalRESTException;
-
 import moip.sdk.api.Amount;
 import moip.sdk.api.CreditCard;
 import moip.sdk.api.Customer;

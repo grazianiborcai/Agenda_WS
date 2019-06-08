@@ -168,6 +168,7 @@ public class JsonBuilder {
 			public void run() {
 				for (Object eachTopic : topicList) {
 
+					@SuppressWarnings("unused")
 					String fullTopic = null;
 					String methodAux = null;
 					switch (topic) {
@@ -192,6 +193,7 @@ public class JsonBuilder {
 						break;
 					}
 
+					
 					String methodS = methodAux;
 
 					Predicate<Object> filter = new Predicate<Object>() {
@@ -218,6 +220,7 @@ public class JsonBuilder {
 						}
 					};
 
+					@SuppressWarnings("unused")
 					JsonObject jsonObject = getJsonObjectSelect(
 							new Gson().toJsonTree(objectList.stream().filter(filter).collect(Collectors.toList())),
 							exception, process);

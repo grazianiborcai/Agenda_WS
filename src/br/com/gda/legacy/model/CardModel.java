@@ -2,8 +2,6 @@ package br.com.gda.legacy.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
@@ -11,17 +9,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import br.com.gda.helper.Category;
 import br.com.gda.helper.CreditCardAG;
-import br.com.gda.helper.Owner;
 import br.com.gda.legacy.dao.CardDAO;
-import br.com.gda.legacy.dao.CategoryDAO;
-import br.com.gda.legacy.dao.OwnerDAO;
 
 public class CardModel extends JsonBuilder {
 
 	public Response insertCreditCard(String incomingData, Long codCustomer) {
 
+		@SuppressWarnings("unchecked")
 		ArrayList<CreditCardAG> creditCardAGList = (ArrayList<CreditCardAG>) jsonToObjectList(incomingData,
 				CreditCardAG.class);
 

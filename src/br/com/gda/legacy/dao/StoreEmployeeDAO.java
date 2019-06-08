@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.helper.StoreEmployee;
-import br.com.gda.legacy.dao.helper.EmployeeHelper;
 import br.com.gda.legacy.dao.helper.StoreEmployeeHelper;
 import br.com.gda.legacy.db.ConnectionBD;
 import br.com.gda.legacy.db.GdaDB;

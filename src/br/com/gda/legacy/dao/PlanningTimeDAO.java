@@ -11,7 +11,6 @@ import java.sql.Types;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -27,7 +26,6 @@ import br.com.gda.legacy.db.ConnectionBD;
 
 public class PlanningTimeDAO extends ConnectionBD {
 
-	private static final String AMERICA_SAO_PAULO = "America/Sao_Paulo";
 	private static final int _10 = 10;
 
 	public SQLException insertPlanningTime(ArrayList<PlanningTime> planningTimeList) {
@@ -182,10 +180,10 @@ public class PlanningTimeDAO extends ConnectionBD {
 
 				if (planningTimeListAux1.size() != 0 && !error24) {
 					planningTimeList.addAll(planningTimeListAux1);
-					exception = new SQLException("Item selecionado não se encontra mais disponível.", null, 23);
+					exception = new SQLException("Item selecionado nï¿½o se encontra mais disponï¿½vel.", null, 23);
 				} else {
 					planningTimeList.addAll(planningTimeListAux2);
-					exception = new SQLException("Sua pré-reserva expirou. Alguns itens não estão mais disponíveis.", null, 24);
+					exception = new SQLException("Sua prï¿½-reserva expirou. Alguns itens nï¿½o estï¿½o mais disponï¿½veis.", null, 24);
 				}
 
 				updateStmtT02 = releasePlanningTime(planningTimeList, codCustomer, conn, RecordMode.ISRESERVED);

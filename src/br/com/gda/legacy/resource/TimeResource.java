@@ -1,8 +1,5 @@
 package br.com.gda.legacy.resource;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -13,8 +10,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.JsonObject;
-
-import br.com.gda.helper.Weekday;
 
 @Path("/Time")
 public class TimeResource {

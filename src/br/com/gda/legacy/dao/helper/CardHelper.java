@@ -1,13 +1,11 @@
 package br.com.gda.legacy.dao.helper;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.helper.CreditCardAG;
-import br.com.gda.helper.Customer;
 import br.com.gda.legacy.db.GdaDB;
 import moip.sdk.api.TaxDocument;
 

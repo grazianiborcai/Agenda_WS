@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 

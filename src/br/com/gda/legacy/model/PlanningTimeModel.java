@@ -14,8 +14,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
@@ -28,7 +26,6 @@ import br.com.gda.helper.PlanningTime;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.helper.Reserve;
 import br.com.gda.helper.Store;
-import br.com.gda.legacy.dao.CustomerDAO;
 import br.com.gda.legacy.dao.PlanningTimeDAO;
 import br.com.gda.legacy.dao.StoreDAO;
 import moip.sdk.api.Amount;
@@ -41,7 +38,6 @@ import moip.sdk.api.Payment;
 import moip.sdk.api.Phone;
 import moip.sdk.api.Receiver;
 import moip.sdk.api.Refund;
-import moip.sdk.api.TaxDocument;
 import moip.sdk.base.APIContext;
 
 public class PlanningTimeModel extends JsonBuilder {

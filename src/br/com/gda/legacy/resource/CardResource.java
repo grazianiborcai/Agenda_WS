@@ -1,34 +1,17 @@
 package br.com.gda.legacy.resource;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
-import br.com.gda.helper.CreditCardAG;
-import br.com.gda.helper.HolderAG;
-import br.com.gda.helper.PayCart;
-import br.com.gda.helper.TaxDocumentAG;
 import br.com.gda.legacy.model.CardModel;
-import br.com.gda.legacy.model.CustomerModel;
 import br.com.gda.legacy.model.JsonBuilder;
-import br.com.gda.legacy.model.PlanningTimeModel;
 
 @Path("/Card")
 public class CardResource extends JsonBuilder {

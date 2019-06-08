@@ -10,7 +10,6 @@ import java.util.List;
 import br.com.gda.helper.MaterialStore;
 import br.com.gda.helper.RecordMode;
 import br.com.gda.legacy.dao.helper.MaterialStoreHelper;
-import br.com.gda.legacy.dao.helper.StoreEmployeeHelper;
 import br.com.gda.legacy.db.ConnectionBD;
 import br.com.gda.legacy.db.GdaDB;
 

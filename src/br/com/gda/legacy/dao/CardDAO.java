@@ -5,15 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
-import java.util.List;
-
 import br.com.gda.helper.CreditCardAG;
-import br.com.gda.helper.Customer;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.legacy.dao.helper.CardHelper;
-import br.com.gda.legacy.dao.helper.CustomerHelper;
 import br.com.gda.legacy.db.ConnectionBD;
 
 public class CardDAO extends ConnectionBD {

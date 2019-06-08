@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.*;
 
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
@@ -22,7 +21,6 @@ import br.com.gda.helper.MaterialDetail;
 
 public class MaterialStoreModel extends JsonBuilder {
 	//TODO: weekday precisa ser chave da tabela "material_store"
-	private static final String MATERIAL_STORE = "MaterialStore";
 	private ArrayList<MaterialStore> storeMaterialList = new ArrayList<MaterialStore>();
 
 	public Response insertMaterialStore(String incomingData) {
