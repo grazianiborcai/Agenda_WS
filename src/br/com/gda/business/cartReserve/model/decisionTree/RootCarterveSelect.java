@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cartReserve.info.CarterveInfo;
-import br.com.gda.business.cartReserve.model.action.LazyCarterveSelect;
+import br.com.gda.business.cartReserve.model.action.LazyCarterveMergeToSelect;
 import br.com.gda.business.cartReserve.model.action.StdCarterveEnforceLChanged;
 import br.com.gda.business.cartReserve.model.checker.CarterveCheckRead;
 import br.com.gda.model.action.ActionLazy;
@@ -38,7 +38,7 @@ public final class RootCarterveSelect extends DeciTreeReadTemplate<CarterveInfo>
 		List<ActionStd<CarterveInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<CarterveInfo> enforceLChanged = new StdCarterveEnforceLChanged(option);
-		ActionLazy<CarterveInfo> select = new LazyCarterveSelect(option.conn, option.schemaName);
+		ActionLazy<CarterveInfo> select = new LazyCarterveMergeToSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(select);
 		
