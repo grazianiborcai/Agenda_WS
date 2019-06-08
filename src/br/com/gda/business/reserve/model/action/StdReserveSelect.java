@@ -1,4 +1,4 @@
-package br.com.gda.business.reserve.model.decisionTree;
+package br.com.gda.business.reserve.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +13,11 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ActionReserveSelect implements ActionStd<ReserveInfo> {
+public final class StdReserveSelect implements ActionStd<ReserveInfo> {
 	private ActionStd<ReserveInfo> actionHelper;
 	
 	
-	public ActionReserveSelect(DeciTreeOption<ReserveInfo> option) {
+	public StdReserveSelect(DeciTreeOption<ReserveInfo> option) {
 		DaoStmtExec<ReserveInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}

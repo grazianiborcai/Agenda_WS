@@ -100,7 +100,7 @@ public final class CartResource {
 	@GET
 	@Path(SELECT_RESERVE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectReserve(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+	public Response selectReserve(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
 							      @HeaderParam("codMaterial") @DefaultValue("-1") long codMat,
 							      @HeaderParam("codEmployee") @DefaultValue("-1") long codEmployee,
 							      @HeaderParam("codStore")    @DefaultValue("-1") long codStore,

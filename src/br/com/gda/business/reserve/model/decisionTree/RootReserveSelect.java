@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.reserve.info.ReserveInfo;
+import br.com.gda.business.reserve.model.action.StdReserveSelect;
 import br.com.gda.business.reserve.model.checker.ReserveCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -47,7 +48,7 @@ public final class RootReserveSelect implements DeciTree<ReserveInfo> {
 	private List<ActionStd<ReserveInfo>> buildActionsOnPassed(DeciTreeOption<ReserveInfo> option) {
 		List<ActionStd<ReserveInfo>> actions = new ArrayList<>();	
 		
-		actions.add(new ActionReserveSelect(option));			
+		actions.add(new StdReserveSelect(option));			
 		return actions;
 	}
 	
