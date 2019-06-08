@@ -1,16 +1,15 @@
 package br.com.gda.business.orderReserve.info;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class OrderveInfo extends InfoRecord implements Cloneable {	
-	public long codOwner;	
+	public long codOwner;
+	public long codOrder;
 	public long codUser;
 	public long codCustomer;
 	public long codStore;
@@ -19,8 +18,6 @@ public final class OrderveInfo extends InfoRecord implements Cloneable {
 	public LocalDate date;
 	public LocalTime beginTime;
 	public LocalTime endTime;	
-	public LocalDateTime timeValidFrom;
-	public LocalDateTime timeValidTo;
 	public String codOrderStatus;
 	public String codLanguage;
 	public String username;
@@ -29,6 +26,7 @@ public final class OrderveInfo extends InfoRecord implements Cloneable {
 	
 	public OrderveInfo() {
 		codOwner = DefaultValue.number();	
+		codOrder = DefaultValue.number();	
 		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codStore = DefaultValue.number();
@@ -57,8 +55,6 @@ public final class OrderveInfo extends InfoRecord implements Cloneable {
 		deepCopy.date = date;
 		deepCopy.beginTime = beginTime;
 		deepCopy.endTime = endTime;
-		deepCopy.timeValidFrom = timeValidFrom;
-		deepCopy.timeValidTo = timeValidTo;
 		
 		return deepCopy;
 	}
@@ -71,21 +67,16 @@ public final class OrderveInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
 		result = result * 31 + (int) (codMat  	  ^ (codMat  	 >>> 32));
+		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
 		
-		if (date != null) {			
-			int numDate = Integer.valueOf(date.format(DateTimeFormatter.BASIC_ISO_DATE));
-			result = result * 31 + numDate;
-		}
+		if (date != null) 
+			result = result * 31 + date.hashCode();
 		
-		if (beginTime != null) {			
-			int numDate = Integer.valueOf(beginTime.format(DateTimeFormatter.BASIC_ISO_DATE));
-			result = result * 31 + numDate;
-		}
+		if (beginTime != null)
+			result = result * 31 + beginTime.hashCode();
 		
-		if (endTime != null) {			
-			int numDate = Integer.valueOf(endTime.format(DateTimeFormatter.BASIC_ISO_DATE));
-			result = result * 31 + numDate;
-		}
+		if (endTime != null)
+			result = result * 31 + endTime.hashCode();
 		
 		return result;
 	}
@@ -105,6 +96,7 @@ public final class OrderveInfo extends InfoRecord implements Cloneable {
 		return (codOwner    == obj.codOwner    			&&
 				codStore 	== obj.codStore 			&&
 				codMat  	== obj.codMat	   			&&
+				codEmployee == obj.codEmployee	   		&&
 				isDateEqual(date, obj.date)	   			&&
 				isTimeEqual(beginTime, obj.beginTime)	&&
 				isTimeEqual(endTime, obj.endTime));

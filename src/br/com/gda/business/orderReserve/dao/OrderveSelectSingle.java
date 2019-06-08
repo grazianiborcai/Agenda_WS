@@ -150,6 +150,7 @@ public final class OrderveSelectSingle implements DaoStmt<OrderveInfo> {
 			do {
 				OrderveInfo dataInfo = new OrderveInfo();
 				dataInfo.codOwner = stmtResult.getLong(OrderveDbTableColumn.COL_COD_OWNER);
+				dataInfo.codOrder = stmtResult.getLong(OrderveDbTableColumn.COL_COD_ORDER);
 				dataInfo.codCustomer = stmtResult.getLong(OrderveDbTableColumn.COL_COD_CUSTOMER);
 				dataInfo.codUser = stmtResult.getLong(OrderveDbTableColumn.COL_COD_USER);
 				dataInfo.codStore = stmtResult.getLong(OrderveDbTableColumn.COL_COD_STORE);

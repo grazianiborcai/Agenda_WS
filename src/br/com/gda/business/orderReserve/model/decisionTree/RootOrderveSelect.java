@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.orderReserve.info.OrderveInfo;
-import br.com.gda.business.orderReserve.model.action.LazyOrderveSelect;
+import br.com.gda.business.orderReserve.model.action.LazyOrderveMergeToSelect;
 import br.com.gda.business.orderReserve.model.action.StdOrderveEnforceCancelled;
 import br.com.gda.business.orderReserve.model.checker.OrderveCheckRead;
 import br.com.gda.model.action.ActionLazy;
@@ -38,7 +38,7 @@ public final class RootOrderveSelect extends DeciTreeReadTemplate<OrderveInfo> {
 		List<ActionStd<OrderveInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<OrderveInfo> enforceStatus = new StdOrderveEnforceCancelled(option);
-		ActionLazy<OrderveInfo> select = new LazyOrderveSelect(option.conn, option.schemaName);
+		ActionLazy<OrderveInfo> select = new LazyOrderveMergeToSelect(option.conn, option.schemaName);
 		
 		enforceStatus.addPostAction(select);
 		
