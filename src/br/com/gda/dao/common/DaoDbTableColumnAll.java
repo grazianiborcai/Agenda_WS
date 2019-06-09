@@ -55,6 +55,8 @@ import br.com.gda.business.userSnapshot.dao.UserapDbTableColumn;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumn;
+import br.com.gda.message.email.dao.EmailDbTableColumn;
+import br.com.gda.message.emailBody.dao.EmabodyDbTableColumn;
 import br.com.gda.payService.payCustomer.dao.PaycusDbTableColumn;
 import br.com.gda.payService.payPartnerCountry.dao.PayparCountryDbTableColumn;
 import br.com.gda.payService.payPartnerStore.dao.PayparStoreDbTableColumn;
@@ -128,6 +130,8 @@ public final class DaoDbTableColumnAll {
 		addTable(new MatextsnapDbTableColumn());
 		addTable(new CartemDbTableColumn());
 		addTable(new OrderveDbTableColumn());
+		addTable(new EmailDbTableColumn());
+		addTable(new EmabodyDbTableColumn());
 	}
 	
 	
