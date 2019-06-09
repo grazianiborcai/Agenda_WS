@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.action.LazyCusEnforceEntityCateg;
-import br.com.gda.business.customer.model.action.LazyCusKeepCus;
-import br.com.gda.business.customer.model.action.LazyCusMergeUsername;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpdatePerson;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpsertAddress;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpsertPhone;
-import br.com.gda.business.customer.model.action.LazyCusUpdate;
-import br.com.gda.business.customer.model.action.StdCusEnforceLChanged;
 import br.com.gda.business.customer.model.checker.CusCheckExist;
 import br.com.gda.business.customer.model.checker.CusCheckLangu;
 import br.com.gda.business.customer.model.checker.CusCheckOwner;
@@ -71,26 +66,17 @@ public final class RootCusUpdate extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 
-		ActionStd<CusInfo> enforceLChanged = new StdCusEnforceLChanged(option);
-		ActionLazy<CusInfo> enforceLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);
-		ActionLazy<CusInfo> enforceEntityCateg = new LazyCusEnforceEntityCateg(option.conn, option.schemaName);
-		ActionLazy<CusInfo> keepCustomer = new LazyCusKeepCus(option.conn, option.schemaName);
-		ActionLazy<CusInfo> updateCustomer = new LazyCusUpdate(option.conn, option.schemaName);		
+		ActionStd<CusInfo> updateCustomer = new NodeCusUpdate(option).toAction();	
 		ActionLazy<CusInfo> updatePerson = new LazyCusNodeUpdatePerson(option.conn, option.schemaName);		
 		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);	
 		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionStd<CusInfo> select = new RootCusSelect(option).toAction();		
+		ActionStd<CusInfo> select = new RootCusSelect(option).toAction();	
 		
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(enforceEntityCateg);
-		enforceEntityCateg.addPostAction(keepCustomer);
+		updateCustomer.addPostAction(updatePerson);	
+		updateCustomer.addPostAction(upsertAddress);
+		updateCustomer.addPostAction(upsertPhone);
 		
-		keepCustomer.addPostAction(updatePerson);		
-		keepCustomer.addPostAction(updateCustomer);
-		keepCustomer.addPostAction(upsertAddress);
-		keepCustomer.addPostAction(upsertPhone);
-		
-		actions.add(enforceLChanged);
+		actions.add(updateCustomer);
 		actions.add(select);	
 		return actions;
 	}

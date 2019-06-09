@@ -135,4 +135,18 @@ public final class CusMerger {
 		InfoMerger<CusInfo, CusInfo> merger = new CusMergerToUpdateUser();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static CusInfo mergeToUpdate(CusInfo sourceOne, CusInfo sourceTwo) {
+		InfoMerger<CusInfo, CusInfo> merger = new CusMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CusInfo> mergeToUpdate(List<CusInfo> sourceOnes, List<CusInfo> sourceTwos) {
+		InfoMerger<CusInfo, CusInfo> merger = new CusMergerToUpdate();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

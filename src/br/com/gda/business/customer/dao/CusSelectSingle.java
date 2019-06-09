@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -22,7 +20,6 @@ import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class CusSelectSingle implements DaoStmt<CusInfo> {
 	private final String LT_CUSTOMER = DaoDbTable.CUS_TABLE;
-	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<CusInfo> stmtSql;
 	private DaoStmtOption<CusInfo> stmtOption;
@@ -46,7 +43,7 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = buildJoins();
+		this.stmtOption.joins = null;
 	}
 	
 	
@@ -58,26 +55,6 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 		
 		DaoStmtWhere whereClause = new CusWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();
-		joins.add(buildJoinLanguage());	
-		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
 	}
 	
 	
@@ -136,7 +113,6 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 				dataInfo.codOwner = stmtResult.getLong(CusDbTableColumn.COL_COD_OWNER);
 				dataInfo.codCustomer = stmtResult.getLong(CusDbTableColumn.COL_COD_CUSTOMER);									
 				dataInfo.recordMode = stmtResult.getString(CusDbTableColumn.COL_RECORD_MODE);
-				dataInfo.codLanguage = stmtResult.getString(CusDbTableColumn.COL_COD_LANGUAGE);
 				
 				stmtResult.getLong(CusDbTableColumn.COL_COD_PERSON);
 				if (stmtResult.wasNull() == NOT_NULL)

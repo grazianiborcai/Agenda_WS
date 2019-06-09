@@ -3,16 +3,16 @@ package br.com.gda.business.customer.model.action;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCusKeepCus implements ActionStd<CusInfo> {
+public final class StdCusMergeToUpdate implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusKeepCus(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusKeepCus(option.conn, option.schemaName));
+	public StdCusMergeToUpdate(DeciTreeOption<CusInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCusMergeToUpdate(option.conn, option.schemaName));
 	}
 	
 	
