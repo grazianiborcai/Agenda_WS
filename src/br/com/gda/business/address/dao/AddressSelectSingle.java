@@ -58,11 +58,7 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 	}
 	
 	
-	
-	
-	
-	
-	
+		
 	private void buildStmt() {
 		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
