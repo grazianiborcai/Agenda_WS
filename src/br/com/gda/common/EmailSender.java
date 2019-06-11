@@ -106,11 +106,12 @@ public final class EmailSender {
 	
 	private Properties buildProperty(String host, String hostPort) {
 		Properties prop = new Properties();
-		prop.put("mail.smtp.auth", true);
-		prop.put("mail.smtp.starttls.enable", "true");
+		prop.put("mail.smtp.auth", "true");
+		prop.put("mail.transport.protocol", "smtp");
+		//prop.put("mail.smtp.starttls.enable", "true");
 		prop.put("mail.smtp.host", host);
 		prop.put("mail.smtp.port", hostPort);
-		prop.put("mail.smtp.ssl.trust", host);
+		//prop.put("mail.smtp.ssl.trust", host);
 		
 		return prop;
 	}

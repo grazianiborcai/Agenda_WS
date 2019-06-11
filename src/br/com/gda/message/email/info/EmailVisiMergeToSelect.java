@@ -23,9 +23,11 @@ final class EmailVisiMergeToSelect implements InfoMergerVisitorV2<EmailInfo, Ema
 	
 	
 	private EmailInfo merge(EmailInfo sourceOne, EmailInfo sourceTwo) {
-		EmailInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
+		EmailInfo result = makeClone(sourceTwo);		
+		result.senderAddr = sourceOne.senderAddr;
+		result.senderPass = sourceOne.senderPass;
+		result.smtpHostname = sourceOne.smtpHostname;
+		result.smtpPort = sourceOne.smtpPort;
 		return result;
 	}
 	

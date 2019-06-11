@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.message.email.info.EmailInfo;
 import br.com.gda.message.email.model.action.LazyEmailEnforceWelcome;
+import br.com.gda.message.email.model.action.LazyEmailMergeEmabody;
 import br.com.gda.message.email.model.action.LazyEmailNodeSend;
 import br.com.gda.message.email.model.action.StdEmailEnforceEmabody;
 import br.com.gda.message.email.model.checker.EmailCheckWelcome;
@@ -40,10 +41,12 @@ public final class RootEmailWelcome extends DeciTreeWriteTemplate<EmailInfo> {
 		
 		ActionStd<EmailInfo> enforceEmabody = new StdEmailEnforceEmabody(option);
 		ActionLazy<EmailInfo> enforceWelcome = new LazyEmailEnforceWelcome(option.conn, option.schemaName);
+		ActionLazy<EmailInfo> mergeEmabody = new LazyEmailMergeEmabody(option.conn, option.schemaName);
 		ActionLazy<EmailInfo> send = new LazyEmailNodeSend(option.conn, option.schemaName);
 		
 		enforceEmabody .addPostAction(enforceWelcome);
-		enforceWelcome.addPostAction(send);
+		enforceWelcome.addPostAction(mergeEmabody);
+		mergeEmabody.addPostAction(send);
 		
 		actions.add(enforceEmabody);		
 		return actions;

@@ -11,6 +11,8 @@ import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
+import br.com.gda.dao.DaoStmtWhere;
+import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 import br.com.gda.message.email.info.EmailInfo;
@@ -39,8 +41,20 @@ public final class EmailSelectSingle implements DaoStmt<EmailInfo> {
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_MAIN);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = null;
+		this.stmtOption.whereClause = buildWhereClause();
 		this.stmtOption.joins = null;
+	}
+	
+	
+	
+	private String buildWhereClause() {
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;
+		whereOption.dummyClauseWhenEmpty = DaoWhereBuilderOption.DUMMY_CLAUSE_ALLOWED;
+		
+		DaoStmtWhere whereClause = new EmailWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		return whereClause.getWhereClause();
 	}
 	
 	

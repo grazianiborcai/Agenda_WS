@@ -27,7 +27,7 @@ public final class EmailSetterWelcome implements InfoSetter<EmailInfo> {
 	
 	private EmailInfo setWelcome(EmailInfo recordInfo) {
 		EmailInfo result = makeClone(recordInfo);		
-		recordInfo.bodyData.codBody = EmailBody.WELCOME.getCodBody();		
+		result.bodyData.codBody = EmailBody.WELCOME.getCodBody();		
 		return result;
 	}
 	

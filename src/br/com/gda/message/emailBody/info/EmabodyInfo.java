@@ -1,5 +1,7 @@
 package br.com.gda.message.emailBody.info;
 
+import java.util.List;
+
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
@@ -19,6 +21,18 @@ public final class EmabodyInfo extends InfoRecord implements Cloneable {
 	public EmabodyInfo() {
 		codLanguage = DefaultValue.language();
 	}
+	
+	
+	
+	public static EmabodyInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, EmabodyInfo.class);
+	}
+	
+	
+	
+	public static List<EmabodyInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, EmabodyInfo.class);
+	}	
 	
 	
 	

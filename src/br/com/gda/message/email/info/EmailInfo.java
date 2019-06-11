@@ -1,5 +1,7 @@
 package br.com.gda.message.email.info;
 
+import java.util.List;
+
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.message.emailBody.info.EmabodyInfo;
@@ -23,8 +25,32 @@ public final class EmailInfo extends InfoRecord implements Cloneable {
 	
 	
 	
+	public static EmailInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, EmailInfo.class);
+	}
+	
+	
+	
+	public static List<EmailInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, EmailInfo.class);
+	}	
+	
+	
+	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		EmailInfo deepCopy = (EmailInfo) super.clone();
+		deepCopy.bodyData = cloneEmabody(bodyData);
+		
+		return deepCopy;
+	}
+	
+	
+	
+	private EmabodyInfo cloneEmabody(EmabodyInfo emabody) throws CloneNotSupportedException {
+		if (emabody == null)
+			return null;
+		
+		return (EmabodyInfo) emabody.clone();
 	}
 	
 	
