@@ -6,6 +6,7 @@ import br.com.gda.info.InfoRecord;
 public final class EmabodyInfo extends InfoRecord implements Cloneable {
 	public String codBody;
 	public String txtbody;
+	public String subject;
 	public String param01;
 	public String param02;
 	public String param03;

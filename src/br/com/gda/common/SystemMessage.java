@@ -29,6 +29,7 @@ public final class SystemMessage {
 	public static final String ARGUMENT_NOT_FOUND = " argument not found";
 	public static final String BAD_DATE = "Invalid date";	
 	public static final String BAD_TIME_RANGE = "Invalid time range";	
+	public static final String BUILD_REQUIRED = "Build operation required";
 	public static final String CLASS_MISMATCH = "Class type mismatch";	
 	public static final String COMPARE_NOT_POSSIBLE = "Not possible to compare objects. Equals() was broken";	
 	public static final String CONFLICT = "Conflict detected";
@@ -65,6 +66,7 @@ public final class SystemMessage {
 	public static final String SUCCESS = "Success";			
 	public static final String TECH_FIELD_SHOULD_BE_EMPTY = "Technical fields shouldn't be filled";
 	public static final String WRONG_DATA_TYPE = "Wrong data type";	
+
 	
 	
 		

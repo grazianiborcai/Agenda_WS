@@ -11,6 +11,7 @@ import br.com.gda.dao.common.DaoDbTable;
 public final class EmabodyDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BODY = "cod_email_body";
 	public static final String COL_COD_LANGUAGE = "language";
+	public static final String COL_SUBJECT = "subject";	
 	public static final String COL_TXT_BODY = "body";	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
@@ -55,6 +56,14 @@ public final class EmabodyDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_LANGUAGE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_SUBJECT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -7,17 +7,21 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.message.email.info.EmailInfo;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmailCheckSend extends ModelCheckerTemplateSimple<EmailInfo> {
+public final class EmailCheckWelcome extends ModelCheckerTemplateSimple<EmailInfo> {
 
-	public EmailCheckSend() {
+	public EmailCheckWelcome() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EmailInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codLanguage 	== null	||
-			 recordInfo.recipientAddr	== null		)
+		if (recordInfo.bodyData == null)
+			return super.FAILED;
+		
+		
+		if (recordInfo.bodyData.param01 == null ||
+			recordInfo.bodyData.param02 == null		)				
 			
 			return super.FAILED;
 		

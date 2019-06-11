@@ -110,6 +110,7 @@ public final class EmabodySelectSingle implements DaoStmt<EmabodyInfo> {
 				EmabodyInfo dataInfo = new EmabodyInfo();
 				dataInfo.codBody = stmtResult.getString(EmabodyDbTableColumn.COL_COD_BODY);
 				dataInfo.txtbody = stmtResult.getString(EmabodyDbTableColumn.COL_TXT_BODY);
+				dataInfo.subject = stmtResult.getString(EmabodyDbTableColumn.COL_SUBJECT);
 				dataInfo.codLanguage = stmtResult.getString(EmabodyDbTableColumn.COL_COD_LANGUAGE);
 				
 				finalResult.add(dataInfo);
