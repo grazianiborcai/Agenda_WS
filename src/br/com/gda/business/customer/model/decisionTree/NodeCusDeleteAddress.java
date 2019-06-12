@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
-import br.com.gda.business.customer.model.action.StdCusDeleteAddress;
+import br.com.gda.business.customer.model.action.LazyCusDeleteAddress;
+import br.com.gda.business.customer.model.action.StdCusEnforceAddressKey;
 import br.com.gda.business.customer.model.action.StdCusSuccess;
 import br.com.gda.business.customer.model.checker.CusCheckHasAddress;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -44,9 +46,12 @@ public final class NodeCusDeleteAddress extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> deleteAddress = new StdCusDeleteAddress(option);
+		ActionStd<CusInfo> enforceAddressKey = new StdCusEnforceAddressKey(option);
+		ActionLazy<CusInfo> deleteAddress = new LazyCusDeleteAddress(option.conn, option.schemaName);
 		
-		actions.add(deleteAddress);		
+		enforceAddressKey.addPostAction(deleteAddress);
+		
+		actions.add(enforceAddressKey);		
 		return actions;
 	}
 	
