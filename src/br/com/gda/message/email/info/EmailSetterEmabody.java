@@ -10,7 +10,7 @@ public final class EmailSetterEmabody implements InfoSetter<EmailInfo> {
 	
 	public EmailInfo setAttr(EmailInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setWelcome(recordInfo);
+		return setEmabody(recordInfo);
 	}
 	
 	
@@ -24,10 +24,10 @@ public final class EmailSetterEmabody implements InfoSetter<EmailInfo> {
 	
 	
 	
-	private EmailInfo setWelcome(EmailInfo recordInfo) {
+	private EmailInfo setEmabody(EmailInfo recordInfo) {
 		EmailInfo result = makeClone(recordInfo);		
-		recordInfo.bodyData.codLanguage = recordInfo.codLanguage;		
-		recordInfo.bodyData.username = recordInfo.username;	
+		result.bodyData.codLanguage = recordInfo.codLanguage;		
+		result.bodyData.username = recordInfo.username;	
 		return result;
 	}
 	

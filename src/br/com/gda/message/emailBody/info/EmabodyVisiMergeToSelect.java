@@ -23,7 +23,12 @@ final class EmabodyVisiMergeToSelect implements InfoMergerVisitorV2<EmabodyInfo,
 	
 	
 	private EmabodyInfo merge(EmabodyInfo sourceOne, EmabodyInfo sourceTwo) {
-		EmabodyInfo result = makeClone(sourceOne);		
+		EmabodyInfo result = makeClone(sourceOne);	
+		result.param01 = sourceTwo.param01;
+		result.param02 = sourceTwo.param02;
+		result.param03 = sourceTwo.param03;
+		result.param04 = sourceTwo.param04;
+		result.param05 = sourceTwo.param05;
 		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
 		return result;
