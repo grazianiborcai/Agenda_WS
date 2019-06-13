@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import br.com.gda.helper.RecordMode;
+import br.com.gda.business.masterData.info.common.RecordMode;
+
 
 public final class DefaultValue {
 	private static final ZoneOffset TIME_ZONE = ZoneOffset.UTC;
@@ -84,7 +85,7 @@ public final class DefaultValue {
 	
 	
 	public static String recordMode() {
-		return RecordMode.RECORD_OK;
+		return RecordMode.OK.getCodRecordMode();
 	}
 	
 	

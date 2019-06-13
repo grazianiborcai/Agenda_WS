@@ -3,8 +3,8 @@ package br.com.gda.business.employeePosition.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.masterData.info.common.RecordMode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoSetter;
 
 public final class EmposSetterDel implements InfoSetter<EmposInfo> {
@@ -26,7 +26,7 @@ public final class EmposSetterDel implements InfoSetter<EmposInfo> {
 	
 	
 	private EmposInfo setCodDel(EmposInfo recordInfo) {
-		recordInfo.recordMode = RecordMode.RECORD_DELETED;;
+		recordInfo.recordMode = RecordMode.DELETED.getCodRecordMode();
 		return recordInfo;
 	}
 	

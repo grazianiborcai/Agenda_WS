@@ -3,8 +3,8 @@ package br.com.gda.business.employeeLeaveDate.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.masterData.info.common.RecordMode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoSetter;
 
 public final class EmplevateSetterDel implements InfoSetter<EmplevateInfo> {
@@ -26,7 +26,7 @@ public final class EmplevateSetterDel implements InfoSetter<EmplevateInfo> {
 	
 	
 	private EmplevateInfo setCodDel(EmplevateInfo recordInfo) {
-		recordInfo.recordMode = RecordMode.RECORD_DELETED;;
+		recordInfo.recordMode = RecordMode.DELETED.getCodRecordMode();
 		return recordInfo;
 	}
 	

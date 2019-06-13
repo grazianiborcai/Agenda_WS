@@ -58,11 +58,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-server</artifactId>
-			<version>1.17</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-json</artifactId>
 			<version>1.17</version>
 		</dependency>
@@ -76,20 +71,15 @@
 			<artifactId>jersey-grizzly2-servlet</artifactId>
 			<version>1.17.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.eclipse.paho</groupId>
-			<artifactId>org.eclipse.paho.client.mqttv3</artifactId>
-			<version>1.0.2</version>
-		</dependency>
 		<!-- <dependency> <groupId>javax.money</groupId> <artifactId>money-api</artifactId> 
 			<version>1.0</version> </dependency> <dependency> <groupId>org.javamoney</groupId> 
 			<artifactId>moneta</artifactId> <version>1.0</version> </dependency> -->
-		<dependency>
+<!--		<dependency>
 			<groupId>br.com.mind5.helper</groupId>
 			<artifactId>agenda-metadata_lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>compile</scope>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
@@ -100,23 +90,18 @@
 			<artifactId>commons-email</artifactId>
 			<version>1.4</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>4.4</version>
-		</dependency>
-		<dependency>
-			<groupId>Moip-Mind5-SDK</groupId>
+<!--		<dependency>
+  			<groupId>Moip-Mind5-SDK</groupId>
 			<artifactId>Moip-Mind5-SDK</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>compile</scope>
-		</dependency>
+		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/br.com.moip/java-sdk -->
 		<dependency>
 		    <groupId>br.com.moip</groupId>
 		    <artifactId>java-sdk</artifactId>
 		    <version>4.2.0</version>
-		</dependency>
+		</dependency> 
 		
 	  <dependency>
 		    <groupId>org.apache.logging.log4j</groupId>
@@ -163,6 +148,16 @@
 	  	<groupId>io.jsonwebtoken</groupId>
 	  	<artifactId>jjwt</artifactId>
 	  	<version>0.9.1</version>
+	  </dependency>
+	  <dependency>
+	  	<groupId>com.sun.jersey</groupId>
+	  	<artifactId>jersey-core</artifactId>
+	  	<version>1.19.4</version>
+	  </dependency>
+	  <dependency>
+	  	<groupId>com.sun.jersey</groupId>
+	  	<artifactId>jersey-server</artifactId>
+	  	<version>1.19.4</version>
 	  </dependency>
 	</dependencies>
 </project>

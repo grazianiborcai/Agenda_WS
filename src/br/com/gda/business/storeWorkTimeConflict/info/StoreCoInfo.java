@@ -4,7 +4,6 @@ import java.time.LocalTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
 public final class StoreCoInfo extends InfoRecord implements Cloneable {
@@ -26,7 +25,7 @@ public final class StoreCoInfo extends InfoRecord implements Cloneable {
 		this.codEmployee = DefaultValue.number();
 		this.codWeekday = DefaultValue.number();
 		this.codLanguage = DefaultValue.language();
-		this.recordMode = RecordMode.RECORD_OK;
+		this.recordMode = DefaultValue.recordMode();
 	}
 	
 	

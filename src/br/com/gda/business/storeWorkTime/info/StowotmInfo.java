@@ -5,7 +5,6 @@ import java.time.LocalTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.helper.RecordMode;
 import br.com.gda.info.InfoRecord;
 
 public final class StowotmInfo extends InfoRecord implements Cloneable {
@@ -29,7 +28,7 @@ public final class StowotmInfo extends InfoRecord implements Cloneable {
 		codWeekday = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		lastChangedBy = DefaultValue.number();
-		recordMode = RecordMode.RECORD_OK;
+		recordMode = DefaultValue.recordMode();
 	}
 	
 	

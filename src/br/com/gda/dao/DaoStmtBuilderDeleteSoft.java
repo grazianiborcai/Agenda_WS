@@ -2,8 +2,8 @@ package br.com.gda.dao;
 
 import java.util.List;
 
+import br.com.gda.business.masterData.info.common.RecordMode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.helper.RecordMode;
 
 final class DaoStmtBuilderDeleteSoft extends DaoStmtBuilderTemplate {
 
@@ -36,7 +36,7 @@ final class DaoStmtBuilderDeleteSoft extends DaoStmtBuilderTemplate {
 		resultStatement.append(DaoDictionary.EQUAL);
 		resultStatement.append(DaoDictionary.SPACE);
 		resultStatement.append(DaoDictionary.QUOTE);
-		resultStatement.append(RecordMode.RECORD_DELETED);
+		resultStatement.append(RecordMode.DELETED.getCodRecordMode());
 		resultStatement.append(DaoDictionary.QUOTE);
 		resultStatement.append(DaoDictionary.SPACE);
 		resultStatement.append(DaoDictionary.WHERE);
