@@ -56,15 +56,13 @@ public class UserResource {
 	
 	@DELETE
 	@Path(DELETE_USER)
-	public Response deleteUser(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
-							   @HeaderParam("codUser")     @DefaultValue("-1") long codUser,
-							   @HeaderParam("codPerson")   @DefaultValue("-1") long codPerson,
+	public Response deleteUser(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
+							   @HeaderParam("TOKEN_USERNAME") String username,
 							   @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 
 		UserInfo recordInfo = new UserInfo();
 		recordInfo.codOwner = codOwner;
-		recordInfo.codUser = codUser;
-		recordInfo.codPerson = codPerson;
+		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new UserModelDelete(recordInfo);
