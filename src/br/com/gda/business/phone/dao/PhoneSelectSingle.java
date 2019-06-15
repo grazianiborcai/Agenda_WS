@@ -151,11 +151,7 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 				
 				stmtResult.getLong(PhoneDbTableColumn.COL_COD_USER_SNAPSHOT);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUserSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_USER_SNAPSHOT);	
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_COD_PAY_CUSTOMER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPayCustomer = stmtResult.getLong(PhoneDbTableColumn.COL_COD_PAY_CUSTOMER);	
+					dataInfo.codUserSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_USER_SNAPSHOT);
 				
 				stmtResult.getLong(PhoneDbTableColumn.COL_COD_OWNER_REF);
 				if (stmtResult.wasNull() == NOT_NULL)

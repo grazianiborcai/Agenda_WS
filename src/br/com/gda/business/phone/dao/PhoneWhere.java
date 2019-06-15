@@ -51,10 +51,6 @@ final class PhoneWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case PhoneDbTableColumn.COL_COD_PAY_CUSTOMER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayCustomer));
-					break;
-					
 				case PhoneDbTableColumn.COL_COD_OWNER_REF :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwnerRef));
 					break;

@@ -18,7 +18,6 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	public long codEmployeeSnapshot;
 	public long codUser;
 	public long codUserSnapshot;
-	public long codPayCustomer;
 	public long codOwnerRef;
 	public long codOwnerRefSnapshot;
 	public String codCountry;
@@ -47,7 +46,6 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 		codEmployeeSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codUserSnapshot = DefaultValue.number();
-		codPayCustomer = DefaultValue.number();;
 		codCountryPhone = DefaultValue.number();
 		codOwnerRef = DefaultValue.number();
 		codOwnerRefSnapshot = DefaultValue.number();
@@ -86,7 +84,6 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codStore 			^ (codStore 		>>> 32));
 		result = result * 31 + (int) (codEmployee 		^ (codEmployee 		>>> 32));		
 		result = result * 31 + (int) (codUser 			^ (codUser 			>>> 32));
-		result = result * 31 + (int) (codPayCustomer 	^ (codPayCustomer 	>>> 32));
 		result = result * 31 + (int) (codOwnerRef		^ (codOwnerRef 		>>> 32));
 		result = result * 31 + codCountryPhone;
 		
@@ -115,7 +112,6 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 				codEmployee		== obj.codEmployee		&&
 				codCountryPhone == obj.codCountryPhone	&&
 				codUser 		== obj.codUser 			&&
-				codPayCustomer 	== obj.codPayCustomer 	&&
 				codOwnerRef 	== obj.codOwnerRef 		&& 
 				super.isStringEqual(fullNumber, obj.fullNumber));
 	}	
