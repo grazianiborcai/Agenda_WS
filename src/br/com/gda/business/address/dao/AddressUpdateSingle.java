@@ -166,13 +166,6 @@ public final class AddressUpdateSingle implements DaoStmt<AddressInfo> {
 			}	
 			
 			
-			if (DaoFormatter.boxNumber(recordInfo.codPayCustomer) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codPayCustomer);
-			}	
-			
-			
 			if (DaoFormatter.boxNumber(recordInfo.codOwnerRef) == null) {
 				stmt.setNull(i++, Types.INTEGER);
 			} else {

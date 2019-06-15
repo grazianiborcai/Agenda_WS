@@ -19,7 +19,6 @@ public final class AddressCheckRefWrite extends ModelCheckerTemplateSimple<Addre
 		if ( recordInfo.codCustomer 	<= 0	&&
 			 recordInfo.codStore 		<= 0	&& 
 			 recordInfo.codUser 		<= 0	&& 
-			 recordInfo.codPayCustomer 	<= 0	&&
 			 recordInfo.codOwnerRef 	<= 0	&&
 			 recordInfo.codEmployee 	<= 0		)			
 			
