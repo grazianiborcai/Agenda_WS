@@ -36,6 +36,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_WEEKDAY = "weekday";	
 	public static final String COL_CURRENCY_SYMBOL = "Symbol";
 	public static final String COL_DESCRIPTION = "description";
+	public static final String COL_IS_DEFAULT = "is_default";
 	public static final String COL_NAME = "name";
 	public static final String COL_RECORD_MODE = "record_mode";
 	public static final String COL_STATE_PROVINCE = "state_province";
@@ -901,6 +902,14 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_DESCRIPTION;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_IS_DEFAULT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

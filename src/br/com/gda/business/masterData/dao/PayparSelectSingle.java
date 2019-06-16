@@ -113,6 +113,7 @@ public final class PayparSelectSingle implements DaoStmt<PayparInfo> {
 				dataInfo.codPayPartner = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_PAY_PARTNER);
 				dataInfo.txtPayPartner = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
 				dataInfo.description = stmtResult.getString(MasterDataDbTableColumn.COL_DESCRIPTION);		
+				dataInfo.isDefault = stmtResult.getBoolean(MasterDataDbTableColumn.COL_IS_DEFAULT);	
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());
