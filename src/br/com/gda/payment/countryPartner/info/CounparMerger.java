@@ -3,28 +3,18 @@ package br.com.gda.payment.countryPartner.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.PayparInfo;
-import br.com.gda.info.obsolete.InfoWritterFactory_;
+import br.com.gda.info.InfoMerger;
 
-public final class CounparMerger extends InfoWritterFactory_<CounparInfo> {	
-	
-	public CounparMerger() {
-		super(new CounparUniquifier());
+public final class CounparMerger {		
+	public static CounparInfo mergeWithPaypar(PayparInfo sourceOne, CounparInfo sourceTwo) {
+		InfoMerger<CounparInfo, PayparInfo> merger = new CounparMergerPaypar();		
+		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	static public CounparInfo merge(PayparInfo sourceOne, CounparInfo sourceTwo) {
-		return new CounparMergerPaypar().merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	@Override protected List<CounparInfo> writeHook(List<?> sourceOnes, List<?> sourceTwos) {	
-		if (sourceOnes.get(0) instanceof PayparInfo 		&&
-			sourceTwos.get(0) instanceof CounparInfo		)
-			return new CounparMergerPaypar().merge((List<PayparInfo>) sourceOnes, (List<CounparInfo>) sourceTwos);	
-		
-		return null;
+	public static List<CounparInfo> mergeWithPaypar(List<PayparInfo> sourceOnes, List<CounparInfo> sourceTwos) {
+		InfoMerger<CounparInfo, PayparInfo> merger = new CounparMergerPaypar();		
+		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

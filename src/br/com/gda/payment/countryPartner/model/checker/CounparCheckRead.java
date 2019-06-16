@@ -17,10 +17,10 @@ public final class CounparCheckRead extends ModelCheckerTemplateSimple<CounparIn
 	
 	@Override protected boolean checkHook(CounparInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codCountry == null 	)			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

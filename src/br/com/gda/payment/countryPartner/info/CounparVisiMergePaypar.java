@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.PayparInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.obsolete.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 
-final class CounparVisiMergePaypar implements InfoMergerVisitor_<CounparInfo, PayparInfo, CounparInfo> {
+final class CounparVisiMergePaypar implements InfoMergerVisitorV2<CounparInfo, PayparInfo> {
 	private final boolean SUCCESS = true;
 	private final boolean FAILED = false;
 
