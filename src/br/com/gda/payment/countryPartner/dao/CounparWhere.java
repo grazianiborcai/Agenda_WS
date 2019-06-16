@@ -3,6 +3,7 @@ package br.com.gda.payment.countryPartner.dao;
 import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
@@ -28,6 +29,10 @@ final class CounparWhere implements DaoStmtWhere {
 			switch(eachColumn.columnName) {
 				case CounparDbTableColumn.COL_COD_COUNTRY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
+					break;
+					
+				case CounparDbTableColumn.COL_IS_DEFAULT :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.booleanToString(recordInfo.isDefault));
 					break;
 			}
 		}		
