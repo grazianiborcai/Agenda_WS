@@ -59,12 +59,12 @@ import br.com.gda.payService.payCustomer.info.PaycusInfo;
 import br.com.gda.payService.payCustomer.model.PaycusModelDelete;
 import br.com.gda.payService.payCustomer.model.PaycusModelInsert;
 import br.com.gda.payService.payCustomer.model.PaycusModelSelect;
-import br.com.gda.payService.payPartnerCountry.info.PayparCountryInfo;
-import br.com.gda.payService.payPartnerCountry.model.PayparCountryModelSelect;
 import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
 import br.com.gda.payService.payPartnerOwner.model.PayparOwnerModelSelect;
 import br.com.gda.payService.payPartnerStore.info.PayparStoreInfo;
 import br.com.gda.payService.payPartnerStore.model.PayparStoreModelSelect;
+import br.com.gda.payment.countryPartner.info.CounparInfo;
+import br.com.gda.payment.countryPartner.model.CounparModelSelect;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 import br.com.gda.security.jwtToken.model.JwtokenModelValidate;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
@@ -449,10 +449,10 @@ public class TestResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectPayPartnerCountry(@HeaderParam("codCountry") String codCountry) {
 
-		PayparCountryInfo recordInfo = new PayparCountryInfo();
+		CounparInfo recordInfo = new CounparInfo();
 		recordInfo.codCountry = codCountry;
 		
-		Model model = new PayparCountryModelSelect(recordInfo);
+		Model model = new CounparModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

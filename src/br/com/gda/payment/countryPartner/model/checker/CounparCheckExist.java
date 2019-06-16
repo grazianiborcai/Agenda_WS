@@ -1,4 +1,4 @@
-package br.com.gda.payService.payPartnerCountry.model.checker;
+package br.com.gda.payment.countryPartner.model.checker;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -9,28 +9,28 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.payService.payPartnerCountry.info.PayparCountryInfo;
-import br.com.gda.payService.payPartnerCountry.model.decisionTree.RootPayparCountrySelect;
+import br.com.gda.payment.countryPartner.info.CounparInfo;
+import br.com.gda.payment.countryPartner.model.decisionTree.RootCounparSelect;
 
-public final class PayparCountryCheckExist extends ModelCheckerTemplateAction<PayparCountryInfo> {
+public final class CounparCheckExist extends ModelCheckerTemplateAction<CounparInfo> {
 	
-	public PayparCountryCheckExist(ModelCheckerOption option) {
+	public CounparCheckExist(ModelCheckerOption option) {
 		super(option);
 	}
 	
 
 	
-	@Override protected ActionStd<PayparCountryInfo> buildActionHook(PayparCountryInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<PayparCountryInfo> option = buildActionOption(recordInfo, conn, schemaName);
+	@Override protected ActionStd<CounparInfo> buildActionHook(CounparInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<CounparInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<PayparCountryInfo> select = new RootPayparCountrySelect(option).toAction();
+		ActionStd<CounparInfo> select = new RootCounparSelect(option).toAction();
 		return select;
 	}
 	
 	
 	
-	private DeciTreeOption<PayparCountryInfo> buildActionOption(PayparCountryInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<PayparCountryInfo> option = new DeciTreeOption<>();
+	private DeciTreeOption<CounparInfo> buildActionOption(CounparInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<CounparInfo> option = new DeciTreeOption<>();
 		option.recordInfos = new ArrayList<>();
 		option.recordInfos.add(recordInfo);
 		option.conn = conn;

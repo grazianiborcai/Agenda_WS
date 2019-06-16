@@ -1,4 +1,4 @@
-package br.com.gda.payService.payPartnerCountry.dao;
+package br.com.gda.payment.countryPartner.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,24 +15,24 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
-import br.com.gda.payService.payPartnerCountry.info.PayparCountryInfo;
+import br.com.gda.payment.countryPartner.info.CounparInfo;
 
-public final class PayparCountrySelectSingle implements DaoStmt<PayparCountryInfo> {
+public final class CounparSelectSingle implements DaoStmt<CounparInfo> {
 	private final static String LT_ATTR = DaoDbTable.PAY_PARTNER_COUNTRY_TABLE;
 	
-	private DaoStmt<PayparCountryInfo> stmtSql;
-	private DaoStmtOption<PayparCountryInfo> stmtOption;
+	private DaoStmt<CounparInfo> stmtSql;
+	private DaoStmtOption<CounparInfo> stmtOption;
 	
 	
 	
-	public PayparCountrySelectSingle(Connection conn, PayparCountryInfo recordInfo, String schemaName) {
+	public CounparSelectSingle(Connection conn, CounparInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, PayparCountryInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, CounparInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -55,7 +55,7 @@ public final class PayparCountrySelectSingle implements DaoStmt<PayparCountryInf
 		whereOption.ignoreNull = IGNORE_NULL;
 		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new PayparCountryWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new CounparWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -85,14 +85,14 @@ public final class PayparCountrySelectSingle implements DaoStmt<PayparCountryInf
 
 	
 	
-	@Override public List<PayparCountryInfo> getResultset() {
+	@Override public List<CounparInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<PayparCountryInfo> getNewInstance() {
-		return new PayparCountrySelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<CounparInfo> getNewInstance() {
+		return new CounparSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -100,19 +100,26 @@ public final class PayparCountrySelectSingle implements DaoStmt<PayparCountryInf
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<PayparCountryInfo> {
+	private static class ResultParser implements DaoResultParser<CounparInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
+		private final boolean NOT_NULL = false;
 		
-		@Override public List<PayparCountryInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<PayparCountryInfo> finalResult = new ArrayList<>();
+		@Override public List<CounparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<CounparInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 					return finalResult;
 			
 			do {
-				PayparCountryInfo dataInfo = new PayparCountryInfo();
-				dataInfo.codCountry = stmtResult.getString(PayparCountryDbTableColumn.COL_COD_COUNTRY);
-				dataInfo.codPayPartner = stmtResult.getInt(PayparCountryDbTableColumn.COL_COD_PAY_PARTNER);
+				CounparInfo dataInfo = new CounparInfo();
+				dataInfo.codCountry = stmtResult.getString(CounparDbTableColumn.COL_COD_COUNTRY);
+				dataInfo.codPayPartner = stmtResult.getInt(CounparDbTableColumn.COL_COD_PAY_PARTNER);
+				
+				
+				stmtResult.getBoolean(CounparDbTableColumn.COL_IS_DEFAULT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.isDefault = stmtResult.getBoolean(CounparDbTableColumn.COL_IS_DEFAULT);
+				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -1,4 +1,4 @@
-package br.com.gda.payService.payPartnerCountry.model;
+package br.com.gda.payment.countryPartner.model;
 
 import java.sql.Connection;
 
@@ -12,16 +12,16 @@ import br.com.gda.model.ModelOption;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.payService.payPartnerCountry.info.PayparCountryInfo;
-import br.com.gda.payService.payPartnerCountry.model.decisionTree.RootPayparCountrySelect;
+import br.com.gda.payment.countryPartner.info.CounparInfo;
+import br.com.gda.payment.countryPartner.model.decisionTree.RootCounparSelect;
 
-public final class PayparCountryModelSelect implements Model {
+public final class CounparModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public PayparCountryModelSelect(PayparCountryInfo recordInfo) {
+	public CounparModelSelect(CounparInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class PayparCountryModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(PayparCountryInfo recordInfo) {
-		ModelOption<PayparCountryInfo> helperOption = new ModelOption<>();
+	private void buildHelper(CounparInfo recordInfo) {
+		ModelOption<CounparInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PayparCountryInfo.class;
+		helperOption.infoRecordClass = CounparInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class PayparCountryModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<PayparCountryInfo> {		
-		@Override public DeciTree<PayparCountryInfo> getInstance(DeciTreeOption<PayparCountryInfo> option) {
-			return new RootPayparCountrySelect(option);
+	private static class TreeFactory implements DeciTreeFactory<CounparInfo> {		
+		@Override public DeciTree<CounparInfo> getInstance(DeciTreeOption<CounparInfo> option) {
+			return new RootCounparSelect(option);
 		}			
 	}
 }

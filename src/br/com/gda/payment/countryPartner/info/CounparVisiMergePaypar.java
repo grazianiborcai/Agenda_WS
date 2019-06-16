@@ -1,4 +1,4 @@
-package br.com.gda.payService.payPartnerCountry.info;
+package br.com.gda.payment.countryPartner.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,14 +7,14 @@ import br.com.gda.business.masterData.info.PayparInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.obsolete.InfoMergerVisitor_;
 
-final class PayparCountryVisitorPaypar implements InfoMergerVisitor_<PayparCountryInfo, PayparInfo, PayparCountryInfo> {
+final class CounparVisiMergePaypar implements InfoMergerVisitor_<CounparInfo, PayparInfo, CounparInfo> {
 	private final boolean SUCCESS = true;
 	private final boolean FAILED = false;
 
-	@Override public PayparCountryInfo writeRecord(PayparInfo sourceOne, PayparCountryInfo sourceTwo) {
+	@Override public CounparInfo writeRecord(PayparInfo sourceOne, CounparInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		PayparCountryInfo clonedInfo = makeClone(sourceTwo);
+		CounparInfo clonedInfo = makeClone(sourceTwo);
 		clonedInfo.txtPayPartner = sourceOne.txtPayPartner; 
 		clonedInfo.description = sourceOne.description;
 		return clonedInfo;
@@ -22,9 +22,9 @@ final class PayparCountryVisitorPaypar implements InfoMergerVisitor_<PayparCount
 	
 	
 	
-	private PayparCountryInfo makeClone(PayparCountryInfo recordInfo) {
+	private CounparInfo makeClone(CounparInfo recordInfo) {
 		try {
-			return (PayparCountryInfo) recordInfo.clone();
+			return (CounparInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -34,14 +34,14 @@ final class PayparCountryVisitorPaypar implements InfoMergerVisitor_<PayparCount
 	
 	
 	
-	private void checkArgument(PayparInfo sourceOne, PayparCountryInfo sourceTwo) {
+	private void checkArgument(PayparInfo sourceOne, CounparInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 
 
 	
-	@Override public boolean shouldWrite(PayparInfo sourceOne, PayparCountryInfo sourceTwo) {
+	@Override public boolean shouldWrite(PayparInfo sourceOne, CounparInfo sourceTwo) {
 		if (sourceOne.codPayPartner	== sourceTwo.codPayPartner) 
 			return SUCCESS;
 			

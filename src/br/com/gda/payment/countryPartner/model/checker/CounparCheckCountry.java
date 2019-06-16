@@ -1,4 +1,4 @@
-package br.com.gda.payService.payPartnerCountry.model.checker;
+package br.com.gda.payment.countryPartner.model.checker;
 
 import java.util.List;
 
@@ -6,23 +6,23 @@ import br.com.gda.business.masterData.info.CountryInfo;
 import br.com.gda.business.masterData.model.checker.CountryCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.payService.payPartnerCountry.info.PayparCountryInfo;
+import br.com.gda.payment.countryPartner.info.CounparInfo;
 
-public final class PayparCountryCheckCountry implements ModelChecker<PayparCountryInfo> {
+public final class CounparCheckCountry implements ModelChecker<CounparInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<CountryInfo> checker;
 	
 	
-	public PayparCountryCheckCountry(ModelCheckerOption option) {
+	public CounparCheckCountry(ModelCheckerOption option) {
 		checker = new CountryCheckExist(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<PayparCountryInfo> recordInfos) {
-		for (PayparCountryInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<CounparInfo> recordInfos) {
+		for (CounparInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -32,7 +32,7 @@ public final class PayparCountryCheckCountry implements ModelChecker<PayparCount
 
 	
 	
-	@Override public boolean check(PayparCountryInfo recordInfo) {
+	@Override public boolean check(CounparInfo recordInfo) {
 		return checker.check(CountryInfo.copyFrom(recordInfo));
 	}
 

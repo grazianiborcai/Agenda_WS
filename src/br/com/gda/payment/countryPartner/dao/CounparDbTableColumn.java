@@ -1,4 +1,4 @@
-package br.com.gda.payService.payPartnerCountry.dao;
+package br.com.gda.payment.countryPartner.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -8,15 +8,16 @@ import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class PayparCountryDbTableColumn extends DaoDbTableColumnTemplate {
+public final class CounparDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COUNTRY = "country";	
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
+	public static final String COL_IS_DEFAULT = "is_default";
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
 	
-	public PayparCountryDbTableColumn() {
+	public CounparDbTableColumn() {
 		super();
 	}
 	
@@ -47,6 +48,14 @@ public final class PayparCountryDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_PAY_PARTNER;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_IS_DEFAULT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

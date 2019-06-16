@@ -1,31 +1,33 @@
-package br.com.gda.payService.payPartnerCountry.info;
+package br.com.gda.payment.countryPartner.info;
 
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class PayparCountryInfo extends InfoRecord implements Cloneable {
+public final class CounparInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
 	public int codPayPartner;
+	public boolean isDefault;
 	public String txtPayPartner;
 	public String description;
 	
 	
-	public PayparCountryInfo() {
+	public CounparInfo() {
 		codPayPartner = DefaultValue.number();
+		isDefault = DefaultValue.boole();
 	}
 	
 	
 	
-	public static PayparCountryInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, PayparCountryInfo.class);
+	public static CounparInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, CounparInfo.class);
 	}
 	
 	
 	
-	public static List<PayparCountryInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, PayparCountryInfo.class);
+	public static List<CounparInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, CounparInfo.class);
 	}
 	
 	
@@ -54,11 +56,11 @@ public final class PayparCountryInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof PayparCountryInfo))
+		if (!(o instanceof CounparInfo))
 			return false;
 		
 		
-		PayparCountryInfo obj = (PayparCountryInfo) o;		
+		CounparInfo obj = (CounparInfo) o;		
 		return (isStringEqual(codCountry, obj.codCountry) && codPayPartner == obj.codPayPartner);
 	}
 }

@@ -58,8 +58,8 @@ import br.com.gda.dao.DaoDbTableColumn;
 import br.com.gda.message.email.dao.EmailDbTableColumn;
 import br.com.gda.message.emailBody.dao.EmabodyDbTableColumn;
 import br.com.gda.payService.payCustomer.dao.PaycusDbTableColumn;
-import br.com.gda.payService.payPartnerCountry.dao.PayparCountryDbTableColumn;
 import br.com.gda.payService.payPartnerStore.dao.PayparStoreDbTableColumn;
+import br.com.gda.payment.countryPartner.dao.CounparDbTableColumn;
 import br.com.gda.security.userPassword.dao.UpswdDbTableColumn;
 import br.com.gda.security.username.dao.UsernameDbTableColumn;
 
@@ -117,7 +117,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PersonUserDbTableColumn());	
 		addTable(new PersonCusDbTableColumn());
 		addTable(new PayparStoreDbTableColumn());
-		addTable(new PayparCountryDbTableColumn());
+		addTable(new CounparDbTableColumn());
 		addTable(new PaycusDbTableColumn());
 		addTable(new CompDbTableColumn());
 		addTable(new UpswdDbTableColumn());

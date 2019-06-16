@@ -5,11 +5,11 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.obsolete.InfoMergerVisitor_;
-import br.com.gda.payService.payPartnerCountry.info.PayparCountryInfo;
+import br.com.gda.payment.countryPartner.info.CounparInfo;
 
-final class PayparOwnerVisiPayparCountry implements InfoMergerVisitor_<PayparOwnerInfo, PayparCountryInfo, PayparOwnerInfo> {
+final class PayparOwnerVisiPayparCountry implements InfoMergerVisitor_<PayparOwnerInfo, CounparInfo, PayparOwnerInfo> {
 
-	@Override public PayparOwnerInfo writeRecord(PayparCountryInfo sourceOne, PayparOwnerInfo sourceTwo) {
+	@Override public PayparOwnerInfo writeRecord(CounparInfo sourceOne, PayparOwnerInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		PayparOwnerInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class PayparOwnerVisiPayparCountry implements InfoMergerVisitor_<PayparOwn
 	
 	
 	
-	private void checkArgument(PayparCountryInfo sourceOne, PayparOwnerInfo sourceTwo) {
+	private void checkArgument(CounparInfo sourceOne, PayparOwnerInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,7 +37,7 @@ final class PayparOwnerVisiPayparCountry implements InfoMergerVisitor_<PayparOwn
 	
 	
 	
-	private PayparOwnerInfo merge(PayparCountryInfo sourceOne, PayparOwnerInfo sourceTwo) {
+	private PayparOwnerInfo merge(CounparInfo sourceOne, PayparOwnerInfo sourceTwo) {
 		sourceTwo.codPayPartner = sourceOne.codPayPartner;
 		sourceTwo.txtPayPartner = sourceOne.txtPayPartner;
 		sourceTwo.description = sourceOne.description;
@@ -46,7 +46,7 @@ final class PayparOwnerVisiPayparCountry implements InfoMergerVisitor_<PayparOwn
 	
 	
 	
-	@Override public boolean shouldWrite(PayparCountryInfo sourceOne, PayparOwnerInfo sourceTwo) {
+	@Override public boolean shouldWrite(CounparInfo sourceOne, PayparOwnerInfo sourceTwo) {
 		return (sourceOne.codCountry != null && 
 				sourceTwo.codCountry != null &&
 				sourceTwo.codCountry.equals(sourceOne.codCountry)	);

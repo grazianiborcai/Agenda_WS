@@ -1,21 +1,21 @@
-package br.com.gda.payService.payPartnerCountry.model.checker;
+package br.com.gda.payment.countryPartner.model.checker;
 
 import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.payService.payPartnerCountry.info.PayparCountryInfo;
+import br.com.gda.payment.countryPartner.info.CounparInfo;
 
-public final class PayparCountryCheckRead extends ModelCheckerTemplateSimple<PayparCountryInfo> {
+public final class CounparCheckRead extends ModelCheckerTemplateSimple<CounparInfo> {
 
-	public PayparCountryCheckRead() {
+	public CounparCheckRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(PayparCountryInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(CounparInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codCountry == null 	)			
 			return FAILED;
 		

@@ -1,4 +1,4 @@
-package br.com.gda.payService.payPartnerCountry.model.decisionTree;
+package br.com.gda.payment.countryPartner.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,18 +14,18 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.payService.payPartnerCountry.info.PayparCountryInfo;
-import br.com.gda.payService.payPartnerCountry.model.action.LazyPayparCountryMergePaypar;
-import br.com.gda.payService.payPartnerCountry.model.action.StdPayparCountrySelect;
-import br.com.gda.payService.payPartnerCountry.model.checker.PayparCountryCheckCountry;
-import br.com.gda.payService.payPartnerCountry.model.checker.PayparCountryCheckRead;
+import br.com.gda.payment.countryPartner.info.CounparInfo;
+import br.com.gda.payment.countryPartner.model.action.LazyCounparMergePaypar;
+import br.com.gda.payment.countryPartner.model.action.StdCounparSelect;
+import br.com.gda.payment.countryPartner.model.checker.CounparCheckCountry;
+import br.com.gda.payment.countryPartner.model.checker.CounparCheckRead;
 
-public final class RootPayparCountrySelect implements DeciTree<PayparCountryInfo> {
-	private DeciTree<PayparCountryInfo> tree;
+public final class RootCounparSelect implements DeciTree<CounparInfo> {
+	private DeciTree<CounparInfo> tree;
 	
 	
-	public RootPayparCountrySelect(DeciTreeOption<PayparCountryInfo> option) {
-		DeciTreeHelperOption<PayparCountryInfo> helperOption = new DeciTreeHelperOption<>();
+	public RootCounparSelect(DeciTreeOption<CounparInfo> option) {
+		DeciTreeHelperOption<CounparInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
@@ -37,21 +37,21 @@ public final class RootPayparCountrySelect implements DeciTree<PayparCountryInfo
 	
 	
 	
-	private ModelChecker<PayparCountryInfo> buildDecisionChecker(DeciTreeOption<PayparCountryInfo> option) {
+	private ModelChecker<CounparInfo> buildDecisionChecker(DeciTreeOption<CounparInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
-		List<ModelChecker<PayparCountryInfo>> queue = new ArrayList<>();		
-		ModelChecker<PayparCountryInfo> checker;
+		List<ModelChecker<CounparInfo>> queue = new ArrayList<>();		
+		ModelChecker<CounparInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new PayparCountryCheckRead();
+		checker = new CounparCheckRead();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new PayparCountryCheckCountry(checkerOption);
+		checker = new CounparCheckCountry(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -59,11 +59,11 @@ public final class RootPayparCountrySelect implements DeciTree<PayparCountryInfo
 	
 	
 	
-	private List<ActionStd<PayparCountryInfo>> buildActionsOnPassed(DeciTreeOption<PayparCountryInfo> option) {
-		List<ActionStd<PayparCountryInfo>> actions = new ArrayList<>();
+	private List<ActionStd<CounparInfo>> buildActionsOnPassed(DeciTreeOption<CounparInfo> option) {
+		List<ActionStd<CounparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayparCountryInfo> select = new StdPayparCountrySelect(option);
-		ActionLazy<PayparCountryInfo> mergePayPartner = new LazyPayparCountryMergePaypar(option.conn, option.schemaName);
+		ActionStd<CounparInfo> select = new StdCounparSelect(option);
+		ActionLazy<CounparInfo> mergePayPartner = new LazyCounparMergePaypar(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePayPartner);
 		
@@ -85,13 +85,13 @@ public final class RootPayparCountrySelect implements DeciTree<PayparCountryInfo
 	
 	
 	
-	@Override public DeciResult<PayparCountryInfo> getDecisionResult() {
+	@Override public DeciResult<CounparInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
 	
 	
-	@Override public ActionStd<PayparCountryInfo> toAction() {
+	@Override public ActionStd<CounparInfo> toAction() {
 		return tree.toAction();
 	}
 }
