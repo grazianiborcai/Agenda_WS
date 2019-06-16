@@ -59,12 +59,12 @@ import br.com.gda.payService.payCustomer.info.PaycusInfo;
 import br.com.gda.payService.payCustomer.model.PaycusModelDelete;
 import br.com.gda.payService.payCustomer.model.PaycusModelInsert;
 import br.com.gda.payService.payCustomer.model.PaycusModelSelect;
-import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
-import br.com.gda.payService.payPartnerOwner.model.PayparOwnerModelSelect;
 import br.com.gda.payService.payPartnerStore.info.PayparStoreInfo;
 import br.com.gda.payService.payPartnerStore.model.PayparStoreModelSelect;
 import br.com.gda.payment.countryPartner.info.CounparInfo;
 import br.com.gda.payment.countryPartner.model.CounparModelSelect;
+import br.com.gda.payment.ownerPartner.info.OwnparInfo;
+import br.com.gda.payment.ownerPartner.model.OwnparModelSelect;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 import br.com.gda.security.jwtToken.model.JwtokenModelValidate;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
@@ -464,10 +464,10 @@ public class TestResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectPayPartnerOwner(@HeaderParam("codOwner") long codOwner) {
 
-		PayparOwnerInfo recordInfo = new PayparOwnerInfo();
+		OwnparInfo recordInfo = new OwnparInfo();
 		recordInfo.codOwner = codOwner;
 		
-		Model model = new PayparOwnerModelSelect(recordInfo);
+		Model model = new OwnparModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

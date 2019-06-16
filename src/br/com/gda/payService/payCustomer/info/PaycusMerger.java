@@ -8,7 +8,7 @@ import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.obsolete.InfoWritterFactory_;
-import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
+import br.com.gda.payment.ownerPartner.info.OwnparInfo;
 
 public final class PaycusMerger extends InfoWritterFactory_<PaycusInfo> {	
 	
@@ -42,7 +42,7 @@ public final class PaycusMerger extends InfoWritterFactory_<PaycusInfo> {
 	
 	
 	
-	static public PaycusInfo merge(PayparOwnerInfo sourceOne, PaycusInfo sourceTwo) {
+	static public PaycusInfo merge(OwnparInfo sourceOne, PaycusInfo sourceTwo) {
 		return new PaycusMergerPayparOwner().merge(sourceOne, sourceTwo);
 	}
 	
@@ -75,9 +75,9 @@ public final class PaycusMerger extends InfoWritterFactory_<PaycusInfo> {
 			sourceTwos.get(0) instanceof PaycusInfo					)
 			return new PaycusMergerUser().merge((List<UserInfo>) sourceOnes, (List<PaycusInfo>) sourceTwos);
 		
-		if (sourceOnes.get(0) instanceof PayparOwnerInfo 		&&
+		if (sourceOnes.get(0) instanceof OwnparInfo 		&&
 			sourceTwos.get(0) instanceof PaycusInfo					)
-			return new PaycusMergerPayparOwner().merge((List<PayparOwnerInfo>) sourceOnes, (List<PaycusInfo>) sourceTwos);
+			return new PaycusMergerPayparOwner().merge((List<OwnparInfo>) sourceOnes, (List<PaycusInfo>) sourceTwos);
 		
 		if (sourceOnes.get(0) instanceof PayparInfo 			&&
 			sourceTwos.get(0) instanceof PaycusInfo					)

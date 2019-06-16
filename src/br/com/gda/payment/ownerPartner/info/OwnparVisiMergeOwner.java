@@ -1,33 +1,33 @@
-package br.com.gda.payService.payPartnerOwner.info;
+package br.com.gda.payment.ownerPartner.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.obsolete.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 
-final class PayparOwnerVisiOwner implements InfoMergerVisitor_<PayparOwnerInfo, OwnerInfo, PayparOwnerInfo> {
+final class OwnparVisiMergeOwner implements InfoMergerVisitorV2<OwnparInfo, OwnerInfo> {
 
-	@Override public PayparOwnerInfo writeRecord(OwnerInfo sourceOne, PayparOwnerInfo sourceTwo) {
+	@Override public OwnparInfo writeRecord(OwnerInfo sourceOne, OwnparInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		PayparOwnerInfo clonedInfo = makeClone(sourceTwo);
+		OwnparInfo clonedInfo = makeClone(sourceTwo);
 		return merge(sourceOne, clonedInfo);
 	}
 	
 	
 	
-	private void checkArgument(OwnerInfo sourceOne, PayparOwnerInfo sourceTwo) {
+	private void checkArgument(OwnerInfo sourceOne, OwnparInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private PayparOwnerInfo makeClone(PayparOwnerInfo recordInfo) {
+	private OwnparInfo makeClone(OwnparInfo recordInfo) {
 		try {
-			return (PayparOwnerInfo) recordInfo.clone();
+			return (OwnparInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -37,7 +37,7 @@ final class PayparOwnerVisiOwner implements InfoMergerVisitor_<PayparOwnerInfo, 
 	
 	
 	
-	private PayparOwnerInfo merge(OwnerInfo sourceOne, PayparOwnerInfo sourceTwo) {
+	private OwnparInfo merge(OwnerInfo sourceOne, OwnparInfo sourceTwo) {
 		sourceTwo.codOwner = sourceOne.codOwner;
 		sourceTwo.codCountry = sourceOne.companyData.codCountryLegal;
 		sourceTwo.txtCountry = sourceOne.companyData.txtCountryLegal;
@@ -47,7 +47,7 @@ final class PayparOwnerVisiOwner implements InfoMergerVisitor_<PayparOwnerInfo, 
 	
 	
 	
-	@Override public boolean shouldWrite(OwnerInfo sourceOne, PayparOwnerInfo sourceTwo) {
+	@Override public boolean shouldWrite(OwnerInfo sourceOne, OwnparInfo sourceTwo) {
 		return (sourceOne != null && sourceOne.companyData != null );
 	}
 	

@@ -1,33 +1,33 @@
-package br.com.gda.payService.payPartnerOwner.info;
+package br.com.gda.payment.ownerPartner.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.obsolete.InfoMergerVisitor_;
+import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.payment.countryPartner.info.CounparInfo;
 
-final class PayparOwnerVisiPayparCountry implements InfoMergerVisitor_<PayparOwnerInfo, CounparInfo, PayparOwnerInfo> {
+final class OwnparVisiMergeCounpar implements InfoMergerVisitorV2<OwnparInfo, CounparInfo> {
 
-	@Override public PayparOwnerInfo writeRecord(CounparInfo sourceOne, PayparOwnerInfo sourceTwo) {
+	@Override public OwnparInfo writeRecord(CounparInfo sourceOne, OwnparInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		PayparOwnerInfo clonedInfo = makeClone(sourceTwo);
+		OwnparInfo clonedInfo = makeClone(sourceTwo);
 		return merge(sourceOne, clonedInfo);
 	}
 	
 	
 	
-	private void checkArgument(CounparInfo sourceOne, PayparOwnerInfo sourceTwo) {
+	private void checkArgument(CounparInfo sourceOne, OwnparInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private PayparOwnerInfo makeClone(PayparOwnerInfo recordInfo) {
+	private OwnparInfo makeClone(OwnparInfo recordInfo) {
 		try {
-			return (PayparOwnerInfo) recordInfo.clone();
+			return (OwnparInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -37,7 +37,7 @@ final class PayparOwnerVisiPayparCountry implements InfoMergerVisitor_<PayparOwn
 	
 	
 	
-	private PayparOwnerInfo merge(CounparInfo sourceOne, PayparOwnerInfo sourceTwo) {
+	private OwnparInfo merge(CounparInfo sourceOne, OwnparInfo sourceTwo) {
 		sourceTwo.codPayPartner = sourceOne.codPayPartner;
 		sourceTwo.txtPayPartner = sourceOne.txtPayPartner;
 		sourceTwo.description = sourceOne.description;
@@ -46,7 +46,7 @@ final class PayparOwnerVisiPayparCountry implements InfoMergerVisitor_<PayparOwn
 	
 	
 	
-	@Override public boolean shouldWrite(CounparInfo sourceOne, PayparOwnerInfo sourceTwo) {
+	@Override public boolean shouldWrite(CounparInfo sourceOne, OwnparInfo sourceTwo) {
 		return (sourceOne.codCountry != null && 
 				sourceTwo.codCountry != null &&
 				sourceTwo.codCountry.equals(sourceOne.codCountry)	);

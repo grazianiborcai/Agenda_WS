@@ -1,21 +1,21 @@
-package br.com.gda.payService.payPartnerOwner.model.checker;
+package br.com.gda.payment.ownerPartner.model.checker;
 
 import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
+import br.com.gda.payment.ownerPartner.info.OwnparInfo;
 
-public final class PayparOwnerCheckRead extends ModelCheckerTemplateSimple<PayparOwnerInfo> {
+public final class OwnparCheckRead extends ModelCheckerTemplateSimple<OwnparInfo> {
 
-	public PayparOwnerCheckRead() {
+	public OwnparCheckRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(PayparOwnerInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(OwnparInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
 			 recordInfo.codLanguage == null		)			
 			return FAILED;

@@ -1,4 +1,4 @@
-package br.com.gda.payService.payPartnerOwner.model.checker;
+package br.com.gda.payment.ownerPartner.model.checker;
 
 import java.util.List;
 
@@ -6,23 +6,23 @@ import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.checker.OwnerCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
+import br.com.gda.payment.ownerPartner.info.OwnparInfo;
 
-public final class PayparOwnerCheckOwner implements ModelChecker<PayparOwnerInfo> {
+public final class OwnparCheckOwner implements ModelChecker<OwnparInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<OwnerInfo> checker;
 	
 	
-	public PayparOwnerCheckOwner(ModelCheckerOption option) {
+	public OwnparCheckOwner(ModelCheckerOption option) {
 		checker = new OwnerCheckExist(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<PayparOwnerInfo> recordInfos) {
-		for (PayparOwnerInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<OwnparInfo> recordInfos) {
+		for (OwnparInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -32,7 +32,7 @@ public final class PayparOwnerCheckOwner implements ModelChecker<PayparOwnerInfo
 
 	
 	
-	@Override public boolean check(PayparOwnerInfo recordInfo) {
+	@Override public boolean check(OwnparInfo recordInfo) {
 		return checker.check(OwnerInfo.copyFrom(recordInfo));
 	}
 

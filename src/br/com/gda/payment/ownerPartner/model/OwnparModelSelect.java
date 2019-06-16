@@ -1,4 +1,4 @@
-package br.com.gda.payService.payPartnerOwner.model;
+package br.com.gda.payment.ownerPartner.model;
 
 import java.sql.Connection;
 
@@ -12,16 +12,16 @@ import br.com.gda.model.ModelOption;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
-import br.com.gda.payService.payPartnerOwner.model.decisionTree.RootPayparOwnerSelect;
+import br.com.gda.payment.ownerPartner.info.OwnparInfo;
+import br.com.gda.payment.ownerPartner.model.decisionTree.RootOwnparSelect;
 
-public final class PayparOwnerModelSelect implements Model {
+public final class OwnparModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public PayparOwnerModelSelect(PayparOwnerInfo recordInfo) {
+	public OwnparModelSelect(OwnparInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class PayparOwnerModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(PayparOwnerInfo recordInfo) {
-		ModelOption<PayparOwnerInfo> helperOption = new ModelOption<>();
+	private void buildHelper(OwnparInfo recordInfo) {
+		ModelOption<OwnparInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PayparOwnerInfo.class;
+		helperOption.infoRecordClass = OwnparInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class PayparOwnerModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<PayparOwnerInfo> {		
-		@Override public DeciTree<PayparOwnerInfo> getInstance(DeciTreeOption<PayparOwnerInfo> option) {
-			return new RootPayparOwnerSelect(option);
+	private static class TreeFactory implements DeciTreeFactory<OwnparInfo> {		
+		@Override public DeciTree<OwnparInfo> getInstance(DeciTreeOption<OwnparInfo> option) {
+			return new RootOwnparSelect(option);
 		}			
 	}
 }

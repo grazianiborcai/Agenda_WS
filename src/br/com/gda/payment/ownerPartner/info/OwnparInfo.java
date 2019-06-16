@@ -1,37 +1,40 @@
-package br.com.gda.payService.payPartnerOwner.info;
+package br.com.gda.payment.ownerPartner.info;
 
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class PayparOwnerInfo extends InfoRecord implements Cloneable {
+public final class OwnparInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public int codPayPartner;
+	public boolean isDefault;
 	public String codCountry;
 	public String txtCountry;
-	public int codPayPartner;
 	public String txtPayPartner;
 	public String description;
 	public String codLanguage;
+	public String username;
 	
 	
 	
-	public PayparOwnerInfo() {
+	public OwnparInfo() {
 		codOwner = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
 		codLanguage = DefaultValue.language();
+		isDefault = DefaultValue.boole();
 	}
 	
 	
 	
-	public static PayparOwnerInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, PayparOwnerInfo.class);
+	public static OwnparInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, OwnparInfo.class);
 	}
 	
 	
 	
-	public static List<PayparOwnerInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, PayparOwnerInfo.class);
+	public static List<OwnparInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, OwnparInfo.class);
 	}
 	
 	
@@ -58,11 +61,12 @@ public final class PayparOwnerInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof PayparOwnerInfo))
+		if (!(o instanceof OwnparInfo))
 			return false;
 		
 		
-		PayparOwnerInfo obj = (PayparOwnerInfo) o;		
-		return (codOwner == obj.codOwner && codPayPartner == obj.codPayPartner);
+		OwnparInfo obj = (OwnparInfo) o;		
+		return (codOwner 	  == obj.codOwner && 
+				codPayPartner == obj.codPayPartner);
 	}
 }

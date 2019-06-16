@@ -1,4 +1,4 @@
-package br.com.gda.payService.payPartnerOwner.model.checker;
+package br.com.gda.payment.ownerPartner.model.checker;
 
 import java.sql.Connection;
 
@@ -6,17 +6,17 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
+import br.com.gda.payment.ownerPartner.info.OwnparInfo;
 
-public final class PayparOwnerCheckHasCountry extends ModelCheckerTemplateSimple<PayparOwnerInfo> {
+public final class OwnparCheckHasCountry extends ModelCheckerTemplateSimple<OwnparInfo> {
 	
-	public PayparOwnerCheckHasCountry(ModelCheckerOption option) {
+	public OwnparCheckHasCountry(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(PayparOwnerInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(OwnparInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codCountry == null)			
 			return super.FAILED;		
 		

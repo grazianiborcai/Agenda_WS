@@ -1,4 +1,4 @@
-package br.com.gda.payService.payPartnerOwner.model.decisionTree;
+package br.com.gda.payment.ownerPartner.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,17 +13,17 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeHelper;
 import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.payService.payPartnerOwner.info.PayparOwnerInfo;
-import br.com.gda.payService.payPartnerOwner.model.action.StdPayparOwnerMergePayparCountry;
-import br.com.gda.payService.payPartnerOwner.model.checker.PayparOwnerCheckHasCountry;
-import br.com.gda.payService.payPartnerOwner.model.checker.PayparOwnerCheckPayparCountry;
+import br.com.gda.payment.ownerPartner.info.OwnparInfo;
+import br.com.gda.payment.ownerPartner.model.action.StdOwnparMergeCounpar;
+import br.com.gda.payment.ownerPartner.model.checker.OwnparCheckHasCountry;
+import br.com.gda.payment.ownerPartner.model.checker.OwnparCheckCounpar;
 
-public final class NodePayparOwnerSelectL1 implements DeciTree<PayparOwnerInfo> {
-	private DeciTree<PayparOwnerInfo> tree;
+public final class NodeOwnparSelectL1 implements DeciTree<OwnparInfo> {
+	private DeciTree<OwnparInfo> tree;
 	
 	
-	public NodePayparOwnerSelectL1(DeciTreeOption<PayparOwnerInfo> option) {
-		DeciTreeHelperOption<PayparOwnerInfo> helperOption = new DeciTreeHelperOption<>();
+	public NodeOwnparSelectL1(DeciTreeOption<OwnparInfo> option) {
+		DeciTreeHelperOption<OwnparInfo> helperOption = new DeciTreeHelperOption<>();
 		
 		helperOption.visitorChecker = buildDecisionChecker(option);
 		helperOption.recordInfos = option.recordInfos;
@@ -35,26 +35,26 @@ public final class NodePayparOwnerSelectL1 implements DeciTree<PayparOwnerInfo> 
 	
 	
 	
-	private ModelChecker<PayparOwnerInfo> buildDecisionChecker(DeciTreeOption<PayparOwnerInfo> option) {
+	private ModelChecker<OwnparInfo> buildDecisionChecker(DeciTreeOption<OwnparInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		final boolean HAS_ATTRIBUTE = true;
 		
-		List<ModelChecker<PayparOwnerInfo>> queue = new ArrayList<>();		
-		ModelChecker<PayparOwnerInfo> checker;
+		List<ModelChecker<OwnparInfo>> queue = new ArrayList<>();		
+		ModelChecker<OwnparInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = HAS_ATTRIBUTE;		
-		checker = new PayparOwnerCheckHasCountry(checkerOption);
+		checker = new OwnparCheckHasCountry(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new PayparOwnerCheckPayparCountry(checkerOption);
+		checker = new OwnparCheckCounpar(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -62,10 +62,10 @@ public final class NodePayparOwnerSelectL1 implements DeciTree<PayparOwnerInfo> 
 	
 	
 	
-	private List<ActionStd<PayparOwnerInfo>> buildActionsOnPassed(DeciTreeOption<PayparOwnerInfo> option) {
-		List<ActionStd<PayparOwnerInfo>> actions = new ArrayList<>();
+	private List<ActionStd<OwnparInfo>> buildActionsOnPassed(DeciTreeOption<OwnparInfo> option) {
+		List<ActionStd<OwnparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayparOwnerInfo> mergeCountry = new StdPayparOwnerMergePayparCountry(option);
+		ActionStd<OwnparInfo> mergeCountry = new StdOwnparMergeCounpar(option);
 		
 		actions.add(mergeCountry);
 		return actions;
@@ -85,13 +85,13 @@ public final class NodePayparOwnerSelectL1 implements DeciTree<PayparOwnerInfo> 
 	
 	
 	
-	@Override public DeciResult<PayparOwnerInfo> getDecisionResult() {
+	@Override public DeciResult<OwnparInfo> getDecisionResult() {
 		return tree.getDecisionResult();
 	}
 	
 	
 	
-	@Override public ActionStd<PayparOwnerInfo> toAction() {
+	@Override public ActionStd<OwnparInfo> toAction() {
 		return tree.toAction();
 	}
 }
