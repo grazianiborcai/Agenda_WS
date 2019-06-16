@@ -29,10 +29,6 @@ final class PayparWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_PAY_PARTNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayPartner));
 					break;
-					
-				case MasterDataDbTableColumn.COL_IS_DEFAULT :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.booleanToString(recordInfo.isDefault));
-					break;
 			}
 		}		
 			
