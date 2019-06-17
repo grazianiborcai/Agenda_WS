@@ -462,10 +462,14 @@ public class TestResource {
 	@GET
 	@Path(SELECT_PAY_PARTNER_OWNER)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectPayPartnerOwner(@HeaderParam("codOwner") long codOwner) {
+	public Response selectPayPartnerOwner(@HeaderParam("codOwner") long codOwner,
+										  @HeaderParam("codLanguage") String codLanguage,
+										  @HeaderParam("username") String username) {
 
 		OwnparInfo recordInfo = new OwnparInfo();
 		recordInfo.codOwner = codOwner;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
 		
 		Model model = new OwnparModelSelect(recordInfo);
 		model.executeRequest();

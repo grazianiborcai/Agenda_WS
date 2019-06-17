@@ -40,6 +40,7 @@ final class OwnparVisiMergeCounpar implements InfoMergerVisitorV2<OwnparInfo, Co
 	private OwnparInfo merge(CounparInfo sourceOne, OwnparInfo sourceTwo) {
 		sourceTwo.codPayPartner = sourceOne.codPayPartner;
 		sourceTwo.txtPayPartner = sourceOne.txtPayPartner;
+		sourceTwo.isDefault = sourceOne.isDefault;
 		sourceTwo.description = sourceOne.description;
 		return sourceTwo;
 	}
