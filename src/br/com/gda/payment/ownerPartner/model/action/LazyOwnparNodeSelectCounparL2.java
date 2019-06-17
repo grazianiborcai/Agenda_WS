@@ -8,11 +8,11 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.ownerPartner.info.OwnparInfo;
-import br.com.gda.payment.ownerPartner.model.decisionTree.NodeOwnparSelectL1;
+import br.com.gda.payment.ownerPartner.model.decisionTree.NodeOwnparSelectCounparL2;
 
-public final class LazyOwnparNodeSelectL1 extends ActionLazyTemplate<OwnparInfo, OwnparInfo> {
+public final class LazyOwnparNodeSelectCounparL2 extends ActionLazyTemplate<OwnparInfo, OwnparInfo> {
 	
-	public LazyOwnparNodeSelectL1(Connection conn, String schemaName) {
+	public LazyOwnparNodeSelectCounparL2(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyOwnparNodeSelectL1 extends ActionLazyTemplate<OwnparInfo,
 	
 	
 	@Override protected ActionStd<OwnparInfo> getInstanceOfActionHook(DeciTreeOption<OwnparInfo> option) {
-		return new NodeOwnparSelectL1(option).toAction();
+		return new NodeOwnparSelectCounparL2(option).toAction();
 	}
 	
 	

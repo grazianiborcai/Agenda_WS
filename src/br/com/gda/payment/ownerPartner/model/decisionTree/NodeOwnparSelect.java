@@ -10,12 +10,11 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.payment.ownerPartner.info.OwnparInfo;
-import br.com.gda.payment.ownerPartner.model.checker.OwnparCheckOwner;
-import br.com.gda.payment.ownerPartner.model.checker.OwnparCheckRead;
+import br.com.gda.payment.ownerPartner.model.checker.OwnparCheckExist;
 
-public final class RootOwnparSelect extends DeciTreeReadTemplate<OwnparInfo> {
+public final class NodeOwnparSelect extends DeciTreeReadTemplate<OwnparInfo> {
 	
-	public RootOwnparSelect(DeciTreeOption<OwnparInfo> option) {
+	public NodeOwnparSelect(DeciTreeOption<OwnparInfo> option) {
 		super(option);
 	}
 	
@@ -28,14 +27,11 @@ public final class RootOwnparSelect extends DeciTreeReadTemplate<OwnparInfo> {
 		ModelChecker<OwnparInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new OwnparCheckRead();
-		queue.add(checker);
-		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new OwnparCheckOwner(checkerOption);
+		checker = new OwnparCheckExist(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -46,9 +42,20 @@ public final class RootOwnparSelect extends DeciTreeReadTemplate<OwnparInfo> {
 	@Override protected List<ActionStd<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
 		List<ActionStd<OwnparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnparInfo> nodeSelect = new NodeOwnparSelect(option).toAction();
+		ActionStd<OwnparInfo> nodeSelectOwnpar = new NodeOwnparSelectOwnpar(option).toAction();
 		
-		actions.add(nodeSelect);
+		actions.add(nodeSelectOwnpar);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<OwnparInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnparInfo> option) {
+		List<ActionStd<OwnparInfo>> actions = new ArrayList<>();
+		
+		ActionStd<OwnparInfo> nodeSelectCounpar = new NodeOwnparSelectCounparL1(option).toAction();
+		
+		actions.add(nodeSelectCounpar);
 		return actions;
 	}
 }

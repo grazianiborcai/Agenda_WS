@@ -32,7 +32,7 @@ final class OwnparWhere implements DaoStmtWhere {
 					break;					
 					
 				case OwnparDbTableColumn.COL_IS_DEFAULT :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.booleanToString(recordInfo.isDefault));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.booleanTrueToString(recordInfo.isDefault));
 					break;
 			}
 		}		

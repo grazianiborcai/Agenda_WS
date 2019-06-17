@@ -374,6 +374,8 @@ public final class SystemCode {
 	// Pay Partner-Owner
 	public static final int PAY_PARTNER_OWNER_IS_NULL					= 2550;
 	public static final int PAY_PARTNER_OWNER_IS_FILLED					= 2551;
+	public static final int PAY_PARTNER_OWNER_ALREADY_EXIST 			= 2552;
+	public static final int PAY_PARTNER_OWNER_NOT_FOUND 				= 2553;
 	
 	//User Password
 	public static final int USER_PASSWORD_OR_USERNAME_IS_INVALID		= 2600;

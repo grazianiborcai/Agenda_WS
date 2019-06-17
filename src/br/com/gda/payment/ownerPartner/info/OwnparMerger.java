@@ -32,4 +32,18 @@ public final class OwnparMerger {
 		InfoMerger<OwnparInfo, OwnerInfo> merger = new OwnparMergerOwner();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
+	
+	
+	
+	public static OwnparInfo mergeToSelect(OwnparInfo sourceOne, OwnparInfo sourceTwo) {
+		InfoMerger<OwnparInfo, OwnparInfo> merger = new OwnparMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwnparInfo> mergeToSelect(List<OwnparInfo> sourceOnes, List<OwnparInfo> sourceTwos) {
+		InfoMerger<OwnparInfo, OwnparInfo> merger = new OwnparMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 }

@@ -474,8 +474,10 @@ public final class SystemMessage {
 	
 	
 	// Pay Partner-Owner
+	public static final String PAY_PARTNER_OWNER_ALREADY_EXIST = "Pay Partner-Owner's data already exist on DB";
 	public static final String PAY_PARTNER_OWNER_IS_NULL = "Pay-Partner-Owner's country is blank";
-	public static final String PAY_PARTNER_OWNER_IS_FILLED = "Pay-Partner-Owner's country is not blank";
+	public static final String PAY_PARTNER_OWNER_IS_FILLED = "Pay-Partner-Owner's country is not blank";	
+	public static final String PAY_PARTNER_OWNER_NOT_FOUND = "Pay Partner-Owner's data not found on DB";
 	
 	
 	

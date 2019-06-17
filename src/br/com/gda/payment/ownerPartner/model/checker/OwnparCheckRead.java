@@ -17,11 +17,12 @@ public final class OwnparCheckRead extends ModelCheckerTemplateSimple<OwnparInfo
 	
 	@Override protected boolean checkHook(OwnparInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codLanguage == null		)			
-			return FAILED;
+			 recordInfo.codLanguage == null	||
+			 recordInfo.username    == null		)
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

@@ -7,35 +7,22 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.payment.ownerPartner.info.OwnparInfo;
 import br.com.gda.payment.ownerPartner.model.action.StdOwnparMergeCounpar;
 import br.com.gda.payment.ownerPartner.model.checker.OwnparCheckHasCountry;
 import br.com.gda.payment.ownerPartner.model.checker.OwnparCheckCounpar;
 
-public final class NodeOwnparSelectL1 implements DeciTree<OwnparInfo> {
-	private DeciTree<OwnparInfo> tree;
+public final class NodeOwnparSelectCounparL2 extends DeciTreeReadTemplate<OwnparInfo> {
 	
-	
-	public NodeOwnparSelectL1(DeciTreeOption<OwnparInfo> option) {
-		DeciTreeHelperOption<OwnparInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+	public NodeOwnparSelectCounparL2(DeciTreeOption<OwnparInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<OwnparInfo> buildDecisionChecker(DeciTreeOption<OwnparInfo> option) {
+	@Override protected ModelChecker<OwnparInfo> buildDecisionCheckerHook(DeciTreeOption<OwnparInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		final boolean HAS_ATTRIBUTE = true;
 		
@@ -62,36 +49,12 @@ public final class NodeOwnparSelectL1 implements DeciTree<OwnparInfo> {
 	
 	
 	
-	private List<ActionStd<OwnparInfo>> buildActionsOnPassed(DeciTreeOption<OwnparInfo> option) {
+	@Override protected List<ActionStd<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
 		List<ActionStd<OwnparInfo>> actions = new ArrayList<>();
 		
 		ActionStd<OwnparInfo> mergeCountry = new StdOwnparMergeCounpar(option);
 		
 		actions.add(mergeCountry);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<OwnparInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<OwnparInfo> toAction() {
-		return tree.toAction();
 	}
 }
