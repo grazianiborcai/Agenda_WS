@@ -143,4 +143,13 @@ public final class DaoFormatter {
 		
 		return "1";
 	}
+	
+	
+	
+	public static String booleanTrueToString(boolean boole) {
+		if (boole == false)
+			return null;
+		
+		return "1";
+	}
 }

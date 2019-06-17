@@ -32,7 +32,7 @@ final class CounparWhere implements DaoStmtWhere {
 					break;
 					
 				case CounparDbTableColumn.COL_IS_DEFAULT :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.booleanToString(recordInfo.isDefault));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.booleanTrueToString(recordInfo.isDefault));
 					break;
 			}
 		}		
