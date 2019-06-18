@@ -18,6 +18,7 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.info.InfoCopier;
+import br.com.gda.payment.storePartner.info.StoparInfo;
 
 public final class UsernameCopier {
 	public static UsernameInfo copyFromOwner(OwnerInfo source) {
@@ -213,4 +214,18 @@ public final class UsernameCopier {
 		InfoCopier<UsernameInfo, CusInfo> copier = new UsernameCopyCus();
 		return copier.makeCopy(sources);
 	}
+	
+	
+	
+	public static UsernameInfo copyFromStopar(StoparInfo source) {
+		InfoCopier<UsernameInfo, StoparInfo> copier = new UsernameCopyStopar();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromStopar(List<StoparInfo> sources) {
+		InfoCopier<UsernameInfo, StoparInfo> copier = new UsernameCopyStopar();
+		return copier.makeCopy(sources);
+	}	
 }

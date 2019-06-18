@@ -332,6 +332,7 @@ public final class SystemCode {
 	// Pay Partner-Store
 	public static final int PAY_PARTNER_STORE_ALREADY_EXIST 			= 2300;
 	public static final int PAY_PARTNER_STORE_NOT_FOUND 				= 2301;
+	public static final int PAY_PARTNER_STORE_FLAGGED_AS_DELETED 		= 2302;	
 	
 	// Pay Partner-Country
 	public static final int PAY_PARTNER_COUNTRY_ALREADY_EXIST 			= 2350;

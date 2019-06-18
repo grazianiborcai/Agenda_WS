@@ -425,8 +425,9 @@ public final class SystemMessage {
 	
 	// Pay Partner-Store
 	public static final String PAY_PARTNER_STORE_ALREADY_EXIST = "Pay Partner-Store's data already exist on DB";
+	public static final String PAY_PARTNER_STORE_FLAGGED_AS_DELETED = "Pay Partner-Store's data is flagged as deleted on DB";
 	public static final String PAY_PARTNER_STORE_NOT_FOUND = "Pay Partner-Store's data not found on DB";
-	
+		
 	
 	
 	// Pay Partner-Country

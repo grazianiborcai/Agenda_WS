@@ -59,12 +59,12 @@ import br.com.gda.payService.payCustomer.info.PaycusInfo;
 import br.com.gda.payService.payCustomer.model.PaycusModelDelete;
 import br.com.gda.payService.payCustomer.model.PaycusModelInsert;
 import br.com.gda.payService.payCustomer.model.PaycusModelSelect;
-import br.com.gda.payService.payPartnerStore.info.PayparStoreInfo;
-import br.com.gda.payService.payPartnerStore.model.PayparStoreModelSelect;
 import br.com.gda.payment.countryPartner.info.CounparInfo;
 import br.com.gda.payment.countryPartner.model.CounparModelSelect;
 import br.com.gda.payment.ownerPartner.info.OwnparInfo;
 import br.com.gda.payment.ownerPartner.model.OwnparModelSelect;
+import br.com.gda.payment.storePartner.info.StoparInfo;
+import br.com.gda.payment.storePartner.model.StoparModelSelect;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 import br.com.gda.security.jwtToken.model.JwtokenModelValidate;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
@@ -433,11 +433,11 @@ public class TestResource {
 	public Response selectPayPartnerStore(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
 								          @HeaderParam("codStore") @DefaultValue("-1") long codStore) {
 
-		PayparStoreInfo recordInfo = new PayparStoreInfo();
+		StoparInfo recordInfo = new StoparInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		
-		Model model = new PayparStoreModelSelect(recordInfo);
+		Model model = new StoparModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
