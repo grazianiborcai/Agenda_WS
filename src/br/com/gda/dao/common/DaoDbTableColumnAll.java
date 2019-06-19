@@ -60,6 +60,7 @@ import br.com.gda.message.emailBody.dao.EmabodyDbTableColumn;
 import br.com.gda.payService.payCustomer.dao.PaycusDbTableColumn;
 import br.com.gda.payment.countryPartner.dao.CounparDbTableColumn;
 import br.com.gda.payment.ownerPartner.dao.OwnparDbTableColumn;
+import br.com.gda.payment.setupPartner.dao.SetuparDbTableColumn;
 import br.com.gda.payment.storePartner.dao.StoparDbTableColumn;
 import br.com.gda.payment.storePartnerSnapshot.dao.StoparnapDbTableColumn;
 import br.com.gda.security.userPassword.dao.UpswdDbTableColumn;
@@ -136,6 +137,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmabodyDbTableColumn());
 		addTable(new OwnparDbTableColumn());
 		addTable(new StoparnapDbTableColumn());
+		addTable(new SetuparDbTableColumn());
 	}
 	
 	

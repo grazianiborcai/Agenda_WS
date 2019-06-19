@@ -6,8 +6,7 @@ import br.com.gda.info.InfoRecord;
 
 public final class AddrmoipInfo extends InfoRecord implements Cloneable {
 	public String street;
-	public String streetNumber;
-	
+	public String streetNumber;	
 	public String complement;
 	public String district;
 	public String city;

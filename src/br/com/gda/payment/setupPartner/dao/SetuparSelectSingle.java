@@ -1,4 +1,4 @@
-package br.com.gda.payment.countryPartner.dao;
+package br.com.gda.payment.setupPartner.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,24 +15,24 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
-import br.com.gda.payment.countryPartner.info.CounparInfo;
+import br.com.gda.payment.setupPartner.info.SetuparInfo;
 
-public final class CounparSelectSingle implements DaoStmt<CounparInfo> {
-	private final static String LT_ATTR = DaoDbTable.PAY_PARTNER_COUNTRY_TABLE;
+public final class SetuparSelectSingle implements DaoStmt<SetuparInfo> {
+	private final static String LT_ATTR = DaoDbTable.PAY_PARTNER_SETUP_TABLE;
 	
-	private DaoStmt<CounparInfo> stmtSql;
-	private DaoStmtOption<CounparInfo> stmtOption;
+	private DaoStmt<SetuparInfo> stmtSql;
+	private DaoStmtOption<SetuparInfo> stmtOption;
 	
 	
 	
-	public CounparSelectSingle(Connection conn, CounparInfo recordInfo, String schemaName) {
+	public SetuparSelectSingle(Connection conn, SetuparInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, CounparInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, SetuparInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -49,10 +49,10 @@ public final class CounparSelectSingle implements DaoStmt<CounparInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new CounparWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new SetuparWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -82,14 +82,14 @@ public final class CounparSelectSingle implements DaoStmt<CounparInfo> {
 
 	
 	
-	@Override public List<CounparInfo> getResultset() {
+	@Override public List<SetuparInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<CounparInfo> getNewInstance() {
-		return new CounparSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<SetuparInfo> getNewInstance() {
+		return new SetuparSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -97,26 +97,20 @@ public final class CounparSelectSingle implements DaoStmt<CounparInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<CounparInfo> {
+	private static class ResultParser implements DaoResultParser<SetuparInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final boolean NOT_NULL = false;
 		
-		@Override public List<CounparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<CounparInfo> finalResult = new ArrayList<>();
+		@Override public List<SetuparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<SetuparInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 					return finalResult;
 			
 			do {
-				CounparInfo dataInfo = new CounparInfo();
-				dataInfo.codCountry = stmtResult.getString(CounparDbTableColumn.COL_COD_COUNTRY);
-				dataInfo.codPayPartner = stmtResult.getInt(CounparDbTableColumn.COL_COD_PAY_PARTNER);
-				
-				
-				stmtResult.getBoolean(CounparDbTableColumn.COL_IS_DEFAULT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.isDefault = stmtResult.getBoolean(CounparDbTableColumn.COL_IS_DEFAULT);
-				
+				SetuparInfo dataInfo = new SetuparInfo();
+				dataInfo.codPayPartner = stmtResult.getInt(SetuparDbTableColumn.COL_COD_PAY_PARTNER);
+				dataInfo.key = stmtResult.getString(SetuparDbTableColumn.COL_KEY);
+				dataInfo.key = stmtResult.getString(SetuparDbTableColumn.COL_TOKEN);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
