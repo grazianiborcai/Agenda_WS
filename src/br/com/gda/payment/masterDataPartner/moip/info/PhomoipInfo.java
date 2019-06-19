@@ -1,31 +1,31 @@
-package br.com.gda.payPartner.moip.moipMasterData.info;
+package br.com.gda.payment.masterDataPartner.moip.info;
 
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class PhoneInfo extends InfoRecord implements Cloneable {
+public final class PhomoipInfo extends InfoRecord implements Cloneable {
 	public String countryCode;
 	public String areaCode;
 	public int number;
 	
 	
 	
-	public PhoneInfo() {
+	public PhomoipInfo() {
 		number = DefaultValue.number();
 	}
 	
 	
 	
-	public static PhoneInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, PhoneInfo.class);
+	public static PhomoipInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, PhomoipInfo.class);
 	}
 	
 	
 	
-	public static List<PhoneInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, PhoneInfo.class);
+	public static List<PhomoipInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, PhomoipInfo.class);
 	}
 	
 	
@@ -41,11 +41,11 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof PhoneInfo))
+		if (!(o instanceof PhomoipInfo))
 			return false;
 		
 		
-		PhoneInfo obj = (PhoneInfo) o;
+		PhomoipInfo obj = (PhomoipInfo) o;
 		return (isStringEqual(obj.countryCode, this.countryCode) 	&&
 				isStringEqual(obj.areaCode, this.areaCode)			&&
 				obj.number == this.number								);

@@ -1,10 +1,10 @@
-package br.com.gda.payPartner.moip.moipMasterData.info;
+package br.com.gda.payment.masterDataPartner.moip.info;
 
 import java.util.List;
 
 import br.com.gda.info.InfoRecord;
 
-public final class AddressInfo extends InfoRecord implements Cloneable {
+public final class AddrmoipInfo extends InfoRecord implements Cloneable {
 	public String street;
 	public String streetNumber;
 	
@@ -17,14 +17,14 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static AddressInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, AddressInfo.class);
+	public static AddrmoipInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, AddrmoipInfo.class);
 	}
 	
 	
 	
-	public static List<AddressInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, AddressInfo.class);
+	public static List<AddrmoipInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, AddrmoipInfo.class);
 	}
 	
 	
@@ -40,11 +40,11 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof AddressInfo))
+		if (!(o instanceof AddrmoipInfo))
 			return false;
 		
 		
-		AddressInfo obj = (AddressInfo) o;
+		AddrmoipInfo obj = (AddrmoipInfo) o;
 		return (isStringEqual(obj.street		, this.street) 			&&
 				isStringEqual(obj.streetNumber	, this.streetNumber)	&&
 				isStringEqual(obj.complement	, this.complement)		&&
