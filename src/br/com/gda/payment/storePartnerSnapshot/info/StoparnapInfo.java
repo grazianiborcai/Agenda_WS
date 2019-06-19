@@ -1,4 +1,4 @@
-package br.com.gda.payment.storePartner.info;
+package br.com.gda.payment.storePartnerSnapshot.info;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class StoparInfo extends InfoRecord implements Cloneable {
+public final class StoparnapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
 	public int codPayPartner;
@@ -21,7 +21,7 @@ public final class StoparInfo extends InfoRecord implements Cloneable {
 	public String username;
 	
 	
-	public StoparInfo() {
+	public StoparnapInfo() {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
@@ -33,14 +33,14 @@ public final class StoparInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static StoparInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, StoparInfo.class);
+	public static StoparnapInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, StoparnapInfo.class);
 	}
 	
 	
 	
-	public static List<StoparInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, StoparInfo.class);
+	public static List<StoparnapInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, StoparnapInfo.class);
 	}
 	
 	
@@ -68,11 +68,11 @@ public final class StoparInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof StoparInfo))
+		if (!(o instanceof StoparnapInfo))
 			return false;
 		
 		
-		StoparInfo obj = (StoparInfo) o;		
+		StoparnapInfo obj = (StoparnapInfo) o;		
 		return (codOwner	  == obj.codOwner &&
 				codStore 	  == obj.codStore &&
 				codPayPartner == obj.codPayPartner);

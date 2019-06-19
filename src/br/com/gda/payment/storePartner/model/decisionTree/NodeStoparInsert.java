@@ -1,4 +1,4 @@
-package br.com.gda.payment.storePartner.model.decsionTree;
+package br.com.gda.payment.storePartner.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;

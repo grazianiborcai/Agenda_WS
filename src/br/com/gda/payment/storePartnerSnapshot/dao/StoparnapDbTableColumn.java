@@ -1,4 +1,4 @@
-package br.com.gda.payment.storePartner.dao;
+package br.com.gda.payment.storePartnerSnapshot.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -8,7 +8,7 @@ import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class StoparDbTableColumn extends DaoDbTableColumnTemplate {
+public final class StoparnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = "cod_owner";	
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
@@ -22,7 +22,7 @@ public final class StoparDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
 	
-	public StoparDbTableColumn() {
+	public StoparnapDbTableColumn() {
 		super();
 	}
 	
@@ -30,17 +30,25 @@ public final class StoparDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
-		buildPayPartnerStoreTable();	
+		buildPayPartnerStoreSnapshotTable();	
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildPayPartnerStoreTable() {
-		final String TABLE_NAME = DaoDbTable.PAY_PARTNER_STORE_TABLE;
+	private void buildPayPartnerStoreSnapshotTable() {
+		final String TABLE_NAME = DaoDbTable.PAY_PARTNER_STORE_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_SNAPSHOT;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
+		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
@@ -53,22 +61,6 @@ public final class StoparDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_STORE;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PAY_PARTNER;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_RECORD_MODE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -76,7 +68,15 @@ public final class StoparDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_SNAPSHOT;
+		oneColumn.columnName = COL_COD_PAY_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_RECORD_MODE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

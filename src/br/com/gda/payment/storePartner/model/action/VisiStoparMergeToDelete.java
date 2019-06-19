@@ -7,7 +7,7 @@ import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.payment.storePartner.info.StoparInfo;
 import br.com.gda.payment.storePartner.info.StoparMerger;
-import br.com.gda.payment.storePartner.model.decsionTree.RootStoparSelect;
+import br.com.gda.payment.storePartner.model.decisionTree.RootStoparSelect;
 
 final class VisiStoparMergeToDelete extends ActionVisitorTemplateMergeV2<StoparInfo, StoparInfo> {
 	

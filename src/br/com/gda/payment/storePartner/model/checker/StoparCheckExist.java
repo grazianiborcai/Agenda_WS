@@ -10,7 +10,7 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.storePartner.info.StoparInfo;
-import br.com.gda.payment.storePartner.model.decsionTree.RootStoparSelect;
+import br.com.gda.payment.storePartner.model.decisionTree.RootStoparSelect;
 
 public final class StoparCheckExist extends ModelCheckerTemplateAction<StoparInfo> {
 	

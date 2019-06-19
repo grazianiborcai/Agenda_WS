@@ -122,6 +122,9 @@ public final class StoparUpdateSingle implements DaoStmt<StoparInfo> {
 			}
 			
 			
+			stmt.setString(i++, recordInfo.idPayPartnerStore);
+			
+			
 			return stmt;
 		}		
 	}

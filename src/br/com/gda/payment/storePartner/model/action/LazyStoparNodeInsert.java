@@ -8,7 +8,7 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.storePartner.info.StoparInfo;
-import br.com.gda.payment.storePartner.model.decsionTree.NodeStoparInsert;
+import br.com.gda.payment.storePartner.model.decisionTree.NodeStoparInsert;
 
 public final class LazyStoparNodeInsert extends ActionLazyTemplate<StoparInfo, StoparInfo> {
 	

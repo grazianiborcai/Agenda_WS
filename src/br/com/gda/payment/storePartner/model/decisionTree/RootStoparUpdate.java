@@ -1,4 +1,4 @@
-package br.com.gda.payment.storePartner.model.decsionTree;
+package br.com.gda.payment.storePartner.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +11,16 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.storePartner.info.StoparInfo;
-import br.com.gda.payment.storePartner.model.action.LazyStoparEnforceLChanged;
 import br.com.gda.payment.storePartner.model.action.LazyStoparMergeUsername;
+import br.com.gda.payment.storePartner.model.action.LazyStoparNodeSnapshot;
+import br.com.gda.payment.storePartner.model.action.LazyStoparRootSelect;
 import br.com.gda.payment.storePartner.model.action.LazyStoparUpdate;
-import br.com.gda.payment.storePartner.model.action.StdStoparMergeToDelete;
+import br.com.gda.payment.storePartner.model.action.StdStoparEnforceLChanged;
 import br.com.gda.payment.storePartner.model.checker.StoparCheckExist;
 import br.com.gda.payment.storePartner.model.checker.StoparCheckLangu;
 import br.com.gda.payment.storePartner.model.checker.StoparCheckOwner;
+import br.com.gda.payment.storePartner.model.checker.StoparCheckPaypar;
+import br.com.gda.payment.storePartner.model.checker.StoparCheckStorauth;
 import br.com.gda.payment.storePartner.model.checker.StoparCheckStore;
 import br.com.gda.payment.storePartner.model.checker.StoparCheckWrite;
 
@@ -64,8 +67,29 @@ public final class RootStoparUpdate extends DeciTreeWriteTemplate<StoparInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new StoparCheckStore(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new StoparCheckPaypar(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StoparCheckExist(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new StoparCheckStorauth(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<StoparInfo>(queue);
@@ -75,17 +99,19 @@ public final class RootStoparUpdate extends DeciTreeWriteTemplate<StoparInfo> {
 	
 	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
-		
-		ActionStd<StoparInfo> mergeToDelete = new StdStoparMergeToDelete(option);
-		ActionLazy<StoparInfo> enforceLChanged = new LazyStoparEnforceLChanged(option.conn, option.schemaName);
+		//TODO: ID obrigatorio ?		
+		ActionStd<StoparInfo> enforceLChanged = new StdStoparEnforceLChanged(option);
 		ActionLazy<StoparInfo> enforceLChangedBy = new LazyStoparMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StoparInfo> update = new LazyStoparUpdate(option.conn, option.schemaName);
+		ActionLazy<StoparInfo> snapshot = new LazyStoparNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<StoparInfo> select = new LazyStoparRootSelect(option.conn, option.schemaName);
 		
-		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
+		update.addPostAction(snapshot);
+		snapshot.addPostAction(select);
 		
-		actions.add(mergeToDelete);
+		actions.add(enforceLChanged);
 		return actions;		
 	}
 }

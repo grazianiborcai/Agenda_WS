@@ -66,6 +66,7 @@ public final class DaoDbTable {
 	public static final String PAY_PARTNER_COUNTRY_TABLE = "pay_partner_country";
 	public static final String PAY_PARTNER_OWNER_TABLE = "pay_partner_owner";
 	public static final String PAY_PARTNER_STORE_TABLE = "pay_partner_store";
+	public static final String PAY_PARTNER_STORE_SNAPSHOT_TABLE = "pay_partner_store_snapshot";
 	public static final String PAYMENT_STATUS_TABLE = "payment_status";
 	public static final String PAYMENT_STATUS_TEXT_TABLE = "payment_status_text";
 	public static final String PERSON_TABLE = "person";

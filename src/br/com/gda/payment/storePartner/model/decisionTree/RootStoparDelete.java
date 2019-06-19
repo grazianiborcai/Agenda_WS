@@ -1,4 +1,4 @@
-package br.com.gda.payment.storePartner.model.decsionTree;
+package br.com.gda.payment.storePartner.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ import br.com.gda.payment.storePartner.model.action.LazyStoparUpdate;
 import br.com.gda.payment.storePartner.model.action.StdStoparMergeToDelete;
 import br.com.gda.payment.storePartner.model.checker.StoparCheckExist;
 import br.com.gda.payment.storePartner.model.checker.StoparCheckLangu;
+import br.com.gda.payment.storePartner.model.checker.StoparCheckStorauth;
 import br.com.gda.payment.storePartner.model.checker.StoparCheckWrite;
 
 public final class RootStoparDelete extends DeciTreeWriteTemplate<StoparInfo> {
@@ -53,6 +54,13 @@ public final class RootStoparDelete extends DeciTreeWriteTemplate<StoparInfo> {
 		checker = new StoparCheckExist(checkerOption);
 		queue.add(checker);	
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new StoparCheckStorauth(checkerOption);
+		queue.add(checker);	
+		
 		return new ModelCheckerQueue<StoparInfo>(queue);
 	}
 	
@@ -60,7 +68,7 @@ public final class RootStoparDelete extends DeciTreeWriteTemplate<StoparInfo> {
 	
 	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
-		
+		//TODO: nao pode elimnar se for Owner-Default
 		ActionStd<StoparInfo> mergeToDelete = new StdStoparMergeToDelete(option);
 		ActionLazy<StoparInfo> enforceLChanged = new LazyStoparEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StoparInfo> enforceLChangedBy = new LazyStoparMergeUsername(option.conn, option.schemaName);

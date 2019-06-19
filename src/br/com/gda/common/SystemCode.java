@@ -114,6 +114,8 @@ public final class SystemCode {
 	public static final int AUTH_GROUP_NOT_FOUND						= 1191;
 	public static final int MAT_MOV_TYPE_ALREADY_EXIST					= 1192;
 	public static final int MAT_MOV_TYPE_NOT_FOUND						= 1193;
+	public static final int PAY_PARTNER_ALREADY_EXIST					= 1194;
+	public static final int PAY_PARTNER_NOT_FOUND						= 1195;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

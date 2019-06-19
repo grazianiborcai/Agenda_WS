@@ -8,11 +8,11 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.storePartner.info.StoparInfo;
-import br.com.gda.payment.storePartner.model.decisionTree.RootStoparSelect;
+import br.com.gda.payment.storePartner.model.decisionTree.NodeStoparSnapshot;
 
-public final class LazyStoparRootSelect extends ActionLazyTemplate<StoparInfo, StoparInfo> {
+public final class LazyStoparNodeSnapshot extends ActionLazyTemplate<StoparInfo, StoparInfo> {
 	
-	public LazyStoparRootSelect(Connection conn, String schemaName) {
+	public LazyStoparNodeSnapshot(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyStoparRootSelect extends ActionLazyTemplate<StoparInfo, S
 	
 	
 	@Override protected ActionStd<StoparInfo> getInstanceOfActionHook(DeciTreeOption<StoparInfo> option) {
-		return new RootStoparSelect(option).toAction();
+		return new NodeStoparSnapshot(option).toAction();
 	}
 	
 	

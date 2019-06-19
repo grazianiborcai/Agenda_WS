@@ -2,6 +2,7 @@ package br.com.gda.payment.storePartner.model;
 
 import java.sql.Connection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.common.DbConnection;
@@ -13,17 +14,17 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.storePartner.info.StoparInfo;
-import br.com.gda.payment.storePartner.model.decisionTree.RootStoparSelect;
+import br.com.gda.payment.storePartner.model.decisionTree.RootStoparInsert;
 
-public final class StoparModelSelect implements Model {
+public final class StoparModelInsert implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public StoparModelSelect(StoparInfo recordInfo) {
+	public StoparModelInsert(String incomingData, HttpServletRequest request) {
 		initialize();
-		buildHelper(recordInfo);
+		buildHelper(incomingData, request);
 	}
 	
 	
@@ -35,7 +36,7 @@ public final class StoparModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(StoparInfo recordInfo) {
+	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<StoparInfo> helperOption = new ModelOption<>();
 		
 		helperOption.infoRecordClass = StoparInfo.class;
@@ -43,7 +44,7 @@ public final class StoparModelSelect implements Model {
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper.factory(helperOption, recordInfo);
+		helper = ModelHelper.factory(helperOption, incomingData, request);
 	}
 
 
@@ -65,7 +66,7 @@ public final class StoparModelSelect implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<StoparInfo> {		
 		@Override public DeciTree<StoparInfo> getInstance(DeciTreeOption<StoparInfo> option) {
-			return new RootStoparSelect(option);
+			return new RootStoparInsert(option);
 		}			
 	}
 }

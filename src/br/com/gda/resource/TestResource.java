@@ -63,8 +63,6 @@ import br.com.gda.payment.countryPartner.info.CounparInfo;
 import br.com.gda.payment.countryPartner.model.CounparModelSelect;
 import br.com.gda.payment.ownerPartner.info.OwnparInfo;
 import br.com.gda.payment.ownerPartner.model.OwnparModelSelect;
-import br.com.gda.payment.storePartner.info.StoparInfo;
-import br.com.gda.payment.storePartner.model.StoparModelSelect;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 import br.com.gda.security.jwtToken.model.JwtokenModelValidate;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
@@ -102,7 +100,6 @@ public class TestResource {
 	private static final String INSERT_PAY_CUSTOMER = "/insertPayCustomer";
 	private static final String SELECT_PAY_CUSTOMER = "/selectPayCustomer";
 	private static final String DELETE_PAY_CUSTOMER = "/deletePayCustomer";
-	private static final String SELECT_PAY_PARTNER_STORE = "/selectPayPartnerStore";
 	private static final String SELECT_PAY_PARTNER_COUNTRY = "/selectPayPartnerCountry";
 	private static final String SELECT_PAY_PARTNER_OWNER = "/selectPayPartnerOwner";
 	private static final String INSERT_COMPANY = "/insertCompany";
@@ -421,23 +418,6 @@ public class TestResource {
 		recordInfo.codUser = codUser;
 		
 		Model model = new PaycusModelDelete(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@GET
-	@Path(SELECT_PAY_PARTNER_STORE)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectPayPartnerStore(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-								          @HeaderParam("codStore") @DefaultValue("-1") long codStore) {
-
-		StoparInfo recordInfo = new StoparInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		
-		Model model = new StoparModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

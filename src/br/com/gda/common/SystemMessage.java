@@ -103,6 +103,8 @@ public final class SystemMessage {
 	public static final String MAT_TYPE_NOT_FOUND = "Type not found on DB";	
 	public static final String ORDER_STATUS_ALREADY_EXIST = "Order Status already exist on DB";	
 	public static final String ORDER_STATUS_NOT_FOUND = "Order Status not found on DB";
+	public static final String PAY_PARTNER_ALREADY_EXIST = "Payment partner already exist on DB";
+	public static final String PAY_PARTNER_NOT_FOUND = "Payment partner not found on DB";	
 	public static final String PAYMENT_STATUS_ALREADY_EXIST = "Payment Status already exist on DB";	
 	public static final String PAYMENT_STATUS_NOT_FOUND = "Payment Status not found on DB";
 	public static final String STATE_ALREADY_EXIST = "State already exist on DB";

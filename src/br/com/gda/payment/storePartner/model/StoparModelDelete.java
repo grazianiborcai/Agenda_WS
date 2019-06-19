@@ -13,15 +13,15 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.storePartner.info.StoparInfo;
-import br.com.gda.payment.storePartner.model.decisionTree.RootStoparSelect;
+import br.com.gda.payment.storePartner.model.decisionTree.RootStoparDelete;
 
-public final class StoparModelSelect implements Model {
+public final class StoparModelDelete implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public StoparModelSelect(StoparInfo recordInfo) {
+	public StoparModelDelete(StoparInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -65,7 +65,7 @@ public final class StoparModelSelect implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<StoparInfo> {		
 		@Override public DeciTree<StoparInfo> getInstance(DeciTreeOption<StoparInfo> option) {
-			return new RootStoparSelect(option);
-		}			
+			return new RootStoparDelete(option);
+		}		
 	}
 }
