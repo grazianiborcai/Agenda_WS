@@ -452,6 +452,7 @@ public final class SystemMessage {
 	public static final String PAY_CUS_USER_NOT_FOUND = "Pay-Customer-User's data not found on DB";
 	public static final String PAY_CUS_PAY_PARTNER_IS_BLANK = "Pay-Cutomer's pay-partner reference is blank";
 	public static final String PAY_CUS_PAY_PARTNER_IS_FILLED = "Pay-Cutomer's pay-partner reference should be blank";
+	public static final String PAY_CUS_PAY_PARTNER_NOT_FOUND = "Pay-Cutomer's pay-partner not foundk";
 
 	
 	

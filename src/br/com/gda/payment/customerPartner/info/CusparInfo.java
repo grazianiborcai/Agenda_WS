@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
+import br.com.gda.payment.setupPartner.info.SetuparInfo;
 
 public final class CusparInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
@@ -14,6 +15,7 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 	public long codCustomerSnapshot;
 	public long codUser;
 	public long codUserSnapshot;
+	public SetuparInfo setuparData;
 	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
@@ -31,6 +33,7 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 		codUserSnapshot = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
+		setuparData = DefaultValue.object();
 	}
 	
 	

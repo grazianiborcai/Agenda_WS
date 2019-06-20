@@ -44,18 +44,18 @@ public final class CusparCheckExist extends ModelCheckerTemplateAction<CusparInf
 	
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.CART_ALREADY_EXIST)
-			return SystemMessage.CART_ALREADY_EXIST;
+		if (makeFailCodeHook(checkerResult) == SystemCode.PAY_CUS_ALREADY_EXIST)
+			return SystemMessage.PAY_CUS_ALREADY_EXIST;
 		
-		return SystemMessage.CART_NOT_FOUND;
+		return SystemMessage.PAY_CUS_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.CART_ALREADY_EXIST;	
+			return SystemCode.PAY_CUS_ALREADY_EXIST;	
 		
-		return SystemCode.CART_NOT_FOUND;
+		return SystemCode.PAY_CUS_NOT_FOUND;
 	}
 }

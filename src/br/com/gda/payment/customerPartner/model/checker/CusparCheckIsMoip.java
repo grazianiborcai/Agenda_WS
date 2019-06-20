@@ -2,40 +2,38 @@ package br.com.gda.payment.customerPartner.model.checker;
 
 import java.sql.Connection;
 
+import br.com.gda.business.masterData.info.common.Paypar;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckWrite extends ModelCheckerTemplateSimple<CusparInfo> {
+public final class CusparCheckIsMoip extends ModelCheckerTemplateSimple<CusparInfo> {
 
-	public CusparCheckWrite() {
+	public CusparCheckIsMoip() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CusparInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 		<= 0 	|| 
-			 recordInfo.codPayCustomer 	<= 0 	||
-			 recordInfo.username		== null	||
-			 recordInfo.codLanguage		== null		)
+		if ( recordInfo.codPayPartner == Paypar.MOIP.getCodPayPartner() )
 			
-			return super.FAILED;
+			return super.SUCCESS;
 		
 		
-		return super.SUCCESS;
+		return super.FAILED;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.PAY_CUS_PAY_PARTNER_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.PAY_CUS_PAY_PARTNER_NOT_FOUND;
 	}
 }
