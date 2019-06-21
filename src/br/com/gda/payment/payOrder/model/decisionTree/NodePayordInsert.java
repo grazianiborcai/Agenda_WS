@@ -12,7 +12,7 @@ import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.action.StdPayordInsert;
 import br.com.gda.payment.payOrder.model.action.StdPayordUpdate;
-import br.com.gda.payment.payOrder.model.checker.PayordCheckSoftDelete;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckSoftDelete_;
 
 public final class NodePayordInsert extends DeciTreeWriteTemplate<PayordInfo> {
 	
@@ -33,7 +33,7 @@ public final class NodePayordInsert extends DeciTreeWriteTemplate<PayordInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = NOT_DELETED;		
-		checker = new PayordCheckSoftDelete(checkerOption);
+		checker = new PayordCheckSoftDelete_(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

@@ -8,27 +8,28 @@ import br.com.gda.info.InfoRecord;
 
 public final class PayordInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public long codStore;	
+	public long codPayOrder;
+	public long codUser;
+	public long codCustomer;
+	public long codOrder;
 	public int codPayPartner;
-	public String idPayPartnerStore;
-	public long codSnapshot;
 	public String txtPayPartner;
 	public String description;
-	public String recordMode;
+	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
-	public long lastChangedBy;
 	public String codLanguage;
 	public String username;
+
 	
 	
 	public PayordInfo() {
 		codOwner = DefaultValue.number();
-		codStore = DefaultValue.number();
+		codPayOrder = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
 		codLanguage = DefaultValue.language();
-		recordMode = DefaultValue.recordMode();
-		lastChangedBy = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
+		codUser = DefaultValue.number();
+		codCustomer = DefaultValue.number();
+		codOrder = DefaultValue.number();
 	}
 	
 	
@@ -55,8 +56,11 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		int result = 17;
 		
 		result = result * 31 + (int) (codOwner 		^ (codOwner 	 >>> 32));
-		result = result * 31 + (int) (codStore 		^ (codStore 	 >>> 32));
+		result = result * 31 + (int) (codPayOrder 	^ (codPayOrder 	 >>> 32));
 		result = result * 31 + (int) (codPayPartner ^ (codPayPartner >>> 32));
+		result = result * 31 + (int) (codUser 		^ (codUser 		 >>> 32));
+		result = result * 31 + (int) (codCustomer 	^ (codCustomer 	 >>> 32));
+		result = result * 31 + (int) (codOrder 		^ (codOrder 	 >>> 32));
 		
 		return result;
 	}
@@ -73,8 +77,11 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		
 		
 		PayordInfo obj = (PayordInfo) o;		
-		return (codOwner	  == obj.codOwner &&
-				codStore 	  == obj.codStore &&
-				codPayPartner == obj.codPayPartner);
+		return (codOwner	  == obj.codOwner 		&&
+				codPayOrder   == obj.codPayOrder 	&&
+				codPayPartner == obj.codPayPartner	&&
+				codUser 	  == obj.codUser		&&
+				codCustomer   == obj.codCustomer	&&
+				codOrder 	  == obj.codOrder			);
 	}
 }

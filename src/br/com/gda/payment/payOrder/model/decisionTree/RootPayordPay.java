@@ -13,20 +13,18 @@ import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeUsername;
 import br.com.gda.payment.payOrder.model.action.LazyPayordNodeInsert;
-import br.com.gda.payment.payOrder.model.action.LazyPayordNodeSnapshot;
 import br.com.gda.payment.payOrder.model.action.LazyPayordRootSelect;
 import br.com.gda.payment.payOrder.model.action.StdPayordEnforceLChanged;
-import br.com.gda.payment.payOrder.model.checker.PayordCheckExist;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckLangu;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckOrder;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckOwner;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckPaypar;
-import br.com.gda.payment.payOrder.model.checker.PayordCheckStorauth;
-import br.com.gda.payment.payOrder.model.checker.PayordCheckStore;
-import br.com.gda.payment.payOrder.model.checker.PayordCheckWrite;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckUsername;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckPay;
 
-public final class RootPayordInsert extends DeciTreeWriteTemplate<PayordInfo> {
+public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 	
-	public RootPayordInsert(DeciTreeOption<PayordInfo> option) {
+	public RootPayordPay(DeciTreeOption<PayordInfo> option) {
 		super(option);
 	}
 	
@@ -34,13 +32,12 @@ public final class RootPayordInsert extends DeciTreeWriteTemplate<PayordInfo> {
 	
 	@Override protected ModelChecker<PayordInfo> buildDecisionCheckerHook(DeciTreeOption<PayordInfo> option) {
 		final boolean EXIST_ON_DB = true;
-		final boolean DONT_EXIST = false;
 		
 		List<ModelChecker<PayordInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayordInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new PayordCheckWrite();
+		checker = new PayordCheckPay();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -61,7 +58,7 @@ public final class RootPayordInsert extends DeciTreeWriteTemplate<PayordInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new PayordCheckStore(checkerOption);
+		checker = new PayordCheckUsername(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -74,16 +71,9 @@ public final class RootPayordInsert extends DeciTreeWriteTemplate<PayordInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST;	
-		checker = new PayordCheckExist(checkerOption);
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new PayordCheckOrder(checkerOption);
 		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new PayordCheckStorauth(checkerOption);
-		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -92,17 +82,15 @@ public final class RootPayordInsert extends DeciTreeWriteTemplate<PayordInfo> {
 	
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
-		//TODO: ID obrigatorio ?
+
 		ActionStd<PayordInfo> enforceLChanged = new StdPayordEnforceLChanged(option);	
 		ActionLazy<PayordInfo> enforceLChangedBy = new LazyPayordMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> insert = new LazyPayordNodeInsert(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> snapshot = new LazyPayordNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> select = new LazyPayordRootSelect(option.conn, option.schemaName);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(insert);
-		insert.addPostAction(snapshot);
-		snapshot.addPostAction(select);
+		insert.addPostAction(select);
 		
 		actions.add(enforceLChanged);		
 		return actions;

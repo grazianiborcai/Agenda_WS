@@ -3,7 +3,6 @@ package br.com.gda.payment.payOrder.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.List;
 
@@ -95,34 +94,38 @@ public final class PayordUpdateSingle implements DaoStmt<PayordInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<PayordInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PayordInfo recordInfo) throws SQLException {
-			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
-			
-			
 			int i = 1;
-			stmt.setString(i++, recordInfo.recordMode);			
 			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codSnapshot) == null) {
+			if (DaoFormatter.boxNumber(recordInfo.codPayPartner) == null) {
 				stmt.setNull(i++, Types.INTEGER);
 			} else {
-				stmt.setLong(i++, recordInfo.codSnapshot);
+				stmt.setInt(i++, recordInfo.codPayPartner);
 			}
 			
 			
-			stmt.setTimestamp(i++, lastChanged);
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.lastChangedBy) == null) {
+			if (DaoFormatter.boxNumber(recordInfo.codCustomer) == null) {
 				stmt.setNull(i++, Types.INTEGER);
 			} else {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
+				stmt.setLong(i++, recordInfo.codCustomer);
 			}
 			
 			
-			stmt.setString(i++, recordInfo.idPayPartnerStore);
+			if (DaoFormatter.boxNumber(recordInfo.codOrder) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codOrder);
+			}
+			
+			
+			if (DaoFormatter.boxNumber(recordInfo.codUser) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codUser);
+			}
+			
+			
+			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
+			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.createdOn));
 			
 			
 			return stmt;

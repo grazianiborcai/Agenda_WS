@@ -31,16 +31,16 @@ final class PayordWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case PayordDbTableColumn.COL_COD_STORE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
-					break;
-					
 				case PayordDbTableColumn.COL_COD_PAY_PARTNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayPartner));
 					break;
 					
-				case PayordDbTableColumn.COL_RECORD_MODE :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
+				case PayordDbTableColumn.COL_COD_ORDER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
+					break;
+					
+				case PayordDbTableColumn.COL_COD_USER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 			}
 		}		

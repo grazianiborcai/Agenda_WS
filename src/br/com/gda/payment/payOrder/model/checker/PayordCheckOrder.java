@@ -2,21 +2,21 @@ package br.com.gda.payment.payOrder.model.checker;
 
 import java.util.List;
 
+import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.business.order.model.checker.OrderCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.payment.payOrder.info.PayordInfo;
-import br.com.gda.security.storeAuthorization.info.StorauthInfo;
-import br.com.gda.security.storeAuthorization.model.checker.StorauthCheckExist;
 
-public final class PayordCheckStorauth implements ModelChecker<PayordInfo> {
+public final class PayordCheckOrder implements ModelChecker<PayordInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StorauthInfo> checker;
+	private ModelChecker<OrderInfo> checker;
 	
 	
-	public PayordCheckStorauth(ModelCheckerOption option) {
-		checker = new StorauthCheckExist(option);
+	public PayordCheckOrder(ModelCheckerOption option) {
+		checker = new OrderCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class PayordCheckStorauth implements ModelChecker<PayordInfo> {
 	
 	
 	@Override public boolean check(PayordInfo recordInfo) {
-		return checker.check(StorauthInfo.copyFrom(recordInfo));
+		return checker.check(OrderInfo.copyFrom(recordInfo));
 	}
 
 	

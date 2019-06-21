@@ -20,9 +20,9 @@ import br.com.gda.payment.payOrder.model.checker.PayordCheckExist;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckLangu;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckOwner;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckPaypar;
-import br.com.gda.payment.payOrder.model.checker.PayordCheckStorauth;
-import br.com.gda.payment.payOrder.model.checker.PayordCheckStore;
-import br.com.gda.payment.payOrder.model.checker.PayordCheckWrite;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckStorauth_;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckStore_;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckPay;
 
 public final class RootPayordUpdate extends DeciTreeWriteTemplate<PayordInfo> {
 	
@@ -40,7 +40,7 @@ public final class RootPayordUpdate extends DeciTreeWriteTemplate<PayordInfo> {
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();	
-		checker = new PayordCheckWrite();
+		checker = new PayordCheckPay();
 		queue.add(checker);		
 			
 		checkerOption = new ModelCheckerOption();
@@ -61,14 +61,14 @@ public final class RootPayordUpdate extends DeciTreeWriteTemplate<PayordInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new PayordCheckStore(checkerOption);
+		checker = new PayordCheckStore_(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new PayordCheckStore(checkerOption);
+		checker = new PayordCheckStore_(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -89,7 +89,7 @@ public final class RootPayordUpdate extends DeciTreeWriteTemplate<PayordInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new PayordCheckStorauth(checkerOption);
+		checker = new PayordCheckStorauth_(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<PayordInfo>(queue);

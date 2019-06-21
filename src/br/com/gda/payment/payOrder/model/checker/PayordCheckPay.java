@@ -7,9 +7,9 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckWrite extends ModelCheckerTemplateSimple<PayordInfo> {
+public final class PayordCheckPay extends ModelCheckerTemplateSimple<PayordInfo> {
 
-	public PayordCheckWrite() {
+	public PayordCheckPay() {
 		super();
 	}
 	
@@ -17,7 +17,7 @@ public final class PayordCheckWrite extends ModelCheckerTemplateSimple<PayordInf
 	
 	@Override protected boolean checkHook(PayordInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner    	<= 0	||
-			   recordInfo.codStore    	<= 0 	||
+			   recordInfo.codOrder    	<= 0 	||
 			   recordInfo.codPayPartner <= 0 	||
 			   recordInfo.codLanguage 	== null	||
 			   recordInfo.username    	== null		)			

@@ -19,7 +19,7 @@ import br.com.gda.payment.payOrder.model.action.LazyPayordMergePaypar;
 import br.com.gda.payment.payOrder.model.action.StdPayordMergeToSelect;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckOwner;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckRead;
-import br.com.gda.payment.payOrder.model.checker.PayordCheckStore;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckStore_;
 
 public final class RootPayordSelect implements DeciTree<PayordInfo> {
 	private DeciTree<PayordInfo> tree;
@@ -59,7 +59,7 @@ public final class RootPayordSelect implements DeciTree<PayordInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new PayordCheckStore(checkerOption);
+		checker = new PayordCheckStore_(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

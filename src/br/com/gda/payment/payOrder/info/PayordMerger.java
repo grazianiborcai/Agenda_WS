@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.PayparInfo;
 import br.com.gda.info.InfoMerger;
-import br.com.gda.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	
@@ -17,20 +16,6 @@ public final class PayordMerger {
 	
 	public static List<PayordInfo> mergeWithPaypar(List<PayparInfo> sourceOnes, List<PayordInfo> sourceTwos) {
 		InfoMerger<PayordInfo, PayparInfo> merger = new PayordMergerPaypar();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}	
-	
-	
-	
-	public static PayordInfo mergeWithStoparnap(StoparnapInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger<PayordInfo, StoparnapInfo> merger = new PayordMergerStoparnap();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<PayordInfo> mergeWithStoparnap(List<StoparnapInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger<PayordInfo, StoparnapInfo> merger = new PayordMergerStoparnap();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
 	

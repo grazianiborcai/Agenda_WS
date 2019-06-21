@@ -38,7 +38,7 @@ final class PayordVisiMergeUsername implements InfoMergerVisitorV2<PayordInfo, U
 	
 	
 	private PayordInfo merge(UsernameInfo sourceOne, PayordInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
+		sourceTwo.codUser = sourceOne.codUser;
 		return sourceTwo;
 	}
 	
