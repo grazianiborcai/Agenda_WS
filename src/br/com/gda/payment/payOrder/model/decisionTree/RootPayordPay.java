@@ -11,10 +11,11 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
+import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceLChanged;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeUsername;
 import br.com.gda.payment.payOrder.model.action.LazyPayordNodeInsert;
 import br.com.gda.payment.payOrder.model.action.LazyPayordRootSelect;
-import br.com.gda.payment.payOrder.model.action.StdPayordEnforceLChanged;
+import br.com.gda.payment.payOrder.model.action.StdPayordEnforceCreatedOn;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckLangu;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckOrder;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckOwner;
@@ -83,16 +84,18 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PayordInfo> enforceLChanged = new StdPayordEnforceLChanged(option);	
-		ActionLazy<PayordInfo> enforceLChangedBy = new LazyPayordMergeUsername(option.conn, option.schemaName);
+		ActionStd<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
+		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> enforceCodUser = new LazyPayordMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> insert = new LazyPayordNodeInsert(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> select = new LazyPayordRootSelect(option.conn, option.schemaName);		
 		
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(insert);
+		enforceCreatedOn.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceCodUser);
+		enforceCodUser.addPostAction(insert);
 		insert.addPostAction(select);
 		
-		actions.add(enforceLChanged);		
+		actions.add(enforceCreatedOn);		
 		return actions;
 	}
 }
