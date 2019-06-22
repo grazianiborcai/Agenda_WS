@@ -3,6 +3,7 @@ package br.com.gda.payment.customerPartner.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.payment.setupPartner.info.SetuparInfo;
@@ -16,6 +17,7 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 	public long codUser;
 	public long codUserSnapshot;
 	public SetuparInfo setuparData;
+	public UserapInfo userapData;
 	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
@@ -34,6 +36,7 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 		setuparData = DefaultValue.object();
+		userapData = DefaultValue.object();
 	}
 	
 	
@@ -53,7 +56,28 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		CusparInfo deepCopy = (CusparInfo) super.clone();		
 		deepCopy.lastChanged = lastChanged;		
+		
+		deepCopy.setuparData = cloneSetup(deepCopy.setuparData);
+		deepCopy.userapData = cloneUserap(deepCopy.userapData);
 		return deepCopy;
+	}
+	
+	
+	
+	private SetuparInfo cloneSetup(SetuparInfo setupar) throws CloneNotSupportedException {
+		if (setupar == null)
+			return null;
+		
+		return (SetuparInfo) setupar.clone();
+	}
+	
+	
+	
+	private UserapInfo cloneUserap(UserapInfo userap) throws CloneNotSupportedException {
+		if (userap == null)
+			return null;
+		
+		return (UserapInfo) userap.clone();
 	}
 	
 	
