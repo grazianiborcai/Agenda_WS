@@ -46,9 +46,9 @@ final class UserapVisiMergeAddresnap implements InfoMergerVisitorV2<UserapInfo, 
 	
 	
 	@Override public boolean shouldWrite(AddresnapInfo sourceOne, UserapInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner 		&& 
-				sourceOne.codUser		== sourceTwo.codUser  		&&
-				sourceOne.codSnapshot	== sourceTwo.codSnapshot		);
+		return (sourceOne.codOwner 			== sourceTwo.codOwner 		&& 
+				sourceOne.codUser			== sourceTwo.codUser  		&&
+				sourceOne.codUserSnapshot	== sourceTwo.codSnapshot		);
 	}	
 	
 	

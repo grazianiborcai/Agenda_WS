@@ -3,6 +3,7 @@ package br.com.gda.business.userSnapshot.model.action;
 import java.sql.Connection;
 import java.util.List;
 
+import br.com.gda.business.addressSnapshot.info.AddresnapCopier;
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.addressSnapshot.model.decisionTree.RootAddresnapSelect;
 import br.com.gda.business.userSnapshot.info.UserapInfo;
@@ -21,6 +22,12 @@ final class VisiUserapMergeAddresnap extends ActionVisitorTemplateMergeV2<Userap
 	@Override protected Class<? extends DeciTree<AddresnapInfo>> getTreeClassHook() {
 		return RootAddresnapSelect.class;
 	}
+	
+	
+	
+	@Override protected List<AddresnapInfo> toActionClassHook(List<UserapInfo> recordInfos) {
+		return AddresnapCopier.copyFromUserapKey(recordInfos);
+	}	
 	
 	
 	

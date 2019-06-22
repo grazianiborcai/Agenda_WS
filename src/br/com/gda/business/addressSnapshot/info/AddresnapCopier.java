@@ -4,6 +4,7 @@ package br.com.gda.business.addressSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
+import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
 
@@ -33,4 +34,18 @@ public final class AddresnapCopier {
 		InfoCopier<AddresnapInfo, EmpnapInfo> copier = new AddresnapCopyEmpnapKey();
 		return copier.makeCopy(sources);
 	}
+	
+	
+	
+	public static AddresnapInfo copyFromUserapKey(UserapInfo source) {
+		InfoCopier<AddresnapInfo, UserapInfo> copier = new AddresnapCopyUserapKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddresnapInfo> copyFromUserapKey(List<UserapInfo> sources) {
+		InfoCopier<AddresnapInfo, UserapInfo> copier = new AddresnapCopyUserapKey();
+		return copier.makeCopy(sources);
+	}	
 }

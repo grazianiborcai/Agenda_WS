@@ -3,6 +3,7 @@ package br.com.gda.business.userSnapshot.model.action;
 import java.sql.Connection;
 import java.util.List;
 
+import br.com.gda.business.personSnapshot.info.PersonapCopier;
 import br.com.gda.business.personSnapshot.info.PersonapInfo;
 import br.com.gda.business.personSnapshot.model.decisionTree.RootPersonapSelect;
 import br.com.gda.business.userSnapshot.info.UserapInfo;
@@ -21,6 +22,12 @@ final class VisiUserapMergePersonap extends ActionVisitorTemplateMergeV2<UserapI
 	@Override protected Class<? extends DeciTree<PersonapInfo>> getTreeClassHook() {
 		return RootPersonapSelect.class;
 	}
+	
+	
+	
+	@Override protected List<PersonapInfo> toActionClassHook(List<UserapInfo> recordInfos) {
+		return PersonapCopier.copyFromUserapKey(recordInfos);
+	}	
 	
 	
 	

@@ -59,10 +59,6 @@ public final class PhonapSelectSingle implements DaoStmt<PhonapInfo> {
 	
 	
 	
-	
-	
-	
-	
 	private void buildStmt() {
 		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}

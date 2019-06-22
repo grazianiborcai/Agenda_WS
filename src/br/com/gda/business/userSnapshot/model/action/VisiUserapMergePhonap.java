@@ -3,6 +3,7 @@ package br.com.gda.business.userSnapshot.model.action;
 import java.sql.Connection;
 import java.util.List;
 
+import br.com.gda.business.phoneSnapshot.info.PhonapCopier;
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.business.phoneSnapshot.model.decisionTree.RootPhonapSelect;
 import br.com.gda.business.userSnapshot.info.UserapInfo;
@@ -21,6 +22,12 @@ final class VisiUserapMergePhonap extends ActionVisitorTemplateMergeV2<UserapInf
 	@Override protected Class<? extends DeciTree<PhonapInfo>> getTreeClassHook() {
 		return RootPhonapSelect.class;
 	}
+	
+	
+	
+	@Override protected List<PhonapInfo> toActionClassHook(List<UserapInfo> recordInfos) {
+		return PhonapCopier.copyFromUserapKey(recordInfos);
+	}	
 	
 	
 	

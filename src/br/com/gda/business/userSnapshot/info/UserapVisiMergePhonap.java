@@ -46,9 +46,9 @@ final class UserapVisiMergePhonap implements InfoMergerVisitorV2<UserapInfo, Pho
 
 	
 	@Override public boolean shouldWrite(PhonapInfo sourceOne, UserapInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner && 
-				sourceOne.codUser  		== sourceTwo.codUser  &&
-				sourceOne.codSnapshot	== sourceTwo.codSnapshot		);
+		return (sourceOne.codOwner 			== sourceTwo.codOwner 		&& 
+				sourceOne.codUser  			== sourceTwo.codUser  		&&
+				sourceOne.codUserSnapshot	== sourceTwo.codSnapshot		);
 	}		
 	
 	
