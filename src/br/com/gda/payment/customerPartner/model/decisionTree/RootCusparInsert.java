@@ -1,5 +1,6 @@
 package br.com.gda.payment.customerPartner.model.decisionTree;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparEnforceLChanged;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparInsert;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparMergeUser;
+import br.com.gda.payment.customerPartner.model.action.LazyCusparNodeInsertMoip;
 import br.com.gda.payment.customerPartner.model.action.StdCusparMergeUsername;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckInsert;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckLangu;
@@ -63,10 +65,12 @@ public final class RootCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 		ActionLazy<CusparInfo> mergeUser = new LazyCusparMergeUser(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> enforceLChanged = new LazyCusparEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<CusparInfo> insert = new LazyCusparInsert(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> insertMoip = new LazyCusparNodeInsertMoip(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(mergeUser);
 		mergeUser.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(insert);
+		insert.addPostAction(insertMoip);
 		
 		actions.add(mergeUsername);
 		return actions;

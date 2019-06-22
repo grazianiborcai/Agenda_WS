@@ -110,7 +110,7 @@ public final class SetuparSelectSingle implements DaoStmt<SetuparInfo> {
 				SetuparInfo dataInfo = new SetuparInfo();
 				dataInfo.codPayPartner = stmtResult.getInt(SetuparDbTableColumn.COL_COD_PAY_PARTNER);
 				dataInfo.key = stmtResult.getString(SetuparDbTableColumn.COL_KEY);
-				dataInfo.key = stmtResult.getString(SetuparDbTableColumn.COL_TOKEN);				
+				dataInfo.token = stmtResult.getString(SetuparDbTableColumn.COL_TOKEN);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
