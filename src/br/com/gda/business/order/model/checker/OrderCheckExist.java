@@ -7,6 +7,7 @@ import br.com.gda.business.order.model.action.LazyOrderSelect;
 import br.com.gda.business.order.model.action.StdOrderEnforceKey;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
@@ -23,9 +24,12 @@ public final class OrderCheckExist extends ModelCheckerTemplateAction<OrderInfo>
 	@Override protected ActionStd<OrderInfo> buildActionHook(OrderInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<OrderInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<OrderInfo> actionSelect = new StdOrderEnforceKey(option);
-		actionSelect.addPostAction(new LazyOrderSelect(conn, schemaName));
-		return actionSelect;
+		ActionStd<OrderInfo> enforceKey = new StdOrderEnforceKey(option);	
+		ActionLazy<OrderInfo> select = new LazyOrderSelect(conn, schemaName);
+		
+		enforceKey.addPostAction(select);
+		
+		return enforceKey;
 	}
 	
 	
@@ -43,18 +47,18 @@ public final class OrderCheckExist extends ModelCheckerTemplateAction<OrderInfo>
 	
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.CART_ALREADY_EXIST)
-			return SystemMessage.CART_ALREADY_EXIST;
+		if (makeFailCodeHook(checkerResult) == SystemCode.ORDER_ALREADY_EXIST)
+			return SystemMessage.ORDER_ALREADY_EXIST;
 		
-		return SystemMessage.CART_NOT_FOUND;
+		return SystemMessage.ORDER_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.CART_ALREADY_EXIST;	
+			return SystemCode.ORDER_ALREADY_EXIST;	
 		
-		return SystemCode.CART_NOT_FOUND;
+		return SystemCode.ORDER_NOT_FOUND;
 	}
 }

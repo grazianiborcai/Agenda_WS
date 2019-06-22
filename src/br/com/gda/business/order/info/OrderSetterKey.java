@@ -27,7 +27,7 @@ public final class OrderSetterKey implements InfoSetter<OrderInfo> {
 	private OrderInfo setKey(OrderInfo recordInfo) {
 		OrderInfo result = new OrderInfo();
 		result.codOwner = recordInfo.codOwner;
-		result.codUser = recordInfo.codUser;
+		result.codOrder = recordInfo.codOrder;
 		result.codLanguage = recordInfo.codLanguage;
 		result.username = recordInfo.username;
 		return result;
