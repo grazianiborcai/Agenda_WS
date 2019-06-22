@@ -26,7 +26,9 @@ final class UserVisiMergeToUpdate implements InfoMergerVisitorV2<UserInfo, UserI
 		UserInfo result = makeClone(sourceTwo);	
 		result.codPerson = sourceOne.codPerson;
 		result.username = sourceOne.username;
+		result.codSnapshot = sourceOne.codSnapshot;
 		result.codUserCategory = sourceOne.codUserCategory;
+		result.codAuthGroup = sourceOne.codAuthGroup;
 		result.codLanguage = sourceOne.codLanguage;
 		return result;
 	}

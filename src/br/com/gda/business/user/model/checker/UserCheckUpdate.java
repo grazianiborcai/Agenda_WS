@@ -19,8 +19,7 @@ public final class UserCheckUpdate extends ModelCheckerTemplateSimple<UserInfo> 
 		if ( recordInfo.codOwner 		<= 0	|| 
 			 recordInfo.codUser			<= 0	||
 			 recordInfo.username		== null	||
-			 recordInfo.codLanguage		== null ||
-			 recordInfo.codAuthGroup	== null 	)
+			 recordInfo.codLanguage		== null 	)
 			return super.FAILED;
 		
 		

@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.business.user.model.action.LazyUserInsertPerson;
+import br.com.gda.business.user.model.action.LazyUserEnforceLChanged;
+import br.com.gda.business.user.model.action.LazyUserMergeUsername;
 import br.com.gda.business.user.model.action.LazyUserUpdate;
-import br.com.gda.business.user.model.action.StdUserEnforcePersonKey;
-import br.com.gda.business.user.model.checker.UserCheckDummy;
+import br.com.gda.business.user.model.action.StdUserMergeToUpdate;
+import br.com.gda.business.user.model.checker.UserCheckUpdate;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -15,9 +16,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeUserInsertPerson extends DeciTreeWriteTemplate<UserInfo> {
+public final class NodeUserUpdate extends DeciTreeWriteTemplate<UserInfo> {
 	
-	public NodeUserInsertPerson(DeciTreeOption<UserInfo> option) {
+	public NodeUserUpdate(DeciTreeOption<UserInfo> option) {
 		super(option);
 	}
 	
@@ -27,7 +28,7 @@ public final class NodeUserInsertPerson extends DeciTreeWriteTemplate<UserInfo> 
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserInfo> checker;	
 		
-		checker = new UserCheckDummy();
+		checker = new UserCheckUpdate();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -37,15 +38,17 @@ public final class NodeUserInsertPerson extends DeciTreeWriteTemplate<UserInfo> 
 	
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
-		
-		ActionStd<UserInfo> enforcePersonKey = new StdUserEnforcePersonKey(option);	
-		ActionLazy<UserInfo> insertPerson = new LazyUserInsertPerson(option.conn, option.schemaName);
+
+		ActionStd<UserInfo> mergeToUpdate = new StdUserMergeToUpdate(option);
+		ActionLazy<UserInfo> enforceLChanged = new LazyUserEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserMergeUsername(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> updateUser = new LazyUserUpdate(option.conn, option.schemaName);
 		
-		enforcePersonKey.addPostAction(insertPerson);
-		insertPerson.addPostAction(updateUser);
+		mergeToUpdate.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(updateUser);
 		
-		actions.add(enforcePersonKey);	
+		actions.add(mergeToUpdate);
 		return actions;
 	}
 }

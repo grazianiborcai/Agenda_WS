@@ -50,7 +50,7 @@ public final class NodeUserDelete extends DeciTreeWriteTemplate<UserInfo> {
 	
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
-		
+		//TODO: permitir eliminar Owner e Store Manager ?
 		ActionStd<UserInfo> mergeToDelete = new StdUserMergeToDelete(option);	
 		ActionLazy<UserInfo> enforceLChanged = new LazyUserEnforceLChanged(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> updateUser = new LazyUserUpdate(option.conn, option.schemaName);
