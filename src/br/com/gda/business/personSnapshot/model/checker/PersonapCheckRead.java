@@ -19,9 +19,9 @@ public final class PersonapCheckRead extends ModelCheckerTemplateSimple<Personap
 		if ( recordInfo.codOwner  	 <= 0 ||
 			 recordInfo.codSnapshot  <= 0 ||
 			 recordInfo.codPerson 	 <= 0		)			
-			return FAILED;		
+			return super.FAILED;		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
