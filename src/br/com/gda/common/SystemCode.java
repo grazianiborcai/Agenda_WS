@@ -441,4 +441,10 @@ public final class SystemCode {
 	public static final int ORDER_ITEM_ALREADY_EXIST 					= 4002;
 	public static final int ORDER_ITEM_NOT_FOUND 						= 4003;
 	public static final int ORDER_STATUS_CHANGE_NOT_ALLOWED				= 4004;
+	public static final int ORDER_ALREADY_EXIST							= 4005;
+	public static final int ORDER_NOT_FOUND								= 4006;
+	
+	//Pay-Order
+	public static final int PAY_ORDER_STATUS_NOT_ALLOWED				= 4050;
+	public static final int PAY_ORDER_DIF_USER							= 4051;
 }

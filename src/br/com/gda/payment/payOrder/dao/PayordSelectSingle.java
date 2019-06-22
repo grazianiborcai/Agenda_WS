@@ -126,6 +126,10 @@ public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codUser = stmtResult.getLong(PayordDbTableColumn.COL_COD_USER);
 				
+				stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_CUSTOMER);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPayCustomer = stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_CUSTOMER);
+				
 				Timestamp lastChanged = stmtResult.getTimestamp(PayordDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();

@@ -12,6 +12,7 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_ORDER = "cod_order";
 	public static final String COL_COD_OWNER = "cod_owner";	
+	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
 	public static final String COL_COD_PAY_ORDER = "cod_pay_order";
 	public static final String COL_COD_USER = "cod_user";
@@ -101,6 +102,14 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_CREATED_ON;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PAY_CUSTOMER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

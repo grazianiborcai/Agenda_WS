@@ -114,6 +114,13 @@ public final class PayordInsertSingle implements DaoStmt<PayordInfo> {
 			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.createdOn));
 			
 			
+			if (DaoFormatter.boxNumber(recordInfo.codPayCustomer) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codPayCustomer);
+			}
+			
+			
 			return stmt;
 		}		
 	}

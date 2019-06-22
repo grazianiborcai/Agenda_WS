@@ -12,9 +12,9 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceLChanged;
+import br.com.gda.payment.payOrder.model.action.LazyPayordMergeOrder;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeUsername;
-import br.com.gda.payment.payOrder.model.action.LazyPayordNodeInsert;
-import br.com.gda.payment.payOrder.model.action.LazyPayordRootSelect;
+import br.com.gda.payment.payOrder.model.action.LazyPayordNodePay;
 import br.com.gda.payment.payOrder.model.action.StdPayordEnforceCreatedOn;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckLangu;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckOrder;
@@ -75,7 +75,7 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new PayordCheckOrder(checkerOption);
 		queue.add(checker);
-		
+		//TODO: usuario pagador = usuario da ordem
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -87,13 +87,13 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		ActionStd<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
 		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> enforceCodUser = new LazyPayordMergeUsername(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> insert = new LazyPayordNodeInsert(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> select = new LazyPayordRootSelect(option.conn, option.schemaName);		
+		ActionLazy<PayordInfo> mergeOrder = new LazyPayordMergeOrder(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> nodePay = new LazyPayordNodePay(option.conn, option.schemaName);		
 		
 		enforceCreatedOn.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceCodUser);
-		enforceCodUser.addPostAction(insert);
-		insert.addPostAction(select);
+		enforceCodUser.addPostAction(mergeOrder);
+		mergeOrder.addPostAction(nodePay);
 		
 		actions.add(enforceCreatedOn);		
 		return actions;

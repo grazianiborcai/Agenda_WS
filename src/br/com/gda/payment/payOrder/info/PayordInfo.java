@@ -9,12 +9,16 @@ import br.com.gda.info.InfoRecord;
 public final class PayordInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
+	public long codPayCustomer;
 	public long codUser;
 	public long codCustomer;
 	public long codOrder;
+	public long codOrderUser;
 	public int codPayPartner;
 	public String txtPayPartner;
 	public String description;
+	public String codOrderStatus;
+	public String txtOrderStatus;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public String codLanguage;
@@ -25,11 +29,13 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public PayordInfo() {
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
+		codPayCustomer = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codOrder = DefaultValue.number();
+		codOrderUser = DefaultValue.number();
 	}
 	
 	
@@ -55,12 +61,13 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner 		^ (codOwner 	 >>> 32));
-		result = result * 31 + (int) (codPayOrder 	^ (codPayOrder 	 >>> 32));
-		result = result * 31 + (int) (codPayPartner ^ (codPayPartner >>> 32));
-		result = result * 31 + (int) (codUser 		^ (codUser 		 >>> 32));
-		result = result * 31 + (int) (codCustomer 	^ (codCustomer 	 >>> 32));
-		result = result * 31 + (int) (codOrder 		^ (codOrder 	 >>> 32));
+		result = result * 31 + (int) (codOwner 		 ^ (codOwner 	 	>>> 32));
+		result = result * 31 + (int) (codPayOrder 	 ^ (codPayOrder 	>>> 32));
+		result = result * 31 + (int) (codPayPartner  ^ (codPayPartner 	>>> 32));
+		result = result * 31 + (int) (codUser 		 ^ (codUser 		>>> 32));
+		result = result * 31 + (int) (codCustomer 	 ^ (codCustomer 	>>> 32));
+		result = result * 31 + (int) (codOrder 		 ^ (codOrder 	 	>>> 32));
+		result = result * 31 + (int) (codPayCustomer ^ (codPayCustomer 	>>> 32));
 		
 		return result;
 	}
@@ -77,11 +84,12 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		
 		
 		PayordInfo obj = (PayordInfo) o;		
-		return (codOwner	  == obj.codOwner 		&&
-				codPayOrder   == obj.codPayOrder 	&&
-				codPayPartner == obj.codPayPartner	&&
-				codUser 	  == obj.codUser		&&
-				codCustomer   == obj.codCustomer	&&
-				codOrder 	  == obj.codOrder			);
+		return (codOwner	   == obj.codOwner 		&&
+				codPayOrder    == obj.codPayOrder 	&&
+				codPayPartner  == obj.codPayPartner	&&
+				codUser 	   == obj.codUser		&&
+				codCustomer    == obj.codCustomer	&&
+				codOrder 	   == obj.codOrder		&&
+				codPayCustomer == obj.codPayCustomer	);
 	}
 }
