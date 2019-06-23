@@ -355,6 +355,8 @@ public final class SystemCode {
 	public static final int PAY_CUS_PAY_PARTNER_IS_FILLED				= 2411;
 	public static final int PAY_CUS_PAY_PARTNER_IS_BLANK				= 2412;
 	public static final int PAY_CUS_PAY_PARTNER_NOT_FOUND				= 2413;
+	public static final int PAY_CUS_ADDRESS_DIF_USER					= 2414;
+	public static final int PAY_CUS_PHONE_DIF_USER						= 2415;
 	
 	// Company
 	public static final int COMPANY_TECH_FIELD_SHOULD_BE_EMPTY			= 2500;

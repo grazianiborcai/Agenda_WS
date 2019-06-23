@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.payment.customerPartner.info.CusparCopier;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.customerPartner.model.decisionTree.RootCusparInsert;
 import br.com.gda.payment.payOrder.info.PayordInfo;
@@ -20,6 +21,12 @@ final class VisiPayordInsertCuspar extends ActionVisitorTemplateAction<PayordInf
 	
 	@Override protected ActionStd<CusparInfo> getActionHook(DeciTreeOption<CusparInfo> option) {
 		return new RootCusparInsert(option).toAction();
+	}
+	
+	
+	
+	@Override protected List<CusparInfo> toActionClassHook(List<PayordInfo> baseInfos) {
+		return CusparCopier.copyFromPayord(baseInfos);
 	}
 	
 	

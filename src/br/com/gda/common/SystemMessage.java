@@ -439,6 +439,7 @@ public final class SystemMessage {
 	
 		
 	// Pay-Customer
+	public static final String PAY_CUS_ADDRESS_DIF_USER = "Address does not belong to Payer user";
 	public static final String PAY_CUS_ADDRESS_IS_BLANK = "Pay-Cutomer's address reference is blank";
 	public static final String PAY_CUS_ADDRESS_IS_FILLED = "Pay-Cutomer's address reference should be blank";
 	public static final String PAY_CUS_ALREADY_EXIST = "Pay-Customer's data already exist on DB";		
@@ -452,7 +453,8 @@ public final class SystemMessage {
 	public static final String PAY_CUS_USER_NOT_FOUND = "Pay-Customer-User's data not found on DB";
 	public static final String PAY_CUS_PAY_PARTNER_IS_BLANK = "Pay-Cutomer's pay-partner reference is blank";
 	public static final String PAY_CUS_PAY_PARTNER_IS_FILLED = "Pay-Cutomer's pay-partner reference should be blank";
-	public static final String PAY_CUS_PAY_PARTNER_NOT_FOUND = "Pay-Cutomer's pay-partner not foundk";
+	public static final String PAY_CUS_PAY_PARTNER_NOT_FOUND = "Pay-Cutomer's pay-partner not foundk";	
+	public static final String PAY_CUS_PHONE_DIF_USER = "Phone does not belong to Payer user";
 
 	
 	
@@ -477,11 +479,11 @@ public final class SystemMessage {
 	
 	
 	
-	// Pay Partner-Owner
+	// Pay Partner-Owner	
 	public static final String PAY_PARTNER_OWNER_ALREADY_EXIST = "Pay Partner-Owner's data already exist on DB";
 	public static final String PAY_PARTNER_OWNER_IS_NULL = "Pay-Partner-Owner's country is blank";
 	public static final String PAY_PARTNER_OWNER_IS_FILLED = "Pay-Partner-Owner's country is not blank";	
-	public static final String PAY_PARTNER_OWNER_NOT_FOUND = "Pay Partner-Owner's data not found on DB";
+	public static final String PAY_PARTNER_OWNER_NOT_FOUND = "Pay Partner-Owner's data not found on DB";	
 	
 	
 	
@@ -575,5 +577,4 @@ public final class SystemMessage {
 	public static final String PAY_ORDER_DIF_USER = "Payer and Order creator does not belong to the same user";
 	public static final String PAY_ORDER_ADDRESS_DIF_USER = "Address does not belong to Payer user";
 	public static final String PAY_ORDER_PHONE_DIF_USER = "Phone does not belong to Payer user";
-
 }

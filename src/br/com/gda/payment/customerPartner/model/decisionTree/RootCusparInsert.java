@@ -5,10 +5,11 @@ import java.util.List;
 
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparEnforceLChanged;
-import br.com.gda.payment.customerPartner.model.action.LazyCusparInsert;
+import br.com.gda.payment.customerPartner.model.action.LazyCusparMergeAddresnap;
+import br.com.gda.payment.customerPartner.model.action.LazyCusparMergePhonap;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparMergeUser;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparMergeUserap;
-import br.com.gda.payment.customerPartner.model.action.LazyCusparNodeInsertMoip;
+import br.com.gda.payment.customerPartner.model.action.LazyCusparNodeInsert;
 import br.com.gda.payment.customerPartner.model.action.StdCusparMergeUsername;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckInsert;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckLangu;
@@ -64,15 +65,17 @@ public final class RootCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 		ActionStd<CusparInfo> mergeUsername = new StdCusparMergeUsername(option);
 		ActionLazy<CusparInfo> mergeUser = new LazyCusparMergeUser(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> mergeUserSnapshot = new LazyCusparMergeUserap(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> mergeAddressSnapshot = new LazyCusparMergeAddresnap(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> mergePhoneSnapshot = new LazyCusparMergePhonap(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> enforceLChanged = new LazyCusparEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<CusparInfo> insert = new LazyCusparInsert(option.conn, option.schemaName);
-		ActionLazy<CusparInfo> insertMoip = new LazyCusparNodeInsertMoip(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> insert = new LazyCusparNodeInsert(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(mergeUser);
 		mergeUser.addPostAction(mergeUserSnapshot);
-		mergeUserSnapshot.addPostAction(enforceLChanged);		
+		mergeUserSnapshot.addPostAction(mergeAddressSnapshot);		
+		mergeAddressSnapshot.addPostAction(mergePhoneSnapshot);	
+		mergePhoneSnapshot.addPostAction(enforceLChanged);			
 		enforceLChanged.addPostAction(insert);
-		insert.addPostAction(insertMoip);
 		
 		actions.add(mergeUsername);
 		return actions;

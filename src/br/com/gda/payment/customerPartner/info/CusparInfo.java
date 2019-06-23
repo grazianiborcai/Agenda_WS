@@ -3,6 +3,8 @@ package br.com.gda.payment.customerPartner.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
+import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
@@ -16,8 +18,14 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 	public long codCustomerSnapshot;
 	public long codUser;
 	public long codUserSnapshot;
+	public long codAddress;
+	public long codAddressSnapshot;
+	public long codPhone;
+	public long codPhoneSnapshot;
 	public SetuparInfo setuparData;
 	public UserapInfo userapData;
+	public AddresnapInfo addresnapData;
+	public PhonapInfo phonapData;
 	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
@@ -37,6 +45,12 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 		recordMode = DefaultValue.recordMode();
 		setuparData = DefaultValue.object();
 		userapData = DefaultValue.object();
+		addresnapData = DefaultValue.object();
+		phonapData = DefaultValue.object();
+		codAddress = DefaultValue.number();
+		codAddressSnapshot = DefaultValue.number();
+		codPhone = DefaultValue.number();
+		codPhoneSnapshot = DefaultValue.number();
 	}
 	
 	
@@ -59,6 +73,8 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 		
 		deepCopy.setuparData = cloneSetup(deepCopy.setuparData);
 		deepCopy.userapData = cloneUserap(deepCopy.userapData);
+		deepCopy.addresnapData = cloneAddresnap(deepCopy.addresnapData);
+		deepCopy.phonapData = clonePhonap(deepCopy.phonapData);
 		return deepCopy;
 	}
 	
@@ -79,6 +95,24 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 		
 		return (UserapInfo) userap.clone();
 	}
+	
+	
+	
+	private AddresnapInfo cloneAddresnap(AddresnapInfo addresnap) throws CloneNotSupportedException {
+		if (addresnap == null)
+			return null;
+		
+		return (AddresnapInfo) addresnap.clone();
+	}	
+	
+	
+	
+	private PhonapInfo clonePhonap(PhonapInfo phonap) throws CloneNotSupportedException {
+		if (phonap == null)
+			return null;
+		
+		return (PhonapInfo) phonap.clone();
+	}	
 	
 	
 	

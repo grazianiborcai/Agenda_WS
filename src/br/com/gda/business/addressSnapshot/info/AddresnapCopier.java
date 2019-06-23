@@ -7,8 +7,23 @@ import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
+import br.com.gda.payment.customerPartner.info.CusparInfo;
 
 public final class AddresnapCopier {	
+	public static AddresnapInfo copyFromCuspar(CusparInfo source) {
+		InfoCopier<AddresnapInfo, CusparInfo> copier = new AddresnapCopyCuspar();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddresnapInfo> copyFromCuspar(List<CusparInfo> sources) {
+		InfoCopier<AddresnapInfo, CusparInfo> copier = new AddresnapCopyCuspar();
+		return copier.makeCopy(sources);
+	}	
+	
+	
+	
 	public static List<AddresnapInfo> copyFromEmpnap(EmpnapInfo source) {
 		InfoCopierOneToMany<AddresnapInfo, EmpnapInfo> copier = new AddresnapCopyEmpnap();
 		return copier.makeCopy(source);

@@ -7,6 +7,7 @@ import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
+import br.com.gda.payment.customerPartner.info.CusparInfo;
 
 public final class PhonapCopier {	
 	public static List<PhonapInfo> copyFromEmpnap(EmpnapInfo source) {
@@ -46,6 +47,20 @@ public final class PhonapCopier {
 	
 	public static List<PhonapInfo> copyFromUserapKey(List<UserapInfo> sources) {
 		InfoCopier<PhonapInfo, UserapInfo> copier = new PhonapCopyUserapKey();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static PhonapInfo copyFromCuspar(CusparInfo source) {
+		InfoCopier<PhonapInfo, CusparInfo> copier = new PhonapCopyCuspar();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhonapInfo> copyFromCuspar(List<CusparInfo> sources) {
+		InfoCopier<PhonapInfo, CusparInfo> copier = new PhonapCopyCuspar();
 		return copier.makeCopy(sources);
 	}
 }

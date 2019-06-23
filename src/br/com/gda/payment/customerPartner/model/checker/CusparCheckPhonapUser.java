@@ -7,39 +7,34 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckWrite extends ModelCheckerTemplateSimple<CusparInfo> {
+public final class CusparCheckPhonapUser extends ModelCheckerTemplateSimple<CusparInfo> {
 
-	public CusparCheckWrite() {
+	public CusparCheckPhonapUser() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CusparInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 			<= 0 	|| 
-			 recordInfo.codPayCustomer 		<= 0 	||			 
-			 recordInfo.codAddress 			<= 0 	||
-			 recordInfo.codAddressSnapshot 	<= 0 	||
-			 recordInfo.codPhone 			<= 0 	||
-			 recordInfo.codPhoneSnapshot 	<= 0 	|| 
-			 recordInfo.username			== null	||
-			 recordInfo.codLanguage			== null		)
-			
+		if (recordInfo.phonapData == null)
 			return super.FAILED;
 		
+		if (recordInfo.phonapData.codUser == recordInfo.codUser)
+			return super.SUCCESS;
 		
-		return super.SUCCESS;
+		
+		return super.FAILED;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.PAY_CUS_PHONE_DIF_USER;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.PAY_CUS_PHONE_DIF_USER;
 	}
 }
