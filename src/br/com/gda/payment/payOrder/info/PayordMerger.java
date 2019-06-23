@@ -2,13 +2,43 @@ package br.com.gda.payment.payOrder.info;
 
 import java.util.List;
 
+import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.masterData.info.PayparInfo;
 import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	
+	public static PayordInfo mergeWithAddress(AddressInfo sourceOne, PayordInfo sourceTwo) {
+		InfoMerger<PayordInfo, AddressInfo> merger = new PayordMergerAddress();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PayordInfo> mergeWithAddress(List<AddressInfo> sourceOnes, List<PayordInfo> sourceTwos) {
+		InfoMerger<PayordInfo, AddressInfo> merger = new PayordMergerAddress();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
+	public static PayordInfo mergeWithPhone(PhoneInfo sourceOne, PayordInfo sourceTwo) {
+		InfoMerger<PayordInfo, PhoneInfo> merger = new PayordMergerPhone();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PayordInfo> mergeWithPhone(List<PhoneInfo> sourceOnes, List<PayordInfo> sourceTwos) {
+		InfoMerger<PayordInfo, PhoneInfo> merger = new PayordMergerPhone();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static PayordInfo mergeWithCuspar(CusparInfo sourceOne, PayordInfo sourceTwo) {
 		InfoMerger<PayordInfo, CusparInfo> merger = new PayordMergerCuspar();		
 		return merger.merge(sourceOne, sourceTwo);

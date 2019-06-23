@@ -12,14 +12,18 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceLChanged;
+import br.com.gda.payment.payOrder.model.action.LazyPayordMergeAddress;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeOrder;
+import br.com.gda.payment.payOrder.model.action.LazyPayordMergePhone;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeUsername;
 import br.com.gda.payment.payOrder.model.action.LazyPayordNodePay;
 import br.com.gda.payment.payOrder.model.action.StdPayordEnforceCreatedOn;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckAddress;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckLangu;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckOrder;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckOwner;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckPaypar;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckPhone;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckUsername;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckPay;
 
@@ -75,6 +79,21 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new PayordCheckOrder(checkerOption);
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new PayordCheckAddress(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new PayordCheckPhone(checkerOption);
+		queue.add(checker);
+		
 		//TODO: usuario pagador = usuario da ordem
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -88,12 +107,16 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> enforceCodUser = new LazyPayordMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> mergeOrder = new LazyPayordMergeOrder(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> mergeAddress = new LazyPayordMergeAddress(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> mergePhone = new LazyPayordMergePhone(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> nodePay = new LazyPayordNodePay(option.conn, option.schemaName);		
 		
 		enforceCreatedOn.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceCodUser);
 		enforceCodUser.addPostAction(mergeOrder);
-		mergeOrder.addPostAction(nodePay);
+		mergeOrder.addPostAction(mergeAddress);
+		mergeAddress.addPostAction(mergePhone);
+		mergePhone.addPostAction(nodePay);
 		
 		actions.add(enforceCreatedOn);		
 		return actions;

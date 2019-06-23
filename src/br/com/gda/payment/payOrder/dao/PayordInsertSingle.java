@@ -121,6 +121,34 @@ public final class PayordInsertSingle implements DaoStmt<PayordInfo> {
 			}
 			
 			
+			if (DaoFormatter.boxNumber(recordInfo.codAddressPay) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codAddressPay);
+			}
+			
+						
+			if (DaoFormatter.boxNumber(recordInfo.codAddressPaySnapshot) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codAddressPaySnapshot);
+			}
+						
+			
+			if (DaoFormatter.boxNumber(recordInfo.codPhonePay) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codPhonePay);
+			}	
+			
+			
+			if (DaoFormatter.boxNumber(recordInfo.codPhonePaySnapshot) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setLong(i++, recordInfo.codPhonePaySnapshot);
+			}				
+			
+			
 			return stmt;
 		}		
 	}

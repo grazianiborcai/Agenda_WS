@@ -447,4 +447,6 @@ public final class SystemCode {
 	//Pay-Order
 	public static final int PAY_ORDER_STATUS_NOT_ALLOWED				= 4050;
 	public static final int PAY_ORDER_DIF_USER							= 4051;
+	public static final int PAY_ORDER_ADDRESS_DIF_USER					= 4052;
+	public static final int PAY_ORDER_PHONE_DIF_USER					= 4053;
 }

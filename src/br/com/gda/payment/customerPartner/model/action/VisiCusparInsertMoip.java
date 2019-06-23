@@ -21,7 +21,7 @@ final class VisiCusparInsertMoip implements ActionVisitorAction<CusparInfo> {
 		
 		for (CusparInfo eachRecord : recordInfos) {
 			Moip setup = setSetup(eachRecord);
-
+			
 		}
 		
 		

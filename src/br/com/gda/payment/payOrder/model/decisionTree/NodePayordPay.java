@@ -12,8 +12,10 @@ import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.action.LazyPayordInsert;
 import br.com.gda.payment.payOrder.model.action.StdPayordInsertCuspar;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckAddressUser;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckOrderStatus;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckOrderUser;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckPhoneUser;
 
 public final class NodePayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 	
@@ -28,6 +30,12 @@ public final class NodePayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		ModelChecker<PayordInfo> checker;	
 		
 		checker = new PayordCheckOrderUser();
+		queue.add(checker);
+		
+		checker = new PayordCheckAddressUser();
+		queue.add(checker);
+		
+		checker = new PayordCheckPhoneUser();
 		queue.add(checker);
 		
 		checker = new PayordCheckOrderStatus();

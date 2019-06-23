@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.business.user.model.action.LazyUserEnforceLChanged;
 import br.com.gda.business.user.model.action.LazyUserEnforceLChangedBy;
 import br.com.gda.business.user.model.action.LazyUserEnforceReference;
 import br.com.gda.business.user.model.action.LazyUserInsert;
-import br.com.gda.business.user.model.action.StdUserEnforceUsername;
+import br.com.gda.business.user.model.action.StdUserEnforceLChanged;
 import br.com.gda.business.user.model.checker.UserCheckUsernameExist;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -48,18 +47,16 @@ public final class NodeUserInsert extends DeciTreeWriteTemplate<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> enforceUsername = new StdUserEnforceUsername(option);	
-		ActionLazy<UserInfo> enforceLChanged = new LazyUserEnforceLChanged(option.conn, option.schemaName);
+		ActionStd<UserInfo> enforceLChanged = new StdUserEnforceLChanged(option);	
 		ActionLazy<UserInfo> enforceReference = new LazyUserEnforceReference(option.conn, option.schemaName);
 		ActionLazy<UserInfo> insertUser = new LazyUserInsert(option.conn, option.schemaName);
 		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserEnforceLChangedBy(option.conn, option.schemaName);	//TODO: trocar pelo mergerUsername ?
 		
-		enforceUsername.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceReference);
 		enforceReference.addPostAction(insertUser);
 		insertUser.addPostAction(enforceLChangedBy);
 		
-		actions.add(enforceUsername );	
+		actions.add(enforceLChanged);	
 		return actions;
 	}
 }

@@ -3,6 +3,8 @@ package br.com.gda.payment.payOrder.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
@@ -19,6 +21,12 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public String description;
 	public String codOrderStatus;
 	public String txtOrderStatus;
+	public long codAddressPay;
+	public long codAddressPaySnapshot;
+	public long codPhonePay;
+	public long codPhonePaySnapshot;
+	public AddressInfo addressPayData;
+	public PhoneInfo phonePayData;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public String codLanguage;
@@ -36,6 +44,12 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codOrder = DefaultValue.number();
 		codOrderUser = DefaultValue.number();
+		codAddressPay = DefaultValue.number();
+		codAddressPaySnapshot = DefaultValue.number();
+		codPhonePay = DefaultValue.number();
+		codPhonePaySnapshot = DefaultValue.number();
+		addressPayData = DefaultValue.object();
+		phonePayData = DefaultValue.object();
 	}
 	
 	
@@ -53,7 +67,30 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		PayordInfo deepCopy = (PayordInfo) super.clone();
+		
+		deepCopy.addressPayData = cloneAddress(deepCopy.addressPayData);
+		deepCopy.phonePayData = clonePhone(deepCopy.phonePayData);
+		
+		return deepCopy;
+	}
+	
+	
+	
+	private AddressInfo cloneAddress(AddressInfo address) throws CloneNotSupportedException {
+		if (address == null)
+			return null;
+		
+		return (AddressInfo) address.clone();
+	}
+	
+	
+	
+	private PhoneInfo clonePhone(PhoneInfo phone) throws CloneNotSupportedException {
+		if (phone == null)
+			return null;
+		
+		return (PhoneInfo) phone.clone();
 	}
 	
 	

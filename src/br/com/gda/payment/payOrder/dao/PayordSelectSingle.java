@@ -130,6 +130,22 @@ public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPayCustomer = stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_CUSTOMER);
 				
+				stmtResult.getLong(PayordDbTableColumn.COL_COD_ADDRESS_PAY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codAddressPay = stmtResult.getLong(PayordDbTableColumn.COL_COD_ADDRESS_PAY);
+				
+				stmtResult.getLong(PayordDbTableColumn.COL_COD_ADDRESS_PAY_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codAddressPaySnapshot = stmtResult.getLong(PayordDbTableColumn.COL_COD_ADDRESS_PAY_SNAPSHOT);				
+				
+				stmtResult.getLong(PayordDbTableColumn.COL_COD_PHONE_PAY);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPhonePay = stmtResult.getLong(PayordDbTableColumn.COL_COD_PHONE_PAY);
+				
+				stmtResult.getLong(PayordDbTableColumn.COL_COD_PHONE_PAY_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPhonePaySnapshot = stmtResult.getLong(PayordDbTableColumn.COL_COD_PHONE_PAY_SNAPSHOT);
+				
 				Timestamp lastChanged = stmtResult.getTimestamp(PayordDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();

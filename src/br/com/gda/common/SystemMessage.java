@@ -573,5 +573,7 @@ public final class SystemMessage {
 	// Pay-Order
 	public static final String PAY_ORDER_STATUS_NOT_ALLOWED = "Illegal operation. Invalid Order Status change";
 	public static final String PAY_ORDER_DIF_USER = "Payer and Order creator does not belong to the same user";
+	public static final String PAY_ORDER_ADDRESS_DIF_USER = "Address does not belong to Payer user";
+	public static final String PAY_ORDER_PHONE_DIF_USER = "Phone does not belong to Payer user";
 
 }

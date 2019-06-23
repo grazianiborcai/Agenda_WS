@@ -10,8 +10,23 @@ import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
 import br.com.gda.payService.payCustomer.info.PaycusInfo;
+import br.com.gda.payment.payOrder.info.PayordInfo;
 
 public final class PhoneCopier {
+	public static PhoneInfo copyFromPayord(PayordInfo source) {
+		InfoCopier<PhoneInfo, PayordInfo> copier = new PhoneCopyPayord();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhoneInfo> copyFromPayord(List<PayordInfo> sources) {
+		InfoCopier<PhoneInfo, PayordInfo> copier = new PhoneCopyPayord();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static PhoneInfo copyFromPayCusRef(PaycusInfo source) {
 		InfoCopier<PhoneInfo, PaycusInfo> copier = new PhoneCopyPayCusRef();
 		return copier.makeCopy(source);

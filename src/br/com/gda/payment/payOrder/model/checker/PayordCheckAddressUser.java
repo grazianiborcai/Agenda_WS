@@ -7,38 +7,34 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckPay extends ModelCheckerTemplateSimple<PayordInfo> {
+public final class PayordCheckAddressUser extends ModelCheckerTemplateSimple<PayordInfo> {
 
-	public PayordCheckPay() {
+	public PayordCheckAddressUser() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PayordInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner    	<= 0	||
-			   recordInfo.codOrder    	<= 0 	||
-			   recordInfo.codPayPartner <= 0 	||			   
-			   recordInfo.codAddressPay <= 0 	||
-			   recordInfo.codPhonePay 	<= 0 	||			   
-			   recordInfo.codLanguage 	== null	||
-			   recordInfo.username    	== null		)			
-			
+		if (recordInfo.addressPayData == null)
 			return super.FAILED;
 		
+		if (recordInfo.addressPayData.codUser == recordInfo.codUser)
+			return super.SUCCESS;
 		
-		return super.SUCCESS;
+		
+		return super.FAILED;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.PAY_ORDER_ADDRESS_DIF_USER;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.PAY_ORDER_ADDRESS_DIF_USER;
 	}
 }
