@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.payment.customerPartner.model.action.LazyCusparEnforceCodUserExt;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparEnforceLChanged;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparMergeAddresnap;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparMergePhonap;
@@ -68,6 +69,7 @@ public final class RootCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 		ActionLazy<CusparInfo> mergeAddressSnapshot = new LazyCusparMergeAddresnap(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> mergePhoneSnapshot = new LazyCusparMergePhonap(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> enforceLChanged = new LazyCusparEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<CusparInfo> enforceCodUserExt = new LazyCusparEnforceCodUserExt(option.conn, option.schemaName);	
 		ActionLazy<CusparInfo> insert = new LazyCusparNodeInsert(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(mergeUser);
@@ -75,7 +77,8 @@ public final class RootCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 		mergeUserSnapshot.addPostAction(mergeAddressSnapshot);		
 		mergeAddressSnapshot.addPostAction(mergePhoneSnapshot);	
 		mergePhoneSnapshot.addPostAction(enforceLChanged);			
-		enforceLChanged.addPostAction(insert);
+		enforceLChanged.addPostAction(enforceCodUserExt);
+		enforceCodUserExt.addPostAction(insert);
 		
 		actions.add(mergeUsername);
 		return actions;

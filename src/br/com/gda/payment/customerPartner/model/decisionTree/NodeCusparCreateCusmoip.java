@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.payment.customerPartner.info.CusparInfo;
-import br.com.gda.payment.customerPartner.model.action.LazyCusparInsertMoip;
+import br.com.gda.payment.customerPartner.model.action.LazyCusparCreateCusmoip;
 import br.com.gda.payment.customerPartner.model.action.StdCusparMergeSetupar;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckIsMoip;
 import br.com.gda.model.action.ActionLazy;
@@ -14,9 +14,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCusparInsertMoip extends DeciTreeWriteTemplate<CusparInfo> {
+public final class NodeCusparCreateCusmoip extends DeciTreeWriteTemplate<CusparInfo> {
 	
-	public NodeCusparInsertMoip(DeciTreeOption<CusparInfo> option) {
+	public NodeCusparCreateCusmoip(DeciTreeOption<CusparInfo> option) {
 		super(option);
 	}
 	
@@ -38,9 +38,9 @@ public final class NodeCusparInsertMoip extends DeciTreeWriteTemplate<CusparInfo
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CusparInfo> mergeSetupar = new StdCusparMergeSetupar(option);
-		ActionLazy<CusparInfo> insertMoip = new LazyCusparInsertMoip(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> createCusmoip = new LazyCusparCreateCusmoip(option.conn, option.schemaName);
 		
-		mergeSetupar.addPostAction(insertMoip);
+		mergeSetupar.addPostAction(createCusmoip);
 		
 		actions.add(mergeSetupar);
 		return actions;

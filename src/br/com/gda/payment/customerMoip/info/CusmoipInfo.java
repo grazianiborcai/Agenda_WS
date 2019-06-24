@@ -1,7 +1,8 @@
-package br.com.gda.payment.customerPartner.info;
+package br.com.gda.payment.customerMoip.info;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
@@ -9,67 +10,53 @@ import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.payment.setupPartner.info.SetuparInfo;
+import br.com.moip.models.Setup;
 
-public final class CusparInfo extends InfoRecord implements Cloneable {
+public final class CusmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codPayCustomer;	
-	public long codPayPartner;		
-	public long codCustomer;
-	public long codCustomerSnapshot;
 	public String codUserExt;
-	public long codUser;
-	public long codUserSnapshot;
-	public long codAddress;
-	public long codAddressSnapshot;
-	public long codPhone;
-	public long codPhoneSnapshot;
 	public SetuparInfo setuparData;
 	public UserapInfo userapData;
 	public AddresnapInfo addresnapData;
 	public PhonapInfo phonapData;
+	public Setup setup;
+	public Map<String, Object> taxDocument;
+	public Map<String, Object> phone;
+	public Map<String, Object> shippingAddress;
+	public Map<String, Object> requestBody;
 	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
-	public String recordMode;
 	
 	
 	
-	public CusparInfo() {
+	public CusmoipInfo() {
 		codOwner = DefaultValue.number();	
-		codPayPartner = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();	
-		codCustomer = DefaultValue.number();
-		codCustomerSnapshot = DefaultValue.number();
-		codUser = DefaultValue.number();
-		codUserSnapshot = DefaultValue.number();
 		codLanguage = DefaultValue.language();
-		recordMode = DefaultValue.recordMode();
 		setuparData = DefaultValue.object();
 		userapData = DefaultValue.object();
 		addresnapData = DefaultValue.object();
 		phonapData = DefaultValue.object();
-		codAddress = DefaultValue.number();
-		codAddressSnapshot = DefaultValue.number();
-		codPhone = DefaultValue.number();
-		codPhoneSnapshot = DefaultValue.number();
 	}
 	
 	
 	
-	public static CusparInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, CusparInfo.class);
+	public static CusmoipInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, CusmoipInfo.class);
 	}
 	
 	
 	
-	public static List<CusparInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, CusparInfo.class);
+	public static List<CusmoipInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, CusmoipInfo.class);
 	}
 	
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		CusparInfo deepCopy = (CusparInfo) super.clone();		
+		CusmoipInfo deepCopy = (CusmoipInfo) super.clone();		
 		deepCopy.lastChanged = lastChanged;		
 		
 		deepCopy.setuparData = cloneSetup(deepCopy.setuparData);
@@ -122,8 +109,9 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner 			^ (codOwner 		>>> 32));
 		result = result * 31 + (int) (codPayCustomer 	^ (codPayCustomer 	>>> 32));
-		result = result * 31 + (int) (codUser  			^ (codUser  		>>> 32));
-		result = result * 31 + (int) (codPayPartner  	^ (codPayPartner  	>>> 32));
+		
+		if (userapData != null)
+			result = result * 31 + userapData.hashCode();
 		
 		return result;
 	}
@@ -135,14 +123,13 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof CusparInfo))
+		if (!(o instanceof CusmoipInfo))
 			return false;
 		
 		
-		CusparInfo obj = (CusparInfo) o;		
+		CusmoipInfo obj = (CusmoipInfo) o;		
 		return (codOwner    	== obj.codOwner 		&& 
-				codPayCustomer 	== obj.codPayCustomer 	&&
-				codPayPartner 	== obj.codPayPartner 	&&
-				codUser     	== obj.codUser				);
+				codPayCustomer 	== obj.codPayCustomer	&&
+				super.isRecordEqual(userapData, obj.userapData));
 	}
 }

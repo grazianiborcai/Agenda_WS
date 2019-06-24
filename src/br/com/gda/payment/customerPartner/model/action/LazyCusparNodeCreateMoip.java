@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.payment.customerPartner.info.CusparInfo;
-import br.com.gda.payment.customerPartner.model.decisionTree.NodeCusparInsertMoip;
+import br.com.gda.payment.customerPartner.model.decisionTree.NodeCusparCreateCusmoip;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCusparNodeInsertMoip extends ActionLazyTemplate<CusparInfo, CusparInfo> {
+public final class LazyCusparNodeCreateMoip extends ActionLazyTemplate<CusparInfo, CusparInfo> {
 
-	public LazyCusparNodeInsertMoip(Connection conn, String schemaName) {
+	public LazyCusparNodeCreateMoip(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyCusparNodeInsertMoip extends ActionLazyTemplate<CusparInf
 	
 	
 	@Override protected ActionStd<CusparInfo> getInstanceOfActionHook(DeciTreeOption<CusparInfo> option) {
-		return new NodeCusparInsertMoip(option).toAction();
+		return new NodeCusparCreateCusmoip(option).toAction();
 	}
 	
 	

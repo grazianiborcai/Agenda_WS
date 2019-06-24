@@ -7,7 +7,7 @@ import br.com.gda.business.storeTime_.info.StorimeMerger;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.business.storeWorkTime.model.decisionTree.RootStowotmSelect;
 import br.com.gda.info.obsolete.InfoWritterFactory_;
-import br.com.gda.model.action.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.obsolete.ActionVisitorTemplateMerge_;
 import br.com.gda.model.decisionTree.DeciTree;
 
 final class VisiStorimeMergeStowotm extends ActionVisitorTemplateMerge_<StorimeInfo, StowotmInfo> {

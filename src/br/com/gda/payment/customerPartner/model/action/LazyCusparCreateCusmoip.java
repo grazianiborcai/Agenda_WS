@@ -9,9 +9,9 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 
-public final class LazyCusparInsertMoip extends ActionLazyTemplate<CusparInfo, CusparInfo> {
+public final class LazyCusparCreateCusmoip extends ActionLazyTemplate<CusparInfo, CusparInfo> {
 
-	public LazyCusparInsertMoip(Connection conn, String schemaName) {
+	public LazyCusparCreateCusmoip(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCusparInsertMoip extends ActionLazyTemplate<CusparInfo, C
 	
 	
 	@Override protected ActionStd<CusparInfo> getInstanceOfActionHook(DeciTreeOption<CusparInfo> option) {
-		return new StdCusparInsertMoip(option);
+		return new StdCusparCreateCusmoip(option);
 	}
 	
 	

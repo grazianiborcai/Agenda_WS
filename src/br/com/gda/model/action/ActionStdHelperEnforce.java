@@ -70,6 +70,12 @@ public final class ActionStdHelperEnforce<T> extends ActionStdTemplate<T> {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}
+		
+		
+		if (visitor == null) {
+			logException(new NullPointerException("visitor" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("visitor" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
