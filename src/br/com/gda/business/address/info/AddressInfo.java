@@ -21,6 +21,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	public long codOwnerRef;
 	public long codOwnerRefSnapshot;
 	public String codCountry;
+	public String codCountryAlpha3;
 	public String txtCountry;
 	public String codState;
 	public String txtState;

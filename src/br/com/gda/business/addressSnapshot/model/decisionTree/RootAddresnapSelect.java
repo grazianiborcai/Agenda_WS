@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
+import br.com.gda.business.addressSnapshot.model.action.LazyAddresnapMergeCountry;
 import br.com.gda.business.addressSnapshot.model.action.LazyAddresnapMergeForm;
 import br.com.gda.business.addressSnapshot.model.action.LazyAddresnapMergeState;
 import br.com.gda.business.addressSnapshot.model.action.StdAddresnapSelect;
@@ -41,9 +42,11 @@ public final class RootAddresnapSelect extends DeciTreeReadTemplate<AddresnapInf
 		ActionStd<AddresnapInfo> select = new StdAddresnapSelect(option);		
 		ActionLazy<AddresnapInfo> mergeForm = new LazyAddresnapMergeForm(option.conn, option.schemaName);
 		ActionLazy<AddresnapInfo> mergeState = new LazyAddresnapMergeState(option.conn, option.schemaName);
+		ActionLazy<AddresnapInfo> mergeCountry = new LazyAddresnapMergeCountry(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeForm);
 		mergeForm.addPostAction(mergeState);
+		mergeState.addPostAction(mergeCountry);
 		
 		actions.add(select);			
 		return actions;

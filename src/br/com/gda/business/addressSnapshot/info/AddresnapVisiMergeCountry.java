@@ -1,4 +1,4 @@
-package br.com.gda.business.address.info;
+package br.com.gda.business.addressSnapshot.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,9 +7,9 @@ import br.com.gda.business.masterData.info.CountryInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class AddressVisiMergeCountry implements InfoMergerVisitorV2<AddressInfo, CountryInfo> {
+final class AddresnapVisiMergeCountry implements InfoMergerVisitorV2<AddresnapInfo, CountryInfo> {
 
-	@Override public AddressInfo writeRecord(CountryInfo sourceOne, AddressInfo sourceTwo) {
+	@Override public AddresnapInfo writeRecord(CountryInfo sourceOne, AddresnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		return merge(sourceOne, sourceTwo);
@@ -17,15 +17,15 @@ final class AddressVisiMergeCountry implements InfoMergerVisitorV2<AddressInfo, 
 	
 	
 	
-	private void checkArgument(CountryInfo sourceOne, AddressInfo sourceTwo) {
+	private void checkArgument(CountryInfo sourceOne, AddresnapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private AddressInfo merge(CountryInfo sourceOne, AddressInfo sourceTwo) {
-		AddressInfo resultInfo = makeClone(sourceTwo);
+	private AddresnapInfo merge(CountryInfo sourceOne, AddresnapInfo sourceTwo) {
+		AddresnapInfo resultInfo = makeClone(sourceTwo);
 		resultInfo.txtCountry = sourceOne.txtCountry;
 		resultInfo.codCountryAlpha3 = sourceOne.codCountryAlpha3;
 		
@@ -34,9 +34,9 @@ final class AddressVisiMergeCountry implements InfoMergerVisitorV2<AddressInfo, 
 	
 	
 	
-	private AddressInfo makeClone(AddressInfo recordInfo) {
+	private AddresnapInfo makeClone(AddresnapInfo recordInfo) {
 		try {
-			return (AddressInfo) recordInfo.clone();
+			return (AddresnapInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -46,7 +46,7 @@ final class AddressVisiMergeCountry implements InfoMergerVisitorV2<AddressInfo, 
 	
 	
 	
-	@Override public boolean shouldWrite(CountryInfo sourceOne, AddressInfo sourceTwo) {
+	@Override public boolean shouldWrite(CountryInfo sourceOne, AddresnapInfo sourceTwo) {
 		return sourceOne.codCountry.equals(sourceTwo.codCountry);
 	}
 	
