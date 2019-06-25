@@ -451,4 +451,7 @@ public final class SystemCode {
 	public static final int PAY_ORDER_DIF_USER							= 4051;
 	public static final int PAY_ORDER_ADDRESS_DIF_USER					= 4052;
 	public static final int PAY_ORDER_PHONE_DIF_USER					= 4053;
+	
+	// Pay-Customer-Moip
+	public static final int PAY_CUS_MOIP_CREATION_ERROR 				= 4100;
 }

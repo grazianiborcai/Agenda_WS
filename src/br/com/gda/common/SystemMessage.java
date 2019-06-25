@@ -577,4 +577,9 @@ public final class SystemMessage {
 	public static final String PAY_ORDER_DIF_USER = "Payer and Order creator does not belong to the same user";
 	public static final String PAY_ORDER_ADDRESS_DIF_USER = "Address does not belong to Payer user";
 	public static final String PAY_ORDER_PHONE_DIF_USER = "Phone does not belong to Payer user";
+	
+	
+	
+	// Pay-Customer-Moip
+	public static final String PAY_CUS_MOIP_CREATION_ERROR = "An error occurred when trying to create your user with financial company";
 }

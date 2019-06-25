@@ -55,10 +55,6 @@ import br.com.gda.business.planingData.model.PlanataModelSelect;
 import br.com.gda.business.storeTime_.info.StorimeInfo;
 import br.com.gda.business.storeTime_.model.StorimeModelSelect;
 import br.com.gda.model.Model;
-import br.com.gda.payService.payCustomer.info.PaycusInfo;
-import br.com.gda.payService.payCustomer.model.PaycusModelDelete;
-import br.com.gda.payService.payCustomer.model.PaycusModelInsert;
-import br.com.gda.payService.payCustomer.model.PaycusModelSelect;
 import br.com.gda.payment.countryPartner.info.CounparInfo;
 import br.com.gda.payment.countryPartner.model.CounparModelSelect;
 import br.com.gda.payment.ownerPartner.info.OwnparInfo;
@@ -97,9 +93,6 @@ public class TestResource {
 	private static final String INSERT_PERSON_SNAPSHOT = "/insertPersonSnapshot";
 	private static final String INSERT_MATERIAL_SNAPSHOT = "/insertMaterialSnapshot";
 	private static final String SELECT_MATERIAL_SNAPSHOT = "/selectMaterialSnapshot";
-	private static final String INSERT_PAY_CUSTOMER = "/insertPayCustomer";
-	private static final String SELECT_PAY_CUSTOMER = "/selectPayCustomer";
-	private static final String DELETE_PAY_CUSTOMER = "/deletePayCustomer";
 	private static final String SELECT_PAY_PARTNER_COUNTRY = "/selectPayPartnerCountry";
 	private static final String SELECT_PAY_PARTNER_OWNER = "/selectPayPartnerOwner";
 	private static final String INSERT_COMPANY = "/insertCompany";
@@ -373,51 +366,6 @@ public class TestResource {
 		recordInfo.codSnapshot = codSnapshot;
 		
 		Model model = new MatsnapModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@POST
-	@Path(INSERT_PAY_CUSTOMER)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertPayCustomer(@Context HttpServletRequest request, String incomingData) {
-		
-		
-		Model model = new PaycusModelInsert(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();	
-	} 
-	
-	
-	
-	@GET
-	@Path(SELECT_PAY_CUSTOMER)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectPayCustomer(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-								      @HeaderParam("codUser")  @DefaultValue("-1") long codUser) {
-
-		PaycusInfo recordInfo = new PaycusInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codUser = codUser;
-		
-		Model model = new PaycusModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@DELETE
-	@Path(DELETE_PAY_CUSTOMER)
-	public Response deletePayCustomer(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner, 
-			                          @HeaderParam("codUser")  @DefaultValue("-1") long codUser) {
-		PaycusInfo recordInfo = new PaycusInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codUser = codUser;
-		
-		Model model = new PaycusModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

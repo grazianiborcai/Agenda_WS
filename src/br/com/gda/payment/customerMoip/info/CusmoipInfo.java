@@ -15,7 +15,10 @@ import br.com.moip.models.Setup;
 public final class CusmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codPayCustomer;	
-	public String codUserExt;
+	public String compoundId;
+	public String customerId;
+	public String customerLink;
+	public String accountLink;	
 	public SetuparInfo setuparData;
 	public UserapInfo userapData;
 	public AddresnapInfo addresnapData;

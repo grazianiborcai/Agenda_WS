@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparCreateCusmoip;
+import br.com.gda.payment.customerPartner.model.action.LazyCusparUpdate;
 import br.com.gda.payment.customerPartner.model.action.StdCusparMergeSetupar;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckIsMoip;
 import br.com.gda.model.action.ActionLazy;
@@ -39,8 +40,10 @@ public final class NodeCusparCreateCusmoip extends DeciTreeWriteTemplate<CusparI
 		
 		ActionStd<CusparInfo> mergeSetupar = new StdCusparMergeSetupar(option);
 		ActionLazy<CusparInfo> createCusmoip = new LazyCusparCreateCusmoip(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> update = new LazyCusparUpdate(option.conn, option.schemaName);
 		
 		mergeSetupar.addPostAction(createCusmoip);
+		createCusmoip.addPostAction(update);
 		
 		actions.add(mergeSetupar);
 		return actions;

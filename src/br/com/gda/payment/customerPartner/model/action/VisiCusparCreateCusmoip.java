@@ -9,6 +9,7 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.customerMoip.info.CusmoipInfo;
 import br.com.gda.payment.customerMoip.model.decisionTree.RootCusmoipCreate;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.payment.customerPartner.info.CusparMerger;
 
 
 final class VisiCusparCreateCusmoip extends ActionVisitorTemplateAction<CusparInfo, CusmoipInfo> {
@@ -26,5 +27,6 @@ final class VisiCusparCreateCusmoip extends ActionVisitorTemplateAction<CusparIn
 	
 	
 	@Override protected List<CusparInfo> toBaseClassHook(List<CusparInfo> baseInfos, List<CusmoipInfo> results) {
-		return baseInfos;
-	}}
+		return CusparMerger.mergeWithCusmoip(results, baseInfos);
+	}
+}

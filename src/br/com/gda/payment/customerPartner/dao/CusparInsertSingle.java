@@ -112,7 +112,11 @@ public final class CusparInsertSingle implements DaoStmt<CusparInfo> {
 			
 			stmt.setTimestamp(i++, lastChanged);	
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setLong(i++, recordInfo.codPayPartner);
+			stmt.setLong(i++, recordInfo.codPayPartner);			
+			stmt.setString(i++, recordInfo.compoundId);
+			stmt.setString(i++, recordInfo.customerId);
+			stmt.setString(i++, recordInfo.customerLink);
+			stmt.setString(i++, recordInfo.accountLink);
 
 			return stmt;
 		}		

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.payment.customerPartner.model.action.LazyCusparEnforceCompoundId;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparNodeCreateMoip;
 import br.com.gda.payment.customerPartner.model.action.StdCusparInsert;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckPhonapUser;
@@ -42,9 +43,11 @@ public final class NodeCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CusparInfo> insert = new StdCusparInsert(option);
+		ActionLazy<CusparInfo> enforceCompoundId = new LazyCusparEnforceCompoundId(option.conn, option.schemaName);	
 		ActionLazy<CusparInfo> createMoip = new LazyCusparNodeCreateMoip(option.conn, option.schemaName);
 		
-		insert.addPostAction(createMoip);
+		insert.addPostAction(enforceCompoundId);
+		enforceCompoundId.addPostAction(createMoip);
 		
 		actions.add(insert);
 		return actions;

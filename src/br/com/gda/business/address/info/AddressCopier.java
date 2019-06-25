@@ -11,7 +11,6 @@ import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
-import br.com.gda.payService.payCustomer.info.PaycusInfo;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
 public final class AddressCopier {
@@ -24,20 +23,6 @@ public final class AddressCopier {
 	
 	public static List<AddressInfo> copyFromPayord(List<PayordInfo> sources) {
 		InfoCopier<AddressInfo, PayordInfo> copier = new AddressCopyPayord();
-		return copier.makeCopy(sources);
-	}
-	
-	
-	
-	public static AddressInfo copyFromPayCusRef(PaycusInfo source) {
-		InfoCopier<AddressInfo, PaycusInfo> copier = new AddressCopyPayCusRef();
-		return copier.makeCopy(source);
-	}
-	
-	
-	
-	public static List<AddressInfo> copyFromPayCusRef(List<PaycusInfo> sources) {
-		InfoCopier<AddressInfo, PaycusInfo> copier = new AddressCopyPayCusRef();
 		return copier.makeCopy(sources);
 	}
 	

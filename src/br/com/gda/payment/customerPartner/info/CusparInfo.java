@@ -16,13 +16,16 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 	public long codPayPartner;		
 	public long codCustomer;
 	public long codCustomerSnapshot;
-	public String codUserExt;
+	public String compoundId;
 	public long codUser;
 	public long codUserSnapshot;
 	public long codAddress;
 	public long codAddressSnapshot;
 	public long codPhone;
 	public long codPhoneSnapshot;
+	public String customerId;
+	public String customerLink;
+	public String accountLink;	
 	public SetuparInfo setuparData;
 	public UserapInfo userapData;
 	public AddresnapInfo addresnapData;

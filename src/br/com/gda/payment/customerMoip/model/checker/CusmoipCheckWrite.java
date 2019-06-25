@@ -20,6 +20,7 @@ public final class CusmoipCheckWrite extends ModelCheckerTemplateSimple<CusmoipI
 	
 	
 	@Override protected boolean checkHook(CusmoipInfo recordInfo, Connection conn, String schemaName) {	
+		//TODO: quebrar CHECKER por categoria para melhorar a mensagem ao ususario		
 		if (checkSetupData(recordInfo.setuparData) == super.FAILED)
 			return super.FAILED;
 		
@@ -32,7 +33,7 @@ public final class CusmoipCheckWrite extends ModelCheckerTemplateSimple<CusmoipI
 		if (checkAddresnap(recordInfo.addresnapData) == super.FAILED)
 			return super.FAILED;
 		
-		if (recordInfo.codUserExt == null)
+		if (recordInfo.compoundId == null)
 			return super.FAILED;
 
 		
