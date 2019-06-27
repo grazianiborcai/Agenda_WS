@@ -120,6 +120,8 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 				dataInfo.fullNumber = stmtResult.getString(PhoneDbTableColumn.COL_FULL_NUMBER);
 				dataInfo.recordMode = stmtResult.getString(PhoneDbTableColumn.COL_RECORD_MODE);
 				dataInfo.complement = stmtResult.getString(PhoneDbTableColumn.COL_COMPLEMENT);
+				dataInfo.number = stmtResult.getString(PhoneDbTableColumn.COL_NUMBER);
+				dataInfo.codArea = stmtResult.getString(PhoneDbTableColumn.COL_COD_AREA);
 				
 				stmtResult.getLong(PhoneDbTableColumn.COL_COD_STORE);
 				if (stmtResult.wasNull() == NOT_NULL)

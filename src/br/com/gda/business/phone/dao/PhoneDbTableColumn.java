@@ -9,6 +9,7 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {	
+	public static final String COL_COD_AREA = "cod_area";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = "cod_customer_snapshot";
 	public static final String COL_COD_EMPLOYEE = "cod_employee";	
@@ -25,6 +26,7 @@ public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COMPLEMENT = "complement";
 	public static final String COL_COUNTRY_PHONE = "country_phone";
 	public static final String COL_FULL_NUMBER = "full_number";
+	public static final String COL_NUMBER = "number";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
 	public static final String COL_RECORD_MODE = "record_mode";
@@ -40,13 +42,13 @@ public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
-		buildAddressTable();	
+		buildPhoneTable();	
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildAddressTable() {
+	private void buildPhoneTable() {
 		final String TABLE_NAME = DaoDbTable.PHONE_TABLE;
 		
 		DaoColumn oneColumn;
@@ -203,6 +205,22 @@ public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_NUMBER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_AREA;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

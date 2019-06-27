@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.phone.model.action.LazyPhoneEnforceAreaT01;
 import br.com.gda.business.phone.model.action.LazyPhoneNodeInsertT00;
 import br.com.gda.business.phone.model.action.LazyPhoneNodeInsertT01;
 import br.com.gda.business.phone.model.action.StdPhoneEnforceNumberT00;
@@ -54,9 +55,11 @@ public final class NodePhoneInsert implements DeciTree<PhoneInfo> {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
 
 		ActionStd<PhoneInfo> enforceNumberT01 = new StdPhoneEnforceNumberT01(option);
+		ActionLazy<PhoneInfo> enforceAreaT01 = new LazyPhoneEnforceAreaT01(option.conn, option.schemaName);
 		ActionLazy<PhoneInfo> nodeInsertT01 = new LazyPhoneNodeInsertT01(option.conn, option.schemaName);
 		
-		enforceNumberT01.addPostAction(nodeInsertT01);
+		enforceNumberT01.addPostAction(enforceAreaT01);
+		enforceAreaT01.addPostAction(nodeInsertT01);
 
 		actions.add(enforceNumberT01);		
 		return actions;

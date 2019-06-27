@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,10 +79,6 @@ public final class PhonapInsertSingle implements DaoStmt<PhonapInfo> {
 	private class ParamTranslator implements DaoStmtParamTranslator<PhonapInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PhonapInfo recordInfo) throws SQLException {
 			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
-			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codPhone);
@@ -113,7 +108,7 @@ public final class PhonapInsertSingle implements DaoStmt<PhonapInfo> {
 			stmt.setInt(i++, recordInfo.codCountryPhone);
 			stmt.setString(i++, recordInfo.fullNumber);
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setTimestamp(i++, lastChanged);
+			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
 			stmt.setString(i++, recordInfo.complement);
 			
 			
@@ -171,6 +166,11 @@ public final class PhonapInsertSingle implements DaoStmt<PhonapInfo> {
 			} else {
 				stmt.setLong(i++, recordInfo.codOwnerRefSnapshot);
 			}	
+			
+			
+			stmt.setString(i++, recordInfo.number);
+			stmt.setString(i++, recordInfo.codArea);
+			
 
 			return stmt;
 		}		

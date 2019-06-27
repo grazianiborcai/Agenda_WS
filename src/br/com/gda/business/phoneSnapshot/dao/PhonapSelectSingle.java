@@ -117,6 +117,8 @@ public final class PhonapSelectSingle implements DaoStmt<PhonapInfo> {
 				dataInfo.fullNumber = stmtResult.getString(PhonapDbTableColumn.COL_FULL_NUMBER);
 				dataInfo.recordMode = stmtResult.getString(PhonapDbTableColumn.COL_RECORD_MODE);
 				dataInfo.complement = stmtResult.getString(PhonapDbTableColumn.COL_COMPLEMENT);
+				dataInfo.number = stmtResult.getString(PhonapDbTableColumn.COL_NUMBER);
+				dataInfo.codArea = stmtResult.getString(PhonapDbTableColumn.COL_COD_AREA);
 				
 				stmtResult.getLong(PhonapDbTableColumn.COL_COD_STORE);
 				if (stmtResult.wasNull() == NOT_NULL)

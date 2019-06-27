@@ -10,6 +10,7 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class PhonapDbTableColumn extends DaoDbTableColumnTemplate {	
+	public static final String COL_COD_AREA = PhoneDbTableColumn.COL_COD_AREA;
 	public static final String COL_COD_CUSTOMER = PhoneDbTableColumn.COL_COD_CUSTOMER;
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = PhoneDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT;
 	public static final String COL_COD_EMPLOYEE = PhoneDbTableColumn.COL_COD_EMPLOYEE;	
@@ -26,6 +27,7 @@ public final class PhonapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COMPLEMENT = PhoneDbTableColumn.COL_COMPLEMENT;
 	public static final String COL_COUNTRY_PHONE = PhoneDbTableColumn.COL_COUNTRY_PHONE;
 	public static final String COL_FULL_NUMBER = PhoneDbTableColumn.COL_FULL_NUMBER;
+	public static final String COL_NUMBER = PhoneDbTableColumn.COL_NUMBER;
 	public static final String COL_LAST_CHANGED = PhoneDbTableColumn.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = PhoneDbTableColumn.COL_LAST_CHANGED_BY;
 	public static final String COL_RECORD_MODE = PhoneDbTableColumn.COL_RECORD_MODE;
@@ -204,6 +206,22 @@ public final class PhonapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_NUMBER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_AREA;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

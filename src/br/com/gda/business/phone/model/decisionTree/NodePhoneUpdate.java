@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.phone.model.action.LazyPhoneEnforceAreaT01;
 import br.com.gda.business.phone.model.action.LazyPhoneNodeUpdateT00;
 import br.com.gda.business.phone.model.action.LazyPhoneNodeUpdateT01;
 import br.com.gda.business.phone.model.action.StdPhoneEnforceNumberT00;
@@ -54,9 +55,11 @@ public final class NodePhoneUpdate implements DeciTree<PhoneInfo> {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
 		//TODO: Verificar se chave referencia foi alterada
 		ActionStd<PhoneInfo> enforceNumberT01 = new StdPhoneEnforceNumberT01(option);
+		ActionLazy<PhoneInfo> enforceAreaT01 = new LazyPhoneEnforceAreaT01(option.conn, option.schemaName);
 		ActionLazy<PhoneInfo> nodeUpdateT01 = new LazyPhoneNodeUpdateT01(option.conn, option.schemaName);
 		
-		enforceNumberT01.addPostAction(nodeUpdateT01);
+		enforceNumberT01.addPostAction(enforceAreaT01);
+		enforceAreaT01.addPostAction(nodeUpdateT01);
 
 		actions.add(enforceNumberT01);		
 		return actions;

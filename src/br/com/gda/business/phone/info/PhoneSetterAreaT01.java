@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-final class PhoneSetterAreaT01 implements InfoSetter<PhoneInfo> {
+public final class PhoneSetterAreaT01 implements InfoSetter<PhoneInfo> {
 	private final int AREA_LENGTH = 2;
 	
 	public PhoneInfo setAttr(PhoneInfo recordInfo) {
