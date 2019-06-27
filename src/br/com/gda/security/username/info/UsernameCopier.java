@@ -18,10 +18,25 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.info.InfoCopier;
+import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.storePartner.info.StoparInfo;
 
 public final class UsernameCopier {
+	public static UsernameInfo copyFromCrecard(CrecardInfo source) {
+		InfoCopier<UsernameInfo, CrecardInfo> copier = new UsernameCopyCrecard();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromCrecard(List<CrecardInfo> sources) {
+		InfoCopier<UsernameInfo, CrecardInfo> copier = new UsernameCopyCrecard();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UsernameInfo copyFromPayord(PayordInfo source) {
 		InfoCopier<UsernameInfo, PayordInfo> copier = new UsernameCopyPayord();
 		return copier.makeCopy(source);

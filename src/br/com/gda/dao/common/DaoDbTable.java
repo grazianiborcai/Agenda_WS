@@ -21,6 +21,7 @@ public final class DaoDbTable {
 	public static final String COUNTRY_LEGAL_TABLE = "country_legal";
 	public static final String COUNTRY_TEXT_TABLE = "country_text";
 	public static final String COUNTRY_PHONE_TABLE = "country_phone";
+	public static final String CREDIT_CARD_TABLE = "pay_credit_card";
 	public static final String CURRENCY_TABLE = "currency_unit";
 	public static final String CURRENCY_TEXT_TABLE = "currency_unit_text";	
 	public static final String CUS_TABLE = "customer";

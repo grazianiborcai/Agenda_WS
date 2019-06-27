@@ -58,6 +58,7 @@ import br.com.gda.dao.DaoDbTableColumn;
 import br.com.gda.message.email.dao.EmailDbTableColumn;
 import br.com.gda.message.emailBody.dao.EmabodyDbTableColumn;
 import br.com.gda.payment.countryPartner.dao.CounparDbTableColumn;
+import br.com.gda.payment.creditCard.dao.CrecardDbTableColumn;
 import br.com.gda.payment.customerPartner.dao.CusparDbTableColumn;
 import br.com.gda.payment.ownerPartner.dao.OwnparDbTableColumn;
 import br.com.gda.payment.payOrder.dao.PayordDbTableColumn;
@@ -140,6 +141,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SetuparDbTableColumn());
 		addTable(new PayordDbTableColumn());
 		addTable(new CusparDbTableColumn());
+		addTable(new CrecardDbTableColumn());
 	}
 	
 	
