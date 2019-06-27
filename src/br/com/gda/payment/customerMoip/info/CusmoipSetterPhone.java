@@ -31,24 +31,12 @@ public final class CusmoipSetterPhone implements InfoSetter<CusmoipInfo> {
 	private CusmoipInfo setPhone(CusmoipInfo recordInfo) {
 		recordInfo.phone = payloadFactory(
 		        value("countryCode"	, recordInfo.phonapData.codCountry),
-		        value("areaCode"	, getPhoneArea(recordInfo.phonapData.fullNumber)),
-		        value("number"		, getPhoneNumer(recordInfo.phonapData.fullNumber))
+		        value("areaCode"	, recordInfo.phonapData.codArea),
+		        value("number"		, recordInfo.phonapData.number)
 		);
 
 
 		return recordInfo;
-	}	
-	
-	
-	
-	private String getPhoneArea(String fullNumber) {
-		return fullNumber.substring(0, 2);
-	}
-	
-	
-	
-	private String getPhoneNumer(String fullNumber) {
-		return fullNumber.substring(2);
 	}
 	
 	
