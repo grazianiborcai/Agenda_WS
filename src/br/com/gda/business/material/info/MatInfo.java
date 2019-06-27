@@ -16,10 +16,7 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public String txtType;
 	public int codMatCateg;
 	public String txtMatCateg;
-	public double price;			//TODO: Remover
 	public int priceUnit;
-	public String codCurr;			//TODO: Remover
-	public String txtCurr;			//TODO: Remover
 	public String codUnit;
 	public String txtUnit;
 	public int codGroup;
@@ -42,7 +39,6 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 		codMat = DefaultValue.number();
 		codType = DefaultValue.number();
 		codMatCateg = DefaultValue.number();
-		price = DefaultValue.number();			//TODO: Remover	
 		priceUnit = 1;
 		codGroup = DefaultValue.number();		
 		codBusiness = DefaultValue.number();	
