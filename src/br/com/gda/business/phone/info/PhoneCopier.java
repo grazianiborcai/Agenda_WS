@@ -9,9 +9,24 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
+import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
 public final class PhoneCopier {
+	public static PhoneInfo copyFromCuspar(CusparInfo source) {
+		InfoCopier<PhoneInfo, CusparInfo> copier = new PhoneCopyCuspar();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhoneInfo> copyFromCuspar(List<CusparInfo> sources) {
+		InfoCopier<PhoneInfo, CusparInfo> copier = new PhoneCopyCuspar();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static PhoneInfo copyFromPayord(PayordInfo source) {
 		InfoCopier<PhoneInfo, PayordInfo> copier = new PhoneCopyPayord();
 		return copier.makeCopy(source);
