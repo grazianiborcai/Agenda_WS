@@ -582,4 +582,10 @@ public final class SystemMessage {
 	
 	// Pay-Customer-Moip
 	public static final String PAY_CUS_MOIP_CREATION_ERROR = "An error occurred when trying to create your user with financial company";
+	
+	
+	
+	
+	// Credit Card
+	public static final String CREDIT_CARD_INVALID_USER_REF = "You can only manage your wallet";
 }

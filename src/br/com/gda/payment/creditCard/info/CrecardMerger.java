@@ -3,9 +3,24 @@ package br.com.gda.payment.creditCard.info;
 import java.util.List;
 
 import br.com.gda.info.InfoMerger;
+import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class CrecardMerger {
+	public static CrecardInfo mergeWithCuspar(CusparInfo sourceOne, CrecardInfo sourceTwo) {
+		InfoMerger<CrecardInfo, CusparInfo> merger = new CrecardMergerCuspar();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CrecardInfo> mergeWithCuspar(List<CusparInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
+		InfoMerger<CrecardInfo, CusparInfo> merger = new CrecardMergerCuspar();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static CrecardInfo mergeWithUsername(UsernameInfo sourceOne, CrecardInfo sourceTwo) {
 		InfoMerger<CrecardInfo, UsernameInfo> merger = new CrecardMergerUsername();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -16,7 +31,7 @@ public final class CrecardMerger {
 	public static List<CrecardInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
 		InfoMerger<CrecardInfo, UsernameInfo> merger = new CrecardMergerUsername();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}
+	}	
 	
 	
 	

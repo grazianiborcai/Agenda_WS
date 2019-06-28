@@ -56,13 +56,13 @@ public final class RootCrecardDelete extends DeciTreeWriteTemplate<CrecardInfo> 
 		ActionStd<CrecardInfo> mergeToDelete = new StdCrecardMergeToDelete(option);
 		ActionLazy<CrecardInfo> enforceLChanged = new LazyCrecardEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> enforceLChangedBy = new LazyCrecardMergeUsername(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> updateAttr = new LazyCrecardUpdate(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> update = new LazyCrecardUpdate(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> delete = new LazyCrecardDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(updateAttr);
-		updateAttr.addPostAction(delete);
+		enforceLChangedBy.addPostAction(update);
+		update.addPostAction(delete);
 		
 		actions.add(mergeToDelete);
 		return actions;

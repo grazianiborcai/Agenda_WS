@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.payment.creditCard.info.CrecardInfo;
-import br.com.gda.payment.creditCard.model.action.LazyCrecardInsert;
+import br.com.gda.payment.creditCard.model.action.LazyCrecardNodeInsert;
 import br.com.gda.payment.creditCard.model.action.LazyCrecardMergeUsername;
 import br.com.gda.payment.creditCard.model.action.LazyCrecardRootSelect;
 import br.com.gda.payment.creditCard.model.action.StdCrecardEnforceLChanged;
+import br.com.gda.payment.creditCard.model.checker.CrecardCheckCuspar;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckLangu;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckOwner;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckWrite;
@@ -50,6 +51,13 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new CrecardCheckLangu(checkerOption);
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CrecardCheckCuspar(checkerOption);
+		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -58,15 +66,15 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 	
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
-		
+
 		ActionStd<CrecardInfo> enforceLChanged = new StdCrecardEnforceLChanged(option);	
-		ActionLazy<CrecardInfo> enforceLChangedBy = new LazyCrecardMergeUsername(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> insertMat = new LazyCrecardInsert(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> enforceUsername = new LazyCrecardMergeUsername(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodeInsert = new LazyCrecardNodeInsert(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> select = new LazyCrecardRootSelect(option.conn, option.schemaName);		
 		
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(insertMat);
-		insertMat.addPostAction(select);
+		enforceLChanged.addPostAction(enforceUsername);
+		enforceUsername.addPostAction(nodeInsert);
+		nodeInsert.addPostAction(select);
 		
 		actions.add(enforceLChanged);		
 		return actions;

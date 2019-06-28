@@ -28,19 +28,19 @@ public final class EmabodySetterBody implements InfoSetter<EmabodyInfo> {
 		EmabodyInfo result = makeClone(recordInfo);
 		
 		if(recordInfo.param01 != null)
-			result.txtbody = result.txtbody.replaceAll("&&PARAM_01&&", recordInfo.param01);
+			result.txtbody = result.txtbody.replace("&&PARAM_01&&", recordInfo.param01);
 		
 		if(recordInfo.param02 != null)
-			result.txtbody = result.txtbody.replaceAll("&&PARAM_02&&", recordInfo.param02);
+			result.txtbody = result.txtbody.replace("&&PARAM_02&&", recordInfo.param02);
 		
 		if(recordInfo.param03 != null)
-			result.txtbody = result.txtbody.replaceAll("&&PARAM_03&&", recordInfo.param03);
+			result.txtbody = result.txtbody.replace("&&PARAM_03&&", recordInfo.param03);
 		
 		if(recordInfo.param04 != null)
-			result.txtbody = result.txtbody.replaceAll("&&PARAM_04&&", recordInfo.param04);
+			result.txtbody = result.txtbody.replace("&&PARAM_04&&", recordInfo.param04);
 		
 		if(recordInfo.param05 != null)
-			result.txtbody = result.txtbody.replaceAll("&&PARAM_05&&", recordInfo.param05);
+			result.txtbody = result.txtbody.replace("&&PARAM_05&&", recordInfo.param05);
 		
 		return result;
 	}

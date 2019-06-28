@@ -5,11 +5,11 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
-import br.com.gda.security.username.info.UsernameInfo;
+import br.com.gda.payment.customerPartner.info.CusparInfo;
 
-final class CrecardVisiMergeUsername implements InfoMergerVisitorV2<CrecardInfo, UsernameInfo> {
+final class CrecardVisiMergeCuspar implements InfoMergerVisitorV2<CrecardInfo, CusparInfo> {
 
-	@Override public CrecardInfo writeRecord(UsernameInfo sourceOne, CrecardInfo sourceTwo) {
+	@Override public CrecardInfo writeRecord(CusparInfo sourceOne, CrecardInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		CrecardInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class CrecardVisiMergeUsername implements InfoMergerVisitorV2<CrecardInfo,
 	
 	
 	
-	private void checkArgument(UsernameInfo sourceOne, CrecardInfo sourceTwo) {
+	private void checkArgument(CusparInfo sourceOne, CrecardInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,21 +37,16 @@ final class CrecardVisiMergeUsername implements InfoMergerVisitorV2<CrecardInfo,
 	
 	
 	
-	private CrecardInfo merge(UsernameInfo sourceOne, CrecardInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
-		sourceTwo.codUser = sourceOne.codUser;
+	private CrecardInfo merge(CusparInfo sourceOne, CrecardInfo sourceTwo) {
+		sourceTwo.codPayPartner = sourceOne.codPayPartner;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, CrecardInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
-		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+	@Override public boolean shouldWrite(CusparInfo sourceOne, CrecardInfo sourceTwo) {
+		return (sourceOne.codOwner		 == sourceTwo.codOwner			&&
+				sourceOne.codPayCustomer == sourceTwo.codPayCustomer		);
 	}
 	
 	

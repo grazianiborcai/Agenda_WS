@@ -9,6 +9,9 @@ import br.com.gda.info.InfoRecord;
 public final class CrecardInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayCustomer;
+	public long codPayPartner;
+	public long codUserRef;
+	public long codUser;
 	public String creditCardId;
 	public String creditCardBrand;
 	public String creditCardLast4;
@@ -21,6 +24,10 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	
 	public CrecardInfo() {
 		codOwner = DefaultValue.number();
+		codPayCustomer = DefaultValue.number();
+		codUser = DefaultValue.number();
+		codUserRef = DefaultValue.number();
+		codPayPartner = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();

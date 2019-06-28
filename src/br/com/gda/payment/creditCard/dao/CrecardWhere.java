@@ -31,20 +31,8 @@ public final class CrecardWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case CrecardDbTableColumn.COL_COD_MATERIAL :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
-					break;
-					
-				case CrecardDbTableColumn.COL_COD_TYPE  :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codType));
-					break;
-					
-				case CrecardDbTableColumn.COL_COD_GROUP :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codGroup));
-					break;
-					
-				case CrecardDbTableColumn.COL_COD_CATEGORY :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMatCateg));
+				case CrecardDbTableColumn.COL_COD_PAY_CUSTOMER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayCustomer));
 					break;
 					
 				case CrecardDbTableColumn.COL_RECORD_MODE :

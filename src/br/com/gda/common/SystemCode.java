@@ -454,4 +454,7 @@ public final class SystemCode {
 	
 	// Pay-Customer-Moip
 	public static final int PAY_CUS_MOIP_CREATION_ERROR 				= 4100;
+	
+	// 
+	public static final int CREDIT_CARD_INVALID_USER_REF				= 4150;
 }
