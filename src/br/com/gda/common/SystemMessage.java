@@ -581,8 +581,11 @@ public final class SystemMessage {
 	
 	
 	// Pay-Customer-Moip
+	public static final String PAY_CUS_MOIP_ADDRESNAP_MISSING = "Missing city, district, street, street number, state or postalcode. Please, complete user data";	
 	public static final String PAY_CUS_MOIP_CREATION_ERROR = "An error occurred when trying to create your user with financial company";
-	
+	public static final String PAY_CUS_MOIP_PHONAP_MISSING = "Missing phone number. Please, complete user data";
+	public static final String PAY_CUS_MOIP_SETUPAR_MISSING = "Token or Key is missing";
+	public static final String PAY_CUS_MOIP_USERAP_MISSING = "Missing Name, email, birthdate or CPF. Please, complete user data";	
 	
 	
 	

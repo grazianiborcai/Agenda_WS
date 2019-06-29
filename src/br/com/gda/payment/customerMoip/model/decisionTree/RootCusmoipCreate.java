@@ -16,6 +16,10 @@ import br.com.gda.payment.customerMoip.model.action.LazyCusmoipEnforceDocument;
 import br.com.gda.payment.customerMoip.model.action.LazyCusmoipEnforcePhone;
 import br.com.gda.payment.customerMoip.model.action.LazyCusmoipEnforceRequest;
 import br.com.gda.payment.customerMoip.model.action.StdCusmoipEnforceSetup;
+import br.com.gda.payment.customerMoip.model.checker.CusmoipCheckAddresnapData;
+import br.com.gda.payment.customerMoip.model.checker.CusmoipCheckPhonapData;
+import br.com.gda.payment.customerMoip.model.checker.CusmoipCheckSetuparData;
+import br.com.gda.payment.customerMoip.model.checker.CusmoipCheckUserapData;
 import br.com.gda.payment.customerMoip.model.checker.CusmoipCheckWrite;
 
 public final class RootCusmoipCreate extends DeciTreeWriteTemplate<CusmoipInfo> {
@@ -29,6 +33,18 @@ public final class RootCusmoipCreate extends DeciTreeWriteTemplate<CusmoipInfo> 
 	@Override protected ModelChecker<CusmoipInfo> buildDecisionCheckerHook(DeciTreeOption<CusmoipInfo> option) {
 		List<ModelChecker<CusmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusmoipInfo> checker;	
+		
+		checker = new CusmoipCheckSetuparData();
+		queue.add(checker);
+		
+		checker = new CusmoipCheckUserapData();
+		queue.add(checker);
+		
+		checker = new CusmoipCheckPhonapData();
+		queue.add(checker);
+		
+		checker = new CusmoipCheckAddresnapData();
+		queue.add(checker);
 		
 		checker = new CusmoipCheckWrite();
 		queue.add(checker);
