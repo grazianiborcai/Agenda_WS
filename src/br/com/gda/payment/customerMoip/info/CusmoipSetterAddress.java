@@ -34,7 +34,7 @@ public final class CusmoipSetterAddress implements InfoSetter<CusmoipInfo> {
 		        value("street"		, recordInfo.addresnapData.street),
 		        value("streetNumber", recordInfo.addresnapData.streetNumber),
 		        value("state"		, recordInfo.addresnapData.txtState),
-		        value("country"		, recordInfo.addresnapData.codCountryAlpha3),										//TODO: Ajustar
+		        value("country"		, recordInfo.addresnapData.codCountryAlpha3),
 		        value("zipCode"		, recordInfo.addresnapData.postalCode)
 		);
 

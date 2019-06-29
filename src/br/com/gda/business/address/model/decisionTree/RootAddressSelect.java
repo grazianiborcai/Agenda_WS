@@ -7,6 +7,7 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.action.LazyAddressMergeCountry;
+import br.com.gda.business.address.model.action.LazyAddressMergeState;
 import br.com.gda.business.address.model.action.LazymapAddressMergeForm;
 import br.com.gda.business.address.model.action.StdAddressMergeToSelect;
 import br.com.gda.business.address.model.checker.AddressCheckRead;
@@ -58,11 +59,11 @@ public final class RootAddressSelect implements DeciTree<AddressInfo> {
 		ActionStd<AddressInfo> select = new StdAddressMergeToSelect(option);		
 		ActionLazy<AddressInfo> mergeForm = new LazymapAddressMergeForm(option.conn, option.schemaName);
 		ActionLazy<AddressInfo> mergeCountry = new LazyAddressMergeCountry(option.conn, option.schemaName);
-		//ActionLazy<AddressInfo> mergeState = new LazyAddressMergeState(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> mergeState = new LazyAddressMergeState(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeForm);	
 		mergeForm.addPostAction(mergeCountry);
-		//mergeCountry.addPostAction(mergeState);
+		mergeCountry.addPostAction(mergeState);
 		
 		actions.add(select);			
 		return actions;

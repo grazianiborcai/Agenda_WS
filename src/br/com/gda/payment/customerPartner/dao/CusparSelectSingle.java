@@ -134,7 +134,7 @@ public final class CusparSelectSingle implements DaoStmt<CusparInfo> {
 				
 				stmtResult.getLong(CusparDbTableColumn.COL_COD_PAY_PARTNER);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPayPartner = stmtResult.getLong(CusparDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.codPayPartner = stmtResult.getInt(CusparDbTableColumn.COL_COD_PAY_PARTNER);
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(CusparDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)

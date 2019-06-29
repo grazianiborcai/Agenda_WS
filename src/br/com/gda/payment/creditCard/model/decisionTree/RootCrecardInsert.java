@@ -76,7 +76,7 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new CrecardCheckPhone(checkerOption);
 		queue.add(checker);
-
+		//TODO: Inserir limite ? Maximo de 10 cartoes ?
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -96,7 +96,7 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		mergeUsername.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
 		mergePhone.addPostAction(nodeInsert);
-		//nodeInsert.addPostAction(select);
+		nodeInsert.addPostAction(select);
 		
 		actions.add(enforceLChanged);		
 		return actions;

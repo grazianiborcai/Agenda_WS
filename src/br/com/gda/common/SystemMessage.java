@@ -454,7 +454,7 @@ public final class SystemMessage {
 	public static final String PAY_CUS_USER_NOT_FOUND = "Pay-Customer-User's data not found on DB";
 	public static final String PAY_CUS_PAY_PARTNER_IS_BLANK = "Pay-Cutomer's pay-partner reference is blank";
 	public static final String PAY_CUS_PAY_PARTNER_IS_FILLED = "Pay-Cutomer's pay-partner reference should be blank";
-	public static final String PAY_CUS_PAY_PARTNER_NOT_FOUND = "Pay-Cutomer's pay-partner not foundk";	
+	public static final String PAY_CUS_PAY_PARTNER_NOT_FOUND = "Pay-Cutomer's pay-partner not found";	
 	public static final String PAY_CUS_PHONE_DIF_USER = "Phone does not belong to Payer user";
 	
 	
@@ -598,4 +598,15 @@ public final class SystemMessage {
 	public static final String CREDIT_CARD_EMPTY_CUSPAR = "Credit Card: Pay-Customer is empty";
 	public static final String CREDIT_CARD_EMPTY_PAYPAR = "Credit Card: Pay-Partner is empty";
 	public static final String CREDIT_CARD_MANDATORY_FIELD_EMPTY = "Credit Card: Mandatory field is empty";	
+	public static final String CREDIT_CARD_PAYPAR_NOT_MOIP = "Credit Card: Pay-Partner is not Moip";
+	
+	
+	
+	// Credit Card-Moip
+	public static final String CREDIT_CARD_MOIP_ADDRESS_BR = "Only Brazilian addresses are allowed";
+	public static final String CREDIT_CARD_MOIP_ADDRESS_MISSING = "Missing address";
+	public static final String CREDIT_CARD_MOIP_EMPTY_CUSPAR = "Credit Card Moip: Pay-Customer is empty";
+	public static final String CREDIT_CARD_MOIP_MANDATORY_FIELD_EMPTY = "Credit Card Moip: Mandatory field is empty";
+	public static final String CREDIT_CARD_MOIP_PHONE_MISSING = "Missing phone number";
+	public static final String CREDIT_CARD_MOIP_PHONE_BR = "Only Brazilian phone numbers are allowed";	
 }

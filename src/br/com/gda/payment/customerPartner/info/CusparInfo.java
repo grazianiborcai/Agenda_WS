@@ -13,7 +13,7 @@ import br.com.gda.payment.setupPartner.info.SetuparInfo;
 public final class CusparInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codPayCustomer;	
-	public long codPayPartner;		
+	public int codPayPartner;		
 	public long codCustomer;
 	public long codCustomerSnapshot;
 	public String compoundId;

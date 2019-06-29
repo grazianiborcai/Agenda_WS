@@ -468,4 +468,13 @@ public final class SystemCode {
 	public static final int CREDIT_CARD_MANDATORY_FIELD_EMPTY 			= 4151;
 	public static final int CREDIT_CARD_EMPTY_CUSPAR					= 4152;
 	public static final int CREDIT_CARD_EMPTY_PAYPAR					= 4153;
+	
+	// Credit Card-Moip
+	public static final int CREDIT_CARD_MOIP_ADDRESS_BR					= 4200;
+	public static final int CREDIT_CARD_MOIP_ADDRESS_MISSING			= 4201;
+	public static final int CREDIT_CARD_MOIP_EMPTY_CUSPAR				= 4202;
+	public static final int CREDIT_CARD_MOIP_PHONE_MISSING				= 4203;
+	public static final int CREDIT_CARD_MOIP_PHONE_BR					= 4204;
+	public static final int CREDIT_CARD_MOIP_MANDATORY_FIELD_EMPTY		= 4205;
+	public static final int CREDIT_CARD_PAYPAR_NOT_MOIP					= 4206;
 }

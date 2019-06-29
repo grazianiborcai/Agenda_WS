@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.payment.creditCard.info.CrecardInfo;
-import br.com.gda.payment.creditCard.model.action.LazyCrecardInsert;
+import br.com.gda.payment.creditCard.model.action.LazyCrecardNodeInsertCremoip;
+import br.com.gda.payment.creditCard.model.action.LazyCrecardNodeUpsert;
 import br.com.gda.payment.creditCard.model.action.StdCrecardInsertCuspar;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckHasPaypar;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckUserRef;
@@ -42,9 +43,11 @@ public final class NodeCrecardInsertL2 extends DeciTreeWriteTemplate<CrecardInfo
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
 		ActionStd<CrecardInfo> insertCuspar = new  StdCrecardInsertCuspar(option);
-		ActionLazy<CrecardInfo> insertCrecard = new LazyCrecardInsert(option.conn, option.schemaName);	
+		ActionLazy<CrecardInfo> nodeMoip = new LazyCrecardNodeInsertCremoip(option.conn, option.schemaName);	
+		ActionLazy<CrecardInfo> upsertCrecard = new LazyCrecardNodeUpsert(option.conn, option.schemaName);	
 		
-		insertCuspar.addPostAction(insertCrecard);
+		insertCuspar.addPostAction(nodeMoip);
+		nodeMoip.addPostAction(upsertCrecard);
 		
 		actions.add(insertCuspar);		
 		return actions;

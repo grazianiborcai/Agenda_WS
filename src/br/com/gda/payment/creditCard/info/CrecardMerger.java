@@ -5,10 +5,25 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.info.InfoMerger;
+import br.com.gda.payment.creditCardMoip.info.CremoipInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class CrecardMerger {
+	public static CrecardInfo mergeWithCremoip(CremoipInfo sourceOne, CrecardInfo sourceTwo) {
+		InfoMerger<CrecardInfo, CremoipInfo> merger = new CrecardMergerCremoip();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CrecardInfo> mergeWithCremoip(List<CremoipInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
+		InfoMerger<CrecardInfo, CremoipInfo> merger = new CrecardMergerCremoip();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static CrecardInfo mergeWithPhone(PhoneInfo sourceOne, CrecardInfo sourceTwo) {
 		InfoMerger<CrecardInfo, PhoneInfo> merger = new CrecardMergerPhone();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -19,7 +34,7 @@ public final class CrecardMerger {
 	public static List<CrecardInfo> mergeWithPhone(List<PhoneInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
 		InfoMerger<CrecardInfo, PhoneInfo> merger = new CrecardMergerPhone();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}
+	}	
 	
 	
 	
