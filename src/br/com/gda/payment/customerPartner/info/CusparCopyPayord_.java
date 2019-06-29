@@ -3,9 +3,9 @@ package br.com.gda.payment.customerPartner.info;
 import br.com.gda.info.InfoCopierTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-final class CusparCopyPayord extends InfoCopierTemplate<CusparInfo, PayordInfo>{
+final class CusparCopyPayord_ extends InfoCopierTemplate<CusparInfo, PayordInfo>{
 	
-	public CusparCopyPayord() {
+	public CusparCopyPayord_() {
 		super();
 	}
 	

@@ -9,7 +9,7 @@ public final class SystemMessage {
 	public static final String ILLEGAL_ARGUMENT = "IllegalArgument: mandatory argument might be missing or invalid value was passed";	
 	public static final String NULL_WHERE_CLAUSE = "where clause is null";				
 	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";				
-	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";			
+	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";									//TODO: remover e substituir por msg especifica
 	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";			
 	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
 	public static final String RESULTSET_NOT_APPLICABLE = "Resultset is either not applicable or is empty";		
@@ -442,7 +442,8 @@ public final class SystemMessage {
 	public static final String PAY_CUS_ADDRESS_DIF_USER = "Address does not belong to Payer user";
 	public static final String PAY_CUS_ADDRESS_IS_BLANK = "Pay-Cutomer's address reference is blank";
 	public static final String PAY_CUS_ADDRESS_IS_FILLED = "Pay-Cutomer's address reference should be blank";
-	public static final String PAY_CUS_ALREADY_EXIST = "Pay-Customer's data already exist on DB";		
+	public static final String PAY_CUS_ALREADY_EXIST = "Pay-Customer's data already exist on DB";	
+	public static final String PAY_CUS_MANDATORY_FIELD_EMPTY = "Pay-Cutomer: Mandatory field is empty";	
 	public static final String PAY_CUS_NOT_FOUND = "Pay-Customer's data not found on DB";
 	public static final String PAY_CUS_PERSON_CANT_BE_CHANGED = "Pay-Person can't be changed";	
 	public static final String PAY_CUS_PERSON_NOT_CHANGED = "Pay-Person not changed";
@@ -455,7 +456,7 @@ public final class SystemMessage {
 	public static final String PAY_CUS_PAY_PARTNER_IS_FILLED = "Pay-Cutomer's pay-partner reference should be blank";
 	public static final String PAY_CUS_PAY_PARTNER_NOT_FOUND = "Pay-Cutomer's pay-partner not foundk";	
 	public static final String PAY_CUS_PHONE_DIF_USER = "Phone does not belong to Payer user";
-
+	
 	
 	
 	// Company		
@@ -581,9 +582,12 @@ public final class SystemMessage {
 	
 	
 	// Pay-Customer-Moip
+	public static final String PAY_CUS_MOIP_ADDRESS_BR = "Only Brazilian addresses are allowed";
 	public static final String PAY_CUS_MOIP_ADDRESNAP_MISSING = "Missing city, district, street, street number, state or postalcode. Please, complete user data";	
 	public static final String PAY_CUS_MOIP_CREATION_ERROR = "An error occurred when trying to create your user with financial company";
+	public static final String PAY_CUS_MOIP_MANDATORY_FIELD_EMPTY = "Moip: Mandatory field is empty";
 	public static final String PAY_CUS_MOIP_PHONAP_MISSING = "Missing phone number. Please, complete user data";
+	public static final String PAY_CUS_MOIP_PHONE_BR = "Only Brazilian phone numbers are allowed";
 	public static final String PAY_CUS_MOIP_SETUPAR_MISSING = "Token or Key is missing";
 	public static final String PAY_CUS_MOIP_USERAP_MISSING = "Missing Name, email, birthdate or CPF. Please, complete user data";	
 	
@@ -591,4 +595,7 @@ public final class SystemMessage {
 	
 	// Credit Card
 	public static final String CREDIT_CARD_INVALID_USER_REF = "You can only manage your wallet";
+	public static final String CREDIT_CARD_EMPTY_CUSPAR = "Credit Card: Pay-Customer is empty";
+	public static final String CREDIT_CARD_EMPTY_PAYPAR = "Credit Card: Pay-Partner is empty";
+	public static final String CREDIT_CARD_MANDATORY_FIELD_EMPTY = "Credit Card: Mandatory field is empty";	
 }

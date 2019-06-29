@@ -17,6 +17,7 @@ public final class CusparCheckInsert extends ModelCheckerTemplateSimple<CusparIn
 	
 	@Override protected boolean checkHook(CusparInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 		<= 0 	
+			|| recordInfo.codPayPartner <= 0	
 			|| recordInfo.codAddress	<= 0 	
 			|| recordInfo.codPhone		<= 0 	
 			|| recordInfo.username		== null 
@@ -31,12 +32,12 @@ public final class CusparCheckInsert extends ModelCheckerTemplateSimple<CusparIn
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.PAY_CUS_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.PAY_CUS_MANDATORY_FIELD_EMPTY;
 	}
 }

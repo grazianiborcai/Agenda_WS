@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.payment.creditCard.info.CrecardInfo;
-import br.com.gda.payment.creditCard.model.action.LazyCrecardNodeInsert;
+import br.com.gda.payment.creditCard.model.action.LazyCrecardNodeInsertL1;
+import br.com.gda.payment.creditCard.model.action.LazyCrecardMergeAddress;
+import br.com.gda.payment.creditCard.model.action.LazyCrecardMergePhone;
 import br.com.gda.payment.creditCard.model.action.LazyCrecardMergeUsername;
 import br.com.gda.payment.creditCard.model.action.LazyCrecardRootSelect;
 import br.com.gda.payment.creditCard.model.action.StdCrecardEnforceLChanged;
-import br.com.gda.payment.creditCard.model.checker.CrecardCheckCuspar;
+import br.com.gda.payment.creditCard.model.checker.CrecardCheckAddress;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckLangu;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckOwner;
+import br.com.gda.payment.creditCard.model.checker.CrecardCheckPhone;
+import br.com.gda.payment.creditCard.model.checker.CrecardCheckUsername;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckWrite;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
@@ -49,6 +53,13 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CrecardCheckUsername(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new CrecardCheckLangu(checkerOption);
 		queue.add(checker);
 		
@@ -56,7 +67,14 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CrecardCheckCuspar(checkerOption);
+		checker = new CrecardCheckAddress(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CrecardCheckPhone(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
@@ -68,13 +86,17 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
 		ActionStd<CrecardInfo> enforceLChanged = new StdCrecardEnforceLChanged(option);	
-		ActionLazy<CrecardInfo> enforceUsername = new LazyCrecardMergeUsername(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> nodeInsert = new LazyCrecardNodeInsert(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> mergeUsername = new LazyCrecardMergeUsername(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> mergeAddress = new LazyCrecardMergeAddress(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> mergePhone = new LazyCrecardMergePhone(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodeInsert = new LazyCrecardNodeInsertL1(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> select = new LazyCrecardRootSelect(option.conn, option.schemaName);		
 		
-		enforceLChanged.addPostAction(enforceUsername);
-		enforceUsername.addPostAction(nodeInsert);
-		nodeInsert.addPostAction(select);
+		enforceLChanged.addPostAction(mergeUsername);
+		mergeUsername.addPostAction(mergeAddress);
+		mergeAddress.addPostAction(mergePhone);
+		mergePhone.addPostAction(nodeInsert);
+		//nodeInsert.addPostAction(select);
 		
 		actions.add(enforceLChanged);		
 		return actions;

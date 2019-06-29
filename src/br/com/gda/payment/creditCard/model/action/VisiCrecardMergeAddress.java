@@ -1,19 +1,19 @@
-package br.com.gda.payment.customerPartner.model.action;
+package br.com.gda.payment.creditCard.model.action;
 
 import java.sql.Connection;
 import java.util.List;
 
+import br.com.gda.payment.creditCard.info.CrecardInfo;
+import br.com.gda.payment.creditCard.info.CrecardMerger;
 import br.com.gda.business.address.info.AddressCopier;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.payment.customerPartner.info.CusparInfo;
-import br.com.gda.payment.customerPartner.info.CusparMerger;
 
-final class VisiCusparMergeAddress extends ActionVisitorTemplateMergeV2<CusparInfo, AddressInfo> {
+final class VisiCrecardMergeAddress extends ActionVisitorTemplateMergeV2<CrecardInfo, AddressInfo> {
 	
-	public VisiCusparMergeAddress(Connection conn, String schemaName) {
+	public VisiCrecardMergeAddress(Connection conn, String schemaName) {
 		super(conn, schemaName, AddressInfo.class);
 	}
 	
@@ -25,14 +25,14 @@ final class VisiCusparMergeAddress extends ActionVisitorTemplateMergeV2<CusparIn
 	
 	
 	
-	@Override protected List<AddressInfo> toActionClassHook(List<CusparInfo> recordInfos) {
-		return AddressCopier.copyFromCuspar(recordInfos);	
+	@Override protected List<AddressInfo> toActionClassHook(List<CrecardInfo> recordInfos) {
+		return AddressCopier.copyFromCrecard(recordInfos);	
 	}
 	
 	
 	
-	@Override protected List<CusparInfo> mergeHook(List<CusparInfo> recordInfos, List<AddressInfo> selectedInfos) {	
-		return CusparMerger.mergeWithAddress(selectedInfos, recordInfos);
+	@Override protected List<CrecardInfo> mergeHook(List<CrecardInfo> recordInfos, List<AddressInfo> selectedInfos) {	
+		return CrecardMerger.mergeWithAddress(selectedInfos, recordInfos);
 	}
 	
 	

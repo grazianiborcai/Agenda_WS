@@ -12,11 +12,13 @@ import br.com.gda.payment.customerPartner.model.action.LazyCusparMergePhone;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparMergeUser;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparMergeUserap;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparNodeInsert;
+import br.com.gda.payment.customerPartner.model.action.LazyCusparRootSelect;
 import br.com.gda.payment.customerPartner.model.action.StdCusparMergeUsername;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckAddress;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckInsert;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckLangu;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckOwner;
+import br.com.gda.payment.customerPartner.model.checker.CusparCheckPaypar;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckPhone;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckUsername;
 import br.com.gda.model.action.ActionStd;
@@ -63,6 +65,13 @@ public final class RootCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CusparCheckPaypar(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new CusparCheckUsername(checkerOption);
 		queue.add(checker);
 		
@@ -89,14 +98,15 @@ public final class RootCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CusparInfo> mergeUsername = new StdCusparMergeUsername(option);
-		ActionLazy<CusparInfo> mergeUser = new LazyCusparMergeUser(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> mergeUser = new LazyCusparMergeUser(option.conn, option.schemaName);		
+		ActionLazy<CusparInfo> mergeUserSnapshot = new LazyCusparMergeUserap(option.conn, option.schemaName);	
 		ActionLazy<CusparInfo> mergeAddress = new LazyCusparMergeAddress(option.conn, option.schemaName);
-		ActionLazy<CusparInfo> mergeUserSnapshot = new LazyCusparMergeUserap(option.conn, option.schemaName);		
 		ActionLazy<CusparInfo> mergeAddressSnapshot = new LazyCusparMergeAddresnap(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> mergePhone = new LazyCusparMergePhone(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> mergePhoneSnapshot = new LazyCusparMergePhonap(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> enforceLChanged = new LazyCusparEnforceLChanged(option.conn, option.schemaName);			
 		ActionLazy<CusparInfo> insert = new LazyCusparNodeInsert(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> select = new LazyCusparRootSelect(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(mergeUser);
 		mergeUser.addPostAction(mergeUserSnapshot);
@@ -106,6 +116,7 @@ public final class RootCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 		mergePhone.addPostAction(mergePhoneSnapshot);			
 		mergePhoneSnapshot.addPostAction(enforceLChanged);			
 		enforceLChanged.addPostAction(insert);
+		insert.addPostAction(select);
 		
 		actions.add(mergeUsername);
 		return actions;

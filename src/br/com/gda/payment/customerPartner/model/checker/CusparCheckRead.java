@@ -16,9 +16,10 @@ public final class CusparCheckRead extends ModelCheckerTemplateSimple<CusparInfo
 	
 	
 	@Override protected boolean checkHook(CusparInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 	|| 
-			 recordInfo.username	== null	||
-			 recordInfo.codLanguage	== null		)
+		if ( recordInfo.codOwner 		<= 0 	|| 
+			 recordInfo.codPayCustomer	<= 0	||
+			 recordInfo.username		== null	||					 
+			 recordInfo.codLanguage		== null		)
 			
 			return super.FAILED;
 		
@@ -29,12 +30,12 @@ public final class CusparCheckRead extends ModelCheckerTemplateSimple<CusparInfo
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.PAY_CUS_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.PAY_CUS_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -16,7 +16,15 @@ public final class CrecardCheckUserRef extends ModelCheckerTemplateSimple<Crecar
 	
 	
 	@Override protected boolean checkHook(CrecardInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codUser != recordInfo.codUserRef )			
+		if (recordInfo.addressData 	== null	||
+			recordInfo.phoneData	== null		)
+		
+			return super.FAILED;
+		
+		
+		
+		if (recordInfo.codUser != recordInfo.addressData.codUser	|| 
+			recordInfo.codUser != recordInfo.phoneData.codUser			)			
 			return super.FAILED;
 		
 		

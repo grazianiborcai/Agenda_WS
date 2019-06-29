@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.creditCard.model.action.StdCrecardInsert;
-import br.com.gda.payment.creditCard.model.checker.CrecardCheckUserRef;
+import br.com.gda.payment.creditCard.model.checker.CrecardCheckCusparRef;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> {
+public final class NodeCrecardInsertL4 extends DeciTreeWriteTemplate<CrecardInfo> {
 	
-	public NodeCrecardInsert(DeciTreeOption<CrecardInfo> option) {
+	public NodeCrecardInsertL4(DeciTreeOption<CrecardInfo> option) {
 		super(option);
 	}
 	
@@ -24,7 +24,7 @@ public final class NodeCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
 		ModelChecker<CrecardInfo> checker;	
 		
-		checker = new CrecardCheckUserRef();
+		checker = new CrecardCheckCusparRef();
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
@@ -33,8 +33,8 @@ public final class NodeCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 	
 	
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
-
+		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();	
+		
 		ActionStd<CrecardInfo> insertCard = new StdCrecardInsert(option);	
 		
 		actions.add(insertCard);		

@@ -357,6 +357,7 @@ public final class SystemCode {
 	public static final int PAY_CUS_PAY_PARTNER_NOT_FOUND				= 2413;
 	public static final int PAY_CUS_ADDRESS_DIF_USER					= 2414;
 	public static final int PAY_CUS_PHONE_DIF_USER						= 2415;
+	public static final int PAY_CUS_MANDATORY_FIELD_EMPTY 				= 2416;
 	
 	// Company
 	public static final int COMPANY_TECH_FIELD_SHOULD_BE_EMPTY			= 2500;
@@ -458,7 +459,13 @@ public final class SystemCode {
 	public static final int PAY_CUS_MOIP_USERAP_MISSING					= 4102;
 	public static final int PAY_CUS_MOIP_PHONAP_MISSING					= 4103;
 	public static final int PAY_CUS_MOIP_ADDRESNAP_MISSING				= 4104;
+	public static final int PAY_CUS_MOIP_MANDATORY_FIELD_EMPTY 			= 4105;
+	public static final int PAY_CUS_MOIP_PHONE_BR						= 4106;
+	public static final int PAY_CUS_MOIP_ADDRESS_BR						= 4107;
 	
 	// Credit Card
 	public static final int CREDIT_CARD_INVALID_USER_REF				= 4150;
+	public static final int CREDIT_CARD_MANDATORY_FIELD_EMPTY 			= 4151;
+	public static final int CREDIT_CARD_EMPTY_CUSPAR					= 4152;
+	public static final int CREDIT_CARD_EMPTY_PAYPAR					= 4153;
 }

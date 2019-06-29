@@ -3,13 +3,13 @@ package br.com.gda.payment.creditCard.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
-import br.com.gda.payment.customerPartner.info.CusparInfo;
 
-final class CrecardVisiMergeCuspar implements InfoMergerVisitorV2<CrecardInfo, CusparInfo> {
+final class CrecardVisiMergePhone implements InfoMergerVisitorV2<CrecardInfo, PhoneInfo> {
 
-	@Override public CrecardInfo writeRecord(CusparInfo sourceOne, CrecardInfo sourceTwo) {
+	@Override public CrecardInfo writeRecord(PhoneInfo sourceOne, CrecardInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		CrecardInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class CrecardVisiMergeCuspar implements InfoMergerVisitorV2<CrecardInfo, C
 	
 	
 	
-	private void checkArgument(CusparInfo sourceOne, CrecardInfo sourceTwo) {
+	private void checkArgument(PhoneInfo sourceOne, CrecardInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,18 +37,16 @@ final class CrecardVisiMergeCuspar implements InfoMergerVisitorV2<CrecardInfo, C
 	
 	
 	
-	private CrecardInfo merge(CusparInfo sourceOne, CrecardInfo sourceTwo) {
-		sourceTwo.cusparData = makeClone(sourceOne);
-		sourceTwo.codPayPartner = sourceOne.codPayPartner;
-		sourceTwo.codPayCustomer = sourceOne.codPayCustomer;
+	private CrecardInfo merge(PhoneInfo sourceOne, CrecardInfo sourceTwo) {
+		sourceTwo.phoneData = makeClone(sourceOne);
 		return sourceTwo;
 	}
 	
 	
 	
-	private CusparInfo makeClone(CusparInfo recordInfo) {
+	private PhoneInfo makeClone(PhoneInfo recordInfo) {
 		try {
-			return (CusparInfo) recordInfo.clone();
+			return (PhoneInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -58,8 +56,9 @@ final class CrecardVisiMergeCuspar implements InfoMergerVisitorV2<CrecardInfo, C
 	
 	
 	
-	@Override public boolean shouldWrite(CusparInfo sourceOne, CrecardInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	@Override public boolean shouldWrite(PhoneInfo sourceOne, CrecardInfo sourceTwo) {		
+		return (sourceOne.codOwner 	 == sourceTwo.codOwner		&&
+				sourceOne.codPhone == sourceTwo.codPhoneHolder		);
 	}
 	
 	

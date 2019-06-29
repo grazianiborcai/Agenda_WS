@@ -28,6 +28,7 @@ public final class CusparSetterUserKey implements InfoSetter<CusparInfo> {
 		CusparInfo result = new CusparInfo();
 		result.codOwner = recordInfo.codOwner;
 		result.codUser = recordInfo.codUser;
+		result.codPayPartner = recordInfo.codPayPartner;
 		result.codLanguage = recordInfo.codLanguage;
 		result.username = recordInfo.username;
 		return result;

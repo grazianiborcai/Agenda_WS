@@ -20,8 +20,8 @@ public final class CusmoipCheckPhonapData extends ModelCheckerTemplateSimple<Cus
 			return super.FAILED;
 		
 		
-		if (recordInfo.phonapData.codCountry	== null ||
-			recordInfo.phonapData.fullNumber	== null)	
+		if (recordInfo.phonapData.codCountryPhone	<= 0 	||
+			recordInfo.phonapData.fullNumber		== null		)	
 		
 			return super.FAILED;
 			

@@ -3,16 +3,15 @@ package br.com.gda.payment.creditCard.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.payment.creditCard.info.CrecardInfo;
-import br.com.gda.payment.creditCard.model.decisionTree.NodeCrecardInsert;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCrecardNodeInsert extends ActionLazyTemplate<CrecardInfo, CrecardInfo> {
+public final class LazyCrecardMergeAddress extends ActionLazyTemplate<CrecardInfo, CrecardInfo> {
 	
-	public LazyCrecardNodeInsert(Connection conn, String schemaName) {
+	public LazyCrecardMergeAddress(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,8 +23,8 @@ public final class LazyCrecardNodeInsert extends ActionLazyTemplate<CrecardInfo,
 	
 	
 	
-	@Override protected  ActionStd<CrecardInfo> getInstanceOfActionHook(DeciTreeOption<CrecardInfo> option) {
-		return new NodeCrecardInsert(option).toAction();
+	@Override protected ActionStd<CrecardInfo> getInstanceOfActionHook(DeciTreeOption<CrecardInfo> option) {
+		return new StdCrecardMergeAddress(option);
 	}
 	
 	

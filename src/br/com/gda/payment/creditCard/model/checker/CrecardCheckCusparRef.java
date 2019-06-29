@@ -7,17 +7,22 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class CrecardCheckRead extends ModelCheckerTemplateSimple<CrecardInfo> {
+public final class CrecardCheckCusparRef extends ModelCheckerTemplateSimple<CrecardInfo> {
 
-	public CrecardCheckRead() {
+	public CrecardCheckCusparRef() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CrecardInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.codLanguage 	== null		)			
+		if (recordInfo.cusparData	== null		)
+		
+			return super.FAILED;
+		
+		
+		
+		if (recordInfo.codUser != recordInfo.cusparData.codUser)			
 			return super.FAILED;
 		
 		
@@ -27,12 +32,12 @@ public final class CrecardCheckRead extends ModelCheckerTemplateSimple<CrecardIn
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.CREDIT_CARD_MANDATORY_FIELD_EMPTY;
+		return SystemMessage.CREDIT_CARD_INVALID_USER_REF;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.CREDIT_CARD_MANDATORY_FIELD_EMPTY;
+		return SystemCode.CREDIT_CARD_INVALID_USER_REF;
 	}
 }

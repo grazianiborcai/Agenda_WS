@@ -16,27 +16,41 @@ public final class CrecardCheckWrite extends ModelCheckerTemplateSimple<CrecardI
 	
 	
 	@Override protected boolean checkHook(CrecardInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 		<= 0 	||	
-			 recordInfo.codPayCustomer	<= 0 	||
-			 recordInfo.creditCardId 	== null ||
-			 recordInfo.codLanguage 	== null ||
-			 recordInfo.username 		== null 	)
+		if ( recordInfo.codOwner 			<= 0 	||	
+			 recordInfo.codAddressHolder	<= 0 	||
+			 recordInfo.codPhoneHolder		<= 0 	||
+			 recordInfo.expirationMonth		== null ||			 
+			 recordInfo.expirationYear		== null ||
+			 recordInfo.cardNumber			== null ||
+			 recordInfo.cardCvc				== null ||
+			 recordInfo.birthdateHolder		== null ||
+			 recordInfo.cpfHolder			== null ||			 
+			 recordInfo.codLanguage 		== null ||
+			 recordInfo.username 			== null 	)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		
+		if ( recordInfo.codPayCustomer	<= 0 	&&
+			 recordInfo.codPayPartner	<= 0		)	
+			
+			return super.FAILED;
+		
+		
+		
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.CREDIT_CARD_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.CREDIT_CARD_MANDATORY_FIELD_EMPTY;
 	}
 }

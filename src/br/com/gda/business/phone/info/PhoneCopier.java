@@ -9,10 +9,25 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
+import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
 public final class PhoneCopier {
+	public static PhoneInfo copyFromCrecard(CrecardInfo source) {
+		InfoCopier<PhoneInfo, CrecardInfo> copier = new PhoneCopyCrecard();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhoneInfo> copyFromCrecard(List<CrecardInfo> sources) {
+		InfoCopier<PhoneInfo, CrecardInfo> copier = new PhoneCopyCrecard();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static PhoneInfo copyFromCuspar(CusparInfo source) {
 		InfoCopier<PhoneInfo, CusparInfo> copier = new PhoneCopyCuspar();
 		return copier.makeCopy(source);
@@ -23,7 +38,7 @@ public final class PhoneCopier {
 	public static List<PhoneInfo> copyFromCuspar(List<CusparInfo> sources) {
 		InfoCopier<PhoneInfo, CusparInfo> copier = new PhoneCopyCuspar();
 		return copier.makeCopy(sources);
-	}
+	}	
 	
 	
 	
