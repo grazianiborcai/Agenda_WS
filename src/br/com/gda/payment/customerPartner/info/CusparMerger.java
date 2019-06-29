@@ -2,7 +2,9 @@ package br.com.gda.payment.customerPartner.info;
 
 import java.util.List;
 
+import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
+import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.userSnapshot.info.UserapInfo;
@@ -12,6 +14,34 @@ import br.com.gda.payment.setupPartner.info.SetuparInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class CusparMerger {		
+	public static CusparInfo mergeWithPhone(PhoneInfo sourceOne, CusparInfo sourceTwo) {
+		InfoMerger<CusparInfo, PhoneInfo> merger = new CusparMergerPhone();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CusparInfo> mergeWithPhone(List<PhoneInfo> sourceOnes, List<CusparInfo> sourceTwos) {
+		InfoMerger<CusparInfo, PhoneInfo> merger = new CusparMergerPhone();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
+	public static CusparInfo mergeWithAddress(AddressInfo sourceOne, CusparInfo sourceTwo) {
+		InfoMerger<CusparInfo, AddressInfo> merger = new CusparMergerAddress();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CusparInfo> mergeWithAddress(List<AddressInfo> sourceOnes, List<CusparInfo> sourceTwos) {
+		InfoMerger<CusparInfo, AddressInfo> merger = new CusparMergerAddress();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static CusparInfo mergeWithCusmoip(CusmoipInfo sourceOne, CusparInfo sourceTwo) {
 		InfoMerger<CusparInfo, CusmoipInfo> merger = new CusparMergerCusmoip();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -22,7 +52,7 @@ public final class CusparMerger {
 	public static List<CusparInfo> mergeWithCusmoip(List<CusmoipInfo> sourceOnes, List<CusparInfo> sourceTwos) {
 		InfoMerger<CusparInfo, CusmoipInfo> merger = new CusparMergerCusmoip();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}		
+	}	
 	
 	
 	

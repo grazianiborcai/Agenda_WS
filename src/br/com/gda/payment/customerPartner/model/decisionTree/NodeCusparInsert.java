@@ -9,9 +9,11 @@ import br.com.gda.payment.customerPartner.model.action.LazyCusparNodeCreateMoip;
 import br.com.gda.payment.customerPartner.model.action.StdCusparInsert;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckPhonapUser;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckAddresnapUser;
+import br.com.gda.payment.customerPartner.model.checker.CusparCheckExistByUser;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
@@ -25,8 +27,18 @@ public final class NodeCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 	
 	
 	@Override protected ModelChecker<CusparInfo> buildDecisionCheckerHook(DeciTreeOption<CusparInfo> option) {
+		final boolean DONT_EXIST_ON_DB = false;
+		
 		List<ModelChecker<CusparInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusparInfo> checker;	
+		ModelCheckerOption checkerOption;
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = DONT_EXIST_ON_DB;	
+		checker = new CusparCheckExistByUser(checkerOption);
+		queue.add(checker);
 		
 		checker = new CusparCheckAddresnapUser();
 		queue.add(checker);

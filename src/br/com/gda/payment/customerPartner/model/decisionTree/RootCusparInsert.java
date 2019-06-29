@@ -6,14 +6,19 @@ import java.util.List;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparEnforceLChanged;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparMergeAddresnap;
+import br.com.gda.payment.customerPartner.model.action.LazyCusparMergeAddress;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparMergePhonap;
+import br.com.gda.payment.customerPartner.model.action.LazyCusparMergePhone;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparMergeUser;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparMergeUserap;
 import br.com.gda.payment.customerPartner.model.action.LazyCusparNodeInsert;
 import br.com.gda.payment.customerPartner.model.action.StdCusparMergeUsername;
+import br.com.gda.payment.customerPartner.model.checker.CusparCheckAddress;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckInsert;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckLangu;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckOwner;
+import br.com.gda.payment.customerPartner.model.checker.CusparCheckPhone;
+import br.com.gda.payment.customerPartner.model.checker.CusparCheckUsername;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
@@ -54,6 +59,27 @@ public final class RootCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 		checker = new CusparCheckOwner(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CusparCheckUsername(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CusparCheckAddress(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CusparCheckPhone(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -64,16 +90,20 @@ public final class RootCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 		
 		ActionStd<CusparInfo> mergeUsername = new StdCusparMergeUsername(option);
 		ActionLazy<CusparInfo> mergeUser = new LazyCusparMergeUser(option.conn, option.schemaName);
-		ActionLazy<CusparInfo> mergeUserSnapshot = new LazyCusparMergeUserap(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> mergeAddress = new LazyCusparMergeAddress(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> mergeUserSnapshot = new LazyCusparMergeUserap(option.conn, option.schemaName);		
 		ActionLazy<CusparInfo> mergeAddressSnapshot = new LazyCusparMergeAddresnap(option.conn, option.schemaName);
+		ActionLazy<CusparInfo> mergePhone = new LazyCusparMergePhone(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> mergePhoneSnapshot = new LazyCusparMergePhonap(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> enforceLChanged = new LazyCusparEnforceLChanged(option.conn, option.schemaName);			
 		ActionLazy<CusparInfo> insert = new LazyCusparNodeInsert(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(mergeUser);
 		mergeUser.addPostAction(mergeUserSnapshot);
-		mergeUserSnapshot.addPostAction(mergeAddressSnapshot);		
-		mergeAddressSnapshot.addPostAction(mergePhoneSnapshot);	
+		mergeUserSnapshot.addPostAction(mergeAddress);		
+		mergeAddress.addPostAction(mergeAddressSnapshot);		
+		mergeAddressSnapshot.addPostAction(mergePhone);	
+		mergePhone.addPostAction(mergePhoneSnapshot);			
 		mergePhoneSnapshot.addPostAction(enforceLChanged);			
 		enforceLChanged.addPostAction(insert);
 		
