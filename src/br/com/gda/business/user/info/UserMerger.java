@@ -9,6 +9,7 @@ import br.com.gda.business.personCustomer.info.PersonCusInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.info.InfoMerger;
+import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class UserMerger {
@@ -23,6 +24,20 @@ public final class UserMerger {
 		InfoMerger<UserInfo, AddressInfo> merger = new UserMergerAddress();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static UserInfo mergeWithCuspar(CusparInfo sourceOne, UserInfo sourceTwo) {
+		InfoMerger<UserInfo, CusparInfo> merger = new UserMergerCuspar();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<UserInfo> mergeWithCuspar(List<CusparInfo> sourceOnes, List<UserInfo> sourceTwos) {
+		InfoMerger<UserInfo, CusparInfo> merger = new UserMergerCuspar();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 	
 	
 	

@@ -117,8 +117,6 @@ public final class CusparSelectSingle implements DaoStmt<CusparInfo> {
 				dataInfo.recordMode = stmtResult.getString(CusparDbTableColumn.COL_RECORD_MODE);				
 				dataInfo.compoundId = stmtResult.getString(CusparDbTableColumn.COL_COMPOUND_ID);
 				dataInfo.customerId = stmtResult.getString(CusparDbTableColumn.COL_CUSTOMER_ID);
-				dataInfo.customerLink = stmtResult.getString(CusparDbTableColumn.COL_CUSTOMER_LINK);
-				dataInfo.accountLink = stmtResult.getString(CusparDbTableColumn.COL_ACCOUNT_LINK);
 				
 				stmtResult.getLong(CusparDbTableColumn.COL_COD_USER_SNAPSHOT);
 				if (stmtResult.wasNull() == NOT_NULL)

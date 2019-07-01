@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.user.model.action.LazyUserMergeAddress;
 import br.com.gda.business.user.model.action.LazyUserMergeAuthGrRole;
+import br.com.gda.business.user.model.action.LazyUserMergeCuspar;
 import br.com.gda.business.user.model.action.LazyUserMergePerson;
 import br.com.gda.business.user.model.action.LazyUserMergePersonCus;
 import br.com.gda.business.user.model.action.LazyUserMergePhone;
@@ -47,12 +48,14 @@ public final class RootUserSelect extends DeciTreeReadTemplate<UserInfo> {
 		ActionLazy<UserInfo> mergePhone = new LazyUserMergePhone(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergePersonCus = new LazyUserMergePersonCus(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergeAuthGrRole = new LazyUserMergeAuthGrRole(option.conn, option.schemaName);
+		ActionLazy<UserInfo> mergeCuspar = new LazyUserMergeCuspar(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
 		mergePhone.addPostAction(mergePersonCus);
 		mergePersonCus.addPostAction(mergeAuthGrRole);
+		mergeAuthGrRole.addPostAction(mergeCuspar);
 		
 		actions.add(select);
 		return actions;

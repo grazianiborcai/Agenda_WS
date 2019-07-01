@@ -8,6 +8,7 @@ import br.com.gda.payment.customerPartner.model.action.LazyCusparMergeToSelect;
 import br.com.gda.payment.customerPartner.model.action.StdCusparMergeUsername;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckLangu;
 import br.com.gda.payment.customerPartner.model.checker.CusparCheckRead;
+import br.com.gda.payment.customerPartner.model.checker.CusparCheckUsername;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -39,6 +40,13 @@ public final class RootCusparSelect extends DeciTreeReadTemplate<CusparInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new CusparCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new CusparCheckUsername(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

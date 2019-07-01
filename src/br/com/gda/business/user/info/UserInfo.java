@@ -10,6 +10,7 @@ import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
+import br.com.gda.payment.customerPartner.info.CusparInfo;
 
 public final class UserInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -25,11 +26,12 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
 	public List<AuthGrRoleInfo> authGrRoles;
+	public List<CusparInfo> cuspars;
 	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
-	//TODO: adicionar codPayCustomer
+
 	
 	public UserInfo() {
 		codOwner = DefaultValue.number();
@@ -41,6 +43,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		personData = DefaultValue.object();
 		authGrRoles = DefaultValue.list();
+		cuspars = DefaultValue.list();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		codLanguage = DefaultValue.language();		
