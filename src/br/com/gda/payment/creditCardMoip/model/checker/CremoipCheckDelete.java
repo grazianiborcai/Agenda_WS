@@ -7,22 +7,16 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.payment.creditCardMoip.info.CremoipInfo;
 
-public final class CremoipCheckWrite extends ModelCheckerTemplateSimple<CremoipInfo> {
+public final class CremoipCheckDelete extends ModelCheckerTemplateSimple<CremoipInfo> {
 
-	public CremoipCheckWrite() {
+	public CremoipCheckDelete() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CremoipInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.expirationMonth 	== null		||
-			recordInfo.expirationYear 	== null		||
-			recordInfo.cardNumber 		== null		||
-			recordInfo.cardCvc 			== null		||
-			recordInfo.nameHolder 		== null		||
-			recordInfo.birthdateHolder 	== null		||
-			recordInfo.cpfHolder 		== null			)
+		if (recordInfo.creditCardId == null)
 			
 			return super.FAILED;
 

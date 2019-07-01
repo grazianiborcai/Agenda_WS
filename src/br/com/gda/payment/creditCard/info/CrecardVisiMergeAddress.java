@@ -39,6 +39,7 @@ final class CrecardVisiMergeAddress implements InfoMergerVisitorV2<CrecardInfo, 
 	
 	private CrecardInfo merge(AddressInfo sourceOne, CrecardInfo sourceTwo) {
 		sourceTwo.addressData = makeClone(sourceOne);
+		sourceTwo.codAddressSnapshotHolder = sourceOne.codSnapshot;
 		return sourceTwo;
 	}
 	

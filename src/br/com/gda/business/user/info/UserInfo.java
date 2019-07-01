@@ -29,7 +29,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
-	
+	//TODO: adicionar codPayCustomer
 	
 	public UserInfo() {
 		codOwner = DefaultValue.number();

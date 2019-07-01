@@ -21,6 +21,12 @@ public final class JsonAttrExclusion implements ExclusionStrategy {
 		if (f.getName().equals("nano"))
 			return SKIP;
 		
+		if (f.getName().equals("creditCardId"))
+			return SKIP;
+		
+		if (f.getName().equals("customerId"))
+			return SKIP;
+		
 		return DONT_SKIP;
 	}
 

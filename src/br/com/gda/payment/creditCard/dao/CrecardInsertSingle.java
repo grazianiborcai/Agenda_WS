@@ -2,13 +2,16 @@ package br.com.gda.payment.creditCard.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
+import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
 import br.com.gda.dao.DaoStmtOption;
@@ -37,7 +40,7 @@ public final class CrecardInsertSingle implements DaoStmt<CrecardInfo> {
 		this.stmtOption.tableName = DaoDbTable.CREDIT_CARD_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = null;
+		this.stmtOption.resultParser = new ResultParser(recordInfo);
 		this.stmtOption.whereClause = null;
 	}
 	
@@ -91,6 +94,35 @@ public final class CrecardInsertSingle implements DaoStmt<CrecardInfo> {
 				stmt.setNull(i++, Types.INTEGER);
 			}
 			
+			
+			if (recordInfo.codAddressHolder >= 0) {
+				stmt.setLong(i++, recordInfo.codAddressHolder);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codAddressSnapshotHolder >= 0) {
+				stmt.setLong(i++, recordInfo.codAddressSnapshotHolder);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codPhoneHolder >= 0) {
+				stmt.setLong(i++, recordInfo.codPhoneHolder);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codPhoneSnapshotHolder >= 0) {
+				stmt.setLong(i++, recordInfo.codPhoneSnapshotHolder);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
 			return stmt;
 		}		
 	}
@@ -100,4 +132,25 @@ public final class CrecardInsertSingle implements DaoStmt<CrecardInfo> {
 	@Override public DaoStmt<CrecardInfo> getNewInstance() {
 		return new CrecardInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
+	
+	
+	
+	
+	
+	private static class ResultParser implements DaoResultParser<CrecardInfo> {
+		private CrecardInfo recordInfo;
+		
+		public ResultParser(CrecardInfo recordToParse) {
+			recordInfo = recordToParse;
+		}
+		
+		
+		
+		@Override public List<CrecardInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<CrecardInfo> finalResult = new ArrayList<>();
+			recordInfo.codCreditCard = lastId;
+			finalResult.add(recordInfo);			
+			return finalResult;
+		}
+	}	
 }

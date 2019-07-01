@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class CrecardSetterKey implements InfoSetter<CrecardInfo> {
+public final class CrecardSetterKeyId implements InfoSetter<CrecardInfo> {
 	
 	public CrecardInfo setAttr(CrecardInfo recordInfo) {
 		checkArgument(recordInfo);
@@ -28,7 +28,7 @@ public final class CrecardSetterKey implements InfoSetter<CrecardInfo> {
 		CrecardInfo enforcedRecord = new CrecardInfo();
 		enforcedRecord.codOwner = recordInfo.codOwner;
 		enforcedRecord.codPayCustomer = recordInfo.codPayCustomer;
-		enforcedRecord.codCreditCard = recordInfo.codCreditCard;
+		enforcedRecord.creditCardId = recordInfo.creditCardId;
 		enforcedRecord.codLanguage = recordInfo.codLanguage;
 		
 		return enforcedRecord;

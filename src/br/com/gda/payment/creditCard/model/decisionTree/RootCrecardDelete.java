@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.payment.creditCard.info.CrecardInfo;
-import br.com.gda.payment.creditCard.model.action.LazyCrecardDelete;
 import br.com.gda.payment.creditCard.model.action.LazyCrecardEnforceLChanged;
+import br.com.gda.payment.creditCard.model.action.LazyCrecardMergeCuspar;
 import br.com.gda.payment.creditCard.model.action.LazyCrecardMergeUsername;
-import br.com.gda.payment.creditCard.model.action.LazyCrecardUpdate;
+import br.com.gda.payment.creditCard.model.action.LazyCrecardNodeDelete;
 import br.com.gda.payment.creditCard.model.action.StdCrecardMergeToDelete;
-import br.com.gda.payment.creditCard.model.checker.CrecardCheckWrite;
+import br.com.gda.payment.creditCard.model.checker.CrecardCheckDelete;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckExist;
+import br.com.gda.payment.creditCard.model.checker.CrecardCheckUsername;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -35,7 +36,7 @@ public final class RootCrecardDelete extends DeciTreeWriteTemplate<CrecardInfo> 
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
-		checker = new CrecardCheckWrite();
+		checker = new CrecardCheckDelete();
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
@@ -43,6 +44,13 @@ public final class RootCrecardDelete extends DeciTreeWriteTemplate<CrecardInfo> 
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new CrecardCheckExist(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new CrecardCheckUsername(checkerOption);
 		queue.add(checker);	
 
 		return new ModelCheckerQueue<CrecardInfo>(queue);
@@ -56,13 +64,13 @@ public final class RootCrecardDelete extends DeciTreeWriteTemplate<CrecardInfo> 
 		ActionStd<CrecardInfo> mergeToDelete = new StdCrecardMergeToDelete(option);
 		ActionLazy<CrecardInfo> enforceLChanged = new LazyCrecardEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> enforceLChangedBy = new LazyCrecardMergeUsername(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> update = new LazyCrecardUpdate(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> delete = new LazyCrecardDelete(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> mergeCuspar = new LazyCrecardMergeCuspar(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> delete = new LazyCrecardNodeDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(update);
-		update.addPostAction(delete);
+		enforceLChangedBy.addPostAction(mergeCuspar);		
+		mergeCuspar.addPostAction(delete);
 		
 		actions.add(mergeToDelete);
 		return actions;

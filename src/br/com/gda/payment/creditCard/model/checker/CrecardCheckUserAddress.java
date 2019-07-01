@@ -7,24 +7,21 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class CrecardCheckUserRef extends ModelCheckerTemplateSimple<CrecardInfo> {
+public final class CrecardCheckUserAddress extends ModelCheckerTemplateSimple<CrecardInfo> {
 
-	public CrecardCheckUserRef() {
+	public CrecardCheckUserAddress() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CrecardInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.addressData 	== null	||
-			recordInfo.phoneData	== null		)
-		
+		if (recordInfo.addressData == null)		
 			return super.FAILED;
 		
 		
 		
-		if (recordInfo.codUser != recordInfo.addressData.codUser	|| 
-			recordInfo.codUser != recordInfo.phoneData.codUser			)			
+		if (recordInfo.codUser != recordInfo.addressData.codUser)			
 			return super.FAILED;
 		
 		

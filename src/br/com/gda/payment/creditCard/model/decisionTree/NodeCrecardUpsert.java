@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.payment.creditCard.info.CrecardInfo;
+import br.com.gda.payment.creditCard.model.action.LazyCrecardUpdate;
 import br.com.gda.payment.creditCard.model.action.StdCrecardInsert;
-import br.com.gda.payment.creditCard.model.action.StdCrecardUpdate;
-import br.com.gda.payment.creditCard.model.checker.CrecardCheckExist;
+import br.com.gda.payment.creditCard.model.action.StdCrecardMergeToUpdate;
+import br.com.gda.payment.creditCard.model.checker.CrecardCheckExistById;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -33,7 +35,7 @@ public final class NodeCrecardUpsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CrecardCheckExist(checkerOption);
+		checker = new CrecardCheckExistById(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
@@ -44,9 +46,12 @@ public final class NodeCrecardUpsert extends DeciTreeWriteTemplate<CrecardInfo> 
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> updateCrecard = new StdCrecardUpdate(option);	
+		ActionStd<CrecardInfo> mergeToUpdate = new StdCrecardMergeToUpdate(option);	
+		ActionLazy<CrecardInfo> updateCrecard = new LazyCrecardUpdate(option.conn, option.schemaName);
 		
-		actions.add(updateCrecard);		
+		mergeToUpdate.addPostAction(updateCrecard);
+		
+		actions.add(mergeToUpdate);		
 		return actions;
 	}
 	

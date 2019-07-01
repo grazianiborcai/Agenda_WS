@@ -11,6 +11,7 @@ import br.com.gda.payment.customerPartner.info.CusparInfo;
 
 public final class CrecardInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public long codCreditCard;
 	public long codPayCustomer;
 	public long codPayPartner;
 	public long codUser;
@@ -25,7 +26,9 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	public String birthdateHolder;
 	public String cpfHolder;
 	public long codPhoneHolder;
+	public long codPhoneSnapshotHolder;
 	public long codAddressHolder;	
+	public long codAddressSnapshotHolder;	
 	public AddressInfo addressData;
 	public PhoneInfo phoneData;
 	public CusparInfo cusparData;
@@ -45,10 +48,13 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();
 		codPhoneHolder = DefaultValue.number();
+		codPhoneSnapshotHolder = DefaultValue.number();
 		codAddressHolder = DefaultValue.number();
+		codAddressSnapshotHolder = DefaultValue.number();
 		addressData = DefaultValue.object();
 		phoneData = DefaultValue.object();
 		cusparData = DefaultValue.object();
+		codCreditCard = DefaultValue.number();
 	}
 	
 	
@@ -108,6 +114,7 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 		int result = 17;
 		
 		result = result * 31 + (int) (codOwner  		^ (codOwner			>>> 32));
+		result = result * 31 + (int) (codCreditCard 	^ (codCreditCard 	>>> 32));
 		result = result * 31 + (int) (codPayCustomer 	^ (codPayCustomer 	>>> 32));
 		
 		if (creditCardId != null)
@@ -129,6 +136,7 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 		
 		CrecardInfo obj = (CrecardInfo) o;		
 		return (codOwner 		== obj.codOwner 		&& 
+				codCreditCard	== obj.codCreditCard	&&
 				codPayCustomer	== obj.codPayCustomer	&&
 				super.isStringEqual(creditCardId, obj.creditCardId));
 	}

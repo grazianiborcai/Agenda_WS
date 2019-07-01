@@ -39,6 +39,7 @@ final class CrecardVisiMergePhone implements InfoMergerVisitorV2<CrecardInfo, Ph
 	
 	private CrecardInfo merge(PhoneInfo sourceOne, CrecardInfo sourceTwo) {
 		sourceTwo.phoneData = makeClone(sourceOne);
+		sourceTwo.codPhoneSnapshotHolder = sourceOne.codSnapshot;
 		return sourceTwo;
 	}
 	

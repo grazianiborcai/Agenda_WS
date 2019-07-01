@@ -462,12 +462,15 @@ public final class SystemCode {
 	public static final int PAY_CUS_MOIP_MANDATORY_FIELD_EMPTY 			= 4105;
 	public static final int PAY_CUS_MOIP_PHONE_BR						= 4106;
 	public static final int PAY_CUS_MOIP_ADDRESS_BR						= 4107;
+	public static final int PAY_CUS_MOIP_DELETION_ERROR 				= 4108;
 	
 	// Credit Card
 	public static final int CREDIT_CARD_INVALID_USER_REF				= 4150;
 	public static final int CREDIT_CARD_MANDATORY_FIELD_EMPTY 			= 4151;
 	public static final int CREDIT_CARD_EMPTY_CUSPAR					= 4152;
 	public static final int CREDIT_CARD_EMPTY_PAYPAR					= 4153;
+	public static final int CREDIT_CARD_ALREADY_EXIST					= 4154;
+	public static final int CREDIT_CARD_NOT_FOUND						= 4155;
 	
 	// Credit Card-Moip
 	public static final int CREDIT_CARD_MOIP_ADDRESS_BR					= 4200;
@@ -477,4 +480,6 @@ public final class SystemCode {
 	public static final int CREDIT_CARD_MOIP_PHONE_BR					= 4204;
 	public static final int CREDIT_CARD_MOIP_MANDATORY_FIELD_EMPTY		= 4205;
 	public static final int CREDIT_CARD_PAYPAR_NOT_MOIP					= 4206;
+	public static final int CREDIT_CARD_MOIP_CREATION_ERROR				= 4207;
+	public static final int CREDIT_CARD_MOIP_DELETION_ERROR				= 4208;
 }

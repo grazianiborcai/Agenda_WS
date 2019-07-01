@@ -3,7 +3,7 @@ package br.com.gda.payment.creditCard.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
-import br.com.gda.payment.creditCard.model.action.StdCrecardEnforceKey;
+import br.com.gda.payment.creditCard.model.action.StdCrecardEnforceKeyId;
 import br.com.gda.payment.creditCard.model.action.LazyCrecardSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
@@ -12,9 +12,9 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class CrecardCheckExist extends ModelCheckerTemplateAction<CrecardInfo> {	
+public final class CrecardCheckExistById extends ModelCheckerTemplateAction<CrecardInfo> {	
 	
-	public CrecardCheckExist(ModelCheckerOption option) {
+	public CrecardCheckExistById(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -23,7 +23,7 @@ public final class CrecardCheckExist extends ModelCheckerTemplateAction<CrecardI
 	@Override protected ActionStd<CrecardInfo> buildActionHook(CrecardInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<CrecardInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<CrecardInfo> actionSelect = new StdCrecardEnforceKey(option);
+		ActionStd<CrecardInfo> actionSelect = new StdCrecardEnforceKeyId(option);
 		actionSelect.addPostAction(new LazyCrecardSelect(conn, schemaName));
 		return actionSelect;
 	}
@@ -43,18 +43,18 @@ public final class CrecardCheckExist extends ModelCheckerTemplateAction<CrecardI
 	
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.CREDIT_CARD_ALREADY_EXIST)
-			return SystemMessage.CREDIT_CARD_ALREADY_EXIST;
+		if (makeFailCodeHook(checkerResult) == SystemCode.MAT_ALREADY_EXIST)
+			return SystemMessage.MAT_ALREADY_EXIST;
 		
-		return SystemMessage.CREDIT_CARD_NOT_FOUND;
+		return SystemMessage.MAT_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.CREDIT_CARD_ALREADY_EXIST;	
+			return SystemCode.MAT_ALREADY_EXIST;	
 			
-		return SystemCode.CREDIT_CARD_NOT_FOUND;
+		return SystemCode.MAT_NOT_FOUND;
 	}
 }

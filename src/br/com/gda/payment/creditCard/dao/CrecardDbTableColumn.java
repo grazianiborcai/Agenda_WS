@@ -9,8 +9,13 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class CrecardDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";
-	public static final String COL_COD_OWNER = "cod_owner";		
+	public static final String COL_COD_ADDRESS = "cod_address";
+	public static final String COL_COD_ADDRESS_SNAPSHOT = "cod_address_snapshot";
+	public static final String COL_COD_CREDIT_CARD = "cod_credit_card";
+	public static final String COL_COD_OWNER = "cod_owner";	
+	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";	
+	public static final String COL_COD_PHONE = "cod_phone";
+	public static final String COL_COD_PHONE_SNAPSHOT = "cod_phone_snapshot";		
 	public static final String COL_CREDIT_CARD_BRAND = "credit_card_brand";
 	public static final String COL_CREDIT_CARD_ID = "credit_card_id";	
 	public static final String COL_CREDIT_CARD_LAST4 = "credit_card_last4";	
@@ -46,6 +51,14 @@ public final class CrecardDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_CREDIT_CARD;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_OWNER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
@@ -63,7 +76,7 @@ public final class CrecardDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_CREDIT_CARD_ID;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
@@ -103,6 +116,38 @@ public final class CrecardDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_LAST_CHANGED_BY;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ADDRESS;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ADDRESS_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PHONE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PHONE_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

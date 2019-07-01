@@ -111,6 +111,7 @@ public final class CrecardSelectSingle implements DaoStmt<CrecardInfo> {
 			do {
 				CrecardInfo dataInfo = new CrecardInfo();
 				dataInfo.codOwner = stmtResult.getLong(CrecardDbTableColumn.COL_COD_OWNER);
+				dataInfo.codCreditCard = stmtResult.getLong(CrecardDbTableColumn.COL_COD_CREDIT_CARD);
 				dataInfo.codPayCustomer = stmtResult.getLong(CrecardDbTableColumn.COL_COD_PAY_CUSTOMER);
 				dataInfo.creditCardId = stmtResult.getString(CrecardDbTableColumn.COL_CREDIT_CARD_ID);	
 				dataInfo.creditCardBrand = stmtResult.getString(CrecardDbTableColumn.COL_CREDIT_CARD_BRAND);	
@@ -125,6 +126,22 @@ public final class CrecardSelectSingle implements DaoStmt<CrecardInfo> {
 				stmtResult.getLong(CrecardDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.lastChangedBy = stmtResult.getLong(CrecardDbTableColumn.COL_LAST_CHANGED_BY);	
+				
+				stmtResult.getLong(CrecardDbTableColumn.COL_COD_ADDRESS);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codAddressHolder = stmtResult.getLong(CrecardDbTableColumn.COL_COD_ADDRESS);	
+				
+				stmtResult.getLong(CrecardDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codAddressSnapshotHolder = stmtResult.getLong(CrecardDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);	
+				
+				stmtResult.getLong(CrecardDbTableColumn.COL_COD_PHONE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPhoneHolder = stmtResult.getLong(CrecardDbTableColumn.COL_COD_PHONE);	
+				
+				stmtResult.getLong(CrecardDbTableColumn.COL_COD_PHONE_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPhoneSnapshotHolder = stmtResult.getLong(CrecardDbTableColumn.COL_COD_PHONE_SNAPSHOT);	
 				
 				
 				finalResult.add(dataInfo);

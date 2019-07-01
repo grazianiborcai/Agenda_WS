@@ -585,6 +585,7 @@ public final class SystemMessage {
 	public static final String PAY_CUS_MOIP_ADDRESS_BR = "Only Brazilian addresses are allowed";
 	public static final String PAY_CUS_MOIP_ADDRESNAP_MISSING = "Missing city, district, street, street number, state or postalcode. Please, complete user data";	
 	public static final String PAY_CUS_MOIP_CREATION_ERROR = "An error occurred when trying to create your user with financial company";
+	public static final String PAY_CUS_MOIP_DELETION_ERROR = "An error occurred when trying to delete your user with financial company";
 	public static final String PAY_CUS_MOIP_MANDATORY_FIELD_EMPTY = "Moip: Mandatory field is empty";
 	public static final String PAY_CUS_MOIP_PHONAP_MISSING = "Missing phone number. Please, complete user data";
 	public static final String PAY_CUS_MOIP_PHONE_BR = "Only Brazilian phone numbers are allowed";
@@ -594,19 +595,24 @@ public final class SystemMessage {
 	
 	
 	// Credit Card
+	public static final String CREDIT_CARD_ALREADY_EXIST = "Credit Card data already exist on DB";
 	public static final String CREDIT_CARD_INVALID_USER_REF = "You can only manage your wallet";
 	public static final String CREDIT_CARD_EMPTY_CUSPAR = "Credit Card: Pay-Customer is empty";
 	public static final String CREDIT_CARD_EMPTY_PAYPAR = "Credit Card: Pay-Partner is empty";
 	public static final String CREDIT_CARD_MANDATORY_FIELD_EMPTY = "Credit Card: Mandatory field is empty";	
+	public static final String CREDIT_CARD_NOT_FOUND = "Credit Card data not found on DB";
 	public static final String CREDIT_CARD_PAYPAR_NOT_MOIP = "Credit Card: Pay-Partner is not Moip";
-	
+		
 	
 	
 	// Credit Card-Moip
 	public static final String CREDIT_CARD_MOIP_ADDRESS_BR = "Only Brazilian addresses are allowed";
 	public static final String CREDIT_CARD_MOIP_ADDRESS_MISSING = "Missing address";
+	public static final String CREDIT_CARD_MOIP_CREATION_ERROR = "An error occurred when trying to create your Credit Card with financial company";
+	public static final String CREDIT_CARD_MOIP_DELETION_ERROR = "An error occurred when trying to delete your Credit Card with financial company";
 	public static final String CREDIT_CARD_MOIP_EMPTY_CUSPAR = "Credit Card Moip: Pay-Customer is empty";
 	public static final String CREDIT_CARD_MOIP_MANDATORY_FIELD_EMPTY = "Credit Card Moip: Mandatory field is empty";
 	public static final String CREDIT_CARD_MOIP_PHONE_MISSING = "Missing phone number";
 	public static final String CREDIT_CARD_MOIP_PHONE_BR = "Only Brazilian phone numbers are allowed";	
+
 }

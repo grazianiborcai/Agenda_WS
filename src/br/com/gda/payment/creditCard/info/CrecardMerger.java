@@ -105,4 +105,18 @@ public final class CrecardMerger {
 		InfoMerger<CrecardInfo, CrecardInfo> merger = new CrecardMergerToDelete();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static CrecardInfo mergeToUpdate(CrecardInfo sourceOne, CrecardInfo sourceTwo) {
+		InfoMerger<CrecardInfo, CrecardInfo> merger = new CrecardMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CrecardInfo> mergeToUpdate(List<CrecardInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
+		InfoMerger<CrecardInfo, CrecardInfo> merger = new CrecardMergerToUpdate();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

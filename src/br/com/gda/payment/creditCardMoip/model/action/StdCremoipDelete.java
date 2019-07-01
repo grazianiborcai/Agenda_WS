@@ -9,12 +9,12 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.creditCardMoip.info.CremoipInfo;
 
-public final class StdCremoipAdd implements ActionStd<CremoipInfo> {
+public final class StdCremoipDelete implements ActionStd<CremoipInfo> {
 	private ActionStd<CremoipInfo> actionHelper;	
 	
 	
-	public StdCremoipAdd(DeciTreeOption<CremoipInfo> option) {			
-		actionHelper = new ActionStdHelper<>(option.recordInfos, new VisiCremoipAdd(), SystemMessage.CREDIT_CARD_MOIP_CREATION_ERROR, SystemCode.CREDIT_CARD_MOIP_CREATION_ERROR);
+	public StdCremoipDelete(DeciTreeOption<CremoipInfo> option) {			
+		actionHelper = new ActionStdHelper<>(option.recordInfos, new VisiCremoipDelete(), SystemMessage.CREDIT_CARD_MOIP_DELETION_ERROR, SystemCode.CREDIT_CARD_MOIP_DELETION_ERROR);
 	}
 	
 	

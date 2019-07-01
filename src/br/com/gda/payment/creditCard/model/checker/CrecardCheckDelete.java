@@ -7,19 +7,21 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class CrecardCheckRead extends ModelCheckerTemplateSimple<CrecardInfo> {
+public final class CrecardCheckDelete extends ModelCheckerTemplateSimple<CrecardInfo> {
 
-	public CrecardCheckRead() {
+	public CrecardCheckDelete() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CrecardInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 		<= 0 	||
-			recordInfo.codPayCustomer 	<= 0 	||
-			recordInfo.username 		== null	||
-			recordInfo.codLanguage 		== null		)			
+		if ( recordInfo.codOwner 		<= 0 	||
+			 recordInfo.codPayCustomer	<= 0	||		 
+			 recordInfo.codCreditCard	<= 0	||	
+			 recordInfo.codLanguage 	== null ||
+			 recordInfo.username 		== null 	)
+			
 			return super.FAILED;
 		
 		

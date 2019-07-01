@@ -96,6 +96,7 @@ public final class CrecardUpdateSingle implements DaoStmt<CrecardInfo> {
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CrecardInfo recordInfo) throws SQLException {
 			
 			int i = 1;
+			stmt.setString(i++, recordInfo.creditCardId);
 			stmt.setString(i++, recordInfo.creditCardBrand);
 			stmt.setString(i++, recordInfo.creditCardLast4);
 			stmt.setString(i++, recordInfo.recordMode);
@@ -106,6 +107,34 @@ public final class CrecardUpdateSingle implements DaoStmt<CrecardInfo> {
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}
+			
+			
+			if (recordInfo.codAddressHolder >= 0) {
+				stmt.setLong(i++, recordInfo.codAddressHolder);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			if (recordInfo.codAddressSnapshotHolder >= 0) {
+				stmt.setLong(i++, recordInfo.codAddressSnapshotHolder);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}		
+			
+			
+			if (recordInfo.codPhoneHolder >= 0) {
+				stmt.setLong(i++, recordInfo.codPhoneHolder);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}		
+			
+			
+			if (recordInfo.codPhoneSnapshotHolder >= 0) {
+				stmt.setLong(i++, recordInfo.codPhoneSnapshotHolder);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}		
 			
 			return stmt;
 		}		

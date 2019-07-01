@@ -7,7 +7,8 @@ import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.creditCard.model.action.LazyCrecardNodeInsertL4;
 import br.com.gda.payment.creditCard.model.action.StdCrecardMergeCuspar;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckCuspar;
-import br.com.gda.payment.creditCard.model.checker.CrecardCheckUserRef;
+import br.com.gda.payment.creditCard.model.checker.CrecardCheckUserAddress;
+import br.com.gda.payment.creditCard.model.checker.CrecardCheckUserPhone;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -31,7 +32,10 @@ public final class NodeCrecardInsertL3 extends DeciTreeWriteTemplate<CrecardInfo
 		ModelChecker<CrecardInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new CrecardCheckUserRef();
+		checker = new CrecardCheckUserAddress();
+		queue.add(checker);
+		
+		checker = new CrecardCheckUserPhone();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

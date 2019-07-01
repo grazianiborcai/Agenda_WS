@@ -27,7 +27,7 @@ import br.com.gda.payment.creditCardMoip.model.checker.CremoipCheckSetupar;
 import br.com.gda.payment.creditCardMoip.model.checker.CremoipCheckPhoneBR;
 import br.com.gda.payment.creditCardMoip.model.checker.CremoipCheckCusparData;
 import br.com.gda.payment.creditCardMoip.model.checker.CremoipCheckBirthdate;
-import br.com.gda.payment.creditCardMoip.model.checker.CremoipCheckWrite;
+import br.com.gda.payment.creditCardMoip.model.checker.CremoipCheckAdd;
 
 public final class RootCremoipAdd extends DeciTreeWriteTemplate<CremoipInfo> {
 	
@@ -53,7 +53,7 @@ public final class RootCremoipAdd extends DeciTreeWriteTemplate<CremoipInfo> {
 		checker = new CremoipCheckAddressData();
 		queue.add(checker);
 		
-		checker = new CremoipCheckWrite();
+		checker = new CremoipCheckAdd();
 		queue.add(checker);
 		
 		checker = new CremoipCheckAddressBR();
