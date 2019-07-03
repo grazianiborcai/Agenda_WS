@@ -58,7 +58,7 @@ public final class RootOrderPlace extends DeciTreeWriteTemplate<OrderInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new OrderCheckExist(checkerOption);
 		queue.add(checker);
-		
+		//TODO: verificar Address e Phone
 		return new ModelCheckerQueue<>(queue);
 	}
 	

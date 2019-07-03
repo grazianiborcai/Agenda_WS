@@ -52,7 +52,7 @@ public class RootPlanimeSelect implements DeciTree<PlanimeInfo> {
 	
 	private List<ActionStd<PlanimeInfo>> buildActionsOnPassed(DeciTreeOption<PlanimeInfo> option) {
 		List<ActionStd<PlanimeInfo>> actions = new ArrayList<>();		
-		
+		//TODO: nao listar Store que nao possui PayPartner
 		ActionStd<PlanimeInfo> mergePlanata = new StdPlanimeMergePlanata(option);		
 		ActionLazy<PlanimeInfo> mergeStolis = new LazyPlanimeMergeStolis(option.conn, option.schemaName);	
 		ActionLazy<PlanimeInfo> mergeEmplis = new LazyPlanimeMergeEmplis(option.conn, option.schemaName);

@@ -144,7 +144,39 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 				
 				stmtResult.getDouble(OrderDbTableColumn.COL_GRAND_TOTAL);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.grandTotal = stmtResult.getDouble(OrderDbTableColumn.COL_GRAND_TOTAL);				
+					dataInfo.grandTotal = stmtResult.getDouble(OrderDbTableColumn.COL_GRAND_TOTAL);	
+				
+				stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_SHIP);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codAddressShip = stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_SHIP);
+				
+				stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_SHIP_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codAddressShipSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_SHIP_SNAPSHOT);
+				
+				stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_INVOICE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codAddressInvoice = stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_INVOICE);
+				
+				stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_INVOICE_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codAddressInvoiceSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_INVOICE_SNAPSHOT);
+				
+				stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_SHIP);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPhoneShip = stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_SHIP);
+				
+				stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_SHIP_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPhoneShipSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_SHIP_SNAPSHOT);
+				
+				stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_INVOICE);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPhoneInvoice = stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_INVOICE);
+				
+				stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_INVOICE_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPhoneInvoiceSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_INVOICE_SNAPSHOT);
 				
 				
 				finalResult.add(dataInfo);

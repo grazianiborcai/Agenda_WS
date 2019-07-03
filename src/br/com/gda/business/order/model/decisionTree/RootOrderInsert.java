@@ -69,7 +69,7 @@ public final class RootOrderInsert extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
-		
+		//TODO: zerar Address e Phone - Somente aceitar no Place
 		ActionStd<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);
 		ActionLazy<OrderInfo> mergeUser = new LazyOrderMergeUser(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);	

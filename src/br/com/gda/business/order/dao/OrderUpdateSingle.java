@@ -151,7 +151,63 @@ public final class OrderUpdateSingle implements DaoStmt<OrderInfo> {
 			
 			
 			stmt.setString(i++, recordInfo.codCurr);
-			stmt.setTimestamp(i++, lastChanged);			
+			stmt.setTimestamp(i++, lastChanged);		
+			
+			
+			if (recordInfo.codAddressShip >= 0) {
+				stmt.setLong(i++, recordInfo.codAddressShip);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			if (recordInfo.codAddressShipSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codAddressShipSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			if (recordInfo.codAddressInvoice >= 0) {
+				stmt.setLong(i++, recordInfo.codAddressInvoice);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			if (recordInfo.codAddressInvoiceSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codAddressInvoiceSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			if (recordInfo.codPhoneShip >= 0) {
+				stmt.setLong(i++, recordInfo.codPhoneShip);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			if (recordInfo.codPhoneShipSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codPhoneShipSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			if (recordInfo.codPhoneInvoice >= 0) {
+				stmt.setLong(i++, recordInfo.codPhoneInvoice);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
+			
+			
+			if (recordInfo.codPhoneInvoiceSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codPhoneInvoiceSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
 
 			return stmt;
 		}		

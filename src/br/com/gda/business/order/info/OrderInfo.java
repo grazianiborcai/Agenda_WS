@@ -16,6 +16,16 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public long codCustomerSnapshot;
 	public long codUser;
 	public long codUserSnapshot;
+	
+	public long codAddressShip;
+	public long codAddressShipSnapshot;
+	public long codAddressInvoice;
+	public long codAddressInvoiceSnapshot;
+	public long codPhoneShip;
+	public long codPhoneShipSnapshot;
+	public long codPhoneInvoice;
+	public long codPhoneInvoiceSnapshot;
+	
 	public double itemTotal;
 	public double feeService;
 	public double grandTotal;	
@@ -36,7 +46,15 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codCustomerSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
-		codUserSnapshot = DefaultValue.number();
+		codUserSnapshot = DefaultValue.number();		
+		codAddressShip = DefaultValue.number();
+		codAddressShipSnapshot = DefaultValue.number();
+		codAddressInvoice = DefaultValue.number();
+		codAddressInvoiceSnapshot = DefaultValue.number();
+		codPhoneShip = DefaultValue.number();
+		codPhoneShipSnapshot = DefaultValue.number();
+		codPhoneInvoice = DefaultValue.number();
+		codPhoneInvoiceSnapshot = DefaultValue.number();		
 		itemTotal = DefaultValue.number();
 		feeService = 0;
 		grandTotal = DefaultValue.number();
