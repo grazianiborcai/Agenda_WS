@@ -614,5 +614,10 @@ public final class SystemMessage {
 	public static final String CREDIT_CARD_MOIP_MANDATORY_FIELD_EMPTY = "Credit Card Moip: Mandatory field is empty";
 	public static final String CREDIT_CARD_MOIP_PHONE_MISSING = "Missing phone number";
 	public static final String CREDIT_CARD_MOIP_PHONE_BR = "Only Brazilian phone numbers are allowed";	
+	
+	
+	
+	//
+	public static final String SYS_PAY_PARTNER_MANDATORY_FIELD_EMPTY = "System Pay Partner: Mandatory field is empty";
 
 }
