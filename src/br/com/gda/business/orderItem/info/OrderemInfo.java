@@ -159,7 +159,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 				codOrder    == obj.codOrder			&&
 				codStore    == obj.codStore			&&
 				codEmployee == obj.codEmployee		&&
-				codMat    == obj.codMat			&&
+				codMat    	== obj.codMat			&&
 				super.isDateEqual(date, obj.date)	&&
 				super.isTimeEqual(beginTime, obj.beginTime));
 	}
