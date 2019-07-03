@@ -130,6 +130,9 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codOrder 	  ^ (codOrder 	 >>> 32));
+		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
+		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
+		result = result * 31 + (int) (codMat 	  ^ (codMat 	 >>> 32));
 		
 		if (date != null)
 			result = result * 31 + (int) date.hashCode();
@@ -154,6 +157,9 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 		OrderemInfo obj = (OrderemInfo) o;		
 		return (codOwner    == obj.codOwner    		&& 
 				codOrder    == obj.codOrder			&&
+				codStore    == obj.codStore			&&
+				codEmployee == obj.codEmployee		&&
+				codMat    == obj.codMat			&&
 				super.isDateEqual(date, obj.date)	&&
 				super.isTimeEqual(beginTime, obj.beginTime));
 	}
