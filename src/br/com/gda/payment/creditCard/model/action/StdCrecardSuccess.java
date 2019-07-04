@@ -16,21 +16,25 @@ public final class StdCrecardSuccess implements ActionStd<CrecardInfo> {
 	
 	
 	public StdCrecardSuccess(DeciTreeOption<CrecardInfo> option) {
-		actionHelper = new ActionStdDummy<>(buildDeciResult());
+		actionHelper = new ActionStdDummy<>(buildDeciResult(option));
 	}
 	
 	
 	
-	private DeciResult<CrecardInfo> buildDeciResult() {
+	private DeciResult<CrecardInfo> buildDeciResult(DeciTreeOption<CrecardInfo> option) {
 		final boolean SUCCESS = true;
 		
 		DeciResultHelper<CrecardInfo> deciResult = new DeciResultHelper<>();
+		
 		deciResult.isSuccess = SUCCESS;
 		deciResult.hasResultset = SUCCESS;
 		
-		List<CrecardInfo> dummyResultset = new ArrayList<>();
-		dummyResultset.add(new CrecardInfo());
-		deciResult.resultset = dummyResultset;
+		List<CrecardInfo> resultset = new ArrayList<>();
+		
+		if (option.recordInfos != null)		
+			resultset.addAll(option.recordInfos);
+		
+		deciResult.resultset = resultset;
 		
 		return deciResult;
 	}

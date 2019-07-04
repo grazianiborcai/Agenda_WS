@@ -5,8 +5,9 @@ import java.util.List;
 
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.creditCard.model.action.LazyCrecardMergeCuspar;
+import br.com.gda.payment.creditCard.model.action.LazyCrecardMergeUsername;
 import br.com.gda.payment.creditCard.model.action.LazyCrecardNodeSelect;
-import br.com.gda.payment.creditCard.model.action.StdCrecardMergeUsername;
+import br.com.gda.payment.creditCard.model.action.StdCrecardMergeToSelect;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckCuspar;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckRead;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckUsername;
@@ -58,14 +59,16 @@ public final class RootCrecardSelect extends DeciTreeReadTemplate<CrecardInfo> {
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CrecardInfo> mergeUsername = new StdCrecardMergeUsername(option);
+		ActionStd<CrecardInfo> mergeToSelect = new StdCrecardMergeToSelect(option);
+		ActionLazy<CrecardInfo> mergeUsername = new LazyCrecardMergeUsername(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> mergeCuspar = new LazyCrecardMergeCuspar(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> nodeSelect = new LazyCrecardNodeSelect(option.conn, option.schemaName);
 		
+		mergeToSelect.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(mergeCuspar);
 		mergeCuspar.addPostAction(nodeSelect);
 		
-		actions.add(mergeUsername);
+		actions.add(mergeToSelect);
 		return actions;
 	}
 }

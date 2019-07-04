@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.payment.creditCard.info.CrecardInfo;
-import br.com.gda.payment.creditCard.model.action.StdCrecardMergeToSelect;
+import br.com.gda.payment.creditCard.model.action.StdCrecardSuccess;
 import br.com.gda.payment.creditCard.model.checker.CrecardCheckUserCuspar;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -35,9 +35,9 @@ public final class NodeCrecardSelect extends DeciTreeReadTemplate<CrecardInfo> {
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 
-		ActionStd<CrecardInfo> select = new StdCrecardMergeToSelect(option);
+		ActionStd<CrecardInfo> success = new StdCrecardSuccess(option);
 		
-		actions.add(select);
+		actions.add(success);
 		return actions;
 	}
 }
