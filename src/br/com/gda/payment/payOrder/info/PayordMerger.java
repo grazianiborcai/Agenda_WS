@@ -5,9 +5,9 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.masterData.info.PayparInfo;
 import br.com.gda.business.order.info.OrderInfo;
-import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.payment.systemPartner.info.SysparInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	
@@ -25,15 +25,15 @@ public final class PayordMerger {
 	
 	
 	
-	public static PayordInfo mergeWithPhone(PhoneInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger<PayordInfo, PhoneInfo> merger = new PayordMergerPhone_();		
+	public static PayordInfo mergeWithSyspar(SysparInfo sourceOne, PayordInfo sourceTwo) {
+		InfoMerger<PayordInfo, SysparInfo> merger = new PayordMergerSyspar();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<PayordInfo> mergeWithPhone(List<PhoneInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger<PayordInfo, PhoneInfo> merger = new PayordMergerPhone_();		
+	public static List<PayordInfo> mergeWithSyspar(List<SysparInfo> sourceOnes, List<PayordInfo> sourceTwos) {
+		InfoMerger<PayordInfo, SysparInfo> merger = new PayordMergerSyspar();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
 	

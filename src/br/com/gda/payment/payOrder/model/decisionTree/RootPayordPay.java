@@ -14,7 +14,9 @@ import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceLChanged;
 import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceStatusWaiting;
 import br.com.gda.payment.payOrder.model.action.LazyPayordInsert;
+import br.com.gda.payment.payOrder.model.action.LazyPayordMergeCuspar;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeOrder;
+import br.com.gda.payment.payOrder.model.action.LazyPayordMergeSyspar;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeUsername;
 import br.com.gda.payment.payOrder.model.action.StdPayordEnforceCreatedOn;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckCrecard;
@@ -97,6 +99,8 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		ActionStd<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
 		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> enforceStatus = new LazyPayordEnforceStatusWaiting(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> mergeCuspar = new LazyPayordMergeCuspar(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> mergeSyspar = new LazyPayordMergeSyspar(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> enforceCodUser = new LazyPayordMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> mergeOrder = new LazyPayordMergeOrder(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> insert = new LazyPayordInsert(option.conn, option.schemaName);
@@ -104,7 +108,9 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		
 		enforceCreatedOn.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceStatus);		
-		enforceStatus.addPostAction(enforceCodUser);
+		enforceStatus.addPostAction(mergeCuspar);			
+		mergeCuspar.addPostAction(mergeSyspar);	
+		mergeSyspar.addPostAction(enforceCodUser);
 		enforceCodUser.addPostAction(mergeOrder);
 		mergeOrder.addPostAction(insert);
 		

@@ -38,14 +38,28 @@ final class PayordVisiMergeCuspar implements InfoMergerVisitorV2<PayordInfo, Cus
 	
 	
 	private PayordInfo merge(CusparInfo sourceOne, PayordInfo sourceTwo) {
-		sourceTwo.codPayCustomer = sourceOne.codPayCustomer;
+		sourceTwo.cusparData = makeClone(sourceOne);
+		sourceTwo.codPayPartner = sourceOne.codPayPartner;
 		return sourceTwo;
 	}
 	
 	
 	
+	private CusparInfo makeClone(CusparInfo recordInfo) {
+		try {
+			return (CusparInfo) recordInfo.clone();
+			
+		} catch (Exception e) {
+			logException(e);
+			throw new IllegalStateException(e); 
+		}
+	}
+	
+	
+	
 	@Override public boolean shouldWrite(CusparInfo sourceOne, PayordInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+		return (sourceOne.codOwner 		 == sourceTwo.codOwner	&&
+				sourceOne.codPayCustomer == sourceTwo.codPayCustomer);
 	}
 	
 	

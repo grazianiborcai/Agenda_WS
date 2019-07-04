@@ -449,7 +449,7 @@ public final class SystemCode {
 	
 	//Pay-Order
 	public static final int PAY_ORDER_STATUS_NOT_ALLOWED				= 4050;
-	public static final int PAY_ORDER_DIF_USER							= 4051;
+	public static final int PAY_ORDER_DIF_ORDER_USER					= 4051;
 	public static final int PAY_ORDER_ADDRESS_DIF_USER					= 4052;
 	public static final int PAY_ORDER_PHONE_DIF_USER					= 4053;
 	public static final int PAY_ORDER_ITEM_MANDATORY_FIELD_EMPTY		= 4054;
@@ -458,6 +458,7 @@ public final class SystemCode {
 	public static final int PAY_ORDER_HAVE_ITEM 						= 4057;
 	public static final int PAY_ORDER_IS_EMPTY 							= 4058;	
 	public static final int PAY_ORDER_MANDATORY_FIELD_EMPTY				= 4059;	
+	public static final int PAY_ORDER_DIF_CUSPAR_USER					= 4060;
 	
 	// Pay-Customer-Moip
 	public static final int PAY_CUS_MOIP_CREATION_ERROR 				= 4100;

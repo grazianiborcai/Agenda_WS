@@ -3,13 +3,13 @@ package br.com.gda.payment.payOrder.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.payment.systemPartner.info.SysparInfo;
 
-final class PayordVisiMergePhone_ implements InfoMergerVisitorV2<PayordInfo, PhoneInfo> {
+final class PayordVisiMergeSyspar implements InfoMergerVisitorV2<PayordInfo, SysparInfo> {
 
-	@Override public PayordInfo writeRecord(PhoneInfo sourceOne, PayordInfo sourceTwo) {
+	@Override public PayordInfo writeRecord(SysparInfo sourceOne, PayordInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		PayordInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class PayordVisiMergePhone_ implements InfoMergerVisitorV2<PayordInfo, Pho
 	
 	
 	
-	private void checkArgument(PhoneInfo sourceOne, PayordInfo sourceTwo) {
+	private void checkArgument(SysparInfo sourceOne, PayordInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,17 +37,17 @@ final class PayordVisiMergePhone_ implements InfoMergerVisitorV2<PayordInfo, Pho
 	
 	
 	
-	private PayordInfo merge(PhoneInfo sourceOne, PayordInfo sourceTwo) {
-		sourceTwo.phonePayData = makeClone(sourceOne);
-		sourceTwo.codPhonePaySnapshot = sourceOne.codSnapshot;
+	private PayordInfo merge(SysparInfo sourceOne, PayordInfo sourceTwo) {
+		sourceTwo.sysparData = makeClone(sourceOne);
+		sourceTwo.feeReceiver = sourceTwo.sysparData.idPayPartnerSystem;
 		return sourceTwo;
 	}
 	
 	
 	
-	private PhoneInfo makeClone(PhoneInfo recordInfo) {
+	private SysparInfo makeClone(SysparInfo recordInfo) {
 		try {
-			return (PhoneInfo) recordInfo.clone();
+			return (SysparInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -57,9 +57,8 @@ final class PayordVisiMergePhone_ implements InfoMergerVisitorV2<PayordInfo, Pho
 	
 	
 	
-	@Override public boolean shouldWrite(PhoneInfo sourceOne, PayordInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner	&&
-				sourceOne.codPhone == sourceTwo.codPhonePay		);
+	@Override public boolean shouldWrite(SysparInfo sourceOne, PayordInfo sourceTwo) {
+		return (sourceOne.codPayPartner == sourceTwo.codPayPartner);
 	}
 	
 	

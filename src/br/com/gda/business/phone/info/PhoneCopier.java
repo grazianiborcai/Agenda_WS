@@ -43,14 +43,14 @@ public final class PhoneCopier {
 	
 	
 	public static PhoneInfo copyFromPayord(PayordInfo source) {
-		InfoCopier<PhoneInfo, PayordInfo> copier = new PhoneCopyPayord();
+		InfoCopier<PhoneInfo, PayordInfo> copier = new PhoneCopyPayord_();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<PhoneInfo> copyFromPayord(List<PayordInfo> sources) {
-		InfoCopier<PhoneInfo, PayordInfo> copier = new PhoneCopyPayord();
+		InfoCopier<PhoneInfo, PayordInfo> copier = new PhoneCopyPayord_();
 		return copier.makeCopy(sources);
 	}
 	

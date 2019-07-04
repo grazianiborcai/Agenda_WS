@@ -38,16 +38,29 @@ final class PayordVisiMergeOrder implements InfoMergerVisitorV2<PayordInfo, Orde
 	
 	
 	private PayordInfo merge(OrderInfo sourceOne, PayordInfo sourceTwo) {
-		sourceTwo.codOrderStatus = sourceOne.codOrderStatus;
-		sourceTwo.txtOrderStatus = sourceOne.txtOrderStatus;
-		sourceTwo.codOrderUser = sourceOne.codUser;
+		sourceTwo.orderData = makeClone(sourceOne);
+		sourceTwo.feeAmount = sourceOne.feeService;
+		sourceTwo.codFeeCurrency = sourceOne.codCurr;
 		return sourceTwo;
 	}
 	
 	
 	
+	private OrderInfo makeClone(OrderInfo recordInfo) {
+		try {
+			return (OrderInfo) recordInfo.clone();
+			
+		} catch (Exception e) {
+			logException(e);
+			throw new IllegalStateException(e); 
+		}
+	}
+	
+	
+	
 	@Override public boolean shouldWrite(OrderInfo sourceOne, PayordInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+		return (sourceOne.codOwner == sourceTwo.codOwner	&&
+				sourceOne.codOrder == sourceTwo.codOrder);
 	}
 	
 	

@@ -575,7 +575,8 @@ public final class SystemMessage {
 	
 	// Pay-Order
 	public static final String PAY_ORDER_ADDRESS_DIF_USER = "Address does not belong to Payer user";
-	public static final String PAY_ORDER_DIF_USER = "Payer and Order creator does not belong to the same user";
+	public static final String PAY_ORDER_DIF_CUSPAR_USER = "Payer and Pay-Customer creator does not belong to the same user";
+	public static final String PAY_ORDER_DIF_ORDER_USER = "Payer and Order creator does not belong to the same user";
 	public static final String PAY_ORDER_ITEM_ALREADY_EXIST = "Pay-Order item already exist on DB";	
 	public static final String PAY_ORDER_ITEM_MANDATORY_FIELD_EMPTY = "Pay Order Item: Mandatory field is empty";
 	public static final String PAY_ORDER_ITEM_NOT_FOUND = "Pay-Order item not found on DB";	

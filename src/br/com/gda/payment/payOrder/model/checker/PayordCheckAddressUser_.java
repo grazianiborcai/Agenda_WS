@@ -7,19 +7,19 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckPhoneUser extends ModelCheckerTemplateSimple<PayordInfo> {
+public final class PayordCheckAddressUser_ extends ModelCheckerTemplateSimple<PayordInfo> {
 
-	public PayordCheckPhoneUser() {
+	public PayordCheckAddressUser_() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PayordInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.phonePayData == null)
+		if (recordInfo.addressPayData == null)
 			return super.FAILED;
 		
-		if (recordInfo.phonePayData.codUser == recordInfo.codUser)
+		if (recordInfo.addressPayData.codUser == recordInfo.codUser)
 			return super.SUCCESS;
 		
 		
@@ -29,12 +29,12 @@ public final class PayordCheckPhoneUser extends ModelCheckerTemplateSimple<Payor
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PAY_ORDER_PHONE_DIF_USER;
+		return SystemMessage.PAY_ORDER_ADDRESS_DIF_USER;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.PAY_ORDER_PHONE_DIF_USER;
+		return SystemCode.PAY_ORDER_ADDRESS_DIF_USER;
 	}
 }

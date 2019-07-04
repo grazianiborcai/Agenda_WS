@@ -4,19 +4,21 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
+import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.payment.systemPartner.info.SysparInfo;
 
 public final class PayordInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
 	public long codPayCustomer;
 	public long codCreditCard;
-	public long codUser;				//TODO: Remover
+	public long codUser;				//TODO: manter para check
 	public long codCustomer;			//TODO: Remover
 	public long codOrder;
-	public long codOrderUser;			//TODO: Remover
 	public String feeReceiver;
 	public double feeAmount;
 	public String codFeeCurrency;
@@ -32,6 +34,9 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public long codPhonePaySnapshot;	//TODO: Remover
 	public AddressInfo addressPayData;	//TODO: Remover
 	public PhoneInfo phonePayData;		//TODO: Remover
+	public SysparInfo sysparData;
+	public OrderInfo orderData;
+	public CusparInfo cusparData;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public String codLanguage;
@@ -49,13 +54,14 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codOrder = DefaultValue.number();
-		codOrderUser = DefaultValue.number();
 		codAddressPay = DefaultValue.number();
 		codAddressPaySnapshot = DefaultValue.number();
 		codPhonePay = DefaultValue.number();
 		codPhonePaySnapshot = DefaultValue.number();
 		addressPayData = DefaultValue.object();
-		phonePayData = DefaultValue.object();
+		sysparData = DefaultValue.object();
+		orderData = DefaultValue.object();
+		cusparData = DefaultValue.object();
 	}
 	
 	
@@ -75,28 +81,38 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		PayordInfo deepCopy = (PayordInfo) super.clone();
 		
-		deepCopy.addressPayData = cloneAddress(deepCopy.addressPayData);
-		deepCopy.phonePayData = clonePhone(deepCopy.phonePayData);
+		deepCopy.orderData = cloneOrder(deepCopy.orderData);
+		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
+		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
 		
 		return deepCopy;
 	}
 	
 	
 	
-	private AddressInfo cloneAddress(AddressInfo address) throws CloneNotSupportedException {
-		if (address == null)
+	private OrderInfo cloneOrder(OrderInfo order) throws CloneNotSupportedException {
+		if (order == null)
 			return null;
 		
-		return (AddressInfo) address.clone();
+		return (OrderInfo) order.clone();
 	}
 	
 	
 	
-	private PhoneInfo clonePhone(PhoneInfo phone) throws CloneNotSupportedException {
-		if (phone == null)
+	private SysparInfo cloneSyspar(SysparInfo syspar) throws CloneNotSupportedException {
+		if (syspar == null)
 			return null;
 		
-		return (PhoneInfo) phone.clone();
+		return (SysparInfo) syspar.clone();
+	}
+	
+	
+	
+	private CusparInfo cloneCuspar(CusparInfo cuspar) throws CloneNotSupportedException {
+		if (cuspar == null)
+			return null;
+		
+		return (CusparInfo) cuspar.clone();
 	}
 	
 	
