@@ -26,6 +26,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public String codCurr;
 	public LocalDate date;
 	public LocalTime beginTime;
+	public String itemReceiver;
 	public String codLanguage;
 	public String username;
 	public StolisInfo stolisData;

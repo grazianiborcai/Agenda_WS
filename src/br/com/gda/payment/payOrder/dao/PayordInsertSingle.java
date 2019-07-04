@@ -37,7 +37,7 @@ public final class PayordInsertSingle implements DaoStmt<PayordInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.PAY_ORDER_TABLE;
+		this.stmtOption.tableName = DaoDbTable.PAY_ORDER_HDR_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser(recordInfo);

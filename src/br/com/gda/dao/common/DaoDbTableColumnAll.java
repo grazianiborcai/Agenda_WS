@@ -62,6 +62,7 @@ import br.com.gda.payment.creditCard.dao.CrecardDbTableColumn;
 import br.com.gda.payment.customerPartner.dao.CusparDbTableColumn;
 import br.com.gda.payment.ownerPartner.dao.OwnparDbTableColumn;
 import br.com.gda.payment.payOrder.dao.PayordDbTableColumn;
+import br.com.gda.payment.payOrderItem.dao.PayordemDbTableColumn;
 import br.com.gda.payment.setupPartner.dao.SetuparDbTableColumn;
 import br.com.gda.payment.storePartner.dao.StoparDbTableColumn;
 import br.com.gda.payment.storePartnerSnapshot.dao.StoparnapDbTableColumn;
@@ -144,6 +145,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CusparDbTableColumn());
 		addTable(new CrecardDbTableColumn());
 		addTable(new SysparDbTableColumn());
+		addTable(new PayordemDbTableColumn());
 	}
 	
 	

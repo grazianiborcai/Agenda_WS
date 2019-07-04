@@ -452,6 +452,11 @@ public final class SystemCode {
 	public static final int PAY_ORDER_DIF_USER							= 4051;
 	public static final int PAY_ORDER_ADDRESS_DIF_USER					= 4052;
 	public static final int PAY_ORDER_PHONE_DIF_USER					= 4053;
+	public static final int PAY_ORDER_ITEM_MANDATORY_FIELD_EMPTY		= 4054;
+	public static final int PAY_ORDER_ITEM_ALREADY_EXIST 				= 4055;
+	public static final int PAY_ORDER_ITEM_NOT_FOUND 					= 4056;
+	public static final int PAY_ORDER_HAVE_ITEM 						= 4057;
+	public static final int PAY_ORDER_IS_EMPTY 							= 4058;	
 	
 	// Pay-Customer-Moip
 	public static final int PAY_CUS_MOIP_CREATION_ERROR 				= 4100;

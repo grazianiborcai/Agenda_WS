@@ -19,7 +19,7 @@ import br.com.gda.dao.common.DaoDbTableColumnAll;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
 public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
-	private final static String LT_PAY_ORDER = DaoDbTable.PAY_ORDER_TABLE;
+	private final static String LT_PAY_ORDER = DaoDbTable.PAY_ORDER_HDR_TABLE;
 	
 	private DaoStmt<PayordInfo> stmtSql;
 	private DaoStmtOption<PayordInfo> stmtOption;
