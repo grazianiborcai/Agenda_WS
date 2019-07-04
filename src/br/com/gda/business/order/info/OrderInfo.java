@@ -15,8 +15,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public long codCustomer;
 	public long codCustomerSnapshot;
 	public long codUser;
-	public long codUserSnapshot;
-	
+	public long codUserSnapshot;	
 	public long codAddressShip;
 	public long codAddressShipSnapshot;
 	public long codAddressInvoice;
@@ -24,8 +23,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public long codPhoneShip;
 	public long codPhoneShipSnapshot;
 	public long codPhoneInvoice;
-	public long codPhoneInvoiceSnapshot;
-	
+	public long codPhoneInvoiceSnapshot;	
 	public double itemTotal;
 	public double feeService;
 	public double grandTotal;	

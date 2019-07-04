@@ -112,39 +112,17 @@ public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
 				PayordInfo dataInfo = new PayordInfo();
 				dataInfo.codOwner = stmtResult.getLong(PayordDbTableColumn.COL_COD_OWNER);
 				dataInfo.codPayOrder = stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_ORDER);
-				dataInfo.codPayPartner = stmtResult.getInt(PayordDbTableColumn.COL_COD_PAY_PARTNER);
-				
-				stmtResult.getLong(PayordDbTableColumn.COL_COD_CUSTOMER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(PayordDbTableColumn.COL_COD_CUSTOMER);
+				dataInfo.feeReceiver = stmtResult.getString(PayordDbTableColumn.COL_FEE_RECEIVER);
+				dataInfo.codFeeCurrency = stmtResult.getString(PayordDbTableColumn.COL_FEE_CURRENCY);
+				dataInfo.codPaymentStatus = stmtResult.getString(PayordDbTableColumn.COL_COD_PAY_STATUS);
 				
 				stmtResult.getLong(PayordDbTableColumn.COL_COD_ORDER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codOrder = stmtResult.getLong(PayordDbTableColumn.COL_COD_ORDER);
 				
-				stmtResult.getLong(PayordDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(PayordDbTableColumn.COL_COD_USER);
-				
 				stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPayCustomer = stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_CUSTOMER);
-				
-				stmtResult.getLong(PayordDbTableColumn.COL_COD_ADDRESS_PAY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codAddressPay = stmtResult.getLong(PayordDbTableColumn.COL_COD_ADDRESS_PAY);
-				
-				stmtResult.getLong(PayordDbTableColumn.COL_COD_ADDRESS_PAY_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codAddressPaySnapshot = stmtResult.getLong(PayordDbTableColumn.COL_COD_ADDRESS_PAY_SNAPSHOT);				
-				
-				stmtResult.getLong(PayordDbTableColumn.COL_COD_PHONE_PAY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPhonePay = stmtResult.getLong(PayordDbTableColumn.COL_COD_PHONE_PAY);
-				
-				stmtResult.getLong(PayordDbTableColumn.COL_COD_PHONE_PAY_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPhonePaySnapshot = stmtResult.getLong(PayordDbTableColumn.COL_COD_PHONE_PAY_SNAPSHOT);
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(PayordDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
@@ -153,6 +131,10 @@ public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
 				Timestamp createdOn = stmtResult.getTimestamp(PayordDbTableColumn.COL_CREATED_ON);
 				if (lastChanged != null)
 					dataInfo.createdOn = createdOn .toLocalDateTime();
+				
+				stmtResult.getLong(PayordDbTableColumn.COL_FEE_AMOUNT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.feeAmount = stmtResult.getDouble(PayordDbTableColumn.COL_FEE_AMOUNT);
 				
 				
 				finalResult.add(dataInfo);

@@ -12,21 +12,25 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
 	public long codPayCustomer;
-	public long codUser;
-	public long codCustomer;
+	public long codUser;				//TODO: Remover
+	public long codCustomer;			//TODO: Remover
 	public long codOrder;
-	public long codOrderUser;
+	public long codOrderUser;			//TODO: Remover
+	public String feeReceiver;
+	public double feeAmount;
+	public String codFeeCurrency;
+	public String codPaymentStatus;
 	public int codPayPartner;
 	public String txtPayPartner;
 	public String description;
 	public String codOrderStatus;
 	public String txtOrderStatus;
-	public long codAddressPay;
-	public long codAddressPaySnapshot;
-	public long codPhonePay;
-	public long codPhonePaySnapshot;
-	public AddressInfo addressPayData;
-	public PhoneInfo phonePayData;
+	public long codAddressPay;			//TODO: Remover
+	public long codAddressPaySnapshot;	//TODO: Remover
+	public long codPhonePay;			//TODO: Remover
+	public long codPhonePaySnapshot;	//TODO: Remover
+	public AddressInfo addressPayData;	//TODO: Remover
+	public PhoneInfo phonePayData;		//TODO: Remover
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public String codLanguage;

@@ -1,7 +1,7 @@
 package br.com.gda.business.masterData.info.common;
 
 public enum PaymentStatus {
-	CREATED("CREATED"), WAITING("WAITING"), PAID("PAID"), NOT_PAID("NOT_PAID"), CANCELLED("CANCELLED");
+	ACCEPTED("ACCEPTED"), REFUSED("REFUSED"), WAITING("WAITING");
 	
 	
 	private final String codStatus;

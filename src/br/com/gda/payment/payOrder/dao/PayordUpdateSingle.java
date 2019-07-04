@@ -94,33 +94,12 @@ public final class PayordUpdateSingle implements DaoStmt<PayordInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<PayordInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PayordInfo recordInfo) throws SQLException {
-			int i = 1;
-			
-			if (DaoFormatter.boxNumber(recordInfo.codPayPartner) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setInt(i++, recordInfo.codPayPartner);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codCustomer) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codCustomer);
-			}
-			
+			int i = 1;			
 			
 			if (DaoFormatter.boxNumber(recordInfo.codOrder) == null) {
 				stmt.setNull(i++, Types.INTEGER);
 			} else {
 				stmt.setLong(i++, recordInfo.codOrder);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codUser) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codUser);
 			}
 			
 			
@@ -135,32 +114,16 @@ public final class PayordUpdateSingle implements DaoStmt<PayordInfo> {
 			}
 			
 			
-			if (DaoFormatter.boxNumber(recordInfo.codAddressPay) == null) {
+			if (DaoFormatter.boxNumber(recordInfo.feeAmount) == null) {
 				stmt.setNull(i++, Types.INTEGER);
 			} else {
-				stmt.setLong(i++, recordInfo.codAddressPay);
+				stmt.setDouble(i++, recordInfo.feeAmount);
 			}
 			
-						
-			if (DaoFormatter.boxNumber(recordInfo.codAddressPaySnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codAddressPaySnapshot);
-			}
-						
 			
-			if (DaoFormatter.boxNumber(recordInfo.codPhonePay) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codPhonePay);
-			}	
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codPhonePaySnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codPhonePaySnapshot);
-			}			
+			stmt.setString(i++, recordInfo.feeReceiver);
+			stmt.setString(i++, recordInfo.codFeeCurrency);
+			stmt.setString(i++, recordInfo.codPaymentStatus);
 			
 			
 			return stmt;

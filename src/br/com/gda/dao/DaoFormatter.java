@@ -122,6 +122,15 @@ public final class DaoFormatter {
 	
 	
 	
+	public static Double boxNumber(double number) {
+		if (number < 0)
+			return null;
+		
+		return number;
+	}	
+	
+	
+	
 	public static float longToDecimal(long number) {
 		float result = number;
 		result = result / 100;

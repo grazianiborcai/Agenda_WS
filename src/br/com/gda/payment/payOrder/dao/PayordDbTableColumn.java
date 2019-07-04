@@ -9,18 +9,15 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_ADDRESS_PAY = "cod_address_pay";
-	public static final String COL_COD_ADDRESS_PAY_SNAPSHOT = "cod_address_pay_snapshot";
-	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_ORDER = "cod_order";
 	public static final String COL_COD_OWNER = "cod_owner";	
 	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";
-	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
 	public static final String COL_COD_PAY_ORDER = "cod_pay_order";
-	public static final String COL_COD_PHONE_PAY = "cod_phone_pay";
-	public static final String COL_COD_PHONE_PAY_SNAPSHOT = "cod_phone_pay_snapshot";
-	public static final String COL_COD_USER = "cod_user";
+	public static final String COL_COD_PAY_STATUS = "cod_payment_statusr";
 	public static final String COL_CREATED_ON = "created_on";
+	public static final String COL_FEE_AMOUNT = "fee_amount";
+	public static final String COL_FEE_CURRENCY = "fee_currency";
+	public static final String COL_FEE_RECEIVER = "fee_receiver";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	
 	
@@ -65,31 +62,7 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PAY_PARTNER;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_CUSTOMER;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_ORDER;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_USER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -121,7 +94,7 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_ADDRESS_PAY;
+		oneColumn.columnName = COL_FEE_AMOUNT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -129,7 +102,7 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_ADDRESS_PAY_SNAPSHOT;
+		oneColumn.columnName = COL_FEE_RECEIVER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -137,7 +110,7 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PHONE_PAY;
+		oneColumn.columnName = COL_FEE_CURRENCY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -145,7 +118,7 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PHONE_PAY_SNAPSHOT;
+		oneColumn.columnName = COL_COD_PAY_STATUS;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
