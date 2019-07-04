@@ -4,10 +4,10 @@ import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.info.InfoUniquifier;
 
-final class PayordMergerToDelete extends InfoMergerTemplate<PayordInfo, PayordInfo> {
+final class PayordMergerToDelete_ extends InfoMergerTemplate<PayordInfo, PayordInfo> {
 
 	@Override protected InfoMergerVisitorV2<PayordInfo, PayordInfo> getVisitorHook() {
-		return new PayordVisiMergeToDelete();
+		return new PayordVisiMergeToDelete_();
 	}
 	
 	

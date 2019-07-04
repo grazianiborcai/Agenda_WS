@@ -16,13 +16,12 @@ public final class PayordCheckPay extends ModelCheckerTemplateSimple<PayordInfo>
 	
 	
 	@Override protected boolean checkHook(PayordInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner    	<= 0	||
-			   recordInfo.codOrder    	<= 0 	||
-			   recordInfo.codPayPartner <= 0 	||			   
-			   recordInfo.codAddressPay <= 0 	||
-			   recordInfo.codPhonePay 	<= 0 	||			   
-			   recordInfo.codLanguage 	== null	||
-			   recordInfo.username    	== null		)			
+		if (   recordInfo.codOwner    	 <= 0	||
+			   recordInfo.codOrder    	 <= 0 	||
+			   recordInfo.codPayCustomer <= 0 	||			   
+			   recordInfo.codCreditCard  <= 0 	||		   
+			   recordInfo.codLanguage 	 == null	||
+			   recordInfo.username    	 == null		)			
 			
 			return super.FAILED;
 		
@@ -33,12 +32,12 @@ public final class PayordCheckPay extends ModelCheckerTemplateSimple<PayordInfo>
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.PAY_ORDER_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.PAY_ORDER_MANDATORY_FIELD_EMPTY;
 	}
 }

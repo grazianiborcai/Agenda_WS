@@ -2,21 +2,21 @@ package br.com.gda.payment.payOrder.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.masterData.info.PayparInfo;
-import br.com.gda.business.masterData.model.checker.PayparCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.payment.customerPartner.model.checker.CusparCheckExist;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckPaypar implements ModelChecker<PayordInfo> {
+public final class PayordCheckCuspar implements ModelChecker<PayordInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PayparInfo> checker;
+	private ModelChecker<CusparInfo> checker;
 	
 	
-	public PayordCheckPaypar(ModelCheckerOption option) {
-		checker = new PayparCheckExist(option);
+	public PayordCheckCuspar(ModelCheckerOption option) {
+		checker = new CusparCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class PayordCheckPaypar implements ModelChecker<PayordInfo> {
 	
 	
 	@Override public boolean check(PayordInfo recordInfo) {
-		return checker.check(PayparInfo.copyFrom(recordInfo));
+		return checker.check(CusparInfo.copyFrom(recordInfo));
 	}
 
 	

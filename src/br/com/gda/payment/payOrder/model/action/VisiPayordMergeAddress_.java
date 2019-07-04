@@ -11,9 +11,9 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.info.PayordMerger;
 
-final class VisiPayordMergeAddress extends ActionVisitorTemplateMergeV2<PayordInfo, AddressInfo> {
+final class VisiPayordMergeAddress_ extends ActionVisitorTemplateMergeV2<PayordInfo, AddressInfo> {
 	
-	public VisiPayordMergeAddress(Connection conn, String schemaName) {
+	public VisiPayordMergeAddress_(Connection conn, String schemaName) {
 		super(conn, schemaName, AddressInfo.class);
 	}
 	

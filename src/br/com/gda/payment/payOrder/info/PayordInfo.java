@@ -12,6 +12,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
 	public long codPayCustomer;
+	public long codCreditCard;
 	public long codUser;				//TODO: Remover
 	public long codCustomer;			//TODO: Remover
 	public long codOrder;
@@ -23,8 +24,8 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public String txtPayPartner;
 	public String description;
-	public String codOrderStatus;
-	public String txtOrderStatus;
+	public String codOrderStatus;		//TODO: Remover
+	public String txtOrderStatus;		//TODO: Remover
 	public long codAddressPay;			//TODO: Remover
 	public long codAddressPaySnapshot;	//TODO: Remover
 	public long codPhonePay;			//TODO: Remover
@@ -40,6 +41,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	
 	public PayordInfo() {
 		codOwner = DefaultValue.number();
+		codCreditCard = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
 		codPayPartner = DefaultValue.number();

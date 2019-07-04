@@ -17,7 +17,7 @@ public final class PayordCheckRead extends ModelCheckerTemplateSimple<PayordInfo
 	
 	@Override protected boolean checkHook(PayordInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner    <= 0		||
-			   recordInfo.codStore    <= 0 		||
+			   recordInfo.codOrder    <= 0 		||
 			   recordInfo.codLanguage == null	||
 			   recordInfo.username    == null		)			
 			
@@ -30,12 +30,12 @@ public final class PayordCheckRead extends ModelCheckerTemplateSimple<PayordInfo
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.PAY_ORDER_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.PAY_ORDER_MANDATORY_FIELD_EMPTY;
 	}
 }

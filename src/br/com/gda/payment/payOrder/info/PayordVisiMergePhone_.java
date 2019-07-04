@@ -7,7 +7,7 @@ import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class PayordVisiMergePhone implements InfoMergerVisitorV2<PayordInfo, PhoneInfo> {
+final class PayordVisiMergePhone_ implements InfoMergerVisitorV2<PayordInfo, PhoneInfo> {
 
 	@Override public PayordInfo writeRecord(PhoneInfo sourceOne, PayordInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

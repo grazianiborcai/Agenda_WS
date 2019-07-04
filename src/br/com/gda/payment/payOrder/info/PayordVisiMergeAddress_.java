@@ -7,7 +7,7 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class PayordVisiMergeAddress implements InfoMergerVisitorV2<PayordInfo, AddressInfo> {
+final class PayordVisiMergeAddress_ implements InfoMergerVisitorV2<PayordInfo, AddressInfo> {
 
 	@Override public PayordInfo writeRecord(AddressInfo sourceOne, PayordInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

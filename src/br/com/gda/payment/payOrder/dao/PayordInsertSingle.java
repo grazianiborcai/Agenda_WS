@@ -110,6 +110,13 @@ public final class PayordInsertSingle implements DaoStmt<PayordInfo> {
 			stmt.setString(i++, recordInfo.feeReceiver);
 			stmt.setString(i++, recordInfo.codFeeCurrency);
 			stmt.setString(i++, recordInfo.codPaymentStatus);		
+
+			
+			if (DaoFormatter.boxNumber(recordInfo.codCreditCard) == null) {
+				stmt.setNull(i++, Types.INTEGER);
+			} else {
+				stmt.setDouble(i++, recordInfo.codCreditCard);
+			}
 			
 			
 			return stmt;

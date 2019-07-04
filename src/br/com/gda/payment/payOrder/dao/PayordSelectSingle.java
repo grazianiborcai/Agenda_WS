@@ -120,6 +120,10 @@ public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codOrder = stmtResult.getLong(PayordDbTableColumn.COL_COD_ORDER);
 				
+				stmtResult.getLong(PayordDbTableColumn.COL_COD_CREDIT_CARD);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codCreditCard = stmtResult.getLong(PayordDbTableColumn.COL_COD_CREDIT_CARD);
+				
 				stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_CUSTOMER);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPayCustomer = stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_CUSTOMER);

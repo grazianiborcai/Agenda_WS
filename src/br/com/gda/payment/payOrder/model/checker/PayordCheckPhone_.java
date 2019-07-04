@@ -9,14 +9,14 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckPhone implements ModelChecker<PayordInfo> {
+public final class PayordCheckPhone_ implements ModelChecker<PayordInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<PhoneInfo> checker;
 	
 	
-	public PayordCheckPhone(ModelCheckerOption option) {
+	public PayordCheckPhone_(ModelCheckerOption option) {
 		checker = new PhoneCheckExist(option);
 	}
 	

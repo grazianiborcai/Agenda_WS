@@ -5,10 +5,10 @@ import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.info.InfoUniquifier;
 
-final class PayordMergerAddress extends InfoMergerTemplate<PayordInfo, AddressInfo> {
+final class PayordMergerAddress_ extends InfoMergerTemplate<PayordInfo, AddressInfo> {
 
 	@Override protected InfoMergerVisitorV2<PayordInfo, AddressInfo> getVisitorHook() {
-		return new PayordVisiMergeAddress();
+		return new PayordVisiMergeAddress_();
 	}
 	
 	

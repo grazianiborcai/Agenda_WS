@@ -7,12 +7,12 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-public final class StdPayordMergePhone implements ActionStd<PayordInfo> {
+public final class StdPayordMergePhone_ implements ActionStd<PayordInfo> {
 	private ActionStd<PayordInfo> actionHelper;	
 	
 	
-	public StdPayordMergePhone(DeciTreeOption<PayordInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPayordMergePhone(option.conn, option.schemaName));
+	public StdPayordMergePhone_(DeciTreeOption<PayordInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPayordMergePhone_(option.conn, option.schemaName));
 	}
 	
 	

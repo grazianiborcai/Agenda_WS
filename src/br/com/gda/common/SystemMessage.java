@@ -581,11 +581,12 @@ public final class SystemMessage {
 	public static final String PAY_ORDER_ITEM_NOT_FOUND = "Pay-Order item not found on DB";	
 	public static final String PAY_ORDER_IS_EMPTY = "Pay-Order is empty";	
 	public static final String PAY_ORDER_HAVE_ITEM = "Pay-Order has items";	
+	public static final String PAY_ORDER_MANDATORY_FIELD_EMPTY = "Pay-Order: Mandatory field is empty";
 	public static final String PAY_ORDER_PHONE_DIF_USER = "Phone does not belong to Payer user";
 	public static final String PAY_ORDER_STATUS_NOT_ALLOWED = "Illegal operation. Invalid Order Status change";
 	
 	
-	
+		
 	// Pay-Customer-Moip
 	public static final String PAY_CUS_MOIP_ADDRESS_BR = "Only Brazilian addresses are allowed";
 	public static final String PAY_CUS_MOIP_ADDRESNAP_MISSING = "Missing city, district, street, street number, state or postalcode. Please, complete user data";	

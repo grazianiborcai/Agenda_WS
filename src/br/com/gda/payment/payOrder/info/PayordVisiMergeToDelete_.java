@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
 
-final class PayordVisiMergeToDelete implements InfoMergerVisitorV2<PayordInfo, PayordInfo> {
+final class PayordVisiMergeToDelete_ implements InfoMergerVisitorV2<PayordInfo, PayordInfo> {
 
 	@Override public PayordInfo writeRecord(PayordInfo sourceOne, PayordInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

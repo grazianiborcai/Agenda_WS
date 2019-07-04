@@ -12,28 +12,28 @@ import br.com.gda.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	
 	public static PayordInfo mergeWithAddress(AddressInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger<PayordInfo, AddressInfo> merger = new PayordMergerAddress();		
+		InfoMerger<PayordInfo, AddressInfo> merger = new PayordMergerAddress_();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
 	public static List<PayordInfo> mergeWithAddress(List<AddressInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger<PayordInfo, AddressInfo> merger = new PayordMergerAddress();		
+		InfoMerger<PayordInfo, AddressInfo> merger = new PayordMergerAddress_();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
 	
 	
 	
 	public static PayordInfo mergeWithPhone(PhoneInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger<PayordInfo, PhoneInfo> merger = new PayordMergerPhone();		
+		InfoMerger<PayordInfo, PhoneInfo> merger = new PayordMergerPhone_();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
 	public static List<PayordInfo> mergeWithPhone(List<PhoneInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger<PayordInfo, PhoneInfo> merger = new PayordMergerPhone();		
+		InfoMerger<PayordInfo, PhoneInfo> merger = new PayordMergerPhone_();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
 	
@@ -110,14 +110,14 @@ public final class PayordMerger {
 	
 	
 	public static PayordInfo mergeToDelete(PayordInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger<PayordInfo, PayordInfo> merger = new PayordMergerToDelete();		
+		InfoMerger<PayordInfo, PayordInfo> merger = new PayordMergerToDelete_();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
 	public static List<PayordInfo> mergeToDelete(List<PayordInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger<PayordInfo, PayordInfo> merger = new PayordMergerToDelete();		
+		InfoMerger<PayordInfo, PayordInfo> merger = new PayordMergerToDelete_();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}			
 }

@@ -2,22 +2,21 @@ package br.com.gda.payment.payOrder.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.address.info.AddressCopier;
-import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.checker.AddressCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.payment.creditCard.info.CrecardInfo;
+import br.com.gda.payment.creditCard.model.checker.CrecardCheckExist;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckAddress implements ModelChecker<PayordInfo> {
+public final class PayordCheckCrecard implements ModelChecker<PayordInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<AddressInfo> checker;
+	private ModelChecker<CrecardInfo> checker;
 	
 	
-	public PayordCheckAddress(ModelCheckerOption option) {
-		checker = new AddressCheckExist(option);
+	public PayordCheckCrecard(ModelCheckerOption option) {
+		checker = new CrecardCheckExist(option);
 	}
 	
 	
@@ -34,7 +33,7 @@ public final class PayordCheckAddress implements ModelChecker<PayordInfo> {
 	
 	
 	@Override public boolean check(PayordInfo recordInfo) {
-		return checker.check(AddressCopier.copyFromPayord(recordInfo));
+		return checker.check(CrecardInfo.copyFrom(recordInfo));
 	}
 
 	
