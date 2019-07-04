@@ -13,11 +13,12 @@ import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceLChanged;
 import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceStatusWaiting;
-import br.com.gda.payment.payOrder.model.action.LazyPayordInsert;
+import br.com.gda.payment.payOrder.model.action.LazyPayordMergeCrecard;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeCuspar;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeOrder;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeSyspar;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeUsername;
+import br.com.gda.payment.payOrder.model.action.LazyPayordNodePay;
 import br.com.gda.payment.payOrder.model.action.StdPayordEnforceCreatedOn;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckCrecard;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckLangu;
@@ -103,8 +104,8 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		ActionLazy<PayordInfo> mergeSyspar = new LazyPayordMergeSyspar(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> enforceCodUser = new LazyPayordMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> mergeOrder = new LazyPayordMergeOrder(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> insert = new LazyPayordInsert(option.conn, option.schemaName);
-		//ActionLazy<PayordInfo> nodePay = new LazyPayordNodePay(option.conn, option.schemaName);		
+		ActionLazy<PayordInfo> mergeCrecard = new LazyPayordMergeCrecard(option.conn, option.schemaName);		
+		ActionLazy<PayordInfo> nodePay = new LazyPayordNodePay(option.conn, option.schemaName);		
 		
 		enforceCreatedOn.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceStatus);		
@@ -112,7 +113,8 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		mergeCuspar.addPostAction(mergeSyspar);	
 		mergeSyspar.addPostAction(enforceCodUser);
 		enforceCodUser.addPostAction(mergeOrder);
-		mergeOrder.addPostAction(insert);
+		mergeOrder.addPostAction(mergeCrecard);
+		mergeCrecard.addPostAction(nodePay);
 		
 		actions.add(enforceCreatedOn);		
 		return actions;

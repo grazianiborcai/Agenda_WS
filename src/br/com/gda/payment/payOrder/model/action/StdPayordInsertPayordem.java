@@ -7,12 +7,12 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-public final class StdPayordInsertCuspar implements ActionStd<PayordInfo> {
+public final class StdPayordInsertPayordem implements ActionStd<PayordInfo> {
 	private ActionStd<PayordInfo> actionHelper;	
 	
 	
-	public StdPayordInsertCuspar(DeciTreeOption<PayordInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiPayordInsertCuspar(option.conn, option.schemaName));
+	public StdPayordInsertPayordem(DeciTreeOption<PayordInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiPayordInsertPayordem(option.conn, option.schemaName));
 	}
 	
 	

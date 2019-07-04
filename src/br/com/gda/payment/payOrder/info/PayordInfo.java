@@ -1,14 +1,15 @@
 package br.com.gda.payment.payOrder.info;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.order.info.OrderInfo;
-import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
+import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
 
 public final class PayordInfo extends InfoRecord implements Cloneable {
@@ -17,7 +18,6 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public long codPayCustomer;
 	public long codCreditCard;
 	public long codUser;				//TODO: manter para check
-	public long codCustomer;			//TODO: Remover
 	public long codOrder;
 	public String feeReceiver;
 	public double feeAmount;
@@ -26,17 +26,17 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public String txtPayPartner;
 	public String description;
-	public String codOrderStatus;		//TODO: Remover
-	public String txtOrderStatus;		//TODO: Remover
-	public long codAddressPay;			//TODO: Remover
-	public long codAddressPaySnapshot;	//TODO: Remover
-	public long codPhonePay;			//TODO: Remover
-	public long codPhonePaySnapshot;	//TODO: Remover
-	public AddressInfo addressPayData;	//TODO: Remover
-	public PhoneInfo phonePayData;		//TODO: Remover
+	//public long codAddressPay;			//TODO: Remover
+	//public long codAddressPaySnapshot;	//TODO: Remover
+	//public long codPhonePay;			//TODO: Remover
+	//public long codPhonePaySnapshot;	//TODO: Remover
+	//public AddressInfo addressPayData;	//TODO: Remover
+	//public PhoneInfo phonePayData;		//TODO: Remover
 	public SysparInfo sysparData;
 	public OrderInfo orderData;
 	public CusparInfo cusparData;
+	public CrecardInfo crecardData;
+	public List<PayordemInfo> payordems;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public String codLanguage;
@@ -52,16 +52,12 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		codPayPartner = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		codUser = DefaultValue.number();
-		codCustomer = DefaultValue.number();
 		codOrder = DefaultValue.number();
-		codAddressPay = DefaultValue.number();
-		codAddressPaySnapshot = DefaultValue.number();
-		codPhonePay = DefaultValue.number();
-		codPhonePaySnapshot = DefaultValue.number();
-		addressPayData = DefaultValue.object();
 		sysparData = DefaultValue.object();
 		orderData = DefaultValue.object();
 		cusparData = DefaultValue.object();
+		crecardData = DefaultValue.object();
+		payordems = DefaultValue.list();
 	}
 	
 	
@@ -84,6 +80,8 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		deepCopy.orderData = cloneOrder(deepCopy.orderData);
 		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
 		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
+		deepCopy.crecardData = cloneCrecard(deepCopy.crecardData);
+		deepCopy.payordems = clonePayordems(deepCopy.payordems);
 		
 		return deepCopy;
 	}
@@ -117,6 +115,31 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	
 	
 	
+	private CrecardInfo cloneCrecard(CrecardInfo crecard) throws CloneNotSupportedException {
+		if (crecard == null)
+			return null;
+		
+		return (CrecardInfo) crecard.clone();
+	}	
+	
+	
+	
+	private List<PayordemInfo> clonePayordems(List<PayordemInfo> payordems) throws CloneNotSupportedException {
+		if (payordems == null)
+			return null;
+		
+		List<PayordemInfo> results = new ArrayList<>();
+		
+		for (PayordemInfo eachPayordem : payordems) {
+			PayordemInfo cloned = (PayordemInfo) eachPayordem.clone();
+			results.add(cloned);
+		}
+		
+		return results;
+	}	
+	
+	
+	
 	@Override public int hashCode() {
 		int result = 17;
 		
@@ -124,7 +147,6 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codPayOrder 	 ^ (codPayOrder 	>>> 32));
 		result = result * 31 + (int) (codPayPartner  ^ (codPayPartner 	>>> 32));
 		result = result * 31 + (int) (codUser 		 ^ (codUser 		>>> 32));
-		result = result * 31 + (int) (codCustomer 	 ^ (codCustomer 	>>> 32));
 		result = result * 31 + (int) (codOrder 		 ^ (codOrder 	 	>>> 32));
 		result = result * 31 + (int) (codPayCustomer ^ (codPayCustomer 	>>> 32));
 		
@@ -147,7 +169,6 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 				codPayOrder    == obj.codPayOrder 	&&
 				codPayPartner  == obj.codPayPartner	&&
 				codUser 	   == obj.codUser		&&
-				codCustomer    == obj.codCustomer	&&
 				codOrder 	   == obj.codOrder		&&
 				codPayCustomer == obj.codPayCustomer	);
 	}

@@ -575,6 +575,7 @@ public final class SystemMessage {
 	
 	// Pay-Order
 	public static final String PAY_ORDER_ADDRESS_DIF_USER = "Address does not belong to Payer user";
+	public static final String PAY_ORDER_ALREADY_EXIST = "Pay-Order's data already exist on DB";
 	public static final String PAY_ORDER_DIF_CUSPAR_USER = "Payer and Pay-Customer creator does not belong to the same user";
 	public static final String PAY_ORDER_DIF_ORDER_USER = "Payer and Order creator does not belong to the same user";
 	public static final String PAY_ORDER_ITEM_ALREADY_EXIST = "Pay-Order item already exist on DB";	
@@ -583,9 +584,10 @@ public final class SystemMessage {
 	public static final String PAY_ORDER_IS_EMPTY = "Pay-Order is empty";	
 	public static final String PAY_ORDER_HAVE_ITEM = "Pay-Order has items";	
 	public static final String PAY_ORDER_MANDATORY_FIELD_EMPTY = "Pay-Order: Mandatory field is empty";
+	public static final String PAY_ORDER_NOT_FOUND = "Pay-Order's data not found on DB";
 	public static final String PAY_ORDER_PHONE_DIF_USER = "Phone does not belong to Payer user";
 	public static final String PAY_ORDER_STATUS_NOT_ALLOWED = "Illegal operation. Invalid Order Status change";
-	
+		
 	
 		
 	// Pay-Customer-Moip

@@ -9,9 +9,9 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-public final class LazyPayordMergeAddress_ extends ActionLazyTemplate<PayordInfo, PayordInfo> {
-	
-	public LazyPayordMergeAddress_(Connection conn, String schemaName) {
+public final class LazyPayordInsertPayordem extends ActionLazyTemplate<PayordInfo, PayordInfo> {
+
+	public LazyPayordInsertPayordem(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPayordMergeAddress_ extends ActionLazyTemplate<PayordInfo
 	
 	
 	@Override protected ActionStd<PayordInfo> getInstanceOfActionHook(DeciTreeOption<PayordInfo> option) {
-		return new StdPayordMergeAddress_(option);
+		return new StdPayordInsertPayordem(option);
 	}
 	
 	

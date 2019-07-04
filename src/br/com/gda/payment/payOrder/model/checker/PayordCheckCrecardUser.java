@@ -7,19 +7,19 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckAddressUser_ extends ModelCheckerTemplateSimple<PayordInfo> {
+public final class PayordCheckCrecardUser extends ModelCheckerTemplateSimple<PayordInfo> {
 
-	public PayordCheckAddressUser_() {
+	public PayordCheckCrecardUser() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PayordInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.addressPayData == null)
+		if (recordInfo.crecardData == null)
 			return super.FAILED;
 		
-		if (recordInfo.addressPayData.codUser == recordInfo.codUser)
+		if (recordInfo.crecardData.codPayCustomer == recordInfo.codPayCustomer)
 			return super.SUCCESS;
 		
 		

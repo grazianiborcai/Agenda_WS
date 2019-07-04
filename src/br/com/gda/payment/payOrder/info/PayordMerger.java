@@ -2,24 +2,24 @@ package br.com.gda.payment.payOrder.info;
 
 import java.util.List;
 
-import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.masterData.info.PayparInfo;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.info.InfoMerger;
+import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	
-	public static PayordInfo mergeWithAddress(AddressInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger<PayordInfo, AddressInfo> merger = new PayordMergerAddress_();		
+	public static PayordInfo mergeWithCrecard(CrecardInfo sourceOne, PayordInfo sourceTwo) {
+		InfoMerger<PayordInfo, CrecardInfo> merger = new PayordMergerCrecard();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<PayordInfo> mergeWithAddress(List<AddressInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger<PayordInfo, AddressInfo> merger = new PayordMergerAddress_();		
+	public static List<PayordInfo> mergeWithCrecard(List<CrecardInfo> sourceOnes, List<PayordInfo> sourceTwos) {
+		InfoMerger<PayordInfo, CrecardInfo> merger = new PayordMergerCrecard();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
 	

@@ -13,7 +13,6 @@ import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
-import br.com.gda.payment.payOrder.info.PayordInfo;
 
 public final class AddressCopier {
 	public static AddressInfo copyFromCrecard(CrecardInfo source) {
@@ -39,20 +38,6 @@ public final class AddressCopier {
 	
 	public static List<AddressInfo> copyFromCuspar(List<CusparInfo> sources) {
 		InfoCopier<AddressInfo, CusparInfo> copier = new AddressCopyCuspar();
-		return copier.makeCopy(sources);
-	}
-	
-	
-	
-	public static AddressInfo copyFromPayord(PayordInfo source) {
-		InfoCopier<AddressInfo, PayordInfo> copier = new AddressCopyPayord();
-		return copier.makeCopy(source);
-	}
-	
-	
-	
-	public static List<AddressInfo> copyFromPayord(List<PayordInfo> sources) {
-		InfoCopier<AddressInfo, PayordInfo> copier = new AddressCopyPayord();
 		return copier.makeCopy(sources);
 	}
 	

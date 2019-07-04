@@ -17,6 +17,7 @@ import br.com.gda.info.InfoRecord;
 public final class PayordemInfo extends InfoRecord implements Cloneable, Comparable<PayordemInfo> {
 	public long codOwner;
 	public long codPayOrder;
+	public int codPayPartner;
 	public long codStore;
 	public long codEmployee;
 	public long codMat;
@@ -38,6 +39,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public PayordemInfo() {
 		codOwner = DefaultValue.number();	
 		codPayOrder = DefaultValue.number();
+		codPayPartner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();

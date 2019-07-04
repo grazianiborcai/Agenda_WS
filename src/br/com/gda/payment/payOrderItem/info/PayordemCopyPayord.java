@@ -6,21 +6,21 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.info.InfoCopierOneToManyTemplate;
+import br.com.gda.payment.payOrder.info.PayordInfo;
 
-final class OrderemCopyOrder extends InfoCopierOneToManyTemplate<PayordemInfo, OrderInfo>{
+final class PayordemCopyPayord extends InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo>{
 	
-	public OrderemCopyOrder() {
+	public PayordemCopyPayord() {
 		super();
 	}
 	
 	
 	
-	@Override protected List<PayordemInfo> makeCopyHook(OrderInfo source) {	
+	@Override protected List<PayordemInfo> makeCopyHook(PayordInfo source) {	
 		List<PayordemInfo> results = new ArrayList<>();
 		
-		for (PayordemInfo eachOrderem : source.orderms) {
+		for (PayordemInfo eachOrderem : source.payordems) {
 			results.add(makeClone(eachOrderem));
 		}
 		

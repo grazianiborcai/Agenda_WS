@@ -17,11 +17,11 @@ public final class PayordCheckOrderStatus extends ModelCheckerTemplateSimple<Pay
 	
 	
 	@Override protected boolean checkHook(PayordInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOrderStatus == null)
+		if (recordInfo.orderData == null)
 			return super.FAILED;
 		
-		if (recordInfo.codOrderStatus.equals(OrderStatus.WAITING.getCodStatus()) 	||
-			recordInfo.codOrderStatus.equals(OrderStatus.NOT_PAID.getCodStatus())		)			
+		if (recordInfo.orderData.codOrderStatus.equals(OrderStatus.WAITING.getCodStatus()) 	||
+			recordInfo.orderData.codOrderStatus.equals(OrderStatus.NOT_PAID.getCodStatus())		)			
 			
 			return super.SUCCESS;
 		

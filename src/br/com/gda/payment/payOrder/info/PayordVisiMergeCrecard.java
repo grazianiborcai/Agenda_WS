@@ -3,13 +3,13 @@ package br.com.gda.payment.payOrder.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.payment.creditCard.info.CrecardInfo;
 
-final class PayordVisiMergeAddress_ implements InfoMergerVisitorV2<PayordInfo, AddressInfo> {
+final class PayordVisiMergeCrecard implements InfoMergerVisitorV2<PayordInfo, CrecardInfo> {
 
-	@Override public PayordInfo writeRecord(AddressInfo sourceOne, PayordInfo sourceTwo) {
+	@Override public PayordInfo writeRecord(CrecardInfo sourceOne, PayordInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		PayordInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class PayordVisiMergeAddress_ implements InfoMergerVisitorV2<PayordInfo, A
 	
 	
 	
-	private void checkArgument(AddressInfo sourceOne, PayordInfo sourceTwo) {
+	private void checkArgument(CrecardInfo sourceOne, PayordInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,17 +37,16 @@ final class PayordVisiMergeAddress_ implements InfoMergerVisitorV2<PayordInfo, A
 	
 	
 	
-	private PayordInfo merge(AddressInfo sourceOne, PayordInfo sourceTwo) {
-		sourceTwo.addressPayData = makeClone(sourceOne);
-		sourceTwo.codAddressPaySnapshot = sourceOne.codSnapshot;
+	private PayordInfo merge(CrecardInfo sourceOne, PayordInfo sourceTwo) {
+		sourceTwo.crecardData = makeClone(sourceOne);
 		return sourceTwo;
 	}
 	
 	
 	
-	private AddressInfo makeClone(AddressInfo recordInfo) {
+	private CrecardInfo makeClone(CrecardInfo recordInfo) {
 		try {
-			return (AddressInfo) recordInfo.clone();
+			return (CrecardInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -57,9 +56,10 @@ final class PayordVisiMergeAddress_ implements InfoMergerVisitorV2<PayordInfo, A
 	
 	
 	
-	@Override public boolean shouldWrite(AddressInfo sourceOne, PayordInfo sourceTwo) {
-		return (sourceOne.codOwner 	 == sourceTwo.codOwner		&&
-				sourceOne.codAddress == sourceTwo.codAddressPay		);
+	@Override public boolean shouldWrite(CrecardInfo sourceOne, PayordInfo sourceTwo) {
+		return (sourceOne.codOwner 	 	 == sourceTwo.codOwner		&&
+				sourceOne.codPayPartner  == sourceTwo.codPayPartner	&&
+				sourceOne.codPayCustomer == sourceTwo.codPayCustomer	);
 	}
 	
 	

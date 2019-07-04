@@ -1,18 +1,18 @@
 package br.com.gda.payment.payOrder.model.action;
 
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionStdHelperAction;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-public final class StdPayordMergeAddress_ implements ActionStd<PayordInfo> {
+public final class StdPayordInsertCuspar_ implements ActionStd<PayordInfo> {
 	private ActionStd<PayordInfo> actionHelper;	
 	
 	
-	public StdPayordMergeAddress_(DeciTreeOption<PayordInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPayordMergeAddress_(option.conn, option.schemaName));
+	public StdPayordInsertCuspar_(DeciTreeOption<PayordInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiPayordInsertCuspar(option.conn, option.schemaName));
 	}
 	
 	
