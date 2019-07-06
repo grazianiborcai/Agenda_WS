@@ -626,7 +626,20 @@ public final class SystemMessage {
 	
 	
 	
-	//
+	// System Pay Partner
+	public static final String SYS_PAY_PARTNER_ALREADY_EXIST = "System Pay Partner's data already exist on DB";
 	public static final String SYS_PAY_PARTNER_MANDATORY_FIELD_EMPTY = "System Pay Partner: Mandatory field is empty";
-
+	public static final String SYS_PAY_PARTNER_NOT_FOUND = "System Pay Partner's data not found on DB";
+	
+	
+	
+	// Access Moip
+	public static final String ACCESS_MOIP_MANDATORY_FIELD_EMPTY = "Access-Moip: Mandatory field is empty";	
+	
+	
+	
+	// Pay Partner Setup
+	public static final String PAY_PARTNER_SETUP_ALREADY_EXIST = "Pay Partner Setup's data already exist on DB";
+	public static final String PAY_PARTNER_SETUP_MANDATORY_FIELD_EMPTY = "Pay Partner Setup: Mandatory field is empty";
+	public static final String PAY_PARTNER_SETUP_NOT_FOUND = "Pay Partner Setup's data not found on DB";
 }

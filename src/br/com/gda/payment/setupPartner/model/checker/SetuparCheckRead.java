@@ -26,12 +26,12 @@ public final class SetuparCheckRead extends ModelCheckerTemplateSimple<SetuparIn
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.PAY_PARTNER_SETUP_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.PAY_PARTNER_SETUP_MANDATORY_FIELD_EMPTY;
 	}
 }

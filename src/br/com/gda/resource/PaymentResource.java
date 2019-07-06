@@ -13,6 +13,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.model.Model;
+import br.com.gda.payment.accessMoip.info.AccemoipInfo;
+import br.com.gda.payment.accessMoip.model.AccemoipModelUrl;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.creditCard.model.CrecardModelDelete;
 import br.com.gda.payment.creditCard.model.CrecardModelInsert;
@@ -22,6 +24,7 @@ import br.com.gda.payment.payOrder.model.PayordModelPay;
 @Path("/Payment")
 public final class PaymentResource {
 	private static final String PAY_ORDER = "/payOrder";
+	private static final String GRANT_MOIP = "/grantMoip";
 	private static final String INSERT_CREDIT_CARD = "/insertCreditCard";
 	private static final String DELETE_CREDIT_CARD = "/deleteCreditCard";
 	private static final String SELECT_CREDIT_CARD = "/selectCreditCard";
@@ -33,6 +36,27 @@ public final class PaymentResource {
 	public Response payOrder(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new PayordModelPay(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();	
+	}
+	
+	
+	
+	@GET
+	@Path(GRANT_MOIP)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response grantMoip(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+				              @HeaderParam("codStore")  		@DefaultValue("-1") long codStore,
+				              @HeaderParam("TOKEN_USERNAME") 	String username,
+				              @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
+		
+		AccemoipInfo recordInfo = new AccemoipInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new AccemoipModelUrl(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	}

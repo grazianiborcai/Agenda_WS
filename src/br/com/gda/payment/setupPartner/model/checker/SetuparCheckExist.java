@@ -42,18 +42,18 @@ public final class SetuparCheckExist extends ModelCheckerTemplateAction<SetuparI
 	
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.PAY_PARTNER_COUNTRY_ALREADY_EXIST)
-			return SystemMessage.PAY_PARTNER_COUNTRY_ALREADY_EXIST;
+		if (makeFailCodeHook(checkerResult) == SystemCode.PAY_PARTNER_SETUP_ALREADY_EXIST)
+			return SystemMessage.PAY_PARTNER_SETUP_ALREADY_EXIST;
 		
-		return SystemMessage.PAY_PARTNER_COUNTRY_NOT_FOUND;
+		return SystemMessage.PAY_PARTNER_SETUP_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.PAY_PARTNER_COUNTRY_ALREADY_EXIST;	
+			return SystemCode.PAY_PARTNER_SETUP_ALREADY_EXIST;	
 			
-		return SystemCode.PAY_PARTNER_COUNTRY_NOT_FOUND;
+		return SystemCode.PAY_PARTNER_SETUP_NOT_FOUND;
 	}
 }

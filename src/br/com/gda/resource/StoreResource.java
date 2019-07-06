@@ -60,10 +60,10 @@ public class StoreResource {
 	private static final String UPDATE_STORE_LDATE = "/updateStoreLeaveDate";
 	private static final String DELETE_STORE_LDATE = "/deleteStoreLeaveDate";
 	private static final String SELECT_STORE_WT_CONFLICT = "/selectStoreWorkTimeConflict";
-	private static final String SELECT_STORE_PAY_PARTNER = "/selectPayPartner";
-	private static final String INSERT_STORE_PAY_PARTNER = "/insertPayPartner";
-	private static final String UPDATE_STORE_PAY_PARTNER = "/updatePayPartner";
-	private static final String DELETE_STORE_PAY_PARTNER = "/deletePayPartner";
+	private static final String SELECT_STORE_PAY_PARTNER = "/selectPayPartner";				//TODO: rever esse fluxo. Eliminar ?
+	private static final String INSERT_STORE_PAY_PARTNER = "/insertPayPartner";				//TODO: rever esse fluxo. Eliminar ?
+	private static final String UPDATE_STORE_PAY_PARTNER = "/updatePayPartner";				//TODO: rever esse fluxo. Eliminar ?
+	private static final String DELETE_STORE_PAY_PARTNER = "/deletePayPartner";				//TODO: rever esse fluxo. Eliminar ?
 
 	
 	@POST

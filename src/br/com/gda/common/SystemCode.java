@@ -494,4 +494,14 @@ public final class SystemCode {
 	
 	// System Pay Partner
 	public static final int SYS_PAY_PARTNER_MANDATORY_FIELD_EMPTY		= 4250;
+	public static final int SYS_PAY_PARTNER_ALREADY_EXIST 				= 4251;
+	public static final int SYS_PAY_PARTNER_NOT_FOUND 					= 4252;
+	
+	// Access Moip
+	public static final int ACCESS_MOIP_MANDATORY_FIELD_EMPTY			= 4300;
+	
+	// Pay Partner Setup
+	public static final int PAY_PARTNER_SETUP_MANDATORY_FIELD_EMPTY 	= 4350;
+	public static final int PAY_PARTNER_SETUP_ALREADY_EXIST 			= 4351;
+	public static final int PAY_PARTNER_SETUP_NOT_FOUND 				= 4352;
 }

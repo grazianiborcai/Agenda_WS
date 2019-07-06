@@ -97,6 +97,7 @@
         <security:intercept-url pattern="/**/Cart/**"							access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/User/**"							access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/Order/**"							access="isAuthenticated()" 							/> 
+        <security:intercept-url pattern="/**/Payment/grantMoip"					access="hasAuthority('STORE_PAY_WRITE')" 			/>    
         <security:intercept-url pattern="/**/Payment/payOrder"					access="isAuthenticated()" 							/>     
         <security:intercept-url pattern="/**/Payment/insertCreditCard"			access="isAuthenticated()" 							/>      
         <security:intercept-url pattern="/**"                					access="isAuthenticated()" 							/>

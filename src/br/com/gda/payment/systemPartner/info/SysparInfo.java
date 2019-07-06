@@ -9,6 +9,7 @@ public final class SysparInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public String idPayPartnerSystem;
 	public String idPayPartnerApp;
+	public String urlReturn;
 	
 	
 	public SysparInfo() {
