@@ -28,7 +28,7 @@
 		<servlet-class>br.com.gda.servlet.ServletContainerGDA</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>br.com.gda.resource</param-value>
+			<param-value>br.com.gda.servlet.resource</param-value>
 		</init-param>
 		<init-param>
 			<param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>

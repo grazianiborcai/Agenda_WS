@@ -1,4 +1,4 @@
-package br.com.gda.resource;
+package br.com.gda.servlet.resource;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

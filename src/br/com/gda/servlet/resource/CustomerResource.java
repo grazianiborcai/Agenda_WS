@@ -1,4 +1,4 @@
-package br.com.gda.resource;
+package br.com.gda.servlet.resource;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
