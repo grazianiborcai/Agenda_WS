@@ -109,6 +109,7 @@ public final class SysparSelectSingle implements DaoStmt<SysparInfo> {
 			do {
 				SysparInfo dataInfo = new SysparInfo();
 				dataInfo.idPayPartnerSystem = stmtResult.getString(SysparDbTableColumn.COL_ID_PAY_PARTNER_SYSTEM);
+				dataInfo.idPayPartnerApp = stmtResult.getString(SysparDbTableColumn.COL_ID_PAY_PARTNER_APP);
 				dataInfo.codPayPartner = stmtResult.getInt(SysparDbTableColumn.COL_COD_PAY_PARTNER);
 				
 				

@@ -9,6 +9,7 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class SysparDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_ID_PAY_PARTNER_APP = "id_pay_partner_app";	
 	public static final String COL_ID_PAY_PARTNER_SYSTEM = "id_pay_partner_system";	
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
 	
@@ -47,6 +48,14 @@ public final class SysparDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_ID_PAY_PARTNER_SYSTEM;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_ID_PAY_PARTNER_APP;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

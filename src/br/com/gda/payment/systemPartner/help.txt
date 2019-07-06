@@ -1,0 +1,9 @@
+Para obter o ID da conta Moip/Wirecard, é necessário dar um GET em:
+
+https://sandbox.moip.com.br/v2/accounts 
+
+ou
+
+https://api.moip.com.br/v2/accounts
+
+É necessário realizar uma autenticação básica com o TOKEN e ACCESS_KEY

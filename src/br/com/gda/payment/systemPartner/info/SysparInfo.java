@@ -8,6 +8,7 @@ import br.com.gda.info.InfoRecord;
 public final class SysparInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public String idPayPartnerSystem;
+	public String idPayPartnerApp;
 	
 	
 	public SysparInfo() {
