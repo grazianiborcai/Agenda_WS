@@ -504,4 +504,10 @@ public final class SystemCode {
 	public static final int PAY_PARTNER_SETUP_MANDATORY_FIELD_EMPTY 	= 4350;
 	public static final int PAY_PARTNER_SETUP_ALREADY_EXIST 			= 4351;
 	public static final int PAY_PARTNER_SETUP_NOT_FOUND 				= 4352;
+	
+	// Moip Permission Response
+	public static final int MOIP_PERM_RESP_MANDATORY_FIELD_EMPTY 		= 4400;
+	public static final int MOIP_PERM_RESP_ALREADY_EXIST 				= 4401;
+	public static final int MOIP_PERM_RESP_NOT_FOUND 					= 4402;
+	public static final int MOIP_PERM_RESP_IS_NOT_EXPECTED				= 4403;
 }

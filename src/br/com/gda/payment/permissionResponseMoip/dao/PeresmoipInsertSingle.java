@@ -1,4 +1,4 @@
-package br.com.gda.payment.storePartner.dao;
+package br.com.gda.payment.permissionResponseMoip.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,27 +14,27 @@ import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.DaoStmtParamTranslator;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
-import br.com.gda.payment.storePartner.info.StoparInfo;
+import br.com.gda.payment.permissionResponseMoip.info.PeresmoipInfo;
 
-public final class StoparInsertSingle implements DaoStmt<StoparInfo> {
-	private DaoStmt<StoparInfo> stmtSql;
-	private DaoStmtOption<StoparInfo> stmtOption;
+public final class PeresmoipInsertSingle implements DaoStmt<PeresmoipInfo> {
+	private DaoStmt<PeresmoipInfo> stmtSql;
+	private DaoStmtOption<PeresmoipInfo> stmtOption;
 	
 	
 	
-	public StoparInsertSingle(Connection conn, StoparInfo recordInfo, String schemaName) {
+	public PeresmoipInsertSingle(Connection conn, PeresmoipInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, StoparInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, PeresmoipInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.PAY_PARTNER_STORE_TABLE;
+		this.stmtOption.tableName = DaoDbTable.MOIP_PERMISSION_RESPONSE_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = null;
@@ -67,14 +67,14 @@ public final class StoparInsertSingle implements DaoStmt<StoparInfo> {
 
 	
 	
-	@Override public List<StoparInfo> getResultset() {
+	@Override public List<PeresmoipInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<StoparInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoparInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements DaoStmtParamTranslator<PeresmoipInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PeresmoipInfo recordInfo) throws SQLException {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
@@ -87,34 +87,8 @@ public final class StoparInsertSingle implements DaoStmt<StoparInfo> {
 			}
 			
 			
-			if (DaoFormatter.boxNumber(recordInfo.codPayPartner) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codPayPartner);
-			}
-			
-			
-			stmt.setString(i++, recordInfo.recordMode);
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codSnapshot);
-			}
-			
-
 			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.lastChangedBy) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			}
-			
-			
-			stmt.setString(i++, recordInfo.idPayPartnerStore);
+			stmt.setBoolean(i++, recordInfo.isExpected);
 			
 			
 			return stmt;
@@ -123,7 +97,7 @@ public final class StoparInsertSingle implements DaoStmt<StoparInfo> {
 	
 	
 	
-	@Override public DaoStmt<StoparInfo> getNewInstance() {
-		return new StoparInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<PeresmoipInfo> getNewInstance() {
+		return new PeresmoipInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 }

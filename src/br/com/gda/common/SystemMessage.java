@@ -642,4 +642,12 @@ public final class SystemMessage {
 	public static final String PAY_PARTNER_SETUP_ALREADY_EXIST = "Pay Partner Setup's data already exist on DB";
 	public static final String PAY_PARTNER_SETUP_MANDATORY_FIELD_EMPTY = "Pay Partner Setup: Mandatory field is empty";
 	public static final String PAY_PARTNER_SETUP_NOT_FOUND = "Pay Partner Setup's data not found on DB";
+	
+	
+	
+	// Moip Permission Response
+	public static final String MOIP_PERM_RESP_ALREADY_EXIST = "MOIP Permission Response's data already exist on DB";
+	public static final String MOIP_PERM_RESP_IS_NOT_EXPECTED = "MOIP Permission Response is not expected";
+	public static final String MOIP_PERM_RESP_MANDATORY_FIELD_EMPTY = "MOIP Permission Response: Mandatory field is empty";
+	public static final String MOIP_PERM_RESP_NOT_FOUND = "MOIP Permission Response's data not found on DB";	
 }

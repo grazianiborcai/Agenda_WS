@@ -1,4 +1,4 @@
-package br.com.gda.payment.storePartner.dao;
+package br.com.gda.payment.permissionResponseMoip.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,24 +16,24 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
-import br.com.gda.payment.storePartner.info.StoparInfo;
+import br.com.gda.payment.permissionResponseMoip.info.PeresmoipInfo;
 
-public final class StoparSelectSingle implements DaoStmt<StoparInfo> {
-	private final static String LT_ATTR = DaoDbTable.PAY_PARTNER_STORE_TABLE;
+public final class PeresmoipSelectSingle implements DaoStmt<PeresmoipInfo> {
+	private final static String LT_ATTR = DaoDbTable.MOIP_PERMISSION_RESPONSE_TABLE;
 	
-	private DaoStmt<StoparInfo> stmtSql;
-	private DaoStmtOption<StoparInfo> stmtOption;
+	private DaoStmt<PeresmoipInfo> stmtSql;
+	private DaoStmtOption<PeresmoipInfo> stmtOption;
 	
 	
 	
-	public StoparSelectSingle(Connection conn, StoparInfo recordInfo, String schemaName) {
+	public PeresmoipSelectSingle(Connection conn, PeresmoipInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, StoparInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, PeresmoipInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -50,10 +50,10 @@ public final class StoparSelectSingle implements DaoStmt<StoparInfo> {
 	
 	private String buildWhereClause() {		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new StoparWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new PeresmoipWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -83,14 +83,14 @@ public final class StoparSelectSingle implements DaoStmt<StoparInfo> {
 
 	
 	
-	@Override public List<StoparInfo> getResultset() {
+	@Override public List<PeresmoipInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<StoparInfo> getNewInstance() {
-		return new StoparSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<PeresmoipInfo> getNewInstance() {
+		return new PeresmoipSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -98,30 +98,22 @@ public final class StoparSelectSingle implements DaoStmt<StoparInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<StoparInfo> {
+	private static class ResultParser implements DaoResultParser<PeresmoipInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final boolean NOT_NULL = false;
 		
-		@Override public List<StoparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<StoparInfo> finalResult = new ArrayList<>();
+		@Override public List<PeresmoipInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<PeresmoipInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 					return finalResult;
 			
 			do {
-				StoparInfo dataInfo = new StoparInfo();
-				dataInfo.codOwner = stmtResult.getLong(StoparDbTableColumn.COL_COD_OWNER);
-				dataInfo.codSnapshot = stmtResult.getLong(StoparDbTableColumn.COL_COD_SNAPSHOT);
-				dataInfo.codStore = stmtResult.getLong(StoparDbTableColumn.COL_COD_STORE);
-				dataInfo.codPayPartner = stmtResult.getInt(StoparDbTableColumn.COL_COD_PAY_PARTNER);
-				dataInfo.recordMode = stmtResult.getString(StoparDbTableColumn.COL_RECORD_MODE);
-				dataInfo.idPayPartnerStore = stmtResult.getString(StoparDbTableColumn.COL_ID_PAY_PARTNER_STORE);
+				PeresmoipInfo dataInfo = new PeresmoipInfo();
+				dataInfo.codOwner = stmtResult.getLong(PeresmoipDbTableColumn.COL_COD_OWNER);
+				dataInfo.codStore = stmtResult.getLong(PeresmoipDbTableColumn.COL_COD_STORE);
+				dataInfo.isExpected = stmtResult.getBoolean(PeresmoipDbTableColumn.COL_IS_EXPECTED);
 				
-				stmtResult.getLong(StoparDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(StoparDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(StoparDbTableColumn.COL_LAST_CHANGED);
+				Timestamp lastChanged = stmtResult.getTimestamp(PeresmoipDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
 				

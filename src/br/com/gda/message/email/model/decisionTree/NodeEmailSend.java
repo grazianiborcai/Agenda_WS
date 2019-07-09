@@ -41,7 +41,7 @@ public final class NodeEmailSend extends DeciTreeWriteTemplate<EmailInfo> {
 		ActionLazy<EmailInfo> sendMessage = new LazyEmailSendMessage(option.conn, option.schemaName);
 		
 		select.addPostAction(sendMessage);
-		
+		//TODO: gravar em log os envios de e-mails
 		actions.add(select);		
 		return actions;
 	}

@@ -3,7 +3,6 @@ package br.com.gda.payment.storePartner.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.List;
 
@@ -96,11 +95,6 @@ public final class StoparUpdateSingle implements DaoStmt<StoparInfo> {
 	private class ParamTranslator implements DaoStmtParamTranslator<StoparInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoparInfo recordInfo) throws SQLException {
 			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
-			
-			
 			int i = 1;
 			stmt.setString(i++, recordInfo.recordMode);			
 			
@@ -112,7 +106,7 @@ public final class StoparUpdateSingle implements DaoStmt<StoparInfo> {
 			}
 			
 			
-			stmt.setTimestamp(i++, lastChanged);
+			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
 			
 			
 			if (DaoFormatter.boxNumber(recordInfo.lastChangedBy) == null) {

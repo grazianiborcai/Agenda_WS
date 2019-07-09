@@ -20,6 +20,7 @@
 	<http pattern="/**/Signup/**"   security="none"/>
 	<http pattern="/**/Signin/**" 	security="none"/>
 	<http pattern="/**/Test/**"     security="none"/>
+	<http pattern="/**/MoipApp/**"  security="none"/>	<!-- TODO: Somente para teste -->
 	
 	
 	

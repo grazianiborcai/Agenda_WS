@@ -57,6 +57,7 @@ public final class DaoDbTable {
 	public static final String MAT_TYPE_TEXT_TABLE = "material_type_text";
 	public static final String MAT_UNIT_TABLE = "measure_unit";
 	public static final String MAT_UNIT_TEXT_TABLE = "measure_unit_text";
+	public static final String MOIP_PERMISSION_RESPONSE_TABLE = "moip_permission_reponse";
 	public static final String ORDER_HDR_TABLE = "order_header";
 	public static final String ORDER_ITM_TABLE = "order_item";
 	public static final String ORDER_STATUS_TABLE = "order_status";
@@ -66,7 +67,7 @@ public final class DaoDbTable {
 	public static final String PAY_ORDER_HDR_TABLE = "pay_order_header";
 	public static final String PAY_ORDER_ITM_TABLE = "pay_order_item";
 	public static final String PAY_PARTNER_TABLE = "pay_partner";
-	public static final String PAY_PARTNER_COUNTRY_TABLE = "pay_partner_country";
+	public static final String PAY_PARTNER_COUNTRY_TABLE = "pay_partner_country";	
 	public static final String PAY_PARTNER_OWNER_TABLE = "pay_partner_owner";
 	public static final String PAY_PARTNER_SETUP_TABLE = "pay_partner_setup";
 	public static final String PAY_PARTNER_STORE_TABLE = "pay_partner_store";
