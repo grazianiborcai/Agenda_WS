@@ -8,6 +8,7 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -20,11 +21,14 @@ import br.com.gda.payment.creditCard.model.CrecardModelDelete;
 import br.com.gda.payment.creditCard.model.CrecardModelInsert;
 import br.com.gda.payment.creditCard.model.CrecardModelSelect;
 import br.com.gda.payment.payOrder.model.PayordModelPay;
+import br.com.gda.payment.permissionMoip.info.PeresmoipInfo;
+import br.com.gda.payment.permissionMoip.model.PeresmoipModelCode;
 
 @Path("/Payment")
 public final class PaymentResource {
 	private static final String PAY_ORDER = "/payOrder";
 	private static final String GRANT_MOIP = "/grantMoip";
+	private static final String PERMISSION_CODE_MOIP = "/permissionCodeMoip";
 	private static final String INSERT_CREDIT_CARD = "/insertCreditCard";
 	private static final String DELETE_CREDIT_CARD = "/deleteCreditCard";
 	private static final String SELECT_CREDIT_CARD = "/selectCreditCard";
@@ -57,6 +61,27 @@ public final class PaymentResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new AccemoipModelUrl(recordInfo);
+		model.executeRequest();
+		return model.getResponse();	
+	}
+	
+	
+	
+	@GET
+	@Path(PERMISSION_CODE_MOIP)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response permissionCodeMoip(@QueryParam("codOwner")    	@DefaultValue("-1") long codOwner, 
+									   @QueryParam("codStore")  	@DefaultValue("-1") long codStore,
+									   @QueryParam("code") 			String code,
+						               @QueryParam("codLanguage")   @DefaultValue("EN") String codLanguage) {
+		
+		PeresmoipInfo recordInfo = new PeresmoipInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.code = code;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new PeresmoipModelCode(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	}

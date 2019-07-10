@@ -29,7 +29,7 @@ public final class RootAccemoipUrl extends DeciTreeWriteTemplate<AccemoipInfo> {
 	
 	
 	@Override protected ModelChecker<AccemoipInfo> buildDecisionCheckerHook(DeciTreeOption<AccemoipInfo> option) {
-		final boolean EXIST_ON_DB = true;
+		final boolean EXIST_ON_DB = true;		
 		
 		List<ModelChecker<AccemoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<AccemoipInfo> checker;	
