@@ -23,8 +23,23 @@ import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.storePartner.info.StoparInfo;
+import br.com.gda.payment.tokenMoip.info.TokemoipInfo;
 
 public final class UsernameCopier {
+	public static UsernameInfo copyFromTokemoip(TokemoipInfo source) {
+		InfoCopier<UsernameInfo, TokemoipInfo> copier = new UsernameCopyTokemoip();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromTokemoip(List<TokemoipInfo> sources) {
+		InfoCopier<UsernameInfo, TokemoipInfo> copier = new UsernameCopyTokemoip();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UsernameInfo copyFromAccemoip(AccemoipInfo source) {
 		InfoCopier<UsernameInfo, AccemoipInfo> copier = new UsernameCopyAccemoip();
 		return copier.makeCopy(source);

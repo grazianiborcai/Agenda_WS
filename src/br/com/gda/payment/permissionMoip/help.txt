@@ -1,0 +1,1 @@
+Ao criar um App no Moip, o campo "redirectUri" precisa ser o caminho exato do endpoint que chama a classe "PeresmoipModelCode"

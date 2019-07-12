@@ -8,8 +8,10 @@ import br.com.gda.info.InfoRecord;
 public final class SetuparInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public String txtPayPartner;
-	public String token;
-	public String key;
+	public String basicToken;
+	public String basicKey;
+	public String oauthToken;
+	public String secret;
 	public String description;
 	
 	

@@ -39,7 +39,7 @@ public final class AccemoipSetterSetup implements InfoSetter<AccemoipInfo> {
 	
 	
 	private Authentication getAuthentication(AccemoipInfo recordInfo) {
-		return new BasicAuth(recordInfo.setuparData.token, recordInfo.setuparData.key);
+		return new BasicAuth(recordInfo.setuparData.basicToken, recordInfo.setuparData.basicKey);
 	}	
 	
 	

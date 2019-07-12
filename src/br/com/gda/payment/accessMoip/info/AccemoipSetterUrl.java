@@ -54,7 +54,7 @@ public final class AccemoipSetterUrl implements InfoSetter<AccemoipInfo> {
 	
 	
 	private String setParamRedirectUri(String url, AccemoipInfo recordInfo) {
-		String encodedUrl = "http://www.mind5.com.br:8080/Agenda_WS/MoipApp";
+		String encodedUrl = recordInfo.sysparData.urlReturn;
 		encodedUrl = encodedUrl + "?codOwner=" + recordInfo.codOwner;
 		encodedUrl = encodedUrl + "&codStore=" + recordInfo.codStore;
 		encodedUrl = encodedUrl + "&codLanguage=" + recordInfo.codLanguage;

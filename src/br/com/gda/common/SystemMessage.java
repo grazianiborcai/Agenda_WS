@@ -650,4 +650,9 @@ public final class SystemMessage {
 	public static final String MOIP_PERM_RESP_IS_NOT_EXPECTED = "MOIP Permission Response is not expected";
 	public static final String MOIP_PERM_RESP_MANDATORY_FIELD_EMPTY = "MOIP Permission Response: Mandatory field is empty";
 	public static final String MOIP_PERM_RESP_NOT_FOUND = "MOIP Permission Response's data not found on DB";	
+	
+	
+	
+	// Pay-Order: Moip
+	public static final String PAY_ORDER_MOIP_MANDATORY_FIELD_EMPTY = "Pay-Order Moip: Mandatory field is empty";
 }

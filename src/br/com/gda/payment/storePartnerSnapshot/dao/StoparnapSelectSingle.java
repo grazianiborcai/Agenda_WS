@@ -116,6 +116,7 @@ public final class StoparnapSelectSingle implements DaoStmt<StoparnapInfo> {
 				dataInfo.recordMode = stmtResult.getString(StoparnapDbTableColumn.COL_RECORD_MODE);
 				dataInfo.lastChangedBy = stmtResult.getLong(StoparnapDbTableColumn.COL_LAST_CHANGED);
 				dataInfo.idPayPartnerStore = stmtResult.getString(StoparnapDbTableColumn.COL_ID_PAY_PARTNER_STORE);
+				dataInfo.codePayPartnerStore = stmtResult.getString(StoparnapDbTableColumn.COL_CODE_PAY_PARTNER_STORE);
 				
 				stmtResult.getLong(StoparnapDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)

@@ -39,7 +39,7 @@ public final class CusmoipSetterSetup implements InfoSetter<CusmoipInfo> {
 	
 	
 	private Authentication getAuthentication(CusmoipInfo recordInfo) {
-		return new BasicAuth(recordInfo.setuparData.token, recordInfo.setuparData.key);
+		return new BasicAuth(recordInfo.setuparData.basicToken, recordInfo.setuparData.basicKey);
 	}	
 	
 	

@@ -19,6 +19,7 @@ public final class PayordemCheckWrite extends ModelCheckerTemplateSimple<Payorde
 		if (   recordInfo.codOwner 		<= 0 	
 			|| recordInfo.codPayOrder	<= 0 	
 			|| recordInfo.codStore 		<= 0
+			|| recordInfo.codPayPartner <= 0
 			|| recordInfo.codMat		<= 0
 			|| recordInfo.quantity		<= 0
 			|| recordInfo.username		== null 

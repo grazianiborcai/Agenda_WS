@@ -15,7 +15,7 @@ final class PayordemVisiMergeStopar implements InfoMergerVisitorV2<PayordemInfo,
 		checkArgument(sourceOne, sourceTwo);
 		
 		PayordemInfo clonedInfo = makeClone(sourceTwo);
-		clonedInfo.itemReceiver = sourceOne.idPayPartnerStore; 
+		clonedInfo.itemReceiver = sourceOne.codePayPartnerStore; 
 		return clonedInfo;
 	}
 	

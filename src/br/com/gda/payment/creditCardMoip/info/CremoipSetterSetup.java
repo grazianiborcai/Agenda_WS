@@ -39,7 +39,7 @@ public final class CremoipSetterSetup implements InfoSetter<CremoipInfo> {
 	
 	
 	private Authentication getAuthentication(CremoipInfo recordInfo) {
-		return new BasicAuth(recordInfo.setuparData.token, recordInfo.setuparData.key);
+		return new BasicAuth(recordInfo.setuparData.basicToken, recordInfo.setuparData.basicKey);
 	}	
 	
 	

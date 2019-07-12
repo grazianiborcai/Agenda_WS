@@ -48,7 +48,7 @@ public final class RootSetuparSelect extends DeciTreeReadTemplate<SetuparInfo> {
 	
 	@Override protected List<ActionStd<SetuparInfo>> buildActionsOnPassedHook(DeciTreeOption<SetuparInfo> option) {
 		List<ActionStd<SetuparInfo>> actions = new ArrayList<>();
-		
+		//TODO: esses dados devem ser movidos para outro lugar mais seguro
 		ActionStd<SetuparInfo> select = new StdSetuparSelect(option);
 		ActionLazy<SetuparInfo> mergePayPartner = new LazySetuparMergePaypar(option.conn, option.schemaName);
 		

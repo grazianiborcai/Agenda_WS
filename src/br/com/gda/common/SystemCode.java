@@ -510,4 +510,7 @@ public final class SystemCode {
 	public static final int MOIP_PERM_RESP_ALREADY_EXIST 				= 4401;
 	public static final int MOIP_PERM_RESP_NOT_FOUND 					= 4402;
 	public static final int MOIP_PERM_RESP_IS_NOT_EXPECTED				= 4403;
+	
+	// Pay-Order: Moip
+	public static final int PAY_ORDER_MOIP_MANDATORY_FIELD_EMPTY		= 4450;
 }

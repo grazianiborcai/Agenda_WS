@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
+import br.com.gda.payment.storePartner.info.StoparCopier;
 import br.com.gda.payment.storePartner.info.StoparInfo;
 import br.com.gda.payment.storePartner.model.checker.StoparCheckExist;
 
@@ -33,7 +34,7 @@ public final class PayordemCheckStopar implements ModelChecker<PayordemInfo> {
 	
 	
 	@Override public boolean check(PayordemInfo recordInfo) {
-		return checker.check(StoparInfo.copyFrom(recordInfo));
+		return checker.check(StoparCopier.copyFromPayordem(recordInfo));
 	}
 
 	

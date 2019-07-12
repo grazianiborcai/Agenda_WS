@@ -113,6 +113,7 @@ public final class StoparnapInsertSingle implements DaoStmt<StoparnapInfo> {
 			}
 			
 			
+			stmt.setString(i++, recordInfo.codePayPartnerStore);
 			stmt.setString(i++, recordInfo.idPayPartnerStore);
 			
 			

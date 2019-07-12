@@ -11,6 +11,7 @@ public final class StoparInfo extends InfoRecord implements Cloneable {
 	public long codStore;	
 	public int codPayPartner;
 	public String idPayPartnerStore;
+	public String codePayPartnerStore;
 	public long codSnapshot;
 	public String txtPayPartner;
 	public String description;

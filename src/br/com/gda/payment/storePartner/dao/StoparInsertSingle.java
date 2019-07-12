@@ -114,6 +114,7 @@ public final class StoparInsertSingle implements DaoStmt<StoparInfo> {
 			}
 			
 			
+			stmt.setString(i++, recordInfo.codePayPartnerStore);
 			stmt.setString(i++, recordInfo.idPayPartnerStore);
 			
 			

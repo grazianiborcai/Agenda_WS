@@ -20,8 +20,8 @@ public final class CusmoipCheckSetuparData extends ModelCheckerTemplateSimple<Cu
 			return super.FAILED;
 		
 		
-		if (recordInfo.setuparData.key   == null ||
-			recordInfo.setuparData.token == null	 )	
+		if (recordInfo.setuparData.basicKey   == null ||
+			recordInfo.setuparData.basicToken == null	 )	
 		
 			return super.FAILED;
 			

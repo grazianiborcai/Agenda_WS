@@ -9,9 +9,11 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class SetuparDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
-	public static final String COL_KEY = "key";
-	public static final String COL_TOKEN = "token";
+	public static final String COL_BASIC_KEY = "basic_key";
+	public static final String COL_BASIC_TOKEN = "basic_token";	
+	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";	
+	public static final String COL_OAUTH_TOKEN = "oauth_token";
+	public static final String COL_SECRET = "secret";		
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
@@ -47,7 +49,7 @@ public final class SetuparDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_KEY;
+		oneColumn.columnName = COL_BASIC_KEY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -55,7 +57,23 @@ public final class SetuparDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_TOKEN;
+		oneColumn.columnName = COL_BASIC_TOKEN;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_SECRET;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_OAUTH_TOKEN;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -13,6 +13,7 @@ import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
+import br.com.gda.payment.storePartner.info.StoparInfo;
 
 public final class PayordemInfo extends InfoRecord implements Cloneable, Comparable<PayordemInfo> {
 	public long codOwner;
@@ -32,6 +33,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public String username;
 	public StolisInfo stolisData;
 	public EmplisInfo emplisData;
+	public StoparInfo stoparData;
 	public MatInfo matData;
 	
 	
@@ -50,6 +52,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		matData = DefaultValue.object();
+		stoparData = DefaultValue.object();
 	}
 	
 	
@@ -74,6 +77,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 		deepCopy.stolisData = cloneStolis(stolisData);
 		deepCopy.emplisData = cloneEmplis(emplisData);
 		deepCopy.matData = cloneMat(matData);
+		deepCopy.stoparData = cloneStopar(stoparData);
 		
 		return deepCopy;
 	}
@@ -109,7 +113,18 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 			result = (EmplisInfo) recordInfo.clone();
 		
 		return result;
-	}		
+	}
+	
+	
+	
+	private StoparInfo cloneStopar(StoparInfo recordInfo) throws CloneNotSupportedException {
+		StoparInfo result = null;
+		
+		if (recordInfo != null)
+			result = (StoparInfo) recordInfo.clone();
+		
+		return result;
+	}	
 	
 	
 	

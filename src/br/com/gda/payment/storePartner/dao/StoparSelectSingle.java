@@ -115,6 +115,7 @@ public final class StoparSelectSingle implements DaoStmt<StoparInfo> {
 				dataInfo.codStore = stmtResult.getLong(StoparDbTableColumn.COL_COD_STORE);
 				dataInfo.codPayPartner = stmtResult.getInt(StoparDbTableColumn.COL_COD_PAY_PARTNER);
 				dataInfo.recordMode = stmtResult.getString(StoparDbTableColumn.COL_RECORD_MODE);
+				dataInfo.codePayPartnerStore = stmtResult.getString(StoparDbTableColumn.COL_CODE_PAY_PARTNER_STORE);
 				dataInfo.idPayPartnerStore = stmtResult.getString(StoparDbTableColumn.COL_ID_PAY_PARTNER_STORE);
 				
 				stmtResult.getLong(StoparDbTableColumn.COL_LAST_CHANGED_BY);
