@@ -13,12 +13,12 @@ public final class TokemoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
 	public int codPayPartner;
-	public String url;
+	public String url;						//TODO: remover
 	public SysparInfo sysparData;
 	public SetuparInfo setuparData;
 	public StoparInfo stoparData;
 	public Setup setup;
-	public String[] scopes;
+	public String[] scopes;					//TODO: remover
 	public String recordMode;
 	public String codLanguage;
 	public String username;

@@ -30,7 +30,7 @@ public final class TokemoipSetterSetup implements InfoSetter<TokemoipInfo> {
 	
 	private TokemoipInfo setSetup(TokemoipInfo recordInfo) {
 		Authentication auth = getAuthentication(recordInfo);
-		Setup setup = new Setup().setAuthentication(auth).setEnvironment(Environment.SANDBOX);
+		Setup setup = new Setup().setAuthentication(auth).setEnvironment(Environment.CONNECT_SANDBOX);
 	//  TODO: parametizar environment no BD
 		recordInfo.setup = setup;
 		return recordInfo;

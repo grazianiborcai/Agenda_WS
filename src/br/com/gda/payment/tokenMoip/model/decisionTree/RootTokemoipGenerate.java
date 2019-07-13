@@ -82,9 +82,9 @@ public final class RootTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipIn
 		List<ActionStd<TokemoipInfo>> actions = new ArrayList<>();		
 
 		ActionStd<TokemoipInfo> enforcePayPartner = new StdTokemoipEnforcePayPartner(option);	
-		ActionLazy<TokemoipInfo> nodeUrl = new LazyTokemoipNodeGenerate(option.conn, option.schemaName);
+		ActionLazy<TokemoipInfo> nodeGenerate = new LazyTokemoipNodeGenerate(option.conn, option.schemaName);
 		
-		enforcePayPartner.addPostAction(nodeUrl);
+		enforcePayPartner.addPostAction(nodeGenerate);
 		
 		actions.add(enforcePayPartner);		
 		return actions;
