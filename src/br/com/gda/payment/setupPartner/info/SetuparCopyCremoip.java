@@ -1,7 +1,7 @@
 package br.com.gda.payment.setupPartner.info;
 
 import br.com.gda.info.InfoCopierTemplate;
-import br.com.gda.payment.creditCardMoip.info.CremoipInfo;
+import br.com.gda.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
 
 final class SetuparCopyCremoip extends InfoCopierTemplate<SetuparInfo, CremoipInfo>{
 	

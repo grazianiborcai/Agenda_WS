@@ -4,8 +4,8 @@ package br.com.gda.payment.storePartner.info;
 import java.util.List;
 
 import br.com.gda.info.InfoCopier;
+import br.com.gda.payment.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
-import br.com.gda.payment.permissionMoip.info.PeresmoipInfo;
 
 public final class StoparCopier {	
 	public static StoparInfo copyFromPeresmoip(PeresmoipInfo source) {

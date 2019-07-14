@@ -1,7 +1,7 @@
 package br.com.gda.security.username.info;
 
 import br.com.gda.info.InfoCopierTemplate;
-import br.com.gda.payment.accessMoip.info.AccemoipInfo;
+import br.com.gda.payment.partnerMoip.accessMoip.info.AccemoipInfo;
 
 final class UsernameCopyAccemoip extends InfoCopierTemplate<UsernameInfo, AccemoipInfo>{
 	

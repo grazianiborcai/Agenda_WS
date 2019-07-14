@@ -14,15 +14,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.model.Model;
-import br.com.gda.payment.accessMoip.info.AccemoipInfo;
-import br.com.gda.payment.accessMoip.model.AccemoipModelUrl;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.creditCard.model.CrecardModelDelete;
 import br.com.gda.payment.creditCard.model.CrecardModelInsert;
 import br.com.gda.payment.creditCard.model.CrecardModelSelect;
+import br.com.gda.payment.partnerMoip.accessMoip.info.AccemoipInfo;
+import br.com.gda.payment.partnerMoip.accessMoip.model.AccemoipModelUrl;
+import br.com.gda.payment.partnerMoip.permissionMoip.info.PeresmoipInfo;
+import br.com.gda.payment.partnerMoip.permissionMoip.model.PeresmoipModelCode;
 import br.com.gda.payment.payOrder.model.PayordModelPay;
-import br.com.gda.payment.permissionMoip.info.PeresmoipInfo;
-import br.com.gda.payment.permissionMoip.model.PeresmoipModelCode;
 
 @Path("/Payment")
 public final class PaymentResource {

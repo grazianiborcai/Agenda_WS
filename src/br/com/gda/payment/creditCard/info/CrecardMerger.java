@@ -5,8 +5,8 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.info.InfoMerger;
-import br.com.gda.payment.creditCardMoip.info.CremoipInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class CrecardMerger {

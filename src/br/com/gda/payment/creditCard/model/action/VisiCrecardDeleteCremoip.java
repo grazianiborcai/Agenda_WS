@@ -7,8 +7,8 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
-import br.com.gda.payment.creditCardMoip.info.CremoipInfo;
-import br.com.gda.payment.creditCardMoip.model.decisionTree.RootCremoipDelete;
+import br.com.gda.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
+import br.com.gda.payment.partnerMoip.creditCardMoip.model.decisionTree.RootCremoipDelete;
 
 
 final class VisiCrecardDeleteCremoip extends ActionVisitorTemplateAction<CrecardInfo, CremoipInfo> {

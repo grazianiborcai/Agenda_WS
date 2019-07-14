@@ -4,7 +4,7 @@ package br.com.gda.payment.setupPartner.info;
 import java.util.List;
 
 import br.com.gda.info.InfoCopier;
-import br.com.gda.payment.creditCardMoip.info.CremoipInfo;
+import br.com.gda.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
 
 public final class SetuparCopier {	
 	public static SetuparInfo copyFromCremoip(CremoipInfo source) {

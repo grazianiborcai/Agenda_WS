@@ -653,6 +653,6 @@ public final class SystemMessage {
 	
 	
 	
-	// Pay-Order: Moip
-	public static final String PAY_ORDER_MOIP_MANDATORY_FIELD_EMPTY = "Pay-Order Moip: Mandatory field is empty";
+	// Order Moip
+	public static final String ORDER_MOIP_MANDATORY_FIELD_EMPTY = "Order Moip: Mandatory field is empty";
 }

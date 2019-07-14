@@ -3,7 +3,7 @@ package br.com.gda.payment.customerPartner.info;
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitorV2;
 import br.com.gda.info.InfoUniquifier;
-import br.com.gda.payment.customerMoip.info.CusmoipInfo;
+import br.com.gda.payment.partnerMoip.customerMoip.info.CusmoipInfo;
 
 final class CusparMergerCusmoip extends InfoMergerTemplate<CusparInfo, CusmoipInfo> {
 

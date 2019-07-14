@@ -1,7 +1,7 @@
 package br.com.gda.payment.storePartner.info;
 
 import br.com.gda.info.InfoCopierTemplate;
-import br.com.gda.payment.permissionMoip.info.PeresmoipInfo;
+import br.com.gda.payment.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
 final class StoparCopyPeresmoip extends InfoCopierTemplate<StoparInfo, PeresmoipInfo>{
 	

@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.payment.customerMoip.info.CusmoipInfo;
-import br.com.gda.payment.customerMoip.model.decisionTree.RootCusmoipCreate;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.customerPartner.info.CusparMerger;
+import br.com.gda.payment.partnerMoip.customerMoip.info.CusmoipInfo;
+import br.com.gda.payment.partnerMoip.customerMoip.model.decisionTree.RootCusmoipCreate;
 
 
 final class VisiCusparCreateCusmoip extends ActionVisitorTemplateAction<CusparInfo, CusmoipInfo> {

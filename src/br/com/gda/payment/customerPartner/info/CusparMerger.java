@@ -9,7 +9,7 @@ import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.info.InfoMerger;
-import br.com.gda.payment.customerMoip.info.CusmoipInfo;
+import br.com.gda.payment.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.gda.payment.setupPartner.info.SetuparInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 

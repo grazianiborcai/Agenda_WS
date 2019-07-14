@@ -18,12 +18,12 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.info.InfoCopier;
-import br.com.gda.payment.accessMoip.info.AccemoipInfo;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.payment.partnerMoip.accessMoip.info.AccemoipInfo;
+import br.com.gda.payment.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.storePartner.info.StoparInfo;
-import br.com.gda.payment.tokenMoip.info.TokemoipInfo;
 
 public final class UsernameCopier {
 	public static UsernameInfo copyFromTokemoip(TokemoipInfo source) {
