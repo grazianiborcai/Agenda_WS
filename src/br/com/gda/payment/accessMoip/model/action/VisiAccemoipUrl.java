@@ -1,5 +1,8 @@
 package br.com.gda.payment.accessMoip.model.action;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,14 +37,38 @@ final class VisiAccemoipUrl implements ActionVisitor<AccemoipInfo> {
 	
 	private String tryToBuildUrl(AccemoipInfo recordInfo) {
 		try {
+			String urlRedirect = addQueryParam(recordInfo, recordInfo.sysparData.urlReturn);
+			urlRedirect = encodeUrl(urlRedirect);
+			
 			return Moip.API.connect().buildUrl(recordInfo.sysparData.idPayPartnerApp, 
-											   recordInfo.sysparData.urlReturn, 
+											   urlRedirect, 
 											   recordInfo.scopes, 
-											   recordInfo.setup);			
+											   recordInfo.setup);
 			
 		} catch (Exception e) {
 			logException(e);
 			return null;
+		}
+	}
+	
+	
+	
+	private String addQueryParam(AccemoipInfo recordInfo, String url) {
+		url = url + "&codOwner=" + recordInfo.codOwner;
+		url = url + "&codStore=" + recordInfo.codStore;
+		url = url + "&codLanguage=" + recordInfo.codLanguage;
+		return url;
+	}
+	
+	
+	
+	private String encodeUrl(String url) {
+		try {
+			return URLEncoder.encode(url, StandardCharsets.UTF_8.toString());
+			
+		} catch (UnsupportedEncodingException e) {
+			logException(e);
+			throw new IllegalArgumentException(e);
 		}
 	}
 	

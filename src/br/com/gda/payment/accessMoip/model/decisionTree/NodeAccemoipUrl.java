@@ -14,9 +14,9 @@ import br.com.gda.payment.accessMoip.info.AccemoipInfo;
 import br.com.gda.payment.accessMoip.model.action.LazyAccemoipEnforceObfuscate;
 import br.com.gda.payment.accessMoip.model.action.LazyAccemoipEnforceScopes;
 import br.com.gda.payment.accessMoip.model.action.LazyAccemoipEnforceSetup;
-import br.com.gda.payment.accessMoip.model.action.LazyAccemoipEnforceUrl;
 import br.com.gda.payment.accessMoip.model.action.LazyAccemoipInsertPeresmoip;
 import br.com.gda.payment.accessMoip.model.action.LazyAccemoipMergeSetupar;
+import br.com.gda.payment.accessMoip.model.action.LazyAccemoipUrl;
 import br.com.gda.payment.accessMoip.model.action.StdAccemoipMergeSyspar;
 import br.com.gda.payment.accessMoip.model.checker.AccemoipCheckSetupar;
 import br.com.gda.payment.accessMoip.model.checker.AccemoipCheckSyspar;
@@ -62,7 +62,7 @@ public final class NodeAccemoipUrl extends DeciTreeWriteTemplate<AccemoipInfo> {
 		ActionLazy<AccemoipInfo> mergeSetupar = new LazyAccemoipMergeSetupar(option.conn, option.schemaName);
 		ActionLazy<AccemoipInfo> enforceSetup = new LazyAccemoipEnforceSetup(option.conn, option.schemaName);
 		ActionLazy<AccemoipInfo> enforceScopes = new LazyAccemoipEnforceScopes(option.conn, option.schemaName);
-		ActionLazy<AccemoipInfo> enforceUrl = new LazyAccemoipEnforceUrl(option.conn, option.schemaName);
+		ActionLazy<AccemoipInfo> enforceUrl = new LazyAccemoipUrl(option.conn, option.schemaName);
 		ActionLazy<AccemoipInfo> insertPeresmoip = new LazyAccemoipInsertPeresmoip(option.conn, option.schemaName);
 		ActionLazy<AccemoipInfo> obfuscate = new LazyAccemoipEnforceObfuscate(option.conn, option.schemaName);
 		

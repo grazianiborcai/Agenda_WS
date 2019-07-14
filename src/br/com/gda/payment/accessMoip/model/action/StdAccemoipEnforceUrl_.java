@@ -7,12 +7,12 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.accessMoip.info.AccemoipInfo;
 
-public final class StdAccemoipEnforceUrl implements ActionStd<AccemoipInfo> {
+public final class StdAccemoipEnforceUrl_ implements ActionStd<AccemoipInfo> {
 	private ActionStd<AccemoipInfo> actionHelper;	
 	
 	
-	public StdAccemoipEnforceUrl(DeciTreeOption<AccemoipInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiAccemoipEnforceUrl());
+	public StdAccemoipEnforceUrl_(DeciTreeOption<AccemoipInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiAccemoipEnforceUrl_());
 	}
 	
 	

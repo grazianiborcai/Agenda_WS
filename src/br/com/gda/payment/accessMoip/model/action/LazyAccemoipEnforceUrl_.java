@@ -9,9 +9,9 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.accessMoip.info.AccemoipInfo;
 
-public final class LazyAccemoipEnforceUrl extends ActionLazyTemplate<AccemoipInfo, AccemoipInfo> {
+public final class LazyAccemoipEnforceUrl_ extends ActionLazyTemplate<AccemoipInfo, AccemoipInfo> {
 	
-	public LazyAccemoipEnforceUrl(Connection conn, String schemaName) {
+	public LazyAccemoipEnforceUrl_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyAccemoipEnforceUrl extends ActionLazyTemplate<AccemoipInf
 	
 	
 	@Override protected ActionStd<AccemoipInfo> getInstanceOfActionHook(DeciTreeOption<AccemoipInfo> option) {
-		return new StdAccemoipEnforceUrl(option);
+		return new StdAccemoipEnforceUrl_(option);
 	}
 	
 	
