@@ -17,7 +17,12 @@ final class StoparCopyPeresmoip extends InfoCopierTemplate<StoparInfo, Peresmoip
 		result.codOwner = source.codOwner;
 		result.codStore = source.codStore;	
 		result.codPayPartner = source.codPayPartner;
-		result.codePayPartnerStore = source.code;
+		result.codePayPartnerStore = source.code;		
+		result.accessToken = source.tokemoipData.accessToken;
+		result.tokenExpiresIn = source.tokemoipData.tokenExpiresIn;
+		result.refreshToken = source.tokemoipData.refreshToken;
+		result.idPayPartnerStore = source.tokemoipData.idPayPartnerStore;
+		result.scope = source.tokemoipData.scope;		
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
 		

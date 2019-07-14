@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.payment.setupPartner.info.SetuparInfo;
-import br.com.gda.payment.storePartner.info.StoparInfo;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
 import br.com.moip.models.Setup;
 
@@ -15,13 +14,13 @@ public final class TokemoipInfo extends InfoRecord implements Cloneable {
 	public long codStore;	
 	public int codPayPartner;
 	public String idPayPartnerStore;
+	public String code;
 	public String accessToken;
 	public LocalDate tokenExpiresIn;
 	public String refreshToken;
 	public String scope;
 	public SysparInfo sysparData;
 	public SetuparInfo setuparData;
-	public StoparInfo stoparData;
 	public Setup setup;
 	public String recordMode;
 	public String codLanguage;
@@ -36,7 +35,6 @@ public final class TokemoipInfo extends InfoRecord implements Cloneable {
 		recordMode = DefaultValue.recordMode();
 		sysparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
-		stoparData = DefaultValue.object();
 	}
 	
 	
@@ -58,7 +56,6 @@ public final class TokemoipInfo extends InfoRecord implements Cloneable {
 		
 		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
 		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
-		deepCopy.stoparData = cloneStopar(deepCopy.stoparData);
 		
 		return deepCopy;
 	}
@@ -79,15 +76,6 @@ public final class TokemoipInfo extends InfoRecord implements Cloneable {
 			return null;
 		
 		return (SetuparInfo) setupar.clone();
-	}
-	
-	
-	
-	private StoparInfo cloneStopar(StoparInfo stopar) throws CloneNotSupportedException {
-		if (stopar == null)
-			return null;
-		
-		return (StoparInfo) stopar.clone();
 	}
 	
 	

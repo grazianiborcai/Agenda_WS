@@ -46,7 +46,7 @@ final class VisiTokemoipGenerate implements ActionVisitor<TokemoipInfo> {
 			    value("client_secret", 	recordInfo.setuparData.secret),
 			    value("redirect_uri", 	recordInfo.sysparData.urlReturn),
 			    value("grant_type", 	"authorization_code"),
-			    value("code", 			recordInfo.stoparData.codePayPartnerStore)
+			    value("code", 			recordInfo.code)
 			);
 	}
 	

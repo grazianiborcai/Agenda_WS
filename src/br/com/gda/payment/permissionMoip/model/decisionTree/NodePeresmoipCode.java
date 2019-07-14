@@ -44,15 +44,15 @@ public final class NodePeresmoipCode extends DeciTreeWriteTemplate<PeresmoipInfo
 		ActionStd<PeresmoipInfo> mergeToSelect = new StdPeresmoipMergeToSelect(option);	
 		ActionLazy<PeresmoipInfo> enforceExpected = new LazyPeresmoipEnforceExpected(option.conn, option.schemaName);
 		ActionLazy<PeresmoipInfo> enforcePaypar = new LazyPeresmoipEnforcePaypar(option.conn, option.schemaName);
-		ActionLazy<PeresmoipInfo> insertStopar = new LazyPeresmoipInsertStopar(option.conn, option.schemaName);	
 		ActionLazy<PeresmoipInfo> generateTokemoip = new LazyPeresmoipGenerateTokemoip(option.conn, option.schemaName);	
+		ActionLazy<PeresmoipInfo> insertStopar = new LazyPeresmoipInsertStopar(option.conn, option.schemaName);	
 		ActionLazy<PeresmoipInfo> delete = new LazyPeresmoipDelete(option.conn, option.schemaName);	
 		
 		mergeToSelect.addPostAction(enforceExpected);
 		enforceExpected.addPostAction(enforcePaypar);
-		enforcePaypar.addPostAction(insertStopar);
-		insertStopar.addPostAction(generateTokemoip);
-		generateTokemoip.addPostAction(delete);
+		enforcePaypar.addPostAction(generateTokemoip);
+		generateTokemoip.addPostAction(insertStopar);
+		insertStopar.addPostAction(delete);
 		
 		actions.add(mergeToSelect);		
 		return actions;

@@ -7,6 +7,7 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.permissionMoip.info.PeresmoipInfo;
+import br.com.gda.payment.permissionMoip.info.PeresmoipMerger;
 import br.com.gda.payment.tokenMoip.info.TokemoipInfo;
 import br.com.gda.payment.tokenMoip.model.decisionTree.RootTokemoipGenerate;
 
@@ -24,6 +25,6 @@ final class VisiPeresmoipGenerateTokemoip extends ActionVisitorTemplateAction<Pe
 	
 	
 	@Override protected List<PeresmoipInfo> toBaseClassHook(List<PeresmoipInfo> baseInfos, List<TokemoipInfo> results) {
-		return baseInfos;
+		return PeresmoipMerger.mergeWithTokemoip(results, baseInfos);
 	}
 }

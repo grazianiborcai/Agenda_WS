@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
+import br.com.gda.payment.tokenMoip.info.TokemoipInfo;
 
 public final class PeresmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -12,6 +13,7 @@ public final class PeresmoipInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public boolean isExpected;
 	public String code;
+	public TokemoipInfo tokemoipData;
 	public LocalDateTime lastChanged;
 	public String codLanguage;
 	public String username;
@@ -23,6 +25,7 @@ public final class PeresmoipInfo extends InfoRecord implements Cloneable {
 		codPayPartner = DefaultValue.number();
 		isExpected = DefaultValue.boole();
 		codLanguage = DefaultValue.language();
+		tokemoipData = DefaultValue.object();
 	}
 	
 	
@@ -40,7 +43,19 @@ public final class PeresmoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		PeresmoipInfo deepCopy = (PeresmoipInfo) super.clone();		
+		deepCopy.tokemoipData = cloneTokemoip(tokemoipData);
+		
+		return deepCopy;
+	}
+	
+	
+	
+	private TokemoipInfo cloneTokemoip(TokemoipInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (TokemoipInfo) recordInfo.clone();
 	}
 	
 	

@@ -14,10 +14,8 @@ import br.com.gda.payment.tokenMoip.info.TokemoipInfo;
 import br.com.gda.payment.tokenMoip.model.action.LazyTokemoipEnforceSetup;
 import br.com.gda.payment.tokenMoip.model.action.LazyTokemoipGenerate;
 import br.com.gda.payment.tokenMoip.model.action.LazyTokemoipMergeSetupar;
-import br.com.gda.payment.tokenMoip.model.action.LazyTokemoipMergeStopar;
 import br.com.gda.payment.tokenMoip.model.action.StdTokemoipMergeSyspar;
 import br.com.gda.payment.tokenMoip.model.checker.TokemoipCheckSetupar;
-import br.com.gda.payment.tokenMoip.model.checker.TokemoipCheckStopar;
 import br.com.gda.payment.tokenMoip.model.checker.TokemoipCheckSyspar;
 
 public final class NodeTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipInfo> {
@@ -48,13 +46,6 @@ public final class NodeTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipIn
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new TokemoipCheckSyspar(checkerOption);
 		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new TokemoipCheckStopar(checkerOption);
-		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -66,15 +57,13 @@ public final class NodeTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipIn
 
 		ActionStd<TokemoipInfo> mergeSyspar = new StdTokemoipMergeSyspar(option);	
 		ActionLazy<TokemoipInfo> mergeSetupar = new LazyTokemoipMergeSetupar(option.conn, option.schemaName);
-		ActionLazy<TokemoipInfo> mergeStopar = new LazyTokemoipMergeStopar(option.conn, option.schemaName);
 		ActionLazy<TokemoipInfo> enforceSetup = new LazyTokemoipEnforceSetup(option.conn, option.schemaName);
 		ActionLazy<TokemoipInfo> generateToken = new LazyTokemoipGenerate(option.conn, option.schemaName);
 //		ActionLazy<TokemoipInfo> insertPeresmoip = new LazyAccemoipInsertPeresmoip(option.conn, option.schemaName);
 //		ActionLazy<TokemoipInfo> obfuscate = new LazyAccemoipEnforceObfuscate(option.conn, option.schemaName);
 		
 		mergeSyspar.addPostAction(mergeSetupar);
-		mergeSetupar.addPostAction(mergeStopar);		
-		mergeStopar.addPostAction(enforceSetup);
+		mergeSetupar.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(generateToken);
 //		generateToken.addPostAction(insertPeresmoip);
 //		insertPeresmoip.addPostAction(obfuscate);

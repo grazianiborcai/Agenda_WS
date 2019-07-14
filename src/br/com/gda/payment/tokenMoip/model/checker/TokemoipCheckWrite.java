@@ -18,6 +18,7 @@ public final class TokemoipCheckWrite extends ModelCheckerTemplateSimple<Tokemoi
 	@Override protected boolean checkHook(TokemoipInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||	
 			 recordInfo.codStore	<= 0 	||
+			 recordInfo.code 		== null ||
 			 recordInfo.codLanguage == null ||
 			 recordInfo.username 	== null 	)
 			
