@@ -9,6 +9,7 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class StoparnapDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_ACCESS_TOKEN = "access_token";	
 	public static final String COL_COD_OWNER = "cod_owner";	
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";	
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
@@ -18,6 +19,9 @@ public final class StoparnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
 	public static final String COL_RECORD_MODE = "record_mode";
+	public static final String COL_REFRESH_TOKEN = "refresh_token";	
+	public static final String COL_SCOPE = "scope";	
+	public static final String COL_TOKEN_EXPIRES_IN = "token_expires_in";	
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
@@ -110,6 +114,38 @@ public final class StoparnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_ID_PAY_PARTNER_STORE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_ACCESS_TOKEN;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_REFRESH_TOKEN;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_SCOPE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_TOKEN_EXPIRES_IN;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -115,7 +115,11 @@ public final class StoparInsertSingle implements DaoStmt<StoparInfo> {
 			
 			
 			stmt.setString(i++, recordInfo.codePayPartnerStore);
-			stmt.setString(i++, recordInfo.idPayPartnerStore);
+			stmt.setString(i++, recordInfo.idPayPartnerStore);			
+			stmt.setString(i++, recordInfo.accessToken);
+			stmt.setString(i++, recordInfo.refreshToken);
+			stmt.setString(i++, recordInfo.scope);
+			stmt.setDate(i++, DaoFormatter.localToSqlDate(recordInfo.tokenExpiresIn));
 			
 			
 			return stmt;

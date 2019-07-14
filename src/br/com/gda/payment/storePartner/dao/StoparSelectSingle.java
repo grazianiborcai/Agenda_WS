@@ -1,6 +1,7 @@
 package br.com.gda.payment.storePartner.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -116,7 +117,11 @@ public final class StoparSelectSingle implements DaoStmt<StoparInfo> {
 				dataInfo.codPayPartner = stmtResult.getInt(StoparDbTableColumn.COL_COD_PAY_PARTNER);
 				dataInfo.recordMode = stmtResult.getString(StoparDbTableColumn.COL_RECORD_MODE);
 				dataInfo.codePayPartnerStore = stmtResult.getString(StoparDbTableColumn.COL_CODE_PAY_PARTNER_STORE);
-				dataInfo.idPayPartnerStore = stmtResult.getString(StoparDbTableColumn.COL_ID_PAY_PARTNER_STORE);
+				dataInfo.idPayPartnerStore = stmtResult.getString(StoparDbTableColumn.COL_ID_PAY_PARTNER_STORE);				
+				dataInfo.accessToken = stmtResult.getString(StoparDbTableColumn.COL_ACCESS_TOKEN);
+				dataInfo.refreshToken = stmtResult.getString(StoparDbTableColumn.COL_REFRESH_TOKEN);
+				dataInfo.scope = stmtResult.getString(StoparDbTableColumn.COL_SCOPE);
+
 				
 				stmtResult.getLong(StoparDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
@@ -125,6 +130,10 @@ public final class StoparSelectSingle implements DaoStmt<StoparInfo> {
 				Timestamp lastChanged = stmtResult.getTimestamp(StoparDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
+				
+				Date tokenExpiresIn = stmtResult.getDate(StoparDbTableColumn.COL_TOKEN_EXPIRES_IN);
+				if (tokenExpiresIn != null)
+					dataInfo.tokenExpiresIn = tokenExpiresIn.toLocalDate();
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

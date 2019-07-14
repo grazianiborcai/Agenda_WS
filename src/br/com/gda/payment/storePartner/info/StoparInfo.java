@@ -1,5 +1,6 @@
 package br.com.gda.payment.storePartner.info;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,6 +13,10 @@ public final class StoparInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public String idPayPartnerStore;
 	public String codePayPartnerStore;
+	public String accessToken;
+	public LocalDate tokenExpiresIn;
+	public String refreshToken;
+	public String scope;
 	public long codSnapshot;
 	public String txtPayPartner;
 	public String description;
