@@ -1,5 +1,6 @@
 package br.com.gda.payment.tokenMoip.info;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
@@ -13,12 +14,15 @@ public final class TokemoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
 	public int codPayPartner;
-	public String url;						//TODO: remover
+	public String idPayPartnerStore;
+	public String accessToken;
+	public LocalDate tokenExpiresIn;
+	public String refreshToken;
+	public String scope;
 	public SysparInfo sysparData;
 	public SetuparInfo setuparData;
 	public StoparInfo stoparData;
 	public Setup setup;
-	public String[] scopes;					//TODO: remover
 	public String recordMode;
 	public String codLanguage;
 	public String username;

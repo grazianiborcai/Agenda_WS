@@ -1,18 +1,20 @@
 package br.com.gda.payment.tokenMoip.model.action;
 
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionStdHelperAction;
+import br.com.gda.model.action.ActionStdHelper;
+import br.com.gda.common.SystemCode;
+import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.tokenMoip.info.TokemoipInfo;
 
-public final class StdAccemoipInsertPeresmoip implements ActionStd<TokemoipInfo> {
+public final class StdTokemoipGenerate implements ActionStd<TokemoipInfo> {
 	private ActionStd<TokemoipInfo> actionHelper;	
 	
 	
-	public StdAccemoipInsertPeresmoip(DeciTreeOption<TokemoipInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiAccemoipInsertPeresmoip(option.conn, option.schemaName));
+	public StdTokemoipGenerate(DeciTreeOption<TokemoipInfo> option) {			
+		actionHelper = new ActionStdHelper<>(option.recordInfos, new VisiTokemoipGenerate(), SystemMessage.PAY_CUS_MOIP_CREATION_ERROR, SystemCode.PAY_CUS_MOIP_CREATION_ERROR);
 	}
 	
 	

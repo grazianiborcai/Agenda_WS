@@ -24,7 +24,7 @@ public final class LazyTokemoipGenerate extends ActionLazyTemplate<TokemoipInfo,
 	
 	
 	@Override protected ActionStd<TokemoipInfo> getInstanceOfActionHook(DeciTreeOption<TokemoipInfo> option) {
-		return new StdATokemoipGenerate(option);
+		return new StdTokemoipGenerate(option);
 	}
 	
 	

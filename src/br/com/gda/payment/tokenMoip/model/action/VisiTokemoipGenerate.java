@@ -1,5 +1,7 @@
 package br.com.gda.payment.tokenMoip.model.action;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -63,9 +65,23 @@ final class VisiTokemoipGenerate implements ActionVisitor<TokemoipInfo> {
 	
 	
 	private TokemoipInfo setAttribute(TokemoipInfo recordInfo, Map<String, Object> response) {
-	//	recordInfo.url = response;
+		recordInfo.accessToken = (String) response.get("access_token");
+		recordInfo.tokenExpiresIn = stringToDate((String) response.get("expires_in"));
+		recordInfo.refreshToken = (String) response.get("refresh_token");
+		recordInfo.scope = (String) response.get("scope");
+		
+		@SuppressWarnings("unchecked")
+		Map<String, Object> account = (Map<String, Object>) response.get("moipAccount");			
+		recordInfo.idPayPartnerStore = (String) account.get("id");
 		
 		return recordInfo;
+	}
+	
+	
+	
+	private LocalDate stringToDate(String date) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		return LocalDate.parse(date, formatter);
 	}
 	
 	
