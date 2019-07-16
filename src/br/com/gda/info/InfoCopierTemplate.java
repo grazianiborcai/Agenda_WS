@@ -7,8 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-
-public class InfoCopierTemplate<T,S> implements InfoCopier<T,S> {
+//TODO: adicionar clone - safe-copy ?
+public class InfoCopierTemplate<T extends InfoRecord, S extends InfoRecord> implements InfoCopier<T,S> {
 	private InfoUniquifier<T> resultUniquifier;
 	
 	
@@ -25,26 +25,22 @@ public class InfoCopierTemplate<T,S> implements InfoCopier<T,S> {
 	
 	
 	
-	private void checkArgument(InfoUniquifier<T> uniquifier) {
-		if (uniquifier == null) {
-			logException(new NullPointerException("uniquifier" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("uniquifier" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
 	public T makeCopy(S source) {
 		checkArgument(source);		
-		return makeCopyHook(source);
+		S safeCopy = tryToClone(source);
+		return makeCopyHook(safeCopy);
 	}
 	
 	
 	
-	private void checkArgument(S source) {
-		if (source == null) {
-			logException(new NullPointerException("source" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("source" + SystemMessage.NULL_ARGUMENT);
+	@SuppressWarnings("unchecked")
+	private S tryToClone(S source) {
+		try {
+			return (S) source.clone();
+			
+		} catch (CloneNotSupportedException e) {
+			logException(e);
+			throw new IllegalArgumentException(e);
 		}
 	}
 
@@ -77,6 +73,24 @@ public class InfoCopierTemplate<T,S> implements InfoCopier<T,S> {
 			return results;
 		
 		return resultUniquifier.uniquify(results);
+	}
+	
+	
+	
+	private void checkArgument(InfoUniquifier<T> uniquifier) {
+		if (uniquifier == null) {
+			logException(new NullPointerException("uniquifier" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("uniquifier" + SystemMessage.NULL_ARGUMENT);
+		}
+	}	
+	
+	
+	
+	private void checkArgument(S source) {
+		if (source == null) {
+			logException(new NullPointerException("source" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("source" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
