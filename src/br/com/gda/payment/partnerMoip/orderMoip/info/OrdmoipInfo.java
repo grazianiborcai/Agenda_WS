@@ -31,6 +31,8 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		payordemData = DefaultValue.object();
 		stoparData = DefaultValue.object();
 		cusparData = DefaultValue.object();
+		feewnerData = DefaultValue.object();
+		sysparData = DefaultValue.object();
 		products = DefaultValue.list();
 		receivers = DefaultValue.list();
 	}

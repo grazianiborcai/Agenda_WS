@@ -42,8 +42,8 @@ final class PayordemVisiMergeStopar implements InfoMergerVisitorV2<PayordemInfo,
 	
 	@Override public boolean shouldWrite(StoparInfo sourceOne, PayordemInfo sourceTwo) {
 		if (sourceOne.codOwner		 == sourceTwo.codOwner	&&
-			sourceOne.codStore  	 == sourceOne.codStore	&&
-			sourceOne.codPayPartner  == sourceOne.codPayPartner) 
+			sourceOne.codStore  	 == sourceTwo.codStore	&&
+			sourceOne.codPayPartner  == sourceTwo.codPayPartner) 
 			return SUCCESS;
 			
 		return FAILED;
