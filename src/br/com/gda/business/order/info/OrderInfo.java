@@ -29,6 +29,8 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public double grandTotal;	
 	public String codCurr;
 	public String txtCurr;
+	public char codFeeCateg;
+	public String txtFeeCateg;
 	public String codOrderStatus;
 	public String txtOrderStatus;
 	public String codLanguage;
@@ -55,6 +57,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		codPhoneInvoiceSnapshot = DefaultValue.number();		
 		itemTotal = DefaultValue.number();
 		feeService = 0;
+		codFeeCateg = DefaultValue.character();
 		grandTotal = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		orderms = DefaultValue.list();

@@ -3,6 +3,7 @@ package br.com.gda.business.order.info;
 import java.util.List;
 
 import br.com.gda.business.masterData.info.CurrencyInfo;
+import br.com.gda.business.masterData.info.FeeCategInfo;
 import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.orderItem.info.OrderemInfo;
 import br.com.gda.business.user.info.UserInfo;
@@ -10,6 +11,20 @@ import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class OrderMerger {		
+	public static OrderInfo mergeWithFeeCateg(FeeCategInfo sourceOne, OrderInfo sourceTwo) {
+		InfoMerger<OrderInfo, FeeCategInfo> merger = new OrderMergerFeeCateg();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OrderInfo> mergeWithFeeCateg(List<FeeCategInfo> sourceOnes, List<OrderInfo> sourceTwos) {
+		InfoMerger<OrderInfo, FeeCategInfo> merger = new OrderMergerFeeCateg();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
 	public static OrderInfo mergeWithCurrency(CurrencyInfo sourceOne, OrderInfo sourceTwo) {
 		InfoMerger<OrderInfo, CurrencyInfo> merger = new OrderMergerCurrency();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -20,7 +35,7 @@ public final class OrderMerger {
 	public static List<OrderInfo> mergeWithCurrency(List<CurrencyInfo> sourceOnes, List<OrderInfo> sourceTwos) {
 		InfoMerger<OrderInfo, CurrencyInfo> merger = new OrderMergerCurrency();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}		
+	}	
 	
 	
 	
