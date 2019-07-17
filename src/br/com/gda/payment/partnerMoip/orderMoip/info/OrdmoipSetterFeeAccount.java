@@ -11,7 +11,7 @@ public final class OrdmoipSetterFeeAccount implements InfoSetter<OrdmoipInfo> {
 		checkArgument(recordInfo);
 		
 		recordInfo.account = payloadFactory(
-			    value("id", recordInfo.sysparData.idPayPartnerSystem)
+			    value("id", recordInfo.feeReceiver)
 				);	
 
 		return recordInfo;

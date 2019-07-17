@@ -513,4 +513,7 @@ public final class SystemCode {
 	
 	// Order Moip
 	public static final int ORDER_MOIP_MANDATORY_FIELD_EMPTY			= 4450;
+	
+	// Multi-Order Moip
+	public static final int MULT_MOIP_MANDATORY_FIELD_EMPTY				= 4500;
 }

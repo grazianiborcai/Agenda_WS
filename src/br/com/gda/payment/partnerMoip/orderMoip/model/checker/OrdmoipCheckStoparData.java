@@ -16,10 +16,13 @@ public final class OrdmoipCheckStoparData extends ModelCheckerTemplateSimple<Ord
 	
 	
 	@Override protected boolean checkHook(OrdmoipInfo recordInfo, Connection conn, String schemaName) {			
-		if ( recordInfo.stoparData == null )	
+		if ( recordInfo.payordemData == null )	
 			return super.FAILED;
 		
-		if ( recordInfo.stoparData.idPayPartnerStore == null )	
+		if ( recordInfo.payordemData.stoparData == null )	
+			return super.FAILED;
+		
+		if ( recordInfo.payordemData.itemReceiver == null )	
 			return super.FAILED;
 		
 		

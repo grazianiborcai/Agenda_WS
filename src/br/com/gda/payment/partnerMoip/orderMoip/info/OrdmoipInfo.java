@@ -3,20 +3,21 @@ package br.com.gda.payment.partnerMoip.orderMoip.info;
 import java.util.List;
 import java.util.Map;
 
-import br.com.gda.business.feeOwner.info.FeewnerInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
-import br.com.gda.payment.storePartner.info.StoparInfo;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
 
 public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public String orderId;
+	public String feeReceiver;
+	public double feeAmount;
+	public String codFeeCurrency;
+	public char codFeeCateg;
+	public String txtFeeCateg;
 	public PayordemInfo payordemData;
-	public StoparInfo stoparData;
 	public CusparInfo cusparData;
-	public FeewnerInfo feewnerData;
 	public SysparInfo sysparData;
 	public Map<String, Object> subtotal;
 	public Map<String, Object> amount;
@@ -28,10 +29,10 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OrdmoipInfo() {
+		feeAmount = 0;
+		codFeeCateg = DefaultValue.character();
 		payordemData = DefaultValue.object();
-		stoparData = DefaultValue.object();
 		cusparData = DefaultValue.object();
-		feewnerData = DefaultValue.object();
 		sysparData = DefaultValue.object();
 		products = DefaultValue.list();
 		receivers = DefaultValue.list();
@@ -54,9 +55,7 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		OrdmoipInfo deepCopy = (OrdmoipInfo) super.clone();		
 		deepCopy.payordemData = clonePayordem(deepCopy.payordemData);
-		deepCopy.stoparData = cloneStopar(deepCopy.stoparData);
 		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
-		deepCopy.feewnerData = cloneFeewner(deepCopy.feewnerData);
 		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
 		
 		return deepCopy;
@@ -64,47 +63,29 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private PayordemInfo clonePayordem(PayordemInfo payordem) throws CloneNotSupportedException {
-		if (payordem == null)
+	private PayordemInfo clonePayordem(PayordemInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (PayordemInfo) payordem.clone();
+		return (PayordemInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private StoparInfo cloneStopar(StoparInfo stopar) throws CloneNotSupportedException {
-		if (stopar == null)
+	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (StoparInfo) stopar.clone();
-	}
-	
-	
-	
-	private CusparInfo cloneCuspar(CusparInfo cuspar) throws CloneNotSupportedException {
-		if (cuspar == null)
-			return null;
-		
-		return (CusparInfo) cuspar.clone();
+		return (CusparInfo) recordInfo.clone();
 	}	
 	
 	
 	
-	private FeewnerInfo cloneFeewner(FeewnerInfo feewner) throws CloneNotSupportedException {
-		if (feewner == null)
+	private SysparInfo cloneSyspar(SysparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (FeewnerInfo) feewner.clone();
-	}	
-	
-	
-	
-	private SysparInfo cloneSyspar(SysparInfo syspar) throws CloneNotSupportedException {
-		if (syspar == null)
-			return null;
-		
-		return (SysparInfo) syspar.clone();
+		return (SysparInfo) recordInfo.clone();
 	}
 	
 	

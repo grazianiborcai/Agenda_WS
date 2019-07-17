@@ -655,4 +655,9 @@ public final class SystemMessage {
 	
 	// Order Moip
 	public static final String ORDER_MOIP_MANDATORY_FIELD_EMPTY = "Order Moip: Mandatory field is empty";
+	
+	
+	
+	// Multi-Order Moip
+	public static final String MULT_MOIP_MANDATORY_FIELD_EMPTY = "Multi-Order Moip: Mandatory field is empty";
 }

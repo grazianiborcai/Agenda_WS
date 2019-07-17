@@ -4,7 +4,6 @@ package br.com.gda.payment.storePartner.info;
 import java.util.List;
 
 import br.com.gda.info.InfoCopier;
-import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.gda.payment.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 
@@ -32,20 +31,6 @@ public final class StoparCopier {
 	
 	public static List<StoparInfo> copyFromPayordem(List<PayordemInfo> sources) {
 		InfoCopier<StoparInfo, PayordemInfo> copier = new StoparCopyPayordem();
-		return copier.makeCopy(sources);
-	}
-	
-	
-	
-	public static StoparInfo copyFromOrdmoip(OrdmoipInfo source) {
-		InfoCopier<StoparInfo, OrdmoipInfo> copier = new StoparCopyOrdmoip();
-		return copier.makeCopy(source);
-	}
-	
-	
-	
-	public static List<StoparInfo> copyFromOrdmoip(List<OrdmoipInfo> sources) {
-		InfoCopier<StoparInfo, OrdmoipInfo> copier = new StoparCopyOrdmoip();
 		return copier.makeCopy(sources);
 	}
 }

@@ -11,7 +11,7 @@ public final class OrdmoipSetterFeeAmount implements InfoSetter<OrdmoipInfo> {
 		checkArgument(recordInfo);
 		
 		recordInfo.amount = payloadFactory(
-			    value("currency", recordInfo.feewnerData.codCurr),
+			    value("currency", recordInfo.codFeeCurrency),
 			    value("subtotals", recordInfo.subtotal)
 				);	
 

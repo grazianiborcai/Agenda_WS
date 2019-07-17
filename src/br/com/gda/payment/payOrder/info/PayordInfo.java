@@ -44,6 +44,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		codPayOrder = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
+		feeAmount = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		codUser = DefaultValue.number();
 		codOrder = DefaultValue.number();
@@ -82,55 +83,55 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private OrderInfo cloneOrder(OrderInfo order) throws CloneNotSupportedException {
-		if (order == null)
+	private OrderInfo cloneOrder(OrderInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (OrderInfo) order.clone();
+		return (OrderInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private SysparInfo cloneSyspar(SysparInfo syspar) throws CloneNotSupportedException {
-		if (syspar == null)
+	private SysparInfo cloneSyspar(SysparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (SysparInfo) syspar.clone();
+		return (SysparInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private CusparInfo cloneCuspar(CusparInfo cuspar) throws CloneNotSupportedException {
-		if (cuspar == null)
+	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (CusparInfo) cuspar.clone();
+		return (CusparInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private CrecardInfo cloneCrecard(CrecardInfo crecard) throws CloneNotSupportedException {
-		if (crecard == null)
+	private CrecardInfo cloneCrecard(CrecardInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (CrecardInfo) crecard.clone();
+		return (CrecardInfo) recordInfo.clone();
 	}	
 	
 	
 	
-	private List<PayordemInfo> clonePayordems(List<PayordemInfo> payordems) throws CloneNotSupportedException {
-		if (payordems == null)
+	private List<PayordemInfo> clonePayordems(List<PayordemInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<PayordemInfo> results = new ArrayList<>();
 		
-		for (PayordemInfo eachPayordem : payordems) {
-			PayordemInfo cloned = (PayordemInfo) eachPayordem.clone();
+		for (PayordemInfo eachRecord : recordInfos) {
+			PayordemInfo cloned = (PayordemInfo) eachRecord.clone();
 			results.add(cloned);
 		}
 		
 		return results;
-	}	
+	}
 	
 	
 	

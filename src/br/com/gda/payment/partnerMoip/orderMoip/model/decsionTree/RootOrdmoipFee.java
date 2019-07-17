@@ -18,10 +18,9 @@ import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceO
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceOrderId;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceReceivers;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.StdOrdmoipEnforceSubtotal;
-import br.com.gda.payment.partnerMoip.orderMoip.model.checker.OrdmoipCheckFeewner;
-import br.com.gda.payment.partnerMoip.orderMoip.model.checker.OrdmoipCheckFeewnerData;
 import br.com.gda.payment.partnerMoip.orderMoip.model.checker.OrdmoipCheckSyspar;
 import br.com.gda.payment.partnerMoip.orderMoip.model.checker.OrdmoipCheckSysparData;
+import br.com.gda.payment.partnerMoip.orderMoip.model.checker.OrdmoipCheckWriteFee;
 
 public final class RootOrdmoipFee extends DeciTreeWriteTemplate<OrdmoipInfo> {
 	
@@ -38,10 +37,10 @@ public final class RootOrdmoipFee extends DeciTreeWriteTemplate<OrdmoipInfo> {
 		ModelChecker<OrdmoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new OrdmoipCheckSysparData();
+		checker = new OrdmoipCheckWriteFee();
 		queue.add(checker);
 		
-		checker = new OrdmoipCheckFeewnerData();
+		checker = new OrdmoipCheckSysparData();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,13 +48,6 @@ public final class RootOrdmoipFee extends DeciTreeWriteTemplate<OrdmoipInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new OrdmoipCheckSyspar(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new OrdmoipCheckFeewner(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);

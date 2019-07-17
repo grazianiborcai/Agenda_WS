@@ -13,11 +13,11 @@ public final class OrdmoipSetterFees implements InfoSetter<OrdmoipInfo> {
 		checkArgument(recordInfo);
 		
 		Map<String, Object> product = payloadFactory(
-			    value("product", recordInfo.feewnerData.txtFeeCateg),
-			    value("category", recordInfo.feewnerData.txtFeeCateg),
+			    value("product", recordInfo.txtFeeCateg),
+			    value("category", recordInfo.txtFeeCateg),
 			    value("quantity", "1"),
-			    value("detail", recordInfo.feewnerData.txtFeeCateg),
-			    value("price", (int) (recordInfo.feewnerData.price * 100))
+			    value("detail", recordInfo.txtFeeCateg),
+			    value("price", (int) (recordInfo.feeAmount * 100))
 			);
 		
 		recordInfo.products.add(product);

@@ -105,19 +105,5 @@ public final class PayordMerger {
 	public static List<PayordInfo> mergeToSelect(List<PayordInfo> sourceOnes, List<PayordInfo> sourceTwos) {
 		InfoMerger<PayordInfo, PayordInfo> merger = new PayordMergerToSelect();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}		
-	
-	
-	
-	public static PayordInfo mergeToDelete(PayordInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger<PayordInfo, PayordInfo> merger = new PayordMergerToDelete_();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<PayordInfo> mergeToDelete(List<PayordInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger<PayordInfo, PayordInfo> merger = new PayordMergerToDelete_();		
-		return merger.merge(sourceOnes, sourceTwos);
 	}			
 }
