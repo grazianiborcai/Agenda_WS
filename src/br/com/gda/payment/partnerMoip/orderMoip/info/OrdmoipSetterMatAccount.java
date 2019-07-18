@@ -5,7 +5,7 @@ import br.com.gda.info.InfoSetter;
 import static br.com.moip.helpers.PayloadFactory.payloadFactory;
 import static br.com.moip.helpers.PayloadFactory.value;
 
-public final class OrdmoipSetterStoreAccount implements InfoSetter<OrdmoipInfo> {
+public final class OrdmoipSetterMatAccount implements InfoSetter<OrdmoipInfo> {
 	
 	public OrdmoipInfo setAttr(OrdmoipInfo recordInfo) {
 		checkArgument(recordInfo);

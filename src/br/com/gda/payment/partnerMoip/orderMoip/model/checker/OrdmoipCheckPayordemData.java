@@ -25,6 +25,7 @@ public final class OrdmoipCheckPayordemData extends ModelCheckerTemplateSimple<O
 			 recordInfo.payordemData.codPayOrder 	<= 0 	|| 
 			 recordInfo.payordemData.quantity 	 	<= 0 	|| 
 			 recordInfo.payordemData.price 	  	 	<= 0 	||
+			 recordInfo.payordemData.itemReceiver 	== null ||
 			 recordInfo.payordemData.codLanguage 	== null ||
 			 recordInfo.payordemData.username 		== null		)	
 			return super.FAILED;

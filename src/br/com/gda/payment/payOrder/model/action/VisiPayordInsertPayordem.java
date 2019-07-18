@@ -8,6 +8,7 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.payOrder.info.PayordInfo;
+import br.com.gda.payment.payOrder.info.PayordMerger;
 import br.com.gda.payment.payOrderItem.info.PayordemCopier;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 import br.com.gda.payment.payOrderItem.model.decisionTree.RootPayordemInsert;
@@ -32,6 +33,6 @@ final class VisiPayordInsertPayordem extends ActionVisitorTemplateAction<PayordI
 	
 	
 	@Override protected List<PayordInfo> toBaseClassHook(List<PayordInfo> baseInfos, List<PayordemInfo> results) {
-		return baseInfos;
+		return PayordMerger.mergeWithPayordem(results, baseInfos);
 	}
 }

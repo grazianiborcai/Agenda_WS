@@ -5,7 +5,7 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 
-public final class PayordSetterPayordem implements InfoSetter<PayordInfo> {
+public final class PayordSetterPayordem_ implements InfoSetter<PayordInfo> {
 	
 	public PayordInfo setAttr(PayordInfo recordInfo) {
 		checkArgument(recordInfo);

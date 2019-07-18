@@ -16,13 +16,12 @@ import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceM
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceOrder;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceOrderId;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceReceivers;
-import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceStoreAccount;
+import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceMatAccount;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.StdOrdmoipEnforceSubtotal;
 import br.com.gda.payment.partnerMoip.orderMoip.model.checker.OrdmoipCheckCuspar;
 import br.com.gda.payment.partnerMoip.orderMoip.model.checker.OrdmoipCheckCusparData;
 import br.com.gda.payment.partnerMoip.orderMoip.model.checker.OrdmoipCheckMatData;
 import br.com.gda.payment.partnerMoip.orderMoip.model.checker.OrdmoipCheckPayordemData;
-import br.com.gda.payment.partnerMoip.orderMoip.model.checker.OrdmoipCheckStoparData;
 
 public final class RootOrdmoipMaterial extends DeciTreeWriteTemplate<OrdmoipInfo> {
 	
@@ -40,9 +39,6 @@ public final class RootOrdmoipMaterial extends DeciTreeWriteTemplate<OrdmoipInfo
 		ModelCheckerOption checkerOption;
 		
 		checker = new OrdmoipCheckPayordemData();
-		queue.add(checker);
-		
-		checker = new OrdmoipCheckStoparData();
 		queue.add(checker);
 		
 		checker = new OrdmoipCheckMatData();
@@ -69,15 +65,15 @@ public final class RootOrdmoipMaterial extends DeciTreeWriteTemplate<OrdmoipInfo
 		ActionStd<OrdmoipInfo> enforceSubtotal = new StdOrdmoipEnforceSubtotal(option);	
 		ActionLazy<OrdmoipInfo> enforceMatAmount = new LazyOrdmoipEnforceMatAmount(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceMaterials = new LazyOrdmoipEnforceMaterials(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> enforceStoreAccount = new LazyOrdmoipEnforceStoreAccount(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> enforceMatAccount = new LazyOrdmoipEnforceMatAccount(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceReceivers = new LazyOrdmoipEnforceReceivers(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceOrderId = new LazyOrdmoipEnforceOrderId(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceOrder = new LazyOrdmoipEnforceOrder(option.conn, option.schemaName);
 		
 		enforceSubtotal.addPostAction(enforceMatAmount);
 		enforceMatAmount.addPostAction(enforceMaterials);
-		enforceMaterials.addPostAction(enforceStoreAccount);
-		enforceStoreAccount.addPostAction(enforceReceivers);
+		enforceMaterials.addPostAction(enforceMatAccount);
+		enforceMatAccount.addPostAction(enforceReceivers);
 		enforceReceivers.addPostAction(enforceOrderId);
 		enforceOrderId.addPostAction(enforceOrder);
 		

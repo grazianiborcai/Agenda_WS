@@ -6,9 +6,9 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
-public final class MultmoipCheckPlaceMat extends ModelCheckerTemplateSimple<MultmoipInfo> {
+public final class MultmoipCheckPay extends ModelCheckerTemplateSimple<MultmoipInfo> {
 
-	public MultmoipCheckPlaceMat() {
+	public MultmoipCheckPay() {
 		super();
 	}
 	
