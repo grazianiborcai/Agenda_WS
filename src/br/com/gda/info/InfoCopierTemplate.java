@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-//TODO: adicionar clone - safe-copy ?
+
 public class InfoCopierTemplate<T extends InfoRecord, S extends InfoRecord> implements InfoCopier<T,S> {
 	private InfoUniquifier<T> resultUniquifier;
 	
@@ -107,6 +107,7 @@ public class InfoCopierTemplate<T extends InfoRecord, S extends InfoRecord> impl
 			throw new NullPointerException("sources" + SystemMessage.EMPTY_ARGUMENT);
 		}
 	}
+	
 	
 	
 	private void logException(Exception e) {
