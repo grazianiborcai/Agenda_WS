@@ -13,6 +13,7 @@ import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMultmoipPay;
 import br.com.gda.payment.payOrder.model.action.LazyPayordUpdate;
 import br.com.gda.payment.payOrder.model.action.StdPayordInsert;
+import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceItemNum;
 import br.com.gda.payment.payOrder.model.action.LazyPayordInsertPayordem;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckCrecardUser;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckCusparUser;
@@ -53,11 +54,13 @@ public final class NodePayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 
 		ActionStd<PayordInfo> insertPayord = new StdPayordInsert(option);		
 		ActionLazy<PayordInfo> insertPayordem = new LazyPayordInsertPayordem(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> enforceItemNum = new LazyPayordEnforceItemNum(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> multmoipPay = new LazyPayordMultmoipPay(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> updatePayord = new LazyPayordUpdate(option.conn, option.schemaName);
 		
 		insertPayord.addPostAction(insertPayordem);
-		insertPayordem.addPostAction(multmoipPay);
+		insertPayordem.addPostAction(enforceItemNum);
+		enforceItemNum.addPostAction(multmoipPay);
 		multmoipPay.addPostAction(updatePayord);
 		
 		actions.add(insertPayord);		

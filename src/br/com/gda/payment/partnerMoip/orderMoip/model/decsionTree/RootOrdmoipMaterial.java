@@ -12,9 +12,9 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceMatAmount;
+import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceMatOwnId;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceMaterials;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceOrder;
-import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceOrderId;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceReceivers;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceCustomer;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceMatAccount;
@@ -69,7 +69,7 @@ public final class RootOrdmoipMaterial extends DeciTreeWriteTemplate<OrdmoipInfo
 		ActionLazy<OrdmoipInfo> enforceMatAccount = new LazyOrdmoipEnforceMatAccount(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceReceivers = new LazyOrdmoipEnforceReceivers(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceCustomer = new LazyOrdmoipEnforceCustomer(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> enforceOrderId = new LazyOrdmoipEnforceOrderId(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> enforceMatOwnId = new LazyOrdmoipEnforceMatOwnId(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceOrder = new LazyOrdmoipEnforceOrder(option.conn, option.schemaName);
 		
 		enforceSubtotal.addPostAction(enforceMatAmount);
@@ -77,8 +77,8 @@ public final class RootOrdmoipMaterial extends DeciTreeWriteTemplate<OrdmoipInfo
 		enforceMaterials.addPostAction(enforceMatAccount);
 		enforceMatAccount.addPostAction(enforceReceivers);
 		enforceReceivers.addPostAction(enforceCustomer);		
-		enforceCustomer.addPostAction(enforceOrderId);
-		enforceOrderId.addPostAction(enforceOrder);
+		enforceCustomer.addPostAction(enforceMatOwnId);
+		enforceMatOwnId.addPostAction(enforceOrder);
 		
 		actions.add(enforceSubtotal);		
 		return actions;

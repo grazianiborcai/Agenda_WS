@@ -10,7 +10,8 @@ import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
 
 public final class OrdmoipInfo extends InfoRecord implements Cloneable {
-	public String orderId;
+//	public String orderId;
+	public String ownId;
 	public String feeReceiver;
 	public double feeAmount;
 	public String codFeeCurrency;

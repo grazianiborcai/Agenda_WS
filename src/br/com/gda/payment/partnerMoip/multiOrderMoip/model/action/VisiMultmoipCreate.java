@@ -54,6 +54,7 @@ final class VisiMultmoipCreate implements ActionVisitor<MultmoipInfo> {
 		Map<String, Object> checkout = (Map<String, Object>) links.get("checkout");			
 		Map<String, Object> payCreditCard = (Map<String, Object>) checkout.get("payCreditCard");
 		Map<String, Object> payBoleto = (Map<String, Object>) checkout.get("payBoleto");	
+		List<Map<String, Object>> orders = (List<Map<String, Object>>) response.get("orders");	
 		
 		recordInfo.idOrderPartner = (String) response.get("id");
 		recordInfo.statusOrderPartner = (String) response.get("status");

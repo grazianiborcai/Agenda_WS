@@ -11,7 +11,7 @@ public final class OrdmoipSetterOrder implements InfoSetter<OrdmoipInfo> {
 		checkArgument(recordInfo);
 		
 		recordInfo.order = payloadFactory(
-				value("ownId", recordInfo.orderId),
+				value("ownId", recordInfo.ownId),
 			    value("amount", recordInfo.amount),
 			    value("items", recordInfo.products),
 			    value("receivers", recordInfo.receivers),

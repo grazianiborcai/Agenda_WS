@@ -7,12 +7,12 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class StdOrdmoipEnforceOrderId implements ActionStd<OrdmoipInfo> {
+public final class StdOrdmoipEnforceFeeOwnId implements ActionStd<OrdmoipInfo> {
 	private ActionStd<OrdmoipInfo> actionHelper;	
 	
 	
-	public StdOrdmoipEnforceOrderId(DeciTreeOption<OrdmoipInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOrdmoipEnforceOrderId());
+	public StdOrdmoipEnforceFeeOwnId(DeciTreeOption<OrdmoipInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOrdmoipEnforceFeeOwnId());
 	}
 	
 	
