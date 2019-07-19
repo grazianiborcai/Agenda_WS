@@ -14,7 +14,7 @@ public final class OrdmoipSetterMaterials implements InfoSetter<OrdmoipInfo> {
 		
 		Map<String, Object> product = payloadFactory(
 			    value("product", recordInfo.payordemData.matData.txtMat),
-			    value("category", recordInfo.payordemData.matData.txtMatCateg),
+		   //   value("category", recordInfo.payordemData.matData.txtMatCateg),
 			    value("quantity", recordInfo.payordemData.quantity),
 			    value("detail", recordInfo.payordemData.matData.txtMat),
 			    value("price", (int) (recordInfo.payordemData.price * 100))

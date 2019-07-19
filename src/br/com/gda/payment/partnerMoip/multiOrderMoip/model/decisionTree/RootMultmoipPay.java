@@ -3,12 +3,18 @@ package br.com.gda.payment.partnerMoip.multiOrderMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
+import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipCreate;
+import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceMultiorder;
+import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceSetup;
+import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipMergeSetupar;
+import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipPlaceFee;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.StdMultmoipPlaceMat;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.checker.MultmoipCheckPay;
 
@@ -36,6 +42,17 @@ public final class RootMultmoipPay extends DeciTreeWriteTemplate<MultmoipInfo> {
 		List<ActionStd<MultmoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<MultmoipInfo> placeMaterial = new StdMultmoipPlaceMat(option);
+		ActionLazy<MultmoipInfo> placeFee = new LazyMultmoipPlaceFee(option.conn, option.schemaName);
+		ActionLazy<MultmoipInfo> enforceMultiorder = new LazyMultmoipEnforceMultiorder(option.conn, option.schemaName);
+		ActionLazy<MultmoipInfo> mergeSetupar = new LazyMultmoipMergeSetupar(option.conn, option.schemaName);
+		ActionLazy<MultmoipInfo> enforceSetup = new LazyMultmoipEnforceSetup(option.conn, option.schemaName);		
+		ActionLazy<MultmoipInfo> create = new LazyMultmoipCreate(option.conn, option.schemaName);
+		
+		placeMaterial.addPostAction(placeFee);
+		placeFee.addPostAction(enforceMultiorder);		
+		enforceMultiorder.addPostAction(mergeSetupar);
+		mergeSetupar.addPostAction(enforceSetup);
+		enforceSetup.addPostAction(create);
 		
 		actions.add(placeMaterial);		
 		return actions;

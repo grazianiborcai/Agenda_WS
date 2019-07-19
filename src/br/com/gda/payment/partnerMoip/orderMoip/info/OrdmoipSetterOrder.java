@@ -10,7 +10,7 @@ public final class OrdmoipSetterOrder implements InfoSetter<OrdmoipInfo> {
 	public OrdmoipInfo setAttr(OrdmoipInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		recordInfo.subtotal = payloadFactory(
+		recordInfo.order = payloadFactory(
 				value("ownId", recordInfo.orderId),
 			    value("amount", recordInfo.amount),
 			    value("items", recordInfo.products),

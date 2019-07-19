@@ -16,6 +16,7 @@ import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceM
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceOrder;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceOrderId;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceReceivers;
+import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceCustomer;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceMatAccount;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.StdOrdmoipEnforceSubtotal;
 import br.com.gda.payment.partnerMoip.orderMoip.model.checker.OrdmoipCheckCuspar;
@@ -67,6 +68,7 @@ public final class RootOrdmoipMaterial extends DeciTreeWriteTemplate<OrdmoipInfo
 		ActionLazy<OrdmoipInfo> enforceMaterials = new LazyOrdmoipEnforceMaterials(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceMatAccount = new LazyOrdmoipEnforceMatAccount(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceReceivers = new LazyOrdmoipEnforceReceivers(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> enforceCustomer = new LazyOrdmoipEnforceCustomer(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceOrderId = new LazyOrdmoipEnforceOrderId(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceOrder = new LazyOrdmoipEnforceOrder(option.conn, option.schemaName);
 		
@@ -74,7 +76,8 @@ public final class RootOrdmoipMaterial extends DeciTreeWriteTemplate<OrdmoipInfo
 		enforceMatAmount.addPostAction(enforceMaterials);
 		enforceMaterials.addPostAction(enforceMatAccount);
 		enforceMatAccount.addPostAction(enforceReceivers);
-		enforceReceivers.addPostAction(enforceOrderId);
+		enforceReceivers.addPostAction(enforceCustomer);		
+		enforceCustomer.addPostAction(enforceOrderId);
 		enforceOrderId.addPostAction(enforceOrder);
 		
 		actions.add(enforceSubtotal);		

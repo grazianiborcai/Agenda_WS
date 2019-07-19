@@ -113,8 +113,14 @@ public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
 				dataInfo.codOwner = stmtResult.getLong(PayordDbTableColumn.COL_COD_OWNER);
 				dataInfo.codPayOrder = stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_ORDER);
 				dataInfo.feeReceiver = stmtResult.getString(PayordDbTableColumn.COL_FEE_RECEIVER);
-				dataInfo.codFeeCurrency = stmtResult.getString(PayordDbTableColumn.COL_FEE_CURRENCY);
-				dataInfo.codPaymentStatus = stmtResult.getString(PayordDbTableColumn.COL_COD_PAY_STATUS);
+				dataInfo.codFeeCurrency = stmtResult.getString(PayordDbTableColumn.COL_FEE_CURRENCY);				
+				dataInfo.idOrderPartner = stmtResult.getString(PayordDbTableColumn.COL_ID_ORDER_PARTNER);
+				dataInfo.statusOrderPartner = stmtResult.getString(PayordDbTableColumn.COL_STATUS_ORDER_PARTNER);
+				dataInfo.urlSelf = stmtResult.getString(PayordDbTableColumn.COL_URL_SELF);
+				dataInfo.urlPayCard = stmtResult.getString(PayordDbTableColumn.COL_URL_PAY_CARD);
+				dataInfo.urlPayBoleto = stmtResult.getString(PayordDbTableColumn.COL_URL_PAY_BOLETO);
+				dataInfo.amountTotalPartner = stmtResult.getString(PayordDbTableColumn.COL_AMOUNT_TOTAL_PARTNER);
+				dataInfo.amountCurrencyPartner = stmtResult.getString(PayordDbTableColumn.COL_AMOUNT_CURRENCY_PARTNER);
 				
 				stmtResult.getLong(PayordDbTableColumn.COL_COD_ORDER);
 				if (stmtResult.wasNull() == NOT_NULL)

@@ -14,7 +14,7 @@ public final class OrdmoipSetterFees implements InfoSetter<OrdmoipInfo> {
 		
 		Map<String, Object> product = payloadFactory(
 			    value("product", recordInfo.txtFeeCateg),
-			    value("category", recordInfo.txtFeeCateg),
+			  //value("category", recordInfo.txtFeeCateg),
 			    value("quantity", "1"),
 			    value("detail", recordInfo.txtFeeCateg),
 			    value("price", (int) (recordInfo.feeAmount * 100))

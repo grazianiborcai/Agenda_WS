@@ -109,7 +109,6 @@ public final class PayordInsertSingle implements DaoStmt<PayordInfo> {
 			
 			stmt.setString(i++, recordInfo.feeReceiver);
 			stmt.setString(i++, recordInfo.codFeeCurrency);
-			stmt.setString(i++, recordInfo.codPaymentStatus);		
 
 			
 			if (DaoFormatter.boxNumber(recordInfo.codCreditCard) == null) {
@@ -117,6 +116,15 @@ public final class PayordInsertSingle implements DaoStmt<PayordInfo> {
 			} else {
 				stmt.setDouble(i++, recordInfo.codCreditCard);
 			}
+			
+			
+			stmt.setString(i++, recordInfo.idOrderPartner);
+			stmt.setString(i++, recordInfo.statusOrderPartner);
+			stmt.setString(i++, recordInfo.urlSelf);
+			stmt.setString(i++, recordInfo.urlPayCard);
+			stmt.setString(i++, recordInfo.urlPayBoleto);
+			stmt.setString(i++, recordInfo.amountTotalPartner);
+			stmt.setString(i++, recordInfo.amountCurrencyPartner);
 			
 			
 			return stmt;

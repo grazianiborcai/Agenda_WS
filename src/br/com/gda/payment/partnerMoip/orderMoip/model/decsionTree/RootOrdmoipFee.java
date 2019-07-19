@@ -11,6 +11,7 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
+import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceCustomer;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceFeeAccount;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceFeeAmount;
 import br.com.gda.payment.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceFees;
@@ -63,6 +64,7 @@ public final class RootOrdmoipFee extends DeciTreeWriteTemplate<OrdmoipInfo> {
 		ActionLazy<OrdmoipInfo> enforceFees = new LazyOrdmoipEnforceFees(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceFeeAccount = new LazyOrdmoipEnforceFeeAccount(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceReceivers = new LazyOrdmoipEnforceReceivers(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> enforceCustomer = new LazyOrdmoipEnforceCustomer(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceOrderId = new LazyOrdmoipEnforceOrderId(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceOrder = new LazyOrdmoipEnforceOrder(option.conn, option.schemaName);
 		
@@ -70,7 +72,8 @@ public final class RootOrdmoipFee extends DeciTreeWriteTemplate<OrdmoipInfo> {
 		enforceFeeAmount.addPostAction(enforceFees);
 		enforceFees.addPostAction(enforceFeeAccount);
 		enforceFeeAccount.addPostAction(enforceReceivers);
-		enforceReceivers.addPostAction(enforceOrderId);
+		enforceReceivers.addPostAction(enforceCustomer);		
+		enforceCustomer.addPostAction(enforceOrderId);
 		enforceOrderId.addPostAction(enforceOrder);
 		
 		actions.add(enforceSubtotal);		

@@ -7,11 +7,26 @@ import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	
+	public static PayordInfo mergeWithMultmoip(MultmoipInfo sourceOne, PayordInfo sourceTwo) {
+		InfoMerger<PayordInfo, MultmoipInfo> merger = new PayordMergerMultmoip();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PayordInfo> mergeWithMultmoip(List<MultmoipInfo> sourceOnes, List<PayordInfo> sourceTwos) {
+		InfoMerger<PayordInfo, MultmoipInfo> merger = new PayordMergerMultmoip();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static PayordInfo mergeWithPayordem(PayordemInfo sourceOne, PayordInfo sourceTwo) {
 		InfoMerger<PayordInfo, PayordemInfo> merger = new PayordMergerPayordem();		
 		return merger.merge(sourceOne, sourceTwo);

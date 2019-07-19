@@ -12,7 +12,6 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceLChanged;
-import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceStatusWaiting;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeCrecard;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeCuspar;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMergeOrder;
@@ -99,7 +98,6 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 
 		ActionStd<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
 		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> enforceStatus = new LazyPayordEnforceStatusWaiting(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> mergeCuspar = new LazyPayordMergeCuspar(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> mergeSyspar = new LazyPayordMergeSyspar(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> enforceCodUser = new LazyPayordMergeUsername(option.conn, option.schemaName);
@@ -108,8 +106,7 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		ActionLazy<PayordInfo> nodePay = new LazyPayordNodePay(option.conn, option.schemaName);		
 		
 		enforceCreatedOn.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceStatus);		
-		enforceStatus.addPostAction(mergeCuspar);			
+		enforceLChanged.addPostAction(mergeCuspar);			
 		mergeCuspar.addPostAction(mergeSyspar);	
 		mergeSyspar.addPostAction(enforceCodUser);
 		enforceCodUser.addPostAction(mergeOrder);

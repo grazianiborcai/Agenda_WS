@@ -42,10 +42,6 @@ final class PayordWhere implements DaoStmtWhere {
 				case PayordDbTableColumn.COL_COD_PAY_CUSTOMER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayCustomer));
 					break;
-					
-				case PayordDbTableColumn.COL_COD_PAY_STATUS :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codPaymentStatus);
-					break;
 			}
 		}		
 		

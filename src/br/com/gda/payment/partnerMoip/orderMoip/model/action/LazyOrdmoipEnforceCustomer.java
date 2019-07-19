@@ -9,9 +9,9 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class LazyOrdmoipEnforceSubtotal_ extends ActionLazyTemplate<OrdmoipInfo, OrdmoipInfo> {
+public final class LazyOrdmoipEnforceCustomer extends ActionLazyTemplate<OrdmoipInfo, OrdmoipInfo> {
 	
-	public LazyOrdmoipEnforceSubtotal_(Connection conn, String schemaName) {
+	public LazyOrdmoipEnforceCustomer(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOrdmoipEnforceSubtotal_ extends ActionLazyTemplate<Ordmoi
 	
 	
 	@Override protected ActionStd<OrdmoipInfo> getInstanceOfActionHook(DeciTreeOption<OrdmoipInfo> option) {
-		return new StdOrdmoipEnforceSubtotal(option);
+		return new StdOrdmoipEnforceCustomer(option);
 	}
 	
 	

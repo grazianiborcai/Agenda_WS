@@ -10,6 +10,7 @@ import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipCopier;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.decisionTree.RootMultmoipPay;
 import br.com.gda.payment.payOrder.info.PayordInfo;
+import br.com.gda.payment.payOrder.info.PayordMerger;
 
 final class VisiPayordMultmoipPay extends ActionVisitorTemplateAction<PayordInfo, MultmoipInfo> {
 	public VisiPayordMultmoipPay(Connection conn, String schemaName) {
@@ -31,6 +32,6 @@ final class VisiPayordMultmoipPay extends ActionVisitorTemplateAction<PayordInfo
 	
 	
 	@Override protected List<PayordInfo> toBaseClassHook(List<PayordInfo> baseInfos, List<MultmoipInfo> results) {
-		return baseInfos;
+		return PayordMerger.mergeWithMultmoip(results, baseInfos);
 	}
 }

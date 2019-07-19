@@ -9,17 +9,23 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_AMOUNT_CURRENCY_PARTNER = "amount_currency_partner";
+	public static final String COL_AMOUNT_TOTAL_PARTNER = "amount_total_partner";
 	public static final String COL_COD_CREDIT_CARD = "cod_credit_card";
 	public static final String COL_COD_ORDER = "cod_order";
 	public static final String COL_COD_OWNER = "cod_owner";	
 	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";
 	public static final String COL_COD_PAY_ORDER = "cod_pay_order";
-	public static final String COL_COD_PAY_STATUS = "cod_payment_status";
 	public static final String COL_CREATED_ON = "created_on";
 	public static final String COL_FEE_AMOUNT = "fee_amount";
 	public static final String COL_FEE_CURRENCY = "fee_currency";
 	public static final String COL_FEE_RECEIVER = "fee_receiver";
+	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
 	public static final String COL_LAST_CHANGED = "last_changed";
+	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";
+	public static final String COL_URL_PAY_CARD = "url_pay_card";
+	public static final String COL_URL_PAY_BOLETO = "url_pay_boleto";
+	public static final String COL_URL_SELF = "url_self";	
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
@@ -119,7 +125,7 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PAY_STATUS;
+		oneColumn.columnName = COL_COD_CREDIT_CARD;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -127,7 +133,55 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_CREDIT_CARD;
+		oneColumn.columnName = COL_ID_ORDER_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_STATUS_ORDER_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_URL_SELF;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_URL_PAY_CARD;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_URL_PAY_BOLETO;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_AMOUNT_TOTAL_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_AMOUNT_CURRENCY_PARTNER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
