@@ -35,24 +35,8 @@ public final class PayordemWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayOrder));
 					break;
 					
-				case PayordemDbTableColumn.COL_COD_STORE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
-					break;
-					
-				case PayordemDbTableColumn.COL_COD_MATERIAL :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
-					break;
-					
-				case PayordemDbTableColumn.COL_COD_EMPLOYEE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
-					break;
-					
-				case PayordemDbTableColumn.COL_DATE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
-					break;
-					
-				case PayordemDbTableColumn.COL_BEGIN_TIME :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime));
+				case PayordemDbTableColumn.COL_ITEM_NUMBER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.itemNum));
 					break;
 			}
 		}		

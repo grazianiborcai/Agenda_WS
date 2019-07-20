@@ -79,6 +79,7 @@ public class PayordemInsertSingle implements DaoStmt<PayordemInfo> {
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codPayOrder);
+			stmt.setInt(i++, recordInfo.itemNum);
 			
 			
 			if (recordInfo.codStore >= 0) {
@@ -123,6 +124,10 @@ public class PayordemInsertSingle implements DaoStmt<PayordemInfo> {
 			
 			stmt.setString(i++, recordInfo.codCurr);
 			stmt.setString(i++, recordInfo.itemReceiver);
+			stmt.setString(i++, recordInfo.ownId);
+			stmt.setString(i++, recordInfo.idOrderPartner);
+			stmt.setString(i++, recordInfo.statusOrderPartner);
+			stmt.setString(i++, DaoFormatter.charToString(recordInfo.codFeeCateg));
 			
 			return stmt;
 		}		

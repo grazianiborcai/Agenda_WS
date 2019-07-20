@@ -15,10 +15,7 @@ import br.com.moip.models.Setup;
 
 public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public long codPayOrder;	
-	public String feeReceiver;
-	public double feeAmount;
-	public String codFeeCurrency;
+	public long codPayOrder;
 	public char codFeeCateg;
 	public String txtFeeCateg;	
 	public String idOrderPartner;
@@ -34,6 +31,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public SetuparInfo setuparData;
 	public List<OrdmoipInfo> ordmoips;
 	public Map<String, Object> multiorder;
+	public Map<String, Object> response;
 	public Setup setup;
 	public String codLanguage;
 	public String username;
@@ -42,7 +40,6 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public MultmoipInfo () {
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
-		feeAmount = 0;
 		codFeeCateg = DefaultValue.character();
 		codLanguage = DefaultValue.language();
 		payordems = DefaultValue.list();
@@ -144,6 +141,9 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
+		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
+		result = result * 31 + (int) (codPayOrder ^ (codPayOrder >>> 32));
+		
 		return result;
 	}	
 	
@@ -159,6 +159,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		
 		
 		MultmoipInfo obj = (MultmoipInfo) o;		
-		return (super.isRecordEqual(this, obj));
+		return (codOwner    == obj.codOwner    	&& 
+				codPayOrder == obj.codPayOrder		);
 	}
 }

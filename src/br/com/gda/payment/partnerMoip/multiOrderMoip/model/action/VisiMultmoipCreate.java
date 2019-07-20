@@ -24,7 +24,7 @@ final class VisiMultmoipCreate implements ActionVisitor<MultmoipInfo> {
 			if (response == null)
 				return Collections.emptyList();
 			
-			eachRecod = setAttribute(eachRecod, response);
+			eachRecod.response = response;
 			results.add(eachRecod);
 		}
 		
@@ -43,29 +43,6 @@ final class VisiMultmoipCreate implements ActionVisitor<MultmoipInfo> {
 			return null;
 		}
 	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	private MultmoipInfo setAttribute(MultmoipInfo recordInfo, Map<String, Object> response) {				
-		Map<String, Object> amounts = (Map<String, Object>) response.get("amount");	
-		Map<String, Object> links = (Map<String, Object>) response.get("_links");		
-		Map<String, Object> selfs = (Map<String, Object>) links.get("self");			
-		Map<String, Object> checkout = (Map<String, Object>) links.get("checkout");			
-		Map<String, Object> payCreditCard = (Map<String, Object>) checkout.get("payCreditCard");
-		Map<String, Object> payBoleto = (Map<String, Object>) checkout.get("payBoleto");	
-		List<Map<String, Object>> orders = (List<Map<String, Object>>) response.get("orders");	
-		
-		recordInfo.idOrderPartner = (String) response.get("id");
-		recordInfo.statusOrderPartner = (String) response.get("status");
-		recordInfo.amountTotalPartner = String.valueOf(amounts.get("total"));
-		recordInfo.amountCurrencyPartner = (String) amounts.get("currency");		
-		recordInfo.urlSelf = (String) selfs.get("href");		
-		recordInfo.urlPayCard = (String) payCreditCard.get("redirectHref");
-		recordInfo.urlPayBoleto = (String) payBoleto.get("redirectHref");
-		
-		return recordInfo;
-	} 
 	
 	
 	

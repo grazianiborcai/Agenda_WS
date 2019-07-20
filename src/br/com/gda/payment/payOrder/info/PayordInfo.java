@@ -9,6 +9,7 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
 
@@ -19,9 +20,6 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public long codCreditCard;
 	public long codUser;				//TODO: manter para check
 	public long codOrder;
-	public String feeReceiver;
-	public double feeAmount;
-	public String codFeeCurrency;
 	public int codPayPartner;
 	public String txtPayPartner;
 	public String description;
@@ -37,6 +35,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public CusparInfo cusparData;
 	public CrecardInfo crecardData;
 	public List<PayordemInfo> payordems;
+	public List<OrdmoipInfo> ordmoips;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public String codLanguage;
@@ -50,7 +49,6 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		codPayOrder = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
-		feeAmount = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		codUser = DefaultValue.number();
 		codOrder = DefaultValue.number();
@@ -59,6 +57,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		cusparData = DefaultValue.object();
 		crecardData = DefaultValue.object();
 		payordems = DefaultValue.list();
+		ordmoips = DefaultValue.list();
 	}
 	
 	
@@ -83,6 +82,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
 		deepCopy.crecardData = cloneCrecard(deepCopy.crecardData);
 		deepCopy.payordems = clonePayordems(deepCopy.payordems);
+		deepCopy.ordmoips = cloneOrdmoips(deepCopy.ordmoips);
 		
 		return deepCopy;
 	}
@@ -135,6 +135,23 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 			PayordemInfo cloned = (PayordemInfo) eachRecord.clone();
 			results.add(cloned);
 		}
+		
+		return results;
+	}
+	
+	
+	
+	private List<OrdmoipInfo> cloneOrdmoips(List<OrdmoipInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
+			return null;
+		
+		List<OrdmoipInfo> results = new ArrayList<>();
+		
+		for (OrdmoipInfo eachRecord : recordInfos) {
+			OrdmoipInfo clonedOrdmoip = (OrdmoipInfo) eachRecord.clone();
+			results.add(clonedOrdmoip);
+		}
+		
 		
 		return results;
 	}

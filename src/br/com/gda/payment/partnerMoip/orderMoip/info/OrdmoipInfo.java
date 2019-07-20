@@ -10,13 +10,15 @@ import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
 
 public final class OrdmoipInfo extends InfoRecord implements Cloneable {
-//	public String orderId;
+	public long codOwner;
+	public int itemNum;
 	public String ownId;
-	public String feeReceiver;
-	public double feeAmount;
-	public String codFeeCurrency;
+	public String idOrderPartner;
+	public String statusOrderPartner;
 	public char codFeeCateg;
 	public String txtFeeCateg;
+	public String productTxt;
+	public String detailTxt;
 	public PayordemInfo payordemData;
 	public CusparInfo cusparData;
 	public SysparInfo sysparData;
@@ -30,7 +32,8 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OrdmoipInfo() {
-		feeAmount = 0;
+		codOwner = DefaultValue.character();
+		itemNum = DefaultValue.character();
 		codFeeCateg = DefaultValue.character();
 		payordemData = DefaultValue.object();
 		cusparData = DefaultValue.object();
@@ -112,6 +115,6 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		
 		
 		OrdmoipInfo obj = (OrdmoipInfo) o;		
-		return (super.isRecordEqual(this, obj));
+		return (super.isRecordEqual(payordemData, obj.payordemData));
 	}
 }

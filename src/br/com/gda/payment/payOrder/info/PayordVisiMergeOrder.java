@@ -39,8 +39,6 @@ final class PayordVisiMergeOrder implements InfoMergerVisitorV2<PayordInfo, Orde
 	
 	private PayordInfo merge(OrderInfo sourceOne, PayordInfo sourceTwo) {
 		sourceTwo.orderData = makeClone(sourceOne);
-		sourceTwo.feeAmount = sourceOne.feeService;
-		sourceTwo.codFeeCurrency = sourceOne.codCurr;
 		return sourceTwo;
 	}
 	

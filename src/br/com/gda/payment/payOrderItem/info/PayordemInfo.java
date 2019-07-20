@@ -16,9 +16,9 @@ import br.com.gda.info.InfoRecord;
 
 public final class PayordemInfo extends InfoRecord implements Cloneable, Comparable<PayordemInfo> {
 	public long codOwner;
-	public int itemNum;
 	public long codPayOrder;
-	public int codPayPartner;
+	public int itemNum;
+	public char codFeeCateg;
 	public long codStore;
 	public long codEmployee;
 	public long codMat;
@@ -28,6 +28,10 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public String codCurr;
 	public LocalDate date;
 	public LocalTime beginTime;
+	public String ownId;
+	public String idOrderPartner;
+	public String statusOrderPartner;	
+	public int codPayPartner;
 	public String itemReceiver;
 	public String codLanguage;
 	public String username;
@@ -40,6 +44,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public PayordemInfo() {
 		codOwner = DefaultValue.number();	
 		itemNum = DefaultValue.number();	
+		codFeeCateg = DefaultValue.character();
 		codPayOrder = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
 		codStore = DefaultValue.number();
@@ -123,6 +128,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
 		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
 		result = result * 31 + (int) (codMat 	  ^ (codMat 	 >>> 32));
+		result = result * 31 + (int) (itemNum 	  ^ (itemNum 	 >>> 32));
 		
 		if (date != null)
 			result = result * 31 + (int) date.hashCode();
@@ -150,6 +156,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 				codStore    == obj.codStore			&&
 				codEmployee == obj.codEmployee		&&
 				codMat    	== obj.codMat			&&
+				itemNum    	== obj.itemNum			&&
 				super.isDateEqual(date, obj.date)	&&
 				super.isTimeEqual(beginTime, obj.beginTime));
 	}
@@ -162,19 +169,19 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	
 		}
 
-		/*
-		if (itemNumber < arg0.itemNumber)
+		
+		if (itemNum < arg0.itemNum)
 			return -1;
 		
-		if (itemNumber > arg0.itemNumber)
+		if (itemNum > arg0.itemNum)
 			return 1;
 		
-		if (equals(arg0))*/
+		if (equals(arg0))
 			return 0;
 		
-		/*
+		
 		logException(new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE));
-		throw new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE);*/
+		throw new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE);
 	}
 	
 	

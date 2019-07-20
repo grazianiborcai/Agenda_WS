@@ -39,7 +39,6 @@ final class PayordVisiMergeSyspar implements InfoMergerVisitorV2<PayordInfo, Sys
 	
 	private PayordInfo merge(SysparInfo sourceOne, PayordInfo sourceTwo) {
 		sourceTwo.sysparData = makeClone(sourceOne);
-		sourceTwo.feeReceiver = sourceTwo.sysparData.idPayPartnerSystem;
 		return sourceTwo;
 	}
 	

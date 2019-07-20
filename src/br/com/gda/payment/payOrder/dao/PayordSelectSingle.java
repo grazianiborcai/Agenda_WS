@@ -111,9 +111,7 @@ public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
 			do {
 				PayordInfo dataInfo = new PayordInfo();
 				dataInfo.codOwner = stmtResult.getLong(PayordDbTableColumn.COL_COD_OWNER);
-				dataInfo.codPayOrder = stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_ORDER);
-				dataInfo.feeReceiver = stmtResult.getString(PayordDbTableColumn.COL_FEE_RECEIVER);
-				dataInfo.codFeeCurrency = stmtResult.getString(PayordDbTableColumn.COL_FEE_CURRENCY);				
+				dataInfo.codPayOrder = stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_ORDER);				
 				dataInfo.idOrderPartner = stmtResult.getString(PayordDbTableColumn.COL_ID_ORDER_PARTNER);
 				dataInfo.statusOrderPartner = stmtResult.getString(PayordDbTableColumn.COL_STATUS_ORDER_PARTNER);
 				dataInfo.urlSelf = stmtResult.getString(PayordDbTableColumn.COL_URL_SELF);
@@ -141,10 +139,6 @@ public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
 				Timestamp createdOn = stmtResult.getTimestamp(PayordDbTableColumn.COL_CREATED_ON);
 				if (lastChanged != null)
 					dataInfo.createdOn = createdOn .toLocalDateTime();
-				
-				stmtResult.getLong(PayordDbTableColumn.COL_FEE_AMOUNT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.feeAmount = stmtResult.getDouble(PayordDbTableColumn.COL_FEE_AMOUNT);
 				
 				
 				finalResult.add(dataInfo);

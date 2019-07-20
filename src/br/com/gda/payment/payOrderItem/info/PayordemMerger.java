@@ -31,4 +31,18 @@ public final class PayordemMerger {
 		InfoMerger<PayordemInfo, PayordemInfo> merger = new PayordemMergerToSelect();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
+	
+	
+	
+	public static PayordemInfo mergeToUpdate(PayordemInfo sourceOne, PayordemInfo sourceTwo) {
+		InfoMerger<PayordemInfo, PayordemInfo> merger = new PayordemMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PayordemInfo> mergeToUpdate(List<PayordemInfo> sourceOnes, List<PayordemInfo> sourceTwos) {
+		InfoMerger<PayordemInfo, PayordemInfo> merger = new PayordemMergerToUpdate();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 }

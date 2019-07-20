@@ -2,6 +2,7 @@ package br.com.gda.payment.partnerMoip.orderMoip.model.checker;
 
 import java.sql.Connection;
 
+import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
@@ -15,12 +16,12 @@ public final class OrdmoipCheckWriteFee extends ModelCheckerTemplateSimple<Ordmo
 	
 	
 	
-	@Override protected boolean checkHook(OrdmoipInfo recordInfo, Connection conn, String schemaName) {			
-		if ( recordInfo.feeReceiver 	== null	||			 
-			 recordInfo.codFeeCurrency 	== null	||
-			 recordInfo.txtFeeCateg 	== null	||
-			 recordInfo.feeAmount 		<  0		)	
-			
+	@Override protected boolean checkHook(OrdmoipInfo recordInfo, Connection conn, String schemaName) {		
+		if ( recordInfo.payordemData == null )	
+			return super.FAILED;
+		
+		
+		if ( recordInfo.payordemData.codFeeCateg == DefaultValue.character())				
 			return super.FAILED;
 		
 		

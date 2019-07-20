@@ -8,6 +8,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -114,9 +115,17 @@ public final class PayordemSelectSingle implements DaoStmt<PayordemInfo> {
 				PayordemInfo dataInfo = new PayordemInfo();
 				dataInfo.codOwner = stmtResult.getLong(PayordemDbTableColumn.COL_COD_OWNER);	
 				dataInfo.codPayOrder = stmtResult.getLong(PayordemDbTableColumn.COL_COD_PAY_ORDER);
+				dataInfo.itemNum = stmtResult.getInt(PayordemDbTableColumn.COL_ITEM_NUMBER);
 				dataInfo.quantity = stmtResult.getInt(PayordemDbTableColumn.COL_QUANTITY);
 				dataInfo.codCurr = stmtResult.getString(PayordemDbTableColumn.COL_COD_CURR);
 				dataInfo.itemReceiver = stmtResult.getString(PayordemDbTableColumn.COL_ITEM_RECEIVER);
+				dataInfo.ownId = stmtResult.getString(PayordemDbTableColumn.COL_OWN_ID);
+				dataInfo.idOrderPartner = stmtResult.getString(PayordemDbTableColumn.COL_ID_ORDER_PARTNER);
+				dataInfo.statusOrderPartner = stmtResult.getString(PayordemDbTableColumn.COL_STATUS_ORDER_PARTNER);
+				
+				stmtResult.getString(PayordemDbTableColumn.COL_COD_FEE_CATEG);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codFeeCateg = DaoFormatter.stringToChar(stmtResult.getString(PayordemDbTableColumn.COL_COD_FEE_CATEG));
 				
 				stmtResult.getLong(PayordemDbTableColumn.COL_COD_STORE);
 				if (stmtResult.wasNull() == NOT_NULL)

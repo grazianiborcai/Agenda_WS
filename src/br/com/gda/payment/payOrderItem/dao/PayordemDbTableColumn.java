@@ -12,13 +12,18 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = "begin_time";	
 	public static final String COL_COD_CURR = "cod_curr";
 	public static final String COL_COD_EMPLOYEE = "cod_employee";
+	public static final String COL_COD_FEE_CATEG = "cod_fee_categ";
 	public static final String COL_COD_MATERIAL = "cod_material";
 	public static final String COL_COD_PAY_ORDER = "cod_pay_order";	
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_STORE = "cod_store";		
 	public static final String COL_DATE = "date";		
+	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
+	public static final String COL_ITEM_NUMBER = "item_num";
 	public static final String COL_ITEM_RECEIVER = "item_receiver";
+	public static final String COL_OWN_ID = "own_id";	
 	public static final String COL_PRICE = "price";	
+	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";
 	public static final String COL_QUANTITY = "quantity";	
 	public static final String COL_TOTAL_ITEM = "total_item";
 	
@@ -64,8 +69,16 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_STORE;
+		oneColumn.columnName = COL_ITEM_NUMBER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_STORE;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
@@ -73,7 +86,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_MATERIAL;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
@@ -81,7 +94,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_EMPLOYEE;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
@@ -89,7 +102,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_DATE;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
@@ -97,7 +110,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_BEGIN_TIME;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
@@ -113,7 +126,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_PRICE;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
@@ -121,7 +134,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_TOTAL_ITEM;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
@@ -129,7 +142,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_CURR;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
@@ -137,10 +150,42 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_ITEM_RECEIVER;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_OWN_ID;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_ID_ORDER_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_STATUS_ORDER_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_FEE_CATEG;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

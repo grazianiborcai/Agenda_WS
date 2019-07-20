@@ -87,6 +87,15 @@ public final class DaoFormatter {
 	
 	
 	
+	public static char stringToChar(String str) {	
+		if (str == null)
+			return Character.MIN_VALUE;
+		
+		return str.charAt(0);
+	}	
+	
+	
+	
 	public static String dateTimeToString(LocalDateTime localDateTime) {	
 		if (localDateTime == null)
 			return null;

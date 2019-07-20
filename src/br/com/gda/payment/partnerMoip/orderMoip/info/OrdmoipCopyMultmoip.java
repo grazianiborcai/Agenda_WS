@@ -20,9 +20,8 @@ final class OrdmoipCopyMultmoip extends InfoCopierOneToManyTemplate<OrdmoipInfo,
 		for(PayordemInfo eachPayordem : source.payordems) {
 			OrdmoipInfo oneResult = new OrdmoipInfo();
 			
-			oneResult.feeReceiver = source.feeReceiver;
-			oneResult.feeAmount = source.feeAmount;
-			oneResult.codFeeCurrency = source.codFeeCurrency;
+			oneResult.codOwner = eachPayordem.codOwner;
+			oneResult.itemNum = eachPayordem.itemNum;
 			oneResult.codFeeCateg = source.codFeeCateg;
 			oneResult.txtFeeCateg = source.txtFeeCateg;
 			oneResult.payordemData = eachPayordem;

@@ -461,6 +461,8 @@ public final class SystemCode {
 	public static final int PAY_ORDER_DIF_CUSPAR_USER					= 4060;
 	public static final int PAY_ORDER_ALREADY_EXIST 					= 4061;
 	public static final int PAY_ORDER_NOT_FOUND 						= 4062;
+	public static final int PAY_ORDER_ITEM_IS_FEE 						= 4063;
+	public static final int PAY_ORDER_ITEM_IS_NOT_FEE 					= 4064;
 	
 	// Pay-Customer-Moip
 	public static final int PAY_CUS_MOIP_CREATION_ERROR 				= 4100;
@@ -513,6 +515,8 @@ public final class SystemCode {
 	
 	// Order Moip
 	public static final int ORDER_MOIP_MANDATORY_FIELD_EMPTY			= 4450;
+	public static final int ORDER_MOIP_ITEM_IS_FEE 						= 4451;
+	public static final int ORDER_MOIP_ITEM_IS_NOT_FEE 					= 4452;
 	
 	// Multi-Order Moip
 	public static final int MULT_MOIP_MANDATORY_FIELD_EMPTY				= 4500;
