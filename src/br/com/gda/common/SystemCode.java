@@ -517,7 +517,12 @@ public final class SystemCode {
 	public static final int ORDER_MOIP_MANDATORY_FIELD_EMPTY			= 4450;
 	public static final int ORDER_MOIP_ITEM_IS_FEE 						= 4451;
 	public static final int ORDER_MOIP_ITEM_IS_NOT_FEE 					= 4452;
+	public static final int ORDER_MOIP_CREATION_ERROR					= 4453;
 	
 	// Multi-Order Moip
 	public static final int MULT_MOIP_MANDATORY_FIELD_EMPTY				= 4500;
+	
+	// Pay-Order Moip
+	public static final int PAY_MOIP_MANDATORY_FIELD_EMPTY 				= 4550;
+	public static final int PAY_MOIP_CREATION_ERROR						= 4551;
 }

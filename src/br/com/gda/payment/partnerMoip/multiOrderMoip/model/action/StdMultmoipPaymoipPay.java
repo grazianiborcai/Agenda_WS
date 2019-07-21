@@ -1,20 +1,18 @@
 package br.com.gda.payment.partnerMoip.multiOrderMoip.model.action;
 
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionStdHelper;
-import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionStdHelperAction;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
-public final class StdMultmoipCreate implements ActionStd<MultmoipInfo> {
+public final class StdMultmoipPaymoipPay implements ActionStd<MultmoipInfo> {
 	private ActionStd<MultmoipInfo> actionHelper;	
 	
 	
-	public StdMultmoipCreate(DeciTreeOption<MultmoipInfo> option) {			
-		actionHelper = new ActionStdHelper<>(option.recordInfos, new VisiMultmoipCreate(), SystemMessage.ORDER_MOIP_CREATION_ERROR, SystemCode.ORDER_MOIP_CREATION_ERROR);
+	public StdMultmoipPaymoipPay(DeciTreeOption<MultmoipInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiMultmoipPaymoipPay(option.conn, option.schemaName));
 	}
 	
 	

@@ -28,6 +28,7 @@ final class MultmoipCopyPayord extends InfoCopierTemplate<MultmoipInfo, PayordIn
 		result.payordems = source.payordems;
 		result.cusparData = source.cusparData;
 		result.sysparData = source.sysparData;
+		result.crecardData = source.crecardData;
 		result.codFeeCateg = source.orderData.codFeeCateg;
 		result.txtFeeCateg = source.orderData.txtFeeCateg;
 		

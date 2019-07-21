@@ -6,6 +6,7 @@ import java.util.Map;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
+import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
@@ -26,6 +27,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public String amountTotalPartner;
 	public String amountCurrencyPartner;
 	public List<PayordemInfo> payordems;
+	public CrecardInfo crecardData;
 	public CusparInfo cusparData;
 	public SysparInfo sysparData;
 	public SetuparInfo setuparData;
@@ -43,6 +45,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		codFeeCateg = DefaultValue.character();
 		codLanguage = DefaultValue.language();
 		payordems = DefaultValue.list();
+		crecardData = DefaultValue.object();
 		cusparData = DefaultValue.object();
 		sysparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
@@ -70,6 +73,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
 		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
 		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
+		deepCopy.crecardData = cloneCrecard(deepCopy.crecardData);
 		deepCopy.ordmoips = cloneOrdmoips(deepCopy.ordmoips);
 		
 		return deepCopy;
@@ -117,6 +121,15 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 			return null;
 		
 		return (SetuparInfo) recordInfo.clone();
+	}		
+	
+	
+	
+	private CrecardInfo cloneCrecard(CrecardInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (CrecardInfo) recordInfo.clone();
 	}		
 	
 	

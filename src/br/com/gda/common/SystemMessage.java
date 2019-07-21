@@ -656,12 +656,19 @@ public final class SystemMessage {
 	
 	
 	// Order Moip
+	public static final String ORDER_MOIP_CREATION_ERROR = "An error occurred when trying to create your order with financial company";
 	public static final String ORDER_MOIP_ITEM_IS_FEE = "Order Moip: Item is a fee";
 	public static final String ORDER_MOIP_ITEM_IS_NOT_FEE = "Order Moip: Item is not a fee";
-	public static final String ORDER_MOIP_MANDATORY_FIELD_EMPTY = "Order Moip: Mandatory field is empty";
+	public static final String ORDER_MOIP_MANDATORY_FIELD_EMPTY = "Order Moip: Mandatory field is empty";	
 	
 	
 	
 	// Multi-Order Moip
 	public static final String MULT_MOIP_MANDATORY_FIELD_EMPTY = "Multi-Order Moip: Mandatory field is empty";
+	
+	
+	
+	// Pay-Order Moip
+	public static final String PAY_MOIP_MANDATORY_FIELD_EMPTY = "Pay-Order Moip: Mandatory field is empty";
+	public static final String PAY_MOIP_CREATION_ERROR = "An error occurred when trying to pay your order with financial company";
 }
