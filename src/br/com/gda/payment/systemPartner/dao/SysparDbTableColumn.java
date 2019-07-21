@@ -12,6 +12,7 @@ public final class SysparDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_ID_PAY_PARTNER_APP = "id_pay_partner_app";	
 	public static final String COL_ID_PAY_PARTNER_SYSTEM = "id_pay_partner_system";	
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
+	public static final String COL_PAY_PARTNER_NAME = "pay_partner_name";
 	public static final String COL_URL_RETURN = "url_return";
 	
 	
@@ -65,6 +66,14 @@ public final class SysparDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_URL_RETURN;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_PAY_PARTNER_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
