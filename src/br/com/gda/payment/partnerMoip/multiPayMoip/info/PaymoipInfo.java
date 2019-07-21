@@ -13,12 +13,11 @@ import br.com.moip.models.Setup;
 
 public final class PaymoipInfo extends InfoRecord implements Cloneable {
 	public String idOrderPartner;
+	public String cardCvc;
 	public CusparInfo cusparData;
 	public CrecardInfo crecardData;
 	public SysparInfo sysparData;
 	public SetuparInfo setuparData;
-	public Map<String, Object> taxDocument;			//TODO: apagar
-	public Map<String, Object> phone;				//TODO: apagar
 	public Map<String, Object> creditCard;
 	public Map<String, Object> fundingInstrument;
 	public Map<String, Object> multipayment;

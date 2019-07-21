@@ -29,8 +29,8 @@ public final class PaymoipSetterCard implements InfoSetter<PaymoipInfo> {
 	
 	private PaymoipInfo setCard(PaymoipInfo recordInfo) {		
 		recordInfo.creditCard = payloadFactory(
-			    value("id", recordInfo.crecardData.creditCardId),
-			    value("cvc", "123")	//TODO: receber por parametro
+			    value("id" , recordInfo.crecardData.creditCardId),
+			    value("cvc", recordInfo.cardCvc)
 			);
 		
 		return recordInfo;

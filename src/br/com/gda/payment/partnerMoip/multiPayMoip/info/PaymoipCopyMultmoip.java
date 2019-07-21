@@ -15,6 +15,7 @@ final class PaymoipCopyMultmoip extends InfoCopierTemplate<PaymoipInfo, Multmoip
 		PaymoipInfo result = new PaymoipInfo();
 		
 		result.idOrderPartner = source.idOrderPartner;
+		result.cardCvc = source.cardCvc;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
 		result.cusparData = source.cusparData;

@@ -16,6 +16,7 @@ public final class PaymoipCheckPay extends ModelCheckerTemplateSimple<PaymoipInf
 	
 	@Override protected boolean checkHook(PaymoipInfo recordInfo, Connection conn, String schemaName) {			
 		if ( recordInfo.idOrderPartner 	== null	||
+			 recordInfo.cardCvc 		== null ||
 			 recordInfo.cusparData 		== null ||
 			 recordInfo.setuparData		== null		)				
 			
