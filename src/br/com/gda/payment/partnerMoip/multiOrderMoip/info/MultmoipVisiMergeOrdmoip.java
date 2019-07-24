@@ -11,9 +11,7 @@ final class MultmoipVisiMergeOrdmoip implements InfoMergerVisitorV2<MultmoipInfo
 
 	@Override public MultmoipInfo writeRecord(OrdmoipInfo sourceOne, MultmoipInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
-		
-		MultmoipInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		return merge(sourceOne, sourceTwo);
 	}
 	
 	
@@ -21,18 +19,6 @@ final class MultmoipVisiMergeOrdmoip implements InfoMergerVisitorV2<MultmoipInfo
 	private void checkArgument(OrdmoipInfo sourceOne, MultmoipInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MultmoipInfo makeClone(MultmoipInfo recordInfo) {
-		try {
-			return (MultmoipInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
 	}
 	
 	
