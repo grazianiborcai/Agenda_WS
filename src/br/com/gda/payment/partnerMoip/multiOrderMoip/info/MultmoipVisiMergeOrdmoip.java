@@ -38,7 +38,19 @@ final class MultmoipVisiMergeOrdmoip implements InfoMergerVisitorV2<MultmoipInfo
 	
 	
 	private MultmoipInfo merge(OrdmoipInfo sourceOne, MultmoipInfo sourceTwo) {
+		if(sourceTwo.ordmoips.contains(sourceOne)) 
+			removeElement(sourceOne, sourceTwo);		
+		
 		sourceTwo.ordmoips.add(makeClone(sourceOne));
+		return sourceTwo;
+	}
+	
+	
+	
+	private MultmoipInfo removeElement(OrdmoipInfo sourceOne, MultmoipInfo sourceTwo) {
+		int idx = sourceTwo.ordmoips.indexOf(sourceOne);
+		sourceTwo.ordmoips.remove(idx);
+		
 		return sourceTwo;
 	}
 	

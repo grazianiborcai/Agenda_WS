@@ -7,6 +7,7 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
+import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipMerger;
 import br.com.gda.payment.partnerMoip.multiPayMoip.info.PaymoipCopier;
 import br.com.gda.payment.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.gda.payment.partnerMoip.multiPayMoip.model.decisionTree.RootPaymoipPay;
@@ -31,7 +32,6 @@ final class VisiMultmoipPaymoipPay extends ActionVisitorTemplateAction<MultmoipI
 	
 	
 	@Override protected List<MultmoipInfo> toBaseClassHook(List<MultmoipInfo> baseInfos, List<PaymoipInfo> results) {
-		return baseInfos;
-		//return MultmoipMerger.mergeWithOrdmoip(results, baseInfos);
+		return MultmoipMerger.mergeWithPaymoip(results, baseInfos);
 	}
 }

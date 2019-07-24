@@ -14,6 +14,8 @@ import br.com.moip.models.Setup;
 public final class PaymoipInfo extends InfoRecord implements Cloneable {
 	public String idOrderPartner;
 	public String cardCvc;
+	public String idPaymentPartner;
+	public String statusPaymentPartner;
 	public CusparInfo cusparData;
 	public CrecardInfo crecardData;
 	public SysparInfo sysparData;

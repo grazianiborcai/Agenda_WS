@@ -12,8 +12,8 @@ import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipCopier;
 import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.gda.payment.partnerMoip.orderMoip.model.decsionTree.RootOrdmoipPlace;
 
-final class VisiMultmoipPlaceOrdmoip extends ActionVisitorTemplateAction<MultmoipInfo, OrdmoipInfo> {
-	public VisiMultmoipPlaceOrdmoip(Connection conn, String schemaName) {
+final class VisiMultmoipOrdmoipPlace extends ActionVisitorTemplateAction<MultmoipInfo, OrdmoipInfo> {
+	public VisiMultmoipOrdmoipPlace(Connection conn, String schemaName) {
 		super(conn, schemaName, MultmoipInfo.class, OrdmoipInfo.class);
 	}
 	
@@ -26,7 +26,7 @@ final class VisiMultmoipPlaceOrdmoip extends ActionVisitorTemplateAction<Multmoi
 	
 	
 	@Override protected List<OrdmoipInfo> toActionClassHook(List<MultmoipInfo> baseInfos) {
-		return OrdmoipCopier.copyFromMultmoip(baseInfos);
+		return OrdmoipCopier.copyFromMultmoipToPlace(baseInfos);
 	}
 	
 	

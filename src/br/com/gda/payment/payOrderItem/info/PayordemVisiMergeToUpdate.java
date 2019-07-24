@@ -26,6 +26,8 @@ final class PayordemVisiMergeToUpdate implements InfoMergerVisitorV2<PayordemInf
 		PayordemInfo result = makeClone(sourceOne);		
 		result.idOrderPartner = sourceTwo.idOrderPartner;
 		result.statusOrderPartner = sourceTwo.statusOrderPartner;	
+		result.idPaymentPartner = sourceTwo.idPaymentPartner;
+		result.statusPaymentPartner = sourceTwo.statusPaymentPartner;	
 		result.codPayPartner = sourceTwo.codPayPartner;
 		result.ownId = sourceTwo.ownId;
 		result.username = sourceTwo.username;

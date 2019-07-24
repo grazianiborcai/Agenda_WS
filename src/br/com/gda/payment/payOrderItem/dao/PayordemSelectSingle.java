@@ -122,6 +122,8 @@ public final class PayordemSelectSingle implements DaoStmt<PayordemInfo> {
 				dataInfo.ownId = stmtResult.getString(PayordemDbTableColumn.COL_OWN_ID);
 				dataInfo.idOrderPartner = stmtResult.getString(PayordemDbTableColumn.COL_ID_ORDER_PARTNER);
 				dataInfo.statusOrderPartner = stmtResult.getString(PayordemDbTableColumn.COL_STATUS_ORDER_PARTNER);
+				dataInfo.idPaymentPartner = stmtResult.getString(PayordemDbTableColumn.COL_ID_PAYMENT_PARTNER);
+				dataInfo.statusPaymentPartner = stmtResult.getString(PayordemDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
 				
 				stmtResult.getString(PayordemDbTableColumn.COL_COD_FEE_CATEG);
 				if (stmtResult.wasNull() == NOT_NULL)

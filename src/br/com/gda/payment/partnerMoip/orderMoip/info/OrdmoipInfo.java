@@ -7,7 +7,9 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
+import br.com.gda.payment.setupPartner.info.SetuparInfo;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
+import br.com.moip.models.Setup;
 
 public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -15,6 +17,8 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public String ownId;
 	public String idOrderPartner;
 	public String statusOrderPartner;
+	public String idPaymentPartner;
+	public String statusPaymentPartner;
 	public char codFeeCateg;
 	public String txtFeeCateg;
 	public String productTxt;
@@ -22,6 +26,7 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public PayordemInfo payordemData;
 	public CusparInfo cusparData;
 	public SysparInfo sysparData;
+	public SetuparInfo setuparData;
 	public Map<String, Object> subtotal;
 	public Map<String, Object> amount;
 	public List<Map<String, Object>> products;
@@ -29,6 +34,10 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public List<Map<String, Object>> receivers;
 	public Map<String, Object> customer;
 	public Map<String, Object> order;
+	public Map<String, Object> response;
+	public Setup setup;
+	public String codLanguage;
+	public String username;
 	
 	
 	public OrdmoipInfo() {
@@ -38,8 +47,10 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		payordemData = DefaultValue.object();
 		cusparData = DefaultValue.object();
 		sysparData = DefaultValue.object();
+		setuparData = DefaultValue.object();
 		products = DefaultValue.list();
 		receivers = DefaultValue.list();
+		codLanguage = DefaultValue.language();
 	}
 	
 	
@@ -61,6 +72,7 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		deepCopy.payordemData = clonePayordem(deepCopy.payordemData);
 		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
 		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
+		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
 		
 		return deepCopy;
 	}
@@ -91,6 +103,15 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		
 		return (SysparInfo) recordInfo.clone();
 	}
+	
+	
+	
+	private SetuparInfo cloneSetupar(SetuparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (SetuparInfo) recordInfo.clone();
+	}		
 	
 	
 	

@@ -31,6 +31,8 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public String ownId;
 	public String idOrderPartner;
 	public String statusOrderPartner;	
+	public String idPaymentPartner;
+	public String statusPaymentPartner;
 	public int codPayPartner;
 	public String itemReceiver;
 	public String codLanguage;

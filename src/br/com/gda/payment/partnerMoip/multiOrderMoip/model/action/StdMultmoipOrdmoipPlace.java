@@ -7,12 +7,12 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
-public final class StdMultmoipPlaceOrdmoip implements ActionStd<MultmoipInfo> {
+public final class StdMultmoipOrdmoipPlace implements ActionStd<MultmoipInfo> {
 	private ActionStd<MultmoipInfo> actionHelper;	
 	
 	
-	public StdMultmoipPlaceOrdmoip(DeciTreeOption<MultmoipInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiMultmoipPlaceOrdmoip(option.conn, option.schemaName));
+	public StdMultmoipOrdmoipPlace(DeciTreeOption<MultmoipInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiMultmoipOrdmoipPlace(option.conn, option.schemaName));
 	}
 	
 	

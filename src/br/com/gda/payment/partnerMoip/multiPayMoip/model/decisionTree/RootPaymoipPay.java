@@ -13,6 +13,7 @@ import br.com.gda.payment.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.gda.payment.partnerMoip.multiPayMoip.model.action.LazyPaymoipCard;
 import br.com.gda.payment.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforceFunding;
 import br.com.gda.payment.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforcePayment;
+import br.com.gda.payment.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforceResponseAttr;
 import br.com.gda.payment.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforceSetup;
 import br.com.gda.payment.partnerMoip.multiPayMoip.model.action.StdPaymoipEnforceCard;
 import br.com.gda.payment.partnerMoip.multiPayMoip.model.check.PaymoipCheckCrecardData;
@@ -53,11 +54,13 @@ public final class RootPaymoipPay extends DeciTreeWriteTemplate<PaymoipInfo> {
 		ActionLazy<PaymoipInfo> enforcePayment = new LazyPaymoipEnforcePayment(option.conn, option.schemaName);
 		ActionLazy<PaymoipInfo> enforceSetup = new LazyPaymoipEnforceSetup(option.conn, option.schemaName);
 		ActionLazy<PaymoipInfo> payWithCredicard = new LazyPaymoipCard(option.conn, option.schemaName);
+		ActionLazy<PaymoipInfo> enforceReponseAttr = new LazyPaymoipEnforceResponseAttr(option.conn, option.schemaName);
 		
 		enforceCard.addPostAction(enforceFunding);
 		enforceFunding.addPostAction(enforcePayment);
 		enforcePayment.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(payWithCredicard);
+		payWithCredicard.addPostAction(enforceReponseAttr);
 		
 		actions.add(enforceCard);		
 		return actions;

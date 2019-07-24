@@ -6,9 +6,9 @@ import br.com.gda.info.InfoCopierOneToManyTemplate;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 
-final class OrdmoipCopyMultmoip extends InfoCopierOneToManyTemplate<OrdmoipInfo, MultmoipInfo>{
+final class OrdmoipCopyMultmoipToPlace extends InfoCopierOneToManyTemplate<OrdmoipInfo, MultmoipInfo>{
 	
-	public OrdmoipCopyMultmoip() {
+	public OrdmoipCopyMultmoipToPlace() {
 		super();
 	}
 	

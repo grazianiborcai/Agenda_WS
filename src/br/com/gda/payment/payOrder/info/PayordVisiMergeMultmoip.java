@@ -41,6 +41,8 @@ final class PayordVisiMergeMultmoip implements InfoMergerVisitorV2<PayordInfo, M
 		sourceTwo.ordmoips = sourceOne.ordmoips;
 		sourceTwo.idOrderPartner = sourceOne.idOrderPartner;
 		sourceTwo.statusOrderPartner = sourceOne.statusOrderPartner;
+		sourceTwo.idPaymentPartner = sourceOne.idPaymentPartner;
+		sourceTwo.statusPaymentPartner = sourceOne.statusPaymentPartner;
 		sourceTwo.amountTotalPartner = sourceOne.amountTotalPartner;
 		sourceTwo.amountCurrencyPartner = sourceOne.amountCurrencyPartner;		
 		sourceTwo.urlSelf = sourceOne.urlSelf;		

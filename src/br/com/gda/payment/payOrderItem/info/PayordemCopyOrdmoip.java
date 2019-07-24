@@ -16,6 +16,8 @@ final class PayordemCopyOrdmoip extends InfoCopierTemplate<PayordemInfo, Ordmoip
 		oneResult.ownId = source.ownId;
 		oneResult.idOrderPartner = source.idOrderPartner;
 		oneResult.statusOrderPartner = source.statusOrderPartner;	
+		oneResult.idPaymentPartner = source.idPaymentPartner;
+		oneResult.statusPaymentPartner = source.statusPaymentPartner;	
 		
 		return oneResult;
 	}

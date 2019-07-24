@@ -7,20 +7,16 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class OrdmoipCheckCusparData extends ModelCheckerTemplateSimple<OrdmoipInfo> {
+public final class OrdmoipCheckRead extends ModelCheckerTemplateSimple<OrdmoipInfo> {
 
-	public OrdmoipCheckCusparData() {
+	public OrdmoipCheckRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(OrdmoipInfo recordInfo, Connection conn, String schemaName) {			
-		if ( recordInfo.cusparData == null )	
-			return super.FAILED;
-		
-		if ( recordInfo.cusparData.customerId 	 == null ||
-			 recordInfo.cusparData.codPayPartner <= 0		)	
+	@Override protected boolean checkHook(OrdmoipInfo recordInfo, Connection conn, String schemaName) {	
+		if ( recordInfo.idOrderPartner == null )	
 			return super.FAILED;
 		
 		

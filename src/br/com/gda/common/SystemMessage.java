@@ -660,6 +660,7 @@ public final class SystemMessage {
 	public static final String ORDER_MOIP_ITEM_IS_FEE = "Order Moip: Item is a fee";
 	public static final String ORDER_MOIP_ITEM_IS_NOT_FEE = "Order Moip: Item is not a fee";
 	public static final String ORDER_MOIP_MANDATORY_FIELD_EMPTY = "Order Moip: Mandatory field is empty";	
+	public static final String ORDER_MOIP_READ_ERROR = "An error occurred when trying to read your order with financial company";
 	
 	
 	

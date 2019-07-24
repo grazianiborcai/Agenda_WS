@@ -16,7 +16,7 @@ import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEn
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceResponseOrdmoip;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceSetup;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipMergeSetupar;
-import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.StdMultmoipPlaceOrdmoip;
+import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.StdMultmoipOrdmoipPlace;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.checker.MultmoipCheckPay;
 
 public final class NodeMultmoipPlace extends DeciTreeWriteTemplate<MultmoipInfo> {
@@ -42,7 +42,7 @@ public final class NodeMultmoipPlace extends DeciTreeWriteTemplate<MultmoipInfo>
 	@Override protected List<ActionStd<MultmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<MultmoipInfo> option) {
 		List<ActionStd<MultmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<MultmoipInfo> placeOrdmoip = new StdMultmoipPlaceOrdmoip(option);
+		ActionStd<MultmoipInfo> placeOrdmoip = new StdMultmoipOrdmoipPlace(option);
 		ActionLazy<MultmoipInfo> enforceMultiorder = new LazyMultmoipEnforceMultiorder(option.conn, option.schemaName);
 		ActionLazy<MultmoipInfo> mergeSetupar = new LazyMultmoipMergeSetupar(option.conn, option.schemaName);
 		ActionLazy<MultmoipInfo> enforceSetup = new LazyMultmoipEnforceSetup(option.conn, option.schemaName);		

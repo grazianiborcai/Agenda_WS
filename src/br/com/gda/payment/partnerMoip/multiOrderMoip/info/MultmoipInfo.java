@@ -21,6 +21,8 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public String txtFeeCateg;	
 	public String idOrderPartner;
 	public String statusOrderPartner;
+	public String idPaymentPartner;
+	public String statusPaymentPartner;
 	public String urlSelf;
 	public String urlPayCard;
 	public String urlPayBoleto;

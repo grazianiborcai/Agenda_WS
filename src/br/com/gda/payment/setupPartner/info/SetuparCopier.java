@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
+import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 public final class SetuparCopier {	
 	public static SetuparInfo copyFromCremoip(CremoipInfo source) {
@@ -33,4 +34,18 @@ public final class SetuparCopier {
 		InfoCopier<SetuparInfo, MultmoipInfo> copier = new SetuparCopyMultmoip();
 		return copier.makeCopy(sources);
 	}	
+	
+	
+	
+	public static SetuparInfo copyFromOrdmoip(OrdmoipInfo source) {
+		InfoCopier<SetuparInfo, OrdmoipInfo> copier = new SetuparCopyOrdmoip();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<SetuparInfo> copyFromOrdmoip(List<OrdmoipInfo> sources) {
+		InfoCopier<SetuparInfo, OrdmoipInfo> copier = new SetuparCopyOrdmoip();
+		return copier.makeCopy(sources);
+	}		
 }

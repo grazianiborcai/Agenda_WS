@@ -128,6 +128,8 @@ public class PayordemInsertSingle implements DaoStmt<PayordemInfo> {
 			stmt.setString(i++, recordInfo.idOrderPartner);
 			stmt.setString(i++, recordInfo.statusOrderPartner);
 			stmt.setString(i++, DaoFormatter.charToString(recordInfo.codFeeCateg));
+			stmt.setString(i++, recordInfo.idPaymentPartner);
+			stmt.setString(i++, recordInfo.statusPaymentPartner);
 			
 			return stmt;
 		}		

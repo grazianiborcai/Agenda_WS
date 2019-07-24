@@ -518,6 +518,7 @@ public final class SystemCode {
 	public static final int ORDER_MOIP_ITEM_IS_FEE 						= 4451;
 	public static final int ORDER_MOIP_ITEM_IS_NOT_FEE 					= 4452;
 	public static final int ORDER_MOIP_CREATION_ERROR					= 4453;
+	public static final int ORDER_MOIP_READ_ERROR						= 4454;
 	
 	// Multi-Order Moip
 	public static final int MULT_MOIP_MANDATORY_FIELD_EMPTY				= 4500;

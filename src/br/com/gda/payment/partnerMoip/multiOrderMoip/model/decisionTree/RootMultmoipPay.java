@@ -10,6 +10,7 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
+import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipOrdmoipRead;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipPaymoipPay;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.checker.MultmoipCheckPay;
 
@@ -38,8 +39,10 @@ public final class RootMultmoipPay extends DeciTreeWriteTemplate<MultmoipInfo> {
 		
 		ActionStd<MultmoipInfo> nodePlace = new NodeMultmoipPlace(option).toAction();
 		ActionLazy<MultmoipInfo> payOrder = new LazyMultmoipPaymoipPay(option.conn, option.schemaName);
+		ActionLazy<MultmoipInfo> readOrder = new LazyMultmoipOrdmoipRead(option.conn, option.schemaName);
 		
 		nodePlace.addPostAction(payOrder);
+		payOrder.addPostAction(readOrder);
 		
 		actions.add(nodePlace);		
 		return actions;
