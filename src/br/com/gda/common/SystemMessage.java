@@ -672,4 +672,10 @@ public final class SystemMessage {
 	// Pay-Order Moip
 	public static final String PAY_MOIP_MANDATORY_FIELD_EMPTY = "Pay-Order Moip: Mandatory field is empty";
 	public static final String PAY_MOIP_CREATION_ERROR = "An error occurred when trying to pay your order with financial company";
+	
+	
+	
+	// Pay-Order Status
+	public static final String PAY_STATUS_ITEM_MANDATORY_FIELD_EMPTY = "Pay-Order-Status-Item: Mandatory field is empty";
+	public static final String PAY_STATUS_NOT_CHANGEABLE = "Pay-Order-Status: Status can't be changed";
 }

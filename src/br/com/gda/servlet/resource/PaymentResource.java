@@ -22,11 +22,14 @@ import br.com.gda.payment.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.gda.payment.partnerMoip.accessMoip.model.AccemoipModelUrl;
 import br.com.gda.payment.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.gda.payment.partnerMoip.permissionMoip.model.PeresmoipModelCode;
+import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.PayordModelPay;
+import br.com.gda.payment.payOrder.model.PayordModelSelect;
 
 @Path("/Payment")
 public final class PaymentResource {
 	private static final String PAY_ORDER = "/payOrder";
+	private static final String SELECT_PAY_ORDER = "/selectPayOrder";
 	private static final String GRANT_MOIP = "/grantMoip";
 	private static final String PERMISSION_CODE_MOIP = "/permissionCodeMoip";
 	private static final String INSERT_CREDIT_CARD = "/insertCreditCard";
@@ -43,6 +46,30 @@ public final class PaymentResource {
 		model.executeRequest();
 		return model.getResponse();	
 	}
+	
+	
+	
+	@GET
+	@Path(SELECT_PAY_ORDER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPayOrder(@HeaderParam("TOKEN_OWNER") 		@DefaultValue("-1") long codOwner,
+								   @HeaderParam("codOrder")  		@DefaultValue("-1") long codOrder,
+								   @HeaderParam("codPayOrder")  	@DefaultValue("-1") long codPayOrder,
+								   @HeaderParam("TOKEN_USERNAME") 	String username,
+								   @HeaderParam("codLanguage") 		@DefaultValue("EN") String codLanguage) {
+
+		PayordInfo recordInfo = new PayordInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codOrder = codOrder;
+		recordInfo.codPayOrder = codPayOrder;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
+		
+		
+		Model model = new PayordModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}		
 	
 	
 	

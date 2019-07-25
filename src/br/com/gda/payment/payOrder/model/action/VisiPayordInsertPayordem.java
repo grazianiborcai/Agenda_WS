@@ -27,7 +27,7 @@ final class VisiPayordInsertPayordem extends ActionVisitorTemplateAction<PayordI
 	
 	
 	@Override protected List<PayordemInfo> toActionClassHook(List<PayordInfo> baseInfos) {
-		return PayordemCopier.copyFromPayord(baseInfos);
+		return PayordemCopier.copyFromPayordToWrite(baseInfos);
 	}
 	
 	

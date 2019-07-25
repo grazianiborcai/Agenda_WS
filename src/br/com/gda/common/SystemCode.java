@@ -526,4 +526,8 @@ public final class SystemCode {
 	// Pay-Order Moip
 	public static final int PAY_MOIP_MANDATORY_FIELD_EMPTY 				= 4550;
 	public static final int PAY_MOIP_CREATION_ERROR						= 4551;
+	
+	// Pay-Order Status
+	public static final int PAY_STATUS_ITEM_MANDATORY_FIELD_EMPTY		= 4600;
+	public static final int PAY_STATUS_NOT_CHANGEABLE					= 4601;
 }
