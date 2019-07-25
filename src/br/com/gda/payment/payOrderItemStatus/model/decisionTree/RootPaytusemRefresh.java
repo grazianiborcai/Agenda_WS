@@ -13,7 +13,7 @@ import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrderItemStatus.info.PaytusemInfo;
 import br.com.gda.payment.payOrderItemStatus.model.action.LazyPaytusemNodeRefresh;
 import br.com.gda.payment.payOrderItemStatus.model.checker.PaytusemCheckOwner;
-import br.com.gda.payment.payOrderItemStatus.model.checker.PaytusemCheckRead;
+import br.com.gda.payment.payOrderItemStatus.model.checker.PaytusemCheckRefresh;
 
 public final class RootPaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInfo> {
 	
@@ -30,7 +30,7 @@ public final class RootPaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInf
 		ModelChecker<PaytusemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new PaytusemCheckRead();
+		checker = new PaytusemCheckRefresh();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

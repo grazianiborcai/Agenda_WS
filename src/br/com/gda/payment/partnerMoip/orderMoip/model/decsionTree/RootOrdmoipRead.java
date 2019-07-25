@@ -46,7 +46,7 @@ public final class RootOrdmoipRead extends DeciTreeWriteTemplate<OrdmoipInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new OrdmoipCheckCuspar(checkerOption);
 		queue.add(checker);
-
+		//TODO: verificar partner = MOIP
 		return new ModelCheckerQueue<>(queue);
 	}
 	

@@ -5,11 +5,11 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
-import br.com.gda.payment.payOrderItem.info.PayordemInfo;
+import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-final class PaytusemVisiMergePayordem implements InfoMergerVisitorV2<PaytusemInfo, PayordemInfo> {
+final class PaytusemVisiMergeOrdmoip implements InfoMergerVisitorV2<PaytusemInfo, OrdmoipInfo> {
 
-	@Override public PaytusemInfo writeRecord(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
+	@Override public PaytusemInfo writeRecord(OrdmoipInfo sourceOne, PaytusemInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		PaytusemInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class PaytusemVisiMergePayordem implements InfoMergerVisitorV2<PaytusemInf
 	
 	
 	
-	private void checkArgument(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
+	private void checkArgument(OrdmoipInfo sourceOne, PaytusemInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,15 +37,21 @@ final class PaytusemVisiMergePayordem implements InfoMergerVisitorV2<PaytusemInf
 	
 	
 	
-	private PaytusemInfo merge(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
-		return PaytusemInfo.copyFrom(sourceOne);
+	private PaytusemInfo merge(OrdmoipInfo sourceOne, PaytusemInfo sourceTwo) {
+		sourceTwo.statusOrderPartner = sourceOne.statusOrderPartner;	
+		sourceTwo.idPaymentPartner = sourceOne.idPaymentPartner;
+		sourceTwo.statusPaymentPartner = sourceOne.statusPaymentPartner;
+		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner 	&&
-				sourceOne.codPayOrder 	== sourceTwo.codPayOrder	);
+	@Override public boolean shouldWrite(OrdmoipInfo sourceOne, PaytusemInfo sourceTwo) {
+		if (sourceOne.idOrderPartner == null ||
+			sourceTwo.idOrderPartner == null	)
+			return false;
+		
+		return (sourceOne.idOrderPartner.equals(sourceTwo.idOrderPartner));
 	}
 	
 	

@@ -11,15 +11,17 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
-import br.com.gda.payment.payOrder.model.action.LazyPayordMergePayordem;
-import br.com.gda.payment.payOrder.model.action.StdPayordMergeToSelect;
+import br.com.gda.payment.payOrder.model.action.LazyPayordFilterLatest;
+import br.com.gda.payment.payOrder.model.action.LazyPayordMergeToSelect;
+import br.com.gda.payment.payOrder.model.action.LazyPayordRootSelect;
+import br.com.gda.payment.payOrder.model.action.StdPayordEnforceOrderKey;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckLangu;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckLatest;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckUsername;
-import br.com.gda.payment.payOrder.model.checker.PayordCheckRead;
 
-public final class RootPayordSelect extends DeciTreeReadTemplate<PayordInfo> {
+public final class RootPayordLatest extends DeciTreeReadTemplate<PayordInfo> {
 	
-	public RootPayordSelect(DeciTreeOption<PayordInfo> option) {
+	public RootPayordLatest(DeciTreeOption<PayordInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +34,7 @@ public final class RootPayordSelect extends DeciTreeReadTemplate<PayordInfo> {
 		ModelChecker<PayordInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new PayordCheckRead();
+		checker = new PayordCheckLatest();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -57,12 +59,16 @@ public final class RootPayordSelect extends DeciTreeReadTemplate<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PayordInfo> mergeToSelect = new StdPayordMergeToSelect(option);	
-		ActionLazy<PayordInfo> mergePayordem = new LazyPayordMergePayordem(option.conn, option.schemaName);
+		ActionStd<PayordInfo> enforceOrderKey = new StdPayordEnforceOrderKey(option);	
+		ActionLazy<PayordInfo> mergeToSelect = new LazyPayordMergeToSelect(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> filterLatest = new LazyPayordFilterLatest(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> rootSelect = new LazyPayordRootSelect(option.conn, option.schemaName);
 		
-		mergeToSelect.addPostAction(mergePayordem);
+		enforceOrderKey.addPostAction(mergeToSelect);
+		mergeToSelect.addPostAction(filterLatest);
+		filterLatest.addPostAction(rootSelect);
 		
-		actions.add(mergeToSelect);		
+		actions.add(enforceOrderKey);		
 		return actions;
 	}
 }

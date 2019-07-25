@@ -2,20 +2,20 @@ package br.com.gda.payment.payOrder.info;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
-import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 
-public final class PayordSetterItemNum_ implements InfoSetter<PayordInfo> {
+public final class PayordSetterOrderKey implements InfoSetter<PayordInfo> {
 	
 	public PayordInfo setAttr(PayordInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		int itemNum = 1;
+		PayordInfo result = new PayordInfo();		
 		
-		for(PayordemInfo eachItem : recordInfo.payordems) {
-			eachItem.itemNum = itemNum++;
-		}		
+		result.codOwner = recordInfo.codOwner;
+		result.codOrder = recordInfo.codOrder;
+		result.codLanguage = recordInfo.codLanguage;
+		result.username = recordInfo.username;
 
-		return recordInfo;
+		return result;
 	}
 	
 	

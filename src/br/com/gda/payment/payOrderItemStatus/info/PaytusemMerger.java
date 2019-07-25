@@ -3,6 +3,7 @@ package br.com.gda.payment.payOrderItemStatus.info;
 import java.util.List;
 
 import br.com.gda.info.InfoMerger;
+import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 
 public final class PaytusemMerger {	
@@ -17,4 +18,18 @@ public final class PaytusemMerger {
 		InfoMerger<PaytusemInfo, PayordemInfo> merger = new PaytusemMergerPayordem();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}		
+	
+	
+	
+	public static PaytusemInfo mergeWithOrdmoip(OrdmoipInfo sourceOne, PaytusemInfo sourceTwo) {
+		InfoMerger<PaytusemInfo, OrdmoipInfo> merger = new PaytusemMergerOrdmoip();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PaytusemInfo> mergeWithOrdmoip(List<OrdmoipInfo> sourceOnes, List<PaytusemInfo> sourceTwos) {
+		InfoMerger<PaytusemInfo, OrdmoipInfo> merger = new PaytusemMergerOrdmoip();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 }

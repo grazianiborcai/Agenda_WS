@@ -7,9 +7,9 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.payment.payOrderItemStatus.info.PaytusemInfo;
 
-public final class PaytusemCheckRead extends ModelCheckerTemplateSimple<PaytusemInfo> {
+public final class PaytusemCheckRefresh extends ModelCheckerTemplateSimple<PaytusemInfo> {
 
-	public PaytusemCheckRead() {
+	public PaytusemCheckRefresh() {
 		super();
 	}
 	
@@ -19,6 +19,7 @@ public final class PaytusemCheckRead extends ModelCheckerTemplateSimple<Paytusem
 		if ( recordInfo.codOwner    	<= 0	||
 			 recordInfo.codPayOrder    	<= 0	||
 			 recordInfo.idOrderPartner	== null	||
+			 recordInfo.cusparData  	== null	||
 			 recordInfo.codLanguage		== null	||
 			 recordInfo.username    	== null		)			
 			

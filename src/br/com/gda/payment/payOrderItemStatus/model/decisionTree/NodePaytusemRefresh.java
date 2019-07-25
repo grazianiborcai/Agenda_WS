@@ -9,8 +9,10 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrderItemStatus.info.PaytusemInfo;
+import br.com.gda.payment.payOrderItemStatus.model.action.StdPaytusemMergeOrdmoip;
 import br.com.gda.payment.payOrderItemStatus.model.action.StdPaytusemSuccess;
 import br.com.gda.payment.payOrderItemStatus.model.checker.PaytusemCheckIsFinished;
+import br.com.gda.payment.payOrderItemStatus.model.checker.PaytusemCheckRefresh;
 
 public final class NodePaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInfo> {
 	
@@ -24,6 +26,9 @@ public final class NodePaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInf
 		List<ModelChecker<PaytusemInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaytusemInfo> checker;	
 		
+		checker = new PaytusemCheckRefresh();
+		queue.add(checker);
+		
 		checker = new PaytusemCheckIsFinished();
 		queue.add(checker);
 		
@@ -35,9 +40,9 @@ public final class NodePaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInf
 	@Override protected List<ActionStd<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
 		List<ActionStd<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusemInfo> select = new RootPaytusemSelect(option).toAction();	
+		ActionStd<PaytusemInfo> mergeOrdmoip = new StdPaytusemMergeOrdmoip(option);	
 		
-		actions.add(select);		
+		actions.add(mergeOrdmoip);		
 		return actions;
 	}
 	

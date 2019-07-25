@@ -677,5 +677,6 @@ public final class SystemMessage {
 	
 	// Pay-Order Status
 	public static final String PAY_STATUS_ITEM_MANDATORY_FIELD_EMPTY = "Pay-Order-Status-Item: Mandatory field is empty";
+	public static final String PAY_STATUS_HEADER_MANDATORY_FIELD_EMPTY = "Pay-Order-Status-Header: Mandatory field is empty";
 	public static final String PAY_STATUS_NOT_CHANGEABLE = "Pay-Order-Status: Status can't be changed";
 }

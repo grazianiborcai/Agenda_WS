@@ -1,33 +1,33 @@
-package br.com.gda.payment.payOrderItemStatus.info;
+package br.com.gda.payment.payOrderStatus.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
-import br.com.gda.payment.payOrderItem.info.PayordemInfo;
+import br.com.gda.payment.payOrderItemStatus.info.PaytusemInfo;
 
-final class PaytusemVisiMergePayordem implements InfoMergerVisitorV2<PaytusemInfo, PayordemInfo> {
+final class PaytusVisiMergePaytusem implements InfoMergerVisitorV2<PaytusInfo, PaytusemInfo> {
 
-	@Override public PaytusemInfo writeRecord(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
+	@Override public PaytusInfo writeRecord(PaytusemInfo sourceOne, PaytusInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		PaytusemInfo clonedInfo = makeClone(sourceTwo);
+		PaytusInfo clonedInfo = makeClone(sourceTwo);
 		return merge(sourceOne, clonedInfo);
 	}
 	
 	
 	
-	private void checkArgument(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
+	private void checkArgument(PaytusemInfo sourceOne, PaytusInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private PaytusemInfo makeClone(PaytusemInfo recordInfo) {
+	private PaytusInfo makeClone(PaytusInfo recordInfo) {
 		try {
-			return (PaytusemInfo) recordInfo.clone();
+			return (PaytusInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -37,13 +37,15 @@ final class PaytusemVisiMergePayordem implements InfoMergerVisitorV2<PaytusemInf
 	
 	
 	
-	private PaytusemInfo merge(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
-		return PaytusemInfo.copyFrom(sourceOne);
+	private PaytusInfo merge(PaytusemInfo sourceOne, PaytusInfo sourceTwo) {
+		sourceTwo.paytusems.add(sourceOne);
+		
+		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
+	@Override public boolean shouldWrite(PaytusemInfo sourceOne, PaytusInfo sourceTwo) {
 		return (sourceOne.codOwner 		== sourceTwo.codOwner 	&&
 				sourceOne.codPayOrder 	== sourceTwo.codPayOrder	);
 	}

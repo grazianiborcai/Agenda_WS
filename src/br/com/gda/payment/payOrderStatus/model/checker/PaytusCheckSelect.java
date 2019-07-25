@@ -1,24 +1,23 @@
-package br.com.gda.payment.payOrderItemStatus.model.checker;
+package br.com.gda.payment.payOrderStatus.model.checker;
 
 import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.payment.payOrderItemStatus.info.PaytusemInfo;
+import br.com.gda.payment.payOrderStatus.info.PaytusInfo;
 
-public final class PaytusemCheckRead extends ModelCheckerTemplateSimple<PaytusemInfo> {
+public final class PaytusCheckSelect extends ModelCheckerTemplateSimple<PaytusInfo> {
 
-	public PaytusemCheckRead() {
+	public PaytusCheckSelect() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(PaytusemInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(PaytusInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner    	<= 0	||
-			 recordInfo.codPayOrder    	<= 0	||
-			 recordInfo.idOrderPartner	== null	||
+			 recordInfo.codPayOrder    	<= 0	||			 
 			 recordInfo.codLanguage		== null	||
 			 recordInfo.username    	== null		)			
 			
@@ -31,12 +30,12 @@ public final class PaytusemCheckRead extends ModelCheckerTemplateSimple<Paytusem
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PAY_STATUS_ITEM_MANDATORY_FIELD_EMPTY;
+		return SystemMessage.PAY_STATUS_HEADER_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.PAY_STATUS_ITEM_MANDATORY_FIELD_EMPTY;
+		return SystemCode.PAY_STATUS_HEADER_MANDATORY_FIELD_EMPTY;
 	}
 }

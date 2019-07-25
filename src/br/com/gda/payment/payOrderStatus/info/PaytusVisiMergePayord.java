@@ -1,33 +1,33 @@
-package br.com.gda.payment.payOrderItemStatus.info;
+package br.com.gda.payment.payOrderStatus.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
-import br.com.gda.payment.payOrderItem.info.PayordemInfo;
+import br.com.gda.payment.payOrder.info.PayordInfo;
 
-final class PaytusemVisiMergePayordem implements InfoMergerVisitorV2<PaytusemInfo, PayordemInfo> {
+final class PaytusVisiMergePayord implements InfoMergerVisitorV2<PaytusInfo, PayordInfo> {
 
-	@Override public PaytusemInfo writeRecord(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
+	@Override public PaytusInfo writeRecord(PayordInfo sourceOne, PaytusInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		PaytusemInfo clonedInfo = makeClone(sourceTwo);
+		PaytusInfo clonedInfo = makeClone(sourceTwo);
 		return merge(sourceOne, clonedInfo);
 	}
 	
 	
 	
-	private void checkArgument(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
+	private void checkArgument(PayordInfo sourceOne, PaytusInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private PaytusemInfo makeClone(PaytusemInfo recordInfo) {
+	private PaytusInfo makeClone(PaytusInfo recordInfo) {
 		try {
-			return (PaytusemInfo) recordInfo.clone();
+			return (PaytusInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -37,13 +37,13 @@ final class PaytusemVisiMergePayordem implements InfoMergerVisitorV2<PaytusemInf
 	
 	
 	
-	private PaytusemInfo merge(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
-		return PaytusemInfo.copyFrom(sourceOne);
+	private PaytusInfo merge(PayordInfo sourceOne, PaytusInfo sourceTwo) {
+		return PaytusInfo.copyFrom(sourceOne);
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
+	@Override public boolean shouldWrite(PayordInfo sourceOne, PaytusInfo sourceTwo) {
 		return (sourceOne.codOwner 		== sourceTwo.codOwner 	&&
 				sourceOne.codPayOrder 	== sourceTwo.codPayOrder	);
 	}

@@ -1,4 +1,4 @@
-package br.com.gda.payment.payOrder.model;
+package br.com.gda.payment.payOrderStatus.model;
 
 import java.sql.Connection;
 
@@ -12,16 +12,16 @@ import br.com.gda.model.ModelOption;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.payment.payOrder.info.PayordInfo;
-import br.com.gda.payment.payOrder.model.decisionTree.RootPayordSelect;
+import br.com.gda.payment.payOrderStatus.info.PaytusInfo;
+import br.com.gda.payment.payOrderStatus.model.decisionTree.RootPaytusSelect;
 
-public final class PayordModelSelect implements Model {
+public final class PaytusModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public PayordModelSelect(PayordInfo recordInfo) {
+	public PaytusModelSelect(PaytusInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class PayordModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(PayordInfo recordInfo) {
-		ModelOption<PayordInfo> helperOption = new ModelOption<>();
+	private void buildHelper(PaytusInfo recordInfo) {
+		ModelOption<PaytusInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PayordInfo.class;
+		helperOption.infoRecordClass = PaytusInfo.class;
 		helperOption.decisionTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class PayordModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<PayordInfo> {		
-		@Override public DeciTree<PayordInfo> getInstance(DeciTreeOption<PayordInfo> option) {
-			return new RootPayordSelect(option);
+	private static class TreeFactory implements DeciTreeFactory<PaytusInfo> {		
+		@Override public DeciTree<PaytusInfo> getInstance(DeciTreeOption<PaytusInfo> option) {
+			return new RootPaytusSelect(option);
 		}			
 	}
 }

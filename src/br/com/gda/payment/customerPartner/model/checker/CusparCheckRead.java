@@ -17,6 +17,7 @@ public final class CusparCheckRead extends ModelCheckerTemplateSimple<CusparInfo
 	
 	@Override protected boolean checkHook(CusparInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 		<= 0 	|| 
+			 recordInfo.codPayCustomer	<= 0 	|| 
 			 recordInfo.username		== null	||					 
 			 recordInfo.codLanguage		== null		)
 			
