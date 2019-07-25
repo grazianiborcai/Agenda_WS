@@ -24,8 +24,8 @@ public final class PaytusemCheckIsFinished extends ModelCheckerTemplateSimple<Pa
 			return super.FAILED;
 		
 		
-		if (checkOrderStatus(recordInfo) 	== false	||
-			checkPaymentStatus(recordInfo) 	== false		)
+		if (checkOrderStatus(recordInfo)	== false ||
+			checkPaymentStatus(recordInfo)	== false	)
 			
 			return super.FAILED;
 		
@@ -38,7 +38,7 @@ public final class PaytusemCheckIsFinished extends ModelCheckerTemplateSimple<Pa
 	private boolean checkOrderStatus(PaytusemInfo recordInfo) {
 		OrderStatusMoip statusOrder = OrderStatusMoip.getStatus(recordInfo.statusOrderPartner);
 		
-		if (statusOrder.isChangeable() == false)
+		if (statusOrder.isChangeable())
 			return super.FAILED;
 		
 		return super.SUCCESS;
@@ -49,7 +49,7 @@ public final class PaytusemCheckIsFinished extends ModelCheckerTemplateSimple<Pa
 	private boolean checkPaymentStatus(PaytusemInfo recordInfo) {
 		PaymentStatusMoip paymentStatus = PaymentStatusMoip.getStatus(recordInfo.statusPaymentPartner);
 		
-		if (paymentStatus.isChangeable() == false)
+		if (paymentStatus.isChangeable())
 			return super.FAILED;
 		
 		return super.SUCCESS;

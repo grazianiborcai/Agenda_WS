@@ -8,13 +8,13 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.payment.payOrderItemStatus.info.PaytusemInfo;
 import br.com.gda.payment.payOrderItemStatus.model.action.StdPaytusemMergePayordem;
 import br.com.gda.payment.payOrderItemStatus.model.checker.PaytusemCheckLangu;
 import br.com.gda.payment.payOrderItemStatus.model.checker.PaytusemCheckRead;
 
-public final class RootPaytusemSelect extends DeciTreeWriteTemplate<PaytusemInfo> {
+public final class RootPaytusemSelect extends DeciTreeReadTemplate<PaytusemInfo> {
 	
 	public RootPaytusemSelect(DeciTreeOption<PaytusemInfo> option) {
 		super(option);

@@ -3,16 +3,17 @@ package br.com.gda.payment.payOrderItemStatus.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrderItemStatus.info.PaytusemInfo;
+import br.com.gda.payment.payOrderItemStatus.model.action.LazyPaytusemPayordemUpdate;
 import br.com.gda.payment.payOrderItemStatus.model.action.StdPaytusemMergeOrdmoip;
 import br.com.gda.payment.payOrderItemStatus.model.action.StdPaytusemSuccess;
 import br.com.gda.payment.payOrderItemStatus.model.checker.PaytusemCheckIsFinished;
-import br.com.gda.payment.payOrderItemStatus.model.checker.PaytusemCheckRefresh;
 
 public final class NodePaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInfo> {
 	
@@ -26,9 +27,6 @@ public final class NodePaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInf
 		List<ModelChecker<PaytusemInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaytusemInfo> checker;	
 		
-		checker = new PaytusemCheckRefresh();
-		queue.add(checker);
-		
 		checker = new PaytusemCheckIsFinished();
 		queue.add(checker);
 		
@@ -40,9 +38,9 @@ public final class NodePaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInf
 	@Override protected List<ActionStd<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
 		List<ActionStd<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusemInfo> mergeOrdmoip = new StdPaytusemMergeOrdmoip(option);	
+		ActionStd<PaytusemInfo> success = new StdPaytusemSuccess(option);	
 		
-		actions.add(mergeOrdmoip);		
+		actions.add(success);		
 		return actions;
 	}
 	
@@ -51,9 +49,12 @@ public final class NodePaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInf
 	@Override protected List<ActionStd<PaytusemInfo>> buildActionsOnFailedHook(DeciTreeOption<PaytusemInfo> option) {
 		List<ActionStd<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusemInfo> success = new StdPaytusemSuccess(option);	
+		ActionStd<PaytusemInfo> mergeOrdmoip = new StdPaytusemMergeOrdmoip(option);	
+		ActionLazy<PaytusemInfo> payordemUpdate = new LazyPaytusemPayordemUpdate(option.conn, option.schemaName);
 		
-		actions.add(success);		
+		mergeOrdmoip.addPostAction(payordemUpdate);
+		
+		actions.add(mergeOrdmoip);		
 		return actions;
 	}
 }

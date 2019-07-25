@@ -38,7 +38,10 @@ final class PaytusemVisiMergePayordem implements InfoMergerVisitorV2<PaytusemInf
 	
 	
 	private PaytusemInfo merge(PayordemInfo sourceOne, PaytusemInfo sourceTwo) {
-		return PaytusemInfo.copyFrom(sourceOne);
+		PaytusemInfo result = PaytusemInfo.copyFrom(sourceOne);
+		result.cusparData = sourceTwo.cusparData;
+		
+		return result;
 	}
 	
 	
