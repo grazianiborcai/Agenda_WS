@@ -51,7 +51,7 @@ public final class RootPaytusSelect extends DeciTreeReadTemplate<PaytusInfo> {
 		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
 		ActionStd<PaytusInfo> mergePayord = new StdPaytusMergePayord(option);	
-		ActionLazy<PaytusInfo> mergeCuspar = new LazyPaytusMergeCuspar(option.conn, option.schemaName);	
+		ActionLazy<PaytusInfo> mergeCuspar = new LazyPaytusMergeCuspar(option.conn, option.schemaName);			//TODO: remover ?
 		ActionLazy<PaytusInfo> mergePaytusem = new LazyPaytusMergePaytusem(option.conn, option.schemaName);	
 		
 		mergePayord.addPostAction(mergeCuspar);

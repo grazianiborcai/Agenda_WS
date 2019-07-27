@@ -6,17 +6,14 @@ import java.util.List;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrderStatus.info.PaytusInfo;
-import br.com.gda.payment.payOrderStatus.model.action.LazyPaytusMergeCuspar;
-import br.com.gda.payment.payOrderStatus.model.action.LazyPaytusMergePaytusem;
-import br.com.gda.payment.payOrderStatus.model.action.StdPaytusMergePayord;
-import br.com.gda.payment.payOrderStatus.model.checker.PaytusCheckLangu;
-import br.com.gda.payment.payOrderStatus.model.checker.PaytusCheckSelect;
+import br.com.gda.payment.payOrderStatus.model.action.LazyPaytusPayordUpdate;
+import br.com.gda.payment.payOrderStatus.model.action.StdPaytusMergeMultmoip;
+import br.com.gda.payment.payOrderStatus.model.action.StdPaytusSuccess;
+import br.com.gda.payment.payOrderStatus.model.checker.PaytusCheckIsFinished;
 
 public final class NodePaytusRefresh extends DeciTreeWriteTemplate<PaytusInfo> {
 	
@@ -27,20 +24,10 @@ public final class NodePaytusRefresh extends DeciTreeWriteTemplate<PaytusInfo> {
 	
 	
 	@Override protected ModelChecker<PaytusInfo> buildDecisionCheckerHook(DeciTreeOption<PaytusInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<PaytusInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaytusInfo> checker;	
-		ModelCheckerOption checkerOption;
 		
-		checker = new PaytusCheckSelect();
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new PaytusCheckLangu(checkerOption);
+		checker = new PaytusCheckIsFinished();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -51,14 +38,23 @@ public final class NodePaytusRefresh extends DeciTreeWriteTemplate<PaytusInfo> {
 	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
 		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusInfo> select = new RootPaytusSelect(option).toAction();	
-		ActionLazy<PaytusInfo> mergeCuspar = new LazyPaytusMergeCuspar(option.conn, option.schemaName);	
-		ActionLazy<PaytusInfo> mergePaytusem = new LazyPaytusMergePaytusem(option.conn, option.schemaName);	
+		ActionStd<PaytusInfo> success = new StdPaytusSuccess(option);	
 		
-		select.addPostAction(mergeCuspar);
-		mergeCuspar.addPostAction(mergePaytusem);
+		actions.add(success);		
+		return actions;
+	}	
+	
+	
+	
+	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnFailedHook(DeciTreeOption<PaytusInfo> option) {
+		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
+
+		ActionStd<PaytusInfo> mergeMultmoip = new StdPaytusMergeMultmoip(option);	
+		ActionLazy<PaytusInfo> payordUpdate = new LazyPaytusPayordUpdate(option.conn, option.schemaName);
 		
-		actions.add(select);		
+		mergeMultmoip.addPostAction(payordUpdate);
+		
+		actions.add(mergeMultmoip);	
 		return actions;
 	}
 }

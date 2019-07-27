@@ -457,7 +457,7 @@ public final class SystemCode {
 	public static final int PAY_ORDER_ITEM_NOT_FOUND 					= 4056;
 	public static final int PAY_ORDER_HAVE_ITEM 						= 4057;
 	public static final int PAY_ORDER_IS_EMPTY 							= 4058;	
-	public static final int PAY_ORDER_MANDATORY_FIELD_EMPTY				= 4059;	
+	public static final int PAY_ORDER_HEADER_MANDATORY_FIELD_EMPTY				= 4059;	
 	public static final int PAY_ORDER_DIF_CUSPAR_USER					= 4060;
 	public static final int PAY_ORDER_ALREADY_EXIST 					= 4061;
 	public static final int PAY_ORDER_NOT_FOUND 						= 4062;
@@ -522,6 +522,7 @@ public final class SystemCode {
 	
 	// Multi-Order Moip
 	public static final int MULT_MOIP_MANDATORY_FIELD_EMPTY				= 4500;
+	public static final int MULT_MOIP_READ_ERROR						= 4501;
 	
 	// Pay-Order Moip
 	public static final int PAY_MOIP_MANDATORY_FIELD_EMPTY 				= 4550;

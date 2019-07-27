@@ -18,7 +18,7 @@ public final class PaytusemCheckRefresh extends ModelCheckerTemplateSimple<Paytu
 	@Override protected boolean checkHook(PaytusemInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner    	<= 0	||
 			 recordInfo.codPayOrder    	<= 0	||
-			 recordInfo.idOrderPartner	== null	||
+			// recordInfo.idOrderPartner	== null	||		//TODO: remover ?
 			 recordInfo.cusparData  	== null	||
 			 recordInfo.codLanguage		== null	||
 			 recordInfo.username    	== null		)			

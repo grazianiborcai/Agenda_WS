@@ -3,6 +3,7 @@ package br.com.gda.payment.payOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -13,6 +14,8 @@ import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 import br.com.gda.payment.payOrderItem.model.checker.PayordemCheckLangu;
 import br.com.gda.payment.payOrderItem.model.checker.PayordemCheckPayord;
 import br.com.gda.payment.payOrderItem.model.checker.PayordemCheckOwner;
+import br.com.gda.payment.payOrderItem.model.action.LazyPayordemNodeInsert;
+import br.com.gda.payment.payOrderItem.model.action.StdPayordemEnforceLChanged;
 import br.com.gda.payment.payOrderItem.model.checker.PayordemCheckInsert;
 
 public final class RootPayordemInsert extends DeciTreeWriteTemplate<PayordemInfo> {
@@ -62,9 +65,12 @@ public final class RootPayordemInsert extends DeciTreeWriteTemplate<PayordemInfo
 	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordemInfo> nodeInsert = new NodePayordemInsert(option).toAction();
+		ActionStd<PayordemInfo> enforceLChanged = new StdPayordemEnforceLChanged(option);
+		ActionLazy<PayordemInfo> nodeInsert = new LazyPayordemNodeInsert(option.conn, option.schemaName);
 		
-		actions.add(nodeInsert);
+		enforceLChanged.addPostAction(nodeInsert);
+		
+		actions.add(enforceLChanged);
 		return actions;
 	}
 }

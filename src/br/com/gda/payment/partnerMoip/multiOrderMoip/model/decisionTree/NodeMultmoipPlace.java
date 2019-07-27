@@ -8,7 +8,7 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipCreate;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceMultiorder;
@@ -19,7 +19,7 @@ import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipMe
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.StdMultmoipOrdmoipPlace;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.checker.MultmoipCheckPay;
 
-public final class NodeMultmoipPlace extends DeciTreeWriteTemplate<MultmoipInfo> {
+public final class NodeMultmoipPlace extends DeciTreeReadTemplate<MultmoipInfo> {
 	
 	public NodeMultmoipPlace(DeciTreeOption<MultmoipInfo> option) {
 		super(option);

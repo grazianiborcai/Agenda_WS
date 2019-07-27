@@ -22,6 +22,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_ID_PAYMENT_PARTNER = "id_payment_partner";
 	public static final String COL_ITEM_NUMBER = "item_num";
 	public static final String COL_ITEM_RECEIVER = "item_receiver";
+	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_OWN_ID = "own_id";	
 	public static final String COL_PRICE = "price";	
 	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";
@@ -200,6 +201,14 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_STATUS_PAYMENT_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_LAST_CHANGED;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

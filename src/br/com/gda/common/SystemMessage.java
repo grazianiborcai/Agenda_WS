@@ -585,7 +585,7 @@ public final class SystemMessage {
 	public static final String PAY_ORDER_ITEM_NOT_FOUND = "Pay-Order item not found on DB";	
 	public static final String PAY_ORDER_IS_EMPTY = "Pay-Order is empty";	
 	public static final String PAY_ORDER_HAVE_ITEM = "Pay-Order has items";	
-	public static final String PAY_ORDER_MANDATORY_FIELD_EMPTY = "Pay-Order: Mandatory field is empty";
+	public static final String PAY_ORDER_HEADER_MANDATORY_FIELD_EMPTY = "Pay-Order-Header: Mandatory field is empty";
 	public static final String PAY_ORDER_NOT_FOUND = "Pay-Order's data not found on DB";
 	public static final String PAY_ORDER_PHONE_DIF_USER = "Phone does not belong to Payer user";
 	public static final String PAY_ORDER_STATUS_NOT_ALLOWED = "Illegal operation. Invalid Order Status change";
@@ -660,12 +660,13 @@ public final class SystemMessage {
 	public static final String ORDER_MOIP_ITEM_IS_FEE = "Order Moip: Item is a fee";
 	public static final String ORDER_MOIP_ITEM_IS_NOT_FEE = "Order Moip: Item is not a fee";
 	public static final String ORDER_MOIP_MANDATORY_FIELD_EMPTY = "Order Moip: Mandatory field is empty";	
-	public static final String ORDER_MOIP_READ_ERROR = "An error occurred when trying to read your order with financial company";
+	public static final String ORDER_MOIP_READ_ERROR = "Moip-Order: An error occurred when trying to read your order with financial company";
 	
 	
 	
 	// Multi-Order Moip
 	public static final String MULT_MOIP_MANDATORY_FIELD_EMPTY = "Multi-Order Moip: Mandatory field is empty";
+	public static final String MULT_MOIP_READ_ERROR = "Moip-Multiorder: An error occurred when trying to read your order with financial company";
 	
 	
 	

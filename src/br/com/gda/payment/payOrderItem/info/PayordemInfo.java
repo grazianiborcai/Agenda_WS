@@ -1,6 +1,7 @@
 package br.com.gda.payment.payOrderItem.info;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -35,6 +36,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public String statusPaymentPartner;
 	public int codPayPartner;
 	public String itemReceiver;
+	public LocalDateTime lastChanged;
 	public String codLanguage;
 	public String username;
 	public StolisInfo stolisData;

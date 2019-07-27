@@ -8,12 +8,12 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipPaymoipPay;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.checker.MultmoipCheckPay;
 
-public final class RootMultmoipPay extends DeciTreeWriteTemplate<MultmoipInfo> {
+public final class RootMultmoipPay extends DeciTreeReadTemplate<MultmoipInfo> {
 	
 	public RootMultmoipPay(DeciTreeOption<MultmoipInfo> option) {
 		super(option);

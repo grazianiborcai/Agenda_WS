@@ -35,12 +35,12 @@ public final class PayordCheckRead extends ModelCheckerTemplateSimple<PayordInfo
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PAY_ORDER_MANDATORY_FIELD_EMPTY;
+		return SystemMessage.PAY_ORDER_HEADER_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.PAY_ORDER_MANDATORY_FIELD_EMPTY;
+		return SystemCode.PAY_ORDER_HEADER_MANDATORY_FIELD_EMPTY;
 	}
 }

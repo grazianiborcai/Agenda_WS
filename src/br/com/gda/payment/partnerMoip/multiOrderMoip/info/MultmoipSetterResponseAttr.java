@@ -30,20 +30,55 @@ public final class MultmoipSetterResponseAttr implements InfoSetter<MultmoipInfo
 	private MultmoipInfo setResponseAtt(MultmoipInfo recordInfo) {
 		Map<String, Object> amounts = (Map<String, Object>) recordInfo.response.get("amount");	
 		Map<String, Object> links = (Map<String, Object>) recordInfo.response.get("_links");		
-		Map<String, Object> selfs = (Map<String, Object>) links.get("self");			
-		Map<String, Object> checkout = (Map<String, Object>) links.get("checkout");			
-		Map<String, Object> payCreditCard = (Map<String, Object>) checkout.get("payCreditCard");
-		Map<String, Object> payBoleto = (Map<String, Object>) checkout.get("payBoleto");
+		Map<String, Object> selfs = (Map<String, Object>) links.get("self");		
 		
 		recordInfo.idOrderPartner = (String) recordInfo.response.get("id");
 		recordInfo.statusOrderPartner = (String) recordInfo.response.get("status");
 		recordInfo.amountTotalPartner = String.valueOf(amounts.get("total"));
 		recordInfo.amountCurrencyPartner = (String) amounts.get("currency");		
 		recordInfo.urlSelf = (String) selfs.get("href");		
-		recordInfo.urlPayCard = (String) payCreditCard.get("redirectHref");
-		recordInfo.urlPayBoleto = (String) payBoleto.get("redirectHref");
+
+		recordInfo = setAttrUrl(links, recordInfo);		
+		return recordInfo;
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private MultmoipInfo setAttrUrl(Map<String, Object> links, MultmoipInfo recordInfo) {
+		if (checkMap(links) == false)
+			return recordInfo;		
+		
+		
+		Map<String, Object> checkout = (Map<String, Object>) links.get("checkout");	
+		
+		if (checkMap(checkout) == false)
+			return recordInfo;
+		
+		
+		Map<String, Object> payCreditCard = (Map<String, Object>) checkout.get("payCreditCard");
+		Map<String, Object> payBoleto = (Map<String, Object>) checkout.get("payBoleto");
+		
+		if (checkMap(payCreditCard))
+			recordInfo.urlPayCard = (String) payCreditCard.get("redirectHref");
+		
+		if (checkMap(payBoleto))
+			recordInfo.urlPayBoleto = (String) payBoleto.get("redirectHref");
+		
 		
 		return recordInfo;
+	}
+	
+	
+	
+	private boolean checkMap(Map<String, Object> map) {
+		if (map == null)
+			return false;
+		
+		if (map.isEmpty())
+			return false;
+		
+		return true;
 	}
 	
 	

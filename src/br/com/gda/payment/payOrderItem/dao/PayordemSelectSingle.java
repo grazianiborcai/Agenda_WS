@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -156,6 +157,10 @@ public final class PayordemSelectSingle implements DaoStmt<PayordemInfo> {
 				stmtResult.getDouble(PayordemDbTableColumn.COL_TOTAL_ITEM);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.totitem = stmtResult.getDouble(PayordemDbTableColumn.COL_TOTAL_ITEM);
+				
+				Timestamp lastChanged = stmtResult.getTimestamp(PayordemDbTableColumn.COL_LAST_CHANGED);
+				if (lastChanged != null)
+					dataInfo.lastChanged = lastChanged.toLocalDateTime();
 				
 				
 				finalResult.add(dataInfo);

@@ -11,6 +11,7 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
+import br.com.gda.payment.payOrderItem.model.action.LazyPayordemEnforceLChanged;
 import br.com.gda.payment.payOrderItem.model.action.LazyPayordemUpdate;
 import br.com.gda.payment.payOrderItem.model.action.StdPayordemMergeToUpdate;
 import br.com.gda.payment.payOrderItem.model.checker.PayordemCheckExist;
@@ -50,9 +51,11 @@ public final class RootPayordemUpdate extends DeciTreeWriteTemplate<PayordemInfo
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PayordemInfo> select = new StdPayordemMergeToUpdate(option);
+		ActionLazy<PayordemInfo> enforceLChanged = new LazyPayordemEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PayordemInfo> update = new LazyPayordemUpdate(option.conn, option.schemaName);
 		
-		select.addPostAction(update);
+		select.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(update);
 		
 		actions.add(select);
 		return actions;

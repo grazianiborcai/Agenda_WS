@@ -19,18 +19,18 @@ public final class PaytusCheckIsFinished extends ModelCheckerTemplateSimple<Payt
 	
 	@Override protected boolean checkHook(PaytusInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.statusOrderPartner 	== null	||
-			recordInfo.statusPaymentPartner == null 	)
+				recordInfo.statusPaymentPartner == null 	)
+				
+				return super.FAILED;
 			
-			return super.FAILED;
-		
-		
-		if (checkOrderStatus(recordInfo) 	== false	||
-			checkPaymentStatus(recordInfo) 	== false		)
 			
-			return super.FAILED;
-		
-		
-		return super.SUCCESS;
+			if (checkOrderStatus(recordInfo)	== false ||
+				checkPaymentStatus(recordInfo)	== false	)
+				
+				return super.FAILED;
+			
+			
+			return super.SUCCESS;
 	}
 	
 	
@@ -38,7 +38,7 @@ public final class PaytusCheckIsFinished extends ModelCheckerTemplateSimple<Payt
 	private boolean checkOrderStatus(PaytusInfo recordInfo) {
 		OrderStatusMoip statusOrder = OrderStatusMoip.getStatus(recordInfo.statusOrderPartner);
 		
-		if (statusOrder.isChangeable() == false)
+		if (statusOrder.isChangeable())
 			return super.FAILED;
 		
 		return super.SUCCESS;
@@ -49,7 +49,7 @@ public final class PaytusCheckIsFinished extends ModelCheckerTemplateSimple<Payt
 	private boolean checkPaymentStatus(PaytusInfo recordInfo) {
 		PaymentStatusMoip paymentStatus = PaymentStatusMoip.getStatus(recordInfo.statusPaymentPartner);
 		
-		if (paymentStatus.isChangeable() == false)
+		if (paymentStatus.isChangeable())
 			return super.FAILED;
 		
 		return super.SUCCESS;
