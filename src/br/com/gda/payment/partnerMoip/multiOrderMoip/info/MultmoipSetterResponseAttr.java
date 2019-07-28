@@ -1,5 +1,6 @@
 package br.com.gda.payment.partnerMoip.multiOrderMoip.info;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
@@ -39,6 +40,7 @@ public final class MultmoipSetterResponseAttr implements InfoSetter<MultmoipInfo
 		recordInfo.urlSelf = (String) selfs.get("href");		
 
 		recordInfo = setAttrUrl(links, recordInfo);		
+		recordInfo = setAttrPayment(recordInfo);
 		return recordInfo;
 	}
 	
@@ -67,6 +69,38 @@ public final class MultmoipSetterResponseAttr implements InfoSetter<MultmoipInfo
 		
 		
 		return recordInfo;
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private MultmoipInfo setAttrPayment(MultmoipInfo recordInfo) {
+		List<Map<String, Object>> multiPayments = (List<Map<String, Object>>) recordInfo.response.get("multiPayment");	
+		
+		if (checkList(multiPayments) == false)
+			return recordInfo;
+		
+		Map<String, Object> onePayment = multiPayments.get(0);
+		
+		if (checkMap(onePayment) == false)
+			return recordInfo;
+		
+		recordInfo.idPaymentPartner = (String) onePayment.get("id");
+		recordInfo.statusPaymentPartner = (String) onePayment.get("status");
+		
+		return recordInfo;
+	}
+	
+	
+	
+	private boolean checkList(List<Map<String, Object>> list) {
+		if (list == null)
+			return false;
+		
+		if (list.isEmpty())
+			return false;
+		
+		return true;
 	}
 	
 	

@@ -50,16 +50,18 @@ public final class RootPaytusRefresh extends DeciTreeWriteTemplate<PaytusInfo> {
 	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
 		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusInfo> select = new RootPaytusSelect(option).toAction();	
+		ActionStd<PaytusInfo> selectToRefresh = new RootPaytusSelect(option).toAction();	
 		ActionLazy<PaytusInfo> mergeCuspar = new LazyPaytusMergeCuspar(option.conn, option.schemaName);	
 		ActionLazy<PaytusInfo> nodeRefresh = new LazyPaytusNodeRefresh(option.conn, option.schemaName);	
 		ActionLazy<PaytusInfo> paytusemRefresh = new LazyPaytusPaytusemRefresh(option.conn, option.schemaName);		
+		ActionStd<PaytusInfo> selectOutput = new RootPaytusSelect(option).toAction();	
 		
-		select.addPostAction(mergeCuspar);
+		selectToRefresh.addPostAction(mergeCuspar);
 		mergeCuspar.addPostAction(nodeRefresh);
 		mergeCuspar.addPostAction(paytusemRefresh);
 		
-		actions.add(select);		
+		actions.add(selectToRefresh);		
+		actions.add(selectOutput);
 		return actions;
 	}
 }
