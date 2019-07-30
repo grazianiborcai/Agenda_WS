@@ -19,7 +19,7 @@ public final class PaytusCheckIsFinished extends ModelCheckerTemplateSimple<Payt
 	
 	@Override protected boolean checkHook(PaytusInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.statusOrderPartner 	== null	||
-				recordInfo.statusPaymentPartner == null 	)
+			recordInfo.statusPaymentPartner == null 	)
 				
 				return super.FAILED;
 			

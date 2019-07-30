@@ -15,6 +15,7 @@ import br.com.gda.payment.payOrderStatus.model.action.LazyPaytusMergeCuspar;
 import br.com.gda.payment.payOrderStatus.model.action.LazyPaytusNodeRefresh;
 import br.com.gda.payment.payOrderStatus.model.action.LazyPaytusPaytusemRefresh;
 import br.com.gda.payment.payOrderStatus.model.checker.PaytusCheckOwner;
+import br.com.gda.payment.payOrderStatus.model.checker.PaytusCheckPayord;
 import br.com.gda.payment.payOrderStatus.model.checker.PaytusCheckRefresh;
 
 public final class RootPaytusRefresh extends DeciTreeWriteTemplate<PaytusInfo> {
@@ -40,6 +41,13 @@ public final class RootPaytusRefresh extends DeciTreeWriteTemplate<PaytusInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new PaytusCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;	
+		checker = new PaytusCheckPayord(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

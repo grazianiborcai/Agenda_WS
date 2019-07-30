@@ -446,6 +446,7 @@ public final class SystemCode {
 	public static final int ORDER_STATUS_CHANGE_NOT_ALLOWED				= 4004;
 	public static final int ORDER_ALREADY_EXIST							= 4005;
 	public static final int ORDER_NOT_FOUND								= 4006;
+	public static final int ORDER_HEADER_MANDATORY_FIELD_EMPTY			= 4007;
 	
 	//Pay-Order
 	public static final int PAY_ORDER_STATUS_NOT_ALLOWED				= 4050;
@@ -457,7 +458,7 @@ public final class SystemCode {
 	public static final int PAY_ORDER_ITEM_NOT_FOUND 					= 4056;
 	public static final int PAY_ORDER_HAVE_ITEM 						= 4057;
 	public static final int PAY_ORDER_IS_EMPTY 							= 4058;	
-	public static final int PAY_ORDER_HEADER_MANDATORY_FIELD_EMPTY				= 4059;	
+	public static final int PAY_ORDER_HEADER_MANDATORY_FIELD_EMPTY		= 4059;	
 	public static final int PAY_ORDER_DIF_CUSPAR_USER					= 4060;
 	public static final int PAY_ORDER_ALREADY_EXIST 					= 4061;
 	public static final int PAY_ORDER_NOT_FOUND 						= 4062;

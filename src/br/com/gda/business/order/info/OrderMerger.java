@@ -106,4 +106,18 @@ public final class OrderMerger {
 		InfoMerger<OrderInfo, OrderInfo> merger = new OrderMergerToSelect();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}		
+	
+	
+	
+	public static OrderInfo mergeToUpdate(OrderInfo sourceOne, OrderInfo sourceTwo) {
+		InfoMerger<OrderInfo, OrderInfo> merger = new OrderMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OrderInfo> mergeToUpdate(List<OrderInfo> sourceOnes, List<OrderInfo> sourceTwos) {
+		InfoMerger<OrderInfo, OrderInfo> merger = new OrderMergerToUpdate();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 }

@@ -10,6 +10,8 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrderStatus.info.PaytusInfo;
+import br.com.gda.payment.payOrderStatus.model.action.LazyPaytusEnforceOrderStatus;
+import br.com.gda.payment.payOrderStatus.model.action.LazyPaytusOrderUpdate;
 import br.com.gda.payment.payOrderStatus.model.action.LazyPaytusPayordUpdate;
 import br.com.gda.payment.payOrderStatus.model.action.StdPaytusMergeMultmoip;
 import br.com.gda.payment.payOrderStatus.model.action.StdPaytusSuccess;
@@ -51,8 +53,12 @@ public final class NodePaytusRefresh extends DeciTreeWriteTemplate<PaytusInfo> {
 
 		ActionStd<PaytusInfo> mergeMultmoip = new StdPaytusMergeMultmoip(option);	
 		ActionLazy<PaytusInfo> payordUpdate = new LazyPaytusPayordUpdate(option.conn, option.schemaName);
+		ActionLazy<PaytusInfo> enforceOrderStatus = new LazyPaytusEnforceOrderStatus(option.conn, option.schemaName);
+		ActionLazy<PaytusInfo> orderUpdate = new LazyPaytusOrderUpdate(option.conn, option.schemaName);
 		
 		mergeMultmoip.addPostAction(payordUpdate);
+		payordUpdate.addPostAction(enforceOrderStatus);
+		enforceOrderStatus.addPostAction(orderUpdate);
 		
 		actions.add(mergeMultmoip);	
 		return actions;

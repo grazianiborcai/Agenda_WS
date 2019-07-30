@@ -11,6 +11,7 @@ import br.com.gda.payment.payOrderItemStatus.info.PaytusemInfo;
 public final class PaytusInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;	
+	public long codOrder;
 	public long codPayCustomer;	
 	public double totitem;
 	public String codCurr;
@@ -18,6 +19,7 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 	public String statusOrderPartner;
 	public String idPaymentPartner;
 	public String statusPaymentPartner;
+	public String codOrderStatus;
 	public CusparInfo cusparData;
 	public List<PaytusemInfo> paytusems;
 	public String codLanguage;
@@ -26,6 +28,8 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 	
 	public PaytusInfo() {
 		codOwner = DefaultValue.number();	
+		codPayOrder = DefaultValue.number();
+		codOrder = DefaultValue.number();
 		totitem = DefaultValue.number();	
 		codPayCustomer = DefaultValue.number();	
 		cusparData = DefaultValue.object();
