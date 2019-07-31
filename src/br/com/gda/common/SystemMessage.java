@@ -681,4 +681,10 @@ public final class SystemMessage {
 	public static final String PAY_STATUS_ITEM_MANDATORY_FIELD_EMPTY = "Pay-Order-Status-Item: Mandatory field is empty";
 	public static final String PAY_STATUS_HEADER_MANDATORY_FIELD_EMPTY = "Pay-Order-Status-Header: Mandatory field is empty";
 	public static final String PAY_STATUS_NOT_CHANGEABLE = "Pay-Order-Status: Status can't be changed";
+	
+	
+	
+	// Refund Moip
+	public static final String REFUND_MOIP_MANDATORY_FIELD_EMPTY = "Moip-Refund: Mandatory field is empty";	
+	public static final String REFUND_MOIP_REFUND_ERROR = "Moip-Refund: An error occurred when trying to refund order with financial company";
 }

@@ -7,6 +7,7 @@ import br.com.gda.info.InfoCopier;
 import br.com.gda.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
+import br.com.gda.payment.partnerMoip.refundMoip.info.RefumoipInfo;
 
 public final class SetuparCopier {	
 	public static SetuparInfo copyFromCremoip(CremoipInfo source) {
@@ -48,4 +49,18 @@ public final class SetuparCopier {
 		InfoCopier<SetuparInfo, OrdmoipInfo> copier = new SetuparCopyOrdmoip();
 		return copier.makeCopy(sources);
 	}		
+	
+	
+	
+	public static SetuparInfo copyFromRefumoip(RefumoipInfo source) {
+		InfoCopier<SetuparInfo, RefumoipInfo> copier = new SetuparCopyRefumoip();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<SetuparInfo> copyFromRefumoip(List<RefumoipInfo> sources) {
+		InfoCopier<SetuparInfo, RefumoipInfo> copier = new SetuparCopyRefumoip();
+		return copier.makeCopy(sources);
+	}	
 }

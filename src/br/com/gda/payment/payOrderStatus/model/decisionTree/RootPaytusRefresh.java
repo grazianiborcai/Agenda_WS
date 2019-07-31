@@ -54,7 +54,7 @@ public final class RootPaytusRefresh extends DeciTreeWriteTemplate<PaytusInfo> {
 	}
 	
 	
-	
+	//TODO: por padrao, um pagamento com mais de 180 dias nao pode ser alterado. Nao refrescar pagamentos antigos ?
 	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
 		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
