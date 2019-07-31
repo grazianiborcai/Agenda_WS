@@ -588,8 +588,8 @@ public final class SystemMessage {
 	public static final String PAY_ORDER_HAVE_ITEM = "Pay-Order has items";	
 	public static final String PAY_ORDER_HEADER_MANDATORY_FIELD_EMPTY = "Pay-Order-Header: Mandatory field is empty";
 	public static final String PAY_ORDER_NOT_FOUND = "Pay-Order's data not found on DB";
-	public static final String PAY_ORDER_PHONE_DIF_USER = "Phone does not belong to Payer user";
-	public static final String PAY_ORDER_STATUS_NOT_ALLOWED = "Illegal operation. Invalid Order Status change";
+	public static final String PAY_ORDER_PAYMENT_ALREADY_EXIST = "There already is a payment for the given Order";
+	public static final String PAY_ORDER_PHONE_DIF_USER = "Phone does not belong to Payer user";	
 		
 	
 		

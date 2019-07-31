@@ -1,7 +1,7 @@
 package br.com.gda.payment.payOrderStatus.info;
 
 import br.com.gda.business.masterData.info.common.OrderStatus;
-import br.com.gda.business.masterData.info.common.PaymentStatus;
+import br.com.gda.business.masterData.info.common.PaymentStatusMoip;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
@@ -10,30 +10,39 @@ public final class PaytusSetterOrderStatus implements InfoSetter<PaytusInfo> {
 	public PaytusInfo setAttr(PaytusInfo recordInfo) {
 		checkArgument(recordInfo);
 		
+		PaymentStatusMoip status = getPaymentStatus(recordInfo);
+		
 		recordInfo = setDefault(recordInfo);	
-		recordInfo = setWaiting(recordInfo);
-		recordInfo = setPaid(recordInfo);
-		recordInfo = setNotPaid(recordInfo);
+		recordInfo = setWaiting(recordInfo, status);
+		recordInfo = setPaid(recordInfo, status);
+		recordInfo = setNotPaid(recordInfo, status);
 
 		return recordInfo;
 	}
 	
 	
 	
+	private PaymentStatusMoip getPaymentStatus(PaytusInfo recordInfo) {
+		if (recordInfo.statusPaymentPartner == null)
+			return null;
+		
+		return PaymentStatusMoip.getStatus(recordInfo.statusPaymentPartner);
+	}
+	
+	
+	
 	private PaytusInfo setDefault(PaytusInfo recordInfo) {
-		recordInfo.codOrderStatus = OrderStatus.CREATED.getCodStatus();
+		recordInfo.codOrderStatus = OrderStatus.WAITING.getCodStatus();
 		return recordInfo;
 	}
 	
 	
 	
-	private PaytusInfo setWaiting(PaytusInfo recordInfo) {
-		if (recordInfo.statusPaymentPartner == null)
+	private PaytusInfo setWaiting(PaytusInfo recordInfo, PaymentStatusMoip status) {
+		if (status == null)
 			return recordInfo;
 		
-		String status = PaymentStatus.WAITING.getCodStatus();
-		
-		if(recordInfo.statusPaymentPartner.equals(status))
+		if(status.isOnWait())
 			recordInfo.codOrderStatus = OrderStatus.WAITING.getCodStatus();
 		
 		return recordInfo;
@@ -41,28 +50,23 @@ public final class PaytusSetterOrderStatus implements InfoSetter<PaytusInfo> {
 	
 	
 	
-	private PaytusInfo setPaid(PaytusInfo recordInfo) {
-		if (recordInfo.statusPaymentPartner == null)
+	private PaytusInfo setPaid(PaytusInfo recordInfo, PaymentStatusMoip status) {
+		if (status == null)
 			return recordInfo;
 		
-		String statusAuth = PaymentStatus.AUTHORIZED.getCodStatus();
-		String statusAcpt = PaymentStatus.ACCEPTED.getCodStatus();
-		
-		if(recordInfo.statusPaymentPartner.equals(statusAuth)	||
-		   recordInfo.statusPaymentPartner.equals(statusAcpt)		)
+		if(status.isPaid())
 			recordInfo.codOrderStatus = OrderStatus.PAID.getCodStatus();
 		
 		return recordInfo;
 	}
 	
 	
-	private PaytusInfo setNotPaid(PaytusInfo recordInfo) {
-		if (recordInfo.statusPaymentPartner == null)
+	
+	private PaytusInfo setNotPaid(PaytusInfo recordInfo, PaymentStatusMoip status) {
+		if (status == null)
 			return recordInfo;
 		
-		String status = PaymentStatus.REFUSED.getCodStatus();
-		
-		if(recordInfo.statusPaymentPartner.equals(status))
+		if(status.isNotPaid())
 			recordInfo.codOrderStatus = OrderStatus.NOT_PAID.getCodStatus();
 		
 		return recordInfo;

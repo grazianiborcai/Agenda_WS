@@ -55,7 +55,7 @@ public final class RootPayordLatest extends DeciTreeReadTemplate<PayordInfo> {
 	}
 	
 	
-	
+	//TODO: chamar status refresh ?
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 

@@ -13,6 +13,20 @@ import br.com.gda.payment.systemPartner.info.SysparInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	
+	public static PayordInfo mergeWithLatest(PayordInfo sourceOne, PayordInfo sourceTwo) {
+		InfoMerger<PayordInfo, PayordInfo> merger = new PayordMergerLatest();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PayordInfo> mergeWithLatest(List<PayordInfo> sourceOnes, List<PayordInfo> sourceTwos) {
+		InfoMerger<PayordInfo, PayordInfo> merger = new PayordMergerLatest();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static PayordInfo mergeWithMultmoip(MultmoipInfo sourceOne, PayordInfo sourceTwo) {
 		InfoMerger<PayordInfo, MultmoipInfo> merger = new PayordMergerMultmoip();		
 		return merger.merge(sourceOne, sourceTwo);

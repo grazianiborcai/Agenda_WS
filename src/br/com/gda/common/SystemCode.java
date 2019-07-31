@@ -449,7 +449,7 @@ public final class SystemCode {
 	public static final int ORDER_HEADER_MANDATORY_FIELD_EMPTY			= 4007;
 	
 	//Pay-Order
-	public static final int PAY_ORDER_STATUS_NOT_ALLOWED				= 4050;
+	public static final int PAY_ORDER_PAYMENT_ALREADY_EXIST				= 4050;
 	public static final int PAY_ORDER_DIF_ORDER_USER					= 4051;
 	public static final int PAY_ORDER_ADDRESS_DIF_USER					= 4052;
 	public static final int PAY_ORDER_PHONE_DIF_USER					= 4053;

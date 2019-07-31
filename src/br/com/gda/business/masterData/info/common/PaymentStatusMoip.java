@@ -6,24 +6,30 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 
 public enum PaymentStatusMoip {
-	AUTHORIZED("AUTHORIZED", true), 
-	CANCELLED("CANCELLED", false),
-	CREATED("CREATED", true), 
-	IN_ANALYSIS("IN_ANALYSIS", true), 
-	PRE_AUTHORIZED("PRE_AUTHORIZED", true), 
-	REFUNDED("REFUNDED", false),
-	REVERTED("REVERTED", false),
-	SETTLED("SETTLED", false),
-	WAITING("WAITING", true);
+	AUTHORIZED("AUTHORIZED", true, true, false, false), 
+	CANCELLED("CANCELLED", false, false, true, false),
+	CREATED("CREATED", true, false, false, true), 
+	IN_ANALYSIS("IN_ANALYSIS", true, false, false, true), 
+	PRE_AUTHORIZED("PRE_AUTHORIZED", true , false, false, true), 
+	REFUNDED("REFUNDED", false, true, false, false),
+	REVERSED("REVERSED", false, false, true, false),
+	SETTLED("SETTLED", false, true, false, false),
+	WAITING("WAITING", true, false, false, true);
 	
 	
 	private final String codStatus;
 	private final boolean isChangeable;
+	private final boolean isPaid;
+	private final boolean isNotPaid;
+	private final boolean isOnWait;
 	
 	
-	private PaymentStatusMoip(String cod, boolean change) {
+	private PaymentStatusMoip(String cod, boolean change, boolean paid, boolean notPaid, boolean wait) {
 		codStatus = cod;
 		isChangeable = change;
+		isPaid = paid;
+		isNotPaid = notPaid;
+		isOnWait = wait;		
 	}
 	
 	
@@ -36,6 +42,24 @@ public enum PaymentStatusMoip {
 
 	public boolean isChangeable() {
 		return isChangeable;
+	}
+	
+	
+	
+	public boolean isPaid() {
+		return isPaid;
+	}
+	
+	
+	
+	public boolean isNotPaid() {
+		return isNotPaid;
+	}
+	
+	
+	
+	public boolean isOnWait() {
+		return isOnWait;
 	}
 	
 	

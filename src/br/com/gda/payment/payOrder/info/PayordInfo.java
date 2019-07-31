@@ -39,6 +39,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public CrecardInfo crecardData;
 	public List<PayordemInfo> payordems;
 	public List<OrdmoipInfo> ordmoips;
+	public PayordInfo latestData;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public String codLanguage;
@@ -61,6 +62,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		crecardData = DefaultValue.object();
 		payordems = DefaultValue.list();
 		ordmoips = DefaultValue.list();
+		latestData = DefaultValue.object();
 	}
 	
 	
@@ -86,6 +88,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		deepCopy.crecardData = cloneCrecard(deepCopy.crecardData);
 		deepCopy.payordems = clonePayordems(deepCopy.payordems);
 		deepCopy.ordmoips = cloneOrdmoips(deepCopy.ordmoips);
+		deepCopy.latestData = cloneLatest(deepCopy.latestData);
 		
 		return deepCopy;
 	}
@@ -158,6 +161,15 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		
 		return results;
 	}
+	
+	
+	
+	private PayordInfo cloneLatest(PayordInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (PayordInfo) recordInfo.clone();
+	}	
 	
 	
 	

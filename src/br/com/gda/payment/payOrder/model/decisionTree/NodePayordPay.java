@@ -17,7 +17,7 @@ import br.com.gda.payment.payOrder.model.action.StdPayordInsert;
 import br.com.gda.payment.payOrder.model.action.LazyPayordInsertPayordem;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckCrecardUser;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckCusparUser;
-import br.com.gda.payment.payOrder.model.checker.PayordCheckOrderStatus;
+import br.com.gda.payment.payOrder.model.checker.PayordCheckLatestStatus;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckOrderUser;
 
 public final class NodePayordPay extends DeciTreeWriteTemplate<PayordInfo> {
@@ -41,14 +41,14 @@ public final class NodePayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		checker = new PayordCheckCrecardUser();
 		queue.add(checker);
 		
-		checker = new PayordCheckOrderStatus();
+		checker = new PayordCheckLatestStatus();
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
-	
+	//TODO: Ciclo de pagamento dever ser: 1) pre-autorizacao; 2) pagamento
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 
