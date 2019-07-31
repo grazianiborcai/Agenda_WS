@@ -687,4 +687,9 @@ public final class SystemMessage {
 	// Refund Moip
 	public static final String REFUND_MOIP_MANDATORY_FIELD_EMPTY = "Moip-Refund: Mandatory field is empty";	
 	public static final String REFUND_MOIP_REFUND_ERROR = "Moip-Refund: An error occurred when trying to refund order with financial company";
+	
+	
+	
+	// Refund
+	public static final String REFUND_ITEM_MANDATORY_FIELD_EMPTY = "Refund Order Item: Mandatory field is empty";
 }

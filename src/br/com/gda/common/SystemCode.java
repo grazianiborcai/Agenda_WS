@@ -537,4 +537,7 @@ public final class SystemCode {
 	// Refund Moip
 	public static final int REFUND_MOIP_REFUND_ERROR 					= 4650;
 	public static final int REFUND_MOIP_MANDATORY_FIELD_EMPTY			= 4651;
+	
+	// Refund
+	public static final int REFUND_ITEM_MANDATORY_FIELD_EMPTY			= 4700;
 }

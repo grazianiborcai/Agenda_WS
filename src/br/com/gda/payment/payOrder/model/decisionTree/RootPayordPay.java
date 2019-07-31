@@ -87,7 +87,7 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		checkerOption.expectedResult = EXIST_ON_DB;	
 		checker = new PayordCheckCrecard(checkerOption);
 		queue.add(checker);
-		
+		//TODO: pegar CUSPAR do USERNAME ?
 		//TODO: usuario pagador = usuario da ordem
 		return new ModelCheckerQueue<>(queue);
 	}
