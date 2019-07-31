@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.payment.payOrder.info.PayordInfo;
-import br.com.gda.payment.payOrderStatus.info.PaytusInfo;
+import br.com.gda.payment.statusPayOrder.info.PaytusInfo;
 
 public final class OrderCopier {	
 	public static OrderInfo copyFromCart(CartInfo source) {

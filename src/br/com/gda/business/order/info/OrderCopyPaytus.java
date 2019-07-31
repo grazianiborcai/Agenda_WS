@@ -1,7 +1,7 @@
 package br.com.gda.business.order.info;
 
 import br.com.gda.info.InfoCopierTemplate;
-import br.com.gda.payment.payOrderStatus.info.PaytusInfo;
+import br.com.gda.payment.statusPayOrder.info.PaytusInfo;
 
 final class OrderCopyPaytus extends InfoCopierTemplate<OrderInfo, PaytusInfo>{
 	

@@ -7,7 +7,7 @@ import br.com.gda.info.InfoCopier;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.payOrder.info.PayordInfo;
-import br.com.gda.payment.payOrderStatus.info.PaytusInfo;
+import br.com.gda.payment.statusPayOrder.info.PaytusInfo;
 
 public final class CusparCopier {	
 	public static CusparInfo copyFromCrecard(CrecardInfo source) {

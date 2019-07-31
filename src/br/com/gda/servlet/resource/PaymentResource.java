@@ -23,8 +23,8 @@ import br.com.gda.payment.partnerMoip.accessMoip.model.AccemoipModelUrl;
 import br.com.gda.payment.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.gda.payment.partnerMoip.permissionMoip.model.PeresmoipModelCode;
 import br.com.gda.payment.payOrder.model.PayordModelPay;
-import br.com.gda.payment.payOrderStatus.info.PaytusInfo;
-import br.com.gda.payment.payOrderStatus.model.PaytusModelRefresh;
+import br.com.gda.payment.statusPayOrder.info.PaytusInfo;
+import br.com.gda.payment.statusPayOrder.model.PaytusModelRefresh;
 
 @Path("/Payment")
 public final class PaymentResource {

@@ -1,7 +1,7 @@
 package br.com.gda.payment.customerPartner.info;
 
 import br.com.gda.info.InfoCopierTemplate;
-import br.com.gda.payment.payOrderStatus.info.PaytusInfo;
+import br.com.gda.payment.statusPayOrder.info.PaytusInfo;
 
 final class CusparCopyPaytus extends InfoCopierTemplate<CusparInfo, PaytusInfo>{
 	
