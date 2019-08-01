@@ -19,7 +19,7 @@ final class VisiRefumoipRefund implements ActionVisitor<RefumoipInfo> {
 		
 		for(RefumoipInfo eachRecod : recordInfos) {
 			Map<String, Object> response;
-			response = tryToReadOrder(eachRecod);
+			response = tryToRefundOrder(eachRecod);
 			
 			if (response == null)
 				return Collections.emptyList();
@@ -34,7 +34,7 @@ final class VisiRefumoipRefund implements ActionVisitor<RefumoipInfo> {
 	
 	
 	
-	private Map<String, Object> tryToReadOrder(RefumoipInfo recordInfo) {
+	private Map<String, Object> tryToRefundOrder(RefumoipInfo recordInfo) {
 		try {
 			return Moip.API.refunds().refundOrder(recordInfo.idOrderPartner, recordInfo.setup);			
 			

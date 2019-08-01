@@ -1,24 +1,23 @@
-package br.com.gda.payment.refundOrderItem.model.checker;
+package br.com.gda.payment.refundOrder.model.checker;
 
 import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
-import br.com.gda.payment.refundOrderItem.info.RefemInfo;
+import br.com.gda.payment.refundOrder.info.RefuInfo;
 
-public final class RefemCheckRefund extends ModelCheckerTemplateSimple<RefemInfo> {
+public final class RefuCheckRefund extends ModelCheckerTemplateSimple<RefuInfo> {
 
-	public RefemCheckRefund() {
+	public RefuCheckRefund() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(RefemInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(RefuInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	|| 
 			 recordInfo.codPayOrder	<= 0 	||
-			 recordInfo.itemNum		<= 0 	||
 			 recordInfo.username	== null ||
 			 recordInfo.codLanguage	== null		)
 			
@@ -31,12 +30,12 @@ public final class RefemCheckRefund extends ModelCheckerTemplateSimple<RefemInfo
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.REFUND_ITEM_MANDATORY_FIELD_EMPTY;
+		return SystemMessage.REFUND_HEADER_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.REFUND_ITEM_MANDATORY_FIELD_EMPTY;
+		return SystemCode.REFUND_HEADER_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -1,6 +1,8 @@
 package br.com.gda.payment.refundOrderItem.model.action;
 
 import java.sql.Connection;
+import java.util.List;
+
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
@@ -17,6 +19,12 @@ final class VisiRefemMergePayordem extends ActionVisitorTemplateMergeV2<RefemInf
 	
 	@Override protected Class<? extends DeciTree<PayordemInfo>> getTreeClassHook() {
 		return RootPayordemSelect.class;
+	}
+	
+	
+	
+	@Override protected List<RefemInfo> mergeHook(List<RefemInfo> recordInfos, List<PayordemInfo> selectedInfos) {
+		return RefemInfo.copyFrom(selectedInfos);
 	}
 	
 	

@@ -9,9 +9,9 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.refundOrderItem.info.RefemInfo;
 
-public final class LazyRefemrefumoipRefund extends ActionLazyTemplate<RefemInfo, RefemInfo> {
+public final class LazyRefemRefumoipRefund extends ActionLazyTemplate<RefemInfo, RefemInfo> {
 	
-	public LazyRefemrefumoipRefund(Connection conn, String schemaName) {
+	public LazyRefemRefumoipRefund(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	

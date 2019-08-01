@@ -24,10 +24,10 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		itemNum = DefaultValue.number();
-		codPayCustomer = DefaultValue.object();
+		codPayCustomer = DefaultValue.number();
 		cusparData = DefaultValue.object();
 		codLanguage = DefaultValue.language();
-	}
+	} 
 	
 	
 	

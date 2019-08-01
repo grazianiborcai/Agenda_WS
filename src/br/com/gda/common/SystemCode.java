@@ -540,4 +540,5 @@ public final class SystemCode {
 	
 	// Refund
 	public static final int REFUND_ITEM_MANDATORY_FIELD_EMPTY			= 4700;
+	public static final int REFUND_HEADER_MANDATORY_FIELD_EMPTY			= 4701;
 }
