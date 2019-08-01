@@ -25,7 +25,7 @@ public final class AccemoipSetterScopes implements InfoSetter<AccemoipInfo> {
 	
 	
 	private AccemoipInfo setSetup(AccemoipInfo recordInfo) {
-		String[] allScopes = {"TRANSFER_FUNDS", "RECEIVE_FUNDS"};
+		String[] allScopes = {"REFUND", "RECEIVE_FUNDS"};
 		recordInfo.scopes = allScopes;
 		return recordInfo;
 	}	
