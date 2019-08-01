@@ -11,6 +11,7 @@ import br.com.gda.business.planingData.model.action.LazyPlanataNodeReserve;
 import br.com.gda.business.planingData.model.action.LazyPlanataPruneAged;
 import br.com.gda.business.planingData.model.action.LazyPlanataPruneEmplevate;
 import br.com.gda.business.planingData.model.action.LazyPlanataPruneStolevate;
+import br.com.gda.business.planingData.model.action.LazyPlanataPruneStopar;
 import br.com.gda.business.planingData.model.action.StdPlanataEnforceWeekday;
 import br.com.gda.business.planingData.model.checker.PlanataCheckDate;
 import br.com.gda.business.planingData.model.checker.PlanataCheckRead;
@@ -52,14 +53,16 @@ public class RootPlanataSelect extends DeciTreeReadTemplate<PlanataInfo> {
 		ActionLazy<PlanataInfo> pruneEmplevate = new LazyPlanataPruneEmplevate(option.conn, option.schemaName);
 		ActionLazy<PlanataInfo> pruneStolevate = new LazyPlanataPruneStolevate(option.conn, option.schemaName);
 		ActionLazy<PlanataInfo> pruneAged = new LazyPlanataPruneAged(option.conn, option.schemaName);
-		ActionLazy<PlanataInfo> pruneReserve = new LazyPlanataNodeReserve(option.conn, option.schemaName);
+		ActionLazy<PlanataInfo> pruneStopar = new LazyPlanataPruneStopar(option.conn, option.schemaName);
+		ActionLazy<PlanataInfo> nodeReserve = new LazyPlanataNodeReserve(option.conn, option.schemaName);
 		
 		enforceWeekday.addPostAction(select);
 		select.addPostAction(mergeMat);
 		mergeMat.addPostAction(pruneEmplevate);
 		pruneEmplevate.addPostAction(pruneStolevate);
 		pruneStolevate.addPostAction(pruneAged);
-		pruneAged.addPostAction(pruneReserve);
+		pruneAged.addPostAction(pruneStopar);
+		pruneStopar.addPostAction(nodeReserve);
 		
 		actions.add(enforceWeekday);
 		return actions;
