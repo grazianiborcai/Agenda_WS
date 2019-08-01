@@ -16,6 +16,9 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorPrune<T> {	
+	public static boolean PRUNE_WHEN_EMPTY = true;
+	public static boolean DONT_PRUNE_WHEN_EMPTY = false;
+	
 	private DeciTreeOption<S> selOption;
 	private Class<S> sClazz;
 	
@@ -65,6 +68,9 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 		
 		if(shouldPrune(selectedInfos))		
 			return pruneHook(recordInfos, selectedInfos);
+		
+		if(shouldPruneWhenEmpty(selectedInfos))
+			return Collections.emptyList();
 		
 		return recordInfos;
 	}	
@@ -196,6 +202,22 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 			return false;
 		
 		return true;
+	}
+	
+	
+	
+	private boolean shouldPruneWhenEmpty(List<S> selectedInfos) {
+		if(selectedInfos.isEmpty())
+			return shouldPruneWhenEmptyHook();
+		
+		return false;
+	}
+	
+	
+	
+	protected boolean shouldPruneWhenEmptyHook() {
+		//Default Behavior
+		return DONT_PRUNE_WHEN_EMPTY;
 	}
 	
 	
