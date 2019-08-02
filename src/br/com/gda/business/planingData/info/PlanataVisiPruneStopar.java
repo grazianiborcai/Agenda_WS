@@ -24,7 +24,7 @@ final class PlanataVisiPruneStopar implements InfoPrunerVisitor<PlanataInfo, Sto
 		if (stopar.idPayPartnerStore == null)
 			return false;
 		
-		return false;
+		return true;
 	}
 
 

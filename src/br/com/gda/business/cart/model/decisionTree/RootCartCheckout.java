@@ -57,6 +57,7 @@ public final class RootCartCheckout extends DeciTreeWriteTemplate<CartInfo> {
 	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();
 		//TODO: Validate - verif. se item envelheceu, ou ja foi incluido por outro usuario, ou continua disponivel
+		//TODO: precisa retornar o codOrder
 		ActionStd<CartInfo> mergeUsername = new StdCartMergeUsername(option);
 		ActionLazy<CartInfo> checkout = new LazyCartNodeCheckout(option.conn, option.schemaName);
 		
