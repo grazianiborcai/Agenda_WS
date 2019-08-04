@@ -140,6 +140,7 @@ public class PayordemUpdateSingle implements DaoStmt<PayordemInfo> {
 			stmt.setString(i++, recordInfo.idPaymentPartner);
 			stmt.setString(i++, recordInfo.statusPaymentPartner);
 			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
+			stmt.setBoolean(i++, recordInfo.isSystemReceiver);
 			
 			return stmt;
 		}		

@@ -162,6 +162,10 @@ public final class PayordemSelectSingle implements DaoStmt<PayordemInfo> {
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
 				
+				stmtResult.getBoolean(PayordemDbTableColumn.COL_IS_SYSTEM_RECEIVER);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.isSystemReceiver = stmtResult.getBoolean(PayordemDbTableColumn.COL_IS_SYSTEM_RECEIVER);
+				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

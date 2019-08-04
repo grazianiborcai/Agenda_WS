@@ -11,15 +11,14 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.partnerMoip.refundMoip.info.RefumoipInfo;
-import br.com.gda.payment.partnerMoip.refundMoip.model.action.LazyRefumoipEnforceResponseAttr;
-import br.com.gda.payment.partnerMoip.refundMoip.model.action.LazyRefumoipRefund;
-import br.com.gda.payment.partnerMoip.refundMoip.model.checker.RefumoipCheckCuspar;
-import br.com.gda.payment.partnerMoip.refundMoip.model.checker.RefumoipCheckCusparData;
-import br.com.gda.payment.partnerMoip.refundMoip.model.checker.RefumoipCheckRefund;
+import br.com.gda.payment.partnerMoip.refundMoip.model.action.LazyRefumoipEnforceSetupNonsys;
+import br.com.gda.payment.partnerMoip.refundMoip.model.action.StdRefumoipMergeStopar;
+import br.com.gda.payment.partnerMoip.refundMoip.model.checker.RefumoipCheckNonSystem;
+import br.com.gda.payment.partnerMoip.refundMoip.model.checker.RefumoipCheckStore;
 
-public final class RootRefumoipRefund extends DeciTreeWriteTemplate<RefumoipInfo> {
+public final class NodeRefumoipNonSystem extends DeciTreeWriteTemplate<RefumoipInfo> {
 	
-	public RootRefumoipRefund(DeciTreeOption<RefumoipInfo> option) {
+	public NodeRefumoipNonSystem(DeciTreeOption<RefumoipInfo> option) {
 		super(option);
 	}
 	
@@ -32,35 +31,30 @@ public final class RootRefumoipRefund extends DeciTreeWriteTemplate<RefumoipInfo
 		ModelChecker<RefumoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new RefumoipCheckRefund();
-		queue.add(checker);
-		
-		checker = new RefumoipCheckCusparData();
+		checker = new RefumoipCheckNonSystem();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new RefumoipCheckCuspar(checkerOption);
+		checker = new RefumoipCheckStore(checkerOption);
 		queue.add(checker);
-		//TODO: verificar partner = MOIP
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
-	//TODO: verificar refund duas vezes
+
 	@Override protected List<ActionStd<RefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<RefumoipInfo> option) {
 		List<ActionStd<RefumoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<RefumoipInfo> nodeRefund = new NodeRefumoipRefund(option).toAction();		
-		ActionLazy<RefumoipInfo> refund = new LazyRefumoipRefund(option.conn, option.schemaName);
-		ActionLazy<RefumoipInfo> enforceResponseAttr = new LazyRefumoipEnforceResponseAttr(option.conn, option.schemaName);
+		ActionStd<RefumoipInfo> mergeStopar = new StdRefumoipMergeStopar(option);	
+		ActionLazy<RefumoipInfo> enforceSetup = new LazyRefumoipEnforceSetupNonsys(option.conn, option.schemaName);	
 		
-		nodeRefund.addPostAction(refund);
-		refund.addPostAction(enforceResponseAttr);
+		mergeStopar.addPostAction(enforceSetup);
 		
-		actions.add(nodeRefund);		
+		actions.add(mergeStopar);		
 		return actions;
 	}
 }

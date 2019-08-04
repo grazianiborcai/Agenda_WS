@@ -3,6 +3,7 @@ package br.com.gda.payment.payOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -10,7 +11,8 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
-import br.com.gda.payment.payOrderItem.model.action.StdPayordemInsert;
+import br.com.gda.payment.payOrderItem.model.action.LazyPayordemInsert;
+import br.com.gda.payment.payOrderItem.model.action.StdPayordemEnforceSysReceiver;
 import br.com.gda.payment.payOrderItem.model.checker.PayordemCheckFeeCateg;
 
 public final class NodePayordemInsertFee extends DeciTreeWriteTemplate<PayordemInfo> {
@@ -43,9 +45,12 @@ public final class NodePayordemInsertFee extends DeciTreeWriteTemplate<PayordemI
 	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordemInfo> insert = new StdPayordemInsert(option);
+		ActionStd<PayordemInfo> enforceSysReceiver = new StdPayordemEnforceSysReceiver(option);
+		ActionLazy<PayordemInfo> insert = new LazyPayordemInsert(option.conn, option.schemaName);
 		
-		actions.add(insert);
+		enforceSysReceiver.addPostAction(insert);
+		
+		actions.add(enforceSysReceiver);
 		return actions;
 	}
 }

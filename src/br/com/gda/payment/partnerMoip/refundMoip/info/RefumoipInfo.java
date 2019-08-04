@@ -7,14 +7,19 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.setupPartner.info.SetuparInfo;
+import br.com.gda.payment.storePartner.info.StoparInfo;
 import br.com.moip.models.Setup;
 
 public final class RefumoipInfo extends InfoRecord implements Cloneable {
+	public long codOwner;
 	public String idOrderPartner;
 	public String idRefundPartner;
 	public String statusRefundPartner;
+	public long codStore;
+	public boolean isSystemReceiver;
 	public CusparInfo cusparData;
 	public SetuparInfo setuparData;
+	public StoparInfo stoparData;
 	public Map<String, Object> response;
 	public Setup setup;
 	public String codLanguage;
@@ -22,8 +27,12 @@ public final class RefumoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public RefumoipInfo() {
+		codOwner = DefaultValue.number();
 		cusparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
+		stoparData = DefaultValue.object();
+		isSystemReceiver = DefaultValue.boole();
+		codStore = DefaultValue.number();
 	}
 	
 	
@@ -45,6 +54,7 @@ public final class RefumoipInfo extends InfoRecord implements Cloneable {
 		
 		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
 		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
+		deepCopy.stoparData = cloneStopar(deepCopy.stoparData);
 		
 		return deepCopy;
 	}
@@ -65,6 +75,15 @@ public final class RefumoipInfo extends InfoRecord implements Cloneable {
 			return null;
 		
 		return (CusparInfo) recordInfo.clone();
+	}	
+	
+	
+	
+	private StoparInfo cloneStopar(StoparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (StoparInfo) recordInfo.clone();
 	}	
 	
 	

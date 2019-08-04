@@ -7,12 +7,12 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.partnerMoip.refundMoip.info.RefumoipInfo;
 
-public final class StdRefumoipEnforceSetup implements ActionStd<RefumoipInfo> {
+public final class StdRefumoipEnforceSetupSys implements ActionStd<RefumoipInfo> {
 	private ActionStd<RefumoipInfo> actionHelper;	
 	
 	
-	public StdRefumoipEnforceSetup(DeciTreeOption<RefumoipInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiRefumoipEnforceSetup());
+	public StdRefumoipEnforceSetupSys(DeciTreeOption<RefumoipInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiRefumoipEnforceSetupSys());
 	}
 	
 	

@@ -685,6 +685,7 @@ public final class SystemMessage {
 	
 	
 	// Refund Moip
+	public static final String REFUND_MOIP_IS_NOT_SYSTEM_RECEIVER = "Moip-Refund: It's not system accout";	
 	public static final String REFUND_MOIP_MANDATORY_FIELD_EMPTY = "Moip-Refund: Mandatory field is empty";	
 	public static final String REFUND_MOIP_REFUND_ERROR = "Moip-Refund: An error occurred when trying to refund order with financial company";
 	

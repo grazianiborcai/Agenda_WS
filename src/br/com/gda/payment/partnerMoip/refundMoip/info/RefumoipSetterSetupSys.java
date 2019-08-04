@@ -10,7 +10,7 @@ import br.com.moip.auth.OAuth;
 import br.com.moip.models.Setup;
 import br.com.moip.models.Setup.Environment;
 
-public final class RefumoipSetterSetup implements InfoSetter<RefumoipInfo> {
+public final class RefumoipSetterSetupSys implements InfoSetter<RefumoipInfo> {
 	
 	public RefumoipInfo setAttr(RefumoipInfo recordInfo) {
 		checkArgument(recordInfo);

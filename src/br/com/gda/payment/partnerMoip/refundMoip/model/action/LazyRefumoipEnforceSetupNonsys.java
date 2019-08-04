@@ -9,9 +9,9 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.partnerMoip.refundMoip.info.RefumoipInfo;
 
-public final class LazyRefumoipEnforceSetup extends ActionLazyTemplate<RefumoipInfo, RefumoipInfo> {
+public final class LazyRefumoipEnforceSetupNonsys extends ActionLazyTemplate<RefumoipInfo, RefumoipInfo> {
 
-	public LazyRefumoipEnforceSetup(Connection conn, String schemaName) {
+	public LazyRefumoipEnforceSetupNonsys(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyRefumoipEnforceSetup extends ActionLazyTemplate<RefumoipI
 	
 	
 	@Override protected ActionStd<RefumoipInfo> getInstanceOfActionHook(DeciTreeOption<RefumoipInfo> option) {
-		return new StdRefumoipEnforceSetup(option);
+		return new StdRefumoipEnforceSetupNonsys(option);
 	}
 	
 	
