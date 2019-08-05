@@ -1,8 +1,8 @@
 package br.com.gda.payment.refundOrderItem.model.action;
 
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionStdHelperAction;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.refundOrderItem.info.RefemInfo;
@@ -12,7 +12,7 @@ public final class StdRefemRefumoipRefund implements ActionStd<RefemInfo> {
 	
 	
 	public StdRefemRefumoipRefund(DeciTreeOption<RefemInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiRefemRefumoipRefund(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiRefemRefumoipRefund(option.conn, option.schemaName));
 	}
 	
 	
