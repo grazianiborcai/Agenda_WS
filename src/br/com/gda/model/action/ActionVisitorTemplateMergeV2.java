@@ -24,46 +24,25 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 
 	public ActionVisitorTemplateMergeV2(Connection conn, String schemaName, Class<S> clazz) {
-		checkArgument(conn, schemaName, clazz);
-		makeOption(conn, schemaName);
-		
+		checkArgument(conn, schemaName, clazz);		
+		selOption = makeOption(conn, schemaName);		
 		sClazz = clazz;
 	}
 	
 	
 	
-	private void checkArgument(Connection conn, String schemaName, Class<S> clazz) {
-		if (conn == null) {
-			logException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (schemaName == null) {
-			logException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));	
-			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (clazz == null) {
-			logException(new NullPointerException("clazz" + SystemMessage.NULL_ARGUMENT));	
-			throw new NullPointerException("clazz" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private void makeOption(Connection conn, String schemaName) {
-		selOption = new DeciTreeOption<>();
-		selOption.conn = conn;
-		selOption.schemaName = schemaName;
-		selOption.recordInfos = null;
+	private DeciTreeOption<S> makeOption(Connection conn, String schemaName) {
+		DeciTreeOption<S> option = new DeciTreeOption<>();
+		option.conn = conn;
+		option.schemaName = schemaName;
+		option.recordInfos = null;
+		return option;
 	}
 	
 	
 		
 	@Override public List<T> executeTransformation(List<T> recordInfos) {
-		addRecordToOption(recordInfos);
+		selOption = addRecordToOption(recordInfos, selOption);
 		List<S> selectedInfos = selectToMerge();
 		
 		if(shouldMerge(selectedInfos))		
@@ -74,8 +53,9 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private void addRecordToOption(List<T> recordInfos) {
-		selOption.recordInfos = toActionClassHook(recordInfos);
+	private DeciTreeOption<S> addRecordToOption(List<T> recordInfos, DeciTreeOption<S> option) {
+		option.recordInfos = toActionClassHook(recordInfos);
+		return option;
 	}
 	
 	
@@ -218,8 +198,28 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
-
 	
+	
+	
+	private void checkArgument(Connection conn, String schemaName, Class<S> clazz) {
+		if (conn == null) {
+			logException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (schemaName == null) {
+			logException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));	
+			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (clazz == null) {
+			logException(new NullPointerException("clazz" + SystemMessage.NULL_ARGUMENT));	
+			throw new NullPointerException("clazz" + SystemMessage.NULL_ARGUMENT);
+		}
+	}
+
 	
 	
 	private void logException(Exception e) {

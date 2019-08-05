@@ -10,22 +10,30 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 
 public final class ActionStdHelperMerge<T> extends ActionStdTemplate<T> {
-	private List<T> records = new ArrayList<>();
+	private List<T> records;
 	private ActionVisitorMerge<T> visitorMerge;
 	
 	
 	public ActionStdHelperMerge(T recordInfo, ActionVisitorMerge<T> visitor) {		
 		super();
+		init();
 		checkArgument(recordInfo, visitor);
-		makeCopy(recordInfo);
+		records = makeCopy(recordInfo, records);
 		visitorMerge = visitor;
 	}
 	
 	
 	
-	private void makeCopy(T recordInfo) {
+	private void init() {
+		records = new ArrayList<>();
+	}
+	
+	
+	
+	private List<T> makeCopy(T recordInfo, List<T> recordInfos) {
 		T cloned = super.makeDefensiveCopy(recordInfo);
-		records.add(cloned);
+		recordInfos.add(cloned);
+		return recordInfos;
 	}
 	
 	
