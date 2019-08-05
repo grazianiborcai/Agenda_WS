@@ -41,6 +41,8 @@ final class PaytusemVisiMergeOrdmoip implements InfoMergerVisitorV2<PaytusemInfo
 		sourceTwo.statusOrderPartner = sourceOne.statusOrderPartner;	
 		sourceTwo.idPaymentPartner = sourceOne.idPaymentPartner;
 		sourceTwo.statusPaymentPartner = sourceOne.statusPaymentPartner;
+		sourceTwo.idRefundPartner = sourceOne.idRefundPartner;
+		sourceTwo.statusRefundPartner = sourceOne.statusRefundPartner;
 		return sourceTwo;
 	}
 	

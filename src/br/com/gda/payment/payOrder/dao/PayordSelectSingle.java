@@ -118,8 +118,6 @@ public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
 				dataInfo.amountCurrencyPartner = stmtResult.getString(PayordDbTableColumn.COL_AMOUNT_CURRENCY_PARTNER);
 				dataInfo.idPaymentPartner = stmtResult.getString(PayordDbTableColumn.COL_ID_PAYMENT_PARTNER);
 				dataInfo.statusPaymentPartner = stmtResult.getString(PayordDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
-				dataInfo.idRefundPartner = stmtResult.getString(PayordDbTableColumn.COL_ID_REFUND_PARTNER);
-				dataInfo.statusRefundPartner = stmtResult.getString(PayordDbTableColumn.COL_STATUS_REFUND_PARTNER);
 				
 				stmtResult.getLong(PayordDbTableColumn.COL_COD_ORDER);
 				if (stmtResult.wasNull() == NOT_NULL)

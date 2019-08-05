@@ -113,8 +113,6 @@ public final class PayordInsertSingle implements DaoStmt<PayordInfo> {
 			stmt.setString(i++, recordInfo.amountCurrencyPartner);
 			stmt.setString(i++, recordInfo.idPaymentPartner);
 			stmt.setString(i++, recordInfo.statusPaymentPartner);
-			stmt.setString(i++, recordInfo.idRefundPartner);
-			stmt.setString(i++, recordInfo.statusRefundPartner);
 			
 			
 			return stmt;

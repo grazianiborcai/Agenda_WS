@@ -19,6 +19,8 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public String statusOrderPartner;
 	public String idPaymentPartner;
 	public String statusPaymentPartner;
+	public String idRefundPartner;
+	public String statusRefundPartner;
 	public char codFeeCateg;
 	public String txtFeeCateg;
 	public String productTxt;

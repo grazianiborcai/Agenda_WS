@@ -20,6 +20,8 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 	public String statusOrderPartner;
 	public String idPaymentPartner;
 	public String statusPaymentPartner;
+	public String idRefundPartner;
+	public String statusRefundPartner;
 	public CusparInfo cusparData;
 	public String codLanguage;
 	public String username;

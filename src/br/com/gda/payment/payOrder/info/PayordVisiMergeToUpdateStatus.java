@@ -26,9 +26,7 @@ final class PayordVisiMergeToUpdateStatus implements InfoMergerVisitorV2<PayordI
 		PayordInfo result = makeClone(sourceOne);	
 		result.statusOrderPartner = sourceTwo.statusOrderPartner;	
 		result.idPaymentPartner = sourceTwo.idPaymentPartner;
-		result.statusPaymentPartner = sourceTwo.statusPaymentPartner;	
-		result.idRefundPartner = sourceTwo.idRefundPartner;
-		result.statusRefundPartner = sourceTwo.statusRefundPartner;	
+		result.statusPaymentPartner = sourceTwo.statusPaymentPartner;
 		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
 		return result;

@@ -3,34 +3,29 @@ package br.com.gda.payment.statusPayOrder.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
-import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionVisitorTemplateAction;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.statusPayOrder.info.PaytusInfo;
 import br.com.gda.payment.statusPayOrder.info.PaytusMerger;
 import br.com.gda.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.gda.payment.statusPayOrderItem.model.decisionTree.RootPaytusemRefresh;
 
-final class VisiPaytusPaytusemRefresh extends ActionVisitorTemplateMergeV2<PaytusInfo, PaytusemInfo> {
+final class VisiPaytusPaytusemRefresh extends ActionVisitorTemplateAction<PaytusInfo, PaytusemInfo> {
 	
 	public VisiPaytusPaytusemRefresh(Connection conn, String schemaName) {
-		super(conn, schemaName, PaytusemInfo.class);
+		super(conn, schemaName, PaytusInfo.class, PaytusemInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<PaytusemInfo>> getTreeClassHook() {
-		return RootPaytusemRefresh.class;
+	@Override protected ActionStd<PaytusemInfo> getActionHook(DeciTreeOption<PaytusemInfo> option) {
+		return new RootPaytusemRefresh(option).toAction();
 	}
 	
 	
-	
-	@Override protected List<PaytusInfo> mergeHook(List<PaytusInfo> recordInfos, List<PaytusemInfo> selectedInfos) {	
-		return PaytusMerger.mergeWithPaytusem(selectedInfos, recordInfos);
-	}
-	
-	
-	
-	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+
+	@Override protected List<PaytusInfo> toBaseClassHook(List<PaytusInfo> baseInfos, List<PaytusemInfo> results) {	
+		return PaytusMerger.mergeWithPaytusem(results, baseInfos);
 	}
 }
