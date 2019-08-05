@@ -19,12 +19,11 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CREATED_ON = "created_on";
 	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
 	public static final String COL_ID_PAYMENT_PARTNER = "id_payment_partner";
+	public static final String COL_ID_REFUND_PARTNER = "id_refund_partner";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";
 	public static final String COL_STATUS_PAYMENT_PARTNER = "status_payment_partner";
-	public static final String COL_URL_PAY_CARD = "url_pay_card";
-	public static final String COL_URL_PAY_BOLETO = "url_pay_boleto";
-	public static final String COL_URL_SELF = "url_self";	
+	public static final String COL_STATUS_REFUND_PARTNER = "status_refund_partner";
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
@@ -124,30 +123,6 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_URL_SELF;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_URL_PAY_CARD;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_URL_PAY_BOLETO;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_AMOUNT_TOTAL_PARTNER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
@@ -173,6 +148,22 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_STATUS_PAYMENT_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_ID_REFUND_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_STATUS_REFUND_PARTNER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

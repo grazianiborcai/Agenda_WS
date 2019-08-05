@@ -123,13 +123,12 @@ public final class PayordUpdateSingle implements DaoStmt<PayordInfo> {
 			
 			stmt.setString(i++, recordInfo.idOrderPartner);
 			stmt.setString(i++, recordInfo.statusOrderPartner);
-			stmt.setString(i++, recordInfo.urlSelf);
-			stmt.setString(i++, recordInfo.urlPayCard);
-			stmt.setString(i++, recordInfo.urlPayBoleto);
 			stmt.setString(i++, recordInfo.amountTotalPartner);
 			stmt.setString(i++, recordInfo.amountCurrencyPartner);
 			stmt.setString(i++, recordInfo.idPaymentPartner);
 			stmt.setString(i++, recordInfo.statusPaymentPartner);
+			stmt.setString(i++, recordInfo.idRefundPartner);
+			stmt.setString(i++, recordInfo.statusRefundPartner);
 			
 			
 			return stmt;

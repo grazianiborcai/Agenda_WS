@@ -20,6 +20,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_DATE = "date";		
 	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
 	public static final String COL_ID_PAYMENT_PARTNER = "id_payment_partner";
+	public static final String COL_ID_REFUND_PARTNER = "id_refund_partner";
 	public static final String COL_IS_SYSTEM_RECEIVER = "is_system_receiver";
 	public static final String COL_ITEM_NUMBER = "item_num";
 	public static final String COL_ITEM_RECEIVER = "item_receiver";
@@ -28,6 +29,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_PRICE = "price";	
 	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";
 	public static final String COL_STATUS_PAYMENT_PARTNER = "status_payment_partner";
+	public static final String COL_STATUS_REFUND_PARTNER = "status_refund_partner";
 	public static final String COL_QUANTITY = "quantity";	
 	public static final String COL_TOTAL_ITEM = "total_item";
 	
@@ -218,6 +220,22 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_IS_SYSTEM_RECEIVER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_ID_REFUND_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_STATUS_REFUND_PARTNER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

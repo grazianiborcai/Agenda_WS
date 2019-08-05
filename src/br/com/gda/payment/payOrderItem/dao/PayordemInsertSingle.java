@@ -132,6 +132,8 @@ public class PayordemInsertSingle implements DaoStmt<PayordemInfo> {
 			stmt.setString(i++, recordInfo.statusPaymentPartner);
 			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
 			stmt.setBoolean(i++, recordInfo.isSystemReceiver);
+			stmt.setString(i++, recordInfo.idRefundPartner);
+			stmt.setString(i++, recordInfo.statusRefundPartner);
 			
 			return stmt;
 		}		
