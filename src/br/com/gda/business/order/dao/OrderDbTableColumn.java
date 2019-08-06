@@ -12,13 +12,7 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ADDRESS_SHIP = "cod_address_ship";
 	public static final String COL_COD_ADDRESS_SHIP_SNAPSHOT = "cod_address_ship_snapshot";
 	public static final String COL_COD_ADDRESS_INVOICE = "cod_address_invoice";
-	public static final String COL_COD_ADDRESS_INVOICE_SNAPSHOT = "cod_address_invoice_snapshot";		
-	public static final String COL_COD_PHONE_SHIP = "cod_phone_ship";
-	public static final String COL_COD_PHONE_SHIP_SNAPSHOT = "cod_phone_ship_snapshot";
-	public static final String COL_COD_PHONE_INVOICE = "cod_phone_invoice";
-	public static final String COL_COD_PHONE_INVOICE_SNAPSHOT = "cod_phone_invoice_snapshot";	
-	
-	
+	public static final String COL_COD_ADDRESS_INVOICE_SNAPSHOT = "cod_address_invoice_snapshot";
 	public static final String COL_COD_CURRENCY = "cod_curr";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = "cod_customer_snapshot";
@@ -26,6 +20,11 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ORDER_EXTERNAL = "cod_order_external";
 	public static final String COL_COD_ORDER_STATUS = "cod_order_status";
 	public static final String COL_COD_OWNER = "cod_owner";
+	public static final String COL_COD_PAY_ORDER = "cod_pay_order";
+	public static final String COL_COD_PHONE_SHIP = "cod_phone_ship";
+	public static final String COL_COD_PHONE_SHIP_SNAPSHOT = "cod_phone_ship_snapshot";
+	public static final String COL_COD_PHONE_INVOICE = "cod_phone_invoice";
+	public static final String COL_COD_PHONE_INVOICE_SNAPSHOT = "cod_phone_invoice_snapshot";
 	public static final String COL_COD_USER = "cod_user";
 	public static final String COL_COD_USER_SNAPSHOT = "cod_user_snapshot";
 	public static final String COL_FEE_SERVICE = "feeService";
@@ -220,6 +219,14 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_PHONE_INVOICE_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PAY_ORDER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

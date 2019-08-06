@@ -19,7 +19,6 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 	public String statusOrderPartner;
 	public String idPaymentPartner;
 	public String statusPaymentPartner;
-	public String codOrderStatus;
 	public CusparInfo cusparData;
 	public List<PaytusemInfo> paytusems;
 	public String codLanguage;

@@ -11,6 +11,7 @@ import br.com.gda.business.order.model.action.LazyOrderMergeCurrency;
 import br.com.gda.business.order.model.action.LazyOrderMergeFeeCateg;
 import br.com.gda.business.order.model.action.LazyOrderMergeOrderStatus;
 import br.com.gda.business.order.model.action.LazyOrderMergeToSelect;
+import br.com.gda.business.order.model.action.LazyOrderNodePayord;
 import br.com.gda.business.order.model.action.StdOrderMergeUsername;
 import br.com.gda.business.order.model.checker.OrderCheckLangu;
 import br.com.gda.business.order.model.checker.OrderCheckRead;
@@ -63,6 +64,7 @@ public final class RootOrderSelect extends DeciTreeReadTemplate<OrderInfo> {
 		ActionLazy<OrderInfo> mergeOrderStatus = new LazyOrderMergeOrderStatus(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceFeeCateg = new LazyOrderEnforceFeeCateg(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> mergeFeeCateg = new LazyOrderMergeFeeCateg(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> nodePayord = new LazyOrderNodePayord(option.conn, option.schemaName);
 		
 		mergeUser.addPostAction(select);
 		select.addPostAction(mergeItem);
@@ -71,6 +73,7 @@ public final class RootOrderSelect extends DeciTreeReadTemplate<OrderInfo> {
 		mergeCurrency.addPostAction(mergeOrderStatus);
 		mergeOrderStatus.addPostAction(enforceFeeCateg);
 		enforceFeeCateg.addPostAction(mergeFeeCateg);
+		mergeFeeCateg.addPostAction(nodePayord);
 		
 		actions.add(mergeUser);			
 		return actions;

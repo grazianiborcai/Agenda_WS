@@ -1,16 +1,16 @@
-package br.com.gda.payment.statusPayOrder.info;
+package br.com.gda.business.order.info;
 
 import br.com.gda.business.masterData.info.common.OrderStatus;
-import br.com.gda.business.masterData.info.common.PaymentStatusMoip;
+import br.com.gda.business.masterData.info.common.OrderStatusMoip;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class PaytusSetterOrderStatus implements InfoSetter<PaytusInfo> {
+public final class OrderSetterStatusMoip implements InfoSetter<OrderInfo> {
 	
-	public PaytusInfo setAttr(PaytusInfo recordInfo) {
+	public OrderInfo setAttr(OrderInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		PaymentStatusMoip status = getPaymentStatus(recordInfo);
+		OrderStatusMoip status = getMoipStatus(recordInfo);
 		
 		recordInfo = setDefault(recordInfo);	
 		recordInfo = setWaiting(recordInfo, status);
@@ -22,23 +22,23 @@ public final class PaytusSetterOrderStatus implements InfoSetter<PaytusInfo> {
 	
 	
 	
-	private PaymentStatusMoip getPaymentStatus(PaytusInfo recordInfo) {
-		if (recordInfo.statusPaymentPartner == null)
+	private OrderStatusMoip getMoipStatus(OrderInfo recordInfo) {
+		if (recordInfo.statusOrderPartner == null)
 			return null;
 		
-		return PaymentStatusMoip.getStatus(recordInfo.statusPaymentPartner);
+		return OrderStatusMoip.getStatus(recordInfo.statusOrderPartner);
 	}
 	
 	
 	
-	private PaytusInfo setDefault(PaytusInfo recordInfo) {
+	private OrderInfo setDefault(OrderInfo recordInfo) {
 		recordInfo.codOrderStatus = OrderStatus.WAITING.getCodStatus();
 		return recordInfo;
 	}
 	
 	
 	
-	private PaytusInfo setWaiting(PaytusInfo recordInfo, PaymentStatusMoip status) {
+	private OrderInfo setWaiting(OrderInfo recordInfo, OrderStatusMoip status) {
 		if (status == null)
 			return recordInfo;
 		
@@ -50,7 +50,7 @@ public final class PaytusSetterOrderStatus implements InfoSetter<PaytusInfo> {
 	
 	
 	
-	private PaytusInfo setPaid(PaytusInfo recordInfo, PaymentStatusMoip status) {
+	private OrderInfo setPaid(OrderInfo recordInfo, OrderStatusMoip status) {
 		if (status == null)
 			return recordInfo;
 		
@@ -62,7 +62,7 @@ public final class PaytusSetterOrderStatus implements InfoSetter<PaytusInfo> {
 	
 	
 	
-	private PaytusInfo setNotPaid(PaytusInfo recordInfo, PaymentStatusMoip status) {
+	private OrderInfo setNotPaid(OrderInfo recordInfo, OrderStatusMoip status) {
 		if (status == null)
 			return recordInfo;
 		
@@ -74,7 +74,7 @@ public final class PaytusSetterOrderStatus implements InfoSetter<PaytusInfo> {
 	
 	
 	
-	private void checkArgument(PaytusInfo recordInfo) {
+	private void checkArgument(OrderInfo recordInfo) {
 		if (recordInfo == null)
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 	}

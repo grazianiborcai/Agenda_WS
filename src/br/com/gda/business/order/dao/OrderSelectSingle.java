@@ -178,6 +178,10 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codPhoneInvoiceSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_INVOICE_SNAPSHOT);
 				
+				stmtResult.getLong(OrderDbTableColumn.COL_COD_PAY_ORDER);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPayOrder = stmtResult.getLong(OrderDbTableColumn.COL_COD_PAY_ORDER);
+				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -447,6 +447,7 @@ public final class SystemCode {
 	public static final int ORDER_ALREADY_EXIST							= 4005;
 	public static final int ORDER_NOT_FOUND								= 4006;
 	public static final int ORDER_HEADER_MANDATORY_FIELD_EMPTY			= 4007;
+	public static final int ORDER_DONT_HAVE_PAYMENT						= 4008;
 	
 	//Pay-Order
 	public static final int PAY_ORDER_PAYMENT_ALREADY_EXIST				= 4050;

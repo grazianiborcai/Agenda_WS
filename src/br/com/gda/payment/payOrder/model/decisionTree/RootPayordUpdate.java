@@ -12,6 +12,7 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceLChanged;
+import br.com.gda.payment.payOrder.model.action.LazyPayordOrderUpdate;
 import br.com.gda.payment.payOrder.model.action.LazyPayordUpdate;
 import br.com.gda.payment.payOrder.model.action.StdPayordMergeToUpdate;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckExist;
@@ -52,10 +53,12 @@ public final class RootPayordUpdate extends DeciTreeWriteTemplate<PayordInfo> {
 		
 		ActionStd<PayordInfo> select = new StdPayordMergeToUpdate(option);
 		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> update = new LazyPayordUpdate(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> updatePayord = new LazyPayordUpdate(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> updateOrder = new LazyPayordOrderUpdate(option.conn, option.schemaName);
 		
 		select.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(update);
+		enforceLChanged.addPostAction(updatePayord);
+		updatePayord.addPostAction(updateOrder);
 		
 		actions.add(select);
 		return actions;

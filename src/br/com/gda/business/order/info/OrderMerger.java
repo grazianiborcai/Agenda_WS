@@ -8,9 +8,24 @@ import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.orderItem.info.OrderemInfo;
 import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoMerger;
+import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class OrderMerger {		
+	public static OrderInfo mergeWithPayord(PayordInfo sourceOne, OrderInfo sourceTwo) {
+		InfoMerger<OrderInfo, PayordInfo> merger = new OrderMergerPayord();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OrderInfo> mergeWithPayord(List<PayordInfo> sourceOnes, List<OrderInfo> sourceTwos) {
+		InfoMerger<OrderInfo, PayordInfo> merger = new OrderMergerPayord();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
 	public static OrderInfo mergeWithFeeCateg(FeeCategInfo sourceOne, OrderInfo sourceTwo) {
 		InfoMerger<OrderInfo, FeeCategInfo> merger = new OrderMergerFeeCateg();		
 		return merger.merge(sourceOne, sourceTwo);

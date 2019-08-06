@@ -564,6 +564,7 @@ public final class SystemMessage {
 	
 	// Order
 	public static final String ORDER_ALREADY_EXIST = "Order already exist on DB";
+	public static final String ORDER_DONT_HAVE_PAYMENT = "No payment was placed for the given order";
 	public static final String ORDER_NOT_FOUND = "Order not found on DB";	
 	public static final String ORDER_ITEM_ALREADY_EXIST = "Order item already exist on DB";	
 	public static final String ORDER_ITEM_NOT_FOUND = "Order item not found on DB";	

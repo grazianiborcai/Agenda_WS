@@ -11,7 +11,6 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.payment.statusPayOrder.info.PaytusInfo;
-import br.com.gda.payment.statusPayOrder.model.action.LazyPaytusEnforceOrderStatus;
 import br.com.gda.payment.statusPayOrder.model.action.LazyPaytusMergePaytusem;
 import br.com.gda.payment.statusPayOrder.model.action.StdPaytusMergePayord;
 import br.com.gda.payment.statusPayOrder.model.checker.PaytusCheckLangu;
@@ -52,10 +51,8 @@ public final class RootPaytusSelect extends DeciTreeReadTemplate<PaytusInfo> {
 
 		ActionStd<PaytusInfo> mergePayord = new StdPaytusMergePayord(option);	
 		ActionLazy<PaytusInfo> mergePaytusem = new LazyPaytusMergePaytusem(option.conn, option.schemaName);	
-		ActionLazy<PaytusInfo> enforceOrderStatus = new LazyPaytusEnforceOrderStatus(option.conn, option.schemaName);
 		
 		mergePayord.addPostAction(mergePaytusem);
-		mergePaytusem.addPostAction(enforceOrderStatus);
 		
 		actions.add(mergePayord);		
 		return actions;

@@ -24,7 +24,10 @@ final class OrderVisiMergeToUpdate implements InfoMergerVisitorV2<OrderInfo, Ord
 	
 	private OrderInfo merge(OrderInfo sourceOne, OrderInfo sourceTwo) {
 		OrderInfo result = makeClone(sourceOne);		
-		result.codOrderStatus = sourceTwo.codOrderStatus;
+		result.codPayOrder = sourceTwo.codPayOrder;
+		result.codPayPartner = sourceTwo.codPayPartner;
+		result.statusOrderPartner = sourceTwo.statusOrderPartner;
+		result.statusPaymentPartner = sourceTwo.statusPaymentPartner;
 		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
 		return result;

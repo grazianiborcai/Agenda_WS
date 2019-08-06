@@ -192,6 +192,13 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}	
+			
+			
+			if (recordInfo.codPayOrder >= 0) {
+				stmt.setLong(i++, recordInfo.codPayOrder);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}	
 
 			return stmt;
 		}		

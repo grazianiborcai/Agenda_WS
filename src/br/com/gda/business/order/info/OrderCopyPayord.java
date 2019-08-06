@@ -15,6 +15,7 @@ final class OrderCopyPayord extends InfoCopierTemplate<OrderInfo, PayordInfo>{
 		OrderInfo result = new OrderInfo();
 		result.codOwner = source.codOwner;
 		result.codOrder = source.codOrder;
+		result.codPayOrder = source.codPayOrder;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
 		

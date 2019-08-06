@@ -1,4 +1,4 @@
-package br.com.gda.payment.statusPayOrder.model.action;
+package br.com.gda.payment.payOrder.model.action;
 
 import java.sql.Connection;
 import java.util.List;
@@ -8,11 +8,11 @@ import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.decisionTree.RootOrderUpdate;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.payment.statusPayOrder.info.PaytusInfo;
+import br.com.gda.payment.payOrder.info.PayordInfo;
 
-final class VisiPaytusOrderUpdate extends ActionVisitorTemplateMergeV2<PaytusInfo, OrderInfo> {
+final class VisiPayordOrderUpdate extends ActionVisitorTemplateMergeV2<PayordInfo, OrderInfo> {
 	
-	public VisiPaytusOrderUpdate(Connection conn, String schemaName) {
+	public VisiPayordOrderUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName, OrderInfo.class);
 	}
 	
@@ -24,13 +24,13 @@ final class VisiPaytusOrderUpdate extends ActionVisitorTemplateMergeV2<PaytusInf
 	
 	
 	
-	@Override protected List<OrderInfo> toActionClassHook(List<PaytusInfo> recordInfos) {
-		return OrderCopier.copyFromPaytus(recordInfos);
+	@Override protected List<OrderInfo> toActionClassHook(List<PayordInfo> recordInfos) {
+		return OrderCopier.copyFromPayord(recordInfos);
 	}
 	
 	
 	
-	@Override protected List<PaytusInfo> mergeHook(List<PaytusInfo> recordInfos, List<OrderInfo> selectedInfos) {	
+	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> recordInfos, List<OrderInfo> selectedInfos) {	
 		return recordInfos;
 	}
 	

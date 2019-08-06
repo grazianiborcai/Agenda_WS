@@ -33,6 +33,10 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public String txtFeeCateg;
 	public String codOrderStatus;
 	public String txtOrderStatus;
+	public long codPayOrder;
+	public int codPayPartner;
+	public String statusOrderPartner;
+	public String statusPaymentPartner;
 	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
@@ -42,7 +46,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	
 	public OrderInfo() {
 		codOwner = DefaultValue.number();	
-		codOrder = DefaultValue.number();	
+		codOrder = DefaultValue.number();				
 		codCustomer = DefaultValue.number();
 		codCustomerSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
@@ -59,6 +63,8 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		feeService = 0;
 		codFeeCateg = DefaultValue.character();
 		grandTotal = DefaultValue.number();
+		codPayOrder = DefaultValue.number();
+		codPayPartner = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		orderms = DefaultValue.list();
 	}
