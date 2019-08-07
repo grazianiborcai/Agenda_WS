@@ -30,6 +30,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
 	public static final String COL_COD_PAYMENT_STATUS = "cod_payment_status";
 	public static final String COL_COD_POSITION = "cod_position";	
+	public static final String COL_COD_SYS_ENVIRONMENT = "cod_environment";
 	public static final String COL_COD_TIMEZONE = "cod_timezone";
 	public static final String COL_COD_UNIT = "unit";
 	public static final String COL_COD_USER_CATEG = "cod_user_categ";
@@ -39,6 +40,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_NAME = "name";
 	public static final String COL_RECORD_MODE = "record_mode";
 	public static final String COL_STATE_PROVINCE = "state_province";
+	
 	
 	
 	
@@ -79,6 +81,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		authGrRoleTable();
 		authGroupTable();
 		matmovTypeTable();
+		sysEnvironmentTable();
 		
 		return tableColumns;
 	}
@@ -1021,6 +1024,25 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private void sysEnvironmentTable() {
+		final String TABLE_NAME = DaoDbTable.SYS_ENVIRONMENT_TABLE ;
+		
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_SYS_ENVIRONMENT;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

@@ -53,14 +53,10 @@ public final class OrderStatusSelectSingle implements DaoStmt<OrderStatusInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean IGNORE_RECORD_MODE = true;
-		final boolean DUMMY_CLAUSE_ALLOWED = true;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DUMMY_CLAUSE_ALLOWED;
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;	
+		whereOption.dummyClauseWhenEmpty = DaoWhereBuilderOption.DUMMY_CLAUSE_ALLOWED;
 		
 		DaoStmtWhere whereClause = new OrderStatusWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
