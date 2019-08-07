@@ -42,10 +42,10 @@ public final class NodeOrdmoipPlaceMat extends DeciTreeWriteTemplate<OrdmoipInfo
 		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<OrdmoipInfo> enforceMatTxt = new StdOrdmoipEnforceMatTxt(option);	
-		ActionLazy<OrdmoipInfo> nodeCreateL2 = new LazyOrdmoipNodePlaceL2(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> nodePlaceL2 = new LazyOrdmoipNodePlaceL2(option.conn, option.schemaName);
 		
 		
-		enforceMatTxt.addPostAction(nodeCreateL2);
+		enforceMatTxt.addPostAction(nodePlaceL2);
 		
 		actions.add(enforceMatTxt);		
 		return actions;

@@ -19,6 +19,7 @@ import br.com.gda.payment.partnerMoip.creditCardMoip.model.action.LazyCremoipEnf
 import br.com.gda.payment.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforceHolder;
 import br.com.gda.payment.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforcePhone;
 import br.com.gda.payment.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforceSetup;
+import br.com.gda.payment.partnerMoip.creditCardMoip.model.action.LazyCremoipMergeSysEnviron;
 import br.com.gda.payment.partnerMoip.creditCardMoip.model.action.StdCremoipMergeSetupar;
 import br.com.gda.payment.partnerMoip.creditCardMoip.model.checker.CremoipCheckAdd;
 import br.com.gda.payment.partnerMoip.creditCardMoip.model.checker.CremoipCheckAddressBR;
@@ -81,6 +82,7 @@ public final class RootCremoipAdd extends DeciTreeWriteTemplate<CremoipInfo> {
 		List<ActionStd<CremoipInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CremoipInfo> mergeSetupar = new StdCremoipMergeSetupar(option);
+		ActionLazy<CremoipInfo> mergeSysEnviron = new LazyCremoipMergeSysEnviron(option.conn, option.schemaName);
 		ActionLazy<CremoipInfo> enforceSetup = new LazyCremoipEnforceSetup(option.conn, option.schemaName);
 		ActionLazy<CremoipInfo> enforceAddress = new LazyCremoipEnforceAddress(option.conn, option.schemaName);
 		ActionLazy<CremoipInfo> enforceDocument = new LazyCremoipEnforceDocument(option.conn, option.schemaName);
@@ -90,7 +92,8 @@ public final class RootCremoipAdd extends DeciTreeWriteTemplate<CremoipInfo> {
 		ActionLazy<CremoipInfo> enforceFunding = new LazyCremoipEnforceFunding(option.conn, option.schemaName);
 		ActionLazy<CremoipInfo> addCard = new LazyCremoipAdd(option.conn, option.schemaName);
 		
-		mergeSetupar.addPostAction(enforceSetup);
+		mergeSetupar.addPostAction(mergeSysEnviron);
+		mergeSysEnviron.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(enforceAddress);
 		enforceAddress.addPostAction(enforceDocument);
 		enforceDocument.addPostAction(enforcePhone);

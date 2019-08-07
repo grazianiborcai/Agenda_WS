@@ -13,6 +13,7 @@ import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.gda.payment.partnerMoip.creditCardMoip.model.action.LazyCremoipDelete;
 import br.com.gda.payment.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforceSetup;
+import br.com.gda.payment.partnerMoip.creditCardMoip.model.action.LazyCremoipMergeSysEnviron;
 import br.com.gda.payment.partnerMoip.creditCardMoip.model.action.StdCremoipMergeSetupar;
 import br.com.gda.payment.partnerMoip.creditCardMoip.model.checker.CremoipCheckCusparData;
 import br.com.gda.payment.partnerMoip.creditCardMoip.model.checker.CremoipCheckDelete;
@@ -55,10 +56,12 @@ public final class RootCremoipDelete extends DeciTreeWriteTemplate<CremoipInfo> 
 		List<ActionStd<CremoipInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CremoipInfo> mergeSetupar = new StdCremoipMergeSetupar(option);
+		ActionLazy<CremoipInfo> mergeSysEnviron = new LazyCremoipMergeSysEnviron(option.conn, option.schemaName);
 		ActionLazy<CremoipInfo> enforceSetup = new LazyCremoipEnforceSetup(option.conn, option.schemaName);
 		ActionLazy<CremoipInfo> delete = new LazyCremoipDelete(option.conn, option.schemaName);
 		
-		mergeSetupar.addPostAction(enforceSetup);
+		mergeSetupar.addPostAction(mergeSysEnviron);
+		mergeSysEnviron.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(delete);
 		
 		actions.add(mergeSetupar);

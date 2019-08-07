@@ -2,17 +2,17 @@ package br.com.gda.payment.partnerMoip.accessMoip.model.action;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.partnerMoip.accessMoip.info.AccemoipInfo;
 
-public final class StdAccemoipEnforceUrl_ implements ActionStd<AccemoipInfo> {
+public final class StdAccemoipMergeSysEnviron implements ActionStd<AccemoipInfo> {
 	private ActionStd<AccemoipInfo> actionHelper;	
 	
 	
-	public StdAccemoipEnforceUrl_(DeciTreeOption<AccemoipInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiAccemoipEnforceUrl_());
+	public StdAccemoipMergeSysEnviron(DeciTreeOption<AccemoipInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiAccemoipMergeSysEnviron(option.conn, option.schemaName));
 	}
 	
 	

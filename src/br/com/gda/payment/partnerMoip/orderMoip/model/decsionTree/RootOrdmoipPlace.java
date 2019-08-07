@@ -50,9 +50,9 @@ public final class RootOrdmoipPlace extends DeciTreeWriteTemplate<OrdmoipInfo> {
 	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
 		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<OrdmoipInfo> nodeCreate = new NodeOrdmoipPlaceL1(option).toAction();	
+		ActionStd<OrdmoipInfo> nodePlaceL1 = new NodeOrdmoipPlaceL1(option).toAction();	
 		
-		actions.add(nodeCreate);		
+		actions.add(nodePlaceL1);		
 		return actions;
 	}
 }

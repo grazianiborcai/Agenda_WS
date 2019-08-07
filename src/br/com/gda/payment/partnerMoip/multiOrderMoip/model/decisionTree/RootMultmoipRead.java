@@ -13,6 +13,7 @@ import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceResponseAttr;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceSetup;
+import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipMergeSysEnviron;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.LazyMultmoipRead;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.action.StdMultmoipMergeSetupar;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.model.checker.MultmoipCheckCuspar;
@@ -56,11 +57,13 @@ public final class RootMultmoipRead extends DeciTreeWriteTemplate<MultmoipInfo> 
 		List<ActionStd<MultmoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<MultmoipInfo> mergeSetupar = new StdMultmoipMergeSetupar(option);	
+		ActionLazy<MultmoipInfo> mergeSysEnviron = new LazyMultmoipMergeSysEnviron(option.conn, option.schemaName);	
 		ActionLazy<MultmoipInfo> enforceSetup = new LazyMultmoipEnforceSetup(option.conn, option.schemaName);		
 		ActionLazy<MultmoipInfo> read = new LazyMultmoipRead(option.conn, option.schemaName);
 		ActionLazy<MultmoipInfo> enforceResponseAttr = new LazyMultmoipEnforceResponseAttr(option.conn, option.schemaName);
 		
-		mergeSetupar.addPostAction(enforceSetup);
+		mergeSetupar.addPostAction(mergeSysEnviron);
+		mergeSysEnviron.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(read);
 		read.addPostAction(enforceResponseAttr);
 		

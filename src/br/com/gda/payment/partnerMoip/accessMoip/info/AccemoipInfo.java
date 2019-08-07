@@ -20,6 +20,7 @@ public final class AccemoipInfo extends InfoRecord implements Cloneable {
 	public String recordMode;
 	public String codLanguage;
 	public String username;
+	public String codSysEnviron;
 	
 	
 	public AccemoipInfo() {
@@ -30,6 +31,7 @@ public final class AccemoipInfo extends InfoRecord implements Cloneable {
 		recordMode = DefaultValue.recordMode();
 		sysparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
+		codSysEnviron = DefaultValue.getCodEnvironment();
 	}
 	
 	

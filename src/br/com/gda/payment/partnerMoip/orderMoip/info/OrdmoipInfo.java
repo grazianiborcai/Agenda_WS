@@ -40,6 +40,7 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public Setup setup;
 	public String codLanguage;
 	public String username;
+	public String codSysEnviron;
 	
 	
 	public OrdmoipInfo() {
@@ -53,6 +54,7 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		products = DefaultValue.list();
 		receivers = DefaultValue.list();
 		codLanguage = DefaultValue.language();
+		codSysEnviron = DefaultValue.getCodEnvironment();
 	}
 	
 	

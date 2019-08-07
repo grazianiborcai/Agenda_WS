@@ -16,6 +16,7 @@ import br.com.gda.payment.partnerMoip.accessMoip.model.action.LazyAccemoipEnforc
 import br.com.gda.payment.partnerMoip.accessMoip.model.action.LazyAccemoipEnforceSetup;
 import br.com.gda.payment.partnerMoip.accessMoip.model.action.LazyAccemoipInsertPeresmoip;
 import br.com.gda.payment.partnerMoip.accessMoip.model.action.LazyAccemoipMergeSetupar;
+import br.com.gda.payment.partnerMoip.accessMoip.model.action.LazyAccemoipMergeSysEnviron;
 import br.com.gda.payment.partnerMoip.accessMoip.model.action.LazyAccemoipUrl;
 import br.com.gda.payment.partnerMoip.accessMoip.model.action.StdAccemoipMergeSyspar;
 import br.com.gda.payment.partnerMoip.accessMoip.model.checker.AccemoipCheckSetupar;
@@ -60,14 +61,16 @@ public final class NodeAccemoipUrl extends DeciTreeWriteTemplate<AccemoipInfo> {
 
 		ActionStd<AccemoipInfo> mergeSyspar = new StdAccemoipMergeSyspar(option);	
 		ActionLazy<AccemoipInfo> mergeSetupar = new LazyAccemoipMergeSetupar(option.conn, option.schemaName);
-		ActionLazy<AccemoipInfo> enforceSetup = new LazyAccemoipEnforceSetup(option.conn, option.schemaName);
+		ActionLazy<AccemoipInfo> mergeSysEnviron = new LazyAccemoipMergeSysEnviron(option.conn, option.schemaName);
+		ActionLazy<AccemoipInfo> enforceSetup = new LazyAccemoipEnforceSetup(option.conn, option.schemaName);		
 		ActionLazy<AccemoipInfo> enforceScopes = new LazyAccemoipEnforceScopes(option.conn, option.schemaName);
 		ActionLazy<AccemoipInfo> enforceUrl = new LazyAccemoipUrl(option.conn, option.schemaName);
 		ActionLazy<AccemoipInfo> insertPeresmoip = new LazyAccemoipInsertPeresmoip(option.conn, option.schemaName);
 		ActionLazy<AccemoipInfo> obfuscate = new LazyAccemoipEnforceObfuscate(option.conn, option.schemaName);
 		
 		mergeSyspar.addPostAction(mergeSetupar);
-		mergeSetupar.addPostAction(enforceSetup);
+		mergeSetupar.addPostAction(mergeSysEnviron);
+		mergeSysEnviron.addPostAction(enforceSetup);		
 		enforceSetup.addPostAction(enforceScopes);
 		enforceScopes.addPostAction(enforceUrl);
 		enforceUrl.addPostAction(insertPeresmoip);

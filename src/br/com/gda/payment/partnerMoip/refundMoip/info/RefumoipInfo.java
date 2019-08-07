@@ -24,6 +24,7 @@ public final class RefumoipInfo extends InfoRecord implements Cloneable {
 	public Setup setup;
 	public String codLanguage;
 	public String username;
+	public String codSysEnviron;
 	
 	
 	public RefumoipInfo() {
@@ -33,6 +34,7 @@ public final class RefumoipInfo extends InfoRecord implements Cloneable {
 		stoparData = DefaultValue.object();
 		isSystemReceiver = DefaultValue.boole();
 		codStore = DefaultValue.number();
+		codSysEnviron = DefaultValue.getCodEnvironment();
 	}
 	
 	

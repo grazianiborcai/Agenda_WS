@@ -3,6 +3,7 @@ package br.com.gda.payment.partnerMoip.accessMoip.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.masterData.info.common.Environ;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 import br.com.moip.auth.Authentication;
@@ -30,17 +31,32 @@ public final class AccemoipSetterSetup implements InfoSetter<AccemoipInfo> {
 	
 	private AccemoipInfo setSetup(AccemoipInfo recordInfo) {
 		Authentication auth = getAuthentication(recordInfo);
-		Setup setup = new Setup().setAuthentication(auth).setEnvironment(Environment.CONNECT_SANDBOX);
-	//  TODO: parametizar environment no BD
+		Environment environment = getEnvironment(recordInfo);
+		
+		Setup setup = new Setup().setAuthentication(auth).setEnvironment(environment);
+
 		recordInfo.setup = setup;
 		return recordInfo;
-	}	
+	}
 	
 	
 	
 	private Authentication getAuthentication(AccemoipInfo recordInfo) {
 		return new BasicAuth(recordInfo.setuparData.basicToken, recordInfo.setuparData.basicKey);
 	}	
+	
+	
+	
+	private Environment getEnvironment(AccemoipInfo recordInfo) {
+		if(recordInfo.codSysEnviron == null)
+			return Environment.CONNECT_SANDBOX;
+		
+		if(recordInfo.codSysEnviron.equals(Environ.PRODUCTIVE.getCodEnviron()))
+			return Environment.CONNECT_PRODUCTION;
+		
+		
+		return Environment.CONNECT_SANDBOX;
+	}
 	
 	
 	

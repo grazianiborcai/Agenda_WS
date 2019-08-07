@@ -15,7 +15,8 @@ import br.com.gda.payment.partnerMoip.customerMoip.model.action.LazyCusmoipEnfor
 import br.com.gda.payment.partnerMoip.customerMoip.model.action.LazyCusmoipEnforceDocument;
 import br.com.gda.payment.partnerMoip.customerMoip.model.action.LazyCusmoipEnforcePhone;
 import br.com.gda.payment.partnerMoip.customerMoip.model.action.LazyCusmoipEnforceRequest;
-import br.com.gda.payment.partnerMoip.customerMoip.model.action.StdCusmoipEnforceSetup;
+import br.com.gda.payment.partnerMoip.customerMoip.model.action.LazyCusmoipEnforceSetup;
+import br.com.gda.payment.partnerMoip.customerMoip.model.action.StdCusmoipMergeSysEnviron;
 import br.com.gda.payment.partnerMoip.customerMoip.model.checker.CusmoipCheckAddresnapData;
 import br.com.gda.payment.partnerMoip.customerMoip.model.checker.CusmoipCheckAddressBR;
 import br.com.gda.payment.partnerMoip.customerMoip.model.checker.CusmoipCheckPhonapData;
@@ -65,20 +66,22 @@ public final class RootCusmoipCreate extends DeciTreeWriteTemplate<CusmoipInfo> 
 	@Override protected List<ActionStd<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
 		List<ActionStd<CusmoipInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusmoipInfo> enforceSetup = new StdCusmoipEnforceSetup(option);
+		ActionStd<CusmoipInfo> mergeSysEnviron = new StdCusmoipMergeSysEnviron(option);
+		ActionLazy<CusmoipInfo> enforceSetup = new LazyCusmoipEnforceSetup(option.conn, option.schemaName);
 		ActionLazy<CusmoipInfo> enforceAddress = new LazyCusmoipEnforceAddress(option.conn, option.schemaName);
 		ActionLazy<CusmoipInfo> enforceDocument = new LazyCusmoipEnforceDocument(option.conn, option.schemaName);
 		ActionLazy<CusmoipInfo> enforcePhone = new LazyCusmoipEnforcePhone(option.conn, option.schemaName);
 		ActionLazy<CusmoipInfo> enforcerequest = new LazyCusmoipEnforceRequest(option.conn, option.schemaName);
 		ActionLazy<CusmoipInfo> create = new LazyCusmoipCreate(option.conn, option.schemaName);
 		
+		mergeSysEnviron.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(enforceAddress);
 		enforceAddress.addPostAction(enforceDocument);
 		enforceDocument.addPostAction(enforcePhone);
 		enforcePhone.addPostAction(enforcerequest);
 		enforcerequest.addPostAction(create);
 		
-		actions.add(enforceSetup);
+		actions.add(mergeSysEnviron);
 		return actions;
 	}
 }

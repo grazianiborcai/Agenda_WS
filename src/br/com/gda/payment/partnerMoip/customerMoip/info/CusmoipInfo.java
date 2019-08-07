@@ -31,6 +31,7 @@ public final class CusmoipInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
+	public String codSysEnviron;
 	
 	
 	
@@ -42,6 +43,7 @@ public final class CusmoipInfo extends InfoRecord implements Cloneable {
 		userapData = DefaultValue.object();
 		addresnapData = DefaultValue.object();
 		phonapData = DefaultValue.object();
+		codSysEnviron = DefaultValue.getCodEnvironment();
 	}
 	
 	

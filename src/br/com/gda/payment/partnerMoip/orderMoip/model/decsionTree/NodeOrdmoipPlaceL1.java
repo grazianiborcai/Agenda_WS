@@ -46,9 +46,9 @@ public final class NodeOrdmoipPlaceL1 extends DeciTreeWriteTemplate<OrdmoipInfo>
 	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
 		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<OrdmoipInfo> createFee = new NodeOrdmoipPlaceFee(option).toAction();
+		ActionStd<OrdmoipInfo> placeFee = new NodeOrdmoipPlaceFee(option).toAction();
 		
-		actions.add(createFee);		
+		actions.add(placeFee);		
 		return actions;
 	}
 	
@@ -57,9 +57,9 @@ public final class NodeOrdmoipPlaceL1 extends DeciTreeWriteTemplate<OrdmoipInfo>
 	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnFailedHook(DeciTreeOption<OrdmoipInfo> option) {
 		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<OrdmoipInfo> createMat = new NodeOrdmoipPlaceMat(option).toAction();
+		ActionStd<OrdmoipInfo> placeMat = new NodeOrdmoipPlaceMat(option).toAction();
 		
-		actions.add(createMat);		
+		actions.add(placeMat);		
 		return actions;
 	}
 }

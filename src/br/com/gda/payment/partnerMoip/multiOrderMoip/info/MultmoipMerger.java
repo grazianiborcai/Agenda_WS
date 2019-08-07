@@ -2,12 +2,27 @@ package br.com.gda.payment.partnerMoip.multiOrderMoip.info;
 
 import java.util.List;
 
+import br.com.gda.business.masterData.info.SysEnvironInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.payment.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.gda.payment.setupPartner.info.SetuparInfo;
 
 public final class MultmoipMerger {
+	public static MultmoipInfo mergeWithSysEnviron(SysEnvironInfo sourceOne, MultmoipInfo sourceTwo) {
+		InfoMerger<MultmoipInfo, SysEnvironInfo> merger = new MultmoipMergerSysEnviron();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MultmoipInfo> mergeWithSysEnviron(List<SysEnvironInfo> sourceOnes, List<MultmoipInfo> sourceTwos) {
+		InfoMerger<MultmoipInfo, SysEnvironInfo> merger = new MultmoipMergerSysEnviron();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static MultmoipInfo mergeWithSetupar(SetuparInfo sourceOne, MultmoipInfo sourceTwo) {
 		InfoMerger<MultmoipInfo, SetuparInfo> merger = new MultmoipMergerSetupar();		
 		return merger.merge(sourceOne, sourceTwo);

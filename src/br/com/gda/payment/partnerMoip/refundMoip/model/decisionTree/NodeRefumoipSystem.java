@@ -11,6 +11,7 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.gda.payment.partnerMoip.refundMoip.model.action.LazyRefumoipEnforceSetupSys;
+import br.com.gda.payment.partnerMoip.refundMoip.model.action.LazyRefumoipMergeSysEnviron;
 import br.com.gda.payment.partnerMoip.refundMoip.model.action.StdRefumoipMergeSetupar;
 import br.com.gda.payment.partnerMoip.refundMoip.model.checker.RefumoipCheckSystemReceiver;
 
@@ -38,9 +39,11 @@ public final class NodeRefumoipSystem extends DeciTreeWriteTemplate<RefumoipInfo
 		List<ActionStd<RefumoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<RefumoipInfo> mergeSetupar = new StdRefumoipMergeSetupar(option);	
+		ActionLazy<RefumoipInfo> mergeSysEnviron = new LazyRefumoipMergeSysEnviron(option.conn, option.schemaName);
 		ActionLazy<RefumoipInfo> enforceSetup = new LazyRefumoipEnforceSetupSys(option.conn, option.schemaName);	
 		
-		mergeSetupar.addPostAction(enforceSetup);
+		mergeSetupar.addPostAction(mergeSysEnviron);
+		mergeSysEnviron.addPostAction(enforceSetup);
 		
 		actions.add(mergeSetupar);		
 		return actions;

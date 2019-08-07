@@ -3,6 +3,7 @@ package br.com.gda.payment.partnerMoip.multiPayMoip.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.masterData.info.common.Environ;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 import br.com.moip.auth.Authentication;
@@ -30,8 +31,10 @@ public final class PaymoipSetterSetup implements InfoSetter<PaymoipInfo> {
 	
 	private PaymoipInfo setSetup(PaymoipInfo recordInfo) {
 		Authentication auth = getAuthentication(recordInfo);
-		Setup setup = new Setup().setAuthentication(auth).setEnvironment(Environment.SANDBOX);
-	//  TODO: parametizar environment no BD
+		Environment environment = getEnvironment(recordInfo);
+		
+		Setup setup = new Setup().setAuthentication(auth).setEnvironment(environment);
+
 		recordInfo.setup = setup;
 		return recordInfo;
 	}	
@@ -41,6 +44,19 @@ public final class PaymoipSetterSetup implements InfoSetter<PaymoipInfo> {
 	private Authentication getAuthentication(PaymoipInfo recordInfo) {
 		return new OAuth(recordInfo.setuparData.oauthToken);
 	}	
+	
+	
+	
+	private Environment getEnvironment(PaymoipInfo recordInfo) {
+		if(recordInfo.codSysEnviron == null)
+			return Environment.SANDBOX;
+		
+		if(recordInfo.codSysEnviron.equals(Environ.PRODUCTIVE.getCodEnviron()))
+			return Environment.PRODUCTION;
+		
+		
+		return Environment.SANDBOX;
+	}
 	
 	
 	

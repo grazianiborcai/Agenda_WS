@@ -14,6 +14,7 @@ import br.com.gda.payment.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.gda.payment.partnerMoip.tokenMoip.model.action.LazyTokemoipEnforceSetup;
 import br.com.gda.payment.partnerMoip.tokenMoip.model.action.LazyTokemoipGenerate;
 import br.com.gda.payment.partnerMoip.tokenMoip.model.action.LazyTokemoipMergeSetupar;
+import br.com.gda.payment.partnerMoip.tokenMoip.model.action.LazyTokemoipMergeSysEnviron;
 import br.com.gda.payment.partnerMoip.tokenMoip.model.action.StdTokemoipMergeSyspar;
 import br.com.gda.payment.partnerMoip.tokenMoip.model.checker.TokemoipCheckSetupar;
 import br.com.gda.payment.partnerMoip.tokenMoip.model.checker.TokemoipCheckSyspar;
@@ -57,16 +58,14 @@ public final class NodeTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipIn
 
 		ActionStd<TokemoipInfo> mergeSyspar = new StdTokemoipMergeSyspar(option);	
 		ActionLazy<TokemoipInfo> mergeSetupar = new LazyTokemoipMergeSetupar(option.conn, option.schemaName);
+		ActionLazy<TokemoipInfo> mergeSysEnviron = new LazyTokemoipMergeSysEnviron(option.conn, option.schemaName);
 		ActionLazy<TokemoipInfo> enforceSetup = new LazyTokemoipEnforceSetup(option.conn, option.schemaName);
 		ActionLazy<TokemoipInfo> generateToken = new LazyTokemoipGenerate(option.conn, option.schemaName);
-//		ActionLazy<TokemoipInfo> insertPeresmoip = new LazyAccemoipInsertPeresmoip(option.conn, option.schemaName);
-//		ActionLazy<TokemoipInfo> obfuscate = new LazyAccemoipEnforceObfuscate(option.conn, option.schemaName);
 		
 		mergeSyspar.addPostAction(mergeSetupar);
-		mergeSetupar.addPostAction(enforceSetup);
+		mergeSetupar.addPostAction(mergeSysEnviron);
+		mergeSysEnviron.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(generateToken);
-//		generateToken.addPostAction(insertPeresmoip);
-//		insertPeresmoip.addPostAction(obfuscate);
 		
 		actions.add(mergeSyspar);		
 		return actions;
