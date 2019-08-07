@@ -5,10 +5,25 @@ import java.util.List;
 import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.business.feeOwner.info.FeewnerInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
+import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class CartMerger {	
+	public static CartInfo mergeWithOrder(OrderInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, OrderInfo> merger = new CartMergerOrder();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CartInfo> mergeWithOrder(List<OrderInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, OrderInfo> merger = new CartMergerOrder();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
 	public static CartInfo mergeWithFeewner(FeewnerInfo sourceOne, CartInfo sourceTwo) {
 		InfoMerger<CartInfo, FeewnerInfo> merger = new CartMergerFeewner();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -19,7 +34,7 @@ public final class CartMerger {
 	public static List<CartInfo> mergeWithFeewner(List<FeewnerInfo> sourceOnes, List<CartInfo> sourceTwos) {
 		InfoMerger<CartInfo, FeewnerInfo> merger = new CartMergerFeewner();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}		
+	}	
 	
 	
 	

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.info.CartMerger;
 import br.com.gda.business.order.info.OrderCopier;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.decisionTree.RootOrderInsert;
@@ -31,6 +32,6 @@ final class VisiCartInsertOrder extends ActionVisitorTemplateAction<CartInfo, Or
 	
 	
 	@Override protected List<CartInfo> toBaseClassHook(List<CartInfo> baseInfos, List<OrderInfo> results) {
-		return baseInfos;
+		return CartMerger.mergeWithOrder(results, baseInfos);
 	}
 }

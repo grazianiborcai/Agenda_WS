@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.business.cart.model.action.LazyCartEnforceObfuscate;
 import br.com.gda.business.cart.model.action.LazyCartInsertOrder;
 import br.com.gda.business.cart.model.action.LazyCartNodeEmptfy;
 import br.com.gda.business.cart.model.checker.CartCheckExist;
@@ -48,9 +49,11 @@ public final class NodeCartCheckout extends DeciTreeWriteTemplate<CartInfo> {
 		ActionStd<CartInfo> select = new RootCartSelect(option).toAction();
 		ActionLazy<CartInfo> insertOrder = new LazyCartInsertOrder(option.conn, option.schemaName);	
 		ActionLazy<CartInfo> emptfy = new LazyCartNodeEmptfy(option.conn, option.schemaName);	
+		ActionLazy<CartInfo> obfuscate = new LazyCartEnforceObfuscate(option.conn, option.schemaName);	
 		
 		select.addPostAction(insertOrder);
 		insertOrder.addPostAction(emptfy);
+		insertOrder.addPostAction(obfuscate);
 		
 		actions.add(select);
 		return actions;
