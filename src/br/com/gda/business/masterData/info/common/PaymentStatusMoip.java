@@ -77,7 +77,7 @@ public enum PaymentStatusMoip {
 	
 	
 	static private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(MatmovType.class);
+		Logger logger = LogManager.getLogger(PaymentStatusMoip.class);
 		logger.error(e.getMessage(), e);
 	}
 }

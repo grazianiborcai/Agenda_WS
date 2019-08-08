@@ -73,7 +73,7 @@ public enum OrderStatusMoip {
 	
 	
 	static private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(MatmovType.class);
+		Logger logger = LogManager.getLogger(OrderStatusMoip.class);
 		logger.error(e.getMessage(), e);
 	}
 }
