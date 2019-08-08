@@ -7,18 +7,18 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 
-public final class UpswdCheckDelete extends ModelCheckerTemplateSimple<UpswdInfo> {
+public final class UpswdCheckAuthUsername extends ModelCheckerTemplateSimple<UpswdInfo> {
 
-	public UpswdCheckDelete() {
+	public UpswdCheckAuthUsername() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(UpswdInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 	<= 0 	
-			|| recordInfo.codUser 	<= 0	)
-			
+		if (recordInfo.codOwner <= 0 	||
+			recordInfo.username	== null ||
+			recordInfo.password	== null		)			
 			return FAILED;
 		
 		

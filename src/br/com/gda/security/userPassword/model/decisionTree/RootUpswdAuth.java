@@ -18,8 +18,9 @@ import br.com.gda.security.userPassword.info.UpswdInfo;
 import br.com.gda.security.userPassword.model.action.LazyUpswdEnforceHashToMatch;
 import br.com.gda.security.userPassword.model.action.LazyUpswdNodeMatch;
 import br.com.gda.security.userPassword.model.action.StdUpswdKeepUpswd;
+import br.com.gda.security.userPassword.model.checker.UpswdCheckAuth;
 import br.com.gda.security.userPassword.model.checker.UpswdCheckExist;
-import br.com.gda.security.userPassword.model.checker.UpswdCheckRead;
+import br.com.gda.security.userPassword.model.checker.UpswdCheckIsPasswordEnabled;
 
 public final class RootUpswdAuth implements DeciTree<UpswdInfo> {
 	private DeciTree<UpswdInfo> tree;
@@ -45,7 +46,10 @@ public final class RootUpswdAuth implements DeciTree<UpswdInfo> {
 		ModelChecker<UpswdInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new UpswdCheckRead();
+		checker = new UpswdCheckAuth();
+		queue.add(checker);
+		
+		checker = new UpswdCheckIsPasswordEnabled();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

@@ -10,6 +10,7 @@ import br.com.gda.info.InfoRecord;
 public final class UpswdInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codUser;
+	public char codUserCategory;
 	public String username;
 	public String password;
 	public String passwordToChange;
@@ -26,6 +27,7 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 	public UpswdInfo() {
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
+		codUserCategory = DefaultValue.character();
 		personData = DefaultValue.object();
 		codLanguage = DefaultValue.language();	
 	}

@@ -389,6 +389,8 @@ public final class SystemCode {
 	public static final int USER_PASSWORD_OR_USERNAME_IS_INVALID		= 2600;
 	public static final int USER_PASSWORD_PERSON_IS_BLANK				= 2601;
 	public static final int USER_PASSWORD_EMAIL_IS_BLANK				= 2602;
+	public static final int USER_PASSWORD_MANDATORY_FIELD_EMPTY			= 2603;
+	public static final int USER_PASSWORD_IS_NOT_PWD_ENABLED			= 2604;
 	
 	// Employee Position
 	public static final int EMPOS_ALREADY_EXIST 						= 2650;

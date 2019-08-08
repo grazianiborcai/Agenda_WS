@@ -18,7 +18,7 @@ import br.com.gda.security.userPassword.info.UpswdInfo;
 import br.com.gda.security.userPassword.model.action.LazyUpswdMergeUser;
 import br.com.gda.security.userPassword.model.action.LazyUpswdRootAuth;
 import br.com.gda.security.userPassword.model.action.StdUpswdEnforceUsernameKey;
-import br.com.gda.security.userPassword.model.checker.UpswdCheckReadUsername;
+import br.com.gda.security.userPassword.model.checker.UpswdCheckAuthUsername;
 import br.com.gda.security.userPassword.model.checker.UpswdCheckUsername;
 
 public final class RootUpswdAuthUsername implements DeciTree<UpswdInfo> {
@@ -45,7 +45,7 @@ public final class RootUpswdAuthUsername implements DeciTree<UpswdInfo> {
 		ModelChecker<UpswdInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new UpswdCheckReadUsername();
+		checker = new UpswdCheckAuthUsername();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

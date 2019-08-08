@@ -42,6 +42,7 @@ final class UpswdVisiMergeUser implements InfoMergerVisitorV2<UpswdInfo, UserInf
 		sourceTwo.username = sourceOne.username;
 		sourceTwo.codOwner = sourceOne.codOwner;
 		sourceTwo.codUser = sourceOne.codUser;		
+		sourceTwo.codUserCategory = sourceOne.codUserCategory;
 		sourceTwo.personData = makeClone(sourceOne.personData);
 		return sourceTwo;
 	}

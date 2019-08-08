@@ -491,8 +491,10 @@ public final class SystemMessage {
 	
 	// User Password
 	public static final String USER_PASSWORD_EMAIL_IS_BLANK = "User-Password: e-mail address is blank";
+	public static final String USER_PASSWORD_IS_NOT_PWD_ENABLED = "User is not allowed to authenticate thgrough password";
+	public static final String USER_PASSWORD_MANDATORY_FIELD_EMPTY = "User-Password: Mandatory field is empty";
 	public static final String USER_PASSWORD_OR_USERNAME_IS_INVALID = "Invalid Password or Username";
-	public static final String USER_PASSWORD_PERSON_IS_BLANK = "User-Password: Person's data is blank";	
+	public static final String USER_PASSWORD_PERSON_IS_BLANK = "User-Password: Person's data is blank";			
 	
 	
 	

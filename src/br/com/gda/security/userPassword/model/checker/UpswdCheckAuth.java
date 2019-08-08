@@ -2,23 +2,26 @@ package br.com.gda.security.userPassword.model.checker;
 
 import java.sql.Connection;
 
+import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 
-public final class UpswdCheckReadUsername extends ModelCheckerTemplateSimple<UpswdInfo> {
+public final class UpswdCheckAuth extends ModelCheckerTemplateSimple<UpswdInfo> {
 
-	public UpswdCheckReadUsername() {
+	public UpswdCheckAuth() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(UpswdInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner <= 0 	||
-			recordInfo.username	== null ||
-			recordInfo.password	== null		)			
+		if (recordInfo.codOwner 		<= 0 						||
+			recordInfo.codUser			<= 0 						||
+			recordInfo.codUserCategory 	== DefaultValue.character() ||
+			recordInfo.username			== null 					||
+			recordInfo.password			== null		)			
 			return FAILED;
 		
 		
@@ -28,12 +31,12 @@ public final class UpswdCheckReadUsername extends ModelCheckerTemplateSimple<Ups
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.USER_PASSWORD_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.USER_PASSWORD_MANDATORY_FIELD_EMPTY;
 	}
 }

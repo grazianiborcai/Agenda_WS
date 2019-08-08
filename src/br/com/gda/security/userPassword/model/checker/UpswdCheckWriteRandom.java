@@ -28,12 +28,12 @@ public final class UpswdCheckWriteRandom extends ModelCheckerTemplateSimple<Upsw
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.USER_PASSWORD_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.USER_PASSWORD_MANDATORY_FIELD_EMPTY;
 	}
 }
