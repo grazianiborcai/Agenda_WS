@@ -6,17 +6,17 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class UserSetterUsername implements InfoSetter<UserInfo> {
+public final class UserSetterUsernameDaemon implements InfoSetter<UserInfo> {
 	
 	public UserInfo setAttr(UserInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setUsername(recordInfo);
+		return setUsernameDaemon(recordInfo);
 	}
 	
 	
 	
-	private UserInfo setUsername(UserInfo recordInfo) {
-		recordInfo.username = recordInfo.personData.email;		
+	private UserInfo setUsernameDaemon(UserInfo recordInfo) {
+		recordInfo.username = "DAEMON" + String.valueOf(recordInfo.codOwner);		
 		return recordInfo;
 	}
 	

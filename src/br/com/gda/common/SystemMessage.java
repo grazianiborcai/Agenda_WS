@@ -340,6 +340,7 @@ public final class SystemMessage {
 	public static final String USER_COD_IS_FILLED = "Code User should be blank";
 	public static final String USER_IS_NULL = "User is blank";
 	public static final String USER_IS_FILLED = "User is not blank";	
+	public static final String USER_MANDATORY_FIELD_EMPTY = "User: Mandatory field is empty";
 	public static final String USER_NOT_FOUND = "User's data not found on DB";
 	public static final String USER_PERSON_NOT_CHANGED = "Person not changed";
 	public static final String USER_PERSON_CANT_BE_CHANGED = "Person can't be changed";

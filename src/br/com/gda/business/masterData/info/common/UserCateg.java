@@ -1,7 +1,11 @@
 package br.com.gda.business.masterData.info.common;
 
 public enum UserCateg {
-	OWNER('O'), STORE('S'), CUSTOMER('C'), EMPLOYEE('E');
+	OWNER('O'), 
+	STORE('S'), 
+	CUSTOMER('C'), 
+	EMPLOYEE('E'),
+	DAEMON('D');
 	
 	private char codCateg;
 	

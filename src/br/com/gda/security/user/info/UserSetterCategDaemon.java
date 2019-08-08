@@ -3,21 +3,15 @@ package br.com.gda.security.user.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.masterData.info.common.UserCateg;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class UserSetterUsername implements InfoSetter<UserInfo> {
+public final class UserSetterCategDaemon implements InfoSetter<UserInfo> {
 	
 	public UserInfo setAttr(UserInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setUsername(recordInfo);
-	}
-	
-	
-	
-	private UserInfo setUsername(UserInfo recordInfo) {
-		recordInfo.username = recordInfo.personData.email;		
-		return recordInfo;
+		return setCodUser(recordInfo);
 	}
 	
 	
@@ -27,11 +21,25 @@ public final class UserSetterUsername implements InfoSetter<UserInfo> {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}
-		
-		
-		if (recordInfo.personData == null) {
-			logException(new NullPointerException("recordInfo.personData" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo.personData" + SystemMessage.NULL_ARGUMENT);
+	}
+	
+	
+	
+	private UserInfo setCodUser(UserInfo recordInfo) {
+		UserInfo enforcedRecord = makeClone(recordInfo);
+		enforcedRecord.codUserCategory = UserCateg.DAEMON.getCodUserCateg();		
+		return enforcedRecord;
+	}
+	
+	
+	
+	private UserInfo makeClone(UserInfo recordInfo) {
+		try {
+			return (UserInfo) recordInfo.clone();
+			
+		} catch (Exception e) {
+			logException(e);
+			throw new IllegalStateException(e); 
 		}
 	}
 	

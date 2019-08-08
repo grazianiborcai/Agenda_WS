@@ -3,20 +3,21 @@ package br.com.gda.security.user.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.masterData.info.common.AuthGroup;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class UserSetterUsername implements InfoSetter<UserInfo> {
+public final class UserSetterAuthDaemon implements InfoSetter<UserInfo> {
 	
 	public UserInfo setAttr(UserInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setUsername(recordInfo);
+		return setUsernameDaemon(recordInfo);
 	}
 	
 	
 	
-	private UserInfo setUsername(UserInfo recordInfo) {
-		recordInfo.username = recordInfo.personData.email;		
+	private UserInfo setUsernameDaemon(UserInfo recordInfo) {
+		recordInfo.codAuthGroup = AuthGroup.DAEMON.getCodAuthGroup();		
 		return recordInfo;
 	}
 	

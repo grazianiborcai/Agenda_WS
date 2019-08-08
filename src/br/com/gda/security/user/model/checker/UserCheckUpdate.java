@@ -29,12 +29,12 @@ public final class UserCheckUpdate extends ModelCheckerTemplateSimple<UserInfo> 
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.USER_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.USER_MANDATORY_FIELD_EMPTY;
 	}
 }

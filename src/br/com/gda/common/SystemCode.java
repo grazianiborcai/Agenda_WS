@@ -272,6 +272,7 @@ public final class SystemCode {
 	public static final int USER_USERNAME_NOT_FOUND 					= 1807;
 	public static final int USER_IS_NULL								= 1808;
 	public static final int USER_IS_FILLED								= 1809;
+	public static final int USER_MANDATORY_FIELD_EMPTY					= 1810;
 	
 	// Snapshot
 	public static final int SNAPSHOT_ALREADY_EXIST 						= 1850;

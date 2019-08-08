@@ -7,22 +7,18 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 import br.com.gda.security.user.info.UserInfo;
 
-public final class UserCheckRead extends ModelCheckerTemplateSimple<UserInfo> {
+public final class UserCheckInsertDaemon extends ModelCheckerTemplateSimple<UserInfo> {
 
-	public UserCheckRead() {
+	public UserCheckInsertDaemon() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(UserInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.codLanguage 	== null		)			
-			return super.FAILED;		
+		if ( recordInfo.codOwner <= 0)
+			return super.FAILED;
 		
-		if (recordInfo.codUser 	<= 0 	&&
-			recordInfo.username	== null		)			
-				return super.FAILED;	
 		
 		return super.SUCCESS;
 	}

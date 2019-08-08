@@ -68,7 +68,7 @@ public final class RootUpswdAuth implements DeciTree<UpswdInfo> {
 	
 	private List<ActionStd<UpswdInfo>> buildActionsOnPassed(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
-		
+		//TODO: usuario de sistema nao pode ser autenticado. Adicionar check
 		ActionStd<UpswdInfo> keepAttr = new StdUpswdKeepUpswd(option);
 		ActionLazy<UpswdInfo> enforceHashToMatch = new LazyUpswdEnforceHashToMatch(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> nodeMatch = new LazyUpswdNodeMatch(option.conn, option.schemaName);

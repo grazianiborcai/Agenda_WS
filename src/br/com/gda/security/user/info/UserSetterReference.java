@@ -22,15 +22,6 @@ public final class UserSetterReference implements InfoSetter<UserInfo> {
 	
 	
 	
-	private void checkArgument(UserInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
 	private UserInfo setReference(UserInfo recordInfo) {
 		recordInfo.codPerson = DefaultValue.number();
 		recordInfo.codCustomer = DefaultValue.number();
@@ -92,6 +83,15 @@ public final class UserSetterReference implements InfoSetter<UserInfo> {
 		
 		
 		return results;
+	}
+	
+	
+	
+	private void checkArgument(UserInfo recordInfo) {
+		if (recordInfo == null) {
+			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
