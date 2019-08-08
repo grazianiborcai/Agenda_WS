@@ -5,10 +5,25 @@ import java.util.List;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
+import br.com.gda.payment.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.statusPayOrderItem.info.PaytusemInfo;
 
 public final class PaytusMerger {	
+	public static PaytusInfo mergeWithPaymoip(PaymoipInfo sourceOne, PaytusInfo sourceTwo) {
+		InfoMerger<PaytusInfo, PaymoipInfo> merger = new PaytusMergerPaymoip();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PaytusInfo> mergeWithPaymoip(List<PaymoipInfo> sourceOnes, List<PaytusInfo> sourceTwos) {
+		InfoMerger<PaytusInfo, PaymoipInfo> merger = new PaytusMergerPaymoip();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static PaytusInfo mergeWithPayord(PayordInfo sourceOne, PaytusInfo sourceTwo) {
 		InfoMerger<PaytusInfo, PayordInfo> merger = new PaytusMergerPayord();		
 		return merger.merge(sourceOne, sourceTwo);

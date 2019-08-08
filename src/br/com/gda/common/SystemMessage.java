@@ -675,6 +675,7 @@ public final class SystemMessage {
 	// Pay-Order Moip
 	public static final String PAY_MOIP_MANDATORY_FIELD_EMPTY = "Pay-Order Moip: Mandatory field is empty";
 	public static final String PAY_MOIP_CREATION_ERROR = "An error occurred when trying to pay your order with financial company";
+	public static final String PAY_MOIP_READ_ERROR = "An error occurred when trying to read your order with financial company";
 	
 	
 	
