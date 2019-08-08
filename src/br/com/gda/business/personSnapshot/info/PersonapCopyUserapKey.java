@@ -1,7 +1,7 @@
 package br.com.gda.business.personSnapshot.info;
 
-import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.info.InfoCopierTemplate;
+import br.com.gda.security.userSnapshot.info.UserapInfo;
 
 final class PersonapCopyUserapKey extends InfoCopierTemplate<PersonapInfo, UserapInfo>{
 	

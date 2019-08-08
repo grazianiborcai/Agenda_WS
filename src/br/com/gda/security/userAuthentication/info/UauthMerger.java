@@ -2,8 +2,8 @@ package br.com.gda.security.userAuthentication.info;
 
 import java.util.List;
 
-import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoMerger;
+import br.com.gda.security.user.info.UserInfo;
 
 public final class UauthMerger {
 	public static UauthInfo mergeWithUser(UserInfo sourceOne, UauthInfo sourceTwo) {

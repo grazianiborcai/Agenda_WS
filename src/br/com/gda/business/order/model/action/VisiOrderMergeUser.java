@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.info.OrderMerger;
-import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.business.user.model.decisionTree.RootUserSelect;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.security.user.info.UserInfo;
+import br.com.gda.security.user.model.decisionTree.RootUserSelect;
 
 final class VisiOrderMergeUser extends ActionVisitorTemplateMergeV2<OrderInfo, UserInfo> {
 	

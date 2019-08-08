@@ -50,8 +50,6 @@ import br.com.gda.business.storeLeaveDate.dao.StolevateDbTableColumn;
 import br.com.gda.business.storeList.dao.StolisDbTableColumn;
 import br.com.gda.business.storeWorkTime.dao.StowotmDbTableColumn;
 import br.com.gda.business.storeWorkTimeConflict.dao.StoreCoDbTableColumn;
-import br.com.gda.business.user.dao.UserDbTableColumn;
-import br.com.gda.business.userSnapshot.dao.UserapDbTableColumn;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumn;
@@ -68,7 +66,9 @@ import br.com.gda.payment.setupPartner.dao.SetuparDbTableColumn;
 import br.com.gda.payment.storePartner.dao.StoparDbTableColumn;
 import br.com.gda.payment.storePartnerSnapshot.dao.StoparnapDbTableColumn;
 import br.com.gda.payment.systemPartner.dao.SysparDbTableColumn;
+import br.com.gda.security.user.dao.UserDbTableColumn;
 import br.com.gda.security.userPassword.dao.UpswdDbTableColumn;
+import br.com.gda.security.userSnapshot.dao.UserapDbTableColumn;
 import br.com.gda.security.username.dao.UsernameDbTableColumn;
 
 public final class DaoDbTableColumnAll {

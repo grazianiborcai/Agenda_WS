@@ -1,7 +1,7 @@
 package br.com.gda.business.address.info;
 
-import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoCopierTemplate;
+import br.com.gda.security.user.info.UserInfo;
 
 final class AddressCopyUserKey extends InfoCopierTemplate<AddressInfo, UserInfo>{
 	

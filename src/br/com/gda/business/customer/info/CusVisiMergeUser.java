@@ -3,9 +3,9 @@ package br.com.gda.business.customer.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.security.user.info.UserInfo;
 
 final class CusVisiMergeUser implements InfoMergerVisitorV2<CusInfo, UserInfo> {
 

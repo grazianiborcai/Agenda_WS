@@ -6,12 +6,12 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.info.CusMerger;
-import br.com.gda.business.user.info.UserCopier;
-import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.business.user.model.decisionTree.RootUserInsert;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.security.user.info.UserCopier;
+import br.com.gda.security.user.info.UserInfo;
+import br.com.gda.security.user.model.decisionTree.RootUserInsert;
 
 final class VisiCusInsertUser extends ActionVisitorTemplateAction<CusInfo, UserInfo> {
 	public VisiCusInsertUser(Connection conn, String schemaName) {

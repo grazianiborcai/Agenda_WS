@@ -4,10 +4,10 @@ package br.com.gda.business.addressSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
-import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.security.userSnapshot.info.UserapInfo;
 
 public final class AddresnapCopier {	
 	public static AddresnapInfo copyFromCuspar(CusparInfo source) {

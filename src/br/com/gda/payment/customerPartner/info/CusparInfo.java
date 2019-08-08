@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
-import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.payment.setupPartner.info.SetuparInfo;
+import br.com.gda.security.userSnapshot.info.UserapInfo;
 
 public final class CusparInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	

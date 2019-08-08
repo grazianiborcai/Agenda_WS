@@ -2,8 +2,8 @@ package br.com.gda.business.personUser_.info;
 
 import java.util.List;
 
-import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.obsolete.InfoWritterFactory_;
+import br.com.gda.security.user.info.UserInfo;
 
 public final class PersonUserMerger extends InfoWritterFactory_<PersonUserInfo> {	
 	

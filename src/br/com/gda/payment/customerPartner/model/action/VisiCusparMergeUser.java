@@ -3,12 +3,12 @@ package br.com.gda.payment.customerPartner.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.business.user.model.decisionTree.RootUserSelect;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.customerPartner.info.CusparMerger;
+import br.com.gda.security.user.info.UserInfo;
+import br.com.gda.security.user.model.decisionTree.RootUserSelect;
 
 final class VisiCusparMergeUser extends ActionVisitorTemplateMergeV2<CusparInfo, UserInfo> {
 	

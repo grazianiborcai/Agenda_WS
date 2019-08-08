@@ -13,12 +13,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.business.user.model.UserModelDelete;
-import br.com.gda.business.user.model.UserModelInsert;
-import br.com.gda.business.user.model.UserModelSelect;
-import br.com.gda.business.user.model.UserModelUpdate;
 import br.com.gda.model.Model;
+import br.com.gda.security.user.info.UserInfo;
+import br.com.gda.security.user.model.UserModelDelete;
+import br.com.gda.security.user.model.UserModelInsert;
+import br.com.gda.security.user.model.UserModelSelect;
+import br.com.gda.security.user.model.UserModelUpdate;
 
 @Path("/User")
 public class UserResource {

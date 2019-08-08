@@ -8,11 +8,11 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
-import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
+import br.com.gda.security.user.info.UserInfo;
 
 public final class AddressCopier {
 	public static AddressInfo copyFromCrecard(CrecardInfo source) {

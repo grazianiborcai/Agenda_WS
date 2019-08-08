@@ -7,8 +7,8 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.customerSearch.info.CusarchInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoMerger;
+import br.com.gda.security.user.info.UserInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class CusMerger {

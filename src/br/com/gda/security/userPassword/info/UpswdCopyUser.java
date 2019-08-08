@@ -1,8 +1,8 @@
 package br.com.gda.security.userPassword.info;
 
 import br.com.gda.business.person.info.PersonInfo;
-import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoCopierTemplate;
+import br.com.gda.security.user.info.UserInfo;
 
 final class UpswdCopyUser extends InfoCopierTemplate<UpswdInfo, UserInfo>{
 	

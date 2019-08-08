@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.FeeCategInfo;
 import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.orderItem.info.OrderemInfo;
-import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.payment.payOrder.info.PayordInfo;
+import br.com.gda.security.user.info.UserInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class OrderMerger {		

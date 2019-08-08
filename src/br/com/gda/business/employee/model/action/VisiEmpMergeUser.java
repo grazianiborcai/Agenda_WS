@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.employee.info.EmpMerger;
-import br.com.gda.business.user.info.UserCopier;
-import br.com.gda.business.user.info.UserInfo;
-import br.com.gda.business.user.model.decisionTree.RootUserSelect;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.security.user.info.UserCopier;
+import br.com.gda.security.user.info.UserInfo;
+import br.com.gda.security.user.model.decisionTree.RootUserSelect;
 
 final class VisiEmpMergeUser extends ActionVisitorTemplateMergeV2<EmpInfo, UserInfo> {
 	

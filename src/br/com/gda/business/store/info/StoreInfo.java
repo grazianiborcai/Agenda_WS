@@ -8,9 +8,9 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
+import br.com.gda.security.user.info.UserInfo;
 
 public final class StoreInfo extends InfoRecord implements Cloneable {
 	public long codOwner;

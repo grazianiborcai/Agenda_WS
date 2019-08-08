@@ -3,8 +3,8 @@ package br.com.gda.security.userPassword.info;
 
 import java.util.List;
 
-import br.com.gda.business.user.info.UserInfo;
 import br.com.gda.info.InfoCopier;
+import br.com.gda.security.user.info.UserInfo;
 
 public final class UpswdCopier {	
 	public static UpswdInfo copyFromUser(UserInfo source) {

@@ -3,9 +3,9 @@ package br.com.gda.payment.customerPartner.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.userSnapshot.info.UserapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.security.userSnapshot.info.UserapInfo;
 
 final class CusparVisiMergeUserap implements InfoMergerVisitorV2<CusparInfo, UserapInfo> {
 
