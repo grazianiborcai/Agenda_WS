@@ -1,12 +1,12 @@
 package br.com.gda.security.user.info;
 
 import br.com.gda.info.InfoMergerTemplate;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 
 final class UserMergerToUpdate extends InfoMergerTemplate<UserInfo, UserInfo> {
 
-	@Override protected InfoMergerVisitorV2<UserInfo, UserInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor<UserInfo, UserInfo> getVisitorHook() {
 		return new UserVisiMergeToUpdate();
 	}
 	

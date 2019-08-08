@@ -9,27 +9,65 @@ public final class JsonAttrExclusion implements ExclusionStrategy {
 	
 	
 	@Override public boolean shouldSkipField(FieldAttributes f) {
-		if (f.getName().equals("recordMode"))
+		String fieldName = f.getName();
+		
+		if (fieldName == null)
+			return DONT_SKIP;
+		
+		if (isTechnical(fieldName))
 			return SKIP;
 		
-		if (f.getName().equals("recordFlag"))
+		if (isTime(fieldName))
 			return SKIP;
 		
-		if (f.getName().equals("second"))
+		if (isPayment(fieldName))
 			return SKIP;
 		
-		if (f.getName().equals("nano"))
-			return SKIP;
-		
-		if (f.getName().equals("creditCardId"))
-			return SKIP;
-		
-		if (f.getName().equals("customerId"))
+		if (isInternalId(fieldName))
 			return SKIP;
 		
 		return DONT_SKIP;
 	}
+	
+	
+	
+	private boolean isTechnical(String fieldName) {
+		if (fieldName.equals("recordMode"))
+			return true;
+		
+		return false;
+	}
+	
+	
+	
+	private boolean isTime(String fieldName) {
+		if (fieldName.equals("second"))
+			return true;
+		
+		if (fieldName.equals("nano"))
+			return true;
+		
+		return false;
+	}
+	
 
+	
+	private boolean isPayment(String fieldName) {
+		if (fieldName.equals("creditCardId"))
+			return true;
+		
+		return false;
+	}
+	
+	
+	
+	private boolean isInternalId(String fieldName) {
+		if (fieldName.equals("customerId"))
+			return true;
+		
+		return false;
+	}
+	
 	
 	
 	@Override

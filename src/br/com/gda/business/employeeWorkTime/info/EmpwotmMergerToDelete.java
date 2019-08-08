@@ -1,12 +1,12 @@
 package br.com.gda.business.employeeWorkTime.info;
 
 import br.com.gda.info.InfoMergerTemplate;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 
 final class EmpwotmMergerToDelete extends InfoMergerTemplate<EmpwotmInfo, EmpwotmInfo> {
 
-	@Override protected InfoMergerVisitorV2<EmpwotmInfo, EmpwotmInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor<EmpwotmInfo, EmpwotmInfo> getVisitorHook() {
 		return new EmpwotmVisiMergeToDelete();
 	}
 	

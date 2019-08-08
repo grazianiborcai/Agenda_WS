@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class EmailVisiMergeToSelect implements InfoMergerVisitorV2<EmailInfo, EmailInfo> {
+final class EmailVisiMergeToSelect implements InfoMergerVisitor<EmailInfo, EmailInfo> {
 
 	@Override public EmailInfo writeRecord(EmailInfo sourceOne, EmailInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

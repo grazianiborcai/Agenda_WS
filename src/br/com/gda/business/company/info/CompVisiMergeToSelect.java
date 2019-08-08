@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CompVisiMergeToSelect implements InfoMergerVisitorV2<CompInfo, CompInfo> {
+final class CompVisiMergeToSelect implements InfoMergerVisitor<CompInfo, CompInfo> {
 
 	@Override public CompInfo writeRecord(CompInfo sourceOne, CompInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CartVisiMergeCurrency implements InfoMergerVisitorV2<CartInfo, CurrencyInfo> {
+final class CartVisiMergeCurrency implements InfoMergerVisitor<CartInfo, CurrencyInfo> {
 
 	@Override public CartInfo writeRecord(CurrencyInfo sourceOne, CartInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

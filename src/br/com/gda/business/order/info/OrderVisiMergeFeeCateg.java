@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.FeeCategInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class OrderVisiMergeFeeCateg implements InfoMergerVisitorV2<OrderInfo, FeeCategInfo> {
+final class OrderVisiMergeFeeCateg implements InfoMergerVisitor<OrderInfo, FeeCategInfo> {
 
 	@Override public OrderInfo writeRecord(FeeCategInfo sourceOne, OrderInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

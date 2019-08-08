@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class EmpVisiMergeEmpnap implements InfoMergerVisitorV2<EmpInfo, EmpnapInfo> {
+final class EmpVisiMergeEmpnap implements InfoMergerVisitor<EmpInfo, EmpnapInfo> {
 
 	@Override public EmpInfo writeRecord(EmpnapInfo sourceOne, EmpInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

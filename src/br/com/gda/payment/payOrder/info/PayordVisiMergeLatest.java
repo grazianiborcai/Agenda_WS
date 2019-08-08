@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class PayordVisiMergeLatest implements InfoMergerVisitorV2<PayordInfo, PayordInfo> {
+final class PayordVisiMergeLatest implements InfoMergerVisitor<PayordInfo, PayordInfo> {
 
 	@Override public PayordInfo writeRecord(PayordInfo sourceOne, PayordInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

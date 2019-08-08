@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class StolisVisiMergeAddress implements InfoMergerVisitorV2<StolisInfo, AddressInfo> {
+final class StolisVisiMergeAddress implements InfoMergerVisitor<StolisInfo, AddressInfo> {
 
 	@Override public StolisInfo writeRecord(AddressInfo sourceOne, StolisInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

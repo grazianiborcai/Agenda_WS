@@ -1,12 +1,12 @@
 package br.com.gda.payment.payOrderItem.info;
 
 import br.com.gda.info.InfoMergerTemplate;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 
 final class PayordemMergerToUpdateStatus extends InfoMergerTemplate<PayordemInfo, PayordemInfo> {
 
-	@Override protected InfoMergerVisitorV2<PayordemInfo, PayordemInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor<PayordemInfo, PayordemInfo> getVisitorHook() {
 		return new PayordemVisiMergeToUpdateStatus();
 	}
 	

@@ -1,9 +1,9 @@
 package br.com.gda.business.masterData.info;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CountryLegalVisiMergeCountry implements InfoMergerVisitorV2<CountryLegalInfo, CountryInfo> {
+final class CountryLegalVisiMergeCountry implements InfoMergerVisitor<CountryLegalInfo, CountryInfo> {
 
 	@Override public CountryLegalInfo writeRecord(CountryInfo sourceOne, CountryLegalInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

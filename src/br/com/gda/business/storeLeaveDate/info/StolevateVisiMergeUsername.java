@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class StolevateVisiMergeUsername implements InfoMergerVisitorV2<StolevateInfo, UsernameInfo> {
+final class StolevateVisiMergeUsername implements InfoMergerVisitor<StolevateInfo, UsernameInfo> {
 
 	@Override public StolevateInfo writeRecord(UsernameInfo sourceOne, StolevateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

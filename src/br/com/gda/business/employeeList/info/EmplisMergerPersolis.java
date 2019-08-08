@@ -2,12 +2,12 @@ package br.com.gda.business.employeeList.info;
 
 import br.com.gda.business.personList.info.PersolisInfo;
 import br.com.gda.info.InfoMergerTemplate;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 
 final class EmplisMergerPersolis extends InfoMergerTemplate<EmplisInfo, PersolisInfo> {
 
-	@Override protected InfoMergerVisitorV2<EmplisInfo, PersolisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor<EmplisInfo, PersolisInfo> getVisitorHook() {
 		return new EmplisVisiMergePersolis();
 	}
 	

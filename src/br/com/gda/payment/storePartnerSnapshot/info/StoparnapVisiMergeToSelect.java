@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class StoparnapVisiMergeToSelect implements InfoMergerVisitorV2<StoparnapInfo, StoparnapInfo> {
+final class StoparnapVisiMergeToSelect implements InfoMergerVisitor<StoparnapInfo, StoparnapInfo> {
 
 	@Override public StoparnapInfo writeRecord(StoparnapInfo sourceOne, StoparnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

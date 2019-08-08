@@ -1,13 +1,13 @@
 package br.com.gda.payment.statusPayOrder.info;
 
 import br.com.gda.info.InfoMergerTemplate;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
 final class PaytusMergerMultmoip extends InfoMergerTemplate<PaytusInfo, MultmoipInfo> {
 
-	@Override protected InfoMergerVisitorV2<PaytusInfo, MultmoipInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor<PaytusInfo, MultmoipInfo> getVisitorHook() {
 		return new PaytusVisiMergeMultmoip();
 	}
 	

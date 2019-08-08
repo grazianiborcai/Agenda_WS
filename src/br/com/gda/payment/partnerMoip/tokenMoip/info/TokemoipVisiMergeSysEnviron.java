@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.SysEnvironInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class TokemoipVisiMergeSysEnviron implements InfoMergerVisitorV2<TokemoipInfo, SysEnvironInfo> {
+final class TokemoipVisiMergeSysEnviron implements InfoMergerVisitor<TokemoipInfo, SysEnvironInfo> {
 
 	@Override public TokemoipInfo writeRecord(SysEnvironInfo sourceOne, TokemoipInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.payment.storePartner.info.StoparInfo;
 
-final class PayordemVisiMergeStopar implements InfoMergerVisitorV2<PayordemInfo, StoparInfo> {
+final class PayordemVisiMergeStopar implements InfoMergerVisitor<PayordemInfo, StoparInfo> {
 	private final boolean SUCCESS = true;
 	private final boolean FAILED = false;
 

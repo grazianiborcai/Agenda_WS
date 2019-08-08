@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.SysEnvironInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CremoipVisiMergeSysEnviron implements InfoMergerVisitorV2<CremoipInfo, SysEnvironInfo> {
+final class CremoipVisiMergeSysEnviron implements InfoMergerVisitor<CremoipInfo, SysEnvironInfo> {
 
 	@Override public CremoipInfo writeRecord(SysEnvironInfo sourceOne, CremoipInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

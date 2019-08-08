@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class EmabodyVisiMergeToSelect implements InfoMergerVisitorV2<EmabodyInfo, EmabodyInfo> {
+final class EmabodyVisiMergeToSelect implements InfoMergerVisitor<EmabodyInfo, EmabodyInfo> {
 
 	@Override public EmabodyInfo writeRecord(EmabodyInfo sourceOne, EmabodyInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

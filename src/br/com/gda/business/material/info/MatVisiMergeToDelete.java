@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class MatVisiMergeToDelete implements InfoMergerVisitorV2<MatInfo, MatInfo> {
+final class MatVisiMergeToDelete implements InfoMergerVisitor<MatInfo, MatInfo> {
 
 	@Override public MatInfo writeRecord(MatInfo sourceOne, MatInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

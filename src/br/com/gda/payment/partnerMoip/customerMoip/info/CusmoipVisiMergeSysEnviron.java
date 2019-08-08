@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.SysEnvironInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CusmoipVisiMergeSysEnviron implements InfoMergerVisitorV2<CusmoipInfo, SysEnvironInfo> {
+final class CusmoipVisiMergeSysEnviron implements InfoMergerVisitor<CusmoipInfo, SysEnvironInfo> {
 
 	@Override public CusmoipInfo writeRecord(SysEnvironInfo sourceOne, CusmoipInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

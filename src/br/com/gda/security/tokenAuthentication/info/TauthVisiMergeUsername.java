@@ -8,10 +8,10 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.AuthGrRoleInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class TauthVisiMergeUsername implements InfoMergerVisitorV2<TauthInfo, UsernameInfo> {
+final class TauthVisiMergeUsername implements InfoMergerVisitor<TauthInfo, UsernameInfo> {
 
 	@Override public TauthInfo writeRecord(UsernameInfo sourceOne, TauthInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

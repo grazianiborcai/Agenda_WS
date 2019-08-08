@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class PlanimeVisiMergeWeekday implements InfoMergerVisitorV2<PlanimeInfo, WeekdayInfo> {
+final class PlanimeVisiMergeWeekday implements InfoMergerVisitor<PlanimeInfo, WeekdayInfo> {
 
 	@Override public PlanimeInfo writeRecord(WeekdayInfo sourceOne, PlanimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -2,12 +2,12 @@ package br.com.gda.payment.creditCard.info;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.info.InfoMergerTemplate;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 
 final class CrecardMergerPhone extends InfoMergerTemplate<CrecardInfo, PhoneInfo> {
 
-	@Override protected InfoMergerVisitorV2<CrecardInfo, PhoneInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor<CrecardInfo, PhoneInfo> getVisitorHook() {
 		return new CrecardVisiMergePhone();
 	}
 	

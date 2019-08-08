@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class CrecardVisiMergeUsername implements InfoMergerVisitorV2<CrecardInfo, UsernameInfo> {
+final class CrecardVisiMergeUsername implements InfoMergerVisitor<CrecardInfo, UsernameInfo> {
 
 	@Override public CrecardInfo writeRecord(UsernameInfo sourceOne, CrecardInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

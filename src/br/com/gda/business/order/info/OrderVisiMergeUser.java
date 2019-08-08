@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.security.user.info.UserInfo;
 
-final class OrderVisiMergeUser implements InfoMergerVisitorV2<OrderInfo, UserInfo> {
+final class OrderVisiMergeUser implements InfoMergerVisitor<OrderInfo, UserInfo> {
 
 	@Override public OrderInfo writeRecord(UserInfo sourceOne, OrderInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class OwntoreVisiMergeToDelete implements InfoMergerVisitorV2<OwntoreInfo, OwntoreInfo> {
+final class OwntoreVisiMergeToDelete implements InfoMergerVisitor<OwntoreInfo, OwntoreInfo> {
 
 	@Override public OwntoreInfo writeRecord(OwntoreInfo sourceOne, OwntoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

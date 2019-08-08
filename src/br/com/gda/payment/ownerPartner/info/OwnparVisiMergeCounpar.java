@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.payment.countryPartner.info.CounparInfo;
 
-final class OwnparVisiMergeCounpar implements InfoMergerVisitorV2<OwnparInfo, CounparInfo> {
+final class OwnparVisiMergeCounpar implements InfoMergerVisitor<OwnparInfo, CounparInfo> {
 
 	@Override public OwnparInfo writeRecord(CounparInfo sourceOne, OwnparInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

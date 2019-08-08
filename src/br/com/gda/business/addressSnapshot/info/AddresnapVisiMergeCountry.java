@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.CountryInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class AddresnapVisiMergeCountry implements InfoMergerVisitorV2<AddresnapInfo, CountryInfo> {
+final class AddresnapVisiMergeCountry implements InfoMergerVisitor<AddresnapInfo, CountryInfo> {
 
 	@Override public AddresnapInfo writeRecord(CountryInfo sourceOne, AddresnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

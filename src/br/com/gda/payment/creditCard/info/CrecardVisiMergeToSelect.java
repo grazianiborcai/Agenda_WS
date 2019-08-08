@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CrecardVisiMergeToSelect implements InfoMergerVisitorV2<CrecardInfo, CrecardInfo> {
+final class CrecardVisiMergeToSelect implements InfoMergerVisitor<CrecardInfo, CrecardInfo> {
 
 	@Override public CrecardInfo writeRecord(CrecardInfo sourceOne, CrecardInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

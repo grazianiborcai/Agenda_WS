@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CartemVisiMergeEmplis implements InfoMergerVisitorV2<CartemInfo, EmplisInfo> {
+final class CartemVisiMergeEmplis implements InfoMergerVisitor<CartemInfo, EmplisInfo> {
 
 	@Override public CartemInfo writeRecord(EmplisInfo sourceOne, CartemInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class EmpmatVisiMergeEmp implements InfoMergerVisitorV2<EmpmatInfo, EmpInfo> {
+final class EmpmatVisiMergeEmp implements InfoMergerVisitor<EmpmatInfo, EmpInfo> {
 
 	@Override public EmpmatInfo writeRecord(EmpInfo sourceOne, EmpmatInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

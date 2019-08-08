@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class FeewnerVisiMergeToSelect implements InfoMergerVisitorV2<FeewnerInfo, FeewnerInfo> {
+final class FeewnerVisiMergeToSelect implements InfoMergerVisitor<FeewnerInfo, FeewnerInfo> {
 
 	@Override public FeewnerInfo writeRecord(FeewnerInfo sourceOne, FeewnerInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

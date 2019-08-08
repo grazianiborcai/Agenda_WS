@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class OwnparVisiMergeToSelect implements InfoMergerVisitorV2<OwnparInfo, OwnparInfo> {
+final class OwnparVisiMergeToSelect implements InfoMergerVisitor<OwnparInfo, OwnparInfo> {
 
 	@Override public OwnparInfo writeRecord(OwnparInfo sourceOne, OwnparInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

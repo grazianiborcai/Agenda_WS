@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CarterveVisiMergeToSelect implements InfoMergerVisitorV2<CarterveInfo, CarterveInfo> {
+final class CarterveVisiMergeToSelect implements InfoMergerVisitor<CarterveInfo, CarterveInfo> {
 
 	@Override public CarterveInfo writeRecord(CarterveInfo sourceOne, CarterveInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

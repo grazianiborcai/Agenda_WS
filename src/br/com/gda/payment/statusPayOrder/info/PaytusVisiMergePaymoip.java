@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.payment.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
-final class PaytusVisiMergePaymoip implements InfoMergerVisitorV2<PaytusInfo, PaymoipInfo> {
+final class PaytusVisiMergePaymoip implements InfoMergerVisitor<PaytusInfo, PaymoipInfo> {
 
 	@Override public PaytusInfo writeRecord(PaymoipInfo sourceOne, PaytusInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

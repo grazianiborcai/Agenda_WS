@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class MatsnapVisiMergeMatCateg implements InfoMergerVisitorV2<MatsnapInfo, MatCategInfo> {
+final class MatsnapVisiMergeMatCateg implements InfoMergerVisitor<MatsnapInfo, MatCategInfo> {
 
 	@Override public MatsnapInfo writeRecord(MatCategInfo sourceOne, MatsnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

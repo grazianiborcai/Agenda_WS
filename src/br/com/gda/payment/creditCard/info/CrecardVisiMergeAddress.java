@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CrecardVisiMergeAddress implements InfoMergerVisitorV2<CrecardInfo, AddressInfo> {
+final class CrecardVisiMergeAddress implements InfoMergerVisitor<CrecardInfo, AddressInfo> {
 
 	@Override public CrecardInfo writeRecord(AddressInfo sourceOne, CrecardInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

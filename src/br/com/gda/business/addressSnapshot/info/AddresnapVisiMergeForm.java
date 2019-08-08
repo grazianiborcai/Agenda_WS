@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.form.formAddress.info.FormAddressInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class AddresnapVisiMergeForm implements InfoMergerVisitorV2<AddresnapInfo, FormAddressInfo> {
+final class AddresnapVisiMergeForm implements InfoMergerVisitor<AddresnapInfo, FormAddressInfo> {
 
 	@Override public AddresnapInfo writeRecord(FormAddressInfo sourceOne, AddresnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

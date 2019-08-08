@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CartemVisiMergeStolis implements InfoMergerVisitorV2<CartemInfo, StolisInfo> {
+final class CartemVisiMergeStolis implements InfoMergerVisitor<CartemInfo, StolisInfo> {
 
 	@Override public CartemInfo writeRecord(StolisInfo sourceOne, CartemInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

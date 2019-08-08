@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.CountryPhoneInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class PhonapVisiMergeCountryPhone implements InfoMergerVisitorV2<PhonapInfo, CountryPhoneInfo> {
+final class PhonapVisiMergeCountryPhone implements InfoMergerVisitor<PhonapInfo, CountryPhoneInfo> {
 
 	@Override public PhonapInfo writeRecord(CountryPhoneInfo sourceOne, PhonapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

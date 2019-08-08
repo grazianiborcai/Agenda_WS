@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class PeresmoipVisiMergeToSelect implements InfoMergerVisitorV2<PeresmoipInfo, PeresmoipInfo> {
+final class PeresmoipVisiMergeToSelect implements InfoMergerVisitor<PeresmoipInfo, PeresmoipInfo> {
 
 	@Override public PeresmoipInfo writeRecord(PeresmoipInfo sourceOne, PeresmoipInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

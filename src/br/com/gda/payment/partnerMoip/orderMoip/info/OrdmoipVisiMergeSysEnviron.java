@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.SysEnvironInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class OrdmoipVisiMergeSysEnviron implements InfoMergerVisitorV2<OrdmoipInfo, SysEnvironInfo> {
+final class OrdmoipVisiMergeSysEnviron implements InfoMergerVisitor<OrdmoipInfo, SysEnvironInfo> {
 
 	@Override public OrdmoipInfo writeRecord(SysEnvironInfo sourceOne, OrdmoipInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

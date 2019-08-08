@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class MatoreVisiMergeToDelete implements InfoMergerVisitorV2<MatoreInfo, MatoreInfo> {
+final class MatoreVisiMergeToDelete implements InfoMergerVisitor<MatoreInfo, MatoreInfo> {
 
 	@Override public MatoreInfo writeRecord(MatoreInfo sourceOne, MatoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

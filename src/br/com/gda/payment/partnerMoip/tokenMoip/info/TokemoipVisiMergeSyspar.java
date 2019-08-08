@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
 
-final class TokemoipVisiMergeSyspar implements InfoMergerVisitorV2<TokemoipInfo, SysparInfo> {
+final class TokemoipVisiMergeSyspar implements InfoMergerVisitor<TokemoipInfo, SysparInfo> {
 
 	@Override public TokemoipInfo writeRecord(SysparInfo sourceOne, TokemoipInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.message.emailBody.info.EmabodyInfo;
 
-final class EmailVisiMergeEmabody implements InfoMergerVisitorV2<EmailInfo, EmabodyInfo> {
+final class EmailVisiMergeEmabody implements InfoMergerVisitor<EmailInfo, EmabodyInfo> {
 
 	@Override public EmailInfo writeRecord(EmabodyInfo sourceOne, EmailInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

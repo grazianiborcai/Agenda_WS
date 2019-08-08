@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class EmpwocoVisiMergeWeekday implements InfoMergerVisitorV2<EmpwocoInfo, WeekdayInfo> {
+final class EmpwocoVisiMergeWeekday implements InfoMergerVisitor<EmpwocoInfo, WeekdayInfo> {
 
 	@Override public EmpwocoInfo writeRecord(WeekdayInfo sourceOne, EmpwocoInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

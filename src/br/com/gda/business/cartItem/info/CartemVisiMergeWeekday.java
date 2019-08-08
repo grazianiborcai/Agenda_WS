@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class CartemVisiMergeWeekday implements InfoMergerVisitorV2<CartemInfo, WeekdayInfo> {
+final class CartemVisiMergeWeekday implements InfoMergerVisitor<CartemInfo, WeekdayInfo> {
 
 	@Override public CartemInfo writeRecord(WeekdayInfo sourceOne, CartemInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

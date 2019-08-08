@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-final class OrderVisiMergePayord implements InfoMergerVisitorV2<OrderInfo, PayordInfo> {
+final class OrderVisiMergePayord implements InfoMergerVisitor<OrderInfo, PayordInfo> {
 
 	@Override public OrderInfo writeRecord(PayordInfo sourceOne, OrderInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

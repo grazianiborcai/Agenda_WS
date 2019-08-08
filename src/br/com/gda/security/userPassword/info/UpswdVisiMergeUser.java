@@ -5,10 +5,10 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.security.user.info.UserInfo;
 
-final class UpswdVisiMergeUser implements InfoMergerVisitorV2<UpswdInfo, UserInfo> {
+final class UpswdVisiMergeUser implements InfoMergerVisitor<UpswdInfo, UserInfo> {
 
 	@Override public UpswdInfo writeRecord(UserInfo sourceOne, UpswdInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

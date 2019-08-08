@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class MatockVisiMergeToSelect implements InfoMergerVisitorV2<MatockInfo, MatockInfo> {
+final class MatockVisiMergeToSelect implements InfoMergerVisitor<MatockInfo, MatockInfo> {
 
 	@Override public MatockInfo writeRecord(MatockInfo sourceOne, MatockInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

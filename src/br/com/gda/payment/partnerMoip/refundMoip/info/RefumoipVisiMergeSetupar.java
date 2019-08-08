@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.payment.setupPartner.info.SetuparInfo;
 
-final class RefumoipVisiMergeSetupar implements InfoMergerVisitorV2<RefumoipInfo, SetuparInfo> {
+final class RefumoipVisiMergeSetupar implements InfoMergerVisitor<RefumoipInfo, SetuparInfo> {
 
 	@Override public RefumoipInfo writeRecord(SetuparInfo sourceOne, RefumoipInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

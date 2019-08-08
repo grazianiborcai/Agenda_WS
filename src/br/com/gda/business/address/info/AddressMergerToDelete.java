@@ -1,12 +1,12 @@
 package br.com.gda.business.address.info;
 
 import br.com.gda.info.InfoMergerTemplate;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 
 final class AddressMergerToDelete extends InfoMergerTemplate<AddressInfo, AddressInfo> {
 
-	@Override protected InfoMergerVisitorV2<AddressInfo, AddressInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor<AddressInfo, AddressInfo> getVisitorHook() {
 		return new AddressVisiMergeToDelete();
 	}
 	

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.feeDefault.info.FeedefInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class FeewnerVisiMergeFeedef implements InfoMergerVisitorV2<FeewnerInfo, FeedefInfo> {
+final class FeewnerVisiMergeFeedef implements InfoMergerVisitor<FeewnerInfo, FeedefInfo> {
 
 	@Override public FeewnerInfo writeRecord(FeedefInfo sourceOne, FeewnerInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

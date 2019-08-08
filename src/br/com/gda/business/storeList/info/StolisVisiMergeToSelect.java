@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class StolisVisiMergeToSelect implements InfoMergerVisitorV2<StolisInfo, StolisInfo> {
+final class StolisVisiMergeToSelect implements InfoMergerVisitor<StolisInfo, StolisInfo> {
 
 	@Override public StolisInfo writeRecord(StolisInfo sourceOne, StolisInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

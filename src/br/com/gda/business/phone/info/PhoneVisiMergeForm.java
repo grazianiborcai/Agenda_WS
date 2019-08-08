@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.business.form.formPhone.info.FormPhoneInfo;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class PhoneVisiMergeForm implements InfoMergerVisitorV2<PhoneInfo, FormPhoneInfo> {
+final class PhoneVisiMergeForm implements InfoMergerVisitor<PhoneInfo, FormPhoneInfo> {
 
 	@Override public PhoneInfo writeRecord(FormPhoneInfo sourceOne, PhoneInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

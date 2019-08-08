@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 
-final class PlanataVisiMergeToSelect implements InfoMergerVisitorV2<PlanataInfo, PlanataInfo> {
+final class PlanataVisiMergeToSelect implements InfoMergerVisitor<PlanataInfo, PlanataInfo> {
 
 	@Override public PlanataInfo writeRecord(PlanataInfo sourceOne, PlanataInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

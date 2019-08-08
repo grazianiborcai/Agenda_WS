@@ -2,12 +2,12 @@ package br.com.gda.business.customer.info;
 
 import br.com.gda.business.customerSearch.info.CusarchInfo;
 import br.com.gda.info.InfoMergerTemplate;
-import br.com.gda.info.InfoMergerVisitorV2;
+import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 
 public final class CusMergerCusarch extends InfoMergerTemplate<CusInfo, CusarchInfo>{
 
-	@Override protected InfoMergerVisitorV2<CusInfo, CusarchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor<CusInfo, CusarchInfo> getVisitorHook() {
 		return new CusVisiMergeCusarch();
 	}
 	
