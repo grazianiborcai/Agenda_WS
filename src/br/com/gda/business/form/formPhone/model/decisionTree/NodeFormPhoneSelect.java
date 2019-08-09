@@ -11,32 +11,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeFormPhoneSelect implements DeciTree<FormPhoneInfo> {
-	private DeciTree<FormPhoneInfo> tree;
-	
+public final class NodeFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInfo> {
 	
 	public NodeFormPhoneSelect(DeciTreeOption<FormPhoneInfo> option) {
-		DeciTreeHelperOption<FormPhoneInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<FormPhoneInfo> buildDecisionChecker(DeciTreeOption<FormPhoneInfo> option) {
+	@Override protected ModelChecker<FormPhoneInfo> buildDecisionCheckerHook(DeciTreeOption<FormPhoneInfo> option) {
 		final boolean EXIST = true;
 		
 		List<ModelChecker<FormPhoneInfo>> queue = new ArrayList<>();		
@@ -55,7 +41,7 @@ public final class NodeFormPhoneSelect implements DeciTree<FormPhoneInfo> {
 	
 	
 	
-	private List<ActionStd<FormPhoneInfo>> buildActionsOnPassed(DeciTreeOption<FormPhoneInfo> option) {
+	@Override protected List<ActionStd<FormPhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormPhoneInfo> option) {
 		List<ActionStd<FormPhoneInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdFormPhoneSelect(option));
@@ -64,34 +50,10 @@ public final class NodeFormPhoneSelect implements DeciTree<FormPhoneInfo> {
 	
 	
 	
-	private List<ActionStd<FormPhoneInfo>> buildActionsOnFailed(DeciTreeOption<FormPhoneInfo> option) {
+	@Override protected List<ActionStd<FormPhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<FormPhoneInfo> option) {
 		List<ActionStd<FormPhoneInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdFormPhoneEnforceDefault(option));
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<FormPhoneInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<FormPhoneInfo> toAction() {
-		return tree.toAction();
 	}
 }

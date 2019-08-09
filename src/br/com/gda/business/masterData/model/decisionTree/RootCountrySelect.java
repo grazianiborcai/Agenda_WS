@@ -9,31 +9,18 @@ import br.com.gda.business.masterData.model.checker.CountryCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootCountrySelect implements DeciTree<CountryInfo> {
-	private DeciTree<CountryInfo> tree;
-	
+public final class RootCountrySelect extends DeciTreeReadTemplate<CountryInfo> {
 	
 	public RootCountrySelect(DeciTreeOption<CountryInfo> option) {
-		DeciTreeHelperOption<CountryInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<CountryInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<CountryInfo> buildDecisionCheckerHook(DeciTreeOption<CountryInfo> option) {
 		List<ModelChecker<CountryInfo>> queue = new ArrayList<>();		
 		ModelChecker<CountryInfo> checker;
 		
@@ -45,34 +32,10 @@ public final class RootCountrySelect implements DeciTree<CountryInfo> {
 	
 	
 	
-	private List<ActionStd<CountryInfo>> buildActionsOnPassed(DeciTreeOption<CountryInfo> option) {
+	@Override protected List<ActionStd<CountryInfo>> buildActionsOnPassedHook(DeciTreeOption<CountryInfo> option) {
 		List<ActionStd<CountryInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdCountrySelect(option));
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<CountryInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<CountryInfo> toAction() {
-		return tree.toAction();
 	}
 }

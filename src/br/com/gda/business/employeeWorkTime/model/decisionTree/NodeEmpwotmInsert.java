@@ -11,33 +11,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeEmpwotmInsert implements DeciTree<EmpwotmInfo> {
-	private DeciTree<EmpwotmInfo> tree;
-	
+public final class NodeEmpwotmInsert extends DeciTreeWriteTemplate<EmpwotmInfo> {
 	
 	public NodeEmpwotmInsert(DeciTreeOption<EmpwotmInfo> option) {
-		DeciTreeHelperOption<EmpwotmInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.schemaName = option.schemaName;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmpwotmInfo> buildDecisionChecker(DeciTreeOption<EmpwotmInfo> option) {
+	@Override protected ModelChecker<EmpwotmInfo> buildDecisionCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ModelChecker<EmpwotmInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpwotmInfo> checker;
 		
@@ -54,7 +39,7 @@ public final class NodeEmpwotmInsert implements DeciTree<EmpwotmInfo> {
 	
 	
 	
-	private List<ActionStd<EmpwotmInfo>> buildActionsOnPassed(DeciTreeOption<EmpwotmInfo> option) {
+	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmpwotmInsert(option));
@@ -63,34 +48,10 @@ public final class NodeEmpwotmInsert implements DeciTree<EmpwotmInfo> {
 	
 	
 	
-	private List<ActionStd<EmpwotmInfo>> buildActionsOnFailed(DeciTreeOption<EmpwotmInfo> option) {
+	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmpwotmUpdate(option));
 		return actions;
-	}
-	
-	
-	
-	@Override public ActionStd<EmpwotmInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmpwotmInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

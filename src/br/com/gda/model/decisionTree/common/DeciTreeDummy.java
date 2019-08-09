@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciResultHelper;
 import br.com.gda.model.decisionTree.DeciTree;
@@ -50,12 +49,6 @@ public final class DeciTreeDummy<T> implements DeciTree<T> {
 	
 	@Override public void makeDecision() {
 		//Do nothing
-	}
-
-	
-	
-	@Override public DeciChoice getDecisionMade() {
-		return DeciChoice.PASSED;
 	}
 
 	

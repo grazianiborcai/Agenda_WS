@@ -9,31 +9,18 @@ import br.com.gda.business.company.model.checker.CompCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public final class RootCompSelect implements DeciTree<CompInfo> {
-	private DeciTree<CompInfo> tree;
-	
+public final class RootCompSelect extends DeciTreeReadTemplate<CompInfo> {
 	
 	public RootCompSelect(DeciTreeOption<CompInfo> option) {
-		DeciTreeHelperOption<CompInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<CompInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<CompInfo> buildDecisionCheckerHook(DeciTreeOption<CompInfo> option) {
 		List<ModelChecker<CompInfo>> queue = new ArrayList<>();		
 		ModelChecker<CompInfo> checker;
 		
@@ -45,36 +32,12 @@ public final class RootCompSelect implements DeciTree<CompInfo> {
 	
 	
 	
-	@Override public ActionStd<CompInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<CompInfo>> buildActionsOnPassed(DeciTreeOption<CompInfo> option) {
+	@Override protected List<ActionStd<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
 		List<ActionStd<CompInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CompInfo> select = new StdCompMergeToSelect(option);	
 		actions.add(select);
 		
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<CompInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

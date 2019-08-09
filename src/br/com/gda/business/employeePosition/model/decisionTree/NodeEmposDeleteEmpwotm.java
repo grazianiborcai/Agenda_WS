@@ -11,32 +11,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeEmposDeleteEmpwotm implements DeciTree<EmposInfo> {
-	private DeciTree<EmposInfo> tree;
-	
+public final class NodeEmposDeleteEmpwotm extends DeciTreeWriteTemplate<EmposInfo> {
 	
 	public NodeEmposDeleteEmpwotm(DeciTreeOption<EmposInfo> option) {
-		DeciTreeHelperOption<EmposInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmposInfo> buildDecisionChecker(DeciTreeOption<EmposInfo> option) {
+	@Override protected ModelChecker<EmposInfo> buildDecisionCheckerHook(DeciTreeOption<EmposInfo> option) {
 		final boolean HAS_WORK_TIME = true;
 		
 		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
@@ -55,13 +41,7 @@ public final class NodeEmposDeleteEmpwotm implements DeciTree<EmposInfo> {
 	
 	
 	
-	@Override public ActionStd<EmposInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<EmposInfo>> buildActionsOnPassed(DeciTreeOption<EmposInfo> option) {
+	@Override protected List<ActionStd<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
 		ActionStd<EmposInfo> deleteEmpwotm = new StdEmposDeleteEmpwotm(option);
@@ -72,28 +52,10 @@ public final class NodeEmposDeleteEmpwotm implements DeciTree<EmposInfo> {
 	
 	
 	
-	private List<ActionStd<EmposInfo>> buildActionsOnFailed(DeciTreeOption<EmposInfo> option) {
+	@Override protected List<ActionStd<EmposInfo>> buildActionsOnFailedHook(DeciTreeOption<EmposInfo> option) {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmposSuccess(option));		
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmposInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

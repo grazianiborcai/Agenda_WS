@@ -23,31 +23,18 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootMatmovInsert implements DeciTree<MatmovInfo> {
-	private DeciTree<MatmovInfo> tree;
-	
+public final class RootMatmovInsert extends DeciTreeWriteTemplate<MatmovInfo> {
 	
 	public RootMatmovInsert(DeciTreeOption<MatmovInfo> option) {
-		DeciTreeHelperOption<MatmovInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<MatmovInfo> buildDecisionChecker(DeciTreeOption<MatmovInfo> option) {
+	@Override protected ModelChecker<MatmovInfo> buildDecisionCheckerHook(DeciTreeOption<MatmovInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<MatmovInfo>> queue = new ArrayList<>();		
@@ -117,7 +104,7 @@ public final class RootMatmovInsert implements DeciTree<MatmovInfo> {
 	
 	
 	
-	private List<ActionStd<MatmovInfo>> buildActionsOnPassed(DeciTreeOption<MatmovInfo> option) {
+	@Override protected List<ActionStd<MatmovInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmovInfo> option) {
 		List<ActionStd<MatmovInfo>> actions = new ArrayList<>();
 
 		ActionStd<MatmovInfo> enforceLChanged = new StdMatmovEnforceLChanged(option);
@@ -133,29 +120,5 @@ public final class RootMatmovInsert implements DeciTree<MatmovInfo> {
 		
 		actions.add(enforceLChanged);	
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<MatmovInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-		
-	
-	
-	@Override public ActionStd<MatmovInfo> toAction() {
-		return tree.toAction();
 	}
 }

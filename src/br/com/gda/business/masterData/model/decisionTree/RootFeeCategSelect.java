@@ -9,31 +9,18 @@ import br.com.gda.business.masterData.model.checker.FeeCategCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootFeeCategSelect implements DeciTree<FeeCategInfo> {
-	private DeciTree<FeeCategInfo> tree;
-	
+public final class RootFeeCategSelect extends DeciTreeReadTemplate<FeeCategInfo> {
 	
 	public RootFeeCategSelect(DeciTreeOption<FeeCategInfo> option) {
-		DeciTreeHelperOption<FeeCategInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<FeeCategInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<FeeCategInfo> buildDecisionCheckerHook(DeciTreeOption<FeeCategInfo> option) {
 		List<ModelChecker<FeeCategInfo>> queue = new ArrayList<>();		
 		ModelChecker<FeeCategInfo> checker;
 		
@@ -45,34 +32,10 @@ public final class RootFeeCategSelect implements DeciTree<FeeCategInfo> {
 
 		
 	
-	private List<ActionStd<FeeCategInfo>> buildActionsOnPassed(DeciTreeOption<FeeCategInfo> option) {
+	@Override protected List<ActionStd<FeeCategInfo>> buildActionsOnPassedHook(DeciTreeOption<FeeCategInfo> option) {
 		List<ActionStd<FeeCategInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdFeeCategSelect(option));
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<FeeCategInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<FeeCategInfo> toAction() {
-		return tree.toAction();
 	}
 }

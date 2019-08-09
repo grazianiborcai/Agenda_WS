@@ -12,32 +12,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeEmpmatInsert implements DeciTree<EmpmatInfo> {
-	private DeciTree<EmpmatInfo> tree;
-	
+public final class NodeEmpmatInsert extends DeciTreeWriteTemplate<EmpmatInfo> {
 	
 	public NodeEmpmatInsert(DeciTreeOption<EmpmatInfo> option) {
-		DeciTreeHelperOption<EmpmatInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmpmatInfo> buildDecisionChecker(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected ModelChecker<EmpmatInfo> buildDecisionCheckerHook(DeciTreeOption<EmpmatInfo> option) {
 		final boolean NOT_DELETED = false;	
 		
 		List<ModelChecker<EmpmatInfo>> queue = new ArrayList<>();		
@@ -59,7 +45,7 @@ public final class NodeEmpmatInsert implements DeciTree<EmpmatInfo> {
 	
 	
 	
-	private List<ActionStd<EmpmatInfo>> buildActionsOnPassed(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmpmatInsert(option));
@@ -68,34 +54,10 @@ public final class NodeEmpmatInsert implements DeciTree<EmpmatInfo> {
 	
 	
 	
-	private List<ActionStd<EmpmatInfo>> buildActionsOnFailed(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmpmatUpdate(option));
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmpmatInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<EmpmatInfo> toAction() {
-		return tree.toAction();
 	}
 }

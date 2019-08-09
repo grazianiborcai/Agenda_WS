@@ -13,31 +13,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public final class NodePersonUserCpf implements DeciTree<PersonUserInfo> {
-	private DeciTree<PersonUserInfo> tree;
-	
+public final class NodePersonUserCpf extends DeciTreeReadTemplate<PersonUserInfo> {
 	
 	public NodePersonUserCpf(DeciTreeOption<PersonUserInfo> option) {
-		DeciTreeHelperOption<PersonUserInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<PersonUserInfo> buildDecisionChecker(DeciTreeOption<PersonUserInfo> option) {
+	@Override protected ModelChecker<PersonUserInfo> buildDecisionCheckerHook(DeciTreeOption<PersonUserInfo> option) {
 		final boolean HAS_CPF = true;
 		
 		List<ModelChecker<PersonUserInfo>> queue = new ArrayList<>();		
@@ -56,13 +43,7 @@ public final class NodePersonUserCpf implements DeciTree<PersonUserInfo> {
 	
 	
 	
-	@Override public ActionStd<PersonUserInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<PersonUserInfo>> buildActionsOnPassed(DeciTreeOption<PersonUserInfo> option) {
+	@Override protected List<ActionStd<PersonUserInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonUserInfo> option) {
 		List<ActionStd<PersonUserInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PersonUserInfo> enforceCpf = new StdPersonUserEnforceCpf(option);
@@ -74,23 +55,5 @@ public final class NodePersonUserCpf implements DeciTree<PersonUserInfo> {
 		
 		actions.add(enforceCpf);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<PersonUserInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

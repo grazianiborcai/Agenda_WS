@@ -11,32 +11,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeEmpDeleteAddress implements DeciTree<EmpInfo> {
-	private DeciTree<EmpInfo> tree;
-	
+public final class NodeEmpDeleteAddress extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	public NodeEmpDeleteAddress(DeciTreeOption<EmpInfo> option) {
-		DeciTreeHelperOption<EmpInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmpInfo> buildDecisionChecker(DeciTreeOption<EmpInfo> option) {
+	@Override protected ModelChecker<EmpInfo> buildDecisionCheckerHook(DeciTreeOption<EmpInfo> option) {
 		final boolean HAS_ADDRESS = true;
 		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
@@ -55,13 +41,7 @@ public final class NodeEmpDeleteAddress implements DeciTree<EmpInfo> {
 	
 	
 	
-	@Override public ActionStd<EmpInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<EmpInfo>> buildActionsOnPassed(DeciTreeOption<EmpInfo> option) {
+	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		
 		ActionStd<EmpInfo> deleteAddress = new StdEmpDeleteAddress(option);
@@ -72,28 +52,10 @@ public final class NodeEmpDeleteAddress implements DeciTree<EmpInfo> {
 	
 	
 	
-	private List<ActionStd<EmpInfo>> buildActionsOnFailed(DeciTreeOption<EmpInfo> option) {
+	@Override protected List<ActionStd<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmpSuccess(option));		
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmpInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

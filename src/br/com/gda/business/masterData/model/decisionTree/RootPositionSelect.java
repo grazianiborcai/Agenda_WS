@@ -9,31 +9,18 @@ import br.com.gda.business.masterData.model.checker.PositionCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootPositionSelect implements DeciTree<PositionInfo> {
-	private DeciTree<PositionInfo> tree;
-	
+public final class RootPositionSelect extends DeciTreeReadTemplate<PositionInfo> {
 	
 	public RootPositionSelect(DeciTreeOption<PositionInfo> option) {
-		DeciTreeHelperOption<PositionInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<PositionInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<PositionInfo> buildDecisionCheckerHook(DeciTreeOption<PositionInfo> option) {
 		List<ModelChecker<PositionInfo>> queue = new ArrayList<>();		
 		ModelChecker<PositionInfo> checker;
 		
@@ -45,34 +32,10 @@ public final class RootPositionSelect implements DeciTree<PositionInfo> {
 	
 	
 	
-	private List<ActionStd<PositionInfo>> buildActionsOnPassed(DeciTreeOption<PositionInfo> option) {
+	@Override protected List<ActionStd<PositionInfo>> buildActionsOnPassedHook(DeciTreeOption<PositionInfo> option) {
 		List<ActionStd<PositionInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdPositionSelect(option));
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<PositionInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<PositionInfo> toAction() {
-		return tree.toAction();
 	}
 }

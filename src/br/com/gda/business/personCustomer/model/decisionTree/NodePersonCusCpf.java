@@ -12,31 +12,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public final class NodePersonCusCpf implements DeciTree<PersonCusInfo> {
-	private DeciTree<PersonCusInfo> tree;
-	
+public final class NodePersonCusCpf extends DeciTreeReadTemplate<PersonCusInfo> {
 	
 	public NodePersonCusCpf(DeciTreeOption<PersonCusInfo> option) {
-		DeciTreeHelperOption<PersonCusInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<PersonCusInfo> buildDecisionChecker(DeciTreeOption<PersonCusInfo> option) {
+	@Override protected ModelChecker<PersonCusInfo> buildDecisionCheckerHook(DeciTreeOption<PersonCusInfo> option) {
 		final boolean HAS_CPF = true;
 		
 		List<ModelChecker<PersonCusInfo>> queue = new ArrayList<>();		
@@ -55,13 +42,7 @@ public final class NodePersonCusCpf implements DeciTree<PersonCusInfo> {
 	
 	
 	
-	@Override public ActionStd<PersonCusInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<PersonCusInfo>> buildActionsOnPassed(DeciTreeOption<PersonCusInfo> option) {
+	@Override protected List<ActionStd<PersonCusInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonCusInfo> option) {
 		List<ActionStd<PersonCusInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PersonCusInfo> enforceCpf = new StdPersonCusEnforceCpf(option);
@@ -71,23 +52,5 @@ public final class NodePersonCusCpf implements DeciTree<PersonCusInfo> {
 		
 		actions.add(enforceCpf);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<PersonCusInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

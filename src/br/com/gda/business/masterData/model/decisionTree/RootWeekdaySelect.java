@@ -9,31 +9,18 @@ import br.com.gda.business.masterData.model.checker.WeekdayCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootWeekdaySelect implements DeciTree<WeekdayInfo> {
-	private DeciTree<WeekdayInfo> tree;
-	
+public final class RootWeekdaySelect extends DeciTreeReadTemplate<WeekdayInfo> {
 	
 	public RootWeekdaySelect(DeciTreeOption<WeekdayInfo> option) {
-		DeciTreeHelperOption<WeekdayInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<WeekdayInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<WeekdayInfo> buildDecisionCheckerHook(DeciTreeOption<WeekdayInfo> option) {
 		List<ModelChecker<WeekdayInfo>> queue = new ArrayList<>();		
 		ModelChecker<WeekdayInfo> checker;
 		
@@ -45,34 +32,10 @@ public final class RootWeekdaySelect implements DeciTree<WeekdayInfo> {
 
 		
 	
-	private List<ActionStd<WeekdayInfo>> buildActionsOnPassed(DeciTreeOption<WeekdayInfo> option) {
+	@Override protected List<ActionStd<WeekdayInfo>> buildActionsOnPassedHook(DeciTreeOption<WeekdayInfo> option) {
 		List<ActionStd<WeekdayInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdWeekdaySelect(option));
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<WeekdayInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<WeekdayInfo> toAction() {
-		return tree.toAction();
 	}
 }

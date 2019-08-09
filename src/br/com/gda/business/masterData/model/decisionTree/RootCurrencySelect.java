@@ -9,31 +9,18 @@ import br.com.gda.business.masterData.model.checker.CurrencyCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootCurrencySelect implements DeciTree<CurrencyInfo> {
-	private DeciTree<CurrencyInfo> tree;
-	
+public final class RootCurrencySelect extends DeciTreeReadTemplate<CurrencyInfo> {
 	
 	public RootCurrencySelect(DeciTreeOption<CurrencyInfo> option) {
-		DeciTreeHelperOption<CurrencyInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<CurrencyInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<CurrencyInfo> buildDecisionCheckerHook(DeciTreeOption<CurrencyInfo> option) {
 		List<ModelChecker<CurrencyInfo>> queue = new ArrayList<>();		
 		ModelChecker<CurrencyInfo> checker;
 		
@@ -45,34 +32,10 @@ public final class RootCurrencySelect implements DeciTree<CurrencyInfo> {
 	
 	
 	
-	private List<ActionStd<CurrencyInfo>> buildActionsOnPassed(DeciTreeOption<CurrencyInfo> option) {
+	@Override protected List<ActionStd<CurrencyInfo>> buildActionsOnPassedHook(DeciTreeOption<CurrencyInfo> option) {
 		List<ActionStd<CurrencyInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdCurrencySelect(option));
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<CurrencyInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<CurrencyInfo> toAction() {
-		return tree.toAction();
 	}
 }

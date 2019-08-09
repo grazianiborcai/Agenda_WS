@@ -12,31 +12,18 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public final class RootPersonCusSelect implements DeciTree<PersonCusInfo> {
-	private DeciTree<PersonCusInfo> tree;
-	
+public final class RootPersonCusSelect extends DeciTreeReadTemplate<PersonCusInfo> {
 	
 	public RootPersonCusSelect(DeciTreeOption<PersonCusInfo> option) {
-		DeciTreeHelperOption<PersonCusInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<PersonCusInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<PersonCusInfo> buildDecisionCheckerHook(DeciTreeOption<PersonCusInfo> option) {
 		List<ModelChecker<PersonCusInfo>> queue = new ArrayList<>();		
 		ModelChecker<PersonCusInfo> checker;
 		
@@ -51,13 +38,7 @@ public final class RootPersonCusSelect implements DeciTree<PersonCusInfo> {
 	
 	
 	
-	@Override public ActionStd<PersonCusInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<PersonCusInfo>> buildActionsOnPassed(DeciTreeOption<PersonCusInfo> option) {
+	@Override protected List<ActionStd<PersonCusInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonCusInfo> option) {
 		List<ActionStd<PersonCusInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PersonCusInfo> enforceEntityCateg = new StdPersonCusEnforceEntityCateg(option);
@@ -67,23 +48,5 @@ public final class RootPersonCusSelect implements DeciTree<PersonCusInfo> {
 		
 		actions.add(enforceEntityCateg);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<PersonCusInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

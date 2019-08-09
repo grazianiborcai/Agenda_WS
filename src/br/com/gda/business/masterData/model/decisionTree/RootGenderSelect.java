@@ -9,31 +9,18 @@ import br.com.gda.business.masterData.model.checker.GenderCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootGenderSelect implements DeciTree<GenderInfo> {
-	private DeciTree<GenderInfo> tree;
-	
+public final class RootGenderSelect extends DeciTreeReadTemplate<GenderInfo> {
 	
 	public RootGenderSelect(DeciTreeOption<GenderInfo> option) {
-		DeciTreeHelperOption<GenderInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<GenderInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<GenderInfo> buildDecisionCheckerHook(DeciTreeOption<GenderInfo> option) {
 		List<ModelChecker<GenderInfo>> queue = new ArrayList<>();		
 		ModelChecker<GenderInfo> checker;
 		
@@ -45,34 +32,10 @@ public final class RootGenderSelect implements DeciTree<GenderInfo> {
 	
 	
 	
-	private List<ActionStd<GenderInfo>> buildActionsOnPassed(DeciTreeOption<GenderInfo> option) {
+	@Override protected List<ActionStd<GenderInfo>> buildActionsOnPassedHook(DeciTreeOption<GenderInfo> option) {
 		List<ActionStd<GenderInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdGenderSelect(option));
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<GenderInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<GenderInfo> toAction() {
-		return tree.toAction();
 	}
 }

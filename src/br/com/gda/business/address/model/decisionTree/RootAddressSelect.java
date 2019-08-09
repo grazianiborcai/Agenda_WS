@@ -14,31 +14,18 @@ import br.com.gda.business.address.model.checker.AddressCheckRead;
 import br.com.gda.business.address.model.checker.AddressCheckRefRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public final class RootAddressSelect implements DeciTree<AddressInfo> {
-	private DeciTree<AddressInfo> tree;
-	
+public final class RootAddressSelect extends DeciTreeReadTemplate<AddressInfo> {
 	
 	public RootAddressSelect(DeciTreeOption<AddressInfo> option) {
-		DeciTreeHelperOption<AddressInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<AddressInfo> buildDecisionChecker(DeciTreeOption<AddressInfo> option) {
+	@Override protected ModelChecker<AddressInfo> buildDecisionCheckerHook(DeciTreeOption<AddressInfo> option) {
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
 		
@@ -53,7 +40,7 @@ public final class RootAddressSelect implements DeciTree<AddressInfo> {
 	
 	
 	
-	private List<ActionStd<AddressInfo>> buildActionsOnPassed(DeciTreeOption<AddressInfo> option) {
+	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<AddressInfo> select = new StdAddressMergeToSelect(option);		
@@ -67,29 +54,5 @@ public final class RootAddressSelect implements DeciTree<AddressInfo> {
 		
 		actions.add(select);			
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<AddressInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<AddressInfo> toAction() {
-		return tree.toAction();
 	}
 }

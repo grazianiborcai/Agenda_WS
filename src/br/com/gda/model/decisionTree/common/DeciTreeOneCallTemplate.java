@@ -10,7 +10,6 @@ import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.decisionTree.DeciChoice;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -95,13 +94,7 @@ public abstract class DeciTreeOneCallTemplate<T> implements DeciTree<T> {
 	@Override public void makeDecision() {
 		helper.makeDecision();
 		closeTransaction(getDecisionResult());
-	}	
-	
-	
-	
-	@Override public DeciChoice getDecisionMade(){
-		return helper.getDecisionMade();
-	}	
+	}
 	
 	
 	

@@ -9,31 +9,18 @@ import br.com.gda.business.masterData.model.checker.SysEnvironCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class RootSysEnvironSelect implements DeciTree<SysEnvironInfo> {
-	private DeciTree<SysEnvironInfo> tree;
-	
+public final class RootSysEnvironSelect extends DeciTreeReadTemplate<SysEnvironInfo> {
 	
 	public RootSysEnvironSelect(DeciTreeOption<SysEnvironInfo> option) {
-		DeciTreeHelperOption<SysEnvironInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<SysEnvironInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<SysEnvironInfo> buildDecisionCheckerHook(DeciTreeOption<SysEnvironInfo> option) {
 		List<ModelChecker<SysEnvironInfo>> queue = new ArrayList<>();		
 		ModelChecker<SysEnvironInfo> checker;
 		
@@ -45,36 +32,12 @@ public final class RootSysEnvironSelect implements DeciTree<SysEnvironInfo> {
 	
 	
 	
-	private List<ActionStd<SysEnvironInfo>> buildActionsOnPassed(DeciTreeOption<SysEnvironInfo> option) {
+	@Override protected List<ActionStd<SysEnvironInfo>> buildActionsOnPassedHook(DeciTreeOption<SysEnvironInfo> option) {
 		List<ActionStd<SysEnvironInfo>> actions = new ArrayList<>();
 		
 		ActionStd<SysEnvironInfo> select = new StdSysEnvironSelect(option);
 		
 		actions.add(select);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<SysEnvironInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<SysEnvironInfo> toAction() {
-		return tree.toAction();
 	}
 }

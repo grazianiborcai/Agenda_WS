@@ -11,33 +11,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeEmplevateInsert implements DeciTree<EmplevateInfo> {
-	private DeciTree<EmplevateInfo> tree;
-	
+public final class NodeEmplevateInsert extends DeciTreeWriteTemplate<EmplevateInfo> {
 	
 	public NodeEmplevateInsert(DeciTreeOption<EmplevateInfo> option) {
-		DeciTreeHelperOption<EmplevateInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.schemaName = option.schemaName;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = buildActionsOnFailed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<EmplevateInfo> buildDecisionChecker(DeciTreeOption<EmplevateInfo> option) {
+	@Override protected ModelChecker<EmplevateInfo> buildDecisionCheckerHook(DeciTreeOption<EmplevateInfo> option) {
 		final boolean NOT_DELETED = false;	
 		
 		List<ModelChecker<EmplevateInfo>> queue = new ArrayList<>();		
@@ -56,7 +41,7 @@ public final class NodeEmplevateInsert implements DeciTree<EmplevateInfo> {
 	
 	
 	
-	private List<ActionStd<EmplevateInfo>> buildActionsOnPassed(DeciTreeOption<EmplevateInfo> option) {
+	@Override protected List<ActionStd<EmplevateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplevateInfo> option) {
 		List<ActionStd<EmplevateInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmplevateInsert(option));				
@@ -65,34 +50,10 @@ public final class NodeEmplevateInsert implements DeciTree<EmplevateInfo> {
 	
 	
 	
-	private List<ActionStd<EmplevateInfo>> buildActionsOnFailed(DeciTreeOption<EmplevateInfo> option) {
+	@Override protected List<ActionStd<EmplevateInfo>> buildActionsOnFailedHook(DeciTreeOption<EmplevateInfo> option) {
 		List<ActionStd<EmplevateInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmplevateUpdate(option));	
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<EmplevateInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<EmplevateInfo> toAction() {
-		return tree.toAction();
 	}
 }
