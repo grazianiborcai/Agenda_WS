@@ -3,7 +3,7 @@ package br.com.gda.model;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.json.JsonResponseMaker;
+import br.com.gda.json.obsolete.JsonResponse;
 
 final class ModelFailed implements Model {
 	private final boolean RESULT_FAILED = false;		
@@ -11,7 +11,7 @@ final class ModelFailed implements Model {
 	
 	
 	public ModelFailed() {
-		JsonResponseMaker responseMaker = new JsonResponseMaker(SystemMessage.ILLEGAL_ARGUMENT, 
+		JsonResponse responseMaker = new JsonResponse(SystemMessage.ILLEGAL_ARGUMENT, 
 				                                                Response.Status.BAD_REQUEST.getStatusCode(), 
 				                                                Response.Status.BAD_REQUEST, 
 				                                                new Object());

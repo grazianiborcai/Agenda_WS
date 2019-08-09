@@ -1,4 +1,4 @@
-package br.com.gda.json;
+package br.com.gda.json.obsolete;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -10,7 +10,7 @@ import com.google.gson.JsonObject;
 
 
 
-public class JsonResponseMaker {
+public class JsonResponse {
 	private static final String SELECT_CODE = "selectCode";
 	private static final String SELECT_MESSAGE = "selectMessage";
 	private static final String RESULTS = "results";
@@ -24,13 +24,13 @@ public class JsonResponseMaker {
 	
 	
 	
-	public JsonResponseMaker(String msg, Response.Status htmlStatus, Object dataObj) {
+	public JsonResponse(String msg, Response.Status htmlStatus, Object dataObj) {
 		this(msg, htmlStatus.getStatusCode(), htmlStatus, dataObj);
 	}
 	
 	
 	
-	public JsonResponseMaker(String msg, int msgCode, Response.Status htmlStatus, Object dataObj) {
+	public JsonResponse(String msg, int msgCode, Response.Status htmlStatus, Object dataObj) {
 		this.msg = msg;
 		this.msgCode = msgCode;
 		this.htmlStatus = htmlStatus;

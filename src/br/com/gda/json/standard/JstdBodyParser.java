@@ -1,4 +1,4 @@
-package br.com.gda.json;
+package br.com.gda.json.standard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,29 +9,34 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-public class JsonToList<T> {
-	private final Class<T> tClass;
+import br.com.gda.json.JsonBodyParserTemplate;
+
+
+public class JstdBodyParser<T> extends JsonBodyParserTemplate<T> {
 	
-	public JsonToList(Class<T> tClass) {
-		this.tClass = tClass;
+	public JstdBodyParser(Class<T> tClazz) {
+		super(JstdBodyParser.class, tClazz);
 	}
 	
 	
-	public List<T> parse(String incomingData) {
+	
+    @Override protected List<T> parseHook(String incomingData, Class<T> tClass) {
 		List<T> resultObjects = new ArrayList<>();
-		Gson gson = new GsonBuilder().setExclusionStrategies(new JsonAttrExclusion()).create();
+		Gson gson = new GsonBuilder().setExclusionStrategies(new JstdAttrExclusion()).create();
 		JsonParser parser = new JsonParser();
+		
 
 		if (parser.parse(incomingData).isJsonArray()) {
 			JsonArray array = parser.parse(incomingData).getAsJsonArray();
 
 			for (int i = 0; i < array.size(); i++) {
-				resultObjects.add(gson.fromJson(array.get(i), this.tClass));
+				resultObjects.add(gson.fromJson(array.get(i), tClass));
 			}
 		} else {
 			JsonObject object = parser.parse(incomingData).getAsJsonObject();
-			resultObjects.add(gson.fromJson(object, this.tClass));
+			resultObjects.add(gson.fromJson(object, tClass));
 		}
+		
 
 		return resultObjects;
 	}

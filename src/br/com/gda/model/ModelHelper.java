@@ -15,8 +15,8 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.json.JsonResponseMaker;
-import br.com.gda.json.JsonToList;
+import br.com.gda.json.obsolete.JsonResponse;
+import br.com.gda.json.obsolete.JsonToList;
 import br.com.gda.model.common.ModelRequestCheckerOwner;
 import br.com.gda.model.common.ModelRequestCheckerUsername;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -73,99 +73,6 @@ public class ModelHelper<T> implements Model {
 	private ModelHelper(ModelOption<T> option, T recordInfo) {
 		checkArgument(option, recordInfo);
 		init(option, recordInfo);	
-	}
-	
-	
-	
-	private void checkArgument(ModelOption<T> option, String incomingData, HttpServletRequest request) {
-		if (incomingData == null) {
-			logException(new NullPointerException("incomingData" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("incomingData" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (request == null) {
-			logException(new NullPointerException("request" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("request" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		checkOption(option);
-	}
-	
-	
-	
-	private void checkArgument(ModelOption<T> option, T recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		checkOption(option);
-	}
-	
-	
-	
-	private void checkOption(ModelOption<T> option) {
-		if (option == null) {
-			logException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (option.infoRecordClass == null) {
-			logException(new NullPointerException("option.infoRecordClass" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("option.infoRecordClass" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (option.decisionTreeFactory == null) {
-			logException(new NullPointerException("option.decisionTreeFactory" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("option.decisionTreeFactory" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (option.conn == null) {
-			logException(new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (option.schemaName == null) {
-			logException(new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private boolean checkRequest(List<T> recordInfos, HttpServletRequest request) {
-		boolean result = checkRequestOwner(recordInfos, request);
-		
-		if (result == true)
-			result = checkRequestUsername(recordInfos, request);
-		
-		
-		if (result == false) {
-			addUnauthorizedResult();
-			tryToCloseTransaction(getLastTreeResult());
-		}				
-		
-		return result;
-	}
-	
-	
-	
-	private boolean checkRequestOwner(List<T> recordInfos, HttpServletRequest request) {
-		ModelRequestChecker reqChecker = new ModelRequestCheckerOwner(request);
-		return reqChecker.isValid(recordInfos);
-	}
-	
-	
-	
-	private boolean checkRequestUsername(List<T> recordInfos, HttpServletRequest request) {
-		ModelRequestChecker reqChecker = new ModelRequestCheckerUsername(request);
-		return reqChecker.isValid(recordInfos);
 	}
 	
 	
@@ -400,7 +307,7 @@ public class ModelHelper<T> implements Model {
 	
 	
 	private void makeResponse(String msg, int msgCode, Response.Status htmlStatus, Object bodyMsg) {		
-		JsonResponseMaker responseMaker = new JsonResponseMaker(msg, msgCode, htmlStatus, bodyMsg);
+		JsonResponse responseMaker = new JsonResponse(msg, msgCode, htmlStatus, bodyMsg);
 		response = responseMaker.makeResponse();
 	}
 	
@@ -436,6 +343,99 @@ public class ModelHelper<T> implements Model {
 			return false;
 		
 		return true;
+	}
+	
+	
+	
+	private void checkArgument(ModelOption<T> option, String incomingData, HttpServletRequest request) {
+		if (incomingData == null) {
+			logException(new NullPointerException("incomingData" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("incomingData" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (request == null) {
+			logException(new NullPointerException("request" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("request" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		checkOption(option);
+	}
+	
+	
+	
+	private void checkArgument(ModelOption<T> option, T recordInfo) {
+		if (recordInfo == null) {
+			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		checkOption(option);
+	}
+	
+	
+	
+	private void checkOption(ModelOption<T> option) {
+		if (option == null) {
+			logException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.infoRecordClass == null) {
+			logException(new NullPointerException("option.infoRecordClass" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.infoRecordClass" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.decisionTreeFactory == null) {
+			logException(new NullPointerException("option.decisionTreeFactory" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.decisionTreeFactory" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.conn == null) {
+			logException(new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.schemaName == null) {
+			logException(new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT);
+		}
+	}
+	
+	
+	
+	private boolean checkRequest(List<T> recordInfos, HttpServletRequest request) {
+		boolean result = checkRequestOwner(recordInfos, request);
+		
+		if (result == true)
+			result = checkRequestUsername(recordInfos, request);
+		
+		
+		if (result == false) {
+			addUnauthorizedResult();
+			tryToCloseTransaction(getLastTreeResult());
+		}				
+		
+		return result;
+	}
+	
+	
+	
+	private boolean checkRequestOwner(List<T> recordInfos, HttpServletRequest request) {
+		ModelRequestChecker reqChecker = new ModelRequestCheckerOwner(request);
+		return reqChecker.isValid(recordInfos);
+	}
+	
+	
+	
+	private boolean checkRequestUsername(List<T> recordInfos, HttpServletRequest request) {
+		ModelRequestChecker reqChecker = new ModelRequestCheckerUsername(request);
+		return reqChecker.isValid(recordInfos);
 	}
 	
 	
