@@ -39,8 +39,8 @@ public final class StoparModelInsert implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<StoparInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = StoparInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = StoparInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

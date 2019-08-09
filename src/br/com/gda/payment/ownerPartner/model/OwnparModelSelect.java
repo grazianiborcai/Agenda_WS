@@ -38,8 +38,8 @@ public final class OwnparModelSelect implements Model {
 	private void buildHelper(OwnparInfo recordInfo) {
 		ModelOption<OwnparInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = OwnparInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = OwnparInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

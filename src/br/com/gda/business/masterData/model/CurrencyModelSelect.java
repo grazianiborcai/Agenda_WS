@@ -38,8 +38,8 @@ public final class CurrencyModelSelect implements Model {
 	private void buildHelper(CurrencyInfo recordInfo) {
 		ModelOption<CurrencyInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CurrencyInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CurrencyInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

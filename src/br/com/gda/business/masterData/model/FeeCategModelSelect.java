@@ -38,8 +38,8 @@ public final class FeeCategModelSelect implements Model {
 	private void buildHelper(FeeCategInfo recordInfo) {
 		ModelOption<FeeCategInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = FeeCategInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = FeeCategInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

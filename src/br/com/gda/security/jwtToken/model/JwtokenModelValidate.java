@@ -37,8 +37,8 @@ public final class JwtokenModelValidate implements Model {
 	private void buildHelper(JwtokenInfo recordInfo) {
 		ModelOption<JwtokenInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = JwtokenInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = JwtokenInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

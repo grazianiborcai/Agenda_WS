@@ -39,8 +39,8 @@ public final class EmpwotmModelUpdate implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<EmpwotmInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpwotmInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = EmpwotmInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

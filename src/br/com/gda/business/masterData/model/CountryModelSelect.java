@@ -38,8 +38,8 @@ public final class CountryModelSelect implements Model {
 	private void buildHelper(CountryInfo recordInfo) {
 		ModelOption<CountryInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CountryInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CountryInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

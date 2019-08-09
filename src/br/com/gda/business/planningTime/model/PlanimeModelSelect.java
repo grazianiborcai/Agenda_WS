@@ -39,8 +39,8 @@ public final class PlanimeModelSelect implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<PlanimeInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PlanimeInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = PlanimeInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

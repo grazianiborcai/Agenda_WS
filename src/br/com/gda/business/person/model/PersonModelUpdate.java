@@ -39,8 +39,8 @@ public final class PersonModelUpdate implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<PersonInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PersonInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = PersonInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

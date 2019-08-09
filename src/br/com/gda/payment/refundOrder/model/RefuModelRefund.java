@@ -39,8 +39,8 @@ public final class RefuModelRefund implements Model {
 	private void buildHelper(RefuInfo recordInfo) {
 		ModelOption<RefuInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = RefuInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = RefuInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

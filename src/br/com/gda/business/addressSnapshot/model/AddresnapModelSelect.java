@@ -38,8 +38,8 @@ public final class AddresnapModelSelect implements Model {
 	private void buildHelper(AddresnapInfo recordInfo) {
 		ModelOption<AddresnapInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = AddresnapInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = AddresnapInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

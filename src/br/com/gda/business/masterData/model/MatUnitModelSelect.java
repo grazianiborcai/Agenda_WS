@@ -38,8 +38,8 @@ public final class MatUnitModelSelect implements Model {
 	private void buildHelper(MatUnitInfo recordInfo) {
 		ModelOption<MatUnitInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = MatUnitInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = MatUnitInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

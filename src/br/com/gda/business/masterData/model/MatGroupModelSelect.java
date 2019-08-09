@@ -38,8 +38,8 @@ public final class MatGroupModelSelect implements Model {
 	private void buildHelper(MatGroupInfo recordInfo) {
 		ModelOption<MatGroupInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = MatGroupInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = MatGroupInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

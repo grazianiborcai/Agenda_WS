@@ -38,8 +38,8 @@ public final class UauthModelUpswd implements Model {
 	private void buildHelper(UauthInfo recordInfo) {
 		ModelOption<UauthInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = UauthInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = UauthInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

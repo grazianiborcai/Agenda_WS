@@ -39,8 +39,8 @@ public final class PeresmoipModelCode implements Model {
 	private void buildHelper(PeresmoipInfo recordInfo) {
 		ModelOption<PeresmoipInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PeresmoipInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = PeresmoipInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

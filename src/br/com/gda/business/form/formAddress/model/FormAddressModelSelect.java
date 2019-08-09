@@ -38,8 +38,8 @@ public final class FormAddressModelSelect implements Model {
 	private void buildHelper(FormAddressInfo recordInfo) {
 		ModelOption<FormAddressInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = FormAddressInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = FormAddressInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

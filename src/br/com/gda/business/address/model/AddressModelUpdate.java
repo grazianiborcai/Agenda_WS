@@ -39,8 +39,8 @@ public final class AddressModelUpdate implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<AddressInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = AddressInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = AddressInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

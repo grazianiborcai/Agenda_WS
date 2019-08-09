@@ -39,8 +39,8 @@ public final class MatoreModelInsert implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<MatoreInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = MatoreInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = MatoreInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

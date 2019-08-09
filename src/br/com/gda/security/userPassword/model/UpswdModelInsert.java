@@ -39,8 +39,8 @@ public final class UpswdModelInsert implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<UpswdInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = UpswdInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = UpswdInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

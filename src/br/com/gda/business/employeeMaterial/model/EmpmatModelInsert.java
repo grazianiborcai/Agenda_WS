@@ -39,8 +39,8 @@ public final class EmpmatModelInsert implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<EmpmatInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpmatInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = EmpmatInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

@@ -38,8 +38,8 @@ public final class CusModelSelect implements Model {
 	private void buildHelper(CusInfo recordInfo) {
 		ModelOption<CusInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CusInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CusInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

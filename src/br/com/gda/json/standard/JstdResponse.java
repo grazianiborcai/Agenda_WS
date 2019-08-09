@@ -13,8 +13,8 @@ import br.com.gda.json.JsonResponseTemplate;
 
 
 public class JstdResponse extends JsonResponseTemplate {
-	private static final String SELECT_CODE = "selectCode";
-	private static final String SELECT_MESSAGE = "selectMessage";
+	private static final String RETURN_CODE = "returnCode";
+	private static final String RETURN_MESSAGE = "returnMessage";
 	private static final String RESULTS = "results";	
 	
 	
@@ -41,8 +41,8 @@ public class JstdResponse extends JsonResponseTemplate {
 	
 	private JsonObject addMsgToParsedData(String msg, int msgCode, JsonElement jElement) {
 		JsonObject jObject = new JsonObject();
-		jObject.addProperty(SELECT_CODE, msgCode);
-		jObject.addProperty(SELECT_MESSAGE, msg);
+		jObject.addProperty(RETURN_CODE, msgCode);
+		jObject.addProperty(RETURN_MESSAGE, msg);
 		jObject.add(RESULTS, jElement);
 		return jObject;
 	}

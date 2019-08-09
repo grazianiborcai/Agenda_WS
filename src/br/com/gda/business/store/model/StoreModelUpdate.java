@@ -39,8 +39,8 @@ public final class StoreModelUpdate implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<StoreInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = StoreInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = StoreInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

@@ -39,8 +39,8 @@ public final class MatextModelUpsert implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<MatextInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = MatextInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = MatextInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

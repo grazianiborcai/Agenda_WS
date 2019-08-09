@@ -38,8 +38,8 @@ public final class StateModelSelect implements Model {
 	private void buildHelper(StateInfo recordInfo) {
 		ModelOption<StateInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = StateInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = StateInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

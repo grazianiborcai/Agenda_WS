@@ -39,8 +39,8 @@ public final class OwnerModelInsert implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<OwnerInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = OwnerInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = OwnerInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

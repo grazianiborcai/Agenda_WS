@@ -38,8 +38,8 @@ public final class UserModelDelete implements Model {
 	private void buildHelper(UserInfo recordInfo) {
 		ModelOption<UserInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = UserInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = UserInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

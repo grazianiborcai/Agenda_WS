@@ -39,8 +39,8 @@ public final class PersonapModelInsert implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<PersonapInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PersonapInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = PersonapInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

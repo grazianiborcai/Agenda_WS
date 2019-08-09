@@ -39,8 +39,8 @@ public final class AddresnapModelInsert implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<AddresnapInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = AddresnapInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = AddresnapInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

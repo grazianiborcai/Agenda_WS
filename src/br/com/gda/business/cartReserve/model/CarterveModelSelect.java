@@ -38,8 +38,8 @@ public final class CarterveModelSelect implements Model {
 	private void buildHelper(CarterveInfo recordInfo) {
 		ModelOption<CarterveInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CarterveInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CarterveInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

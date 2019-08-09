@@ -38,8 +38,8 @@ public final class FeewnerModelSelect implements Model {
 	private void buildHelper(FeewnerInfo recordInfo) {
 		ModelOption<FeewnerInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = FeewnerInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = FeewnerInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

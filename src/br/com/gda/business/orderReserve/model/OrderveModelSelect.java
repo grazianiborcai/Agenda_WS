@@ -38,8 +38,8 @@ public final class OrderveModelSelect implements Model {
 	private void buildHelper(OrderveInfo recordInfo) {
 		ModelOption<OrderveInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = OrderveInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = OrderveInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

@@ -63,7 +63,7 @@ public class ModelHelper<T> implements Model {
 	
 	private ModelHelper(ModelOption<T> option, String incomingData, HttpServletRequest request) {		
 		checkArgument(option, incomingData, request);
-		List<T> recordInfos = parseRawInfo(incomingData, option.infoRecordClass);
+		List<T> recordInfos = parseRawInfo(incomingData, option.recordClass);
 		init(option, recordInfos);	
 		checkRequest(recordInfos, request);
 	}
@@ -96,7 +96,7 @@ public class ModelHelper<T> implements Model {
 	private void init(ModelOption<T> option, List<T> records) {
 		conn = option.conn;
 		schemaName = option.schemaName;
-		treeFactory = option.decisionTreeFactory;
+		treeFactory = option.deciTreeFactory;
 		recordInfos = records;			
 		treeResults = new ArrayList<>();
 	}
@@ -383,13 +383,13 @@ public class ModelHelper<T> implements Model {
 		}
 		
 		
-		if (option.infoRecordClass == null) {
+		if (option.recordClass == null) {
 			logException(new NullPointerException("option.infoRecordClass" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option.infoRecordClass" + SystemMessage.NULL_ARGUMENT);
 		}
 		
 		
-		if (option.decisionTreeFactory == null) {
+		if (option.deciTreeFactory == null) {
 			logException(new NullPointerException("option.decisionTreeFactory" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option.decisionTreeFactory" + SystemMessage.NULL_ARGUMENT);
 		}

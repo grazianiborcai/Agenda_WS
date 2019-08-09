@@ -38,8 +38,8 @@ public final class TimezoneModelSelect implements Model {
 	private void buildHelper(TimezoneInfo recordInfo) {
 		ModelOption<TimezoneInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = TimezoneInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = TimezoneInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

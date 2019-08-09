@@ -38,8 +38,8 @@ public final class MatModelDelete implements Model {
 	private void buildHelper(MatInfo recordInfo) {
 		ModelOption<MatInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = MatInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = MatInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

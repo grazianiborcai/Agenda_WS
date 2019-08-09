@@ -38,8 +38,8 @@ public final class CounparModelSelect implements Model {
 	private void buildHelper(CounparInfo recordInfo) {
 		ModelOption<CounparInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CounparInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CounparInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

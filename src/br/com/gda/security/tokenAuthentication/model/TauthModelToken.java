@@ -38,8 +38,8 @@ public final class TauthModelToken implements Model {
 	private void buildHelper(TauthInfo recordInfo) {
 		ModelOption<TauthInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = TauthInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = TauthInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

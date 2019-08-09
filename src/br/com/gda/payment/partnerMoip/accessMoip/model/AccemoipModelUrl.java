@@ -39,8 +39,8 @@ public final class AccemoipModelUrl implements Model {
 	private void buildHelper(AccemoipInfo recordInfo) {
 		ModelOption<AccemoipInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = AccemoipInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = AccemoipInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

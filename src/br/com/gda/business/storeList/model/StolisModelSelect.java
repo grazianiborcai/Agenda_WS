@@ -38,8 +38,8 @@ public final class StolisModelSelect implements Model {
 	private void buildHelper(StolisInfo recordInfo) {
 		ModelOption<StolisInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = StolisInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = StolisInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

@@ -39,8 +39,8 @@ public final class CusarchModelSelect_ implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<CusarchInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CusarchInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CusarchInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

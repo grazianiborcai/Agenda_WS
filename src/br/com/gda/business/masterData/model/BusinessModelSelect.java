@@ -38,8 +38,8 @@ public final class BusinessModelSelect implements Model {
 	private void buildHelper(BusinessInfo recordInfo) {
 		ModelOption<BusinessInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = BusinessInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = BusinessInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

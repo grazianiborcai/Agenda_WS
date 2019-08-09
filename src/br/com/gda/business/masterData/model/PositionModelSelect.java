@@ -38,8 +38,8 @@ public final class PositionModelSelect implements Model {
 	private void buildHelper(PositionInfo recordInfo) {
 		ModelOption<PositionInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PositionInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = PositionInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

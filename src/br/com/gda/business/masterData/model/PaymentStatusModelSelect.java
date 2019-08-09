@@ -38,8 +38,8 @@ public final class PaymentStatusModelSelect implements Model {
 	private void buildHelper(PaymentStatusInfo recordInfo) {
 		ModelOption<PaymentStatusInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PaymentStatusInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = PaymentStatusInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

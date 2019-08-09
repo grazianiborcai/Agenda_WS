@@ -38,8 +38,8 @@ public final class PhonapModelSelect implements Model {
 	private void buildHelper(PhonapInfo recordInfo) {
 		ModelOption<PhonapInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PhonapInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = PhonapInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

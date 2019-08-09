@@ -38,8 +38,8 @@ public final class AreaPhoneModelSelect implements Model {
 	private void buildHelper(AreaPhoneInfo recordInfo) {
 		ModelOption<AreaPhoneInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = AreaPhoneInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = AreaPhoneInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

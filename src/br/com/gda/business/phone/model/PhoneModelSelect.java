@@ -38,8 +38,8 @@ public final class PhoneModelSelect implements Model {
 	private void buildHelper(PhoneInfo recordInfo) {
 		ModelOption<PhoneInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PhoneInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = PhoneInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

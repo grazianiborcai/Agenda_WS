@@ -38,8 +38,8 @@ public final class OwntoreModelSelect implements Model {
 	private void buildHelper(OwntoreInfo recordInfo) {
 		ModelOption<OwntoreInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = OwntoreInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = OwntoreInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

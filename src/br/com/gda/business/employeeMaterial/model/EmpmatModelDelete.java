@@ -38,8 +38,8 @@ public final class EmpmatModelDelete implements Model {
 	private void buildHelper(EmpmatInfo recordInfo) {
 		ModelOption<EmpmatInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpmatInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = EmpmatInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

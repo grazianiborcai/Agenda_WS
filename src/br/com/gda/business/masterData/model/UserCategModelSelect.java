@@ -38,8 +38,8 @@ public final class UserCategModelSelect implements Model {
 	private void buildHelper(UserCategInfo recordInfo) {
 		ModelOption<UserCategInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = UserCategInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = UserCategInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

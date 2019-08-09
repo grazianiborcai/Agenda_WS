@@ -38,8 +38,8 @@ public final class EntityCategModelSelect implements Model {
 	private void buildHelper(EntityCategInfo recordInfo) {
 		ModelOption<EntityCategInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EntityCategInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = EntityCategInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

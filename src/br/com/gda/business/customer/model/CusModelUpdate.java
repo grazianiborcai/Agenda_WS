@@ -39,8 +39,8 @@ public final class CusModelUpdate implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<CusInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CusInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CusInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

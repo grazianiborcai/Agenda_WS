@@ -39,8 +39,8 @@ public final class EmposModelUpdate_ implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<EmposInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmposInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = EmposInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

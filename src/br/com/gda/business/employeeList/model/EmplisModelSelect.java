@@ -38,8 +38,8 @@ public final class EmplisModelSelect implements Model {
 	private void buildHelper(EmplisInfo employeeInfo) {
 		ModelOption<EmplisInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmplisInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = EmplisInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

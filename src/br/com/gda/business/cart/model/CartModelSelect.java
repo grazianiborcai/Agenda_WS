@@ -38,8 +38,8 @@ public final class CartModelSelect implements Model {
 	private void buildHelper(CartInfo recordInfo) {
 		ModelOption<CartInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CartInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CartInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

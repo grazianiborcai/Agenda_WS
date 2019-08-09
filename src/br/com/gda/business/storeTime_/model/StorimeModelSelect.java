@@ -38,8 +38,8 @@ public final class StorimeModelSelect implements Model {
 	private void buildHelper(StorimeInfo recordInfo) {
 		ModelOption<StorimeInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = StorimeInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = StorimeInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

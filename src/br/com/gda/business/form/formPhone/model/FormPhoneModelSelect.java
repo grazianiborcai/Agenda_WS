@@ -38,8 +38,8 @@ public final class FormPhoneModelSelect implements Model {
 	private void buildHelper(FormPhoneInfo recordInfo) {
 		ModelOption<FormPhoneInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = FormPhoneInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = FormPhoneInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

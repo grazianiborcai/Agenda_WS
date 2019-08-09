@@ -38,8 +38,8 @@ public final class CountryLegalModelSelect implements Model {
 	private void buildHelper(CountryLegalInfo recordInfo) {
 		ModelOption<CountryLegalInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CountryLegalInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CountryLegalInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

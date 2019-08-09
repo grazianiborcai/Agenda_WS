@@ -38,8 +38,8 @@ public final class StoreCoModelSelect implements Model {
 	private void buildHelper(StoreCoInfo recordInfo) {
 		ModelOption<StoreCoInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = StoreCoInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = StoreCoInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

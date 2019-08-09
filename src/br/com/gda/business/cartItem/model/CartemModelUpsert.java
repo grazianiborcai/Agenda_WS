@@ -39,8 +39,8 @@ public final class CartemModelUpsert implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<CartemInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CartemInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CartemInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

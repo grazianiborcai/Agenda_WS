@@ -38,8 +38,8 @@ public final class EmpwocoModelSelect implements Model {
 	private void buildHelper(EmpwocoInfo recordInfo) {
 		ModelOption<EmpwocoInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpwocoInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = EmpwocoInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

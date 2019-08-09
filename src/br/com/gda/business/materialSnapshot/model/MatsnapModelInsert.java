@@ -39,8 +39,8 @@ public final class MatsnapModelInsert implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<MatsnapInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = MatsnapInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = MatsnapInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

@@ -38,8 +38,8 @@ public final class EmpModelSelect implements Model {
 	private void buildHelper(EmpInfo employeeInfo) {
 		ModelOption<EmpInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = EmpInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = EmpInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

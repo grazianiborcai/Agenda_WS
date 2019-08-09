@@ -38,8 +38,8 @@ public final class MatsnapModelSelect implements Model {
 	private void buildHelper(MatsnapInfo recordInfo) {
 		ModelOption<MatsnapInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = MatsnapInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = MatsnapInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

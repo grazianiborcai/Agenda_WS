@@ -38,8 +38,8 @@ public final class MatmovTypeModelSelect implements Model {
 	private void buildHelper(MatmovTypeInfo recordInfo) {
 		ModelOption<MatmovTypeInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = MatmovTypeInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = MatmovTypeInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

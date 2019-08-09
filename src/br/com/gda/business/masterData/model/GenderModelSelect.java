@@ -38,8 +38,8 @@ public final class GenderModelSelect implements Model {
 	private void buildHelper(GenderInfo recordInfo) {
 		ModelOption<GenderInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = GenderInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = GenderInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

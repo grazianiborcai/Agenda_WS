@@ -38,8 +38,8 @@ public final class FeedefModelSelect implements Model {
 	private void buildHelper(FeedefInfo recordInfo) {
 		ModelOption<FeedefInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = FeedefInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = FeedefInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

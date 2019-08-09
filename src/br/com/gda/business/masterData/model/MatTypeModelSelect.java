@@ -38,8 +38,8 @@ public final class MatTypeModelSelect implements Model {
 	private void buildHelper(MatTypeInfo recordInfo) {
 		ModelOption<MatTypeInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = MatTypeInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = MatTypeInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

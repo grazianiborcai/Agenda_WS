@@ -38,8 +38,8 @@ public final class PersonCusModelSelect implements Model {
 	private void buildHelper(PersonCusInfo recordInfo) {
 		ModelOption<PersonCusInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PersonCusInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = PersonCusInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

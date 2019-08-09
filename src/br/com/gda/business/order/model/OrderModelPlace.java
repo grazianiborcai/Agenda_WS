@@ -38,8 +38,8 @@ public final class OrderModelPlace implements Model {
 	private void buildHelper(OrderInfo recordInfo) {
 		ModelOption<OrderInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = OrderInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = OrderInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

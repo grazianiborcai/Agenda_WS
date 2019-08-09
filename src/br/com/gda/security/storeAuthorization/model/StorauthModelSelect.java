@@ -37,8 +37,8 @@ public final class StorauthModelSelect implements Model {
 	private void buildHelper(StorauthInfo recordInfo) {
 		ModelOption<StorauthInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = StorauthInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = StorauthInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

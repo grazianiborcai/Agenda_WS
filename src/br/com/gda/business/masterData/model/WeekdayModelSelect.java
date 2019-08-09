@@ -38,8 +38,8 @@ public final class WeekdayModelSelect implements Model {
 	private void buildHelper(WeekdayInfo recordInfo) {
 		ModelOption<WeekdayInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = WeekdayInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = WeekdayInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

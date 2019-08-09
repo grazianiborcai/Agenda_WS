@@ -40,8 +40,8 @@ public final class CrecardModelInsert implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<CrecardInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CrecardInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CrecardInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

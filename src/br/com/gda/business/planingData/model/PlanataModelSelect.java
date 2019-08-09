@@ -38,8 +38,8 @@ public final class PlanataModelSelect implements Model {
 	private void buildHelper(PlanataInfo employeeInfo) {
 		ModelOption<PlanataInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PlanataInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = PlanataInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

@@ -38,8 +38,8 @@ public final class StowotmModelDelete implements Model {
 	private void buildHelper(StowotmInfo recordInfo) {
 		ModelOption<StowotmInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = StowotmInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = StowotmInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

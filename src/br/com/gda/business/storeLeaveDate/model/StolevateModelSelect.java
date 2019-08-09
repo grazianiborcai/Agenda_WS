@@ -38,8 +38,8 @@ public final class StolevateModelSelect implements Model {
 	private void buildHelper(StolevateInfo recordInfo) {
 		ModelOption<StolevateInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = StolevateInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = StolevateInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

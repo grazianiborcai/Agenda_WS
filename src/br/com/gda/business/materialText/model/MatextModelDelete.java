@@ -38,8 +38,8 @@ public final class MatextModelDelete implements Model {
 	private void buildHelper(MatextInfo recordInfo) {
 		ModelOption<MatextInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = MatextInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = MatextInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

@@ -39,8 +39,8 @@ public final class CartModelUpsert implements Model {
 	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption<CartInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CartInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CartInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

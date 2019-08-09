@@ -38,8 +38,8 @@ public final class PaytusModelRefresh implements Model {
 	private void buildHelper(PaytusInfo recordInfo) {
 		ModelOption<PaytusInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = PaytusInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = PaytusInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

@@ -38,8 +38,8 @@ public final class OrderStatusModelSelect implements Model {
 	private void buildHelper(OrderStatusInfo recordInfo) {
 		ModelOption<OrderStatusInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = OrderStatusInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = OrderStatusInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

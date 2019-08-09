@@ -39,8 +39,8 @@ public final class CrecardModelSelect implements Model {
 	private void buildHelper(CrecardInfo recordInfo) {
 		ModelOption<CrecardInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = CrecardInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = CrecardInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		

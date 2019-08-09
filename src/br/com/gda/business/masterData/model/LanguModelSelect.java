@@ -38,8 +38,8 @@ public final class LanguModelSelect implements Model {
 	private void buildHelper(LanguInfo recordInfo) {
 		ModelOption<LanguInfo> helperOption = new ModelOption<>();
 		
-		helperOption.infoRecordClass = LanguInfo.class;
-		helperOption.decisionTreeFactory = new TreeFactory();
+		helperOption.recordClass = LanguInfo.class;
+		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
