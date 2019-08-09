@@ -19,31 +19,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootStolevateUpdate implements DeciTree<StolevateInfo> {
-	private DeciTree<StolevateInfo> tree;
-	
+public final class RootStolevateUpdate extends DeciTreeWriteTemplate<StolevateInfo> {
 	
 	public RootStolevateUpdate(DeciTreeOption<StolevateInfo> option) {
-		DeciTreeHelperOption<StolevateInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.conn = option.conn;
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<StolevateInfo> buildDecisionChecker(DeciTreeOption<StolevateInfo> option) {
+	@Override protected ModelChecker<StolevateInfo> buildDecisionCheckerHook(DeciTreeOption<StolevateInfo> option) {
 		List<ModelChecker<StolevateInfo>> queue = new ArrayList<>();		
 		ModelChecker<StolevateInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -88,7 +75,7 @@ public final class RootStolevateUpdate implements DeciTree<StolevateInfo> {
 	
 	
 	
-	private List<ActionStd<StolevateInfo>> buildActionsOnPassed(DeciTreeOption<StolevateInfo> option) {
+	@Override protected List<ActionStd<StolevateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolevateInfo> option) {
 		List<ActionStd<StolevateInfo>> actions = new ArrayList<>();
 		
 		ActionStd<StolevateInfo> enforceLChanged = new StdStolevateEnforceLChanged(option);
@@ -102,29 +89,5 @@ public final class RootStolevateUpdate implements DeciTree<StolevateInfo> {
 		
 		actions.add(enforceLChanged);				
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<StolevateInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<StolevateInfo> toAction() {
-		return tree.toAction();
 	}
 }

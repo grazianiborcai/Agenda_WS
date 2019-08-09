@@ -55,10 +55,10 @@ public abstract class DeciTreeReadTemplate<T> implements DeciTree<T> {
 	}
 		
 
-	
+/*	
 	@Override public DeciChoice getDecisionMade() {
 		return tree.getDecisionMade();
-	}
+	} */
 	
 	
 	

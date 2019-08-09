@@ -14,31 +14,18 @@ import br.com.gda.business.planningTime.model.checker.PlanimeCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public class RootPlanimeSelect implements DeciTree<PlanimeInfo> {
-	private DeciTree<PlanimeInfo> tree;
-	
+public class RootPlanimeSelect extends DeciTreeReadTemplate<PlanimeInfo> {
 	
 	public RootPlanimeSelect(DeciTreeOption<PlanimeInfo> option) {
-		DeciTreeHelperOption<PlanimeInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<PlanimeInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<PlanimeInfo> buildDecisionCheckerHook(DeciTreeOption<PlanimeInfo> option) {
 		List<ModelChecker<PlanimeInfo>> queue = new ArrayList<>();		
 		ModelChecker<PlanimeInfo> checker;
 		
@@ -50,7 +37,7 @@ public class RootPlanimeSelect implements DeciTree<PlanimeInfo> {
 	
 	
 	
-	private List<ActionStd<PlanimeInfo>> buildActionsOnPassed(DeciTreeOption<PlanimeInfo> option) {
+	@Override protected List<ActionStd<PlanimeInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanimeInfo> option) {
 		List<ActionStd<PlanimeInfo>> actions = new ArrayList<>();		
 
 		ActionStd<PlanimeInfo> mergePlanata = new StdPlanimeMergePlanata(option);		
@@ -66,29 +53,5 @@ public class RootPlanimeSelect implements DeciTree<PlanimeInfo> {
 		
 		actions.add(mergePlanata);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<PlanimeInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<PlanimeInfo> toAction() {
-		return tree.toAction();
 	}
 }

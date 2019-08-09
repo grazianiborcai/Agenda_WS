@@ -8,36 +8,23 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.gda.payment.storePartnerSnapshot.model.action.LazyStoparnapMergePaypar;
 import br.com.gda.payment.storePartnerSnapshot.model.action.StdStoparnapMergeToSelect;
 import br.com.gda.payment.storePartnerSnapshot.model.checker.StoparnapCheckOwner;
 import br.com.gda.payment.storePartnerSnapshot.model.checker.StoparnapCheckRead;
 
-public final class RootStoparnapSelect implements DeciTree<StoparnapInfo> {
-	private DeciTree<StoparnapInfo> tree;
-	
+public final class RootStoparnapSelect extends DeciTreeReadTemplate<StoparnapInfo> {
 	
 	public RootStoparnapSelect(DeciTreeOption<StoparnapInfo> option) {
-		DeciTreeHelperOption<StoparnapInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<StoparnapInfo> buildDecisionChecker(DeciTreeOption<StoparnapInfo> option) {
+	@Override protected ModelChecker<StoparnapInfo> buildDecisionCheckerHook(DeciTreeOption<StoparnapInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<StoparnapInfo>> queue = new ArrayList<>();		
@@ -59,7 +46,7 @@ public final class RootStoparnapSelect implements DeciTree<StoparnapInfo> {
 	
 	
 	
-	private List<ActionStd<StoparnapInfo>> buildActionsOnPassed(DeciTreeOption<StoparnapInfo> option) {
+	@Override protected List<ActionStd<StoparnapInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparnapInfo> option) {
 		List<ActionStd<StoparnapInfo>> actions = new ArrayList<>();
 		
 		ActionStd<StoparnapInfo> select = new StdStoparnapMergeToSelect(option);
@@ -69,29 +56,5 @@ public final class RootStoparnapSelect implements DeciTree<StoparnapInfo> {
 		
 		actions.add(select);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<StoparnapInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<StoparnapInfo> toAction() {
-		return tree.toAction();
 	}
 }

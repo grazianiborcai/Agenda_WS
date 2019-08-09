@@ -7,12 +7,8 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.security.userSnapshot.info.UserapInfo;
 import br.com.gda.security.userSnapshot.model.action.LazyUserapMergeAddresnap;
 import br.com.gda.security.userSnapshot.model.action.LazyUserapMergePersonap;
@@ -20,24 +16,15 @@ import br.com.gda.security.userSnapshot.model.action.LazyUserapMergePhonap;
 import br.com.gda.security.userSnapshot.model.action.StdUserapMergeToSelect;
 import br.com.gda.security.userSnapshot.model.checker.UserapCheckRead;
 
-public final class RootUserapSelect implements DeciTree<UserapInfo> {
-	private DeciTree<UserapInfo> tree;
-	
+public final class RootUserapSelect extends DeciTreeReadTemplate<UserapInfo> {
 	
 	public RootUserapSelect(DeciTreeOption<UserapInfo> option) {
-		DeciTreeHelperOption<UserapInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<UserapInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<UserapInfo> buildDecisionCheckerHook(DeciTreeOption<UserapInfo> option) {
 		List<ModelChecker<UserapInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserapInfo> checker;
 		
@@ -49,13 +36,7 @@ public final class RootUserapSelect implements DeciTree<UserapInfo> {
 	
 	
 	
-	@Override public ActionStd<UserapInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<UserapInfo>> buildActionsOnPassed(DeciTreeOption<UserapInfo> option) {
+	@Override protected List<ActionStd<UserapInfo>> buildActionsOnPassedHook(DeciTreeOption<UserapInfo> option) {
 		List<ActionStd<UserapInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UserapInfo> select = new StdUserapMergeToSelect(option);
@@ -70,23 +51,5 @@ public final class RootUserapSelect implements DeciTree<UserapInfo> {
 		
 		actions.add(select);
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<UserapInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

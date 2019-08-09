@@ -8,12 +8,8 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 import br.com.gda.security.userPassword.model.action.LazyUpswdEnforceHash;
 import br.com.gda.security.userPassword.model.action.LazyUpswdEnforceLength;
@@ -26,26 +22,15 @@ import br.com.gda.security.userPassword.model.checker.UpswdCheckExist;
 import br.com.gda.security.userPassword.model.checker.UpswdCheckOwner;
 import br.com.gda.security.userPassword.model.checker.UpswdCheckUpdate;
 
-public final class RootUpswdUpdate implements DeciTree<UpswdInfo> {
-	private DeciTree<UpswdInfo> tree;
-	
+public final class RootUpswdUpdate extends DeciTreeReadTemplate<UpswdInfo> {
 	
 	public RootUpswdUpdate(DeciTreeOption<UpswdInfo> option) {
-		DeciTreeHelperOption<UpswdInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.schemaName = option.schemaName;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = null;
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<UpswdInfo> buildDecisionChecker(DeciTreeOption<UpswdInfo> option) {
+	@Override protected ModelChecker<UpswdInfo> buildDecisionCheckerHook(DeciTreeOption<UpswdInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<UpswdInfo>> queue = new ArrayList<>();		
@@ -74,7 +59,7 @@ public final class RootUpswdUpdate implements DeciTree<UpswdInfo> {
 	
 	
 	
-	private List<ActionStd<UpswdInfo>> buildActionsOnPassed(DeciTreeOption<UpswdInfo> option) {
+	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UpswdInfo> auth = new RootUpswdAuth(option).toAction();
@@ -96,29 +81,5 @@ public final class RootUpswdUpdate implements DeciTree<UpswdInfo> {
 		actions.add(auth);
 		actions.add(enforceLChanged);	
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<UpswdInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<UpswdInfo> toAction() {
-		return tree.toAction();
 	}
 }

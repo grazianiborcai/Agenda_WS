@@ -11,32 +11,18 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public final class RootStoreCoSelect implements DeciTree<StoreCoInfo> {
-	private DeciTree<StoreCoInfo> tree;
-	
+public final class RootStoreCoSelect extends DeciTreeReadTemplate<StoreCoInfo> {
 	
 	public RootStoreCoSelect(DeciTreeOption<StoreCoInfo> option) {
-		DeciTreeHelperOption<StoreCoInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		helperOption.actionsOnFailed = null;
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<StoreCoInfo> buildDecisionChecker(DeciTreeOption<StoreCoInfo> option) {
+	@Override protected ModelChecker<StoreCoInfo> buildDecisionCheckerHook(DeciTreeOption<StoreCoInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<StoreCoInfo>> queue = new ArrayList<>();		
@@ -58,13 +44,7 @@ public final class RootStoreCoSelect implements DeciTree<StoreCoInfo> {
 	
 	
 	
-	@Override public ActionStd<StoreCoInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<StoreCoInfo>> buildActionsOnPassed(DeciTreeOption<StoreCoInfo> option) {
+	@Override protected List<ActionStd<StoreCoInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreCoInfo> option) {
 		List<ActionStd<StoreCoInfo>> actions = new ArrayList<>();
 		
 		ActionStd<StoreCoInfo> actionRange = new ActionStoreCoMakeRange(option);
@@ -73,23 +53,5 @@ public final class RootStoreCoSelect implements DeciTree<StoreCoInfo> {
 		actions.add(actionRange);
 		
 		return actions; 
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<StoreCoInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }

@@ -126,10 +126,10 @@ public abstract class DeciTreeWriteTemplate<T> implements DeciTree<T> {
 	}
 		
 
-	
+	/*
 	@Override public DeciChoice getDecisionMade() {
 		return currentTree.getDecisionMade();
-	}
+	} */
 	
 	
 	

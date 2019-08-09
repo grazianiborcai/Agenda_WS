@@ -15,31 +15,18 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootStowotmInsert implements DeciTree<StowotmInfo> {
-	private DeciTree<StowotmInfo> tree;
-	
+public final class RootStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> {
 	
 	public RootStowotmInsert(DeciTreeOption<StowotmInfo> option) {
-		DeciTreeHelperOption<StowotmInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker(option);
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<StowotmInfo> buildDecisionChecker(DeciTreeOption<StowotmInfo> option) {
+	@Override protected ModelChecker<StowotmInfo> buildDecisionCheckerHook(DeciTreeOption<StowotmInfo> option) {
 		final boolean EXIST_ON_DB = true;	
 		final boolean DONT_EXIST_ON_DB = false;
 		
@@ -93,34 +80,10 @@ public final class RootStowotmInsert implements DeciTree<StowotmInfo> {
 	
 	
 	
-	private List<ActionStd<StowotmInfo>> buildActionsOnPassed(DeciTreeOption<StowotmInfo> option) {
+	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
 		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
 		
 		actions.add(new NodeStowotmInsert(option).toAction());
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<StowotmInfo> getDecisionResult() {
-		return tree.getDecisionResult();
-	}
-	
-	
-	
-	@Override public ActionStd<StowotmInfo> toAction() {
-		return tree.toAction();
 	}
 }

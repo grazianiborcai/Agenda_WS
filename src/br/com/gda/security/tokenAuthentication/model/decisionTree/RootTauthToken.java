@@ -7,36 +7,23 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
-import br.com.gda.model.decisionTree.DeciChoice;
-import br.com.gda.model.decisionTree.DeciResult;
-import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeHelper;
-import br.com.gda.model.decisionTree.DeciTreeHelperOption;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.security.tokenAuthentication.info.TauthInfo;
 import br.com.gda.security.tokenAuthentication.model.action.LazyTauthMergeUsername;
 import br.com.gda.security.tokenAuthentication.model.action.StdTauthMergeJwtoken;
 import br.com.gda.security.tokenAuthentication.model.action.StdTauthValidateJwtoken;
 import br.com.gda.security.tokenAuthentication.model.checker.TauthCheckRead;
 
-public final class RootTauthToken implements DeciTree<TauthInfo> {
-	private DeciTree<TauthInfo> tree;
-	
+public final class RootTauthToken extends DeciTreeWriteTemplate<TauthInfo> {
 	
 	public RootTauthToken(DeciTreeOption<TauthInfo> option) {
-		DeciTreeHelperOption<TauthInfo> helperOption = new DeciTreeHelperOption<>();
-		
-		helperOption.visitorChecker = buildDecisionChecker();
-		helperOption.recordInfos = option.recordInfos;
-		helperOption.conn = option.conn;
-		helperOption.actionsOnPassed = buildActionsOnPassed(option);
-		
-		tree = new DeciTreeHelper<>(helperOption);
+		super(option);
 	}
 	
 	
 	
-	private ModelChecker<TauthInfo> buildDecisionChecker() {
+	@Override protected ModelChecker<TauthInfo> buildDecisionCheckerHook(DeciTreeOption<TauthInfo> option) {
 		List<ModelChecker<TauthInfo>> queue = new ArrayList<>();		
 		ModelChecker<TauthInfo> checker;
 		
@@ -48,13 +35,7 @@ public final class RootTauthToken implements DeciTree<TauthInfo> {
 	
 	
 	
-	@Override public ActionStd<TauthInfo> toAction() {
-		return tree.toAction();
-	}
-	
-	
-	
-	private List<ActionStd<TauthInfo>> buildActionsOnPassed(DeciTreeOption<TauthInfo> option) {
+	@Override protected List<ActionStd<TauthInfo>> buildActionsOnPassedHook(DeciTreeOption<TauthInfo> option) {
 		List<ActionStd<TauthInfo>> actions = new ArrayList<>();
 		
 		ActionStd<TauthInfo> validateJwtoken = new StdTauthValidateJwtoken(option);
@@ -66,23 +47,5 @@ public final class RootTauthToken implements DeciTree<TauthInfo> {
 		actions.add(validateJwtoken);		
 		actions.add(mergeJwtoken);	
 		return actions;
-	}
-	
-	
-	
-	@Override public void makeDecision() {
-		tree.makeDecision();
-	}
-		
-
-	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	}
-	
-	
-	
-	@Override public DeciResult<TauthInfo> getDecisionResult() {
-		return tree.getDecisionResult();
 	}
 }
