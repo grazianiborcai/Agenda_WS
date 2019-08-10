@@ -107,17 +107,19 @@ public final class DaoDbTable {
 	
 	
     //Views
+	public static final String CART_RESERVE_VIEW = "view_cart_reserve";	
 	public static final String EMP_LIST_VIEW = "view_employee_list";	
 	public static final String EMP_WT_CONFLICT_VIEW = "view_employee_working_time";
 	public static final String ORDER_RESERVE_VIEW = "view_order_reserve";	
 	public static final String OWNER_STORE_VIEW = "owner_store";
+	public static final String PAYMENT_VIEW = "view_payment";
 	public static final String PERSON_CUS_VIEW = "view_person_customer";
 	public static final String PERSON_LIST_VIEW = "view_person_list";
 	public static final String PERSON_SEARCH_VIEW = "view_person_search";
 	public static final String PERSON_USER_VIEW = "view_person_user";
 	public static final String PLANING_DATA_VIEW = "planing_data_list";
-	public static final String CART_RESERVE_VIEW = "view_cart_reserve";	
+	public static final String REFUND_VIEW = "view_refund";	
 	public static final String STORE_LIST_VIEW = "view_store_list";
 	public static final String STORE_WT_CONFLICT_VIEW = "view_store_working_time";
-	public static final String USERNAME_VIEW = "view_username";
+	public static final String USERNAME_VIEW = "view_username";	
 }

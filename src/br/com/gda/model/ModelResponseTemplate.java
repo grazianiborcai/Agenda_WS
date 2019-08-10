@@ -143,9 +143,10 @@ public abstract class ModelResponseTemplate<T> implements ModelResponse<T> {
 	
 	
 	private void checkState() {
-		if (deciResults.isEmpty())
+		if (deciResults.isEmpty()) {
 			logException(new IllegalStateException("No results added"));
 			throw new IllegalStateException("No results added");
+		}
 	}
 	
 	

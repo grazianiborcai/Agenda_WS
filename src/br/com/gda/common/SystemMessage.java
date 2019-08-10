@@ -699,4 +699,9 @@ public final class SystemMessage {
 	// Refund
 	public static final String REFUND_HEADER_MANDATORY_FIELD_EMPTY = "Refund Order Header: Mandatory field is empty";
 	public static final String REFUND_ITEM_MANDATORY_FIELD_EMPTY = "Refund Order Item: Mandatory field is empty";
+	
+	
+	
+	// Webhook - Pay-Moip
+	public static final String WHOOK_MOIP_PAY_MANDATORY_FIELD_EMPTY = "Webhook Pay Moip: Mandatory field is empty";
 }

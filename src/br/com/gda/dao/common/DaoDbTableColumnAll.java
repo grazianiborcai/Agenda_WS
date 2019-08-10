@@ -70,6 +70,8 @@ import br.com.gda.security.user.dao.UserDbTableColumn;
 import br.com.gda.security.userPassword.dao.UpswdDbTableColumn;
 import br.com.gda.security.userSnapshot.dao.UserapDbTableColumn;
 import br.com.gda.security.username.dao.UsernameDbTableColumn;
+import br.com.gda.webhook.moipMultipayment.dao.WokaymoipDbTableColumn;
+import br.com.gda.webhook.moipRefund.dao.WokefumoipDbTableColumn;
 
 public final class DaoDbTableColumnAll {
 	private static Hashtable<String, List<DaoColumn>> tableColumns;
@@ -148,6 +150,8 @@ public final class DaoDbTableColumnAll {
 		addTable(new SysparDbTableColumn());
 		addTable(new PayordemDbTableColumn());
 		addTable(new PeresmoipDbTableColumn());
+		addTable(new WokaymoipDbTableColumn());
+		addTable(new WokefumoipDbTableColumn());
 	}
 	
 	

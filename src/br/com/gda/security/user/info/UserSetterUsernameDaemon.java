@@ -27,12 +27,6 @@ public final class UserSetterUsernameDaemon implements InfoSetter<UserInfo> {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}
-		
-		
-		if (recordInfo.personData == null) {
-			logException(new NullPointerException("recordInfo.personData" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo.personData" + SystemMessage.NULL_ARGUMENT);
-		}
 	}
 	
 	

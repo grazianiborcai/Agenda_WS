@@ -35,13 +35,13 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
-		buildPayPartnerStoreTable();	
+		buildPayOrderTable();	
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildPayPartnerStoreTable() {
+	private void buildPayOrderTable() {
 		final String TABLE_NAME = DaoDbTable.PAY_ORDER_HDR_TABLE;
 		
 		DaoColumn oneColumn;
