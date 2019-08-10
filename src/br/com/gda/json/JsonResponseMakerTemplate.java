@@ -7,11 +7,11 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 
-public abstract class JsonResponseTemplate implements JsonResponse {
+public abstract class JsonResponseMakerTemplate implements JsonResponseMaker {
 	private final Class<?> iClass;
 	
 	
-	protected JsonResponseTemplate(Class<?> iClazz) {
+	protected JsonResponseMakerTemplate(Class<?> iClazz) {
 		checkArgument(iClazz);		
 		iClass = iClazz;
 	}

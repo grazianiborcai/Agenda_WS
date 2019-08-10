@@ -17,7 +17,6 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	private List<T> recordInfos;
 	private ModelChecker<T> checker;
-	private DeciChoice_ decisionChoice;
 	private DeciResultHelper<T> deciResult;
 	private List<ActionStd<T>> actionsOnPassed;
 	private List<ActionStd<T>> actionsOnFailed;
@@ -35,7 +34,6 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 		recordInfos = option.recordInfos;
 		actionsOnPassed = option.actionsOnPassed;
 		actionsOnFailed = option.actionsOnFailed;
-		decisionChoice = null;
 		deciResult = null;
 	}
 	
@@ -76,7 +74,6 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	private void buildSuccessMessage() {	
-		decisionChoice = DeciChoice_.PASSED;
 		deciResult = new DeciResultHelper<>();
 		deciResult.isSuccess = RESULT_SUCCESS;
 		deciResult.hasResultset = EMPTY; 
@@ -93,7 +90,6 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	private void buildFailureMessage(int code, String explanation) {	
-		decisionChoice = DeciChoice_.FAILED;
 		deciResult = new DeciResultHelper<>();
 		deciResult.isSuccess = RESULT_FAILED;
 		deciResult.hasResultset = EMPTY;
@@ -146,12 +142,6 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 				deciResult.failMessage = SystemMessage.DATA_NOT_FOUND;
 			}
 		}
-	}
-	
-	
-	
-	public DeciChoice_ getDecisionMade() {
-		return decisionChoice;
 	}
 
 

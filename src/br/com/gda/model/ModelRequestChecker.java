@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.obsolete.ModelHelper_;
 
 public abstract class ModelRequestChecker {
 	private String fieldName;
@@ -108,7 +109,7 @@ public abstract class ModelRequestChecker {
 	
 	
 	private static void logException(Exception e) {
-		Logger logger = LogManager.getLogger(ModelHelper.class);
+		Logger logger = LogManager.getLogger(ModelHelper_.class);
 		logger.error(e.getMessage(), e);
 	}
 }

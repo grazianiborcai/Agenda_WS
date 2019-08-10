@@ -9,11 +9,11 @@ import br.com.gda.business.materialText.model.decisionTree.RootMatextDelete;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
-import br.com.gda.model.ModelHelper;
-import br.com.gda.model.ModelOption;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.obsolete.ModelHelper_;
+import br.com.gda.model.obsolete.ModelOption_;
 
 public final class MatextModelDelete implements Model {
 	private Model helper;
@@ -36,14 +36,14 @@ public final class MatextModelDelete implements Model {
 	
 	
 	private void buildHelper(MatextInfo recordInfo) {
-		ModelOption<MatextInfo> helperOption = new ModelOption<>();
+		ModelOption_<MatextInfo> helperOption = new ModelOption_<>();
 		
 		helperOption.recordClass = MatextInfo.class;
 		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper.factory(helperOption, recordInfo);
+		helper = ModelHelper_.factory(helperOption, recordInfo);
 	}
 
 

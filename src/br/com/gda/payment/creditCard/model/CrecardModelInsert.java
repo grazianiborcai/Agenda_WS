@@ -8,11 +8,11 @@ import javax.ws.rs.core.Response;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
-import br.com.gda.model.ModelHelper;
-import br.com.gda.model.ModelOption;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.obsolete.ModelHelper_;
+import br.com.gda.model.obsolete.ModelOption_;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.creditCard.model.decisionTree.RootCrecardInsert;
 
@@ -38,14 +38,14 @@ public final class CrecardModelInsert implements Model {
 	
 	
 	private void buildHelper(String incomingData, HttpServletRequest request) {
-		ModelOption<CrecardInfo> helperOption = new ModelOption<>();
+		ModelOption_<CrecardInfo> helperOption = new ModelOption_<>();
 		
 		helperOption.recordClass = CrecardInfo.class;
 		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper.factory(helperOption, incomingData, request);
+		helper = ModelHelper_.factory(helperOption, incomingData, request);
 	}
 
 

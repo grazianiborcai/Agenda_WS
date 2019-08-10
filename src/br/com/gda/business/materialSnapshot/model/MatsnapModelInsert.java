@@ -10,11 +10,11 @@ import br.com.gda.business.materialSnapshot.model.decisionTree.RootMatsnapInsert
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
-import br.com.gda.model.ModelHelper;
-import br.com.gda.model.ModelOption;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.obsolete.ModelHelper_;
+import br.com.gda.model.obsolete.ModelOption_;
 
 public final class MatsnapModelInsert implements Model {
 	private Model helper;
@@ -37,14 +37,14 @@ public final class MatsnapModelInsert implements Model {
 	
 	
 	private void buildHelper(String incomingData, HttpServletRequest request) {
-		ModelOption<MatsnapInfo> helperOption = new ModelOption<>();
+		ModelOption_<MatsnapInfo> helperOption = new ModelOption_<>();
 		
 		helperOption.recordClass = MatsnapInfo.class;
 		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper.factory(helperOption, incomingData, request);
+		helper = ModelHelper_.factory(helperOption, incomingData, request);
 	}
 
 

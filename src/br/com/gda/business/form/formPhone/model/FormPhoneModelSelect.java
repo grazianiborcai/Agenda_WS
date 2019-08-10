@@ -9,11 +9,11 @@ import br.com.gda.business.form.formPhone.model.decisionTree.RootFormPhoneSelect
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
-import br.com.gda.model.ModelHelper;
-import br.com.gda.model.ModelOption;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
+import br.com.gda.model.obsolete.ModelHelper_;
+import br.com.gda.model.obsolete.ModelOption_;
 
 public final class FormPhoneModelSelect implements Model {
 	private Model helper;
@@ -36,14 +36,14 @@ public final class FormPhoneModelSelect implements Model {
 	
 	
 	private void buildHelper(FormPhoneInfo recordInfo) {
-		ModelOption<FormPhoneInfo> helperOption = new ModelOption<>();
+		ModelOption_<FormPhoneInfo> helperOption = new ModelOption_<>();
 		
 		helperOption.recordClass = FormPhoneInfo.class;
 		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper.factory(helperOption, recordInfo);
+		helper = ModelHelper_.factory(helperOption, recordInfo);
 	}
 
 

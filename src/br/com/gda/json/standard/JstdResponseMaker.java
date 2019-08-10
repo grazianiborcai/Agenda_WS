@@ -8,18 +8,18 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import br.com.gda.json.JsonResponseTemplate;
+import br.com.gda.json.JsonResponseMakerTemplate;
 
 
 
-public class JstdResponse extends JsonResponseTemplate {
+public class JstdResponseMaker extends JsonResponseMakerTemplate {
 	private static final String RETURN_CODE = "returnCode";
 	private static final String RETURN_MESSAGE = "returnMessage";
 	private static final String RESULTS = "results";	
 	
 	
-	public JstdResponse() {
-		super(JstdResponse.class);
+	public JstdResponseMaker() {
+		super(JstdResponseMaker.class);
 	}
 	
 	

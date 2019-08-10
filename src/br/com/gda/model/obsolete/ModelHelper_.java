@@ -1,4 +1,4 @@
-package br.com.gda.model;
+package br.com.gda.model.obsolete;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -17,6 +17,8 @@ import br.com.gda.common.DbConnection;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.json.obsolete.JsonResponse;
 import br.com.gda.json.obsolete.JsonToList;
+import br.com.gda.model.Model;
+import br.com.gda.model.ModelRequestChecker;
 import br.com.gda.model.common.ModelRequestCheckerOwner;
 import br.com.gda.model.common.ModelRequestCheckerUsername;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -25,7 +27,7 @@ import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public class ModelHelper<T> implements Model {
+public class ModelHelper_<T> implements Model {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
@@ -37,31 +39,31 @@ public class ModelHelper<T> implements Model {
 	private DeciTreeFactory<T> treeFactory;	
 	
 	
-	public static <T> Model factory(ModelOption<T> option, String incomingData, HttpServletRequest request) {
+	public static <T> Model factory(ModelOption_<T> option, String incomingData, HttpServletRequest request) {
 		try {
-			return new ModelHelper<T>(option, incomingData, request);
+			return new ModelHelper_<T>(option, incomingData, request);
 			
 		} catch (Exception e) {
 			logException(e);
-			return new ModelFailed();
+			return new ModelFailed_();
 		}
 	}
 	
 	
 	
-	public static <T> Model factory(ModelOption<T> option, T recordInfo) {
+	public static <T> Model factory(ModelOption_<T> option, T recordInfo) {
 		try {
-			return new ModelHelper<T>(option, recordInfo);
+			return new ModelHelper_<T>(option, recordInfo);
 			
 		} catch (Exception e) {
 			logException(e);
-			return new ModelFailed();
+			return new ModelFailed_();
 		}
 	}
 	
 	
 	
-	private ModelHelper(ModelOption<T> option, String incomingData, HttpServletRequest request) {		
+	private ModelHelper_(ModelOption_<T> option, String incomingData, HttpServletRequest request) {		
 		checkArgument(option, incomingData, request);
 		List<T> recordInfos = parseRawInfo(incomingData, option.recordClass);
 		init(option, recordInfos);	
@@ -70,7 +72,7 @@ public class ModelHelper<T> implements Model {
 	
 	
 
-	private ModelHelper(ModelOption<T> option, T recordInfo) {
+	private ModelHelper_(ModelOption_<T> option, T recordInfo) {
 		checkArgument(option, recordInfo);
 		init(option, recordInfo);	
 	}
@@ -84,7 +86,7 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private void init(ModelOption<T> option, T record) {
+	private void init(ModelOption_<T> option, T record) {
 		List<T> recordInfos = new ArrayList<>();
 		recordInfos.add(record);
 		
@@ -93,7 +95,7 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private void init(ModelOption<T> option, List<T> records) {
+	private void init(ModelOption_<T> option, List<T> records) {
 		conn = option.conn;
 		schemaName = option.schemaName;
 		treeFactory = option.deciTreeFactory;
@@ -104,10 +106,8 @@ public class ModelHelper<T> implements Model {
 	
 	
 	@Override public boolean executeRequest() {		
-		if (hasTreeResult(treeResults)) {
-			DeciResult<T> lastResult = getLastTreeResult();
-			return lastResult.isSuccess();
-		}		
+		if (hasResult(treeResults)) 
+			return getLastResult().isSuccess();
 		
 		return tryToExecuteRequest();
 	}
@@ -147,7 +147,7 @@ public class ModelHelper<T> implements Model {
 		DeciResult<T> treeResult = makeDecision(decisionTree);
 		addTreeResult(treeResult);	
 		
-		return getLastTreeResult();
+		return getLastResult();
 	}
 	
 	
@@ -181,7 +181,7 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private DeciResult<T> getLastTreeResult() {
+	private DeciResult<T> getLastResult() {
 		int lasElem = treeResults.size() - 1;		
 		return treeResults.get(lasElem);
 	}	
@@ -313,7 +313,7 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	public Response getResponse() {
+	@Override public Response getResponse() {
 		checkState(response);		
 		return response;
 	}
@@ -338,7 +338,7 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private boolean hasTreeResult(List<DeciResult<T>> results) {
+	private boolean hasResult(List<DeciResult<T>> results) {
 		if (results.isEmpty())
 			return false;
 		
@@ -347,7 +347,7 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private void checkArgument(ModelOption<T> option, String incomingData, HttpServletRequest request) {
+	private void checkArgument(ModelOption_<T> option, String incomingData, HttpServletRequest request) {
 		if (incomingData == null) {
 			logException(new NullPointerException("incomingData" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("incomingData" + SystemMessage.NULL_ARGUMENT);
@@ -365,7 +365,7 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private void checkArgument(ModelOption<T> option, T recordInfo) {
+	private void checkArgument(ModelOption_<T> option, T recordInfo) {
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
@@ -376,7 +376,7 @@ public class ModelHelper<T> implements Model {
 	
 	
 	
-	private void checkOption(ModelOption<T> option) {
+	private void checkOption(ModelOption_<T> option) {
 		if (option == null) {
 			logException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
@@ -418,7 +418,7 @@ public class ModelHelper<T> implements Model {
 		
 		if (result == false) {
 			addUnauthorizedResult();
-			tryToCloseTransaction(getLastTreeResult());
+			tryToCloseTransaction(getLastResult());
 		}				
 		
 		return result;
@@ -441,7 +441,7 @@ public class ModelHelper<T> implements Model {
 	
 	
 	private static void logException(Exception e) {
-		Logger logger = LogManager.getLogger(ModelHelper.class);
+		Logger logger = LogManager.getLogger(ModelHelper_.class);
 		logger.error(e.getMessage(), e);
 	}
 }
