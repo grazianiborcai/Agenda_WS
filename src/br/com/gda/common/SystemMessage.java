@@ -704,4 +704,10 @@ public final class SystemMessage {
 	
 	// Webhook - Pay-Moip
 	public static final String WHOOK_MOIP_PAY_MANDATORY_FIELD_EMPTY = "Webhook Pay Moip: Mandatory field is empty";
+	
+	
+	
+	// Schedule
+	public static final String SCHEDULE_HAS_NO_ORDER = "Schedule has no Purchase Order";
+	public static final String SCHEDULE_MANDATORY_FIELD_EMPTY = "Schedule: Mandatory field is empty";
 }

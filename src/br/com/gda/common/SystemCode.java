@@ -550,4 +550,8 @@ public final class SystemCode {
 	
 	// Webhook - Pay-Moip
 	public static final int WHOOK_MOIP_PAY_MANDATORY_FIELD_EMPTY 		= 4750;
+	
+	// Schedule
+	public static final int SCHEDULE_MANDATORY_FIELD_EMPTY				= 4800;
+	public static final int SCHEDULE_HAS_NO_ORDER						= 4801;
 }
