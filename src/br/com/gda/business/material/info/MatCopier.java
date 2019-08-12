@@ -5,20 +5,20 @@ import java.util.List;
 import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.business.orderItem.info.OrderemInfo;
 import br.com.gda.business.planningTime.info.PlanimeInfo;
-import br.com.gda.business.schedule.info.ScheduInfo;
+import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
 
 public final class MatCopier {
-	public static MatInfo copyFromSchedu(ScheduInfo source) {
-		InfoCopier<MatInfo, ScheduInfo> copier = new MatCopySchedu();
+	public static MatInfo copyFromSchedine(SchedineInfo source) {
+		InfoCopier<MatInfo, SchedineInfo> copier = new MatCopySchedine();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<MatInfo> copyFromSchedu(List<ScheduInfo> sources) {
-		InfoCopier<MatInfo, ScheduInfo> copier = new MatCopySchedu();
+	public static List<MatInfo> copyFromSchedine(List<SchedineInfo> sources) {
+		InfoCopier<MatInfo, SchedineInfo> copier = new MatCopySchedine();
 		return copier.makeCopy(sources);
 	}
 	

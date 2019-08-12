@@ -45,7 +45,7 @@ import br.com.gda.business.personUser_.dao.PersonUserDbTableColumn;
 import br.com.gda.business.phone.dao.PhoneDbTableColumn;
 import br.com.gda.business.phoneSnapshot.dao.PhonapDbTableColumn;
 import br.com.gda.business.planingData.dao.PlanataDbTableColumn;
-import br.com.gda.business.schedule.dao.ScheduDbTableColumn;
+import br.com.gda.business.scheduleLine.dao.SchedineDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.business.storeLeaveDate.dao.StolevateDbTableColumn;
 import br.com.gda.business.storeList.dao.StolisDbTableColumn;
@@ -153,7 +153,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PeresmoipDbTableColumn());
 		addTable(new WokaymoipDbTableColumn());
 		addTable(new WokefumoipDbTableColumn());
-		addTable(new ScheduDbTableColumn());
+		addTable(new SchedineDbTableColumn());
 	}
 	
 	
