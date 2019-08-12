@@ -33,12 +33,12 @@ public final class StoreCheckWrite extends ModelCheckerTemplateSimple<StoreInfo>
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.STORE_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.STORE_MANDATORY_FIELD_EMPTY;
 	}
 }

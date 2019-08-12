@@ -134,6 +134,13 @@ public final class StoreUpdateSingle implements DaoStmt<StoreInfo> {
 			}
 			
 			
+			if (recordInfo.codSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
 			return stmt;
 		}		
 	}

@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeList.info.StolisInfo;
-import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -22,7 +20,6 @@ import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class StolisSelectSingle implements DaoStmt<StolisInfo> {
 	private final static String LT_STORE = DaoDbTable.STORE_TABLE;	
-	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<StolisInfo> stmtSql;
 	private DaoStmtOption<StolisInfo> stmtOption;
@@ -46,7 +43,7 @@ public final class StolisSelectSingle implements DaoStmt<StolisInfo> {
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = buildJoins();
+		this.stmtOption.joins = null;
 	}
 	
 	
@@ -58,26 +55,6 @@ public final class StolisSelectSingle implements DaoStmt<StolisInfo> {
 		
 		DaoStmtWhere whereClause = new StolisWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinLanguage());		
-		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
 	}
 	
 	
@@ -143,11 +120,6 @@ public final class StolisSelectSingle implements DaoStmt<StolisInfo> {
 				stmtResult.getLong(StolisDbTableColumn.COL_COD_COMPANY);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.codCompany = stmtResult.getLong(StolisDbTableColumn.COL_COD_COMPANY);
-				
-				
-				stmtResult.getString(StolisDbTableColumn.COL_COD_LANGUAGE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codLanguage = stmtResult.getString(StolisDbTableColumn.COL_COD_LANGUAGE);
 				
 				
 				Timestamp lastChanged = stmtResult.getTimestamp(StolisDbTableColumn.COL_LAST_CHANGED);

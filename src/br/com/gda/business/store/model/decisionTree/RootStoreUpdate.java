@@ -4,15 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.action.LazyStoreEnforceEntityCateg;
-import br.com.gda.business.store.model.action.LazyStoreKeepStore;
-import br.com.gda.business.store.model.action.LazyStoreMergeUsername;
 import br.com.gda.business.store.model.action.LazyStoreNodeUpdateComp;
 import br.com.gda.business.store.model.action.LazyStoreNodeUpdatePerson;
 import br.com.gda.business.store.model.action.LazyStoreNodeUpsertAddress;
 import br.com.gda.business.store.model.action.LazyStoreNodeUpsertPhone;
-import br.com.gda.business.store.model.action.LazyStoreUpdate;
-import br.com.gda.business.store.model.action.StdStoreEnforceLChanged;
 import br.com.gda.business.store.model.checker.StoreCheckCurrency;
 import br.com.gda.business.store.model.checker.StoreCheckExist;
 import br.com.gda.business.store.model.checker.StoreCheckKey;
@@ -103,28 +98,19 @@ public final class RootStoreUpdate extends DeciTreeWriteTemplate<StoreInfo> {
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
-		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> enforceEntityCateg = new LazyStoreEnforceEntityCateg(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> keepStore = new LazyStoreKeepStore(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> updateStore = new LazyStoreUpdate(option.conn, option.schemaName);	
+		ActionStd<StoreInfo> updateStore = new NodeStoreUpdate(option).toAction();
 		ActionLazy<StoreInfo> updatePerson = new LazyStoreNodeUpdatePerson(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> updateCompany = new LazyStoreNodeUpdateComp(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionStd<StoreInfo> select = new RootStoreSelect(option).toAction();		
+		ActionStd<StoreInfo> select = new RootStoreSelect(option).toAction();	
+			
+		updateStore.addPostAction(updatePerson);
+		updateStore.addPostAction(updateCompany);		
+		updateStore.addPostAction(upsertAddress);		
+		updateStore.addPostAction(upsertPhone);
 		
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(enforceEntityCateg);
-		enforceEntityCateg.addPostAction(keepStore);
-		
-		keepStore.addPostAction(updateStore);		
-		keepStore.addPostAction(updatePerson);
-		keepStore.addPostAction(updateCompany);		
-		keepStore.addPostAction(upsertAddress);		
-		keepStore.addPostAction(upsertPhone);
-		
-		actions.add(enforceLChanged);
+		actions.add(updateStore);
 		actions.add(select);
 		return actions;
 	}

@@ -98,25 +98,29 @@ public final class StoreInsertSingle implements DaoStmt<StoreInfo> {
 				stmt.setLong(i++, recordInfo.codCompany);
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
-			}
-			
+			}			
 			
 			stmt.setTimestamp(i++, lastChanged);
 			stmt.setString(i++, recordInfo.codCurr);
 			stmt.setString(i++, recordInfo.codTimezone);
-			stmt.setString(i++, recordInfo.recordMode);
-			
+			stmt.setString(i++, recordInfo.recordMode);			
 			
 			if (recordInfo.codUser >= 0) {
 				stmt.setLong(i++, recordInfo.codUser);
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
-			}
-			
+			}			
 			
 			
 			if (recordInfo.lastChangedBy >= 0) {
 				stmt.setLong(i++, recordInfo.lastChangedBy);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codSnapshot);
 			} else {
 				stmt.setNull(i++, Types.INTEGER);
 			}

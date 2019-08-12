@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.dao.DaoJoin;
-import br.com.gda.dao.DaoJoinType;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -22,7 +20,6 @@ import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 	private final static String LT_STORE = DaoDbTable.STORE_TABLE;	
-	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<StoreInfo> stmtSql;
 	private DaoStmtOption<StoreInfo> stmtOption;
@@ -46,7 +43,7 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = buildJoins();
+		this.stmtOption.joins = null;
 	}
 	
 	
@@ -58,26 +55,6 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 		
 		DaoStmtWhere whereClause = new StoreWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinLanguage());		
-		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
 	}
 	
 	
@@ -155,11 +132,6 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 					dataInfo.codUser = stmtResult.getLong(StoreDbTableColumn.COL_COD_USER);
 				
 				
-				stmtResult.getString(StoreDbTableColumn.COL_COD_LANGUAGE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codLanguage = stmtResult.getString(StoreDbTableColumn.COL_COD_LANGUAGE);
-				
-				
 				Timestamp lastChanged = stmtResult.getTimestamp(StoreDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
@@ -168,6 +140,11 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 				stmtResult.getLong(StoreDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.lastChangedBy = stmtResult.getLong(StoreDbTableColumn.COL_LAST_CHANGED_BY);
+				
+				
+				stmtResult.getLong(StoreDbTableColumn.COL_COD_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codSnapshot = stmtResult.getLong(StoreDbTableColumn.COL_COD_SNAPSHOT);	
 		
 				
 				finalResult.add(dataInfo);

@@ -150,4 +150,18 @@ public final class StoreMerger {
 		InfoMerger<StoreInfo, StoreInfo> merger = new StoreMergerToSelect();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static StoreInfo mergeToUpdate(StoreInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, StoreInfo> merger = new StoreMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StoreInfo> mergeToUpdate(List<StoreInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, StoreInfo> merger = new StoreMergerToUpdate();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

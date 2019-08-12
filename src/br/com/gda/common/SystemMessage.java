@@ -189,6 +189,7 @@ public final class SystemMessage {
 	public static final String STORE_LDATE_HAVE_ITEM = "Store's leave date has items";
 	public static final String STORE_LDATE_IS_EMPTY = "Store's leave date is empty";
 	public static final String STORE_LDATE_NOT_FOUND = "Store's leave date not found on DB";
+	public static final String STORE_MANDATORY_FIELD_EMPTY = "Store: Mandatory field is empty";
 	public static final String STORE_MAT_EMP_ALREADY_EXIST = "Employee's material data already exist on DB";	
 	public static final String STORE_MAT_EMP_FLAGGED_AS_DELETED = "Employee's material data is flagged as deleted on DB";
 	public static final String STORE_MAT_EMP_NOT_FOUND = "Employee's material data not found on DB";	

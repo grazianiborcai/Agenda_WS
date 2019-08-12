@@ -12,7 +12,6 @@ import br.com.gda.dao.common.DaoDbTable;
 public final class StolisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COMPANY = StoreDbTableColumn.COL_COD_COMPANY;
 	public static final String COL_COD_CURR = StoreDbTableColumn.COL_COD_CURR;
-	public static final String COL_COD_LANGUAGE = StoreDbTableColumn.COL_COD_LANGUAGE;
 	public static final String COL_COD_OWNER = StoreDbTableColumn.COL_COD_OWNER;	
 	public static final String COL_COD_STORE = StoreDbTableColumn.COL_COD_STORE;
 	public static final String COL_COD_TIME_ZONE = StoreDbTableColumn.COL_COD_TIME_ZONE;
@@ -107,14 +106,6 @@ public final class StolisDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_LAST_CHANGED_BY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

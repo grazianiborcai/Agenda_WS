@@ -15,6 +15,7 @@ import br.com.gda.security.user.info.UserInfo;
 public final class StoreInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
+	public long codSnapshot;	
 	public long codUser;
 	public long codPerson;
 	public long codCompany;
@@ -41,6 +42,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public StoreInfo() {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codCompany = DefaultValue.number();
