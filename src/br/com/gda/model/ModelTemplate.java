@@ -59,6 +59,7 @@ public abstract class ModelTemplate<T> implements Model {
 		try {
 			checkArgument(recordInfo);
 			
+			recordInfos = addToList(recordInfo);
 			isRequestValid = true;
 			initDb(isRequestValid);	
 			isError = false;
@@ -88,6 +89,14 @@ public abstract class ModelTemplate<T> implements Model {
 	
 	protected String getDbSchemaHook() {
 		return DbSchema.getDefaultSchemaName();
+	}
+	
+	
+	
+	private List<T> addToList(T recordInfo) {
+		List<T> results = new ArrayList<>();
+		results.add(recordInfo);
+		return results;
 	}
 	
 	
