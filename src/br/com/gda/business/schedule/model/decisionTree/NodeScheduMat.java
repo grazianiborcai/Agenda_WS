@@ -5,15 +5,16 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.schedule.info.ScheduInfo;
+import br.com.gda.business.schedule.model.action.StdScheduSuccess;
 import br.com.gda.business.schedule.model.checker.SheduCheckIsService;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeOrderemSelect extends DeciTreeWriteTemplate<ScheduInfo> {
+public final class NodeScheduMat extends DeciTreeWriteTemplate<ScheduInfo> {
 	
-	public NodeOrderemSelect(DeciTreeOption<ScheduInfo> option) {
+	public NodeScheduMat(DeciTreeOption<ScheduInfo> option) {
 		super(option);
 	}
 	
@@ -21,7 +22,7 @@ public final class NodeOrderemSelect extends DeciTreeWriteTemplate<ScheduInfo> {
 	
 	@Override protected ModelChecker<ScheduInfo> buildDecisionCheckerHook(DeciTreeOption<ScheduInfo> option) {
 		List<ModelChecker<ScheduInfo>> queue = new ArrayList<>();		
-		ModelChecker<ScheduInfo> checker;
+		ModelChecker<ScheduInfo> checker;	
 		
 		checker = new SheduCheckIsService();
 		queue.add(checker);
@@ -34,9 +35,9 @@ public final class NodeOrderemSelect extends DeciTreeWriteTemplate<ScheduInfo> {
 	@Override protected List<ActionStd<ScheduInfo>> buildActionsOnPassedHook(DeciTreeOption<ScheduInfo> option) {
 		List<ActionStd<ScheduInfo>> actions = new ArrayList<>();
 		
-		ActionStd<ScheduInfo> selectService = new NodeOrderemSelectService(option).toAction();
+		ActionStd<ScheduInfo> success = new StdScheduSuccess(option);
 		
-		actions.add(selectService);
+		actions.add(success);
 		return actions;
 	}
 }

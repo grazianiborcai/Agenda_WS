@@ -32,12 +32,12 @@ public final class OrderemCheckWrite extends ModelCheckerTemplateSimple<OrderemI
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.ORDER_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.ORDER_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 }

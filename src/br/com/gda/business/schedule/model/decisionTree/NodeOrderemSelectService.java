@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.schedule.info.ScheduInfo;
-import br.com.gda.business.schedule.model.action.LazyOrderemEnforceWeekday;
+import br.com.gda.business.schedule.model.action.LazyScheduEnforceWeekday;
 import br.com.gda.business.schedule.model.action.LazyOrderemMergeEmplis;
 import br.com.gda.business.schedule.model.action.LazyOrderemMergeMatore;
 import br.com.gda.business.schedule.model.action.LazyOrderemMergeWeekday;
 import br.com.gda.business.schedule.model.action.StdOrderemMergeStolis;
-import br.com.gda.business.schedule.model.checker.OrderemCheckIsService;
+import br.com.gda.business.schedule.model.checker.SheduCheckIsService;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -29,7 +29,7 @@ public final class NodeOrderemSelectService extends DeciTreeWriteTemplate<Schedu
 		List<ModelChecker<ScheduInfo>> queue = new ArrayList<>();		
 		ModelChecker<ScheduInfo> checker;
 		
-		checker = new OrderemCheckIsService();
+		checker = new SheduCheckIsService();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -42,7 +42,7 @@ public final class NodeOrderemSelectService extends DeciTreeWriteTemplate<Schedu
 		
 		ActionStd<ScheduInfo> mergeStolis = new StdOrderemMergeStolis(option);
 		ActionLazy<ScheduInfo> mergeEmplis = new LazyOrderemMergeEmplis(option.conn, option.schemaName);
-		ActionLazy<ScheduInfo> enforceWeekday = new LazyOrderemEnforceWeekday(option.conn, option.schemaName);
+		ActionLazy<ScheduInfo> enforceWeekday = new LazyScheduEnforceWeekday(option.conn, option.schemaName);
 		ActionLazy<ScheduInfo> mergeWeekday = new LazyOrderemMergeWeekday(option.conn, option.schemaName);
 		ActionLazy<ScheduInfo> mergeMatore = new LazyOrderemMergeMatore(option.conn, option.schemaName);
 		

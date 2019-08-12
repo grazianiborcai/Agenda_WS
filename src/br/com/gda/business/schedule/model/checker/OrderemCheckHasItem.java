@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.schedule.info.ScheduInfo;
 import br.com.gda.business.schedule.model.action.StdOrderemEnforceKey;
-import br.com.gda.business.schedule.model.action.LazyOrderemSelect;
+import br.com.gda.business.schedule.model.action.LazyScheduSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -24,7 +24,7 @@ public final class OrderemCheckHasItem extends ModelCheckerTemplateAction<Schedu
 		DeciTreeOption<ScheduInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
 		ActionStd<ScheduInfo> actionSelect = new StdOrderemEnforceKey(option);
-		actionSelect.addPostAction(new LazyOrderemSelect(conn, schemaName));
+		actionSelect.addPostAction(new LazyScheduSelect(conn, schemaName));
 		return actionSelect;
 	}
 	

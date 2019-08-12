@@ -1,21 +1,21 @@
-package br.com.gda.business.orderItem.model.checker;
+package br.com.gda.business.schedule.model.checker;
 
 import java.sql.Connection;
-import br.com.gda.business.orderItem.info.OrderemInfo;
+import br.com.gda.business.schedule.info.ScheduInfo;
 import br.com.gda.business.masterData.info.common.MatCateg;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class OrderemCheckIsService extends ModelCheckerTemplateSimple<OrderemInfo> {
+public final class SheduCheckIsService extends ModelCheckerTemplateSimple<ScheduInfo> {
 
-	public OrderemCheckIsService() {
+	public SheduCheckIsService() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(OrderemInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(ScheduInfo recordInfo, Connection conn, String schemaName) {	
 		if(recordInfo.matData == null)
 			return super.FAILED;
 		
@@ -29,12 +29,12 @@ public final class OrderemCheckIsService extends ModelCheckerTemplateSimple<Orde
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ORDER_ITEM_IS_NOT_SERVICE;
+		return SystemMessage.SCHEDULE_MATERIAL_IS_NOT_SERVICE;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.ORDER_ITEM_IS_NOT_SERVICE;
+		return SystemCode.SCHEDULE_MATERIAL_IS_NOT_SERVICE;
 	}
 }

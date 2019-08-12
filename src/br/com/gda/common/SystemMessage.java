@@ -570,6 +570,8 @@ public final class SystemMessage {
 	public static final String ORDER_DONT_HAVE_PAYMENT = "No payment was placed for the given order";
 	public static final String ORDER_NOT_FOUND = "Order not found on DB";	
 	public static final String ORDER_ITEM_ALREADY_EXIST = "Order item already exist on DB";	
+	public static final String ORDER_ITEM_IS_NOT_SERVICE = "Order item isn't a service";
+	public static final String ORDER_ITEM_MANDATORY_FIELD_EMPTY = "Order-Item: Mandatory field is empty";
 	public static final String ORDER_ITEM_NOT_FOUND = "Order item not found on DB";	
 	public static final String ORDER_HAVE_ITEM = "Order has items";	
 	public static final String ORDER_HEADER_MANDATORY_FIELD_EMPTY = "Order-Header: Mandatory field is empty";
@@ -710,4 +712,5 @@ public final class SystemMessage {
 	// Schedule
 	public static final String SCHEDULE_HAS_NO_ORDER = "Schedule has no Purchase Order";
 	public static final String SCHEDULE_MANDATORY_FIELD_EMPTY = "Schedule: Mandatory field is empty";
+	public static final String SCHEDULE_MATERIAL_IS_NOT_SERVICE = "Material isn't a service";
 }

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import br.com.gda.business.schedule.info.ScheduInfo;
-import br.com.gda.business.schedule.model.action.StdOrderemSelect;
+import br.com.gda.business.schedule.model.action.StdScheduSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -23,7 +23,7 @@ public final class OrderemCheckExist extends ModelCheckerTemplateAction<ScheduIn
 	@Override protected ActionStd<ScheduInfo> buildActionHook(ScheduInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<ScheduInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<ScheduInfo> actionSelect = new StdOrderemSelect(option);
+		ActionStd<ScheduInfo> actionSelect = new StdScheduSelect(option);
 		return actionSelect;
 	}
 	

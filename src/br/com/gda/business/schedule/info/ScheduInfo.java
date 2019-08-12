@@ -8,9 +8,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
@@ -26,20 +24,17 @@ public final class ScheduInfo extends InfoRecord implements Cloneable, Comparabl
 	public long codMatSnapshot;
 	public LocalDate date;
 	public int codWeekday;
-	public String txtWeekday;
 	public LocalTime beginTime;
 	public LocalTime endTime;
 	public long codUser;
 	public long codUserSnapshot;
 	public long codCustomer;
 	public long codCustomerSnapshot;
+	public MatInfo matData;
 	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
-	public StolisInfo stolisData;
-	public EmplisInfo emplisData;
-	public MatInfo matData;
 	public String recordMode;
 	
 	
@@ -60,10 +55,8 @@ public final class ScheduInfo extends InfoRecord implements Cloneable, Comparabl
 		codCustomerSnapshot = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		codLanguage = DefaultValue.language();	
-		stolisData = DefaultValue.object();
-		emplisData = DefaultValue.object();
-		matData = DefaultValue.object();
 		recordMode = DefaultValue.recordMode();
+		matData = DefaultValue.object();
 	}
 	
 	
@@ -87,12 +80,10 @@ public final class ScheduInfo extends InfoRecord implements Cloneable, Comparabl
 		deepCopy.beginTime = beginTime;
 		deepCopy.endTime = endTime;
 		deepCopy.lastChanged = lastChanged;
-		deepCopy.stolisData = cloneStolis(stolisData);
-		deepCopy.emplisData = cloneEmplis(emplisData);
 		deepCopy.matData = cloneMat(matData);
 		
 		return deepCopy;
-	}
+	}	
 	
 	
 	
@@ -104,28 +95,6 @@ public final class ScheduInfo extends InfoRecord implements Cloneable, Comparabl
 		
 		return result;
 	}
-	
-	
-	
-	private StolisInfo cloneStolis(StolisInfo recordInfo) throws CloneNotSupportedException {
-		StolisInfo result = null;
-		
-		if (recordInfo != null)
-			result = (StolisInfo) recordInfo.clone();
-		
-		return result;
-	}
-	
-	
-	
-	private EmplisInfo cloneEmplis(EmplisInfo recordInfo) throws CloneNotSupportedException {
-		EmplisInfo result = null;
-		
-		if (recordInfo != null)
-			result = (EmplisInfo) recordInfo.clone();
-		
-		return result;
-	}		
 	
 	
 	

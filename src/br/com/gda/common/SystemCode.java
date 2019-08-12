@@ -451,6 +451,8 @@ public final class SystemCode {
 	public static final int ORDER_NOT_FOUND								= 4006;
 	public static final int ORDER_HEADER_MANDATORY_FIELD_EMPTY			= 4007;
 	public static final int ORDER_DONT_HAVE_PAYMENT						= 4008;
+	public static final int ORDER_ITEM_IS_NOT_SERVICE 					= 4009;
+	public static final int ORDER_ITEM_MANDATORY_FIELD_EMPTY			= 4010;
 	
 	//Pay-Order
 	public static final int PAY_ORDER_PAYMENT_ALREADY_EXIST				= 4050;
@@ -554,4 +556,5 @@ public final class SystemCode {
 	// Schedule
 	public static final int SCHEDULE_MANDATORY_FIELD_EMPTY				= 4800;
 	public static final int SCHEDULE_HAS_NO_ORDER						= 4801;
+	public static final int SCHEDULE_MATERIAL_IS_NOT_SERVICE			= 4802;
 }

@@ -8,7 +8,7 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.schedule.info.ScheduInfo;
 import br.com.gda.business.schedule.model.action.LazyOrderemMergeMatsnap;
 import br.com.gda.business.schedule.model.action.LazyOrderemNodeSelect;
-import br.com.gda.business.schedule.model.action.StdOrderemMergeToSelect;
+import br.com.gda.business.schedule.model.action.StdScheduMergeToSelect;
 import br.com.gda.business.schedule.model.checker.OrderemCheckRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -38,7 +38,7 @@ public final class RootOrderemSelect extends DeciTreeWriteTemplate<ScheduInfo> {
 	@Override protected List<ActionStd<ScheduInfo>> buildActionsOnPassedHook(DeciTreeOption<ScheduInfo> option) {
 		List<ActionStd<ScheduInfo>> actions = new ArrayList<>();
 		
-		ActionStd<ScheduInfo> select = new StdOrderemMergeToSelect(option);
+		ActionStd<ScheduInfo> select = new StdScheduMergeToSelect(option);
 		ActionLazy<ScheduInfo> mergeMatsnap = new LazyOrderemMergeMatsnap(option.conn, option.schemaName);
 		ActionLazy<ScheduInfo> nodeSelect = new LazyOrderemNodeSelect(option.conn, option.schemaName);		
 		
