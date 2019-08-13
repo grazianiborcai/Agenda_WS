@@ -4,6 +4,7 @@ package br.com.gda.business.phoneSnapshot.info;
 import java.util.List;
 
 import br.com.gda.business.employeeSnapshot.info.EmpnapInfo;
+import br.com.gda.business.storeSnapshot.info.StorapInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
@@ -21,6 +22,20 @@ public final class PhonapCopier {
 		InfoCopierOneToMany<PhonapInfo, EmpnapInfo> copier = new PhonapCopyEmpnap();
 		return copier.makeCopy(sources);
 	}	
+	
+	
+	
+	public static PhonapInfo copyFromStorap(StorapInfo source) {
+		InfoCopier<PhonapInfo, StorapInfo> copier = new PhonapCopyStorap();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhonapInfo> copyFromStorap(List<StorapInfo> sources) {
+		InfoCopier<PhonapInfo, StorapInfo> copier = new PhonapCopyStorap();
+		return copier.makeCopy(sources);
+	}
 	
 	
 	

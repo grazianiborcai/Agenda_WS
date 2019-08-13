@@ -8,9 +8,9 @@ import br.com.gda.business.storeSnapshot.info.StorapMerger;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 
-final class VisiStoreMergeToSelect extends ActionVisitorTemplateMergeV2<StorapInfo, StorapInfo> {
+final class VisiStorapMergeToSelect extends ActionVisitorTemplateMergeV2<StorapInfo, StorapInfo> {
 	
-	public VisiStoreMergeToSelect(Connection conn, String schemaName) {
+	public VisiStorapMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, StorapInfo.class);
 	}
 	

@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdStoreMergePhone implements ActionStd<StorapInfo> {
+public final class StdStorapMergePhonap implements ActionStd<StorapInfo> {
 	private ActionStd<StorapInfo> actionHelper;	
 	
 	
-	public StdStoreMergePhone(DeciTreeOption<StorapInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStoreMergePhone(option.conn, option.schemaName));
+	public StdStorapMergePhonap(DeciTreeOption<StorapInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStorapMergePhonap(option.conn, option.schemaName));
 	}
 	
 	

@@ -1,59 +1,38 @@
 package br.com.gda.business.storeSnapshot.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class StoreVisiMergeAddress implements InfoMergerVisitor<StorapInfo, AddressInfo> {
+final class StorapVisiMergeAddresnap implements InfoMergerVisitor<StorapInfo, AddresnapInfo> {
 
-	@Override public StorapInfo writeRecord(AddressInfo sourceOne, StorapInfo sourceTwo) {
+	@Override public StorapInfo writeRecord(AddresnapInfo sourceOne, StorapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
-		
-		StorapInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(AddressInfo sourceOne, StorapInfo sourceTwo) {
+	private void checkArgument(AddresnapInfo sourceOne, StorapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private StorapInfo makeClone(StorapInfo recordInfo) {
-		try {
-			return (StorapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private StorapInfo merge(AddressInfo sourceOne, StorapInfo sourceTwo) {
-		sourceTwo.addresses.add(sourceOne);
+	private StorapInfo merge(AddresnapInfo sourceOne, StorapInfo sourceTwo) {
+		AddressInfo addressCopy = AddressInfo.copyFrom(sourceOne);
+		sourceTwo.addresses.add(addressCopy);
 
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(AddressInfo sourceOne, StorapInfo sourceTwo) {
-		return (sourceOne.codOwner 	== sourceTwo.codOwner &&
-				sourceOne.codStore 	== sourceTwo.codStore		);
+	@Override public boolean shouldWrite(AddresnapInfo sourceOne, StorapInfo sourceTwo) {
+		return (sourceOne.codOwner 			== sourceTwo.codOwner &&
+				sourceOne.codStore 			== sourceTwo.codStore &&
+				sourceOne.codStoreSnapshot 	== sourceTwo.codSnapshot);
 	}	
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
-	}
 }

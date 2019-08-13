@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class StoreVisiMergeToSelect implements InfoMergerVisitor<StorapInfo, StorapInfo> {
+final class StorapVisiMergeToSelect implements InfoMergerVisitor<StorapInfo, StorapInfo> {
 
 	@Override public StorapInfo writeRecord(StorapInfo sourceOne, StorapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

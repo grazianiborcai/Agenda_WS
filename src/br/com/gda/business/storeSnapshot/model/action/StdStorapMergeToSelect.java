@@ -12,7 +12,7 @@ public final class StdStorapMergeToSelect implements ActionStd<StorapInfo> {
 	
 	
 	public StdStorapMergeToSelect(DeciTreeOption<StorapInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStoreMergeToSelect(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStorapMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

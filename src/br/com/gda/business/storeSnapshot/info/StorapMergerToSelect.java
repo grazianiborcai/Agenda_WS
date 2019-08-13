@@ -4,10 +4,10 @@ import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 
-final class StoreMergerToSelect extends InfoMergerTemplate<StorapInfo, StorapInfo> {
+final class StorapMergerToSelect extends InfoMergerTemplate<StorapInfo, StorapInfo> {
 
 	@Override protected InfoMergerVisitor<StorapInfo, StorapInfo> getVisitorHook() {
-		return new StoreVisiMergeToSelect();
+		return new StorapVisiMergeToSelect();
 	}
 	
 	

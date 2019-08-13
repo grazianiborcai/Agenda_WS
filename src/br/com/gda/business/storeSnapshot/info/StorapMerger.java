@@ -2,26 +2,26 @@ package br.com.gda.business.storeSnapshot.info;
 
 import java.util.List;
 
-import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.person.info.PersonInfo;
-import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.user.info.UserInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class StorapMerger {
-	public static StorapInfo mergeWithAddress(AddressInfo sourceOne, StorapInfo sourceTwo) {
-		InfoMerger<StorapInfo, AddressInfo> merger = new StoreMergerAddress();		
+	public static StorapInfo mergeWithAddresnap(AddresnapInfo sourceOne, StorapInfo sourceTwo) {
+		InfoMerger<StorapInfo, AddresnapInfo> merger = new StorapMergerAddresnap();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<StorapInfo> mergeWithAddress(List<AddressInfo> sourceOnes, List<StorapInfo> sourceTwos) {
-		InfoMerger<StorapInfo, AddressInfo> merger = new StoreMergerAddress();		
+	public static List<StorapInfo> mergeWithAddresnap(List<AddresnapInfo> sourceOnes, List<StorapInfo> sourceTwos) {
+		InfoMerger<StorapInfo, AddresnapInfo> merger = new StorapMergerAddresnap();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
@@ -69,15 +69,15 @@ public final class StorapMerger {
 	
 	
 	
-	public static StorapInfo mergeWithPhone(PhoneInfo sourceOne, StorapInfo sourceTwo) {
-		InfoMerger<StorapInfo, PhoneInfo> merger = new StoreMergerPhone();		
+	public static StorapInfo mergeWithPhonap(PhonapInfo sourceOne, StorapInfo sourceTwo) {
+		InfoMerger<StorapInfo, PhonapInfo> merger = new StorapMergerPhonap();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<StorapInfo> mergeWithPhone(List<PhoneInfo> sourceOnes, List<StorapInfo> sourceTwos) {
-		InfoMerger<StorapInfo, PhoneInfo> merger = new StoreMergerPhone();		
+	public static List<StorapInfo> mergeWithPhonap(List<PhonapInfo> sourceOnes, List<StorapInfo> sourceTwos) {
+		InfoMerger<StorapInfo, PhonapInfo> merger = new StorapMergerPhonap();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
@@ -126,14 +126,14 @@ public final class StorapMerger {
 	
 	
 	public static StorapInfo mergeToSelect(StorapInfo sourceOne, StorapInfo sourceTwo) {
-		InfoMerger<StorapInfo, StorapInfo> merger = new StoreMergerToSelect();		
+		InfoMerger<StorapInfo, StorapInfo> merger = new StorapMergerToSelect();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
 	public static List<StorapInfo> mergeToSelect(List<StorapInfo> sourceOnes, List<StorapInfo> sourceTwos) {
-		InfoMerger<StorapInfo, StorapInfo> merger = new StoreMergerToSelect();		
+		InfoMerger<StorapInfo, StorapInfo> merger = new StorapMergerToSelect();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

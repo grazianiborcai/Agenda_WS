@@ -52,6 +52,8 @@ import br.com.gda.business.phoneSnapshot.model.PhonapModelInsert;
 import br.com.gda.business.phoneSnapshot.model.PhonapModelSelect;
 import br.com.gda.business.planingData.info.PlanataInfo;
 import br.com.gda.business.planingData.model.PlanataModelSelect;
+import br.com.gda.business.storeSnapshot.info.StorapInfo;
+import br.com.gda.business.storeSnapshot.model.StorapModelSelect;
 import br.com.gda.business.storeTime_.info.StorimeInfo;
 import br.com.gda.business.storeTime_.model.StorimeModelSelect;
 import br.com.gda.model.Model;
@@ -112,6 +114,7 @@ public class TestResource {
 	private static final String UPSERT_CARTEM = "/upsertCartem";
 	private static final String SELECT_CART_RESERVE = "/selectCartReserve";
 	private static final String SELECT_ORDER_RESERVE = "/selectOrderReserve";
+	private static final String SELECT_STORE_SNAPSHOT = "/selectStoreSnasphot";
 	
 	
 	
@@ -705,6 +708,28 @@ public class TestResource {
 		
 		
 		Model model = new OrderveModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();	
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_STORE_SNAPSHOT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStoreSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+							      	    @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot,
+							      	    @HeaderParam("username") String username,
+							      	    @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+		
+		StorapInfo recordInfo = new StorapInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codSnapshot = codSnapshot;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		
+		Model model = new StorapModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	}

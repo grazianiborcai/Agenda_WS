@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeSnapshot.info.StorapInfo;
+import br.com.gda.business.storeSnapshot.model.action.LazyStorapMergeAddresnap;
 import br.com.gda.business.storeSnapshot.model.action.LazyStorapMergeCurrency;
+import br.com.gda.business.storeSnapshot.model.action.LazyStorapMergePhonap;
 import br.com.gda.business.storeSnapshot.model.action.LazyStorapMergeTimezone;
 import br.com.gda.business.storeSnapshot.model.action.StdStorapMergeToSelect;
 import br.com.gda.business.storeSnapshot.model.checker.StorapCheckLangu;
@@ -50,23 +52,19 @@ public final class RootStorapSelect extends DeciTreeReadTemplate<StorapInfo> {
 	
 	@Override protected List<ActionStd<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
 		List<ActionStd<StorapInfo>> actions = new ArrayList<>();
-
+		//TODO: mergeComp
 		ActionStd<StorapInfo> select = new StdStorapMergeToSelect(option);
 		ActionLazy<StorapInfo> mergeCurrency = new LazyStorapMergeCurrency(option.conn, option.schemaName);
-		ActionLazy<StorapInfo> mergeTimezone = new LazyStorapMergeTimezone(option.conn, option.schemaName); /*
-		ActionLazy<StorapInfo> mergePerson = new LazyStorapMergePerson(option.conn, option.schemaName);	
-		ActionLazy<StorapInfo> mergeComp = new LazyStoreMergeComp(option.conn, option.schemaName);
-		ActionLazy<StorapInfo> mergeAddress = new LazyStoreMergeAddress(option.conn, option.schemaName);
-		ActionLazy<StorapInfo> mergePhone = new LazyStoreMergePhone(option.conn, option.schemaName);
+		ActionLazy<StorapInfo> mergeTimezone = new LazyStorapMergeTimezone(option.conn, option.schemaName); 
+		ActionLazy<StorapInfo> mergeAddresnap = new LazyStorapMergeAddresnap(option.conn, option.schemaName);
+		ActionLazy<StorapInfo> mergePhonap = new LazyStorapMergePhonap(option.conn, option.schemaName);	/*
+		ActionLazy<StorapInfo> mergePerson = new LazyStorapMergePerson(option.conn, option.schemaName);			
 		ActionLazy<StorapInfo> mergeUser = new LazyStoreMergeUser(option.conn, option.schemaName); */
 		
 		select.addPostAction(mergeCurrency);
-		mergeCurrency.addPostAction(mergeTimezone); /*
-		mergeTimezone.addPostAction(mergePerson);
-		mergePerson.addPostAction(mergeComp);
-		mergeComp.addPostAction(mergeAddress);
-		mergeAddress.addPostAction(mergePhone);
-		mergePhone.addPostAction(mergeUser); */
+		mergeCurrency.addPostAction(mergeTimezone); 
+		mergeTimezone.addPostAction(mergeAddresnap);
+		mergeAddresnap.addPostAction(mergePhonap);
 		
 		actions.add(select);
 		return actions;

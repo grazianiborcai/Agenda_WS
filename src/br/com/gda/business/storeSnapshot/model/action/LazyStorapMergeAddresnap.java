@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoreMergeAddress extends ActionLazyTemplate<StorapInfo, StorapInfo> {
+public final class LazyStorapMergeAddresnap extends ActionLazyTemplate<StorapInfo, StorapInfo> {
 	
-	public LazyStoreMergeAddress(Connection conn, String schemaName) {
+	public LazyStorapMergeAddresnap(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStoreMergeAddress extends ActionLazyTemplate<StorapInfo, 
 	
 	
 	@Override protected ActionStd<StorapInfo> getInstanceOfActionHook(DeciTreeOption<StorapInfo> option) {
-		return new StdStoreMergeAddress(option);
+		return new StdStorapMergeAddresnap(option);
 	}
 	
 	

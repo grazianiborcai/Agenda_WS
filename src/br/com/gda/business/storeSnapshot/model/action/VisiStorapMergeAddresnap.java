@@ -3,36 +3,36 @@ package br.com.gda.business.storeSnapshot.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.business.address.info.AddressCopier;
-import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
+import br.com.gda.business.addressSnapshot.info.AddresnapCopier;
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
+import br.com.gda.business.addressSnapshot.model.decisionTree.RootAddresnapSelect;
 import br.com.gda.business.storeSnapshot.info.StorapInfo;
 import br.com.gda.business.storeSnapshot.info.StorapMerger;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiStoreMergeAddress extends ActionVisitorTemplateMergeV2<StorapInfo, AddressInfo> {
+final class VisiStorapMergeAddresnap extends ActionVisitorTemplateMergeV2<StorapInfo, AddresnapInfo> {
 	
-	public VisiStoreMergeAddress(Connection conn, String schemaName) {
-		super(conn, schemaName, AddressInfo.class);
+	public VisiStorapMergeAddresnap(Connection conn, String schemaName) {
+		super(conn, schemaName, AddresnapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
-		return RootAddressSelect.class;
+	@Override protected Class<? extends DeciTree<AddresnapInfo>> getTreeClassHook() {
+		return RootAddresnapSelect.class;
 	}
 	
 	
 	
-	@Override protected List<AddressInfo> toActionClassHook(List<StorapInfo> recordInfos) {
-		return AddressCopier.copyFromStore(recordInfos);	
+	@Override protected List<AddresnapInfo> toActionClassHook(List<StorapInfo> recordInfos) {
+		return AddresnapCopier.copyFromStorap(recordInfos);	
 	}
 	
 	
 	
-	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> recordInfos, List<AddressInfo> selectedInfos) {	
-		return StorapMerger.mergeWithAddress(selectedInfos, recordInfos);
+	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> recordInfos, List<AddresnapInfo> selectedInfos) {	
+		return StorapMerger.mergeWithAddresnap(selectedInfos, recordInfos);
 	}
 	
 	
