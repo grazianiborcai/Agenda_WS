@@ -1,17 +1,17 @@
 package br.com.gda.security.user.info;
 
-import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.storeSnapshot.info.StorapInfo;
 import br.com.gda.info.InfoCopierTemplate;
 
-final class UserCopyStoreKey extends InfoCopierTemplate<UserInfo, StoreInfo>{
+final class UserCopyStorap extends InfoCopierTemplate<UserInfo, StorapInfo>{
 	
-	public UserCopyStoreKey() {
+	public UserCopyStorap() {
 		super();
 	}
 	
 	
 	
-	@Override protected UserInfo makeCopyHook(StoreInfo source) {
+	@Override protected UserInfo makeCopyHook(StorapInfo source) {
 		UserInfo result = new UserInfo();
 		
 		result.codOwner = source.codOwner;	

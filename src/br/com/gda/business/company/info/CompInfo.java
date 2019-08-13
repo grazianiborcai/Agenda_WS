@@ -9,6 +9,7 @@ import br.com.gda.info.InfoRecord;
 public final class CompInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCompany;
+	public long codSnapshot;
 	public String cnpj;
 	public String inscrMun;
 	public String inscrEst;
@@ -28,6 +29,7 @@ public final class CompInfo extends InfoRecord implements Cloneable {
 	public CompInfo() {
 		codOwner = DefaultValue.number();
 		codCompany = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		codLanguage = DefaultValue.language();		
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();

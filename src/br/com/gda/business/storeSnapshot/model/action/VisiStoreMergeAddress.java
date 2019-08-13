@@ -7,7 +7,7 @@ import br.com.gda.business.address.info.AddressCopier;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
 import br.com.gda.business.storeSnapshot.info.StorapInfo;
-import br.com.gda.business.storeSnapshot.info.StoreMerger;
+import br.com.gda.business.storeSnapshot.info.StorapMerger;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -32,7 +32,7 @@ final class VisiStoreMergeAddress extends ActionVisitorTemplateMergeV2<StorapInf
 	
 	
 	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> recordInfos, List<AddressInfo> selectedInfos) {	
-		return StoreMerger.mergeWithAddress(selectedInfos, recordInfos);
+		return StorapMerger.mergeWithAddress(selectedInfos, recordInfos);
 	}
 	
 	

@@ -14,6 +14,6 @@ final class StoreMergerAddress extends InfoMergerTemplate<StorapInfo, AddressInf
 	
 	
 	@Override protected InfoUniquifier<StorapInfo> getUniquifierHook() {
-		return new StoreUniquifier();
+		return new StorapUniquifier();
 	}
 }

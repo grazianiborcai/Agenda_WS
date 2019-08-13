@@ -7,7 +7,7 @@ import br.com.gda.business.phone.info.PhoneCopier;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.decisionTree.RootPhoneSelect;
 import br.com.gda.business.storeSnapshot.info.StorapInfo;
-import br.com.gda.business.storeSnapshot.info.StoreMerger;
+import br.com.gda.business.storeSnapshot.info.StorapMerger;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -32,7 +32,7 @@ final class VisiStoreMergePhone extends ActionVisitorTemplateMergeV2<StorapInfo,
 	
 	
 	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> recordInfos, List<PhoneInfo> selectedInfos) {	
-		return StoreMerger.mergeWithPhone(selectedInfos, recordInfos);
+		return StorapMerger.mergeWithPhone(selectedInfos, recordInfos);
 	}
 	
 	

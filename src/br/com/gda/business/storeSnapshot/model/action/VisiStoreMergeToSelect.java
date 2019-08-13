@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.storeSnapshot.info.StorapInfo;
-import br.com.gda.business.storeSnapshot.info.StoreMerger;
+import br.com.gda.business.storeSnapshot.info.StorapMerger;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 
@@ -23,7 +23,7 @@ final class VisiStoreMergeToSelect extends ActionVisitorTemplateMergeV2<StorapIn
 	
 	
 	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> recordInfos, List<StorapInfo> selectedInfos) {	
-		return StoreMerger.mergeToSelect(selectedInfos, recordInfos);
+		return StorapMerger.mergeToSelect(selectedInfos, recordInfos);
 	}
 	
 	

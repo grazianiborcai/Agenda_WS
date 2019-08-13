@@ -7,6 +7,7 @@ import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.storeSnapshot.info.StorapInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.security.user.info.UserInfo;
 
@@ -34,6 +35,20 @@ public final class UserCopier {
 	
 	public static List<UserInfo> copyFromOwnerKey(List<OwnerInfo> sources) {
 		InfoCopier<UserInfo, OwnerInfo> copier = new UserCopyOwnerKey();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static UserInfo copyFromStorap(StorapInfo source) {
+		InfoCopier<UserInfo, StorapInfo> copier = new UserCopyStorap();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UserInfo> copyFromStorap(List<StorapInfo> sources) {
+		InfoCopier<UserInfo, StorapInfo> copier = new UserCopyStorap();
 		return copier.makeCopy(sources);
 	}
 	

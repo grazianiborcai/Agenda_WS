@@ -121,6 +121,27 @@ public final class StorapInsertSingle implements DaoStmt<StorapInfo> {
 				stmt.setNull(i++, Types.INTEGER);
 			}
 			
+			
+			if (recordInfo.codCompanySnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codCompanySnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codPersonSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codPersonSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
+			
+			if (recordInfo.codUserSnapshot >= 0) {
+				stmt.setLong(i++, recordInfo.codUserSnapshot);
+			} else {
+				stmt.setNull(i++, Types.INTEGER);
+			}
+			
 			return stmt;
 		}		
 	}

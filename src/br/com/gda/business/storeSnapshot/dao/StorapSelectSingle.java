@@ -141,6 +141,21 @@ public final class StorapSelectSingle implements DaoStmt<StorapInfo> {
 				stmtResult.getLong(StorapDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.lastChangedBy = stmtResult.getLong(StorapDbTableColumn.COL_LAST_CHANGED_BY);
+				
+				
+				stmtResult.getLong(StorapDbTableColumn.COL_COD_COMPANY_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codCompanySnapshot = stmtResult.getLong(StorapDbTableColumn.COL_COD_COMPANY_SNAPSHOT);
+				
+				
+				stmtResult.getLong(StorapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codPersonSnapshot = stmtResult.getLong(StorapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+				
+				
+				stmtResult.getLong(StorapDbTableColumn.COL_COD_USER_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codUserSnapshot = stmtResult.getLong(StorapDbTableColumn.COL_COD_USER_SNAPSHOT);
 		
 				
 				finalResult.add(dataInfo);

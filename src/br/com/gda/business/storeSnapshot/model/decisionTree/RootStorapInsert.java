@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeSnapshot.info.StorapInfo;
-import br.com.gda.business.storeSnapshot.model.action.StdStorapInsert;
+import br.com.gda.business.storeSnapshot.model.action.LazyStorapInsert;
+import br.com.gda.business.storeSnapshot.model.action.LazyStorapNodeComp;
+import br.com.gda.business.storeSnapshot.model.action.LazyStorapNodeUser;
 import br.com.gda.business.storeSnapshot.model.checker.StorapCheckOwner;
 import br.com.gda.business.storeSnapshot.model.checker.StorapCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -47,9 +50,16 @@ public final class RootStorapInsert extends DeciTreeWriteTemplate<StorapInfo> {
 	@Override protected List<ActionStd<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
 		List<ActionStd<StorapInfo>> actions = new ArrayList<>();
 
-		ActionStd<StorapInfo> insert = new StdStorapInsert(option);
+		ActionStd<StorapInfo> nodePerson = new NodeStorapPerson(option).toAction();
+		ActionLazy<StorapInfo> nodeComp = new LazyStorapNodeComp(option.conn, option.schemaName);
+		ActionLazy<StorapInfo> nodeUser = new LazyStorapNodeUser(option.conn, option.schemaName);
+		ActionLazy<StorapInfo> insert = new LazyStorapInsert(option.conn, option.schemaName);
 		
-		actions.add(insert);	
+		nodePerson.addPostAction(nodeComp);
+		nodeComp.addPostAction(nodeUser);
+		nodeUser.addPostAction(insert);
+		
+		actions.add(nodePerson);	
 		return actions;
 	}
 }

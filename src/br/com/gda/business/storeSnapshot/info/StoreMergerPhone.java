@@ -14,6 +14,6 @@ final class StoreMergerPhone extends InfoMergerTemplate<StorapInfo, PhoneInfo> {
 	
 	
 	@Override protected InfoUniquifier<StorapInfo> getUniquifierHook() {
-		return new StoreUniquifier();
+		return new StorapUniquifier();
 	}
 }

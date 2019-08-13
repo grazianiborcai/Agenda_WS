@@ -14,6 +14,6 @@ final class StoreMergerUsername extends InfoMergerTemplate<StorapInfo, UsernameI
 	
 	
 	@Override protected InfoUniquifier<StorapInfo> getUniquifierHook() {
-		return new StoreUniquifier();
+		return new StorapUniquifier();
 	}
 }
