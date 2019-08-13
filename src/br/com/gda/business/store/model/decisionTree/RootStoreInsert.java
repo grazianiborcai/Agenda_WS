@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.action.LazyStoreInsert;
-import br.com.gda.business.store.model.action.LazyStoreMergeUsername;
 import br.com.gda.business.store.model.action.LazyStoreNodeInsertComp;
 import br.com.gda.business.store.model.action.LazyStoreNodeInsertPerson;
 import br.com.gda.business.store.model.action.LazyStoreNodeInsertUser;
+import br.com.gda.business.store.model.action.LazyStoreNodeSnapshot;
 import br.com.gda.business.store.model.action.LazyStoreNodeUpsertAddress;
 import br.com.gda.business.store.model.action.LazyStoreNodeUpsertPhone;
 import br.com.gda.business.store.model.action.LazyStoreRootSelect;
-import br.com.gda.business.store.model.action.LazyStoreUpdate;
-import br.com.gda.business.store.model.action.StdStoreEnforceLChanged;
 import br.com.gda.business.store.model.checker.StoreCheckCurrency;
 import br.com.gda.business.store.model.checker.StoreCheckTechField;
 import br.com.gda.business.store.model.checker.StoreCheckLangu;
@@ -94,28 +91,24 @@ public final class RootStoreInsert extends DeciTreeWriteTemplate<StoreInfo> {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		//TODO: permitir que outro usuario seja associado ou inves de sempre criar um novo ?
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
-		ActionStd<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
-		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> insertStore = new LazyStoreInsert(option.conn, option.schemaName);
+		ActionStd<StoreInfo> insertStore = new NodeStoreInsert(option).toAction();
 		ActionLazy<StoreInfo> insertPerson = new LazyStoreNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazy<StoreInfo> insertComp = new LazyStoreNodeInsertComp(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> insertUser = new LazyStoreNodeInsertUser(option.conn, option.schemaName);	
-		ActionLazy<StoreInfo> updateStore = new LazyStoreUpdate(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> snapshot = new LazyStoreNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionLazy<StoreInfo> selectStore = new LazyStoreRootSelect(option.conn, option.schemaName);	
 		
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(insertStore);
 		insertStore.addPostAction(insertPerson);		
 		insertPerson.addPostAction(insertComp);		
 		insertComp.addPostAction(insertUser);
-		insertUser.addPostAction(updateStore);		
-		insertUser.addPostAction(upsertAddress);		
-		insertUser.addPostAction(upsertPhone);			
-		insertUser.addPostAction(selectStore);
+		insertUser.addPostAction(snapshot);		
+		snapshot.addPostAction(upsertAddress);		
+		snapshot.addPostAction(upsertPhone);			
+		snapshot.addPostAction(selectStore);
 		
-		actions.add(enforceLChanged);	
+		actions.add(insertStore);	
 		return actions;
 	}
 }

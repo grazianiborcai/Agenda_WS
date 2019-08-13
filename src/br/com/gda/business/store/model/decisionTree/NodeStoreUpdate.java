@@ -7,7 +7,7 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.action.LazyStoreEnforceEntityCateg;
 import br.com.gda.business.store.model.action.LazyStoreEnforceLChanged;
 import br.com.gda.business.store.model.action.LazyStoreMergeUsername;
-import br.com.gda.business.store.model.action.LazyStoreUpdate;
+import br.com.gda.business.store.model.action.LazyStoreNodeSnapshot;
 import br.com.gda.business.store.model.action.StdStoreMergeToUpdate;
 import br.com.gda.business.store.model.checker.StoreCheckWrite;
 import br.com.gda.model.action.ActionLazy;
@@ -44,11 +44,11 @@ public final class NodeStoreUpdate extends DeciTreeWriteTemplate<StoreInfo> {
 		ActionLazy<StoreInfo> enforceLChanged = new LazyStoreEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> enforceEntityCateg = new LazyStoreEnforceEntityCateg(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> updateStore = new LazyStoreUpdate(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> snapshot = new LazyStoreNodeSnapshot(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceEntityCateg);		
-		enforceEntityCateg.addPostAction(updateStore);
+		enforceEntityCateg.addPostAction(snapshot);
 		
 		actions.add(mergeToUpdate);
 		return actions;

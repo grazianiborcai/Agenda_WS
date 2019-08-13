@@ -558,4 +558,7 @@ public final class SystemCode {
 	public static final int SCHEDULE_MANDATORY_FIELD_EMPTY				= 4800;
 	public static final int SCHEDULE_HAS_NO_ORDER						= 4801;
 	public static final int SCHEDULE_MATERIAL_IS_NOT_SERVICE			= 4802;
+	
+	// Store Snapshot
+	public static final int  STORE_SNAPSHOT_MANDATORY_FIELD_EMPTY 		= 4850;
 }

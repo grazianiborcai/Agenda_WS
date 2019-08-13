@@ -3,7 +3,6 @@ package br.com.gda.business.store.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.List;
 
@@ -95,8 +94,7 @@ public final class StoreUpdateSingle implements DaoStmt<StoreInfo> {
 	
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<StoreInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreInfo recordInfo) throws SQLException {			
-			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreInfo recordInfo) throws SQLException {	
 			
 			int i = 1;
 			
@@ -114,7 +112,7 @@ public final class StoreUpdateSingle implements DaoStmt<StoreInfo> {
 			}
 			
 			
-			stmt.setTimestamp(i++, lastChanged);
+			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
 			stmt.setString(i++, recordInfo.codCurr);
 			stmt.setString(i++, recordInfo.codTimezone);
 			stmt.setString(i++, recordInfo.recordMode);

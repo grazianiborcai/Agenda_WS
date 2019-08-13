@@ -714,4 +714,9 @@ public final class SystemMessage {
 	public static final String SCHEDULE_HAS_NO_ORDER = "Schedule has no Purchase Order";
 	public static final String SCHEDULE_MANDATORY_FIELD_EMPTY = "Schedule: Mandatory field is empty";
 	public static final String SCHEDULE_MATERIAL_IS_NOT_SERVICE = "Material isn't a service";
+	
+	
+	
+	// Store Snapshot
+	public static final String STORE_SNAPSHOT_MANDATORY_FIELD_EMPTY = "Store-Snapshot: Mandatory field is empty";
 }

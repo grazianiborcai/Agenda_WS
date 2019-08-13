@@ -49,6 +49,7 @@ import br.com.gda.business.scheduleLine.dao.SchedineDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.business.storeLeaveDate.dao.StolevateDbTableColumn;
 import br.com.gda.business.storeList.dao.StolisDbTableColumn;
+import br.com.gda.business.storeSnapshot.dao.StorapDbTableColumn;
 import br.com.gda.business.storeWorkTime.dao.StowotmDbTableColumn;
 import br.com.gda.business.storeWorkTimeConflict.dao.StoreCoDbTableColumn;
 import br.com.gda.common.SystemMessage;
@@ -154,6 +155,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new WokaymoipDbTableColumn());
 		addTable(new WokefumoipDbTableColumn());
 		addTable(new SchedineDbTableColumn());
+		addTable(new StorapDbTableColumn());
 	}
 	
 	

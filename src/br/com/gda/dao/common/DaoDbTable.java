@@ -88,6 +88,7 @@ public final class DaoDbTable {
 	public static final String STATE_TABLE = "state";
 	public static final String STATE_TEXT_TABLE = "state_text";
 	public static final String STORE_TABLE = "store";
+	public static final String STORE_SNAPSHOT_TABLE = "store_snapshot";
 	public static final String STORE_LD_TABLE = "store_leave_time";
 	public static final String STORE_WT_TABLE = "store_working_time";
 	public static final String SYS_EMAIL_TABLE = "sys_email";

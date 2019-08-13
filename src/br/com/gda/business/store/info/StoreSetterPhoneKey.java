@@ -11,7 +11,7 @@ public final class StoreSetterPhoneKey implements InfoSetter<StoreInfo> {
 	
 	public StoreInfo setAttr(StoreInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setAddressKey(recordInfo);
+		return setPhoneKey(recordInfo);
 	}
 	
 	
@@ -25,12 +25,13 @@ public final class StoreSetterPhoneKey implements InfoSetter<StoreInfo> {
 	
 	
 	
-	private StoreInfo setAddressKey(StoreInfo recordInfo) {
-		for (PhoneInfo eachAddress : recordInfo.phones) {
-			eachAddress.codOwner = recordInfo.codOwner;
-			eachAddress.codStore = recordInfo.codStore;
-			eachAddress.lastChangedBy = recordInfo.lastChangedBy;
-			eachAddress.codLanguage = recordInfo.codLanguage;
+	private StoreInfo setPhoneKey(StoreInfo recordInfo) {
+		for (PhoneInfo eachPhone : recordInfo.phones) {
+			eachPhone.codOwner = recordInfo.codOwner;
+			eachPhone.codStore = recordInfo.codStore;
+			eachPhone.codStoreSnapshot = recordInfo.codSnapshot;
+			eachPhone.lastChangedBy = recordInfo.lastChangedBy;
+			eachPhone.codLanguage = recordInfo.codLanguage;
 		}
 		
 		return recordInfo;

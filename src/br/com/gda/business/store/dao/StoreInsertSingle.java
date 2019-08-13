@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -78,10 +78,6 @@ public final class StoreInsertSingle implements DaoStmt<StoreInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<StoreInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreInfo recordInfo) throws SQLException {
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
-			
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
@@ -100,7 +96,7 @@ public final class StoreInsertSingle implements DaoStmt<StoreInfo> {
 				stmt.setNull(i++, Types.INTEGER);
 			}			
 			
-			stmt.setTimestamp(i++, lastChanged);
+			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
 			stmt.setString(i++, recordInfo.codCurr);
 			stmt.setString(i++, recordInfo.codTimezone);
 			stmt.setString(i++, recordInfo.recordMode);			
