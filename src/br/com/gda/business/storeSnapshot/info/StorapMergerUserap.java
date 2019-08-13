@@ -3,12 +3,12 @@ package br.com.gda.business.storeSnapshot.info;
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
-import br.com.gda.security.username.info.UsernameInfo;
+import br.com.gda.security.userSnapshot.info.UserapInfo;
 
-final class StoreMergerUsername extends InfoMergerTemplate<StorapInfo, UsernameInfo> {
+final class StorapMergerUserap extends InfoMergerTemplate<StorapInfo, UserapInfo> {
 
-	@Override protected InfoMergerVisitor<StorapInfo, UsernameInfo> getVisitorHook() {
-		return new StoreVisiMergeUsername();
+	@Override protected InfoMergerVisitor<StorapInfo, UserapInfo> getVisitorHook() {
+		return new StorapVisiMergeUserap();
 	}
 	
 	

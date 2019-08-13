@@ -7,10 +7,11 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.user.info.UserInfo;
-import br.com.gda.security.username.info.UsernameInfo;
+import br.com.gda.security.userSnapshot.info.UserapInfo;
 
 public final class StorapMerger {
 	public static StorapInfo mergeWithAddresnap(AddresnapInfo sourceOne, StorapInfo sourceTwo) {
@@ -69,6 +70,20 @@ public final class StorapMerger {
 	
 	
 	
+	public static StorapInfo mergeWithPersonap(PersonapInfo sourceOne, StorapInfo sourceTwo) {
+		InfoMerger<StorapInfo, PersonapInfo> merger = new StorapMergerPersonap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StorapInfo> mergeWithPersonap(List<PersonapInfo> sourceOnes, List<StorapInfo> sourceTwos) {
+		InfoMerger<StorapInfo, PersonapInfo> merger = new StorapMergerPersonap();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static StorapInfo mergeWithPhonap(PhonapInfo sourceOne, StorapInfo sourceTwo) {
 		InfoMerger<StorapInfo, PhonapInfo> merger = new StorapMergerPhonap();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -111,15 +126,15 @@ public final class StorapMerger {
 	
 	
 	
-	public static StorapInfo mergeWithUsername(UsernameInfo sourceOne, StorapInfo sourceTwo) {
-		InfoMerger<StorapInfo, UsernameInfo> merger = new StoreMergerUsername();		
+	public static StorapInfo mergeWithUserap(UserapInfo sourceOne, StorapInfo sourceTwo) {
+		InfoMerger<StorapInfo, UserapInfo> merger = new StorapMergerUserap();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<StorapInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<StorapInfo> sourceTwos) {
-		InfoMerger<StorapInfo, UsernameInfo> merger = new StoreMergerUsername();		
+	public static List<StorapInfo> mergeWithUserap(List<UserapInfo> sourceOnes, List<StorapInfo> sourceTwos) {
+		InfoMerger<StorapInfo, UserapInfo> merger = new StorapMergerUserap();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

@@ -7,16 +7,16 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class StorapCheckHasPerson extends ModelCheckerTemplateSimple<StorapInfo> {
+public final class StorapCheckHasUserap extends ModelCheckerTemplateSimple<StorapInfo> {
 
-	public StorapCheckHasPerson() {
+	public StorapCheckHasUserap() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(StorapInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codPerson <= 0)				
+		if (recordInfo.codUserSnapshot <= 0)				
 			return FAILED;		
 		
 		return SUCCESS;

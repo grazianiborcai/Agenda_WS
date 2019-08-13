@@ -13,11 +13,11 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdStoreSelect implements ActionStd<StorapInfo> {
+public final class StdStorapSelect implements ActionStd<StorapInfo> {
 	private ActionStd<StorapInfo> actionHelper;
 	
 	
-	public StdStoreSelect(DeciTreeOption<StorapInfo> option) {
+	public StdStorapSelect(DeciTreeOption<StorapInfo> option) {
 		DaoStmtExec<StorapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}

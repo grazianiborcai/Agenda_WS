@@ -3,16 +3,16 @@ package br.com.gda.business.storeSnapshot.model.action;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.storeSnapshot.info.StorapInfo;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdStoreEnforcePhoneKey implements ActionStd<StorapInfo> {
+public final class StdStorapMergePersonap implements ActionStd<StorapInfo> {
 	private ActionStd<StorapInfo> actionHelper;	
 	
 	
-	public StdStoreEnforcePhoneKey(DeciTreeOption<StorapInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiStoreEnforcePhoneKey());
+	public StdStorapMergePersonap(DeciTreeOption<StorapInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStorapMergePersonap(option.conn, option.schemaName));
 	}
 	
 	

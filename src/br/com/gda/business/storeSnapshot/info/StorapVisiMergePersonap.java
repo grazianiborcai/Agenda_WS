@@ -3,13 +3,14 @@ package br.com.gda.business.storeSnapshot.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.business.personSnapshot.info.PersonapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
-import br.com.gda.security.username.info.UsernameInfo;
 
-final class StoreVisiMergeUsername implements InfoMergerVisitor<StorapInfo, UsernameInfo> {
+final class StorapVisiMergePersonap implements InfoMergerVisitor<StorapInfo, PersonapInfo> {
 
-	@Override public StorapInfo writeRecord(UsernameInfo sourceOne, StorapInfo sourceTwo) {
+	@Override public StorapInfo writeRecord(PersonapInfo sourceOne, StorapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		StorapInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +19,7 @@ final class StoreVisiMergeUsername implements InfoMergerVisitor<StorapInfo, User
 	
 	
 	
-	private void checkArgument(UsernameInfo sourceOne, StorapInfo sourceTwo) {
+	private void checkArgument(PersonapInfo sourceOne, StorapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,20 +38,17 @@ final class StoreVisiMergeUsername implements InfoMergerVisitor<StorapInfo, User
 	
 	
 	
-	private StorapInfo merge(UsernameInfo sourceOne, StorapInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
+	private StorapInfo merge(PersonapInfo sourceOne, StorapInfo sourceTwo) {
+		sourceTwo.personData = PersonInfo.copyFrom(sourceTwo);
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, StorapInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
-		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+	@Override public boolean shouldWrite(PersonapInfo sourceOne, StorapInfo sourceTwo) {
+		return (sourceOne.codOwner    == sourceTwo.codOwner 	&&
+				sourceOne.codPerson   == sourceTwo.codPerson	&&
+				sourceOne.codSnapshot == sourceTwo.codPersonSnapshot);
 	}
 	
 	

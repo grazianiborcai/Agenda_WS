@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.storeSnapshot.info.StorapInfo;
+import br.com.gda.business.storeSnapshot.model.decisionTree.NodeStorapPersonap;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoreEnforceUserCateg extends ActionLazyTemplate<StorapInfo, StorapInfo> {
+public final class LazyStorapNodePersonap extends ActionLazyTemplate<StorapInfo, StorapInfo> {
 	
-	public LazyStoreEnforceUserCateg(Connection conn, String schemaName) {
+	public LazyStorapNodePersonap(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyStoreEnforceUserCateg extends ActionLazyTemplate<StorapIn
 	
 	
 	@Override protected ActionStd<StorapInfo> getInstanceOfActionHook(DeciTreeOption<StorapInfo> option) {
-		return new StdStoreEnforceUserCateg(option);
+		return new NodeStorapPersonap(option).toAction();
 	}
 	
 	

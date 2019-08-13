@@ -17,7 +17,7 @@ final class VisiStorapMergeToSelect extends ActionVisitorTemplateMergeV2<StorapI
 	
 	
 	@Override protected Class<? extends ActionStd<StorapInfo>> getActionClassHook() {
-		return StdStoreSelect.class;
+		return StdStorapSelect.class;
 	}
 	
 	

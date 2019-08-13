@@ -16,10 +16,8 @@ public final class StorapCheckHasComp extends ModelCheckerTemplateSimple<StorapI
 	
 	
 	@Override protected boolean checkHook(StorapInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codCompany <= 0)	
-			
-			return FAILED;
-		
+		if (recordInfo.codCompany <= 0)				
+			return FAILED;		
 		
 		return SUCCESS;
 	}
