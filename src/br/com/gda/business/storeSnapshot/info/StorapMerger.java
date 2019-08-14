@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.company.info.CompInfo;
+import br.com.gda.business.companySnapshot.info.CompnapInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.person.info.PersonInfo;
@@ -37,6 +38,20 @@ public final class StorapMerger {
 	
 	public static List<StorapInfo> mergeWithComp(List<CompInfo> sourceOnes, List<StorapInfo> sourceTwos) {
 		InfoMerger<StorapInfo, CompInfo> merger = new StorapMergerComp();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static StorapInfo mergeWithCompnap(CompnapInfo sourceOne, StorapInfo sourceTwo) {
+		InfoMerger<StorapInfo, CompnapInfo> merger = new StorapMergerCompnap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StorapInfo> mergeWithCompnap(List<CompnapInfo> sourceOnes, List<StorapInfo> sourceTwos) {
+		InfoMerger<StorapInfo, CompnapInfo> merger = new StorapMergerCompnap();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

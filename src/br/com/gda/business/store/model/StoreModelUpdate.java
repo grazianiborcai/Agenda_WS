@@ -7,7 +7,7 @@ import br.com.gda.model.ModelTemplate;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StoreModelUpdate  extends ModelTemplate<StoreInfo> {
+public final class StoreModelUpdate extends ModelTemplate<StoreInfo> {
 
 	public StoreModelUpdate(String incomingData, HttpServletRequest request) {
 		super(incomingData, request, StoreInfo.class);

@@ -38,7 +38,7 @@ final class StorapVisiMergeComp implements InfoMergerVisitor<StorapInfo, CompInf
 	
 	
 	private StorapInfo merge(CompInfo sourceOne, StorapInfo sourceTwo) {
-		sourceTwo.codCompany = sourceOne.codSnapshot;
+		sourceTwo.codCompanySnapshot = sourceOne.codSnapshot;
 		return sourceTwo;
 	}
 	

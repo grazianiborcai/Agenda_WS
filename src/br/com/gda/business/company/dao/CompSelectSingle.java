@@ -49,12 +49,9 @@ public final class CompSelectSingle implements DaoStmt<CompInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new CompWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -133,6 +130,11 @@ public final class CompSelectSingle implements DaoStmt<CompInfo> {
 				stmtResult.getLong(CompDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.lastChangedBy = stmtResult.getInt(CompDbTableColumn.COL_LAST_CHANGED_BY);
+				
+				
+				stmtResult.getLong(CompDbTableColumn.COL_COD_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codSnapshot = stmtResult.getInt(CompDbTableColumn.COL_COD_SNAPSHOT);
 				
 				
 				finalResult.add(dataInfo);

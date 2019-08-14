@@ -1,4 +1,4 @@
-package br.com.gda.business.company.dao;
+package br.com.gda.business.companySnapshot.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -9,7 +9,7 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class CompDbTableColumn extends DaoDbTableColumnTemplate {
+public final class CompnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CNPJ = DaoDbField.COL_CNPJ;
 	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
 	public static final String COL_COD_ENTITY_CATEG = DaoDbField.COL_COD_ENTITY_CATEG;
@@ -28,7 +28,7 @@ public final class CompDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	
-	public CompDbTableColumn() {
+	public CompnapDbTableColumn() {
 		super();
 	}
 	
@@ -36,17 +36,25 @@ public final class CompDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
-		buildCompanyTable();		
+		buildCustomerTable();		
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildCompanyTable() {
-		final String TABLE_NAME = DaoDbTable.COMP_TABLE;
+	private void buildCustomerTable() {
+		final String TABLE_NAME = DaoDbTable.COMP_SNAPHOT_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_SNAPSHOT;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
+		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
@@ -59,9 +67,9 @@ public final class CompDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_COMPANY;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
+		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
@@ -147,14 +155,6 @@ public final class CompDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_LAST_CHANGED_BY;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

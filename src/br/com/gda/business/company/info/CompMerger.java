@@ -2,10 +2,25 @@ package br.com.gda.business.company.info;
 
 import java.util.List;
 
+import br.com.gda.business.companySnapshot.info.CompnapInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class CompMerger {
+	public static CompInfo mergeWithCompnap(CompnapInfo sourceOne, CompInfo sourceTwo) {
+		InfoMerger<CompInfo, CompnapInfo> merger = new CompMergerCompnap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CompInfo> mergeWithCompnap(List<CompnapInfo> sourceOnes, List<CompInfo> sourceTwos) {
+		InfoMerger<CompInfo, CompnapInfo> merger = new CompMergerCompnap();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static CompInfo mergeWithUsername(UsernameInfo sourceOne, CompInfo sourceTwo) {
 		InfoMerger<CompInfo, UsernameInfo> merger = new CompMergerUsername();		
 		return merger.merge(sourceOne, sourceTwo);

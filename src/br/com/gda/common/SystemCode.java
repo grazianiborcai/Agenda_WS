@@ -379,6 +379,7 @@ public final class SystemCode {
 	public static final int COMPANY_IS_NULL								= 2514;
 	public static final int COMPANY_IS_FILLED							= 2515;
 	public static final int COMPANY_MISMATCH							= 2516;
+	public static final int COMPANY_MANDATORY_FIELD_EMPTY 				= 2517;
 	
 	// Pay Partner-Owner
 	public static final int PAY_PARTNER_OWNER_IS_NULL					= 2550;
@@ -560,5 +561,8 @@ public final class SystemCode {
 	public static final int SCHEDULE_MATERIAL_IS_NOT_SERVICE			= 4802;
 	
 	// Store Snapshot
-	public static final int  STORE_SNAPSHOT_MANDATORY_FIELD_EMPTY 		= 4850;
+	public static final int STORE_SNAPSHOT_MANDATORY_FIELD_EMPTY 		= 4850;
+	
+	//Company Snpshot
+	public static final int COMPANY_SNAP_MANDATORY_FIELD_EMPTY 			= 4900;
 }

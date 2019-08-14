@@ -31,12 +31,12 @@ public final class CompCheckWrite extends ModelCheckerTemplateSimple<CompInfo> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.COMPANY_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.COMPANY_MANDATORY_FIELD_EMPTY;
 	}
 }

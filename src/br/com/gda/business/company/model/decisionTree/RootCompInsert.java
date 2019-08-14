@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.company.model.action.LazyCompInsert;
 import br.com.gda.business.company.model.action.LazyCompMergeUsername;
+import br.com.gda.business.company.model.action.LazyCompNodeSnapshot;
 import br.com.gda.business.company.model.action.StdCompEnforceLChanged;
 import br.com.gda.business.company.model.checker.CompCheckCountry;
 import br.com.gda.business.company.model.checker.CompCheckEntityCateg;
@@ -74,9 +75,11 @@ public final class RootCompInsert extends DeciTreeWriteTemplate<CompInfo> {
 		ActionStd<CompInfo> enforceLChanged = new StdCompEnforceLChanged(option);
 		ActionLazy<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
 		ActionLazy<CompInfo> insert = new LazyCompInsert(option.conn, option.schemaName);
+		ActionLazy<CompInfo> snapshot = new LazyCompNodeSnapshot(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(insert);
+		insert.addPostAction(snapshot);
 		
 		actions.add(nodeL1);
 		actions.add(enforceLChanged);

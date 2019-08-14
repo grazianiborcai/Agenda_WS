@@ -8,6 +8,7 @@ import br.com.gda.business.storeSnapshot.model.action.LazyStorapInsert;
 import br.com.gda.business.storeSnapshot.model.action.LazyStorapNodeComp;
 import br.com.gda.business.storeSnapshot.model.action.LazyStorapNodeUser;
 import br.com.gda.business.storeSnapshot.model.checker.StorapCheckOwner;
+import br.com.gda.business.storeSnapshot.model.checker.StorapCheckStore;
 import br.com.gda.business.storeSnapshot.model.checker.StorapCheckWrite;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -40,6 +41,13 @@ public final class RootStorapInsert extends DeciTreeWriteTemplate<StorapInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
 		checker = new StorapCheckOwner(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = EXIST_ON_DB;		
+		checker = new StorapCheckStore(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

@@ -8,6 +8,7 @@ import br.com.gda.business.storeSnapshot.model.action.LazyStorapMergeAddresnap;
 import br.com.gda.business.storeSnapshot.model.action.LazyStorapMergeCurrency;
 import br.com.gda.business.storeSnapshot.model.action.LazyStorapMergePhonap;
 import br.com.gda.business.storeSnapshot.model.action.LazyStorapMergeTimezone;
+import br.com.gda.business.storeSnapshot.model.action.LazyStorapNodeCompnap;
 import br.com.gda.business.storeSnapshot.model.action.LazyStorapNodePersonap;
 import br.com.gda.business.storeSnapshot.model.action.LazyStorapNodeUserap;
 import br.com.gda.business.storeSnapshot.model.action.StdStorapMergeToSelect;
@@ -54,7 +55,7 @@ public final class RootStorapSelect extends DeciTreeReadTemplate<StorapInfo> {
 	
 	@Override protected List<ActionStd<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
 		List<ActionStd<StorapInfo>> actions = new ArrayList<>();
-		//TODO: mergeComp
+
 		ActionStd<StorapInfo> select = new StdStorapMergeToSelect(option);
 		ActionLazy<StorapInfo> mergeCurrency = new LazyStorapMergeCurrency(option.conn, option.schemaName);
 		ActionLazy<StorapInfo> mergeTimezone = new LazyStorapMergeTimezone(option.conn, option.schemaName); 
@@ -62,6 +63,7 @@ public final class RootStorapSelect extends DeciTreeReadTemplate<StorapInfo> {
 		ActionLazy<StorapInfo> mergePhonap = new LazyStorapMergePhonap(option.conn, option.schemaName);
 		ActionLazy<StorapInfo> nodeUserap = new LazyStorapNodeUserap(option.conn, option.schemaName);
 		ActionLazy<StorapInfo> nodePersonap = new LazyStorapNodePersonap(option.conn, option.schemaName);
+		ActionLazy<StorapInfo> nodeCompnap = new LazyStorapNodeCompnap(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone); 
@@ -69,6 +71,7 @@ public final class RootStorapSelect extends DeciTreeReadTemplate<StorapInfo> {
 		mergeAddresnap.addPostAction(mergePhonap);
 		mergePhonap.addPostAction(nodeUserap);
 		nodeUserap.addPostAction(nodePersonap);
+		nodePersonap.addPostAction(nodeCompnap);
 		
 		actions.add(select);
 		return actions;

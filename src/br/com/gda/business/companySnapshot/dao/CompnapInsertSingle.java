@@ -1,4 +1,4 @@
-package br.com.gda.business.company.dao;
+package br.com.gda.business.companySnapshot.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.company.info.CompInfo;
+import br.com.gda.business.companySnapshot.info.CompnapInfo;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -19,13 +19,13 @@ import br.com.gda.dao.DaoStmtParamTranslator;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class CompInsertSingle implements DaoStmt<CompInfo> {	
-	private DaoStmt<CompInfo> stmtSql;
-	private DaoStmtOption<CompInfo> stmtOption;
+public final class CompnapInsertSingle implements DaoStmt<CompnapInfo> {	
+	private DaoStmt<CompnapInfo> stmtSql;
+	private DaoStmtOption<CompnapInfo> stmtOption;
 	
 	
 	
-	public CompInsertSingle(Connection conn, CompInfo recordInfo, String schemaName) {
+	public CompnapInsertSingle(Connection conn, CompnapInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 		
@@ -33,12 +33,12 @@ public final class CompInsertSingle implements DaoStmt<CompInfo> {
 	
 	
 	
-	private void buildStmtOption(Connection conn, CompInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, CompnapInfo recordInfo, String schemaName) {
 		stmtOption = new DaoStmtOption<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
-		stmtOption.tableName = DaoDbTable.COMP_TABLE;
+		stmtOption.tableName = DaoDbTable.COMP_SNAPHOT_TABLE;
 		stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(stmtOption.tableName);
 		stmtOption.stmtParamTranslator = new ParamTranslator();
 		stmtOption.resultParser = new ResultParser(recordInfo);
@@ -72,17 +72,18 @@ public final class CompInsertSingle implements DaoStmt<CompInfo> {
 
 	
 	
-	@Override public List<CompInfo> getResultset() {
+	@Override public List<CompnapInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<CompInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CompInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements DaoStmtParamTranslator<CompnapInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CompnapInfo recordInfo) throws SQLException {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
+			stmt.setLong(i++, recordInfo.codCompany);
 			stmt.setString(i++, recordInfo.cnpj);
 			stmt.setString(i++, recordInfo.name);
 			stmt.setString(i++, recordInfo.email);			
@@ -100,39 +101,32 @@ public final class CompInsertSingle implements DaoStmt<CompInfo> {
 				stmt.setLong(i++, recordInfo.lastChangedBy);
 			}
 			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codSnapshot);
-			}
-			
 			return stmt;
 		}		
 	}
 	
 	
 	
-	@Override public DaoStmt<CompInfo> getNewInstance() {
-		return new CompInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<CompnapInfo> getNewInstance() {
+		return new CompnapInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<CompInfo> {
-		private CompInfo recordInfo;
+	private static class ResultParser implements DaoResultParser<CompnapInfo> {
+		private CompnapInfo recordInfo;
 		
-		public ResultParser(CompInfo recordToParse) {
+		public ResultParser(CompnapInfo recordToParse) {
 			recordInfo = recordToParse;
 		}
 		
 		
 		
-		@Override public List<CompInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<CompInfo> finalResult = new ArrayList<>();
-			recordInfo.codCompany = lastId;
+		@Override public List<CompnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<CompnapInfo> finalResult = new ArrayList<>();
+			recordInfo.codSnapshot = lastId;
 			finalResult.add(recordInfo);			
 			return finalResult;
 		}
