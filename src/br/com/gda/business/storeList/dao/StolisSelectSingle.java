@@ -130,6 +130,11 @@ public final class StolisSelectSingle implements DaoStmt<StolisInfo> {
 				stmtResult.getLong(StolisDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.lastChangedBy = stmtResult.getLong(StolisDbTableColumn.COL_LAST_CHANGED_BY);
+				
+				
+				stmtResult.getLong(StolisDbTableColumn.COL_COD_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codSnapshot = stmtResult.getLong(StolisDbTableColumn.COL_COD_SNAPSHOT);
 		
 				
 				finalResult.add(dataInfo);

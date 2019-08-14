@@ -13,6 +13,7 @@ import br.com.gda.info.InfoRecord;
 public final class StolisInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
+	public long codSnapshot;
 	public long codCompany;
 	public String codCurr;
 	public String txtCurr;
@@ -32,6 +33,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	public StolisInfo() {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
