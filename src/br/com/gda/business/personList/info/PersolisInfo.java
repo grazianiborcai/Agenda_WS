@@ -6,9 +6,9 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class PersolisInfo extends InfoRecord implements Cloneable {
-	public long codOwner;
-	public long codSnapshot;
+	public long codOwner;	
 	public long codPerson;
+	public long codSnapshot;
 	public String name;
 	public String codLanguage;
 	public String recordMode;

@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderemEnforceKey extends ActionLazyTemplate<SchedineInfo, SchedineInfo> {
-
-	public LazyOrderemEnforceKey(Connection conn, String schemaName) {
+public final class LazySchedineMergeCuslis extends ActionLazyTemplate<SchedineInfo, SchedineInfo> {
+	
+	public LazySchedineMergeCuslis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,12 +24,12 @@ public final class LazyOrderemEnforceKey extends ActionLazyTemplate<SchedineInfo
 	
 	
 	@Override protected ActionStd<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
-		return new StdOrderemEnforceKey(option);
+		return new StdSchedineMergeCuslis(option);
 	}
 	
 	
 	
-	@Override protected DeciResult<SchedineInfo> translateResultHook(DeciResult<SchedineInfo> result) {
+	@Override protected DeciResult<SchedineInfo> translateResultHook(DeciResult<SchedineInfo> result) {		
 		return result;
 	}
 }

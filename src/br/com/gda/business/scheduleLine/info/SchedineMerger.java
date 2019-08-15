@@ -2,12 +2,27 @@ package br.com.gda.business.scheduleLine.info;
 
 import java.util.List;
 
+import br.com.gda.business.customerList.info.CuslisInfo;
 import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoMerger;
 
 public final class SchedineMerger {
+	public static SchedineInfo mergeWithCuslis(CuslisInfo sourceOne, SchedineInfo sourceTwo) {
+		InfoMerger<SchedineInfo, CuslisInfo> merger = new SchedineMergerCuslis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<SchedineInfo> mergeWithCuslis(List<CuslisInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
+		InfoMerger<SchedineInfo, CuslisInfo> merger = new SchedineMergerCuslis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static SchedineInfo mergeWithEmplis(EmplisInfo sourceOne, SchedineInfo sourceTwo) {
 		InfoMerger<SchedineInfo, EmplisInfo> merger = new SchedineMergerEmplis();		
 		return merger.merge(sourceOne, sourceTwo);
