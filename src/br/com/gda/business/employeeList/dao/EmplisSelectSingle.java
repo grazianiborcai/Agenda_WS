@@ -130,6 +130,11 @@ public final class EmplisSelectSingle implements DaoStmt<EmplisInfo> {
 					dataInfo.lastChangedBy = stmtResult.getLong(EmplisDbTableColumn.COL_LAST_CHANGED_BY);
 				
 				
+				stmtResult.getLong(EmplisDbTableColumn.COL_COD_SNAPSHOT);
+				if (stmtResult.wasNull() == NOT_NULL)
+					dataInfo.codSnapahot = stmtResult.getLong(EmplisDbTableColumn.COL_COD_SNAPSHOT);
+				
+				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
 			

@@ -20,21 +20,21 @@ public final class StolisCheckRead extends ModelCheckerTemplateSimple<StolisInfo
 			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null		)	
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.STORE_LIST_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.STORE_LIST_MANDATORY_FIELD_EMPTY;
 	}
 }

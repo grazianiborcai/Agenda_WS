@@ -566,4 +566,11 @@ public final class SystemCode {
 	
 	//Company Snpshot
 	public static final int COMPANY_SNAP_MANDATORY_FIELD_EMPTY 			= 4900;
+	
+	//Employee List
+	public static final int EMP_LIST_MANDATORY_FIELD_EMPTY				= 4950;
+	
+	//Store List
+	public static final int STORE_LIST_MANDATORY_FIELD_EMPTY 			= 5000;
+	
 }

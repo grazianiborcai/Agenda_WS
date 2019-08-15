@@ -726,4 +726,14 @@ public final class SystemMessage {
 	
 	//Company Snpshot
 	public static final String COMPANY_SNAP_MANDATORY_FIELD_EMPTY = "Company-Snapshot: Mandatory field is empty";
+	
+	
+	
+	//Employee List
+	public static final String EMP_LIST_MANDATORY_FIELD_EMPTY = "Employee-List: Mandatory field is empty";
+	
+	
+	
+	//Store List
+	public static final String STORE_LIST_MANDATORY_FIELD_EMPTY = "Store-List: Mandatory field is empty";
 }

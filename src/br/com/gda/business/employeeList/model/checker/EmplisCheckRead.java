@@ -17,21 +17,23 @@ public final class EmplisCheckRead extends ModelCheckerTemplateSimple<EmplisInfo
 	
 	@Override protected boolean checkHook(EmplisInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.codLanguage 	== null		)			
-			return FAILED;		
+			recordInfo.codLanguage 	== null		)	
+			
+			return super.FAILED;		
 		
-		return SUCCESS;
+		
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.EMP_LIST_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.EMP_LIST_MANDATORY_FIELD_EMPTY;
 	}
 }
