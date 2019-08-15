@@ -10,7 +10,7 @@ import br.com.gda.info.InfoRecord;
 public final class EmplisInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
-	public long codSnapahot;
+	public long codSnapshot;
 	public long codPerson;
 	public PersolisInfo persolisData;
 	public String codLanguage;
@@ -23,7 +23,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 	public EmplisInfo() {
 		codOwner = DefaultValue.number();
 		codEmployee = DefaultValue.number();
-		codSnapahot = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();

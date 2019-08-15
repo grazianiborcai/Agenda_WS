@@ -132,7 +132,7 @@ public final class EmplisSelectSingle implements DaoStmt<EmplisInfo> {
 				
 				stmtResult.getLong(EmplisDbTableColumn.COL_COD_SNAPSHOT);
 				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codSnapahot = stmtResult.getLong(EmplisDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codSnapshot = stmtResult.getLong(EmplisDbTableColumn.COL_COD_SNAPSHOT);
 				
 				
 				finalResult.add(dataInfo);
