@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,34 +78,15 @@ public final class CusInsertSingle implements DaoStmt<CusInfo> {
 	
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<CusInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusInfo recordInfo) throws SQLException {
-			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);
-			
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusInfo recordInfo) throws SQLException {			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);		
 			stmt.setString(i++, recordInfo.recordMode);			
-			stmt.setTimestamp(i++, lastChanged);
-			
-			
-			if (recordInfo.codPerson >= 0) {
-				stmt.setLong(i++, recordInfo.codPerson);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.lastChangedBy >= 0) {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codUser >= 0) {
-				stmt.setLong(i++, recordInfo.codUser);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
+			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
 			
 			return stmt;
 		}		

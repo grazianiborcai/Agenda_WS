@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.info.CusMerger;
-import br.com.gda.model.action.obsolete.ActionVisitorTemplateMerge_;
+import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.user.info.UserCopier;
 import br.com.gda.security.user.info.UserInfo;
 import br.com.gda.security.user.model.decisionTree.RootUserSelect;
 
-final class VisiCusMergeUser extends ActionVisitorTemplateMerge_<CusInfo, UserInfo> {
+final class VisiCusMergeUser extends ActionVisitorTemplateMergeV2<CusInfo, UserInfo> {
 	
 	public VisiCusMergeUser(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class);
@@ -33,5 +33,11 @@ final class VisiCusMergeUser extends ActionVisitorTemplateMerge_<CusInfo, UserIn
 	
 	@Override protected List<CusInfo> mergeHook(List<CusInfo> recordInfos, List<UserInfo> selectedInfos) {	
 		return CusMerger.mergeWithUser(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

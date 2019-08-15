@@ -225,6 +225,7 @@ public final class SystemMessage {
 	public static final String CUS_HAS_EMAIL = "Customer: e-mail address provided";
 	public static final String CUS_HAS_USER = "User already created. Try to recover your credentials";	
 	public static final String CUS_NOT_FOUND = "Customer's data not found on DB";		
+	public static final String CUS_MANDATORY_FIELD_EMPTY = "Customer: Mandatory field is empty";
 	public static final String CUS_PERSON_CANT_BE_CHANGED = "Person can't be changed";	
 	public static final String CUS_PERSON_NOT_CHANGED = "Person not changed";	
 	public static final String CUS_TECH_FIELD_SHOULD_BE_EMPTY = "Customer: technical fields shouldn't be filled";	
@@ -736,4 +737,9 @@ public final class SystemMessage {
 	
 	//Store List
 	public static final String STORE_LIST_MANDATORY_FIELD_EMPTY = "Store-List: Mandatory field is empty";
+	
+	
+	
+	//Customer Snapshot
+	public static final String CUS_SNAPSHOT_MANDATORY_FIELD_EMPTY = "Customer-Snapshot: Mandatory field is empty";
 }

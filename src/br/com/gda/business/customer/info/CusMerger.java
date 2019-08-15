@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.customerSearch.info.CusarchInfo;
+import br.com.gda.business.customerSnapshot.info.CusnapInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.info.InfoMerger;
@@ -12,6 +13,20 @@ import br.com.gda.security.user.info.UserInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class CusMerger {
+	public static CusInfo mergeWithCusnap(CusnapInfo sourceOne, CusInfo sourceTwo) {
+		InfoMerger<CusInfo, CusnapInfo> merger = new CusMergerCusnap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CusInfo> mergeWithCusnap(List<CusnapInfo> sourceOnes, List<CusInfo> sourceTwos) {
+		InfoMerger<CusInfo, CusnapInfo> merger = new CusMergerCusnap();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static CusInfo mergeWithAddress(AddressInfo sourceOne, CusInfo sourceTwo) {
 		InfoMerger<CusInfo, AddressInfo> merger = new CusMergerAddress();		
 		return merger.merge(sourceOne, sourceTwo);

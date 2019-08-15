@@ -168,6 +168,7 @@ public final class SystemCode {
 	public static final int CUS_DONT_HAS_USER							= 1364;
 	public static final int CUS_HAS_EMAIL								= 1365;
 	public static final int CUS_DONT_HAS_EMAIL							= 1366;
+	public static final int CUS_MANDATORY_FIELD_EMPTY					= 1367;
 	
 	// Cart
 	public static final int CART_ALREADY_EXIST							= 1400;
@@ -573,4 +574,6 @@ public final class SystemCode {
 	//Store List
 	public static final int STORE_LIST_MANDATORY_FIELD_EMPTY 			= 5000;
 	
+	//Customer Snapshot
+	public static final int CUS_SNAPSHOT_MANDATORY_FIELD_EMPTY			= 5050;
 }

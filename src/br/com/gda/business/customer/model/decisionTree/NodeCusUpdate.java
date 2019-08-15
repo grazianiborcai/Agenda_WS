@@ -39,7 +39,7 @@ public final class NodeCusUpdate extends DeciTreeWriteTemplate<CusInfo> {
 	
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
-
+		//TODO: verificar se person não mudou
 		ActionStd<CusInfo> mergeToUpdate = new StdCusMergeToUpdate(option);
 		ActionLazy<CusInfo> enforceLChanged = new LazyCusEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<CusInfo> enforceLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);

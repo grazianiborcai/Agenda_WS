@@ -4,6 +4,7 @@ public final class DaoDbField {
 	public static final String COL_CNPJ = "cnpj";
 	public static final String COL_COD_COMPANY = "cod_company";
 	public static final String COL_COD_CURR = "cod_curr";
+	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_EMPLOYEE = "cod_employee";
 	public static final String COL_COD_ENTITY_CATEG = "cod_entity_categ";
 	public static final String COL_COD_OWNER = "cod_owner";
@@ -13,6 +14,7 @@ public final class DaoDbField {
 	public static final String COL_COD_STORE = "cod_store";
 	public static final String COL_COD_TIME_ZONE = "cod_timezone";
 	public static final String COL_COD_USER = "cod_user";
+	public static final String COL_COD_USER_SNAPSHOT = "cod_user_snapshot";
 	public static final String COL_COUNTRY_LEGAL = "country_legal";
 	public static final String COL_EMAIL = "email";
 	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";

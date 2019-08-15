@@ -14,6 +14,7 @@ import br.com.gda.security.user.info.UserInfo;
 public final class CusInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCustomer;
+	public long codSnapshot;
 	public long codPerson;
 	public long codUser;
 	public String codEntityCateg;
@@ -33,6 +34,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public CusInfo() {
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codUser = DefaultValue.number();
 		addresses = DefaultValue.list();
@@ -88,13 +90,13 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<PhoneInfo> clonePhones(List<PhoneInfo> phones) throws CloneNotSupportedException {
-		if (phones == null)
+	private List<PhoneInfo> clonePhones(List<PhoneInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<PhoneInfo> deepPhones = new ArrayList<>();
 		
-		for (PhoneInfo eachPhone : phones) {
+		for (PhoneInfo eachPhone : recordInfos) {
 			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
 			deepPhones.add(clonedPhone);
 		}
@@ -104,20 +106,20 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private PersonInfo clonePerson(PersonInfo personToClone) throws CloneNotSupportedException {
-		if (personToClone == null)
+	private PersonInfo clonePerson(PersonInfo recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
-		return (PersonInfo) personToClone.clone();
+		return (PersonInfo) recordInfos.clone();
 	}
 	
 	
 	
-	private UserInfo cloneUser(UserInfo userToClone) throws CloneNotSupportedException {
-		if (userToClone == null)
+	private UserInfo cloneUser(UserInfo recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
-		return (UserInfo) userToClone.clone();
+		return (UserInfo) recordInfos.clone();
 	}
 	
 	
@@ -143,6 +145,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		
 		
 		CusInfo obj = (CusInfo) o;		
-		return (codOwner == obj.codOwner && codCustomer == obj.codCustomer);
+		return (codOwner    == obj.codOwner && 
+				codCustomer == obj.codCustomer);
 	}
 }

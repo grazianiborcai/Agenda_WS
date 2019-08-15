@@ -26,12 +26,12 @@ public final class CusCheckRead extends ModelCheckerTemplateSimple<CusInfo> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.CUS_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.CUS_MANDATORY_FIELD_EMPTY;
 	}
 }

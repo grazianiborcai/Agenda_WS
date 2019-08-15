@@ -7,10 +7,10 @@ import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.customer.model.action.LazyCusInsert;
 import br.com.gda.business.customer.model.action.LazyCusMergeUsername;
 import br.com.gda.business.customer.model.action.LazyCusNodeInsertPerson;
+import br.com.gda.business.customer.model.action.LazyCusNodeSnapshot;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpsertAddress;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpsertPhone;
 import br.com.gda.business.customer.model.action.LazyCusRootSelect;
-import br.com.gda.business.customer.model.action.LazyCusUpdate;
 import br.com.gda.business.customer.model.action.StdCusEnforceLChanged;
 import br.com.gda.business.customer.model.checker.CusCheckTechField;
 import br.com.gda.business.customer.model.checker.CusCheckOwner;
@@ -79,7 +79,7 @@ public final class NodeCusInsertL2 extends DeciTreeWriteTemplate<CusInfo> {
 		ActionLazy<CusInfo> mergeLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);	
 		ActionLazy<CusInfo> insertCustomer = new LazyCusInsert(option.conn, option.schemaName);
 		ActionLazy<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
-		ActionLazy<CusInfo> updateCustomer = new LazyCusUpdate(option.conn, option.schemaName);
+		ActionLazy<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionLazy<CusInfo> selectCustomer = new LazyCusRootSelect(option.conn, option.schemaName);	
@@ -87,10 +87,10 @@ public final class NodeCusInsertL2 extends DeciTreeWriteTemplate<CusInfo> {
 		enforceLChanged.addPostAction(mergeLChangedBy);
 		mergeLChangedBy.addPostAction(insertCustomer);
 		insertCustomer.addPostAction(insertPerson);
-		insertPerson.addPostAction(updateCustomer);	
-		updateCustomer.addPostAction(upsertAddress);		
-		updateCustomer.addPostAction(upsertPhone);			
-		updateCustomer.addPostAction(selectCustomer);
+		insertPerson.addPostAction(snapshot);	
+		snapshot.addPostAction(upsertAddress);		
+		snapshot.addPostAction(upsertPhone);			
+		snapshot.addPostAction(selectCustomer);
 		
 		actions.add(enforceLChanged);	
 		return actions;

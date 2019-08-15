@@ -18,6 +18,7 @@ public final class CusCheckWrite extends ModelCheckerTemplateSimple<CusInfo> {
 	@Override protected boolean checkHook(CusInfo recordInfo, Connection conn, String schemaName) {	
 		if (    recordInfo.codOwner 	<= 0 
 			 || recordInfo.codCustomer	<= 0
+			 || recordInfo.personData   == null
 			 || recordInfo.codLanguage  == null	
 			 || recordInfo.username 	== null	)
 			return super.FAILED;
@@ -29,12 +30,12 @@ public final class CusCheckWrite extends ModelCheckerTemplateSimple<CusInfo> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.CUS_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.CUS_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -3,11 +3,11 @@ package br.com.gda.business.customer.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -99,7 +99,6 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<CusInfo> {
-		private final boolean NOT_NULL = false;		
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<CusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -113,22 +112,11 @@ public final class CusSelectSingle implements DaoStmt<CusInfo> {
 				dataInfo.codOwner = stmtResult.getLong(CusDbTableColumn.COL_COD_OWNER);
 				dataInfo.codCustomer = stmtResult.getLong(CusDbTableColumn.COL_COD_CUSTOMER);									
 				dataInfo.recordMode = stmtResult.getString(CusDbTableColumn.COL_RECORD_MODE);
-				
-				stmtResult.getLong(CusDbTableColumn.COL_COD_PERSON);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPerson = stmtResult.getLong(CusDbTableColumn.COL_COD_PERSON);					
-				
-				stmtResult.getLong(CusDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(CusDbTableColumn.COL_COD_USER);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(CusDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
-				
-				stmtResult.getLong(CusDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(CusDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.codPerson = DaoFormatter.sqlToNumber(stmtResult, CusDbTableColumn.COL_COD_PERSON);
+				dataInfo.codUser = DaoFormatter.sqlToNumber(stmtResult, CusDbTableColumn.COL_COD_USER);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CusDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToNumber(stmtResult, CusDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.codSnapshot = DaoFormatter.sqlToNumber(stmtResult, CusDbTableColumn.COL_COD_SNAPSHOT);
 
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

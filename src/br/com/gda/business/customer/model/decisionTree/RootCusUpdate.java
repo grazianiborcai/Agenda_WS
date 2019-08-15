@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
+import br.com.gda.business.customer.model.action.LazyCusNodeSnapshot;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpdatePerson;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpsertAddress;
 import br.com.gda.business.customer.model.action.LazyCusNodeUpsertPhone;
@@ -68,13 +69,15 @@ public final class RootCusUpdate extends DeciTreeWriteTemplate<CusInfo> {
 
 		ActionStd<CusInfo> updateCustomer = new NodeCusUpdate(option).toAction();	
 		ActionLazy<CusInfo> updatePerson = new LazyCusNodeUpdatePerson(option.conn, option.schemaName);		
+		ActionLazy<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);	
 		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);	
 		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionStd<CusInfo> select = new RootCusSelect(option).toAction();	
 		
 		updateCustomer.addPostAction(updatePerson);	
-		updateCustomer.addPostAction(upsertAddress);
-		updateCustomer.addPostAction(upsertPhone);
+		updatePerson.addPostAction(snapshot);
+		snapshot.addPostAction(upsertAddress);
+		snapshot.addPostAction(upsertPhone);
 		
 		actions.add(updateCustomer);
 		actions.add(select);	
