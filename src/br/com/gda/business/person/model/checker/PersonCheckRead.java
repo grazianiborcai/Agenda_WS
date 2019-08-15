@@ -28,12 +28,12 @@ public final class PersonCheckRead extends ModelCheckerTemplateSimple<PersonInfo
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.PERSON_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.PERSON_MANDATORY_FIELD_EMPTY;
 	}
 }

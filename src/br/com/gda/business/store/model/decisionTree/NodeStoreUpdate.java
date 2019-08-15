@@ -46,6 +46,7 @@ public final class NodeStoreUpdate extends DeciTreeWriteTemplate<StoreInfo> {
 		ActionLazy<StoreInfo> enforceEntityCateg = new LazyStoreEnforceEntityCateg(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> snapshot = new LazyStoreNodeSnapshot(option.conn, option.schemaName);	
 		
+		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceEntityCateg);		
 		enforceEntityCateg.addPostAction(snapshot);

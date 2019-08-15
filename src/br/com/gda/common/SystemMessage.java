@@ -329,7 +329,8 @@ public final class SystemMessage {
 	public static final String PERSON_EMAIL_NOT_CHANGED = "e-mail not changed";	
 	public static final String PERSON_EMAIL_NOT_FOUND = "e-email not found on DB";
 	public static final String PERSON_IS_NULL = "Person is blank";
-	public static final String PERSON_IS_FILLED = "Person is not blank";	
+	public static final String PERSON_IS_FILLED = "Person is not blank";
+	public static final String PERSON_MANDATORY_FIELD_EMPTY = "Person: Mandatory field is empty";
 	public static final String PERSON_MISMATCH = "Person code mismatch";
 	public static final String PERSON_NOT_FOUND = "Person not found on DB";	
 	public static final String PERSON_TECH_FIELD_SHOULD_BE_EMPTY = "Person: technical fields shouldn't be filled";	
