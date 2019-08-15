@@ -576,4 +576,7 @@ public final class SystemCode {
 	
 	//Customer Snapshot
 	public static final int CUS_SNAPSHOT_MANDATORY_FIELD_EMPTY			= 5050;
+	
+	//Customer List
+	public static final int CUS_LIST_MANDATORY_FIELD_EMPTY 				= 5100;
 }

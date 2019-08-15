@@ -112,6 +112,7 @@ public final class DaoDbTable {
 	
     //Views
 	public static final String CART_RESERVE_VIEW = "view_cart_reserve";	
+	public static final String CUS_LIST_VIEW = "view_customer_list";	
 	public static final String EMP_LIST_VIEW = "view_employee_list";	
 	public static final String EMP_WT_CONFLICT_VIEW = "view_employee_working_time";
 	public static final String ORDER_RESERVE_VIEW = "view_order_reserve";	

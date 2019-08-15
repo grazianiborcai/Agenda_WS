@@ -12,6 +12,7 @@ import br.com.gda.business.cartReserve.dao.CarterveDbTableColumn;
 import br.com.gda.business.company.dao.CompDbTableColumn;
 import br.com.gda.business.companySnapshot.dao.CompnapDbTableColumn;
 import br.com.gda.business.customer.dao.CusDbTableColumn;
+import br.com.gda.business.customerList.dao.CuslisDbTableColumn;
 import br.com.gda.business.customerSearch.dao.CusarchDbTableColumn;
 import br.com.gda.business.customerSnapshot.dao.CusnapDbTableColumn;
 import br.com.gda.business.employee.dao.EmpDbTableColumn;
@@ -160,6 +161,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new StorapDbTableColumn());
 		addTable(new CompnapDbTableColumn());
 		addTable(new CusnapDbTableColumn());
+		addTable(new CuslisDbTableColumn());
 	}
 	
 	

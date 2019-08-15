@@ -742,4 +742,9 @@ public final class SystemMessage {
 	
 	//Customer Snapshot
 	public static final String CUS_SNAPSHOT_MANDATORY_FIELD_EMPTY = "Customer-Snapshot: Mandatory field is empty";
+	
+	
+	
+	//Customer List
+	public static final String CUS_LIST_MANDATORY_FIELD_EMPTY = "Customer: Mandatory field is empty";
 }
