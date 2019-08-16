@@ -7,8 +7,38 @@ import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoMerger;
+import br.com.gda.security.userList.info.UselisInfo;
+import br.com.gda.security.username.info.UsernameInfo;
 
 public final class SchedineMerger {
+	public static SchedineInfo mergeWithUsername(UsernameInfo sourceOne, SchedineInfo sourceTwo) {
+		InfoMerger<SchedineInfo, UsernameInfo> merger = new SchedineMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<SchedineInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
+		InfoMerger<SchedineInfo, UsernameInfo> merger = new SchedineMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static SchedineInfo mergeWithUselis(UselisInfo sourceOne, SchedineInfo sourceTwo) {
+		InfoMerger<SchedineInfo, UselisInfo> merger = new SchedineMergerUselis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<SchedineInfo> mergeWithUselis(List<UselisInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
+		InfoMerger<SchedineInfo, UselisInfo> merger = new SchedineMergerUselis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static SchedineInfo mergeWithCuslis(CuslisInfo sourceOne, SchedineInfo sourceTwo) {
 		InfoMerger<SchedineInfo, CuslisInfo> merger = new SchedineMergerCuslis();		
 		return merger.merge(sourceOne, sourceTwo);

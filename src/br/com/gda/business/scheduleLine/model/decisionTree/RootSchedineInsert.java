@@ -11,6 +11,8 @@ import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeCuslis;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeEmplis;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeMat;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeStolis;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeUselis;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeUsername;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineNodeMat;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckCus;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckLangu;
@@ -124,7 +126,9 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		ActionLazy<SchedineInfo> nodeMat = new LazySchedineNodeMat(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeStolis = new LazySchedineMergeStolis(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergCuslis = new LazySchedineMergeCuslis(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> mergUselis = new LazySchedineMergeUselis(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeEmplis = new LazySchedineMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> insert = new LazySchedineInsert(option.conn, option.schemaName);
 		
 		nodeOrder.addPostAction(enforceLChanged);
@@ -132,8 +136,10 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		mergeMat.addPostAction(nodeMat);
 		nodeMat.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergCuslis);		
-		mergCuslis.addPostAction(mergeEmplis);
-		mergeEmplis.addPostAction(insert);
+		mergCuslis.addPostAction(mergUselis);		
+		mergUselis.addPostAction(mergeEmplis);
+		mergeEmplis.addPostAction(mergeUsername);
+		mergeUsername.addPostAction(insert);
 		
 		actions.add(nodeOrder);
 		return actions;

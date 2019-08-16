@@ -194,6 +194,20 @@ public final class DaoFormatter {
 	
 	
 	
+	public static PreparedStatement charToStmt(PreparedStatement stmt, int index, char character) throws SQLException {
+		checkArgument(stmt, index);				
+		
+		if (character == DefaultValue.character()) {
+			stmt.setNull(index, Types.VARCHAR);
+			return stmt;
+		}
+		
+		stmt.setString(index, Character.toString(character));
+		return stmt;
+	}
+	
+	
+	
 	public static long sqlToNumber(ResultSet sqlResultset, String colunmName) throws SQLException {
 		checkArgument(sqlResultset, colunmName);		
 		
@@ -203,6 +217,19 @@ public final class DaoFormatter {
 			return DefaultValue.number();
 			
 		return sqlResultset.getLong(colunmName);	
+	}
+	
+	
+	
+	public static char sqlToChar(ResultSet sqlResultset, String colunmName) throws SQLException {
+		checkArgument(sqlResultset, colunmName);		
+		
+		sqlResultset.getString(colunmName);
+		
+		if (sqlResultset.wasNull())
+			return DefaultValue.character();
+			
+		return sqlResultset.getString(colunmName).charAt(0);	
 	}
 	
 	

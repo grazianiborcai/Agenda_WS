@@ -4,12 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.common.DefaultValue;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -81,54 +79,18 @@ public final class UserInsertSingle implements DaoStmt<UserInfo> {
 	private class ParamTranslator implements DaoStmtParamTranslator<UserInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, UserInfo recordInfo) throws SQLException {
 			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
-			
 			int i = 1;
+			
 			stmt.setLong(i++, recordInfo.codOwner);		
 			stmt.setString(i++, recordInfo.recordMode);			
-			stmt.setTimestamp(i++, lastChanged);
-			
-			
-			if (recordInfo.codPerson >= 0) {
-				stmt.setLong(i++, recordInfo.codPerson);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codUserCategory == DefaultValue.character()) {
-				stmt.setNull(i++, Types.VARCHAR);
-			} else {
-				stmt.setString(i++, Character.toString(recordInfo.codUserCategory));
-			}
-			
-			
+			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
+			stmt = DaoFormatter.charToStmt(stmt, i++, recordInfo.codUserCategory);
 			stmt.setString(i++, recordInfo.username);	
 			stmt.setString(i++, recordInfo.codAuthGroup);
-			
-			
-			if (recordInfo.lastChangedBy >= 0) {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codPersonSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codPersonSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPersonSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);			
 			
 			return stmt;
 		}		

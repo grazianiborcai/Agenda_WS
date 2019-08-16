@@ -72,6 +72,7 @@ import br.com.gda.payment.storePartner.dao.StoparDbTableColumn;
 import br.com.gda.payment.storePartnerSnapshot.dao.StoparnapDbTableColumn;
 import br.com.gda.payment.systemPartner.dao.SysparDbTableColumn;
 import br.com.gda.security.user.dao.UserDbTableColumn;
+import br.com.gda.security.userList.dao.UselistDbTableColumn;
 import br.com.gda.security.userPassword.dao.UpswdDbTableColumn;
 import br.com.gda.security.userSnapshot.dao.UserapDbTableColumn;
 import br.com.gda.security.username.dao.UsernameDbTableColumn;
@@ -162,6 +163,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CompnapDbTableColumn());
 		addTable(new CusnapDbTableColumn());
 		addTable(new CuslisDbTableColumn());
+		addTable(new UselistDbTableColumn());
 	}
 	
 	

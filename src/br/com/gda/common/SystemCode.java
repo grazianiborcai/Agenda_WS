@@ -579,4 +579,7 @@ public final class SystemCode {
 	
 	//Customer List
 	public static final int CUS_LIST_MANDATORY_FIELD_EMPTY 				= 5100;
+	
+	//User List
+	public static final int USER_LIST_MANDATORY_FIELD_EMPTY				= 5150;
 }

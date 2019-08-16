@@ -78,13 +78,13 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<AddressInfo> cloneAddresses(List<AddressInfo> addressesToClone) throws CloneNotSupportedException {
-		if (addressesToClone == null)
+	private List<AddressInfo> cloneAddresses(List<AddressInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<AddressInfo> deepAddresses = new ArrayList<>();
 		
-		for (AddressInfo eachAddress : addressesToClone) {
+		for (AddressInfo eachAddress : recordInfos) {
 			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
 			deepAddresses.add(clonedAddress);
 		}
@@ -94,13 +94,13 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<PhoneInfo> clonePhones(List<PhoneInfo> phonesToClone) throws CloneNotSupportedException {
-		if (phonesToClone == null)
+	private List<PhoneInfo> clonePhones(List<PhoneInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<PhoneInfo> deepPhones = new ArrayList<>();
 		
-		for (PhoneInfo eachPhone : phonesToClone) {
+		for (PhoneInfo eachPhone : recordInfos) {
 			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
 			deepPhones.add(clonedPhone);
 		}
@@ -110,22 +110,22 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private PersonInfo clonePerson(PersonInfo personToClone) throws CloneNotSupportedException {
-		if (personToClone == null)
+	private PersonInfo clonePerson(PersonInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (PersonInfo) personToClone.clone();
+		return (PersonInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private List<AuthGrRoleInfo> cloneAuthGrRoles(List<AuthGrRoleInfo> authGrRolesToClone) throws CloneNotSupportedException {
-		if (authGrRolesToClone == null)
+	private List<AuthGrRoleInfo> cloneAuthGrRoles(List<AuthGrRoleInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<AuthGrRoleInfo> deepAuthGrRoles = new ArrayList<>();
 		
-		for (AuthGrRoleInfo eachAuthGrRole : authGrRolesToClone) {
+		for (AuthGrRoleInfo eachAuthGrRole : recordInfos) {
 			AuthGrRoleInfo clonedAuthGrRole = (AuthGrRoleInfo) eachAuthGrRole.clone();
 			deepAuthGrRoles.add(clonedAuthGrRole);
 		}
@@ -160,7 +160,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		
 		UserInfo obj = (UserInfo) o;		
 		return (codOwner == obj.codOwner 	&& 
-				codUser == obj.codUser		&&
+				codUser  == obj.codUser		&&
 				super.isStringEqual(username, obj.username)	);
 	}
 }

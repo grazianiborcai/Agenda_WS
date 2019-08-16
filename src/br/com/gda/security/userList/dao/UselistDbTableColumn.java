@@ -1,4 +1,4 @@
-package br.com.gda.security.user.dao;
+package br.com.gda.security.userList.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -9,11 +9,10 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class UserDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class UselistDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_AUTH_GROUP = DaoDbField.COL_COD_AUTH_GROUP;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;
-	public static final String COL_COD_PERSON_SNAPSHOT = DaoDbField.COL_COD_PERSON_SNAPSHOT;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_COD_USER_CATEG = DaoDbField.COL_COD_USER_CATEG;
@@ -25,7 +24,7 @@ public final class UserDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	
-	public UserDbTableColumn() {
+	public UselistDbTableColumn() {
 		super();
 	}
 	
@@ -33,13 +32,13 @@ public final class UserDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
-		buildUserTable();		
+		buildUserListTable();		
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildUserTable() {
+	private void buildUserListTable() {
 		final String TABLE_NAME = DaoDbTable.USER_TABLE;
 		
 		DaoColumn oneColumn;
@@ -58,7 +57,7 @@ public final class UserDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_COD_USER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
+		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
@@ -119,20 +118,12 @@ public final class UserDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PERSON_SNAPSHOT;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		tableColumns.put(DaoDbTable.USER_LIST_VIEW, columns);
 	}
 }

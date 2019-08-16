@@ -1,6 +1,7 @@
 package br.com.gda.dao.common;
 
 public final class DaoDbField {
+	public static final String COL_COD_AUTH_GROUP = "cod_auth_group";
 	public static final String COL_CNPJ = "cnpj";
 	public static final String COL_COD_COMPANY = "cod_company";
 	public static final String COL_COD_CURR = "cod_curr";
@@ -14,6 +15,7 @@ public final class DaoDbField {
 	public static final String COL_COD_STORE = "cod_store";
 	public static final String COL_COD_TIME_ZONE = "cod_timezone";
 	public static final String COL_COD_USER = "cod_user";
+	public static final String COL_COD_USER_CATEG = "cod_user_categ";
 	public static final String COL_COD_USER_SNAPSHOT = "cod_user_snapshot";
 	public static final String COL_COUNTRY_LEGAL = "country_legal";
 	public static final String COL_EMAIL = "email";
@@ -24,4 +26,5 @@ public final class DaoDbField {
 	public static final String COL_NAME = "name";
 	public static final String COL_RAZAO_SOCIAL = "razao_social";
 	public static final String COL_RECORD_MODE = "record_mode";	
+	public static final String COL_USERNAME = "username";
 }

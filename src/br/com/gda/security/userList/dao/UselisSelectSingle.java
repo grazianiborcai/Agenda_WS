@@ -1,4 +1,4 @@
-package br.com.gda.security.user.dao;
+package br.com.gda.security.userList.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,30 +16,31 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
-import br.com.gda.security.user.info.UserInfo;
+import br.com.gda.security.user.dao.UserDbTableColumn;
+import br.com.gda.security.userList.info.UselisInfo;
 
-public final class UserSelectSingle implements DaoStmt<UserInfo> {
+public final class UselisSelectSingle implements DaoStmt<UselisInfo> {
 	private final String LT_USER = DaoDbTable.USER_TABLE;
 	
-	private DaoStmt<UserInfo> stmtSql;
-	private DaoStmtOption<UserInfo> stmtOption;
+	private DaoStmt<UselisInfo> stmtSql;
+	private DaoStmtOption<UselisInfo> stmtOption;
 	
 	
 	
-	public UserSelectSingle(Connection conn, UserInfo recordInfo, String schemaName) {
+	public UselisSelectSingle(Connection conn, UselisInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, UserInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, UselisInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LT_USER;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_USER);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.USER_LIST_VIEW);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -53,7 +54,7 @@ public final class UserSelectSingle implements DaoStmt<UserInfo> {
 		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new UserWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new UselisWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -83,14 +84,14 @@ public final class UserSelectSingle implements DaoStmt<UserInfo> {
 
 	
 	
-	@Override public List<UserInfo> getResultset() {
+	@Override public List<UselisInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<UserInfo> getNewInstance() {
-		return new UserSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<UselisInfo> getNewInstance() {
+		return new UselisSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -98,17 +99,17 @@ public final class UserSelectSingle implements DaoStmt<UserInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<UserInfo> {
+	private static class ResultParser implements DaoResultParser<UselisInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<UserInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<UserInfo> finalResult = new ArrayList<>();
+		@Override public List<UselisInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<UselisInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET )				
 					return finalResult;
 			
 			do {
-				UserInfo dataInfo = new UserInfo();
+				UselisInfo dataInfo = new UselisInfo();
 				dataInfo.codOwner = stmtResult.getLong(UserDbTableColumn.COL_COD_OWNER);
 				dataInfo.codUser = stmtResult.getLong(UserDbTableColumn.COL_COD_USER);									
 				dataInfo.recordMode = stmtResult.getString(UserDbTableColumn.COL_RECORD_MODE);
@@ -116,10 +117,10 @@ public final class UserSelectSingle implements DaoStmt<UserInfo> {
 				dataInfo.codAuthGroup = stmtResult.getString(UserDbTableColumn.COL_COD_AUTH_GROUP);
 				dataInfo.codSnapshot = DaoFormatter.sqlToNumber(stmtResult, UserDbTableColumn.COL_COD_SNAPSHOT);
 				dataInfo.codPerson = DaoFormatter.sqlToNumber(stmtResult, UserDbTableColumn.COL_COD_PERSON);
-				dataInfo.codPersonSnapshot = DaoFormatter.sqlToNumber(stmtResult, UserDbTableColumn.COL_COD_PERSON_SNAPSHOT);
 				dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, UserDbTableColumn.COL_COD_USER_CATEG);
 				dataInfo.lastChangedBy = DaoFormatter.sqlToNumber(stmtResult, UserDbTableColumn.COL_LAST_CHANGED_BY);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, UserDbTableColumn.COL_LAST_CHANGED);
+
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

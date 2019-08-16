@@ -747,4 +747,9 @@ public final class SystemMessage {
 	
 	//Customer List
 	public static final String CUS_LIST_MANDATORY_FIELD_EMPTY = "Customer: Mandatory field is empty";
+	
+	
+	
+	//User List
+	public static final String USER_LIST_MANDATORY_FIELD_EMPTY = "User-List: Mandatory field is empty";
 }

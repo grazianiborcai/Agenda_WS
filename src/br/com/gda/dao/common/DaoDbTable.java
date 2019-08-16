@@ -126,5 +126,6 @@ public final class DaoDbTable {
 	public static final String REFUND_VIEW = "view_refund";	
 	public static final String STORE_LIST_VIEW = "view_store_list";
 	public static final String STORE_WT_CONFLICT_VIEW = "view_store_working_time";
+	public static final String USER_LIST_VIEW = "view_user_list";
 	public static final String USERNAME_VIEW = "view_username";	
 }
