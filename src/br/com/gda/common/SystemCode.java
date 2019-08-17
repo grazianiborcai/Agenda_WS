@@ -565,21 +565,25 @@ public final class SystemCode {
 	// Store Snapshot
 	public static final int STORE_SNAPSHOT_MANDATORY_FIELD_EMPTY 		= 4850;
 	
-	//Company Snpshot
+	// Company Snpshot
 	public static final int COMPANY_SNAP_MANDATORY_FIELD_EMPTY 			= 4900;
 	
-	//Employee List
+	// Employee List
 	public static final int EMP_LIST_MANDATORY_FIELD_EMPTY				= 4950;
 	
-	//Store List
+	// Store List
 	public static final int STORE_LIST_MANDATORY_FIELD_EMPTY 			= 5000;
 	
-	//Customer Snapshot
+	// Customer Snapshot
 	public static final int CUS_SNAPSHOT_MANDATORY_FIELD_EMPTY			= 5050;
 	
-	//Customer List
+	// Customer List
 	public static final int CUS_LIST_MANDATORY_FIELD_EMPTY 				= 5100;
 	
-	//User List
+	// User List
 	public static final int USER_LIST_MANDATORY_FIELD_EMPTY				= 5150;
+	
+	// Schedule-Snapshot
+	public static final int SCHEDULE_SNAPSHOT_MANDATORY_FIELD_EMPTY		= 5200;
+	public static final int SCHEDULE_SNAPSHOT_HAS_NO_ORDER				= 5201;
 }

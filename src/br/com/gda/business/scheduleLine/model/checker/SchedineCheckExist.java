@@ -4,17 +4,19 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
-import br.com.gda.business.scheduleLine.model.action.StdSchedineSelect;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineRootSelect;
+import br.com.gda.business.scheduleLine.model.action.StdSchedineEnforceKey;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class OrderemCheckExist extends ModelCheckerTemplateAction<SchedineInfo> {
+public final class SchedineCheckExist extends ModelCheckerTemplateAction<SchedineInfo> {
 	
-	public OrderemCheckExist(ModelCheckerOption option) {
+	public SchedineCheckExist(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -23,8 +25,11 @@ public final class OrderemCheckExist extends ModelCheckerTemplateAction<Schedine
 	@Override protected ActionStd<SchedineInfo> buildActionHook(SchedineInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<SchedineInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<SchedineInfo> actionSelect = new StdSchedineSelect(option);
-		return actionSelect;
+		ActionStd<SchedineInfo> enforceKey = new StdSchedineEnforceKey(option);
+		ActionLazy<SchedineInfo> select = new LazySchedineRootSelect(option.conn, option.schemaName);
+		
+		enforceKey.addPostAction(select);		
+		return enforceKey;
 	}
 	
 	

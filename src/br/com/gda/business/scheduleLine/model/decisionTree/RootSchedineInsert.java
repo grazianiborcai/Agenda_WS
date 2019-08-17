@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceLChanged;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceWeekday;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineInsert;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeCuslis;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeEmplis;
@@ -129,6 +130,7 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		ActionLazy<SchedineInfo> mergUselis = new LazySchedineMergeUselis(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeEmplis = new LazySchedineMergeEmplis(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> enforceWeekday = new LazySchedineEnforceWeekday(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> insert = new LazySchedineInsert(option.conn, option.schemaName);
 		
 		nodeOrder.addPostAction(enforceLChanged);
@@ -139,7 +141,8 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		mergCuslis.addPostAction(mergUselis);		
 		mergUselis.addPostAction(mergeEmplis);
 		mergeEmplis.addPostAction(mergeUsername);
-		mergeUsername.addPostAction(insert);
+		mergeUsername.addPostAction(enforceWeekday);
+		enforceWeekday.addPostAction(insert);
 		
 		actions.add(nodeOrder);
 		return actions;

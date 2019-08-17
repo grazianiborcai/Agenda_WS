@@ -115,10 +115,10 @@ public final class UselisSelectSingle implements DaoStmt<UselisInfo> {
 				dataInfo.recordMode = stmtResult.getString(UserDbTableColumn.COL_RECORD_MODE);
 				dataInfo.username = stmtResult.getString(UserDbTableColumn.COL_USERNAME);
 				dataInfo.codAuthGroup = stmtResult.getString(UserDbTableColumn.COL_COD_AUTH_GROUP);
-				dataInfo.codSnapshot = DaoFormatter.sqlToNumber(stmtResult, UserDbTableColumn.COL_COD_SNAPSHOT);
-				dataInfo.codPerson = DaoFormatter.sqlToNumber(stmtResult, UserDbTableColumn.COL_COD_PERSON);
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, UserDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, UserDbTableColumn.COL_COD_PERSON);
 				dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, UserDbTableColumn.COL_COD_USER_CATEG);
-				dataInfo.lastChangedBy = DaoFormatter.sqlToNumber(stmtResult, UserDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, UserDbTableColumn.COL_LAST_CHANGED_BY);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, UserDbTableColumn.COL_LAST_CHANGED);
 
 				

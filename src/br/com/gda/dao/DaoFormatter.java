@@ -208,7 +208,7 @@ public final class DaoFormatter {
 	
 	
 	
-	public static long sqlToNumber(ResultSet sqlResultset, String colunmName) throws SQLException {
+	public static long sqlToLong(ResultSet sqlResultset, String colunmName) throws SQLException {
 		checkArgument(sqlResultset, colunmName);		
 		
 		sqlResultset.getLong(colunmName);
@@ -217,6 +217,19 @@ public final class DaoFormatter {
 			return DefaultValue.number();
 			
 		return sqlResultset.getLong(colunmName);	
+	}
+	
+	
+	
+	public static int sqlToInt(ResultSet sqlResultset, String colunmName) throws SQLException {
+		checkArgument(sqlResultset, colunmName);		
+		
+		sqlResultset.getInt(colunmName);
+		
+		if (sqlResultset.wasNull())
+			return DefaultValue.number();
+			
+		return sqlResultset.getInt(colunmName);	
 	}
 	
 	
@@ -243,6 +256,32 @@ public final class DaoFormatter {
 			return null;
 			
 		return result.toLocalDateTime();	
+	}
+	
+	
+	
+	public static LocalTime sqlToLocalTime(ResultSet sqlResultset, String colunmName) throws SQLException {
+		checkArgument(sqlResultset, colunmName);		
+		
+		Time result = sqlResultset.getTime(colunmName);
+		
+		if (result == null)
+			return null;
+			
+		return result.toLocalTime();	
+	}
+	
+	
+	
+	public static LocalDate sqlToLocalDate(ResultSet sqlResultset, String colunmName) throws SQLException {
+		checkArgument(sqlResultset, colunmName);		
+		
+		Date result = sqlResultset.getDate(colunmName);
+		
+		if (result == null)
+			return null;
+			
+		return result.toLocalDate();	
 	}
 	
 	

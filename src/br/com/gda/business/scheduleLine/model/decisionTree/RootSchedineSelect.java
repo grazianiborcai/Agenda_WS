@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
-import br.com.gda.business.scheduleLine.model.action.LazyOrderemMergeMatsnap;
-import br.com.gda.business.scheduleLine.model.action.LazyOrderemNodeSelect;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeMat;
 import br.com.gda.business.scheduleLine.model.action.StdSchedineMergeToSelect;
-import br.com.gda.business.scheduleLine.model.checker.OrderemCheckRead;
+import br.com.gda.business.scheduleLine.model.checker.SchedineCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -15,9 +14,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootOrderemSelect extends DeciTreeWriteTemplate<SchedineInfo> {
+public final class RootSchedineSelect extends DeciTreeWriteTemplate<SchedineInfo> {
 	
-	public RootOrderemSelect(DeciTreeOption<SchedineInfo> option) {
+	public RootSchedineSelect(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
@@ -27,7 +26,7 @@ public final class RootOrderemSelect extends DeciTreeWriteTemplate<SchedineInfo>
 		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedineInfo> checker;
 		
-		checker = new OrderemCheckRead();
+		checker = new SchedineCheckRead();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -39,11 +38,9 @@ public final class RootOrderemSelect extends DeciTreeWriteTemplate<SchedineInfo>
 		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 		
 		ActionStd<SchedineInfo> select = new StdSchedineMergeToSelect(option);
-		ActionLazy<SchedineInfo> mergeMatsnap = new LazyOrderemMergeMatsnap(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> nodeSelect = new LazyOrderemNodeSelect(option.conn, option.schemaName);		
+		ActionLazy<SchedineInfo> mergeMat = new LazySchedineMergeMat(option.conn, option.schemaName);	
 		
-		select.addPostAction(mergeMatsnap);
-		mergeMatsnap.addPostAction(nodeSelect);
+		select.addPostAction(mergeMat);
 		
 		actions.add(select);
 		return actions;

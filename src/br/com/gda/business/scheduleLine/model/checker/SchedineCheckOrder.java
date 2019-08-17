@@ -8,14 +8,14 @@ import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class OrderemCheckOrder implements ModelChecker<SchedineInfo> {
+public final class SchedineCheckOrder implements ModelChecker<SchedineInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<OrderInfo> checker;
 	
 	
-	public OrderemCheckOrder(ModelCheckerOption option) {
+	public SchedineCheckOrder(ModelCheckerOption option) {
 		checker = new OrderCheckExist(option);
 	}
 	

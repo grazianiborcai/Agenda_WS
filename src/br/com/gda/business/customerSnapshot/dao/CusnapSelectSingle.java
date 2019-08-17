@@ -112,13 +112,13 @@ public final class CusnapSelectSingle implements DaoStmt<CusnapInfo> {
 				dataInfo.codOwner = stmtResult.getLong(CusnapDbTableColumn.COL_COD_OWNER);
 				dataInfo.codCustomer = stmtResult.getLong(CusnapDbTableColumn.COL_COD_CUSTOMER);									
 				dataInfo.recordMode = stmtResult.getString(CusnapDbTableColumn.COL_RECORD_MODE);
-				dataInfo.codPerson = DaoFormatter.sqlToNumber(stmtResult, CusnapDbTableColumn.COL_COD_PERSON);
-				dataInfo.codUser = DaoFormatter.sqlToNumber(stmtResult, CusnapDbTableColumn.COL_COD_USER);
+				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_COD_PERSON);
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_COD_USER);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CusnapDbTableColumn.COL_LAST_CHANGED);
-				dataInfo.lastChangedBy = DaoFormatter.sqlToNumber(stmtResult, CusnapDbTableColumn.COL_LAST_CHANGED_BY);
-				dataInfo.codSnapshot = DaoFormatter.sqlToNumber(stmtResult, CusnapDbTableColumn.COL_COD_SNAPSHOT);
-				dataInfo.codUserSnapshot = DaoFormatter.sqlToNumber(stmtResult, CusnapDbTableColumn.COL_COD_USER_SNAPSHOT);
-				dataInfo.codPersonSnapshot = DaoFormatter.sqlToNumber(stmtResult, CusnapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_COD_USER_SNAPSHOT);
+				dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
 
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

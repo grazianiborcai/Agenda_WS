@@ -725,31 +725,37 @@ public final class SystemMessage {
 	
 	
 	
-	//Company Snpshot
+	// Company Snpshot
 	public static final String COMPANY_SNAP_MANDATORY_FIELD_EMPTY = "Company-Snapshot: Mandatory field is empty";
 	
 	
 	
-	//Employee List
+	// Employee List
 	public static final String EMP_LIST_MANDATORY_FIELD_EMPTY = "Employee-List: Mandatory field is empty";
 	
 	
 	
-	//Store List
+	// Store List
 	public static final String STORE_LIST_MANDATORY_FIELD_EMPTY = "Store-List: Mandatory field is empty";
 	
 	
 	
-	//Customer Snapshot
+	// Customer Snapshot
 	public static final String CUS_SNAPSHOT_MANDATORY_FIELD_EMPTY = "Customer-Snapshot: Mandatory field is empty";
 	
 	
 	
-	//Customer List
+	// Customer List
 	public static final String CUS_LIST_MANDATORY_FIELD_EMPTY = "Customer: Mandatory field is empty";
 	
 	
 	
-	//User List
+	// User List
 	public static final String USER_LIST_MANDATORY_FIELD_EMPTY = "User-List: Mandatory field is empty";
+	
+	
+	
+	// Schedule Snapshot
+	public static final String SCHEDULE_SNAPSHOT_HAS_NO_ORDER = "Schedule-Snapshot has no Purchase Order";
+	public static final String SCHEDULE_SNAPSHOT_MANDATORY_FIELD_EMPTY = "Schedule-Snapshot: Mandatory field is empty";
 }

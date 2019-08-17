@@ -16,6 +16,7 @@ import br.com.gda.info.InfoRecord;
 public final class SchedineInfo extends InfoRecord implements Cloneable, Comparable<SchedineInfo> {
 	public long codOwner;
 	public long codSchedule;
+	public long codSnapshot;
 	public long codOrder;
 	public long codStore;
 	public long codStoreSnapshot;
@@ -25,6 +26,12 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public long codMatSnapshot;
 	public LocalDate date;
 	public int codWeekday;
+	public int day;
+	public int weekMonth;
+	public int weekYear;
+	public int month;
+	public int quarter;
+	public int year;	
 	public LocalTime beginTime;
 	public LocalTime endTime;
 	public long codUser;
@@ -43,6 +50,7 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public SchedineInfo() {
 		codOwner = DefaultValue.number();	
 		codSchedule = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		codOrder = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codStoreSnapshot = DefaultValue.number();
@@ -51,6 +59,12 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		codMat = DefaultValue.number();
 		codMatSnapshot = DefaultValue.number();
 		codWeekday = DefaultValue.number();
+		day = DefaultValue.number();
+		weekMonth = DefaultValue.number();
+		weekYear = DefaultValue.number();
+		month = DefaultValue.number();
+		quarter = DefaultValue.number();
+		year = DefaultValue.number();	
 		codUser = DefaultValue.number();
 		codUserSnapshot = DefaultValue.number();
 		codCustomer = DefaultValue.number();

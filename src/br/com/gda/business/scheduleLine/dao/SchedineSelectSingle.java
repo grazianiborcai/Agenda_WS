@@ -1,15 +1,13 @@
 package br.com.gda.business.scheduleLine.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -101,7 +99,6 @@ public final class SchedineSelectSingle implements DaoStmt<SchedineInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<SchedineInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<SchedineInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -115,68 +112,30 @@ public final class SchedineSelectSingle implements DaoStmt<SchedineInfo> {
 				SchedineInfo dataInfo = new SchedineInfo();
 				dataInfo.codOwner = stmtResult.getLong(SchedineDbTableColumn.COL_COD_OWNER);	
 				dataInfo.codOrder = stmtResult.getLong(SchedineDbTableColumn.COL_COD_ORDER);
-				dataInfo.recordMode = stmtResult.getString(SchedineDbTableColumn.COL_RECORD_MODE);
-				
-				stmtResult.getLong(SchedineDbTableColumn.COL_COD_STORE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStore = stmtResult.getLong(SchedineDbTableColumn.COL_COD_STORE);
-				
-				stmtResult.getLong(SchedineDbTableColumn.COL_COD_STORE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStoreSnapshot = stmtResult.getLong(SchedineDbTableColumn.COL_COD_STORE_SNAPSHOT);
-				
-				stmtResult.getLong(SchedineDbTableColumn.COL_COD_EMPLOYEE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployee = stmtResult.getLong(SchedineDbTableColumn.COL_COD_EMPLOYEE);
-				
-				stmtResult.getLong(SchedineDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployeeSnapshot = stmtResult.getLong(SchedineDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-				
-				stmtResult.getLong(SchedineDbTableColumn.COL_COD_MATERIAL);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codMat = stmtResult.getLong(SchedineDbTableColumn.COL_COD_MATERIAL);
-				
-				stmtResult.getLong(SchedineDbTableColumn.COL_COD_MATERIAL_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codMatSnapshot = stmtResult.getLong(SchedineDbTableColumn.COL_COD_MATERIAL_SNAPSHOT);
-
-				Date date = stmtResult.getDate(SchedineDbTableColumn.COL_DATE);
-				if (date != null)
-					dataInfo.date = date.toLocalDate();
-				
-				Time beginTime = stmtResult.getTime(SchedineDbTableColumn.COL_BEGIN_TIME);
-				if (beginTime != null)
-					dataInfo.beginTime = beginTime.toLocalTime();
-				
-				Time endTime = stmtResult.getTime(SchedineDbTableColumn.COL_END_TIME);
-				if (endTime != null)
-					dataInfo.endTime = endTime.toLocalTime();
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(SchedineDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				stmtResult.getLong(SchedineDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(SchedineDbTableColumn.COL_COD_USER);
-				
-				stmtResult.getLong(SchedineDbTableColumn.COL_COD_USER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUserSnapshot = stmtResult.getLong(SchedineDbTableColumn.COL_COD_USER_SNAPSHOT);
-				
-				stmtResult.getLong(SchedineDbTableColumn.COL_COD_CUSTOMER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(SchedineDbTableColumn.COL_COD_CUSTOMER);
-				
-				stmtResult.getLong(SchedineDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomerSnapshot = stmtResult.getLong(SchedineDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-				
-				stmtResult.getLong(SchedineDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(SchedineDbTableColumn.COL_LAST_CHANGED_BY);
-				
+				dataInfo.recordMode = stmtResult.getString(SchedineDbTableColumn.COL_RECORD_MODE);				
+				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_STORE);
+				dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_EMPLOYEE);
+				dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_MATERIAL);
+				dataInfo.codMatSnapshot = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_MATERIAL_SNAPSHOT);
+				dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, SchedineDbTableColumn.COL_DATE);
+				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, SchedineDbTableColumn.COL_BEGIN_TIME);
+				dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, SchedineDbTableColumn.COL_END_TIME);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, SchedineDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_USER);
+				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_USER_SNAPSHOT);
+				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_CUSTOMER);
+				dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_LAST_CHANGED_BY);				
+				dataInfo.day = DaoFormatter.sqlToInt(stmtResult, SchedineDbTableColumn.COL_DAY);
+				dataInfo.weekMonth = DaoFormatter.sqlToInt(stmtResult, SchedineDbTableColumn.COL_WEEK_MONTH);
+				dataInfo.weekYear = DaoFormatter.sqlToInt(stmtResult, SchedineDbTableColumn.COL_WEEK_YEAR);
+				dataInfo.month = DaoFormatter.sqlToInt(stmtResult, SchedineDbTableColumn.COL_MONTH);
+				dataInfo.quarter = DaoFormatter.sqlToInt(stmtResult, SchedineDbTableColumn.COL_QUARTER);
+				dataInfo.year = DaoFormatter.sqlToInt(stmtResult, SchedineDbTableColumn.COL_YEAR);		
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.codWeekday = DaoFormatter.sqlToInt(stmtResult, SchedineDbTableColumn.COL_COD_WEEKDAY);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleLine.model.action.StdSchedineSuccess;
-import br.com.gda.business.scheduleLine.model.checker.OrderemCheckOrder;
+import br.com.gda.business.scheduleLine.model.checker.SchedineCheckOrder;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -32,7 +32,7 @@ public final class NodeSchedineOrderL2 extends DeciTreeWriteTemplate<SchedineInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new OrderemCheckOrder(checkerOption);
+		checker = new SchedineCheckOrder(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

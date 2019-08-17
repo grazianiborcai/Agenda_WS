@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
-import br.com.gda.business.scheduleLine.model.decisionTree.RootOrderemSelect;
+import br.com.gda.business.scheduleLine.model.decisionTree.RootSchedineSelect;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -25,7 +25,7 @@ public final class LazySchedineRootSelect extends ActionLazyTemplate<SchedineInf
 	
 	
 	@Override protected ActionStd<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
-		return new RootOrderemSelect(option).toAction();
+		return new RootSchedineSelect(option).toAction();
 	}
 	
 	

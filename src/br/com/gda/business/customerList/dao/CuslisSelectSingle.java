@@ -112,11 +112,11 @@ public final class CuslisSelectSingle implements DaoStmt<CuslisInfo> {
 				dataInfo.codOwner = stmtResult.getLong(CuslisDbTableColumn.COL_COD_OWNER);
 				dataInfo.codCustomer = stmtResult.getLong(CuslisDbTableColumn.COL_COD_CUSTOMER);									
 				dataInfo.recordMode = stmtResult.getString(CuslisDbTableColumn.COL_RECORD_MODE);
-				dataInfo.codPerson = DaoFormatter.sqlToNumber(stmtResult, CuslisDbTableColumn.COL_COD_PERSON);
-				dataInfo.codUser = DaoFormatter.sqlToNumber(stmtResult, CuslisDbTableColumn.COL_COD_USER);
+				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, CuslisDbTableColumn.COL_COD_PERSON);
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, CuslisDbTableColumn.COL_COD_USER);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CuslisDbTableColumn.COL_LAST_CHANGED);
-				dataInfo.lastChangedBy = DaoFormatter.sqlToNumber(stmtResult, CuslisDbTableColumn.COL_LAST_CHANGED_BY);
-				dataInfo.codSnapshot = DaoFormatter.sqlToNumber(stmtResult, CuslisDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CuslisDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, CuslisDbTableColumn.COL_COD_SNAPSHOT);
 
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
