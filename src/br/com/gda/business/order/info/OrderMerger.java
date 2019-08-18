@@ -2,6 +2,7 @@ package br.com.gda.business.order.info;
 
 import java.util.List;
 
+import br.com.gda.business.customerSearch.info.CusarchInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.FeeCategInfo;
 import br.com.gda.business.masterData.info.OrderStatusInfo;
@@ -12,6 +13,20 @@ import br.com.gda.security.user.info.UserInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class OrderMerger {		
+	public static OrderInfo mergeWithCusarch(CusarchInfo sourceOne, OrderInfo sourceTwo) {
+		InfoMerger<OrderInfo, CusarchInfo> merger = new OrderMergerCusarch();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OrderInfo> mergeWithCusarch(List<CusarchInfo> sourceOnes, List<OrderInfo> sourceTwos) {
+		InfoMerger<OrderInfo, CusarchInfo> merger = new OrderMergerCusarch();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
 	public static OrderInfo mergeWithPayord(PayordInfo sourceOne, OrderInfo sourceTwo) {
 		InfoMerger<OrderInfo, PayordInfo> merger = new OrderMergerPayord();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -22,7 +37,7 @@ public final class OrderMerger {
 	public static List<OrderInfo> mergeWithPayord(List<PayordInfo> sourceOnes, List<OrderInfo> sourceTwos) {
 		InfoMerger<OrderInfo, PayordInfo> merger = new OrderMergerPayord();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}		
+	}
 	
 	
 	

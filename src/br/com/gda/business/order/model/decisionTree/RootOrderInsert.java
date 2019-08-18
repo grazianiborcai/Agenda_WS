@@ -11,6 +11,7 @@ import br.com.gda.business.order.model.checker.OrderCheckLangu;
 import br.com.gda.business.order.model.checker.OrderCheckOwner;
 import br.com.gda.business.order.model.action.LazyOrderEnforceStatusCreated;
 import br.com.gda.business.order.model.action.LazyOrderInsert;
+import br.com.gda.business.order.model.action.LazyOrderMergeCusarch;
 import br.com.gda.business.order.model.action.LazyOrderMergeUser;
 import br.com.gda.business.order.model.action.LazyOrderNodeOrderem;
 import br.com.gda.business.order.model.checker.OrderCheckCurrency;
@@ -72,6 +73,7 @@ public final class RootOrderInsert extends DeciTreeWriteTemplate<OrderInfo> {
 		//TODO: zerar Address e Phone - Somente aceitar no Place
 		ActionStd<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);
 		ActionLazy<OrderInfo> mergeUser = new LazyOrderMergeUser(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> mergeCusarch = new LazyOrderMergeCusarch(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<OrderInfo> enforceExtid = new LazyOrderEnforceExtid(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceStatus = new LazyOrderEnforceStatusCreated(option.conn, option.schemaName);
@@ -80,7 +82,8 @@ public final class RootOrderInsert extends DeciTreeWriteTemplate<OrderInfo> {
 		//ActionLazy<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(mergeUser);
-		mergeUser.addPostAction(enforceLChanged);
+		mergeUser.addPostAction(mergeCusarch);
+		mergeCusarch.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceExtid);
 		enforceExtid.addPostAction(enforceStatus);		
 		enforceStatus.addPostAction(insert);
