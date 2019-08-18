@@ -6,21 +6,22 @@ import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_BIRTH_DATE = "birth_date";
-	public static final String COL_COD_ENTITY_CATEG = "cod_entity_categ";
-	public static final String COL_COD_GENDER = "cod_gender";
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_PERSON = "cod_person";	
-	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
-	public static final String COL_CPF = "cpf";
-	public static final String COL_EMAIL = "email";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
-	public static final String COL_NAME = "name";
-	public static final String COL_RECORD_MODE = "record_mode";	
+	public static final String COL_BIRTH_DATE = DaoDbField.COL_BIRTH_DATE;
+	public static final String COL_COD_ENTITY_CATEG = DaoDbField.COL_COD_ENTITY_CATEG;
+	public static final String COL_COD_GENDER = DaoDbField.COL_COD_GENDER;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;	
+	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
+	public static final String COL_CPF = DaoDbField.COL_CPF;
+	public static final String COL_EMAIL = DaoDbField.COL_EMAIL;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_NAME = DaoDbField.COL_NAME;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	
 	
@@ -90,7 +91,7 @@ public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_BIRTH_DATE;
+		oneColumn.columnName = COL_BIRTH_DATE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

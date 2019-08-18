@@ -10,7 +10,7 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class PersonapDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_BIRTH_DATE = PersonDbTableColumn.COL_COD_BIRTH_DATE;
+	public static final String COL_COD_BIRTH_DATE = PersonDbTableColumn.COL_BIRTH_DATE;
 	public static final String COL_COD_ENTITY_CATEG = PersonDbTableColumn.COL_COD_ENTITY_CATEG;
 	public static final String COL_COD_GENDER = PersonDbTableColumn.COL_COD_GENDER;
 	public static final String COL_COD_OWNER = PersonDbTableColumn.COL_COD_OWNER;

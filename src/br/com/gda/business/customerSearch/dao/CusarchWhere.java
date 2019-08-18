@@ -68,12 +68,12 @@ final class CusarchWhere implements DaoStmtWhere {
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
 				break;
 				
-			case CusarchDbTableColumn.COL_RECORD_MODE :
-				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
+			case CusarchDbTableColumn.COL_COD_USER :
+				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 				break;
 				
-			case CusarchDbTableColumn.COL_COD_LANGUAGE :
-				builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+			case CusarchDbTableColumn.COL_RECORD_MODE :
+				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 				break;
 			}
 		}		

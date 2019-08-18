@@ -586,4 +586,7 @@ public final class SystemCode {
 	// Schedule-Snapshot
 	public static final int SCHEDULE_SNAPSHOT_MANDATORY_FIELD_EMPTY		= 5200;
 	public static final int SCHEDULE_SNAPSHOT_HAS_NO_ORDER				= 5201;
+	
+	// Customer Search
+	public static final int CUSTOMER_SEARCH_MANDATORY_FIELD_EMPTY 		= 5250;
 }

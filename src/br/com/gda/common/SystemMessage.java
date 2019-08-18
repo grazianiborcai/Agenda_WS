@@ -758,4 +758,9 @@ public final class SystemMessage {
 	// Schedule Snapshot
 	public static final String SCHEDULE_SNAPSHOT_HAS_NO_ORDER = "Schedule-Snapshot has no Purchase Order";
 	public static final String SCHEDULE_SNAPSHOT_MANDATORY_FIELD_EMPTY = "Schedule-Snapshot: Mandatory field is empty";
+	
+	
+	
+	// Customer Search
+	public static final String CUSTOMER_SEARCH_MANDATORY_FIELD_EMPTY = "Customer-Search: Mandatory field is empty";
 }

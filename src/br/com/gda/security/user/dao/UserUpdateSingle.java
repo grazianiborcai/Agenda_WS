@@ -97,6 +97,7 @@ public final class UserUpdateSingle implements DaoStmt<UserInfo> {
 			
 			int i = 1;
 
+			stmt.setString(i++, recordInfo.recordMode);	
 			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
 			stmt = DaoFormatter.charToStmt(stmt, i++, recordInfo.codUserCategory);

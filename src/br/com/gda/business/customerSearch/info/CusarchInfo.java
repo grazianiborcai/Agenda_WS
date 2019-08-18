@@ -68,16 +68,6 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
-		result = result * 31 + (int) (codUser 	  ^ (codUser 	 >>> 32));
-		
-		if (addressData != null)
-			result = result * 31 + addressData.hashCode();
-		
-		if (phoneData != null)
-			result = result * 31 + phoneData.hashCode();
-		
-		if (personData != null)
-			result = result * 31 + personData.hashCode();
 		
 		return result;
 	}
@@ -95,10 +85,6 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 		
 		CusarchInfo obj = (CusarchInfo) o;		
 		return (codOwner    == obj.codOwner 	&& 
-				codCustomer == obj.codCustomer	&&
-				codUser 	== obj.codUser		&&
-				super.isRecordEqual(phoneData  , obj.phoneData  )	&&
-				super.isRecordEqual(personData , obj.personData )	&&
-				super.isRecordEqual(addressData, obj.addressData)		);
+				codCustomer == obj.codCustomer);
 	}
 }

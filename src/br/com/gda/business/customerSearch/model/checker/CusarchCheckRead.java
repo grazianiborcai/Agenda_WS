@@ -22,6 +22,7 @@ public final class CusarchCheckRead extends ModelCheckerTemplateSimple<CusarchIn
 		
 		
 		if (recordInfo.codCustomer 	<= 0 	&&
+			recordInfo.codUser 		<= 0 	&&
 			recordInfo.personData	== null &&
 			recordInfo.phoneData	== null		)
 			return super.FAILED;
@@ -33,12 +34,12 @@ public final class CusarchCheckRead extends ModelCheckerTemplateSimple<CusarchIn
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.CUSTOMER_SEARCH_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.CUSTOMER_SEARCH_MANDATORY_FIELD_EMPTY;
 	}
 }

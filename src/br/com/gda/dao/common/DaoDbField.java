@@ -2,6 +2,7 @@ package br.com.gda.dao.common;
 
 public final class DaoDbField {
 	public static final String COL_BEGIN_TIME = "begin_time";
+	public static final String COL_BIRTH_DATE = "birth_date";
 	public static final String COL_COD_AUTH_GROUP = "cod_auth_group";
 	public static final String COL_COD_COMPANY = "cod_company";
 	public static final String COL_COD_CURR = "cod_curr";
@@ -10,6 +11,7 @@ public final class DaoDbField {
 	public static final String COL_COD_EMPLOYEE = "cod_employee";
 	public static final String COL_COD_EMPLOYEE_SNAPSHOT = "cod_employee_snapshot";	
 	public static final String COL_COD_ENTITY_CATEG = "cod_entity_categ";
+	public static final String COL_COD_GENDER = "cod_gender";
 	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_MATERIAL = "cod_material";	
 	public static final String COL_COD_MATERIAL_SNAPSHOT = "cod_material_snapshot";
@@ -28,6 +30,7 @@ public final class DaoDbField {
 	public static final String COL_COD_WEEKDAY = "weekday";	
 	public static final String COL_COUNTRY_LEGAL = "country_legal";
 	public static final String COL_CNPJ = "cnpj";
+	public static final String COL_CPF = "cpf";
 	public static final String COL_CREATED_BY = "created_by";
 	public static final String COL_CREATED_ON = "created_on";
 	public static final String COL_DATE = "date";

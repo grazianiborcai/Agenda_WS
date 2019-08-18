@@ -7,6 +7,7 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.orderItem.info.OrderemInfo;
 import br.com.gda.business.orderItem.model.action.LazyOrderemInsert;
+import br.com.gda.business.orderItem.model.action.LazyOrderemInsertSchedine;
 import br.com.gda.business.orderItem.model.action.StdOrderemMergeStolis;
 import br.com.gda.business.orderItem.model.checker.OrderemCheckEmp;
 import br.com.gda.business.orderItem.model.checker.OrderemCheckEmpmat;
@@ -83,8 +84,10 @@ public final class NodeOrderemInsertService extends DeciTreeWriteTemplate<Ordere
 		
 		ActionStd<OrderemInfo> mergeStolis = new StdOrderemMergeStolis(option);		
 		ActionLazy<OrderemInfo> insert = new LazyOrderemInsert(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> insertSchedine = new LazyOrderemInsertSchedine(option.conn, option.schemaName);
 		
 		mergeStolis.addPostAction(insert);
+		insert.addPostAction(insertSchedine);
 		
 		actions.add(mergeStolis);
 		

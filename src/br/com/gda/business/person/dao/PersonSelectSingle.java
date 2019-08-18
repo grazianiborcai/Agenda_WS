@@ -1,14 +1,13 @@
 package br.com.gda.business.person.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -100,8 +99,6 @@ public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<PersonInfo> {
-		private final boolean NOT_NULL = false;
-		
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<PersonInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -119,26 +116,11 @@ public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
 				dataInfo.email = stmtResult.getString(PersonDbTableColumn.COL_EMAIL);						
 				dataInfo.recordMode = stmtResult.getString(PersonDbTableColumn.COL_RECORD_MODE);
 				dataInfo.codEntityCateg = stmtResult.getString(PersonDbTableColumn.COL_COD_ENTITY_CATEG);
-				
-				stmtResult.getLong(PersonDbTableColumn.COL_COD_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codSnapshot = stmtResult.getInt(PersonDbTableColumn.COL_COD_SNAPSHOT);
-				
-				stmtResult.getInt(PersonDbTableColumn.COL_COD_GENDER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codGender = stmtResult.getInt(PersonDbTableColumn.COL_COD_GENDER);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(PersonDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
-				
-				stmtResult.getLong(PersonDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getInt(PersonDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				Date tempDate = stmtResult.getDate(PersonDbTableColumn.COL_COD_BIRTH_DATE);
-				if (tempDate != null)
-					dataInfo.birthDate = tempDate.toLocalDate();
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PersonDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.codGender = DaoFormatter.sqlToInt(stmtResult, PersonDbTableColumn.COL_COD_GENDER);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PersonDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToInt(stmtResult, PersonDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, PersonDbTableColumn.COL_BIRTH_DATE);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

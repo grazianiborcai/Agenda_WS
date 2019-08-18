@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.customerSearch.info.CusarchInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoJoinColumn;
 import br.com.gda.dao.DaoJoinType;
@@ -24,7 +25,6 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 	private final String LT_CUS = DaoDbTable.CUS_TABLE;
 	private final String RT_PERSON = DaoDbTable.PERSON_TABLE;	
 	private final String RT_PHONE = DaoDbTable.PHONE_TABLE;	
-	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<CusarchInfo> stmtSql;
 	private DaoStmtOption<CusarchInfo> stmtOption;
@@ -44,7 +44,7 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LT_CUS;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.PERSON_SEARCH_VIEW);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.CUS_SEARCH_VIEW);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -58,7 +58,7 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;	
 		
-		DaoStmtWhere whereClause = new CusarchWhere(whereOption, DaoDbTable.PERSON_SEARCH_VIEW, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new CusarchWhere(whereOption, DaoDbTable.CUS_SEARCH_VIEW, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,8 +67,7 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 	private List<DaoJoin> buildJoins() {
 		List<DaoJoin> joins = new ArrayList<>();		
 		joins.add(buildJoinPerson());
-		joins.add(buildJoinPhone());
-		joins.add(buildJoinLanguage());	
+		joins.add(buildJoinPhone());	
 		return joins;
 	}
 	
@@ -140,18 +139,6 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 	
 	
 	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
-	}
-	
-	
-	
 	private void buildStmt() {
 		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
@@ -189,7 +176,6 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 	
 	
 	private class ResultParser implements DaoResultParser<CusarchInfo> {
-		private final boolean NOT_NULL = false;	
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		
@@ -203,12 +189,8 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 				CusarchInfo dataInfo = new CusarchInfo();
 				dataInfo.codOwner = stmtResult.getLong(CusarchDbTableColumn.COL_COD_OWNER);
 				dataInfo.codCustomer = stmtResult.getLong(CusarchDbTableColumn.COL_COD_CUSTOMER);	
-				dataInfo.codLanguage = stmtResult.getString(CusarchDbTableColumn.COL_COD_LANGUAGE);	
 				dataInfo.recordMode = stmtResult.getString(CusarchDbTableColumn.COL_RECORD_MODE);
-				
-				stmtResult.getLong(CusarchDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(CusarchDbTableColumn.COL_COD_USER);
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, CusarchDbTableColumn.COL_COD_USER);
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

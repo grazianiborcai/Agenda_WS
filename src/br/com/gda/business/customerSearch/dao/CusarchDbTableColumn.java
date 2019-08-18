@@ -4,26 +4,24 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.business.customer.dao.CusDbTableColumn;
-import br.com.gda.business.person.dao.PersonDbTableColumn;
 import br.com.gda.business.phone.dao.PhoneDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class CusarchDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_CUSTOMER = CusDbTableColumn.COL_COD_CUSTOMER;
-	public static final String COL_COD_ENTITY_CATEG = PersonDbTableColumn.COL_COD_ENTITY_CATEG;
-	public static final String COL_COD_GENDER = PersonDbTableColumn.COL_COD_GENDER;
-	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_COD_OWNER = CusDbTableColumn.COL_COD_OWNER;
-	public static final String COL_COD_PERSON = PersonDbTableColumn.COL_COD_PERSON;	
-	public static final String COL_COD_USER = CusDbTableColumn.COL_COD_USER;	
+	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
+	public static final String COL_COD_ENTITY_CATEG = DaoDbField.COL_COD_ENTITY_CATEG;
+	public static final String COL_COD_GENDER = DaoDbField.COL_COD_GENDER;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;	
+	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;	
 	public static final String COL_COUNTRY_PHONE = PhoneDbTableColumn.COL_COUNTRY_PHONE;
-	public static final String COL_CPF = PersonDbTableColumn.COL_CPF;
-	public static final String COL_EMAIL = PersonDbTableColumn.COL_EMAIL;
+	public static final String COL_CPF = DaoDbField.COL_CPF;
+	public static final String COL_EMAIL = DaoDbField.COL_EMAIL;
 	public static final String COL_FULL_NUMBER = PhoneDbTableColumn.COL_FULL_NUMBER;
-	public static final String COL_RECORD_MODE = CusDbTableColumn.COL_RECORD_MODE;	
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 		
 	
 	
@@ -138,14 +136,6 @@ public final class CusarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		tableColumns.put(DaoDbTable.PERSON_SEARCH_VIEW, columns);
+		tableColumns.put(DaoDbTable.CUS_SEARCH_VIEW, columns);
 	}
 }

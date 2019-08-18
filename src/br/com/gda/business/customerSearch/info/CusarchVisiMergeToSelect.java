@@ -11,8 +11,8 @@ final class CusarchVisiMergeToSelect implements InfoMergerVisitor<CusarchInfo, C
 	@Override public CusarchInfo writeRecord(CusarchInfo sourceOne, CusarchInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		CusarchInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		CusarchInfo clonedInfo = makeClone(sourceOne);
+		return merge(clonedInfo, sourceTwo);
 	}
 	
 	
@@ -37,9 +37,9 @@ final class CusarchVisiMergeToSelect implements InfoMergerVisitor<CusarchInfo, C
 	
 	
 	private CusarchInfo merge(CusarchInfo sourceOne, CusarchInfo sourceTwo) {
-		sourceTwo.codLanguage = sourceOne.codLanguage;
-		sourceTwo.username = sourceOne.username;
-		return sourceTwo;
+		sourceOne.codLanguage = sourceTwo.codLanguage;
+		sourceOne.username = sourceTwo.username;
+		return sourceOne;
 	}
 	
 	

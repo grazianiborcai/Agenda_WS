@@ -194,6 +194,28 @@ public final class DaoFormatter {
 	
 	
 	
+	public static PreparedStatement localDateTimeToStmt(PreparedStatement stmt, int index, LocalDateTime localDateTime) throws SQLException {
+		checkArgument(stmt, index, localDateTime);			
+		
+		Timestamp sqlTimestamp = localToSqlTimestamp(localDateTime);		
+		stmt.setTimestamp(index, sqlTimestamp);		
+		
+		return stmt;
+	}
+	
+	
+	
+	public static PreparedStatement localDateToStmt(PreparedStatement stmt, int index, LocalDate localDate) throws SQLException {
+		checkArgument(stmt, index, localDate);			
+		
+		Date sqlDate = localToSqlDate(localDate);		
+		stmt.setDate(index, sqlDate);		
+		
+		return stmt;
+	}
+	
+	
+	
 	public static PreparedStatement charToStmt(PreparedStatement stmt, int index, char character) throws SQLException {
 		checkArgument(stmt, index);				
 		
@@ -282,6 +304,24 @@ public final class DaoFormatter {
 			return null;
 			
 		return result.toLocalDate();	
+	}
+	
+	
+	
+	private static void checkArgument(PreparedStatement stmt, int index, LocalDateTime localDateTime) {
+		if (localDateTime == null)
+			throw new NullPointerException("localDateTime" + SystemMessage.NULL_ARGUMENT);
+		
+		checkArgument(stmt, index);
+	}
+	
+	
+	
+	private static void checkArgument(PreparedStatement stmt, int index, LocalDate localDate) {
+		if (localDate == null)
+			throw new NullPointerException("localDate" + SystemMessage.NULL_ARGUMENT);
+		
+		checkArgument(stmt, index);
 	}
 	
 	
