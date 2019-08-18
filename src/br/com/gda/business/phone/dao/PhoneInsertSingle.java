@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,101 +80,25 @@ public final class PhoneInsertSingle implements DaoStmt<PhoneInfo> {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codStore) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codStore);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codCustomer) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codCustomer);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codEmployee) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codEmployee);
-			}
-			
-			
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);
 			stmt.setInt(i++, recordInfo.codCountryPhone);
 			stmt.setString(i++, recordInfo.fullNumber);
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt.setString(i++, recordInfo.complement);
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codUser) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codUser);
-			}	
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codOwnerRef) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codOwnerRef);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.lastChangedBy) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codSnapshot);
-			}
-			
-			if (DaoFormatter.boxNumber(recordInfo.codCustomerSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codCustomerSnapshot);
-			}	
-						
-			
-			if (DaoFormatter.boxNumber(recordInfo.codEmployeeSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codEmployeeSnapshot);
-			}	
-						
-			
-			if (DaoFormatter.boxNumber(recordInfo.codStoreSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codStoreSnapshot);
-			}	
-						
-			
-			if (DaoFormatter.boxNumber(recordInfo.codUserSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codUserSnapshot);
-			}	
-			
-						
-			if (DaoFormatter.boxNumber(recordInfo.codOwnerRefSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codOwnerRefSnapshot);
-			}	
-			
-			
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRef);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployeeSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStoreSnapshot);	
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRefSnapshot);
 			stmt.setString(i++, recordInfo.number);
-			stmt.setString(i++, recordInfo.codArea);
-			
+			stmt.setString(i++, recordInfo.codArea);			
 
 			return stmt;
 		}		

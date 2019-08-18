@@ -3,11 +3,11 @@ package br.com.gda.business.phone.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -59,10 +59,6 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 	
 	
 	
-	
-	
-	
-	
 	private void buildStmt() {
 		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
 	}
@@ -104,7 +100,6 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 	
 	private static class ResultParser implements DaoResultParser<PhoneInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final boolean NOT_NULL = false;
 		
 		@Override public List<PhoneInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<PhoneInfo> finalResult = new ArrayList<>();
@@ -122,58 +117,19 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 				dataInfo.complement = stmtResult.getString(PhoneDbTableColumn.COL_COMPLEMENT);
 				dataInfo.number = stmtResult.getString(PhoneDbTableColumn.COL_NUMBER);
 				dataInfo.codArea = stmtResult.getString(PhoneDbTableColumn.COL_COD_AREA);
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_COD_STORE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStore = stmtResult.getLong(PhoneDbTableColumn.COL_COD_STORE);
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_COD_STORE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStoreSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_STORE_SNAPSHOT);
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_COD_CUSTOMER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(PhoneDbTableColumn.COL_COD_CUSTOMER);			
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomerSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);	
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_COD_EMPLOYEE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployee = stmtResult.getLong(PhoneDbTableColumn.COL_COD_EMPLOYEE);		
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployeeSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);	
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(PhoneDbTableColumn.COL_COD_USER);	
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_COD_USER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUserSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_USER_SNAPSHOT);
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_COD_OWNER_REF);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codOwnerRef = stmtResult.getLong(PhoneDbTableColumn.COL_COD_OWNER_REF);
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codOwnerRefSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(PhoneDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();		
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(PhoneDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				stmtResult.getLong(PhoneDbTableColumn.COL_COD_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codSnapshot = stmtResult.getLong(PhoneDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_STORE);
+				dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_CUSTOMER);
+				dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_EMPLOYEE);
+				dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_USER);
+				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_USER_SNAPSHOT);
+				dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_OWNER_REF);
+				dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PhoneDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_SNAPSHOT);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

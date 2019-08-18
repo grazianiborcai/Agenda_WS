@@ -1,6 +1,7 @@
 package br.com.gda.dao.common;
 
 public final class DaoDbField {
+	public static final String COL_COD_AREA = "cod_area";
 	public static final String COL_BEGIN_TIME = "begin_time";
 	public static final String COL_BIRTH_DATE = "birth_date";
 	public static final String COL_COD_AUTH_GROUP = "cod_auth_group";
@@ -17,8 +18,11 @@ public final class DaoDbField {
 	public static final String COL_COD_MATERIAL_SNAPSHOT = "cod_material_snapshot";
 	public static final String COL_COD_ORDER = "cod_order";
 	public static final String COL_COD_OWNER = "cod_owner";
+	public static final String COL_COD_OWNER_REF = "cod_owner_ref";
+	public static final String COL_COD_OWNER_REF_SNAPSHOT = "cod_owner_ref_snapshot";
 	public static final String COL_COD_PERSON = "cod_person";
 	public static final String COL_COD_PERSON_SNAPSHOT = "cod_person_snapshot";
+	public static final String COL_COD_PHONE = "cod_phone";
 	public static final String COL_COD_SCHEDULE = "cod_schedule";
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
 	public static final String COL_COD_STORE = "cod_store";
@@ -28,7 +32,9 @@ public final class DaoDbField {
 	public static final String COL_COD_USER_CATEG = "cod_user_categ";
 	public static final String COL_COD_USER_SNAPSHOT = "cod_user_snapshot";
 	public static final String COL_COD_WEEKDAY = "weekday";	
+	public static final String COL_COMPLEMENT = "complement";
 	public static final String COL_COUNTRY_LEGAL = "country_legal";
+	public static final String COL_COUNTRY_PHONE = "country_phone";
 	public static final String COL_CNPJ = "cnpj";
 	public static final String COL_CPF = "cpf";
 	public static final String COL_CREATED_BY = "created_by";
@@ -37,12 +43,14 @@ public final class DaoDbField {
 	public static final String COL_DAY = "day";
 	public static final String COL_EMAIL = "email";
 	public static final String COL_END_TIME = "end_time";
+	public static final String COL_FULL_NUMBER = "full_number";
 	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";
 	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
 	public static final String COL_MONTH = "month";
 	public static final String COL_NAME = "name";
+	public static final String COL_NUMBER = "number";
 	public static final String COL_QUARTER = "quarter";
 	public static final String COL_RAZAO_SOCIAL = "razao_social";
 	public static final String COL_RECORD_MODE = "record_mode";	

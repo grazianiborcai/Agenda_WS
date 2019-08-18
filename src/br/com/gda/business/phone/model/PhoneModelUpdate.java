@@ -1,72 +1,27 @@
 package br.com.gda.business.phone.model;
 
-import java.sql.Connection;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.core.Response;
-
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.decisionTree.RootPhoneUpdate;
-import br.com.gda.common.DbConnection;
-import br.com.gda.common.DbSchema;
-import br.com.gda.model.Model;
+import br.com.gda.model.ModelTemplate;
 import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.obsolete.ModelHelper_;
-import br.com.gda.model.obsolete.ModelOption_;
 
-public final class PhoneModelUpdate implements Model {
-	private Model helper;
-	private Connection conn;
-	private String schemaName;
-	
-	
+public final class PhoneModelUpdate extends ModelTemplate<PhoneInfo> {
+
 	public PhoneModelUpdate(String incomingData, HttpServletRequest request) {
-		initialize();
-		buildHelper(incomingData, request);
+		super(incomingData, request, PhoneInfo.class);
 	}
 	
 	
 	
-	private void initialize() {
-		this.conn = DbConnection.getConnection();
-		this.schemaName = DbSchema.getDefaultSchemaName();
+	@Override protected DeciTree<PhoneInfo> getDecisionTreeHook(DeciTreeOption<PhoneInfo> option) {
+		return new RootPhoneUpdate(option);
 	}
 	
 	
 	
-	private void buildHelper(String incomingData, HttpServletRequest request) {
-		ModelOption_<PhoneInfo> helperOption = new ModelOption_<>();
-		
-		helperOption.recordClass = PhoneInfo.class;
-		helperOption.deciTreeFactory = new TreeFactory();
-		helperOption.conn = this.conn;
-		helperOption.schemaName = this.schemaName;
-		
-		helper = ModelHelper_.factory(helperOption, incomingData, request);
-	}
-
-
-	
-	@Override public boolean executeRequest() {
-		return helper.executeRequest();
-	}
-
-
-	
-	@Override public Response getResponse() {
-		return helper.getResponse();
-	}
-	
-	
-	
-	
-	
-	
-	private static class TreeFactory implements DeciTreeFactory<PhoneInfo> {		
-		@Override public DeciTree<PhoneInfo> getInstance(DeciTreeOption<PhoneInfo> option) {
-			return new RootPhoneUpdate(option);
-		}			
+	@Override protected Class<?> getImplamentationClassHook() {
+		return this.getClass();
 	}
 }
