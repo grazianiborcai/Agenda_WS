@@ -26,6 +26,7 @@ final class SchedineVisiMergeToUpdate implements InfoMergerVisitor<SchedineInfo,
 		SchedineInfo result = makeClone(sourceTwo);		
 		result.createdOn = sourceOne.createdOn;
 		result.createdBy = sourceOne.createdBy;
+		result.codOrder = sourceOne.codOrder;
 		return result;
 	}
 	

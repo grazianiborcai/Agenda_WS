@@ -113,6 +113,7 @@ public final class SchedinapSelectSingle implements DaoStmt<SchedinapInfo> {
 				SchedinapInfo dataInfo = new SchedinapInfo();
 				dataInfo.codOwner = stmtResult.getLong(SchedinapDbTableColumn.COL_COD_OWNER);	
 				dataInfo.codSnapshot = stmtResult.getLong(SchedinapDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.codSchedule = stmtResult.getLong(SchedineDbTableColumn.COL_COD_SCHEDULE);
 				dataInfo.codOrder = stmtResult.getLong(SchedinapDbTableColumn.COL_COD_ORDER);
 				dataInfo.recordMode = stmtResult.getString(SchedinapDbTableColumn.COL_RECORD_MODE);				
 				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, SchedinapDbTableColumn.COL_COD_STORE);
