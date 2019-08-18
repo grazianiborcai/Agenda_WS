@@ -5,6 +5,8 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceCreatedBy;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceCreatedOn;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceLChanged;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineNodeTime;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineInsert;
@@ -126,6 +128,8 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		ActionLazy<SchedineInfo> mergeCuslis = new LazySchedineMergeCuslis(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> nodeTime = new LazySchedineNodeTime(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> enforceCreatedOn = new LazySchedineEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> enforceCreatedBy = new LazySchedineEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> insert = new LazySchedineInsert(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> snapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
 		
@@ -135,7 +139,9 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		nodeMat.addPostAction(mergeCuslis);		
 		mergeCuslis.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(nodeTime);
-		nodeTime.addPostAction(insert);
+		nodeTime.addPostAction(enforceCreatedOn);
+		enforceCreatedOn.addPostAction(enforceCreatedBy);
+		enforceCreatedBy.addPostAction(insert);
 		insert.addPostAction(snapshot);
 		
 		actions.add(nodeOrder);

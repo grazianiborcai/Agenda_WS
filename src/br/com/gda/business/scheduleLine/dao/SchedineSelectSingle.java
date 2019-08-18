@@ -120,6 +120,8 @@ public final class SchedineSelectSingle implements DaoStmt<SchedineInfo> {
 				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, SchedineDbTableColumn.COL_BEGIN_TIME);
 				dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, SchedineDbTableColumn.COL_END_TIME);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, SchedineDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, SchedineDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_CREATED_BY);
 				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_USER);
 				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_CUSTOMER);
 				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_LAST_CHANGED_BY);				

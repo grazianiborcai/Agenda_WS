@@ -76,4 +76,18 @@ public final class SchedineMerger {
 		InfoMerger<SchedineInfo, SchedineInfo> merger = new SchedineMergerToSelect();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
+	
+	
+	
+	public static SchedineInfo mergeToUpdate(SchedineInfo sourceOne, SchedineInfo sourceTwo) {
+		InfoMerger<SchedineInfo, SchedineInfo> merger = new SchedineMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<SchedineInfo> mergeToUpdate(List<SchedineInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
+		InfoMerger<SchedineInfo, SchedineInfo> merger = new SchedineMergerToUpdate();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 }

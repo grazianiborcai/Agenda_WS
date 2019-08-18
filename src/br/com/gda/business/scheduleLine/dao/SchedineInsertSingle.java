@@ -100,6 +100,8 @@ public class SchedineInsertSingle implements DaoStmt<SchedineInfo> {
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.year);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codWeekday);
+			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.createdOn));
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 			
 			return stmt;
 		}		

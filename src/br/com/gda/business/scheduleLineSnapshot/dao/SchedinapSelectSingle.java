@@ -125,6 +125,8 @@ public final class SchedinapSelectSingle implements DaoStmt<SchedinapInfo> {
 				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, SchedinapDbTableColumn.COL_BEGIN_TIME);
 				dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, SchedinapDbTableColumn.COL_END_TIME);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, SchedinapDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, SchedinapDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, SchedinapDbTableColumn.COL_CREATED_BY);
 				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, SchedinapDbTableColumn.COL_COD_USER);
 				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, SchedinapDbTableColumn.COL_COD_USER_SNAPSHOT);
 				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, SchedinapDbTableColumn.COL_COD_CUSTOMER);

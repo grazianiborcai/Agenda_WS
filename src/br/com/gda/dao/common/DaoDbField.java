@@ -17,7 +17,7 @@ public final class DaoDbField {
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_PERSON = "cod_person";
 	public static final String COL_COD_PERSON_SNAPSHOT = "cod_person_snapshot";
-	public static final String COL_COD_SCHEDULE = "cod_schedule";	
+	public static final String COL_COD_SCHEDULE = "cod_schedule";
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
 	public static final String COL_COD_STORE = "cod_store";
 	public static final String COL_COD_STORE_SNAPSHOT = "cod_store_snapshot";	
@@ -28,6 +28,8 @@ public final class DaoDbField {
 	public static final String COL_COD_WEEKDAY = "weekday";	
 	public static final String COL_COUNTRY_LEGAL = "country_legal";
 	public static final String COL_CNPJ = "cnpj";
+	public static final String COL_CREATED_BY = "created_by";
+	public static final String COL_CREATED_ON = "created_on";
 	public static final String COL_DATE = "date";
 	public static final String COL_DAY = "day";
 	public static final String COL_EMAIL = "email";
