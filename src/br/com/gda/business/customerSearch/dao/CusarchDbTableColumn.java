@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.business.phone.dao.PhoneDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbField;
@@ -17,10 +16,10 @@ public final class CusarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;	
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;	
-	public static final String COL_COUNTRY_PHONE = PhoneDbTableColumn.COL_COUNTRY_PHONE;
+	public static final String COL_COUNTRY_PHONE = DaoDbField.COL_COUNTRY_PHONE;
 	public static final String COL_CPF = DaoDbField.COL_CPF;
 	public static final String COL_EMAIL = DaoDbField.COL_EMAIL;
-	public static final String COL_FULL_NUMBER = PhoneDbTableColumn.COL_FULL_NUMBER;
+	public static final String COL_FULL_NUMBER = DaoDbField.COL_FULL_NUMBER;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 		
 	
