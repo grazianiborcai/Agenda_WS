@@ -4,17 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
-import br.com.gda.business.scheduleLine.model.action.StdSchedineSuccess;
-import br.com.gda.business.scheduleLine.model.checker.SchedineCheckIsService;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineUpdate;
+import br.com.gda.business.scheduleLine.model.action.StdSchedineInsertSchedinap;
+import br.com.gda.business.scheduleLine.model.checker.SchedineCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeSchedineMat extends DeciTreeWriteTemplate<SchedineInfo> {
+public final class NodeSchedineSnapshot extends DeciTreeWriteTemplate<SchedineInfo> {
 	
-	public NodeSchedineMat(DeciTreeOption<SchedineInfo> option) {
+	public NodeSchedineSnapshot(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
@@ -24,7 +26,7 @@ public final class NodeSchedineMat extends DeciTreeWriteTemplate<SchedineInfo> {
 		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedineInfo> checker;	
 		
-		checker = new SchedineCheckIsService();
+		checker = new SchedineCheckWrite();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -35,9 +37,12 @@ public final class NodeSchedineMat extends DeciTreeWriteTemplate<SchedineInfo> {
 	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedineInfo> success = new StdSchedineSuccess(option);
+		ActionStd<SchedineInfo> insertSchedinap = new StdSchedineInsertSchedinap(option);
+		ActionLazy<SchedineInfo> update = new LazySchedineUpdate(option.conn, option.schemaName);
 		
-		actions.add(success);
+		insertSchedinap.addPostAction(update);
+		
+		actions.add(insertSchedinap);
 		return actions;
 	}
 }

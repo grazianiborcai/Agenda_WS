@@ -13,7 +13,6 @@ final class SchedineVisiMergeCuslis implements InfoMergerVisitor<SchedineInfo, C
 		checkArgument(sourceOne, sourceTwo);
 		
 		SchedineInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.codCustomerSnapshot = sourceOne.codSnapshot;
 		resultInfo.codUser = sourceOne.codUser;
 
 		return resultInfo;

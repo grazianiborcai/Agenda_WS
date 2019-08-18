@@ -2,21 +2,21 @@ package br.com.gda.business.scheduleLine.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.employeePosition.info.EmposInfo;
-import br.com.gda.business.employeePosition.model.checker.EmposCheckExist;
+import br.com.gda.business.materialStore.info.MatoreInfo;
+import br.com.gda.business.materialStore.model.checker.MatoreCheckExist;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class ShedineCheckEmpos implements ModelChecker<SchedineInfo> {
+public final class SchedineCheckMatore implements ModelChecker<SchedineInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmposInfo> checker;
+	private ModelChecker<MatoreInfo> checker;
 	
 	
-	public ShedineCheckEmpos(ModelCheckerOption option) {
-		checker = new EmposCheckExist(option);
+	public SchedineCheckMatore(ModelCheckerOption option) {
+		checker = new MatoreCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class ShedineCheckEmpos implements ModelChecker<SchedineInfo> {
 	
 	
 	@Override public boolean check(SchedineInfo recordInfo) {
-		return checker.check(EmposInfo.copyFrom(recordInfo));
+		return checker.check(MatoreInfo.copyFrom(recordInfo));
 	}
 
 	

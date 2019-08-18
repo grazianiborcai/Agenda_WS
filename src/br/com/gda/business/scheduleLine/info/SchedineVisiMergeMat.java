@@ -14,7 +14,6 @@ final class SchedineVisiMergeMat implements InfoMergerVisitor<SchedineInfo, MatI
 		
 		SchedineInfo resultInfo = makeClone(sourceTwo);
 		resultInfo.matData = sourceOne;
-		resultInfo.codMatSnapshot = sourceOne.codSnapshot;
 
 		return resultInfo;
 	}

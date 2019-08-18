@@ -80,6 +80,7 @@ public class SchedinapInsertSingle implements DaoStmt<SchedinapInfo> {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
+			stmt.setLong(i++, recordInfo.codSchedule);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrder);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codMat);

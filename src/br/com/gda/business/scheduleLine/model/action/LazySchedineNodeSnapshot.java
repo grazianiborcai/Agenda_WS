@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
+import br.com.gda.business.scheduleLine.model.decisionTree.NodeSchedineSnapshot;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedineMergeEmplis extends ActionLazyTemplate<SchedineInfo, SchedineInfo> {
+public final class LazySchedineNodeSnapshot extends ActionLazyTemplate<SchedineInfo, SchedineInfo> {
 	
-	public LazySchedineMergeEmplis(Connection conn, String schemaName) {
+	public LazySchedineNodeSnapshot(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,12 +25,12 @@ public final class LazySchedineMergeEmplis extends ActionLazyTemplate<SchedineIn
 	
 	
 	@Override protected ActionStd<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
-		return new StdSchedineMergeEmplis(option);
+		return new NodeSchedineSnapshot(option).toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<SchedineInfo> translateResultHook(DeciResult<SchedineInfo> result) {		
+	@Override protected DeciResult<SchedineInfo> translateResultHook(DeciResult<SchedineInfo> result) {
 		return result;
 	}
 }

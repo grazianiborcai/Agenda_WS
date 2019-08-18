@@ -8,9 +8,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class ShedineCheckIsService extends ModelCheckerTemplateSimple<SchedineInfo> {
+public final class SchedineCheckIsService extends ModelCheckerTemplateSimple<SchedineInfo> {
 
-	public ShedineCheckIsService() {
+	public SchedineCheckIsService() {
 		super();
 	}
 	

@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedineEnforceWeekday extends ActionLazyTemplate<SchedineInfo, SchedineInfo> {
+public final class LazySchedineUpdate extends ActionLazyTemplate<SchedineInfo, SchedineInfo> {
 
-	public LazySchedineEnforceWeekday(Connection conn, String schemaName) {
+	public LazySchedineUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazySchedineEnforceWeekday extends ActionLazyTemplate<Schedin
 	
 	
 	@Override protected ActionStd<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
-		return new StdSchedineEnforceWeekday(option);
+		return new StdSchedineUpdate(option);
 	}
 	
 	

@@ -3,24 +3,24 @@ package br.com.gda.business.scheduleLine.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
-import br.com.gda.security.userList.info.UselisInfo;
 
-final class SchedineVisiMergeUselis implements InfoMergerVisitor<SchedineInfo, UselisInfo> {
+final class SchedineVisiMergeSchedinap implements InfoMergerVisitor<SchedineInfo, SchedinapInfo> {
 
-	@Override public SchedineInfo writeRecord(UselisInfo sourceOne, SchedineInfo sourceTwo) {
+	@Override public SchedineInfo writeRecord(SchedinapInfo sourceOne, SchedineInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		SchedineInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.codUserSnapshot = sourceOne.codSnapshot;
+		resultInfo.codSnapshot = sourceOne.codSnapshot;
 
 		return resultInfo;
 	}
 	
 	
 	
-	private void checkArgument(UselisInfo sourceOne, SchedineInfo sourceTwo) {
+	private void checkArgument(SchedinapInfo sourceOne, SchedineInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}	
@@ -39,9 +39,9 @@ final class SchedineVisiMergeUselis implements InfoMergerVisitor<SchedineInfo, U
 
 
 	
-	@Override public boolean shouldWrite(UselisInfo sourceOne, SchedineInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner && 
-				sourceOne.codUser  == sourceTwo.codUser		);
+	@Override public boolean shouldWrite(SchedinapInfo sourceOne, SchedineInfo sourceTwo) {
+		return (sourceOne.codOwner 	   == sourceTwo.codOwner 	&& 
+				sourceOne.codSchedule  == sourceTwo.codSchedule		);
 	}
 	
 	

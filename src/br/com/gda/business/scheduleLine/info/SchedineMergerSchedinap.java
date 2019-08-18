@@ -1,14 +1,14 @@
 package br.com.gda.business.scheduleLine.info;
 
-import br.com.gda.business.storeList.info.StolisInfo;
+import br.com.gda.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 
-final class SchedineMergerStolis extends InfoMergerTemplate<SchedineInfo, StolisInfo> {
+final class SchedineMergerSchedinap extends InfoMergerTemplate<SchedineInfo, SchedinapInfo> {
 
-	@Override protected InfoMergerVisitor<SchedineInfo, StolisInfo> getVisitorHook() {
-		return new SchedineVisiMergeStolis();
+	@Override protected InfoMergerVisitor<SchedineInfo, SchedinapInfo> getVisitorHook() {
+		return new SchedineVisiMergeSchedinap();
 	}
 	
 	

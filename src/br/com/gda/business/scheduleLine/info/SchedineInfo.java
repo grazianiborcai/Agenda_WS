@@ -19,11 +19,8 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public long codSnapshot;
 	public long codOrder;
 	public long codStore;
-	public long codStoreSnapshot;
 	public long codEmployee;
-	public long codEmployeeSnapshot;
 	public long codMat;
-	public long codMatSnapshot;
 	public LocalDate date;
 	public int codWeekday;
 	public int day;
@@ -35,9 +32,7 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public LocalTime beginTime;
 	public LocalTime endTime;
 	public long codUser;
-	public long codUserSnapshot;
 	public long codCustomer;
-	public long codCustomerSnapshot;
 	public MatInfo matData;
 	public String codLanguage;
 	public LocalDateTime lastChanged;
@@ -53,11 +48,8 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		codSnapshot = DefaultValue.number();
 		codOrder = DefaultValue.number();
 		codStore = DefaultValue.number();
-		codStoreSnapshot = DefaultValue.number();
 		codEmployee = DefaultValue.number();
-		codEmployeeSnapshot = DefaultValue.number();
 		codMat = DefaultValue.number();
-		codMatSnapshot = DefaultValue.number();
 		codWeekday = DefaultValue.number();
 		day = DefaultValue.number();
 		weekMonth = DefaultValue.number();
@@ -66,9 +58,7 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		quarter = DefaultValue.number();
 		year = DefaultValue.number();	
 		codUser = DefaultValue.number();
-		codUserSnapshot = DefaultValue.number();
 		codCustomer = DefaultValue.number();
-		codCustomerSnapshot = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		codLanguage = DefaultValue.language();	
 		recordMode = DefaultValue.recordMode();

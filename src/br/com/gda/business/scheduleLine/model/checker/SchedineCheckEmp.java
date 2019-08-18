@@ -2,21 +2,21 @@ package br.com.gda.business.scheduleLine.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.employeeMaterial.info.EmpmatInfo;
-import br.com.gda.business.employeeMaterial.model.checker.EmpmatCheckExist;
+import br.com.gda.business.employee.info.EmpInfo;
+import br.com.gda.business.employee.model.checker.EmpCheckExist;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class ShedineCheckEmpmat implements ModelChecker<SchedineInfo> {
+public final class SchedineCheckEmp implements ModelChecker<SchedineInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmpmatInfo> checker;
+	private ModelChecker<EmpInfo> checker;
 	
 	
-	public ShedineCheckEmpmat(ModelCheckerOption option) {
-		checker = new EmpmatCheckExist(option);
+	public SchedineCheckEmp(ModelCheckerOption option) {
+		checker = new EmpCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class ShedineCheckEmpmat implements ModelChecker<SchedineInfo> {
 	
 	
 	@Override public boolean check(SchedineInfo recordInfo) {
-		return checker.check(EmpmatInfo.copyFrom(recordInfo));
+		return checker.check(EmpInfo.copyFrom(recordInfo));
 	}
 
 	

@@ -31,24 +31,8 @@ public final class SchedineWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case SchedineDbTableColumn.COL_COD_ORDER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
-					break;
-					
-				case SchedineDbTableColumn.COL_COD_STORE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
-					break;
-					
-				case SchedineDbTableColumn.COL_COD_MATERIAL :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
-					break;
-					
-				case SchedineDbTableColumn.COL_COD_EMPLOYEE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
-					break;
-					
-				case SchedineDbTableColumn.COL_DATE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
+				case SchedineDbTableColumn.COL_COD_SCHEDULE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSchedule));
 					break;
 					
 				case SchedineDbTableColumn.COL_RECORD_MODE :

@@ -1,18 +1,18 @@
 package br.com.gda.business.scheduleLine.model.action;
 
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionStdHelperMerge;
+import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedineMergeStolis implements ActionStd<SchedineInfo> {
+public final class StdSchedineEnforceDay implements ActionStd<SchedineInfo> {
 	private ActionStd<SchedineInfo> actionHelper;	
 	
 	
-	public StdSchedineMergeStolis(DeciTreeOption<SchedineInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiSchedineMergeStolis(option.conn, option.schemaName));
+	public StdSchedineEnforceDay(DeciTreeOption<SchedineInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiSchedineEnforceDay());
 	}
 	
 	

@@ -22,9 +22,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedinapInfo> {
+public final class RootSchedinapInsert extends DeciTreeWriteTemplate<SchedinapInfo> {
 	
-	public RootSchedineInsert(DeciTreeOption<SchedinapInfo> option) {
+	public RootSchedinapInsert(DeciTreeOption<SchedinapInfo> option) {
 		super(option);
 	}
 	
