@@ -78,12 +78,19 @@ public final class CartResource {
 	
 	
 	
-	@POST
+	@GET
 	@Path(CHECKOUT_CART)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response checkoutCart(@Context HttpServletRequest request, String incomingData) {
+	public Response checkoutCart(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+								 @HeaderParam("TOKEN_USERNAME") String username,
+								 @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
 		
-		Model model = new CartModelCheckout(incomingData, request);
+		CartInfo recordInfo = new CartInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;	
+		
+		Model model = new CartModelCheckout(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	}
