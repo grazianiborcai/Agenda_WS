@@ -3,11 +3,10 @@ package br.com.gda.business.material.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -95,10 +94,6 @@ public final class MatUpdateSingle implements DaoStmt<MatInfo> {
 	private class ParamTranslator implements DaoStmtParamTranslator<MatInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatInfo recordInfo) throws SQLException {
 			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
-			
 			int i = 1;
 			stmt.setInt(i++, recordInfo.codType);
 			stmt.setInt(i++, recordInfo.codMatCateg);
@@ -107,21 +102,9 @@ public final class MatUpdateSingle implements DaoStmt<MatInfo> {
 			stmt.setInt(i++, recordInfo.codGroup);
 			stmt.setBoolean(i++, recordInfo.isLocked);
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setTimestamp(i++, lastChanged);
-			
-			if (recordInfo.lastChangedBy >= 0) {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);			
 			
 			return stmt;
 		}		

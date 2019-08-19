@@ -1,10 +1,12 @@
 package br.com.gda.dao.common;
 
-public final class DaoDbField {
-	public static final String COL_COD_AREA = "cod_area";
+public final class DaoDbField {	
 	public static final String COL_BEGIN_TIME = "begin_time";
 	public static final String COL_BIRTH_DATE = "birth_date";
+	public static final String COL_COD_AREA = "cod_area";
 	public static final String COL_COD_AUTH_GROUP = "cod_auth_group";
+	public static final String COL_COD_BUSINESS = "cod_business";
+	public static final String COL_COD_CATEGORY = "cod_category";
 	public static final String COL_COD_COMPANY = "cod_company";
 	public static final String COL_COD_CURR = "cod_curr";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
@@ -13,6 +15,7 @@ public final class DaoDbField {
 	public static final String COL_COD_EMPLOYEE_SNAPSHOT = "cod_employee_snapshot";	
 	public static final String COL_COD_ENTITY_CATEG = "cod_entity_categ";
 	public static final String COL_COD_GENDER = "cod_gender";
+	public static final String COL_COD_GROUP = "cod_group";
 	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_MATERIAL = "cod_material";	
 	public static final String COL_COD_MATERIAL_SNAPSHOT = "cod_material_snapshot";
@@ -28,6 +31,8 @@ public final class DaoDbField {
 	public static final String COL_COD_STORE = "cod_store";
 	public static final String COL_COD_STORE_SNAPSHOT = "cod_store_snapshot";	
 	public static final String COL_COD_TIME_ZONE = "cod_timezone";
+	public static final String COL_COD_TYPE = "cod_type";
+	public static final String COL_COD_UNIT = "unit";
 	public static final String COL_COD_USER = "cod_user";
 	public static final String COL_COD_USER_CATEG = "cod_user_categ";
 	public static final String COL_COD_USER_SNAPSHOT = "cod_user_snapshot";
@@ -46,11 +51,13 @@ public final class DaoDbField {
 	public static final String COL_FULL_NUMBER = "full_number";
 	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";
 	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";
+	public static final String COL_IS_LOCKED = "is_locked";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
 	public static final String COL_MONTH = "month";
 	public static final String COL_NAME = "name";
 	public static final String COL_NUMBER = "number";
+	public static final String COL_PRICE_UNIT = "price_unit";
 	public static final String COL_QUARTER = "quarter";
 	public static final String COL_RAZAO_SOCIAL = "razao_social";
 	public static final String COL_RECORD_MODE = "record_mode";	

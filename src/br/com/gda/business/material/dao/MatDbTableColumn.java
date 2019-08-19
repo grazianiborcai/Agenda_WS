@@ -6,22 +6,23 @@ import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_BUSINESS = "cod_business";
-	public static final String COL_COD_CATEGORY = "cod_category";
-	public static final String COL_COD_GROUP = "cod_group";
-	public static final String COL_COD_MATERIAL = "cod_material";
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
-	public static final String COL_COD_TYPE = "cod_type";
-	public static final String COL_COD_UNIT = "unit";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
-	public static final String COL_IS_LOCKED = "is_locked";
-	public static final String COL_PRICE_UNIT = "price_unit";
-	public static final String COL_RECORD_MODE = "record_mode";
+	public static final String COL_COD_BUSINESS = DaoDbField.COL_COD_BUSINESS;
+	public static final String COL_COD_CATEGORY = DaoDbField.COL_COD_CATEGORY;
+	public static final String COL_COD_GROUP = DaoDbField.COL_COD_GROUP;
+	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
+	public static final String COL_COD_TYPE = DaoDbField.COL_COD_TYPE;
+	public static final String COL_COD_UNIT = DaoDbField.COL_COD_UNIT;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_IS_LOCKED = DaoDbField.COL_IS_LOCKED;
+	public static final String COL_PRICE_UNIT = DaoDbField.COL_PRICE_UNIT;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	

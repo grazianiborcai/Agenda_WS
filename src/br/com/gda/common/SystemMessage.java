@@ -125,6 +125,7 @@ public final class SystemMessage {
 	public static final String MAT_CATEG_CANT_BE_CHANGED = "Material: Category can't be changed";
 	public static final String MAT_CATEG_NOT_CHANGED = "Material: Category not changed";
 	public static final String MAT_HAS_ITEM = "Material data found on DB";
+	public static final String MAT_MANDATORY_FIELD_EMPTY = "Material: Mandatory field is empty";
 	public static final String MAT_NO_ITEM_FOUND = "No Material data found on DB";
 	public static final String MAT_NOT_FOUND = "Material data not found on DB";
 	public static final String MAT_NOT_SERVICE	= "Material's category is not a service";

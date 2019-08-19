@@ -36,12 +36,12 @@ public final class MatCheckWrite extends ModelCheckerTemplateSimple<MatInfo> {
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.MAT_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.MAT_MANDATORY_FIELD_EMPTY;
 	}
 }

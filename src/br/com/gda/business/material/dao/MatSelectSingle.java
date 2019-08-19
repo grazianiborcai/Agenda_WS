@@ -3,11 +3,11 @@ package br.com.gda.business.material.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -99,7 +99,6 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<MatInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<MatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -119,20 +118,9 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 				dataInfo.codGroup = stmtResult.getInt(MatDbTableColumn.COL_COD_GROUP);
 				dataInfo.isLocked = stmtResult.getBoolean(MatDbTableColumn.COL_IS_LOCKED);	
 				dataInfo.recordMode = stmtResult.getString(MatDbTableColumn.COL_RECORD_MODE);
-				
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(MatDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();				
-				
-				stmtResult.getLong(MatDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(MatDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				stmtResult.getLong(MatDbTableColumn.COL_COD_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codSnapshot = stmtResult.getLong(MatDbTableColumn.COL_COD_SNAPSHOT);				
-				
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, MatDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, MatDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, MatDbTableColumn.COL_COD_SNAPSHOT);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

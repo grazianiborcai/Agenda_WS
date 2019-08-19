@@ -7,6 +7,7 @@ import br.com.gda.business.material.model.action.StdMatEnforceKey;
 import br.com.gda.business.material.model.action.LazyMatSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction;
@@ -23,9 +24,11 @@ public final class MatCheckExist extends ModelCheckerTemplateAction<MatInfo> {
 	@Override protected ActionStd<MatInfo> buildActionHook(MatInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<MatInfo> actionSelect = new StdMatEnforceKey(option);
-		actionSelect.addPostAction(new LazyMatSelect(conn, schemaName));
-		return actionSelect;
+		ActionStd<MatInfo> enforceKey = new StdMatEnforceKey(option);
+		ActionLazy<MatInfo> select = new LazyMatSelect(conn, schemaName);
+		
+		enforceKey.addPostAction(select);
+		return enforceKey;
 	}
 	
 	

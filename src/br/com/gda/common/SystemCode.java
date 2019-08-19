@@ -135,6 +135,7 @@ public final class SystemCode {
 	public static final int MAT_TEXT_DEFAULT_CANT_BE_DELETED			= 1213;
 	public static final int MAT_HAS_ITEM								= 1214;
 	public static final int MAT_NO_ITEM_FOUND							= 1215;
+	public static final int MAT_MANDATORY_FIELD_EMPTY 					= 1216;
 	
 	// Owner
 	public static final int OWNER_ALREADY_EXIST							= 1250;
