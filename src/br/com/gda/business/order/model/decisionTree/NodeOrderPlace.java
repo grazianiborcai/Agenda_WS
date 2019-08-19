@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.checker.OrderCheckPlace;
+import br.com.gda.business.order.model.action.LazyOrderInsertSchedine;
 import br.com.gda.business.order.model.action.LazyOrderRootSelect;
 import br.com.gda.business.order.model.action.LazyOrderUpdate;
 import br.com.gda.business.order.model.action.StdOrderEnforceStatusWaiting;
@@ -40,9 +41,11 @@ public final class NodeOrderPlace extends DeciTreeWriteTemplate<OrderInfo> {
 		
 		ActionStd<OrderInfo> enforceStatus = new StdOrderEnforceStatusWaiting(option);
 		ActionLazy<OrderInfo> update = new LazyOrderUpdate(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> insertSchedine = new LazyOrderInsertSchedine(option.conn, option.schemaName);	
 		ActionLazy<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);		
 		
 		enforceStatus.addPostAction(update);
+		update.addPostAction(insertSchedine);
 		update.addPostAction(select);
 		
 		actions.add(enforceStatus);
