@@ -30,6 +30,7 @@ final class SchedineVisiMergeOrder implements InfoMergerOneToManyVisitor<Schedin
 		for(OrderemInfo eachOrderem : sourceOne.orderms) {
 			SchedineInfo eachResult = SchedineInfo.copyFrom(eachOrderem);
 			eachResult.codCustomer = sourceOne.codCustomer;		
+			eachResult.codOrderStatus = sourceOne.codOrderStatus;
 			
 			results.add(eachResult);
 		}

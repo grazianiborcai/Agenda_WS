@@ -27,7 +27,7 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PHONE_INVOICE = DaoDbField.COL_COD_PHONE_INVOICE;
 	public static final String COL_COD_PHONE_INVOICE_SNAPSHOT = DaoDbField.COL_COD_PHONE_INVOICE_SNAPSHOT;
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
-	public static final String COL_COD_USER_SNAPSHOT = DaoDbField.COL_COD_USER;
+	public static final String COL_COD_USER_SNAPSHOT = DaoDbField.COL_COD_USER_SNAPSHOT;
 	public static final String COL_FEE_SERVICE = DaoDbField.COL_FEE_SERVICE;
 	public static final String COL_GRAND_TOTAL = DaoDbField.COL_GRAND_TOTAL;
 	public static final String COL_ITEM_TOTAL = DaoDbField.COL_ITEM_TOTAL;
