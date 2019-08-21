@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
+import br.com.gda.business.scheduleLineSnapshot.dao.SchedinapDbTableColumn;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -134,6 +135,7 @@ public final class SchedineSelectSingle implements DaoStmt<SchedineInfo> {
 				dataInfo.year = DaoFormatter.sqlToInt(stmtResult, SchedineDbTableColumn.COL_YEAR);		
 				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_SNAPSHOT);
 				dataInfo.codWeekday = DaoFormatter.sqlToInt(stmtResult, SchedineDbTableColumn.COL_COD_WEEKDAY);
+				dataInfo.codScheduleStatus = stmtResult.getString(SchedinapDbTableColumn.COL_COD_SCHEDULE_STATUS);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

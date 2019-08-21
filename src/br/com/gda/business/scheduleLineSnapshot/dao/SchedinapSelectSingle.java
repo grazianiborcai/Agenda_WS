@@ -140,6 +140,7 @@ public final class SchedinapSelectSingle implements DaoStmt<SchedinapInfo> {
 				dataInfo.quarter = DaoFormatter.sqlToInt(stmtResult, SchedinapDbTableColumn.COL_QUARTER);
 				dataInfo.year = DaoFormatter.sqlToInt(stmtResult, SchedinapDbTableColumn.COL_YEAR);		
 				dataInfo.codWeekday = DaoFormatter.sqlToInt(stmtResult, SchedineDbTableColumn.COL_COD_WEEKDAY);
+				dataInfo.codScheduleStatus = stmtResult.getString(SchedinapDbTableColumn.COL_COD_SCHEDULE_STATUS);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

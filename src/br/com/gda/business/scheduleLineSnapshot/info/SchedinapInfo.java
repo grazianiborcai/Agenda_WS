@@ -15,8 +15,9 @@ import br.com.gda.info.InfoRecord;
 
 public final class SchedinapInfo extends InfoRecord implements Cloneable, Comparable<SchedinapInfo> {
 	public long codOwner;
-	public long codSchedule;
 	public long codSnapshot;
+	public long codSchedule;	
+	public String codScheduleStatus;
 	public long codOrder;
 	public long codStore;
 	public long codStoreSnapshot;
