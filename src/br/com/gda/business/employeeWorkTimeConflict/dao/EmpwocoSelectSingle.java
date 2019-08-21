@@ -149,7 +149,7 @@ public final class EmpwocoSelectSingle implements DaoStmt<EmpwocoInfo> {
 		@Override public List<EmpwocoInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpwocoInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				

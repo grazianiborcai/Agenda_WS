@@ -103,8 +103,8 @@ public final class SysparSelectSingle implements DaoStmt<SysparInfo> {
 		@Override public List<SysparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<SysparInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				SysparInfo dataInfo = new SysparInfo();

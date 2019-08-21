@@ -128,8 +128,8 @@ public final class MatockSelectSingle implements DaoStmt<MatockInfo> {
 		@Override public List<MatockInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatockInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				MatockInfo dataInfo = new MatockInfo();

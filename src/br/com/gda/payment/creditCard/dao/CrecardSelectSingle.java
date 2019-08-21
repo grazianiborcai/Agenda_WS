@@ -105,8 +105,8 @@ public final class CrecardSelectSingle implements DaoStmt<CrecardInfo> {
 		@Override public List<CrecardInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CrecardInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				CrecardInfo dataInfo = new CrecardInfo();

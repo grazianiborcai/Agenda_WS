@@ -104,8 +104,8 @@ public final class CusnapSelectSingle implements DaoStmt<CusnapInfo> {
 		@Override public List<CusnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CusnapInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				CusnapInfo dataInfo = new CusnapInfo();

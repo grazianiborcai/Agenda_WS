@@ -109,8 +109,8 @@ public final class PayordemSelectSingle implements DaoStmt<PayordemInfo> {
 			
 			List<PayordemInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				PayordemInfo dataInfo = new PayordemInfo();

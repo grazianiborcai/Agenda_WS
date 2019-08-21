@@ -51,7 +51,7 @@ public final class SchedineSelectSingle implements DaoStmt<SchedineInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new SchedineWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -106,8 +106,8 @@ public final class SchedineSelectSingle implements DaoStmt<SchedineInfo> {
 			
 			List<SchedineInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				SchedineInfo dataInfo = new SchedineInfo();

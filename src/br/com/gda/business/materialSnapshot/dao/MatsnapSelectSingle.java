@@ -106,8 +106,8 @@ public final class MatsnapSelectSingle implements DaoStmt<MatsnapInfo> {
 		@Override public List<MatsnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatsnapInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				MatsnapInfo dataInfo = new MatsnapInfo();

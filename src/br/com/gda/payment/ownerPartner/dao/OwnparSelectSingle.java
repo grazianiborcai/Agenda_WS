@@ -104,8 +104,8 @@ public final class OwnparSelectSingle implements DaoStmt<OwnparInfo> {
 		@Override public List<OwnparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<OwnparInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				OwnparInfo dataInfo = new OwnparInfo();

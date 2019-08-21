@@ -106,8 +106,8 @@ public final class StoparSelectSingle implements DaoStmt<StoparInfo> {
 		@Override public List<StoparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoparInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				StoparInfo dataInfo = new StoparInfo();

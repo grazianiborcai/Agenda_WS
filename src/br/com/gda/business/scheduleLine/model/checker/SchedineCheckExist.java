@@ -47,18 +47,18 @@ public final class SchedineCheckExist extends ModelCheckerTemplateAction<Schedin
 	
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.ORDER_ITEM_ALREADY_EXIST)
-			return SystemMessage.ORDER_ITEM_ALREADY_EXIST;
+		if (makeFailCodeHook(checkerResult) == SystemCode.SCHEDULE_ALREADY_EXIST)
+			return SystemMessage.SCHEDULE_ALREADY_EXIST;
 		
-		return SystemMessage.ORDER_ITEM_NOT_FOUND;
+		return SystemMessage.SCHEDULE_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.ORDER_ITEM_ALREADY_EXIST;	
+			return SystemCode.SCHEDULE_ALREADY_EXIST;	
 		
-		return SystemCode.ORDER_ITEM_NOT_FOUND;
+		return SystemCode.SCHEDULE_NOT_FOUND;
 	}
 }

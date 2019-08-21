@@ -105,8 +105,8 @@ public final class PersolisSelectSingle implements DaoStmt<PersolisInfo> {
 		@Override public List<PersolisInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<PersolisInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				PersolisInfo dataInfo = new PersolisInfo();

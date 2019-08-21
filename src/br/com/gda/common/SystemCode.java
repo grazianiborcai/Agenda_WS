@@ -589,7 +589,9 @@ public final class SystemCode {
 	// Schedule
 	public static final int SCHEDULE_MANDATORY_FIELD_EMPTY				= 4800;
 	public static final int SCHEDULE_HAS_NO_ORDER						= 4801;
-	public static final int SCHEDULE_MATERIAL_IS_NOT_SERVICE			= 4802;
+	public static final int SCHEDULE_MATERIAL_IS_NOT_SERVICE			= 4802;	
+	public static final int SCHEDULE_ALREADY_EXIST						= 4803;
+	public static final int SCHEDULE_NOT_FOUND							= 4804;
 	
 	// Store Snapshot
 	public static final int STORE_SNAPSHOT_MANDATORY_FIELD_EMPTY 		= 4850;
@@ -624,4 +626,7 @@ public final class SystemCode {
 	
 	// Order List
 	public static final int ORDER_LIST_MANDATORY_FIELD_EMPTY 			= 5400;
+	
+	// Schedule Search
+	public static final int SCHEDULE_SEARCH_MANDATORY_FIELD_EMPTY		= 5450;
 }

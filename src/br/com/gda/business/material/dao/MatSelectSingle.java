@@ -104,8 +104,8 @@ public final class MatSelectSingle implements DaoStmt<MatInfo> {
 		@Override public List<MatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				MatInfo dataInfo = new MatInfo();

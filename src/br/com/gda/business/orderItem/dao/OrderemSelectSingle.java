@@ -108,8 +108,8 @@ public final class OrderemSelectSingle implements DaoStmt<OrderemInfo> {
 			
 			List<OrderemInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				OrderemInfo dataInfo = new OrderemInfo();

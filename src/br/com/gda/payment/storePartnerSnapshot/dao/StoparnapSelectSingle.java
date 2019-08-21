@@ -106,8 +106,8 @@ public final class StoparnapSelectSingle implements DaoStmt<StoparnapInfo> {
 		@Override public List<StoparnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoparnapInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				StoparnapInfo dataInfo = new StoparnapInfo();

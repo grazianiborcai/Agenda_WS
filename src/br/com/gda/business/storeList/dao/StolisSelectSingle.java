@@ -105,8 +105,8 @@ public final class StolisSelectSingle implements DaoStmt<StolisInfo> {
 		@Override public List<StolisInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StolisInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				StolisInfo dataInfo = new StolisInfo();

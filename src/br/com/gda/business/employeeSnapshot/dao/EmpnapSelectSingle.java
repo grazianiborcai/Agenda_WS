@@ -105,8 +105,8 @@ public final class EmpnapSelectSingle implements DaoStmt<EmpnapInfo> {
 		@Override public List<EmpnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpnapInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				EmpnapInfo dataInfo = new EmpnapInfo();

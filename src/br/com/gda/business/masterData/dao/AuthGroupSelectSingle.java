@@ -104,7 +104,7 @@ public final class AuthGroupSelectSingle implements DaoStmt<AuthGroupInfo> {
 			List<AuthGroupInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET)				
-					return finalResult;
+				return finalResult;
 			
 			do {
 				AuthGroupInfo dataInfo = new AuthGroupInfo();

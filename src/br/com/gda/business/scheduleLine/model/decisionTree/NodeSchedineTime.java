@@ -12,7 +12,7 @@ import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceWeekMont
 import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceWeekYear;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceYear;
 import br.com.gda.business.scheduleLine.model.action.StdSchedineEnforceWeekday;
-import br.com.gda.business.scheduleLine.model.checker.SchedineCheckWrite;
+import br.com.gda.business.scheduleLine.model.checker.SchedineCheckInsert;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -31,7 +31,7 @@ public final class NodeSchedineTime extends DeciTreeWriteTemplate<SchedineInfo> 
 		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedineInfo> checker;	
 		
-		checker = new SchedineCheckWrite();
+		checker = new SchedineCheckInsert();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

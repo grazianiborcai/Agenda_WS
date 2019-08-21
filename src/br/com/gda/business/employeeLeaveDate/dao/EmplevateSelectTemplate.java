@@ -151,7 +151,7 @@ class EmplevateSelectTemplate implements DaoStmt<EmplevateInfo> {
 		@Override public List<EmplevateInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmplevateInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				

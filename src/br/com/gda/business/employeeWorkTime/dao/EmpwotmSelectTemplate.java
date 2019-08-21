@@ -150,7 +150,7 @@ class EmpwotmSelectTemplate implements DaoStmt<EmpwotmInfo> {
 		@Override public List<EmpwotmInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpwotmInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				

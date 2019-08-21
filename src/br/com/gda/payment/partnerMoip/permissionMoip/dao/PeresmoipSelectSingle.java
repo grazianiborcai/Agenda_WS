@@ -104,8 +104,8 @@ public final class PeresmoipSelectSingle implements DaoStmt<PeresmoipInfo> {
 		@Override public List<PeresmoipInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<PeresmoipInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				PeresmoipInfo dataInfo = new PeresmoipInfo();

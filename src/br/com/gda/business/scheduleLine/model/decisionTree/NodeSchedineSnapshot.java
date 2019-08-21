@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineUpdate;
 import br.com.gda.business.scheduleLine.model.action.StdSchedineInsertSchedinap;
-import br.com.gda.business.scheduleLine.model.checker.SchedineCheckWrite;
+import br.com.gda.business.scheduleLine.model.checker.SchedineCheckInsert;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -26,7 +26,7 @@ public final class NodeSchedineSnapshot extends DeciTreeWriteTemplate<SchedineIn
 		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedineInfo> checker;	
 		
-		checker = new SchedineCheckWrite();
+		checker = new SchedineCheckInsert();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

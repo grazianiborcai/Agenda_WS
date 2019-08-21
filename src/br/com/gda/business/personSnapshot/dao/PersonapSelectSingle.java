@@ -107,8 +107,8 @@ public final class PersonapSelectSingle implements DaoStmt<PersonapInfo> {
 		@Override public List<PersonapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<PersonapInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				PersonapInfo dataInfo = new PersonapInfo();

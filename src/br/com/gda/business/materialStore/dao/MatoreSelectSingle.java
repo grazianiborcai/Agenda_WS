@@ -128,8 +128,8 @@ public final class MatoreSelectSingle implements DaoStmt<MatoreInfo> {
 		@Override public List<MatoreInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatoreInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				MatoreInfo dataInfo = new MatoreInfo();

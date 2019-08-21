@@ -145,8 +145,8 @@ public final class CarterveSelectSingle implements DaoStmt<CarterveInfo> {
 		@Override public List<CarterveInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CarterveInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				CarterveInfo dataInfo = new CarterveInfo();

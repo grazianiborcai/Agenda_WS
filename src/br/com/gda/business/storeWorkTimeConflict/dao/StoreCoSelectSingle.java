@@ -178,7 +178,7 @@ public final class StoreCoSelectSingle implements DaoStmt<StoreCoInfo> {
 		@Override public List<StoreCoInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoreCoInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				

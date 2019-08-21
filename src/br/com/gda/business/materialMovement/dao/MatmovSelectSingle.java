@@ -129,8 +129,8 @@ public final class MatmovSelectSingle implements DaoStmt<MatmovInfo> {
 		@Override public List<MatmovInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatmovInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				MatmovInfo dataInfo = new MatmovInfo();

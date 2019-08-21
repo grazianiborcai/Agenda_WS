@@ -103,8 +103,8 @@ public final class EmabodySelectSingle implements DaoStmt<EmabodyInfo> {
 		@Override public List<EmabodyInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmabodyInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				EmabodyInfo dataInfo = new EmabodyInfo();

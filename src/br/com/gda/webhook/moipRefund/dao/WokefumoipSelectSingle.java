@@ -103,8 +103,8 @@ public final class WokefumoipSelectSingle implements DaoStmt<WokefumoipInfo> {
 		@Override public List<WokefumoipInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<WokefumoipInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				WokefumoipInfo dataInfo = new WokefumoipInfo();

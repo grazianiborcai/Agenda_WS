@@ -111,8 +111,8 @@ public final class FeedefSelectSingle implements DaoStmt<FeedefInfo> {
 		@Override public List<FeedefInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<FeedefInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				FeedefInfo dataInfo = new FeedefInfo();

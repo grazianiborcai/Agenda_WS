@@ -104,8 +104,8 @@ public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 		@Override public List<EmpmatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmpmatInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				EmpmatInfo dataInfo = new EmpmatInfo();

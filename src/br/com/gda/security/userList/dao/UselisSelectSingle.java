@@ -105,8 +105,8 @@ public final class UselisSelectSingle implements DaoStmt<UselisInfo> {
 		@Override public List<UselisInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<UselisInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				UselisInfo dataInfo = new UselisInfo();

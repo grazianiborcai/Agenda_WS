@@ -21,7 +21,7 @@ import br.com.gda.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckMat;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckOwner;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckStore;
-import br.com.gda.business.scheduleLine.model.checker.SchedineCheckWrite;
+import br.com.gda.business.scheduleLine.model.checker.SchedineCheckInsert;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckEmp;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckEmpmat;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckEmpos;
@@ -48,7 +48,7 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		ModelChecker<SchedineInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new SchedineCheckWrite();
+		checker = new SchedineCheckInsert();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

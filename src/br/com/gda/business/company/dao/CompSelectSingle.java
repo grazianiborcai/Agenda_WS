@@ -105,8 +105,8 @@ public final class CompSelectSingle implements DaoStmt<CompInfo> {
 		@Override public List<CompInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {			
 			List<CompInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				CompInfo dataInfo = new CompInfo();

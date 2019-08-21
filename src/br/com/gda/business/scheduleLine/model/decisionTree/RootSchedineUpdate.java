@@ -6,19 +6,21 @@ import java.util.List;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceLChanged;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceStatus;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineNodeTime;
 import br.com.gda.business.scheduleLine.model.action.StdSchedineMergeToUpdate;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeCuslis;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeMat;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeUsername;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineNodeMat;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineNodeOrderL1;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckCus;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckMat;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckOwner;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckStore;
-import br.com.gda.business.scheduleLine.model.checker.SchedineCheckWrite;
+import br.com.gda.business.scheduleLine.model.checker.SchedineCheckUpdate;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckEmp;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckEmpmat;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckEmpos;
@@ -46,7 +48,7 @@ public final class RootSchedineUpdate extends DeciTreeWriteTemplate<SchedineInfo
 		ModelChecker<SchedineInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new SchedineCheckWrite();
+		checker = new SchedineCheckUpdate();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -128,21 +130,25 @@ public final class RootSchedineUpdate extends DeciTreeWriteTemplate<SchedineInfo
 		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 		
 		ActionStd<SchedineInfo> mergeToUpdate = new StdSchedineMergeToUpdate(option);
+		ActionLazy<SchedineInfo> nodeOrder = new LazySchedineNodeOrderL1(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> enforceLChanged = new LazySchedineEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeMat = new LazySchedineMergeMat(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> nodeMat = new LazySchedineNodeMat(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeCuslis = new LazySchedineMergeCuslis(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> nodeTime = new LazySchedineNodeTime(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> enforceStatus = new LazySchedineEnforceStatus(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> snapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
 		
-		mergeToUpdate.addPostAction(enforceLChanged);
+		mergeToUpdate.addPostAction(nodeOrder);
+		nodeOrder.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeMat);
 		mergeMat.addPostAction(nodeMat);
 		nodeMat.addPostAction(mergeCuslis);		
 		mergeCuslis.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(nodeTime);
-		nodeTime.addPostAction(snapshot);
+		nodeTime.addPostAction(enforceStatus);
+		enforceStatus.addPostAction(snapshot);
 		
 		actions.add(mergeToUpdate);
 		return actions;

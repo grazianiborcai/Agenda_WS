@@ -182,7 +182,7 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 		@Override public List<CusarchInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CusarchInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				

@@ -105,8 +105,8 @@ public final class StorapSelectSingle implements DaoStmt<StorapInfo> {
 		@Override public List<StorapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StorapInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				StorapInfo dataInfo = new StorapInfo();

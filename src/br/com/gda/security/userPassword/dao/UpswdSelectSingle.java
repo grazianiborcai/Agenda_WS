@@ -106,8 +106,8 @@ public final class UpswdSelectSingle implements DaoStmt<UpswdInfo> {
 		@Override public List<UpswdInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<UpswdInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				UpswdInfo dataInfo = new UpswdInfo();

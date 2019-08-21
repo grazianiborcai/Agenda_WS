@@ -108,8 +108,8 @@ public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
 		@Override public List<OwnerInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<OwnerInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				OwnerInfo dataInfo = new OwnerInfo();

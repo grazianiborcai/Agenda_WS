@@ -177,8 +177,8 @@ class StowotmSelectTemplate implements DaoStmt<StowotmInfo> {
 		@Override public List<StowotmInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StowotmInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				StowotmInfo dataInfo = new StowotmInfo();

@@ -104,8 +104,8 @@ public final class EmailSelectSingle implements DaoStmt<EmailInfo> {
 		@Override public List<EmailInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmailInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				EmailInfo dataInfo = new EmailInfo();

@@ -105,8 +105,8 @@ public final class UsernameSelectSingle implements DaoStmt<UsernameInfo> {
 		@Override public List<UsernameInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<UsernameInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				UsernameInfo dataInfo = new UsernameInfo();

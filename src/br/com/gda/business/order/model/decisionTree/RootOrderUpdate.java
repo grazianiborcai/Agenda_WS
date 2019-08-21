@@ -7,6 +7,7 @@ import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.action.LazyOrderEnforceLChanged;
 import br.com.gda.business.order.model.action.LazyOrderEnforceStatusMoip;
 import br.com.gda.business.order.model.action.LazyOrderNodePayord;
+import br.com.gda.business.order.model.action.LazyOrderRefreshSchedine;
 import br.com.gda.business.order.model.checker.OrderCheckLangu;
 import br.com.gda.business.order.model.checker.OrderCheckOwner;
 import br.com.gda.business.order.model.checker.OrderCheckStatus;
@@ -82,13 +83,15 @@ public final class RootOrderUpdate extends DeciTreeWriteTemplate<OrderInfo> {
 		ActionLazy<OrderInfo> nodePayord = new LazyOrderNodePayord(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceStatus = new LazyOrderEnforceStatusMoip(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> update = new LazyOrderUpdate(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> rootSelect = new LazyOrderRootSelect(option.conn, option.schemaName);	
+		ActionLazy<OrderInfo> refreshSchedine = new LazyOrderRefreshSchedine(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(nodePayord);		
 		nodePayord.addPostAction(enforceStatus);		
 		enforceStatus.addPostAction(update);
-		update.addPostAction(rootSelect);
+		update.addPostAction(refreshSchedine);
+		refreshSchedine.addPostAction(select);
 		
 		actions.add(mergeToUpdate);
 		return actions;

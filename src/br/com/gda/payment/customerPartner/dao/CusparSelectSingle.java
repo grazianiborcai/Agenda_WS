@@ -106,8 +106,8 @@ public final class CusparSelectSingle implements DaoStmt<CusparInfo> {
 			
 			List<CusparInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				CusparInfo dataInfo = new CusparInfo();

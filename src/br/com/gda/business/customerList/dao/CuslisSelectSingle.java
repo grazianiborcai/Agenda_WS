@@ -104,8 +104,8 @@ public final class CuslisSelectSingle implements DaoStmt<CuslisInfo> {
 		@Override public List<CuslisInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CuslisInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				CuslisInfo dataInfo = new CuslisInfo();

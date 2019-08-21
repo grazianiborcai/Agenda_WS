@@ -105,8 +105,8 @@ abstract class MatextSelectTemplate implements DaoStmt<MatextInfo> {
 		@Override public List<MatextInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatextInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				MatextInfo dataInfo = new MatextInfo();

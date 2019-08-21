@@ -104,8 +104,8 @@ public final class CounparSelectSingle implements DaoStmt<CounparInfo> {
 		@Override public List<CounparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CounparInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				CounparInfo dataInfo = new CounparInfo();

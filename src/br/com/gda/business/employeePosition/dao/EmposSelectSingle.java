@@ -128,8 +128,8 @@ public final class EmposSelectSingle implements DaoStmt<EmposInfo> {
 		@Override public List<EmposInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmposInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				EmposInfo dataInfo = new EmposInfo();

@@ -106,8 +106,8 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 			
 			List<CartInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				CartInfo dataInfo = new CartInfo();

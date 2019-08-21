@@ -105,7 +105,7 @@ public final class FormAddressSelectSingle implements DaoStmt<FormAddressInfo> {
 		@Override public List<FormAddressInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<FormAddressInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				

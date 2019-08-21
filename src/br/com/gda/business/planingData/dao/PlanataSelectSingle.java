@@ -352,8 +352,8 @@ public final class PlanataSelectSingle implements DaoStmt<PlanataInfo> {
 		@Override public List<PlanataInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<PlanataInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				PlanataInfo dataInfo = new PlanataInfo();

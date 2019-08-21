@@ -105,8 +105,8 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 		@Override public List<AddressInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<AddressInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				AddressInfo dataInfo = new AddressInfo();

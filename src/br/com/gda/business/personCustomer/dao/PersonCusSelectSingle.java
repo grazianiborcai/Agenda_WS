@@ -152,7 +152,7 @@ public final class PersonCusSelectSingle implements DaoStmt<PersonCusInfo> {
 		@Override public List<PersonCusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<PersonCusInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				

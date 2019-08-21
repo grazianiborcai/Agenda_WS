@@ -158,8 +158,8 @@ public final class OwntoreSelectSingle implements DaoStmt<OwntoreInfo> {
 		@Override public List<OwntoreInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<OwntoreInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				OwntoreInfo dataInfo = new OwntoreInfo();

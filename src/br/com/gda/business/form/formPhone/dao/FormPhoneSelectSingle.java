@@ -105,7 +105,7 @@ public final class FormPhoneSelectSingle implements DaoStmt<FormPhoneInfo> {
 		@Override public List<FormPhoneInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<FormPhoneInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				

@@ -104,7 +104,7 @@ public final class AuthGrRoleSelectSingle implements DaoStmt<AuthGrRoleInfo> {
 			List<AuthGrRoleInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET)				
-					return finalResult;
+				return finalResult;
 			
 			do {
 				AuthGrRoleInfo dataInfo = new AuthGrRoleInfo();

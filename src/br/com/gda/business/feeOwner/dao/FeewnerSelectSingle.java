@@ -111,8 +111,8 @@ public final class FeewnerSelectSingle implements DaoStmt<FeewnerInfo> {
 		@Override public List<FeewnerInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<FeewnerInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				FeewnerInfo dataInfo = new FeewnerInfo();

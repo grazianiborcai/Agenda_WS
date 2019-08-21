@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
-import br.com.gda.business.scheduleLine.model.action.StdSchedineSuccess;
+import br.com.gda.business.scheduleLine.model.action.StdSchedineMergeOrdist;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckOrder;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -43,9 +43,9 @@ public final class NodeSchedineOrderL2 extends DeciTreeWriteTemplate<SchedineInf
 	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedineInfo> success = new StdSchedineSuccess(option);
+		ActionStd<SchedineInfo> mergeOrdist = new StdSchedineMergeOrdist(option);
 		
-		actions.add(success);
+		actions.add(mergeOrdist);
 		return actions;
 	}
 }

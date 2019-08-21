@@ -5,12 +5,27 @@ import java.util.List;
 import br.com.gda.business.customerList.info.CuslisInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.business.orderList.info.OrdistInfo;
 import br.com.gda.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.info.InfoMergerOneToMany;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class SchedineMerger {
+	public static SchedineInfo mergeWithOrdist(OrdistInfo sourceOne, SchedineInfo sourceTwo) {
+		InfoMerger<SchedineInfo, OrdistInfo> merger = new SchedineMergerOrdist();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<SchedineInfo> mergeWithOrdist(List<OrdistInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
+		InfoMerger<SchedineInfo, OrdistInfo> merger = new SchedineMergerOrdist();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static List<SchedineInfo> mergeWithOrder(OrderInfo sourceOne, SchedineInfo sourceTwo) {
 		InfoMergerOneToMany<SchedineInfo, OrderInfo> merger = new SchedineMergerOrder();		
 		return merger.merge(sourceOne, sourceTwo);

@@ -105,8 +105,8 @@ public final class OrdistSelectSingle implements DaoStmt<OrdistInfo> {
 			
 			List<OrdistInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				OrdistInfo dataInfo = new OrdistInfo();

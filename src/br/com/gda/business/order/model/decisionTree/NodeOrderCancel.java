@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.checker.OrderCheckCancel;
+import br.com.gda.business.order.model.action.LazyOrderRefreshSchedine;
 import br.com.gda.business.order.model.action.LazyOrderRootSelect;
 import br.com.gda.business.order.model.action.LazyOrderUpdate;
 import br.com.gda.business.order.model.action.StdOrderEnforceStatusCancelled;
@@ -40,10 +41,12 @@ public final class NodeOrderCancel extends DeciTreeWriteTemplate<OrderInfo> {
 		
 		ActionStd<OrderInfo> enforceStatus = new StdOrderEnforceStatusCancelled(option);
 		ActionLazy<OrderInfo> update = new LazyOrderUpdate(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> refreshSchedine = new LazyOrderRefreshSchedine(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);		
 		
 		enforceStatus.addPostAction(update);
-		update.addPostAction(select);
+		update.addPostAction(refreshSchedine);
+		refreshSchedine.addPostAction(select);
 		
 		actions.add(enforceStatus);
 		return actions;

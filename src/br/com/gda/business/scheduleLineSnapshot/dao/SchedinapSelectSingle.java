@@ -106,8 +106,8 @@ public final class SchedinapSelectSingle implements DaoStmt<SchedinapInfo> {
 			
 			List<SchedinapInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				SchedinapInfo dataInfo = new SchedinapInfo();

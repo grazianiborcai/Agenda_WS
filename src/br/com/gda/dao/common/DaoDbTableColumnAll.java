@@ -52,6 +52,7 @@ import br.com.gda.business.phoneSnapshot.dao.PhonapDbTableColumn;
 import br.com.gda.business.planingData.dao.PlanataDbTableColumn;
 import br.com.gda.business.scheduleLine.dao.SchedineDbTableColumn;
 import br.com.gda.business.scheduleLineSnapshot.dao.SchedinapDbTableColumn;
+import br.com.gda.business.scheduleSearch.dao.SchedarchDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.business.storeLeaveDate.dao.StolevateDbTableColumn;
 import br.com.gda.business.storeList.dao.StolisDbTableColumn;
@@ -170,6 +171,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SchedinapDbTableColumn());
 		addTable(new OrdarchDbTableColumn());
 		addTable(new OrdistDbTableColumn());
+		addTable(new SchedarchDbTableColumn());
 	}
 	
 	

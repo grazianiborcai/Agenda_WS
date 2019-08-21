@@ -112,8 +112,8 @@ public final class AddresnapSelectSingle implements DaoStmt<AddresnapInfo> {
 		@Override public List<AddresnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<AddresnapInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				AddresnapInfo dataInfo = new AddresnapInfo();

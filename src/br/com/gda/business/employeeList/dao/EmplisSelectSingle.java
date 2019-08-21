@@ -105,8 +105,8 @@ public final class EmplisSelectSingle implements DaoStmt<EmplisInfo> {
 		@Override public List<EmplisInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EmplisInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
-					return finalResult;
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
+				return finalResult;
 			
 			do {
 				EmplisInfo dataInfo = new EmplisInfo();

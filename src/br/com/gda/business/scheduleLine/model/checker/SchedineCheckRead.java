@@ -17,6 +17,7 @@ public final class SchedineCheckRead extends ModelCheckerTemplateSimple<Schedine
 	
 	@Override protected boolean checkHook(SchedineInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	|| 
+			 recordInfo.codSchedule <= 0 	|| 
 			 recordInfo.username	== null ||
 			 recordInfo.codLanguage	== null		)
 			
@@ -29,12 +30,12 @@ public final class SchedineCheckRead extends ModelCheckerTemplateSimple<Schedine
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.SCHEDULE_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.SCHEDULE_MANDATORY_FIELD_EMPTY;
 	}
 }
