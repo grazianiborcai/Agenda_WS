@@ -51,7 +51,7 @@ public final class CountryPhoneCheckExist extends ModelCheckerTemplateAction<Cou
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
+		if (checkerResult == super.ALREADY_EXIST)
 			return SystemCode.COUNTRY_ALREADY_EXIST;	
 			
 		return SystemCode.COUNTRY_NOT_FOUND;

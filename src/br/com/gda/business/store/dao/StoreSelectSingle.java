@@ -112,8 +112,8 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 				StoreInfo dataInfo = new StoreInfo();
 				dataInfo.codOwner = stmtResult.getLong(StoreDbTableColumn.COL_COD_OWNER);
 				dataInfo.codStore = stmtResult.getLong(StoreDbTableColumn.COL_COD_STORE);
-				dataInfo.codCurr = stmtResult.getString(StoreDbTableColumn.COL_COD_CURR);
-				dataInfo.codTimezone = stmtResult.getString(StoreDbTableColumn.COL_COD_TIME_ZONE);
+				dataInfo.codCurr = stmtResult.getString(StoreDbTableColumn.COL_COD_CURRENCY);
+				dataInfo.codTimezone = stmtResult.getString(StoreDbTableColumn.COL_COD_TIMEZONE);
 				dataInfo.recordMode = stmtResult.getString(StoreDbTableColumn.COL_RECORD_MODE);	
 				
 				

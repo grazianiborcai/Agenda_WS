@@ -50,7 +50,7 @@ public final class MatCategCheckExist extends ModelCheckerTemplateAction<MatCate
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
+		if (checkerResult == super.ALREADY_EXIST)
 			return SystemCode.MAT_CATEG_ALREADY_EXIST;	
 			
 		return SystemCode.MAT_CATEG_NOT_FOUND;

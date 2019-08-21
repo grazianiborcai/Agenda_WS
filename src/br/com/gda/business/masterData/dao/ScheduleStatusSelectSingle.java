@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.masterData.info.StateInfo;
+import br.com.gda.business.masterData.info.ScheduleStatusInfo;
 import br.com.gda.dao.DaoDictionary;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoJoinColumn;
@@ -21,23 +21,23 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class StateSelectSingle implements DaoStmt<StateInfo> {
-	private final String LT_ATTR = DaoDbTable.STATE_TABLE;
-	private final String RT_TEXT = DaoDbTable.STATE_TEXT_TABLE;
+public final class ScheduleStatusSelectSingle implements DaoStmt<ScheduleStatusInfo> {
+	private final String LT_ATTR = DaoDbTable.SCHEDULE_STATUS_TABLE;
+	private final String RT_TEXT = DaoDbTable.SCHEDULE_STATUS_TEXT_TABLE;
 	
-	private DaoStmt<StateInfo> stmtSql;
-	private DaoStmtOption<StateInfo> stmtOption;
+	private DaoStmt<ScheduleStatusInfo> stmtSql;
+	private DaoStmtOption<ScheduleStatusInfo> stmtOption;
 	
 	
 	
-	public StateSelectSingle(Connection conn, StateInfo recordInfo, String schemaName) {
+	public ScheduleStatusSelectSingle(Connection conn, ScheduleStatusInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, StateInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, ScheduleStatusInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -58,7 +58,7 @@ public final class StateSelectSingle implements DaoStmt<StateInfo> {
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoWhereBuilderOption.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new StateWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new ScheduleStatusWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -66,24 +66,19 @@ public final class StateSelectSingle implements DaoStmt<StateInfo> {
 	
 	private List<DaoJoin> buildJoins() {
 		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinPositionText());
+		joins.add(buildJoinUnitText());
 		return joins;
 	}
 	
 	
 	
-	private DaoJoin buildJoinPositionText() {
+	private DaoJoin buildJoinUnitText() {
 		List<DaoJoinColumn> joinColumns = new ArrayList<>();
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_ATTR;
-		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_COUNTRY;
-		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_COUNTRY;
-		joinColumns.add(oneColumn);
-		
-		oneColumn.leftTableName = LT_ATTR;
-		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_STATE_PROVINCE;
-		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_STATE_PROVINCE;
+		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_COD_SCHEDULE_STATUS;
+		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_SCHEDULE_STATUS;
 		joinColumns.add(oneColumn);
 		
 		
@@ -97,7 +92,7 @@ public final class StateSelectSingle implements DaoStmt<StateInfo> {
 	}
 	
 	
-	//TODO: Mover para a super classe 
+	
 	private String buildJoinConstraintText(String rightTableName) {
 		StringBuilder constrainClause = new StringBuilder(); 
 		
@@ -140,32 +135,31 @@ public final class StateSelectSingle implements DaoStmt<StateInfo> {
 
 	
 	
-	@Override public List<StateInfo> getResultset() {
+	@Override public List<ScheduleStatusInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<StateInfo> getNewInstance() {
-		return new StateSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<ScheduleStatusInfo> getNewInstance() {
+		return new ScheduleStatusSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements DaoResultParser<StateInfo> {
+	private class ResultParser implements DaoResultParser<ScheduleStatusInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<StateInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<StateInfo> finalResult = new ArrayList<>();
+		@Override public List<ScheduleStatusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<ScheduleStatusInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
-				StateInfo dataInfo = new StateInfo();
-				dataInfo.codCountry = stmtResult.getString(MasterDataDbTableColumn.COL_COD_COUNTRY);
-				dataInfo.codState = stmtResult.getString(MasterDataDbTableColumn.COL_STATE_PROVINCE);
-				dataInfo.txtState = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				ScheduleStatusInfo dataInfo = new ScheduleStatusInfo();
+				dataInfo.codScheduleStatus = stmtResult.getString(MasterDataDbTableColumn.COL_COD_SCHEDULE_STATUS);
+				dataInfo.txtScheduleStatus = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
 				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				

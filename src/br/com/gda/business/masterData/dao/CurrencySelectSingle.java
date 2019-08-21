@@ -149,21 +149,19 @@ public final class CurrencySelectSingle implements DaoStmt<CurrencyInfo> {
 	
 	private class ResultParser implements DaoResultParser<CurrencyInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String CURRENCY_TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<CurrencyInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CurrencyInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
 				CurrencyInfo dataInfo = new CurrencyInfo();
 				dataInfo.codCurr = stmtResult.getString(MasterDataDbTableColumn.COL_COD_CURRENCY);
 				dataInfo.symbolCurr = stmtResult.getString(MasterDataDbTableColumn.COL_CURRENCY_SYMBOL);
-				dataInfo.txtCurr = stmtResult.getString(CURRENCY_TEXT_COL);
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
+				dataInfo.txtCurr = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

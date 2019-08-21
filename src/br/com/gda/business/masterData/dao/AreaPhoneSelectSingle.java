@@ -156,21 +156,19 @@ public final class AreaPhoneSelectSingle implements DaoStmt<AreaPhoneInfo> {
 	
 	private class ResultParser implements DaoResultParser<AreaPhoneInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<AreaPhoneInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<AreaPhoneInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
 				AreaPhoneInfo dataInfo = new AreaPhoneInfo();
 				dataInfo.codCountryPhone = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_COUNTRY_PHONE);
 				dataInfo.codArea = stmtResult.getString(MasterDataDbTableColumn.COL_COD_AREA_PHONE);
-				dataInfo.txtArea = stmtResult.getString(TEXT_COL);
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
+				dataInfo.txtArea = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

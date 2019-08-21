@@ -50,7 +50,7 @@ public final class CurrencyCheckExist extends ModelCheckerTemplateAction<Currenc
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
+		if (checkerResult == super.ALREADY_EXIST)
 			return SystemCode.CURRENCY_ALREADY_EXIST;	
 			
 		return SystemCode.CURRENCY_NOT_FOUND;

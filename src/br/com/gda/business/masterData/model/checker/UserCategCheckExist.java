@@ -50,7 +50,7 @@ public final class UserCategCheckExist extends ModelCheckerTemplateAction<UserCa
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
+		if (checkerResult == super.ALREADY_EXIST)
 			return SystemCode.USER_CATEG_ALREADY_EXIST;	
 			
 		return SystemCode.USER_CATEG_NOT_FOUND;

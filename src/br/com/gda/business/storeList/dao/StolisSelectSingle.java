@@ -112,8 +112,8 @@ public final class StolisSelectSingle implements DaoStmt<StolisInfo> {
 				StolisInfo dataInfo = new StolisInfo();
 				dataInfo.codOwner = stmtResult.getLong(StolisDbTableColumn.COL_COD_OWNER);
 				dataInfo.codStore = stmtResult.getLong(StolisDbTableColumn.COL_COD_STORE);
-				dataInfo.codCurr = stmtResult.getString(StolisDbTableColumn.COL_COD_CURR);
-				dataInfo.codTimezone = stmtResult.getString(StolisDbTableColumn.COL_COD_TIME_ZONE);
+				dataInfo.codCurr = stmtResult.getString(StolisDbTableColumn.COL_COD_CURRENCY);
+				dataInfo.codTimezone = stmtResult.getString(StolisDbTableColumn.COL_COD_TIMEZONE);
 				dataInfo.recordMode = stmtResult.getString(StolisDbTableColumn.COL_RECORD_MODE);	
 				
 				

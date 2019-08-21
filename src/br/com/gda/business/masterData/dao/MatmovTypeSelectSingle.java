@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.MatmovTypeInfo;
 import br.com.gda.dao.DaoDictionary;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoJoinColumn;
 import br.com.gda.dao.DaoJoinType;
@@ -153,12 +154,12 @@ public final class MatmovTypeSelectSingle implements DaoStmt<MatmovTypeInfo> {
 		@Override public List<MatmovTypeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatmovTypeInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
 				MatmovTypeInfo dataInfo = new MatmovTypeInfo();
-				dataInfo.codMatmovType = stmtResult.getString(MasterDataDbTableColumn.COL_COD_MAT_MOV_TYPE).charAt(0);
+				dataInfo.codMatmovType = DaoFormatter.sqlToChar(stmtResult, MasterDataDbTableColumn.COL_COD_MAT_MOV_TYPE);
 				dataInfo.txtMatmovType = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
 				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				

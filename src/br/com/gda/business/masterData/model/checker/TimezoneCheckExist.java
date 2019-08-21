@@ -50,7 +50,7 @@ public final class TimezoneCheckExist extends ModelCheckerTemplateAction<Timezon
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
+		if (checkerResult == super.ALREADY_EXIST)
 			return SystemCode.TIMEZONE_ALREADY_EXIST;	
 			
 		return SystemCode.TIMEZONE_NOT_FOUND;

@@ -149,20 +149,18 @@ public final class PositionSelectSingle implements DaoStmt<PositionInfo> {
 	
 	private class ResultParser implements DaoResultParser<PositionInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String POSITION_TEXT_COLUMN = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String POSITION_LANGU_COLUMN = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<PositionInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<PositionInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
 				PositionInfo dataInfo = new PositionInfo();
 				dataInfo.codPosition = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_POSITION);
-				dataInfo.txtPosition = stmtResult.getString(POSITION_TEXT_COLUMN);
-				dataInfo.codLanguage = stmtResult.getString(POSITION_LANGU_COLUMN);		
+				dataInfo.txtPosition = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

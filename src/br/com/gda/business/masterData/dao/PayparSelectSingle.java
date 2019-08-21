@@ -101,7 +101,7 @@ public final class PayparSelectSingle implements DaoStmt<PayparInfo> {
 		@Override public List<PayparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<PayparInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				

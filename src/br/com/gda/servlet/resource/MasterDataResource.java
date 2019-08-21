@@ -23,6 +23,7 @@ import br.com.gda.business.masterData.info.CountryLegalInfo;
 import br.com.gda.business.masterData.info.CountryPhoneInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.PositionInfo;
+import br.com.gda.business.masterData.info.ScheduleStatusInfo;
 import br.com.gda.business.masterData.info.EntityCategInfo;
 import br.com.gda.business.masterData.info.FeeCategInfo;
 import br.com.gda.business.masterData.info.GenderInfo;
@@ -46,6 +47,7 @@ import br.com.gda.business.masterData.model.CountryModelSelect;
 import br.com.gda.business.masterData.model.CountryPhoneModelSelect;
 import br.com.gda.business.masterData.model.CurrencyModelSelect;
 import br.com.gda.business.masterData.model.PositionModelSelect;
+import br.com.gda.business.masterData.model.ScheduleStatusModelSelect;
 import br.com.gda.business.masterData.model.EntityCategModelSelect;
 import br.com.gda.business.masterData.model.FeeCategModelSelect;
 import br.com.gda.business.masterData.model.GenderModelSelect;
@@ -75,6 +77,7 @@ public final class MasterDataResource {
 	private static final String SELECT_COUNTRY_LEGAL = "/selectCountryLegal";
 	private static final String SELECT_FEE_CATEG = "/selectFeeCateg";
 	private static final String SELECT_ORDER_STATUS = "/selectOrderStatus";
+	private static final String SELECT_SCHEDULE_STATUS = "/selectScheduleStatus";
 	private static final String SELECT_PAYMENT_STATUS = "/selectPaymentStatus";
 	private static final String SELECT_COUNTRY_PHONE = "/selectCountryPhone";
 	private static final String SELECT_STATE = "/selectState";
@@ -359,6 +362,24 @@ public final class MasterDataResource {
 		
 		
 		Model model = new OrderStatusModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_SCHEDULE_STATUS)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectScheduleStatus(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                             @HeaderParam("codScheduleStatus") String codScheduleStatus){
+		
+		ScheduleStatusInfo recordInfo = new ScheduleStatusInfo();		
+		recordInfo.codScheduleStatus = codScheduleStatus;
+		recordInfo.codLanguage = codLanguage;
+		
+		
+		Model model = new ScheduleStatusModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

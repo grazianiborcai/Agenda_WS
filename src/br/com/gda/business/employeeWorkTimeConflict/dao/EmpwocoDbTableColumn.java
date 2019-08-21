@@ -15,7 +15,7 @@ public final class EmpwocoDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_OWNER = "cod_owner";	
 	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_COD_TIME_ZONE = StoreDbTableColumn.COL_COD_TIME_ZONE;
+	public static final String COL_COD_TIME_ZONE = StoreDbTableColumn.COL_COD_TIMEZONE;
 	public static final String COL_END_TIME = "end_time";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";	

@@ -6,40 +6,42 @@ import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_AREA_PHONE = "cod_area_phone";	
-	public static final String COL_COD_AUTH_ROLE = "cod_auth_role";
-	public static final String COL_COD_AUTH_GROUP = "cod_auth_group";
-	public static final String COL_COD_BUSINESS = "cod_business";
-	public static final String COL_COD_COUNTRY = "country";
-	public static final String COL_COD_COUNTRY_ALPHA3 = "country_alpha3";
-	public static final String COL_COD_COUNTRY_PHONE = "country_phone";	
-	public static final String COL_COD_CURRENCY = "cod_curr";
-	public static final String COL_COD_ENTITY_CATEG = "cod_entity_categ";	
-	public static final String COL_COD_FEE_CATEG = "cod_fee_categ";
-	public static final String COL_COD_GENDER = "cod_gender";
-	public static final String COL_COD_ITEM_CATEG = "cod_shop_categ";
-	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_COD_MAT_CATEG = "cod_category";
-	public static final String COL_COD_MAT_GROUP = "cod_group";
-	public static final String COL_COD_MAT_MOV_TYPE = "cod_mat_mov_type";
-	public static final String COL_COD_MAT_TYPE = "cod_type";
-	public static final String COL_COD_ORDER_STATUS = "cod_order_status";
-	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
-	public static final String COL_COD_PAYMENT_STATUS = "cod_payment_status";
-	public static final String COL_COD_POSITION = "cod_position";	
-	public static final String COL_COD_SYS_ENVIRONMENT = "cod_environment";
-	public static final String COL_COD_TIMEZONE = "cod_timezone";
-	public static final String COL_COD_UNIT = "unit";
-	public static final String COL_COD_USER_CATEG = "cod_user_categ";
-	public static final String COL_COD_WEEKDAY = "weekday";	
-	public static final String COL_CURRENCY_SYMBOL = "Symbol";
-	public static final String COL_DESCRIPTION = "description";
-	public static final String COL_NAME = "name";
-	public static final String COL_RECORD_MODE = "record_mode";
-	public static final String COL_STATE_PROVINCE = "state_province";
+	public static final String COL_COD_AREA_PHONE = DaoDbField.COL_COD_AREA_PHONE;	
+	public static final String COL_COD_AUTH_ROLE = DaoDbField.COL_COD_AUTH_ROLE;
+	public static final String COL_COD_AUTH_GROUP = DaoDbField.COL_COD_AUTH_GROUP;
+	public static final String COL_COD_BUSINESS = DaoDbField.COL_COD_BUSINESS;
+	public static final String COL_COD_COUNTRY = DaoDbField.COL_COD_COUNTRY;
+	public static final String COL_COD_COUNTRY_ALPHA3 = DaoDbField.COL_COD_COUNTRY_ALPHA3;
+	public static final String COL_COD_COUNTRY_PHONE = DaoDbField.COL_COD_COUNTRY_PHONE;	
+	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
+	public static final String COL_COD_ENTITY_CATEG = DaoDbField.COL_COD_ENTITY_CATEG;	
+	public static final String COL_COD_FEE_CATEG = DaoDbField.COL_COD_FEE_CATEG;
+	public static final String COL_COD_GENDER = DaoDbField.COL_COD_GENDER;
+	public static final String COL_COD_ITEM_CATEG = DaoDbField.COL_COD_ITEM_CATEG;
+	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE ;
+	public static final String COL_COD_MAT_CATEG = DaoDbField.COL_COD_MAT_CATEG;
+	public static final String COL_COD_MAT_GROUP = DaoDbField.COL_COD_MAT_GROUP;
+	public static final String COL_COD_MAT_MOV_TYPE = DaoDbField.COL_COD_MAT_MOV_TYPE;
+	public static final String COL_COD_MAT_TYPE = DaoDbField.COL_COD_MAT_TYPE;
+	public static final String COL_COD_ORDER_STATUS = DaoDbField.COL_COD_ORDER_STATUS;
+	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
+	public static final String COL_COD_PAYMENT_STATUS = DaoDbField.COL_COD_PAYMENT_STATUS;
+	public static final String COL_COD_POSITION = DaoDbField.COL_COD_POSITION;	
+	public static final String COL_COD_SCHEDULE_STATUS = DaoDbField.COL_COD_SCHEDULE_STATUS;
+	public static final String COL_COD_SYS_ENVIRONMENT = DaoDbField.COL_COD_SYS_ENVIRONMENT;
+	public static final String COL_COD_TIMEZONE = DaoDbField.COL_COD_TIMEZONE;
+	public static final String COL_COD_UNIT = DaoDbField.COL_COD_UNIT;
+	public static final String COL_COD_USER_CATEG = DaoDbField.COL_COD_USER_CATEG;
+	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;	
+	public static final String COL_CURRENCY_SYMBOL = DaoDbField.COL_CURRENCY_SYMBOL;
+	public static final String COL_DESCRIPTION = DaoDbField.COL_DESCRIPTION;
+	public static final String COL_NAME = DaoDbField.COL_NAME;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
+	public static final String COL_STATE_PROVINCE = DaoDbField.COL_STATE_PROVINCE;
 	
 	
 	
@@ -82,6 +84,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		authGroupTable();
 		matmovTypeTable();
 		sysEnvironmentTable();
+		scheduleStatusTable();
 		
 		return tableColumns;
 	}
@@ -1043,6 +1046,41 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
+	
+	
+	
+	private void scheduleStatusTable() {
+		final String TABLE_NAME = DaoDbTable.SCHEDULE_STATUS_TABLE;
+		
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_SCHEDULE_STATUS;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.SCHEDULE_STATUS_TEXT_TABLE;
+		oneColumn.columnName = COL_NAME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.SCHEDULE_STATUS_TEXT_TABLE;
+		oneColumn.columnName = COL_COD_LANGUAGE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

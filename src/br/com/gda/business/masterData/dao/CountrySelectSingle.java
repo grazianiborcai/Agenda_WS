@@ -149,21 +149,19 @@ public final class CountrySelectSingle implements DaoStmt<CountryInfo> {
 	
 	private class ResultParser implements DaoResultParser<CountryInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<CountryInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CountryInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
 				CountryInfo dataInfo = new CountryInfo();
 				dataInfo.codCountry = stmtResult.getString(MasterDataDbTableColumn.COL_COD_COUNTRY);
 				dataInfo.codCountryAlpha3 = stmtResult.getString(MasterDataDbTableColumn.COL_COD_COUNTRY_ALPHA3);
-				dataInfo.txtCountry = stmtResult.getString(TEXT_COL);
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
+				dataInfo.txtCountry = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

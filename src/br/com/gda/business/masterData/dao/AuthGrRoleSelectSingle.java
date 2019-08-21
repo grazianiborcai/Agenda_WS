@@ -103,7 +103,7 @@ public final class AuthGrRoleSelectSingle implements DaoStmt<AuthGrRoleInfo> {
 		@Override public List<AuthGrRoleInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<AuthGrRoleInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 					return finalResult;
 			
 			do {

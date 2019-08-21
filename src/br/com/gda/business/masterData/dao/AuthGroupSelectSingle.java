@@ -103,7 +103,7 @@ public final class AuthGroupSelectSingle implements DaoStmt<AuthGroupInfo> {
 		@Override public List<AuthGroupInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<AuthGroupInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 					return finalResult;
 			
 			do {

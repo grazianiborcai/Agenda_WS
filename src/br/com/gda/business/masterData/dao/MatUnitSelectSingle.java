@@ -149,20 +149,18 @@ public final class MatUnitSelectSingle implements DaoStmt<MatUnitInfo> {
 	
 	private class ResultParser implements DaoResultParser<MatUnitInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String UNIT_TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<MatUnitInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatUnitInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
 				MatUnitInfo dataInfo = new MatUnitInfo();
 				dataInfo.codUnit = stmtResult.getString(MasterDataDbTableColumn.COL_COD_UNIT);
-				dataInfo.txtUnit = stmtResult.getString(UNIT_TEXT_COL);
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
+				dataInfo.txtUnit = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

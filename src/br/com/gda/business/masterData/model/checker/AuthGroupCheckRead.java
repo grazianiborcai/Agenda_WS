@@ -17,21 +17,21 @@ public final class AuthGroupCheckRead extends ModelCheckerTemplateSimple<AuthGro
 	
 	@Override protected boolean checkHook(AuthGroupInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codAuthGroup == null)			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.AUTH_GROUP_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.AUTH_GROUP_MANDATORY_FIELD_EMPTY;
 	}
 }

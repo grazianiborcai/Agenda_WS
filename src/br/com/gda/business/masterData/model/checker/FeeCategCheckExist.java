@@ -51,7 +51,7 @@ public final class FeeCategCheckExist extends ModelCheckerTemplateAction<FeeCate
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
+		if (checkerResult == super.ALREADY_EXIST)
 			return SystemCode.FEE_CATEG_ALREADY_EXIST;	
 			
 		return SystemCode.FEE_CATEG_NOT_FOUND;

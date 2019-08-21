@@ -17,21 +17,21 @@ public final class EntityCategCheckRead extends ModelCheckerTemplateSimple<Entit
 	
 	@Override protected boolean checkHook(EntityCategInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codLanguage == null )			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.ENTITY_CATEG_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.ENTITY_CATEG_MANDATORY_FIELD_EMPTY;
 	}
 }

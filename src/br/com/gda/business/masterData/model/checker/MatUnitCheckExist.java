@@ -50,7 +50,7 @@ public final class MatUnitCheckExist extends ModelCheckerTemplateAction<MatUnitI
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
+		if (checkerResult == super.ALREADY_EXIST)
 			return SystemCode.UNIT_ALREADY_EXIST;	
 			
 		return SystemCode.UNIT_NOT_FOUND;

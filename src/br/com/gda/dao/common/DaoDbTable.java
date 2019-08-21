@@ -87,6 +87,8 @@ public final class DaoDbTable {
 	public static final String TIMEZONE_TEXT_TABLE = "timezone_text";
 	public static final String SCHEDULE_TABLE = "schedule";
 	public static final String SCHEDULE_SNAPSHOT_TABLE = "schedule_snapshot";
+	public static final String SCHEDULE_STATUS_TABLE = "schedule_status";
+	public static final String SCHEDULE_STATUS_TEXT_TABLE = "schedule_status_text";
 	public static final String STATE_TABLE = "state";
 	public static final String STATE_TEXT_TABLE = "state_text";
 	public static final String STORE_TABLE = "store";

@@ -101,7 +101,7 @@ public final class SysEnvironSelectSingle implements DaoStmt<SysEnvironInfo> {
 		@Override public List<SysEnvironInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<SysEnvironInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				

@@ -51,7 +51,7 @@ public final class PayparCheckExist extends ModelCheckerTemplateAction<PayparInf
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
+		if (checkerResult == super.ALREADY_EXIST)
 			return SystemCode.PAY_PARTNER_ALREADY_EXIST;	
 			
 		return SystemCode.PAY_PARTNER_NOT_FOUND;

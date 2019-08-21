@@ -50,7 +50,7 @@ public final class MatTypeCheckExist extends ModelCheckerTemplateAction<MatTypeI
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
+		if (checkerResult == super.ALREADY_EXIST)
 			return SystemCode.MAT_TYPE_ALREADY_EXIST;	
 			
 		return SystemCode.MAT_TYPE_NOT_FOUND;

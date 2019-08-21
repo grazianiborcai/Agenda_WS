@@ -18,21 +18,21 @@ public final class AuthGrRoleCheckRead extends ModelCheckerTemplateSimple<AuthGr
 	@Override protected boolean checkHook(AuthGrRoleInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codAuthRole 	== null &&
 			recordInfo.codAuthGroup == null		)			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.AUTH_ROLE_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.AUTH_ROLE_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.com.gda.business.masterData.info.FeeCategInfo;
 import br.com.gda.dao.DaoDictionary;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoJoinColumn;
 import br.com.gda.dao.DaoJoinType;
@@ -149,20 +150,18 @@ public final class FeeCategSelectSingle implements DaoStmt<FeeCategInfo> {
 	
 	private class ResultParser implements DaoResultParser<FeeCategInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<FeeCategInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<FeeCategInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
 				FeeCategInfo dataInfo = new FeeCategInfo();
-				dataInfo.codFeeCateg = stmtResult.getString(MasterDataDbTableColumn.COL_COD_FEE_CATEG).charAt(0);
-				dataInfo.txtFeeCateg = stmtResult.getString(TEXT_COL);
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
+				dataInfo.codFeeCateg = DaoFormatter.sqlToChar(stmtResult, MasterDataDbTableColumn.COL_COD_FEE_CATEG);
+				dataInfo.txtFeeCateg = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

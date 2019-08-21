@@ -2,20 +2,20 @@ package br.com.gda.business.masterData.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.masterData.info.PositionInfo;
+import br.com.gda.business.masterData.info.ScheduleStatusInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class PositionCheckRead extends ModelCheckerTemplateSimple<PositionInfo> {
-
-	public PositionCheckRead() {
+public final class ScheduleStatusCheckRead extends ModelCheckerTemplateSimple<ScheduleStatusInfo> {
+	
+	public ScheduleStatusCheckRead() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(PositionInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(ScheduleStatusInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codLanguage == null )			
 			return super.FAILED;
 		
@@ -26,12 +26,12 @@ public final class PositionCheckRead extends ModelCheckerTemplateSimple<Position
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.POSITION_MANDATORY_FIELD_EMPTY;
+		return SystemMessage.SCHEDULE_STATUS_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.POSITION_MANDATORY_FIELD_EMPTY;
+		return SystemCode.SCHEDULE_STATUS_MANDATORY_FIELD_EMPTY;
 	}
 }

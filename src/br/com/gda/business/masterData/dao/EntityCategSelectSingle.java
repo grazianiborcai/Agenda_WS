@@ -149,20 +149,18 @@ public final class EntityCategSelectSingle implements DaoStmt<EntityCategInfo> {
 	
 	private class ResultParser implements DaoResultParser<EntityCategInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<EntityCategInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<EntityCategInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
 				EntityCategInfo dataInfo = new EntityCategInfo();
 				dataInfo.codEntityCateg = stmtResult.getString(MasterDataDbTableColumn.COL_COD_ENTITY_CATEG);
-				dataInfo.txtEntityCateg = stmtResult.getString(TEXT_COL);
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
+				dataInfo.txtEntityCateg = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

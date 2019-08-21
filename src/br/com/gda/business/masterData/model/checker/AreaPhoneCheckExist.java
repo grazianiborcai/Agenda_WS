@@ -51,7 +51,7 @@ public final class AreaPhoneCheckExist extends ModelCheckerTemplateAction<AreaPh
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
+		if (checkerResult == super.ALREADY_EXIST)
 			return SystemCode.AREA_PHONE_ALREADY_EXIST;	
 			
 		return SystemCode.AREA_PHONE_NOT_FOUND;

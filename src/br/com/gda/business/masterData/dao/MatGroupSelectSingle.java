@@ -180,7 +180,7 @@ public final class MatGroupSelectSingle implements DaoStmt<MatGroupInfo> {
 		@Override public List<MatGroupInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatGroupInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				

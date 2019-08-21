@@ -149,20 +149,18 @@ public final class MatTypeSelectSingle implements DaoStmt<MatTypeInfo> {
 	
 	private class ResultParser implements DaoResultParser<MatTypeInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TYPE_TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<MatTypeInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<MatTypeInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
 				MatTypeInfo dataInfo = new MatTypeInfo();
 				dataInfo.codType = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_MAT_TYPE);
-				dataInfo.txtType = stmtResult.getString(TYPE_TEXT_COL);
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
+				dataInfo.txtType = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

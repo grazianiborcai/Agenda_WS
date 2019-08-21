@@ -117,6 +117,34 @@ public final class SystemCode {
 	public static final int MAT_MOV_TYPE_NOT_FOUND						= 1193;
 	public static final int PAY_PARTNER_ALREADY_EXIST					= 1194;
 	public static final int PAY_PARTNER_NOT_FOUND						= 1195;
+	public static final int SCHEDULE_STATUS_ALREADY_EXIST 				= 1196;
+	public static final int SCHEDULE_STATUS_NOT_FOUND 					= 1197;
+	public static final int WEEKDAY_MANDATORY_FIELD_EMPTY 				= 1198;
+	public static final int USER_CATEG_MANDATORY_FIELD_EMPTY 			= 1199;
+	public static final int TIMEZONE_MANDATORY_FIELD_EMPTY 				= 5300;
+	public static final int STATE_MANDATORY_FIELD_EMPTY 				= 5301;
+	public static final int SCHEDULE_STATUS_MANDATORY_FIELD_EMPTY 		= 5302;
+	public static final int POSITION_MANDATORY_FIELD_EMPTY 				= 5303;
+	public static final int PAY_PARTNER_MANDATORY_FIELD_EMPTY 			= 5304;
+	public static final int PAYMENT_STATUS_MANDATORY_FIELD_EMPTY 		= 5305;
+	public static final int ORDER_STATUS_MANDATORY_FIELD_EMPTY 			= 5306;
+	public static final int UNIT_MANDATORY_FIELD_EMPTY 					= 5307;
+	public static final int MAT_TYPE_MANDATORY_FIELD_EMPTY 				= 5308;
+	public static final int MAT_MOV_TYPE_MANDATORY_FIELD_EMPTY 			= 5309;
+	public static final int MAT_GROUP_MANDATORY_FIELD_EMPTY 			= 5310;
+	public static final int MAT_CATEG_MANDATORY_FIELD_EMPTY 			= 5311;
+	public static final int GENDER_MANDATORY_FIELD_EMPTY 				= 5312;
+	public static final int FEE_CATEG_MANDATORY_FIELD_EMPTY 			= 5313;
+	public static final int ENTITY_CATEG_MANDATORY_FIELD_EMPTY 			= 5314;
+	public static final int CURRENCY_MANDATORY_FIELD_EMPTY 				= 5315;
+	public static final int COUNTRY_PHONE_MANDATORY_FIELD_EMPTY 		= 5316;
+	public static final int COUNTRY_LEGAL_MANDATORY_FIELD_EMPTY 		= 5317;
+	public static final int COUNTRY_MANDATORY_FIELD_EMPTY 				= 5318;
+	public static final int CART_CATEG_MANDATORY_FIELD_EMPTY 			= 5319;
+	public static final int BUSINESS_MANDATORY_FIELD_EMPTY 				= 5320;
+	public static final int AUTH_ROLE_MANDATORY_FIELD_EMPTY 			= 5321;
+	public static final int AUTH_GROUP_MANDATORY_FIELD_EMPTY 			= 5322;
+	public static final int AREA_PHONE_MANDATORY_FIELD_EMPTY 			= 5323;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
@@ -590,4 +618,7 @@ public final class SystemCode {
 	
 	// Customer Search
 	public static final int CUSTOMER_SEARCH_MANDATORY_FIELD_EMPTY 		= 5250;
+	
+	//5300 - 5350 - master data
+	//5351 - 5400 - proxima
 }

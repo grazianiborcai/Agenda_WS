@@ -17,10 +17,10 @@ public final class MatUnitCheckRead extends ModelCheckerTemplateSimple<MatUnitIn
 	
 	@Override protected boolean checkHook(MatUnitInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codLanguage == null )			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

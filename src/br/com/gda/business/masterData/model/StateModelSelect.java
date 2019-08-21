@@ -1,71 +1,26 @@
 package br.com.gda.business.masterData.model;
 
-import java.sql.Connection;
-
-import javax.ws.rs.core.Response;
-
 import br.com.gda.business.masterData.info.StateInfo;
 import br.com.gda.business.masterData.model.decisionTree.RootStateSelect;
-import br.com.gda.common.DbConnection;
-import br.com.gda.common.DbSchema;
-import br.com.gda.model.Model;
+import br.com.gda.model.ModelTemplate;
 import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.obsolete.ModelHelper_;
-import br.com.gda.model.obsolete.ModelOption_;
 
-public final class StateModelSelect implements Model {
-	private Model helper;
-	private Connection conn;
-	private String schemaName;
-	
-	
+public final class StateModelSelect extends ModelTemplate<StateInfo> {
+
 	public StateModelSelect(StateInfo recordInfo) {
-		initialize();
-		buildHelper(recordInfo);
+		super(recordInfo);
 	}
 	
 	
 	
-	private void initialize() {
-		this.conn = DbConnection.getConnection();
-		this.schemaName = DbSchema.getDefaultSchemaName();
+	@Override protected DeciTree<StateInfo> getDecisionTreeHook(DeciTreeOption<StateInfo> option) {
+		return new RootStateSelect(option);
 	}
 	
 	
 	
-	private void buildHelper(StateInfo recordInfo) {
-		ModelOption_<StateInfo> helperOption = new ModelOption_<>();
-		
-		helperOption.recordClass = StateInfo.class;
-		helperOption.deciTreeFactory = new TreeFactory();
-		helperOption.conn = this.conn;
-		helperOption.schemaName = this.schemaName;
-		
-		helper = ModelHelper_.factory(helperOption, recordInfo);
-	}
-
-
-	
-	@Override public boolean executeRequest() {
-		return helper.executeRequest();
-	}
-
-
-	
-	@Override public Response getResponse() {
-		return helper.getResponse();
-	}
-	
-	
-	
-	
-	
-	
-	private static class TreeFactory implements DeciTreeFactory<StateInfo> {		
-		@Override public DeciTree<StateInfo> getInstance(DeciTreeOption<StateInfo> option) {
-			return new RootStateSelect(option);
-		}			
+	@Override protected Class<?> getImplamentationClassHook() {
+		return this.getClass();
 	}
 }

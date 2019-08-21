@@ -149,20 +149,18 @@ public final class CartCategSelectSingle implements DaoStmt<CartCategInfo> {
 	
 	private class ResultParser implements DaoResultParser<CartCategInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<CartCategInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CartCategInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
 				CartCategInfo dataInfo = new CartCategInfo();
 				dataInfo.codItemCateg = stmtResult.getString(MasterDataDbTableColumn.COL_COD_ITEM_CATEG).charAt(0);
-				dataInfo.txtItemCateg = stmtResult.getString(TEXT_COL);
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
+				dataInfo.txtItemCateg = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

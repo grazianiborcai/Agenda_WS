@@ -17,21 +17,21 @@ public final class MatmovTypeCheckRead extends ModelCheckerTemplateSimple<Matmov
 	
 	@Override protected boolean checkHook(MatmovTypeInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codLanguage == null )			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.MAT_MOV_TYPE_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.MAT_MOV_TYPE_MANDATORY_FIELD_EMPTY;
 	}
 }

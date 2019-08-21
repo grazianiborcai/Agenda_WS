@@ -50,7 +50,7 @@ public final class LanguCheckExist extends ModelCheckerTemplateAction<LanguInfo>
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
+		if (checkerResult == super.ALREADY_EXIST)
 			return SystemCode.LANGUAGE_ALREADY_EXIST;	
 			
 		return SystemCode.LANGUAGE_NOT_FOUND;

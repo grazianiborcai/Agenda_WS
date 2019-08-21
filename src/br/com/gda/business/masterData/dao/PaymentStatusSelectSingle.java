@@ -149,20 +149,18 @@ public final class PaymentStatusSelectSingle implements DaoStmt<PaymentStatusInf
 	
 	private class ResultParser implements DaoResultParser<PaymentStatusInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<PaymentStatusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<PaymentStatusInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
 				PaymentStatusInfo dataInfo = new PaymentStatusInfo();
 				dataInfo.codPaymentStatus = stmtResult.getString(MasterDataDbTableColumn.COL_COD_PAYMENT_STATUS);
-				dataInfo.txtPaymentStatus = stmtResult.getString(TEXT_COL);
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
+				dataInfo.txtPaymentStatus = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

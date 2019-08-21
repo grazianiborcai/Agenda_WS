@@ -149,20 +149,18 @@ public final class OrderStatusSelectSingle implements DaoStmt<OrderStatusInfo> {
 	
 	private class ResultParser implements DaoResultParser<OrderStatusInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final String TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
-		private final String LANGU_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_COD_LANGUAGE;
 		
 		@Override public List<OrderStatusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<OrderStatusInfo> finalResult = new ArrayList<>();
 			
-			if (stmtResult.next() == EMPTY_RESULT_SET )				
+			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 		
 			do {				
 				OrderStatusInfo dataInfo = new OrderStatusInfo();
 				dataInfo.codOrderStatus = stmtResult.getString(MasterDataDbTableColumn.COL_COD_ORDER_STATUS);
-				dataInfo.txtOrderStatus = stmtResult.getString(TEXT_COL);
-				dataInfo.codLanguage = stmtResult.getString(LANGU_COL);		
+				dataInfo.txtOrderStatus = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());
