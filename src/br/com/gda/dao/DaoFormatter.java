@@ -194,6 +194,20 @@ public final class DaoFormatter {
 	
 	
 	
+	public static PreparedStatement numberToStmt(PreparedStatement stmt, int index, double number) throws SQLException {
+		checkArgument(stmt, index);		
+		
+		if (number >= 0) {
+			stmt.setDouble(index, number);
+			return stmt;
+		}
+		
+		stmt.setNull(index, Types.INTEGER);
+		return stmt;
+	}
+	
+	
+	
 	public static PreparedStatement localDateTimeToStmt(PreparedStatement stmt, int index, LocalDateTime localDateTime) throws SQLException {
 		checkArgument(stmt, index, localDateTime);			
 		
@@ -239,6 +253,19 @@ public final class DaoFormatter {
 			return DefaultValue.number();
 			
 		return stmtResult.getLong(colunmName);	
+	}
+	
+	
+	
+	public static double sqlToDouble(ResultSet stmtResult, String colunmName) throws SQLException {
+		checkArgument(stmtResult, colunmName);		
+		
+		stmtResult.getDouble(colunmName);
+		
+		if (stmtResult.wasNull())
+			return DefaultValue.number();
+			
+		return stmtResult.getDouble(colunmName);	
 	}
 	
 	

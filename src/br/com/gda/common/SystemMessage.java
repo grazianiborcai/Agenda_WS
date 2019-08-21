@@ -792,4 +792,14 @@ public final class SystemMessage {
 	
 	// Customer Search
 	public static final String CUSTOMER_SEARCH_MANDATORY_FIELD_EMPTY = "Customer-Search: Mandatory field is empty";
+	
+	
+	
+	// Order Search
+	public static final String ORDER_SEARCH_MANDATORY_FIELD_EMPTY = "Order-Search: Mandatory field is empty";
+	
+	
+	
+	// Order List
+	public static final String ORDER_LIST_MANDATORY_FIELD_EMPTY = "Order-List: Mandatory field is empty";
 }

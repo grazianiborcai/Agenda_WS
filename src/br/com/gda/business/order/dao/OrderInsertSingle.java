@@ -4,12 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -79,126 +78,28 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 	private class ParamTranslator implements DaoStmtParamTranslator<OrderInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, OrderInfo recordInfo) throws SQLException {
 			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
-			
-			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codUser);
-			
-			
-			if (recordInfo.codUserSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codUserSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codCustomer >= 0) {
-				stmt.setLong(i++, recordInfo.codCustomer);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codCustomerSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codCustomerSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
 			stmt.setString(i++, recordInfo.codOrderExt);
 			stmt.setString(i++, recordInfo.codOrderStatus);
-			
-			
-			if (recordInfo.itemTotal >= 0) {
-				stmt.setDouble(i++, recordInfo.itemTotal);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.feeService >= 0) {
-				stmt.setDouble(i++, recordInfo.feeService);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.grandTotal >= 0) {
-				stmt.setDouble(i++, recordInfo.grandTotal);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.itemTotal);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.feeService);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.grandTotal);
 			stmt.setString(i++, recordInfo.codCurr);
-			stmt.setTimestamp(i++, lastChanged);	
-			
-			if (recordInfo.codAddressShip >= 0) {
-				stmt.setLong(i++, recordInfo.codAddressShip);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codAddressShipSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codAddressShipSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codAddressInvoice >= 0) {
-				stmt.setLong(i++, recordInfo.codAddressInvoice);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codAddressInvoiceSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codAddressInvoiceSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codPhoneShip >= 0) {
-				stmt.setLong(i++, recordInfo.codPhoneShip);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codPhoneShipSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codPhoneShipSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codPhoneInvoice >= 0) {
-				stmt.setLong(i++, recordInfo.codPhoneInvoice);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codPhoneInvoiceSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codPhoneInvoiceSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codPayOrder >= 0) {
-				stmt.setLong(i++, recordInfo.codPayOrder);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressShip);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressShipSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressInvoice);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressInvoiceSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneShip);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneShipSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoice);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoiceSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
 
 			return stmt;
 		}		

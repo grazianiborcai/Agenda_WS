@@ -3,6 +3,10 @@ package br.com.gda.dao.common;
 public final class DaoDbField {	
 	public static final String COL_BEGIN_TIME = "begin_time";
 	public static final String COL_BIRTH_DATE = "birth_date";
+	public static final String COL_COD_ADDRESS_SHIP = "cod_address_ship";
+	public static final String COL_COD_ADDRESS_SHIP_SNAPSHOT = "cod_address_ship_snapshot";
+	public static final String COL_COD_ADDRESS_INVOICE = "cod_address_invoice";
+	public static final String COL_COD_ADDRESS_INVOICE_SNAPSHOT = "cod_address_invoice_snapshot";
 	public static final String COL_COD_AREA = "cod_area";
 	public static final String COL_COD_AREA_PHONE = "cod_area_phone";	
 	public static final String COL_COD_AUTH_GROUP = "cod_auth_group";
@@ -31,7 +35,9 @@ public final class DaoDbField {
 	public static final String COL_COD_MATERIAL = "cod_material";	
 	public static final String COL_COD_MATERIAL_SNAPSHOT = "cod_material_snapshot";
 	public static final String COL_COD_ORDER = "cod_order";
+	public static final String COL_COD_ORDER_EXTERNAL = "cod_order_external";
 	public static final String COL_COD_ORDER_STATUS = "cod_order_status";
+	public static final String COL_COD_PAY_ORDER = "cod_pay_order";
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
 	public static final String COL_COD_PAYMENT_STATUS = "cod_payment_status";
 	public static final String COL_COD_POSITION = "cod_position";	
@@ -41,6 +47,10 @@ public final class DaoDbField {
 	public static final String COL_COD_PERSON = "cod_person";
 	public static final String COL_COD_PERSON_SNAPSHOT = "cod_person_snapshot";
 	public static final String COL_COD_PHONE = "cod_phone";
+	public static final String COL_COD_PHONE_SHIP = "cod_phone_ship";
+	public static final String COL_COD_PHONE_SHIP_SNAPSHOT = "cod_phone_ship_snapshot";
+	public static final String COL_COD_PHONE_INVOICE = "cod_phone_invoice";
+	public static final String COL_COD_PHONE_INVOICE_SNAPSHOT = "cod_phone_invoice_snapshot";
 	public static final String COL_COD_SCHEDULE = "cod_schedule";
 	public static final String COL_COD_SCHEDULE_STATUS = "cod_schedule_status";
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
@@ -67,10 +77,13 @@ public final class DaoDbField {
 	public static final String COL_DESCRIPTION = "description";
 	public static final String COL_EMAIL = "email";
 	public static final String COL_END_TIME = "end_time";
+	public static final String COL_FEE_SERVICE = "feeService";
 	public static final String COL_FULL_NUMBER = "full_number";
+	public static final String COL_GRAND_TOTAL = "grandTotal";
 	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";
 	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";
 	public static final String COL_IS_LOCKED = "is_locked";
+	public static final String COL_ITEM_TOTAL = "itemTotal";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
 	public static final String COL_MONTH = "month";

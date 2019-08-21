@@ -12,6 +12,8 @@ import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.OrderModelCancel;
 import br.com.gda.business.order.model.OrderModelPlace;
 import br.com.gda.business.order.model.OrderModelSelect;
+import br.com.gda.business.orderList.info.OrdistInfo;
+import br.com.gda.business.orderList.model.OrdistModelSelect;
 import br.com.gda.model.Model;
 
 @Path("/Order")
@@ -19,6 +21,7 @@ public final class OrderResource {
 	private static final String SELECT_ORDER = "/selectOrder";
 	private static final String PLACE_ORDER = "/placeOrder";
 	private static final String CANCEL_ORDER = "/cancelOrder";
+	private static final String SELECT_ORDER_LIST = "/selectOrderList";
 	
 	
 	
@@ -84,6 +87,32 @@ public final class OrderResource {
 		
 		
 		Model model = new OrderModelCancel(recordInfo);
+		model.executeRequest();
+		return model.getResponse();	
+	} 
+	
+	
+	
+	@GET
+	@Path(SELECT_ORDER_LIST)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectOrdist(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner, 
+								 @HeaderParam("TOKEN_USERNAME") String username,
+							     @HeaderParam("codOrder")    	@DefaultValue("-1") long codOrder,
+							     @HeaderParam("codCustomer")    @DefaultValue("-1") long codCustomer,
+							     @HeaderParam("codOrderStatus") String codOrderStatus,
+							     @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
+		
+		OrdistInfo recordInfo = new OrdistInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.username = username;
+		recordInfo.codOrder = codOrder;
+		recordInfo.codCustomer = codCustomer;
+		recordInfo.codOrderStatus = codOrderStatus;
+		recordInfo.codLanguage = codLanguage;
+		
+		
+		Model model = new OrdistModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	} 

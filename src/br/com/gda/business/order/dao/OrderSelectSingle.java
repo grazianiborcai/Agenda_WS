@@ -3,11 +3,11 @@ package br.com.gda.business.order.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -50,7 +50,7 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new OrderWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -99,7 +99,6 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<OrderInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<OrderInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -117,70 +116,22 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 				dataInfo.codOrderExt = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_EXTERNAL);	
 				dataInfo.codOrderStatus = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_STATUS);
 				dataInfo.codCurr = stmtResult.getString(OrderDbTableColumn.COL_COD_CURRENCY);
-				
-				stmtResult.getLong(OrderDbTableColumn.COL_COD_USER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUserSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_USER_SNAPSHOT);
-				
-				stmtResult.getLong(OrderDbTableColumn.COL_COD_CUSTOMER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(OrderDbTableColumn.COL_COD_CUSTOMER);
-				
-				stmtResult.getLong(OrderDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomerSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(OrderDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				stmtResult.getDouble(OrderDbTableColumn.COL_ITEM_TOTAL);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.itemTotal = stmtResult.getDouble(OrderDbTableColumn.COL_ITEM_TOTAL);
-				
-				stmtResult.getDouble(OrderDbTableColumn.COL_FEE_SERVICE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.feeService = stmtResult.getDouble(OrderDbTableColumn.COL_FEE_SERVICE);
-				
-				stmtResult.getDouble(OrderDbTableColumn.COL_GRAND_TOTAL);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.grandTotal = stmtResult.getDouble(OrderDbTableColumn.COL_GRAND_TOTAL);	
-				
-				stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_SHIP);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codAddressShip = stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_SHIP);
-				
-				stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_SHIP_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codAddressShipSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_SHIP_SNAPSHOT);
-				
-				stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_INVOICE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codAddressInvoice = stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_INVOICE);
-				
-				stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_INVOICE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codAddressInvoiceSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_ADDRESS_INVOICE_SNAPSHOT);
-				
-				stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_SHIP);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPhoneShip = stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_SHIP);
-				
-				stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_SHIP_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPhoneShipSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_SHIP_SNAPSHOT);
-				
-				stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_INVOICE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPhoneInvoice = stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_INVOICE);
-				
-				stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_INVOICE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPhoneInvoiceSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_PHONE_INVOICE_SNAPSHOT);
-				
-				stmtResult.getLong(OrderDbTableColumn.COL_COD_PAY_ORDER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPayOrder = stmtResult.getLong(OrderDbTableColumn.COL_COD_PAY_ORDER);
+				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_USER_SNAPSHOT);
+				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_CUSTOMER);
+				dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OrderDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.itemTotal = DaoFormatter.sqlToDouble(stmtResult, OrderDbTableColumn.COL_ITEM_TOTAL);
+				dataInfo.feeService = DaoFormatter.sqlToDouble(stmtResult, OrderDbTableColumn.COL_FEE_SERVICE);
+				dataInfo.grandTotal = DaoFormatter.sqlToDouble(stmtResult, OrderDbTableColumn.COL_GRAND_TOTAL);
+				dataInfo.codAddressShip = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_ADDRESS_SHIP);
+				dataInfo.codAddressShipSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_ADDRESS_SHIP_SNAPSHOT);
+				dataInfo.codAddressInvoice = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_ADDRESS_INVOICE);
+				dataInfo.codAddressInvoiceSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_ADDRESS_INVOICE_SNAPSHOT);
+				dataInfo.codPhoneShip = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PHONE_SHIP);
+				dataInfo.codPhoneShipSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PHONE_SHIP_SNAPSHOT);
+				dataInfo.codPhoneInvoice = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PHONE_INVOICE);
+				dataInfo.codPhoneInvoiceSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PHONE_INVOICE_SNAPSHOT);
+				dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PAY_ORDER);
 				
 				
 				finalResult.add(dataInfo);

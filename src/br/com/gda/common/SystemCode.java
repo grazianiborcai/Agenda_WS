@@ -619,6 +619,9 @@ public final class SystemCode {
 	// Customer Search
 	public static final int CUSTOMER_SEARCH_MANDATORY_FIELD_EMPTY 		= 5250;
 	
-	//5300 - 5350 - master data
-	//5351 - 5400 - proxima
+	// Order Search
+	public static final int ORDER_SEARCH_MANDATORY_FIELD_EMPTY 			= 5351;
+	
+	// Order List
+	public static final int ORDER_LIST_MANDATORY_FIELD_EMPTY 			= 5400;
 }
