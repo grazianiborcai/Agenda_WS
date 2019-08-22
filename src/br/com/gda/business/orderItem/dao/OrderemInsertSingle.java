@@ -3,7 +3,6 @@ package br.com.gda.business.orderItem.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.orderItem.info.OrderemInfo;
@@ -79,71 +78,20 @@ public class OrderemInsertSingle implements DaoStmt<OrderemInfo> {
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codOrder);
-			
-			
-			if (recordInfo.codStore >= 0) {
-				stmt.setLong(i++, recordInfo.codStore);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codMat >= 0) {
-				stmt.setLong(i++, recordInfo.codMat);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codEmployee >= 0) {
-				stmt.setLong(i++, recordInfo.codEmployee);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			stmt.setDate(i++, DaoFormatter.localToSqlDate(recordInfo.date));
-			stmt.setTime(i++, DaoFormatter.localToSqlTime(recordInfo.beginTime));
-			stmt.setTime(i++, DaoFormatter.localToSqlTime(recordInfo.endTime));
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrderItem);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codMat);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);
+			stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.date);
+			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.beginTime);
+			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.endTime);
 			stmt.setInt(i++, recordInfo.quantity);
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.createdOn));		
-			
-			
-			if (recordInfo.codStoreSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codStoreSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codMatSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codMatSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codEmployeeSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codEmployeeSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.price >= 0) {
-				stmt.setDouble(i++, recordInfo.price);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.totitem >= 0) {
-				stmt.setDouble(i++, recordInfo.totitem);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStoreSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codMatSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployeeSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.price);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totitem);
 			stmt.setString(i++, recordInfo.codCurr);
 
 			

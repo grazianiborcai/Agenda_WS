@@ -36,6 +36,7 @@ public final class DaoDbField {
 	public static final String COL_COD_MATERIAL_SNAPSHOT = "cod_material_snapshot";
 	public static final String COL_COD_ORDER = "cod_order";
 	public static final String COL_COD_ORDER_EXTERNAL = "cod_order_external";
+	public static final String COL_COD_ORDER_ITEM = "cod_order_item";
 	public static final String COL_COD_ORDER_STATUS = "cod_order_status";
 	public static final String COL_COD_PAY_ORDER = "cod_pay_order";
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
@@ -89,11 +90,14 @@ public final class DaoDbField {
 	public static final String COL_MONTH = "month";
 	public static final String COL_NAME = "name";
 	public static final String COL_NUMBER = "number";
+	public static final String COL_PRICE = "price";	
 	public static final String COL_PRICE_UNIT = "price_unit";
+	public static final String COL_QUANTITY = "quantity";	
 	public static final String COL_QUARTER = "quarter";
 	public static final String COL_RAZAO_SOCIAL = "razao_social";
 	public static final String COL_RECORD_MODE = "record_mode";	
 	public static final String COL_STATE_PROVINCE = "state_province";
+	public static final String COL_TOTAL_ITEM = "total_item";
 	public static final String COL_USERNAME = "username";
 	public static final String COL_WEEK_MONTH = "week_month";
 	public static final String COL_WEEK_YEAR = "week_year";

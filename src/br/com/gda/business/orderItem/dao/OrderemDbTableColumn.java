@@ -6,26 +6,28 @@ import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_BEGIN_TIME = "begin_time";	
-	public static final String COL_COD_CURR = "cod_curr";
-	public static final String COL_COD_EMPLOYEE = "cod_employee";	
-	public static final String COL_COD_EMPLOYEE_SNAPSHOT = "cod_employee_snapshot";	
-	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_COD_MATERIAL = "cod_material";	
-	public static final String COL_COD_MATERIAL_SNAPSHOT = "cod_material_snapshot";
-	public static final String COL_COD_ORDER = "cod_order";	
-	public static final String COL_COD_OWNER = "cod_owner";			
-	public static final String COL_COD_STORE = "cod_store";	
-	public static final String COL_COD_STORE_SNAPSHOT = "cod_store_snapshot";			
-	public static final String COL_DATE = "date";					
-	public static final String COL_END_TIME = "end_time";			
-	public static final String COL_CREATED_ON = "created_on";		
-	public static final String COL_PRICE = "price";	
-	public static final String COL_QUANTITY = "quantity";	
-	public static final String COL_TOTAL_ITEM = "total_item";
+	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;	
+	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
+	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
+	public static final String COL_COD_EMPLOYEE_SNAPSHOT = DaoDbField.COL_COD_EMPLOYEE_SNAPSHOT;	
+	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
+	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;	
+	public static final String COL_COD_MATERIAL_SNAPSHOT = DaoDbField.COL_COD_MATERIAL_SNAPSHOT;
+	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;	
+	public static final String COL_COD_ORDER_ITEM = DaoDbField.COL_COD_ORDER_ITEM;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;			
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;	
+	public static final String COL_COD_STORE_SNAPSHOT = DaoDbField.COL_COD_STORE_SNAPSHOT;			
+	public static final String COL_DATE = DaoDbField.COL_DATE;					
+	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;			
+	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;		
+	public static final String COL_PRICE = DaoDbField.COL_PRICE;	
+	public static final String COL_QUANTITY = DaoDbField.COL_QUANTITY;	
+	public static final String COL_TOTAL_ITEM = DaoDbField.COL_TOTAL_ITEM;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
@@ -39,13 +41,13 @@ public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();	
-		buildOrdemTable();
+		buildOrdemItemTable();
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildOrdemTable() {
+	private void buildOrdemItemTable() {
 		final String TABLE_NAME = DaoDbTable.ORDER_ITM_TABLE;
 		
 		DaoColumn oneColumn;
@@ -62,6 +64,14 @@ public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_ORDER;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ORDER_ITEM;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -173,7 +183,7 @@ public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_CURR;
+		oneColumn.columnName = COL_COD_CURRENCY;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

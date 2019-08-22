@@ -26,9 +26,12 @@ public final class OrderSetterOrderemKey implements InfoSetter<OrderInfo> {
 	
 	
 	private OrderInfo setKey(OrderInfo recordInfo) {
+		int i=0;
+		
 		for(OrderemInfo eachCartem : recordInfo.orderms) {
 			eachCartem.codOwner = recordInfo.codOwner;
 			eachCartem.codOrder = recordInfo.codOrder;
+			eachCartem.codOrderItem = ++i;
 			eachCartem.username = recordInfo.username;
 			eachCartem.codLanguage = recordInfo.codLanguage;
 		}

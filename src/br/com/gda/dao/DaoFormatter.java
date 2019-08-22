@@ -230,6 +230,17 @@ public final class DaoFormatter {
 	
 	
 	
+	public static PreparedStatement localTimeToStmt(PreparedStatement stmt, int index, LocalTime localTime) throws SQLException {
+		checkArgument(stmt, index);			
+		
+		Time sqlTime = localToSqlTime(localTime);		
+		stmt.setTime(index, sqlTime);		
+		
+		return stmt;
+	}
+	
+	
+	
 	public static PreparedStatement charToStmt(PreparedStatement stmt, int index, char character) throws SQLException {
 		checkArgument(stmt, index);				
 		

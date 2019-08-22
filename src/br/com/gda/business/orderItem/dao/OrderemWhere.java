@@ -35,24 +35,8 @@ public final class OrderemWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
 					break;
 					
-				case OrderemDbTableColumn.COL_COD_STORE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
-					break;
-					
-				case OrderemDbTableColumn.COL_COD_MATERIAL :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
-					break;
-					
-				case OrderemDbTableColumn.COL_COD_EMPLOYEE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
-					break;
-					
-				case OrderemDbTableColumn.COL_DATE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
-					break;
-					
-				case OrderemDbTableColumn.COL_BEGIN_TIME :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime));
+				case OrderemDbTableColumn.COL_COD_ORDER_ITEM :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrderItem));
 					break;
 			}
 		}		

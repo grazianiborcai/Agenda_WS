@@ -1,15 +1,13 @@
 package br.com.gda.business.orderItem.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.orderItem.info.OrderemInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -101,7 +99,6 @@ public final class OrderemSelectSingle implements DaoStmt<OrderemInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<OrderemInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<OrderemInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -115,56 +112,21 @@ public final class OrderemSelectSingle implements DaoStmt<OrderemInfo> {
 				OrderemInfo dataInfo = new OrderemInfo();
 				dataInfo.codOwner = stmtResult.getLong(OrderemDbTableColumn.COL_COD_OWNER);	
 				dataInfo.codOrder = stmtResult.getLong(OrderemDbTableColumn.COL_COD_ORDER);
+				dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, OrderemDbTableColumn.COL_COD_ORDER_ITEM);
 				dataInfo.quantity = stmtResult.getInt(OrderemDbTableColumn.COL_QUANTITY);
-				dataInfo.codCurr = stmtResult.getString(OrderemDbTableColumn.COL_COD_CURR);
-				
-				stmtResult.getLong(OrderemDbTableColumn.COL_COD_STORE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStore = stmtResult.getLong(OrderemDbTableColumn.COL_COD_STORE);
-				
-				stmtResult.getLong(OrderemDbTableColumn.COL_COD_STORE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStoreSnapshot = stmtResult.getLong(OrderemDbTableColumn.COL_COD_STORE_SNAPSHOT);
-				
-				stmtResult.getLong(OrderemDbTableColumn.COL_COD_EMPLOYEE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployee = stmtResult.getLong(OrderemDbTableColumn.COL_COD_EMPLOYEE);
-				
-				stmtResult.getLong(OrderemDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployeeSnapshot = stmtResult.getLong(OrderemDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-				
-				stmtResult.getLong(OrderemDbTableColumn.COL_COD_MATERIAL);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codMat = stmtResult.getLong(OrderemDbTableColumn.COL_COD_MATERIAL);
-				
-				stmtResult.getLong(OrderemDbTableColumn.COL_COD_MATERIAL_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codMatSnapshot = stmtResult.getLong(OrderemDbTableColumn.COL_COD_MATERIAL_SNAPSHOT);
-
-				Date date = stmtResult.getDate(OrderemDbTableColumn.COL_DATE);
-				if (date != null)
-					dataInfo.date = date.toLocalDate();
-				
-				Time beginTime = stmtResult.getTime(OrderemDbTableColumn.COL_BEGIN_TIME);
-				if (beginTime != null)
-					dataInfo.beginTime = beginTime.toLocalTime();
-				
-				Time endTime = stmtResult.getTime(OrderemDbTableColumn.COL_END_TIME);
-				if (endTime != null)
-					dataInfo.endTime = endTime.toLocalTime();
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(OrderemDbTableColumn.COL_CREATED_ON);
-				if (lastChanged != null)
-					dataInfo.createdOn = lastChanged.toLocalDateTime();
-				
-				stmtResult.getDouble(OrderemDbTableColumn.COL_PRICE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.price = stmtResult.getDouble(OrderemDbTableColumn.COL_PRICE);
-				
-				stmtResult.getDouble(OrderemDbTableColumn.COL_TOTAL_ITEM);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.totitem = stmtResult.getDouble(OrderemDbTableColumn.COL_TOTAL_ITEM);
+				dataInfo.codCurr = stmtResult.getString(OrderemDbTableColumn.COL_COD_CURRENCY);
+				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_STORE);
+				dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_EMPLOYEE);
+				dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_MATERIAL);
+				dataInfo.codMatSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_MATERIAL_SNAPSHOT);
+				dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, OrderemDbTableColumn.COL_DATE);
+				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, OrderemDbTableColumn.COL_BEGIN_TIME);
+				dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, OrderemDbTableColumn.COL_END_TIME);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, OrderemDbTableColumn.COL_CREATED_ON);
+				dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, OrderemDbTableColumn.COL_PRICE);
+				dataInfo.totitem = DaoFormatter.sqlToDouble(stmtResult, OrderemDbTableColumn.COL_TOTAL_ITEM);
 				
 				
 				finalResult.add(dataInfo);
