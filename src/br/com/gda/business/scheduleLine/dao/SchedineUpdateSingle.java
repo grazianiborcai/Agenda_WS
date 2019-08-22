@@ -91,6 +91,7 @@ public class SchedineUpdateSingle implements DaoStmt<SchedineInfo> {
 			
 			int i = 1;
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrder);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrderItem);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codMat);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);

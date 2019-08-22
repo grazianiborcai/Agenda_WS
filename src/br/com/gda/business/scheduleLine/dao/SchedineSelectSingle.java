@@ -114,6 +114,7 @@ public final class SchedineSelectSingle implements DaoStmt<SchedineInfo> {
 				dataInfo.codOwner = stmtResult.getLong(SchedineDbTableColumn.COL_COD_OWNER);	
 				dataInfo.codSchedule = stmtResult.getLong(SchedineDbTableColumn.COL_COD_SCHEDULE);
 				dataInfo.codOrder = stmtResult.getLong(SchedineDbTableColumn.COL_COD_ORDER);
+				dataInfo.codOrderItem = stmtResult.getInt(SchedineDbTableColumn.COL_COD_ORDER_ITEM);
 				dataInfo.recordMode = stmtResult.getString(SchedineDbTableColumn.COL_RECORD_MODE);				
 				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_STORE);
 				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_EMPLOYEE);

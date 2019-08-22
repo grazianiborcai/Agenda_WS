@@ -16,6 +16,7 @@ public final class SchedineDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;	
 	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;	
+	public static final String COL_COD_ORDER_ITEM = DaoDbField.COL_COD_ORDER_ITEM;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;			
 	public static final String COL_COD_SCHEDULE = DaoDbField.COL_COD_SCHEDULE;
 	public static final String COL_COD_SCHEDULE_STATUS = DaoDbField.COL_COD_SCHEDULE_STATUS;
@@ -80,6 +81,14 @@ public final class SchedineDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_ORDER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ORDER_ITEM;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
