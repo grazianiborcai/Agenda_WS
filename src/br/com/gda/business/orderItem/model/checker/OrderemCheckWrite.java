@@ -17,6 +17,7 @@ public final class OrderemCheckWrite extends ModelCheckerTemplateSimple<OrderemI
 	@Override protected boolean checkHook(OrderemInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 		<= 0 	
 			|| recordInfo.codOrder		<= 0 	
+			|| recordInfo.codOrderItem	<= 0 
 			|| recordInfo.codStore 		<= 0
 			|| recordInfo.codMat		<= 0
 			|| recordInfo.quantity		<= 0
