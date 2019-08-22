@@ -5,11 +5,11 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
-import br.com.gda.security.user.info.UserInfo;
+import br.com.gda.security.userList.info.UselisInfo;
 
-final class OrderVisiMergeUser implements InfoMergerVisitor<OrderInfo, UserInfo> {
+final class OrderVisiMergeUselis implements InfoMergerVisitor<OrderInfo, UselisInfo> {
 
-	@Override public OrderInfo writeRecord(UserInfo sourceOne, OrderInfo sourceTwo) {
+	@Override public OrderInfo writeRecord(UselisInfo sourceOne, OrderInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		OrderInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class OrderVisiMergeUser implements InfoMergerVisitor<OrderInfo, UserInfo>
 	
 	
 	
-	private void checkArgument(UserInfo sourceOne, OrderInfo sourceTwo) {
+	private void checkArgument(UselisInfo sourceOne, OrderInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,14 +37,14 @@ final class OrderVisiMergeUser implements InfoMergerVisitor<OrderInfo, UserInfo>
 	
 	
 	
-	private OrderInfo merge(UserInfo sourceOne, OrderInfo sourceTwo) {
+	private OrderInfo merge(UselisInfo sourceOne, OrderInfo sourceTwo) {
 		sourceTwo.codUserSnapshot = sourceOne.codSnapshot;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(UserInfo sourceOne, OrderInfo sourceTwo) {		
+	@Override public boolean shouldWrite(UselisInfo sourceOne, OrderInfo sourceTwo) {		
 		return (sourceOne.codOwner == sourceTwo.codOwner &&
 				sourceOne.codUser  == sourceTwo.codUser		); 
 	}

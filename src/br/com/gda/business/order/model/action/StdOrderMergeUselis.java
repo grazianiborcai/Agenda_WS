@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderMergeUser implements ActionStd<OrderInfo> {
+public final class StdOrderMergeUselis implements ActionStd<OrderInfo> {
 	private ActionStd<OrderInfo> actionHelper;	
 	
 	
-	public StdOrderMergeUser(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOrderMergeUser(option.conn, option.schemaName));
+	public StdOrderMergeUselis(DeciTreeOption<OrderInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOrderMergeUselis(option.conn, option.schemaName));
 	}
 	
 	

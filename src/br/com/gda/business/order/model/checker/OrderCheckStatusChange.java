@@ -8,9 +8,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class OrderCheckPlace extends ModelCheckerTemplateSimple<OrderInfo> {
+public final class OrderCheckStatusChange extends ModelCheckerTemplateSimple<OrderInfo> {
 
-	public OrderCheckPlace() {
+	public OrderCheckStatusChange() {
 		super();
 	}
 	
@@ -21,11 +21,37 @@ public final class OrderCheckPlace extends ModelCheckerTemplateSimple<OrderInfo>
 			return super.FAILED;
 		
 		
-		if (recordInfo.codOrderStatus.equals(OrderStatus.CREATED.getCodStatus()))
-			return super.SUCCESS;
+		boolean result = super.SUCCESS;
+		OrderStatus status = OrderStatus.getOrderStatus(recordInfo.codOrderStatus);
 		
+		result = statusCancelled(status, result);
+		result = statusPaid(status, result);		
 		
-		return super.FAILED;
+		return result;
+	}
+	
+	
+	
+	private boolean statusCancelled(OrderStatus status, boolean result) {
+		if (result == super.FAILED)
+			return result;
+		
+		if(status == OrderStatus.CANCELLED)
+			return super.FAILED;		
+		
+		return super.SUCCESS;
+	}
+	
+	
+	
+	private boolean statusPaid(OrderStatus status, boolean result) {
+		if (result == super.FAILED)
+			return result;
+		
+		if(status == OrderStatus.PAID)
+			return super.FAILED;		
+		
+		return super.SUCCESS;
 	}
 	
 	

@@ -7,9 +7,9 @@ import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.checker.OrderCheckLangu;
 import br.com.gda.business.order.model.checker.OrderCheckOwner;
 import br.com.gda.business.order.model.checker.OrderCheckWrite;
-import br.com.gda.business.order.model.action.LazyOrderEnforceLChanged;
-import br.com.gda.business.order.model.action.LazyOrderMergeUsername;
 import br.com.gda.business.order.model.action.LazyOrderNodeCancel;
+import br.com.gda.business.order.model.action.LazyOrderRefreshSchedine;
+import br.com.gda.business.order.model.action.LazyOrderRootSelect;
 import br.com.gda.business.order.model.action.StdOrderMergeToSelect;
 import br.com.gda.business.order.model.checker.OrderCheckExist;
 import br.com.gda.model.action.ActionStd;
@@ -68,13 +68,13 @@ public final class RootOrderCancel extends DeciTreeWriteTemplate<OrderInfo> {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		
 		ActionStd<OrderInfo> select = new StdOrderMergeToSelect(option);
-		ActionLazy<OrderInfo> mergeUsername = new LazyOrderMergeUsername(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> nodeCancel = new LazyOrderNodeCancel(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> refreshSchedine = new LazyOrderRefreshSchedine(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> rootSelect = new LazyOrderRootSelect(option.conn, option.schemaName);		
 		
-		select.addPostAction(mergeUsername);
-		mergeUsername.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(nodeCancel);
+		select.addPostAction(nodeCancel);
+		nodeCancel.addPostAction(refreshSchedine);
+		refreshSchedine.addPostAction(rootSelect);
 		
 		actions.add(select);
 		return actions;

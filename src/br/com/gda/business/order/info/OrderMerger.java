@@ -9,7 +9,7 @@ import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.orderItem.info.OrderemInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.payment.payOrder.info.PayordInfo;
-import br.com.gda.security.user.info.UserInfo;
+import br.com.gda.security.userList.info.UselisInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class OrderMerger {		
@@ -111,15 +111,15 @@ public final class OrderMerger {
 	
 	
 	
-	public static OrderInfo mergeWithUser(UserInfo sourceOne, OrderInfo sourceTwo) {
-		InfoMerger<OrderInfo, UserInfo> merger = new OrderMergerUser();		
+	public static OrderInfo mergeWithUselis(UselisInfo sourceOne, OrderInfo sourceTwo) {
+		InfoMerger<OrderInfo, UselisInfo> merger = new OrderMergerUselis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<OrderInfo> mergeWithUser(List<UserInfo> sourceOnes, List<OrderInfo> sourceTwos) {
-		InfoMerger<OrderInfo, UserInfo> merger = new OrderMergerUser();		
+	public static List<OrderInfo> mergeWithUselis(List<UselisInfo> sourceOnes, List<OrderInfo> sourceTwos) {
+		InfoMerger<OrderInfo, UselisInfo> merger = new OrderMergerUselis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
 	

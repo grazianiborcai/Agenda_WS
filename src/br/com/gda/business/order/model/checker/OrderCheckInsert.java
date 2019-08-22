@@ -36,12 +36,12 @@ public final class OrderCheckInsert extends ModelCheckerTemplateSimple<OrderInfo
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.ORDER_HEADER_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.ORDER_HEADER_MANDATORY_FIELD_EMPTY;
 	}
 }

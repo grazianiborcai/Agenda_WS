@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
-import br.com.gda.business.order.model.checker.OrderCheckCancel;
-import br.com.gda.business.order.model.action.LazyOrderRefreshSchedine;
-import br.com.gda.business.order.model.action.LazyOrderRootSelect;
+import br.com.gda.business.order.model.checker.OrderCheckStatusChange;
+import br.com.gda.business.order.model.action.LazyOrderEnforceLChanged;
+import br.com.gda.business.order.model.action.LazyOrderEnforceStatusCancelled;
 import br.com.gda.business.order.model.action.LazyOrderUpdate;
-import br.com.gda.business.order.model.action.StdOrderEnforceStatusCancelled;
+import br.com.gda.business.order.model.action.StdOrderMergeUsername;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -28,7 +28,7 @@ public final class NodeOrderCancel extends DeciTreeWriteTemplate<OrderInfo> {
 		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderInfo> checker;	
 		
-		checker = new OrderCheckCancel();
+		checker = new OrderCheckStatusChange();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -39,16 +39,16 @@ public final class NodeOrderCancel extends DeciTreeWriteTemplate<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderInfo> enforceStatus = new StdOrderEnforceStatusCancelled(option);
+		ActionStd<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);
+		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> enforceStatus = new LazyOrderEnforceStatusCancelled(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> update = new LazyOrderUpdate(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> refreshSchedine = new LazyOrderRefreshSchedine(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);		
 		
+		mergeUsername.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceStatus);
 		enforceStatus.addPostAction(update);
-		update.addPostAction(refreshSchedine);
-		refreshSchedine.addPostAction(select);
 		
-		actions.add(enforceStatus);
+		actions.add(mergeUsername);
 		return actions;
 	}
 }
