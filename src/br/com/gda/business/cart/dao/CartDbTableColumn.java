@@ -6,13 +6,14 @@ import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class CartDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_CUSTOMER = "cod_customer";
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_USER = "cod_user";
-	public static final String COL_LAST_CHANGED = "last_changed";
+	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;

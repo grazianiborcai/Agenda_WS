@@ -127,6 +127,9 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
 		result = result * 31 + (int) (codUser 	  ^ (codUser 	 >>> 32));
+		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
+		result = result * 31 + (int) (codMat 	  ^ (codMat 	 >>> 32));
+		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
 		
 		if (date != null)
 			result = result * 31 + (int) date.hashCode();
@@ -152,6 +155,9 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		return (codOwner    == obj.codOwner    		&& 
 				codCustomer == obj.codCustomer 		&&
 				codUser     == obj.codUser			&&
+				codStore    == obj.codStore			&&
+				codMat    	== obj.codMat			&&
+				codEmployee == obj.codEmployee		&&
 				super.isDateEqual(date, obj.date)	&&
 				super.isTimeEqual(beginTime, obj.beginTime));
 	}

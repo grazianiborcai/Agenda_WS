@@ -6,20 +6,21 @@ import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class CartemDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_BEGIN_TIME = "begin_time";		
-	public static final String COL_COD_EMPLOYEE = "cod_employee";	
-	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_COD_MATERIAL = "cod_material";	
-	public static final String COL_COD_OWNER = "cod_owner";			
-	public static final String COL_COD_STORE = "cod_store";			
-	public static final String COL_COD_USER = "cod_user";			
-	public static final String COL_DATE = "date";					
-	public static final String COL_END_TIME = "end_time";			
-	public static final String COL_CREATED_ON = "created_on";		
-	public static final String COL_QUANTITY = "quantity";			
+	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;		
+	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
+	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
+	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;	
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;			
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;			
+	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;	
+	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;	
+	public static final String COL_DATE = DaoDbField.COL_DATE;					
+	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;	
+	public static final String COL_QUANTITY = DaoDbField.COL_QUANTITY;			
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;

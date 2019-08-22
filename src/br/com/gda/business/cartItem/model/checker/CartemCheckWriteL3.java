@@ -26,21 +26,21 @@ public final class CartemCheckWriteL3 extends ModelCheckerTemplateSimple<CartemI
 			|| recordInfo.endTime		== null
 			|| recordInfo.date			== null	)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.CART_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.CART_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -264,9 +264,11 @@ public final class SystemMessage {
 	// Cart
 	public static final String CART_ALREADY_EXIST = "Cart's data already exist on DB";	
 	public static final String CART_HAVE_ITEM = "Cart still has items";	
+	public static final String CART_HEADER_MANDATORY_FIELD_EMPTY = "Cart-Header: Mandatory field is empty";
 	public static final String CART_ITEM_ALREADY_EXIST = "Cart item already exist on DB";	
 	public static final String CART_ITEM_IS_NOT_DELETED = "Cart item isn't flagged as deleted";
 	public static final String CART_ITEM_IS_NOT_SERVICE = "Cart item isn't a service";
+	public static final String CART_ITEM_MANDATORY_FIELD_EMPTY = "Cart-Item: Mandatory field is empty";
 	public static final String CART_ITEM_NOT_FOUND = "Cart item not found on DB";	
 	public static final String CART_ITEM_QUANTITY_ILLEGAL = "Service item can only have quantity equal to one";	
 	public static final String CART_IS_EMPTY = "Cart is empty";	

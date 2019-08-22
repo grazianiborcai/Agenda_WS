@@ -211,7 +211,9 @@ public final class SystemCode {
 	public static final int CART_ITEM_IS_NOT_SERVICE 					= 1408;
 	public static final int CART_ITEM_IS_NOT_DELETED 					= 1409;
 	public static final int CART_ITEM_QUANTITY_ILLEGAL					= 1410;
-
+	public static final int CART_HEADER_MANDATORY_FIELD_EMPTY			= 1411;
+	public static final int CART_ITEM_MANDATORY_FIELD_EMPTY				= 1412;
+	
 	// Total Amount
 	public static final int AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES			= 1500;
 	

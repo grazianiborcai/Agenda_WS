@@ -16,23 +16,24 @@ public final class CartemCheckDelete extends ModelCheckerTemplateSimple<CartemIn
 	
 	
 	@Override protected boolean checkHook(CartemInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner <= 0 || recordInfo.codCustomer	<= 0 )
+		if ( recordInfo.codOwner 	<= 0 || 
+			 recordInfo.codCustomer	<= 0 	)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.CART_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.CART_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 }

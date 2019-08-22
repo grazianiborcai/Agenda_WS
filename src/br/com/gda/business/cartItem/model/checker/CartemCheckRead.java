@@ -30,12 +30,12 @@ public final class CartemCheckRead extends ModelCheckerTemplateSimple<CartemInfo
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.CART_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.CART_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 }

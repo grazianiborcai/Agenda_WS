@@ -1,15 +1,13 @@
 package br.com.gda.business.cartItem.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cartItem.info.CartemInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -101,7 +99,6 @@ public final class CartemSelectSingle implements DaoStmt<CartemInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<CartemInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<CartemInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -116,35 +113,13 @@ public final class CartemSelectSingle implements DaoStmt<CartemInfo> {
 				dataInfo.codOwner = stmtResult.getLong(CartemDbTableColumn.COL_COD_OWNER);	
 				dataInfo.codUser = stmtResult.getLong(CartemDbTableColumn.COL_COD_USER);
 				dataInfo.quantity = stmtResult.getInt(CartemDbTableColumn.COL_QUANTITY);
-				
-				stmtResult.getLong(CartemDbTableColumn.COL_COD_STORE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStore = stmtResult.getLong(CartemDbTableColumn.COL_COD_STORE);
-				
-				stmtResult.getLong(CartemDbTableColumn.COL_COD_EMPLOYEE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployee = stmtResult.getLong(CartemDbTableColumn.COL_COD_EMPLOYEE);
-				
-				stmtResult.getLong(CartemDbTableColumn.COL_COD_MATERIAL);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codMat = stmtResult.getLong(CartemDbTableColumn.COL_COD_MATERIAL);
-
-				Date date = stmtResult.getDate(CartemDbTableColumn.COL_DATE);
-				if (date != null)
-					dataInfo.date = date.toLocalDate();
-				
-				Time beginTime = stmtResult.getTime(CartemDbTableColumn.COL_BEGIN_TIME);
-				if (beginTime != null)
-					dataInfo.beginTime = beginTime.toLocalTime();
-				
-				Time endTime = stmtResult.getTime(CartemDbTableColumn.COL_END_TIME);
-				if (endTime != null)
-					dataInfo.endTime = endTime.toLocalTime();
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(CartemDbTableColumn.COL_CREATED_ON);
-				if (lastChanged != null)
-					dataInfo.createdOn = lastChanged.toLocalDateTime();
-				
+				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, CartemDbTableColumn.COL_COD_STORE);
+				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, CartemDbTableColumn.COL_COD_EMPLOYEE);
+				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, CartemDbTableColumn.COL_COD_MATERIAL);
+				dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, CartemDbTableColumn.COL_DATE);
+				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, CartemDbTableColumn.COL_BEGIN_TIME);
+				dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, CartemDbTableColumn.COL_END_TIME);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, CartemDbTableColumn.COL_CREATED_ON);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -3,11 +3,10 @@ package br.com.gda.business.cart.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
 import br.com.gda.dao.DaoStmtHelper;
@@ -74,26 +73,13 @@ public final class CartInsertSingle implements DaoStmt<CartInfo> {
 	
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<CartInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CartInfo recordInfo) throws SQLException {
-			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
-			
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CartInfo recordInfo) throws SQLException {			
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codUser);
-			
-			
-			if (recordInfo.codCustomer >= 0) {
-				stmt.setLong(i++, recordInfo.codCustomer);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			stmt.setTimestamp(i++, lastChanged);			
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 
 			return stmt;
 		}		

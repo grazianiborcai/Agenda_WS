@@ -3,11 +3,11 @@ package br.com.gda.business.cart.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.cart.info.CartInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -99,7 +99,6 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<CartInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<CartInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -113,15 +112,8 @@ public final class CartSelectSingle implements DaoStmt<CartInfo> {
 				CartInfo dataInfo = new CartInfo();
 				dataInfo.codOwner = stmtResult.getLong(CartDbTableColumn.COL_COD_OWNER);	
 				dataInfo.codUser = stmtResult.getLong(CartDbTableColumn.COL_COD_USER);		
-				
-				stmtResult.getLong(CartDbTableColumn.COL_COD_CUSTOMER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(CartDbTableColumn.COL_COD_CUSTOMER);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(CartDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
+				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, CartDbTableColumn.COL_COD_CUSTOMER);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CartDbTableColumn.COL_LAST_CHANGED);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

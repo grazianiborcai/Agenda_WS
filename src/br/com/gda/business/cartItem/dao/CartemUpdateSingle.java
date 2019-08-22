@@ -95,9 +95,9 @@ public final class CartemUpdateSingle implements DaoStmt<CartemInfo> {
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CartemInfo recordInfo) throws SQLException {
 			
 			int i = 1;
-			stmt.setTime(i++, DaoFormatter.localToSqlTime(recordInfo.endTime));
+			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.endTime);
 			stmt.setInt(i++, recordInfo.quantity);
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.createdOn));			
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);			
 			
 			return stmt;
 		}		

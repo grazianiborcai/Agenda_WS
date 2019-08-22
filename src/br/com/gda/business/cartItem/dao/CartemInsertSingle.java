@@ -3,7 +3,6 @@ package br.com.gda.business.cartItem.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.cartItem.info.CartemInfo;
@@ -79,34 +78,14 @@ public class CartemInsertSingle implements DaoStmt<CartemInfo> {
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codUser);
-			
-			
-			if (recordInfo.codStore >= 0) {
-				stmt.setLong(i++, recordInfo.codStore);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codMat >= 0) {
-				stmt.setLong(i++, recordInfo.codMat);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codEmployee >= 0) {
-				stmt.setLong(i++, recordInfo.codEmployee);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			stmt.setDate(i++, DaoFormatter.localToSqlDate(recordInfo.date));
-			stmt.setTime(i++, DaoFormatter.localToSqlTime(recordInfo.beginTime));
-			stmt.setTime(i++, DaoFormatter.localToSqlTime(recordInfo.endTime));
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codMat);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);
+			stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.date);
+			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.beginTime);
+			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.endTime);
 			stmt.setInt(i++, recordInfo.quantity);
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.createdOn));			
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);		
 
 			return stmt;
 		}		
