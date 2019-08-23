@@ -6,22 +6,23 @@ import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_AMOUNT_CURRENCY_PARTNER = "amount_currency_partner";
-	public static final String COL_AMOUNT_TOTAL_PARTNER = "amount_total_partner";
-	public static final String COL_COD_CREDIT_CARD = "cod_credit_card";
-	public static final String COL_COD_ORDER = "cod_order";
-	public static final String COL_COD_OWNER = "cod_owner";	
-	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";
-	public static final String COL_COD_PAY_ORDER = "cod_pay_order";
-	public static final String COL_CREATED_ON = "created_on";
-	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
-	public static final String COL_ID_PAYMENT_PARTNER = "id_payment_partner";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";
-	public static final String COL_STATUS_PAYMENT_PARTNER = "status_payment_partner";
+	public static final String COL_AMOUNT_CURRENCY_PARTNER = DaoDbField.COL_AMOUNT_CURRENCY_PARTNER;
+	public static final String COL_AMOUNT_TOTAL_PARTNER = DaoDbField.COL_AMOUNT_TOTAL_PARTNER;
+	public static final String COL_COD_CREDIT_CARD = DaoDbField.COL_COD_CREDIT_CARD;
+	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_PAY_CUSTOMER = DaoDbField.COL_COD_PAY_CUSTOMER;
+	public static final String COL_COD_PAY_ORDER = DaoDbField.COL_COD_PAY_ORDER;
+	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON ;
+	public static final String COL_ID_ORDER_PARTNER = DaoDbField.COL_ID_ORDER_PARTNER;
+	public static final String COL_ID_PAYMENT_PARTNER = DaoDbField.COL_ID_PAYMENT_PARTNER;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_STATUS_ORDER_PARTNER = DaoDbField.COL_STATUS_ORDER_PARTNER;
+	public static final String COL_STATUS_PAYMENT_PARTNER = DaoDbField.COL_STATUS_PAYMENT_PARTNER;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;

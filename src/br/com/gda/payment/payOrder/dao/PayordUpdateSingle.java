@@ -3,7 +3,6 @@ package br.com.gda.payment.payOrder.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.dao.DaoFormatter;
@@ -95,39 +94,18 @@ public final class PayordUpdateSingle implements DaoStmt<PayordInfo> {
 	private class ParamTranslator implements DaoStmtParamTranslator<PayordInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PayordInfo recordInfo) throws SQLException {
 			int i = 1;			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codOrder) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codOrder);
-			}
-			
-			
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.createdOn));
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codPayCustomer) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codPayCustomer);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codCreditCard) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setDouble(i++, recordInfo.codCreditCard);
-			}
-			
-			
+			stmt.setLong(i++, recordInfo.codOwner);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrder);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayCustomer);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCreditCard);
 			stmt.setString(i++, recordInfo.idOrderPartner);
 			stmt.setString(i++, recordInfo.statusOrderPartner);
 			stmt.setString(i++, recordInfo.amountTotalPartner);
 			stmt.setString(i++, recordInfo.amountCurrencyPartner);
 			stmt.setString(i++, recordInfo.idPaymentPartner);
-			stmt.setString(i++, recordInfo.statusPaymentPartner);
-			
+			stmt.setString(i++, recordInfo.statusPaymentPartner);				
 			
 			return stmt;
 		}		

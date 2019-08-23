@@ -1,73 +1,28 @@
 package br.com.gda.payment.payOrder.model;
 
-import java.sql.Connection;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.core.Response;
-
-import br.com.gda.common.DbConnection;
-import br.com.gda.common.DbSchema;
-import br.com.gda.model.Model;
+import br.com.gda.model.ModelTemplate;
 import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.obsolete.ModelHelper_;
-import br.com.gda.model.obsolete.ModelOption_;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.decisionTree.RootPayordPay;
 
 
-public final class PayordModelPay implements Model {
-	private Model helper;
-	private Connection conn;
-	private String schemaName;
-	
-	
+public final class PayordModelPay extends ModelTemplate<PayordInfo> {
+
 	public PayordModelPay(String incomingData, HttpServletRequest request) {
-		initialize();
-		buildHelper(incomingData, request);
+		super(incomingData, request, PayordInfo.class);
 	}
 	
 	
 	
-	private void initialize() {
-		this.conn = DbConnection.getConnection();
-		this.schemaName = DbSchema.getDefaultSchemaName();
+	@Override protected DeciTree<PayordInfo> getDecisionTreeHook(DeciTreeOption<PayordInfo> option) {
+		return new RootPayordPay(option);
 	}
 	
 	
 	
-	private void buildHelper(String incomingData, HttpServletRequest request) {
-		ModelOption_<PayordInfo> helperOption = new ModelOption_<>();
-		
-		helperOption.recordClass = PayordInfo.class;
-		helperOption.deciTreeFactory = new TreeFactory();
-		helperOption.conn = this.conn;
-		helperOption.schemaName = this.schemaName;
-		
-		helper = ModelHelper_.factory(helperOption, incomingData, request);
-	}
-
-
-	
-	@Override public boolean executeRequest() {
-		return helper.executeRequest();
-	}
-
-
-	
-	@Override public Response getResponse() {
-		return helper.getResponse();
-	}
-	
-	
-	
-	
-	
-	
-	private static class TreeFactory implements DeciTreeFactory<PayordInfo> {		
-		@Override public DeciTree<PayordInfo> getInstance(DeciTreeOption<PayordInfo> option) {
-			return new RootPayordPay(option);
-		}			
+	@Override protected Class<?> getImplamentationClassHook() {
+		return this.getClass();
 	}
 }

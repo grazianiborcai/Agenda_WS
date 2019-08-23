@@ -3,10 +3,10 @@ package br.com.gda.payment.payOrder.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -50,7 +50,7 @@ public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
 	
 	private String buildWhereClause() {		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
+		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new PayordWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -100,7 +100,6 @@ public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
 	
 	private static class ResultParser implements DaoResultParser<PayordInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final boolean NOT_NULL = false;
 		
 		@Override public List<PayordInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<PayordInfo> finalResult = new ArrayList<>();
@@ -118,27 +117,11 @@ public final class PayordSelectSingle implements DaoStmt<PayordInfo> {
 				dataInfo.amountCurrencyPartner = stmtResult.getString(PayordDbTableColumn.COL_AMOUNT_CURRENCY_PARTNER);
 				dataInfo.idPaymentPartner = stmtResult.getString(PayordDbTableColumn.COL_ID_PAYMENT_PARTNER);
 				dataInfo.statusPaymentPartner = stmtResult.getString(PayordDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
-				
-				stmtResult.getLong(PayordDbTableColumn.COL_COD_ORDER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codOrder = stmtResult.getLong(PayordDbTableColumn.COL_COD_ORDER);
-				
-				stmtResult.getLong(PayordDbTableColumn.COL_COD_CREDIT_CARD);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCreditCard = stmtResult.getLong(PayordDbTableColumn.COL_COD_CREDIT_CARD);
-				
-				stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_CUSTOMER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPayCustomer = stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_CUSTOMER);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(PayordDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				Timestamp createdOn = stmtResult.getTimestamp(PayordDbTableColumn.COL_CREATED_ON);
-				if (lastChanged != null)
-					dataInfo.createdOn = createdOn .toLocalDateTime();
-				
+				dataInfo.codOrder = DaoFormatter.sqlToLong(stmtResult, PayordDbTableColumn.COL_COD_ORDER);
+				dataInfo.codCreditCard = DaoFormatter.sqlToLong(stmtResult, PayordDbTableColumn.COL_COD_CREDIT_CARD);
+				dataInfo.codPayCustomer = DaoFormatter.sqlToLong(stmtResult, PayordDbTableColumn.COL_COD_PAY_CUSTOMER);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordDbTableColumn.COL_CREATED_ON);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

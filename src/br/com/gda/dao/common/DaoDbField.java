@@ -1,6 +1,8 @@
 package br.com.gda.dao.common;
 
 public final class DaoDbField {	
+	public static final String COL_AMOUNT_CURRENCY_PARTNER = "amount_currency_partner";
+	public static final String COL_AMOUNT_TOTAL_PARTNER = "amount_total_partner";
 	public static final String COL_BEGIN_TIME = "begin_time";
 	public static final String COL_BIRTH_DATE = "birth_date";
 	public static final String COL_COD_ADDRESS_SHIP = "cod_address_ship";
@@ -17,6 +19,7 @@ public final class DaoDbField {
 	public static final String COL_COD_COUNTRY = "country";
 	public static final String COL_COD_COUNTRY_ALPHA3 = "country_alpha3";
 	public static final String COL_COD_COUNTRY_PHONE = "country_phone";	
+	public static final String COL_COD_CREDIT_CARD = "cod_credit_card";
 	public static final String COL_COD_CURRENCY = "cod_curr";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = "cod_customer_snapshot";	
@@ -38,6 +41,7 @@ public final class DaoDbField {
 	public static final String COL_COD_ORDER_EXTERNAL = "cod_order_external";
 	public static final String COL_COD_ORDER_ITEM = "cod_order_item";
 	public static final String COL_COD_ORDER_STATUS = "cod_order_status";
+	public static final String COL_COD_PAY_CUSTOMER = "cod_pay_customer";
 	public static final String COL_COD_PAY_ORDER = "cod_pay_order";
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
 	public static final String COL_COD_PAYMENT_STATUS = "cod_payment_status";
@@ -81,6 +85,8 @@ public final class DaoDbField {
 	public static final String COL_FEE_SERVICE = "feeService";
 	public static final String COL_FULL_NUMBER = "full_number";
 	public static final String COL_GRAND_TOTAL = "grandTotal";
+	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
+	public static final String COL_ID_PAYMENT_PARTNER = "id_payment_partner";
 	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";
 	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";
 	public static final String COL_IS_LOCKED = "is_locked";
@@ -97,6 +103,8 @@ public final class DaoDbField {
 	public static final String COL_RAZAO_SOCIAL = "razao_social";
 	public static final String COL_RECORD_MODE = "record_mode";	
 	public static final String COL_STATE_PROVINCE = "state_province";
+	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";
+	public static final String COL_STATUS_PAYMENT_PARTNER = "status_payment_partner";
 	public static final String COL_TOTAL_ITEM = "total_item";
 	public static final String COL_USERNAME = "username";
 	public static final String COL_WEEK_MONTH = "week_month";
