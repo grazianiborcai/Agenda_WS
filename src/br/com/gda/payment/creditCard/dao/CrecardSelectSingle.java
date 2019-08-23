@@ -3,11 +3,11 @@ package br.com.gda.payment.creditCard.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.payment.creditCard.info.CrecardInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -99,7 +99,6 @@ public final class CrecardSelectSingle implements DaoStmt<CrecardInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<CrecardInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<CrecardInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -117,32 +116,12 @@ public final class CrecardSelectSingle implements DaoStmt<CrecardInfo> {
 				dataInfo.creditCardBrand = stmtResult.getString(CrecardDbTableColumn.COL_CREDIT_CARD_BRAND);	
 				dataInfo.creditCardLast4 = stmtResult.getString(CrecardDbTableColumn.COL_CREDIT_CARD_LAST4);
 				dataInfo.recordMode = stmtResult.getString(CrecardDbTableColumn.COL_RECORD_MODE);
-				
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(CrecardDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();				
-				
-				stmtResult.getLong(CrecardDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(CrecardDbTableColumn.COL_LAST_CHANGED_BY);	
-				
-				stmtResult.getLong(CrecardDbTableColumn.COL_COD_ADDRESS);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codAddressHolder = stmtResult.getLong(CrecardDbTableColumn.COL_COD_ADDRESS);	
-				
-				stmtResult.getLong(CrecardDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codAddressSnapshotHolder = stmtResult.getLong(CrecardDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);	
-				
-				stmtResult.getLong(CrecardDbTableColumn.COL_COD_PHONE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPhoneHolder = stmtResult.getLong(CrecardDbTableColumn.COL_COD_PHONE);	
-				
-				stmtResult.getLong(CrecardDbTableColumn.COL_COD_PHONE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPhoneSnapshotHolder = stmtResult.getLong(CrecardDbTableColumn.COL_COD_PHONE_SNAPSHOT);	
-				
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CrecardDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.codAddressHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_ADDRESS);
+				dataInfo.codAddressSnapshotHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
+				dataInfo.codPhoneHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_PHONE);
+				dataInfo.codPhoneSnapshotHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_PHONE_SNAPSHOT);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

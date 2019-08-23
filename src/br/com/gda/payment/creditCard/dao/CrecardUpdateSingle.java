@@ -3,7 +3,6 @@ package br.com.gda.payment.creditCard.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.payment.creditCard.info.CrecardInfo;
@@ -100,41 +99,12 @@ public final class CrecardUpdateSingle implements DaoStmt<CrecardInfo> {
 			stmt.setString(i++, recordInfo.creditCardBrand);
 			stmt.setString(i++, recordInfo.creditCardLast4);
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
-			
-			if (recordInfo.lastChangedBy >= 0) {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codAddressHolder >= 0) {
-				stmt.setLong(i++, recordInfo.codAddressHolder);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codAddressSnapshotHolder >= 0) {
-				stmt.setLong(i++, recordInfo.codAddressSnapshotHolder);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}		
-			
-			
-			if (recordInfo.codPhoneHolder >= 0) {
-				stmt.setLong(i++, recordInfo.codPhoneHolder);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}		
-			
-			
-			if (recordInfo.codPhoneSnapshotHolder >= 0) {
-				stmt.setLong(i++, recordInfo.codPhoneSnapshotHolder);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}		
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressHolder);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressSnapshotHolder);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneHolder);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneSnapshotHolder);		
 			
 			return stmt;
 		}		

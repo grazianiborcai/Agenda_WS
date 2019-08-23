@@ -5,8 +5,10 @@ public final class DaoDbField {
 	public static final String COL_AMOUNT_TOTAL_PARTNER = "amount_total_partner";
 	public static final String COL_BEGIN_TIME = "begin_time";
 	public static final String COL_BIRTH_DATE = "birth_date";
+	public static final String COL_COD_ADDRESS = "cod_address";	
 	public static final String COL_COD_ADDRESS_SHIP = "cod_address_ship";
 	public static final String COL_COD_ADDRESS_SHIP_SNAPSHOT = "cod_address_ship_snapshot";
+	public static final String COL_COD_ADDRESS_SNAPSHOT = "cod_address_snapshot";
 	public static final String COL_COD_ADDRESS_INVOICE = "cod_address_invoice";
 	public static final String COL_COD_ADDRESS_INVOICE_SNAPSHOT = "cod_address_invoice_snapshot";
 	public static final String COL_COD_AREA = "cod_area";
@@ -54,6 +56,7 @@ public final class DaoDbField {
 	public static final String COL_COD_PHONE = "cod_phone";
 	public static final String COL_COD_PHONE_SHIP = "cod_phone_ship";
 	public static final String COL_COD_PHONE_SHIP_SNAPSHOT = "cod_phone_ship_snapshot";
+	public static final String COL_COD_PHONE_SNAPSHOT = "cod_phone_snapshot";	
 	public static final String COL_COD_PHONE_INVOICE = "cod_phone_invoice";
 	public static final String COL_COD_PHONE_INVOICE_SNAPSHOT = "cod_phone_invoice_snapshot";
 	public static final String COL_COD_SCHEDULE = "cod_schedule";
@@ -76,6 +79,9 @@ public final class DaoDbField {
 	public static final String COL_CPF = "cpf";
 	public static final String COL_CREATED_BY = "created_by";
 	public static final String COL_CREATED_ON = "created_on";
+	public static final String COL_CREDIT_CARD_BRAND = "credit_card_brand";
+	public static final String COL_CREDIT_CARD_ID = "credit_card_id";	
+	public static final String COL_CREDIT_CARD_LAST4 = "credit_card_last4";	
 	public static final String COL_CURRENCY_SYMBOL = "symbol";
 	public static final String COL_DATE = "date";
 	public static final String COL_DAY = "day";
