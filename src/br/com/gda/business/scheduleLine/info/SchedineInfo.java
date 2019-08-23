@@ -8,7 +8,9 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.material.info.MatInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
@@ -18,6 +20,7 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public long codSchedule;
 	public long codSnapshot;
 	public String codScheduleStatus;
+	public String txtScheduleStatus;
 	public long codOrder;
 	public int codOrderItem;
 	public String codOrderStatus;
@@ -26,6 +29,7 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public long codMat;
 	public LocalDate date;
 	public int codWeekday;
+	public String txtWeekday;
 	public int day;
 	public int weekMonth;
 	public int weekYear;
@@ -37,6 +41,8 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public long codUser;
 	public long codCustomer;
 	public MatInfo matData;
+	public StolisInfo storeData;
+	public EmplisInfo empData;
 	public String codLanguage;
 	public LocalDateTime createdOn;
 	public long createdBy;
@@ -70,6 +76,8 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		codLanguage = DefaultValue.language();	
 		recordMode = DefaultValue.recordMode();
 		matData = DefaultValue.object();
+		storeData = DefaultValue.object();
+		empData = DefaultValue.object();
 	}
 	
 	
@@ -94,6 +102,8 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		deepCopy.endTime = endTime;
 		deepCopy.lastChanged = lastChanged;
 		deepCopy.matData = cloneMat(matData);
+		deepCopy.storeData = cloneStore(storeData);
+		deepCopy.empData = cloneEmp(empData);
 		
 		return deepCopy;
 	}	
@@ -108,6 +118,28 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		
 		return result;
 	}
+	
+	
+	
+	private StolisInfo cloneStore(StolisInfo recordInfo) throws CloneNotSupportedException {
+		StolisInfo result = null;
+		
+		if (recordInfo != null)
+			result = (StolisInfo) recordInfo.clone();
+		
+		return result;
+	}
+	
+	
+	
+	private EmplisInfo cloneEmp(EmplisInfo recordInfo) throws CloneNotSupportedException {
+		EmplisInfo result = null;
+		
+		if (recordInfo != null)
+			result = (EmplisInfo) recordInfo.clone();
+		
+		return result;
+	}	
 	
 	
 	

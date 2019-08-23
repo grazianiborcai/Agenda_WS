@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeEmplis;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeMat;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeScheduleStatus;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeStolis;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeWeekday;
 import br.com.gda.business.scheduleLine.model.action.StdSchedineMergeToSelect;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckRead;
@@ -51,8 +55,16 @@ public final class RootSchedineSelect extends DeciTreeWriteTemplate<SchedineInfo
 		
 		ActionStd<SchedineInfo> select = new StdSchedineMergeToSelect(option);
 		ActionLazy<SchedineInfo> mergeMat = new LazySchedineMergeMat(option.conn, option.schemaName);	
+		ActionLazy<SchedineInfo> mergeStolis = new LazySchedineMergeStolis(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> mergeEmplis = new LazySchedineMergeEmplis(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> mergeStatus = new LazySchedineMergeScheduleStatus(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> mergeWeekday = new LazySchedineMergeWeekday(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMat);
+		mergeMat.addPostAction(mergeStolis);
+		mergeStolis.addPostAction(mergeEmplis);
+		mergeEmplis.addPostAction(mergeStatus);
+		mergeStatus.addPostAction(mergeWeekday);
 		
 		actions.add(select);
 		return actions;

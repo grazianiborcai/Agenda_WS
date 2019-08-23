@@ -3,15 +3,75 @@ package br.com.gda.business.scheduleLine.info;
 import java.util.List;
 
 import br.com.gda.business.customerList.info.CuslisInfo;
+import br.com.gda.business.employeeList.info.EmplisInfo;
+import br.com.gda.business.masterData.info.ScheduleStatusInfo;
+import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.orderList.info.OrdistInfo;
 import br.com.gda.business.scheduleLineSnapshot.info.SchedinapInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.info.InfoMergerOneToMany;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class SchedineMerger {
+	public static SchedineInfo mergeWithWeekday(WeekdayInfo sourceOne, SchedineInfo sourceTwo) {
+		InfoMerger<SchedineInfo, WeekdayInfo> merger = new SchedineMergerWeekday();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<SchedineInfo> mergeWithWeekday(List<WeekdayInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
+		InfoMerger<SchedineInfo, WeekdayInfo> merger = new SchedineMergerWeekday();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static SchedineInfo mergeWithEmplis(EmplisInfo sourceOne, SchedineInfo sourceTwo) {
+		InfoMerger<SchedineInfo, EmplisInfo> merger = new SchedineMergerEmplis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<SchedineInfo> mergeWithEmplis(List<EmplisInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
+		InfoMerger<SchedineInfo, EmplisInfo> merger = new SchedineMergerEmplis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static SchedineInfo mergeWithScheduleStatus(ScheduleStatusInfo sourceOne, SchedineInfo sourceTwo) {
+		InfoMerger<SchedineInfo, ScheduleStatusInfo> merger = new SchedineMergerScheduleStatus();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<SchedineInfo> mergeWithScheduleStatus(List<ScheduleStatusInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
+		InfoMerger<SchedineInfo, ScheduleStatusInfo> merger = new SchedineMergerScheduleStatus();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
+	public static SchedineInfo mergeWithStolis(StolisInfo sourceOne, SchedineInfo sourceTwo) {
+		InfoMerger<SchedineInfo, StolisInfo> merger = new SchedineMergerStolis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<SchedineInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
+		InfoMerger<SchedineInfo, StolisInfo> merger = new SchedineMergerStolis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static SchedineInfo mergeWithOrdist(OrdistInfo sourceOne, SchedineInfo sourceTwo) {
 		InfoMerger<SchedineInfo, OrdistInfo> merger = new SchedineMergerOrdist();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -121,4 +181,18 @@ public final class SchedineMerger {
 		InfoMerger<SchedineInfo, SchedineInfo> merger = new SchedineMergerToUpdate();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
+	
+	
+	
+	public static SchedineInfo mergeToMove(SchedineInfo sourceOne, SchedineInfo sourceTwo) {
+		InfoMerger<SchedineInfo, SchedineInfo> merger = new SchedineMergerToMove();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<SchedineInfo> mergeToMove(List<SchedineInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
+		InfoMerger<SchedineInfo, SchedineInfo> merger = new SchedineMergerToMove();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

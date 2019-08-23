@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class SchedineVisiMergeToUpdate implements InfoMergerVisitor<SchedineInfo, SchedineInfo> {
+final class SchedineVisiMergeToMove implements InfoMergerVisitor<SchedineInfo, SchedineInfo> {
 
 	@Override public SchedineInfo writeRecord(SchedineInfo sourceOne, SchedineInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
@@ -32,6 +32,7 @@ final class SchedineVisiMergeToUpdate implements InfoMergerVisitor<SchedineInfo,
 		result.codOrderItem = sourceOne.codOrderItem;
 		result.codUser = sourceOne.codUser;
 		result.codCustomer = sourceOne.codCustomer;
+		result.codMat = sourceOne.codMat;
 		return result;
 	}
 	

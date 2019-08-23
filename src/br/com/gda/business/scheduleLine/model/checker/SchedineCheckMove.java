@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class SchedineCheckUpdate extends ModelCheckerTemplateSimple<SchedineInfo> {
+public final class SchedineCheckMove extends ModelCheckerTemplateSimple<SchedineInfo> {
 
-	public SchedineCheckUpdate() {
+	public SchedineCheckMove() {
 		super();
 	}
 	
@@ -18,9 +18,7 @@ public final class SchedineCheckUpdate extends ModelCheckerTemplateSimple<Schedi
 	@Override protected boolean checkHook(SchedineInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 		<= 0 	
 			|| recordInfo.codSchedule	<= 0 	
-			|| recordInfo.codCustomer	<= 0 	
 			|| recordInfo.codStore 		<= 0
-			|| recordInfo.codMat		<= 0
 			|| recordInfo.date			== null
 			|| recordInfo.beginTime		== null
 			|| recordInfo.endTime		== null

@@ -3,6 +3,8 @@ package br.com.gda.business.employeeList.info;
 import java.util.List;
 
 import br.com.gda.business.planningTime.info.PlanimeInfo;
+import br.com.gda.business.scheduleLine.info.SchedineInfo;
+import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
 
 public final class EmplisCopier {
@@ -17,4 +19,18 @@ public final class EmplisCopier {
 		InfoCopierOneToMany<EmplisInfo, PlanimeInfo> copier = new EmplisCopyPlanime();
 		return copier.makeCopy(sources);
 	}
+	
+	
+	
+	public static EmplisInfo copyFromSchedine(SchedineInfo source) {
+		InfoCopier<EmplisInfo, SchedineInfo> copier = new EmplisCopySchedine();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<EmplisInfo> copyFromSchedine(List<SchedineInfo> sources) {
+		InfoCopier<EmplisInfo, SchedineInfo> copier = new EmplisCopySchedine();
+		return copier.makeCopy(sources);
+	}	
 }
