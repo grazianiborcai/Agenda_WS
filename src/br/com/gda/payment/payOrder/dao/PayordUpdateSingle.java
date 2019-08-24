@@ -94,7 +94,6 @@ public final class PayordUpdateSingle implements DaoStmt<PayordInfo> {
 	private class ParamTranslator implements DaoStmtParamTranslator<PayordInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PayordInfo recordInfo) throws SQLException {
 			int i = 1;			
-			stmt.setLong(i++, recordInfo.codOwner);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrder);
 			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
