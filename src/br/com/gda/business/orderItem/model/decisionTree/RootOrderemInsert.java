@@ -6,8 +6,9 @@ import java.util.List;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.orderItem.info.OrderemInfo;
 import br.com.gda.business.orderItem.model.action.LazyOrderemMergeMat;
+import br.com.gda.business.orderItem.model.action.LazyOrderemMergeUsername;
 import br.com.gda.business.orderItem.model.action.LazyOrderemNodeInsert;
-import br.com.gda.business.orderItem.model.action.StdOrderemEnforceCreatedOn;
+import br.com.gda.business.orderItem.model.action.StdOrderemEnforceLChanged;
 import br.com.gda.business.orderItem.model.checker.OrderemCheckOrder;
 import br.com.gda.business.orderItem.model.checker.OrderemCheckLangu;
 import br.com.gda.business.orderItem.model.checker.OrderemCheckMat;
@@ -74,14 +75,16 @@ public final class RootOrderemInsert extends DeciTreeWriteTemplate<OrderemInfo> 
 	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> enforceCreatedOn = new StdOrderemEnforceCreatedOn(option);
+		ActionStd<OrderemInfo> enforceLChanged = new StdOrderemEnforceLChanged(option);
+		ActionLazy<OrderemInfo> mergeUsername = new LazyOrderemMergeUsername(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> mergeMat = new LazyOrderemMergeMat(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> nodeInsert = new LazyOrderemNodeInsert(option.conn, option.schemaName);
 		
-		enforceCreatedOn.addPostAction(mergeMat);
+		enforceLChanged.addPostAction(mergeUsername);
+		mergeUsername.addPostAction(mergeMat);
 		mergeMat.addPostAction(nodeInsert);
 		
-		actions.add(enforceCreatedOn);
+		actions.add(enforceLChanged);
 		return actions;
 	}
 }

@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderemEnforceCreatedOn extends ActionLazyTemplate<OrderemInfo, OrderemInfo> {
+public final class LazyOrderemEnforceLChanged extends ActionLazyTemplate<OrderemInfo, OrderemInfo> {
 
-	public LazyOrderemEnforceCreatedOn(Connection conn, String schemaName) {
+	public LazyOrderemEnforceLChanged(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOrderemEnforceCreatedOn extends ActionLazyTemplate<Ordere
 	
 	
 	@Override protected ActionStd<OrderemInfo> getInstanceOfActionHook(DeciTreeOption<OrderemInfo> option) {
-		return new StdOrderemEnforceCreatedOn(option);
+		return new StdOrderemEnforceLChanged(option);
 	}
 	
 	

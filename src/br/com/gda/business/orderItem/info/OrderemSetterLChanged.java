@@ -6,12 +6,12 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class OrderemSetterCreatedOn implements InfoSetter<OrderemInfo> {
+public final class OrderemSetterLChanged implements InfoSetter<OrderemInfo> {
 	
 	public OrderemInfo setAttr(OrderemInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		recordInfo.createdOn = genCreatedOn();
+		recordInfo.lastChanged = genCreatedOn();
 		return recordInfo;
 	}
 	

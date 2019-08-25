@@ -36,7 +36,8 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 	public LocalTime beginTime;
 	public LocalTime endTime;
 	public String codLanguage;
-	public LocalDateTime createdOn;
+	public LocalDateTime lastChanged;
+	public long lastChangedBy;
 	public String username;
 	public StolisInfo stolisData;
 	public EmplisInfo emplisData;
@@ -58,6 +59,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 		quantity = DefaultValue.number();
 		totitem = DefaultValue.number();
 		codWeekday = DefaultValue.number();
+		lastChangedBy = DefaultValue.number();
 		codLanguage = DefaultValue.language();	
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
@@ -84,7 +86,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 		deepCopy.date = date;
 		deepCopy.beginTime = beginTime;
 		deepCopy.endTime = endTime;
-		deepCopy.createdOn = createdOn;
+		deepCopy.lastChanged = lastChanged;
 		deepCopy.stolisData = cloneStolis(stolisData);
 		deepCopy.emplisData = cloneEmplis(emplisData);
 		deepCopy.matData = cloneMat(matData);

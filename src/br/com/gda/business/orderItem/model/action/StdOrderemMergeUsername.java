@@ -1,18 +1,18 @@
 package br.com.gda.business.orderItem.model.action;
 
 import br.com.gda.business.orderItem.info.OrderemInfo;
-import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderemEnforceCreatedOn implements ActionStd<OrderemInfo> {
+public final class StdOrderemMergeUsername implements ActionStd<OrderemInfo> {
 	private ActionStd<OrderemInfo> actionHelper;	
 	
 	
-	public StdOrderemEnforceCreatedOn(DeciTreeOption<OrderemInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOrderemEnforceCreatedOn());
+	public StdOrderemMergeUsername(DeciTreeOption<OrderemInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOrderemMergeUsername(option.conn, option.schemaName));
 	}
 	
 	

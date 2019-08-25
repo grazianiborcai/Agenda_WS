@@ -86,13 +86,14 @@ public class OrderemInsertSingle implements DaoStmt<OrderemInfo> {
 			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.beginTime);
 			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.endTime);
 			stmt.setInt(i++, recordInfo.quantity);
-			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);	
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStoreSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codMatSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployeeSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.price);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totitem);
 			stmt.setString(i++, recordInfo.codCurr);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 
 			
 			return stmt;

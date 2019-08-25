@@ -24,7 +24,8 @@ public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_STORE_SNAPSHOT = DaoDbField.COL_COD_STORE_SNAPSHOT;			
 	public static final String COL_DATE = DaoDbField.COL_DATE;					
 	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;			
-	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;		
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_PRICE = DaoDbField.COL_PRICE;	
 	public static final String COL_QUANTITY = DaoDbField.COL_QUANTITY;	
 	public static final String COL_TOTAL_ITEM = DaoDbField.COL_TOTAL_ITEM;
@@ -135,7 +136,7 @@ public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_CREATED_ON;
+		oneColumn.columnName = COL_LAST_CHANGED;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -188,6 +189,14 @@ public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_LAST_CHANGED_BY;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

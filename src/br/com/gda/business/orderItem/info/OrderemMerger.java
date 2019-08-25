@@ -9,8 +9,23 @@ import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
 import br.com.gda.business.materialStore.info.MatoreInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoMerger;
+import br.com.gda.security.username.info.UsernameInfo;
 
 public final class OrderemMerger {
+	public static OrderemInfo mergeWithUsername(UsernameInfo sourceOne, OrderemInfo sourceTwo) {
+		InfoMerger<OrderemInfo, UsernameInfo> merger = new OrderemMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OrderemInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<OrderemInfo> sourceTwos) {
+		InfoMerger<OrderemInfo, UsernameInfo> merger = new OrderemMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
 	public static OrderemInfo mergeWithMat(MatInfo sourceOne, OrderemInfo sourceTwo) {
 		InfoMerger<OrderemInfo, MatInfo> merger = new OrderemMergerMat();		
 		return merger.merge(sourceOne, sourceTwo);

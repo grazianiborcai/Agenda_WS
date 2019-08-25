@@ -124,7 +124,8 @@ public final class OrderemSelectSingle implements DaoStmt<OrderemInfo> {
 				dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, OrderemDbTableColumn.COL_DATE);
 				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, OrderemDbTableColumn.COL_BEGIN_TIME);
 				dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, OrderemDbTableColumn.COL_END_TIME);
-				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, OrderemDbTableColumn.COL_CREATED_ON);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OrderemDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = stmtResult.getLong(OrderemDbTableColumn.COL_LAST_CHANGED_BY);
 				dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, OrderemDbTableColumn.COL_PRICE);
 				dataInfo.totitem = DaoFormatter.sqlToDouble(stmtResult, OrderemDbTableColumn.COL_TOTAL_ITEM);
 				
