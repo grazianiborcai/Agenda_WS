@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
-import br.com.gda.business.order.model.checker.OrderCheckStatusChange;
-import br.com.gda.business.order.model.action.LazyOrderNodeUpdate;
-import br.com.gda.business.order.model.action.StdOrderEnforceStatusCancelled;
+import br.com.gda.business.order.model.action.LazyOrderUpdate;
+import br.com.gda.business.order.model.action.StdOrderInsertOrdnap;
+import br.com.gda.business.order.model.checker.OrderCheckInsert;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -14,9 +14,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeOrderCancel extends DeciTreeWriteTemplate<OrderInfo> {
+public final class NodeOrderSnapshot extends DeciTreeWriteTemplate<OrderInfo> {
 	
-	public NodeOrderCancel(DeciTreeOption<OrderInfo> option) {
+	public NodeOrderSnapshot(DeciTreeOption<OrderInfo> option) {
 		super(option);
 	}
 	
@@ -26,7 +26,7 @@ public final class NodeOrderCancel extends DeciTreeWriteTemplate<OrderInfo> {
 		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderInfo> checker;	
 		
-		checker = new OrderCheckStatusChange();
+		checker = new OrderCheckInsert();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -37,12 +37,12 @@ public final class NodeOrderCancel extends DeciTreeWriteTemplate<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderInfo> enforceStatus = new StdOrderEnforceStatusCancelled(option);
-		ActionLazy<OrderInfo> update = new LazyOrderNodeUpdate(option.conn, option.schemaName);
+		ActionStd<OrderInfo> insertOrdnap = new StdOrderInsertOrdnap(option);
+		ActionLazy<OrderInfo> update = new LazyOrderUpdate(option.conn, option.schemaName);
 		
-		enforceStatus.addPostAction(update);
+		insertOrdnap.addPostAction(update);
 		
-		actions.add(enforceStatus);
+		actions.add(insertOrdnap);
 		return actions;
 	}
 }

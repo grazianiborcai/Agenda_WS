@@ -1,4 +1,4 @@
-package br.com.gda.business.order.dao;
+package br.com.gda.business.orderSnapshot.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.business.orderSnapshot.info.OrdnapInfo;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -18,25 +18,25 @@ import br.com.gda.dao.DaoStmtParamTranslator;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
-	private DaoStmt<OrderInfo> stmtSql;
-	private DaoStmtOption<OrderInfo> stmtOption;
+public final class OrdnapInsertSingle implements DaoStmt<OrdnapInfo> {
+	private DaoStmt<OrdnapInfo> stmtSql;
+	private DaoStmtOption<OrdnapInfo> stmtOption;
 	
 	
 	
-	public OrderInsertSingle(Connection conn, OrderInfo recordInfo, String schemaName) {
+	public OrdnapInsertSingle(Connection conn, OrdnapInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, OrderInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, OrdnapInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.ORDER_HDR_TABLE;
+		this.stmtOption.tableName = DaoDbTable.ORDER_HDR_SNAPSHOT_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser(recordInfo);
@@ -69,17 +69,18 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 
 	
 	
-	@Override public List<OrderInfo> getResultset() {
+	@Override public List<OrdnapInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<OrderInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, OrderInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements DaoStmtParamTranslator<OrdnapInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, OrdnapInfo recordInfo) throws SQLException {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
+			stmt.setLong(i++, recordInfo.codOrder);
 			stmt.setLong(i++, recordInfo.codUser);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
@@ -100,7 +101,6 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoice);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoiceSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
 
 			return stmt;
 		}		
@@ -108,26 +108,26 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 	
 	
 	
-	@Override public DaoStmt<OrderInfo> getNewInstance() {
-		return new OrderInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<OrdnapInfo> getNewInstance() {
+		return new OrdnapInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<OrderInfo> {
-		private OrderInfo recordInfo;
+	private static class ResultParser implements DaoResultParser<OrdnapInfo> {
+		private OrdnapInfo recordInfo;
 		
-		public ResultParser(OrderInfo recordToParse) {
+		public ResultParser(OrdnapInfo recordToParse) {
 			recordInfo = recordToParse;
 		}
 		
 		
 		
-		@Override public List<OrderInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<OrderInfo> finalResult = new ArrayList<>();
-			recordInfo.codOrder = lastId;
+		@Override public List<OrdnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<OrdnapInfo> finalResult = new ArrayList<>();
+			recordInfo.codSnapshot= lastId;
 			finalResult.add(recordInfo);			
 			return finalResult;
 		}

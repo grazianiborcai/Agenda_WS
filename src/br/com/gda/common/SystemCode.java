@@ -631,4 +631,7 @@ public final class SystemCode {
 	
 	// Schedule Search
 	public static final int SCHEDULE_SEARCH_MANDATORY_FIELD_EMPTY		= 5450;
+	
+	// Order Snapshot
+	public static final int ORDER_HEADER_SNAP_MANDATORY_FIELD_EMPTY		= 5500;
 }

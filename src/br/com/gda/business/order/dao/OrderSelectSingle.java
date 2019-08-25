@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.business.orderSnapshot.dao.OrdnapDbTableColumn;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -112,6 +113,7 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 				OrderInfo dataInfo = new OrderInfo();
 				dataInfo.codOwner = stmtResult.getLong(OrderDbTableColumn.COL_COD_OWNER);	
 				dataInfo.codOrder = stmtResult.getLong(OrderDbTableColumn.COL_COD_ORDER);
+				dataInfo.codSnapshot = stmtResult.getLong(OrdnapDbTableColumn.COL_COD_SNAPSHOT);	
 				dataInfo.codUser = stmtResult.getLong(OrderDbTableColumn.COL_COD_USER);	
 				dataInfo.codOrderExt = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_EXTERNAL);	
 				dataInfo.codOrderStatus = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_STATUS);

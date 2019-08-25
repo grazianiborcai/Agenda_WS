@@ -5,9 +5,24 @@ import java.util.List;
 
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.business.orderSnapshot.info.OrdnapInfo;
 import br.com.gda.info.InfoCopier;
 
 public final class CusarchCopier {	
+	public static CusarchInfo copyFromOrdnap(OrdnapInfo source) {
+		InfoCopier<CusarchInfo, OrdnapInfo> copier = new CusarchCopyOrdnap();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<CusarchInfo> copyFromOrdnap(List<OrdnapInfo> sources) {
+		InfoCopier<CusarchInfo, OrdnapInfo> copier = new CusarchCopyOrdnap();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static CusarchInfo copyFromOrder(OrderInfo source) {
 		InfoCopier<CusarchInfo, OrderInfo> copier = new CusarchCopyOrder();
 		return copier.makeCopy(source);
@@ -18,7 +33,7 @@ public final class CusarchCopier {
 	public static List<CusarchInfo> copyFromOrder(List<OrderInfo> sources) {
 		InfoCopier<CusarchInfo, OrderInfo> copier = new CusarchCopyOrder();
 		return copier.makeCopy(sources);
-	}
+	}	
 	
 	
 	

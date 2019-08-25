@@ -40,6 +40,7 @@ import br.com.gda.business.orderItem.dao.OrderemDbTableColumn;
 import br.com.gda.business.orderList.dao.OrdistDbTableColumn;
 import br.com.gda.business.orderReserve.dao.OrderveDbTableColumn;
 import br.com.gda.business.orderSearch.dao.OrdarchDbTableColumn;
+import br.com.gda.business.orderSnapshot.dao.OrdnapDbTableColumn;
 import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.business.ownerStore.dao.OwntoreDbTableColumn;
 import br.com.gda.business.person.dao.PersonDbTableColumn;
@@ -172,6 +173,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new OrdarchDbTableColumn());
 		addTable(new OrdistDbTableColumn());
 		addTable(new SchedarchDbTableColumn());
+		addTable(new OrdnapDbTableColumn());
 	}
 	
 	

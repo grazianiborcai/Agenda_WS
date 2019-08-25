@@ -1,4 +1,4 @@
-package br.com.gda.business.order.info;
+package br.com.gda.business.orderSnapshot.info;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,10 +8,10 @@ import br.com.gda.business.orderItem.info.OrderemInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class OrderInfo extends InfoRecord implements Cloneable {
+public final class OrdnapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
-	public long codOrder;	
-	public long codSnapshot;
+	public long codSnapshot;	
+	public long codOrder;
 	public String codOrderExt;	
 	public long codCustomer;
 	public long codCustomerSnapshot;
@@ -45,10 +45,10 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public OrderInfo() {
+	public OrdnapInfo() {
 		codOwner = DefaultValue.number();	
-		codOrder = DefaultValue.number();			
-		codSnapshot = DefaultValue.number();
+		codSnapshot = DefaultValue.number();	
+		codOrder = DefaultValue.number();				
 		codCustomer = DefaultValue.number();
 		codCustomerSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
@@ -73,20 +73,20 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static OrderInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, OrderInfo.class);
+	public static OrdnapInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, OrdnapInfo.class);
 	}
 	
 	
 	
-	public static List<OrderInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, OrderInfo.class);
+	public static List<OrdnapInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, OrdnapInfo.class);
 	}
 	
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		OrderInfo deepCopy = (OrderInfo) super.clone();
+		OrdnapInfo deepCopy = (OrdnapInfo) super.clone();
 		
 		deepCopy.lastChanged = lastChanged;
 		deepCopy.orderms = cloneOrderems(orderms);
@@ -116,9 +116,10 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
-		result = result * 31 + (int) (codOrder ^ (codOrder >>> 32));
-		result = result * 31 + (int) (codUser  ^ (codUser  >>> 32));
+		result = result * 31 + (int) (codOwner 		^ (codOwner 	>>> 32));
+		result = result * 31 + (int) (codSnapshot 	^ (codSnapshot 	>>> 32));
+		result = result * 31 + (int) (codOrder 		^ (codOrder 	>>> 32));
+		result = result * 31 + (int) (codUser  		^ (codUser  	>>> 32));
 		
 		return result;
 	}
@@ -130,13 +131,14 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof OrderInfo))
+		if (!(o instanceof OrdnapInfo))
 			return false;
 		
 		
-		OrderInfo obj = (OrderInfo) o;		
-		return (codOwner    == obj.codOwner && 
-				codOrder 	== obj.codOrder &&
+		OrdnapInfo obj = (OrdnapInfo) o;		
+		return (codOwner    == obj.codOwner    && 
+				codOrder 	== obj.codOrder    &&
+				codSnapshot == obj.codSnapshot &&
 				codUser     == obj.codUser		);
 	}
 }

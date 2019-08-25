@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderEnforceStatusWaiting extends ActionLazyTemplate<OrderInfo, OrderInfo> {
+public final class LazyOrderEnforceStatusWaiting_ extends ActionLazyTemplate<OrderInfo, OrderInfo> {
 
-	public LazyOrderEnforceStatusWaiting(Connection conn, String schemaName) {
+	public LazyOrderEnforceStatusWaiting_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	

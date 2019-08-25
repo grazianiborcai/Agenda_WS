@@ -8,6 +8,7 @@ import br.com.gda.business.order.model.checker.OrderCheckLangu;
 import br.com.gda.business.order.model.checker.OrderCheckOwner;
 import br.com.gda.business.order.model.action.LazyOrderInsertSchedine;
 import br.com.gda.business.order.model.action.LazyOrderNodeOrderem;
+import br.com.gda.business.order.model.action.LazyOrderNodeSnapshot;
 import br.com.gda.business.order.model.checker.OrderCheckCurrency;
 import br.com.gda.business.order.model.checker.OrderCheckInsert;
 import br.com.gda.model.action.ActionStd;
@@ -67,10 +68,12 @@ public final class RootOrderInsert extends DeciTreeWriteTemplate<OrderInfo> {
 
 		ActionStd<OrderInfo> insertOrder = new NodeOrderInsert(option).toAction();
 		ActionLazy<OrderInfo> insertOrderem = new LazyOrderNodeOrderem(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> snapshot = new LazyOrderNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> insertSchedine = new LazyOrderInsertSchedine(option.conn, option.schemaName);	
 		
 		insertOrder.addPostAction(insertOrderem);
-		insertOrderem.addPostAction(insertSchedine);
+		insertOrderem.addPostAction(snapshot);
+		snapshot.addPostAction(insertSchedine);
 		
 		actions.add(insertOrder);
 		return actions;

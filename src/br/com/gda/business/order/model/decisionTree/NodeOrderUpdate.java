@@ -5,11 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.action.LazyOrderEnforceLChanged;
-import br.com.gda.business.order.model.action.LazyOrderEnforceStatusMoip;
 import br.com.gda.business.order.model.action.LazyOrderNodePayord;
+import br.com.gda.business.order.model.action.LazyOrderNodeSnapshot;
 import br.com.gda.business.order.model.checker.OrderCheckUpdate;
-import br.com.gda.business.order.model.action.LazyOrderUpdate;
-import br.com.gda.business.order.model.action.StdOrderMergeToUpdate;
+import br.com.gda.business.order.model.action.StdOrderMergeUsername;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
@@ -40,18 +39,16 @@ public final class NodeOrderUpdate extends DeciTreeWriteTemplate<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderInfo> mergeToUpdate = new StdOrderMergeToUpdate(option);
+		ActionStd<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);
 		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> nodePayord = new LazyOrderNodePayord(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> enforceStatus = new LazyOrderEnforceStatusMoip(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> update = new LazyOrderUpdate(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> snapshot = new LazyOrderNodeSnapshot(option.conn, option.schemaName);
 		
-		mergeToUpdate.addPostAction(enforceLChanged);
+		mergeUsername.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(nodePayord);		
-		nodePayord.addPostAction(enforceStatus);		
-		enforceStatus.addPostAction(update);
+		nodePayord.addPostAction(snapshot);
 		
-		actions.add(mergeToUpdate);
+		actions.add(mergeUsername);
 		return actions;
 	}
 }

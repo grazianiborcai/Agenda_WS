@@ -811,4 +811,9 @@ public final class SystemMessage {
 	
 	// Schedule Search
 	public static final String SCHEDULE_SEARCH_MANDATORY_FIELD_EMPTY = "Schedule-Search: Mandatory field is empty";
+	
+	
+	
+	// Order Snapshot
+	public static final String ORDER_HEADER_SNAP_MANDATORY_FIELD_EMPTY = "Order-Header-Snapshot: Mandatory field is empty";
 }

@@ -115,7 +115,8 @@ public final class OrderUpdateSingle implements DaoStmt<OrderInfo> {
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoice);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoiceSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
-
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+			
 			return stmt;
 		}		
 	}

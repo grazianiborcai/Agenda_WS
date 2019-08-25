@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
+import br.com.gda.business.order.model.action.LazyOrderEnforceStatusMoip;
 import br.com.gda.business.order.model.action.StdOrderMergePayord;
 import br.com.gda.business.order.model.action.StdOrderSuccess;
 import br.com.gda.business.order.model.checker.OrderCheckHasPayord;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -37,6 +39,9 @@ public final class NodeOrderPayord extends DeciTreeWriteTemplate<OrderInfo> {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 
 		ActionStd<OrderInfo> mergePayord = new StdOrderMergePayord(option);
+		ActionLazy<OrderInfo> enforceStatus = new LazyOrderEnforceStatusMoip(option.conn, option.schemaName);
+		
+		mergePayord.addPostAction(enforceStatus);
 		
 		actions.add(mergePayord);
 		return actions;

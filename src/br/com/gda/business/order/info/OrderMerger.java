@@ -7,12 +7,27 @@ import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.FeeCategInfo;
 import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.business.orderItem.info.OrderemInfo;
+import br.com.gda.business.orderSnapshot.info.OrdnapInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.security.userList.info.UselisInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class OrderMerger {		
+	public static OrderInfo mergeWithOrdnap(OrdnapInfo sourceOne, OrderInfo sourceTwo) {
+		InfoMerger<OrderInfo, OrdnapInfo> merger = new OrderMergerOrdnap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OrderInfo> mergeWithOrdnap(List<OrdnapInfo> sourceOnes, List<OrderInfo> sourceTwos) {
+		InfoMerger<OrderInfo, OrdnapInfo> merger = new OrderMergerOrdnap();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
 	public static OrderInfo mergeWithCusarch(CusarchInfo sourceOne, OrderInfo sourceTwo) {
 		InfoMerger<OrderInfo, CusarchInfo> merger = new OrderMergerCusarch();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -23,7 +38,7 @@ public final class OrderMerger {
 	public static List<OrderInfo> mergeWithCusarch(List<CusarchInfo> sourceOnes, List<OrderInfo> sourceTwos) {
 		InfoMerger<OrderInfo, CusarchInfo> merger = new OrderMergerCusarch();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}		
+	}	
 	
 	
 	

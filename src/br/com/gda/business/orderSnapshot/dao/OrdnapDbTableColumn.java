@@ -1,4 +1,4 @@
-package br.com.gda.business.order.dao;
+package br.com.gda.business.orderSnapshot.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -9,7 +9,7 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
+public final class OrdnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ADDRESS_SHIP = DaoDbField.COL_COD_ADDRESS_SHIP;
 	public static final String COL_COD_ADDRESS_SHIP_SNAPSHOT = DaoDbField.COL_COD_ADDRESS_SHIP_SNAPSHOT;
 	public static final String COL_COD_ADDRESS_INVOICE = DaoDbField.COL_COD_ADDRESS_INVOICE;
@@ -25,7 +25,7 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PHONE_SHIP = DaoDbField.COL_COD_PHONE_SHIP;
 	public static final String COL_COD_PHONE_SHIP_SNAPSHOT = DaoDbField.COL_COD_PHONE_SHIP_SNAPSHOT;
 	public static final String COL_COD_PHONE_INVOICE = DaoDbField.COL_COD_PHONE_INVOICE;
-	public static final String COL_COD_PHONE_INVOICE_SNAPSHOT = DaoDbField.COL_COD_PHONE_INVOICE_SNAPSHOT;
+	public static final String COL_COD_PHONE_INVOICE_SNAPSHOT = DaoDbField.COL_COD_PHONE_INVOICE_SNAPSHOT;	
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_COD_USER_SNAPSHOT = DaoDbField.COL_COD_USER_SNAPSHOT;
@@ -38,7 +38,7 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
 	
-	public OrderDbTableColumn() {
+	public OrdnapDbTableColumn() {
 		super();
 	}
 	
@@ -53,14 +53,14 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	private void buildOrderHdrTable() {
-		final String TABLE_NAME = DaoDbTable.ORDER_HDR_TABLE;
+		final String TABLE_NAME = DaoDbTable.ORDER_HDR_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_ORDER;
+		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
@@ -70,6 +70,14 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_OWNER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ORDER;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
@@ -229,14 +237,6 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_PAY_ORDER;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

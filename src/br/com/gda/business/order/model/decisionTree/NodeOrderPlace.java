@@ -5,10 +5,8 @@ import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.checker.OrderCheckStatusChange;
-import br.com.gda.business.order.model.action.LazyOrderEnforceLChanged;
-import br.com.gda.business.order.model.action.LazyOrderEnforceStatusWaiting;
-import br.com.gda.business.order.model.action.LazyOrderUpdate;
-import br.com.gda.business.order.model.action.StdOrderMergeUsername;
+import br.com.gda.business.order.model.action.LazyOrderNodeUpdate;
+import br.com.gda.business.order.model.action.StdOrderEnforceStatusWaiting;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -39,16 +37,12 @@ public final class NodeOrderPlace extends DeciTreeWriteTemplate<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);
-		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> enforceStatus = new LazyOrderEnforceStatusWaiting(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> update = new LazyOrderUpdate(option.conn, option.schemaName);		
+		ActionStd<OrderInfo> enforceStatus = new StdOrderEnforceStatusWaiting(option);
+		ActionLazy<OrderInfo> update = new LazyOrderNodeUpdate(option.conn, option.schemaName);		
 		
-		mergeUsername.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceStatus);
 		enforceStatus.addPostAction(update);
 		
-		actions.add(mergeUsername);
+		actions.add(enforceStatus);
 		return actions;
 	}
 }
