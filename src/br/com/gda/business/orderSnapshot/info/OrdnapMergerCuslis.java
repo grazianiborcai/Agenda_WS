@@ -1,14 +1,14 @@
 package br.com.gda.business.orderSnapshot.info;
 
-import br.com.gda.business.customerSearch.info.CusarchInfo;
+import br.com.gda.business.customerList.info.CuslisInfo;
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 
-final class OrdnapMergerCusarch extends InfoMergerTemplate<OrdnapInfo, CusarchInfo> {
+final class OrdnapMergerCuslis extends InfoMergerTemplate<OrdnapInfo, CuslisInfo> {
 
-	@Override protected InfoMergerVisitor<OrdnapInfo, CusarchInfo> getVisitorHook() {
-		return new OrdnapVisiMergeCusarch();
+	@Override protected InfoMergerVisitor<OrdnapInfo, CuslisInfo> getVisitorHook() {
+		return new OrdnapVisiMergeCuslis();
 	}
 	
 	

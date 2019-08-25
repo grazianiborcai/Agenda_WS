@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.order.dao.OrderDbTableColumn;
 import br.com.gda.business.orderSnapshot.info.OrdnapInfo;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
@@ -121,6 +122,7 @@ public final class OrdnapSelectSingle implements DaoStmt<OrdnapInfo> {
 				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_COD_CUSTOMER);
 				dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OrdnapDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, OrderDbTableColumn.COL_CREATED_ON);
 				dataInfo.itemTotal = DaoFormatter.sqlToDouble(stmtResult, OrdnapDbTableColumn.COL_ITEM_TOTAL);
 				dataInfo.feeService = DaoFormatter.sqlToDouble(stmtResult, OrdnapDbTableColumn.COL_FEE_SERVICE);
 				dataInfo.grandTotal = DaoFormatter.sqlToDouble(stmtResult, OrdnapDbTableColumn.COL_GRAND_TOTAL);
@@ -133,6 +135,8 @@ public final class OrdnapSelectSingle implements DaoStmt<OrdnapInfo> {
 				dataInfo.codPhoneInvoice = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_COD_PHONE_INVOICE);
 				dataInfo.codPhoneInvoiceSnapshot = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_COD_PHONE_INVOICE_SNAPSHOT);
 				dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_COD_PAY_ORDER);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_CREATED_BY);
 				
 				
 				finalResult.add(dataInfo);

@@ -3,13 +3,13 @@ package br.com.gda.business.orderSnapshot.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.customerSearch.info.CusarchInfo;
+import br.com.gda.business.customerList.info.CuslisInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class OrdnapVisiMergeCusarch implements InfoMergerVisitor<OrdnapInfo, CusarchInfo> {
+final class OrdnapVisiMergeCuslis implements InfoMergerVisitor<OrdnapInfo, CuslisInfo> {
 
-	@Override public OrdnapInfo writeRecord(CusarchInfo sourceOne, OrdnapInfo sourceTwo) {
+	@Override public OrdnapInfo writeRecord(CuslisInfo sourceOne, OrdnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		OrdnapInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class OrdnapVisiMergeCusarch implements InfoMergerVisitor<OrdnapInfo, Cusa
 	
 	
 	
-	private void checkArgument(CusarchInfo sourceOne, OrdnapInfo sourceTwo) {
+	private void checkArgument(CuslisInfo sourceOne, OrdnapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,16 +37,16 @@ final class OrdnapVisiMergeCusarch implements InfoMergerVisitor<OrdnapInfo, Cusa
 	
 	
 	
-	private OrdnapInfo merge(CusarchInfo sourceOne, OrdnapInfo sourceTwo) {
-		sourceTwo.codCustomer = sourceOne.codCustomer;
+	private OrdnapInfo merge(CuslisInfo sourceOne, OrdnapInfo sourceTwo) {
+		sourceTwo.codCustomerSnapshot = sourceOne.codSnapshot;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(CusarchInfo sourceOne, OrdnapInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner &&
-				sourceOne.codUser  == sourceTwo.codUser);
+	@Override public boolean shouldWrite(CuslisInfo sourceOne, OrdnapInfo sourceTwo) {		
+		return (sourceOne.codOwner     == sourceTwo.codOwner &&
+				sourceOne.codCustomer  == sourceTwo.codCustomer);
 	}
 	
 	

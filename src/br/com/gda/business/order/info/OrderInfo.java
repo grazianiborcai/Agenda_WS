@@ -14,17 +14,11 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public long codSnapshot;
 	public String codOrderExt;	
 	public long codCustomer;
-	public long codCustomerSnapshot;
 	public long codUser;
-	public long codUserSnapshot;	
 	public long codAddressShip;
-	public long codAddressShipSnapshot;
 	public long codAddressInvoice;
-	public long codAddressInvoiceSnapshot;
 	public long codPhoneShip;
-	public long codPhoneShipSnapshot;
 	public long codPhoneInvoice;
-	public long codPhoneInvoiceSnapshot;	
 	public double itemTotal;
 	public double feeService;
 	public double grandTotal;	
@@ -40,6 +34,9 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public String statusPaymentPartner;
 	public String codLanguage;
 	public LocalDateTime lastChanged;
+	public LocalDateTime createdOn;
+	public long lastChangedBy;
+	public long createdBy;
 	public String username;
 	public List<OrderemInfo> orderms;
 	
@@ -50,23 +47,19 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		codOrder = DefaultValue.number();			
 		codSnapshot = DefaultValue.number();
 		codCustomer = DefaultValue.number();
-		codCustomerSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
-		codUserSnapshot = DefaultValue.number();		
 		codAddressShip = DefaultValue.number();
-		codAddressShipSnapshot = DefaultValue.number();
 		codAddressInvoice = DefaultValue.number();
-		codAddressInvoiceSnapshot = DefaultValue.number();
 		codPhoneShip = DefaultValue.number();
-		codPhoneShipSnapshot = DefaultValue.number();
 		codPhoneInvoice = DefaultValue.number();
-		codPhoneInvoiceSnapshot = DefaultValue.number();		
 		itemTotal = DefaultValue.number();
 		feeService = 0;
 		codFeeCateg = DefaultValue.character();
 		grandTotal = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
+		lastChangedBy = DefaultValue.number();
+		createdBy = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		orderms = DefaultValue.list();
 	}

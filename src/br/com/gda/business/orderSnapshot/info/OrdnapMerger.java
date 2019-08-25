@@ -2,20 +2,20 @@ package br.com.gda.business.orderSnapshot.info;
 
 import java.util.List;
 
-import br.com.gda.business.customerSearch.info.CusarchInfo;
+import br.com.gda.business.customerList.info.CuslisInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.userList.info.UselisInfo;
 
 public final class OrdnapMerger {		
-	public static OrdnapInfo mergeWithCusarch(CusarchInfo sourceOne, OrdnapInfo sourceTwo) {
-		InfoMerger<OrdnapInfo, CusarchInfo> merger = new OrdnapMergerCusarch();		
+	public static OrdnapInfo mergeWithCuslis(CuslisInfo sourceOne, OrdnapInfo sourceTwo) {
+		InfoMerger<OrdnapInfo, CuslisInfo> merger = new OrdnapMergerCuslis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<OrdnapInfo> mergeWithCusarch(List<CusarchInfo> sourceOnes, List<OrdnapInfo> sourceTwos) {
-		InfoMerger<OrdnapInfo, CusarchInfo> merger = new OrdnapMergerCusarch();		
+	public static List<OrdnapInfo> mergeWithCuslis(List<CuslisInfo> sourceOnes, List<OrdnapInfo> sourceTwos) {
+		InfoMerger<OrdnapInfo, CuslisInfo> merger = new OrdnapMergerCuslis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}		
 	

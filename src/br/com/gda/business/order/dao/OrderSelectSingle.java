@@ -118,22 +118,19 @@ public final class OrderSelectSingle implements DaoStmt<OrderInfo> {
 				dataInfo.codOrderExt = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_EXTERNAL);	
 				dataInfo.codOrderStatus = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_STATUS);
 				dataInfo.codCurr = stmtResult.getString(OrderDbTableColumn.COL_COD_CURRENCY);
-				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_USER_SNAPSHOT);
 				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_CUSTOMER);
-				dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OrderDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, OrderDbTableColumn.COL_CREATED_ON);
 				dataInfo.itemTotal = DaoFormatter.sqlToDouble(stmtResult, OrderDbTableColumn.COL_ITEM_TOTAL);
 				dataInfo.feeService = DaoFormatter.sqlToDouble(stmtResult, OrderDbTableColumn.COL_FEE_SERVICE);
 				dataInfo.grandTotal = DaoFormatter.sqlToDouble(stmtResult, OrderDbTableColumn.COL_GRAND_TOTAL);
 				dataInfo.codAddressShip = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_ADDRESS_SHIP);
-				dataInfo.codAddressShipSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_ADDRESS_SHIP_SNAPSHOT);
 				dataInfo.codAddressInvoice = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_ADDRESS_INVOICE);
-				dataInfo.codAddressInvoiceSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_ADDRESS_INVOICE_SNAPSHOT);
 				dataInfo.codPhoneShip = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PHONE_SHIP);
-				dataInfo.codPhoneShipSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PHONE_SHIP_SNAPSHOT);
 				dataInfo.codPhoneInvoice = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PHONE_INVOICE);
-				dataInfo.codPhoneInvoiceSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PHONE_INVOICE_SNAPSHOT);
 				dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PAY_ORDER);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_CREATED_BY);
 				
 				
 				finalResult.add(dataInfo);

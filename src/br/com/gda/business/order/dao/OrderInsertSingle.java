@@ -81,9 +81,7 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codUser);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
 			stmt.setString(i++, recordInfo.codOrderExt);
 			stmt.setString(i++, recordInfo.codOrderStatus);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.itemTotal);
@@ -92,15 +90,14 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 			stmt.setString(i++, recordInfo.codCurr);
 			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressShip);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressShipSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressInvoice);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressInvoiceSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneShip);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneShipSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoice);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoiceSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 
 			return stmt;
 		}		

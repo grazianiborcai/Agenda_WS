@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderMergeUselis extends ActionLazyTemplate<OrderInfo, OrderInfo> {
+public final class LazyOrderEnforceUser extends ActionLazyTemplate<OrderInfo, OrderInfo> {
 
-	public LazyOrderMergeUselis(Connection conn, String schemaName) {
+	public LazyOrderEnforceUser(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOrderMergeUselis extends ActionLazyTemplate<OrderInfo, Or
 	
 	
 	@Override protected ActionStd<OrderInfo> getInstanceOfActionHook(DeciTreeOption<OrderInfo> option) {
-		return new StdOrderMergeUselis(option);
+		return new StdOrderEnforceUser(option);
 	}
 	
 	

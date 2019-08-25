@@ -38,7 +38,7 @@ final class OrderVisiMergeUsername implements InfoMergerVisitor<OrderInfo, Usern
 	
 	
 	private OrderInfo merge(UsernameInfo sourceOne, OrderInfo sourceTwo) {
-		sourceTwo.codUser = sourceOne.codUser;
+		sourceTwo.lastChangedBy = sourceOne.codUser;
 		return sourceTwo;
 	}
 	

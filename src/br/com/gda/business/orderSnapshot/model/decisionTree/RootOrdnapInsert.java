@@ -8,7 +8,10 @@ import br.com.gda.business.orderSnapshot.model.checker.OrdnapCheckLangu;
 import br.com.gda.business.orderSnapshot.model.checker.OrdnapCheckOrder;
 import br.com.gda.business.orderSnapshot.model.checker.OrdnapCheckOwner;
 import br.com.gda.business.orderSnapshot.model.checker.OrdnapCheckWrite;
-import br.com.gda.business.orderSnapshot.model.action.StdOrdnapInsert;
+import br.com.gda.business.orderSnapshot.model.action.LazyOrdnapInsert;
+import br.com.gda.business.orderSnapshot.model.action.LazyOrdnapMergeCuslis;
+import br.com.gda.business.orderSnapshot.model.action.StdOrdnapMergeUselis;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -63,9 +66,14 @@ public final class RootOrdnapInsert extends DeciTreeWriteTemplate<OrdnapInfo> {
 	@Override protected List<ActionStd<OrdnapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdnapInfo> option) {
 		List<ActionStd<OrdnapInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrdnapInfo> insert = new StdOrdnapInsert(option);	
+		ActionStd<OrdnapInfo> mergeUselis = new StdOrdnapMergeUselis(option);	
+		ActionLazy<OrdnapInfo> mergeCuslis = new LazyOrdnapMergeCuslis(option.conn, option.schemaName);
+		ActionLazy<OrdnapInfo> insert = new LazyOrdnapInsert(option.conn, option.schemaName);
 		
-		actions.add(insert);
+		mergeUselis.addPostAction(mergeCuslis);
+		mergeCuslis.addPostAction(insert);
+		
+		actions.add(mergeUselis);
 		return actions;
 	}
 }

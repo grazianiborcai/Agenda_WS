@@ -101,6 +101,9 @@ public final class OrdnapInsertSingle implements DaoStmt<OrdnapInfo> {
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoice);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoiceSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 
 			return stmt;
 		}		

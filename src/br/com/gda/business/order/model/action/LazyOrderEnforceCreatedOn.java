@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderEnforceStatusCancelled_ extends ActionLazyTemplate<OrderInfo, OrderInfo> {
+public final class LazyOrderEnforceCreatedOn extends ActionLazyTemplate<OrderInfo, OrderInfo> {
 
-	public LazyOrderEnforceStatusCancelled_(Connection conn, String schemaName) {
+	public LazyOrderEnforceCreatedOn(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOrderEnforceStatusCancelled_ extends ActionLazyTemplate<O
 	
 	
 	@Override protected ActionStd<OrderInfo> getInstanceOfActionHook(DeciTreeOption<OrderInfo> option) {
-		return new StdOrderEnforceStatusCancelled(option);
+		return new StdOrderEnforceCreatedOn(option);
 	}
 	
 	

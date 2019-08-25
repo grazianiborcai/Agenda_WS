@@ -11,28 +11,25 @@ import br.com.gda.dao.common.DaoDbTable;
 
 public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ADDRESS_SHIP = DaoDbField.COL_COD_ADDRESS_SHIP;
-	public static final String COL_COD_ADDRESS_SHIP_SNAPSHOT = DaoDbField.COL_COD_ADDRESS_SHIP_SNAPSHOT;
 	public static final String COL_COD_ADDRESS_INVOICE = DaoDbField.COL_COD_ADDRESS_INVOICE;
-	public static final String COL_COD_ADDRESS_INVOICE_SNAPSHOT = DaoDbField.COL_COD_ADDRESS_INVOICE_SNAPSHOT;
 	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
-	public static final String COL_COD_CUSTOMER_SNAPSHOT = DaoDbField.COL_COD_CUSTOMER_SNAPSHOT;
 	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;
 	public static final String COL_COD_ORDER_EXTERNAL = DaoDbField.COL_COD_ORDER_EXTERNAL;
 	public static final String COL_COD_ORDER_STATUS = DaoDbField.COL_COD_ORDER_STATUS;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PAY_ORDER = DaoDbField.COL_COD_PAY_ORDER;
 	public static final String COL_COD_PHONE_SHIP = DaoDbField.COL_COD_PHONE_SHIP;
-	public static final String COL_COD_PHONE_SHIP_SNAPSHOT = DaoDbField.COL_COD_PHONE_SHIP_SNAPSHOT;
 	public static final String COL_COD_PHONE_INVOICE = DaoDbField.COL_COD_PHONE_INVOICE;
-	public static final String COL_COD_PHONE_INVOICE_SNAPSHOT = DaoDbField.COL_COD_PHONE_INVOICE_SNAPSHOT;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
-	public static final String COL_COD_USER_SNAPSHOT = DaoDbField.COL_COD_USER_SNAPSHOT;
+	public static final String COL_CREATED_BY = DaoDbField.COL_CREATED_BY;
+	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;
 	public static final String COL_FEE_SERVICE = DaoDbField.COL_FEE_SERVICE;
 	public static final String COL_GRAND_TOTAL = DaoDbField.COL_GRAND_TOTAL;
 	public static final String COL_ITEM_TOTAL = DaoDbField.COL_ITEM_TOTAL;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
@@ -84,23 +81,7 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_USER_SNAPSHOT;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_CUSTOMER;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_CUSTOMER_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -172,23 +153,7 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_ADDRESS_SHIP_SNAPSHOT;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_ADDRESS_INVOICE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_ADDRESS_INVOICE_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -204,23 +169,7 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PHONE_SHIP_SNAPSHOT;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_PHONE_INVOICE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PHONE_INVOICE_SNAPSHOT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -237,6 +186,30 @@ public final class OrderDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_CREATED_ON;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_CREATED_BY;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_LAST_CHANGED_BY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdnapMergeCusarch implements ActionStd<OrdnapInfo> {
+public final class StdOrdnapMergeCuslis implements ActionStd<OrdnapInfo> {
 	private ActionStd<OrdnapInfo> actionHelper;	
 	
 	
-	public StdOrdnapMergeCusarch(DeciTreeOption<OrdnapInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOrdnapMergeCusarch(option.conn, option.schemaName));
+	public StdOrdnapMergeCuslis(DeciTreeOption<OrdnapInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOrdnapMergeCuslis(option.conn, option.schemaName));
 	}
 	
 	

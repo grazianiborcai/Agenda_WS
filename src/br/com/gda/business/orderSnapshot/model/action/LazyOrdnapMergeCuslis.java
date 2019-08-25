@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrdnapMergeCusarch extends ActionLazyTemplate<OrdnapInfo, OrdnapInfo> {
+public final class LazyOrdnapMergeCuslis extends ActionLazyTemplate<OrdnapInfo, OrdnapInfo> {
 
-	public LazyOrdnapMergeCusarch(Connection conn, String schemaName) {
+	public LazyOrdnapMergeCuslis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOrdnapMergeCusarch extends ActionLazyTemplate<OrdnapInfo,
 	
 	
 	@Override protected ActionStd<OrdnapInfo> getInstanceOfActionHook(DeciTreeOption<OrdnapInfo> option) {
-		return new StdOrdnapMergeCusarch(option);
+		return new StdOrdnapMergeCuslis(option);
 	}
 	
 	

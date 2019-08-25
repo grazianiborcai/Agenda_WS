@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrdnapMergeUselis extends ActionLazyTemplate<OrdnapInfo, OrdnapInfo> {
+public final class LazyOrdnapMergeUselis_ extends ActionLazyTemplate<OrdnapInfo, OrdnapInfo> {
 
-	public LazyOrdnapMergeUselis(Connection conn, String schemaName) {
+	public LazyOrdnapMergeUselis_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	

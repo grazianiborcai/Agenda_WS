@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.action.LazyOrderUpdate;
 import br.com.gda.business.order.model.action.StdOrderInsertOrdnap;
-import br.com.gda.business.order.model.checker.OrderCheckInsert;
+import br.com.gda.business.order.model.checker.OrderCheckWrite;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -26,7 +26,7 @@ public final class NodeOrderSnapshot extends DeciTreeWriteTemplate<OrderInfo> {
 		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderInfo> checker;	
 		
-		checker = new OrderCheckInsert();
+		checker = new OrderCheckWrite();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
