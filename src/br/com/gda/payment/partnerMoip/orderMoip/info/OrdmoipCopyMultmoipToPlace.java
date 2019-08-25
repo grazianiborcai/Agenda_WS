@@ -21,7 +21,7 @@ final class OrdmoipCopyMultmoipToPlace extends InfoCopierOneToManyTemplate<Ordmo
 			OrdmoipInfo oneResult = new OrdmoipInfo();
 			
 			oneResult.codOwner = eachPayordem.codOwner;
-			oneResult.itemNum = eachPayordem.itemNum;
+			oneResult.itemNum = eachPayordem.codPayOrderItem;
 			oneResult.codFeeCateg = source.codFeeCateg;
 			oneResult.txtFeeCateg = source.txtFeeCateg;
 			oneResult.payordemData = eachPayordem;

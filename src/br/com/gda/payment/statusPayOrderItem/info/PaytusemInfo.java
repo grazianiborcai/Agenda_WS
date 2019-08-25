@@ -13,7 +13,7 @@ import br.com.gda.payment.customerPartner.info.CusparInfo;
 public final class PaytusemInfo extends InfoRecord implements Cloneable, Comparable<PaytusemInfo> {
 	public long codOwner;
 	public long codPayOrder;	
-	public int itemNum;
+	public int codPayOrderItem;
 	public double totitem;
 	public String codCurr;
 	public String idOrderPartner;
@@ -29,7 +29,7 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 	
 	public PaytusemInfo() {
 		codOwner = DefaultValue.number();	
-		itemNum = DefaultValue.number();	
+		codPayOrderItem = DefaultValue.number();	
 		totitem = DefaultValue.number();	
 		cusparData = DefaultValue.object();
 	}
@@ -72,7 +72,7 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codPayOrder ^ (codPayOrder >>> 32));
-		result = result * 31 + (int) (itemNum 	  ^ (itemNum 	 >>> 32));
+		result = result * 31 + (int) (codPayOrderItem 	  ^ (codPayOrderItem 	 >>> 32));
 		
 		if (idOrderPartner != null)
 			result = result * 31 + (int) (idOrderPartner.hashCode() ^ (idOrderPartner.hashCode() >>> 32));
@@ -94,7 +94,7 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 		PaytusemInfo obj = (PaytusemInfo) o;		
 		return (codOwner    == obj.codOwner    	&& 
 				codPayOrder == obj.codPayOrder	&&
-				itemNum    	== obj.itemNum		&&
+				codPayOrderItem    	== obj.codPayOrderItem		&&
 				super.isStringEqual(idOrderPartner, obj.idOrderPartner));
 	}
 	
@@ -107,10 +107,10 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 		}
 
 		
-		if (itemNum < arg0.itemNum)
+		if (codPayOrderItem < arg0.codPayOrderItem)
 			return -1;
 		
-		if (itemNum > arg0.itemNum)
+		if (codPayOrderItem > arg0.codPayOrderItem)
 			return 1;
 		
 		if (equals(arg0))

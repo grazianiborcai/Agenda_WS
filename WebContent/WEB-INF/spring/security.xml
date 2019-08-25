@@ -103,7 +103,7 @@
         <security:intercept-url pattern="/**/Payment/grantMoip"					access="hasAuthority('STORE_PAY_WRITE')" 			/>    
         <security:intercept-url pattern="/**/Payment/payOrder"					access="isAuthenticated()" 							/>     
         <security:intercept-url pattern="/**/Payment/refundOrder"				access="isAuthenticated()" 							/>   <!-- TODO: Rever Role -->
-        <security:intercept-url pattern="/**/Payment/selectPayStatus"			access="isAuthenticated()" 							/>     
+        <security:intercept-url pattern="/**/Payment/refreshStatus"				access="isAuthenticated()" 							/>     
         <security:intercept-url pattern="/**/Payment/insertCreditCard"			access="isAuthenticated()" 							/>    
         <security:intercept-url pattern="/**/Schedule/insertScheduleLine"		access="hasAuthority('SCHEDULE_INSERT')" 			/>    
         <security:intercept-url pattern="/**/Schedule/updateScheduleLine"		access="hasAuthority('SCHEDULE_UPDATE')" 			/>  

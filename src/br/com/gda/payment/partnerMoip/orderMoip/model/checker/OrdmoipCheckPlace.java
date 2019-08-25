@@ -22,7 +22,7 @@ public final class OrdmoipCheckPlace extends ModelCheckerTemplateSimple<OrdmoipI
 		if ( recordInfo.payordemData.codOwner 	 	<= 0 	|| 
 			 recordInfo.payordemData.codPayPartner 	<= 0 	|| 
 			 recordInfo.payordemData.codPayOrder 	<= 0 	|| 
-			 recordInfo.payordemData.itemNum 		<= 0 	|| 
+			 recordInfo.payordemData.codPayOrderItem 		<= 0 	|| 
 			 recordInfo.payordemData.quantity 	 	<= 0 	|| 
 			 recordInfo.payordemData.price 	  	 	<= 0 	||
 			 recordInfo.payordemData.itemReceiver 	== null ||

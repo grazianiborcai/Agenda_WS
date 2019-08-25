@@ -32,7 +32,7 @@ import br.com.gda.payment.statusPayOrder.model.PaytusModelRefresh;
 public final class PaymentResource {
 	private static final String PAY_ORDER = "/payOrder";
 	private static final String REFUND_ORDER = "/refundOrder";
-	private static final String SELECT_PAY_STATUS = "/selectPayStatus";
+	private static final String REFRESH_STATUS = "/refreshStatus";
 	private static final String GRANT_MOIP = "/grantMoip";
 	private static final String PERMISSION_CODE_MOIP = "/permissionCodeMoip";
 	private static final String INSERT_CREDIT_CARD = "/insertCreditCard";
@@ -75,12 +75,12 @@ public final class PaymentResource {
 	
 	
 	@GET
-	@Path(SELECT_PAY_STATUS)
+	@Path(REFRESH_STATUS)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectPayStatus(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner,
-								    @HeaderParam("codPayOrder")  	@DefaultValue("-1") long codPayOrder,
-								    @HeaderParam("TOKEN_USERNAME") 	String username,
-								    @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
+	public Response refreshPayStatus(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner,
+								     @HeaderParam("codPayOrder")  	@DefaultValue("-1") long codPayOrder,
+								     @HeaderParam("TOKEN_USERNAME") String username,
+								     @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
 
 		PaytusInfo recordInfo = new PaytusInfo();
 		recordInfo.codOwner = codOwner;

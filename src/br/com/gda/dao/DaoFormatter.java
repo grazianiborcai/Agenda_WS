@@ -294,6 +294,19 @@ public final class DaoFormatter {
 	
 	
 	
+	public static boolean sqlToBoole(ResultSet stmtResult, String colunmName) throws SQLException {
+		checkArgument(stmtResult, colunmName);		
+		
+		stmtResult.getString(colunmName);
+		
+		if (stmtResult.wasNull())
+			return DefaultValue.boole();
+			
+		return stmtResult.getBoolean(colunmName);	
+	}
+	
+	
+	
 	public static char sqlToChar(ResultSet stmtResult, String colunmName) throws SQLException {
 		checkArgument(stmtResult, colunmName);		
 		
@@ -303,7 +316,7 @@ public final class DaoFormatter {
 			return DefaultValue.character();
 			
 		return stmtResult.getString(colunmName).charAt(0);	
-	}
+	}	
 	
 	
 	

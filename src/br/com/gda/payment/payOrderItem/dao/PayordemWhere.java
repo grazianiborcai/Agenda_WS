@@ -35,8 +35,8 @@ public final class PayordemWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayOrder));
 					break;
 					
-				case PayordemDbTableColumn.COL_ITEM_NUMBER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.itemNum));
+				case PayordemDbTableColumn.COL_COD_PAY_ORDER_ITEM :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayOrderItem));
 					break;
 			}
 		}		

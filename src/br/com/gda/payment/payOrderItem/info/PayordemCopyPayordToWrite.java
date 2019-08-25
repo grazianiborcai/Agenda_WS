@@ -23,7 +23,7 @@ final class PayordemCopyPayordToWrite extends InfoCopierOneToManyTemplate<Payord
 			PayordemInfo oneResult = PayordemInfo.copyFrom(eachItem);
 			oneResult.codPayOrder = source.codPayOrder;
 			oneResult.codPayPartner = source.codPayPartner;
-			oneResult.itemNum = itemNum++;
+			oneResult.codPayOrderItem = itemNum++;
 			
 			results.add(oneResult);
 		}
@@ -43,7 +43,7 @@ final class PayordemCopyPayordToWrite extends InfoCopierOneToManyTemplate<Payord
 		feeItem.codOwner = source.orderData.codOwner;
 		feeItem.codPayOrder = source.codPayOrder; 
 		feeItem.codFeeCateg = source.orderData.codFeeCateg;
-		feeItem.itemNum = itemNum;
+		feeItem.codPayOrderItem = itemNum;
 		feeItem.codPayPartner = source.codPayPartner; 
 		feeItem.quantity = 1;		
 		feeItem.price = source.orderData.feeService;

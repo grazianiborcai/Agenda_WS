@@ -18,8 +18,10 @@ import br.com.gda.info.InfoRecord;
 public final class PayordemInfo extends InfoRecord implements Cloneable, Comparable<PayordemInfo> {
 	public long codOwner;
 	public long codPayOrder;
-	public int itemNum;
+	public int codPayOrderItem;
 	public char codFeeCateg;
+	public long codOrder;
+	public int codOrderItem;
 	public long codStore;
 	public long codEmployee;
 	public long codMat;
@@ -50,7 +52,9 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	
 	public PayordemInfo() {
 		codOwner = DefaultValue.number();	
-		itemNum = DefaultValue.number();	
+		codPayOrderItem = DefaultValue.number();	
+		codOrder = DefaultValue.number();	
+		codOrderItem = DefaultValue.number();
 		codFeeCateg = DefaultValue.character();
 		codPayOrder = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
@@ -136,7 +140,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
 		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
 		result = result * 31 + (int) (codMat 	  ^ (codMat 	 >>> 32));
-		result = result * 31 + (int) (itemNum 	  ^ (itemNum 	 >>> 32));
+		result = result * 31 + (int) (codPayOrderItem 	  ^ (codPayOrderItem 	 >>> 32));
 		
 		if (date != null)
 			result = result * 31 + (int) date.hashCode();
@@ -164,7 +168,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 				codStore    == obj.codStore			&&
 				codEmployee == obj.codEmployee		&&
 				codMat    	== obj.codMat			&&
-				itemNum    	== obj.itemNum			&&
+				codPayOrderItem    	== obj.codPayOrderItem			&&
 				super.isDateEqual(date, obj.date)	&&
 				super.isTimeEqual(beginTime, obj.beginTime));
 	}
@@ -178,10 +182,10 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 		}
 
 		
-		if (itemNum < arg0.itemNum)
+		if (codPayOrderItem < arg0.codPayOrderItem)
 			return -1;
 		
-		if (itemNum > arg0.itemNum)
+		if (codPayOrderItem > arg0.codPayOrderItem)
 			return 1;
 		
 		if (equals(arg0))

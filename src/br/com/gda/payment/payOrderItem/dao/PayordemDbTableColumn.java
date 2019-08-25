@@ -6,32 +6,35 @@ import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_BEGIN_TIME = "begin_time";	
-	public static final String COL_COD_CURR = "cod_curr";
-	public static final String COL_COD_EMPLOYEE = "cod_employee";
-	public static final String COL_COD_FEE_CATEG = "cod_fee_categ";
-	public static final String COL_COD_MATERIAL = "cod_material";
-	public static final String COL_COD_PAY_ORDER = "cod_pay_order";	
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_STORE = "cod_store";		
-	public static final String COL_DATE = "date";		
-	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
-	public static final String COL_ID_PAYMENT_PARTNER = "id_payment_partner";
-	public static final String COL_ID_REFUND_PARTNER = "id_refund_partner";
-	public static final String COL_IS_SYSTEM_RECEIVER = "is_system_receiver";
-	public static final String COL_ITEM_NUMBER = "item_num";
-	public static final String COL_ITEM_RECEIVER = "item_receiver";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_OWN_ID = "own_id";	
-	public static final String COL_PRICE = "price";	
-	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";
-	public static final String COL_STATUS_PAYMENT_PARTNER = "status_payment_partner";
-	public static final String COL_STATUS_REFUND_PARTNER = "status_refund_partner";
-	public static final String COL_QUANTITY = "quantity";	
-	public static final String COL_TOTAL_ITEM = "total_item";
+	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;	
+	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
+	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
+	public static final String COL_COD_FEE_CATEG = DaoDbField.COL_COD_FEE_CATEG;
+	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
+	public static final String COL_COD_PAY_ORDER = DaoDbField.COL_COD_PAY_ORDER;	
+	public static final String COL_COD_PAY_ORDER_ITEM = DaoDbField.COL_COD_PAY_ORDER_ITEM;
+	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;
+	public static final String COL_COD_ORDER_ITEM = DaoDbField.COL_COD_ORDER_ITEM;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;		
+	public static final String COL_DATE = DaoDbField.COL_DATE;		
+	public static final String COL_ID_ORDER_PARTNER = DaoDbField.COL_ID_ORDER_PARTNER;
+	public static final String COL_ID_PAYMENT_PARTNER = DaoDbField.COL_ID_PAYMENT_PARTNER;
+	public static final String COL_ID_REFUND_PARTNER = DaoDbField.COL_ID_REFUND_PARTNER;
+	public static final String COL_IS_SYSTEM_RECEIVER = DaoDbField.COL_IS_SYSTEM_RECEIVER;	
+	public static final String COL_ITEM_RECEIVER = DaoDbField.COL_ITEM_RECEIVER;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_OWN_ID = DaoDbField.COL_OWN_ID;	
+	public static final String COL_PRICE = DaoDbField.COL_PRICE;	
+	public static final String COL_STATUS_ORDER_PARTNER = DaoDbField.COL_STATUS_ORDER_PARTNER;
+	public static final String COL_STATUS_PAYMENT_PARTNER = DaoDbField.COL_STATUS_PAYMENT_PARTNER;
+	public static final String COL_STATUS_REFUND_PARTNER = DaoDbField.COL_STATUS_REFUND_PARTNER;
+	public static final String COL_QUANTITY = DaoDbField.COL_QUANTITY ;	
+	public static final String COL_TOTAL_ITEM = DaoDbField.COL_TOTAL_ITEM;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
@@ -75,7 +78,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_ITEM_NUMBER;
+		oneColumn.columnName = COL_COD_PAY_ORDER_ITEM;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -147,7 +150,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_CURR;
+		oneColumn.columnName = COL_COD_CURRENCY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -236,6 +239,22 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_STATUS_REFUND_PARTNER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ORDER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ORDER_ITEM;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

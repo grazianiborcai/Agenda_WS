@@ -1,11 +1,8 @@
 package br.com.gda.payment.payOrderItem.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,7 +99,6 @@ public final class PayordemSelectSingle implements DaoStmt<PayordemInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<PayordemInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<PayordemInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -116,9 +112,9 @@ public final class PayordemSelectSingle implements DaoStmt<PayordemInfo> {
 				PayordemInfo dataInfo = new PayordemInfo();
 				dataInfo.codOwner = stmtResult.getLong(PayordemDbTableColumn.COL_COD_OWNER);	
 				dataInfo.codPayOrder = stmtResult.getLong(PayordemDbTableColumn.COL_COD_PAY_ORDER);
-				dataInfo.itemNum = stmtResult.getInt(PayordemDbTableColumn.COL_ITEM_NUMBER);
+				dataInfo.codPayOrderItem = stmtResult.getInt(PayordemDbTableColumn.COL_COD_PAY_ORDER_ITEM);
 				dataInfo.quantity = stmtResult.getInt(PayordemDbTableColumn.COL_QUANTITY);
-				dataInfo.codCurr = stmtResult.getString(PayordemDbTableColumn.COL_COD_CURR);
+				dataInfo.codCurr = stmtResult.getString(PayordemDbTableColumn.COL_COD_CURRENCY);
 				dataInfo.itemReceiver = stmtResult.getString(PayordemDbTableColumn.COL_ITEM_RECEIVER);
 				dataInfo.ownId = stmtResult.getString(PayordemDbTableColumn.COL_OWN_ID);
 				dataInfo.idOrderPartner = stmtResult.getString(PayordemDbTableColumn.COL_ID_ORDER_PARTNER);
@@ -127,47 +123,17 @@ public final class PayordemSelectSingle implements DaoStmt<PayordemInfo> {
 				dataInfo.statusPaymentPartner = stmtResult.getString(PayordemDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
 				dataInfo.idRefundPartner = stmtResult.getString(PayordemDbTableColumn.COL_ID_REFUND_PARTNER);
 				dataInfo.statusRefundPartner = stmtResult.getString(PayordemDbTableColumn.COL_STATUS_REFUND_PARTNER);
-				
-				stmtResult.getString(PayordemDbTableColumn.COL_COD_FEE_CATEG);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codFeeCateg = DaoFormatter.stringToChar(stmtResult.getString(PayordemDbTableColumn.COL_COD_FEE_CATEG));
-				
-				stmtResult.getLong(PayordemDbTableColumn.COL_COD_STORE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStore = stmtResult.getLong(PayordemDbTableColumn.COL_COD_STORE);
-				
-				stmtResult.getLong(PayordemDbTableColumn.COL_COD_EMPLOYEE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployee = stmtResult.getLong(PayordemDbTableColumn.COL_COD_EMPLOYEE);
-				
-				stmtResult.getLong(PayordemDbTableColumn.COL_COD_MATERIAL);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codMat = stmtResult.getLong(PayordemDbTableColumn.COL_COD_MATERIAL);
-
-				Date date = stmtResult.getDate(PayordemDbTableColumn.COL_DATE);
-				if (date != null)
-					dataInfo.date = date.toLocalDate();
-				
-				Time beginTime = stmtResult.getTime(PayordemDbTableColumn.COL_BEGIN_TIME);
-				if (beginTime != null)
-					dataInfo.beginTime = beginTime.toLocalTime();
-				
-				stmtResult.getDouble(PayordemDbTableColumn.COL_PRICE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.price = stmtResult.getDouble(PayordemDbTableColumn.COL_PRICE);
-				
-				stmtResult.getDouble(PayordemDbTableColumn.COL_TOTAL_ITEM);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.totitem = stmtResult.getDouble(PayordemDbTableColumn.COL_TOTAL_ITEM);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(PayordemDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				stmtResult.getBoolean(PayordemDbTableColumn.COL_IS_SYSTEM_RECEIVER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.isSystemReceiver = stmtResult.getBoolean(PayordemDbTableColumn.COL_IS_SYSTEM_RECEIVER);
-				
+				dataInfo.codFeeCateg = DaoFormatter.sqlToChar(stmtResult, PayordemDbTableColumn.COL_COD_FEE_CATEG);
+				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, PayordemDbTableColumn.COL_COD_STORE);
+				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, PayordemDbTableColumn.COL_COD_EMPLOYEE);
+				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, PayordemDbTableColumn.COL_COD_MATERIAL);
+				dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, PayordemDbTableColumn.COL_DATE);
+				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, PayordemDbTableColumn.COL_BEGIN_TIME);
+				dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, PayordemDbTableColumn.COL_PRICE);
+				dataInfo.totitem = DaoFormatter.sqlToDouble(stmtResult, PayordemDbTableColumn.COL_TOTAL_ITEM);
+				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, PayordemDbTableColumn.COL_BEGIN_TIME);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordemDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.isSystemReceiver = DaoFormatter.sqlToBoole(stmtResult, PayordemDbTableColumn.COL_IS_SYSTEM_RECEIVER);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

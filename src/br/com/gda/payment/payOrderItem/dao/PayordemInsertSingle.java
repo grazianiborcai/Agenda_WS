@@ -3,7 +3,6 @@ package br.com.gda.payment.payOrderItem.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.dao.DaoFormatter;
@@ -79,61 +78,29 @@ public class PayordemInsertSingle implements DaoStmt<PayordemInfo> {
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codPayOrder);
-			stmt.setInt(i++, recordInfo.itemNum);
-			
-			
-			if (recordInfo.codStore >= 0) {
-				stmt.setLong(i++, recordInfo.codStore);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codMat >= 0) {
-				stmt.setLong(i++, recordInfo.codMat);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codEmployee >= 0) {
-				stmt.setLong(i++, recordInfo.codEmployee);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			stmt.setDate(i++, DaoFormatter.localToSqlDate(recordInfo.date));
-			stmt.setTime(i++, DaoFormatter.localToSqlTime(recordInfo.beginTime));
+			stmt.setInt(i++, recordInfo.codPayOrderItem);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codMat);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);
+			stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.date);
+			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.beginTime);
 			stmt.setInt(i++, recordInfo.quantity);
-			
-			
-			if (recordInfo.price >= 0) {
-				stmt.setDouble(i++, recordInfo.price);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.totitem >= 0) {
-				stmt.setDouble(i++, recordInfo.totitem);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.price);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totitem);
 			stmt.setString(i++, recordInfo.codCurr);
 			stmt.setString(i++, recordInfo.itemReceiver);
 			stmt.setString(i++, recordInfo.ownId);
 			stmt.setString(i++, recordInfo.idOrderPartner);
 			stmt.setString(i++, recordInfo.statusOrderPartner);
-			stmt.setString(i++, DaoFormatter.charToString(recordInfo.codFeeCateg));
+			stmt = DaoFormatter.charToStmt(stmt, i++, recordInfo.codFeeCateg);
 			stmt.setString(i++, recordInfo.idPaymentPartner);
 			stmt.setString(i++, recordInfo.statusPaymentPartner);
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt.setBoolean(i++, recordInfo.isSystemReceiver);
 			stmt.setString(i++, recordInfo.idRefundPartner);
 			stmt.setString(i++, recordInfo.statusRefundPartner);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrder);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrderItem);
 			
 			return stmt;
 		}		

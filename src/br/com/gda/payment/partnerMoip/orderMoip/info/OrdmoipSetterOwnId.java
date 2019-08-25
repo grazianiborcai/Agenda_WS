@@ -12,7 +12,7 @@ public final class OrdmoipSetterOwnId implements InfoSetter<OrdmoipInfo> {
 				         + "-"
 				         + String.valueOf(recordInfo.payordemData.codPayOrder)
 				         + "-"
-				         + String.valueOf(recordInfo.payordemData.itemNum);
+				         + String.valueOf(recordInfo.payordemData.codPayOrderItem);
 		
 		return recordInfo;
 	}
