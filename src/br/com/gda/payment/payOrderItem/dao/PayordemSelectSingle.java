@@ -133,7 +133,9 @@ public final class PayordemSelectSingle implements DaoStmt<PayordemInfo> {
 				dataInfo.totitem = DaoFormatter.sqlToDouble(stmtResult, PayordemDbTableColumn.COL_TOTAL_ITEM);
 				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, PayordemDbTableColumn.COL_BEGIN_TIME);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordemDbTableColumn.COL_LAST_CHANGED);
-				dataInfo.isSystemReceiver = DaoFormatter.sqlToBoole(stmtResult, PayordemDbTableColumn.COL_IS_SYSTEM_RECEIVER);				
+				dataInfo.isSystemReceiver = DaoFormatter.sqlToBoole(stmtResult, PayordemDbTableColumn.COL_IS_SYSTEM_RECEIVER);		
+				dataInfo.codOrder = DaoFormatter.sqlToLong(stmtResult, PayordemDbTableColumn.COL_COD_ORDER);
+				dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, PayordemDbTableColumn.COL_COD_ORDER_ITEM);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
