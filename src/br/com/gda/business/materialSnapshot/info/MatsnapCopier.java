@@ -2,7 +2,7 @@ package br.com.gda.business.materialSnapshot.info;
 
 import java.util.List;
 
-import br.com.gda.business.orderItem.info.OrderemInfo;
+import br.com.gda.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.gda.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.gda.info.InfoCopier;
 
@@ -21,15 +21,15 @@ public final class MatsnapCopier {
 	
 	
 	
-	public static MatsnapInfo copyFromOrderem(OrderemInfo source) {
-		InfoCopier<MatsnapInfo, OrderemInfo> copier = new MatsnapCopyOrderem();
+	public static MatsnapInfo copyFromOrdemrap(OrdemrapInfo source) {
+		InfoCopier<MatsnapInfo, OrdemrapInfo> copier = new MatsnapCopyOrdemrap();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<MatsnapInfo> copyFromOrderem(List<OrderemInfo> sources) {
-		InfoCopier<MatsnapInfo, OrderemInfo> copier = new MatsnapCopyOrderem();
+	public static List<MatsnapInfo> copyFromOrdemrap(List<OrdemrapInfo> sources) {
+		InfoCopier<MatsnapInfo, OrdemrapInfo> copier = new MatsnapCopyOrdemrap();
 		return copier.makeCopy(sources);
 	}	
 }

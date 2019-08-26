@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.business.orderItem.info.OrderemInfo;
+import br.com.gda.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.gda.business.planningTime.info.PlanimeInfo;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleLineSnapshot.info.SchedinapInfo;
@@ -11,6 +12,20 @@ import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
 
 public final class MatCopier {
+	public static MatInfo copyFromOrdemrap(OrdemrapInfo source) {
+		InfoCopier<MatInfo, OrdemrapInfo> copier = new MatCopyOrdemrap();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<MatInfo> copyFromOrdemrap(List<OrdemrapInfo> sources) {
+		InfoCopier<MatInfo, OrdemrapInfo> copier = new MatCopyOrdemrap();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static MatInfo copyFromSchedinap(SchedinapInfo source) {
 		InfoCopier<MatInfo, SchedinapInfo> copier = new MatCopySchedinap();
 		return copier.makeCopy(source);
@@ -21,7 +36,7 @@ public final class MatCopier {
 	public static List<MatInfo> copyFromSchedinap(List<SchedinapInfo> sources) {
 		InfoCopier<MatInfo, SchedinapInfo> copier = new MatCopySchedinap();
 		return copier.makeCopy(sources);
-	}
+	}	
 	
 	
 	

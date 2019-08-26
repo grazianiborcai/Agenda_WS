@@ -3,16 +3,16 @@ package br.com.gda.business.orderItem.model.action;
 import br.com.gda.business.orderItem.info.OrderemInfo;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.model.action.ActionStdHelperMerge;
+import br.com.gda.model.action.ActionStdHelperAction;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderemMergeMatsnap implements ActionStd<OrderemInfo> {
+public final class StdOrderemInsertOrdemrap implements ActionStd<OrderemInfo> {
 	private ActionStd<OrderemInfo> actionHelper;	
 	
 	
-	public StdOrderemMergeMatsnap(DeciTreeOption<OrderemInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOrderemMergeMatsnap(option.conn, option.schemaName));
+	public StdOrderemInsertOrdemrap(DeciTreeOption<OrderemInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiOrderemInsertOrdemrap(option.conn, option.schemaName));
 	}
 	
 	

@@ -1,18 +1,18 @@
 package br.com.gda.business.materialSnapshot.info;
 
 
-import br.com.gda.business.orderItem.info.OrderemInfo;
+import br.com.gda.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.gda.info.InfoCopierTemplate;
 
-final class MatsnapCopyOrderem extends InfoCopierTemplate<MatsnapInfo, OrderemInfo>{
+final class MatsnapCopyOrdemrap extends InfoCopierTemplate<MatsnapInfo, OrdemrapInfo>{
 	
-	public MatsnapCopyOrderem() {
+	public MatsnapCopyOrdemrap() {
 		super();
 	}
 	
 	
 	
-	@Override protected MatsnapInfo makeCopyHook(OrderemInfo source) {
+	@Override protected MatsnapInfo makeCopyHook(OrdemrapInfo source) {
 		MatsnapInfo result = new MatsnapInfo();
 		result.codOwner = source.codOwner;
 		result.codMat = source.codMat;

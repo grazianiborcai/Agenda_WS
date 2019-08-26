@@ -5,13 +5,27 @@ import java.util.List;
 import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
 import br.com.gda.business.materialStore.info.MatoreInfo;
+import br.com.gda.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class OrderemMerger {
+	public static OrderemInfo mergeWithOrdemrap(OrdemrapInfo sourceOne, OrderemInfo sourceTwo) {
+		InfoMerger<OrderemInfo, OrdemrapInfo> merger = new OrderemMergerOrdemrap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OrderemInfo> mergeWithOrdemrap(List<OrdemrapInfo> sourceOnes, List<OrderemInfo> sourceTwos) {
+		InfoMerger<OrderemInfo, OrdemrapInfo> merger = new OrderemMergerOrdemrap();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
 	public static OrderemInfo mergeWithUsername(UsernameInfo sourceOne, OrderemInfo sourceTwo) {
 		InfoMerger<OrderemInfo, UsernameInfo> merger = new OrderemMergerUsername();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -37,20 +51,6 @@ public final class OrderemMerger {
 		InfoMerger<OrderemInfo, MatInfo> merger = new OrderemMergerMat();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}		
-	
-	
-	
-	public static OrderemInfo mergeWithMatsnap(MatsnapInfo sourceOne, OrderemInfo sourceTwo) {
-		InfoMerger<OrderemInfo, MatsnapInfo> merger = new OrderemMergerMatsnap();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<OrderemInfo> mergeWithMatsnap(List<MatsnapInfo> sourceOnes, List<OrderemInfo> sourceTwos) {
-		InfoMerger<OrderemInfo, MatsnapInfo> merger = new OrderemMergerMatsnap();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}	
 	
 	
 	

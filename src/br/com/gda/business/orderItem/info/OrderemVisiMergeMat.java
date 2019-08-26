@@ -14,7 +14,6 @@ final class OrderemVisiMergeMat implements InfoMergerVisitor<OrderemInfo, MatInf
 		
 		OrderemInfo resultInfo = makeClone(sourceTwo);
 		resultInfo.matData = sourceOne;
-		resultInfo.codMatSnapshot = sourceOne.codSnapshot;
 
 		return resultInfo;
 	}

@@ -116,11 +116,8 @@ public final class OrderemSelectSingle implements DaoStmt<OrderemInfo> {
 				dataInfo.quantity = stmtResult.getInt(OrderemDbTableColumn.COL_QUANTITY);
 				dataInfo.codCurr = stmtResult.getString(OrderemDbTableColumn.COL_COD_CURRENCY);
 				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_STORE);
-				dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_STORE_SNAPSHOT);
 				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
 				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_MATERIAL);
-				dataInfo.codMatSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_MATERIAL_SNAPSHOT);
 				dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, OrderemDbTableColumn.COL_DATE);
 				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, OrderemDbTableColumn.COL_BEGIN_TIME);
 				dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, OrderemDbTableColumn.COL_END_TIME);
@@ -128,6 +125,7 @@ public final class OrderemSelectSingle implements DaoStmt<OrderemInfo> {
 				dataInfo.lastChangedBy = stmtResult.getLong(OrderemDbTableColumn.COL_LAST_CHANGED_BY);
 				dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, OrderemDbTableColumn.COL_PRICE);
 				dataInfo.totitem = DaoFormatter.sqlToDouble(stmtResult, OrderemDbTableColumn.COL_TOTAL_ITEM);
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_SNAPSHOT);
 				
 				
 				finalResult.add(dataInfo);

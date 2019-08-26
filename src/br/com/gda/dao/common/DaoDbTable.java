@@ -63,6 +63,7 @@ public final class DaoDbTable {
 	public static final String ORDER_HDR_TABLE = "order_header";
 	public static final String ORDER_HDR_SNAPSHOT_TABLE = "order_header_snapshot";
 	public static final String ORDER_ITM_TABLE = "order_item";
+	public static final String ORDER_ITM_SNAPSHOT_TABLE = "order_item_snapshot";
 	public static final String ORDER_STATUS_TABLE = "order_status";
 	public static final String ORDER_STATUS_TEXT_TABLE = "order_status_text";
 	public static final String OWNER_TABLE = "owner";

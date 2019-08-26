@@ -8,6 +8,7 @@ import br.com.gda.business.orderItem.info.OrderemInfo;
 import br.com.gda.business.orderItem.model.action.LazyOrderemMergeMat;
 import br.com.gda.business.orderItem.model.action.LazyOrderemMergeUsername;
 import br.com.gda.business.orderItem.model.action.LazyOrderemNodeInsert;
+import br.com.gda.business.orderItem.model.action.LazyOrderemNodeSnapshot;
 import br.com.gda.business.orderItem.model.action.StdOrderemEnforceLChanged;
 import br.com.gda.business.orderItem.model.checker.OrderemCheckOrder;
 import br.com.gda.business.orderItem.model.checker.OrderemCheckLangu;
@@ -79,10 +80,12 @@ public final class RootOrderemInsert extends DeciTreeWriteTemplate<OrderemInfo> 
 		ActionLazy<OrderemInfo> mergeUsername = new LazyOrderemMergeUsername(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> mergeMat = new LazyOrderemMergeMat(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> nodeInsert = new LazyOrderemNodeInsert(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> nodeSnapshot = new LazyOrderemNodeSnapshot(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(mergeMat);
 		mergeMat.addPostAction(nodeInsert);
+		nodeInsert.addPostAction(nodeSnapshot);
 		
 		actions.add(enforceLChanged);
 		return actions;

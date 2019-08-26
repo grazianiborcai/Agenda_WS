@@ -1,4 +1,4 @@
-package br.com.gda.business.orderItem.info;
+package br.com.gda.business.orderItemSnapshot.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,12 +8,12 @@ import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class OrderemVisiMergeMatsnap implements InfoMergerVisitor<OrderemInfo, MatsnapInfo> {
+final class OrdemrapVisiMergeMatsnap implements InfoMergerVisitor<OrdemrapInfo, MatsnapInfo> {
 
-	@Override public OrderemInfo writeRecord(MatsnapInfo sourceOne, OrderemInfo sourceTwo) {
+	@Override public OrdemrapInfo writeRecord(MatsnapInfo sourceOne, OrdemrapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		OrderemInfo resultInfo = makeClone(sourceTwo);
+		OrdemrapInfo resultInfo = makeClone(sourceTwo);
 		resultInfo.matData = MatInfo.copyFrom(sourceOne);
 
 		return resultInfo;
@@ -21,16 +21,16 @@ final class OrderemVisiMergeMatsnap implements InfoMergerVisitor<OrderemInfo, Ma
 	
 	
 	
-	private void checkArgument(MatsnapInfo sourceOne, OrderemInfo sourceTwo) {
+	private void checkArgument(MatsnapInfo sourceOne, OrdemrapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}	
 	
 	
 	
-	private OrderemInfo makeClone(OrderemInfo recordInfo) {
+	private OrdemrapInfo makeClone(OrdemrapInfo recordInfo) {
 		try {
-			return (OrderemInfo) recordInfo.clone();
+			return (OrdemrapInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -40,10 +40,10 @@ final class OrderemVisiMergeMatsnap implements InfoMergerVisitor<OrderemInfo, Ma
 
 
 	
-	@Override public boolean shouldWrite(MatsnapInfo sourceOne, OrderemInfo sourceTwo) {
+	@Override public boolean shouldWrite(MatsnapInfo sourceOne, OrdemrapInfo sourceTwo) {
 		return (sourceOne.codOwner 		== sourceTwo.codOwner && 
-				sourceOne.codMat  		== sourceTwo.codMat   &&
-				sourceOne.codSnapshot   == sourceTwo.codMatSnapshot);
+				sourceOne.codMat  		== sourceTwo.codMat	  &&
+				sourceOne.codSnapshot  	== sourceTwo.codMatSnapshot);
 	}
 	
 	

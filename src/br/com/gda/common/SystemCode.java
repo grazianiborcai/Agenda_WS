@@ -634,4 +634,7 @@ public final class SystemCode {
 	
 	// Order Snapshot
 	public static final int ORDER_HEADER_SNAP_MANDATORY_FIELD_EMPTY		= 5500;
+	public static final int ORDER_ITEM_SNAP_MANDATORY_FIELD_EMPTY		= 5501;
+	public static final int ORDER_HEADER_SNAP_ALREADY_EXIST				= 5502;
+	public static final int ORDER_HEADER_SNAP_NOT_FOUND					= 5503;
 }
