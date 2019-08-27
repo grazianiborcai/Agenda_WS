@@ -7,17 +7,19 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class SchedineCheckHasOrder extends ModelCheckerTemplateSimple<SchedineInfo> {
+public final class SchedineCheckCancel extends ModelCheckerTemplateSimple<SchedineInfo> {
 
-	public SchedineCheckHasOrder() {
+	public SchedineCheckCancel() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(SchedineInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOrder 	 <= 0 ||
-			 recordInfo.codOrderItem <= 0	)		
+		if (   recordInfo.codOwner 		<= 0 	
+			|| recordInfo.codSchedule	<= 0
+			|| recordInfo.username		== null 
+			|| recordInfo.codLanguage	== null	)
 			
 			return super.FAILED;
 		
@@ -28,12 +30,12 @@ public final class SchedineCheckHasOrder extends ModelCheckerTemplateSimple<Sche
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.SCHEDULE_HAS_NO_ORDER;
+		return SystemMessage.SCHEDULE_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.SCHEDULE_HAS_NO_ORDER;
+		return SystemCode.SCHEDULE_MANDATORY_FIELD_EMPTY;
 	}
 }

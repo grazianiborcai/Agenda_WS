@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
+import br.com.gda.business.scheduleLine.model.SchedineModelCancel;
 import br.com.gda.business.scheduleLine.model.SchedineModelInsert;
 import br.com.gda.business.scheduleLine.model.SchedineModelMove;
 import br.com.gda.business.scheduleLine.model.SchedineModelSelect;
@@ -24,6 +25,7 @@ public final class ScheduleResource {
 	private static final String UPDATE_SCHEDULE_LINE = "/updateScheduleLine";
 	private static final String MOVE_SCHEDULE_LINE = "/moveScheduleLine";
 	private static final String SELECT_SCHEDULE_LINE = "/selectScheduleLine";
+	private static final String CANCEL_SCHEDULE_LINE = "/cancelScheduleLine";
 	
 	@POST
 	@Path(INSERT_SCHEDULE_LINE)
@@ -76,6 +78,27 @@ public final class ScheduleResource {
 		recordInfo.codLanguage = codLanguage;		
 		
 		Model model = new SchedineModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();	
+	}	
+	
+	
+	
+	@GET
+	@Path(CANCEL_SCHEDULE_LINE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response cancelSchedine(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+			                       @HeaderParam("codSchedule")    	@DefaultValue("-1") long codSchedule,
+								   @HeaderParam("TOKEN_USERNAME") 	String username,
+								   @HeaderParam("codLanguage")      @DefaultValue("EN") String codLanguage) {
+		
+		SchedineInfo recordInfo = new SchedineInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codSchedule = codSchedule;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedineModelCancel(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	}	

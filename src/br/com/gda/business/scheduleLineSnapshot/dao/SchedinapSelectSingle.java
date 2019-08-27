@@ -111,11 +111,12 @@ public final class SchedinapSelectSingle implements DaoStmt<SchedinapInfo> {
 			
 			do {
 				SchedinapInfo dataInfo = new SchedinapInfo();
-				dataInfo.codOwner = stmtResult.getLong(SchedinapDbTableColumn.COL_COD_OWNER);	
-				dataInfo.codSnapshot = stmtResult.getLong(SchedinapDbTableColumn.COL_COD_SNAPSHOT);
-				dataInfo.codSchedule = stmtResult.getLong(SchedineDbTableColumn.COL_COD_SCHEDULE);
-				dataInfo.codOrder = stmtResult.getLong(SchedinapDbTableColumn.COL_COD_ORDER);
-				dataInfo.recordMode = stmtResult.getString(SchedinapDbTableColumn.COL_RECORD_MODE);				
+				dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SchedinapDbTableColumn.COL_COD_OWNER);	
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, SchedinapDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.codSchedule = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_SCHEDULE);
+				dataInfo.codOrder = DaoFormatter.sqlToLong(stmtResult, SchedinapDbTableColumn.COL_COD_ORDER);
+				dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, SchedinapDbTableColumn.COL_COD_ORDER_ITEM);				
+				dataInfo.recordMode = stmtResult.getString(SchedinapDbTableColumn.COL_RECORD_MODE);		
 				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, SchedinapDbTableColumn.COL_COD_STORE);
 				dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, SchedinapDbTableColumn.COL_COD_STORE_SNAPSHOT);
 				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, SchedinapDbTableColumn.COL_COD_EMPLOYEE);

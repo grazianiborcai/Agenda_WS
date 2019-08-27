@@ -19,6 +19,7 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 	public long codSchedule;	
 	public String codScheduleStatus;
 	public long codOrder;
+	public int codOrderItem;
 	public long codStore;
 	public long codStoreSnapshot;
 	public long codEmployee;
@@ -55,6 +56,7 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 		codSchedule = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codOrder = DefaultValue.number();
+		codOrderItem = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codStoreSnapshot = DefaultValue.number();
 		codEmployee = DefaultValue.number();

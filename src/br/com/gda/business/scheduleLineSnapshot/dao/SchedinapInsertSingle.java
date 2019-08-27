@@ -108,6 +108,7 @@ public class SchedinapInsertSingle implements DaoStmt<SchedinapInfo> {
 			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.createdOn));
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 			stmt.setString(i++, recordInfo.codScheduleStatus);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrderItem);
 			
 			return stmt;
 		}		
