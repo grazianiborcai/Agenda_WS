@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineDelete;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckCancel;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckLangu;
@@ -66,8 +67,10 @@ public final class RootSchedineCancel extends DeciTreeWriteTemplate<SchedineInfo
 		
 		ActionStd<SchedineInfo> nodeCancel = new NodeSchedineCancel(option).toAction();
 		ActionLazy<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> delete = new LazySchedineDelete(option.conn, option.schemaName);
 		
 		nodeCancel.addPostAction(nodeSnapshot);
+		nodeSnapshot.addPostAction(delete);
 		
 		actions.add(nodeCancel);
 		return actions;
