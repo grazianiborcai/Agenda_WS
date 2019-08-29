@@ -21,11 +21,8 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 	public int codOrderItem;
 	public long codSnapshot;
 	public long codStore;
-	//public long codStoreSnapshot;
 	public long codEmployee;
-	//public long codEmployeeSnapshot;
 	public long codMat;
-	//public long codMatSnapshot;
 	public double price;
 	public int quantity;
 	public double totitem;
@@ -52,11 +49,8 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 		codOrderItem = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codStore = DefaultValue.number();
-		//codStoreSnapshot = DefaultValue.number();
 		codEmployee = DefaultValue.number();
-		//codEmployeeSnapshot = DefaultValue.number();
 		codMat = DefaultValue.number();
-		//codMatSnapshot = DefaultValue.number();
 		price = DefaultValue.number();
 		quantity = DefaultValue.number();
 		totitem = DefaultValue.number();

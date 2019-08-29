@@ -9,7 +9,7 @@ import br.com.gda.payment.customerPartner.info.CusparInfo;
 public final class RefemInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
-	public int itemNum;
+	public int codPayOrderItem;
 	public long codStore;
 	public long codPayCustomer;
 	public boolean isSystemReceiver;
@@ -25,7 +25,7 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 	public RefemInfo() {
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
-		itemNum = DefaultValue.number();
+		codPayOrderItem = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
 		cusparData = DefaultValue.object();
@@ -69,9 +69,9 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
-		result = result * 31 + (int) (codPayOrder ^ (codPayOrder >>> 32));
-		result = result * 31 + (int) (itemNum 	  ^ (itemNum 	 >>> 32));
+		result = result * 31 + (int) (codOwner    	^ (codOwner    	>>> 32));
+		result = result * 31 + (int) (codPayOrder 	^ (codPayOrder 	>>> 32));
+		result = result * 31 + (int) (codPayOrderItem 	^ (codPayOrderItem	>>> 32));
 		
 		return result;
 	}
@@ -88,8 +88,8 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 		
 		
 		RefemInfo obj = (RefemInfo) o;		
-		return (codOwner    == obj.codOwner    	&& 
-				codPayOrder == obj.codPayOrder	&&
-				itemNum    	== obj.itemNum			);
+		return (codOwner    	== obj.codOwner    	&& 
+				codPayOrder 	== obj.codPayOrder	&&
+				codPayOrderItem	== obj.codPayOrderItem			);
 	}
 }

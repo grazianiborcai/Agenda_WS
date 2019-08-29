@@ -25,7 +25,6 @@ public final class OrderCheckStatusChange extends ModelCheckerTemplateSimple<Ord
 		OrderStatus status = OrderStatus.getOrderStatus(recordInfo.codOrderStatus);
 		
 		result = statusCancelled(status, result);
-		result = statusPaid(status, result);		
 		
 		return result;
 	}
@@ -37,18 +36,6 @@ public final class OrderCheckStatusChange extends ModelCheckerTemplateSimple<Ord
 			return result;
 		
 		if(status == OrderStatus.CANCELLED)
-			return super.FAILED;		
-		
-		return super.SUCCESS;
-	}
-	
-	
-	
-	private boolean statusPaid(OrderStatus status, boolean result) {
-		if (result == super.FAILED)
-			return result;
-		
-		if(status == OrderStatus.PAID)
 			return super.FAILED;		
 		
 		return super.SUCCESS;

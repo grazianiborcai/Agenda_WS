@@ -8,6 +8,7 @@ import br.com.gda.business.order.model.checker.OrderCheckLangu;
 import br.com.gda.business.order.model.checker.OrderCheckOwner;
 import br.com.gda.business.order.model.checker.OrderCheckWrite;
 import br.com.gda.business.order.model.action.LazyOrderNodeCancel;
+import br.com.gda.business.order.model.action.LazyOrderNodeStatus;
 import br.com.gda.business.order.model.action.LazyOrderRefreshSchedine;
 import br.com.gda.business.order.model.action.LazyOrderRootSelect;
 import br.com.gda.business.order.model.action.StdOrderMergeToSelect;
@@ -68,11 +69,13 @@ public final class RootOrderCancel extends DeciTreeWriteTemplate<OrderInfo> {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		
 		ActionStd<OrderInfo> select = new StdOrderMergeToSelect(option);
+		ActionLazy<OrderInfo> nodeStatus = new LazyOrderNodeStatus(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> nodeCancel = new LazyOrderNodeCancel(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> refreshSchedine = new LazyOrderRefreshSchedine(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> rootSelect = new LazyOrderRootSelect(option.conn, option.schemaName);		
 		
-		select.addPostAction(nodeCancel);
+		select.addPostAction(nodeStatus);
+		nodeStatus.addPostAction(nodeCancel);		
 		nodeCancel.addPostAction(refreshSchedine);
 		refreshSchedine.addPostAction(rootSelect);
 		
