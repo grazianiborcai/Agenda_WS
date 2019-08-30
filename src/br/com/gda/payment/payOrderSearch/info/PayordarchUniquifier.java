@@ -1,0 +1,13 @@
+package br.com.gda.payment.payOrderSearch.info;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import br.com.gda.info.InfoUniquifier;
+
+final class PayordarchUniquifier implements InfoUniquifier<PayordarchInfo> {
+	
+	@Override public List<PayordarchInfo> uniquify(List<PayordarchInfo> infoRecords) {
+		return infoRecords.stream().distinct().collect(Collectors.toList());
+	}
+}

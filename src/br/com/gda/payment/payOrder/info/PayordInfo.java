@@ -11,6 +11,7 @@ import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
+import br.com.gda.payment.payOrderSearch.info.PayordarchInfo;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
 
 public final class PayordInfo extends InfoRecord implements Cloneable {
@@ -36,7 +37,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public CrecardInfo crecardData;
 	public List<PayordemInfo> payordems;
 	public List<OrdmoipInfo> ordmoips;
-	public PayordInfo latestData;
+	public PayordarchInfo latestData;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public String codLanguage;
@@ -161,11 +162,11 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private PayordInfo cloneLatest(PayordInfo recordInfo) throws CloneNotSupportedException {
+	private PayordarchInfo cloneLatest(PayordarchInfo recordInfo) throws CloneNotSupportedException {
 		if (recordInfo == null)
 			return null;
 		
-		return (PayordInfo) recordInfo.clone();
+		return (PayordarchInfo) recordInfo.clone();
 	}	
 	
 	

@@ -61,6 +61,8 @@ import br.com.gda.payment.countryPartner.info.CounparInfo;
 import br.com.gda.payment.countryPartner.model.CounparModelSelect;
 import br.com.gda.payment.ownerPartner.info.OwnparInfo;
 import br.com.gda.payment.ownerPartner.model.OwnparModelSelect;
+import br.com.gda.payment.payOrderSearch.info.PayordarchInfo;
+import br.com.gda.payment.payOrderSearch.model.PayordarchModelLatest;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 import br.com.gda.security.jwtToken.model.JwtokenModelValidate;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
@@ -115,6 +117,7 @@ public class TestResource {
 	private static final String SELECT_CART_RESERVE = "/selectCartReserve";
 	private static final String SELECT_ORDER_RESERVE = "/selectOrderReserve";
 	private static final String SELECT_STORE_SNAPSHOT = "/selectStoreSnasphot";
+	private static final String SELECT_PAYORD_SEARCH = "/selectPayordSearch";
 	
 	
 	
@@ -733,4 +736,26 @@ public class TestResource {
 		model.executeRequest();
 		return model.getResponse();	
 	}
+	
+	
+	
+	@GET
+	@Path(SELECT_PAYORD_SEARCH)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectPayordarch(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner,
+							      	 @HeaderParam("codOrder")    @DefaultValue("-1") long codOrder,
+							      	 @HeaderParam("username") 	 String username,
+							      	 @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+		
+		PayordarchInfo recordInfo = new PayordarchInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codOrder = codOrder;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		
+		Model model = new PayordarchModelLatest(recordInfo);
+		model.executeRequest();
+		return model.getResponse();	
+	}	
 }

@@ -9,19 +9,20 @@ import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
+import br.com.gda.payment.payOrderSearch.info.PayordarchInfo;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	
-	public static PayordInfo mergeWithLatest(PayordInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger<PayordInfo, PayordInfo> merger = new PayordMergerLatest();		
+	public static PayordInfo mergeWithLatest(PayordarchInfo sourceOne, PayordInfo sourceTwo) {
+		InfoMerger<PayordInfo, PayordarchInfo> merger = new PayordMergerLatest();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<PayordInfo> mergeWithLatest(List<PayordInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger<PayordInfo, PayordInfo> merger = new PayordMergerLatest();		
+	public static List<PayordInfo> mergeWithLatest(List<PayordarchInfo> sourceOnes, List<PayordInfo> sourceTwos) {
+		InfoMerger<PayordInfo, PayordarchInfo> merger = new PayordMergerLatest();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
 	

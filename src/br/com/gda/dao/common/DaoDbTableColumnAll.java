@@ -73,6 +73,7 @@ import br.com.gda.payment.ownerPartner.dao.OwnparDbTableColumn;
 import br.com.gda.payment.partnerMoip.permissionMoip.dao.PeresmoipDbTableColumn;
 import br.com.gda.payment.payOrder.dao.PayordDbTableColumn;
 import br.com.gda.payment.payOrderItem.dao.PayordemDbTableColumn;
+import br.com.gda.payment.payOrderSearch.dao.PayordarchDbTableColumn;
 import br.com.gda.payment.setupPartner.dao.SetuparDbTableColumn;
 import br.com.gda.payment.storePartner.dao.StoparDbTableColumn;
 import br.com.gda.payment.storePartnerSnapshot.dao.StoparnapDbTableColumn;
@@ -176,6 +177,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SchedarchDbTableColumn());
 		addTable(new OrdnapDbTableColumn());
 		addTable(new OrdemrapDbTableColumn());
+		addTable(new PayordarchDbTableColumn());
 	}
 	
 	

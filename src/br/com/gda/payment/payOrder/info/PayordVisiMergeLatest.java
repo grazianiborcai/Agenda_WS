@@ -5,24 +5,25 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.payment.payOrderSearch.info.PayordarchInfo;
 
-final class PayordVisiMergeLatest implements InfoMergerVisitor<PayordInfo, PayordInfo> {
+final class PayordVisiMergeLatest implements InfoMergerVisitor<PayordInfo, PayordarchInfo> {
 
-	@Override public PayordInfo writeRecord(PayordInfo sourceOne, PayordInfo sourceTwo) {
+	@Override public PayordInfo writeRecord(PayordarchInfo sourceOne, PayordInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(PayordInfo sourceOne, PayordInfo sourceTwo) {
+	private void checkArgument(PayordarchInfo sourceOne, PayordInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private PayordInfo merge(PayordInfo sourceOne, PayordInfo sourceTwo) {
+	private PayordInfo merge(PayordarchInfo sourceOne, PayordInfo sourceTwo) {
 		PayordInfo result = makeClone(sourceTwo);		
 		result.latestData = sourceOne;
 		return result;
@@ -42,7 +43,7 @@ final class PayordVisiMergeLatest implements InfoMergerVisitor<PayordInfo, Payor
 	
 	
 	
-	@Override public boolean shouldWrite(PayordInfo sourceOne, PayordInfo sourceTwo) {		
+	@Override public boolean shouldWrite(PayordarchInfo sourceOne, PayordInfo sourceTwo) {		
 		return (sourceOne.codOwner == sourceTwo.codOwner &&
 				sourceOne.codOrder == sourceTwo.codOrder	);
 	}

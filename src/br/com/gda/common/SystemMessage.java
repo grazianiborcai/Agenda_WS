@@ -820,4 +820,8 @@ public final class SystemMessage {
 	public static final String ORDER_HEADER_SNAP_NOT_FOUND = "Order-Header-Snapshot not found on DB";
 	public static final String ORDER_ITEM_SNAP_MANDATORY_FIELD_EMPTY = "Order-Item-Snapshot: Mandatory field is empty";
 	
+	
+	
+	// Pay Order Search
+	public static final String PAY_ORDER_SEARCH_MANDATORY_FIELD_EMPTY = "Pay-Order-Search: Mandatory field is empty";	
 }

@@ -6,23 +6,24 @@ import java.util.List;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.info.PayordMerger;
-import br.com.gda.payment.payOrder.model.decisionTree.RootPayordLatest;
+import br.com.gda.payment.payOrderSearch.info.PayordarchInfo;
+import br.com.gda.payment.payOrderSearch.model.decisionTree.RootPayordarchLatest;
 
-final class VisiPayordMergeLatest extends ActionVisitorTemplateMergeV2<PayordInfo, PayordInfo> {
+final class VisiPayordMergeLatest extends ActionVisitorTemplateMergeV2<PayordInfo, PayordarchInfo> {
 	
 	public VisiPayordMergeLatest(Connection conn, String schemaName) {
-		super(conn, schemaName, PayordInfo.class);
+		super(conn, schemaName, PayordarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<RootPayordLatest> getTreeClassHook() {
-		return RootPayordLatest.class;
+	@Override protected Class<RootPayordarchLatest> getTreeClassHook() {
+		return RootPayordarchLatest.class;
 	}
 	
 	
 	
-	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> recordInfos, List<PayordInfo> selectedInfos) {	
+	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> recordInfos, List<PayordarchInfo> selectedInfos) {	
 		return PayordMerger.mergeWithLatest(selectedInfos, recordInfos);
 	}
 	
