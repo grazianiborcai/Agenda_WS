@@ -10,6 +10,8 @@ public enum OrderStatus {
 	CREATED("CREATED"), 
 	NOT_PAID("NOT_PAID"),
 	PAID("PAID"), 
+	PLACED("PLACED"), 
+	REFUNDING("REFUNDING"), 
 	WAITING("WAITING");
 	
 	

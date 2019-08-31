@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
-import br.com.gda.business.order.model.checker.OrderCheckStatusChange;
+import br.com.gda.business.order.model.checker.OrderCheckPlaceStatus;
 import br.com.gda.business.order.model.action.LazyOrderNodeUpdate;
-import br.com.gda.business.order.model.action.StdOrderEnforceStatusWaiting;
+import br.com.gda.business.order.model.action.StdOrderEnforceStatusPlaced;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -26,7 +26,7 @@ public final class NodeOrderPlace extends DeciTreeWriteTemplate<OrderInfo> {
 		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderInfo> checker;	
 		
-		checker = new OrderCheckStatusChange();
+		checker = new OrderCheckPlaceStatus();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -37,7 +37,7 @@ public final class NodeOrderPlace extends DeciTreeWriteTemplate<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderInfo> enforceStatus = new StdOrderEnforceStatusWaiting(option);
+		ActionStd<OrderInfo> enforceStatus = new StdOrderEnforceStatusPlaced(option);
 		ActionLazy<OrderInfo> update = new LazyOrderNodeUpdate(option.conn, option.schemaName);		
 		
 		enforceStatus.addPostAction(update);

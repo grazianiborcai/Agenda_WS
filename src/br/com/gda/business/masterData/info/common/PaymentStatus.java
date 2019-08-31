@@ -1,7 +1,9 @@
 package br.com.gda.business.masterData.info.common;
 
 public enum PaymentStatus {
-	ACCEPTED("ACCEPTED"), REFUSED("REFUSED"), WAITING("WAITING");
+	ACCEPTED("ACCEPTED"), 
+	REFUSED("REFUSED"), 
+	WAITING("WAITING");
 	
 	
 	private final String codStatus;
