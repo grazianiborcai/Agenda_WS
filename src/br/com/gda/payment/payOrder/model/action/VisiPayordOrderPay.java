@@ -6,20 +6,20 @@ import java.util.List;
 import br.com.gda.business.order.info.OrderCopier;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.order.model.decisionTree.RootOrderPay;
-import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
-import br.com.gda.model.decisionTree.DeciTree;
+import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.action.ActionVisitorTemplateAction;
+import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-final class VisiPayordOrderPay extends ActionVisitorTemplateMergeV2<PayordInfo, OrderInfo> {
+final class VisiPayordOrderPay extends ActionVisitorTemplateAction<PayordInfo, OrderInfo> {
 	
 	public VisiPayordOrderPay(Connection conn, String schemaName) {
-		super(conn, schemaName, OrderInfo.class);
+		super(conn, schemaName, PayordInfo.class, OrderInfo.class);
 	}
 	
 	
-	
-	@Override protected Class<? extends DeciTree<OrderInfo>> getTreeClassHook() {
-		return RootOrderPay.class;
+	@Override protected ActionStd<OrderInfo> getActionHook(DeciTreeOption<OrderInfo> option) {
+		return new RootOrderPay(option).toAction();
 	}
 	
 	
@@ -30,13 +30,7 @@ final class VisiPayordOrderPay extends ActionVisitorTemplateMergeV2<PayordInfo, 
 	
 	
 	
-	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> recordInfos, List<OrderInfo> selectedInfos) {	
-		return recordInfos;
-	}
-	
-	
-	
-	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+	@Override protected List<PayordInfo> toBaseClassHook(List<PayordInfo> baseInfos, List<OrderInfo> results) {
+		return baseInfos;
 	}
 }

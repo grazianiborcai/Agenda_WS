@@ -16,7 +16,8 @@ public final class OrderSetterStatusMoip implements InfoSetter<OrderInfo> {
 		recordInfo = setWaiting(recordInfo, status);
 		recordInfo = setPaid(recordInfo, status);
 		recordInfo = setNotPaid(recordInfo, status);
-
+		recordInfo = setCancelled(recordInfo, status);
+		
 		return recordInfo;
 	}
 	
@@ -32,7 +33,7 @@ public final class OrderSetterStatusMoip implements InfoSetter<OrderInfo> {
 	
 	
 	private OrderInfo setDefault(OrderInfo recordInfo) {
-		recordInfo.codOrderStatus = OrderStatus.WAITING.getCodStatus();
+		recordInfo.codOrderStatus = OrderStatus.CREATED.getCodStatus();
 		return recordInfo;
 	}
 	
@@ -71,6 +72,18 @@ public final class OrderSetterStatusMoip implements InfoSetter<OrderInfo> {
 		
 		return recordInfo;
 	}
+	
+	
+	
+	private OrderInfo setCancelled(OrderInfo recordInfo, OrderStatusMoip status) {
+		if (status == null)
+			return recordInfo;
+		
+		if(status == OrderStatusMoip.REVERTED)
+			recordInfo.codOrderStatus = OrderStatus.CANCELLED.getCodStatus();
+		
+		return recordInfo;
+	}	
 	
 	
 	

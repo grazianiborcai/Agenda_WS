@@ -2,7 +2,7 @@ package br.com.gda.payment.payOrder.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.masterData.info.common.PaymentStatusMoip;
+import br.com.gda.business.masterData.info.common.OrderStatusMoip;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
@@ -20,11 +20,11 @@ public final class PayordCheckLatestStatus extends ModelCheckerTemplateSimple<Pa
 		if (recordInfo.latestData == null)
 			return super.SUCCESS;		
 		
-		if (recordInfo.latestData.statusPaymentPartner == null)
+		if (recordInfo.latestData.statusOrderPartner == null)
 			return super.SUCCESS;	
 		
 		
-		PaymentStatusMoip status = getPaymentStatus(recordInfo);		
+		OrderStatusMoip status = getOrderStatus(recordInfo);		
 		
 		if (status.isNotPaid())			
 			return super.SUCCESS;
@@ -35,8 +35,8 @@ public final class PayordCheckLatestStatus extends ModelCheckerTemplateSimple<Pa
 	
 	
 	
-	private PaymentStatusMoip getPaymentStatus(PayordInfo recordInfo) {
-		return PaymentStatusMoip.getStatus(recordInfo.latestData.statusPaymentPartner);
+	private OrderStatusMoip getOrderStatus(PayordInfo recordInfo) {
+		return OrderStatusMoip.getStatus(recordInfo.latestData.statusOrderPartner);
 	}
 	
 	

@@ -15,9 +15,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeOrderCancel extends DeciTreeWriteTemplate<OrderInfo> {
+public final class NodeOrderCancelL2 extends DeciTreeWriteTemplate<OrderInfo> {
 	
-	public NodeOrderCancel(DeciTreeOption<OrderInfo> option) {
+	public NodeOrderCancelL2(DeciTreeOption<OrderInfo> option) {
 		super(option);
 	}
 	

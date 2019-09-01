@@ -15,6 +15,7 @@ import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceLChanged;
 import br.com.gda.payment.payOrder.model.action.LazyPayordNodeMerge;
 import br.com.gda.payment.payOrder.model.action.LazyPayordNodePay;
 import br.com.gda.payment.payOrder.model.action.LazyPayordOrderPay;
+import br.com.gda.payment.payOrder.model.action.LazyPayordOrderRefresh;
 import br.com.gda.payment.payOrder.model.action.StdPayordEnforceCreatedOn;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckCrecard;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckLangu;
@@ -98,11 +99,13 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		ActionLazy<PayordInfo> orderPay = new LazyPayordOrderPay(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> nodeMerge = new LazyPayordNodeMerge(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> nodePay = new LazyPayordNodePay(option.conn, option.schemaName);		
+		ActionLazy<PayordInfo> orderRefresh = new LazyPayordOrderRefresh(option.conn, option.schemaName);
 		
 		enforceCreatedOn.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(orderPay);			
 		orderPay.addPostAction(nodeMerge);
 		nodeMerge.addPostAction(nodePay);
+		nodePay.addPostAction(orderRefresh);
 		
 		actions.add(enforceCreatedOn);		
 		return actions;
