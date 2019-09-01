@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.order.info.OrderInfo;
-import br.com.gda.business.order.model.action.LazyOrderEnforceLChanged;
-import br.com.gda.business.order.model.action.LazyOrderNodeSnapshot;
-import br.com.gda.business.order.model.checker.OrderCheckUpdate;
-import br.com.gda.business.order.model.action.StdOrderMergeUsername;
+import br.com.gda.business.order.model.action.LazyOrderNodeUpdate;
+import br.com.gda.business.order.model.action.LazyOrderRefreshSchedine;
+import br.com.gda.business.order.model.checker.OrderCheckRefresh;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
@@ -15,9 +14,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeOrderUpdate extends DeciTreeWriteTemplate<OrderInfo> {
+public final class NodeOrderRefresh extends DeciTreeWriteTemplate<OrderInfo> {
 	
-	public NodeOrderUpdate(DeciTreeOption<OrderInfo> option) {
+	public NodeOrderRefresh(DeciTreeOption<OrderInfo> option) {
 		super(option);
 	}
 	
@@ -27,7 +26,7 @@ public final class NodeOrderUpdate extends DeciTreeWriteTemplate<OrderInfo> {
 		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderInfo> checker;	
 		
-		checker = new OrderCheckUpdate();
+		checker = new OrderCheckRefresh();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -38,14 +37,14 @@ public final class NodeOrderUpdate extends DeciTreeWriteTemplate<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);
-		ActionLazy<OrderInfo> enforceLChanged = new LazyOrderEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> snapshot = new LazyOrderNodeSnapshot(option.conn, option.schemaName);
+		ActionStd<OrderInfo> nodePayord = new NodeOrderPayord(option).toAction();
+		ActionLazy<OrderInfo> nodeUpdate = new LazyOrderNodeUpdate(option.conn, option.schemaName);
+		ActionLazy<OrderInfo> refreshSchedine = new LazyOrderRefreshSchedine(option.conn, option.schemaName);
 		
-		mergeUsername.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(snapshot);
+		nodePayord.addPostAction(nodeUpdate);
+		nodeUpdate.addPostAction(refreshSchedine);
 		
-		actions.add(mergeUsername);
+		actions.add(nodePayord);
 		return actions;
 	}
 }

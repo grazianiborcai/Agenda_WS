@@ -6,9 +6,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class OrderCheckUpdate extends ModelCheckerTemplateSimple<OrderInfo> {
+public final class OrderCheckRefresh extends ModelCheckerTemplateSimple<OrderInfo> {
 
-	public OrderCheckUpdate() {
+	public OrderCheckRefresh() {
 		super();
 	}
 	
@@ -17,6 +17,7 @@ public final class OrderCheckUpdate extends ModelCheckerTemplateSimple<OrderInfo
 	@Override protected boolean checkHook(OrderInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 		<= 0 
 			|| recordInfo.codOrder 		<= 0 
+			|| recordInfo.codPayOrder 	<= 0 
 			|| recordInfo.username		== null 
 			|| recordInfo.codLanguage 	== null )
 			

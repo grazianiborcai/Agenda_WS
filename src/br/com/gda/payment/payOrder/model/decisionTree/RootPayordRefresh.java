@@ -12,15 +12,15 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.action.LazyPayordEnforceLChanged;
-import br.com.gda.payment.payOrder.model.action.LazyPayordOrderUpdate;
+import br.com.gda.payment.payOrder.model.action.LazyPayordOrderRefresh;
 import br.com.gda.payment.payOrder.model.action.LazyPayordUpdate;
 import br.com.gda.payment.payOrder.model.action.StdPayordMergeToUpdate;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckExist;
 import br.com.gda.payment.payOrder.model.checker.PayordCheckUpdate;
 
-public final class RootPayordUpdate extends DeciTreeWriteTemplate<PayordInfo> {
+public final class RootPayordRefresh extends DeciTreeWriteTemplate<PayordInfo> {
 	
-	public RootPayordUpdate(DeciTreeOption<PayordInfo> option) {
+	public RootPayordRefresh(DeciTreeOption<PayordInfo> option) {
 		super(option);
 	}
 	
@@ -54,11 +54,11 @@ public final class RootPayordUpdate extends DeciTreeWriteTemplate<PayordInfo> {
 		ActionStd<PayordInfo> select = new StdPayordMergeToUpdate(option);
 		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> updatePayord = new LazyPayordUpdate(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> updateOrder = new LazyPayordOrderUpdate(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> refreshOrder = new LazyPayordOrderRefresh(option.conn, option.schemaName);
 		
 		select.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(updatePayord);
-		updatePayord.addPostAction(updateOrder);
+		updatePayord.addPostAction(refreshOrder);
 		
 		actions.add(select);
 		return actions;

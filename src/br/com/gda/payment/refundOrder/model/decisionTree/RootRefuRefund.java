@@ -11,6 +11,7 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.refundOrder.info.RefuInfo;
+import br.com.gda.payment.refundOrder.model.action.LazyRefuOrderRefunding;
 import br.com.gda.payment.refundOrder.model.action.LazyRefuRefund;
 import br.com.gda.payment.refundOrder.model.action.StdRefuMergePayord;
 import br.com.gda.payment.refundOrder.model.checker.RefuCheckLangu;
@@ -74,9 +75,11 @@ public final class RootRefuRefund extends DeciTreeWriteTemplate<RefuInfo> {
 		List<ActionStd<RefuInfo>> actions = new ArrayList<>();		
 
 		ActionStd<RefuInfo> mergePayord = new StdRefuMergePayord(option);
+		ActionLazy<RefuInfo> orderRefunding = new LazyRefuOrderRefunding(option.conn, option.schemaName);
 		ActionLazy<RefuInfo> refund = new LazyRefuRefund(option.conn, option.schemaName);
 		
-		mergePayord.addPostAction(refund);
+		mergePayord.addPostAction(orderRefunding);
+		orderRefunding.addPostAction(refund);
 		
 		actions.add(mergePayord);		
 		return actions;

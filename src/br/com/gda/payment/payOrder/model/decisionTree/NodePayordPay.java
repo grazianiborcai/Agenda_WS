@@ -11,7 +11,6 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.action.LazyPayordMultmoipPay;
-import br.com.gda.payment.payOrder.model.action.LazyPayordOrderUpdate;
 import br.com.gda.payment.payOrder.model.action.LazyPayordUpdate;
 import br.com.gda.payment.payOrder.model.action.LazyPayordUpdatePayordem;
 import br.com.gda.payment.payOrder.model.action.StdPayordInsert;
@@ -58,13 +57,11 @@ public final class NodePayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		ActionLazy<PayordInfo> multmoipPay = new LazyPayordMultmoipPay(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> updatePayord = new LazyPayordUpdate(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> updatePayordem = new LazyPayordUpdatePayordem(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> updateOrder = new LazyPayordOrderUpdate(option.conn, option.schemaName);
 		
 		insertPayord.addPostAction(insertPayordem);
 		insertPayordem.addPostAction(multmoipPay);
 		multmoipPay.addPostAction(updatePayord);
 		updatePayord.addPostAction(updatePayordem);
-		updatePayordem.addPostAction(updateOrder);
 		
 		actions.add(insertPayord);		
 		return actions;

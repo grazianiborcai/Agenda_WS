@@ -6,20 +6,20 @@ import java.util.List;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.payment.payOrder.info.PayordInfo;
-import br.com.gda.payment.payOrder.model.decisionTree.RootPayordUpdate;
+import br.com.gda.payment.payOrder.model.decisionTree.RootPayordRefresh;
 import br.com.gda.payment.statusPayOrder.info.PaytusInfo;
 import br.com.gda.payment.statusPayOrder.info.PaytusMerger;
 
-final class VisiPaytusPayordUpdate extends ActionVisitorTemplateMergeV2<PaytusInfo, PayordInfo> {
+final class VisiPaytusPayordRefresh extends ActionVisitorTemplateMergeV2<PaytusInfo, PayordInfo> {
 	
-	public VisiPaytusPayordUpdate(Connection conn, String schemaName) {
+	public VisiPaytusPayordRefresh(Connection conn, String schemaName) {
 		super(conn, schemaName, PayordInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<PayordInfo>> getTreeClassHook() {
-		return RootPayordUpdate.class;
+		return RootPayordRefresh.class;
 	}
 	
 	

@@ -7,12 +7,12 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.statusPayOrder.info.PaytusInfo;
 
-public final class StdPaytusPayordUpdate implements ActionStd<PaytusInfo> {
+public final class StdPaytusPayordRefresh implements ActionStd<PaytusInfo> {
 	private ActionStd<PaytusInfo> actionHelper;	
 	
 	
-	public StdPaytusPayordUpdate(DeciTreeOption<PaytusInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPaytusPayordUpdate(option.conn, option.schemaName));
+	public StdPaytusPayordRefresh(DeciTreeOption<PaytusInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPaytusPayordRefresh(option.conn, option.schemaName));
 	}
 	
 	
