@@ -17,6 +17,9 @@ public final class SchedineCheckHasDuple extends ModelCheckerTemplateSimple<Sche
 	
 	
 	@Override protected boolean checkHook(SchedineInfo recordInfo, Connection conn, String schemaName) {	
+		if ( recordInfo.dupleData == null )					
+			return super.FAILED;
+		
 		if ( recordInfo.dupleData.codSchedule <= 0 )					
 			return super.FAILED;
 		
