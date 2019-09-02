@@ -746,10 +746,13 @@ public final class SystemMessage {
 	
 	// Schedule
 	public static final String SCHEDULE_ALREADY_EXIST = "Schedule already exist on DB";	
+	public static final String SCHEDULE_ALREADY_TAKEN = "Schedule was already taken";
 	public static final String SCHEDULE_HAS_NO_ORDER = "Schedule has no Purchase Order";
 	public static final String SCHEDULE_MANDATORY_FIELD_EMPTY = "Schedule: Mandatory field is empty";
 	public static final String SCHEDULE_MATERIAL_IS_NOT_SERVICE = "Material isn't a service";
+	public static final String SCHEDULE_NOT_CANCELLED = "Schedule is not cancelled";
 	public static final String SCHEDULE_NOT_FOUND = "Schedule not found on DB";	
+	public static final String SCHEDULE_NOT_TAKEN = "Schedule not taken yet";
 	
 	
 	
@@ -824,4 +827,9 @@ public final class SystemMessage {
 	
 	// Pay Order Search
 	public static final String PAY_ORDER_SEARCH_MANDATORY_FIELD_EMPTY = "Pay-Order-Search: Mandatory field is empty";	
+	
+	
+	
+	// Schedule List
+	public static final String SCHEDULE_LIST_MANDATORY_FIELD_EMPTY = "Schedule-List: Mandatory field is empty";
 }

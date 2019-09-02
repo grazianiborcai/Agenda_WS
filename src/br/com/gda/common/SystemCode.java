@@ -594,6 +594,9 @@ public final class SystemCode {
 	public static final int SCHEDULE_MATERIAL_IS_NOT_SERVICE			= 4802;	
 	public static final int SCHEDULE_ALREADY_EXIST						= 4803;
 	public static final int SCHEDULE_NOT_FOUND							= 4804;
+	public static final int SCHEDULE_NOT_CANCELLED						= 4805;
+	public static final int SCHEDULE_ALREADY_TAKEN						= 4806;
+	public static final int SCHEDULE_NOT_TAKEN							= 4807;
 	
 	// Store Snapshot
 	public static final int STORE_SNAPSHOT_MANDATORY_FIELD_EMPTY 		= 4850;
@@ -640,4 +643,7 @@ public final class SystemCode {
 	
 	// Pay Order Search
 	public static final int PAY_ORDER_SEARCH_MANDATORY_FIELD_EMPTY		= 5550;	
+	
+	// Schedule List
+	public static final int SCHEDULE_LIST_MANDATORY_FIELD_EMPTY			= 5600;
 }

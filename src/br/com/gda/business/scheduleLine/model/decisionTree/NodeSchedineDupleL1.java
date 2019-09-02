@@ -5,40 +5,35 @@ import java.util.List;
 
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceStatus;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeDuple;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeOrdist;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeSchedarch;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeToSelect;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineNodeRefreshOrderL3;
+import br.com.gda.business.scheduleLine.model.action.StdSchedineEnforceDupleKey;
 import br.com.gda.business.scheduleLine.model.action.StdSchedineEnforceOrderKey;
-import br.com.gda.business.scheduleLine.model.checker.SchedineCheckOrder;
+import br.com.gda.business.scheduleLine.model.checker.SchedineCheckDuple;
+import br.com.gda.business.scheduleLine.model.checker.SchedineCheckIsCancelled;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeSchedineRefreshOrderL2 extends DeciTreeWriteTemplate<SchedineInfo> {
+public final class NodeSchedineDupleL1 extends DeciTreeWriteTemplate<SchedineInfo> {
 	
-	public NodeSchedineRefreshOrderL2(DeciTreeOption<SchedineInfo> option) {
+	public NodeSchedineDupleL1(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected ModelChecker<SchedineInfo> buildDecisionCheckerHook(DeciTreeOption<SchedineInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedineInfo> checker;	
-		ModelCheckerOption checkerOption;
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new SchedineCheckOrder(checkerOption);
+		checker = new SchedineCheckDuple();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -49,20 +44,20 @@ public final class NodeSchedineRefreshOrderL2 extends DeciTreeWriteTemplate<Sche
 	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedineInfo> enforceOrderKey = new StdSchedineEnforceOrderKey(option);
-		ActionLazy<SchedineInfo> mergeSchedarch = new LazySchedineMergeSchedarch(option.conn, option.schemaName);
+		ActionStd<SchedineInfo> enforceDupleKey = new StdSchedineEnforceDupleKey(option);
+		ActionLazy<SchedineInfo> mergeDuple = new LazySchedineMergeDuple(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeToSelect = new LazySchedineMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> mergeOrdist = new LazySchedineMergeOrdist(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> enforceStatus = new LazySchedineEnforceStatus(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> nodeRefreshOrderL3 = new LazySchedineNodeRefreshOrderL3(option.conn, option.schemaName);
 		
-		enforceOrderKey.addPostAction(mergeSchedarch);
-		mergeSchedarch.addPostAction(mergeToSelect);
+		enforceDupleKey.addPostAction(mergeDuple);
+		mergeDuple.addPostAction(mergeToSelect);
 		mergeToSelect.addPostAction(mergeOrdist);
 		mergeOrdist.addPostAction(enforceStatus);
 		enforceStatus.addPostAction(nodeRefreshOrderL3);
 		
-		actions.add(enforceOrderKey);
+		actions.add(enforceDupleKey);
 		return actions;
 	}
 }

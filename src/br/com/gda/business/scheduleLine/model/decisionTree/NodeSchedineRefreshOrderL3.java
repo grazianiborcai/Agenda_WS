@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
-import br.com.gda.business.scheduleLine.model.action.StdSchedineObfuscateOrder;
-import br.com.gda.business.scheduleLine.model.checker.SchedineCheckHasOrderItem;
+import br.com.gda.business.scheduleLine.model.checker.SchedineCheckIsCancelled;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeSchedineOrderL1 extends DeciTreeWriteTemplate<SchedineInfo> {
+public final class NodeSchedineRefreshOrderL3 extends DeciTreeWriteTemplate<SchedineInfo> {
 	
-	public NodeSchedineOrderL1(DeciTreeOption<SchedineInfo> option) {
+	public NodeSchedineRefreshOrderL3(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
@@ -24,7 +23,7 @@ public final class NodeSchedineOrderL1 extends DeciTreeWriteTemplate<SchedineInf
 		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedineInfo> checker;	
 		
-		checker = new SchedineCheckHasOrderItem();
+		checker = new SchedineCheckIsCancelled();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -35,9 +34,9 @@ public final class NodeSchedineOrderL1 extends DeciTreeWriteTemplate<SchedineInf
 	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedineInfo> nodeOrderL2 = new NodeSchedineOrderL2(option).toAction();
+		ActionStd<SchedineInfo> nodeCancel = new NodeSchedineCancel(option).toAction();
 		
-		actions.add(nodeOrderL2);
+		actions.add(nodeCancel);
 		return actions;
 	}
 	
@@ -46,9 +45,9 @@ public final class NodeSchedineOrderL1 extends DeciTreeWriteTemplate<SchedineInf
 	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedineInfo> obfuscateOrder = new StdSchedineObfuscateOrder(option);
+		ActionStd<SchedineInfo> rootUpdate = new RootSchedineUpdate(option).toAction();
 		
-		actions.add(obfuscateOrder);
+		actions.add(rootUpdate);
 		return actions;
 	}
 }

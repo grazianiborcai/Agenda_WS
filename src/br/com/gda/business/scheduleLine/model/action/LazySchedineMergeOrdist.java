@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedineSelect extends ActionLazyTemplate<SchedineInfo, SchedineInfo> {
-
-	public LazySchedineSelect(Connection conn, String schemaName) {
+public final class LazySchedineMergeOrdist extends ActionLazyTemplate<SchedineInfo, SchedineInfo> {
+	
+	public LazySchedineMergeOrdist(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,12 +24,12 @@ public final class LazySchedineSelect extends ActionLazyTemplate<SchedineInfo, S
 	
 	
 	@Override protected ActionStd<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
-		return new StdSchedineSelect(option);
+		return new StdSchedineMergeOrdist(option);
 	}
 	
 	
 	
-	@Override protected DeciResult<SchedineInfo> translateResultHook(DeciResult<SchedineInfo> result) {
+	@Override protected DeciResult<SchedineInfo> translateResultHook(DeciResult<SchedineInfo> result) {		
 		return result;
 	}
 }

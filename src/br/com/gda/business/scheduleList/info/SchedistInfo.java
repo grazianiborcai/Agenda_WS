@@ -1,30 +1,23 @@
-package br.com.gda.business.scheduleLine.info;
+package br.com.gda.business.scheduleList.info;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.employeeList.info.EmplisInfo;
-import br.com.gda.business.material.info.MatInfo;
-import br.com.gda.business.scheduleSearch.info.SchedarchInfo;
-import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
 
-public final class SchedineInfo extends InfoRecord implements Cloneable, Comparable<SchedineInfo> {
+public final class SchedistInfo extends InfoRecord implements Cloneable, Comparable<SchedistInfo> {
 	public long codOwner;
 	public long codSchedule;
 	public long codSnapshot;
 	public String codScheduleStatus;
-	public String txtScheduleStatus;
 	public long codOrder;
 	public int codOrderItem;
-	public String codOrderStatus;
 	public long codStore;
 	public long codEmployee;
 	public long codMat;
@@ -41,21 +34,13 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public LocalTime endTime;
 	public long codUser;
 	public long codCustomer;
-	public MatInfo matData;
-	public StolisInfo storeData;
-	public EmplisInfo empData;
-	public SchedarchInfo dupleData;
 	public String codLanguage;
-	public LocalDateTime createdOn;
-	public long createdBy;
-	public LocalDateTime lastChanged;
-	public long lastChangedBy;
 	public String username;
 	public String recordMode;
 	
 	
 	
-	public SchedineInfo() {
+	public SchedistInfo() {
 		codOwner = DefaultValue.number();	
 		codSchedule = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
@@ -73,87 +58,26 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		year = DefaultValue.number();	
 		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();
-		createdBy = DefaultValue.number();
-		lastChangedBy = DefaultValue.number();
 		codLanguage = DefaultValue.language();	
 		recordMode = DefaultValue.recordMode();
-		matData = DefaultValue.object();
-		storeData = DefaultValue.object();
-		empData = DefaultValue.object();
-		dupleData = DefaultValue.object();
 	}
 	
 	
 	
-	public static SchedineInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, SchedineInfo.class);
+	public static SchedistInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, SchedistInfo.class);
 	}
 	
 	
 	
-	public static List<SchedineInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, SchedineInfo.class);
+	public static List<SchedistInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, SchedistInfo.class);
 	}
 	
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		SchedineInfo deepCopy = (SchedineInfo) super.clone();
-		
-		deepCopy.date = date;
-		deepCopy.beginTime = beginTime;
-		deepCopy.endTime = endTime;
-		deepCopy.lastChanged = lastChanged;
-		deepCopy.matData = cloneMat(matData);
-		deepCopy.storeData = cloneStore(storeData);
-		deepCopy.empData = cloneEmp(empData);
-		deepCopy.dupleData = cloneSchedarch(dupleData);
-		
-		return deepCopy;
-	}	
-	
-	
-	
-	private MatInfo cloneMat(MatInfo recordInfo) throws CloneNotSupportedException {
-		MatInfo result = null;
-		
-		if (recordInfo != null)
-			result = (MatInfo) recordInfo.clone();
-		
-		return result;
-	}
-	
-	
-	
-	private StolisInfo cloneStore(StolisInfo recordInfo) throws CloneNotSupportedException {
-		StolisInfo result = null;
-		
-		if (recordInfo != null)
-			result = (StolisInfo) recordInfo.clone();
-		
-		return result;
-	}
-	
-	
-	
-	private EmplisInfo cloneEmp(EmplisInfo recordInfo) throws CloneNotSupportedException {
-		EmplisInfo result = null;
-		
-		if (recordInfo != null)
-			result = (EmplisInfo) recordInfo.clone();
-		
-		return result;
-	}	
-	
-	
-	
-	private SchedarchInfo cloneSchedarch(SchedarchInfo recordInfo) throws CloneNotSupportedException {
-		SchedarchInfo result = null;
-		
-		if (recordInfo != null)
-			result = (SchedarchInfo) recordInfo.clone();
-		
-		return result;
+		return super.clone();
 	}	
 	
 	
@@ -184,11 +108,11 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 			return true;
 		
 		
-		if (!(o instanceof SchedineInfo))
+		if (!(o instanceof SchedistInfo))
 			return false;
 		
 		
-		SchedineInfo obj = (SchedineInfo) o;		
+		SchedistInfo obj = (SchedistInfo) o;		
 		return (codOwner    == obj.codOwner    		&& 
 				codSchedule == obj.codSchedule		&&
 				codOrder    == obj.codOrder			&&
@@ -201,7 +125,7 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 
 
 	
-	@Override public int compareTo(SchedineInfo arg0) {
+	@Override public int compareTo(SchedistInfo arg0) {
 		if (arg0 == null) {
 			logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	

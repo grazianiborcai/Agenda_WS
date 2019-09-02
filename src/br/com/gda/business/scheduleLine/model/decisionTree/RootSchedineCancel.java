@@ -5,13 +5,10 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
-import br.com.gda.business.scheduleLine.model.action.LazySchedineDelete;
-import br.com.gda.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckCancel;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckOwner;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckExist;
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -64,13 +61,8 @@ public final class RootSchedineCancel extends DeciTreeWriteTemplate<SchedineInfo
 	
 	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
-		
+		//TODO: estornar Ordem ?
 		ActionStd<SchedineInfo> nodeCancel = new NodeSchedineCancel(option).toAction();
-		ActionLazy<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> delete = new LazySchedineDelete(option.conn, option.schemaName);
-		
-		nodeCancel.addPostAction(nodeSnapshot);
-		nodeSnapshot.addPostAction(delete);
 		
 		actions.add(nodeCancel);
 		return actions;

@@ -10,12 +10,27 @@ import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.business.orderList.info.OrdistInfo;
 import br.com.gda.business.scheduleLineSnapshot.info.SchedinapInfo;
+import br.com.gda.business.scheduleSearch.info.SchedarchInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.info.InfoMergerOneToMany;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class SchedineMerger {
+	public static SchedineInfo mergeWithDuple(SchedarchInfo sourceOne, SchedineInfo sourceTwo) {
+		InfoMerger<SchedineInfo, SchedarchInfo> merger = new SchedineMergerDuple();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<SchedineInfo> mergeWithDuple(List<SchedarchInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
+		InfoMerger<SchedineInfo, SchedarchInfo> merger = new SchedineMergerDuple();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static SchedineInfo mergeWithWeekday(WeekdayInfo sourceOne, SchedineInfo sourceTwo) {
 		InfoMerger<SchedineInfo, WeekdayInfo> merger = new SchedineMergerWeekday();		
 		return merger.merge(sourceOne, sourceTwo);

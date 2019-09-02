@@ -7,16 +7,17 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class SchedineCheckHasOrder extends ModelCheckerTemplateSimple<SchedineInfo> {
+public final class SchedineCheckHasOrderItem extends ModelCheckerTemplateSimple<SchedineInfo> {
 
-	public SchedineCheckHasOrder() {
+	public SchedineCheckHasOrderItem() {
 		super();
 	}
 	
 	
 	
 	@Override protected boolean checkHook(SchedineInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOrder <= 0 )		
+		if ( recordInfo.codOrder 	 <= 0 ||
+			 recordInfo.codOrderItem <= 0	)		
 			
 			return super.FAILED;
 		

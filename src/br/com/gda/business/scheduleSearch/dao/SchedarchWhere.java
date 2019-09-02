@@ -39,6 +39,30 @@ public final class SchedarchWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
 					break;
 					
+				case SchedarchDbTableColumn.COL_COD_MATERIAL :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
+					break;
+					
+				case SchedarchDbTableColumn.COL_COD_STORE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
+					break;
+					
+				case SchedarchDbTableColumn.COL_COD_EMPLOYEE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
+					break;
+					
+				case SchedarchDbTableColumn.COL_DATE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
+					break;
+					
+				case SchedarchDbTableColumn.COL_BEGIN_TIME :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime));
+					break;
+					
+				case SchedarchDbTableColumn.COL_END_TIME :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime));
+					break;
+					
 				case SchedarchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;

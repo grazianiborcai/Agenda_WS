@@ -43,7 +43,8 @@ public final class OrderSetterStatusMoip implements InfoSetter<OrderInfo> {
 		if (status == null)
 			return recordInfo;
 		
-		if(status.isOnWait())
+		if(status == OrderStatusMoip.CREATED || 
+		   status == OrderStatusMoip.WAITING	)
 			recordInfo.codOrderStatus = OrderStatus.WAITING.getCodStatus();
 		
 		return recordInfo;
@@ -55,7 +56,7 @@ public final class OrderSetterStatusMoip implements InfoSetter<OrderInfo> {
 		if (status == null)
 			return recordInfo;
 		
-		if(status.isPaid())
+		if(status == OrderStatusMoip.PAID)
 			recordInfo.codOrderStatus = OrderStatus.PAID.getCodStatus();
 		
 		return recordInfo;
@@ -67,7 +68,7 @@ public final class OrderSetterStatusMoip implements InfoSetter<OrderInfo> {
 		if (status == null)
 			return recordInfo;
 		
-		if(status.isNotPaid())
+		if(status == OrderStatusMoip.NOT_PAID)
 			recordInfo.codOrderStatus = OrderStatus.NOT_PAID.getCodStatus();
 		
 		return recordInfo;
