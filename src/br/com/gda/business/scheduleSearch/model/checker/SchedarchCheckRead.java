@@ -23,10 +23,20 @@ public final class SchedarchCheckRead extends ModelCheckerTemplateSimple<Schedar
 			return super.FAILED;
 		
 		
-		if ( recordInfo.codSchedule <= 0 	&& 
-			 recordInfo.codOrder 	<= 0		)
+		if ( recordInfo.codSchedule > 0 	|| 
+			 recordInfo.codOrder 	> 0		)
 				
-				return super.FAILED;
+				return super.SUCCESS;
+		
+		
+		if ( recordInfo.codStore 	<= 0 	|| 
+			 recordInfo.codMat		<= 0 	||
+			 recordInfo.codEmployee	<= 0 	||
+			 recordInfo.date		== null ||
+			 recordInfo.beginTime	== null ||
+			 recordInfo.endTime		== null 	)
+				
+				return super.FAILED;	
 		
 		
 		return super.SUCCESS;

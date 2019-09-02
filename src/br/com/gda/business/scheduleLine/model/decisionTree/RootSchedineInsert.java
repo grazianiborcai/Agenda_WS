@@ -113,6 +113,7 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 		
+		ActionStd<SchedineInfo> nodeDuple = new NodeSchedineDupleL1(option).toAction();
 		ActionStd<SchedineInfo> nodeOrder = new NodeSchedineOrderL1(option).toAction();
 		ActionLazy<SchedineInfo> nodeInsert = new LazySchedineNodeInsert(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
@@ -120,6 +121,7 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		nodeOrder.addPostAction(nodeInsert);
 		nodeInsert.addPostAction(nodeSnapshot);
 		
+		actions.add(nodeDuple);
 		actions.add(nodeOrder);
 		return actions;
 	}
