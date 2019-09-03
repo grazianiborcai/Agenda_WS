@@ -20,6 +20,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
+import br.com.gda.dao.common.DaoOptionValue;
 
 public final class CountryLegalSelectSingle implements DaoStmt<CountryLegalInfo> {
 	private final String LT_ATTR = DaoDbTable.COUNTRY_LEGAL_TABLE;
@@ -101,9 +102,9 @@ public final class CountryLegalSelectSingle implements DaoStmt<CountryLegalInfo>
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoWhereBuilderOption.DUMMY_CLAUSE_ALLOWED;
+		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
+		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
 		DaoStmtWhere whereClause = new CountryLegalWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

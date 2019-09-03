@@ -20,6 +20,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
+import br.com.gda.dao.common.DaoOptionValue;
 
 public final class EmplevateUpdateSingle implements DaoStmt<EmplevateInfo> {
 	private DaoStmt<EmplevateInfo> stmtSql;
@@ -49,9 +50,9 @@ public final class EmplevateUpdateSingle implements DaoStmt<EmplevateInfo> {
 	
 	private String buildWhereClause() {		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;
-		whereOption.ignoreNonPrimaryKey = DaoWhereBuilderOption.IGNORE_NON_PK;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		
 		DaoStmtWhere whereClause = new EmplevateWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

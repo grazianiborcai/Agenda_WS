@@ -20,6 +20,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
+import br.com.gda.dao.common.DaoOptionValue;
 
 public final class MatmovSelectSingle implements DaoStmt<MatmovInfo> {
 	private final static String LT_MAT_MOV = DaoDbTable.MAT_MOVEMENT_TABLE;	
@@ -54,8 +55,8 @@ public final class MatmovSelectSingle implements DaoStmt<MatmovInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new MatmovWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

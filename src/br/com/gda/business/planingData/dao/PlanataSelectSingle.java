@@ -21,6 +21,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
+import br.com.gda.dao.common.DaoOptionValue;
 
 public final class PlanataSelectSingle implements DaoStmt<PlanataInfo> {
 	private final String LT_STORE = DaoDbTable.STORE_TABLE;
@@ -60,8 +61,8 @@ public final class PlanataSelectSingle implements DaoStmt<PlanataInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new PlanataWhere(whereOption, DaoDbTable.PLANING_DATA_VIEW, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

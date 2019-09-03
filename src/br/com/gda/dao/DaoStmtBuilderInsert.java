@@ -3,6 +3,8 @@ package br.com.gda.dao;
 import java.util.Iterator;
 import java.util.List;
 
+import br.com.gda.dao.common.DaoOptionValue;
+
 final class DaoStmtBuilderInsert extends DaoStmtBuilderTemplate {	
 	
 	DaoStmtBuilderInsert(DaoStmtBuilderOption option, Class<?> clazz) {
@@ -30,7 +32,7 @@ final class DaoStmtBuilderInsert extends DaoStmtBuilderTemplate {
 	
 	
 	static private DaoStmtBuilderOption enforceIgnoreAutoIncremented(DaoStmtBuilderOption option) {
-		option.ignoreAutoIncrementedColumn = true;
+		option.ignoreAutoIncrementedColumn = DaoOptionValue.IGNORE_AUTO_INCREMENTED;
 		return option;
 	}
 	

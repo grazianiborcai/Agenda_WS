@@ -4,6 +4,7 @@ import java.sql.Connection;
 import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
+import br.com.gda.dao.common.DaoOptionValue;
 
 public final class EmplevateSelectSingle extends EmplevateSelectTemplate {
 	
@@ -15,8 +16,8 @@ public final class EmplevateSelectSingle extends EmplevateSelectTemplate {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmplevateInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new EmplevateWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();

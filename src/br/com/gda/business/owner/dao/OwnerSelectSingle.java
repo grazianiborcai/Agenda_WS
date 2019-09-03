@@ -17,6 +17,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
+import br.com.gda.dao.common.DaoOptionValue;
 
 public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
 	private final String LEFT_TABLE = DaoDbTable.OWNER_TABLE;	
@@ -49,12 +50,9 @@ public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new OwnerWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

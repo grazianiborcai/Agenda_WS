@@ -17,6 +17,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
+import br.com.gda.dao.common.DaoOptionValue;
 import br.com.gda.payment.storePartnerSnapshot.info.StoparnapInfo;
 
 public final class StoparnapSelectSingle implements DaoStmt<StoparnapInfo> {
@@ -51,8 +52,8 @@ public final class StoparnapSelectSingle implements DaoStmt<StoparnapInfo> {
 	
 	private String buildWhereClause() {		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new StoparnapWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

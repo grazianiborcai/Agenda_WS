@@ -1,13 +1,6 @@
 package br.com.gda.dao;
 
-public interface DaoWhereBuilder {	
-	public static DaoWhereBuilder factory() {
-		DaoWhereBuilderOption defaultOption = new DaoWhereBuilderOption();
-		return factory(defaultOption);
-	}
-	
-	
-	
+public interface DaoWhereBuilder {
 	public static DaoWhereBuilder factory(DaoWhereBuilderOption option) {
 		return new DaoWhereBuilderConcrete(option);
 	}

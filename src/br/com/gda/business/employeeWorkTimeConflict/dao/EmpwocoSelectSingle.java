@@ -20,6 +20,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
+import br.com.gda.dao.common.DaoOptionValue;
 
 
 public final class EmpwocoSelectSingle implements DaoStmt<EmpwocoInfo> {
@@ -56,8 +57,8 @@ public final class EmpwocoSelectSingle implements DaoStmt<EmpwocoInfo> {
 	
 	private String buildWhereClause(String tableName, EmpwocoInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.DONT_IGNORE_RECORD_MODE;	
+		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		
 		DaoStmtWhere whereClause = new EmpwocoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();

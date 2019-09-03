@@ -21,6 +21,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
+import br.com.gda.dao.common.DaoOptionValue;
 
 public final class OrderveSelectSingle implements DaoStmt<OrderveInfo> {
 	private final String LT_ORDER_ITM = DaoDbTable.ORDER_ITM_TABLE;	
@@ -55,8 +56,8 @@ public final class OrderveSelectSingle implements DaoStmt<OrderveInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoWhereBuilderOption.DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoWhereBuilderOption.IGNORE_RECORD_MODE;		
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new OrderveWhere(whereOption, DaoDbTable.ORDER_RESERVE_VIEW, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
