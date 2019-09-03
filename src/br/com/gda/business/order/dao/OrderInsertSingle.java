@@ -46,7 +46,7 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
 	}
 		
 	

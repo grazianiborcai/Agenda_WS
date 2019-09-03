@@ -47,7 +47,7 @@ public final class CusparInsertSingle implements DaoStmt<CusparInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
 	}
 		
 	

@@ -112,7 +112,7 @@ public final class PositionSelectSingle implements DaoStmt<PositionInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	

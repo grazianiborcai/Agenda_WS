@@ -56,7 +56,7 @@ public final class CartemDeleteSingle implements DaoStmt<CartemInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.HARD_DELETE, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.HARD_DELETE, this.stmtOption, this.getClass());
 	}
 	
 	

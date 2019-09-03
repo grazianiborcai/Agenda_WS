@@ -57,7 +57,7 @@ public final class MatextUpdateSingle implements DaoStmt<MatextInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption, this.getClass());
 	}
 	
 	

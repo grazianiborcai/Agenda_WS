@@ -56,7 +56,7 @@ public final class OrderUpdateSingle implements DaoStmt<OrderInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption, this.getClass());
 	}
 	
 	

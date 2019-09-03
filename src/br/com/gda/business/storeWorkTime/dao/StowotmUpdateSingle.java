@@ -58,7 +58,7 @@ public final class StowotmUpdateSingle implements DaoStmt<StowotmInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption, this.getClass());
 	}
 	
 	

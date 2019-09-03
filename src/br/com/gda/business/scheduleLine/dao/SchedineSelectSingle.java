@@ -61,7 +61,7 @@ public final class SchedineSelectSingle implements DaoStmt<SchedineInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	

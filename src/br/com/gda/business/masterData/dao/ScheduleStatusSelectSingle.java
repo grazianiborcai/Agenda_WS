@@ -112,7 +112,7 @@ public final class ScheduleStatusSelectSingle implements DaoStmt<ScheduleStatusI
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	

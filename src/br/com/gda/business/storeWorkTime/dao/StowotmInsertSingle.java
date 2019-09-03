@@ -46,7 +46,7 @@ public final class StowotmInsertSingle implements DaoStmt<StowotmInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
 	}
 		
 	

@@ -48,7 +48,7 @@ public final class OwnerInsertSingle implements DaoStmt<OwnerInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
 	}
 		
 	

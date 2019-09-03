@@ -56,7 +56,7 @@ public final class CompDeleteSingle implements DaoStmt<CompInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.SOFT_DELETE, stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.SOFT_DELETE, stmtOption, this.getClass());
 	}
 	
 	

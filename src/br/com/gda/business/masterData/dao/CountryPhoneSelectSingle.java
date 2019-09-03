@@ -112,7 +112,7 @@ public final class CountryPhoneSelectSingle implements DaoStmt<CountryPhoneInfo>
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	

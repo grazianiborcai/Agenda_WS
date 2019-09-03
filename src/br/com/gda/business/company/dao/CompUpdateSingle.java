@@ -58,7 +58,7 @@ public final class CompUpdateSingle implements DaoStmt<CompInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, stmtOption, this.getClass());
 	}
 	
 	

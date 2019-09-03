@@ -61,7 +61,7 @@ public final class SchedarchSelectSingle implements DaoStmt<SchedarchInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	

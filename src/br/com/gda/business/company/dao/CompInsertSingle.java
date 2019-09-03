@@ -48,7 +48,7 @@ public final class CompInsertSingle implements DaoStmt<CompInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption, this.getClass());
 	}
 		
 	

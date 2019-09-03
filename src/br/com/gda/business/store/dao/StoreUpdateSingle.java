@@ -57,7 +57,7 @@ public final class StoreUpdateSingle implements DaoStmt<StoreInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, stmtOption, this.getClass());
 	}
 	
 	

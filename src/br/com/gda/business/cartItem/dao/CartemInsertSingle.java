@@ -43,7 +43,7 @@ public class CartemInsertSingle implements DaoStmt<CartemInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption, this.getClass());
 	}
 		
 	

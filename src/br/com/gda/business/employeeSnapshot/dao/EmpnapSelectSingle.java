@@ -60,7 +60,7 @@ public final class EmpnapSelectSingle implements DaoStmt<EmpnapInfo> {
 	
 		
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	

@@ -5,11 +5,11 @@ import br.com.gda.common.SystemMessage;
 public final class DaoStmtBuilderHelper implements DaoStmtBuilder {
 	DaoStmtBuilder builder;
 	
-	public DaoStmtBuilderHelper(DaoOperation operation, DaoStmtBuilderOption option) {
+	public DaoStmtBuilderHelper(DaoOperation operation, DaoStmtBuilderOption option, Class<?> clazz) {
 		if (operation == null)
 			throw new NullPointerException(operation + SystemMessage.NULL_ARGUMENT);
 		
-		builder = operation.factorySqlStmtBuilder(option);
+		builder = operation.factorySqlStmtBuilder(option, clazz);
 	}
 
 		

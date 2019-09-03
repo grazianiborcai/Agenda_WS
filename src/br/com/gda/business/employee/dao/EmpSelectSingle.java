@@ -60,7 +60,7 @@ public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 	
 		
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	

@@ -8,7 +8,7 @@ public final class DaoJoinColumn implements Cloneable {
 	
 	
 	public DaoJoinColumn() {
-		this.condition = DaoDictionary.EQUAL;
+		condition = DaoDictionary.EQUAL;
 	}
 	
 	

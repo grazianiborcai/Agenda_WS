@@ -57,7 +57,7 @@ public class SchedineUpdateSingle implements DaoStmt<SchedineInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, stmtOption, this.getClass());
 	}
 		
 	

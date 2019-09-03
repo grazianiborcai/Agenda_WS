@@ -45,52 +45,74 @@ final class DaoStmtBuilderInsert extends DaoStmtBuilderTemplate {
 	@Override protected String buildStmtHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins) {
 		StringBuilder resultStatement = new StringBuilder();
 		
-		resultStatement.append(DaoOperation.INSERT.toString());
-		resultStatement.append(DaoDictionary.SPACE);
-		resultStatement.append(DaoDictionary.INTO);
-		resultStatement.append(DaoDictionary.SPACE);
-		resultStatement.append(schemaName);
-		resultStatement.append(DaoDictionary.PERIOD);
-		resultStatement.append(tableName);
-		resultStatement.append(DaoDictionary.SPACE);
-		resultStatement.append(DaoDictionary.PARENTHESIS_OPENING);
+		resultStatement = appendOperation(resultStatement);
+		resultStatement = appendTable(resultStatement, schemaName, tableName);
+		resultStatement = appendColumn(resultStatement, columns);		
 		
+		return resultStatement.toString();
+	}
+	
+	
+	
+	private StringBuilder appendOperation(StringBuilder statement) {
+		statement.append(DaoOperation.INSERT.toString());
+		statement.append(DaoDictionary.SPACE);
+		statement.append(DaoDictionary.INTO);
+		statement.append(DaoDictionary.SPACE);
+		
+		return statement;		
+	}
+	
+	
+	
+	private StringBuilder appendTable(StringBuilder statement, String schemaName, String tableName) {
+		statement.append(schemaName);
+		statement.append(DaoDictionary.PERIOD);
+		statement.append(tableName);
+		statement.append(DaoDictionary.SPACE);
+		
+		return statement;		
+	}
+	
+	
+	
+	private StringBuilder appendColumn(StringBuilder statement, List<DaoColumn> columns) {
+		statement.append(DaoDictionary.PARENTHESIS_OPENING);		
 		
 		Iterator<DaoColumn> columnItr = columns.iterator();
 		
 		while (columnItr.hasNext()) {
 			DaoColumn eachColumn = columnItr.next();
-			resultStatement.append(eachColumn.columnName);
+			statement.append(eachColumn.columnName);
 			
 			if (columnItr.hasNext()) {
-				resultStatement.append(DaoDictionary.COMMA);
-				resultStatement.append(DaoDictionary.SPACE);
+				statement.append(DaoDictionary.COMMA);
+				statement.append(DaoDictionary.SPACE);
 			}
 		}
 		
 		
-		resultStatement.append(DaoDictionary.PARENTHESIS_CLOSING);
-		resultStatement.append(DaoDictionary.SPACE);
-		resultStatement.append(DaoDictionary.VALUES);
-		resultStatement.append(DaoDictionary.SPACE);
-		resultStatement.append(DaoDictionary.PARENTHESIS_OPENING);
+		statement.append(DaoDictionary.PARENTHESIS_CLOSING);
+		statement.append(DaoDictionary.SPACE);
+		statement.append(DaoDictionary.VALUES);
+		statement.append(DaoDictionary.SPACE);
+		statement.append(DaoDictionary.PARENTHESIS_OPENING);
 		
 		
 		for (int i=0; i<columns.size(); i++) {
-			resultStatement.append(DaoDictionary.WILDCARD);
+			statement.append(DaoDictionary.WILDCARD);
 			
 			int nextColumnIndex = i + 1;
 			if (nextColumnIndex < columns.size()) {
-				resultStatement.append(DaoDictionary.COMMA);
-				resultStatement.append(DaoDictionary.SPACE);
+				statement.append(DaoDictionary.COMMA);
+				statement.append(DaoDictionary.SPACE);
 			}
 		}
 		
 		
-		resultStatement.append(DaoDictionary.PARENTHESIS_CLOSING);
-		resultStatement.append(DaoDictionary.END_STATEMENT);		
+		statement.append(DaoDictionary.PARENTHESIS_CLOSING);
+		statement.append(DaoDictionary.END_STATEMENT);	
 		
-		
-		return resultStatement.toString();
+		return statement;		
 	}
 }

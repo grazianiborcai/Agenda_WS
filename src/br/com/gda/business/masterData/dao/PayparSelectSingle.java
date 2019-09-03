@@ -60,7 +60,7 @@ public final class PayparSelectSingle implements DaoStmt<PayparInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, stmtOption, this.getClass());
 	}
 	
 	

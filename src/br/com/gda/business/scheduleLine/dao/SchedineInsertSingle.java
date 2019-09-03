@@ -46,7 +46,7 @@ public class SchedineInsertSingle implements DaoStmt<SchedineInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption, this.getClass());
 	}
 		
 	

@@ -8,10 +8,10 @@ public final class DaoColumn implements Cloneable {
 	public boolean isAutoIncremented;
 	
 	public DaoColumn() {
-		this.columnName = null;
-		this.isPK = false;
-		this.isLookUp = false;
-		this.isAutoIncremented = false;
+		columnName = null;
+		isPK = false;
+		isLookUp = false;
+		isAutoIncremented = false;
 	}
 	
 	

@@ -43,7 +43,7 @@ public class OrderemInsertSingle implements DaoStmt<OrderemInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption);
+		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption, this.getClass());
 	}
 		
 	

@@ -1,18 +1,20 @@
 package br.com.gda.dao;
 
 public enum DaoJoinType {
-	INNER_JOIN("INNER JOIN"), LEFT_OUTER_JOIN("LEFT OUTER JOIN"), CROSS_JOIN("CROSS JOIN");
+	INNER_JOIN("INNER JOIN"), 
+	LEFT_OUTER_JOIN("LEFT OUTER JOIN"), 
+	CROSS_JOIN("CROSS JOIN");
 	
 	private final String sqlTypeSymbol;
 	
 	
 	private DaoJoinType(String sqlType) {
-		this.sqlTypeSymbol = sqlType;
+		sqlTypeSymbol = sqlType;
 	}
 	
 	
 	
 	@Override public String toString() {
-		return this.sqlTypeSymbol;
+		return sqlTypeSymbol;
 	}
 }

@@ -2,31 +2,31 @@ package br.com.gda.dao;
 
 public enum DaoOperation {
 	INSERT("INSERT", true) {
-		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option) {
+		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
 			return new DaoStmtBuilderInsert(option);
 		}
 	}, 
 	
 	HARD_DELETE("DELETE", true) {
-		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option) {
+		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
 			return new DaoStmtBuilderDeleteHard(option);
 		}
 	}, 
 	
 	SOFT_DELETE("DELETE", true) {
-		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option) {
+		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
 			return new DaoStmtBuilderDeleteSoft(option);
 		}
 	}, 
 	
 	UPDATE("UPDATE", true) {
-		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option) {
+		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
 			return new DaoStmtBuilderUpdate(option);
 		}
 	}, 
 	
 	SELECT("SELECT", false) {
-		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option) {
+		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
 			return new DaoStmtBuilderSelect(option);
 		}
 	};
@@ -55,5 +55,5 @@ public enum DaoOperation {
 	}
 	
 	
-	protected abstract DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option);
+	protected abstract DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz);
 }

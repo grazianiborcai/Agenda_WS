@@ -15,9 +15,10 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 	private PreparedStatement stmt;
 	ResultSet stmtResultSet;
 	private List<T> resultset;
+	private Class<?> childClazz;
 	
 	
-	public DaoStmtHelper(DaoOperation operation, DaoStmtOption<T> option) {
+	public DaoStmtHelper(DaoOperation operation, DaoStmtOption<T> option, Class<?> clazz) {
 		if (operation == null)
 			throw new NullPointerException("operation" + SystemMessage.NULL_ARGUMENT);
 		
@@ -32,6 +33,7 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 		
 		
 		this.operation = operation;
+		childClazz = clazz;
 		makeDefensiveCopy(option);		
 	}
 	
@@ -65,7 +67,7 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 		builderOption.whereClause = this.option.whereClause;
 		builderOption.joins = this.option.joins;
 		
-		DaoStmtBuilder builder = this.operation.factorySqlStmtBuilder(builderOption);
+		DaoStmtBuilder builder = this.operation.factorySqlStmtBuilder(builderOption, childClazz);
 		this.stmtSkeleton = builder.buildStmt();
 	}
 	
@@ -176,6 +178,6 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 	
 	
 	@Override public DaoStmt<T> getNewInstance() {
-		return new DaoStmtHelper<T>(operation, option);
+		return new DaoStmtHelper<T>(operation, option, childClazz);
 	}
 }

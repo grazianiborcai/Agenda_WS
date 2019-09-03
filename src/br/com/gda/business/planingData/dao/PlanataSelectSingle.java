@@ -307,7 +307,7 @@ public final class PlanataSelectSingle implements DaoStmt<PlanataInfo> {
 	
 		
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption);
+		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
