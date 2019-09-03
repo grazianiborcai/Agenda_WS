@@ -6,7 +6,7 @@ public interface DaoStmtBuilder {
 	}	
 	
 	
-	public boolean checkStatementGeneration();	
+	public boolean checkStmtBuild();	
 	
-	public String generatedStatement();
+	public String buildStmt();
 }

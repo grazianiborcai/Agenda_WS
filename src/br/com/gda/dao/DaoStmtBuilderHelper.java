@@ -14,14 +14,14 @@ public final class DaoStmtBuilderHelper implements DaoStmtBuilder {
 
 		
 	
-	@Override public boolean checkStatementGeneration() {
-		return builder.checkStatementGeneration();
+	@Override public boolean checkStmtBuild() {
+		return builder.checkStmtBuild();
 	}
 
 	
 	
-	@Override public String generatedStatement() {
-		return builder.generatedStatement();
+	@Override public String buildStmt() {
+		return builder.buildStmt();
 	}
 
 

@@ -2,24 +2,21 @@ package br.com.gda.dao;
 
 import java.util.List;
 
-import br.com.gda.common.SystemMessage;
-
 final class DaoStmtBuilderDeleteHard extends DaoStmtBuilderTemplate {
 
 	DaoStmtBuilderDeleteHard(DaoStmtBuilderOption option) {
-		super(option);
+		super(option, DaoStmtBuilderDeleteHard.class);
 	}
 	
 	
 	
-	@Override protected void tryToCheckStatementGenerationHook(String whereClause, List<DaoColumn> columns) {
-		if (whereClause == null)
-			throw new NullPointerException(SystemMessage.NULL_WHERE_CLAUSE);
+	@Override protected void checkStmtBuildHook() {
+		super.checkWhereClause();
 	}
 	
 	
 	
-	@Override protected String generateStatementHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins) {
+	@Override protected String buildStmtHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins) {
 		StringBuilder resultStatement = new StringBuilder();
 		
 		resultStatement.append(DaoOperation.HARD_DELETE.toString());

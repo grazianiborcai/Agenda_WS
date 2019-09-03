@@ -66,7 +66,7 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 		builderOption.joins = this.option.joins;
 		
 		DaoStmtBuilder builder = this.operation.factorySqlStmtBuilder(builderOption);
-		this.stmtSkeleton = builder.generatedStatement();
+		this.stmtSkeleton = builder.buildStmt();
 	}
 	
 	

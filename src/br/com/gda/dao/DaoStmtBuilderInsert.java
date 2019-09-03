@@ -3,12 +3,10 @@ package br.com.gda.dao;
 import java.util.Iterator;
 import java.util.List;
 
-import br.com.gda.common.SystemMessage;
-
 final class DaoStmtBuilderInsert extends DaoStmtBuilderTemplate {	
 	
 	DaoStmtBuilderInsert(DaoStmtBuilderOption option) {
-		super(enforcePolicy(option));
+		super(enforcePolicy(option), DaoStmtBuilderInsert.class);
 	}
 	
 	
@@ -38,17 +36,13 @@ final class DaoStmtBuilderInsert extends DaoStmtBuilderTemplate {
 	
 	
 	
-	@Override protected void tryToCheckStatementGenerationHook(String whereClause, List<DaoColumn> columns) {		
-		if (columns == null)
-			throw new NullPointerException(SystemMessage.NULL_COLUMNS);
-		
-		if (columns.isEmpty())
-			throw new IllegalArgumentException(SystemMessage.EMPTY_COLUMNS);
+	@Override protected void checkStmtBuildHook() {		
+		super.checkColumns();
 	}
 	
 	
 	
-	@Override protected String generateStatementHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins) {
+	@Override protected String buildStmtHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins) {
 		StringBuilder resultStatement = new StringBuilder();
 		
 		resultStatement.append(DaoOperation.INSERT.toString());

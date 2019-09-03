@@ -3,75 +3,95 @@ package br.com.gda.dao;
 import java.util.Iterator;
 import java.util.List;
 
-import br.com.gda.common.SystemMessage;
-
 final class DaoStmtBuilderUpdate extends DaoStmtBuilderTemplate {
 
 	DaoStmtBuilderUpdate(DaoStmtBuilderOption option) {
-		super(enforceIgnoreLookup(option));
+		super(enforceOption(option), DaoStmtBuilderUpdate.class);
 	}
 	
 	
 	
-	static private DaoStmtBuilderOption enforceIgnoreLookup(DaoStmtBuilderOption option) {
+	static private DaoStmtBuilderOption enforceOption(DaoStmtBuilderOption option) {
 		option.ignoreLookUpColumn = true;
 		return option;
 	}
 	
 	
 	
-	@Override protected void tryToCheckStatementGenerationHook(String whereClause, List<DaoColumn> columns) {		
-		if (columns == null)
-			throw new NullPointerException(SystemMessage.NULL_COLUMNS);
-		
-		if (columns.isEmpty())
-			throw new IllegalArgumentException(SystemMessage.EMPTY_COLUMNS);
-		
-		if (whereClause == null)
-			throw new NullPointerException(SystemMessage.NULL_WHERE_CLAUSE);
+	@Override protected void checkStmtBuildHook() {	
+		super.checkWhereClause();
+		super.checkColumns();
 	}
 	
 	
 	
-	@Override protected String generateStatementHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins) {
+	@Override protected String buildStmtHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins) {
 		StringBuilder resultStatement = new StringBuilder();
 		
-		resultStatement.append(DaoOperation.UPDATE.toString());
-		resultStatement.append(DaoDictionary.SPACE);
-		resultStatement.append(schemaName);
-		resultStatement.append(DaoDictionary.PERIOD);
-		resultStatement.append(tableName);
-		resultStatement.append(DaoDictionary.SPACE);
-		resultStatement.append(DaoDictionary.SET);
-		resultStatement.append(DaoDictionary.SPACE);
+		resultStatement = appendOperation(resultStatement);
+		resultStatement = appendTable(resultStatement, schemaName, tableName);
+		resultStatement = appendColumn(resultStatement, columns);
+		resultStatement = appendWhere(resultStatement, whereClause);
 		
+		return resultStatement.toString();
+	}
+	
+	
+	
+	private StringBuilder appendOperation(StringBuilder statement) {
+		statement.append(DaoOperation.UPDATE.toString());
+		statement.append(DaoDictionary.SPACE);
 		
+		return statement;
+	}
+	
+	
+	
+	private StringBuilder appendTable(StringBuilder statement, String schemaName, String tableName) {
+		statement.append(schemaName);
+		statement.append(DaoDictionary.PERIOD);
+		statement.append(tableName);
+		statement.append(DaoDictionary.SPACE);
+		statement.append(DaoDictionary.SET);
+		statement.append(DaoDictionary.SPACE);
+		
+		return statement;		
+	}	
+	
+	
+	
+	private StringBuilder appendColumn(StringBuilder statement, List<DaoColumn> columns) {
 		Iterator<DaoColumn> columnItr = columns.iterator();
 		
 		while (columnItr.hasNext()) {
 			DaoColumn eachColumn = columnItr.next();
 			
 			if (eachColumn.isPK)
-				continue;
+				continue;			
 			
-			resultStatement.append(eachColumn.columnName);			
-			resultStatement.append(DaoDictionary.SPACE);
-			resultStatement.append(DaoDictionary.EQUAL);
-			resultStatement.append(DaoDictionary.SPACE);
-			resultStatement.append(DaoDictionary.WILDCARD);
+			statement.append(eachColumn.columnName);			
+			statement.append(DaoDictionary.SPACE);
+			statement.append(DaoDictionary.EQUAL);
+			statement.append(DaoDictionary.SPACE);
+			statement.append(DaoDictionary.WILDCARD);
 			
 			if (columnItr.hasNext()) 
-				resultStatement.append(DaoDictionary.COMMA);
+				statement.append(DaoDictionary.COMMA);
 			
-			resultStatement.append(DaoDictionary.SPACE);
+			statement.append(DaoDictionary.SPACE);
 		}
 		
+		return statement;
+	}
+	
+	
+	
+	private StringBuilder appendWhere(StringBuilder statement, String whereClause) {
+		statement.append(DaoDictionary.WHERE);
+		statement.append(DaoDictionary.SPACE);
+		statement.append(whereClause);
+		statement.append(DaoDictionary.END_STATEMENT);
 		
-		resultStatement.append(DaoDictionary.WHERE);
-		resultStatement.append(DaoDictionary.SPACE);
-		resultStatement.append(whereClause);
-		resultStatement.append(DaoDictionary.END_STATEMENT);		
-		
-		return resultStatement.toString();
+		return statement;	
 	}
 }
