@@ -7,67 +7,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemMessage;
 
 public final class DaoStmtExecHelper<T> implements DaoStmtExec<T> {
-	private List<DaoStmt<T>> sqlStatements = new ArrayList<>();
-	private List<T> resultset = new ArrayList<>();
+	private List<DaoStmt<T>> sqlStmts;
+	private List<T> resultset;
+	private Class<?> stmtClass;
 	
 	
 	
 	public DaoStmtExecHelper(List<DaoStmtExecOption<T>> options, Class<? extends DaoStmt<T>> classOfStmt, Class<T> classOfT) {
+		stmtClass = classOfStmt;
+		sqlStmts = new ArrayList<>();
+		resultset = new ArrayList<>();
+		
 		checkArgument(options, classOfStmt, classOfT);
 		buildStmt(options, classOfStmt, classOfT);
 	}
-	
-	
-	
-	private void checkArgument(List<DaoStmtExecOption<T>> options, Class<? extends DaoStmt<T>> classOfStmt, Class<T> classOfT) {
-		if (options == null) 
-			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
 		
 		
-		if (classOfStmt == null) 
-			throw new NullPointerException("classOfStmt" + SystemMessage.NULL_ARGUMENT);
-		
-		
-		if (classOfT == null) 
-			throw new NullPointerException("classOfT" + SystemMessage.NULL_ARGUMENT);
-		
-		
-		if (options.isEmpty())
-			throw new IllegalArgumentException("options" + SystemMessage.EMPTY_ARGUMENT);
-		
-		
-		checkEachOption(options);
-	}
-	
-	
-	
-	private void checkEachOption(List<DaoStmtExecOption<T>> options) {
-		for (DaoStmtExecOption<T> eachOption: options) {
-			if (eachOption.recordInfo == null)
-				throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachOption.schemaName == null)
-				throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
-			
-			if (eachOption.conn == null)
-				throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
 	
 	private void buildStmt(List<DaoStmtExecOption<T>> options, Class<? extends DaoStmt<T>> classOfStmt, Class<T> classOfT) {
 		for (DaoStmtExecOption<T> eachOption : options) {
 			DaoStmt<T> sqlStatement = getNewInstanceOfStmt(eachOption, classOfStmt, classOfT);
-			this.sqlStatements.add(sqlStatement);
+			sqlStmts.add(sqlStatement);
 		}
 		
-		
-		if (sqlStatements.isEmpty())
-			throw new IllegalArgumentException("sqlStatements" + SystemMessage.EMPTY_ARGUMENT);
+		checkBuild(sqlStmts);
 	}
 	
 	
@@ -78,36 +47,25 @@ public final class DaoStmtExecHelper<T> implements DaoStmtExec<T> {
 			return (DaoStmt<T>) constructor.newInstance(option.conn, option.recordInfo, option.schemaName); 
 			
 		} catch (Exception e) {
+			logException(e);
 			throw new IllegalArgumentException(e);
 		}
-	}
-	
-	
-	//TODO: remover esse constructor e adaptar classes clientes que a utilizam
-	public DaoStmtExecHelper(List<DaoStmt<T>> sqlStatements) {
-		if (sqlStatements == null) 
-			throw new NullPointerException("sqlStatements" + SystemMessage.NULL_ARGUMENT);
-		
-		if (sqlStatements.isEmpty())
-			throw new IllegalArgumentException("sqlStatements" + SystemMessage.EMPTY_ARGUMENT);
-
-		this.sqlStatements = sqlStatements;	
 	}
 	
 
 
 	@Override public void executeStmt() throws SQLException {
-		requestCheckStmtGeneration();
-		requestGenerateStmt();
-		requestExecuteStmt();
+		requestCheckStmtGeneration(sqlStmts);
+		requestGenerateStmt(sqlStmts);
+		resultset = requestExecuteStmt(sqlStmts);
 	}
 	
 	
 	
-	private void requestCheckStmtGeneration() throws SQLException { 
-		for (DaoStmt<T> eachStatement : this.sqlStatements) {
-			if (! eachStatement.checkStmtGeneration()) {
-				eachStatement.generateStmt();
+	private void requestCheckStmtGeneration(List<DaoStmt<T>> stmts) throws SQLException { 
+		for (DaoStmt<T> eachStmt : stmts) {
+			if (eachStmt.checkStmtGeneration() == false) {
+				logException(new IllegalStateException(SystemMessage.REQUEST_FAILED));
 				throw new IllegalStateException(SystemMessage.REQUEST_FAILED);
 			}
 		}
@@ -115,27 +73,35 @@ public final class DaoStmtExecHelper<T> implements DaoStmtExec<T> {
 	
 	
 	
-	private void requestGenerateStmt() throws SQLException {
-		for (DaoStmt<T> eachStatement : this.sqlStatements) {
+	private void requestGenerateStmt(List<DaoStmt<T>> stmts) throws SQLException {
+		for (DaoStmt<T> eachStatement : stmts) {
 			eachStatement.generateStmt();			
 		}
 	}
 	
 	
 	
-	private void requestExecuteStmt() throws SQLException {
-		for (DaoStmt<T> eachStatement : this.sqlStatements) {
-			eachStatement.executeStmt();
-			addToResultset(eachStatement.getResultset());
+	private List<T> requestExecuteStmt(List<DaoStmt<T>> stmts) throws SQLException {
+		List<T> results = new ArrayList<>();
+		
+		for (DaoStmt<T> eachStmt : stmts) {
+			eachStmt.executeStmt();
+			results = addToResults(eachStmt, results);
 		}
+		
+		return results;
 	}
 	
 	
 	
-	private void addToResultset(List<T> stmtResults) {
+	private List<T> addToResults(DaoStmt<T> stmt, List<T> results) {
+		List<T> stmtResults = stmt.getResultset();
+		
 		for (T eachResult : stmtResults) {
-			this.resultset.add(eachResult);
+			results.add(eachResult);
 		}
+		
+		return results;
 	}
 	
 	
@@ -144,27 +110,97 @@ public final class DaoStmtExecHelper<T> implements DaoStmtExec<T> {
 		try {
 			return tryToGetResultset();
 			
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
+			logException(e);
 			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
 		}
 	}
 	
 	
 	
-	private List<T> tryToGetResultset() throws CloneNotSupportedException {
-		try { 
-			List<T> results = new ArrayList<>();
-			
-			for (T eachResult : this.resultset) {
-				@SuppressWarnings("unchecked")
-				T resultCloned = (T) eachResult.getClass().getMethod("clone").invoke(eachResult);
-				results.add(resultCloned);
+	private List<T> tryToGetResultset() throws CloneNotSupportedException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		List<T> results = new ArrayList<>();
+		
+		for (T eachResult : this.resultset) {
+			@SuppressWarnings("unchecked")
+			T resultCloned = (T) eachResult.getClass().getMethod("clone").invoke(eachResult);
+			results.add(resultCloned);
+		}
+		
+		return results;
+	}
+	
+	
+	
+	private void checkArgument(List<DaoStmtExecOption<T>> options, Class<? extends DaoStmt<T>> classOfStmt, Class<T> classOfT) {
+		if (options == null) {
+			logException(new NullPointerException("options" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (classOfStmt == null) {
+			logException(new NullPointerException("classOfStmt" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("classOfStmt" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (classOfT == null) {
+			logException(new NullPointerException("classOfT" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("classOfT" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (options.isEmpty()) {
+			logException(new IllegalArgumentException("options" + SystemMessage.EMPTY_ARGUMENT));
+			throw new IllegalArgumentException("options" + SystemMessage.EMPTY_ARGUMENT);
+		}
+		
+		
+		checkEachOption(options);
+	}
+	
+	
+	
+	private void checkEachOption(List<DaoStmtExecOption<T>> options) {
+		for (DaoStmtExecOption<T> eachOption: options) {
+			if (eachOption.recordInfo == null) {
+				logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
+				throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 			}
 			
-			return results;
 			
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			throw new CloneNotSupportedException();
-		} 	
+			if (eachOption.schemaName == null) {
+				logException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));
+				throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
+			}
+			
+			
+			if (eachOption.conn == null) {
+				logException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
+				throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+			}
+		}
+	}	
+	
+	
+	
+	private void checkBuild(List<DaoStmt<T>> stmts) {
+		if (stmts.isEmpty()) {
+			logException(new NullPointerException("sqlStatements" + SystemMessage.EMPTY_ARGUMENT));
+			throw new IllegalArgumentException("sqlStatements" + SystemMessage.EMPTY_ARGUMENT);
+		}
 	}
+	
+	
+	
+	protected void logException(Exception e) {
+		Class<?> clazz = stmtClass;
+		
+		if (clazz == null)
+			clazz = this.getClass();
+		
+		Logger logger = LogManager.getLogger(clazz);
+		logger.error(e.getMessage(), e);
+	}	
 }

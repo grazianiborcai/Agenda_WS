@@ -3,55 +3,55 @@ package br.com.gda.dao;
 public enum DaoOperation {
 	INSERT("INSERT", true) {
 		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
-			return new DaoStmtBuilderInsert(option);
+			return new DaoStmtBuilderInsert(option, clazz);
 		}
 	}, 
 	
 	HARD_DELETE("DELETE", true) {
 		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
-			return new DaoStmtBuilderDeleteHard(option);
+			return new DaoStmtBuilderDeleteHard(option, clazz);
 		}
 	}, 
 	
 	SOFT_DELETE("DELETE", true) {
 		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
-			return new DaoStmtBuilderDeleteSoft(option);
+			return new DaoStmtBuilderDeleteSoft(option, clazz);
 		}
 	}, 
 	
 	UPDATE("UPDATE", true) {
 		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
-			return new DaoStmtBuilderUpdate(option);
+			return new DaoStmtBuilderUpdate(option, clazz);
 		}
 	}, 
 	
 	SELECT("SELECT", false) {
 		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
-			return new DaoStmtBuilderSelect(option);
+			return new DaoStmtBuilderSelect(option, clazz);
 		}
 	};
 	
 	
 	private final String operationSymbol;
-	private final boolean isWrittable;
+	private final boolean isWritable;
 	
 	
 	
-	private DaoOperation(String operationSymbol, boolean isWrittable) {
-		this.operationSymbol = operationSymbol;
-		this.isWrittable = isWrittable;
+	private DaoOperation(String symbol, boolean writable) {
+		operationSymbol = symbol;
+		isWritable = writable;
 	}
 	
 	
 	
-	public boolean isWrittable() {
-		return isWrittable;
+	public boolean isWritable() {
+		return isWritable;
 	}
 	
 	
 	
 	@Override public String toString() {
-		return this.operationSymbol;
+		return operationSymbol;
 	}
 	
 	

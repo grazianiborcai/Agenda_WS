@@ -130,7 +130,7 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 	
 	
 	private void execute() throws SQLException {
-		if (operation.isWrittable()) {
+		if (operation.isWritable()) {
 			int affectRow = this.stmt.executeUpdate();
 			
 			if (affectRow <= 0)

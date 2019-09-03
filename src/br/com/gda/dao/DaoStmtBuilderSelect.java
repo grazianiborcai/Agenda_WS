@@ -5,8 +5,8 @@ import java.util.List;
 
 final class DaoStmtBuilderSelect extends DaoStmtBuilderTemplate {
 
-	DaoStmtBuilderSelect(DaoStmtBuilderOption option) {
-		super(option, DaoStmtBuilderSelect.class);
+	DaoStmtBuilderSelect(DaoStmtBuilderOption option, Class<?> clazz) {
+		super(option, clazz);
 	}
 	
 	

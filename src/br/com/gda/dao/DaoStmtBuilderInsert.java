@@ -5,8 +5,8 @@ import java.util.List;
 
 final class DaoStmtBuilderInsert extends DaoStmtBuilderTemplate {	
 	
-	DaoStmtBuilderInsert(DaoStmtBuilderOption option) {
-		super(enforcePolicy(option), DaoStmtBuilderInsert.class);
+	DaoStmtBuilderInsert(DaoStmtBuilderOption option, Class<?> clazz) {
+		super(enforcePolicy(option), clazz);
 	}
 	
 	

@@ -4,8 +4,8 @@ import java.util.List;
 
 final class DaoStmtBuilderDeleteHard extends DaoStmtBuilderTemplate {
 
-	DaoStmtBuilderDeleteHard(DaoStmtBuilderOption option) {
-		super(option, DaoStmtBuilderDeleteHard.class);
+	DaoStmtBuilderDeleteHard(DaoStmtBuilderOption option, Class<?> clazz) {
+		super(option, clazz);
 	}
 	
 	

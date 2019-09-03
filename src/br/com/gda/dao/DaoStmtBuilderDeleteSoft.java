@@ -6,8 +6,8 @@ import br.com.gda.business.masterData.info.common.RecordMode;
 
 final class DaoStmtBuilderDeleteSoft extends DaoStmtBuilderTemplate {
 
-	DaoStmtBuilderDeleteSoft(DaoStmtBuilderOption option) {
-		super(option, DaoStmtBuilderDeleteSoft.class);
+	DaoStmtBuilderDeleteSoft(DaoStmtBuilderOption option, Class<?> clazz) {
+		super(option, clazz);
 	}
 	
 	
