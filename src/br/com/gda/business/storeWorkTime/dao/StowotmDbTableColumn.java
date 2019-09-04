@@ -26,7 +26,7 @@ public final class StowotmDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public StowotmDbTableColumn() {
-		super();
+		super(StowotmDbTableColumn.class);
 	}
 	
 	

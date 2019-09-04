@@ -41,7 +41,7 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public PayordemDbTableColumn() {
-		super();
+		super(PayordemDbTableColumn.class);
 	}
 	
 	

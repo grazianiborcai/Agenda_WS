@@ -43,7 +43,7 @@ public final class SchedineDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public SchedineDbTableColumn() {
-		super();
+		super(SchedineDbTableColumn.class);
 	}
 	
 	

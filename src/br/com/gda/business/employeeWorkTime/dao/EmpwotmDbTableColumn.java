@@ -25,7 +25,7 @@ public final class EmpwotmDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public EmpwotmDbTableColumn() {
-		super();
+		super(EmpwotmDbTableColumn.class);
 	}
 	
 	

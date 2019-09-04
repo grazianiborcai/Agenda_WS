@@ -27,7 +27,7 @@ public final class StoreDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public StoreDbTableColumn() {
-		super();
+		super(StoreDbTableColumn.class);
 	}
 	
 	

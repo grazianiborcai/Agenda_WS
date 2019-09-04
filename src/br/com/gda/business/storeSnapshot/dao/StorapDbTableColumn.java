@@ -29,7 +29,7 @@ public final class StorapDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public StorapDbTableColumn() {
-		super();
+		super(StorapDbTableColumn.class);
 	}
 	
 	

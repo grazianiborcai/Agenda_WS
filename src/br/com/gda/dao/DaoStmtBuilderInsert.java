@@ -8,31 +8,14 @@ import br.com.gda.dao.common.DaoOptionValue;
 final class DaoStmtBuilderInsert extends DaoStmtBuilderTemplate {	
 	
 	DaoStmtBuilderInsert(DaoStmtBuilderOption option, Class<?> clazz) {
-		super(enforcePolicy(option), clazz);
+		super(enforceOption(option), clazz);
 	}
 	
 	
 	
-	static private DaoStmtBuilderOption enforcePolicy(DaoStmtBuilderOption option) {
-		DaoStmtBuilderOption resultOption = option;
-		
-		resultOption = enforceIgnoreLookup(resultOption);
-		resultOption = enforceIgnoreAutoIncremented(resultOption);
-		
-		return option;
-	}
-	
-	
-	
-	static private DaoStmtBuilderOption enforceIgnoreLookup(DaoStmtBuilderOption option) {
-		option.ignoreLookUpColumn = true;
-		return option;
-	}
-	
-	
-	
-	static private DaoStmtBuilderOption enforceIgnoreAutoIncremented(DaoStmtBuilderOption option) {
-		option.ignoreAutoIncrementedColumn = DaoOptionValue.IGNORE_AUTO_INCREMENTED;
+	static private DaoStmtBuilderOption enforceOption(DaoStmtBuilderOption option) {
+		option.ignoreLookUpColumn = DaoOptionValue.IGNORE_LOOKUP;
+		option.ignoreAutoIncrementedColumn = DaoOptionValue.IGNORE_AUTO_INCREMENTED;		
 		return option;
 	}
 	
@@ -44,7 +27,7 @@ final class DaoStmtBuilderInsert extends DaoStmtBuilderTemplate {
 	
 	
 	
-	@Override protected String buildStmtHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins) {
+	@Override protected String buildStmtHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins, boolean lockWrite) {
 		StringBuilder resultStatement = new StringBuilder();
 		
 		resultStatement = appendOperation(resultStatement);

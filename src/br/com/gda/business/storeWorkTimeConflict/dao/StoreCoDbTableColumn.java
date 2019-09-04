@@ -12,7 +12,7 @@ public final class StoreCoDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public StoreCoDbTableColumn() {
-		super();
+		super(StoreCoDbTableColumn.class);
 	}
 	
 	

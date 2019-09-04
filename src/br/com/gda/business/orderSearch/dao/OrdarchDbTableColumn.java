@@ -23,7 +23,7 @@ public final class OrdarchDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public OrdarchDbTableColumn() {
-		super();
+		super(OrdarchDbTableColumn.class);
 	}
 	
 	

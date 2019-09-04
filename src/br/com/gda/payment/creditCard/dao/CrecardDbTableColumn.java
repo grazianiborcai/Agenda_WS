@@ -29,7 +29,7 @@ public final class CrecardDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public CrecardDbTableColumn() {
-		super();
+		super(CrecardDbTableColumn.class);
 	}
 	
 	

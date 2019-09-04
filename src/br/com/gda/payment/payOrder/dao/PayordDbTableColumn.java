@@ -29,7 +29,7 @@ public final class PayordDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public PayordDbTableColumn() {
-		super();
+		super(PayordDbTableColumn.class);
 	}
 	
 	

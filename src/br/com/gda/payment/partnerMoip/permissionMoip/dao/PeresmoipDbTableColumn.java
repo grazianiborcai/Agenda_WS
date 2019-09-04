@@ -20,7 +20,7 @@ public final class PeresmoipDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public PeresmoipDbTableColumn() {
-		super();
+		super(PeresmoipDbTableColumn.class);
 	}
 	
 	

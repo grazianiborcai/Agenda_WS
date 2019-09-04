@@ -48,7 +48,7 @@ public final class AddresnapDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public AddresnapDbTableColumn() {
-		super();
+		super(AddresnapDbTableColumn.class);
 	}
 	
 	

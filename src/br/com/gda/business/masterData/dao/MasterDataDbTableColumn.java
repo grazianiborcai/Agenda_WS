@@ -49,7 +49,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public MasterDataDbTableColumn() {
-		super();
+		super(MasterDataDbTableColumn.class);
 	}
 	
 	

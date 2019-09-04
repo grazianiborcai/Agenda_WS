@@ -30,7 +30,7 @@ public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public PersonDbTableColumn() {
-		super();
+		super(PersonDbTableColumn.class);
 	}
 	
 	

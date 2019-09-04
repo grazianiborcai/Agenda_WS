@@ -26,7 +26,7 @@ public final class PlanataDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public PlanataDbTableColumn() {
-		super();
+		super(PlanataDbTableColumn.class);
 	}
 	
 	

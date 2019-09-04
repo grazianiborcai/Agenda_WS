@@ -28,7 +28,7 @@ public final class OrdistDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public OrdistDbTableColumn() {
-		super();
+		super(OrdistDbTableColumn.class);
 	}
 	
 	

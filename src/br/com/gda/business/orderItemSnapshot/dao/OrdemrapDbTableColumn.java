@@ -36,7 +36,7 @@ public final class OrdemrapDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public OrdemrapDbTableColumn() {
-		super();
+		super(OrdemrapDbTableColumn.class);
 	}
 	
 	

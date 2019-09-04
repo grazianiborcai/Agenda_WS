@@ -24,7 +24,7 @@ public final class CuslisDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public CuslisDbTableColumn() {
-		super();
+		super(CuslisDbTableColumn.class);
 	}
 	
 	

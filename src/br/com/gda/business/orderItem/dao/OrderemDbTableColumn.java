@@ -33,7 +33,7 @@ public final class OrderemDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public OrderemDbTableColumn() {
-		super();
+		super(OrderemDbTableColumn.class);
 	}
 	
 	

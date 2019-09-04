@@ -20,7 +20,7 @@ public final class UpswdDbTableColumn extends DaoDbTableColumnTemplate {
 	Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public UpswdDbTableColumn() {
-		super();
+		super(UpswdDbTableColumn.class);
 	}
 	
 	

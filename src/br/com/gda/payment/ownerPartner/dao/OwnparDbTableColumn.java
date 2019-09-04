@@ -18,7 +18,7 @@ public final class OwnparDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public OwnparDbTableColumn() {
-		super();
+		super(OwnparDbTableColumn.class);
 	}
 	
 	

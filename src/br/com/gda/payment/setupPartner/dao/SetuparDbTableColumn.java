@@ -20,7 +20,7 @@ public final class SetuparDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public SetuparDbTableColumn() {
-		super();
+		super(SetuparDbTableColumn.class);
 	}
 	
 	

@@ -27,7 +27,7 @@ public final class CartemDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public CartemDbTableColumn() {
-		super();
+		super(CartemDbTableColumn.class);
 	}
 	
 	

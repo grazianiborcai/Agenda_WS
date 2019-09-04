@@ -42,7 +42,7 @@ public final class OrdnapDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public OrdnapDbTableColumn() {
-		super();
+		super(OrdnapDbTableColumn.class);
 	}
 	
 	

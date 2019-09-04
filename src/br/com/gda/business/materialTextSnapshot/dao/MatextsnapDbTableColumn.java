@@ -25,7 +25,7 @@ public final class MatextsnapDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public MatextsnapDbTableColumn() {
-		super();
+		super(MatextsnapDbTableColumn.class);
 	}
 	
 	

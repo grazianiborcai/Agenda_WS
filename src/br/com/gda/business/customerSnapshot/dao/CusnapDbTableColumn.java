@@ -26,7 +26,7 @@ public final class CusnapDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public CusnapDbTableColumn() {
-		super();
+		super(CusnapDbTableColumn.class);
 	}
 	
 	

@@ -17,7 +17,7 @@ public final class FormAddressDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public FormAddressDbTableColumn() {
-		super();
+		super(FormAddressDbTableColumn.class);
 	}
 	
 	

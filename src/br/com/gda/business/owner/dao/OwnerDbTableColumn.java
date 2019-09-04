@@ -20,7 +20,7 @@ public final class OwnerDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public OwnerDbTableColumn() {
-		super();
+		super(OwnerDbTableColumn.class);
 	}
 	
 	

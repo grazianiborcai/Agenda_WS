@@ -26,7 +26,7 @@ public final class PersonCusDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public PersonCusDbTableColumn() {
-		super();
+		super(PersonCusDbTableColumn.class);
 	}
 	
 	

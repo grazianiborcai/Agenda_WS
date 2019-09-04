@@ -18,7 +18,7 @@ public final class EmailDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public EmailDbTableColumn() {
-		super();
+		super(EmailDbTableColumn.class);
 	}
 	
 	

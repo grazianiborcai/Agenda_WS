@@ -22,7 +22,7 @@ public final class PersolisDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public PersolisDbTableColumn() {
-		super();
+		super(PersolisDbTableColumn.class);
 	}
 	
 	

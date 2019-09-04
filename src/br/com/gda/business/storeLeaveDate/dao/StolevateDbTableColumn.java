@@ -25,7 +25,7 @@ public final class StolevateDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public StolevateDbTableColumn() {
-		super();
+		super(StolevateDbTableColumn.class);
 	}
 	
 	

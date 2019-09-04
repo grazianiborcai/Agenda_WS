@@ -20,7 +20,7 @@ public final class SysparDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public SysparDbTableColumn() {
-		super();
+		super(SysparDbTableColumn.class);
 	}
 	
 	

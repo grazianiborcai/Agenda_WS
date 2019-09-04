@@ -18,7 +18,7 @@ public final class OwntoreDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public OwntoreDbTableColumn() {
-		super();
+		super(OwntoreDbTableColumn.class);
 	}
 	
 	

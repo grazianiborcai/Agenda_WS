@@ -22,7 +22,7 @@ public final class EmplisDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public EmplisDbTableColumn() {
-		super();
+		super(EmplisDbTableColumn.class);
 	}
 	
 	

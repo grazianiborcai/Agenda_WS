@@ -18,7 +18,7 @@ public final class CounparDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public CounparDbTableColumn() {
-		super();
+		super(CounparDbTableColumn.class);
 	}
 	
 	

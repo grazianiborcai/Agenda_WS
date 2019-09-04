@@ -25,7 +25,7 @@ public final class UselistDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public UselistDbTableColumn() {
-		super();
+		super(UselistDbTableColumn.class);
 	}
 	
 	

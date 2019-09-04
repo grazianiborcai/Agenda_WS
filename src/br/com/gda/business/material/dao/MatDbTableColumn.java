@@ -28,7 +28,7 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public MatDbTableColumn() {
-		super();
+		super(MatDbTableColumn.class);
 	}
 	
 	

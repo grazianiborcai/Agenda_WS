@@ -18,7 +18,7 @@ public final class WokaymoipDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public WokaymoipDbTableColumn() {
-		super();
+		super(WokaymoipDbTableColumn.class);
 	}
 	
 	

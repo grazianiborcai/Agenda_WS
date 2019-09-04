@@ -20,7 +20,7 @@ public final class CartDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public CartDbTableColumn() {
-		super();
+		super(CartDbTableColumn.class);
 	}
 	
 	

@@ -39,7 +39,7 @@ public final class SchedistDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public SchedistDbTableColumn() {
-		super();
+		super(SchedistDbTableColumn.class);
 	}
 	
 	

@@ -36,7 +36,7 @@ public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public PhoneDbTableColumn() {
-		super();
+		super(PhoneDbTableColumn.class);
 	}
 	
 	

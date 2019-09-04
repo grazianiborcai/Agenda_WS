@@ -20,7 +20,7 @@ public final class UsernameDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public UsernameDbTableColumn() {
-		super();
+		super(UsernameDbTableColumn.class);
 	}
 	
 	

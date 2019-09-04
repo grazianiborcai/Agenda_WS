@@ -48,7 +48,7 @@ public final class SchedinapDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public SchedinapDbTableColumn() {
-		super();
+		super(SchedinapDbTableColumn.class);
 	}
 	
 	

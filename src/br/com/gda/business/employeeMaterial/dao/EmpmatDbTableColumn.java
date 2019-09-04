@@ -19,7 +19,7 @@ public final class EmpmatDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public EmpmatDbTableColumn() {
-		super();
+		super(EmpmatDbTableColumn.class);
 	}
 	
 	

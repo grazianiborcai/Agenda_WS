@@ -47,7 +47,7 @@ public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public AddressDbTableColumn() {
-		super();
+		super(AddressDbTableColumn.class);
 	}
 	
 	

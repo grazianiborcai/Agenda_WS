@@ -18,7 +18,7 @@ final class DaoStmtBuilderDeleteSoft extends DaoStmtBuilderTemplate {
 	
 	
 	
-	@Override protected String buildStmtHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins) {
+	@Override protected String buildStmtHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins, boolean lockWrite) {
 		StringBuilder resultStatement = new StringBuilder();
 		
 		resultStatement = appendOperation(resultStatement);

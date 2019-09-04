@@ -28,7 +28,7 @@ public final class CusarchDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public CusarchDbTableColumn() {
-		super();
+		super(CusarchDbTableColumn.class);
 	}
 	
 	

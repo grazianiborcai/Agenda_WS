@@ -37,7 +37,7 @@ public final class SchedarchDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public SchedarchDbTableColumn() {
-		super();
+		super(SchedarchDbTableColumn.class);
 	}
 	
 	

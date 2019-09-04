@@ -23,7 +23,7 @@ public final class MatextDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public MatextDbTableColumn() {
-		super();
+		super(MatextDbTableColumn.class);
 	}
 	
 	

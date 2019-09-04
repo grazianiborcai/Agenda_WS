@@ -21,7 +21,7 @@ public final class MatockDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public MatockDbTableColumn() {
-		super();
+		super(MatockDbTableColumn.class);
 	}
 	
 	

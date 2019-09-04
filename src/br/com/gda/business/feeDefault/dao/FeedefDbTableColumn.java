@@ -18,7 +18,7 @@ public final class FeedefDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public FeedefDbTableColumn() {
-		super();
+		super(FeedefDbTableColumn.class);
 	}
 	
 	

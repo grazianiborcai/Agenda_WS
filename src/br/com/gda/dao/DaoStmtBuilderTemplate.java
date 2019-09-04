@@ -16,6 +16,7 @@ abstract class DaoStmtBuilderTemplate implements DaoStmtBuilder {
 	private String whereClause;
 	private List<DaoColumn> columns;
 	private List<DaoJoin> joins;
+	private boolean lockWrite;
 	private Class<?> childClass;
 	
 	
@@ -27,6 +28,7 @@ abstract class DaoStmtBuilderTemplate implements DaoStmtBuilder {
 		columns = buildColumns(option.columns, option.ignoreLookUpColumn, option.ignoreAutoIncrementedColumn);
 		whereClause = option.whereClause;
 		joins = option.joins;
+		lockWrite = option.lockWrite;
 		childClass = clazz;
 	}
 	
@@ -82,12 +84,12 @@ abstract class DaoStmtBuilderTemplate implements DaoStmtBuilder {
 	
 	public String buildStmt() {
 		checkStmtBuild();
-		return buildStmtHook(schemaName, tableName, whereClause, columns, joins);	//TODO: Defensive Copy ?
+		return buildStmtHook(schemaName, tableName, whereClause, columns, joins, lockWrite);	//TODO: Defensive Copy ?
 	}
 	
 	
 	
-	protected String buildStmtHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins) {
+	protected String buildStmtHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins, boolean lockWrite) {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);

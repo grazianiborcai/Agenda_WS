@@ -22,7 +22,7 @@ public final class EmposDbTableColumn extends DaoDbTableColumnTemplate {
 	Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public EmposDbTableColumn() {
-		super();
+		super(EmposDbTableColumn.class);
 	}
 	
 	

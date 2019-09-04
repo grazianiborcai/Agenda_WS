@@ -28,7 +28,7 @@ public final class StoparDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public StoparDbTableColumn() {
-		super();
+		super(StoparDbTableColumn.class);
 	}
 	
 	

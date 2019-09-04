@@ -18,7 +18,7 @@ public final class EmabodyDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public EmabodyDbTableColumn() {
-		super();
+		super(EmabodyDbTableColumn.class);
 	}
 	
 	

@@ -28,7 +28,7 @@ public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public MatoreDbTableColumn() {
-		super();
+		super(MatoreDbTableColumn.class);
 	}
 	
 	

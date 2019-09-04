@@ -25,7 +25,7 @@ public final class StolisDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public StolisDbTableColumn() {
-		super();
+		super(StolisDbTableColumn.class);
 	}
 	
 	

@@ -28,7 +28,7 @@ public final class OrderveDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public OrderveDbTableColumn() {
-		super();
+		super(OrderveDbTableColumn.class);
 	}
 	
 	

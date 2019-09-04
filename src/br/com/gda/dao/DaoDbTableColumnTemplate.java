@@ -5,6 +5,10 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.gda.common.SystemMessage;
 
 public class DaoDbTableColumnTemplate implements DaoDbTableColumn {
@@ -14,22 +18,25 @@ public class DaoDbTableColumnTemplate implements DaoDbTableColumn {
 	protected static final boolean NEGATIVE = false;
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
+	private Class<?> childClass;
 	
 	
-	protected DaoDbTableColumnTemplate() {		
-		buildTableColumns();
+	protected DaoDbTableColumnTemplate(Class<?> clazz) {		
+		childClass = clazz;
+		tableColumns = buildTableColumns();
 	}
 	
 	
 	
-	private void buildTableColumns() {
-		tableColumns = buildTableColumnsHook();
+	private Hashtable<String, List<DaoColumn>> buildTableColumns() {
+		return buildTableColumnsHook();
 	}
 	
 	
 	
 	protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -52,10 +59,7 @@ public class DaoDbTableColumnTemplate implements DaoDbTableColumn {
 	
 	@Override public List<DaoColumn> getTableColumnsAsList(String tableName) {
 		List<DaoColumn> columns = tableColumns.get(tableName);
-		
-		if (columns == null)
-			throw new IllegalArgumentException(tableName + " " + SystemMessage.TABLE_NOT_FOUND);
-		
+		checkColumns(tableName, columns);		
 		
 		List<DaoColumn> resultColumns = new ArrayList<>();
 		
@@ -65,4 +69,25 @@ public class DaoDbTableColumnTemplate implements DaoDbTableColumn {
 		
 		return resultColumns;
 	}
+	
+	
+	
+	private void checkColumns(String tableName, List<DaoColumn> columns) {
+		if (columns == null) {
+			logException(new IllegalArgumentException(tableName + " " + SystemMessage.TABLE_NOT_FOUND));
+			throw new IllegalArgumentException(tableName + " " + SystemMessage.TABLE_NOT_FOUND);
+		}
+	}
+	
+	
+	
+	protected void logException(Exception e) {
+		Class<?> clazz = childClass;
+		
+		if (clazz == null)
+			clazz = this.getClass();
+		
+		Logger logger = LogManager.getLogger(clazz);
+		logger.error(e.getMessage(), e);
+	}	
 }

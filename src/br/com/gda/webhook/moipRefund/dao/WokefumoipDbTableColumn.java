@@ -18,7 +18,7 @@ public final class WokefumoipDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public WokefumoipDbTableColumn() {
-		super();
+		super(WokefumoipDbTableColumn.class);
 	}
 	
 	

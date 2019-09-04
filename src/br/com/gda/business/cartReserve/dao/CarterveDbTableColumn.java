@@ -29,7 +29,7 @@ public final class CarterveDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public CarterveDbTableColumn() {
-		super();
+		super(CarterveDbTableColumn.class);
 	}
 	
 	

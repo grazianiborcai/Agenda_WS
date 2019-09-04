@@ -19,7 +19,7 @@ public final class FeewnerDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public FeewnerDbTableColumn() {
-		super();
+		super(FeewnerDbTableColumn.class);
 	}
 	
 	

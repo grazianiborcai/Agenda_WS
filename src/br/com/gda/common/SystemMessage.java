@@ -23,6 +23,7 @@ public final class SystemMessage {
 	// System
 	public static final String ACTION_NOT_EXECUTED = "Action has not been executed";
 	public static final String ACTION_ALREADY_EXECUTED = "Action has already been executed";
+	public static final String ACTION_ALREADY_INITIALIZED = "Action has already been initialized";
 	public static final String ACTION_NOT_INIT = " is NULL or EMPTY. Action was not initialized as expected";
 	public static final String AGED_DATE = "Date is in the past";
 	public static final String ARGUMENT_DONT_MATCH = " arguments don't match";

@@ -36,7 +36,7 @@ public final class PhonapDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public PhonapDbTableColumn() {
-		super();
+		super(PhonapDbTableColumn.class);
 	}
 	
 	

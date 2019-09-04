@@ -23,7 +23,7 @@ public final class EmpnapDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public EmpnapDbTableColumn() {
-		super();
+		super(EmpnapDbTableColumn.class);
 	}
 	
 	

@@ -25,7 +25,7 @@ public final class UserapDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public UserapDbTableColumn() {
-		super();
+		super(UserapDbTableColumn.class);
 	}
 	
 	

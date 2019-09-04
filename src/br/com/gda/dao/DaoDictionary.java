@@ -10,6 +10,7 @@ public final class DaoDictionary {
 	public static final String INTO = "INTO";
 	public static final String IS_NULL = "IS NULL";
 	public static final String LESS_THAN_OR_EQUAL_TO = "<=";
+	public static final String LOCK_WRITE = "LOCK IN SHARE MODE";
 	public static final String ON = "ON";
 	public static final String OR = "OR";
 	public static final String PARENTHESIS_OPENING = "(";

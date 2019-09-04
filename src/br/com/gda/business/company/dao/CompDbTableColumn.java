@@ -29,7 +29,7 @@ public final class CompDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public CompDbTableColumn() {
-		super();
+		super(CompDbTableColumn.class);
 	}
 	
 	

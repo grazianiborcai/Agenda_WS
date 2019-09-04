@@ -1,156 +1,134 @@
 package br.com.gda.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.common.SystemMessage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import br.com.gda.common.SystemMessage;
+//TODO: trocar por Template ?
 public final class DaoStmtHelper<T> implements DaoStmt<T> {
 	private DaoOperation operation;
 	private DaoStmtOption<T> option;
-	private String stmtSkeleton;
+	private String skeleton;
 	private PreparedStatement stmt;
-	ResultSet stmtResultSet;
+	private ResultSet stmtResultSet;
 	private List<T> resultset;
-	private Class<?> childClazz;
+	private Class<?> childClass;
 	
 	
-	public DaoStmtHelper(DaoOperation operation, DaoStmtOption<T> option, Class<?> clazz) {
-		if (operation == null)
-			throw new NullPointerException("operation" + SystemMessage.NULL_ARGUMENT);
+	public DaoStmtHelper(DaoOperation stmtOperation, DaoStmtOption<T> stmtOption, Class<?> clazz) {
+		checkArgument(stmtOperation, stmtOption, clazz);		
 		
-		if (option == null)
-			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
-
-		if (option.conn == null)
-			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
-		
-		if (option.schemaName == null)
-			throw new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT);
-		
-		
-		this.operation = operation;
-		childClazz = clazz;
-		makeDefensiveCopy(option);		
-	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	private void makeDefensiveCopy(DaoStmtOption<T> option) {
-		try {
-			this.option = (DaoStmtOption<T>) option.clone();
-			
-		} catch (CloneNotSupportedException e) {
-			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
-		}
+		operation = stmtOperation;
+		childClass = clazz;
+		option = makeDefensiveCopy(stmtOption);	
 	}
 		
 	
 	
 	@Override public void generateStmt() throws SQLException {
-		buildStmtSkeleton();
-		createStmt();
-		translateStmtParam();
+		if (isGenerated() == false) {		
+			skeleton = buildStmtSkeleton(option, operation);
+			stmt = prepareStmt(option.conn, skeleton);
+			stmt = translateStmtParam(option.stmtParamTranslator, stmt, option.recordInfo);
+		}
 	}
 	
 	
 	
-	private void buildStmtSkeleton() {
+	private String buildStmtSkeleton(DaoStmtOption<T> stmtOption, DaoOperation stmtOperation) {
 		DaoStmtBuilderOption builderOption = new DaoStmtBuilderOption();
-		builderOption.columns = this.option.columns;
-		builderOption.schemaName = this.option.schemaName;
-		builderOption.tableName = this.option.tableName;
-		builderOption.whereClause = this.option.whereClause;
-		builderOption.joins = this.option.joins;
+		builderOption.columns = stmtOption.columns;
+		builderOption.schemaName = stmtOption.schemaName;
+		builderOption.tableName = stmtOption.tableName;
+		builderOption.whereClause = stmtOption.whereClause;
+		builderOption.joins = stmtOption.joins;
 		
-		DaoStmtBuilder builder = this.operation.factorySqlStmtBuilder(builderOption, childClazz);
-		this.stmtSkeleton = builder.buildStmt();
+		DaoStmtBuilder builder = stmtOperation.factorySqlStmtBuilder(builderOption, childClass);
+		return builder.buildStmt();
 	}
 	
 	
 	
-	private void createStmt() throws SQLException {
-		this.stmt = this.option.conn.prepareStatement(this.stmtSkeleton);
+	private PreparedStatement prepareStmt(Connection stmtConn, String stmtSkeleton) throws SQLException {
+		return stmtConn.prepareStatement(stmtSkeleton);
 	}
 	
 	
 	
-	private void translateStmtParam() throws SQLException {
-		if (option.stmtParamTranslator != null) 
-			this.stmt = option.stmtParamTranslator.translateStmtParam(stmt, option.recordInfo);
+	private PreparedStatement translateStmtParam(DaoStmtParamTranslator<T> stmtTranslator, PreparedStatement stmtSql, T recordInfo) throws SQLException {
+		if (stmtTranslator != null) 
+			return stmtTranslator.translateStmtParam(stmtSql, recordInfo);
+		
+		return stmtSql;
 	}
 	
 	
 
 	@Override public boolean checkStmtGeneration() {
-		return tryToCheckStmtGeneration();
+		return tryToCheckStmtGeneration(option.conn);
 	}
 	
 	
 	
-	private boolean tryToCheckStmtGeneration() {
+	private boolean tryToCheckStmtGeneration(Connection stmtConn) {
 		try {
-			checkConnection();
-			checkStmtSkeleton();
+			checkConnection(stmtConn);	
+			generateStmt();
 			return true;
 			
 		} catch (Exception e) {
+			logException(e);
 			return false;
 		}
 	}
 	
 	
 	
-	private void checkConnection() throws SQLException {
-		PreparedStatement tester = this.option.conn.prepareStatement("SELECT 1;");
+	private void checkConnection(Connection stmtConn) throws SQLException {
+		PreparedStatement tester = stmtConn.prepareStatement("SELECT 1;");
 		tester.executeQuery();
-	}	
-	
-	
-	
-	private void checkStmtSkeleton() throws Exception {
-		if (this.stmtSkeleton == null)
-			buildStmtSkeleton();
-		
-		if (this.stmtSkeleton == null)
-			throw new IllegalStateException(SystemMessage.ERROR_CREATING_SKELETON_STATEMENT);
 	}	
 	
 	
 
 	@Override public void executeStmt() throws SQLException {
-		execute();
-		parseResultSet();
+		checkBeforeExecution();		
+		stmtResultSet = execute(operation, stmt);
+		resultset = parseResultSet(stmtResultSet, option.resultParser, option.recordInfo);
 	}
 	
 	
 	
-	private void execute() throws SQLException {
-		if (operation.isWritable()) {
-			int affectRow = this.stmt.executeUpdate();
+	private ResultSet execute(DaoOperation stmtOperation, PreparedStatement sqlStmt) throws SQLException {
+		if (stmtOperation.isWritable()) {
+			int affectRow = sqlStmt.executeUpdate();
+			checkAffectedRow(affectRow);
+			return null;
+		} 
 			
-			if (affectRow <= 0)
-				throw new SQLException(SystemMessage.NO_AFFECT_ROWS_IN_DB);
-		} else {
-			this.stmtResultSet = this.stmt.executeQuery();
-		}
+		return sqlStmt.executeQuery();
 	}
 	
 	
 	
-	private void parseResultSet() throws SQLException {
-		this.resultset = new ArrayList<>();
+	private List<T> parseResultSet(ResultSet sqlResult, DaoResultParser<T> parser, T recordInfo) throws SQLException {
+		List<T> results = new ArrayList<>();
 		
-		if (this.option.resultParser == null) {
-			this.resultset.add(this.option.recordInfo);
+		if (parser == null) {
+			results.add(recordInfo);
 		} else {
 			long lastId = getLastInsertId();
-			this.resultset = option.resultParser.parseResult(this.stmtResultSet, lastId);
+			results = parser.parseResult(sqlResult, lastId);
 		}
+		
+		return results;
 	}
 	
 	
@@ -165,19 +143,101 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 
 	
 	@Override public List<T> getResultset() {	
-		return this.resultset;
-	}
-		
-
-	
-	@Override public String toString() {
-		//TODO: realmente necessário ? Pode ser eliminado ? Gera problema se nulo
-		return this.stmt.toString();
+		checkExecuted();
+		return resultset;
 	}
 	
 	
 	
 	@Override public DaoStmt<T> getNewInstance() {
-		return new DaoStmtHelper<T>(operation, option, childClazz);
+		return new DaoStmtHelper<T>(operation, option, childClass);
 	}
+	
+	
+	
+	private boolean isGenerated() {
+		if(skeleton == null)
+			return false;
+		
+		return true;
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private DaoStmtOption<T> makeDefensiveCopy(DaoStmtOption<T> option) {
+		try {
+			return (DaoStmtOption<T>) option.clone();
+			
+		} catch (CloneNotSupportedException e) {
+			logException(e);
+			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
+		}
+	}	
+	
+	
+	
+	private void checkBeforeExecution() {
+		if (isGenerated() == false) {
+			logException(new NullPointerException(SystemMessage.OBJ_NOT_INITIALIED));
+			throw new NullPointerException(SystemMessage.OBJ_NOT_INITIALIED);
+		}
+	}
+	
+	
+	
+	private void checkExecuted() {
+		if (resultset == null) {
+			logException(new NullPointerException(SystemMessage.OBJ_NOT_INITIALIED));
+			throw new NullPointerException(SystemMessage.OBJ_NOT_INITIALIED);
+		}
+	}
+	
+	
+	
+	private void checkAffectedRow(int affectRow) throws SQLException {
+		if (affectRow <= 0) {
+			logException(new SQLException(SystemMessage.NO_AFFECT_ROWS_IN_DB));
+			throw new SQLException(SystemMessage.NO_AFFECT_ROWS_IN_DB);
+		}
+	}	
+	
+	
+	
+	private void checkArgument(DaoOperation operation, DaoStmtOption<T> option, Class<?> clazz) {
+		if (operation == null) {
+			logException(new NullPointerException("operation" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("operation" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option == null) {
+			logException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+
+		if (option.conn == null) {
+			logException(new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.conn" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.schemaName == null) {
+			logException(new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT);
+		}	
+	}	
+	
+	
+	
+	private void logException(Exception e) {
+		Class<?> clazz = childClass;
+		
+		if (clazz == null)
+			clazz = this.getClass();
+		
+		Logger logger = LogManager.getLogger(clazz);
+		logger.error(e.getMessage(), e);
+	}		
 }

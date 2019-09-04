@@ -26,7 +26,7 @@ public final class EmplevateDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	public EmplevateDbTableColumn() {
-		super();
+		super(EmplevateDbTableColumn.class);
 	}
 	
 	
