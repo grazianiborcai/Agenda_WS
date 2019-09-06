@@ -21,6 +21,7 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public long codSchedule;
 	public long codSnapshot;
 	public String codScheduleStatus;
+	public String codScheduleStatusOld;
 	public String txtScheduleStatus;
 	public long codOrder;
 	public int codOrderItem;

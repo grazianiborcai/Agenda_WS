@@ -833,4 +833,9 @@ public final class SystemMessage {
 	
 	// Schedule List
 	public static final String SCHEDULE_LIST_MANDATORY_FIELD_EMPTY = "Schedule-List: Mandatory field is empty";
+	
+	
+	
+	// Schedule Moviment
+	public static final String SCHEDULE_MOV_MANDATORY_FIELD_EMPTY = "Schedule-Moviment: Mandatory field is empty";
 }

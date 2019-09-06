@@ -8,6 +8,7 @@ import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineDelete;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceCancelled;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineEnforceLChanged;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineInsertSchedovm;
 import br.com.gda.business.scheduleLine.model.action.StdSchedineMergeToSelect;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineMergeUsername;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
@@ -46,13 +47,15 @@ public final class NodeSchedineCancel extends DeciTreeWriteTemplate<SchedineInfo
 		ActionLazy<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> enforceStatus = new LazySchedineEnforceCancelled(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> insertSchedovm = new LazySchedineInsertSchedovm(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> delete = new LazySchedineDelete(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(enforceStatus);
 		enforceStatus.addPostAction(nodeSnapshot);
-		nodeSnapshot.addPostAction(delete);
+		nodeSnapshot.addPostAction(insertSchedovm);
+		insertSchedovm.addPostAction(delete);
 		
 		actions.add(mergeToSelect);
 		return actions;

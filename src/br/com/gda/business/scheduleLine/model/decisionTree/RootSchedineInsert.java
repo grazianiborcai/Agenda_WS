@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
+import br.com.gda.business.scheduleLine.model.action.LazySchedineInsertSchedovm;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineNodeInsert;
 import br.com.gda.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
 import br.com.gda.business.scheduleLine.model.checker.SchedineCheckCus;
@@ -117,9 +118,11 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		ActionStd<SchedineInfo> nodeOrder = new NodeSchedineOrderL1(option).toAction();
 		ActionLazy<SchedineInfo> nodeInsert = new LazySchedineNodeInsert(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> insertSchedovm = new LazySchedineInsertSchedovm(option.conn, option.schemaName);
 		
 		nodeOrder.addPostAction(nodeInsert);
 		nodeInsert.addPostAction(nodeSnapshot);
+		nodeSnapshot.addPostAction(insertSchedovm);
 		
 		actions.add(nodeDuple);
 		actions.add(nodeOrder);

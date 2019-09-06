@@ -138,6 +138,7 @@ public final class SchedineSelectSingle implements DaoStmt<SchedineInfo> {
 				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_SNAPSHOT);
 				dataInfo.codWeekday = DaoFormatter.sqlToInt(stmtResult, SchedineDbTableColumn.COL_COD_WEEKDAY);
 				dataInfo.codScheduleStatus = stmtResult.getString(SchedinapDbTableColumn.COL_COD_SCHEDULE_STATUS);
+				dataInfo.codScheduleStatusOld = stmtResult.getString(SchedinapDbTableColumn.COL_COD_SCHEDULE_STATUS);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

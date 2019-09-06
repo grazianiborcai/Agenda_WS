@@ -74,6 +74,8 @@ public final class DaoDbField {
 	public static final String COL_COD_USER_SNAPSHOT = "cod_user_snapshot";
 	public static final String COL_COD_WEEKDAY = "weekday";	
 	public static final String COL_COMPLEMENT = "complement";
+	public static final String COL_CONFIRMED = "confirmed";
+	public static final String COL_COUNTER = "counter";
 	public static final String COL_COUNTRY_LEGAL = "country_legal";
 	public static final String COL_COUNTRY_PHONE = "country_phone";
 	public static final String COL_CNPJ = "cnpj";
@@ -119,6 +121,7 @@ public final class DaoDbField {
 	public static final String COL_STATUS_REFUND_PARTNER = "status_refund_partner";
 	public static final String COL_TOTAL_ITEM = "total_item";
 	public static final String COL_USERNAME = "username";
+	public static final String COL_WAITING = "waiting";
 	public static final String COL_WEEK_MONTH = "week_month";
 	public static final String COL_WEEK_YEAR = "week_year";
 	public static final String COL_YEAR = "year";

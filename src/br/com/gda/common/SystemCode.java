@@ -646,4 +646,7 @@ public final class SystemCode {
 	
 	// Schedule List
 	public static final int SCHEDULE_LIST_MANDATORY_FIELD_EMPTY			= 5600;
+	
+	// Schedule Moviment
+	public static final int SCHEDULE_MOV_MANDATORY_FIELD_EMPTY			= 5650;
 }
