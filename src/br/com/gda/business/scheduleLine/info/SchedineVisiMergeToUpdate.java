@@ -32,6 +32,7 @@ final class SchedineVisiMergeToUpdate implements InfoMergerVisitor<SchedineInfo,
 		result.codOrderItem = sourceOne.codOrderItem;
 		result.codUser = sourceOne.codUser;
 		result.codCustomer = sourceOne.codCustomer;
+		result.codScheduleStatusOld = sourceOne.codScheduleStatusOld;
 		return result;
 	}
 	

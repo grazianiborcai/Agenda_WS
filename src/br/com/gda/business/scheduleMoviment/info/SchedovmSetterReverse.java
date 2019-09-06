@@ -36,7 +36,7 @@ public final class SchedovmSetterReverse implements InfoSetter<SchedovmInfo> {
 			return recordInfo;
 		
 		
-		ScheduleStatus statusOld = ScheduleStatus.getScheduleStatus(recordInfo.codScheduleStatus); 		
+		ScheduleStatus statusOld = ScheduleStatus.getScheduleStatus(recordInfo.codScheduleStatusOld); 		
 		
 		if (isUnchanged(status, statusOld)) 
 			return recordInfo;
@@ -45,7 +45,6 @@ public final class SchedovmSetterReverse implements InfoSetter<SchedovmInfo> {
 		
 		recordInfo = reverseWaiting(statusOld, recordInfo);
 		recordInfo = reverseConfirmed(statusOld, recordInfo);
-		recordInfo.counter = 1;
 		
 		return recordInfo;
 	}

@@ -33,6 +33,7 @@ final class SchedineVisiMergeToMove implements InfoMergerVisitor<SchedineInfo, S
 		result.codUser = sourceOne.codUser;
 		result.codCustomer = sourceOne.codCustomer;
 		result.codMat = sourceOne.codMat;
+		result.codScheduleStatusOld = sourceOne.codScheduleStatusOld;
 		return result;
 	}
 	

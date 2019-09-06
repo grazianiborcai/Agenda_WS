@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.scheduleMoviment.info.SchedovmInfo;
+import br.com.gda.business.scheduleMoviment.model.decisionTree.NodeSchedovmInsert;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedovmInsert extends ActionLazyTemplate<SchedovmInfo, SchedovmInfo> {
+public final class LazySchedovmNodeInsert extends ActionLazyTemplate<SchedovmInfo, SchedovmInfo> {
 	
-	public LazySchedovmInsert(Connection conn, String schemaName) {
+	public LazySchedovmNodeInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazySchedovmInsert extends ActionLazyTemplate<SchedovmInfo, S
 	
 	
 	@Override protected ActionStd<SchedovmInfo> getInstanceOfActionHook(DeciTreeOption<SchedovmInfo> option) {
-		return new StdSchedovmInsert(option);
+		return new NodeSchedovmInsert(option).toAction();
 	}
 	
 	
