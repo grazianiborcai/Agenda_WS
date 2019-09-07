@@ -3,8 +3,10 @@ package br.com.gda.business.scheduleYearData.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.scheduleYearData.info.SchedyeratInfo;
+import br.com.gda.business.scheduleYearData.model.action.LazySchedyeratMergeMonth;
 import br.com.gda.business.scheduleYearData.model.action.StdSchedyeratMergeToSelect;
 import br.com.gda.business.scheduleYearData.model.checker.SchedyeratCheckRead;
 import br.com.gda.model.checker.ModelChecker;
@@ -36,6 +38,9 @@ public final class RootSchedyeratSelect extends DeciTreeWriteTemplate<Schedyerat
 		List<ActionStd<SchedyeratInfo>> actions = new ArrayList<>();
 		
 		ActionStd<SchedyeratInfo> mergeToSelect = new StdSchedyeratMergeToSelect(option);
+		ActionLazy<SchedyeratInfo> mergeMonth = new LazySchedyeratMergeMonth(option.conn, option.schemaName);
+		
+		mergeToSelect.addPostAction(mergeMonth);
 		
 		actions.add(mergeToSelect);
 		return actions;

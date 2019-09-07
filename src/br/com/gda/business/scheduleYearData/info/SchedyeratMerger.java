@@ -2,9 +2,24 @@ package br.com.gda.business.scheduleYearData.info;
 
 import java.util.List;
 
+import br.com.gda.business.masterData.info.MonthInfo;
 import br.com.gda.info.InfoMerger;
 
 public final class SchedyeratMerger {
+	public static SchedyeratInfo mergeWithMonth(MonthInfo sourceOne, SchedyeratInfo sourceTwo) {
+		InfoMerger<SchedyeratInfo, MonthInfo> merger = new SchedyeratMergerMonth();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<SchedyeratInfo> mergeWithMonth(List<MonthInfo> sourceOnes, List<SchedyeratInfo> sourceTwos) {
+		InfoMerger<SchedyeratInfo, MonthInfo> merger = new SchedyeratMergerMonth();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static SchedyeratInfo mergeToSelect(SchedyeratInfo sourceOne, SchedyeratInfo sourceTwo) {
 		InfoMerger<SchedyeratInfo, SchedyeratInfo> merger = new SchedyeratMergerToSelect();		
 		return merger.merge(sourceOne, sourceTwo);
