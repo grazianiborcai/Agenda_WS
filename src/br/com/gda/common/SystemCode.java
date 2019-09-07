@@ -649,4 +649,7 @@ public final class SystemCode {
 	
 	// Schedule Moviment
 	public static final int SCHEDULE_MOV_MANDATORY_FIELD_EMPTY			= 5650;
+	
+	// Schedule Year Data
+	public static final int SCHEDULE_YEAR_DATA_FIELD_EMPTY				= 5700;
 }

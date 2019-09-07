@@ -838,4 +838,9 @@ public final class SystemMessage {
 	
 	// Schedule Moviment
 	public static final String SCHEDULE_MOV_MANDATORY_FIELD_EMPTY = "Schedule-Moviment: Mandatory field is empty";
+	
+	
+	
+	// Schedule Year Data
+	public static final String SCHEDULE_YEAR_DATA_FIELD_EMPTY = "Schedule-Year-Data: Mandatory field is empty";	
 }
