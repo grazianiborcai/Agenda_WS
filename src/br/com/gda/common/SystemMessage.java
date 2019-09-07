@@ -116,6 +116,8 @@ public final class SystemMessage {
 	public static final String MAT_TYPE_ALREADY_EXIST = "Type already exist on DB";	
 	public static final String MAT_TYPE_MANDATORY_FIELD_EMPTY = "Type: Mandatory field is empty";
 	public static final String MAT_TYPE_NOT_FOUND = "Type not found on DB";	
+	public static final String MONTH_ALREADY_EXIST = "Month already exist on DB";
+	public static final String MONTH_NOT_FOUND = "Month not found on DB";
 	public static final String ORDER_STATUS_ALREADY_EXIST = "Order Status already exist on DB";	
 	public static final String ORDER_STATUS_MANDATORY_FIELD_EMPTY = "Order Status: Mandatory field is empty";
 	public static final String ORDER_STATUS_NOT_FOUND = "Order Status not found on DB";

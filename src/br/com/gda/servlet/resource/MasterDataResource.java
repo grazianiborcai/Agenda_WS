@@ -31,6 +31,7 @@ import br.com.gda.business.masterData.info.LanguInfo;
 import br.com.gda.business.masterData.info.MatCategInfo;
 import br.com.gda.business.masterData.info.MatGroupInfo;
 import br.com.gda.business.masterData.info.MatmovTypeInfo;
+import br.com.gda.business.masterData.info.MonthInfo;
 import br.com.gda.business.masterData.info.MatTypeInfo;
 import br.com.gda.business.masterData.model.MatUnitModelSelect;
 import br.com.gda.business.masterData.model.OrderStatusModelSelect;
@@ -55,6 +56,7 @@ import br.com.gda.business.masterData.model.LanguModelSelect;
 import br.com.gda.business.masterData.model.MatCategModelSelect;
 import br.com.gda.business.masterData.model.MatGroupModelSelect;
 import br.com.gda.business.masterData.model.MatmovTypeModelSelect;
+import br.com.gda.business.masterData.model.MonthModelSelect;
 import br.com.gda.business.masterData.model.MatTypeModelSelect;
 import br.com.gda.model.Model;
 
@@ -85,6 +87,7 @@ public final class MasterDataResource {
 	private static final String SELECT_ENTITY_CATEG = "/selectEntityCateg";
 	private static final String SELECT_USER_CATEG = "/selectUserCategory";
 	private static final String SELECT_MAT_MOV_TYPE = "/selectMatmovType";
+	private static final String SELECT_MONTH = "/selectMonth";
 	
 	
 	@GET
@@ -514,6 +517,24 @@ public final class MasterDataResource {
 		
 		
 		Model model = new MatmovTypeModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_MONTH)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectMonth(@HeaderParam("codLanguage")  @DefaultValue("EN") String codLanguage, 
+			                    @HeaderParam("month")        @DefaultValue("-1") int month) {
+		
+		MonthInfo recordInfo = new MonthInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.month = month;
+		
+		
+		Model model = new MonthModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

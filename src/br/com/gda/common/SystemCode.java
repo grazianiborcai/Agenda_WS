@@ -145,6 +145,8 @@ public final class SystemCode {
 	public static final int AUTH_ROLE_MANDATORY_FIELD_EMPTY 			= 5321;
 	public static final int AUTH_GROUP_MANDATORY_FIELD_EMPTY 			= 5322;
 	public static final int AREA_PHONE_MANDATORY_FIELD_EMPTY 			= 5323;
+	public static final int MONTH_ALREADY_EXIST							= 5324;
+	public static final int MONTH_NOT_FOUND								= 5325;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

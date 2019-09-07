@@ -26,7 +26,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_MAT_CATEG = DaoDbField.COL_COD_MAT_CATEG;
 	public static final String COL_COD_MAT_GROUP = DaoDbField.COL_COD_MAT_GROUP;
 	public static final String COL_COD_MAT_MOV_TYPE = DaoDbField.COL_COD_MAT_MOV_TYPE;
-	public static final String COL_COD_MAT_TYPE = DaoDbField.COL_COD_MAT_TYPE;
+	public static final String COL_COD_MAT_TYPE = DaoDbField.COL_COD_MAT_TYPE;	
 	public static final String COL_COD_ORDER_STATUS = DaoDbField.COL_COD_ORDER_STATUS;
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
 	public static final String COL_COD_PAYMENT_STATUS = DaoDbField.COL_COD_PAYMENT_STATUS;
@@ -39,6 +39,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;	
 	public static final String COL_CURRENCY_SYMBOL = DaoDbField.COL_CURRENCY_SYMBOL;
 	public static final String COL_DESCRIPTION = DaoDbField.COL_DESCRIPTION;
+	public static final String COL_MONTH = DaoDbField.COL_MONTH;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	public static final String COL_STATE_PROVINCE = DaoDbField.COL_STATE_PROVINCE;
@@ -85,6 +86,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		matmovTypeTable();
 		sysEnvironmentTable();
 		scheduleStatusTable();
+		scheduleMonthTable();
 		
 		return tableColumns;
 	}
@@ -1084,4 +1086,39 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}
+	
+	
+	
+	private void scheduleMonthTable() {
+		final String TABLE_NAME = DaoDbTable.MONTH_TEXT_TABLE;
+		
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_MONTH;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_NAME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_LANGUAGE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}	
 }
