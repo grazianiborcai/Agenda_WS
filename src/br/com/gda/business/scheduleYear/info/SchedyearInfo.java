@@ -1,5 +1,6 @@
 package br.com.gda.business.scheduleYear.info;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.scheduleYearData.info.SchedyeratInfo;
@@ -12,7 +13,7 @@ public final class SchedyearInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public int year;
 	public List<SchedyeratInfo> schedyerats;
-	public StolisInfo stolisData;
+	public List<StolisInfo> stolises;
 	public String codLanguage;
 	public String username;
 	
@@ -24,7 +25,7 @@ public final class SchedyearInfo extends InfoRecord implements Cloneable {
 		year = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		schedyerats = DefaultValue.list();
-		stolisData = DefaultValue.object();
+		stolises = DefaultValue.list();
 	}
 	
 	
@@ -42,8 +43,46 @@ public final class SchedyearInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		SchedyearInfo deepCopy = (SchedyearInfo) super.clone();
+		deepCopy.schedyerats = cloneSchedyerat(schedyerats);
+		deepCopy.stolises = cloneStolis(stolises);
+		
+		return deepCopy;
 	}
+	
+	
+	
+	private List<SchedyeratInfo> cloneSchedyerat(List<SchedyeratInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
+			return null;
+		
+		
+		List<SchedyeratInfo> results = new ArrayList<>();
+		
+		for (SchedyeratInfo eachRecord : recordInfos) {
+			SchedyeratInfo copy = (SchedyeratInfo) eachRecord.clone();
+			results.add(copy);
+		}
+		
+		return results;
+	}
+	
+	
+	
+	private List<StolisInfo> cloneStolis(List<StolisInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
+			return null;
+		
+		
+		List<StolisInfo> results = new ArrayList<>();
+		
+		for (StolisInfo eachRecord : recordInfos) {
+			StolisInfo copy = (StolisInfo) eachRecord.clone();
+			results.add(copy);
+		}
+		
+		return results;
+	}	
 	
 	
 	
