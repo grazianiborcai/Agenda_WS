@@ -35,7 +35,7 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 	@Override public void generateStmt() throws SQLException {
 		if (isGenerated() == false) {		
 			skeleton = buildStmtSkeleton(option, operation);
-			stmt = prepareStmt(option.conn, skeleton);
+			stmt = prepareStmt(option.conn, option.schemaName, skeleton);
 			stmt = translateStmtParam(option.stmtParamTranslator, stmt, option.recordInfo);
 		}
 	}
@@ -56,7 +56,8 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 	
 	
 	
-	private PreparedStatement prepareStmt(Connection stmtConn, String stmtSkeleton) throws SQLException {
+	private PreparedStatement prepareStmt(Connection stmtConn, String stmSchema, String stmtSkeleton) throws SQLException {
+		stmtConn.setCatalog(stmSchema);
 		return stmtConn.prepareStatement(stmtSkeleton);
 	}
 	
