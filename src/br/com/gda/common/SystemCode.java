@@ -654,4 +654,7 @@ public final class SystemCode {
 	
 	// Schedule Year Data
 	public static final int SCHEDULE_YEAR_DATA_FIELD_EMPTY				= 5700;
+	
+	// Schedule Year
+	public static final int SCHEDULE_YEAR_FIELD_EMPTY					= 5750;
 }

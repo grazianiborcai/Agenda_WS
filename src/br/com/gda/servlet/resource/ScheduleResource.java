@@ -17,6 +17,8 @@ import br.com.gda.business.scheduleLine.model.SchedineModelInsert;
 import br.com.gda.business.scheduleLine.model.SchedineModelMove;
 import br.com.gda.business.scheduleLine.model.SchedineModelSelect;
 import br.com.gda.business.scheduleLine.model.SchedineModelUpdate;
+import br.com.gda.business.scheduleYear.info.SchedyearInfo;
+import br.com.gda.business.scheduleYear.model.SchedyearModelSelect;
 import br.com.gda.model.Model;
 
 @Path("/Schedule")
@@ -26,6 +28,7 @@ public final class ScheduleResource {
 	private static final String MOVE_SCHEDULE_LINE = "/moveScheduleLine";
 	private static final String SELECT_SCHEDULE_LINE = "/selectScheduleLine";
 	private static final String CANCEL_SCHEDULE_LINE = "/cancelScheduleLine";
+	private static final String SELECT_SCHEDULE_YEAR = "/selectScheduleYear";
 	
 	@POST
 	@Path(INSERT_SCHEDULE_LINE)
@@ -99,6 +102,29 @@ public final class ScheduleResource {
 		recordInfo.codLanguage = codLanguage;		
 		
 		Model model = new SchedineModelCancel(recordInfo);
+		model.executeRequest();
+		return model.getResponse();	
+	}	
+	
+	
+	
+	@GET
+	@Path(SELECT_SCHEDULE_YEAR)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectSchedyear(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+			                        @HeaderParam("codStore")    	@DefaultValue("-1") long codStore,
+			                        @HeaderParam("year")    		@DefaultValue("-1") int year,
+								    @HeaderParam("TOKEN_USERNAME") 	String username,
+								    @HeaderParam("codLanguage")     @DefaultValue("EN") String codLanguage) {
+		
+		SchedyearInfo recordInfo = new SchedyearInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.year = year;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedyearModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	}	
