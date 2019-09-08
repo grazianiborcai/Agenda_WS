@@ -850,4 +850,14 @@ public final class SystemMessage {
 	
 	// Schedule Year
 	public static final String SCHEDULE_YEAR_FIELD_EMPTY = "Schedule-Year: Mandatory field is empty";	
+	
+	
+	
+	// Schedule Month Data
+	public static final String SCHEDULE_MONTH_DATA_FIELD_EMPTY = "Schedule-Month-Data: Mandatory field is empty";
+	
+	
+	
+	// Schedule Month
+	public static final String SCHEDULE_MONTH_FIELD_EMPTY = "Schedule-Month: Mandatory field is empty";	
 }

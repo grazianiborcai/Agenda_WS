@@ -111,6 +111,7 @@
         <security:intercept-url pattern="/**/Schedule/cancelScheduleLine"		access="hasAuthority('SCHEDULE_CANCEL')" 			/> 
         <security:intercept-url pattern="/**/Schedule/selectScheduleLine"		access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/Schedule/selectScheduleYear"		access="isAuthenticated()" 							/> 
+        <security:intercept-url pattern="/**/Schedule/selectScheduleMonth"		access="isAuthenticated()" 							/> 
         <security:intercept-url pattern="/**"                					access="isAuthenticated()" 							/>	<!-- TODO: Remover? -->
         <security:http-basic />
         <csrf disabled="true"/>

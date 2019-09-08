@@ -89,6 +89,7 @@ public final class DaoDbTable {
 	public static final String TIMEZONE_TABLE = "timezone";
 	public static final String TIMEZONE_TEXT_TABLE = "timezone_text";
 	public static final String SCHEDULE_TABLE = "schedule";	
+	public static final String SCHEDULE_MONTH_TABLE = "vw_schedule_month";
 	public static final String SCHEDULE_MOVIMENT_TABLE = "schedule_moviment";
 	public static final String SCHEDULE_SNAPSHOT_TABLE = "schedule_snapshot";
 	public static final String SCHEDULE_STATUS_TABLE = "schedule_status";

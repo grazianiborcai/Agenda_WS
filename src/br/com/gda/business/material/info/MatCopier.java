@@ -8,10 +8,25 @@ import br.com.gda.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.gda.business.planningTime.info.PlanimeInfo;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleLineSnapshot.info.SchedinapInfo;
+import br.com.gda.business.scheduleMonth.info.SchedmonInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
 
 public final class MatCopier {
+	public static List<MatInfo> copyFromSchedmon(SchedmonInfo source) {
+		InfoCopierOneToMany<MatInfo, SchedmonInfo> copier = new MatCopySchedmon();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<MatInfo> copyFromSchedmon(List<SchedmonInfo> sources) {
+		InfoCopierOneToMany<MatInfo, SchedmonInfo> copier = new MatCopySchedmon();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static MatInfo copyFromOrdemrap(OrdemrapInfo source) {
 		InfoCopier<MatInfo, OrdemrapInfo> copier = new MatCopyOrdemrap();
 		return copier.makeCopy(source);
