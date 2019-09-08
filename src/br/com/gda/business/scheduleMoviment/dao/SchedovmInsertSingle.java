@@ -87,6 +87,10 @@ public class SchedovmInsertSingle implements DaoStmt<SchedovmInfo> {
 			stmt.setInt(i++, recordInfo.confirmed);
 			stmt.setInt(i++, recordInfo.waiting);
 			stmt.setInt(i++, recordInfo.counter);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codWeekday);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.weekMonth);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.weekYear);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 			
 			return stmt;
 		}		

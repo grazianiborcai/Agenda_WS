@@ -12,9 +12,13 @@ public final class SchedovmInfo extends InfoRecord implements Cloneable {
 	public String codScheduleStatusOld;
 	public long codStore;
 	public long codEmployee;
+	public long codCustomer;
 	public long codMat;
 	public LocalDate date;
 	public int day;
+	public int codWeekday;
+	public int weekMonth;
+	public int weekYear;
 	public int month;
 	public int year;
 	public int confirmed;
@@ -27,10 +31,14 @@ public final class SchedovmInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
+		codCustomer = DefaultValue.number();
 		codMat = DefaultValue.number();
 		day = DefaultValue.number();
 		month = DefaultValue.number();
 		year = DefaultValue.number();	
+		codWeekday = DefaultValue.number();
+		weekMonth = DefaultValue.number();
+		weekYear = DefaultValue.number();
 		confirmed = 0;
 		waiting = 0;
 		counter = 0;

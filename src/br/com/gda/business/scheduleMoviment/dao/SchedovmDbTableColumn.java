@@ -10,16 +10,20 @@ import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class SchedovmDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;	
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;	
 	public static final String COL_CONFIRMED = DaoDbField.COL_CONFIRMED;
 	public static final String COL_COUNTER = DaoDbField.COL_COUNTER;
 	public static final String COL_DATE = DaoDbField.COL_DATE;	
 	public static final String COL_DAY = DaoDbField.COL_DAY;
 	public static final String COL_MONTH = DaoDbField.COL_MONTH;
 	public static final String COL_WAITING = DaoDbField.COL_WAITING;
+	public static final String COL_WEEK_MONTH = DaoDbField.COL_WEEK_MONTH;
+	public static final String COL_WEEK_YEAR = DaoDbField.COL_WEEK_YEAR;
 	public static final String COL_YEAR = DaoDbField.COL_YEAR;
 	
 	
@@ -129,6 +133,38 @@ public final class SchedovmDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COUNTER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_WEEKDAY;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_WEEK_MONTH;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_WEEK_YEAR;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_CUSTOMER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
