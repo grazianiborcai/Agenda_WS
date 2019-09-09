@@ -140,6 +140,8 @@ public final class SchedmonInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
+		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
+		result = result * 31 + (int) (codMat 	  ^ (codMat 	 >>> 32));
 		result = result * 31 + (int) (year 	  	  ^ (year 	 	 >>> 32));
 		result = result * 31 + (int) (month	  	  ^ (month 	 	 >>> 32));
 		
@@ -158,9 +160,11 @@ public final class SchedmonInfo extends InfoRecord implements Cloneable {
 		
 		
 		SchedmonInfo obj = (SchedmonInfo) o;		
-		return (codOwner    == obj.codOwner	&& 
-				codStore    == obj.codStore	&&
-				year    	== obj.year		&&
+		return (codOwner    == obj.codOwner		&& 
+				codStore    == obj.codStore		&&
+				codEmployee == obj.codEmployee	&&
+				codMat 		== obj.codMat		&&
+				year    	== obj.year			&&
 				month    	== obj.month);
 	}
 }
