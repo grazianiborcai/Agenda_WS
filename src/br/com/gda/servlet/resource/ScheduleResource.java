@@ -19,6 +19,8 @@ import br.com.gda.business.scheduleLine.model.SchedineModelSelect;
 import br.com.gda.business.scheduleLine.model.SchedineModelUpdate;
 import br.com.gda.business.scheduleMonth.info.SchedmonInfo;
 import br.com.gda.business.scheduleMonth.model.SchedmonModelSelect;
+import br.com.gda.business.scheduleWeek.info.SchedeekInfo;
+import br.com.gda.business.scheduleWeek.model.SchedeekModelSelect;
 import br.com.gda.business.scheduleYear.info.SchedyearInfo;
 import br.com.gda.business.scheduleYear.model.SchedyearModelSelect;
 import br.com.gda.model.Model;
@@ -32,6 +34,7 @@ public final class ScheduleResource {
 	private static final String CANCEL_SCHEDULE_LINE = "/cancelScheduleLine";
 	private static final String SELECT_SCHEDULE_YEAR = "/selectScheduleYear";
 	private static final String SELECT_SCHEDULE_MONTH = "/selectScheduleMonth";
+	private static final String SELECT_SCHEDULE_WEEK = "/selectScheduleWeek";
 	
 	@POST
 	@Path(INSERT_SCHEDULE_LINE)
@@ -161,4 +164,38 @@ public final class ScheduleResource {
 		model.executeRequest();
 		return model.getResponse();	
 	}	
+	
+	
+	
+	@GET
+	@Path(SELECT_SCHEDULE_WEEK)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectSchedWeek(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                        @HeaderParam("codStore")    	@DefaultValue("-1") long codStore,
+			                        @HeaderParam("codEmployee")   	@DefaultValue("-1") long codEmployee,
+			                        @HeaderParam("codCustomer")   	@DefaultValue("-1") long codCustomer,
+			                        @HeaderParam("codMaterial")   	@DefaultValue("-1") long codMat,
+			                        @HeaderParam("year")    		@DefaultValue("-1") int year,
+			                        @HeaderParam("month")    		@DefaultValue("-1") int month,
+			                        @HeaderParam("weekMonth")    	@DefaultValue("-1") int weekMonth,
+								    @HeaderParam("TOKEN_USERNAME") String username,
+								    @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
+		
+		SchedeekInfo recordInfo = new SchedeekInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codCustomer = codCustomer;
+		recordInfo.codMat = codMat;
+		recordInfo.codStore = codStore;
+		recordInfo.year = year;
+		recordInfo.month = month;
+		recordInfo.weekMonth = weekMonth;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedeekModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();	
+	}		
 }

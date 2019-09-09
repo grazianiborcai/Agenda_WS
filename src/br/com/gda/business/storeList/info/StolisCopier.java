@@ -5,11 +5,26 @@ import java.util.List;
 import br.com.gda.business.planningTime.info.PlanimeInfo;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleMonth.info.SchedmonInfo;
+import br.com.gda.business.scheduleWeek.info.SchedeekInfo;
 import br.com.gda.business.scheduleYear.info.SchedyearInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
 
 public final class StolisCopier {
+	public static List<StolisInfo> copyFromSchedeek(SchedeekInfo source) {
+		InfoCopierOneToMany<StolisInfo, SchedeekInfo> copier = new StolisCopySchedeek();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<StolisInfo> copyFromSchedeek(List<SchedeekInfo> sources) {
+		InfoCopierOneToMany<StolisInfo, SchedeekInfo> copier = new StolisCopySchedeek();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static List<StolisInfo> copyFromSchedmon(SchedmonInfo source) {
 		InfoCopierOneToMany<StolisInfo, SchedmonInfo> copier = new StolisCopySchedmon();
 		return copier.makeCopy(source);

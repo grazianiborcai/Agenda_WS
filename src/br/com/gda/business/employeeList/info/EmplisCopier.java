@@ -5,10 +5,25 @@ import java.util.List;
 import br.com.gda.business.planningTime.info.PlanimeInfo;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleMonth.info.SchedmonInfo;
+import br.com.gda.business.scheduleWeek.info.SchedeekInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.info.InfoCopierOneToMany;
 
 public final class EmplisCopier {
+	public static List<EmplisInfo> copyFromSchedeek(SchedeekInfo source) {
+		InfoCopierOneToMany<EmplisInfo, SchedeekInfo> copier = new EmplisCopySchedeek();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<EmplisInfo> copyFromSchedeek(List<SchedeekInfo> sources) {
+		InfoCopierOneToMany<EmplisInfo, SchedeekInfo> copier = new EmplisCopySchedeek();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static List<EmplisInfo> copyFromSchedmon(SchedmonInfo source) {
 		InfoCopierOneToMany<EmplisInfo, SchedmonInfo> copier = new EmplisCopySchedmon();
 		return copier.makeCopy(source);
@@ -19,7 +34,7 @@ public final class EmplisCopier {
 	public static List<EmplisInfo> copyFromSchedmon(List<SchedmonInfo> sources) {
 		InfoCopierOneToMany<EmplisInfo, SchedmonInfo> copier = new EmplisCopySchedmon();
 		return copier.makeCopy(sources);
-	}
+	}	
 	
 	
 	

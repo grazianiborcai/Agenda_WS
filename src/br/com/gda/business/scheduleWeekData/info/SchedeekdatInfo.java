@@ -37,8 +37,8 @@ public final class SchedeekdatInfo extends InfoRecord implements Cloneable {
 		codMat = DefaultValue.number();
 		codWeekday = DefaultValue.number();
 		date = DefaultValue.object();
-		weekMonth = DefaultValue.object();
-		weekYear = DefaultValue.object();
+		weekMonth = DefaultValue.number();
+		weekYear = DefaultValue.number();
 		year = DefaultValue.number();	
 		month = DefaultValue.number();		
 		day = DefaultValue.number();	

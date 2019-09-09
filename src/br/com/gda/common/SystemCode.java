@@ -666,4 +666,7 @@ public final class SystemCode {
 	
 	// Schedule Week Data
 	public static final int SCHEDULE_WEEK_DATA_FIELD_EMPTY				= 5900;
+	
+	// Schedule Week
+	public static final int SCHEDULE_WEEK_FIELD_EMPTY					= 5950;
 }
