@@ -94,6 +94,7 @@ public final class DaoDbTable {
 	public static final String SCHEDULE_SNAPSHOT_TABLE = "schedule_snapshot";
 	public static final String SCHEDULE_STATUS_TABLE = "schedule_status";
 	public static final String SCHEDULE_STATUS_TEXT_TABLE = "schedule_status_text";
+	public static final String SCHEDULE_WEEK_TABLE = "vw_schedule_week";
 	public static final String SCHEDULE_YEAR_TABLE = "vw_schedule_year";
 	public static final String STATE_TABLE = "state";
 	public static final String STATE_TEXT_TABLE = "state_text";

@@ -58,6 +58,7 @@ import br.com.gda.business.scheduleList.dao.SchedistDbTableColumn;
 import br.com.gda.business.scheduleMonthData.dao.SchedonthatDbTableColumn;
 import br.com.gda.business.scheduleMoviment.dao.SchedovmDbTableColumn;
 import br.com.gda.business.scheduleSearch.dao.SchedarchDbTableColumn;
+import br.com.gda.business.scheduleWeekData.dao.SchedeekdatDbTableColumn;
 import br.com.gda.business.scheduleYearData.dao.SchedyeratDbTableColumn;
 import br.com.gda.business.store.dao.StoreDbTableColumn;
 import br.com.gda.business.storeLeaveDate.dao.StolevateDbTableColumn;
@@ -186,6 +187,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SchedovmDbTableColumn());
 		addTable(new SchedyeratDbTableColumn());
 		addTable(new SchedonthatDbTableColumn());
+		addTable(new SchedeekdatDbTableColumn());
 	}
 	
 	

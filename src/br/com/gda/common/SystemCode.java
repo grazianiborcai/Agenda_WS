@@ -663,4 +663,7 @@ public final class SystemCode {
 	
 	// Schedule Month
 	public static final int SCHEDULE_MONTH_FIELD_EMPTY					= 5850;
+	
+	// Schedule Week Data
+	public static final int SCHEDULE_WEEK_DATA_FIELD_EMPTY				= 5900;
 }
