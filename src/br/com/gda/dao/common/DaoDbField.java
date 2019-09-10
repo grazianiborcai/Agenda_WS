@@ -29,6 +29,7 @@ public final class DaoDbField {
 	public static final String COL_COD_EMPLOYEE_SNAPSHOT = "cod_employee_snapshot";	
 	public static final String COL_COD_ENTITY_CATEG = "cod_entity_categ";
 	public static final String COL_COD_FEE_CATEG = "cod_fee_categ";
+	public static final String COL_COD_FILE_IMG = "cod_file_img";
 	public static final String COL_COD_GENDER = "cod_gender";
 	public static final String COL_COD_GROUP = "cod_group";
 	public static final String COL_COD_ITEM_CATEG = "cod_shop_categ";
@@ -92,6 +93,9 @@ public final class DaoDbField {
 	public static final String COL_EMAIL = "email";
 	public static final String COL_END_TIME = "end_time";
 	public static final String COL_FEE_SERVICE = "feeService";
+	public static final String COL_FILE_IMG_EXTENSION = "file_img_extension";
+	public static final String COL_FILE_IMG_NAME = "file_img_name";
+	public static final String COL_FILE_IMG_PATH = "file_img_path";
 	public static final String COL_FULL_NUMBER = "full_number";
 	public static final String COL_GRAND_TOTAL = "grandTotal";
 	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";

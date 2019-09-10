@@ -17,6 +17,7 @@ import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
+import br.com.gda.file.fileUpload.info.FilupInfo;
 import br.com.gda.info.InfoCopier;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
@@ -28,6 +29,20 @@ import br.com.gda.payment.refundOrderItem.info.RefemInfo;
 import br.com.gda.payment.storePartner.info.StoparInfo;
 
 public final class UsernameCopier {
+	public static UsernameInfo copyFromFilup(FilupInfo source) {
+		InfoCopier<UsernameInfo, FilupInfo> copier = new UsernameCopyFilup();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromFilup(List<FilupInfo> sources) {
+		InfoCopier<UsernameInfo, FilupInfo> copier = new UsernameCopyFilup();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UsernameInfo copyFromRefu(RefuInfo source) {
 		InfoCopier<UsernameInfo, RefuInfo> copier = new UsernameCopyRefu();
 		return copier.makeCopy(source);
@@ -38,7 +53,7 @@ public final class UsernameCopier {
 	public static List<UsernameInfo> copyFromRefu(List<RefuInfo> sources) {
 		InfoCopier<UsernameInfo, RefuInfo> copier = new UsernameCopyRefu();
 		return copier.makeCopy(sources);
-	}
+	}	
 	
 	
 	

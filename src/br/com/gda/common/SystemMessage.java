@@ -870,4 +870,9 @@ public final class SystemMessage {
 	
 	// Schedule Week
 	public static final String SCHEDULE_WEEK_FIELD_EMPTY = "Schedule-Week: Mandatory field is empty";	
+	
+	
+	
+	// File Image
+	public static final String FILE_IMG_MANDATORY_FIELD_EMPTY = "File-Image: Mandatory field is empty";
 }

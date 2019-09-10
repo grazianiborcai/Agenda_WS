@@ -39,6 +39,7 @@ public final class DaoDbTable {
 	public static final String FEE_CATEG_TEXT_TABLE = "fee_categ_text";
 	public static final String FEE_DEFAULT_TABLE = "fee_default";
 	public static final String FEE_OWNER_TABLE = "fee_owner";
+	public static final String FILE_IMG_TABLE = "file_image";
 	public static final String GENDER_TABLE = "gender";
 	public static final String GENDER_TEXT_TABLE = "gender_text";
 	public static final String LANGUAGE_TABLE = "language";

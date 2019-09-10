@@ -69,6 +69,7 @@ import br.com.gda.business.storeWorkTimeConflict.dao.StoreCoDbTableColumn;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumn;
+import br.com.gda.file.fileUpload.dao.FilupDbTableColumn;
 import br.com.gda.message.email.dao.EmailDbTableColumn;
 import br.com.gda.message.emailBody.dao.EmabodyDbTableColumn;
 import br.com.gda.payment.countryPartner.dao.CounparDbTableColumn;
@@ -188,6 +189,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SchedyeratDbTableColumn());
 		addTable(new SchedonthatDbTableColumn());
 		addTable(new SchedeekdatDbTableColumn());
+		addTable(new FilupDbTableColumn());
 	}
 	
 	

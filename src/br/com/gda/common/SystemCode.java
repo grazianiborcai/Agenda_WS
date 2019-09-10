@@ -669,4 +669,7 @@ public final class SystemCode {
 	
 	// Schedule Week
 	public static final int SCHEDULE_WEEK_FIELD_EMPTY					= 5950;
+	
+	// File Image
+	public static final int FILE_IMG_MANDATORY_FIELD_EMPTY 				= 6001;
 }
