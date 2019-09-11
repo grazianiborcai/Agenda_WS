@@ -19,7 +19,6 @@ public final class FilupDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CREATED_BY = DaoDbField.COL_CREATED_BY;
 	public static final String COL_FILE_IMG_EXTENSION = DaoDbField.COL_FILE_IMG_EXTENSION;
 	public static final String COL_FILE_IMG_NAME = DaoDbField.COL_FILE_IMG_NAME;	
-	public static final String COL_FILE_IMG_PATH = DaoDbField.COL_FILE_IMG_PATH;	
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
@@ -85,14 +84,6 @@ public final class FilupDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_FILE_IMG_NAME;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_FILE_IMG_PATH;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

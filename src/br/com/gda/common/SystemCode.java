@@ -672,4 +672,7 @@ public final class SystemCode {
 	
 	// File Image
 	public static final int FILE_IMG_MANDATORY_FIELD_EMPTY 				= 6001;
+	
+	// File Path
+	public static final int FILE_PATH_MANDATORY_FIELD_EMPTY 			= 6051;
 }

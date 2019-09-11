@@ -119,7 +119,6 @@ public final class FilupSelectSingle implements DaoStmt<FilupInfo> {
 				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, FilupDbTableColumn.COL_CREATED_ON);		
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, FilupDbTableColumn.COL_LAST_CHANGED);	
 				dataInfo.fileImgName = stmtResult.getString(FilupDbTableColumn.COL_FILE_IMG_NAME);
-				dataInfo.fileImgPath = stmtResult.getString(FilupDbTableColumn.COL_FILE_IMG_PATH);
 				dataInfo.createdBy = stmtResult.getLong(FilupDbTableColumn.COL_CREATED_BY);
 				dataInfo.lastChangedBy = stmtResult.getLong(FilupDbTableColumn.COL_LAST_CHANGED_BY);
 				

@@ -875,4 +875,9 @@ public final class SystemMessage {
 	
 	// File Image
 	public static final String FILE_IMG_MANDATORY_FIELD_EMPTY = "File-Image: Mandatory field is empty";
+	
+	
+	
+	// File Path
+	public static final String FILE_PATH_MANDATORY_FIELD_EMPTY = "File-Path: Mandatory field is empty";
 }
