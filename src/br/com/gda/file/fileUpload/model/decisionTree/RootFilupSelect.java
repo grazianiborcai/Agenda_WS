@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.file.fileUpload.info.FilupInfo;
+import br.com.gda.file.fileUpload.model.action.LazyFilupEnforceFullname;
 import br.com.gda.file.fileUpload.model.action.LazyFilupMergeFath;
 import br.com.gda.file.fileUpload.model.action.StdFilupMergeToSelect;
 import br.com.gda.file.fileUpload.model.checker.FilupCheckRead;
@@ -39,8 +40,10 @@ public final class RootFilupSelect extends DeciTreeReadTemplate<FilupInfo> {
 		
 		ActionStd<FilupInfo> select = new StdFilupMergeToSelect(option);
 		ActionLazy<FilupInfo> mergeFath = new LazyFilupMergeFath(option.conn, option.schemaName);
+		ActionLazy<FilupInfo> enforceFullname = new LazyFilupEnforceFullname(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeFath);
+		mergeFath.addPostAction(enforceFullname);
 		
 		actions.add(select);
 		return actions;
