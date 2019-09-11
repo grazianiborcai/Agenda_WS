@@ -1,5 +1,6 @@
 package br.com.gda.file.fileUpload.info;
 
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public final class FilupInfo extends InfoRecord implements Cloneable {
 	public String fileImgName;
 	public String fileImgExtension;
 	public String fileImgPath;
+	public InputStream fileImgData;
 	public long codPerson;
 	public long codMat;
 	public long codCompany;

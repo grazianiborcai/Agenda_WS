@@ -17,6 +17,7 @@ public final class FilupCheckWrite extends ModelCheckerTemplateSimple<FilupInfo>
 	
 	@Override protected boolean checkHook(FilupInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 			<= 0 	
+			|| recordInfo.fileImgData		== null
 			|| recordInfo.fileImgFullName	== null
 			|| recordInfo.codLanguage		== null
 			|| recordInfo.username			== null	)
