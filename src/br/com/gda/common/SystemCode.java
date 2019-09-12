@@ -675,4 +675,8 @@ public final class SystemCode {
 	
 	// File Path
 	public static final int FILE_PATH_MANDATORY_FIELD_EMPTY 			= 6051;
+	
+	// File Write
+	public static final int FILE_WRITE_MANDATORY_FIELD_EMPTY 			= 6101;
+	public static final int FILE_WRITE_ERROR 							= 6102;
 }

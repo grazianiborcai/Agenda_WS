@@ -880,4 +880,10 @@ public final class SystemMessage {
 	
 	// File Path
 	public static final String FILE_PATH_MANDATORY_FIELD_EMPTY = "File-Path: Mandatory field is empty";
+	
+	
+	
+	// File Write
+	public static final String FILE_WRITE_MANDATORY_FIELD_EMPTY = "File-Write: Mandatory field is empty";
+	public static final String FILE_WRITE_ERROR = "File-Write: An error occurred when trying to write file on server";
 }
