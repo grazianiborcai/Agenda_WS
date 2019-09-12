@@ -19,21 +19,21 @@ public final class OwnerCheckInsert extends ModelCheckerTemplateSimple<OwnerInfo
 		if ( recordInfo.personData 	== null ||
 			 recordInfo.companyData == null ||
 			 recordInfo.codLanguage == null 	)
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.OWNER_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.OWNER_MANDATORY_FIELD_EMPTY;
 	}
 }

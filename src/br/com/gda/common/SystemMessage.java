@@ -174,6 +174,7 @@ public final class SystemMessage {
 		
 	// Owner
 	public static final String OWNER_ALREADY_EXIST = "Owner data already exist on DB";	
+	public static final String OWNER_MANDATORY_FIELD_EMPTY = "Owner: Mandatory field is empty";
 	public static final String OWNER_NOT_FOUND = "Owner data not found on DB";
 	public static final String OWNER_TECH_FIELD_SHOULD_BE_EMPTY = "Owner: technical fields shouldn't be filled";
 	public static final String OWNER_PERSON_NOT_CHANGED = "Owner: Person not changed";

@@ -19,8 +19,8 @@ public final class JwtokenCheckToken extends ModelCheckerTemplateSimple<JwtokenI
 	
 	@Override protected boolean checkHook(JwtokenInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.tokenToVerify	== null	||
-			recordInfo.secret		== null ||
-			recordInfo.algo			== null)			
+			recordInfo.secret			== null ||
+			recordInfo.algo				== null)			
 			return super.FAILED;	
 		
 		return checkToken(recordInfo);
