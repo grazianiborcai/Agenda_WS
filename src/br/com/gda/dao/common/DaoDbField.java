@@ -41,6 +41,7 @@ public final class DaoDbField {
 	public static final String COL_COD_MAT_TYPE = "cod_type";
 	public static final String COL_COD_MATERIAL = "cod_material";	
 	public static final String COL_COD_MATERIAL_SNAPSHOT = "cod_material_snapshot";
+	public static final String COL_COD_MESSAGE = "cod_message";
 	public static final String COL_COD_ORDER = "cod_order";
 	public static final String COL_COD_ORDER_EXTERNAL = "cod_order_external";
 	public static final String COL_COD_ORDER_ITEM = "cod_order_item";
@@ -110,6 +111,7 @@ public final class DaoDbField {
 	public static final String COL_ITEM_TOTAL = "itemTotal";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
+	public static final String COL_MESSAGE = "message";
 	public static final String COL_MONTH = "month";
 	public static final String COL_NAME = "name";
 	public static final String COL_NUMBER = "number";

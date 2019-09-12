@@ -106,6 +106,7 @@ public final class DaoDbTable {
 	public static final String STORE_WT_TABLE = "store_working_time";
 	public static final String SYS_EMAIL_TABLE = "sys_email";
 	public static final String SYS_EMAIL_BODY_TABLE = "sys_email_body";
+	public static final String SYS_MESSAGE_TABLE = "sys_message";
 	public static final String SYS_PAY_PARTNER_TABLE = "sys_pay_partner";
 	public static final String SYS_ENVIRONMENT_TABLE = "system_environment";
 	public static final String UNIT_TABLE = "measure_unit";
