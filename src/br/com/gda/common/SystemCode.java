@@ -3,9 +3,7 @@ package br.com.gda.common;
 public final class SystemCode {
 	// General
 	public static final int MANDATORY_FIELD_EMPTY 						= 1;
-	public static final int NO_ERROR_FOUND 								= 2;	
-	public static final int CPF_INVALID 								= 3;
-	public static final int CNPJ_INVALID 								= 4;
+	public static final int NO_ERROR_FOUND 								= 2;
 	public static final int KEY_FIELD_NOT_NULL							= 5;
 	public static final int KEY_FIELD_IS_EMPTY							= 6;
 	public static final int BAD_TIME_RANGE								= 7;
@@ -37,7 +35,6 @@ public final class SystemCode {
 	public static final int EMP_SINGLE_ENTRY_FOUND						= 1054;
 	public static final int EMP_CPF_ALREADY_EXIST						= 1055;
 	public static final int EMP_CPF_NOT_FOUND							= 1056;	
-	public static final int AUTO_GENERATED_FIELD_IS_NOT_EMPTY			= 1057;
 	
 	// Store
 	public static final int STORE_CNPJ_ALREADY_EXIST					= 1100;
@@ -147,6 +144,8 @@ public final class SystemCode {
 	public static final int AREA_PHONE_MANDATORY_FIELD_EMPTY 			= 5323;
 	public static final int MONTH_ALREADY_EXIST							= 5324;
 	public static final int MONTH_NOT_FOUND								= 5325;
+	public static final int POSITION_ALREADY_EXIST						= 5326;
+	public static final int POSITION_NOT_FOUND							= 5327;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
@@ -311,10 +310,6 @@ public final class SystemCode {
 	public static final int USER_IS_FILLED								= 1809;
 	public static final int USER_MANDATORY_FIELD_EMPTY					= 1810;
 	
-	// Snapshot
-	public static final int SNAPSHOT_ALREADY_EXIST 						= 1850;
-	public static final int SNAPSHOT_NOT_FOUND 							= 1851;
-	
 	// PersonUser
 	public static final int PERSON_USER_WITHOUT_REFERENCE				= 1900;
 	public static final int PERSON_USER_EMAIL_IS_NULL					= 1901;
@@ -337,12 +332,12 @@ public final class SystemCode {
 	public static final int PHONE_SNAPSHOT_ALREADY_EXIST				= 2053;
 	
 	// Person Snapshot
-	public static final int PERSON_SNAPSHOT_IS_NULL 					= 2100;	
-	public static final int PERSON_SNAPSHOT_NOT_FOUND					= 2101;
-	public static final int PERSON_SNAPSHOT_ALREADY_EXIST				= 2102;
+	public static final int PERSON_SNAPSHOT_IS_NULL 					= 6200;
+	public static final int PERSON_SNAPSHOT_NOT_FOUND					= 6201;
+	public static final int PERSON_SNAPSHOT_ALREADY_EXIST				= 6202;
 	
 	// PersonCustomer
-	public static final int PERSON_CUS_WITHOUT_REFERENCE				= 2150;
+	public static final int PERSON_CUS_WITHOUT_REFERENCE				= 2100;
 	public static final int PERSON_CUS_EMAIL_IS_NULL					= 2101;
 	public static final int PERSON_CUS_EMAIL_IS_FILLED					= 2102;
 	public static final int PERSON_CUS_CPF_IS_NULL						= 2103;
@@ -680,4 +675,12 @@ public final class SystemCode {
 	// File Write
 	public static final int FILE_WRITE_MANDATORY_FIELD_EMPTY 			= 6101;
 	public static final int FILE_WRITE_ERROR 							= 6102;
+	
+	// Employee Snapshot
+	public static final int EMP_SNAP_ALREADY_EXIST 						= 6150;
+	public static final int EMP_SNAP_NOT_FOUND 							= 6151;
+	public static final int EMP_SNAP_MANDATORY_FIELD_EMPTY				= 6152;
+	
+	// System
+	public static final int AUTO_GENERATED_FIELD_IS_NOT_EMPTY			= 6250;
 }

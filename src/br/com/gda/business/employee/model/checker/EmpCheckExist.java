@@ -44,7 +44,7 @@ public final class EmpCheckExist extends ModelCheckerTemplateAction<EmpInfo> {
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
 		if (makeFailCodeHook(checkerResult) == SystemCode.EMP_ALREADY_EXIST)
-			return SystemMessage.EMP_ALREALDY_EXIST;
+			return SystemMessage.EMP_ALREADY_EXIST;
 		
 		return SystemMessage.EMP_NOT_FOUND;
 	}

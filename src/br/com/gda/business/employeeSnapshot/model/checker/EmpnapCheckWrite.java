@@ -30,12 +30,12 @@ public final class EmpnapCheckWrite extends ModelCheckerTemplateSimple<EmpnapInf
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.EMP_SNAP_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.EMP_SNAP_MANDATORY_FIELD_EMPTY;
 	}
 }

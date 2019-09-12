@@ -2,18 +2,6 @@ package br.com.gda.common;
 
 public final class SystemMessage {
 	// TODO: Organizar essas Strings
-	public static final String CPF_INVALID = "CPF is invalid";
-	public static final String CNPJ_INVALID = "CNPJ is invalid";	
-	public static final String NULL_TABLE_NAME = "Table name is null";
-	public static final String TABLE_NOT_FOUND = "table was not found";			
-	public static final String ILLEGAL_ARGUMENT = "IllegalArgument: mandatory argument might be missing or invalid value was passed";	
-	public static final String NULL_WHERE_CLAUSE = "where clause is null";				
-	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";				
-	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";									//TODO: remover e substituir por msg especifica
-	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";			
-	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
-	public static final String RESULTSET_NOT_APPLICABLE = "Resultset is either not applicable or is empty";		
-	public static final String OPERATION_CANT_BE_PROCESSED = "Not possible to process this operation";	
 	public static final String SQL_WHERE_CLAUSE_HAS_NO_COLUMN = "SQL Where clause has no column";	
 	public static final String AUTO_GENERATED_FIELD_IS_NOT_EMPTY = "Auto generated fields should not be passed";
 	public static final String ERROR_CREATING_SKELETON_STATEMENT = "Not possible to create skeleton statment";	
@@ -38,16 +26,19 @@ public final class SystemMessage {
 	public static final String EMPTY_ARGUMENT = " argument is empty";
 	public static final String EMPTY_COLUMNS = "No columns for this given builder were passed";
 	public static final String HEADER_PARAM_NOT_FOUND = "No Header param found for: ";	
+	public static final String ILLEGAL_ARGUMENT = "IllegalArgument: mandatory argument might be missing or invalid value was passed";	
 	public static final String INTERNAL_ERROR = "Ops... something went wrong";	
 	public static final String KEEP_NOT_ALLOWED = "Keep operation not allowed";
 	public static final String KEY_FIELD_IS_EMPTY = "Key field should not be null";
 	public static final String KEY_FIELD_NOT_NULL = "Key field should not be passed";
 	public static final String LIMIT_EXCEEDED = "Limit exceeded";	
+	public static final String MANDATORY_FIELD_EMPTY = "Mandatory field is empty";									//TODO: remover e substituir por msg especifica
 	public static final String MERGE_NOT_POSSIBLE = "Merge operation not possible";	
 	public static final String MERGE_RETURNED_NULL = "Merge operation returned null";	
 	public static final String MERGE_NOT_ALLOWED = "Merge operation not allowed";
 	public static final String MIN_SIZE_REQUIRED = "Size should be greater or equal to: ";	
 	public static final String MULTIPLE_RECORDS = "Multiple records found on DB";
+	public static final String NO_AFFECT_ROWS_IN_DB = "No affected rows in DB";	
 	public static final String NO_CHECK_PERFORMED = "Check operation was not performed";
 	public static final String NO_CONFLICT = "No conflict detected";
 	public static final String NO_ERROR_FOUND = "No error was found";
@@ -59,12 +50,17 @@ public final class SystemMessage {
 	public static final String NULL_COLUMNS = "Columns for this given builder were passed null";
 	public static final String NULL_CONN = "Conn is null";
 	public static final String NULL_SCHEMA = "Schema name is null";	
+	public static final String NULL_SQL_BUILDER_OPTION = "option argument is null";
+	public static final String NULL_TABLE_NAME = "Table name is null";
+	public static final String NULL_WHERE_CLAUSE = "where clause is null";	
 	public static final String OBJ_NOT_INITIALIED = "Object was not initialized or operartion not applicable for current state";
 	public static final String PRUNE_NOT_ALLOWED = "Prune operation not allowed";
 	public static final String POSITIVE_NUM_EXPECTED = " should be positive and greater than zero";	
 	public static final String REQUEST_FAILED = "It was not possible to complete your request";
 	public static final String REQUEST_NOT_EXECUTED = "Request has not been executed";
+	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";	
 	public static final String SUCCESS = "Success";			
+	public static final String TABLE_NOT_FOUND = "table was not found";	
 	public static final String TECH_FIELD_SHOULD_BE_EMPTY = "Technical fields shouldn't be filled";
 	public static final String WRONG_DATA_TYPE = "Wrong data type";	
 
@@ -183,11 +179,9 @@ public final class SystemMessage {
 	
 	
 	// Employee
-	public static final String EMP_ALREALDY_EXIST = "Employee's data already exist on DB";	
+	public static final String EMP_ALREADY_EXIST = "Employee's data already exist on DB";	
 	public static final String EMP_CPF_ALREADY_EXIST = "Employee's CPF already exist on DB";	
 	public static final String EMP_CPF_NOT_FOUND = "Employee's CPF not found on DB";	
-	public static final String EMP_DATA_ALREADY_EXIST = "Employee's data already exist";
-	public static final String EMP_DATA_NOT_FOUND = "Employee's data not found";
 	public static final String EMP_FLAGGED_AS_DELETED = "Employee's data is flagged as deleted on DB";	
 	public static final String EMP_LDATE_ALREADY_EXIST = "Employee's leave date already exist on DB";
 	public static final String EMP_LDATE_FLAGGED_AS_DELETED = "Employee leave date data is flagged as deleted on DB";
@@ -210,7 +204,7 @@ public final class SystemMessage {
 	
 			
 	// Store		
-	public static final String STORE_ALREALDY_EXIST = "Store's data already exist on DB";	
+	public static final String STORE_ALREADY_EXIST = "Store's data already exist on DB";	
 	public static final String STORE_HAS_ITEM = "Store data found on DB";
 	public static final String STORE_NOT_FOUND = "Store's data not found on DB";
 	public static final String STORE_CNPJ_ALREADY_EXIST = "Store's CNPJ already exist on DB";	
@@ -385,12 +379,6 @@ public final class SystemMessage {
 	public static final String USER_TECH_FIELD_SHOULD_BE_EMPTY = "User: technical fields shouldn't be filled";
 	public static final String USER_USERNAME_ALREADY_EXIST = "Username data already exist on DB";
 	public static final String USER_USERNAME_NOT_FOUND = "Username not found on DB";
-			
-	
-	
-	// Snapshot
-	public static final String SNAPSHOT_ALREADY_EXIST = "Snapshot already exist on DB";	
-	public static final String SNAPSHOT_NOT_FOUND = "Snapshot not found on DB";	
 	
 	
 	
@@ -578,7 +566,7 @@ public final class SystemMessage {
 	
 	
 	// Material Movement
-	public static final String MAT_MOV_ALREALDY_EXIST = "Material movement data already exist on DB";	
+	public static final String MAT_MOV_ALREADY_EXIST = "Material movement data already exist on DB";	
 	public static final String MAT_MOV_MAT_CATEG_ILLEGAL = "Material movement: material category not allowed";
 	public static final String MAT_MOV_NOT_FOUND = "Material movement data not found on DB";
 	public static final String MAT_MOV_TECH_FIELD_SHOULD_BE_EMPTY = "Material movement: technical fields shouldn't be filled";
@@ -587,7 +575,7 @@ public final class SystemMessage {
 	
 	
 	// Material Stock
-	public static final String MAT_STOCK_ALREALDY_EXIST = "Material Stock data already exist on DB";	
+	public static final String MAT_STOCK_ALREADY_EXIST = "Material Stock data already exist on DB";	
 	public static final String MAT_STOCK_NOT_FOUND = "Material Stock data not found on DB";
 	public static final String MAT_STOCK_NO_BALANCE = "No stock balance";
 	public static final String MAT_STOCK_LIMIT_EXCEEDED = "Material Stock: limit exceeded";
@@ -887,4 +875,11 @@ public final class SystemMessage {
 	// File Write
 	public static final String FILE_WRITE_MANDATORY_FIELD_EMPTY = "File-Write: Mandatory field is empty";
 	public static final String FILE_WRITE_ERROR = "File-Write: An error occurred when trying to write file on server";
+	
+	
+	
+	// Employee Snapshot
+	public static final String EMP_SNAP_ALREADY_EXIST = "Employee-Snapshot: data already exist on DB";	
+	public static final String EMP_SNAP_MANDATORY_FIELD_EMPTY = "Employee-Snapshot: Mandatory field is empty";
+	public static final String EMP_SNAP_NOT_FOUND = "Employee-Snapshot: data not found on DB";	
 }

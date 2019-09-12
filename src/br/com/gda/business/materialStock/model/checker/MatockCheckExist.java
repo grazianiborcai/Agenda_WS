@@ -45,7 +45,7 @@ public final class MatockCheckExist extends ModelCheckerTemplateAction<MatockInf
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
 		if (makeFailCodeHook(checkerResult) == SystemCode.MAT_STOCK_ALREADY_EXIST)
-			return SystemMessage.MAT_STOCK_ALREALDY_EXIST;
+			return SystemMessage.MAT_STOCK_ALREADY_EXIST;
 		
 		return SystemMessage.MAT_STOCK_NOT_FOUND;
 	}

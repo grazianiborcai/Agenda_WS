@@ -44,7 +44,7 @@ public final class StoreCheckExist extends ModelCheckerTemplateAction<StoreInfo>
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
 		if (makeFailCodeHook(checkerResult) == SystemCode.STORE_ALREADY_EXIST)
-			return SystemMessage.STORE_ALREALDY_EXIST;
+			return SystemMessage.STORE_ALREADY_EXIST;
 		
 		return SystemMessage.STORE_NOT_FOUND;
 	}

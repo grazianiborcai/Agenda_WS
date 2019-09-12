@@ -20,20 +20,20 @@ public final class EmpnapCheckRead extends ModelCheckerTemplateSimple<EmpnapInfo
 			recordInfo.codSnapshot 	<= 0 	||
 			recordInfo.codLanguage 	== null	||
 			recordInfo.username		== null		)			
-			return FAILED;		
+			return super.FAILED;		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.EMP_SNAP_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.EMP_SNAP_MANDATORY_FIELD_EMPTY;
 	}
 }

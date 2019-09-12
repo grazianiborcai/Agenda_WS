@@ -43,18 +43,18 @@ public final class EmpnapCheckExist extends ModelCheckerTemplateAction<EmpnapInf
 	
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.EMP_ALREADY_EXIST)
-			return SystemMessage.EMP_ALREALDY_EXIST;
+		if (makeFailCodeHook(checkerResult) == SystemCode.EMP_SNAP_ALREADY_EXIST)
+			return SystemMessage.EMP_SNAP_ALREADY_EXIST;
 		
-		return SystemMessage.EMP_NOT_FOUND;
+		return SystemMessage.EMP_SNAP_NOT_FOUND;
 	}
 	
 	
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == ALREADY_EXIST)
-			return SystemCode.EMP_ALREADY_EXIST;	
+			return SystemCode.EMP_SNAP_ALREADY_EXIST;	
 			
-		return SystemCode.EMP_NOT_FOUND;
+		return SystemCode.EMP_SNAP_NOT_FOUND;
 	}
 }

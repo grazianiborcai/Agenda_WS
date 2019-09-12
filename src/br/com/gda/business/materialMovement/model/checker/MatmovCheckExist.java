@@ -45,7 +45,7 @@ public final class MatmovCheckExist extends ModelCheckerTemplateAction<MatmovInf
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
 		if (makeFailCodeHook(checkerResult) == SystemCode.MAT_MOV_ALREADY_EXIST)
-			return SystemMessage.MAT_MOV_ALREALDY_EXIST;
+			return SystemMessage.MAT_MOV_ALREADY_EXIST;
 		
 		return SystemMessage.MAT_MOV_NOT_FOUND;
 	}

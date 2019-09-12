@@ -41,7 +41,7 @@ public final class PositionCheckExist extends ModelCheckerTemplateAction<Positio
 	
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.EMP_POS_ALREADY_EXIST)
+		if (makeFailCodeHook(checkerResult) == SystemCode.POSITION_ALREADY_EXIST)
 			return SystemMessage.POSITION_ALREADY_EXIST;
 		
 		return SystemMessage.POSITION_NOT_FOUND;
@@ -51,8 +51,8 @@ public final class PositionCheckExist extends ModelCheckerTemplateAction<Positio
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.EMP_POS_ALREADY_EXIST;	
+			return SystemCode.POSITION_ALREADY_EXIST;	
 			
-		return SystemCode.EMP_POS_NOT_FOUND;
+		return SystemCode.POSITION_NOT_FOUND;
 	}
 }
