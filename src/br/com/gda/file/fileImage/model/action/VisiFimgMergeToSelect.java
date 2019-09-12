@@ -22,6 +22,12 @@ final class VisiFimgMergeToSelect extends ActionVisitorTemplateMergeV2<FimgInfo,
 	
 	
 	
+	@Override protected List<FimgInfo> toActionClassHook(List<FimgInfo> recordInfos) {
+		return recordInfos;	
+	}
+	
+	
+	
 	@Override protected List<FimgInfo> mergeHook(List<FimgInfo> recordInfos, List<FimgInfo> selectedInfos) {	
 		return FimgMerger.mergeToSelect(selectedInfos, recordInfos);
 	}

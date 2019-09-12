@@ -11,7 +11,7 @@ public final class FimgSetterFullname implements InfoSetter<FimgInfo> {
 	public FimgInfo setAttr(FimgInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		recordInfo.fileImgFullName = recordInfo.fileImgPath + recordInfo.fileImgName + recordInfo.fileImgExtension;
+		recordInfo.fileImgFullName = recordInfo.fileImgPath + recordInfo.fileImgName + "." + recordInfo.fileImgExtension;
 		return recordInfo;
 	}
 	

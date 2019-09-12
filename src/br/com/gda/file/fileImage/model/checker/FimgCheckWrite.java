@@ -18,7 +18,6 @@ public final class FimgCheckWrite extends ModelCheckerTemplateSimple<FimgInfo> {
 	@Override protected boolean checkHook(FimgInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 			<= 0 	
 			|| recordInfo.fileImgData		== null
-			|| recordInfo.fileImgFullName	== null
 			|| recordInfo.codLanguage		== null
 			|| recordInfo.username			== null	)
 			

@@ -110,17 +110,18 @@ public final class FimgSelectSingle implements DaoStmt<FimgInfo> {
 			
 			do {
 				FimgInfo dataInfo = new FimgInfo();
-				dataInfo.codOwner = stmtResult.getLong(FimgDbTableColumn.COL_COD_OWNER);
-				dataInfo.codFileImg = stmtResult.getLong(FimgDbTableColumn.COL_COD_FILE_IMG);
-				dataInfo.codMat = stmtResult.getLong(FimgDbTableColumn.COL_COD_MATERIAL);
-				dataInfo.codPerson = stmtResult.getLong(FimgDbTableColumn.COL_COD_PERSON);
-				dataInfo.codCompany = stmtResult.getLong(FimgDbTableColumn.COL_COD_COMPANY);
+				dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_OWNER);
+				dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_FILE_IMG);
+				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_MATERIAL);
+				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_PERSON);
+				dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_COMPANY);
 				dataInfo.recordMode = stmtResult.getString(FimgDbTableColumn.COL_RECORD_MODE);
 				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, FimgDbTableColumn.COL_CREATED_ON);		
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, FimgDbTableColumn.COL_LAST_CHANGED);	
 				dataInfo.fileImgName = stmtResult.getString(FimgDbTableColumn.COL_FILE_IMG_NAME);
-				dataInfo.createdBy = stmtResult.getLong(FimgDbTableColumn.COL_CREATED_BY);
-				dataInfo.lastChangedBy = stmtResult.getLong(FimgDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.fileImgExtension = stmtResult.getString(FimgDbTableColumn.COL_FILE_IMG_EXTENSION);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_CREATED_BY);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_LAST_CHANGED_BY);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

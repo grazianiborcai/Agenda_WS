@@ -12,9 +12,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootFilupInsert extends DeciTreeWriteTemplate<FriteInfo> {
+public final class RootFriteWriteOnDisk extends DeciTreeWriteTemplate<FriteInfo> {
 	
-	public RootFilupInsert(DeciTreeOption<FriteInfo> option) {
+	public RootFriteWriteOnDisk(DeciTreeOption<FriteInfo> option) {
 		super(option);
 	}
 	

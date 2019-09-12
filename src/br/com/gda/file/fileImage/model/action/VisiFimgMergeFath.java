@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.file.fileImage.info.FimgInfo;
 import br.com.gda.file.fileImage.info.FimgMerger;
 import br.com.gda.file.filePath.info.FathInfo;
-import br.com.gda.file.filePath.model.decisionTree.RootFathSelect;
+import br.com.gda.file.filePath.model.decisionTree.RootFathSelectImage;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -19,7 +19,7 @@ final class VisiFimgMergeFath extends ActionVisitorTemplateMergeV2<FimgInfo, Fat
 	
 	
 	@Override protected Class<? extends DeciTree<FathInfo>> getTreeClassHook() {
-		return RootFathSelect.class;
+		return RootFathSelectImage.class;
 	}
 	
 	

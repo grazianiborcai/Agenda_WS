@@ -16,8 +16,7 @@ public final class FriteCheckWrite extends ModelCheckerTemplateSimple<FriteInfo>
 	
 	
 	@Override protected boolean checkHook(FriteInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.fileFullName== null	)
-			
+		if (recordInfo.fileFullName== null)			
 			return super.FAILED;
 			
 		

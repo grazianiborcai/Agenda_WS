@@ -10,6 +10,8 @@ import br.com.gda.file.fileImage.model.action.LazyFimgEnforceCreatedOn;
 import br.com.gda.file.fileImage.model.action.LazyFimgEnforceFilename;
 import br.com.gda.file.fileImage.model.action.LazyFimgInsert;
 import br.com.gda.file.fileImage.model.action.LazyFimgMergeUsername;
+import br.com.gda.file.fileImage.model.action.LazyFimgNodeWrite;
+import br.com.gda.file.fileImage.model.action.LazyFimgRootSelect;
 import br.com.gda.file.fileImage.model.action.StdFimgEnforceLChanged;
 import br.com.gda.file.fileImage.model.checker.FimgCheckLangu;
 import br.com.gda.file.fileImage.model.checker.FimgCheckOwner;
@@ -67,12 +69,16 @@ public final class RootFimgInsert extends DeciTreeWriteTemplate<FimgInfo> {
 		ActionLazy<FimgInfo> enforceCreatedBy = new LazyFimgEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> enforceFilename = new LazyFimgEnforceFilename(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> insert = new LazyFimgInsert(option.conn, option.schemaName);	
+		ActionLazy<FimgInfo> nodeWrite = new LazyFimgNodeWrite(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceFilename);
 		enforceFilename.addPostAction(insert);
+		insert.addPostAction(nodeWrite);
+		nodeWrite.addPostAction(select);
 		
 		actions.add(enforceLChanged);		
 		return actions;
