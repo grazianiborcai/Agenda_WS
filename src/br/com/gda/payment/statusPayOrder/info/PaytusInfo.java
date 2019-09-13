@@ -26,6 +26,8 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PaytusInfo() {
+		super(PaytusInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codPayOrder = DefaultValue.number();
 		codOrder = DefaultValue.number();

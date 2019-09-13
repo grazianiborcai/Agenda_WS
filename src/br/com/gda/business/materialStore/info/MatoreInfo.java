@@ -36,6 +36,8 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatoreInfo() {
+		super(MatoreInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();	
 		codMat = DefaultValue.number();

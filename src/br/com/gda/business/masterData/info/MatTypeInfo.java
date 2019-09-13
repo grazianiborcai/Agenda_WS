@@ -12,8 +12,10 @@ public final class MatTypeInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatTypeInfo() {
-		this.codType = DefaultValue.number();
-		this.codLanguage = DefaultValue.language();
+		super(MatTypeInfo.class);
+		
+		codType = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

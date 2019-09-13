@@ -14,6 +14,11 @@ public final class DateTimeRangeInfo extends InfoRecord implements Cloneable {
 	public LocalTime timeValidTo;
 	
 	
+	public DateTimeRangeInfo() {
+		super(DateTimeRangeInfo.class);
+	}
+	
+	
 	
 	public static DateTimeRangeInfo copyFrom(Object sourceObj) {
 		return copyFrom(sourceObj, DateTimeRangeInfo.class);

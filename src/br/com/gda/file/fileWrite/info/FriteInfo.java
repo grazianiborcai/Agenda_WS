@@ -10,6 +10,11 @@ public final class FriteInfo extends InfoRecord implements Cloneable {
 	public InputStream fileData;
 	
 	
+	public FriteInfo() {
+		super(FriteInfo.class);
+	}
+	
+	
 	
 	public static FriteInfo copyFrom(Object sourceObj) {
 		return copyFrom(sourceObj, FriteInfo.class);

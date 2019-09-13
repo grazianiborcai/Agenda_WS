@@ -17,6 +17,11 @@ public class DateTimeInfo extends InfoRecord implements Cloneable {
 	public LocalDate date;
 	
 	
+	public DateTimeInfo() {
+		super(DateTimeInfo.class);
+	}
+	
+	
 	
 	public static DateTimeInfo copyFrom(Object sourceObj) {
 		return copyFrom(sourceObj, DateTimeInfo.class);

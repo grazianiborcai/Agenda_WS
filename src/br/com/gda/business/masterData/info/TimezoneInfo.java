@@ -12,6 +12,8 @@ public final class TimezoneInfo extends InfoRecord implements Cloneable {
 	
 	
 	public TimezoneInfo() {
+		super(TimezoneInfo.class);
+		
 		this.codLanguage = DefaultValue.language();
 	}
 	

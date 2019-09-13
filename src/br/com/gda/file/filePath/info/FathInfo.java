@@ -6,7 +6,12 @@ import br.com.gda.info.InfoRecord;
 
 public final class FathInfo extends InfoRecord implements Cloneable {
 	public String codFilePath;
-	public String filePath;
+	public String filePath;	
+	
+	
+	public FathInfo() {
+		super(FathInfo.class);
+	}
 	
 	
 	

@@ -20,6 +20,8 @@ public final class MatextInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatextInfo() {
+		super(MatextInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codLanguage = DefaultValue.language();

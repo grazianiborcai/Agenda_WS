@@ -5,9 +5,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.gda.business.materialSnapshot.info.MatsnapInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
@@ -47,11 +44,12 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
-	public String recordMode;
-	
+	public String recordMode;	
 	
 	
 	public SchedinapInfo() {
+		super(SchedinapInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codSchedule = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
@@ -167,7 +165,7 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 	
 	@Override public int compareTo(SchedinapInfo arg0) {
 		if (arg0 == null) {
-			logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
+			super.logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	
 		}
 
@@ -182,14 +180,7 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 			return 0;
 		
 		/*
-		logException(new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE));
+		super.logException(new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE));
 		throw new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE);*/
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
 	}
 }

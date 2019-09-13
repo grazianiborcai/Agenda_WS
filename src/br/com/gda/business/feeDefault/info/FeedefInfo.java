@@ -12,6 +12,8 @@ public final class FeedefInfo extends InfoRecord implements Cloneable {
 	
 	
 	public FeedefInfo() {
+		super(FeedefInfo.class);
+		
 		codFeeCateg = DefaultValue.character();
 		price = DefaultValue.number();
 	}

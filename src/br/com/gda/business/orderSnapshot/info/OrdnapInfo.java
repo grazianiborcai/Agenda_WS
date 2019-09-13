@@ -49,6 +49,8 @@ public final class OrdnapInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OrdnapInfo() {
+		super(OrdnapInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codSnapshot = DefaultValue.number();	
 		codOrder = DefaultValue.number();				

@@ -12,8 +12,10 @@ public final class GenderInfo extends InfoRecord implements Cloneable {
 	
 	
 	public GenderInfo() {
-		this.codGender = DefaultValue.number();
-		this.codLanguage = DefaultValue.language();
+		super(GenderInfo.class);
+		
+		codGender = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

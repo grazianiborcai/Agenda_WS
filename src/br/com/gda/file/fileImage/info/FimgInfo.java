@@ -28,6 +28,8 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 	
 	
 	public FimgInfo() {
+		super(FimgInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codFileImg = DefaultValue.number();		
 		codPerson = DefaultValue.number();

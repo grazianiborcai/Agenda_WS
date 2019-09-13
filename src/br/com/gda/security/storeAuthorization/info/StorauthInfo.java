@@ -16,6 +16,8 @@ public final class StorauthInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StorauthInfo() {
+		super(StorauthInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codUser = DefaultValue.number();

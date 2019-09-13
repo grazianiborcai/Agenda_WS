@@ -8,6 +8,12 @@ public final class SysEnvironInfo extends InfoRecord implements Cloneable {
 	public String codSysEnviron;
 	
 	
+	public SysEnvironInfo() {
+		super(SysEnvironInfo.class);
+	}
+	
+	
+	
 	public static SysEnvironInfo copyFrom(Object sourceObj) {
 		return copyFrom(sourceObj, SysEnvironInfo.class);
 	}

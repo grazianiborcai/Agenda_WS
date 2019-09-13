@@ -13,6 +13,8 @@ public final class FeeCategInfo extends InfoRecord implements Cloneable {
 	
 	
 	public FeeCategInfo() {
+		super(FeeCategInfo.class);
+		
 		codLanguage = DefaultValue.language();
 		codFeeCateg = DefaultValue.character();
 	}

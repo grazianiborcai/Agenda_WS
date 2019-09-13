@@ -13,6 +13,8 @@ public final class EntityCategInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EntityCategInfo() {
+		super(EntityCategInfo.class);
+		
 		codLanguage = DefaultValue.language();
 	}
 	

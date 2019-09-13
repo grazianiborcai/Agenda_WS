@@ -12,7 +12,9 @@ public final class MatUnitInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatUnitInfo() {
-		this.codLanguage = DefaultValue.language();
+		super(MatUnitInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

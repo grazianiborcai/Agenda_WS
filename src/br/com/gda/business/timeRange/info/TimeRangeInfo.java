@@ -11,6 +11,11 @@ public final class TimeRangeInfo extends InfoRecord implements Cloneable {
 	public LocalTime endTime;
 	
 	
+	public TimeRangeInfo() {
+		super(TimeRangeInfo.class);
+	}
+	
+	
 	
 	public static TimeRangeInfo copyFrom(Object sourceObj) {
 		return copyFrom(sourceObj, TimeRangeInfo.class);

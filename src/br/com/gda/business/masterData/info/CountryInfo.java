@@ -13,7 +13,9 @@ public final class CountryInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CountryInfo() {
-		this.codLanguage = DefaultValue.language();
+		super(CountryInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

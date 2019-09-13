@@ -12,6 +12,8 @@ public final class MatmovTypeInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatmovTypeInfo() {
+		super(MatmovTypeInfo.class);
+		
 		codMatmovType = DefaultValue.character();
 		codLanguage = DefaultValue.language();
 	}

@@ -27,10 +27,11 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	public long lastChangedBy;
 	public String username;
 	public String recordMode;
-
 	
 	
 	public StolisInfo() {
+		super(StolisInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codSnapshot = DefaultValue.number();

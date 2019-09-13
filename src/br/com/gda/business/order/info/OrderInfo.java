@@ -43,6 +43,8 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OrderInfo() {
+		super(OrderInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codOrder = DefaultValue.number();			
 		codSnapshot = DefaultValue.number();

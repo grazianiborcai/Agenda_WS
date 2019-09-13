@@ -19,6 +19,8 @@ public final class EmabodyInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmabodyInfo() {
+		super(EmabodyInfo.class);
+		
 		codLanguage = DefaultValue.language();
 	}
 	

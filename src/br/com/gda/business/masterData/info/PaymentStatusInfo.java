@@ -12,7 +12,9 @@ public final class PaymentStatusInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PaymentStatusInfo() {
-		this.codLanguage = DefaultValue.language();
+		super(PaymentStatusInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

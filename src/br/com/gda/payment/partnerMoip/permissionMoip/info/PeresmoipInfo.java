@@ -20,6 +20,8 @@ public final class PeresmoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PeresmoipInfo() {
+		super(PeresmoipInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codPayPartner = DefaultValue.number();

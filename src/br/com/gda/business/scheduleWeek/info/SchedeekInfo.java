@@ -31,6 +31,8 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 	
 	
 	public SchedeekInfo() {
+		super(SchedeekInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();

@@ -10,6 +10,7 @@ public final class FormPhoneInfo extends InfoRecord implements Cloneable {
 	
 	
 	public FormPhoneInfo() {
+		super(FormPhoneInfo.class);
 	}
 	
 	

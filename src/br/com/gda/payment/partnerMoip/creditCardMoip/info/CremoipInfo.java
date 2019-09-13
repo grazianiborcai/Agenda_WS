@@ -44,6 +44,8 @@ public final class CremoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CremoipInfo() {
+		super(CremoipInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();	

@@ -12,6 +12,8 @@ public final class WeekdayInfo extends InfoRecord implements Cloneable {
 	
 	
 	public WeekdayInfo() {
+		super(WeekdayInfo.class);
+		
 		codWeekday = DefaultValue.number();	
 		codLanguage = DefaultValue.language();
 	}

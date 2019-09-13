@@ -29,11 +29,13 @@ public final class EmplevateInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmplevateInfo() {
-		this.codOwner = DefaultValue.number();
-		this.codStore = DefaultValue.number();
-		this.codEmployee = DefaultValue.number();
-		this.codLanguage = DefaultValue.language();
-		this.recordMode = DefaultValue.recordMode();
+		super(EmplevateInfo.class);
+		
+		codOwner = DefaultValue.number();
+		codStore = DefaultValue.number();
+		codEmployee = DefaultValue.number();
+		codLanguage = DefaultValue.language();
+		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
 	}
 	

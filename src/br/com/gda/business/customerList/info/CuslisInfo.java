@@ -25,6 +25,8 @@ public final class CuslisInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CuslisInfo() {
+		super(CuslisInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codSnapshot = DefaultValue.number();

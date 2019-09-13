@@ -16,6 +16,8 @@ public final class StorimeInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StorimeInfo() {
+		super(StorimeInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codLanguage = DefaultValue.language();

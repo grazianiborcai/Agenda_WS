@@ -44,6 +44,8 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OrdmoipInfo() {
+		super(OrdmoipInfo.class);
+		
 		codOwner = DefaultValue.character();
 		itemNum = DefaultValue.character();
 		codFeeCateg = DefaultValue.character();

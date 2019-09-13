@@ -10,6 +10,11 @@ public final class TokenParamInfo extends InfoRecord implements Cloneable {
 	public String tokenPlatform;
 	
 	
+	public TokenParamInfo() {
+		super(TokenParamInfo.class);
+	}
+	
+	
 	
 	public static TokenParamInfo copyFrom(Object sourceObj) {
 		return copyFrom(sourceObj, TokenParamInfo.class);

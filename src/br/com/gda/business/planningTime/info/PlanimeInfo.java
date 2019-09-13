@@ -25,6 +25,8 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PlanimeInfo() {
+		super(PlanimeInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		dates = DefaultValue.list();

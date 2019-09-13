@@ -27,6 +27,8 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StolevateInfo() {
+		super(StolevateInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codLanguage = DefaultValue.language();

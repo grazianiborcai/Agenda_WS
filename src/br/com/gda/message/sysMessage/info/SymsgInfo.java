@@ -12,6 +12,8 @@ public final class SymsgInfo extends InfoRecord implements Cloneable {
 	
 	
 	public SymsgInfo() {
+		super(SymsgInfo.class);
+		
 		codMsg = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 	}

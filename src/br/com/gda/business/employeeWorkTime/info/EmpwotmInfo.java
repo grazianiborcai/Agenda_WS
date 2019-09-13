@@ -25,6 +25,8 @@ public class EmpwotmInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmpwotmInfo() {
+		super(EmpwotmInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();

@@ -5,9 +5,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
@@ -47,6 +44,8 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 	
 	
 	public OrdemrapInfo() {
+		super(OrdemrapInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codSnapshot = DefaultValue.number();
 		codOrder = DefaultValue.number();
@@ -178,7 +177,7 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 	
 	@Override public int compareTo(OrdemrapInfo arg0) {
 		if (arg0 == null) {
-			logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
+			super.logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	
 		}
 
@@ -193,14 +192,7 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 			return 0;
 		
 		
-		logException(new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE));
+		super.logException(new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE));
 		throw new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
 	}
 }

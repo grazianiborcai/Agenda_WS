@@ -34,6 +34,8 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 
 	
 	public UserInfo() {
+		super(UserInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codSnapshot = DefaultValue.number();

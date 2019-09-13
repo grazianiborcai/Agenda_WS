@@ -17,6 +17,8 @@ public final class UsernameInfo extends InfoRecord implements Cloneable {
 	
 	
 	public UsernameInfo() {
+		super(UsernameInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codUserCategory = DefaultValue.character();

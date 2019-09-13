@@ -25,6 +25,8 @@ public final class OrderveInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OrderveInfo() {
+		super(OrderveInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codOrder = DefaultValue.number();	
 		codUser = DefaultValue.number();

@@ -24,6 +24,8 @@ public final class AccemoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public AccemoipInfo() {
+		super(AccemoipInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codPayPartner = DefaultValue.number();

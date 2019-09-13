@@ -25,11 +25,12 @@ public final class SchedeekdatInfo extends InfoRecord implements Cloneable {
 	public int waiting;
 	public int counter;
 	public String codLanguage;
-	public String username;
-	
+	public String username;	
 	
 	
 	public SchedeekdatInfo() {
+		super(SchedeekdatInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();

@@ -12,6 +12,8 @@ public final class UserCategInfo extends InfoRecord implements Cloneable {
 	
 	
 	public UserCategInfo() {
+		super(UserCategInfo.class);
+		
 		codUserCategory = DefaultValue.character();
 		codLanguage = DefaultValue.language();
 	}

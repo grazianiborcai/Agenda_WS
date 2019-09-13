@@ -9,12 +9,13 @@ public final class CurrencyInfo extends InfoRecord implements Cloneable {
 	public String codCurr;
 	public String txtCurr;
 	public String symbolCurr;
-	public String codLanguage;
-	
+	public String codLanguage;	
 	
 	
 	public CurrencyInfo() {
-		this.codLanguage = DefaultValue.language();
+		super(CurrencyInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

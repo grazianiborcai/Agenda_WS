@@ -23,6 +23,8 @@ public final class StowotmInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StowotmInfo() {
+		super(StowotmInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codWeekday = DefaultValue.number();

@@ -25,6 +25,8 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 	
 	
 	public UpswdInfo() {
+		super(UpswdInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codUserCategory = DefaultValue.character();

@@ -31,11 +31,12 @@ public final class CusmoipInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
-	public String codSysEnviron;
-	
+	public String codSysEnviron;	
 	
 	
 	public CusmoipInfo() {
+		super(CusmoipInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codPayCustomer = DefaultValue.number();	
 		codLanguage = DefaultValue.language();

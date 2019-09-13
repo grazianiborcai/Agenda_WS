@@ -13,6 +13,8 @@ public final class CountryPhoneInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CountryPhoneInfo() {
+		super(CountryPhoneInfo.class);
+		
 		codLanguage = DefaultValue.language();
 		codCountryPhone = DefaultValue.number();
 	}

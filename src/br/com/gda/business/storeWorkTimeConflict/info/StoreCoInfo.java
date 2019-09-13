@@ -20,12 +20,14 @@ public final class StoreCoInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StoreCoInfo() {
-		this.codOwner = DefaultValue.number();
-		this.codStore = DefaultValue.number();
-		this.codEmployee = DefaultValue.number();
-		this.codWeekday = DefaultValue.number();
-		this.codLanguage = DefaultValue.language();
-		this.recordMode = DefaultValue.recordMode();
+		super(StoreCoInfo.class);
+		
+		codOwner = DefaultValue.number();
+		codStore = DefaultValue.number();
+		codEmployee = DefaultValue.number();
+		codWeekday = DefaultValue.number();
+		codLanguage = DefaultValue.language();
+		recordMode = DefaultValue.recordMode();
 	}
 	
 	

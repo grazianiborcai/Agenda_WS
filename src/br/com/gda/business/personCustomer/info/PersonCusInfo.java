@@ -16,6 +16,8 @@ public final class PersonCusInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PersonCusInfo() {
+		super(PersonCusInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codPerson = DefaultValue.number();

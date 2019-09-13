@@ -14,6 +14,8 @@ public class MatGroupInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatGroupInfo() {
+		super(MatGroupInfo.class);
+		
 		codGroup = DefaultValue.number();
 		codBusiness = DefaultValue.number();
 		codLanguage = DefaultValue.language();

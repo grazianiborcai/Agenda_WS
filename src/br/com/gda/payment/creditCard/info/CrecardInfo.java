@@ -40,6 +40,8 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CrecardInfo() {
+		super(CrecardInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
 		codUser = DefaultValue.number();

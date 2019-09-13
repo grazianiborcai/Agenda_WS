@@ -16,6 +16,8 @@ public final class OwntoreInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OwntoreInfo() {
+		super(OwntoreInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codUser = DefaultValue.number();

@@ -33,11 +33,12 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
-	public String recordMode;
-	
+	public String recordMode;	
 	
 	
 	public CusparInfo() {
+		super(CusparInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codPayPartner = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();	

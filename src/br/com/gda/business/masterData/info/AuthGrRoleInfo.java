@@ -9,6 +9,12 @@ public final class AuthGrRoleInfo extends InfoRecord implements Cloneable {
 	public String codAuthRole;	
 	
 	
+	public AuthGrRoleInfo() {
+		super(AuthGrRoleInfo.class);
+	}
+	
+	
+	
 	public static AuthGrRoleInfo copyFrom(Object sourceObj) {
 		return copyFrom(sourceObj, AuthGrRoleInfo.class);
 	}

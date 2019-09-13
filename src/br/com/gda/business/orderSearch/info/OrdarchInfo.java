@@ -20,6 +20,8 @@ public final class OrdarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OrdarchInfo() {
+		super(OrdarchInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codOrder = DefaultValue.number();				
 		codCustomer = DefaultValue.number();

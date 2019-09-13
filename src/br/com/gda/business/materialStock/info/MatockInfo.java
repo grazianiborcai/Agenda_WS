@@ -19,6 +19,8 @@ public final class MatockInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatockInfo() {
+		super(MatockInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codMat = DefaultValue.number();

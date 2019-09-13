@@ -18,11 +18,12 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 	public String statusRefundPartner;
 	public CusparInfo cusparData;
 	public String codLanguage;
-	public String username;
-	
+	public String username;	
 	
 	
 	public RefemInfo() {
+		super(RefemInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		codPayOrderItem = DefaultValue.number();

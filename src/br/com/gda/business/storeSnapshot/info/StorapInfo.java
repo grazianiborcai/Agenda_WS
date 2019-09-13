@@ -40,6 +40,8 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StorapInfo() {
+		super(StorapInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codSnapshot = DefaultValue.number();

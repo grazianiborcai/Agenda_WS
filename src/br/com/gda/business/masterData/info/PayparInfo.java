@@ -12,6 +12,8 @@ public final class PayparInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PayparInfo() {
+		super(PayparInfo.class);
+		
 		codPayPartner = DefaultValue.number();
 	}
 	

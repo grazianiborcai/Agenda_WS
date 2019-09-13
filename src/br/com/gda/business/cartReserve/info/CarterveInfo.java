@@ -25,6 +25,8 @@ public final class CarterveInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CarterveInfo() {
+		super(CarterveInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();

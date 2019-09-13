@@ -36,10 +36,11 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public long lastChangedBy;
 	public String username;
 	public String recordMode;
-
 	
 	
 	public StoreInfo() {
+		super(StoreInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codSnapshot = DefaultValue.number();

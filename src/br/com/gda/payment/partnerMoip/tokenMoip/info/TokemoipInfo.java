@@ -29,6 +29,8 @@ public final class TokemoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public TokemoipInfo() {
+		super(TokemoipInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codPayPartner = DefaultValue.number();

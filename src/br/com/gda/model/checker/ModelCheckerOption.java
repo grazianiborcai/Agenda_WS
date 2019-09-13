@@ -9,8 +9,8 @@ public final class ModelCheckerOption {
 	
 	
 	public ModelCheckerOption() {
-		this.conn = null;
-		this.expectedResult = true;
-		this.schemaName = null;
+		conn = null;
+		expectedResult = true;
+		schemaName = null;
 	}
 }

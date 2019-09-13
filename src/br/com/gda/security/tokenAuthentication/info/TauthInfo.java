@@ -17,6 +17,8 @@ public final class TauthInfo extends InfoRecord implements Cloneable {
 	
 	
 	public TauthInfo() {
+		super(TauthInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		authGrRoles = DefaultValue.list();

@@ -12,8 +12,10 @@ public final class PositionInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PositionInfo() {
-		this.codPosition = DefaultValue.number();
-		this.codLanguage = DefaultValue.language();
+		super(PositionInfo.class);
+		
+		codPosition = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

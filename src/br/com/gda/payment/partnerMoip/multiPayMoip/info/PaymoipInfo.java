@@ -31,6 +31,8 @@ public final class PaymoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PaymoipInfo() {
+		super(PaymoipInfo.class);
+		
 		cusparData = DefaultValue.object();
 		crecardData = DefaultValue.object();
 		sysparData = DefaultValue.object();

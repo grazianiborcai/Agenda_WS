@@ -5,12 +5,17 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.google.gson.Gson;
 
-public abstract class InfoRecord implements Cloneable {
+import br.com.gda.message.sysLog.Syslog;
+
+public abstract class InfoRecord extends Syslog implements Cloneable {	
+	
+	protected InfoRecord(Class<? extends InfoRecord> childClazz) {
+		super(childClazz);
+	}
+	
+	
 	
 	protected static <T> List<T> copyFrom(List<?> sourceObjs, Class<T> targetClass) {
 		if (sourceObjs == null)
@@ -49,7 +54,7 @@ public abstract class InfoRecord implements Cloneable {
 			return dateOne.isEqual(dateTwo);
 			
 		} catch (Exception e) {
-			logException(e);
+			super.logException(e);
 			return false;
 		}
 	}
@@ -64,7 +69,7 @@ public abstract class InfoRecord implements Cloneable {
 			return timeOne.equals(timeTwo);
 			
 		} catch (Exception e) {
-			logException(e);
+			super.logException(e);
 			return false;
 		}
 	}
@@ -79,7 +84,7 @@ public abstract class InfoRecord implements Cloneable {
 			return stringOne.equals(stringTwo);
 			
 		} catch (Exception e) {
-			logException(e);
+			super.logException(e);
 			return false;
 		}
 	}
@@ -94,7 +99,7 @@ public abstract class InfoRecord implements Cloneable {
 			return recordOne.equals(recordTwo);
 			
 		} catch (Exception e) {
-			logException(e);
+			super.logException(e);
 			return false;
 		}
 	}
@@ -109,15 +114,8 @@ public abstract class InfoRecord implements Cloneable {
 			return listOne.equals(listTwo);
 			
 		} catch (Exception e) {
-			logException(e);
+			super.logException(e);
 			return false;
 		}
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
 	}
 }

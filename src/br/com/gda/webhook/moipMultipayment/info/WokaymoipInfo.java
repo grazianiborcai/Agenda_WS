@@ -16,6 +16,8 @@ public final class WokaymoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public WokaymoipInfo() {
+		super(WokaymoipInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		codLanguage = DefaultValue.language();

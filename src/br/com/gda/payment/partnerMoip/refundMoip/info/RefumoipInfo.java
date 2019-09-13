@@ -28,6 +28,8 @@ public final class RefumoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public RefumoipInfo() {
+		super(RefumoipInfo.class);
+		
 		codOwner = DefaultValue.number();
 		cusparData = DefaultValue.object();
 		setuparData = DefaultValue.object();

@@ -4,8 +4,14 @@ import java.util.List;
 
 import br.com.gda.info.InfoRecord;
 
-public final class AuthGroupInfo  extends InfoRecord implements Cloneable {
+public final class AuthGroupInfo extends InfoRecord implements Cloneable {
 	public String codAuthGroup;
+	
+	
+	public AuthGroupInfo() {
+		super(AuthGroupInfo.class);
+	}
+	
 	
 	
 	public static AuthGroupInfo copyFrom(Object sourceObj) {

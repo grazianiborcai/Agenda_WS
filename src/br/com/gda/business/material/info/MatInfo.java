@@ -34,6 +34,8 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatInfo() {
+		super(MatInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codMat = DefaultValue.number();

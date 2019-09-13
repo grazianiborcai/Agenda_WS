@@ -12,7 +12,9 @@ public final class ScheduleStatusInfo extends InfoRecord implements Cloneable {
 	
 	
 	public ScheduleStatusInfo() {
-		this.codLanguage = DefaultValue.language();
+		super(ScheduleStatusInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

@@ -43,7 +43,9 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public String codSysEnviron;
 	
 	
-	public MultmoipInfo () {
+	public MultmoipInfo() {
+		super(MultmoipInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		codFeeCateg = DefaultValue.character();

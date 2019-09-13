@@ -23,6 +23,8 @@ public final class UselisInfo extends InfoRecord implements Cloneable {
 
 	
 	public UselisInfo() {
+		super(UselisInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codSnapshot = DefaultValue.number();

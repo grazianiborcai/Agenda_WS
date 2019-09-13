@@ -24,10 +24,11 @@ public final class PayordarchInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public String codLanguage;
 	public String username;
-
 	
 	
 	public PayordarchInfo() {
+		super(PayordarchInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codCreditCard = DefaultValue.number();
 		codPayOrder = DefaultValue.number();

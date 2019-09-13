@@ -18,6 +18,8 @@ public final class EmailInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmailInfo() {
+		super(EmailInfo.class);
+		
 		smtpPort = DefaultValue.number();
 		codLanguage = DefaultValue.language();
 		bodyData = DefaultValue.object();

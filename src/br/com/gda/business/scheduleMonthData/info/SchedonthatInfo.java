@@ -22,11 +22,12 @@ public final class SchedonthatInfo extends InfoRecord implements Cloneable {
 	public int waiting;
 	public int counter;
 	public String codLanguage;
-	public String username;
-	
+	public String username;	
 	
 	
 	public SchedonthatInfo() {
+		super(SchedonthatInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();

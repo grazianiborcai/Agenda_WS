@@ -32,6 +32,8 @@ public final class UserapInfo extends InfoRecord implements Cloneable {
 	
 	
 	public UserapInfo() {
+		super(UserapInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codSnapshot = DefaultValue.number();

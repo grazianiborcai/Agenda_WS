@@ -27,6 +27,8 @@ public final class OrdistInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OrdistInfo() {
+		super(OrdistInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codOrder = DefaultValue.number();				
 		codCustomer = DefaultValue.number();

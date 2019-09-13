@@ -28,6 +28,8 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmpmatInfo() {
+		super(EmpmatInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();

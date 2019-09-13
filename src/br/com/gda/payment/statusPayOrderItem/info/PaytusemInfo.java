@@ -2,9 +2,6 @@ package br.com.gda.payment.statusPayOrderItem.info;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
@@ -28,6 +25,8 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 	
 	
 	public PaytusemInfo() {
+		super(PaytusemInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codPayOrderItem = DefaultValue.number();	
 		totitem = DefaultValue.number();	
@@ -102,7 +101,7 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 	
 	@Override public int compareTo(PaytusemInfo arg0) {
 		if (arg0 == null) {
-			logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
+			super.logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	
 		}
 
@@ -117,14 +116,7 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 			return 0;
 		
 		
-		logException(new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE));
+		super.logException(new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE));
 		throw new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
 	}
 }

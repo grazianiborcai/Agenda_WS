@@ -23,11 +23,12 @@ public final class SchedovmInfo extends InfoRecord implements Cloneable {
 	public int year;
 	public int confirmed;
 	public int waiting;
-	public int counter;
-	
+	public int counter;	
 	
 	
 	public SchedovmInfo() {
+		super(SchedovmInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();

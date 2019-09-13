@@ -10,6 +10,10 @@ public final class DateInfo_ extends InfoRecord implements Cloneable {
 	public LocalDate date;
 	
 	
+	public DateInfo_() {
+		super(DateInfo_.class);
+	}
+	
 	
 	public static DateInfo_ copyFrom(Object sourceObj) {
 		return copyFrom(sourceObj, DateInfo_.class);

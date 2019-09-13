@@ -10,6 +10,7 @@ public final class FormAddressInfo extends InfoRecord implements Cloneable {
 	
 	
 	public FormAddressInfo() {
+		super(FormAddressInfo.class);
 	}
 	
 	

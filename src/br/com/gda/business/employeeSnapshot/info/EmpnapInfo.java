@@ -31,6 +31,8 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmpnapInfo() {
+		super(EmpnapInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codSnapshot = DefaultValue.number();

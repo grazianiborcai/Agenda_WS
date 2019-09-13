@@ -23,6 +23,8 @@ public final class MatmovInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatmovInfo() {
+		super(MatmovInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codMatmov = DefaultValue.number();
 		codStore = DefaultValue.number();

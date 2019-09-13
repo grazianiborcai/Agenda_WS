@@ -28,6 +28,8 @@ public final class StoparInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StoparInfo() {
+		super(StoparInfo.class);
+		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codPayPartner = DefaultValue.number();

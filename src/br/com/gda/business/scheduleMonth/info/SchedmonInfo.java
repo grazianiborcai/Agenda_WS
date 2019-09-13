@@ -22,11 +22,12 @@ public final class SchedmonInfo extends InfoRecord implements Cloneable {
 	public List<MatInfo> mats;
 	public List<EmplisInfo> emplises;
 	public String codLanguage;
-	public String username;
-	
+	public String username;	
 	
 	
 	public SchedmonInfo() {
+		super(SchedmonInfo.class);
+		
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();

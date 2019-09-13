@@ -12,7 +12,9 @@ public final class OrderStatusInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OrderStatusInfo() {
-		this.codLanguage = DefaultValue.language();
+		super(OrderStatusInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	
