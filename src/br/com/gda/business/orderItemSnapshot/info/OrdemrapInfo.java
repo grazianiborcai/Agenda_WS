@@ -33,7 +33,6 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 	public String txtWeekday;
 	public LocalTime beginTime;
 	public LocalTime endTime;
-	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
@@ -61,7 +60,6 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 		totitem = DefaultValue.number();
 		codWeekday = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
-		codLanguage = DefaultValue.language();	
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		matData = DefaultValue.object();

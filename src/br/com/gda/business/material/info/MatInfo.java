@@ -23,7 +23,6 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public String txtGroup; 
 	public int codBusiness;
 	public String txtBusiness; 
-	public String codLanguage;
 	public boolean isLocked;
 	public String recordMode;
 	public LocalDateTime lastChanged;
@@ -43,8 +42,7 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 		codMatCateg = DefaultValue.number();
 		priceUnit = 1;
 		codGroup = DefaultValue.number();		
-		codBusiness = DefaultValue.number();	
-		codLanguage = DefaultValue.language();
+		codBusiness = DefaultValue.number();
 		isLocked = DefaultValue.boole();
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();

@@ -14,9 +14,7 @@ public final class OrdarchInfo extends InfoRecord implements Cloneable {
 	public String codOrderStatus;
 	public String txtOrderStatus;
 	public long codPayOrder;
-	public String codLanguage;
-	public String username;
-	
+	public String username;	
 	
 	
 	public OrdarchInfo() {
@@ -27,7 +25,6 @@ public final class OrdarchInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

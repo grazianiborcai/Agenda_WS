@@ -15,7 +15,6 @@ public final class PeresmoipInfo extends InfoRecord implements Cloneable {
 	public String code;
 	public TokemoipInfo tokemoipData;
 	public LocalDateTime lastChanged;
-	public String codLanguage;
 	public String username;
 	
 	
@@ -26,7 +25,6 @@ public final class PeresmoipInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
 		isExpected = DefaultValue.boole();
-		codLanguage = DefaultValue.language();
 		tokemoipData = DefaultValue.object();
 	}
 	

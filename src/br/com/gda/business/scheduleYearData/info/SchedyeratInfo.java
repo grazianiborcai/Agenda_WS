@@ -14,7 +14,6 @@ public final class SchedyeratInfo extends InfoRecord implements Cloneable {
 	public int confirmed;
 	public int waiting;
 	public int counter;
-	public String codLanguage;
 	public String username;
 	
 	
@@ -26,7 +25,6 @@ public final class SchedyeratInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		month = DefaultValue.number();
 		year = DefaultValue.number();	
-		codLanguage = DefaultValue.language();
 		confirmed = 0;
 		waiting = 0;
 		counter = 0;

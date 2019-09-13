@@ -16,7 +16,6 @@ public final class CuslisInfo extends InfoRecord implements Cloneable {
 	public String codEntityCateg;
 	public char codUserCategory;
 	public String codAuthGroup;
-	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -33,7 +32,6 @@ public final class CuslisInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
-		codLanguage = DefaultValue.language();		
 		recordMode = DefaultValue.recordMode();		
 		lastChangedBy = DefaultValue.number();
 		personData = DefaultValue.object();

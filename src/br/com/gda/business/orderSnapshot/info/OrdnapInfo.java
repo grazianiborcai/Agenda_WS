@@ -38,14 +38,12 @@ public final class OrdnapInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public String statusOrderPartner;
 	public String statusPaymentPartner;
-	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public LocalDateTime createdOn;
 	public long lastChangedBy;
 	public long createdBy;
 	public String username;
-	public List<OrderemInfo> orderms;
-	
+	public List<OrderemInfo> orderms;	
 	
 	
 	public OrdnapInfo() {
@@ -73,8 +71,7 @@ public final class OrdnapInfo extends InfoRecord implements Cloneable {
 		codPayOrder = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
-		createdBy = DefaultValue.number();		
-		codLanguage = DefaultValue.language();
+		createdBy = DefaultValue.number();	
 		orderms = DefaultValue.list();
 	}
 	

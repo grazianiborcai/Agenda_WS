@@ -21,7 +21,6 @@ public final class SchedmonInfo extends InfoRecord implements Cloneable {
 	public List<StolisInfo> stolises;
 	public List<MatInfo> mats;
 	public List<EmplisInfo> emplises;
-	public String codLanguage;
 	public String username;	
 	
 	
@@ -34,7 +33,6 @@ public final class SchedmonInfo extends InfoRecord implements Cloneable {
 		codMat = DefaultValue.number();
 		year = DefaultValue.number();
 		month = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		schedonthats = DefaultValue.list();
 		stolises = DefaultValue.list();
 		mats = DefaultValue.list();

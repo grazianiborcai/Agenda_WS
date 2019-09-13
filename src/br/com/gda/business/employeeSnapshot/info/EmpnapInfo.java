@@ -23,7 +23,6 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 	public PersonapInfo personapData;
 	public List<AddresnapInfo> addresnaps;
 	public List<PhonapInfo> phonaps;
-	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -40,7 +39,6 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 		codPersonSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 		personapData = DefaultValue.object();
 		addresnaps = DefaultValue.list();

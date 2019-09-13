@@ -18,7 +18,6 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 	public double grandTotal;	
 	public String codCurr;
 	public String txtCurr;
-	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
 	public List<CartemInfo> cartems;
@@ -35,7 +34,6 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		itemTotal = DefaultValue.number();
 		feeService = 0;
 		grandTotal = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		cartems = DefaultValue.list();
 	}
 	

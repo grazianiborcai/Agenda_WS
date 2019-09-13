@@ -31,10 +31,8 @@ public final class SchedistInfo extends InfoRecord implements Cloneable, Compara
 	public LocalTime endTime;
 	public long codUser;
 	public long codCustomer;
-	public String codLanguage;
 	public String username;
-	public String recordMode;
-	
+	public String recordMode;	
 	
 	
 	public SchedistInfo() {
@@ -56,8 +54,7 @@ public final class SchedistInfo extends InfoRecord implements Cloneable, Compara
 		quarter = DefaultValue.number();
 		year = DefaultValue.number();	
 		codUser = DefaultValue.number();
-		codCustomer = DefaultValue.number();
-		codLanguage = DefaultValue.language();	
+		codCustomer = DefaultValue.number();	
 		recordMode = DefaultValue.recordMode();
 	}
 	

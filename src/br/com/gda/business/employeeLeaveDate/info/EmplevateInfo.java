@@ -21,7 +21,6 @@ public final class EmplevateInfo extends InfoRecord implements Cloneable {
 	public String codTimezone;
 	public String txtTimezone;
 	public String description;
-	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -34,7 +33,6 @@ public final class EmplevateInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
 	}

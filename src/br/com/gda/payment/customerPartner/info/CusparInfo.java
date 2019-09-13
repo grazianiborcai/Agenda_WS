@@ -30,7 +30,6 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 	public UserapInfo userapData;
 	public AddresnapInfo addresnapData;
 	public PhonapInfo phonapData;
-	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
 	public String recordMode;	
@@ -46,7 +45,6 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 		codCustomerSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codUserSnapshot = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 		setuparData = DefaultValue.object();
 		userapData = DefaultValue.object();

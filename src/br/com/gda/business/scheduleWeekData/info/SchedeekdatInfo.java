@@ -24,7 +24,6 @@ public final class SchedeekdatInfo extends InfoRecord implements Cloneable {
 	public int confirmed;
 	public int waiting;
 	public int counter;
-	public String codLanguage;
 	public String username;	
 	
 	
@@ -42,8 +41,7 @@ public final class SchedeekdatInfo extends InfoRecord implements Cloneable {
 		weekYear = DefaultValue.number();
 		year = DefaultValue.number();	
 		month = DefaultValue.number();		
-		day = DefaultValue.number();	
-		codLanguage = DefaultValue.language();
+		day = DefaultValue.number();
 		confirmed = 0;
 		waiting = 0;
 		counter = 0;

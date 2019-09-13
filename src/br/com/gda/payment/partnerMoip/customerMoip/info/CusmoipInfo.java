@@ -28,7 +28,6 @@ public final class CusmoipInfo extends InfoRecord implements Cloneable {
 	public Map<String, Object> phone;
 	public Map<String, Object> shippingAddress;
 	public Map<String, Object> requestBody;
-	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public String username;
 	public String codSysEnviron;	
@@ -39,7 +38,6 @@ public final class CusmoipInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();	
 		codPayCustomer = DefaultValue.number();	
-		codLanguage = DefaultValue.language();
 		setuparData = DefaultValue.object();
 		userapData = DefaultValue.object();
 		addresnapData = DefaultValue.object();

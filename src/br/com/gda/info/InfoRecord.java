@@ -7,12 +7,17 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import br.com.gda.common.DefaultValue;
 import br.com.gda.message.sysLog.Syslog;
 
-public abstract class InfoRecord extends Syslog implements Cloneable {	
+public abstract class InfoRecord extends Syslog implements Cloneable {
+	public String codLanguage;
+	
 	
 	protected InfoRecord(Class<? extends InfoRecord> childClazz) {
 		super(childClazz);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

@@ -23,7 +23,6 @@ public final class TokemoipInfo extends InfoRecord implements Cloneable {
 	public SetuparInfo setuparData;
 	public Setup setup;
 	public String recordMode;
-	public String codLanguage;
 	public String username;
 	public String codSysEnviron;
 	
@@ -34,7 +33,6 @@ public final class TokemoipInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 		sysparData = DefaultValue.object();
 		setuparData = DefaultValue.object();

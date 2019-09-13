@@ -19,7 +19,6 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	public int priceUnit;
 	public String codUnit;
 	public String txtUnit;
-	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -37,7 +36,6 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 		codType = DefaultValue.number();
 		codCategory = DefaultValue.number();
 		priceUnit = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
 	}

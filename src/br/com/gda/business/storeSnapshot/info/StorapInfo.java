@@ -26,7 +26,6 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 	public String txtCurr;
 	public String codTimezone;
 	public String txtTimezone;
-	public String codLanguage;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
 	public UserInfo userData;
@@ -36,7 +35,6 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 	public long lastChangedBy;
 	public String username;
 	public String recordMode;
-
 	
 	
 	public StorapInfo() {
@@ -51,7 +49,6 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 		codPersonSnapshot = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		codCompanySnapshot = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 		userData = DefaultValue.object();
 		companyData = DefaultValue.object();

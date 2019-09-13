@@ -10,7 +10,6 @@ public final class OwntoreInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codUser;
 	public String username;
-	public String codLanguage;
 	public String recordMode;
 	
 	
@@ -21,7 +20,6 @@ public final class OwntoreInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codUser = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 	}
 	

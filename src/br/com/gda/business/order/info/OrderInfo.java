@@ -32,7 +32,6 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public String statusOrderPartner;
 	public String statusPaymentPartner;
-	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public LocalDateTime createdOn;
 	public long lastChangedBy;
@@ -62,7 +61,6 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		codPayPartner = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		orderms = DefaultValue.list();
 	}
 	

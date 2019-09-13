@@ -14,14 +14,12 @@ public final class EmailInfo extends InfoRecord implements Cloneable {
 	public String recipientAddr;
 	public EmabodyInfo bodyData;
 	public String username;
-	public String codLanguage;
 	
 	
 	public EmailInfo() {
 		super(EmailInfo.class);
 		
 		smtpPort = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		bodyData = DefaultValue.object();
 	}
 	

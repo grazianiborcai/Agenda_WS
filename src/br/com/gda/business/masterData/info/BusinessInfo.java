@@ -8,14 +8,12 @@ import br.com.gda.info.InfoRecord;
 public final class BusinessInfo extends InfoRecord implements Cloneable {
 	public int codBusiness;
 	public String txtBusiness; 
-	public String codLanguage;
 	
 	
 	public BusinessInfo() {
 		super(BusinessInfo.class);
 		
 		codBusiness = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

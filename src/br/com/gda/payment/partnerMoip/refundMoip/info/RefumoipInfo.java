@@ -22,7 +22,6 @@ public final class RefumoipInfo extends InfoRecord implements Cloneable {
 	public StoparInfo stoparData;
 	public Map<String, Object> response;
 	public Setup setup;
-	public String codLanguage;
 	public String username;
 	public String codSysEnviron;
 	

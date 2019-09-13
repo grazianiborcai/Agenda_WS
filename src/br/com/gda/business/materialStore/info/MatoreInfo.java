@@ -27,7 +27,6 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 	public int priceUnit;
 	public String codUnit;
 	public String txtUnit;
-	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
@@ -53,7 +52,6 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 		matPrice6 = DefaultValue.number();
 		matPrice7 = DefaultValue.number();
 		quantityStock = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}

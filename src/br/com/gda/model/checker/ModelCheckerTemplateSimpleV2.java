@@ -8,9 +8,10 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
+import br.com.gda.info.InfoRecord;
 import br.com.gda.message.sysMessage.info.SymsgInfo;
 
-public abstract class ModelCheckerTemplateSimpleV2<T> implements ModelChecker<T> {
+public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> implements ModelChecker<T> {
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;
 	protected final String NO_FAIL_MSG = null;
@@ -22,6 +23,7 @@ public abstract class ModelCheckerTemplateSimpleV2<T> implements ModelChecker<T>
 	private boolean expectedResult;
 	private Connection conn;
 	private String schemaName;
+	private String codLanguage;
 	private SymsgInfo symsgData;
 	
 	
@@ -35,6 +37,7 @@ public abstract class ModelCheckerTemplateSimpleV2<T> implements ModelChecker<T>
 		conn = option.conn;
 		schemaName = option.schemaName;
 		symsgData = DefaultValue.object();
+		codLanguage = DefaultValue.language();
 	} 
 	
 	
@@ -55,7 +58,8 @@ public abstract class ModelCheckerTemplateSimpleV2<T> implements ModelChecker<T>
 	
 	
 	@Override public boolean check(T recordInfo) {
-		checkArgument(recordInfo);
+		checkArgument(recordInfo);		
+		setLanguage(recordInfo);
 		
 		boolean result = checkHook(recordInfo, conn, schemaName);
 		checkResult = SUCCESS;
@@ -67,6 +71,12 @@ public abstract class ModelCheckerTemplateSimpleV2<T> implements ModelChecker<T>
 		}
 		
 		return getResult();
+	}
+	
+	
+	
+	private void setLanguage(T recordInfo) {
+		codLanguage = recordInfo.codLanguage;
 	}
 	
 	
@@ -182,6 +192,12 @@ public abstract class ModelCheckerTemplateSimpleV2<T> implements ModelChecker<T>
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}
+		
+		
+		if (recordInfo.codLanguage == null) {
+			logException(new NullPointerException("recordInfo.codLanguage" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("recordInfo.codLanguage" + SystemMessage.NULL_ARGUMENT);
+		}		
 	}
 	
 	

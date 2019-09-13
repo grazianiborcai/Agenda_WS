@@ -19,7 +19,6 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 	public byte[] hashToMatch;
 	public int hashLength;
 	public PersonInfo personData;
-	public String codLanguage;
 	public LocalDateTime lastChanged;
 	
 	
@@ -31,7 +30,6 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 		codUser = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
 		personData = DefaultValue.object();
-		codLanguage = DefaultValue.language();	
 	}
 	
 	

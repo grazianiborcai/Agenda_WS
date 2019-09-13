@@ -39,7 +39,6 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public String itemReceiver;
 	public boolean isSystemReceiver;
 	public LocalDateTime lastChanged;
-	public String codLanguage;
 	public String username;
 	public StolisInfo stolisData;
 	public EmplisInfo emplisData;
@@ -63,7 +62,6 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 		quantity = DefaultValue.number();
 		totitem = DefaultValue.number();
 		isSystemReceiver = DefaultValue.boole();
-		codLanguage = DefaultValue.language();	
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		matData = DefaultValue.object();

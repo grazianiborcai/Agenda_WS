@@ -25,7 +25,6 @@ public final class PaymoipInfo extends InfoRecord implements Cloneable {
 	public Map<String, Object> multipayment;
 	public Map<String, Object> response;
 	public Setup setup;
-	public String codLanguage;
 	public String username;
 	public String codSysEnviron;
 	
@@ -37,7 +36,6 @@ public final class PaymoipInfo extends InfoRecord implements Cloneable {
 		crecardData = DefaultValue.object();
 		sysparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
-		codLanguage = DefaultValue.language();
 		codSysEnviron = DefaultValue.getCodEnvironment();
 	}
 	

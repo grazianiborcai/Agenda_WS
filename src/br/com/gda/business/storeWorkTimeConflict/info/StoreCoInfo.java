@@ -15,7 +15,6 @@ public final class StoreCoInfo extends InfoRecord implements Cloneable {
 	public LocalTime beginTime;
 	public LocalTime endTime;
 	public String codTimezone;
-	public String codLanguage;
 	public String recordMode;	
 	
 	
@@ -26,7 +25,6 @@ public final class StoreCoInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codWeekday = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 	}
 	

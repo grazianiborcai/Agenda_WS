@@ -19,7 +19,6 @@ public final class CompnapInfo extends InfoRecord implements Cloneable {
 	public String codCountryLegal;
 	public String txtCountryLegal;
 	public String email;
-	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -31,8 +30,7 @@ public final class CompnapInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codCompany = DefaultValue.number();
-		codSnapshot = DefaultValue.number();
-		codLanguage = DefaultValue.language();		
+		codSnapshot = DefaultValue.number();		
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();
 	}

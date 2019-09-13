@@ -11,7 +11,6 @@ public final class MatockInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codMat;
 	public char codMatmovType;
-	public String codLanguage;
 	public int quantityToUpdate;
 	public int quantityStock;
 	public LocalDateTime lastChanged;
@@ -25,7 +24,6 @@ public final class MatockInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codMatmovType = DefaultValue.character();
-		codLanguage = DefaultValue.language();
 		quantityStock = DefaultValue.number();
 		quantityToUpdate = DefaultValue.number();
 	}

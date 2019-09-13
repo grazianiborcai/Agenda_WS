@@ -38,7 +38,6 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 	public long codCustomer;
 	public long codCustomerSnapshot;
 	public MatsnapInfo matData;
-	public String codLanguage;
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
@@ -74,7 +73,6 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 		codCustomerSnapshot = DefaultValue.number();
 		createdBy = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
-		codLanguage = DefaultValue.language();	
 		recordMode = DefaultValue.recordMode();
 		matData = DefaultValue.object();
 	}

@@ -38,7 +38,6 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public Map<String, Object> multiorder;
 	public Map<String, Object> response;
 	public Setup setup;
-	public String codLanguage;
 	public String username;
 	public String codSysEnviron;
 	
@@ -49,7 +48,6 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		codFeeCateg = DefaultValue.character();
-		codLanguage = DefaultValue.language();
 		payordems = DefaultValue.list();
 		crecardData = DefaultValue.object();
 		cusparData = DefaultValue.object();

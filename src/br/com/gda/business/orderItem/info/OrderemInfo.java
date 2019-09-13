@@ -30,7 +30,6 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 	public String txtWeekday;
 	public LocalTime beginTime;
 	public LocalTime endTime;
-	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
@@ -54,8 +53,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 		quantity = DefaultValue.number();
 		totitem = DefaultValue.number();
 		codWeekday = DefaultValue.number();
-		lastChangedBy = DefaultValue.number();
-		codLanguage = DefaultValue.language();	
+		lastChangedBy = DefaultValue.number();	
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		matData = DefaultValue.object();

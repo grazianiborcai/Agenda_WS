@@ -14,7 +14,6 @@ public final class PlanataInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codEmployee;
 	public long codMat;
-	public String codLanguage;
 	public LocalDate date;
 	public LocalTime beginTime;
 	public LocalTime endTime;
@@ -30,7 +29,6 @@ public final class PlanataInfo extends InfoRecord implements Cloneable {
 		codMat = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 	}
 	

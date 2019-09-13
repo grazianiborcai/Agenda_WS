@@ -2,19 +2,15 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
-import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class MatUnitInfo extends InfoRecord implements Cloneable {
 	public String codUnit;
 	public String txtUnit;
-	public String codLanguage;
 	
 	
 	public MatUnitInfo() {
 		super(MatUnitInfo.class);
-		
-		codLanguage = DefaultValue.language();
 	}
 	
 	

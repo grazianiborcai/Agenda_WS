@@ -23,7 +23,6 @@ public final class MatsnapInfo extends InfoRecord implements Cloneable {
 	public String txtGroup; 
 	public int codBusiness;
 	public String txtBusiness; 
-	public String codLanguage;
 	public boolean isLocked;
 	public String recordMode;
 	public LocalDateTime lastChanged;
@@ -40,8 +39,7 @@ public final class MatsnapInfo extends InfoRecord implements Cloneable {
 		codMatCateg = DefaultValue.number();
 		priceUnit = DefaultValue.number();
 		codGroup = DefaultValue.number();		
-		codBusiness = DefaultValue.number();	
-		codLanguage = DefaultValue.language();
+		codBusiness = DefaultValue.number();
 		isLocked = DefaultValue.boole();
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();

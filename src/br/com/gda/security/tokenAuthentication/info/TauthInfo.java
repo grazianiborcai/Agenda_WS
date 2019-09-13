@@ -12,7 +12,6 @@ public final class TauthInfo extends InfoRecord implements Cloneable {
 	public String username;
 	public String codPlatform;
 	public List<AuthGrRoleInfo> authGrRoles;
-	public String codLanguage;
 	public String tokenToVerify; 
 	
 	
@@ -22,7 +21,6 @@ public final class TauthInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		authGrRoles = DefaultValue.list();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

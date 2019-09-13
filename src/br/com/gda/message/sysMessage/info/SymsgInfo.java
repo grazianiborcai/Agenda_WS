@@ -8,14 +8,12 @@ import br.com.gda.info.InfoRecord;
 public final class SymsgInfo extends InfoRecord implements Cloneable {
 	public int codMsg;
 	public String txtMsg;
-	public String codLanguage;
 	
 	
 	public SymsgInfo() {
 		super(SymsgInfo.class);
 		
 		codMsg = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

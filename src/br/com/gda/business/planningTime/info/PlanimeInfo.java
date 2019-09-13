@@ -14,7 +14,6 @@ import br.com.gda.info.InfoRecord;
 
 public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public String codLanguage;
 	public String username;
 	public List<LocalDate> dates;
 	public List<StolisInfo> stores;
@@ -28,7 +27,6 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		super(PlanimeInfo.class);
 		
 		codOwner = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		dates = DefaultValue.list();
 		stores = DefaultValue.list();
 		materials = DefaultValue.list();

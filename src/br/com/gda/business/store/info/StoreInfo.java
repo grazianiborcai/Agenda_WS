@@ -26,7 +26,6 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public String txtCurr;
 	public String codTimezone;
 	public String txtTimezone;
-	public String codLanguage;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
 	public UserInfo userData;
@@ -48,7 +47,6 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 		userData = DefaultValue.object();
 		companyData = DefaultValue.object();

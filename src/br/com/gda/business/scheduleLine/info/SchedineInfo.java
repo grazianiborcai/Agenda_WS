@@ -43,14 +43,12 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public StolisInfo storeData;
 	public EmplisInfo empData;
 	public SchedarchInfo dupleData;
-	public String codLanguage;
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
-	public String recordMode;
-	
+	public String recordMode;	
 	
 	
 	public SchedineInfo() {
@@ -75,7 +73,6 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		codCustomer = DefaultValue.number();
 		createdBy = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
-		codLanguage = DefaultValue.language();	
 		recordMode = DefaultValue.recordMode();
 		matData = DefaultValue.object();
 		storeData = DefaultValue.object();

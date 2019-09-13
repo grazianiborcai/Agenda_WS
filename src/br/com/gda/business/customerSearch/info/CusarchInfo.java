@@ -17,7 +17,6 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 	public PhoneInfo phoneData;
 	public PersonInfo personData;
 	public String recordMode;
-	public String codLanguage;
 	public String username;
 	
 	
@@ -27,7 +26,6 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codUser = DefaultValue.number();
-		codLanguage = DefaultValue.language();	
 		recordMode = DefaultValue.recordMode();	
 		addressData = DefaultValue.object();
 		phoneData = DefaultValue.object();

@@ -19,7 +19,6 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 	public LocalTime timeValidTo;
 	public String codTimezone;
 	public String description;
-	public String codLanguage;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
@@ -31,7 +30,6 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}

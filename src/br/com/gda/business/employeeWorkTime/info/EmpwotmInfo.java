@@ -17,7 +17,6 @@ public class EmpwotmInfo extends InfoRecord implements Cloneable {
 	public LocalTime endTime;
 	public String codTimezone;
 	public String txtTimezone;
-	public String codLanguage;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -32,7 +31,6 @@ public class EmpwotmInfo extends InfoRecord implements Cloneable {
 		codEmployee = DefaultValue.number();
 		codWeekday = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();
 	}
 	

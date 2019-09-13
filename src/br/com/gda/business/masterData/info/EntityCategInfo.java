@@ -2,20 +2,16 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
-import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class EntityCategInfo extends InfoRecord implements Cloneable {
 	public String codEntityCateg;
 	public String txtEntityCateg;
-	public String codLanguage;
 	
 	
 	
 	public EntityCategInfo() {
 		super(EntityCategInfo.class);
-		
-		codLanguage = DefaultValue.language();
 	}
 	
 	

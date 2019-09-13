@@ -10,7 +10,6 @@ public final class RefuInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
 	public PayordInfo payordData;
-	public String codLanguage;
 	public String username;	
 	
 	
@@ -20,7 +19,6 @@ public final class RefuInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		payordData = DefaultValue.object();
 		codPayOrder = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

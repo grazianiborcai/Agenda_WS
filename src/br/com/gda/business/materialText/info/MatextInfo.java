@@ -11,7 +11,6 @@ public final class MatextInfo extends InfoRecord implements Cloneable {
 	public long codMat;
 	public String txtMat;
 	public String description;
-	public String codLanguage;
 	public boolean isDefault;
 	public String recordMode;
 	public LocalDateTime lastChanged;
@@ -24,7 +23,6 @@ public final class MatextInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codMat = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		isDefault = DefaultValue.boole();
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();

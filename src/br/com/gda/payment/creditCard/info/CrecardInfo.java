@@ -36,7 +36,6 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
-	public String codLanguage;
 	
 	
 	public CrecardInfo() {
@@ -46,7 +45,6 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 		codPayCustomer = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();
 		codPhoneHolder = DefaultValue.number();

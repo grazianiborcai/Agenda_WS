@@ -28,7 +28,6 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public String txtWeekday;
 	public LocalTime beginTime;
 	public LocalTime endTime;
-	public String codLanguage;
 	public LocalDateTime createdOn;
 	public String username;
 	public StolisInfo stolisData;
@@ -51,7 +50,6 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		quantity = DefaultValue.number();
 		totitem = DefaultValue.number();
 		codWeekday = DefaultValue.number();
-		codLanguage = DefaultValue.language();	
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		matData = DefaultValue.object();

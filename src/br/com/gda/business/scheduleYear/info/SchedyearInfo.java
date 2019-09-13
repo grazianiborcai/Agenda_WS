@@ -14,7 +14,6 @@ public final class SchedyearInfo extends InfoRecord implements Cloneable {
 	public int year;
 	public List<SchedyeratInfo> schedyerats;
 	public List<StolisInfo> stolises;
-	public String codLanguage;
 	public String username;	
 	
 	
@@ -24,7 +23,6 @@ public final class SchedyearInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();
 		year = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 		schedyerats = DefaultValue.list();
 		stolises = DefaultValue.list();
 	}
