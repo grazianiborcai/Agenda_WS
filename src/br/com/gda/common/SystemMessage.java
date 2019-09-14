@@ -42,6 +42,7 @@ public final class SystemMessage {
 	public static final String NO_CHECK_PERFORMED = "Check operation was not performed";
 	public static final String NO_CONFLICT = "No conflict detected";
 	public static final String NO_ERROR_FOUND = "No error was found";
+	public static final String NO_ERROR_MESSAGE = "An error ocurred but there is no detail on this";
 	public static final String NO_IMPLEMENTATION = "There is no implementation for this method";	
 	public static final String NO_KEEPER_IMPLEMENTATION = "No Keeper implementation";
 	public static final String NO_RESPONSE = "Main operation was not executed";

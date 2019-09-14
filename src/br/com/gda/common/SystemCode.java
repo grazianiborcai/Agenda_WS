@@ -13,6 +13,7 @@ public final class SystemCode {
 	public static final int BAD_DATE									= 11;
 	public static final int AGED_DATE									= 12;
 	public static final int TECH_FIELD_SHOULD_BE_EMPTY					= 13;
+	public static final int NO_ERROR_MESSAGE 							= 14;
 	public static final int SUCCESS 									= 200;
 	public static final int INTERNAL_ERROR 								= 500;
 	
