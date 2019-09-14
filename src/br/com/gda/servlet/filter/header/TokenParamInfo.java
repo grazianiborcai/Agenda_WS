@@ -2,16 +2,20 @@ package br.com.gda.servlet.filter.header;
 
 import java.util.List;
 
+import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class TokenParamInfo extends InfoRecord implements Cloneable {
 	public String tokenOwner;
 	public String tokenUsername;
 	public String tokenPlatform;
+	public String codLanguage;
 	
 	
 	public TokenParamInfo() {
 		super(TokenParamInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

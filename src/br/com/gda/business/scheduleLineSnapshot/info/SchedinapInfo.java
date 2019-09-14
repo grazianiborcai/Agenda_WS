@@ -44,6 +44,7 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 	public long lastChangedBy;
 	public String username;
 	public String recordMode;	
+	public String codLanguage;
 	
 	
 	public SchedinapInfo() {
@@ -75,6 +76,7 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		matData = DefaultValue.object();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

@@ -12,6 +12,7 @@ public final class PersolisInfo extends InfoRecord implements Cloneable {
 	public String name;
 	public String recordMode;
 	public String username;
+	public String codLanguage;
 	
 	
 	public PersolisInfo() {
@@ -21,6 +22,7 @@ public final class PersolisInfo extends InfoRecord implements Cloneable {
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();	
 		recordMode = DefaultValue.recordMode();	
+		codLanguage = DefaultValue.language();
 	}
 	
 	

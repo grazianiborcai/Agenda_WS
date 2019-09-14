@@ -36,8 +36,6 @@ public final class RootOwnerInsert extends DeciTreeWriteTemplate<OwnerInfo> {
 	
 	
 	@Override protected ModelChecker<OwnerInfo> buildDecisionCheckerHook(DeciTreeOption<OwnerInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -57,7 +55,7 @@ public final class RootOwnerInsert extends DeciTreeWriteTemplate<OwnerInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new OwnerCheckLangu(checkerOption);
 		queue.add(checker);	
 		

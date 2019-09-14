@@ -40,6 +40,7 @@ public final class CremoipInfo extends InfoRecord implements Cloneable {
 	public long lastChangedBy;
 	public String username;
 	public String codSysEnviron;
+	public String codLanguage;
 	
 	
 	public CremoipInfo() {
@@ -53,6 +54,7 @@ public final class CremoipInfo extends InfoRecord implements Cloneable {
 		cusparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
 		codSysEnviron = DefaultValue.getCodEnvironment();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

@@ -27,6 +27,7 @@ public final class MatsnapInfo extends InfoRecord implements Cloneable {
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
+	public String codLanguage;
 	
 	
 	public MatsnapInfo() {
@@ -43,6 +44,7 @@ public final class MatsnapInfo extends InfoRecord implements Cloneable {
 		isLocked = DefaultValue.boole();
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

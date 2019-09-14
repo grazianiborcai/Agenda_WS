@@ -36,7 +36,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 	public StolisInfo stolisData;
 	public EmplisInfo emplisData;
 	public MatInfo matData;
-	
+	public String codLanguage;
 	
 	
 	public OrderemInfo() {
@@ -57,6 +57,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		matData = DefaultValue.object();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

@@ -11,6 +11,7 @@ public final class WokefumoipInfo extends InfoRecord implements Cloneable {
 	public String title;
 	public String idPaymentPartner;
 	public String username;	
+	public String codLanguage;
 	
 	
 	public WokefumoipInfo() {
@@ -18,6 +19,7 @@ public final class WokefumoipInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

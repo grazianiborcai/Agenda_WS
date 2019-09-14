@@ -16,6 +16,7 @@ public final class JwtokenInfo extends InfoRecord implements Cloneable {
 	public SignatureAlgorithm algo;
 	public String token;
 	public String tokenToVerify;
+	public String codLanguage;
 	
 	
 	public JwtokenInfo() {
@@ -23,6 +24,7 @@ public final class JwtokenInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		expirationTime = DefaultValue.object();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

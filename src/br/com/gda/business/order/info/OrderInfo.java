@@ -38,7 +38,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public long createdBy;
 	public String username;
 	public List<OrderemInfo> orderms;
-	
+	public String codLanguage;
 	
 	
 	public OrderInfo() {
@@ -62,6 +62,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
 		orderms = DefaultValue.list();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

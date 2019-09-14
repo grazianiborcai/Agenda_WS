@@ -8,12 +8,14 @@ import br.com.gda.info.InfoRecord;
 public final class CartCategInfo extends InfoRecord implements Cloneable {
 	public char codItemCateg;
 	public String txtItemCateg;
+	public String codLanguage;
 	
 	
 	public CartCategInfo() {
 		super(CartCategInfo.class);
 		
 		codItemCateg = DefaultValue.character();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

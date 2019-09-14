@@ -21,6 +21,7 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 	public String statusRefundPartner;
 	public CusparInfo cusparData;
 	public String username;
+	public String codLanguage;
 	
 	
 	public PaytusemInfo() {
@@ -30,6 +31,7 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 		codPayOrderItem = DefaultValue.number();	
 		totitem = DefaultValue.number();	
 		cusparData = DefaultValue.object();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

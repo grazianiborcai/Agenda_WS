@@ -41,6 +41,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public String username;
+	public String codLanguage;
 	
 	
 	public PayordInfo() {
@@ -60,6 +61,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		payordems = DefaultValue.list();
 		ordmoips = DefaultValue.list();
 		latestData = DefaultValue.object();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

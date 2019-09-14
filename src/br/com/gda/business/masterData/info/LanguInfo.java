@@ -2,14 +2,18 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
+import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class LanguInfo extends InfoRecord implements Cloneable {
+	public String codLanguage;
 	public String txtLanguage;
 	
 	
 	public LanguInfo() {
 		super(LanguInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	
@@ -35,8 +39,8 @@ public final class LanguInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		if (super.codLanguage != null) {
-			char[] chars = super.codLanguage.toCharArray();
+		if (codLanguage != null) {
+			char[] chars = codLanguage.toCharArray();
 			
 			for (char eachChar : chars) {
 				result = result * 31 + (int) eachChar;
@@ -58,6 +62,6 @@ public final class LanguInfo extends InfoRecord implements Cloneable {
 		
 		
 		LanguInfo obj = (LanguInfo) o;		
-		return isStringEqual(super.codLanguage, obj.codLanguage);
+		return isStringEqual(codLanguage, obj.codLanguage);
 	}
 }

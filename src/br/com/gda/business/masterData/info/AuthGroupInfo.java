@@ -2,14 +2,18 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
+import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class AuthGroupInfo extends InfoRecord implements Cloneable {
 	public String codAuthGroup;
+	public String codLanguage;
 	
 	
 	public AuthGroupInfo() {
 		super(AuthGroupInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

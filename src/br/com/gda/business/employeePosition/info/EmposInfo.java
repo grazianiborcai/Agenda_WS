@@ -18,6 +18,7 @@ public final class EmposInfo extends InfoRecord implements Cloneable {
 	public long lastChangedBy;
 	public String username;
 	public String recordMode;
+	public String codLanguage;
 	
 	
 	public EmposInfo() {
@@ -29,6 +30,7 @@ public final class EmposInfo extends InfoRecord implements Cloneable {
 		codPosition = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

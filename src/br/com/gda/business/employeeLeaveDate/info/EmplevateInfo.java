@@ -25,6 +25,7 @@ public final class EmplevateInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
+	public String codLanguage;
 	
 	
 	public EmplevateInfo() {
@@ -35,6 +36,7 @@ public final class EmplevateInfo extends InfoRecord implements Cloneable {
 		codEmployee = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

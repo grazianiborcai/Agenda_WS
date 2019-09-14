@@ -19,6 +19,7 @@ public final class MatmovInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
+	public String codLanguage;
 	
 	
 	public MatmovInfo() {
@@ -32,6 +33,7 @@ public final class MatmovInfo extends InfoRecord implements Cloneable {
 		codMatCateg = DefaultValue.number();
 		quantity = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

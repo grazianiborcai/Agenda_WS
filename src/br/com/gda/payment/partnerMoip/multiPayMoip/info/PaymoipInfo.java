@@ -27,6 +27,7 @@ public final class PaymoipInfo extends InfoRecord implements Cloneable {
 	public Setup setup;
 	public String username;
 	public String codSysEnviron;
+	public String codLanguage;
 	
 	
 	public PaymoipInfo() {
@@ -37,6 +38,7 @@ public final class PaymoipInfo extends InfoRecord implements Cloneable {
 		sysparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
 		codSysEnviron = DefaultValue.getCodEnvironment();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

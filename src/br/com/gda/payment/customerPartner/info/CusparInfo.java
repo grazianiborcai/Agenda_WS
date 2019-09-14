@@ -33,6 +33,7 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public String username;
 	public String recordMode;	
+	public String codLanguage;
 	
 	
 	public CusparInfo() {
@@ -54,6 +55,7 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 		codAddressSnapshot = DefaultValue.number();
 		codPhone = DefaultValue.number();
 		codPhoneSnapshot = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

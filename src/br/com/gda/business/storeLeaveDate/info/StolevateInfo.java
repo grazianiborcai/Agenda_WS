@@ -23,6 +23,7 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 	public long lastChangedBy;
 	public String username;
 	public String recordMode;
+	public String codLanguage;
 	
 	
 	public StolevateInfo() {
@@ -32,6 +33,7 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

@@ -43,6 +43,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public StolisInfo stolisData;
 	public EmplisInfo emplisData;
 	public MatInfo matData;	
+	public String codLanguage;
 	
 	
 	public PayordemInfo() {
@@ -65,6 +66,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		matData = DefaultValue.object();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

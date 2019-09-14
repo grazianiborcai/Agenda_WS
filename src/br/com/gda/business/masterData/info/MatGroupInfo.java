@@ -10,6 +10,7 @@ public class MatGroupInfo extends InfoRecord implements Cloneable {
 	public String txtGroup;
 	public int codBusiness;
 	public String txtBusiness; 
+	public String codLanguage;
 	
 	
 	public MatGroupInfo() {
@@ -17,6 +18,7 @@ public class MatGroupInfo extends InfoRecord implements Cloneable {
 		
 		codGroup = DefaultValue.number();
 		codBusiness = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

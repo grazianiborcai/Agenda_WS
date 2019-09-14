@@ -8,12 +8,14 @@ import br.com.gda.info.InfoRecord;
 public final class MonthInfo extends InfoRecord implements Cloneable {
 	public int month;
 	public String txtMonth;
+	public String codLanguage;
 	
 	
 	public MonthInfo() {
 		super(MonthInfo.class);
 		
 		month = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

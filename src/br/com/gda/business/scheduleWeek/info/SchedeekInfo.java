@@ -26,7 +26,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 	public List<MatInfo> mats;
 	public List<EmplisInfo> emplises;
 	public String username;
-	
+	public String codLanguage;
 	
 	
 	public SchedeekInfo() {
@@ -45,6 +45,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		mats = DefaultValue.list();
 		emplises = DefaultValue.list();
 		cuslises = DefaultValue.list();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

@@ -2,15 +2,19 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
+import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class TimezoneInfo extends InfoRecord implements Cloneable {
 	public String codTimezone;
 	public String txtTimezone;
+	public String codLanguage;
 	
 	
 	public TimezoneInfo() {
 		super(TimezoneInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

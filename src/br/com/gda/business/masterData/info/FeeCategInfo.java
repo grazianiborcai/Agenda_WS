@@ -8,13 +8,14 @@ import br.com.gda.info.InfoRecord;
 public final class FeeCategInfo extends InfoRecord implements Cloneable {
 	public char codFeeCateg;
 	public String txtFeeCateg;
-	
+	public String codLanguage;
 	
 	
 	public FeeCategInfo() {
 		super(FeeCategInfo.class);
 		
 		codFeeCateg = DefaultValue.character();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

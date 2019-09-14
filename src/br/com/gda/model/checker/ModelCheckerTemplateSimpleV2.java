@@ -77,7 +77,7 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 	
 	
 	private String getLanguage(T recordInfo) {
-		return recordInfo.codLanguage;
+		return "PT"; //recordInfo.codLanguage;
 	}
 	
 	
@@ -274,13 +274,7 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (recordInfo.codLanguage == null) {
-			logException(new NullPointerException("recordInfo.codLanguage" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo.codLanguage" + SystemMessage.NULL_ARGUMENT);
-		}		
+		}	
 	}
 	
 	

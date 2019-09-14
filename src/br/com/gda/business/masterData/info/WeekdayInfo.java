@@ -8,12 +8,14 @@ import br.com.gda.info.InfoRecord;
 public final class WeekdayInfo extends InfoRecord implements Cloneable {
 	public int codWeekday;
 	public String txtWeekday;
+	public String codLanguage;
 	
 	
 	public WeekdayInfo() {
 		super(WeekdayInfo.class);
 		
 		codWeekday = DefaultValue.number();	
+		codLanguage = DefaultValue.language();
 	}
 	
 	

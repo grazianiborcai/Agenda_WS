@@ -40,6 +40,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public Setup setup;
 	public String username;
 	public String codSysEnviron;
+	public String codLanguage;
 	
 	
 	public MultmoipInfo() {
@@ -55,6 +56,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		setuparData = DefaultValue.object();
 		ordmoips = DefaultValue.list();
 		codSysEnviron = DefaultValue.getCodEnvironment();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

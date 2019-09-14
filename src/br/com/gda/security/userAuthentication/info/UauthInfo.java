@@ -13,6 +13,7 @@ public final class UauthInfo extends InfoRecord implements Cloneable {
 	public String username;
 	public String password;
 	public List<AuthGrRoleInfo> authGrRoles;
+	public String codLanguage;
 	
 	
 	public UauthInfo() {
@@ -21,6 +22,7 @@ public final class UauthInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		authGrRoles = DefaultValue.list();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

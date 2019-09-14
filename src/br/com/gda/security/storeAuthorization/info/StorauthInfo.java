@@ -12,6 +12,7 @@ public final class StorauthInfo extends InfoRecord implements Cloneable {
 	public String username;
 	public char codUserCategory;
 	public String recordMode;
+	public String codLanguage;
 	
 	
 	public StorauthInfo() {
@@ -22,6 +23,7 @@ public final class StorauthInfo extends InfoRecord implements Cloneable {
 		codUser = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
 		recordMode = DefaultValue.recordMode();	
+		codLanguage = DefaultValue.language();
 	}
 
 

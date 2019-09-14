@@ -24,6 +24,7 @@ public final class SchedovmInfo extends InfoRecord implements Cloneable {
 	public int confirmed;
 	public int waiting;
 	public int counter;	
+	public String codLanguage;
 	
 	
 	public SchedovmInfo() {
@@ -43,6 +44,7 @@ public final class SchedovmInfo extends InfoRecord implements Cloneable {
 		confirmed = 0;
 		waiting = 0;
 		counter = 0;
+		codLanguage = DefaultValue.language();
 	}
 	
 	

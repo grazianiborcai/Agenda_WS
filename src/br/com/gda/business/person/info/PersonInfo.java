@@ -22,6 +22,7 @@ public final class PersonInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
+	public String codLanguage;
 	
 	
 	public PersonInfo() {
@@ -33,6 +34,7 @@ public final class PersonInfo extends InfoRecord implements Cloneable {
 		codGender = DefaultValue.gender();	
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

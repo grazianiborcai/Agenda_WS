@@ -21,6 +21,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	public List<EmplisInfo> employees;
 	public List<WeekdayInfo> weekdays;
 	public List<PlanataInfo> planatas;	
+	public String codLanguage;
 	
 	
 	public PlanimeInfo() {
@@ -33,6 +34,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		employees = DefaultValue.list();
 		weekdays = DefaultValue.list();
 		planatas = DefaultValue.list();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

@@ -3,15 +3,19 @@ package br.com.gda.file.fileWrite.info;
 import java.io.InputStream;
 import java.util.List;
 
+import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class FriteInfo extends InfoRecord implements Cloneable {
 	public String fileFullName;
 	public InputStream fileData;
+	public String codLanguage;
 	
 	
 	public FriteInfo() {
 		super(FriteInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

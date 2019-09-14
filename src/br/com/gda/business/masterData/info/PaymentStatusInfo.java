@@ -2,15 +2,19 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
+import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class PaymentStatusInfo extends InfoRecord implements Cloneable {
 	public String codPaymentStatus;
 	public String txtPaymentStatus;
+	public String codLanguage;
 	
 	
 	public PaymentStatusInfo() {
 		super(PaymentStatusInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

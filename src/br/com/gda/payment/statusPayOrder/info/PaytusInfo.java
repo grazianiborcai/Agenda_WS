@@ -22,6 +22,7 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 	public CusparInfo cusparData;
 	public List<PaytusemInfo> paytusems;
 	public String username;
+	public String codLanguage;
 	
 	
 	public PaytusInfo() {
@@ -34,6 +35,7 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 		codPayCustomer = DefaultValue.number();	
 		cusparData = DefaultValue.object();
 		paytusems = DefaultValue.list();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

@@ -8,12 +8,14 @@ import br.com.gda.info.InfoRecord;
 public final class PositionInfo extends InfoRecord implements Cloneable {
 	public int codPosition;
 	public String txtPosition;
+	public String codLanguage;
 	
 	
 	public PositionInfo() {
 		super(PositionInfo.class);
 		
 		codPosition = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

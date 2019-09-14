@@ -24,6 +24,7 @@ public final class StoparnapInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
+	public String codLanguage;
 	
 	
 	public StoparnapInfo() {
@@ -35,6 +36,7 @@ public final class StoparnapInfo extends InfoRecord implements Cloneable {
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

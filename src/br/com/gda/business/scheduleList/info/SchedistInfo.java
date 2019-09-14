@@ -33,6 +33,7 @@ public final class SchedistInfo extends InfoRecord implements Cloneable, Compara
 	public long codCustomer;
 	public String username;
 	public String recordMode;	
+	public String codLanguage;
 	
 	
 	public SchedistInfo() {
@@ -56,6 +57,7 @@ public final class SchedistInfo extends InfoRecord implements Cloneable, Compara
 		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();	
 		recordMode = DefaultValue.recordMode();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

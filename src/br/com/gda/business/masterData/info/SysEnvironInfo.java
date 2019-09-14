@@ -2,14 +2,18 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
+import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class SysEnvironInfo extends InfoRecord implements Cloneable {
 	public String codSysEnviron;
+	public String codLanguage;
 	
 	
 	public SysEnvironInfo() {
 		super(SysEnvironInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

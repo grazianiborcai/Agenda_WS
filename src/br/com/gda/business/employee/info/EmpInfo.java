@@ -29,6 +29,7 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
+	public String codLanguage;
 	
 	
 	public EmpInfo() {
@@ -47,6 +48,7 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

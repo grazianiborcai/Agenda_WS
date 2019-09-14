@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public abstract class Syslog {
-	private Class<?> childClazz;
+	transient private Class<?> childClazz;
 	
 	
 	protected Syslog() {

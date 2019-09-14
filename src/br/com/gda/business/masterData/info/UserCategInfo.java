@@ -8,12 +8,14 @@ import br.com.gda.info.InfoRecord;
 public final class UserCategInfo extends InfoRecord implements Cloneable {
 	public char codUserCategory;
 	public String txtUserCategory;
+	public String codLanguage;
 	
 	
 	public UserCategInfo() {
 		super(UserCategInfo.class);
 		
 		codUserCategory = DefaultValue.character();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

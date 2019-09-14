@@ -11,12 +11,14 @@ public final class SysparInfo extends InfoRecord implements Cloneable {
 	public String idPayPartnerApp;
 	public String payPartnerName;
 	public String urlReturn;
+	public String codLanguage;
 	
 	
 	public SysparInfo() {
 		super(SysparInfo.class);
 		
 		codPayPartner = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

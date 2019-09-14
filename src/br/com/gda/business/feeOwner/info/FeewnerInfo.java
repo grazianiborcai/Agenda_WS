@@ -12,6 +12,7 @@ public final class FeewnerInfo extends InfoRecord implements Cloneable {
 	public String codCurr;
 	public double price;
 	public String username;
+	public String codLanguage;
 	//TODO: inserir FeeType para definir a estrategia de cobranca: cobrar do cliente ou do lojista
 	
 	public FeewnerInfo() {
@@ -20,6 +21,7 @@ public final class FeewnerInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codFeeCateg = DefaultValue.character();
 		price = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

@@ -8,12 +8,14 @@ import br.com.gda.info.InfoRecord;
 public final class GenderInfo extends InfoRecord implements Cloneable {
 	public int codGender;
 	public String txtGender;
+	public String codLanguage;
 	
 	
 	public GenderInfo() {
 		super(GenderInfo.class);
 		
 		codGender = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

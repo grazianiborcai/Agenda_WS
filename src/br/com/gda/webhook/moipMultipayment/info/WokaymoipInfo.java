@@ -11,7 +11,7 @@ public final class WokaymoipInfo extends InfoRecord implements Cloneable {
 	public String id;
 	public String idPaymentPartner;
 	public String username;
-	
+	public String codLanguage;
 	
 	
 	public WokaymoipInfo() {
@@ -19,6 +19,7 @@ public final class WokaymoipInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

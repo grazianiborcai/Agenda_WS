@@ -13,12 +13,14 @@ public final class SetuparInfo extends InfoRecord implements Cloneable {
 	public String oauthToken;
 	public String secret;
 	public String description;
+	public String codLanguage;
 	
 	
 	public SetuparInfo() {
 		super(SetuparInfo.class);
 		
 		codPayPartner = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

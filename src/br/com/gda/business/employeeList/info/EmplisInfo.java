@@ -17,6 +17,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
+	public String codLanguage;
 	
 	
 	public EmplisInfo() {
@@ -29,6 +30,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 		recordMode = DefaultValue.recordMode();
 		persolisData = DefaultValue.object();
 		lastChangedBy = DefaultValue.number();
+		codLanguage = DefaultValue.language();
 	}
 	
 	

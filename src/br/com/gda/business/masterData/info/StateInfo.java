@@ -2,6 +2,7 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
+import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class StateInfo extends InfoRecord implements Cloneable {
@@ -10,10 +11,13 @@ public final class StateInfo extends InfoRecord implements Cloneable {
 	public String codCountryAlpha3;
 	public String codState;
 	public String txtState;
+	public String codLanguage;
 	
 	
 	public StateInfo() {
 		super(StateInfo.class);
+		
+		codLanguage = DefaultValue.language();
 	}
 	
 	

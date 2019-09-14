@@ -22,6 +22,7 @@ public final class SchedonthatInfo extends InfoRecord implements Cloneable {
 	public int waiting;
 	public int counter;
 	public String username;	
+	public String codLanguage;
 	
 	
 	public SchedonthatInfo() {
@@ -39,6 +40,7 @@ public final class SchedonthatInfo extends InfoRecord implements Cloneable {
 		confirmed = 0;
 		waiting = 0;
 		counter = 0;
+		codLanguage = DefaultValue.language();
 	}
 	
 	
