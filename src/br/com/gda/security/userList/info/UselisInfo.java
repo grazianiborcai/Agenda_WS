@@ -19,7 +19,6 @@ public final class UselisInfo extends InfoRecord implements Cloneable {
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
-	public String codLanguage;
 
 	
 	public UselisInfo() {
@@ -33,7 +32,6 @@ public final class UselisInfo extends InfoRecord implements Cloneable {
 		personData = DefaultValue.object();	
 		recordMode = DefaultValue.recordMode();		
 		lastChangedBy = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

@@ -18,7 +18,6 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 	public PersonInfo personData;
 	public String recordMode;
 	public String username;
-	public String codLanguage;
 	
 	
 	public CusarchInfo() {
@@ -31,7 +30,6 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 		addressData = DefaultValue.object();
 		phoneData = DefaultValue.object();
 		personData = DefaultValue.object();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

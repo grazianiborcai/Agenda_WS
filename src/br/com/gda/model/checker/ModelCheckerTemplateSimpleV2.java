@@ -77,7 +77,7 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 	
 	
 	private String getLanguage(T recordInfo) {
-		return "PT"; //recordInfo.codLanguage;
+		return recordInfo.codLanguage;
 	}
 	
 	

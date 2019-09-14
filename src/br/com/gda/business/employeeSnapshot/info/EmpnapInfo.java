@@ -27,7 +27,6 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
-	public String codLanguage;
 	
 	
 	public EmpnapInfo() {
@@ -45,7 +44,6 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 		addresnaps = DefaultValue.list();
 		phonaps = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

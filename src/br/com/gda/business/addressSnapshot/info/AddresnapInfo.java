@@ -45,7 +45,6 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	public long lastChangedBy;
 	public String codForm;
 	public boolean isDeleted;
-	public String codLanguage;
 	
 	
 	public AddresnapInfo() {
@@ -69,7 +68,6 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
 		isDeleted = DefaultValue.boole();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

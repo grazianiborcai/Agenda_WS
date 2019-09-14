@@ -16,7 +16,6 @@ public final class MatextInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
-	public String codLanguage;
 	
 	
 	public MatextInfo() {
@@ -27,7 +26,6 @@ public final class MatextInfo extends InfoRecord implements Cloneable {
 		isDefault = DefaultValue.boole();
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

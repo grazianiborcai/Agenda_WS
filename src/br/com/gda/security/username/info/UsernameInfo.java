@@ -14,7 +14,6 @@ public final class UsernameInfo extends InfoRecord implements Cloneable {
 	public String codAuthGroup;
 	public List<AuthGrRoleInfo> authGrRoles;
 	public String recordMode;
-	public String codLanguage;
 	
 	
 	public UsernameInfo() {
@@ -25,7 +24,6 @@ public final class UsernameInfo extends InfoRecord implements Cloneable {
 		codUserCategory = DefaultValue.character();
 		authGrRoles = DefaultValue.list();
 		recordMode = DefaultValue.recordMode();	
-		codLanguage = DefaultValue.language();
 	}
 	
 	

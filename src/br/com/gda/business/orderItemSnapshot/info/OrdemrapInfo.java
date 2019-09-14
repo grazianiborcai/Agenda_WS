@@ -39,7 +39,6 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 	public StolisInfo stolisData;
 	public EmplisInfo emplisData;
 	public MatInfo matData;
-	public String codLanguage;
 	
 	
 	public OrdemrapInfo() {
@@ -63,7 +62,6 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		matData = DefaultValue.object();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

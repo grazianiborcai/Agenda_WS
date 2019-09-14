@@ -8,14 +8,12 @@ import br.com.gda.info.InfoRecord;
 public final class MatCategInfo extends InfoRecord implements Cloneable {
 	public int codMatCateg;
 	public String txtMatCateg;
-	public String codLanguage;
 	
 	
 	public MatCategInfo() {
 		super(MatCategInfo.class);
 		
 		codMatCateg = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

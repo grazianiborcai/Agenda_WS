@@ -30,7 +30,6 @@ public final class CusnapInfo extends InfoRecord implements Cloneable {
 	public UserInfo userData;
 	public PersonInfo personData;
 	public String username;
-	public String codLanguage;
 	
 	
 	public CusnapInfo() {
@@ -50,7 +49,6 @@ public final class CusnapInfo extends InfoRecord implements Cloneable {
 		lastChangedBy = DefaultValue.number();
 		userData = DefaultValue.object();
 		personData = DefaultValue.object();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

@@ -23,7 +23,6 @@ public final class PayordarchInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime createdOn;	
 	public LocalDateTime lastChanged;
 	public String username;
-	public String codLanguage;
 	
 	
 	public PayordarchInfo() {
@@ -34,7 +33,6 @@ public final class PayordarchInfo extends InfoRecord implements Cloneable {
 		codPayOrder = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
 		codOrder = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

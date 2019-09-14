@@ -20,7 +20,6 @@ public final class CarterveInfo extends InfoRecord implements Cloneable {
 	public LocalTime endTime;
 	public LocalDateTime lastChanged;
 	public String username;
-	public String codLanguage;
 	
 	
 	public CarterveInfo() {
@@ -32,7 +31,6 @@ public final class CarterveInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

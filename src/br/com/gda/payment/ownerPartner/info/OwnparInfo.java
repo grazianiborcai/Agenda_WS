@@ -14,7 +14,6 @@ public final class OwnparInfo extends InfoRecord implements Cloneable {
 	public String txtPayPartner;
 	public String description;
 	public String username;
-	public String codLanguage;
 	
 	
 	public OwnparInfo() {
@@ -23,7 +22,6 @@ public final class OwnparInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
 		isDefault = DefaultValue.boole();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

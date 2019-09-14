@@ -2,19 +2,15 @@ package br.com.gda.file.filePath.info;
 
 import java.util.List;
 
-import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class FathInfo extends InfoRecord implements Cloneable {
 	public String codFilePath;
-	public String filePath;	
-	public String codLanguage;
+	public String filePath;
 	
 	
 	public FathInfo() {
 		super(FathInfo.class);
-		
-		codLanguage = DefaultValue.language();
 	}
 	
 	

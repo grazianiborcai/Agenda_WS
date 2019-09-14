@@ -23,7 +23,6 @@ public final class CompInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
-	public String codLanguage;
 	
 	
 	public CompInfo() {
@@ -34,7 +33,6 @@ public final class CompInfo extends InfoRecord implements Cloneable {
 		codSnapshot = DefaultValue.number();	
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

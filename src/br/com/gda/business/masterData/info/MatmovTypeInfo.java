@@ -8,14 +8,12 @@ import br.com.gda.info.InfoRecord;
 public final class MatmovTypeInfo extends InfoRecord implements Cloneable {
 	public char codMatmovType;
 	public String txtMatmovType;
-	public String codLanguage;
 	
 	
 	public MatmovTypeInfo() {
 		super(MatmovTypeInfo.class);
 		
 		codMatmovType = DefaultValue.character();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

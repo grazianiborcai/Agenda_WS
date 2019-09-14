@@ -2,19 +2,15 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
-import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class ScheduleStatusInfo extends InfoRecord implements Cloneable {
 	public String codScheduleStatus;
 	public String txtScheduleStatus;
-	public String codLanguage;
 	
 	
 	public ScheduleStatusInfo() {
 		super(ScheduleStatusInfo.class);
-		
-		codLanguage = DefaultValue.language();
 	}
 	
 	

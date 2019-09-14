@@ -35,7 +35,6 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public long lastChangedBy;
 	public String username;
 	public String recordMode;
-	public String codLanguage;
 	
 	
 	public StoreInfo() {
@@ -55,7 +54,6 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

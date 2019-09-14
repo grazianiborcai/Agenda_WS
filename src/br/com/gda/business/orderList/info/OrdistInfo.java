@@ -22,7 +22,6 @@ public final class OrdistInfo extends InfoRecord implements Cloneable {
 	public long codPayOrder;
 	public LocalDateTime lastChanged;
 	public String username;
-	public String codLanguage;
 	
 	
 	public OrdistInfo() {
@@ -36,7 +35,6 @@ public final class OrdistInfo extends InfoRecord implements Cloneable {
 		feeService = DefaultValue.number();
 		grandTotal = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

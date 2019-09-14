@@ -24,7 +24,6 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 	public long createdBy;
 	public String recordMode;
 	public String username;
-	public String codLanguage;
 	
 	
 	public FimgInfo() {
@@ -40,7 +39,6 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 		lastChangedBy = DefaultValue.number();	
 		createdBy = DefaultValue.number();	
 		recordMode = DefaultValue.recordMode();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

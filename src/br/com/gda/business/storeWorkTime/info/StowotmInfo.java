@@ -19,7 +19,6 @@ public final class StowotmInfo extends InfoRecord implements Cloneable {
 	public long lastChangedBy;
 	public String username;
 	public String recordMode;
-	public String codLanguage;
 	
 	
 	public StowotmInfo() {
@@ -30,7 +29,6 @@ public final class StowotmInfo extends InfoRecord implements Cloneable {
 		codWeekday = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

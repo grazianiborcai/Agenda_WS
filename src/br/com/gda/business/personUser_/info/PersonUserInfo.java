@@ -15,7 +15,6 @@ public final class PersonUserInfo extends InfoRecord implements Cloneable {
 	public String email;
 	public UserInfo userData;
 	public String recordMode;
-	public String codLanguage;
 	
 	
 	public PersonUserInfo() {
@@ -26,7 +25,6 @@ public final class PersonUserInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		userData = DefaultValue.object();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

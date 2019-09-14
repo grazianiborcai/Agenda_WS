@@ -18,7 +18,6 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 	public String statusRefundPartner;
 	public CusparInfo cusparData;
 	public String username;	
-	public String codLanguage;
 	
 	
 	public RefemInfo() {
@@ -31,7 +30,6 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 		codPayCustomer = DefaultValue.number();
 		cusparData = DefaultValue.object();
 		isSystemReceiver = DefaultValue.boole();
-		codLanguage = DefaultValue.language();
 	} 
 	
 	

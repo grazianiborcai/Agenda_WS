@@ -20,7 +20,6 @@ public final class OrderveInfo extends InfoRecord implements Cloneable {
 	public LocalTime endTime;	
 	public String codOrderStatus;
 	public String username;
-	public String codLanguage;
 	
 	
 	public OrderveInfo() {
@@ -33,7 +32,6 @@ public final class OrderveInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

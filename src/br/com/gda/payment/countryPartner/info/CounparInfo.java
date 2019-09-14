@@ -11,7 +11,6 @@ public final class CounparInfo extends InfoRecord implements Cloneable {
 	public boolean isDefault;
 	public String txtPayPartner;
 	public String description;
-	public String codLanguage;
 	
 	
 	public CounparInfo() {
@@ -19,7 +18,6 @@ public final class CounparInfo extends InfoRecord implements Cloneable {
 		
 		codPayPartner = DefaultValue.number();
 		isDefault = DefaultValue.boole();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

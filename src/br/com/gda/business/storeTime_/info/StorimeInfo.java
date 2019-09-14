@@ -12,7 +12,6 @@ public final class StorimeInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public String username;
 	public List<StowotmInfo> stowotms;
-	public String codLanguage;
 	
 	
 	public StorimeInfo() {
@@ -21,7 +20,6 @@ public final class StorimeInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		stowotms = DefaultValue.list();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

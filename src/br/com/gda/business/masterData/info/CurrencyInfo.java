@@ -2,20 +2,16 @@ package br.com.gda.business.masterData.info;
 
 import java.util.List;
 
-import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class CurrencyInfo extends InfoRecord implements Cloneable {
 	public String codCurr;
 	public String txtCurr;
 	public String symbolCurr;
-	public String codLanguage;
 	
 	
 	public CurrencyInfo() {
 		super(CurrencyInfo.class);
-		
-		codLanguage = DefaultValue.language();
 	}
 	
 	

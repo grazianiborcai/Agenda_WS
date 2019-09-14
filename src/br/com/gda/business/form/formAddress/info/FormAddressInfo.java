@@ -2,19 +2,15 @@ package br.com.gda.business.form.formAddress.info;
 
 import java.util.List;
 
-import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class FormAddressInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
 	public String codForm;
-	public String codLanguage;
 	
 	
 	public FormAddressInfo() {
 		super(FormAddressInfo.class);
-		
-		codLanguage = DefaultValue.language();	
 	}
 	
 	

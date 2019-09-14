@@ -9,14 +9,12 @@ public final class PayparInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public String txtPayPartner; 
 	public String description;
-	public String codLanguage;
 	
 	
 	public PayparInfo() {
 		super(PayparInfo.class);
 		
 		codPayPartner = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

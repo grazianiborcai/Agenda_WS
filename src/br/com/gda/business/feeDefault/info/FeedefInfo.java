@@ -9,7 +9,6 @@ public final class FeedefInfo extends InfoRecord implements Cloneable {
 	public char codFeeCateg;
 	public String codCurr;
 	public double price;
-	public String codLanguage;
 	
 	
 	public FeedefInfo() {
@@ -17,7 +16,6 @@ public final class FeedefInfo extends InfoRecord implements Cloneable {
 		
 		codFeeCateg = DefaultValue.character();
 		price = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

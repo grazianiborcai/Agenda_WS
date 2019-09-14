@@ -30,8 +30,7 @@ public final class SchedarchInfo extends InfoRecord implements Cloneable, Compar
 	public long codUser;
 	public long codCustomer;
 	public String username;
-	public String recordMode;	
-	public String codLanguage;
+	public String recordMode;
 	
 	
 	public SchedarchInfo() {
@@ -53,7 +52,6 @@ public final class SchedarchInfo extends InfoRecord implements Cloneable, Compar
 		codUser = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

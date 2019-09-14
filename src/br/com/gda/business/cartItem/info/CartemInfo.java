@@ -33,7 +33,6 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public StolisInfo stolisData;
 	public EmplisInfo emplisData;
 	public MatInfo matData;
-	public String codLanguage;
 	
 	
 	public CartemInfo() {
@@ -53,7 +52,6 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		matData = DefaultValue.object();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

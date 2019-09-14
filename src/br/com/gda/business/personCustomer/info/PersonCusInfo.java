@@ -13,7 +13,6 @@ public final class PersonCusInfo extends InfoRecord implements Cloneable {
 	public String cpf;
 	public String email;
 	public String recordMode;
-	public String codLanguage;
 	
 	
 	public PersonCusInfo() {
@@ -23,7 +22,6 @@ public final class PersonCusInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

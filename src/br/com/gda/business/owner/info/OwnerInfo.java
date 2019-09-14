@@ -31,7 +31,6 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public CompInfo companyData;
 	public PersonInfo personData;
 	public List<OwntoreInfo> owntores;
-	public String codLanguage;
 	
 	
 	
@@ -51,7 +50,6 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 		companyData = DefaultValue.object();
 		personData = DefaultValue.object();
 		owntores = DefaultValue.list();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

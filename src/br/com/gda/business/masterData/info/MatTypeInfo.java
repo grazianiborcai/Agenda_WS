@@ -8,14 +8,12 @@ import br.com.gda.info.InfoRecord;
 public final class MatTypeInfo extends InfoRecord implements Cloneable {
 	public int codType;
 	public String txtType;
-	public String codLanguage;
 	
 	
 	public MatTypeInfo() {
 		super(MatTypeInfo.class);
 		
 		codType = DefaultValue.number();
-		codLanguage = DefaultValue.language();
 	}
 	
 	

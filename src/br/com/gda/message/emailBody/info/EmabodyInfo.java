@@ -2,7 +2,6 @@ package br.com.gda.message.emailBody.info;
 
 import java.util.List;
 
-import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class EmabodyInfo extends InfoRecord implements Cloneable {
@@ -15,13 +14,10 @@ public final class EmabodyInfo extends InfoRecord implements Cloneable {
 	public String param04;
 	public String param05;
 	public String username;
-	public String codLanguage;
 	
 	
 	public EmabodyInfo() {
 		super(EmabodyInfo.class);
-		
-		codLanguage = DefaultValue.language();
 	}
 	
 	
