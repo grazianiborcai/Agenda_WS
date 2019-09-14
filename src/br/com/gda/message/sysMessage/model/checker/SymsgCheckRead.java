@@ -16,8 +16,8 @@ public final class SymsgCheckRead extends ModelCheckerTemplateSimple<SymsgInfo> 
 	
 	
 	@Override protected boolean checkHook(SymsgInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codLanguage 	== null	||
-			 recordInfo.codMsg			<= 0		)
+		if ( recordInfo.codLanguage == null	||
+			 recordInfo.codMsg		<= 0		)
 			
 			return super.FAILED;
 		
@@ -28,12 +28,12 @@ public final class SymsgCheckRead extends ModelCheckerTemplateSimple<SymsgInfo> 
 	
 	
 	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
+		return SystemMessage.SYS_MESSAGE_MANDATORY_FIELD_EMPTY;
 	}
 	
 	
 	
 	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.SYS_MESSAGE_MANDATORY_FIELD_EMPTY;
 	}
 }

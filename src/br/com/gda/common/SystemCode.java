@@ -684,4 +684,9 @@ public final class SystemCode {
 	
 	// System
 	public static final int AUTO_GENERATED_FIELD_IS_NOT_EMPTY			= 6250;
+	
+	//System Message
+	public static final int SYS_MESSAGE_ALREADY_EXIST 					= 6300;
+	public static final int SYS_MESSAGE_NOT_FOUND 						= 6301;
+	public static final int SYS_MESSAGE_MANDATORY_FIELD_EMPTY			= 6302;
 }

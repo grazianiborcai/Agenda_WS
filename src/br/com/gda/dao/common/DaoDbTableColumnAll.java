@@ -73,6 +73,7 @@ import br.com.gda.file.fileImage.dao.FimgDbTableColumn;
 import br.com.gda.file.filePath.dao.FathDbTableColumn;
 import br.com.gda.message.email.dao.EmailDbTableColumn;
 import br.com.gda.message.emailBody.dao.EmabodyDbTableColumn;
+import br.com.gda.message.sysMessage.dao.SymsgDbTableColumn;
 import br.com.gda.payment.countryPartner.dao.CounparDbTableColumn;
 import br.com.gda.payment.creditCard.dao.CrecardDbTableColumn;
 import br.com.gda.payment.customerPartner.dao.CusparDbTableColumn;
@@ -192,6 +193,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SchedeekdatDbTableColumn());
 		addTable(new FimgDbTableColumn());
 		addTable(new FathDbTableColumn());
+		addTable(new SymsgDbTableColumn());
 	}
 	
 	

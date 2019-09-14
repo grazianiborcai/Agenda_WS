@@ -40,7 +40,11 @@ public final class RootOwnerInsert extends DeciTreeWriteTemplate<OwnerInfo> {
 		ModelChecker<OwnerInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
-		checker = new OwnerCheckInsert();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.RETURN_TRUE;	
+		checker = new OwnerCheckInsert(checkerOption);
 		queue.add(checker);
 		
 		checker = new OwnerCheckTechField();

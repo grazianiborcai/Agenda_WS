@@ -883,4 +883,11 @@ public final class SystemMessage {
 	public static final String EMP_SNAP_ALREADY_EXIST = "Employee-Snapshot: data already exist on DB";	
 	public static final String EMP_SNAP_MANDATORY_FIELD_EMPTY = "Employee-Snapshot: Mandatory field is empty";
 	public static final String EMP_SNAP_NOT_FOUND = "Employee-Snapshot: data not found on DB";	
+	
+	
+	
+	// System Message
+	public static final String SYS_MESSAGE_ALREADY_EXIST = "System-Message: data already exist on DB";	
+	public static final String SYS_MESSAGE_MANDATORY_FIELD_EMPTY = "System-Message: Mandatory field is empty";
+	public static final String SYS_MESSAGE_NOT_FOUND = "System-Message: data not found on DB";	
 }

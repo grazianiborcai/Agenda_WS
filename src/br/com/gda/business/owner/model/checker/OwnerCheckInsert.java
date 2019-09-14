@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OwnerCheckInsert extends ModelCheckerTemplateSimple<OwnerInfo> {
+public final class OwnerCheckInsert extends ModelCheckerTemplateSimpleV2<OwnerInfo> {
 
-	public OwnerCheckInsert() {
-		super();
+	public OwnerCheckInsert(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -27,13 +27,7 @@ public final class OwnerCheckInsert extends ModelCheckerTemplateSimple<OwnerInfo
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.OWNER_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.OWNER_MANDATORY_FIELD_EMPTY;
 	}
 }
