@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -65,5 +66,24 @@ public final class RequestWrapper extends HttpServletRequestWrapper {
         @Override public int read() throws IOException {
             return input.read();
         }
+
+
+		
+        @Override public boolean isFinished() {
+			return false;
+		}
+
+
+		
+        @Override public boolean isReady() {
+			return false;
+		}
+
+
+		
+        @Override public void setReadListener(ReadListener arg0) {
+			// TODO Auto-generated method stub
+			
+		}
     }
 }

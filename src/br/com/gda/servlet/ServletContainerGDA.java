@@ -5,43 +5,22 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
-//import javax.money.convert.ExchangeRateProvider;
-//import javax.money.convert.MonetaryConversions;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
+import org.glassfish.jersey.servlet.ServletContainer;
 
-import com.sun.jersey.spi.container.servlet.ServletContainer;
 
 
 public class ServletContainerGDA extends ServletContainer {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
-	public static final String DRIVER = "com.mysql.jdbc.Driver";
-//	public static final String DATABASE_URL = "jdbc:mysql://127.0.0.1:3306/";
-//	public static final String DATABASE_URL = "jdbc:mysql://192.168.0.150:3306/";
-//	public static final String USERNAME = "root";
-//	public static final String PASS_W = "!qazxsw@";
-//	public static final String PASS_W = "lapEborA1!";
-
-//	public static final ExchangeRateProvider exchangeRateProvider = MonetaryConversions.getExchangeRateProvider("IDENT",
-//			"ECB", "ECB-HIST", "ECB-HIST90");
-	//public static Publisher publisher;
-	
+	public static final String DRIVER = "com.mysql.jdbc.Driver";	
 	public static ServletContext context;
-
 	public static ConcurrentHashMap<String, DataSource> datasource = new ConcurrentHashMap<String, DataSource>();
-
-//	static {
-//		ServletContainerGDA.putDataSource(config.getServletContext(), "jdbc/gdaDB", DATABASE_URL, USERNAME, PASS_W);
-//	}
+	
 
 	public static final DataSource putDataSource(ServletContext sContext, String key) {
 		PoolProperties p = new PoolProperties();
@@ -74,10 +53,6 @@ public class ServletContainerGDA extends ServletContainer {
 		String dburl = "jdbc:mysql://"+prop.getProperty("host")+":"+prop.getProperty("port")+"/";
 		String dbUser = prop.getProperty("user");
 		String dbPassword = prop.getProperty("password");
-		
-//		String dburl = DATABASE_URL;
-//		String dbUser = USERNAME;
-//		String dbPassword = PASS_W;
 
 		
 		p.setUrl(dburl);
@@ -113,20 +88,18 @@ public class ServletContainerGDA extends ServletContainer {
 		return dS;
 	}
 
-	@Override
-	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
+	
+	
+	@Override public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		context = config.getServletContext();
 		putDataSource(config.getServletContext(), "jdbc/gdaDB");
-//		publisher = new Publisher();
 
 	}
 
-	@Override
-	public void destroy() {
+	
+	
+	@Override public void destroy() {
 		super.destroy();
-//		publisher.disconnect();
 	}
-
 }

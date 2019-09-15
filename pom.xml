@@ -42,13 +42,7 @@
 		
 		
 	</repositories>
-	<dependencies>
-		<dependency>
-			<groupId>com.paypal.sdk</groupId>
-			<artifactId>rest-api-sdk</artifactId>
-			<version>LATEST</version>
-		</dependency>
-		
+	<dependencies>		
 		<dependency>
 			<groupId>javax.ws.rs</groupId>
 			<artifactId>javax.ws.rs-api</artifactId>
@@ -57,29 +51,11 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-client</artifactId>
-			<version>1.19.4</version>
+		    <groupId>org.glassfish.jersey.media</groupId>
+		    <artifactId>jersey-media-multipart</artifactId>
+		    <version>2.29.1</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-json</artifactId>
-			<version>1.19.4</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.sun.jersey.contribs</groupId>
-			<artifactId>jersey-multipart</artifactId>
-			<version>1.19.4</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-grizzly2-servlet</artifactId>
-			<version>1.19.4</version>
-		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
@@ -101,12 +77,6 @@
 	    <dependency>
 		    <groupId>org.apache.logging.log4j</groupId>
 		    <artifactId>log4j-api</artifactId>
-		    <version>2.11.1</version>
-	    </dependency>
-	   
-	    <dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-core</artifactId>
 		    <version>2.11.1</version>
 	    </dependency>
 
@@ -153,21 +123,41 @@
 	    </dependency>
 	   
 	    <dependency>
-		  	<groupId>com.sun.jersey</groupId>
-		  	<artifactId>jersey-core</artifactId>
-		  	<version>1.19.4</version>
-	    </dependency>
-	   
-	    <dependency>
-		  	<groupId>com.sun.jersey</groupId>
-		  	<artifactId>jersey-server</artifactId>
-		  	<version>1.19.4</version>
-	    </dependency>
-	   
-	    <dependency>
 		  	<groupId>org.apache.logging.log4j</groupId>
 		  	<artifactId>log4j-slf4j-impl</artifactId>
 		  	<version>2.11.2</version>
 	    </dependency>
+	    
+	    <dependency>
+		    <groupId>org.glassfish.jersey.core</groupId>
+		    <artifactId>jersey-server</artifactId>
+		    <version>2.29.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.glassfish.jersey.core</groupId>
+		    <artifactId>jersey-client</artifactId>
+		    <version>2.29.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.glassfish.jersey.core</groupId>
+		    <artifactId>jersey-common</artifactId>
+		    <version>2.29.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.glassfish.jersey.containers</groupId>
+		    <artifactId>jersey-container-servlet-core</artifactId>
+		    <version>2.29.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.glassfish.jersey.inject</groupId>
+		    <artifactId>jersey-hk2</artifactId>
+		    <version>2.29.1</version>
+		</dependency>
+		
+			    
 	</dependencies>
 </project>

@@ -12,9 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.io.FilenameUtils;
-
-import com.sun.jersey.core.header.FormDataContentDisposition;
-import com.sun.jersey.multipart.FormDataParam;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import br.com.gda.file.fileImage.info.FimgInfo;
 import br.com.gda.file.fileImage.model.FimgModelInsert;
@@ -36,7 +35,7 @@ public class FileResource {
 					              @FormDataParam("codLanguage")     @DefaultValue("EN") String codLanguage,
 					              @FormDataParam("codMaterial")     @DefaultValue("-1") long codMat,
 					              @FormDataParam("codPerson")       @DefaultValue("-1") long codPerson,
-					              @FormDataParam("codCompany")       @DefaultValue("-1") long codCompany,
+					              @FormDataParam("codCompany")      @DefaultValue("-1") long codCompany,
 								  @FormDataParam("file") 			InputStream fileData,
 								  @FormDataParam("file") 			FormDataContentDisposition fileDetails) {		
 		
@@ -55,5 +54,5 @@ public class FileResource {
 		model.executeRequest();
 		return model.getResponse();
 
-	}
+	} 
 }
