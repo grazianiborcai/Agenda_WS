@@ -667,7 +667,7 @@ public final class SystemCode {
 	// Schedule Week
 	public static final int SCHEDULE_WEEK_FIELD_EMPTY					= 5950;
 	
-	// File Image
+	// File ImageM
 	public static final int FILE_IMG_MANDATORY_FIELD_EMPTY 				= 6001;
 	
 	// File Path
@@ -689,4 +689,6 @@ public final class SystemCode {
 	public static final int SYS_MESSAGE_ALREADY_EXIST 					= 6300;
 	public static final int SYS_MESSAGE_NOT_FOUND 						= 6301;
 	public static final int SYS_MESSAGE_MANDATORY_FIELD_EMPTY			= 6302;
+	public static final int SYS_MESSAGE_IS_ENGLISH						= 6303;
+	public static final int SYS_MESSAGE_IS_NOT_ENGLISH					= 6304;
 }

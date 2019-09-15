@@ -888,6 +888,8 @@ public final class SystemMessage {
 	
 	// System Message
 	public static final String SYS_MESSAGE_ALREADY_EXIST = "System-Message: data already exist on DB";	
+	public static final String SYS_MESSAGE_IS_ENGLISH = "System-Message: English is the language of choice";
+	public static final String SYS_MESSAGE_IS_NOT_ENGLISH = "System-Message: language of choice is not English";
 	public static final String SYS_MESSAGE_MANDATORY_FIELD_EMPTY = "System-Message: Mandatory field is empty";
 	public static final String SYS_MESSAGE_NOT_FOUND = "System-Message: data not found on DB";	
 }

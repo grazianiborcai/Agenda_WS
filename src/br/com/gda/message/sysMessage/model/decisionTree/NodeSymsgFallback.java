@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.message.sysMessage.info.SymsgInfo;
-import br.com.gda.message.sysMessage.model.action.StdSymsgSelect;
-import br.com.gda.message.sysMessage.model.checker.SymsgCheckExist;
+import br.com.gda.message.sysMessage.model.action.LazySymsgEnforceError;
+import br.com.gda.message.sysMessage.model.action.LazySymsgNodeError;
+import br.com.gda.message.sysMessage.model.action.LazySymsgNodeSelect;
+import br.com.gda.message.sysMessage.model.action.StdSymsgEnforceEnglish;
+import br.com.gda.message.sysMessage.model.action.StdSymsgRestoreBase;
+import br.com.gda.message.sysMessage.model.checker.SymsgCheckIsEnglish;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -13,9 +18,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeSymsgSelect extends DeciTreeWriteTemplate<SymsgInfo> {
+public final class NodeSymsgFallback extends DeciTreeWriteTemplate<SymsgInfo> {
 	
-	public NodeSymsgSelect(DeciTreeOption<SymsgInfo> option) {
+	public NodeSymsgFallback(DeciTreeOption<SymsgInfo> option) {
 		super(option);
 	}
 	
@@ -29,8 +34,8 @@ public final class NodeSymsgSelect extends DeciTreeWriteTemplate<SymsgInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new SymsgCheckExist(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.RETURN_TRUE;		
+		checker = new SymsgCheckIsEnglish(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -41,9 +46,14 @@ public final class NodeSymsgSelect extends DeciTreeWriteTemplate<SymsgInfo> {
 	@Override protected List<ActionStd<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
 		List<ActionStd<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<SymsgInfo> select = new StdSymsgSelect(option);
+		ActionStd<SymsgInfo> restoreBase = new StdSymsgRestoreBase(option);
+		ActionLazy<SymsgInfo> enforceError = new LazySymsgEnforceError(option.conn, option.schemaName);
+		ActionLazy<SymsgInfo> nodeError = new LazySymsgNodeError(option.conn, option.schemaName);
 		
-		actions.add(select);		
+		restoreBase.addPostAction(enforceError);
+		enforceError.addPostAction(nodeError);
+		
+		actions.add(restoreBase);		
 		return actions;
 	}
 	
@@ -52,9 +62,12 @@ public final class NodeSymsgSelect extends DeciTreeWriteTemplate<SymsgInfo> {
 	@Override protected List<ActionStd<SymsgInfo>> buildActionsOnFailedHook(DeciTreeOption<SymsgInfo> option) {
 		List<ActionStd<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<SymsgInfo> nodeFallback = new NodeSymsgFallback(option).toAction();
+		ActionStd<SymsgInfo> enforceEnglish = new StdSymsgEnforceEnglish(option);
+		ActionLazy<SymsgInfo> nodeSelect = new LazySymsgNodeSelect(option.conn, option.schemaName);
 		
-		actions.add(nodeFallback);		
+		enforceEnglish.addPostAction(nodeSelect);
+		
+		actions.add(enforceEnglish);		
 		return actions;
 	}
 }

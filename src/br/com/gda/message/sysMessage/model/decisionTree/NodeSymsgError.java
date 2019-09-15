@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.message.sysMessage.info.SymsgInfo;
+import br.com.gda.message.sysMessage.model.action.StdSymsgEnforceNotfound;
 import br.com.gda.message.sysMessage.model.action.StdSymsgSelect;
 import br.com.gda.message.sysMessage.model.checker.SymsgCheckExist;
 import br.com.gda.model.action.ActionStd;
@@ -13,9 +14,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeSymsgSelect extends DeciTreeWriteTemplate<SymsgInfo> {
+public final class NodeSymsgError extends DeciTreeWriteTemplate<SymsgInfo> {
 	
-	public NodeSymsgSelect(DeciTreeOption<SymsgInfo> option) {
+	public NodeSymsgError(DeciTreeOption<SymsgInfo> option) {
 		super(option);
 	}
 	
@@ -52,9 +53,9 @@ public final class NodeSymsgSelect extends DeciTreeWriteTemplate<SymsgInfo> {
 	@Override protected List<ActionStd<SymsgInfo>> buildActionsOnFailedHook(DeciTreeOption<SymsgInfo> option) {
 		List<ActionStd<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<SymsgInfo> nodeFallback = new NodeSymsgFallback(option).toAction();
+		ActionStd<SymsgInfo> notfound = new StdSymsgEnforceNotfound(option);
 		
-		actions.add(nodeFallback);		
+		actions.add(notfound);		
 		return actions;
 	}
 }

@@ -51,8 +51,8 @@ public final class SymsgCheckExist extends ModelCheckerTemplateAction<SymsgInfo>
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.STORE_ALREADY_EXIST;	
+			return SystemCode.SYS_MESSAGE_ALREADY_EXIST;	
 			
-		return SystemCode.STORE_NOT_FOUND;
+		return SystemCode.SYS_MESSAGE_NOT_FOUND;
 	}
 }

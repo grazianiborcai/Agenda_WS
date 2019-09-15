@@ -6,6 +6,7 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
 public final class SymsgInfo extends InfoRecord implements Cloneable {
+	public String codLanguageBase;
 	public int codMsg;
 	public String txtMsg;
 	
@@ -14,6 +15,7 @@ public final class SymsgInfo extends InfoRecord implements Cloneable {
 		super(SymsgInfo.class);
 		
 		codMsg = DefaultValue.number();
+		codLanguageBase = DefaultValue.language();
 	}
 	
 	
