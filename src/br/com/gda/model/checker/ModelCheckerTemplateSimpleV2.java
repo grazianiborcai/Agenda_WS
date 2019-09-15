@@ -8,11 +8,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.DefaultValue;
-import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.message.sysMessage.info.SymsgInfo;
-import br.com.gda.message.sysMessage.model.action.StdSymsgSelect;
+import br.com.gda.message.sysMessage.model.decisionTree.RootSymsgSelect;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
@@ -96,11 +95,7 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 		SymsgInfo msgToRead = buildMsgToRead(codMsg, codLangu);
 		DeciTreeOption<SymsgInfo> option = buildOption(msgToRead, dbConn, dbSchema);
 		
-		SymsgInfo result = readMsg(option);
-		
-		if (result == null)
-			result = buildMsgNotFound(codLangu, dbConn, dbSchema);
-		
+		SymsgInfo result = readMsg(option);		
 		return result;
 	}
 	
@@ -139,42 +134,11 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 	
 	
 	private SymsgInfo readMsg(DeciTreeOption<SymsgInfo> option) {
-		ActionStd<SymsgInfo> select = new StdSymsgSelect(option);
-		boolean actionResult = select.executeAction();
+		ActionStd<SymsgInfo> select = new RootSymsgSelect(option).toAction();
+		select.executeAction();		
 		
-		if (actionResult == false)
-			return null;
-		
-		if (select.getDecisionResult().getResultset().isEmpty())
-			return null;			
-			
 		return select.getDecisionResult().getResultset().get(0);
 	}
-	
-	
-	
-	private SymsgInfo buildMsgNotFound(String codLangu, Connection dbConn, String dbSchema) {
-		int codMsg = SystemCode.NO_ERROR_MESSAGE;
-		SymsgInfo msgToRead = buildMsgToRead(codMsg, codLangu);
-		DeciTreeOption<SymsgInfo> option = buildOption(msgToRead, dbConn, dbSchema);
-		
-		SymsgInfo result = readMsg(option);
-		
-		if (result == null)
-			result = buildMsgInternalError();
-		
-		return result;
-	}
-	
-	
-	
-	private SymsgInfo buildMsgInternalError() {
-		SymsgInfo symsg = new SymsgInfo();
-		symsg.codMsg = SystemCode.INTERNAL_ERROR;
-		symsg.txtMsg = SystemMessage.INTERNAL_ERROR;
-		
-		return symsg;
-	}	
 	
 	
 	
