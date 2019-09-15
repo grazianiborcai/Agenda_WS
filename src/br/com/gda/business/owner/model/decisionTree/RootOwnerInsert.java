@@ -16,9 +16,6 @@ import br.com.gda.business.owner.model.action.LazyOwnerUpdate;
 import br.com.gda.business.owner.model.action.StdOwnerEnforceLChanged;
 import br.com.gda.business.owner.model.checker.OwnerCheckInsert;
 import br.com.gda.business.owner.model.checker.OwnerCheckLangu;
-import br.com.gda.business.owner.model.checker.OwnerCheckTechField;
-import br.com.gda.business.owner.model.checker.OwnerCheckWriteAddress;
-import br.com.gda.business.owner.model.checker.OwnerCheckWritePhone;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -45,15 +42,6 @@ public final class RootOwnerInsert extends DeciTreeWriteTemplate<OwnerInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.RETURN_TRUE;	
 		checker = new OwnerCheckInsert(checkerOption);
-		queue.add(checker);
-		
-		checker = new OwnerCheckTechField();
-		queue.add(checker);
-		
-		checker = new OwnerCheckWritePhone();
-		queue.add(checker);
-		
-		checker = new OwnerCheckWriteAddress();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

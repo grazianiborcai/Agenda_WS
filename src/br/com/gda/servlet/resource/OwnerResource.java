@@ -29,10 +29,12 @@ public class OwnerResource {
 	
 	
 	@GET
-	@Path(SELECT_OWNER)	
-	public Response selectOwner(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
-							    @HeaderParam("TOKEN_USERNAME")                  String username,
-			                    @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+	@Path(SELECT_OWNER)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectOwner(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner, 
+							    @HeaderParam("TOKEN_USERNAME")                  	String username,
+			                    @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
 		
 		OwnerInfo recordInfo = new OwnerInfo();
 		recordInfo.codOwner = codOwner;
@@ -48,6 +50,8 @@ public class OwnerResource {
 
 	@DELETE
 	@Path(DELETE_OWNER)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteOwner(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long   codOwner,
 								@HeaderParam("TOKEN_USERNAME")                     String username,
 			                    @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
@@ -67,6 +71,7 @@ public class OwnerResource {
 	@POST
 	@Path(UPDATE_OWNER)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateOwner(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new OwnerModelUpdate(incomingData, request);

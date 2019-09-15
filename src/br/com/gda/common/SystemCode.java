@@ -170,7 +170,7 @@ public final class SystemCode {
 	// Owner
 	public static final int OWNER_ALREADY_EXIST							= 1250;
 	public static final int OWNER_NOT_FOUND								= 1251;
-	public static final int OWNER_TECH_FIELD_SHOULD_BE_EMPTY			= 1252;
+	public static final int OWNER_TECH_FIELD_SHOULD_BE_EMPTY_			= 1252;
 	public static final int OWNER_PERSON_NOT_CHANGED					= 1253;
 	public static final int OWNER_PERSON_CANT_BE_CHANGED				= 1254;
 	public static final int OWNER_MANDATORY_FIELD_EMPTY 				= 1255;
