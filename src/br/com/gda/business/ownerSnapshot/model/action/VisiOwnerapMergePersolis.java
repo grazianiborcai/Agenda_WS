@@ -21,7 +21,7 @@ final class VisiOwnerapMergePersolis extends ActionVisitorTemplateMergeV2<Ownera
 	@Override protected Class<? extends DeciTree<PersolisInfo>> getTreeClassHook() {
 		return RootPersolisSelect.class;
 	}
-	
+	//TODO: incluir Copier
 	
 	
 	@Override protected List<OwnerapInfo> mergeHook(List<OwnerapInfo> recordInfos, List<PersolisInfo> selectedInfos) {	
