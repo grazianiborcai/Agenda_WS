@@ -18,10 +18,9 @@ import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
 public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> implements ModelChecker<T> {
-	protected final boolean SUCCESS = ModelCheckerOption.SUCCESS;
-	protected final boolean FAILED = ModelCheckerOption.FAILED;
-	protected final boolean ALREADY_EXIST = ModelCheckerOption.SUCCESS;
-	protected final boolean NOT_FOUND = ModelCheckerOption.FAILED;
+	private final boolean SUCCESS = ModelCheckerOption.SUCCESS;
+	private final boolean FAILED = ModelCheckerOption.FAILED;
+	private final boolean NOT_FOUND = ModelCheckerOption.FAILED;
 	
 	private Boolean finalResult;
 	private boolean expectedResult;
@@ -85,15 +84,28 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 	
 	
 	private boolean executeAction(T recordInfo, Connection dbConn, String dbSchema) {
-		ActionStd<T> action = buildActionHook(recordInfo, dbConn, dbSchema);
-		DeciResult<T> actionResult = execute(action);	
+		DeciTreeOption<T> option = buildActionOption(recordInfo, dbConn, dbSchema);
+		ActionStd<T> action = buildActionHook(option);
 		
+		DeciResult<T> actionResult = execute(action);			
 		return evaluateResult(actionResult);
 	}
 	
 	
 	
-	protected ActionStd<T> buildActionHook(T recordInfo, Connection conn, String schemaName) {
+	private DeciTreeOption<T> buildActionOption(T recordInfo, Connection dbConn, String dbSchema) {
+		DeciTreeOption<T> option = new DeciTreeOption<>();
+		option.recordInfos = new ArrayList<>();
+		option.recordInfos.add(recordInfo);
+		option.conn = conn;
+		option.schemaName = schemaName;
+		
+		return option;
+	}
+	
+	
+	
+	protected ActionStd<T> buildActionHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	
