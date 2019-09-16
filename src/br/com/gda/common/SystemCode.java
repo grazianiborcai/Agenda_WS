@@ -694,4 +694,7 @@ public final class SystemCode {
 	
 	//Owner Snapshot
 	public static final int OWNER_SNAP_MANDATORY_FIELD_EMPTY 			= 6350;
+	
+	//Company List
+	public static final int COMPANY_LIST_MANDATORY_FIELD_EMPTY 			= 6400;
 }

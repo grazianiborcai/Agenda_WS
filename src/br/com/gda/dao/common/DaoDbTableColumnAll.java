@@ -10,6 +10,7 @@ import br.com.gda.business.cart.dao.CartDbTableColumn;
 import br.com.gda.business.cartItem.dao.CartemDbTableColumn;
 import br.com.gda.business.cartReserve.dao.CarterveDbTableColumn;
 import br.com.gda.business.company.dao.CompDbTableColumn;
+import br.com.gda.business.companyList.dao.ComplisDbTableColumn;
 import br.com.gda.business.companySnapshot.dao.CompnapDbTableColumn;
 import br.com.gda.business.customer.dao.CusDbTableColumn;
 import br.com.gda.business.customerList.dao.CuslisDbTableColumn;
@@ -196,6 +197,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new FathDbTableColumn());
 		addTable(new SymsgDbTableColumn());
 		addTable(new OwnerapDbTableColumn());
+		addTable(new ComplisDbTableColumn());
 	}
 	
 	
