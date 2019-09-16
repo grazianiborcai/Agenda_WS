@@ -209,7 +209,13 @@ public final class DaoFormatter {
 	
 	
 	public static PreparedStatement localDateTimeToStmt(PreparedStatement stmt, int index, LocalDateTime localDateTime) throws SQLException {
-		checkArgument(stmt, index, localDateTime);			
+		checkArgument(stmt, index);			
+		
+		if(localDateTime == null) {
+			stmt.setNull(index, Types.TIMESTAMP);	
+			return stmt;
+		}		
+				
 		
 		Timestamp sqlTimestamp = localToSqlTimestamp(localDateTime);		
 		stmt.setTimestamp(index, sqlTimestamp);		
@@ -355,15 +361,6 @@ public final class DaoFormatter {
 			return null;
 			
 		return result.toLocalDate();	
-	}
-	
-	
-	
-	private static void checkArgument(PreparedStatement stmt, int index, LocalDateTime localDateTime) {
-		if (localDateTime == null)
-			throw new NullPointerException("localDateTime" + SystemMessage.NULL_ARGUMENT);
-		
-		checkArgument(stmt, index);
 	}
 	
 	

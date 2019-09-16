@@ -1,4 +1,4 @@
-package br.com.gda.business.owner.dao;
+package br.com.gda.business.ownerSnapshot.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -18,13 +18,13 @@ import br.com.gda.dao.DaoStmtParamTranslator;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class OwnerInsertSingle implements DaoStmt<OwnerInfo> {	
-	private DaoStmt<OwnerInfo> stmtSql;
-	private DaoStmtOption<OwnerInfo> stmtOption;
+public final class OwnerapInsertSingle implements DaoStmt<OwnerapInfo> {	
+	private DaoStmt<OwnerapInfo> stmtSql;
+	private DaoStmtOption<OwnerapInfo> stmtOption;
 	
 	
 	
-	public OwnerInsertSingle(Connection conn, OwnerInfo recordInfo, String schemaName) {
+	public OwnerapInsertSingle(Connection conn, OwnerapInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 		
@@ -32,12 +32,12 @@ public final class OwnerInsertSingle implements DaoStmt<OwnerInfo> {
 	
 	
 	
-	private void buildStmtOption(Connection conn, OwnerInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, OwnerapInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.OWNER_TABLE;
+		this.stmtOption.tableName = DaoDbTable.OWNER_SNAPSHOT_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
 		this.stmtOption.stmtParamTranslator = new ParamTranslator();
 		this.stmtOption.resultParser = new ResultParser(recordInfo);
@@ -71,16 +71,17 @@ public final class OwnerInsertSingle implements DaoStmt<OwnerInfo> {
 
 	
 	
-	@Override public List<OwnerInfo> getResultset() {
+	@Override public List<OwnerapInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<OwnerInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, OwnerInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements DaoStmtParamTranslator<OwnerapInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, OwnerapInfo recordInfo) throws SQLException {
 			
 			int i = 1;
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
 			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt.setString(i++, recordInfo.recordMode);
 			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
@@ -89,7 +90,9 @@ public final class OwnerInsertSingle implements DaoStmt<OwnerInfo> {
 			DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 			DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPersonSnapshot);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompanySnapshot);
 			
 			return stmt;
 		}		
@@ -97,26 +100,26 @@ public final class OwnerInsertSingle implements DaoStmt<OwnerInfo> {
 	
 	
 	
-	@Override public DaoStmt<OwnerInfo> getNewInstance() {
-		return new OwnerInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<OwnerapInfo> getNewInstance() {
+		return new OwnerapInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<OwnerInfo> {
-		private OwnerInfo recordInfo;
+	private static class ResultParser implements DaoResultParser<OwnerapInfo> {
+		private OwnerapInfo recordInfo;
 		
-		public ResultParser(OwnerInfo recordToParse) {
+		public ResultParser(OwnerapInfo recordToParse) {
 			recordInfo = recordToParse;
 		}
 		
 		
 		
-		@Override public List<OwnerInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<OwnerInfo> finalResult = new ArrayList<>();
-			recordInfo.codOwner = lastId;
+		@Override public List<OwnerapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<OwnerapInfo> finalResult = new ArrayList<>();
+			recordInfo.codSnapshot = lastId;
 			finalResult.add(recordInfo);			
 			return finalResult;
 		}

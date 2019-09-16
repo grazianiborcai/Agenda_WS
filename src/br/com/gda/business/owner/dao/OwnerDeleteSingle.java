@@ -16,6 +16,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
+import br.com.gda.dao.common.DaoOptionValue;
 
 public final class OwnerDeleteSingle implements DaoStmt<OwnerInfo> {
 	private DaoStmt<OwnerInfo> stmtSql;
@@ -44,14 +45,10 @@ public final class OwnerDeleteSingle implements DaoStmt<OwnerInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean DONT_IGNORE_NULL = false;
-		final boolean IGNORE_NON_PK = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;	
-		whereOption.ignoreNonPrimaryKey = IGNORE_NON_PK;		
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
+		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
 		DaoStmtWhere whereClause = new OwnerWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();

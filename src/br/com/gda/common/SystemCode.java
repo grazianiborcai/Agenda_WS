@@ -691,4 +691,7 @@ public final class SystemCode {
 	public static final int SYS_MESSAGE_MANDATORY_FIELD_EMPTY			= 6302;
 	public static final int SYS_MESSAGE_IS_ENGLISH						= 6303;
 	public static final int SYS_MESSAGE_IS_NOT_ENGLISH					= 6304;
+	
+	//Owner Snapshot
+	public static final int OWNER_SNAP_MANDATORY_FIELD_EMPTY 			= 6350;
 }

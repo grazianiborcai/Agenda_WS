@@ -3,11 +3,11 @@ package br.com.gda.business.owner.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -100,7 +100,6 @@ public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<OwnerInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<OwnerInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -113,32 +112,14 @@ public final class OwnerSelectSingle implements DaoStmt<OwnerInfo> {
 				OwnerInfo dataInfo = new OwnerInfo();
 				dataInfo.codOwner = stmtResult.getLong(OwnerDbTableColumn.COL_COD_OWNER);
 				dataInfo.recordMode = stmtResult.getString(OwnerDbTableColumn.COL_RECORD_MODE);
-				
-				
-				stmtResult.getLong(OwnerDbTableColumn.COL_COD_PERSON);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPerson = stmtResult.getLong(OwnerDbTableColumn.COL_COD_PERSON);
-				
-				
-				stmtResult.getLong(OwnerDbTableColumn.COL_COD_COMPANY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCompany = stmtResult.getLong(OwnerDbTableColumn.COL_COD_COMPANY);
-				
-				
-				stmtResult.getLong(OwnerDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(OwnerDbTableColumn.COL_COD_USER);
-				
-				
-				stmtResult.getLong(OwnerDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(OwnerDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(OwnerDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
+				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, OwnerDbTableColumn.COL_COD_PERSON);
+				dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, OwnerDbTableColumn.COL_COD_COMPANY);
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, OwnerDbTableColumn.COL_COD_USER);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, OwnerDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OwnerDbTableColumn.COL_LAST_CHANGED);				
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, OwnerDbTableColumn.COL_CREATED_BY);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, OwnerDbTableColumn.COL_CREATED_ON);
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, OwnerDbTableColumn.COL_COD_SNAPSHOT);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

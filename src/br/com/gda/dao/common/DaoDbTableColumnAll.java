@@ -43,6 +43,7 @@ import br.com.gda.business.orderReserve.dao.OrderveDbTableColumn;
 import br.com.gda.business.orderSearch.dao.OrdarchDbTableColumn;
 import br.com.gda.business.orderSnapshot.dao.OrdnapDbTableColumn;
 import br.com.gda.business.owner.dao.OwnerDbTableColumn;
+import br.com.gda.business.ownerSnapshot.dao.OwnerapDbTableColumn;
 import br.com.gda.business.ownerStore.dao.OwntoreDbTableColumn;
 import br.com.gda.business.person.dao.PersonDbTableColumn;
 import br.com.gda.business.personCustomer.dao.PersonCusDbTableColumn;
@@ -194,6 +195,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new FimgDbTableColumn());
 		addTable(new FathDbTableColumn());
 		addTable(new SymsgDbTableColumn());
+		addTable(new OwnerapDbTableColumn());
 	}
 	
 	

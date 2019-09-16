@@ -18,6 +18,7 @@ public final class DaoDbField {
 	public static final String COL_COD_BUSINESS = "cod_business";
 	public static final String COL_COD_CATEGORY = "cod_category";
 	public static final String COL_COD_COMPANY = "cod_company";
+	public static final String COL_COD_COMPANY_SNAPSHOT = "cod_company_snapshot";
 	public static final String COL_COD_COUNTRY = "country";
 	public static final String COL_COD_COUNTRY_ALPHA3 = "country_alpha3";
 	public static final String COL_COD_COUNTRY_PHONE = "country_phone";	

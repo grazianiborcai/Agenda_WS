@@ -15,6 +15,7 @@ import br.com.gda.security.user.info.UserInfo;
 
 public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public long codSnapshot;
 	public long codPerson;
 	public long codCompany;
 	public long codUser;
@@ -23,6 +24,8 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public String codAuthGroup;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public String username;
 	public String recordMode;
 	public List<AddressInfo> addresses;
@@ -38,6 +41,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 		super(OwnerInfo.class);
 		
 		codOwner = DefaultValue.number();
+		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		codUser = DefaultValue.number();
@@ -45,6 +49,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
+		createdBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();		
 		userData = DefaultValue.object();
 		companyData = DefaultValue.object();
@@ -81,13 +86,13 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<AddressInfo> cloneAddresses(List<AddressInfo> addressesToClone) throws CloneNotSupportedException {
-		if (addressesToClone == null)
+	private List<AddressInfo> cloneAddresses(List<AddressInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<AddressInfo> deepAddresses = new ArrayList<>();
 		
-		for (AddressInfo eachAddress : addressesToClone) {
+		for (AddressInfo eachAddress : recordInfos) {
 			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
 			deepAddresses.add(clonedAddress);
 		}
@@ -97,13 +102,13 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<PhoneInfo> clonePhones(List<PhoneInfo> phonesToClone) throws CloneNotSupportedException {
-		if (phonesToClone == null)
+	private List<PhoneInfo> clonePhones(List<PhoneInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<PhoneInfo> deepPhones = new ArrayList<>();
 		
-		for (PhoneInfo eachPhone : phonesToClone) {
+		for (PhoneInfo eachPhone : recordInfos) {
 			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
 			deepPhones.add(clonedPhone);
 		}
@@ -113,40 +118,40 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private PersonInfo clonePerson(PersonInfo personToClone) throws CloneNotSupportedException {
-		if (personToClone == null)
+	private PersonInfo clonePerson(PersonInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (PersonInfo) personToClone.clone();
+		return (PersonInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private CompInfo cloneCompany(CompInfo compToClone) throws CloneNotSupportedException {
-		if (compToClone == null)
+	private CompInfo cloneCompany(CompInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (CompInfo) compToClone.clone();
+		return (CompInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private UserInfo cloneUser(UserInfo userToClone) throws CloneNotSupportedException {
-		if (userToClone == null)
+	private UserInfo cloneUser(UserInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (UserInfo) userToClone.clone();
+		return (UserInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private List<OwntoreInfo> cloneOwntores(List<OwntoreInfo> storesToClone) throws CloneNotSupportedException {
-		if (storesToClone == null)
+	private List<OwntoreInfo> cloneOwntores(List<OwntoreInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<OwntoreInfo> deepStones = new ArrayList<>();
 		
-		for (OwntoreInfo eachPhone : storesToClone) {
+		for (OwntoreInfo eachPhone : recordInfos) {
 			OwntoreInfo clonedPhone = (OwntoreInfo) eachPhone.clone();
 			deepStones.add(clonedPhone);
 		}

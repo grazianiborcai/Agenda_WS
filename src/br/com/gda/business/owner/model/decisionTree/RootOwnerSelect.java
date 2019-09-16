@@ -30,19 +30,21 @@ public final class RootOwnerSelect extends DeciTreeReadTemplate<OwnerInfo> {
 	
 	
 	@Override protected ModelChecker<OwnerInfo> buildDecisionCheckerHook(DeciTreeOption<OwnerInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new OwnerCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.RETURN_TRUE;	
+		checker = new OwnerCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new OwnerCheckLangu(checkerOption);
 		queue.add(checker);	
 		

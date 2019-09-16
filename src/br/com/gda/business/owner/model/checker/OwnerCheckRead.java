@@ -4,36 +4,29 @@ import java.sql.Connection;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OwnerCheckRead extends ModelCheckerTemplateSimple<OwnerInfo> {
+public final class OwnerCheckRead extends ModelCheckerTemplateSimpleV2<OwnerInfo> {
 
-	public OwnerCheckRead() {
-		super();
+	public OwnerCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(OwnerInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 	  <= 0
-			|| recordInfo.codLanguage == null)
+		if ( recordInfo.codOwner 	<= 0		||
+			 recordInfo.codLanguage == null)
 			
-			return super.FAILED;
-		
+			return super.FAILED;		
 		
 		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.OWNER_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.OWNER_MANDATORY_FIELD_EMPTY;
-	}
+	}	
 }
