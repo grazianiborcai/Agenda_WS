@@ -29,7 +29,7 @@ public final class RootComplisSelect extends DeciTreeReadTemplate<ComplisInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.RETURN_TRUE;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new ComplisCheckRead(checkerOption);
 		queue.add(checker);
 		

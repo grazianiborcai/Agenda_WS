@@ -34,7 +34,7 @@ public final class NodeSymsgFallback extends DeciTreeWriteTemplate<SymsgInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.RETURN_TRUE;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new SymsgCheckIsEnglish(checkerOption);
 		queue.add(checker);
 		

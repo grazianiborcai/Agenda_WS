@@ -30,7 +30,7 @@ public final class RootOwnerapSelect extends DeciTreeReadTemplate<OwnerapInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.RETURN_TRUE;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new OwnerapCheckRead(checkerOption);
 		queue.add(checker);
 		

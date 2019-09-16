@@ -8,30 +8,33 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.DefaultValue;
+import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.message.sysMessage.info.SymsgInfo;
 import br.com.gda.message.sysMessage.model.decisionTree.RootSymsgSelect;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> implements ModelChecker<T> {
+public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> implements ModelChecker<T> {
 	protected final boolean SUCCESS = ModelCheckerOption.SUCCESS;
 	protected final boolean FAILED = ModelCheckerOption.FAILED;
-
+	protected final boolean ALREADY_EXIST = ModelCheckerOption.SUCCESS;
+	protected final boolean NOT_FOUND = ModelCheckerOption.FAILED;
+	
 	private Boolean finalResult;
 	private boolean expectedResult;
 	private Connection conn;
 	private String schemaName;
 	private String codLanguage;
-	private SymsgInfo symsgData;
+	private SymsgInfo symsgData;	
 	
 	
-	
-	protected ModelCheckerTemplateSimpleV2(ModelCheckerOption option) {
+	protected ModelCheckerTemplateActionV2(ModelCheckerOption option) {
 		checkArgument(option);
 		init(option);
-	} 
+	}
 	
 	
 	
@@ -41,12 +44,12 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 		schemaName = option.schemaName;
 		symsgData = null;
 		codLanguage = DefaultValue.language();
-	} 	
+	}
 	
 	
 	
 	@Override public boolean check(List<T> recordInfos) {
-		checkArgument(recordInfos);				
+		checkArgument(recordInfos);		
 		
 		for (T eachRecordInfo : recordInfos) {
 			boolean checkerResult = check(eachRecordInfo);
@@ -57,18 +60,18 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 		
 		return SUCCESS;
 	}
-	
+
 	
 	
 	@Override public boolean check(T recordInfo) {
 		checkArgument(recordInfo);		
 		codLanguage = getLanguage(recordInfo);
 		
-		boolean checkResult = checkHook(recordInfo, conn, schemaName);
-		finalResult = evaluateResult(checkResult, expectedResult);
+		boolean actionResult = executeAction(recordInfo, conn, schemaName);
+		finalResult = hasPassed(actionResult, expectedResult);
 		
 		if (finalResult == FAILED) 
-			symsgData = buildMsg(checkResult, codLanguage, conn, schemaName);
+			symsgData = buildMsg(actionResult, codLanguage, conn, schemaName);
 		
 		return getResult();
 	}
@@ -81,11 +84,63 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 	
 	
 	
-	private boolean evaluateResult(boolean actual, boolean expected) {
-		if (actual == expected)
-			return SUCCESS;
+	private boolean executeAction(T recordInfo, Connection dbConn, String dbSchema) {
+		ActionStd<T> action = buildActionHook(recordInfo, dbConn, dbSchema);
+		DeciResult<T> actionResult = execute(action);	
 		
-		return FAILED;
+		return evaluateResult(actionResult);
+	}
+	
+	
+	
+	protected ActionStd<T> buildActionHook(T recordInfo, Connection conn, String schemaName) {
+		//Template method: to be overwritten by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
+		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	
+	}
+	
+	
+	
+	private DeciResult<T> execute(ActionStd<T> action) {
+		 checkArgument(action);
+		 
+		 action.executeAction();
+		 return action.getDecisionResult();
+	}
+	
+	
+	
+	private boolean evaluateResult(DeciResult<T> result) {	
+		if (result.isSuccess() == FAILED &&
+			result.getFailCode() == SystemCode.INTERNAL_ERROR) {
+			
+			logException(new IllegalStateException(SystemMessage.INTERNAL_ERROR));
+			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
+		}
+		
+		
+		if (result.isSuccess() == SUCCESS && result.getResultset().isEmpty())
+			return NOT_FOUND;
+		
+		
+		return result.isSuccess();			
+	}
+	
+	
+	
+	private boolean hasPassed(boolean actual, boolean expected) {
+		return (actual == expected);
+	}
+	
+	
+	
+	@Override public boolean getResult() {
+		if (finalResult == null) {
+			logException(new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED));
+			throw new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED);
+		}
+		
+		return finalResult;
 	}
 	
 	
@@ -142,13 +197,17 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 	
 	
 	
-	@Override public boolean getResult() {
-		if (finalResult == null) {
-			logException(new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED));
-			throw new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED);
-		}
-		
-		return finalResult;
+	protected int getCodMsgOnResultTrueHook() {
+		//Template method: default behavior
+		return getCodMsgOnResultFalseHook();
+	}	
+	
+	
+	
+	protected int getCodMsgOnResultFalseHook() {
+		//Template method: to be overwritten by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
+		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	
@@ -175,29 +234,6 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 	
 	
 	
-	protected boolean checkHook(T recordInfo, Connection conn, String schemaName) {
-		//Template method: to be overwritten by subclasses
-		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
-	}
-	
-	
-	
-	protected int getCodMsgOnResultTrueHook() {
-		//Template method: default behavior
-		return getCodMsgOnResultFalseHook();
-	}	
-	
-	
-	
-	protected int getCodMsgOnResultFalseHook() {
-		//Template method: to be overwritten by subclasses
-		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
-	}
-	
-	
-	
 	private void checkArgument(ModelCheckerOption option) {
 		if (option == null) {
 			logException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
@@ -214,15 +250,15 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 		if (option.schemaName == null) {
 			logException(new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT);
-		}			
+		}
 	}
 	
 	
 	
 	private void checkArgument(List<T> recordInfos) {
 		if (recordInfos == null) {
-			logException(new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT);
+			logException(new NullPointerException("recordInfos " + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("recordInfos " + SystemMessage.NULL_ARGUMENT);
 		}
 		
 		
@@ -230,7 +266,7 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 			logException(new NullPointerException("recordInfos " + SystemMessage.EMPTY_ARGUMENT));
 			throw new NullPointerException("recordInfos " + SystemMessage.EMPTY_ARGUMENT);
 		}
-	}
+	}	
 	
 	
 	
@@ -239,7 +275,16 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}	
-	}
+	}	
+	
+	
+	
+	private void checkArgument(ActionStd<T> action) {
+		if (action == null) {
+			logException(new NullPointerException("action" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("action" + SystemMessage.NULL_ARGUMENT);
+		}
+	}	
 	
 	
 	

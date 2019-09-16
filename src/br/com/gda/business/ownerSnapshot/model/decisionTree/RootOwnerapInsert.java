@@ -35,7 +35,7 @@ public final class RootOwnerapInsert extends DeciTreeWriteTemplate<OwnerapInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.RETURN_TRUE;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new OwnerapCheckWrite(checkerOption);
 		queue.add(checker);
 		

@@ -4,7 +4,8 @@ import java.sql.Connection;
 
 public final class ModelCheckerOption {
 	public final static boolean EXIST_ON_DB = true;
-	public final static boolean RETURN_TRUE = true;
+	public final static boolean SUCCESS = true;
+	public final static boolean FAILED = false;
 	
 	public Connection conn;
 	public boolean expectedResult;
