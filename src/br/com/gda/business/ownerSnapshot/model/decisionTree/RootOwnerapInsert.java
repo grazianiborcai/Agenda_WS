@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.gda.business.ownerSnapshot.model.action.LazyOwnerapInsert;
+import br.com.gda.business.ownerSnapshot.model.action.LazyOwnerapMergeComplis;
 import br.com.gda.business.ownerSnapshot.model.action.LazyOwnerapMergeUselis;
 import br.com.gda.business.ownerSnapshot.model.action.StdOwnerapMergePersolis;
 import br.com.gda.business.ownerSnapshot.model.checker.OwnerapCheckLangu;
@@ -62,10 +63,12 @@ public final class RootOwnerapInsert extends DeciTreeWriteTemplate<OwnerapInfo> 
 		
 		ActionStd<OwnerapInfo> mergePersolis = new StdOwnerapMergePersolis(option);
 		ActionLazy<OwnerapInfo> mergeUselis = new LazyOwnerapMergeUselis(option.conn, option.schemaName);
+		ActionLazy<OwnerapInfo> mergeComplis = new LazyOwnerapMergeComplis(option.conn, option.schemaName);
 		ActionLazy<OwnerapInfo> insert = new LazyOwnerapInsert(option.conn, option.schemaName);
 		
 		mergePersolis.addPostAction(mergeUselis);
-		mergeUselis.addPostAction(insert);
+		mergeUselis.addPostAction(mergeComplis);
+		mergeComplis.addPostAction(insert);
 		
 		actions.add(mergePersolis);	
 		return actions;

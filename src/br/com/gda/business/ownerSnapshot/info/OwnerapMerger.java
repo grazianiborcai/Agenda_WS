@@ -2,6 +2,7 @@ package br.com.gda.business.ownerSnapshot.info;
 
 import java.util.List;
 
+import br.com.gda.business.companyList.info.ComplisInfo;
 import br.com.gda.business.personList.info.PersolisInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.userList.info.UselisInfo;
@@ -18,6 +19,20 @@ public final class OwnerapMerger {
 		InfoMerger<OwnerapInfo, OwnerapInfo> merger = new OwnerapMergerToSelect();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
+	
+	
+	
+	public static OwnerapInfo mergeWithComplis(ComplisInfo sourceOne, OwnerapInfo sourceTwo) {
+		InfoMerger<OwnerapInfo, ComplisInfo> merger = new OwnerapMergerComplis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwnerapInfo> mergeWithComplis(List<ComplisInfo> sourceOnes, List<OwnerapInfo> sourceTwos) {
+		InfoMerger<OwnerapInfo, ComplisInfo> merger = new OwnerapMergerComplis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
 	
 	
 	
