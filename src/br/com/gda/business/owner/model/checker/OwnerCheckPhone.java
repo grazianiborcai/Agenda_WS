@@ -8,14 +8,14 @@ import br.com.gda.business.phone.model.checker.PhoneCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class OwnerCheckPhoneExist implements ModelChecker<OwnerInfo> {
+public final class OwnerCheckPhone implements ModelChecker<OwnerInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<PhoneInfo> checker;
 	
 	
-	public OwnerCheckPhoneExist(ModelCheckerOption option) {
+	public OwnerCheckPhone(ModelCheckerOption option) {
 		checker = new PhoneCheckExist(option);
 	}
 	

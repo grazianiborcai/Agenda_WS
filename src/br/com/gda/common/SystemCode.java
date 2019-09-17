@@ -174,6 +174,14 @@ public final class SystemCode {
 	public static final int OWNER_PERSON_NOT_CHANGED					= 1253;
 	public static final int OWNER_PERSON_CANT_BE_CHANGED				= 1254;
 	public static final int OWNER_MANDATORY_FIELD_EMPTY 				= 1255;
+	public static final int OWNER_PERSON_IS_EMPTY 						= 1256;
+	public static final int OWNER_PERSON_IS_FILLED 						= 1257;
+	public static final int OWNER_COMPANY_IS_EMPTY 						= 1258;
+	public static final int OWNER_COMPANY_IS_FILLED 					= 1259;
+	public static final int OWNER_ADDRESS_IS_EMPTY 						= 1260;
+	public static final int OWNER_ADDRESS_IS_FILLED 					= 1261;
+	public static final int OWNER_PHONE_IS_EMPTY 						= 1262;
+	public static final int OWNER_PHONE_IS_FILLED 						= 1263;
 	
 	// Employee Leave Date
 	public static final int EMP_LDATE_ALREADY_EXIST 					= 1300;

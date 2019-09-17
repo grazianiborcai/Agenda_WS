@@ -4,11 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OwnerCheckHasAddress extends ModelCheckerTemplateSimple<OwnerInfo> {
+public final class OwnerCheckHasAddress extends ModelCheckerTemplateSimpleV2<OwnerInfo> {
 	
 	public OwnerCheckHasAddress(ModelCheckerOption option) {
 		super(option);
@@ -28,19 +27,13 @@ public final class OwnerCheckHasAddress extends ModelCheckerTemplateSimple<Owner
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.ADDRESS_IS_NULL)
-			return SystemMessage.ADDRESS_IS_NULL;
-		
-		return SystemMessage.ADDRESS_IS_FILLED;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.OWNER_ADDRESS_IS_EMPTY;
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == super.SUCCESS)
-			return SystemCode.ADDRESS_IS_FILLED;	
-			
-		return SystemCode.ADDRESS_IS_NULL;
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.OWNER_ADDRESS_IS_FILLED;
 	}
 }

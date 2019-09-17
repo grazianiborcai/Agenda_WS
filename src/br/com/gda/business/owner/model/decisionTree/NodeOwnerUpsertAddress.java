@@ -25,8 +25,6 @@ public final class NodeOwnerUpsertAddress extends DeciTreeReadTemplate<OwnerInfo
 	
 	
 	@Override protected ModelChecker<OwnerInfo> buildDecisionCheckerHook(DeciTreeOption<OwnerInfo> option) {
-		final boolean HAS_ADDRESS = true;
-		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -34,7 +32,7 @@ public final class NodeOwnerUpsertAddress extends DeciTreeReadTemplate<OwnerInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_ADDRESS;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new OwnerCheckHasAddress(checkerOption);
 		queue.add(checker);	
 		

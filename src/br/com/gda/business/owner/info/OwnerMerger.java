@@ -150,4 +150,18 @@ public final class OwnerMerger {
 		InfoMerger<OwnerInfo, OwnerInfo> merger = new OwnerMergerToDelete();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
+	
+	
+	
+	public static OwnerInfo mergeToUpdate(OwnerInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, OwnerInfo> merger = new OwnerMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwnerInfo> mergeToUpdate(List<OwnerInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, OwnerInfo> merger = new OwnerMergerToUpdate();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

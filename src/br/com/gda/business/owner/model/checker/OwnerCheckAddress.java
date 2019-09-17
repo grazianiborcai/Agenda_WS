@@ -8,14 +8,14 @@ import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class OwnerCheckAddressExist implements ModelChecker<OwnerInfo> {
+public final class OwnerCheckAddress implements ModelChecker<OwnerInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<AddressInfo> checker;
 	
 	
-	public OwnerCheckAddressExist(ModelCheckerOption option) {
+	public OwnerCheckAddress(ModelCheckerOption option) {
 		checker = new AddressCheckExist(option);
 	}
 	

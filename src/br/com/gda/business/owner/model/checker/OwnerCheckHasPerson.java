@@ -25,12 +25,12 @@ public final class OwnerCheckHasPerson extends ModelCheckerTemplateSimpleV2<Owne
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PERSON_IS_NULL;
+		return SystemCode.OWNER_PERSON_IS_EMPTY;
 	}
 	
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.PERSON_IS_FILLED;
+		return SystemCode.OWNER_PERSON_IS_FILLED;
 	}
 }

@@ -1,18 +1,16 @@
 package br.com.gda.business.owner.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.action.StdOwnerEnforceKey;
 import br.com.gda.business.owner.model.action.LazyOwnerSelect;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.checker.ModelCheckerTemplateActionV2;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class OwnerCheckExist extends ModelCheckerTemplateAction<OwnerInfo> {
+public final class OwnerCheckExist extends ModelCheckerTemplateActionV2<OwnerInfo> {
 	
 	public OwnerCheckExist(ModelCheckerOption option) {
 		super(option);
@@ -20,41 +18,23 @@ public final class OwnerCheckExist extends ModelCheckerTemplateAction<OwnerInfo>
 	
 	
 	
-	@Override protected ActionStd<OwnerInfo> buildActionHook(OwnerInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<OwnerInfo> option = buildOption(recordInfo, conn, schemaName);
+	@Override protected ActionStd<OwnerInfo> buildActionHook(DeciTreeOption<OwnerInfo> option) {
+		ActionStd<OwnerInfo> enforceKey = new StdOwnerEnforceKey(option);
+		ActionLazy<OwnerInfo> select = new LazyOwnerSelect(option.conn, option.schemaName);
 		
-		ActionStd<OwnerInfo> actionSelect = new StdOwnerEnforceKey(option);
-		actionSelect.addPostAction(new LazyOwnerSelect(conn, schemaName));
-		return actionSelect;
+		enforceKey.addPostAction(select);		
+		return enforceKey;
 	}
 	
 	
 	
-	private DeciTreeOption<OwnerInfo> buildOption(OwnerInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<OwnerInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.OWNER_ALREADY_EXIST;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.OWNER_ALREADY_EXIST)
-			return SystemMessage.OWNER_ALREADY_EXIST;
-		
-		return SystemMessage.OWNER_NOT_FOUND;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
-			return SystemCode.OWNER_ALREADY_EXIST;	
-			
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.OWNER_NOT_FOUND;
 	}
 }

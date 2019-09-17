@@ -4,11 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OwnerCheckHasPhone extends ModelCheckerTemplateSimple<OwnerInfo> {
+public final class OwnerCheckHasPhone extends ModelCheckerTemplateSimpleV2<OwnerInfo> {
 	
 	public OwnerCheckHasPhone(ModelCheckerOption option) {
 		super(option);
@@ -17,27 +16,25 @@ public final class OwnerCheckHasPhone extends ModelCheckerTemplateSimple<OwnerIn
 	
 	
 	@Override protected boolean checkHook(OwnerInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.phones == null || recordInfo.phones.isEmpty())			
+		if (recordInfo.phones == null)			
 			return super.FAILED;		
+		
+		if (recordInfo.phones.isEmpty())			
+			return super.FAILED;	
+		
 		
 		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.PHONE_IS_NULL)
-			return SystemMessage.PHONE_IS_NULL;
-		
-		return SystemMessage.PHONE_IS_FILLED;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.OWNER_PERSON_IS_EMPTY;
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == super.SUCCESS)
-			return SystemCode.PHONE_IS_FILLED;	
-			
-		return SystemCode.PHONE_IS_NULL;
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.OWNER_PERSON_IS_FILLED;
 	}
 }

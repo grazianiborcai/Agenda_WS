@@ -8,7 +8,6 @@ import br.com.gda.business.owner.model.action.LazyOwnerEnforcePersonKey;
 import br.com.gda.business.owner.model.action.LazyOwnerUpdatePerson;
 import br.com.gda.business.owner.model.action.StdOwnerEnforceEntityCateg;
 import br.com.gda.business.owner.model.checker.OwnerCheckHasPerson;
-import br.com.gda.business.owner.model.checker.OwnerCheckUpdatePerson;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -26,19 +25,14 @@ public final class NodeOwnerUpdatePerson extends DeciTreeWriteTemplate<OwnerInfo
 	
 	
 	@Override protected ModelChecker<OwnerInfo> buildDecisionCheckerHook(DeciTreeOption<OwnerInfo> option) {
-		final boolean HAS_PERSON = true;
-		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
 		ModelCheckerOption checkerOption;	
-			
-		checker = new OwnerCheckUpdatePerson();
-		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_PERSON;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new OwnerCheckHasPerson(checkerOption);
 		queue.add(checker);
 		
