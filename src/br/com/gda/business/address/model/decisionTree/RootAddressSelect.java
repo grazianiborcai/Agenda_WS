@@ -13,6 +13,7 @@ import br.com.gda.business.address.model.action.StdAddressMergeToSelect;
 import br.com.gda.business.address.model.checker.AddressCheckRead;
 import br.com.gda.business.address.model.checker.AddressCheckRefRead;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
@@ -28,8 +29,13 @@ public final class RootAddressSelect extends DeciTreeReadTemplate<AddressInfo> {
 	@Override protected ModelChecker<AddressInfo> buildDecisionCheckerHook(DeciTreeOption<AddressInfo> option) {
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new AddressCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new AddressCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checker = new AddressCheckRefRead();

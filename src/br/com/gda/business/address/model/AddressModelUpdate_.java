@@ -16,13 +16,13 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.obsolete.ModelHelper_;
 import br.com.gda.model.obsolete.ModelOption_;
 
-public final class AddressModelUpdate implements Model {
+public final class AddressModelUpdate_ implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public AddressModelUpdate(String incomingData, HttpServletRequest request) {
+	public AddressModelUpdate_(String incomingData, HttpServletRequest request) {
 		initialize();
 		buildHelper(incomingData, request);
 	}

@@ -10,7 +10,6 @@ import br.com.gda.business.address.model.action.MapAddressMergeForm;
 import br.com.gda.business.address.model.checker.AddressCheckCountry;
 import br.com.gda.business.address.model.checker.AddressCheckRefMulti;
 import br.com.gda.business.address.model.checker.AddressCheckRefWrite;
-import br.com.gda.business.address.model.checker.AddressCheckTechField;
 import br.com.gda.business.address.model.checker.AddressCheckInsert;
 import br.com.gda.business.address.model.checker.AddressCheckLimit;
 import br.com.gda.business.address.model.checker.AddressCheckOwner;
@@ -31,35 +30,42 @@ public final class RootAddressInsert extends DeciTreeWriteTemplate<AddressInfo> 
 	
 	
 	@Override protected ModelChecker<AddressInfo> buildDecisionCheckerHook(DeciTreeOption<AddressInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new AddressCheckInsert();
-		queue.add(checker);
-		
-		checker = new AddressCheckTechField();
-		queue.add(checker);
-		
-		checker = new AddressCheckRefWrite();
-		queue.add(checker);
-		
-		checker = new AddressCheckRefMulti();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new AddressCheckInsert(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new AddressCheckRefWrite(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new AddressCheckRefMulti(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new AddressCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new AddressCheckCountry(checkerOption);
 		queue.add(checker);
 		

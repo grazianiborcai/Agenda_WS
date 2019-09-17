@@ -19,13 +19,13 @@ import br.com.gda.model.obsolete.ModelOption_;
 
 //TODO: Classe para teste. Eliminar
 
-public final class AddressModelInsert implements Model {
+public final class AddressModelInsert_ implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public AddressModelInsert(String incomingData, HttpServletRequest request) {
+	public AddressModelInsert_(String incomingData, HttpServletRequest request) {
 		initialize();
 		buildHelper(incomingData, request);
 	}

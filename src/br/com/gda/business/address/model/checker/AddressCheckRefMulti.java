@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AddressCheckRefMulti extends ModelCheckerTemplateSimple<AddressInfo> {
+public final class AddressCheckRefMulti extends ModelCheckerTemplateSimpleV2<AddressInfo> {
 
-	public AddressCheckRefMulti() {
-		super();
+	public AddressCheckRefMulti(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -42,13 +42,7 @@ public final class AddressCheckRefMulti extends ModelCheckerTemplateSimple<Addre
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ADDRESS_MULTIPLE_REFERENCE;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.ADDRESS_MULTIPLE_REFERENCE;
 	}
 }

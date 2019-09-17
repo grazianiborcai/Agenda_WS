@@ -3,11 +3,11 @@ package br.com.gda.business.address.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -101,7 +101,6 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 	
 	private static class ResultParser implements DaoResultParser<AddressInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final boolean NOT_NULL = false;
 		
 		@Override public List<AddressInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<AddressInfo> finalResult = new ArrayList<>();
@@ -129,67 +128,21 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 				dataInfo.line6 = stmtResult.getString(AddressDbTableColumn.COL_LINE6);
 				dataInfo.line7 = stmtResult.getString(AddressDbTableColumn.COL_LINE7);
 				dataInfo.recordMode = stmtResult.getString(AddressDbTableColumn.COL_RECORD_MODE);
-				
-				stmtResult.getLong(AddressDbTableColumn.COL_COD_STORE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStore = stmtResult.getLong(AddressDbTableColumn.COL_COD_STORE);
-				
-				stmtResult.getLong(AddressDbTableColumn.COL_COD_STORE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStoreSnapshot = stmtResult.getLong(AddressDbTableColumn.COL_COD_STORE_SNAPSHOT);
-				
-				stmtResult.getLong(AddressDbTableColumn.COL_COD_CUSTOMER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(AddressDbTableColumn.COL_COD_CUSTOMER);	
-				
-				stmtResult.getLong(AddressDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomerSnapshot = stmtResult.getLong(AddressDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-				
-				stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployee = stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE);
-				
-				stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployeeSnapshot = stmtResult.getLong(AddressDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-				
-				stmtResult.getLong(AddressDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(AddressDbTableColumn.COL_COD_USER);	
-				
-				stmtResult.getLong(AddressDbTableColumn.COL_COD_USER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUserSnapshot = stmtResult.getLong(AddressDbTableColumn.COL_COD_USER_SNAPSHOT);	
-				
-				stmtResult.getLong(AddressDbTableColumn.COL_COD_OWNER_REF);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codOwnerRef = stmtResult.getLong(AddressDbTableColumn.COL_COD_OWNER_REF);
-				
-				stmtResult.getLong(AddressDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codOwnerRefSnapshot = stmtResult.getLong(AddressDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
-				
-				stmtResult.getFloat(AddressDbTableColumn.COL_LATITUDE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.latitude = stmtResult.getFloat(AddressDbTableColumn.COL_LATITUDE);	
-				
-				stmtResult.getFloat(AddressDbTableColumn.COL_LONGITUDE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.longitude = stmtResult.getFloat(AddressDbTableColumn.COL_LONGITUDE);
-
-				Timestamp lastChanged = stmtResult.getTimestamp(AddressDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();		
-				
-				stmtResult.getLong(AddressDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(AddressDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				stmtResult.getLong(AddressDbTableColumn.COL_COD_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codSnapshot = stmtResult.getLong(AddressDbTableColumn.COL_COD_SNAPSHOT);
-				
+				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_STORE);
+				dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_CUSTOMER);
+				dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_EMPLOYEE);
+				dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_USER);
+				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_USER_SNAPSHOT);
+				dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_OWNER_REF);
+				dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
+				dataInfo.latitude = DaoFormatter.sqlToFloat(stmtResult, AddressDbTableColumn.COL_LATITUDE);
+				dataInfo.longitude = DaoFormatter.sqlToFloat(stmtResult, AddressDbTableColumn.COL_LONGITUDE);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, AddressDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_SNAPSHOT);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,38 +76,14 @@ public final class AddresnapInsertSingle implements DaoStmt<AddresnapInfo> {
 	
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<AddresnapInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, AddresnapInfo recordInfo) throws SQLException {
-			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
-			
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, AddresnapInfo recordInfo) throws SQLException {			
 			int i = 1;
+			
 			stmt.setLong(i++, recordInfo.codOwner);
-			stmt.setLong(i++, recordInfo.codAddress);
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codStore) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codStore);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codCustomer) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codCustomer);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codEmployee) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codEmployee);
-			}
-			
-			
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddress);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);			
 			stmt.setString(i++, recordInfo.codCountry);
 			stmt.setString(i++, recordInfo.codState);
 			stmt.setString(i++, recordInfo.city);
@@ -118,23 +92,8 @@ public final class AddresnapInsertSingle implements DaoStmt<AddresnapInfo> {
 			stmt.setString(i++, recordInfo.streetNumber);
 			stmt.setString(i++, recordInfo.complement);
 			stmt.setString(i++, recordInfo.postalCode);
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.latitude) == null) {
-				stmt.setNull(i++, Types.FLOAT);
-			} else {
-				stmt.setFloat(i++, recordInfo.latitude);
-			}
-			
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.longitude) == null) {
-				stmt.setNull(i++, Types.FLOAT);
-			} else {
-				stmt.setFloat(i++, recordInfo.longitude);
-			}
-						
-			
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.latitude);	
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.longitude);	
 			stmt.setString(i++, recordInfo.line1);
 			stmt.setString(i++, recordInfo.line2);
 			stmt.setString(i++, recordInfo.line3);
@@ -143,64 +102,15 @@ public final class AddresnapInsertSingle implements DaoStmt<AddresnapInfo> {
 			stmt.setString(i++, recordInfo.line6);
 			stmt.setString(i++, recordInfo.line7);
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setTimestamp(i++, lastChanged);
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codUser) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codUser);
-			}	
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codOwnerRef) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codOwnerRef);
-			}	
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.lastChangedBy) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codCustomerSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codCustomerSnapshot);
-			}	
-						
-			
-			if (DaoFormatter.boxNumber(recordInfo.codEmployeeSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codEmployeeSnapshot);
-			}	
-						
-			
-			if (DaoFormatter.boxNumber(recordInfo.codStoreSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codStoreSnapshot);
-			}	
-						
-			
-			if (DaoFormatter.boxNumber(recordInfo.codUserSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codUserSnapshot);
-			}	
-			
-						
-			if (DaoFormatter.boxNumber(recordInfo.codOwnerRefSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codOwnerRefSnapshot);
-			}	
-			
+			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);	
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);	
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRef);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployeeSnapshot);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStoreSnapshot);	
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRefSnapshot);					
 
 			return stmt;
 		}		

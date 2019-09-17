@@ -3,11 +3,11 @@ package br.com.gda.business.addressSnapshot.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -17,6 +17,7 @@ import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
+import br.com.gda.dao.common.DaoOptionValue;
 
 public final class AddresnapSelectSingle implements DaoStmt<AddresnapInfo> {
 	private final String LT_MAIN = DaoDbTable.ADDRESS_SNAPSHOT_TABLE;	
@@ -49,12 +50,9 @@ public final class AddresnapSelectSingle implements DaoStmt<AddresnapInfo> {
 	
 	
 	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean IGNORE_RECORD_MODE = true;
-		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = IGNORE_RECORD_MODE;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new AddresnapWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
@@ -107,7 +105,6 @@ public final class AddresnapSelectSingle implements DaoStmt<AddresnapInfo> {
 	
 	private static class ResultParser implements DaoResultParser<AddresnapInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final boolean NOT_NULL = false;
 		
 		@Override public List<AddresnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<AddresnapInfo> finalResult = new ArrayList<>();
@@ -117,9 +114,9 @@ public final class AddresnapSelectSingle implements DaoStmt<AddresnapInfo> {
 			
 			do {
 				AddresnapInfo dataInfo = new AddresnapInfo();
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_COD_SNAPSHOT);	
 				dataInfo.codAddress = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_ADDRESS);
 				dataInfo.codOwner = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_OWNER);
-				dataInfo.codSnapshot = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_SNAPSHOT);
 				dataInfo.codCountry = stmtResult.getString(AddresnapDbTableColumn.COL_COUNTRY);
 				dataInfo.codState = stmtResult.getString(AddresnapDbTableColumn.COL_STATE_PROVINCE);
 				dataInfo.city = stmtResult.getString(AddresnapDbTableColumn.COL_CITY);
@@ -136,59 +133,20 @@ public final class AddresnapSelectSingle implements DaoStmt<AddresnapInfo> {
 				dataInfo.line6 = stmtResult.getString(AddresnapDbTableColumn.COL_LINE6);
 				dataInfo.line7 = stmtResult.getString(AddresnapDbTableColumn.COL_LINE7);
 				dataInfo.recordMode = stmtResult.getString(AddresnapDbTableColumn.COL_RECORD_MODE);
-				
-				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_STORE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStore = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_STORE);
-				
-				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_STORE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStoreSnapshot = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_STORE_SNAPSHOT);
-				
-				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_CUSTOMER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_CUSTOMER);		
-				
-				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomerSnapshot = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);	
-				
-				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_EMPLOYEE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_EMPLOYEE);
-				
-				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomerSnapshot = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-				
-				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_USER);	
-				
-				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_USER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUserSnapshot = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_USER_SNAPSHOT);	
-				
-				stmtResult.getFloat(AddresnapDbTableColumn.COL_LATITUDE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.latitude = stmtResult.getFloat(AddresnapDbTableColumn.COL_LATITUDE);	
-				
-				stmtResult.getFloat(AddresnapDbTableColumn.COL_LONGITUDE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.longitude = stmtResult.getFloat(AddresnapDbTableColumn.COL_LONGITUDE);
-
-				Timestamp lastChanged = stmtResult.getTimestamp(AddresnapDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();		
-				
-				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_OWNER_REF);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codOwnerRef = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_OWNER_REF);	
-				
-				stmtResult.getLong(AddresnapDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codOwnerRefSnapshot = stmtResult.getLong(AddresnapDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);	
-				
+				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_COD_STORE);
+				dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_COD_CUSTOMER);
+				dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_COD_EMPLOYEE);
+				dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_COD_USER);
+				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_COD_USER_SNAPSHOT);
+				dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_COD_OWNER_REF);
+				dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
+				dataInfo.latitude = DaoFormatter.sqlToFloat(stmtResult, AddresnapDbTableColumn.COL_LATITUDE);
+				dataInfo.longitude = DaoFormatter.sqlToFloat(stmtResult, AddresnapDbTableColumn.COL_LONGITUDE);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, AddresnapDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_LAST_CHANGED_BY);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

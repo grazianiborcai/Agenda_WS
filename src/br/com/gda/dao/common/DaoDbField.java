@@ -5,6 +5,7 @@ public final class DaoDbField {
 	public static final String COL_AMOUNT_TOTAL_PARTNER = "amount_total_partner";
 	public static final String COL_BEGIN_TIME = "begin_time";
 	public static final String COL_BIRTH_DATE = "birth_date";
+	public static final String COL_CITY = "city";
 	public static final String COL_COD_ADDRESS = "cod_address";	
 	public static final String COL_COD_ADDRESS_SHIP = "cod_address_ship";
 	public static final String COL_COD_ADDRESS_SHIP_SNAPSHOT = "cod_address_ship_snapshot";
@@ -80,6 +81,7 @@ public final class DaoDbField {
 	public static final String COL_COMPLEMENT = "complement";
 	public static final String COL_CONFIRMED = "confirmed";
 	public static final String COL_COUNTER = "counter";
+	public static final String COL_COUNTRY = "country";
 	public static final String COL_COUNTRY_LEGAL = "country_legal";
 	public static final String COL_COUNTRY_PHONE = "country_phone";
 	public static final String COL_CNPJ = "cnpj";
@@ -93,6 +95,7 @@ public final class DaoDbField {
 	public static final String COL_DATE = "date";
 	public static final String COL_DAY = "day";
 	public static final String COL_DESCRIPTION = "description";
+	public static final String COL_DISTRICT = "district";
 	public static final String COL_EMAIL = "email";
 	public static final String COL_END_TIME = "end_time";
 	public static final String COL_FEE_SERVICE = "feeService";
@@ -112,6 +115,15 @@ public final class DaoDbField {
 	public static final String COL_ITEM_TOTAL = "itemTotal";
 	public static final String COL_LAST_CHANGED = "last_changed";
 	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
+	public static final String COL_LATITUDE = "latitude";
+	public static final String COL_LINE1 = "line1";
+	public static final String COL_LINE2 = "line2";
+	public static final String COL_LINE3 = "line3";
+	public static final String COL_LINE4 = "line4";	
+	public static final String COL_LINE5 = "line5";
+	public static final String COL_LINE6 = "line6";
+	public static final String COL_LINE7 = "line7";
+	public static final String COL_LONGITUDE = "longitude";
 	public static final String COL_MESSAGE = "message";
 	public static final String COL_MONTH = "month";
 	public static final String COL_NAME = "name";
@@ -119,6 +131,7 @@ public final class DaoDbField {
 	public static final String COL_OWN_ID = "own_id";
 	public static final String COL_PRICE = "price";	
 	public static final String COL_PRICE_UNIT = "price_unit";
+	public static final String COL_POSTALCODE = "zipCode";
 	public static final String COL_QUANTITY = "quantity";	
 	public static final String COL_QUARTER = "quarter";
 	public static final String COL_RAZAO_SOCIAL = "razao_social";
@@ -127,6 +140,8 @@ public final class DaoDbField {
 	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";	
 	public static final String COL_STATUS_PAYMENT_PARTNER = "status_payment_partner";
 	public static final String COL_STATUS_REFUND_PARTNER = "status_refund_partner";
+	public static final String COL_STREET = "street";
+	public static final String COL_STREET_NUMBER = "street_number";	
 	public static final String COL_TOTAL_ITEM = "total_item";
 	public static final String COL_USERNAME = "username";
 	public static final String COL_WAITING = "waiting";

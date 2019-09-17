@@ -16,8 +16,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.address.model.AddressModelInsert;
-import br.com.gda.business.address.model.AddressModelUpdate;
+import br.com.gda.business.address.model.AddressModelInsert_;
+import br.com.gda.business.address.model.AddressModelUpdate_;
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.addressSnapshot.model.AddresnapModelInsert;
 import br.com.gda.business.addressSnapshot.model.AddresnapModelSelect;
@@ -127,7 +127,7 @@ public class TestResource {
 	public Response insertAddress(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new AddressModelInsert(incomingData, request);
+		Model model = new AddressModelInsert_(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}
@@ -140,7 +140,7 @@ public class TestResource {
 	public Response updateAddress(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new AddressModelUpdate(incomingData, request);
+		Model model = new AddressModelUpdate_(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}

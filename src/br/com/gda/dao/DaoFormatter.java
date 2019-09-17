@@ -180,6 +180,20 @@ public final class DaoFormatter {
 	
 	
 	
+	public static PreparedStatement numberToStmt(PreparedStatement stmt, int index, float number) throws SQLException {
+		checkArgument(stmt, index);		
+		
+		if (number >= 0) {
+			stmt.setFloat(index, number);
+			return stmt;
+		}
+		
+		stmt.setNull(index, Types.FLOAT);
+		return stmt;
+	}
+	
+	
+	
 	public static PreparedStatement numberToStmt(PreparedStatement stmt, int index, long number) throws SQLException {
 		checkArgument(stmt, index);		
 		
@@ -270,6 +284,19 @@ public final class DaoFormatter {
 			return DefaultValue.number();
 			
 		return stmtResult.getLong(colunmName);	
+	}
+	
+	
+	
+	public static float sqlToFloat(ResultSet stmtResult, String colunmName) throws SQLException {
+		checkArgument(stmtResult, colunmName);		
+		
+		stmtResult.getFloat(colunmName);
+		
+		if (stmtResult.wasNull())
+			return DefaultValue.number();
+			
+		return stmtResult.getFloat(colunmName);	
 	}
 	
 	

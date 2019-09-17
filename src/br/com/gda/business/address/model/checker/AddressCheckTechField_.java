@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple;
 
-public final class AddressCheckTechField extends ModelCheckerTemplateSimple<AddressInfo> {
+public final class AddressCheckTechField_ extends ModelCheckerTemplateSimple<AddressInfo> {
 
-	public AddressCheckTechField() {
+	public AddressCheckTechField_() {
 		super();
 	}
 	
