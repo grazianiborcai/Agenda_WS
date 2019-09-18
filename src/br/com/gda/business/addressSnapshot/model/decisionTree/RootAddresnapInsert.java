@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
+import br.com.gda.business.addressSnapshot.model.action.LazyAddresnapInsert;
 import br.com.gda.business.addressSnapshot.model.action.LazyAddresnapRootSelect;
-import br.com.gda.business.addressSnapshot.model.action.StdAddresnapInsert;
 import br.com.gda.business.addressSnapshot.model.checker.AddresnapCheckAddress;
 import br.com.gda.business.addressSnapshot.model.checker.AddresnapCheckOwner;
 import br.com.gda.business.addressSnapshot.model.checker.AddresnapCheckWrite;
@@ -59,12 +59,14 @@ public final class RootAddresnapInsert extends DeciTreeWriteTemplate<AddresnapIn
 	@Override protected List<ActionStd<AddresnapInfo>> buildActionsOnPassedHook(DeciTreeOption<AddresnapInfo> option) {
 		List<ActionStd<AddresnapInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<AddresnapInfo> insert = new StdAddresnapInsert(option);		
+		ActionStd<AddresnapInfo> nodeUser = new NodeAddresnapUser(option).toAction();	
+		ActionLazy<AddresnapInfo> insert = new LazyAddresnapInsert(option.conn, option.schemaName);		
 		ActionLazy<AddresnapInfo> select = new LazyAddresnapRootSelect(option.conn, option.schemaName);
 		
+		nodeUser.addPostAction(insert);
 		insert.addPostAction(select);
 		
-		actions.add(insert);				
+		actions.add(nodeUser);				
 		return actions;
 	}
 }

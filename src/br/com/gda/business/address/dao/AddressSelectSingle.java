@@ -129,15 +129,10 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 				dataInfo.line7 = stmtResult.getString(AddressDbTableColumn.COL_LINE7);
 				dataInfo.recordMode = stmtResult.getString(AddressDbTableColumn.COL_RECORD_MODE);
 				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_STORE);
-				dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_STORE_SNAPSHOT);
 				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_CUSTOMER);
-				dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
 				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_USER);
-				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_USER_SNAPSHOT);
 				dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_OWNER_REF);
-				dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
 				dataInfo.latitude = DaoFormatter.sqlToFloat(stmtResult, AddressDbTableColumn.COL_LATITUDE);
 				dataInfo.longitude = DaoFormatter.sqlToFloat(stmtResult, AddressDbTableColumn.COL_LONGITUDE);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, AddressDbTableColumn.COL_LAST_CHANGED);

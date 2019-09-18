@@ -709,4 +709,6 @@ public final class SystemCode {
 	
 	//Address-Snapshot
 	public static final int ADDRESS_SNAP_MANDATORY_FIELD_EMPTY			= 6450;
+	public static final int ADDRESS_SNAP_USER_IS_FILLED					= 6451;
+	public static final int ADDRESS_SNAP_USER_IS_EMPTY					= 6452;
 }

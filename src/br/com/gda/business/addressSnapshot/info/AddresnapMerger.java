@@ -6,8 +6,23 @@ import br.com.gda.business.form.formAddress.info.FormAddressInfo;
 import br.com.gda.business.masterData.info.CountryInfo;
 import br.com.gda.business.masterData.info.StateInfo;
 import br.com.gda.info.InfoMerger;
+import br.com.gda.security.userList.info.UselisInfo;
 
 public final class AddresnapMerger {	
+	public static AddresnapInfo mergeWithUselis(UselisInfo sourceOne, AddresnapInfo sourceTwo) {
+		InfoMerger<AddresnapInfo, UselisInfo> merger = new AddresnapMergerUselis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<AddresnapInfo> mergeWithUselis(List<UselisInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
+		InfoMerger<AddresnapInfo, UselisInfo> merger = new AddresnapMergerUselis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static AddresnapInfo mergeWithForm(FormAddressInfo sourceOne, AddresnapInfo sourceTwo) {
 		InfoMerger<AddresnapInfo, FormAddressInfo> merger = new AddresnapMergerForm();		
 		return merger.merge(sourceOne, sourceTwo);

@@ -45,6 +45,7 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	public long lastChangedBy;
 	public String codForm;
 	public boolean isDeleted;
+	public String username;
 	
 	
 	public AddresnapInfo() {

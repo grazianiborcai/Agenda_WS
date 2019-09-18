@@ -11,15 +11,10 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	public long codAddress;
 	public long codSnapshot;
 	public long codCustomer;
-	public long codCustomerSnapshot;
 	public long codStore;
-	public long codStoreSnapshot;
 	public long codEmployee;
-	public long codEmployeeSnapshot;
 	public long codUser;
-	public long codUserSnapshot;
 	public long codOwnerRef;
-	public long codOwnerRefSnapshot;
 	public String codCountry;
 	public String codCountryAlpha3;
 	public String txtCountry;
@@ -45,6 +40,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	public long lastChangedBy;
 	public String codForm;
 	public boolean isDeleted;
+	public String username;
 	
 	
 	public AddressInfo() {
@@ -54,15 +50,10 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 		codAddress = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codCustomer = DefaultValue.number();
-		codCustomerSnapshot = DefaultValue.number();
 		codStore = DefaultValue.number();
-		codStoreSnapshot = DefaultValue.number();
 		codEmployee = DefaultValue.number();
-		codEmployeeSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
-		codUserSnapshot = DefaultValue.number();
 		codOwnerRef = DefaultValue.number();
-		codOwnerRefSnapshot = DefaultValue.number();
 		longitude = DefaultValue.number();
 		latitude = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
