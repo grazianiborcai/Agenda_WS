@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AddresnapCheckWrite extends ModelCheckerTemplateSimple<AddresnapInfo> {
+public final class AddresnapCheckWrite extends ModelCheckerTemplateSimpleV2<AddresnapInfo> {
 
-	public AddresnapCheckWrite() {
-		super();
+	public AddresnapCheckWrite(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -27,13 +27,7 @@ public final class AddresnapCheckWrite extends ModelCheckerTemplateSimple<Addres
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.ADDRESS_SNAP_MANDATORY_FIELD_EMPTY;
 	}
 }

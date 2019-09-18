@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.addressSnapshot.model.action.LazyAddresnapRootSelect;
 import br.com.gda.business.addressSnapshot.model.action.StdAddresnapInsert;
+import br.com.gda.business.addressSnapshot.model.checker.AddresnapCheckAddress;
 import br.com.gda.business.addressSnapshot.model.checker.AddresnapCheckOwner;
 import br.com.gda.business.addressSnapshot.model.checker.AddresnapCheckWrite;
 import br.com.gda.model.action.ActionLazy;
@@ -25,20 +26,29 @@ public final class RootAddresnapInsert extends DeciTreeWriteTemplate<AddresnapIn
 	
 	
 	@Override protected ModelChecker<AddresnapInfo> buildDecisionCheckerHook(DeciTreeOption<AddresnapInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<AddresnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddresnapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new AddresnapCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new AddresnapCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new AddresnapCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new AddresnapCheckAddress(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

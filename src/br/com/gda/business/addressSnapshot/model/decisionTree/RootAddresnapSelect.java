@@ -12,6 +12,7 @@ import br.com.gda.business.addressSnapshot.model.checker.AddresnapCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
@@ -27,8 +28,13 @@ public final class RootAddresnapSelect extends DeciTreeReadTemplate<AddresnapInf
 	@Override protected ModelChecker<AddresnapInfo> buildDecisionCheckerHook(DeciTreeOption<AddresnapInfo> option) {
 		List<ModelChecker<AddresnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddresnapInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new AddresnapCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new AddresnapCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

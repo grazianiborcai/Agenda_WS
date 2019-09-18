@@ -2,10 +2,11 @@ package br.com.gda.business.addressSnapshot.model;
 
 import java.sql.Connection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
-import br.com.gda.business.addressSnapshot.model.decisionTree.RootAddresnapSelect;
+import br.com.gda.business.addressSnapshot.model.decisionTree.RootAddresnapInsert;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,15 +16,15 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.obsolete.ModelHelper_;
 import br.com.gda.model.obsolete.ModelOption_;
 
-public final class AddresnapModelSelect implements Model {
+public final class AddresnapModelInsert_ implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public AddresnapModelSelect(AddresnapInfo recordInfo) {
+	public AddresnapModelInsert_(String incomingData, HttpServletRequest request) {
 		initialize();
-		buildHelper(recordInfo);
+		buildHelper(incomingData, request);
 	}
 	
 	
@@ -35,7 +36,7 @@ public final class AddresnapModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(AddresnapInfo recordInfo) {
+	private void buildHelper(String incomingData, HttpServletRequest request) {
 		ModelOption_<AddresnapInfo> helperOption = new ModelOption_<>();
 		
 		helperOption.recordClass = AddresnapInfo.class;
@@ -43,10 +44,10 @@ public final class AddresnapModelSelect implements Model {
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
 		
-		helper = ModelHelper_.factory(helperOption, recordInfo);
+		helper = ModelHelper_.factory(helperOption, incomingData, request);
 	}
-	
-	
+
+
 	
 	@Override public boolean executeRequest() {
 		return helper.executeRequest();
@@ -65,7 +66,7 @@ public final class AddresnapModelSelect implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<AddresnapInfo> {		
 		@Override public DeciTree<AddresnapInfo> getInstance(DeciTreeOption<AddresnapInfo> option) {
-			return new RootAddresnapSelect(option);
-		}		
+			return new RootAddresnapInsert(option);
+		}			
 	}
 }

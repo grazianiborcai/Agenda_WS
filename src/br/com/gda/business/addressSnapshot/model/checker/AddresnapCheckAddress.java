@@ -8,14 +8,14 @@ import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class AddresnapCheckAddress_ implements ModelChecker<AddresnapInfo> {
+public final class AddresnapCheckAddress implements ModelChecker<AddresnapInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<AddressInfo> checker;
 	
 	
-	public AddresnapCheckAddress_(ModelCheckerOption option) {
+	public AddresnapCheckAddress(ModelCheckerOption option) {
 		checker = new AddressCheckExist(option);
 	}
 	

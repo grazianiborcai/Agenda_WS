@@ -706,4 +706,7 @@ public final class SystemCode {
 	
 	//Company List
 	public static final int COMPANY_LIST_MANDATORY_FIELD_EMPTY 			= 6400;
+	
+	//Address-Snapshot
+	public static final int ADDRESS_SNAP_MANDATORY_FIELD_EMPTY			= 6450;
 }

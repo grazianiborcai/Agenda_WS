@@ -19,8 +19,8 @@ import javax.ws.rs.core.Response;
 import br.com.gda.business.address.model.AddressModelInsert_;
 import br.com.gda.business.address.model.AddressModelUpdate_;
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
-import br.com.gda.business.addressSnapshot.model.AddresnapModelInsert;
-import br.com.gda.business.addressSnapshot.model.AddresnapModelSelect;
+import br.com.gda.business.addressSnapshot.model.AddresnapModelInsert_;
+import br.com.gda.business.addressSnapshot.model.AddresnapModelSelect_;
 import br.com.gda.business.cartItem.model.CartemModelUpsert;
 import br.com.gda.business.cartReserve.info.CarterveInfo;
 import br.com.gda.business.cartReserve.model.CarterveModelSelect;
@@ -268,7 +268,7 @@ public class TestResource {
 		recordInfo.codOwner = codOwner;
 		recordInfo.codSnapshot = codSnapshot;
 		
-		Model model = new AddresnapModelSelect(recordInfo);
+		Model model = new AddresnapModelSelect_(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -281,7 +281,7 @@ public class TestResource {
 	public Response insertAddressSnapshot(@Context HttpServletRequest request, String incomingData) {
 		
 		
-		Model model = new AddresnapModelInsert(incomingData, request);
+		Model model = new AddresnapModelInsert_(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
 	}

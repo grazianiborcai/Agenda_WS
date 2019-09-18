@@ -4,29 +4,21 @@ import java.sql.Connection;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AddresnapCheckRead extends ModelCheckerTemplateSimple<AddresnapInfo> {
+public final class AddresnapCheckRead extends ModelCheckerTemplateSimpleV2<AddresnapInfo> {
 
-	public AddresnapCheckRead() {
-		super();
+	public AddresnapCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(AddresnapInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner <= 0 )		
-			return super.FAILED;
-		
-		
-		if ( recordInfo.codSnapshot 		<= 0 &&
-			 recordInfo.codCustomerSnapshot	<= 0 &&
-			 recordInfo.codEmployeeSnapshot	<= 0 &&
-			 recordInfo.codOwnerRefSnapshot	<= 0 &&
-			 recordInfo.codStoreSnapshot	<= 0 &&
-			 recordInfo.codUserSnapshot		<= 0	)
-			
+		if ( recordInfo.codOwner 	<= 0 ||
+			 recordInfo.codSnapshot <= 0 ||
+			 recordInfo.codLanguage	== null )		
 			return super.FAILED;
 		
 		
@@ -35,13 +27,7 @@ public final class AddresnapCheckRead extends ModelCheckerTemplateSimple<Addresn
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.ADDRESS_SNAP_MANDATORY_FIELD_EMPTY;
 	}
 }
