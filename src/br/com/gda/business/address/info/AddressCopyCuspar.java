@@ -16,6 +16,7 @@ final class AddressCopyCuspar extends InfoCopierTemplate<AddressInfo, CusparInfo
 		result.codOwner = source.codOwner;
 		result.codAddress = source.codAddress;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		return result;
 	}
 }

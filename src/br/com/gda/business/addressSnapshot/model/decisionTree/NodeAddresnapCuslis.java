@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
-import br.com.gda.business.addressSnapshot.model.action.StdAddresnapMergeUselis;
-import br.com.gda.business.addressSnapshot.model.action.StdAddresnapSuccess;
-import br.com.gda.business.addressSnapshot.model.checker.AddresnapCheckHasUser;
+import br.com.gda.business.addressSnapshot.model.action.StdAddresnapMergeCuslis;
+import br.com.gda.business.addressSnapshot.model.checker.AddresnapCheckHasCustomer;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -14,9 +13,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
 
-public final class NodeAddresnapUser extends DeciTreeReadTemplate<AddresnapInfo> {
+public final class NodeAddresnapCuslis extends DeciTreeReadTemplate<AddresnapInfo> {
 	
-	public NodeAddresnapUser(DeciTreeOption<AddresnapInfo> option) {
+	public NodeAddresnapCuslis(DeciTreeOption<AddresnapInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +30,7 @@ public final class NodeAddresnapUser extends DeciTreeReadTemplate<AddresnapInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new AddresnapCheckHasUser(checkerOption);
+		checker = new AddresnapCheckHasCustomer(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -42,9 +41,9 @@ public final class NodeAddresnapUser extends DeciTreeReadTemplate<AddresnapInfo>
 	@Override protected List<ActionStd<AddresnapInfo>> buildActionsOnPassedHook(DeciTreeOption<AddresnapInfo> option) {
 		List<ActionStd<AddresnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddresnapInfo> mergeUselis = new StdAddresnapMergeUselis(option);	
+		ActionStd<AddresnapInfo> mergeCuslis = new StdAddresnapMergeCuslis(option);	
 		
-		actions.add(mergeUselis);			
+		actions.add(mergeCuslis);			
 		return actions;
 	}
 	
@@ -53,9 +52,9 @@ public final class NodeAddresnapUser extends DeciTreeReadTemplate<AddresnapInfo>
 	@Override protected List<ActionStd<AddresnapInfo>> buildActionsOnFailedHook(DeciTreeOption<AddresnapInfo> option) {
 		List<ActionStd<AddresnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddresnapInfo> success = new StdAddresnapSuccess(option);	
+		ActionStd<AddresnapInfo> nodeStolis = new NodeAddresnapStolis(option).toAction();	
 		
-		actions.add(success);			
+		actions.add(nodeStolis);			
 		return actions;
 	}
 }

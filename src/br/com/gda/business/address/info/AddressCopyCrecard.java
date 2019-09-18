@@ -16,6 +16,7 @@ final class AddressCopyCrecard extends InfoCopierTemplate<AddressInfo, CrecardIn
 		result.codOwner = source.codOwner;
 		result.codAddress = source.codAddressHolder;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		return result;
 	}
 }

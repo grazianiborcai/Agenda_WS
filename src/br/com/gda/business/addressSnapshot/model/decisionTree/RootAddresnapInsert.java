@@ -59,7 +59,7 @@ public final class RootAddresnapInsert extends DeciTreeWriteTemplate<AddresnapIn
 	@Override protected List<ActionStd<AddresnapInfo>> buildActionsOnPassedHook(DeciTreeOption<AddresnapInfo> option) {
 		List<ActionStd<AddresnapInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<AddresnapInfo> nodeUser = new NodeAddresnapUser(option).toAction();	
+		ActionStd<AddresnapInfo> nodeUser = new NodeAddresnapUselis(option).toAction();	
 		ActionLazy<AddresnapInfo> insert = new LazyAddresnapInsert(option.conn, option.schemaName);		
 		ActionLazy<AddresnapInfo> select = new LazyAddresnapRootSelect(option.conn, option.schemaName);
 		

@@ -29,8 +29,8 @@ public final class StoreSetterAddressKey implements InfoSetter<StoreInfo> {
 		for (AddressInfo eachAddress : recordInfo.addresses) {
 			eachAddress.codOwner = recordInfo.codOwner;
 			eachAddress.codStore = recordInfo.codStore;
-			//eachAddress.codStoreSnapshot = recordInfo.codSnapshot;
-			eachAddress.lastChangedBy = recordInfo.lastChangedBy;
+			eachAddress.username = recordInfo.username;
+			eachAddress.lastChangedBy = recordInfo.lastChangedBy;	//TODO: remover
 			eachAddress.codLanguage = recordInfo.codLanguage;
 		}
 		

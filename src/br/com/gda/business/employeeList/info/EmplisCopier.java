@@ -2,6 +2,7 @@ package br.com.gda.business.employeeList.info;
 
 import java.util.List;
 
+import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.planningTime.info.PlanimeInfo;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleMonth.info.SchedmonInfo;
@@ -61,6 +62,20 @@ public final class EmplisCopier {
 	
 	public static List<EmplisInfo> copyFromSchedine(List<SchedineInfo> sources) {
 		InfoCopier<EmplisInfo, SchedineInfo> copier = new EmplisCopySchedine();
+		return copier.makeCopy(sources);
+	}	
+	
+	
+	
+	public static EmplisInfo copyFromAddresnap(AddresnapInfo source) {
+		InfoCopier<EmplisInfo, AddresnapInfo> copier = new EmplisCopyAddresnap();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<EmplisInfo> copyFromAddresnap(List<AddresnapInfo> sources) {
+		InfoCopier<EmplisInfo, AddresnapInfo> copier = new EmplisCopyAddresnap();
 		return copier.makeCopy(sources);
 	}	
 }

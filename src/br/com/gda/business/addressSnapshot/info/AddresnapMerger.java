@@ -2,13 +2,58 @@ package br.com.gda.business.addressSnapshot.info;
 
 import java.util.List;
 
+import br.com.gda.business.customerList.info.CuslisInfo;
+import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.form.formAddress.info.FormAddressInfo;
 import br.com.gda.business.masterData.info.CountryInfo;
 import br.com.gda.business.masterData.info.StateInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.userList.info.UselisInfo;
 
 public final class AddresnapMerger {	
+	public static AddresnapInfo mergeWithStolis(StolisInfo sourceOne, AddresnapInfo sourceTwo) {
+		InfoMerger<AddresnapInfo, StolisInfo> merger = new AddresnapMergerStolis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<AddresnapInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
+		InfoMerger<AddresnapInfo, StolisInfo> merger = new AddresnapMergerStolis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static AddresnapInfo mergeWithCuslis(CuslisInfo sourceOne, AddresnapInfo sourceTwo) {
+		InfoMerger<AddresnapInfo, CuslisInfo> merger = new AddresnapMergerCuslis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<AddresnapInfo> mergeWithCuslis(List<CuslisInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
+		InfoMerger<AddresnapInfo, CuslisInfo> merger = new AddresnapMergerCuslis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static AddresnapInfo mergeWithEmplis(EmplisInfo sourceOne, AddresnapInfo sourceTwo) {
+		InfoMerger<AddresnapInfo, EmplisInfo> merger = new AddresnapMergerEmplis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<AddresnapInfo> mergeWithEmplis(List<EmplisInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
+		InfoMerger<AddresnapInfo, EmplisInfo> merger = new AddresnapMergerEmplis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static AddresnapInfo mergeWithUselis(UselisInfo sourceOne, AddresnapInfo sourceTwo) {
 		InfoMerger<AddresnapInfo, UselisInfo> merger = new AddresnapMergerUselis();		
 		return merger.merge(sourceOne, sourceTwo);

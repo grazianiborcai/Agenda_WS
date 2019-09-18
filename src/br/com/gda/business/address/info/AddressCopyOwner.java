@@ -17,6 +17,7 @@ final class AddressCopyOwner extends InfoCopierTemplate<AddressInfo, OwnerInfo>{
 		result.codOwnerRef = source.codOwner;
 		result.lastChangedBy = source.lastChangedBy;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		return result;
 	}
 }

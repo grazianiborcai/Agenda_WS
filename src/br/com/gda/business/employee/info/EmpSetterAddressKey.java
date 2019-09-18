@@ -29,9 +29,9 @@ public final class EmpSetterAddressKey implements InfoSetter<EmpInfo> {
 		for (AddressInfo eachAddress : recordInfo.addresses) {
 			eachAddress.codOwner = recordInfo.codOwner;
 			eachAddress.codEmployee = recordInfo.codEmployee;
-			//eachAddress.codEmployeeSnapshot = recordInfo.codSnapshot;
+			eachAddress.username = recordInfo.username;
 			eachAddress.codLanguage = recordInfo.codLanguage;
-			eachAddress.lastChangedBy = recordInfo.lastChangedBy;
+			eachAddress.lastChangedBy = recordInfo.lastChangedBy;	//TODO: remover
 		}
 		
 		return recordInfo;

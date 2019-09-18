@@ -711,4 +711,10 @@ public final class SystemCode {
 	public static final int ADDRESS_SNAP_MANDATORY_FIELD_EMPTY			= 6450;
 	public static final int ADDRESS_SNAP_USER_IS_FILLED					= 6451;
 	public static final int ADDRESS_SNAP_USER_IS_EMPTY					= 6452;
+	public static final int ADDRESS_SNAP_EMPLOYEE_IS_FILLED				= 6453;
+	public static final int ADDRESS_SNAP_EMPLOYEE_IS_EMPTY				= 6454;
+	public static final int ADDRESS_SNAP_CUSTOMER_IS_FILLED				= 6455;
+	public static final int ADDRESS_SNAP_CUSTOMER_IS_EMPTY				= 6456;
+	public static final int ADDRESS_SNAP_STORE_IS_FILLED				= 6457;
+	public static final int ADDRESS_SNAP_STORE_IS_EMPTY					= 6458;
 }
