@@ -1,4 +1,4 @@
-package br.com.gda.business.address.info;
+package br.com.gda.business.addressSearch.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,35 +6,34 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class AddressVisiMergeToSelect implements InfoMergerVisitor<AddressInfo, AddressInfo> {
+final class AddarchVisiMergeToSelect implements InfoMergerVisitor<AddarchInfo, AddarchInfo> {
 
-	@Override public AddressInfo writeRecord(AddressInfo sourceOne, AddressInfo sourceTwo) {
+	@Override public AddarchInfo writeRecord(AddarchInfo sourceOne, AddarchInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(AddressInfo sourceOne, AddressInfo sourceTwo) {
+	private void checkArgument(AddarchInfo sourceOne, AddarchInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private AddressInfo merge(AddressInfo sourceOne, AddressInfo sourceTwo) {
-		AddressInfo result = makeClone(sourceOne);		
-		result.lastChangedBy = sourceTwo.lastChangedBy;
-		result.codLanguage = sourceTwo.codLanguage;
+	private AddarchInfo merge(AddarchInfo sourceOne, AddarchInfo sourceTwo) {
+		AddarchInfo result = makeClone(sourceOne);		
 		result.username = sourceTwo.username;
+		result.codLanguage = sourceTwo.codLanguage;
 		return result;
 	}
 	
 	
 	
-	private AddressInfo makeClone(AddressInfo recordInfo) {
+	private AddarchInfo makeClone(AddarchInfo recordInfo) {
 		try {
-			return (AddressInfo) recordInfo.clone();
+			return (AddarchInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -44,7 +43,7 @@ final class AddressVisiMergeToSelect implements InfoMergerVisitor<AddressInfo, A
 	
 	
 	
-	@Override public boolean shouldWrite(AddressInfo sourceOne, AddressInfo sourceTwo) {		
+	@Override public boolean shouldWrite(AddarchInfo sourceOne, AddarchInfo sourceTwo) {		
 		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	

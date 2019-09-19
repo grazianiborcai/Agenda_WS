@@ -26,6 +26,7 @@ final class AddressVisiMergeToDelete implements InfoMergerVisitor<AddressInfo, A
 		AddressInfo result = makeClone(sourceOne);		
 		result.lastChangedBy = sourceTwo.lastChangedBy;
 		result.codLanguage = sourceTwo.codLanguage;
+		result.username = sourceTwo.username;
 		return result;
 	}
 	

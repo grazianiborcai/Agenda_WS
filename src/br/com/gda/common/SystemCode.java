@@ -707,7 +707,7 @@ public final class SystemCode {
 	//Company List
 	public static final int COMPANY_LIST_MANDATORY_FIELD_EMPTY 			= 6400;
 	
-	//Address-Snapshot
+	//Address Snapshot
 	public static final int ADDRESS_SNAP_MANDATORY_FIELD_EMPTY			= 6450;
 	public static final int ADDRESS_SNAP_USER_IS_FILLED					= 6451;
 	public static final int ADDRESS_SNAP_USER_IS_EMPTY					= 6452;
@@ -717,4 +717,7 @@ public final class SystemCode {
 	public static final int ADDRESS_SNAP_CUSTOMER_IS_EMPTY				= 6456;
 	public static final int ADDRESS_SNAP_STORE_IS_FILLED				= 6457;
 	public static final int ADDRESS_SNAP_STORE_IS_EMPTY					= 6458;
+	
+	//Address Search
+	public static final int ADDRESS_SEARCH_MANDATORY_FIELD_EMPTY		= 6500;
 }

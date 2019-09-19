@@ -5,6 +5,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.gda.business.address.dao.AddressDbTableColumn;
+import br.com.gda.business.addressSearch.dao.AddarchDbTableColumn;
 import br.com.gda.business.addressSnapshot.dao.AddresnapDbTableColumn;
 import br.com.gda.business.cart.dao.CartDbTableColumn;
 import br.com.gda.business.cartItem.dao.CartemDbTableColumn;
@@ -198,6 +199,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SymsgDbTableColumn());
 		addTable(new OwnerapDbTableColumn());
 		addTable(new ComplisDbTableColumn());
+		addTable(new AddarchDbTableColumn());
 	}
 	
 	
