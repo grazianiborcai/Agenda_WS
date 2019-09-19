@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.orderReserve.info.OrderveInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class OrderveCheckRead extends ModelCheckerTemplateSimple<OrderveInfo> {
+public final class OrderveCheckRead extends ModelCheckerTemplateSimple_<OrderveInfo> {
 
 	public OrderveCheckRead() {
 		super();

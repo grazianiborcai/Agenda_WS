@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class OrdmoipCheckMatData extends ModelCheckerTemplateSimple<OrdmoipInfo> {
+public final class OrdmoipCheckMatData extends ModelCheckerTemplateSimple_<OrdmoipInfo> {
 
 	public OrdmoipCheckMatData() {
 		super();

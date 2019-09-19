@@ -3,10 +3,10 @@ package br.com.gda.payment.partnerMoip.multiPayMoip.model.check;
 import java.sql.Connection;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
-public final class PaymoipCheckRead extends ModelCheckerTemplateSimple<PaymoipInfo> {
+public final class PaymoipCheckRead extends ModelCheckerTemplateSimple_<PaymoipInfo> {
 
 	public PaymoipCheckRead() {
 		super();

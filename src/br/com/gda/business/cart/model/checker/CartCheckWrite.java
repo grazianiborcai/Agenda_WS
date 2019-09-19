@@ -4,9 +4,9 @@ import java.sql.Connection;
 import br.com.gda.business.cart.info.CartInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CartCheckWrite extends ModelCheckerTemplateSimple<CartInfo> {
+public final class CartCheckWrite extends ModelCheckerTemplateSimple_<CartInfo> {
 
 	public CartCheckWrite() {
 		super();

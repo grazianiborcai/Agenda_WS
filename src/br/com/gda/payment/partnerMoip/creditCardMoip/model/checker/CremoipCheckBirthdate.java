@@ -6,10 +6,10 @@ import java.time.format.DateTimeFormatter;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
 
-public final class CremoipCheckBirthdate extends ModelCheckerTemplateSimple<CremoipInfo> {
+public final class CremoipCheckBirthdate extends ModelCheckerTemplateSimple_<CremoipInfo> {
 
 	public CremoipCheckBirthdate() {
 		super();

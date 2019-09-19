@@ -6,9 +6,9 @@ import java.time.Duration;
 import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public class EmpwotmCheckRangeLen extends ModelCheckerTemplateSimple<EmpwotmInfo> {
+public class EmpwotmCheckRangeLen extends ModelCheckerTemplateSimple_<EmpwotmInfo> {
 	private final int ONE_HOUR = 3600;
 	
 	public EmpwotmCheckRangeLen() {

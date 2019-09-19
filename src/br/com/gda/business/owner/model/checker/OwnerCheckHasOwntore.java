@@ -6,9 +6,9 @@ import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class OwnerCheckHasOwntore extends ModelCheckerTemplateSimple<OwnerInfo> {
+public final class OwnerCheckHasOwntore extends ModelCheckerTemplateSimple_<OwnerInfo> {
 	
 	public OwnerCheckHasOwntore(ModelCheckerOption option) {
 		super(option);

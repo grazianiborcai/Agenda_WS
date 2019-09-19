@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.scheduleMoviment.info.SchedovmInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class SchedovmCheckWrite extends ModelCheckerTemplateSimple<SchedovmInfo> {
+public final class SchedovmCheckWrite extends ModelCheckerTemplateSimple_<SchedovmInfo> {
 
 	public SchedovmCheckWrite() {
 		super();

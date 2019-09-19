@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.orderSearch.info.OrdarchInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class OrdarchCheckRead extends ModelCheckerTemplateSimple<OrdarchInfo> {
+public final class OrdarchCheckRead extends ModelCheckerTemplateSimple_<OrdarchInfo> {
 
 	public OrdarchCheckRead() {
 		super();

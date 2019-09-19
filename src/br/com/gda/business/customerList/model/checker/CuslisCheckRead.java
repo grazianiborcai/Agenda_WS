@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.customerList.info.CuslisInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CuslisCheckRead extends ModelCheckerTemplateSimple<CuslisInfo> {
+public final class CuslisCheckRead extends ModelCheckerTemplateSimple_<CuslisInfo> {
 
 	public CuslisCheckRead() {
 		super();

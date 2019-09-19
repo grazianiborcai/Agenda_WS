@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.refundOrder.info.RefuInfo;
 
-public final class RefuCheckRefund extends ModelCheckerTemplateSimple<RefuInfo> {
+public final class RefuCheckRefund extends ModelCheckerTemplateSimple_<RefuInfo> {
 
 	public RefuCheckRefund() {
 		super();

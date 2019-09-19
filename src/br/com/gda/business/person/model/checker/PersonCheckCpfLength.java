@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class PersonCheckCpfLength extends ModelCheckerTemplateSimple<PersonInfo> {
+public final class PersonCheckCpfLength extends ModelCheckerTemplateSimple_<PersonInfo> {
 
 	public PersonCheckCpfLength() {
 		super();

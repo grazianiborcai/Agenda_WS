@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.statusPayOrderItem.info.PaytusemInfo;
 
-public final class PaytusemCheckRefresh extends ModelCheckerTemplateSimple<PaytusemInfo> {
+public final class PaytusemCheckRefresh extends ModelCheckerTemplateSimple_<PaytusemInfo> {
 
 	public PaytusemCheckRefresh() {
 		super();

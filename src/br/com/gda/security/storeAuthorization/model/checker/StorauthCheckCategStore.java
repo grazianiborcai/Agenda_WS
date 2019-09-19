@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
 
-public final class StorauthCheckCategStore extends ModelCheckerTemplateSimple<StorauthInfo> {
+public final class StorauthCheckCategStore extends ModelCheckerTemplateSimple_<StorauthInfo> {
 
 	public StorauthCheckCategStore() {
 		super();

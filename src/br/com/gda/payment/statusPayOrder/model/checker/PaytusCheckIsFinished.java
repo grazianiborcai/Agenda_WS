@@ -6,10 +6,10 @@ import br.com.gda.business.masterData.info.common.OrderStatusMoip;
 import br.com.gda.business.masterData.info.common.PaymentStatusMoip;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.statusPayOrder.info.PaytusInfo;
 
-public final class PaytusCheckIsFinished extends ModelCheckerTemplateSimple<PaytusInfo> {
+public final class PaytusCheckIsFinished extends ModelCheckerTemplateSimple_<PaytusInfo> {
 
 	public PaytusCheckIsFinished() {
 		super();

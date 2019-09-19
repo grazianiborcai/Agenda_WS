@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.message.emailBody.info.EmabodyInfo;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class EmabodyCheckRead extends ModelCheckerTemplateSimple<EmabodyInfo> {
+public final class EmabodyCheckRead extends ModelCheckerTemplateSimple_<EmabodyInfo> {
 
 	public EmabodyCheckRead() {
 		super();

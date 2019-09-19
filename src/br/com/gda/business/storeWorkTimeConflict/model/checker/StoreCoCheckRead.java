@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class StoreCoCheckRead extends ModelCheckerTemplateSimple<StoreCoInfo> {
+public final class StoreCoCheckRead extends ModelCheckerTemplateSimple_<StoreCoInfo> {
 
 	public StoreCoCheckRead() {
 		super();

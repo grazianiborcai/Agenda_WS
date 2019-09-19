@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class EmplevateCheckWrite extends ModelCheckerTemplateSimple<EmplevateInfo> {
+public final class EmplevateCheckWrite extends ModelCheckerTemplateSimple_<EmplevateInfo> {
 
 	public EmplevateCheckWrite() {
 		super();

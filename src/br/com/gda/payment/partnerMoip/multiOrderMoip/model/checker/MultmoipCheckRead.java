@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
-public final class MultmoipCheckRead extends ModelCheckerTemplateSimple<MultmoipInfo> {
+public final class MultmoipCheckRead extends ModelCheckerTemplateSimple_<MultmoipInfo> {
 
 	public MultmoipCheckRead() {
 		super();

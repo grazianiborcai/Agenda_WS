@@ -6,9 +6,9 @@ import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CusCheckWritePhone extends ModelCheckerTemplateSimple<CusInfo> {
+public final class CusCheckWritePhone extends ModelCheckerTemplateSimple_<CusInfo> {
 
 	public CusCheckWritePhone() {
 		super();

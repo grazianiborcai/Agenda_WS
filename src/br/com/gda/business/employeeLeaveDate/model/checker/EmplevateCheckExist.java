@@ -12,9 +12,9 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class EmplevateCheckExist extends ModelCheckerTemplateSimple<EmplevateInfo> {
+public final class EmplevateCheckExist extends ModelCheckerTemplateSimple_<EmplevateInfo> {
 	private final boolean RECORD_EXIST = true;
 	private final boolean NO_ENTRY_FOUND_ON_DB = false;
 	

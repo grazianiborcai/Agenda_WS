@@ -6,9 +6,9 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class AddressCheckFlagDel extends ModelCheckerTemplateSimple<AddressInfo> {
+public final class AddressCheckFlagDel extends ModelCheckerTemplateSimple_<AddressInfo> {
 
 	public AddressCheckFlagDel(ModelCheckerOption option) {
 		super(option);

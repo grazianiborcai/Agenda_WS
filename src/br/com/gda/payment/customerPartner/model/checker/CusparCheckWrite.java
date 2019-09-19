@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckWrite extends ModelCheckerTemplateSimple<CusparInfo> {
+public final class CusparCheckWrite extends ModelCheckerTemplateSimple_<CusparInfo> {
 
 	public CusparCheckWrite() {
 		super();

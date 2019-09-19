@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.timeRange.info.DateTimeRangeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class DateTimeRangeCheckRange extends ModelCheckerTemplateSimple<DateTimeRangeInfo> {
+public final class DateTimeRangeCheckRange extends ModelCheckerTemplateSimple_<DateTimeRangeInfo> {
 	private final boolean OK = true;
 	private final boolean BAD_RANGE = false;
 	

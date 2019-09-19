@@ -7,12 +7,12 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 import br.com.gda.payment.payOrder.model.decisionTree.RootPayordSelect;
 
-public final class PayordCheckExist extends ModelCheckerTemplateAction<PayordInfo> {
+public final class PayordCheckExist extends ModelCheckerTemplateAction_<PayordInfo> {
 	
 	public PayordCheckExist(ModelCheckerOption option) {
 		super(option);

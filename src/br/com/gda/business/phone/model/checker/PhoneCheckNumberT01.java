@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class PhoneCheckNumberT01 extends ModelCheckerTemplateSimple<PhoneInfo> {
+public final class PhoneCheckNumberT01 extends ModelCheckerTemplateSimple_<PhoneInfo> {
 
 	public PhoneCheckNumberT01() {
 		super();

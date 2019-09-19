@@ -9,10 +9,10 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class ScheduleStatusCheckExist extends ModelCheckerTemplateAction<ScheduleStatusInfo> {
+public final class ScheduleStatusCheckExist extends ModelCheckerTemplateAction_<ScheduleStatusInfo> {
 	
 	public ScheduleStatusCheckExist(ModelCheckerOption option) {
 		super(option);

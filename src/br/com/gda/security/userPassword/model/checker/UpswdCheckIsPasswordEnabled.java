@@ -5,10 +5,10 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.common.UserCateg;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.security.userPassword.info.UpswdInfo;
 
-public final class UpswdCheckIsPasswordEnabled extends ModelCheckerTemplateSimple<UpswdInfo> {
+public final class UpswdCheckIsPasswordEnabled extends ModelCheckerTemplateSimple_<UpswdInfo> {
 
 	public UpswdCheckIsPasswordEnabled() {
 		super();

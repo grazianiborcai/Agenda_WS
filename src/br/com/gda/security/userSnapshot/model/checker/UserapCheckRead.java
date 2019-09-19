@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.security.userSnapshot.info.UserapInfo;
 
-public final class UserapCheckRead extends ModelCheckerTemplateSimple<UserapInfo> {
+public final class UserapCheckRead extends ModelCheckerTemplateSimple_<UserapInfo> {
 
 	public UserapCheckRead() {
 		super();

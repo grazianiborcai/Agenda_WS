@@ -7,12 +7,12 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.payment.ownerPartner.info.OwnparInfo;
 import br.com.gda.payment.ownerPartner.model.action.StdOwnparSelect;
 
-public final class OwnparCheckExist extends ModelCheckerTemplateAction<OwnparInfo> {
+public final class OwnparCheckExist extends ModelCheckerTemplateAction_<OwnparInfo> {
 	
 	public OwnparCheckExist(ModelCheckerOption option) {
 		super(option);

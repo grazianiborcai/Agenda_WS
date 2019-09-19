@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CompCheckWrite extends ModelCheckerTemplateSimple<CompInfo> {
+public final class CompCheckWrite extends ModelCheckerTemplateSimple_<CompInfo> {
 
 	public CompCheckWrite() {
 		super();

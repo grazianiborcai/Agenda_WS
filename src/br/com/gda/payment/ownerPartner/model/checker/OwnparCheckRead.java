@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.ownerPartner.info.OwnparInfo;
 
-public final class OwnparCheckRead extends ModelCheckerTemplateSimple<OwnparInfo> {
+public final class OwnparCheckRead extends ModelCheckerTemplateSimple_<OwnparInfo> {
 
 	public OwnparCheckRead() {
 		super();

@@ -12,10 +12,10 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class PersonCheckCpfErasure extends ModelCheckerTemplateAction<PersonInfo> {
+public final class PersonCheckCpfErasure extends ModelCheckerTemplateAction_<PersonInfo> {
 	
 	public PersonCheckCpfErasure(ModelCheckerOption option) {
 		super(option);

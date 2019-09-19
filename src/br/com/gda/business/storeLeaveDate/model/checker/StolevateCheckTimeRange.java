@@ -6,9 +6,9 @@ import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.business.timeRange.info.DateTimeRangeInfo;
 import br.com.gda.business.timeRange.model.checker.DateTimeRangeCheckRange;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class StolevateCheckTimeRange extends ModelCheckerTemplateSimple<StolevateInfo> {
+public final class StolevateCheckTimeRange extends ModelCheckerTemplateSimple_<StolevateInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	

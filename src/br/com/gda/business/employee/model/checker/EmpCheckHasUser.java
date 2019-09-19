@@ -6,9 +6,9 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class EmpCheckHasUser extends ModelCheckerTemplateSimple<EmpInfo> {
+public final class EmpCheckHasUser extends ModelCheckerTemplateSimple_<EmpInfo> {
 	
 	public EmpCheckHasUser(ModelCheckerOption option) {
 		super(option);

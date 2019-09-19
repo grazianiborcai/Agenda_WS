@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.file.filePath.info.FathInfo;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class FathCheckRead extends ModelCheckerTemplateSimple<FathInfo> {
+public final class FathCheckRead extends ModelCheckerTemplateSimple_<FathInfo> {
 
 	public FathCheckRead() {
 		super();

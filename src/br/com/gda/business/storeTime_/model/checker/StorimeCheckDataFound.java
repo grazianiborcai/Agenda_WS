@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.storeTime_.info.StorimeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class StorimeCheckDataFound extends ModelCheckerTemplateSimple<StorimeInfo> {
+public final class StorimeCheckDataFound extends ModelCheckerTemplateSimple_<StorimeInfo> {
 
 	public StorimeCheckDataFound() {
 		super();

@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.common.MatCateg;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class SchedineCheckIsService extends ModelCheckerTemplateSimple<SchedineInfo> {
+public final class SchedineCheckIsService extends ModelCheckerTemplateSimple_<SchedineInfo> {
 
 	public SchedineCheckIsService() {
 		super();

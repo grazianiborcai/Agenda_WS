@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
 
-public abstract class ModelCheckerTemplateSimple<T> implements ModelChecker<T> {
+public abstract class ModelCheckerTemplateSimple_<T> implements ModelChecker<T> {
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;
 	protected final String NO_FAIL_MSG = null;
@@ -23,13 +23,13 @@ public abstract class ModelCheckerTemplateSimple<T> implements ModelChecker<T> {
 	
 	
 	
-	protected ModelCheckerTemplateSimple() {
+	protected ModelCheckerTemplateSimple_() {
 		this(new ModelCheckerOption());
 	}
 	
 	
 	
-	protected ModelCheckerTemplateSimple(ModelCheckerOption option) {
+	protected ModelCheckerTemplateSimple_(ModelCheckerOption option) {
 		this.failMsg = NO_FAIL_MSG;
 		this.failCode = NO_FAIL_CODE;
 		this.expectedResult = option.expectedResult;

@@ -6,9 +6,9 @@ import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class StoreCheckWritePhone extends ModelCheckerTemplateSimple<StoreInfo> {
+public final class StoreCheckWritePhone extends ModelCheckerTemplateSimple_<StoreInfo> {
 
 	public StoreCheckWritePhone() {
 		super();

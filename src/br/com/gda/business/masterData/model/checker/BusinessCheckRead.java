@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.BusinessInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class BusinessCheckRead extends ModelCheckerTemplateSimple<BusinessInfo> {
+public final class BusinessCheckRead extends ModelCheckerTemplateSimple_<BusinessInfo> {
 	
 	public BusinessCheckRead() {
 		super();

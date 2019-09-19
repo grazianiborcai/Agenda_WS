@@ -8,10 +8,10 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class MatoreCheckExist extends ModelCheckerTemplateAction<MatoreInfo> {
+public final class MatoreCheckExist extends ModelCheckerTemplateAction_<MatoreInfo> {
 	
 	public MatoreCheckExist(ModelCheckerOption option) {
 		super(option);

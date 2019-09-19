@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.customerSnapshot.info.CusnapInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CusnapCheckRead extends ModelCheckerTemplateSimple<CusnapInfo> {
+public final class CusnapCheckRead extends ModelCheckerTemplateSimple_<CusnapInfo> {
 
 	public CusnapCheckRead() {
 		super();

@@ -9,10 +9,10 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class EmpwotmCheckEWT extends ModelCheckerTemplateAction<EmpwotmInfo> {
+public final class EmpwotmCheckEWT extends ModelCheckerTemplateAction_<EmpwotmInfo> {
 	
 	public EmpwotmCheckEWT(ModelCheckerOption option) {
 		super(option);

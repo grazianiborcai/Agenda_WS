@@ -88,7 +88,11 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 		ActionStd<T> action = buildActionHook(option);
 		
 		DeciResult<T> actionResult = execute(action);			
-		return evaluateResult(actionResult);
+		
+		if (evaluateResult(actionResult) == FAILED)
+			return FAILED;
+		
+		return checkRecorCount(actionResult);
 	}
 	
 	
@@ -136,6 +140,17 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 		
 		
 		return result.isSuccess();			
+	}
+	
+	
+	
+	private boolean checkRecorCount(DeciResult<T> result) {
+		int count = 0;
+		
+		if (result.hasResultset())
+			count = result.getResultset().size();
+		
+		return checkRecorCountHook(count);
 	}
 	
 	
@@ -220,6 +235,13 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	}
+	
+	
+	
+	protected boolean checkRecorCountHook(int count) {
+		//Template method: default behavior
+		return SUCCESS;
 	}
 	
 	

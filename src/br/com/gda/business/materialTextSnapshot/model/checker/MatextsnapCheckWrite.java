@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatextsnapCheckWrite extends ModelCheckerTemplateSimple<MatextsnapInfo> {
+public final class MatextsnapCheckWrite extends ModelCheckerTemplateSimple_<MatextsnapInfo> {
 
 	public MatextsnapCheckWrite() {
 		super();

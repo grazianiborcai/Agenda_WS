@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class EmplisCheckRead extends ModelCheckerTemplateSimple<EmplisInfo> {
+public final class EmplisCheckRead extends ModelCheckerTemplateSimple_<EmplisInfo> {
 
 	public EmplisCheckRead() {
 		super();

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.materialStock.info.MatockInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatockCheckBalance extends ModelCheckerTemplateSimple<MatockInfo> {
+public final class MatockCheckBalance extends ModelCheckerTemplateSimple_<MatockInfo> {
 
 	public MatockCheckBalance() {
 		super();

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.message.sysMessage.info.SymsgInfo;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class SymsgCheckRead extends ModelCheckerTemplateSimple<SymsgInfo> {
+public final class SymsgCheckRead extends ModelCheckerTemplateSimple_<SymsgInfo> {
 
 	public SymsgCheckRead() {
 		super();

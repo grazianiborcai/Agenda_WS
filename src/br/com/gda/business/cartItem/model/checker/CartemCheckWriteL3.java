@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CartemCheckWriteL3 extends ModelCheckerTemplateSimple<CartemInfo> {
+public final class CartemCheckWriteL3 extends ModelCheckerTemplateSimple_<CartemInfo> {
 
 	public CartemCheckWriteL3() {
 		super();

@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.common.MatCateg;
 import br.com.gda.business.materialStore.info.MatoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatoreCheckPriceService extends ModelCheckerTemplateSimple<MatoreInfo> {
+public final class MatoreCheckPriceService extends ModelCheckerTemplateSimple_<MatoreInfo> {
 
 	public MatoreCheckPriceService() {
 		super();

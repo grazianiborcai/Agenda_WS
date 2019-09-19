@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.common.ScheduleStatus;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class SchedineCheckIsCancelled extends ModelCheckerTemplateSimple<SchedineInfo> {
+public final class SchedineCheckIsCancelled extends ModelCheckerTemplateSimple_<SchedineInfo> {
 
 	public SchedineCheckIsCancelled() {
 		super();

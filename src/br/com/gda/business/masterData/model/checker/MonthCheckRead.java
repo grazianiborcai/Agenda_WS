@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.MonthInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MonthCheckRead extends ModelCheckerTemplateSimple<MonthInfo> {
+public final class MonthCheckRead extends ModelCheckerTemplateSimple_<MonthInfo> {
 
 	public MonthCheckRead() {
 		super();

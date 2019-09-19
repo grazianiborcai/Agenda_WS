@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.customerSearch.info.CusarchInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CusarchCheckRead extends ModelCheckerTemplateSimple<CusarchInfo> {
+public final class CusarchCheckRead extends ModelCheckerTemplateSimple_<CusarchInfo> {
 
 	public CusarchCheckRead() {
 		super();

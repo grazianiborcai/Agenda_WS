@@ -6,9 +6,9 @@ import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class SchedineCheckHasDuple extends ModelCheckerTemplateSimple<SchedineInfo> {
+public final class SchedineCheckHasDuple extends ModelCheckerTemplateSimple_<SchedineInfo> {
 
 	public SchedineCheckHasDuple(ModelCheckerOption option) {
 		super(option);

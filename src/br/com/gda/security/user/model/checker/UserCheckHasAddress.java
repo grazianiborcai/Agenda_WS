@@ -5,10 +5,10 @@ import java.sql.Connection;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.security.user.info.UserInfo;
 
-public final class UserCheckHasAddress extends ModelCheckerTemplateSimple<UserInfo> {
+public final class UserCheckHasAddress extends ModelCheckerTemplateSimple_<UserInfo> {
 	
 	public UserCheckHasAddress(ModelCheckerOption option) {
 		super(option);

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.GenderInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class GenderCheckRead extends ModelCheckerTemplateSimple<GenderInfo> {
+public final class GenderCheckRead extends ModelCheckerTemplateSimple_<GenderInfo> {
 
 	public GenderCheckRead() {
 		super();

@@ -6,9 +6,9 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class StoreCheckHasAddress extends ModelCheckerTemplateSimple<StoreInfo> {
+public final class StoreCheckHasAddress extends ModelCheckerTemplateSimple_<StoreInfo> {
 	
 	public StoreCheckHasAddress(ModelCheckerOption option) {
 		super(option);

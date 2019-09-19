@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.personList.info.PersolisInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class PersolisCheckRead extends ModelCheckerTemplateSimple<PersolisInfo> {
+public final class PersolisCheckRead extends ModelCheckerTemplateSimple_<PersolisInfo> {
 
 	public PersolisCheckRead() {
 		super();

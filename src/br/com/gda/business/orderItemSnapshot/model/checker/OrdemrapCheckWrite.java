@@ -4,9 +4,9 @@ import java.sql.Connection;
 import br.com.gda.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class OrdemrapCheckWrite extends ModelCheckerTemplateSimple<OrdemrapInfo> {
+public final class OrdemrapCheckWrite extends ModelCheckerTemplateSimple_<OrdemrapInfo> {
 
 	public OrdemrapCheckWrite() {
 		super();

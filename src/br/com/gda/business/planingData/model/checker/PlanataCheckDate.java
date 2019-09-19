@@ -7,9 +7,9 @@ import br.com.gda.business.planingData.info.PlanataInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class PlanataCheckDate extends ModelCheckerTemplateSimple<PlanataInfo> {
+public final class PlanataCheckDate extends ModelCheckerTemplateSimple_<PlanataInfo> {
 
 	public PlanataCheckDate() {
 		super();

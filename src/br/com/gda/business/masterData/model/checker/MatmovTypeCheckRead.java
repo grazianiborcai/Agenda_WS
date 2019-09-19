@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.MatmovTypeInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatmovTypeCheckRead extends ModelCheckerTemplateSimple<MatmovTypeInfo> {
+public final class MatmovTypeCheckRead extends ModelCheckerTemplateSimple_<MatmovTypeInfo> {
 	
 	public MatmovTypeCheckRead() {
 		super();

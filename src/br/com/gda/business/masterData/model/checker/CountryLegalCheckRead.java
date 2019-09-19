@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.CountryLegalInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CountryLegalCheckRead extends ModelCheckerTemplateSimple<CountryLegalInfo> {
+public final class CountryLegalCheckRead extends ModelCheckerTemplateSimple_<CountryLegalInfo> {
 
 	public CountryLegalCheckRead() {
 		super();

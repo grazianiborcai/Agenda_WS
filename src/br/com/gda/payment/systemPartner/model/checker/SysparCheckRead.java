@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.systemPartner.info.SysparInfo;
 
-public final class SysparCheckRead extends ModelCheckerTemplateSimple<SysparInfo> {
+public final class SysparCheckRead extends ModelCheckerTemplateSimple_<SysparInfo> {
 
 	public SysparCheckRead() {
 		super();

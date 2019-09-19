@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class EmpwocoCheckRead extends ModelCheckerTemplateSimple<EmpwocoInfo> {
+public final class EmpwocoCheckRead extends ModelCheckerTemplateSimple_<EmpwocoInfo> {
 
 	public EmpwocoCheckRead() {
 		super();

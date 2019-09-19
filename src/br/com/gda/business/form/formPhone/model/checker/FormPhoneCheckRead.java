@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.form.formPhone.info.FormPhoneInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class FormPhoneCheckRead extends ModelCheckerTemplateSimple<FormPhoneInfo> {
+public final class FormPhoneCheckRead extends ModelCheckerTemplateSimple_<FormPhoneInfo> {
 
 	public FormPhoneCheckRead() {
 		super();

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.materialText.info.MatextInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatextCheckWrite extends ModelCheckerTemplateSimple<MatextInfo> {
+public final class MatextCheckWrite extends ModelCheckerTemplateSimple_<MatextInfo> {
 
 	public MatextCheckWrite() {
 		super();

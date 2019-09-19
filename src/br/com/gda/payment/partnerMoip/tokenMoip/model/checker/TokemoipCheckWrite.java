@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.partnerMoip.tokenMoip.info.TokemoipInfo;
 
-public final class TokemoipCheckWrite extends ModelCheckerTemplateSimple<TokemoipInfo> {
+public final class TokemoipCheckWrite extends ModelCheckerTemplateSimple_<TokemoipInfo> {
 
 	public TokemoipCheckWrite() {
 		super();

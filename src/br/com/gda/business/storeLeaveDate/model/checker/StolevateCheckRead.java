@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class StolevateCheckRead extends ModelCheckerTemplateSimple<StolevateInfo> {
+public final class StolevateCheckRead extends ModelCheckerTemplateSimple_<StolevateInfo> {
 
 	public StolevateCheckRead() {
 		super();

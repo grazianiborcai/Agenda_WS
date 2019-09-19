@@ -6,9 +6,9 @@ import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class EmpCheckWritePhone extends ModelCheckerTemplateSimple<EmpInfo> {
+public final class EmpCheckWritePhone extends ModelCheckerTemplateSimple_<EmpInfo> {
 
 	public EmpCheckWritePhone() {
 		super();

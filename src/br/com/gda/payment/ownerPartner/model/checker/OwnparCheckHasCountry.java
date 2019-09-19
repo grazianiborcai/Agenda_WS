@@ -5,10 +5,10 @@ import java.sql.Connection;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.ownerPartner.info.OwnparInfo;
 
-public final class OwnparCheckHasCountry extends ModelCheckerTemplateSimple<OwnparInfo> {
+public final class OwnparCheckHasCountry extends ModelCheckerTemplateSimple_<OwnparInfo> {
 	
 	public OwnparCheckHasCountry(ModelCheckerOption option) {
 		super(option);

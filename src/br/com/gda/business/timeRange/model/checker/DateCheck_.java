@@ -8,9 +8,9 @@ import java.time.ZonedDateTime;
 import br.com.gda.business.timeRange.info.DateInfo_;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class DateCheck_ extends ModelCheckerTemplateSimple<DateInfo_> {
+public final class DateCheck_ extends ModelCheckerTemplateSimple_<DateInfo_> {
 	private final boolean OK = true;
 	private final boolean BAD_DATE = false;
 	

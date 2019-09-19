@@ -6,9 +6,9 @@ import br.com.gda.business.materialStock.info.MatockInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatockCheckWrite extends ModelCheckerTemplateSimple<MatockInfo> {
+public final class MatockCheckWrite extends ModelCheckerTemplateSimple_<MatockInfo> {
 
 	public MatockCheckWrite() {
 		super();

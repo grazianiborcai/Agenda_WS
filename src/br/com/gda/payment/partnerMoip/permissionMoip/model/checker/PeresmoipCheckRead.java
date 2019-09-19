@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
-public final class PeresmoipCheckRead extends ModelCheckerTemplateSimple<PeresmoipInfo> {
+public final class PeresmoipCheckRead extends ModelCheckerTemplateSimple_<PeresmoipInfo> {
 
 	public PeresmoipCheckRead() {
 		super();

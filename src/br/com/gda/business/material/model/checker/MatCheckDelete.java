@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatCheckDelete extends ModelCheckerTemplateSimple<MatInfo> {
+public final class MatCheckDelete extends ModelCheckerTemplateSimple_<MatInfo> {
 
 	public MatCheckDelete() {
 		super();

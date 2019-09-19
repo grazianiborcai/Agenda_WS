@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 
-public final class ModelCheckerQueue<T> extends ModelCheckerTemplateSimple<T>{
+public final class ModelCheckerQueue<T> extends ModelCheckerTemplateSimple_<T>{
 	private List<ModelChecker<T>> queueChecker;
 	private ModelChecker<T> failedChecker;
 	

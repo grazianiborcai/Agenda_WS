@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.file.fileWrite.info.FriteInfo;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class FriteCheckWrite extends ModelCheckerTemplateSimple<FriteInfo> {
+public final class FriteCheckWrite extends ModelCheckerTemplateSimple_<FriteInfo> {
 
 	public FriteCheckWrite() {
 		super();

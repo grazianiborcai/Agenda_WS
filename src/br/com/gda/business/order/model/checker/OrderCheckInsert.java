@@ -4,9 +4,9 @@ import java.sql.Connection;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class OrderCheckInsert extends ModelCheckerTemplateSimple<OrderInfo> {
+public final class OrderCheckInsert extends ModelCheckerTemplateSimple_<OrderInfo> {
 
 	public OrderCheckInsert() {
 		super();

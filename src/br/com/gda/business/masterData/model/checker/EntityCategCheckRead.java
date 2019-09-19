@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.EntityCategInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class EntityCategCheckRead extends ModelCheckerTemplateSimple<EntityCategInfo> {
+public final class EntityCategCheckRead extends ModelCheckerTemplateSimple_<EntityCategInfo> {
 	
 	public EntityCategCheckRead() {
 		super();

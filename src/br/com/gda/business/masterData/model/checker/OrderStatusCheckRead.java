@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.OrderStatusInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class OrderStatusCheckRead extends ModelCheckerTemplateSimple<OrderStatusInfo> {
+public final class OrderStatusCheckRead extends ModelCheckerTemplateSimple_<OrderStatusInfo> {
 	
 	public OrderStatusCheckRead() {
 		super();

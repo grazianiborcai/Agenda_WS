@@ -6,9 +6,9 @@ import br.com.gda.business.form.common.Form;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class PhoneCheckFormT01 extends ModelCheckerTemplateSimple<PhoneInfo> {
+public final class PhoneCheckFormT01 extends ModelCheckerTemplateSimple_<PhoneInfo> {
 
 	public PhoneCheckFormT01() {
 		super();

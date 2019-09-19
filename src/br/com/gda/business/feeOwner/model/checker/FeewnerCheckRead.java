@@ -6,9 +6,9 @@ import br.com.gda.business.feeOwner.info.FeewnerInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class FeewnerCheckRead extends ModelCheckerTemplateSimple<FeewnerInfo> {
+public final class FeewnerCheckRead extends ModelCheckerTemplateSimple_<FeewnerInfo> {
 
 	public FeewnerCheckRead() {
 		super();

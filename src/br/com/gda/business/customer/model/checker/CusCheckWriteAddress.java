@@ -6,9 +6,9 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CusCheckWriteAddress extends ModelCheckerTemplateSimple<CusInfo> {
+public final class CusCheckWriteAddress extends ModelCheckerTemplateSimple_<CusInfo> {
 
 	public CusCheckWriteAddress() {
 		super();

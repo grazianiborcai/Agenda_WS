@@ -6,9 +6,9 @@ import br.com.gda.business.masterData.info.common.OrderStatus;
 import br.com.gda.business.order.info.OrderInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class OrderCheckPayStatus extends ModelCheckerTemplateSimple<OrderInfo> {
+public final class OrderCheckPayStatus extends ModelCheckerTemplateSimple_<OrderInfo> {
 
 	public OrderCheckPayStatus() {
 		super();

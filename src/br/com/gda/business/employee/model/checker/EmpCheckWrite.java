@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.employee.info.EmpInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class EmpCheckWrite extends ModelCheckerTemplateSimple<EmpInfo> {
+public final class EmpCheckWrite extends ModelCheckerTemplateSimple_<EmpInfo> {
 
 	public EmpCheckWrite() {
 		super();

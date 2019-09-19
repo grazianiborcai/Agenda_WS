@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class PhonapCheckWrite extends ModelCheckerTemplateSimple<PhonapInfo> {
+public final class PhonapCheckWrite extends ModelCheckerTemplateSimple_<PhonapInfo> {
 
 	public PhonapCheckWrite() {
 		super();

@@ -6,9 +6,9 @@ import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.business.timeRange.info.TimeRangeInfo;
 import br.com.gda.business.timeRange.model.checker.TimeRangeCheckRange;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class StowotmCheckRange extends ModelCheckerTemplateSimple<StowotmInfo> {
+public final class StowotmCheckRange extends ModelCheckerTemplateSimple_<StowotmInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	

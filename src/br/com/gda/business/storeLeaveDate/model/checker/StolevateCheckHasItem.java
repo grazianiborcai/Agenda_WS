@@ -11,10 +11,10 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StolevateCheckHasItem extends ModelCheckerTemplateAction<StolevateInfo> {
+public final class StolevateCheckHasItem extends ModelCheckerTemplateAction_<StolevateInfo> {
 	
 	public StolevateCheckHasItem(ModelCheckerOption option) {
 		super(option);

@@ -6,9 +6,9 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CompCheckKey extends ModelCheckerTemplateSimple<CompInfo> {
+public final class CompCheckKey extends ModelCheckerTemplateSimple_<CompInfo> {
 	private final boolean KEY_NOT_NULL = true;
 	private final boolean EMPTY_KEY = false;
 	

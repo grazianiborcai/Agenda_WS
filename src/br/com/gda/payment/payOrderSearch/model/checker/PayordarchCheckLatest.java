@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.payOrderSearch.info.PayordarchInfo;
 
-public final class PayordarchCheckLatest extends ModelCheckerTemplateSimple<PayordarchInfo> {
+public final class PayordarchCheckLatest extends ModelCheckerTemplateSimple_<PayordarchInfo> {
 
 	public PayordarchCheckLatest() {
 		super();

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.material.info.MatInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatCheckGenField extends ModelCheckerTemplateSimple<MatInfo> {
+public final class MatCheckGenField extends ModelCheckerTemplateSimple_<MatInfo> {
 	private final boolean AUTO_GEN_FIELD_NOT_NULL = false;
 	private final boolean EMPTY_AUTO_GEN_FIELD = true;
 	

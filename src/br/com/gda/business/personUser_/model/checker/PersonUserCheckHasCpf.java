@@ -6,9 +6,9 @@ import br.com.gda.business.personUser_.info.PersonUserInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class PersonUserCheckHasCpf extends ModelCheckerTemplateSimple<PersonUserInfo> {
+public final class PersonUserCheckHasCpf extends ModelCheckerTemplateSimple_<PersonUserInfo> {
 	
 	public PersonUserCheckHasCpf(ModelCheckerOption option) {
 		super(option);

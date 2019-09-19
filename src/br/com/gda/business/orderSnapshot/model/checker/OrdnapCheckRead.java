@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.orderSnapshot.info.OrdnapInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class OrdnapCheckRead extends ModelCheckerTemplateSimple<OrdnapInfo> {
+public final class OrdnapCheckRead extends ModelCheckerTemplateSimple_<OrdnapInfo> {
 
 	public OrdnapCheckRead() {
 		super();

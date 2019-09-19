@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.feeDefault.info.FeedefInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class FeedefCheckReadService extends ModelCheckerTemplateSimple<FeedefInfo> {
+public final class FeedefCheckReadService extends ModelCheckerTemplateSimple_<FeedefInfo> {
 
 	public FeedefCheckReadService() {
 		super();

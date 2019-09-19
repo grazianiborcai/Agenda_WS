@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.scheduleList.info.SchedistInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class SchedistCheckRead extends ModelCheckerTemplateSimple<SchedistInfo> {
+public final class SchedistCheckRead extends ModelCheckerTemplateSimple_<SchedistInfo> {
 
 	public SchedistCheckRead() {
 		super();

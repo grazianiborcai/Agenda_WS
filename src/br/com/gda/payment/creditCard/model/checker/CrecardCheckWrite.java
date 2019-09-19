@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CrecardCheckWrite extends ModelCheckerTemplateSimple<CrecardInfo> {
+public final class CrecardCheckWrite extends ModelCheckerTemplateSimple_<CrecardInfo> {
 
 	public CrecardCheckWrite() {
 		super();

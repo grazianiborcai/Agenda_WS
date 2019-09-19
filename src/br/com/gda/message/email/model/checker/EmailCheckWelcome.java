@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.message.email.info.EmailInfo;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class EmailCheckWelcome extends ModelCheckerTemplateSimple<EmailInfo> {
+public final class EmailCheckWelcome extends ModelCheckerTemplateSimple_<EmailInfo> {
 
 	public EmailCheckWelcome() {
 		super();

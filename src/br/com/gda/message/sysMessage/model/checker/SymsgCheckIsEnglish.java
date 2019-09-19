@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.message.sysMessage.info.SymsgInfo;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class SymsgCheckIsEnglish extends ModelCheckerTemplateSimple<SymsgInfo> {
+public final class SymsgCheckIsEnglish extends ModelCheckerTemplateSimple_<SymsgInfo> {
 
 	public SymsgCheckIsEnglish(ModelCheckerOption option) {
 		super(option);

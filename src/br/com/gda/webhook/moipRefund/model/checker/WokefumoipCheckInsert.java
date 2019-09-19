@@ -3,10 +3,10 @@ package br.com.gda.webhook.moipRefund.model.checker;
 import java.sql.Connection;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.webhook.moipRefund.info.WokefumoipInfo;
 
-public final class WokefumoipCheckInsert extends ModelCheckerTemplateSimple<WokefumoipInfo> {
+public final class WokefumoipCheckInsert extends ModelCheckerTemplateSimple_<WokefumoipInfo> {
 
 	public WokefumoipCheckInsert() {
 		super();

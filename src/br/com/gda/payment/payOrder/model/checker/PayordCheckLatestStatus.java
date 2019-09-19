@@ -5,10 +5,10 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.common.OrderStatusMoip;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckLatestStatus extends ModelCheckerTemplateSimple<PayordInfo> {
+public final class PayordCheckLatestStatus extends ModelCheckerTemplateSimple_<PayordInfo> {
 
 	public PayordCheckLatestStatus() {
 		super();

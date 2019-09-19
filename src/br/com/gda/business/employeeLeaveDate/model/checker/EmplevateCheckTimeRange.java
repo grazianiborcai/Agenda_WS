@@ -6,9 +6,9 @@ import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.gda.business.timeRange.info.DateTimeRangeInfo;
 import br.com.gda.business.timeRange.model.checker.DateTimeRangeCheckRange;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class EmplevateCheckTimeRange extends ModelCheckerTemplateSimple<EmplevateInfo> {
+public final class EmplevateCheckTimeRange extends ModelCheckerTemplateSimple_<EmplevateInfo> {
 	private ModelChecker<DateTimeRangeInfo> checker;
 	
 	

@@ -5,9 +5,9 @@ import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.business.masterData.info.common.MatCateg;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CartemCheckIsService extends ModelCheckerTemplateSimple<CartemInfo> {
+public final class CartemCheckIsService extends ModelCheckerTemplateSimple_<CartemInfo> {
 
 	public CartemCheckIsService() {
 		super();

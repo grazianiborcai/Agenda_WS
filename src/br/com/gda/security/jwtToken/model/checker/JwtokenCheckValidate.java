@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.security.jwtToken.info.JwtokenInfo;
 
-public final class JwtokenCheckValidate extends ModelCheckerTemplateSimple<JwtokenInfo> {
+public final class JwtokenCheckValidate extends ModelCheckerTemplateSimple_<JwtokenInfo> {
 
 	public JwtokenCheckValidate() {
 		super();

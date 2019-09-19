@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.storeSnapshot.info.StorapInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class StorapCheckHasComp extends ModelCheckerTemplateSimple<StorapInfo> {
+public final class StorapCheckHasComp extends ModelCheckerTemplateSimple_<StorapInfo> {
 
 	public StorapCheckHasComp() {
 		super();

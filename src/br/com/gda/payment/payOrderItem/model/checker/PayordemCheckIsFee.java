@@ -6,10 +6,10 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.payOrderItem.info.PayordemInfo;
 
-public final class PayordemCheckIsFee extends ModelCheckerTemplateSimple<PayordemInfo> {
+public final class PayordemCheckIsFee extends ModelCheckerTemplateSimple_<PayordemInfo> {
 
 	public PayordemCheckIsFee(ModelCheckerOption option) {
 		super(option);

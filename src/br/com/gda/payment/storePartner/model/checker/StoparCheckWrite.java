@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.storePartner.info.StoparInfo;
 
-public final class StoparCheckWrite extends ModelCheckerTemplateSimple<StoparInfo> {
+public final class StoparCheckWrite extends ModelCheckerTemplateSimple_<StoparInfo> {
 
 	public StoparCheckWrite() {
 		super();

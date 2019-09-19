@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.customer.info.CusInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CusCheckNodeInsert extends ModelCheckerTemplateSimple<CusInfo> {
+public final class CusCheckNodeInsert extends ModelCheckerTemplateSimple_<CusInfo> {
 
 	public CusCheckNodeInsert() {
 		super();

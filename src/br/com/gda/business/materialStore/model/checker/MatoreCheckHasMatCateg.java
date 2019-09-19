@@ -4,9 +4,9 @@ import java.sql.Connection;
 import br.com.gda.business.materialStore.info.MatoreInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatoreCheckHasMatCateg extends ModelCheckerTemplateSimple<MatoreInfo> {
+public final class MatoreCheckHasMatCateg extends ModelCheckerTemplateSimple_<MatoreInfo> {
 
 	public MatoreCheckHasMatCateg() {
 		super();

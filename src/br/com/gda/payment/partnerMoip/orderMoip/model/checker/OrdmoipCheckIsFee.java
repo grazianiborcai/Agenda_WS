@@ -6,10 +6,10 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class OrdmoipCheckIsFee extends ModelCheckerTemplateSimple<OrdmoipInfo> {
+public final class OrdmoipCheckIsFee extends ModelCheckerTemplateSimple_<OrdmoipInfo> {
 
 	public OrdmoipCheckIsFee(ModelCheckerOption option) {
 		super(option);

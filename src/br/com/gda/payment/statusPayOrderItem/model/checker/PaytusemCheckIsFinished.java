@@ -6,10 +6,10 @@ import br.com.gda.business.masterData.info.common.OrderStatusMoip;
 import br.com.gda.business.masterData.info.common.PaymentStatusMoip;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.statusPayOrderItem.info.PaytusemInfo;
 
-public final class PaytusemCheckIsFinished extends ModelCheckerTemplateSimple<PaytusemInfo> {
+public final class PaytusemCheckIsFinished extends ModelCheckerTemplateSimple_<PaytusemInfo> {
 
 	public PaytusemCheckIsFinished() {
 		super();

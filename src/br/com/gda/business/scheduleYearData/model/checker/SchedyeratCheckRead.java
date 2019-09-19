@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class SchedyeratCheckRead extends ModelCheckerTemplateSimple<SchedyeratInfo> {
+public final class SchedyeratCheckRead extends ModelCheckerTemplateSimple_<SchedyeratInfo> {
 
 	public SchedyeratCheckRead() {
 		super();

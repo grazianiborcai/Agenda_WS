@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.countryPartner.info.CounparInfo;
 
-public final class CounparCheckRead extends ModelCheckerTemplateSimple<CounparInfo> {
+public final class CounparCheckRead extends ModelCheckerTemplateSimple_<CounparInfo> {
 
 	public CounparCheckRead() {
 		super();

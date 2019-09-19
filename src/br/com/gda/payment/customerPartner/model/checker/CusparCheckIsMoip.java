@@ -5,10 +5,10 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.common.Paypar;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckIsMoip extends ModelCheckerTemplateSimple<CusparInfo> {
+public final class CusparCheckIsMoip extends ModelCheckerTemplateSimple_<CusparInfo> {
 
 	public CusparCheckIsMoip() {
 		super();

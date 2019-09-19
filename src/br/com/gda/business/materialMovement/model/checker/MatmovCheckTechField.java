@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.materialMovement.info.MatmovInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatmovCheckTechField extends ModelCheckerTemplateSimple<MatmovInfo> {
+public final class MatmovCheckTechField extends ModelCheckerTemplateSimple_<MatmovInfo> {
 	
 	public MatmovCheckTechField() {
 		super();

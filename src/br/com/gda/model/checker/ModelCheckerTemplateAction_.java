@@ -12,7 +12,7 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.decisionTree.DeciResult;
 
-public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
+public abstract class ModelCheckerTemplateAction_<T> implements ModelChecker<T> {
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;
 	protected final boolean ALREADY_EXIST = true;
@@ -31,13 +31,13 @@ public abstract class ModelCheckerTemplateAction<T> implements ModelChecker<T> {
 	
 	
 	
-	protected ModelCheckerTemplateAction() {
+	protected ModelCheckerTemplateAction_() {
 		this(new ModelCheckerOption());
 	}
 	
 	
 	
-	protected ModelCheckerTemplateAction(ModelCheckerOption option) {
+	protected ModelCheckerTemplateAction_(ModelCheckerOption option) {
 		checkArgument(option);
 		init(option);
 	}

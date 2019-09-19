@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.employeePosition.info.EmposInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class EmposCheckWrite extends ModelCheckerTemplateSimple<EmposInfo> {
+public final class EmposCheckWrite extends ModelCheckerTemplateSimple_<EmposInfo> {
 
 	public EmposCheckWrite() {
 		super();

@@ -5,10 +5,10 @@ import java.sql.Connection;
 import br.com.gda.business.masterData.info.common.CountryPhone;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
 
-public final class CremoipCheckPhoneBR extends ModelCheckerTemplateSimple<CremoipInfo> {
+public final class CremoipCheckPhoneBR extends ModelCheckerTemplateSimple_<CremoipInfo> {
 
 	public CremoipCheckPhoneBR() {
 		super();

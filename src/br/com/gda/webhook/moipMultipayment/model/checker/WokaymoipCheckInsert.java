@@ -3,10 +3,10 @@ package br.com.gda.webhook.moipMultipayment.model.checker;
 import java.sql.Connection;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 import br.com.gda.webhook.moipMultipayment.info.WokaymoipInfo;
 
-public final class WokaymoipCheckInsert extends ModelCheckerTemplateSimple<WokaymoipInfo> {
+public final class WokaymoipCheckInsert extends ModelCheckerTemplateSimple_<WokaymoipInfo> {
 
 	public WokaymoipCheckInsert() {
 		super();

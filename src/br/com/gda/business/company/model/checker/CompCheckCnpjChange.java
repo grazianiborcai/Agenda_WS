@@ -10,10 +10,10 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class CompCheckCnpjChange extends ModelCheckerTemplateAction<CompInfo> {
+public final class CompCheckCnpjChange extends ModelCheckerTemplateAction_<CompInfo> {
 	
 	public CompCheckCnpjChange(ModelCheckerOption option) {
 		super(option);

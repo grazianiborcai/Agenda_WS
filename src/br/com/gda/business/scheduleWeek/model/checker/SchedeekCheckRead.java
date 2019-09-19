@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.gda.business.scheduleWeek.info.SchedeekInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple;
+import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class SchedeekCheckRead extends ModelCheckerTemplateSimple<SchedeekInfo> {
+public final class SchedeekCheckRead extends ModelCheckerTemplateSimple_<SchedeekInfo> {
 
 	public SchedeekCheckRead() {
 		super();

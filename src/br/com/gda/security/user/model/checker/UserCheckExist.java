@@ -7,13 +7,13 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.user.info.UserInfo;
 import br.com.gda.security.user.model.action.LazyUserSelect;
 import br.com.gda.security.user.model.action.StdUserEnforceKey;
 
-public final class UserCheckExist extends ModelCheckerTemplateAction<UserInfo> {
+public final class UserCheckExist extends ModelCheckerTemplateAction_<UserInfo> {
 	
 	public UserCheckExist(ModelCheckerOption option) {
 		super(option);

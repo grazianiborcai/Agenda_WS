@@ -7,13 +7,13 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction;
+import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.userSnapshot.info.UserapInfo;
 import br.com.gda.security.userSnapshot.model.action.LazyUserapSelect;
 import br.com.gda.security.userSnapshot.model.action.StdUserapEnforceKey;
 
-public final class UserapCheckExist extends ModelCheckerTemplateAction<UserapInfo> {
+public final class UserapCheckExist extends ModelCheckerTemplateAction_<UserapInfo> {
 	
 	public UserapCheckExist(ModelCheckerOption option) {
 		super(option);
