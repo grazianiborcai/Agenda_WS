@@ -8,10 +8,10 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateActionV2;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LanguCheckExist extends ModelCheckerTemplateActionV2<LanguInfo> {
+public final class LanguCheckExist extends ModelCheckerTemplateActionV2<LanguInfo, LanguInfo> {
 		
 	public LanguCheckExist(ModelCheckerOption option) {
-		super(option);
+		super(option, LanguInfo.class);
 	}
 	
 	

@@ -10,10 +10,10 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateActionV2;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class OwnerCheckExist extends ModelCheckerTemplateActionV2<OwnerInfo> {
+public final class OwnerCheckExist extends ModelCheckerTemplateActionV2<OwnerInfo, OwnerInfo> {
 	
 	public OwnerCheckExist(ModelCheckerOption option) {
-		super(option);
+		super(option, OwnerInfo.class);
 	}
 	
 	

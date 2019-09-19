@@ -8,10 +8,10 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateActionV2;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class AddressCheckExist extends ModelCheckerTemplateActionV2<AddressInfo> {
+public final class AddressCheckExist extends ModelCheckerTemplateActionV2<AddressInfo, AddressInfo> {
 	
 	public AddressCheckExist(ModelCheckerOption option) {
-		super(option);
+		super(option, AddressInfo.class);
 	}
 	
 	

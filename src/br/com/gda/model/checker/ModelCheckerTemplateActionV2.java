@@ -1,5 +1,6 @@
 package br.com.gda.model.checker;
 
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> implements ModelChecker<T> {
+public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S extends InfoRecord> implements ModelChecker<T> {
 	private final boolean SUCCESS = ModelCheckerOption.SUCCESS;
 	private final boolean FAILED = ModelCheckerOption.FAILED;
 	private final boolean NOT_FOUND = ModelCheckerOption.FAILED;
@@ -28,21 +29,23 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 	private String schemaName;
 	private String codLanguage;
 	private SymsgInfo symsgData;	
+	private Class<S> sClazz;
 	
 	
-	protected ModelCheckerTemplateActionV2(ModelCheckerOption option) {
-		checkArgument(option);
-		init(option);
+	protected ModelCheckerTemplateActionV2(ModelCheckerOption option, Class<S> clazz) {
+		checkArgument(option, clazz);
+		init(option, clazz);
 	}
 	
 	
 	
-	private void init(ModelCheckerOption option) {
+	private void init(ModelCheckerOption option, Class<S> clazz) {
 		expectedResult = option.expectedResult;
 		conn = option.conn;
 		schemaName = option.schemaName;
 		symsgData = null;
 		codLanguage = DefaultValue.language();
+		sClazz = clazz;
 	}
 	
 	
@@ -84,10 +87,10 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 	
 	
 	private boolean executeAction(T recordInfo, Connection dbConn, String dbSchema) {
-		DeciTreeOption<T> option = buildActionOption(recordInfo, dbConn, dbSchema);
-		ActionStd<T> action = buildActionHook(option);
+		DeciTreeOption<S> option = buildActionOption(recordInfo, dbConn, dbSchema);
+		ActionStd<S> action = buildActionHook(option);
 		
-		DeciResult<T> actionResult = execute(action);			
+		DeciResult<S> actionResult = execute(action);			
 		
 		if (evaluateResult(actionResult) == FAILED)
 			return FAILED;
@@ -97,10 +100,9 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 	
 	
 	
-	private DeciTreeOption<T> buildActionOption(T recordInfo, Connection dbConn, String dbSchema) {
-		DeciTreeOption<T> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
+	private DeciTreeOption<S> buildActionOption(T recordInfo, Connection dbConn, String dbSchema) {
+		DeciTreeOption<S> option = new DeciTreeOption<>();
+		option.recordInfos = toActionClassHook(recordInfo);
 		option.conn = conn;
 		option.schemaName = schemaName;
 		
@@ -109,7 +111,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 	
 	
 	
-	protected ActionStd<T> buildActionHook(DeciTreeOption<T> option) {
+	protected ActionStd<S> buildActionHook(DeciTreeOption<S> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	
@@ -117,7 +119,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 	
 	
 	
-	private DeciResult<T> execute(ActionStd<T> action) {
+	private DeciResult<S> execute(ActionStd<S> action) {
 		 checkArgument(action);
 		 
 		 action.executeAction();
@@ -126,7 +128,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 	
 	
 	
-	private boolean evaluateResult(DeciResult<T> result) {	
+	private boolean evaluateResult(DeciResult<S> result) {	
 		if (result.isSuccess() == FAILED &&
 			result.getFailCode() == SystemCode.INTERNAL_ERROR) {
 			
@@ -144,7 +146,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 	
 	
 	
-	private boolean checkRecorCount(DeciResult<T> result) {
+	private boolean checkRecorCount(DeciResult<S> result) {
 		int count = 0;
 		
 		if (result.hasResultset())
@@ -246,6 +248,32 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 	
 	
 	
+	protected List<S> toActionClassHook(T recordInfo) {
+		//Template method - Default behavior
+		List<T> recordInfos = new ArrayList<>();
+		recordInfos.add(recordInfo);
+		
+		return toActionClass(recordInfos);	
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private List<S> toActionClass(List<T> recordInfos) {
+		try {
+			S sInstance = sClazz.getConstructor().newInstance();
+			
+			Method met = sClazz.getMethod("copyFrom", List.class);
+			return (List<S>) met.invoke(sInstance, recordInfos);
+				
+			} catch (Exception e) {
+				logException(e);
+				throw new IllegalArgumentException(e);
+			}
+	}
+	
+	
+	
 	@Override public String getFailMessage() {
 		if (symsgData == null) {
 			logException(new IllegalStateException(SystemMessage.NO_ERROR_FOUND));
@@ -268,7 +296,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 	
 	
 	
-	private void checkArgument(ModelCheckerOption option) {
+	private void checkArgument(ModelCheckerOption option, Class<S> clazz) {
 		if (option == null) {
 			logException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
@@ -285,11 +313,17 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 			logException(new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("option.schemaName" + SystemMessage.NULL_ARGUMENT);
 		}
+		
+		
+		if (clazz == null) {
+			logException(new NullPointerException("clazz" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("clazz" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	
 	
-	private void checkArgument(List<T> recordInfos) {
+	private void checkArgument(List<?> recordInfos) {
 		if (recordInfos == null) {
 			logException(new NullPointerException("recordInfos " + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfos " + SystemMessage.NULL_ARGUMENT);
@@ -313,7 +347,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord> impleme
 	
 	
 	
-	private void checkArgument(ActionStd<T> action) {
+	private void checkArgument(ActionStd<S> action) {
 		if (action == null) {
 			logException(new NullPointerException("action" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("action" + SystemMessage.NULL_ARGUMENT);
