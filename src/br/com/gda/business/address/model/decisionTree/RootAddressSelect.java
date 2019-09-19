@@ -7,8 +7,8 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.action.LazyAddressMergeCountry;
+import br.com.gda.business.address.model.action.LazyAddressMergeForm;
 import br.com.gda.business.address.model.action.LazyAddressMergeState;
-import br.com.gda.business.address.model.action.LazymapAddressMergeForm;
 import br.com.gda.business.address.model.action.StdAddressMergeToSelect;
 import br.com.gda.business.address.model.checker.AddressCheckRead;
 import br.com.gda.business.address.model.checker.AddressCheckRefRead;
@@ -16,9 +16,9 @@ import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootAddressSelect extends DeciTreeReadTemplate<AddressInfo> {
+public final class RootAddressSelect extends DeciTreeWriteTemplate<AddressInfo> {
 	
 	public RootAddressSelect(DeciTreeOption<AddressInfo> option) {
 		super(option);
@@ -50,7 +50,7 @@ public final class RootAddressSelect extends DeciTreeReadTemplate<AddressInfo> {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<AddressInfo> select = new StdAddressMergeToSelect(option);		
-		ActionLazy<AddressInfo> mergeForm = new LazymapAddressMergeForm(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> mergeForm = new LazyAddressMergeForm(option.conn, option.schemaName);
 		ActionLazy<AddressInfo> mergeCountry = new LazyAddressMergeCountry(option.conn, option.schemaName);
 		ActionLazy<AddressInfo> mergeState = new LazyAddressMergeState(option.conn, option.schemaName);
 		

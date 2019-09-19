@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazymapAddressNodeUpdate extends ActionLazyTemplate<AddressInfo, AddressInfo> {
+public final class LazyAddressMergeForm extends ActionLazyTemplate<AddressInfo, AddressInfo> {
 
-	public LazymapAddressNodeUpdate(Connection conn, String schemaName) {
+	public LazyAddressMergeForm(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazymapAddressNodeUpdate extends ActionLazyTemplate<AddressIn
 	
 	
 	@Override protected ActionStd<AddressInfo> getInstanceOfActionHook(DeciTreeOption<AddressInfo> option) {
-		return new MapAddressNodeUpdate(option);
+		return new StdAddressMergeForm(option);
 	}
 	
 	

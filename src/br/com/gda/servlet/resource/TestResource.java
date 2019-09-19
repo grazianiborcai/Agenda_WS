@@ -16,8 +16,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.address.model.AddressModelInsert_;
-import br.com.gda.business.address.model.AddressModelUpdate_;
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.addressSnapshot.model.AddresnapModelInsert_;
 import br.com.gda.business.addressSnapshot.model.AddresnapModelSelect_;
@@ -79,9 +77,6 @@ import br.com.gda.security.userPassword.model.UpswdModelDelete;
 
 @Path("/Test")
 public class TestResource {
-
-	private static final String INSERT_ADDRESS = "/insertAddress";
-	private static final String UPDATE_ADDRESS = "/updateAddress";
 	private static final String INSERT_PHONE = "/insertPhone";
 	private static final String UPDATE_PHONE = "/updatePhone";
 	private static final String SELECT_PHONE = "/selectPhone";
@@ -118,32 +113,6 @@ public class TestResource {
 	private static final String SELECT_ORDER_RESERVE = "/selectOrderReserve";
 	private static final String SELECT_STORE_SNAPSHOT = "/selectStoreSnasphot";
 	private static final String SELECT_PAYORD_SEARCH = "/selectPayordSearch";
-	
-	
-	
-	@POST
-	@Path(INSERT_ADDRESS)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertAddress(@Context HttpServletRequest request, String incomingData) {
-		
-		
-		Model model = new AddressModelInsert_(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();	
-	}
-	
-	
-	
-	@POST
-	@Path(UPDATE_ADDRESS)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateAddress(@Context HttpServletRequest request, String incomingData) {
-		
-		
-		Model model = new AddressModelUpdate_(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();	
-	}
 	
 	
 	

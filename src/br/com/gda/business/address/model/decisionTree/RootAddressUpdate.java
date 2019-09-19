@@ -5,10 +5,11 @@ import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.action.LazyAddressEnforceLChanged;
-import br.com.gda.business.address.model.action.LazymapAddressNodeUpdate;
-import br.com.gda.business.address.model.action.MapAddressMergeForm;
+import br.com.gda.business.address.model.action.LazyAddressNodeUpdate;
+import br.com.gda.business.address.model.action.StdAddressMergeForm;
 import br.com.gda.business.address.model.checker.AddressCheckCountry;
 import br.com.gda.business.address.model.checker.AddressCheckExist;
+import br.com.gda.business.address.model.checker.AddressCheckLangu;
 import br.com.gda.business.address.model.checker.AddressCheckOwner;
 import br.com.gda.business.address.model.checker.AddressCheckRefMulti;
 import br.com.gda.business.address.model.checker.AddressCheckRefWrite;
@@ -66,6 +67,13 @@ public final class RootAddressUpdate extends DeciTreeWriteTemplate<AddressInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new AddressCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new AddressCheckCountry(checkerOption);
 		queue.add(checker);
 		
@@ -84,9 +92,9 @@ public final class RootAddressUpdate extends DeciTreeWriteTemplate<AddressInfo> 
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		//TODO: Verificar se chave referencia foi alterada
-		ActionStd<AddressInfo> mergeForm = new MapAddressMergeForm(option);		
+		ActionStd<AddressInfo> mergeForm = new StdAddressMergeForm(option);		
 		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<AddressInfo> nodeUpdate = new LazymapAddressNodeUpdate(option.conn, option.schemaName);	
+		ActionLazy<AddressInfo> nodeUpdate = new LazyAddressNodeUpdate(option.conn, option.schemaName);	
 		
 		mergeForm.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(nodeUpdate);
