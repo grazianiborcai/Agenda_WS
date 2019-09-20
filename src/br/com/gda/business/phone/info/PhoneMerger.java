@@ -6,8 +6,23 @@ import br.com.gda.business.form.formPhone.info.FormPhoneInfo;
 import br.com.gda.business.masterData.info.CountryPhoneInfo;
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.info.InfoMerger;
+import br.com.gda.security.username.info.UsernameInfo;
 
 public final class PhoneMerger {
+	public static PhoneInfo mergeWithUsername(UsernameInfo sourceOne, PhoneInfo sourceTwo) {
+		InfoMerger<PhoneInfo, UsernameInfo> merger = new PhoneMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PhoneInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
+		InfoMerger<PhoneInfo, UsernameInfo> merger = new PhoneMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static PhoneInfo mergeWithCountryPhone(CountryPhoneInfo sourceOne, PhoneInfo sourceTwo) {
 		InfoMerger<PhoneInfo, CountryPhoneInfo> merger = new PhoneMergerCountryPhone();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -18,7 +33,7 @@ public final class PhoneMerger {
 	public static List<PhoneInfo> mergeWithCountryPhone(List<CountryPhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
 		InfoMerger<PhoneInfo, CountryPhoneInfo> merger = new PhoneMergerCountryPhone();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}
+	}	
 	
 	
 	
@@ -73,6 +88,20 @@ public final class PhoneMerger {
 	
 	public static List<PhoneInfo> mergeToSelect(List<PhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
 		InfoMerger<PhoneInfo, PhoneInfo> merger = new PhoneMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static PhoneInfo mergeToUpdate(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
+		InfoMerger<PhoneInfo, PhoneInfo> merger = new PhoneMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PhoneInfo> mergeToUpdate(List<PhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
+		InfoMerger<PhoneInfo, PhoneInfo> merger = new PhoneMergerToUpdate();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

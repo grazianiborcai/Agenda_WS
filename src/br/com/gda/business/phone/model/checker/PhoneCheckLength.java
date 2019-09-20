@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PhoneCheckLength extends ModelCheckerTemplateSimple_<PhoneInfo> {
+public final class PhoneCheckLength extends ModelCheckerTemplateSimpleV2<PhoneInfo> {
 
-	public PhoneCheckLength() {
-		super();
+	public PhoneCheckLength(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -25,13 +25,7 @@ public final class PhoneCheckLength extends ModelCheckerTemplateSimple_<PhoneInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PHONE_NUMBER_INVALID_LENGTH;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PHONE_NUMBER_INVALID_LENGTH;
 	}
 }

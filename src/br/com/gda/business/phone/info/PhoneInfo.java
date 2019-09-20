@@ -27,10 +27,13 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	public String number;
 	public String complement;
 	public String recordMode;
+	public LocalDateTime createdOn;
+	public long createdBy;	
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String codForm;
 	public boolean isDeleted;
+	public String username;
 	
 	
 	public PhoneInfo() {
@@ -52,6 +55,7 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 		codOwnerRefSnapshot = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
+		createdBy = DefaultValue.number();
 		isDeleted = DefaultValue.boole();
 	}
 	

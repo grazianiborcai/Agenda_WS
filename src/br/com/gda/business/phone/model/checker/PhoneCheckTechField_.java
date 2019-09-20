@@ -7,9 +7,9 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class PhoneCheckTechField extends ModelCheckerTemplateSimple_<PhoneInfo> {
+public final class PhoneCheckTechField_ extends ModelCheckerTemplateSimple_<PhoneInfo> {
 
-	public PhoneCheckTechField() {
+	public PhoneCheckTechField_() {
 		super();
 	}
 	

@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PhoneCheckRefWrite extends ModelCheckerTemplateSimple_<PhoneInfo> {
+public final class PhoneCheckRefWrite extends ModelCheckerTemplateSimpleV2<PhoneInfo> {
 
-	public PhoneCheckRefWrite() {
-		super();
+	public PhoneCheckRefWrite(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -30,13 +30,7 @@ public final class PhoneCheckRefWrite extends ModelCheckerTemplateSimple_<PhoneI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PHONE_WITHOUT_REFERENCE;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PHONE_WITHOUT_REFERENCE;
 	}
 }

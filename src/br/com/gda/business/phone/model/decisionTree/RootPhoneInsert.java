@@ -11,12 +11,12 @@ import br.com.gda.business.phone.model.action.LazymapPhoneNodeInsert;
 import br.com.gda.business.phone.model.action.StdPhoneMergeCountryPhone;
 import br.com.gda.business.phone.model.checker.PhoneCheckCountryPhone;
 import br.com.gda.business.phone.model.checker.PhoneCheckInsert;
+import br.com.gda.business.phone.model.checker.PhoneCheckLangu;
 import br.com.gda.business.phone.model.checker.PhoneCheckLength;
 import br.com.gda.business.phone.model.checker.PhoneCheckLimit;
 import br.com.gda.business.phone.model.checker.PhoneCheckOwner;
 import br.com.gda.business.phone.model.checker.PhoneCheckRefMulti;
 import br.com.gda.business.phone.model.checker.PhoneCheckRefWrite;
-import br.com.gda.business.phone.model.checker.PhoneCheckTechField;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -34,44 +34,63 @@ public final class RootPhoneInsert extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	@Override protected ModelChecker<PhoneInfo> buildDecisionCheckerHook(DeciTreeOption<PhoneInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new PhoneCheckInsert();
-		queue.add(checker);
-		
-		checker = new PhoneCheckTechField();
-		queue.add(checker);
-		
-		checker = new PhoneCheckLength();
-		queue.add(checker);
-		
-		checker = new PhoneCheckRefWrite();
-		queue.add(checker);
-		
-		checker = new PhoneCheckRefMulti();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckInsert(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckLength(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new PhoneCheckRefWrite(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new PhoneCheckRefMulti(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PhoneCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new PhoneCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PhoneCheckCountryPhone(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
 		checker = new PhoneCheckLimit(checkerOption);
 		queue.add(checker);
 		

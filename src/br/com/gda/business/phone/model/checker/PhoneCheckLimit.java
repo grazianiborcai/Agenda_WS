@@ -1,61 +1,43 @@
 package br.com.gda.business.phone.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.StdPhoneSelect;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction_;
+import br.com.gda.model.checker.ModelCheckerTemplateActionV2;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class PhoneCheckLimit extends ModelCheckerTemplateAction_<PhoneInfo> {
+public final class PhoneCheckLimit extends ModelCheckerTemplateActionV2<PhoneInfo, PhoneInfo> {
 	private final int MAX_RECORD_COUNT = 10;
 	
 	
 	public PhoneCheckLimit(ModelCheckerOption option) {
-		super(option);
+		super(option, PhoneInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<PhoneInfo> buildActionHook(PhoneInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<PhoneInfo> option = buildActionOption(recordInfo, conn, schemaName);
-		
-		ActionStd<PhoneInfo> actionSelect = new StdPhoneSelect(option);
-		return actionSelect;
+	@Override protected ActionStd<PhoneInfo> buildActionHook(DeciTreeOption<PhoneInfo> option) {
+		ActionStd<PhoneInfo> select = new StdPhoneSelect(option);
+		return select;
 	}
 	
 	
 	
-	private DeciTreeOption<PhoneInfo> buildActionOption(PhoneInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<PhoneInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
+	@Override protected int getMaxCountHook() {
+		return MAX_RECORD_COUNT;
 	}
 	
 	
 	
-	@Override protected boolean hasPassedHook(boolean checkerResult, int recordCount) {
-		return (recordCount < MAX_RECORD_COUNT);
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.PHONE_LIMIT_NOT_REACHED;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {			
-		return SystemMessage.PHONE_LIMIT_EXCEEDED;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {			
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PHONE_LIMIT_EXCEEDED;
 	}
 }

@@ -42,13 +42,25 @@ public final class RootPhoneUpdate extends DeciTreeWriteTemplate<PhoneInfo> {
 		checker = new PhoneCheckUpdate();
 		queue.add(checker);
 		
-		checker = new PhoneCheckLength();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckLength(checkerOption);
 		queue.add(checker);
 		
-		checker = new PhoneCheckRefWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckRefWrite(checkerOption);
 		queue.add(checker);
 		
-		checker = new PhoneCheckRefMulti();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckRefMulti(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
