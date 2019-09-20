@@ -92,10 +92,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 		
 		DeciResult<S> actionResult = execute(action);			
 		
-		if (evaluateResult(actionResult) == FAILED)
-			return FAILED;
-		
-		return checkRecorCount(actionResult);
+		return evaluateResult(actionResult);		
 	}
 	
 	
@@ -129,15 +126,15 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	
 	
 	private boolean evaluateResult(DeciResult<S> result) {	
-		if (result.isSuccess() == FAILED &&
-			result.getFailCode() == SystemCode.INTERNAL_ERROR) {
-			
-			logException(new IllegalStateException(SystemMessage.INTERNAL_ERROR));
-			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
-		}
+		evaluateResultError(result);			
+		
+		int maxCount = getMaxCountHook();		
+		if (maxCount >= 0)
+			return checkRecordCount(result, maxCount);
 		
 		
-		if (result.isSuccess() == SUCCESS && result.getResultset().isEmpty())
+		boolean isEmpty = evaluateResultEmpty(result);
+		if (isEmpty)
 			return NOT_FOUND;
 		
 		
@@ -146,13 +143,34 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	
 	
 	
-	private boolean checkRecorCount(DeciResult<S> result) {
+	private void evaluateResultError(DeciResult<S> result) {
+		if (result.isSuccess() 	 == FAILED &&
+			result.getFailCode() == SystemCode.INTERNAL_ERROR) {
+				
+				logException(new IllegalStateException(SystemMessage.INTERNAL_ERROR));
+				throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
+			}
+	}
+	
+	
+	
+	private boolean evaluateResultEmpty(DeciResult<S> result) {
+		if (result.isSuccess() == SUCCESS && 
+			result.getResultset().isEmpty())
+				return true;
+		
+		return false;
+	}
+	
+	
+	
+	private boolean checkRecordCount(DeciResult<S> result, int maxCount) {
 		int count = 0;
 		
 		if (result.hasResultset())
 			count = result.getResultset().size();
 		
-		return checkRecorCountHook(count);
+		return count < maxCount;
 	}
 	
 	
@@ -241,9 +259,9 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	
 	
 	
-	protected boolean checkRecorCountHook(int count) {
+	protected int getMaxCountHook() {
 		//Template method: default behavior
-		return SUCCESS;
+		return -1;
 	}
 	
 	
