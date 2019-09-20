@@ -40,7 +40,7 @@ public final class RootAddressUpsertdel extends DeciTreeWriteTemplate<AddressInf
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> update = new NodeAddressUpsertdelL1(option).toAction();
+		ActionStd<AddressInfo> update = new NodeAddressUpsertdel(option).toAction();
 		
 		actions.add(update);		
 		return actions;
