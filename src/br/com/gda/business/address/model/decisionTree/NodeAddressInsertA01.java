@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.action.LazyAddressInsertAddresnap;
-import br.com.gda.business.address.model.action.LazyAddressUpdate;
+import br.com.gda.business.address.model.action.LazyAddressNodeSnapshot;
 import br.com.gda.business.address.model.action.StdAddressInsert;
 import br.com.gda.business.address.model.checker.AddressCheckState;
 import br.com.gda.business.address.model.checker.AddressCheckWriteA01;
@@ -26,19 +25,21 @@ public final class NodeAddressInsertA01 extends DeciTreeWriteTemplate<AddressInf
 	
 	
 	@Override protected ModelChecker<AddressInfo> buildDecisionCheckerHook(DeciTreeOption<AddressInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
 		ModelCheckerOption checkerOption;
-
-		checker = new AddressCheckWriteA01();
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new AddressCheckWriteA01(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new AddressCheckState(checkerOption);
 		queue.add(checker);
 		
@@ -52,11 +53,9 @@ public final class NodeAddressInsertA01 extends DeciTreeWriteTemplate<AddressInf
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
 		
 		ActionStd<AddressInfo> insert = new StdAddressInsert(option);	
-		ActionLazy<AddressInfo> insertAddresnap = new LazyAddressInsertAddresnap(option.conn, option.schemaName);
-		ActionLazy<AddressInfo> update = new LazyAddressUpdate(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> snapshot = new LazyAddressNodeSnapshot(option.conn, option.schemaName);
 
-		insert.addPostAction(insertAddresnap);
-		insertAddresnap.addPostAction(update);
+		insert.addPostAction(snapshot);
 		
 		actions.add(insert);		
 		return actions;

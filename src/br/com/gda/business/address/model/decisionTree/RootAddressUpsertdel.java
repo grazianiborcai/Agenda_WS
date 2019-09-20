@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.checker.AddressCheckNewRecord;
+import br.com.gda.business.address.model.checker.AddressCheckHasAddress;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -21,8 +21,6 @@ public final class RootAddressUpsertdel extends DeciTreeWriteTemplate<AddressInf
 	
 	
 	@Override protected ModelChecker<AddressInfo> buildDecisionCheckerHook(DeciTreeOption<AddressInfo> option) {
-		final boolean ONLY_NEW_RECORD = true;
-		
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
 		ModelCheckerOption checkerOption;
@@ -30,8 +28,8 @@ public final class RootAddressUpsertdel extends DeciTreeWriteTemplate<AddressInf
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ONLY_NEW_RECORD;	
-		checker = new AddressCheckNewRecord(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new AddressCheckHasAddress(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -42,9 +40,9 @@ public final class RootAddressUpsertdel extends DeciTreeWriteTemplate<AddressInf
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> insert = new NodeAddressUpsertdelL1(option).toAction();
+		ActionStd<AddressInfo> update = new NodeAddressUpsertdelL1(option).toAction();
 		
-		actions.add(insert);		
+		actions.add(update);		
 		return actions;
 	}
 	
@@ -53,9 +51,9 @@ public final class RootAddressUpsertdel extends DeciTreeWriteTemplate<AddressInf
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnFailedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> update = new NodeAddressUpsertdelL2(option).toAction();
+		ActionStd<AddressInfo> insert = new RootAddressInsert(option).toAction();
 		
-		actions.add(update);		
+		actions.add(insert);	
 		return actions;
 	}
 }

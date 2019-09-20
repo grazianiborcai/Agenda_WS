@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.address.model.decisionTree.NodeAddressSnapshot;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyAddressInsertAddresnap extends ActionLazyTemplate<AddressInfo, AddressInfo> {
+public final class LazyAddressNodeSnapshot extends ActionLazyTemplate<AddressInfo, AddressInfo> {
 
-	public LazyAddressInsertAddresnap(Connection conn, String schemaName) {
+	public LazyAddressNodeSnapshot(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyAddressInsertAddresnap extends ActionLazyTemplate<Address
 	
 	
 	@Override protected ActionStd<AddressInfo> getInstanceOfActionHook(DeciTreeOption<AddressInfo> option) {
-		return new StdAddressInsertAddresnap(option);
+		return new NodeAddressSnapshot(option).toAction();
 	}
 	
 	

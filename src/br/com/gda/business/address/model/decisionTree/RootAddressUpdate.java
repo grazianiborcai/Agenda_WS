@@ -5,8 +5,9 @@ import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.action.LazyAddressEnforceLChanged;
+import br.com.gda.business.address.model.action.LazyAddressMergeForm;
 import br.com.gda.business.address.model.action.LazyAddressNodeUpdate;
-import br.com.gda.business.address.model.action.StdAddressMergeForm;
+import br.com.gda.business.address.model.action.StdAddressMergeToUpdate;
 import br.com.gda.business.address.model.checker.AddressCheckCountry;
 import br.com.gda.business.address.model.checker.AddressCheckExist;
 import br.com.gda.business.address.model.checker.AddressCheckLangu;
@@ -29,7 +30,7 @@ public final class RootAddressUpdate extends DeciTreeWriteTemplate<AddressInfo> 
 	}
 	
 	
-	//TODO: O Update / Upsertdel sempre geram entradas no snapshot. Incluir assinatura para identificar mudancas ?
+
 	@Override protected ModelChecker<AddressInfo> buildDecisionCheckerHook(DeciTreeOption<AddressInfo> option) {
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
@@ -91,15 +92,17 @@ public final class RootAddressUpdate extends DeciTreeWriteTemplate<AddressInfo> 
 	
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
-		//TODO: Verificar se chave referencia foi alterada
-		ActionStd<AddressInfo> mergeForm = new StdAddressMergeForm(option);		
+
+		ActionStd<AddressInfo> mergeToUpdate = new StdAddressMergeToUpdate(option);		
+		ActionLazy<AddressInfo> mergeForm = new LazyAddressMergeForm(option.conn, option.schemaName);	
 		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<AddressInfo> nodeUpdate = new LazyAddressNodeUpdate(option.conn, option.schemaName);	
 		
+		mergeToUpdate.addPostAction(mergeForm);
 		mergeForm.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(nodeUpdate);
 		
-		actions.add(mergeForm);		
+		actions.add(mergeToUpdate);		
 		return actions;
 	}
 }

@@ -90,4 +90,18 @@ public final class AddressMerger {
 		InfoMerger<AddressInfo, AddressInfo> merger = new AddressMergerToSelect();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static AddressInfo mergeToUpdate(AddressInfo sourceOne, AddressInfo sourceTwo) {
+		InfoMerger<AddressInfo, AddressInfo> merger = new AddressMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<AddressInfo> mergeToUpdate(List<AddressInfo> sourceOnes, List<AddressInfo> sourceTwos) {
+		InfoMerger<AddressInfo, AddressInfo> merger = new AddressMergerToUpdate();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

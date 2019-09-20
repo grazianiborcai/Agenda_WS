@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.action.LazyAddressUpdate;
-import br.com.gda.business.address.model.action.StdAddressInsertAddresnap;
 import br.com.gda.business.address.model.checker.AddressCheckState;
 import br.com.gda.business.address.model.checker.AddressCheckWriteA01;
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -25,19 +22,21 @@ public final class NodeAddressUpdateA01 extends DeciTreeWriteTemplate<AddressInf
 	
 	
 	@Override protected ModelChecker<AddressInfo> buildDecisionCheckerHook(DeciTreeOption<AddressInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
 		ModelCheckerOption checkerOption;
-
-		checker = new AddressCheckWriteA01();
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new AddressCheckWriteA01(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new AddressCheckState(checkerOption);
 		queue.add(checker);
 		
@@ -50,12 +49,9 @@ public final class NodeAddressUpdateA01 extends DeciTreeWriteTemplate<AddressInf
 	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AddressInfo> insertAddresnap = new StdAddressInsertAddresnap(option);	
-		ActionLazy<AddressInfo> update = new LazyAddressUpdate(option.conn, option.schemaName);
+		ActionStd<AddressInfo> snapshot = new NodeAddressSnapshot(option).toAction();	
 		
-		insertAddresnap.addPostAction(update);
-		
-		actions.add(insertAddresnap);		
+		actions.add(snapshot);		
 		return actions;
 	}
 }

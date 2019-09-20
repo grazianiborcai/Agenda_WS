@@ -7,16 +7,16 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AddressCheckFlagDel extends ModelCheckerTemplateSimpleV2<AddressInfo> {
+public final class AddressCheckHasAddress extends ModelCheckerTemplateSimpleV2<AddressInfo> {
 
-	public AddressCheckFlagDel(ModelCheckerOption option) {
+	public AddressCheckHasAddress(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(AddressInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.isDeleted )			
+		if ( recordInfo.codAddress > 0 )			
 			return super.SUCCESS;
 		
 		
@@ -26,12 +26,12 @@ public final class AddressCheckFlagDel extends ModelCheckerTemplateSimpleV2<Addr
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.ADDRESS_FLAG_DELETE_TRUE;
+		return SystemCode.ADDRESS_IS_FILLED;
 	}
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.ADDRESS_FLAG_DELETE_FALSE;
+		return SystemCode.ADDRESS_IS_NULL;
 	}
 }

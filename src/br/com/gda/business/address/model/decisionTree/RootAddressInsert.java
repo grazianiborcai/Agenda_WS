@@ -80,6 +80,7 @@ public final class RootAddressInsert extends DeciTreeWriteTemplate<AddressInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new AddressCheckLimit(checkerOption);
 		queue.add(checker);
 		

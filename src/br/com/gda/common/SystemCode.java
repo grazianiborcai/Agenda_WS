@@ -271,12 +271,14 @@ public final class SystemCode {
 	public static final int ADDRESS_TECH_FIELD_SHOULD_BE_EMPTY			= 1612;
 	public static final int ADDRESS_COD_IS_BLANK						= 1613;
 	public static final int ADDRESS_MANDATORY_FIELD_EMPTY				= 1614;
+	public static final int ADDRESS_LIMIT_NOT_REACHED					= 1615;
 	
 	// Form
 	public static final int FORM_ADDRESS_ALREADY_EXIST					= 1700;
 	public static final int FORM_ADDRESS_NOT_FOUND						= 1701;
 	public static final int FORM_ADDRESS_INVALID						= 1702;
 	public static final int FORM_PHONE_INVALID							= 1703;
+	public static final int FORM_ADDRESS_OK								= 1704;
 	
 	// Person
 	public static final int PERSON_CPF_BLANK							= 1750;

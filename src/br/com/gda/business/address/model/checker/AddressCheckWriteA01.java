@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AddressCheckWriteA01 extends ModelCheckerTemplateSimple_<AddressInfo> {
+public final class AddressCheckWriteA01 extends ModelCheckerTemplateSimpleV2<AddressInfo> {
 
-	public AddressCheckWriteA01() {
-		super();
+	public AddressCheckWriteA01(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -33,13 +33,7 @@ public final class AddressCheckWriteA01 extends ModelCheckerTemplateSimple_<Addr
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.ADDRESS_MANDATORY_FIELD_EMPTY;
 	}
 }
