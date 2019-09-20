@@ -18,7 +18,7 @@ public final class PhoneCheckInsert extends ModelCheckerTemplateSimpleV2<PhoneIn
 	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 		<= 0 	||
 			 recordInfo.codCountryPhone	<= 0	||
-			 recordInfo.lastChangedBy 	<= 0 	||
+			 recordInfo.username		== null ||
 			 recordInfo.fullNumber		== null		)	
 			
 			return super.FAILED;

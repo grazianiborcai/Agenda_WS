@@ -16,6 +16,7 @@ final class PhoneCopyEmpKey extends InfoCopierTemplate<PhoneInfo, EmpInfo>{
 		result.codOwner = source.codOwner;
 		result.codEmployee = source.codEmployee;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		return result;
 	}
 }

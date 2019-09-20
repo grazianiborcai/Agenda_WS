@@ -16,6 +16,7 @@ final class PhoneCopyCuspar extends InfoCopierTemplate<PhoneInfo, CusparInfo>{
 		result.codOwner = source.codOwner;
 		result.codPhone = source.codPhone;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		return result;
 	}
 }

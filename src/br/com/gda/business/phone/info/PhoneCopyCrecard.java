@@ -16,6 +16,7 @@ final class PhoneCopyCrecard extends InfoCopierTemplate<PhoneInfo, CrecardInfo>{
 		result.codOwner = source.codOwner;
 		result.codPhone = source.codPhoneHolder;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		return result;
 	}
 }

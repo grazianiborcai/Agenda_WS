@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.phone.model.action.LazyPhoneEnforceCreatedBy;
+import br.com.gda.business.phone.model.action.LazyPhoneEnforceCreatedOn;
 import br.com.gda.business.phone.model.action.LazyPhoneEnforceLChanged;
+import br.com.gda.business.phone.model.action.LazyPhoneMergeUsername;
 import br.com.gda.business.phone.model.action.LazyPhoneNodeSnapshot;
 import br.com.gda.business.phone.model.action.LazymapPhoneMergeForm;
 import br.com.gda.business.phone.model.action.LazymapPhoneNodeInsert;
@@ -104,13 +107,19 @@ public final class RootPhoneInsert extends DeciTreeWriteTemplate<PhoneInfo> {
 		
 		ActionStd<PhoneInfo> mergeCountryPhone = new StdPhoneMergeCountryPhone(option);	
 		ActionLazy<PhoneInfo> mergeForm = new LazymapPhoneMergeForm(option.conn, option.schemaName);	
-		ActionLazy<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> enforceCreatedOn = new LazyPhoneEnforceCreatedOn(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> enforceCreatedBy = new LazyPhoneEnforceCreatedBy(option.conn, option.schemaName);	
 		ActionLazy<PhoneInfo> nodeInsert = new LazymapPhoneNodeInsert(option.conn, option.schemaName);	
 		ActionLazy<PhoneInfo> nodeSnapshot = new LazyPhoneNodeSnapshot(option.conn, option.schemaName);	
 		
 		mergeCountryPhone.addPostAction(mergeForm);
-		mergeForm.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(nodeInsert);
+		mergeForm.addPostAction(mergeUsername);		
+		mergeUsername.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceCreatedOn);
+		enforceCreatedOn.addPostAction(enforceCreatedBy);		
+		enforceCreatedBy.addPostAction(nodeInsert);
 		nodeInsert.addPostAction(nodeSnapshot);
 		
 		actions.add(mergeCountryPhone);		

@@ -16,6 +16,7 @@ final class PhoneCopyStore extends InfoCopierTemplate<PhoneInfo, StoreInfo>{
 		result.codOwner = source.codOwner;
 		result.codStore = source.codStore;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		return result;
 	}
 }
