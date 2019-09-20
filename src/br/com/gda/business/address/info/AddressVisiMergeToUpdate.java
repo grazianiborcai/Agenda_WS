@@ -31,6 +31,8 @@ final class AddressVisiMergeToUpdate implements InfoMergerVisitor<AddressInfo, A
 		result.codCustomer = sourceOne.codCustomer;
 		result.codEmployee = sourceOne.codEmployee;
 		result.codOwnerRef = sourceOne.codOwnerRef;
+		result.createdOn = sourceOne.createdOn;
+		result.createdBy = sourceOne.createdBy;
 
 		return result;
 	}

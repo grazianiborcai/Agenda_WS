@@ -146,7 +146,9 @@ public final class AddresnapSelectSingle implements DaoStmt<AddresnapInfo> {
 				dataInfo.latitude = DaoFormatter.sqlToFloat(stmtResult, AddresnapDbTableColumn.COL_LATITUDE);
 				dataInfo.longitude = DaoFormatter.sqlToFloat(stmtResult, AddresnapDbTableColumn.COL_LONGITUDE);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, AddresnapDbTableColumn.COL_LAST_CHANGED);
-				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_LAST_CHANGED_BY);				
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_LAST_CHANGED_BY);		
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, AddresnapDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, AddresnapDbTableColumn.COL_CREATED_BY);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

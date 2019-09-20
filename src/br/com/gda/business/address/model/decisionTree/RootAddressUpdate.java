@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.address.model.action.LazyAddressEnforceLChanged;
 import br.com.gda.business.address.model.action.LazyAddressMergeForm;
+import br.com.gda.business.address.model.action.LazyAddressMergeUsername;
 import br.com.gda.business.address.model.action.LazyAddressNodeUpdate;
 import br.com.gda.business.address.model.action.StdAddressMergeToUpdate;
 import br.com.gda.business.address.model.checker.AddressCheckCountry;
@@ -94,11 +95,13 @@ public final class RootAddressUpdate extends DeciTreeWriteTemplate<AddressInfo> 
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 
 		ActionStd<AddressInfo> mergeToUpdate = new StdAddressMergeToUpdate(option);		
+		ActionLazy<AddressInfo> mergeUsername = new LazyAddressMergeUsername(option.conn, option.schemaName);
 		ActionLazy<AddressInfo> mergeForm = new LazyAddressMergeForm(option.conn, option.schemaName);	
 		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<AddressInfo> nodeUpdate = new LazyAddressNodeUpdate(option.conn, option.schemaName);	
 		
-		mergeToUpdate.addPostAction(mergeForm);
+		mergeToUpdate.addPostAction(mergeUsername);
+		mergeUsername.addPostAction(mergeForm);
 		mergeForm.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(nodeUpdate);
 		

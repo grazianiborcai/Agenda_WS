@@ -51,7 +51,7 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new AddressWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -137,7 +137,9 @@ public final class AddressSelectSingle implements DaoStmt<AddressInfo> {
 				dataInfo.longitude = DaoFormatter.sqlToFloat(stmtResult, AddressDbTableColumn.COL_LONGITUDE);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, AddressDbTableColumn.COL_LAST_CHANGED);
 				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_LAST_CHANGED_BY);
-				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_SNAPSHOT);				
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_COD_SNAPSHOT);		
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, AddressDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, AddressDbTableColumn.COL_CREATED_BY);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

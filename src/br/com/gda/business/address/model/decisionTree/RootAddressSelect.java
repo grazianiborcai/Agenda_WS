@@ -11,7 +11,6 @@ import br.com.gda.business.address.model.action.LazyAddressMergeForm;
 import br.com.gda.business.address.model.action.LazyAddressMergeState;
 import br.com.gda.business.address.model.action.StdAddressMergeToSelect;
 import br.com.gda.business.address.model.checker.AddressCheckRead;
-import br.com.gda.business.address.model.checker.AddressCheckRefRead;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -36,9 +35,6 @@ public final class RootAddressSelect extends DeciTreeWriteTemplate<AddressInfo> 
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new AddressCheckRead(checkerOption);
-		queue.add(checker);
-		
-		checker = new AddressCheckRefRead();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

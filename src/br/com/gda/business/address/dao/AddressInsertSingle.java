@@ -106,6 +106,8 @@ public final class AddressInsertSingle implements DaoStmt<AddressInfo> {
 			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRef);
 			DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);			
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
+			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
 
 			return stmt;
 		}		

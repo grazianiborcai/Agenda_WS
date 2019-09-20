@@ -1,20 +1,20 @@
 package br.com.gda.business.address.info;
 
+import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.info.InfoCopierTemplate;
-import br.com.gda.security.user.info.UserInfo;
 
-final class AddressCopyUserKey extends InfoCopierTemplate<AddressInfo, UserInfo>{
+final class AddressCopyOwnerKey extends InfoCopierTemplate<AddressInfo, OwnerInfo>{
 	
-	public AddressCopyUserKey() {
+	public AddressCopyOwnerKey() {
 		super();
 	}
 	
 	
 	
-	@Override protected AddressInfo makeCopyHook(UserInfo source) {
+	@Override protected AddressInfo makeCopyHook(OwnerInfo source) {
 		AddressInfo result = new AddressInfo();
 		result.codOwner = source.codOwner;
-		result.codUser = source.codUser;
+		result.codOwnerRef = source.codOwner;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
 		return result;

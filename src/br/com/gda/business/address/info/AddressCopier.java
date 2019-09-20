@@ -43,17 +43,31 @@ public final class AddressCopier {
 	
 	
 	
-	public static AddressInfo copyFromOwner(OwnerInfo source) {
-		InfoCopier<AddressInfo, OwnerInfo> copier = new AddressCopyOwner();
+	public static List<AddressInfo> copyFromOwner(OwnerInfo source) {
+		InfoCopierOneToMany<AddressInfo, OwnerInfo> copier = new AddressCopyOwner();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<AddressInfo> copyFromOwner(List<OwnerInfo> sources) {
-		InfoCopier<AddressInfo, OwnerInfo> copier = new AddressCopyOwner();
+		InfoCopierOneToMany<AddressInfo, OwnerInfo> copier = new AddressCopyOwner();
 		return copier.makeCopy(sources);
 	}
+	
+	
+	
+	public static AddressInfo copyFromOwnerKey(OwnerInfo source) {
+		InfoCopier<AddressInfo, OwnerInfo> copier = new AddressCopyOwnerKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddressInfo> copyFromOwnerKey(List<OwnerInfo> sources) {
+		InfoCopier<AddressInfo, OwnerInfo> copier = new AddressCopyOwnerKey();
+		return copier.makeCopy(sources);
+	}	
 	
 	
 	

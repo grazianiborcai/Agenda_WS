@@ -1,9 +1,11 @@
 package br.com.gda.business.address.info;
 
-import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.info.InfoCopierTemplate;
+import java.util.List;
 
-final class AddressCopyOwner extends InfoCopierTemplate<AddressInfo, OwnerInfo>{
+import br.com.gda.business.owner.info.OwnerInfo;
+import br.com.gda.info.InfoCopierOneToManyTemplate;
+
+final class AddressCopyOwner extends InfoCopierOneToManyTemplate<AddressInfo, OwnerInfo>{
 	
 	public AddressCopyOwner() {
 		super();
@@ -11,13 +13,7 @@ final class AddressCopyOwner extends InfoCopierTemplate<AddressInfo, OwnerInfo>{
 	
 	
 	
-	@Override protected AddressInfo makeCopyHook(OwnerInfo source) {
-		AddressInfo result = new AddressInfo();
-		result.codOwner = source.codOwner;
-		result.codOwnerRef = source.codOwner;
-		result.lastChangedBy = source.lastChangedBy;
-		result.codLanguage = source.codLanguage;
-		result.username = source.username;
-		return result;
+	@Override protected List<AddressInfo> makeCopyHook(OwnerInfo source) {
+		return source.addresses;
 	}
 }

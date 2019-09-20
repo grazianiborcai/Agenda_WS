@@ -2,13 +2,43 @@ package br.com.gda.business.address.info;
 
 import java.util.List;
 
+import br.com.gda.business.addressSearch.info.AddarchInfo;
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.form.formAddress.info.FormAddressInfo;
 import br.com.gda.business.masterData.info.CountryInfo;
 import br.com.gda.business.masterData.info.StateInfo;
 import br.com.gda.info.InfoMerger;
+import br.com.gda.security.username.info.UsernameInfo;
 
 public final class AddressMerger {
+	public static AddressInfo mergeWithAddarch(AddarchInfo sourceOne, AddressInfo sourceTwo) {
+		InfoMerger<AddressInfo, AddarchInfo> merger = new AddressMergerAddarch();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<AddressInfo> mergeWithAddarch(List<AddarchInfo> sourceOnes, List<AddressInfo> sourceTwos) {
+		InfoMerger<AddressInfo, AddarchInfo> merger = new AddressMergerAddarch();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static AddressInfo mergeWithUsername(UsernameInfo sourceOne, AddressInfo sourceTwo) {
+		InfoMerger<AddressInfo, UsernameInfo> merger = new AddressMergerUsername();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<AddressInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<AddressInfo> sourceTwos) {
+		InfoMerger<AddressInfo, UsernameInfo> merger = new AddressMergerUsername();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static AddressInfo mergeWithCountry(CountryInfo sourceOne, AddressInfo sourceTwo) {
 		InfoMerger<AddressInfo, CountryInfo> merger = new AddressMergerCountry();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -19,7 +49,7 @@ public final class AddressMerger {
 	public static List<AddressInfo> mergeWithCountry(List<CountryInfo> sourceOnes, List<AddressInfo> sourceTwos) {
 		InfoMerger<AddressInfo, CountryInfo> merger = new AddressMergerCountry();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}
+	}	
 	
 	
 	

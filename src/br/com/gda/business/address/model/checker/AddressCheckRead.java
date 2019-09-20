@@ -17,6 +17,7 @@ public final class AddressCheckRead extends ModelCheckerTemplateSimpleV2<Address
 	
 	@Override protected boolean checkHook(AddressInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.codAddress 	<= 0 	||
 			 recordInfo.codLanguage	== null		)			
 			return super.FAILED;
 		

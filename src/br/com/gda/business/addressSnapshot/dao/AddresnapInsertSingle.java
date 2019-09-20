@@ -110,7 +110,9 @@ public final class AddresnapInsertSingle implements DaoStmt<AddresnapInfo> {
 			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployeeSnapshot);
 			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStoreSnapshot);	
 			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRefSnapshot);					
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRefSnapshot);	
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
+			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
 
 			return stmt;
 		}		

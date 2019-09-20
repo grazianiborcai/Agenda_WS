@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.address.model.action.LazyAddressEnforceCreatedBy;
+import br.com.gda.business.address.model.action.LazyAddressEnforceCreatedOn;
 import br.com.gda.business.address.model.action.LazyAddressEnforceLChanged;
+import br.com.gda.business.address.model.action.LazyAddressMergeUsername;
 import br.com.gda.business.address.model.action.LazyAddressNodeInsert;
 import br.com.gda.business.address.model.action.StdAddressMergeForm;
 import br.com.gda.business.address.model.checker.AddressCheckCountry;
@@ -93,11 +96,17 @@ public final class RootAddressInsert extends DeciTreeWriteTemplate<AddressInfo> 
 		List<ActionStd<AddressInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<AddressInfo> mergeForm = new StdAddressMergeForm(option);		
-		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<AddressInfo> mergeUsername = new LazyAddressMergeUsername(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<AddressInfo> enforceCreatedOn = new LazyAddressEnforceCreatedOn(option.conn, option.schemaName);	
+		ActionLazy<AddressInfo> enforceCreatedBy = new LazyAddressEnforceCreatedBy(option.conn, option.schemaName);	
 		ActionLazy<AddressInfo> nodeInsert = new LazyAddressNodeInsert(option.conn, option.schemaName);	
 		
-		mergeForm.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(nodeInsert);
+		mergeForm.addPostAction(mergeUsername);
+		mergeUsername.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceCreatedOn);
+		enforceCreatedOn.addPostAction(enforceCreatedBy);
+		enforceCreatedBy.addPostAction(nodeInsert);
 		
 		actions.add(mergeForm);		
 		return actions;

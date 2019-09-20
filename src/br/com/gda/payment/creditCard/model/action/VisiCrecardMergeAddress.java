@@ -7,7 +7,7 @@ import br.com.gda.payment.creditCard.info.CrecardInfo;
 import br.com.gda.payment.creditCard.info.CrecardMerger;
 import br.com.gda.business.address.info.AddressCopier;
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.address.model.decisionTree.RootAddressSelect;
+import br.com.gda.business.address.model.decisionTree.RootAddressSearch;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
@@ -20,7 +20,7 @@ final class VisiCrecardMergeAddress extends ActionVisitorTemplateMergeV2<Crecard
 	
 	
 	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
-		return RootAddressSelect.class;
+		return RootAddressSearch.class;
 	}
 	
 	

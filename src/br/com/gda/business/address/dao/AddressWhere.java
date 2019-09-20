@@ -34,27 +34,7 @@ final class AddressWhere implements DaoStmtWhere {
 				case AddressDbTableColumn.COL_COD_ADDRESS :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codAddress));
 					break;
-					
-				case AddressDbTableColumn.COL_COD_CUSTOMER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
-					break;
-					
-				case AddressDbTableColumn.COL_COD_STORE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
-					break;
-					
-				case AddressDbTableColumn.COL_COD_EMPLOYEE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
-					break;
-					
-				case AddressDbTableColumn.COL_COD_USER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
-					break;
-					
-				case AddressDbTableColumn.COL_COD_OWNER_REF :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwnerRef));
-					break;
-					
+
 				case AddressDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
