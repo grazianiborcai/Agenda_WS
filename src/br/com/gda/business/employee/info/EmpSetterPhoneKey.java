@@ -29,9 +29,8 @@ public final class EmpSetterPhoneKey implements InfoSetter<EmpInfo> {
 		for (PhoneInfo eachPhone : recordInfo.phones) {
 			eachPhone.codOwner = recordInfo.codOwner;
 			eachPhone.codEmployee = recordInfo.codEmployee;
-			eachPhone.codEmployeeSnapshot = recordInfo.codSnapshot;
 			eachPhone.codLanguage = recordInfo.codLanguage;
-			eachPhone.lastChangedBy = recordInfo.lastChangedBy;
+			eachPhone.username = recordInfo.username;
 		}
 		
 		return recordInfo;

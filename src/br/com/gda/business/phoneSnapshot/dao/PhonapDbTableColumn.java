@@ -4,33 +4,33 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.gda.business.phone.dao.PhoneDbTableColumn;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class PhonapDbTableColumn extends DaoDbTableColumnTemplate {	
-	public static final String COL_COD_AREA = PhoneDbTableColumn.COL_COD_AREA;
-	public static final String COL_COD_CUSTOMER = PhoneDbTableColumn.COL_COD_CUSTOMER;
-	public static final String COL_COD_CUSTOMER_SNAPSHOT = PhoneDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT;
-	public static final String COL_COD_EMPLOYEE = PhoneDbTableColumn.COL_COD_EMPLOYEE;	
-	public static final String COL_COD_EMPLOYEE_SNAPSHOT = PhoneDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT;	
-	public static final String COL_COD_OWNER = PhoneDbTableColumn.COL_COD_OWNER;
-	public static final String COL_COD_OWNER_REF = PhoneDbTableColumn.COL_COD_OWNER_REF;
-	public static final String COL_COD_OWNER_REF_SNAPSHOT = PhoneDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT;
-	public static final String COL_COD_PHONE = PhoneDbTableColumn.COL_COD_PHONE;
+	public static final String COL_COD_AREA = DaoDbField.COL_COD_AREA;
+	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
+	public static final String COL_COD_CUSTOMER_SNAPSHOT = DaoDbField.COL_COD_CUSTOMER_SNAPSHOT;
+	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
+	public static final String COL_COD_EMPLOYEE_SNAPSHOT = DaoDbField.COL_COD_EMPLOYEE_SNAPSHOT;	
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_OWNER_REF = DaoDbField.COL_COD_OWNER_REF;
+	public static final String COL_COD_OWNER_REF_SNAPSHOT = DaoDbField.COL_COD_OWNER_REF_SNAPSHOT;
+	public static final String COL_COD_PHONE = DaoDbField.COL_COD_PHONE;
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
-	public static final String COL_COD_STORE = PhoneDbTableColumn.COL_COD_STORE;
-	public static final String COL_COD_STORE_SNAPSHOT = PhoneDbTableColumn.COL_COD_STORE_SNAPSHOT;
-	public static final String COL_COD_USER = PhoneDbTableColumn.COL_COD_USER;
-	public static final String COL_COD_USER_SNAPSHOT = PhoneDbTableColumn.COL_COD_USER_SNAPSHOT;
-	public static final String COL_COMPLEMENT = PhoneDbTableColumn.COL_COMPLEMENT;
-	public static final String COL_COUNTRY_PHONE = PhoneDbTableColumn.COL_COUNTRY_PHONE;
-	public static final String COL_FULL_NUMBER = PhoneDbTableColumn.COL_FULL_NUMBER;
-	public static final String COL_NUMBER = PhoneDbTableColumn.COL_NUMBER;
-	public static final String COL_LAST_CHANGED = PhoneDbTableColumn.COL_LAST_CHANGED;
-	public static final String COL_LAST_CHANGED_BY = PhoneDbTableColumn.COL_LAST_CHANGED_BY;
-	public static final String COL_RECORD_MODE = PhoneDbTableColumn.COL_RECORD_MODE;
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_COD_STORE_SNAPSHOT = DaoDbField.COL_COD_STORE_SNAPSHOT;
+	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
+	public static final String COL_COD_USER_SNAPSHOT = DaoDbField.COL_COD_USER_SNAPSHOT;
+	public static final String COL_COMPLEMENT = DaoDbField.COL_COMPLEMENT;
+	public static final String COL_COUNTRY_PHONE = DaoDbField.COL_COUNTRY_PHONE;
+	public static final String COL_FULL_NUMBER = DaoDbField.COL_FULL_NUMBER;
+	public static final String COL_NUMBER = DaoDbField.COL_NUMBER;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
 	

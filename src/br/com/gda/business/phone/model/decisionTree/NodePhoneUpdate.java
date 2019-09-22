@@ -13,6 +13,7 @@ import br.com.gda.business.phone.model.checker.PhoneCheckFormT01;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
@@ -28,8 +29,13 @@ public final class NodePhoneUpdate extends DeciTreeWriteTemplate<PhoneInfo> {
 	@Override protected ModelChecker<PhoneInfo> buildDecisionCheckerHook(DeciTreeOption<PhoneInfo> option) {
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
+		ModelCheckerOption checkerOption;
 
-		checker = new PhoneCheckFormT01();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckFormT01(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

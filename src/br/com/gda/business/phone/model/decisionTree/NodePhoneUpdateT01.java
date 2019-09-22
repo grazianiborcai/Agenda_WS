@@ -26,13 +26,15 @@ public final class NodePhoneUpdateT01 extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	@Override protected ModelChecker<PhoneInfo> buildDecisionCheckerHook(DeciTreeOption<PhoneInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
 
-		checker = new PhoneCheckLengthT01();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
+		checker = new PhoneCheckLengthT01(checkerOption);
 		queue.add(checker);
 		
 		checker = new PhoneCheckOnlyNumber();
@@ -47,7 +49,7 @@ public final class NodePhoneUpdateT01 extends DeciTreeWriteTemplate<PhoneInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PhoneCheckArea(checkerOption);
 		queue.add(checker);
 		

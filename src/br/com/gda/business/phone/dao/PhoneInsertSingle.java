@@ -92,13 +92,10 @@ public final class PhoneInsertSingle implements DaoStmt<PhoneInfo> {
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRef);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployeeSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStoreSnapshot);	
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRefSnapshot);
 			stmt.setString(i++, recordInfo.number);
-			stmt.setString(i++, recordInfo.codArea);			
+			stmt.setString(i++, recordInfo.codArea);		
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
+			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
 
 			return stmt;
 		}		

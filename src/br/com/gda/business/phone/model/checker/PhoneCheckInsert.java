@@ -19,6 +19,7 @@ public final class PhoneCheckInsert extends ModelCheckerTemplateSimpleV2<PhoneIn
 		if ( recordInfo.codOwner 		<= 0 	||
 			 recordInfo.codCountryPhone	<= 0	||
 			 recordInfo.username		== null ||
+			recordInfo.codLanguage		== null ||
 			 recordInfo.fullNumber		== null		)	
 			
 			return super.FAILED;

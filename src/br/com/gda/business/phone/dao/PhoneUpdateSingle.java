@@ -46,7 +46,7 @@ public final class PhoneUpdateSingle implements DaoStmt<PhoneInfo> {
 	
 	private String buildWhereClause() {		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		
@@ -108,13 +108,10 @@ public final class PhoneUpdateSingle implements DaoStmt<PhoneInfo> {
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRef);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployeeSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStoreSnapshot);	
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRefSnapshot);
 			stmt.setString(i++, recordInfo.number);
 			stmt.setString(i++, recordInfo.codArea);					
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
+			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
 			
 			return stmt;
 		}		

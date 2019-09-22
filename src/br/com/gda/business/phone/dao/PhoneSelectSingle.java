@@ -51,7 +51,7 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new PhoneWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -119,18 +119,15 @@ public final class PhoneSelectSingle implements DaoStmt<PhoneInfo> {
 				dataInfo.number = stmtResult.getString(PhoneDbTableColumn.COL_NUMBER);
 				dataInfo.codArea = stmtResult.getString(PhoneDbTableColumn.COL_COD_AREA);
 				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_STORE);
-				dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_STORE_SNAPSHOT);
 				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_CUSTOMER);
-				dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
 				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_USER);
-				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_USER_SNAPSHOT);
 				dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_OWNER_REF);
-				dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PhoneDbTableColumn.COL_LAST_CHANGED);
 				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_LAST_CHANGED_BY);
 				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PhoneDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_CREATED_BY);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

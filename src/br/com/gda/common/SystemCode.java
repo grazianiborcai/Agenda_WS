@@ -256,6 +256,8 @@ public final class SystemCode {
 	public static final int PHONE_COD_IS_BLANK							= 1574;
 	public static final int PHONE_MANDATORY_FIELD_EMPTY 				= 1575;	
 	public static final int PHONE_LIMIT_NOT_REACHED						= 1576;
+	public static final int PHONE_FORM_INVALID							= 1577;
+	public static final int PHONE_FORM_OK								= 1578;
 	
 	// Address
 	public static final int ADDRESS_IS_NULL								= 1600;
