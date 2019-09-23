@@ -17,8 +17,18 @@ public final class PhonarchCheckRead extends ModelCheckerTemplateSimpleV2<Phonar
 	
 	@Override protected boolean checkHook(PhonarchInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codLanguage == null	||
-			 recordInfo.username	== null		)			
+			 recordInfo.codLanguage	== null		)		
+			
+			return super.FAILED;
+			
+			
+		if ( recordInfo.codPhone 		<= 0	&&
+			 recordInfo.codCustomer 	<= 0	&&
+			 recordInfo.codStore 		<= 0	&& 
+			 recordInfo.codUser 		<= 0	&& 
+			 recordInfo.codOwnerRef 	<= 0	&&
+			 recordInfo.codEmployee 	<= 0		)			
+			
 			return super.FAILED;
 		
 		
