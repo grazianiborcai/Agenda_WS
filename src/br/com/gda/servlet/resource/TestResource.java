@@ -16,9 +16,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
-import br.com.gda.business.addressSnapshot.model.AddresnapModelInsert_;
-import br.com.gda.business.addressSnapshot.model.AddresnapModelSelect_;
 import br.com.gda.business.cartItem.model.CartemModelUpsert;
 import br.com.gda.business.cartReserve.info.CarterveInfo;
 import br.com.gda.business.cartReserve.model.CarterveModelSelect;
@@ -84,8 +81,6 @@ public class TestResource {
 	private static final String UPDATE_PERSON = "/updatePerson";
 	private static final String SELECT_PERSON_USER = "/selectPersonUser";
 	private static final String SELECT_PERSON_CUSTOMER = "/selectPersonCustomer";
-	private static final String SELECT_ADDRESS_SNAPSHOT = "/selectAddressSnapshot";
-	private static final String INSERT_ADDRESS_SNAPSHOT = "/insertAddressSnapshot";
 	private static final String SELECT_PHONE_SNAPSHOT = "/selectPhoneSnapshot";
 	private static final String INSERT_PHONE_SNAPSHOT = "/insertPhoneSnapshot";
 	private static final String SELECT_PERSON_SNAPSHOT = "/selectPersonSnapshot";
@@ -223,36 +218,6 @@ public class TestResource {
 		Model model = new PersonCusModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
-	}
-	
-	
-	
-	@GET
-	@Path(SELECT_ADDRESS_SNAPSHOT)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectAddressSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
-								          @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
-
-		AddresnapInfo recordInfo = new AddresnapInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codSnapshot = codSnapshot;
-		
-		Model model = new AddresnapModelSelect_(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@POST
-	@Path(INSERT_ADDRESS_SNAPSHOT)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertAddressSnapshot(@Context HttpServletRequest request, String incomingData) {
-		
-		
-		Model model = new AddresnapModelInsert_(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();	
 	}
 	
 	
