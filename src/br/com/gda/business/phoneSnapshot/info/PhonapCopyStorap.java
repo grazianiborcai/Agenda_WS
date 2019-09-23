@@ -17,6 +17,7 @@ final class PhonapCopyStorap extends InfoCopierTemplate<PhonapInfo, StorapInfo>{
 		result.codStore = source.codStore;
 		result.codStoreSnapshot = source.codSnapshot;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		return result;
 	}
 }

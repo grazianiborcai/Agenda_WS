@@ -1,4 +1,4 @@
-package br.com.gda.business.phone.info;
+package br.com.gda.business.phoneSearch.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,24 +6,24 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class PhoneVisiMergeToSelect implements InfoMergerVisitor<PhoneInfo, PhoneInfo> {
+final class PhonarchVisiMergeToSelect implements InfoMergerVisitor<PhonarchInfo, PhonarchInfo> {
 
-	@Override public PhoneInfo writeRecord(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
+	@Override public PhonarchInfo writeRecord(PhonarchInfo sourceOne, PhonarchInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
+	private void checkArgument(PhonarchInfo sourceOne, PhonarchInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private PhoneInfo merge(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		PhoneInfo result = makeClone(sourceOne);		
+	private PhonarchInfo merge(PhonarchInfo sourceOne, PhonarchInfo sourceTwo) {
+		PhonarchInfo result = makeClone(sourceOne);		
 		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
 		return result;
@@ -31,9 +31,9 @@ final class PhoneVisiMergeToSelect implements InfoMergerVisitor<PhoneInfo, Phone
 	
 	
 	
-	private PhoneInfo makeClone(PhoneInfo recordInfo) {
+	private PhonarchInfo makeClone(PhonarchInfo recordInfo) {
 		try {
-			return (PhoneInfo) recordInfo.clone();
+			return (PhonarchInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -43,7 +43,7 @@ final class PhoneVisiMergeToSelect implements InfoMergerVisitor<PhoneInfo, Phone
 	
 	
 	
-	@Override public boolean shouldWrite(PhoneInfo sourceOne, PhoneInfo sourceTwo) {		
+	@Override public boolean shouldWrite(PhonarchInfo sourceOne, PhonarchInfo sourceTwo) {		
 		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	

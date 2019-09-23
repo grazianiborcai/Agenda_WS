@@ -17,6 +17,7 @@ final class PhonapCopyCuspar extends InfoCopierTemplate<PhonapInfo, CusparInfo>{
 		result.codPhone = source.codPhone;
 		result.codSnapshot = source.codPhoneSnapshot;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		return result;
 	}
 }

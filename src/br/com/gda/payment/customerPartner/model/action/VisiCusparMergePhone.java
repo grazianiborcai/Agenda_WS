@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneCopier;
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.phone.model.decisionTree.RootPhoneSelect;
+import br.com.gda.business.phone.model.decisionTree.RootPhoneSearch;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.payment.customerPartner.info.CusparInfo;
@@ -20,8 +20,9 @@ final class VisiCusparMergePhone extends ActionVisitorTemplateMergeV2<CusparInfo
 	
 	
 	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
-		return RootPhoneSelect.class;
+		return RootPhoneSearch.class;
 	}
+	
 	
 	
 	@Override protected List<PhoneInfo> toActionClassHook(List<CusparInfo> recordInfos) {

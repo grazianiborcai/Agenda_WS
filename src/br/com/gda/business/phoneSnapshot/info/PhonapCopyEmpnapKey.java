@@ -17,6 +17,7 @@ final class PhonapCopyEmpnapKey extends InfoCopierTemplate<PhonapInfo, EmpnapInf
 		result.codEmployee = source.codEmployee;
 		result.codEmployeeSnapshot = source.codSnapshot;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		return result;
 	}
 }

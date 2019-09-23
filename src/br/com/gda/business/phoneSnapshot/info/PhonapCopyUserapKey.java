@@ -17,6 +17,7 @@ final class PhonapCopyUserapKey extends InfoCopierTemplate<PhonapInfo, UserapInf
 		result.codUser = source.codUser;
 		result.codUserSnapshot = source.codSnapshot;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		return result;
 	}
 }

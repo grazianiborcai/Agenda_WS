@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
+import br.com.gda.business.phoneSnapshot.model.action.LazyPhonapInsert;
 import br.com.gda.business.phoneSnapshot.model.action.LazyPhonapRootSelect;
-import br.com.gda.business.phoneSnapshot.model.action.StdPhonapInsert;
 import br.com.gda.business.phoneSnapshot.model.checker.PhonapCheckOwner;
 import br.com.gda.business.phoneSnapshot.model.checker.PhonapCheckWrite;
 import br.com.gda.model.action.ActionLazy;
@@ -51,12 +51,14 @@ public final class RootPhonapInsert extends DeciTreeWriteTemplate<PhonapInfo> {
 	@Override protected List<ActionStd<PhonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonapInfo> option) {
 		List<ActionStd<PhonapInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<PhonapInfo> insert = new StdPhonapInsert(option);		
+		ActionStd<PhonapInfo> nodeUser = new NodePhonapUselis(option).toAction();	
+		ActionLazy<PhonapInfo> insert = new LazyPhonapInsert(option.conn, option.schemaName);		
 		ActionLazy<PhonapInfo> select = new LazyPhonapRootSelect(option.conn, option.schemaName);	
 		
+		nodeUser.addPostAction(insert);
 		insert.addPostAction(select);
 		
-		actions.add(insert);	
+		actions.add(nodeUser);	
 		return actions;
 	}
 }

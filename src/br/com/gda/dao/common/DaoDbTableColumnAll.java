@@ -53,6 +53,7 @@ import br.com.gda.business.personList.dao.PersolisDbTableColumn;
 import br.com.gda.business.personSnapshot.dao.PersonapDbTableColumn;
 import br.com.gda.business.personUser_.dao.PersonUserDbTableColumn;
 import br.com.gda.business.phone.dao.PhoneDbTableColumn;
+import br.com.gda.business.phoneSearch.dao.PhonarchDbTableColumn;
 import br.com.gda.business.phoneSnapshot.dao.PhonapDbTableColumn;
 import br.com.gda.business.planingData.dao.PlanataDbTableColumn;
 import br.com.gda.business.scheduleLine.dao.SchedineDbTableColumn;
@@ -200,6 +201,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new OwnerapDbTableColumn());
 		addTable(new ComplisDbTableColumn());
 		addTable(new AddarchDbTableColumn());
+		addTable(new PhonarchDbTableColumn());
 	}
 	
 	

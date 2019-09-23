@@ -4,11 +4,26 @@ import java.util.List;
 
 import br.com.gda.business.form.formPhone.info.FormPhoneInfo;
 import br.com.gda.business.masterData.info.CountryPhoneInfo;
+import br.com.gda.business.phoneSearch.info.PhonarchInfo;
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class PhoneMerger {
+	public static PhoneInfo mergeWithPhonarch(PhonarchInfo sourceOne, PhoneInfo sourceTwo) {
+		InfoMerger<PhoneInfo, PhonarchInfo> merger = new PhoneMergerPhonarch();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<PhoneInfo> mergeWithPhonarch(List<PhonarchInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
+		InfoMerger<PhoneInfo, PhonarchInfo> merger = new PhoneMergerPhonarch();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static PhoneInfo mergeWithUsername(UsernameInfo sourceOne, PhoneInfo sourceTwo) {
 		InfoMerger<PhoneInfo, UsernameInfo> merger = new PhoneMergerUsername();		
 		return merger.merge(sourceOne, sourceTwo);

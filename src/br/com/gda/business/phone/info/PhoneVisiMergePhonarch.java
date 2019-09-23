@@ -3,30 +3,24 @@ package br.com.gda.business.phone.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.phoneSearch.info.PhonarchInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class PhoneVisiMergeToSelect implements InfoMergerVisitor<PhoneInfo, PhoneInfo> {
+final class PhoneVisiMergePhonarch implements InfoMergerVisitor<PhoneInfo, PhonarchInfo> {
 
-	@Override public PhoneInfo writeRecord(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+	@Override public PhoneInfo writeRecord(PhonarchInfo sourceOne, PhoneInfo sourceTwo) {
+		checkArgument(sourceOne, sourceTwo);
+		
+		PhoneInfo clonedInfo = makeClone(sourceTwo);
+		return merge(sourceOne, clonedInfo);
 	}
 	
 	
 	
-	private void checkArgument(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
+	private void checkArgument(PhonarchInfo sourceOne, PhoneInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PhoneInfo merge(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		PhoneInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
 	}
 	
 	
@@ -43,9 +37,15 @@ final class PhoneVisiMergeToSelect implements InfoMergerVisitor<PhoneInfo, Phone
 	
 	
 	
-	@Override public boolean shouldWrite(PhoneInfo sourceOne, PhoneInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	private PhoneInfo merge(PhonarchInfo sourceOne, PhoneInfo sourceTwo) {
+		return PhoneInfo.copyFrom(sourceOne);
 	}
+	
+	
+	
+	@Override public boolean shouldWrite(PhonarchInfo sourceOne, PhoneInfo sourceTwo) {
+		return (sourceOne.codOwner == sourceTwo.codOwner);
+	}	
 	
 	
 	

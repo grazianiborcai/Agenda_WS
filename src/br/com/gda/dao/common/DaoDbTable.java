@@ -139,6 +139,7 @@ public final class DaoDbTable {
 	public static final String PERSON_CUS_VIEW = "view_person_customer";
 	public static final String PERSON_LIST_VIEW = "view_person_list";	
 	public static final String PERSON_USER_VIEW = "view_person_user";
+	public static final String PHONE_SEARCH_VIEW = "view_phone_search";
 	public static final String PLANING_DATA_VIEW = "planing_data_list";
 	public static final String REFUND_VIEW = "view_refund";	
 	public static final String SCHEDULE_LIST_VIEW = "view_list_search";

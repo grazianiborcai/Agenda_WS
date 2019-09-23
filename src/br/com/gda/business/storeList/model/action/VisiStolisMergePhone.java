@@ -3,8 +3,9 @@ package br.com.gda.business.storeList.model.action;
 import java.sql.Connection;
 import java.util.List;
 
+import br.com.gda.business.phone.info.PhoneCopier;
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.phone.model.decisionTree.RootPhoneSelect;
+import br.com.gda.business.phone.model.decisionTree.RootPhoneSearch;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.business.storeList.info.StolisMerger;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
@@ -19,7 +20,13 @@ final class VisiStolisMergePhone extends ActionVisitorTemplateMergeV2<StolisInfo
 	
 	
 	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
-		return RootPhoneSelect.class;
+		return RootPhoneSearch.class;
+	}
+	
+	
+	
+	@Override protected List<PhoneInfo> toActionClassHook(List<StolisInfo> recordInfos) {
+		return PhoneCopier.copyFromStolis(recordInfos);	
 	}
 	
 	
