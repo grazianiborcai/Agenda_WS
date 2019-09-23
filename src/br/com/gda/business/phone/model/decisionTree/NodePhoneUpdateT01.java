@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.phone.model.action.StdPhoneUpdate;
+import br.com.gda.business.phone.model.action.StdPhoneSuccess;
 import br.com.gda.business.phone.model.checker.PhoneCheckArea;
 import br.com.gda.business.phone.model.checker.PhoneCheckLengthT01;
 import br.com.gda.business.phone.model.checker.PhoneCheckNumberT01;
@@ -37,13 +37,25 @@ public final class NodePhoneUpdateT01 extends DeciTreeWriteTemplate<PhoneInfo> {
 		checker = new PhoneCheckLengthT01(checkerOption);
 		queue.add(checker);
 		
-		checker = new PhoneCheckOnlyNumber();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new PhoneCheckOnlyNumber(checkerOption);
 		queue.add(checker);
 		
-		checker = new PhoneCheckSequenceT01();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckSequenceT01(checkerOption);
 		queue.add(checker);
 		
-		checker = new PhoneCheckNumberT01();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckNumberT01(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -61,9 +73,9 @@ public final class NodePhoneUpdateT01 extends DeciTreeWriteTemplate<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PhoneInfo> update = new StdPhoneUpdate(option);	
+		ActionStd<PhoneInfo> success = new StdPhoneSuccess(option);	
 		
-		actions.add(update);		
+		actions.add(success);		
 		return actions;
 	}
 }

@@ -42,6 +42,12 @@ public final class PhoneCheckRefMulti extends ModelCheckerTemplateSimpleV2<Phone
 	
 	
 	
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.PHONE_NUMBER_IS_VALID;
+	}		
+	
+	
+	
 	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PHONE_MULTIPLE_REFERENCE;
 	}

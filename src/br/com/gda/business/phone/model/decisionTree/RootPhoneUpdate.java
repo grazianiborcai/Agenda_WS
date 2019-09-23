@@ -5,12 +5,15 @@ import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.LazyPhoneEnforceLChanged;
+import br.com.gda.business.phone.model.action.LazyPhoneMergeCountryPhone;
+import br.com.gda.business.phone.model.action.LazyPhoneMergeForm;
+import br.com.gda.business.phone.model.action.LazyPhoneMergeUsername;
 import br.com.gda.business.phone.model.action.LazyPhoneNodeSnapshot;
-import br.com.gda.business.phone.model.action.LazymapPhoneMergeForm;
-import br.com.gda.business.phone.model.action.LazymapPhoneNodeUpdate;
-import br.com.gda.business.phone.model.action.StdPhoneMergeCountryPhone;
+import br.com.gda.business.phone.model.action.LazyPhoneNodeUpdate;
+import br.com.gda.business.phone.model.action.StdPhoneMergeToUpdate;
 import br.com.gda.business.phone.model.checker.PhoneCheckCountryPhone;
 import br.com.gda.business.phone.model.checker.PhoneCheckExist;
+import br.com.gda.business.phone.model.checker.PhoneCheckLangu;
 import br.com.gda.business.phone.model.checker.PhoneCheckLength;
 import br.com.gda.business.phone.model.checker.PhoneCheckOwner;
 import br.com.gda.business.phone.model.checker.PhoneCheckRefMulti;
@@ -33,13 +36,15 @@ public final class RootPhoneUpdate extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	@Override protected ModelChecker<PhoneInfo> buildDecisionCheckerHook(DeciTreeOption<PhoneInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new PhoneCheckUpdate();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckUpdate(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -66,21 +71,28 @@ public final class RootPhoneUpdate extends DeciTreeWriteTemplate<PhoneInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PhoneCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new PhoneCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PhoneCheckCountryPhone(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PhoneCheckExist(checkerOption);
 		queue.add(checker);
 		
@@ -92,18 +104,22 @@ public final class RootPhoneUpdate extends DeciTreeWriteTemplate<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> mergeCountryPhone = new StdPhoneMergeCountryPhone(option);	
-		ActionLazy<PhoneInfo> mergeForm = new LazymapPhoneMergeForm(option.conn, option.schemaName);	
+		ActionStd<PhoneInfo> mergeToUpdate = new StdPhoneMergeToUpdate(option);	
+		ActionLazy<PhoneInfo> mergeCountryPhone = new LazyPhoneMergeCountryPhone(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> mergeForm = new LazyPhoneMergeForm(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);	
 		ActionLazy<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<PhoneInfo> nodeUpdate = new LazymapPhoneNodeUpdate(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> nodeUpdate = new LazyPhoneNodeUpdate(option.conn, option.schemaName);	
 		ActionLazy<PhoneInfo> nodeSnapshot = new LazyPhoneNodeSnapshot(option.conn, option.schemaName);	
 		
+		mergeToUpdate.addPostAction(mergeCountryPhone);
 		mergeCountryPhone.addPostAction(mergeForm);
-		mergeForm.addPostAction(enforceLChanged);
+		mergeForm.addPostAction(mergeUsername);		
+		mergeUsername.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(nodeUpdate);
 		nodeUpdate.addPostAction(nodeSnapshot);
 		
-		actions.add(mergeCountryPhone);		
+		actions.add(mergeToUpdate);		
 		return actions;
 	}
 }

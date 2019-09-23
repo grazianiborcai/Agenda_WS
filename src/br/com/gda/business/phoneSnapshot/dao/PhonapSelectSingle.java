@@ -3,11 +3,12 @@ package br.com.gda.business.phoneSnapshot.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.business.phone.dao.PhoneDbTableColumn;
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -51,7 +52,7 @@ public final class PhonapSelectSingle implements DaoStmt<PhonapInfo> {
 	
 	private String buildWhereClause() {		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new PhonapWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -101,7 +102,6 @@ public final class PhonapSelectSingle implements DaoStmt<PhonapInfo> {
 	
 	private static class ResultParser implements DaoResultParser<PhonapInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final boolean NOT_NULL = false;
 		
 		@Override public List<PhonapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<PhonapInfo> finalResult = new ArrayList<>();
@@ -120,54 +120,21 @@ public final class PhonapSelectSingle implements DaoStmt<PhonapInfo> {
 				dataInfo.complement = stmtResult.getString(PhonapDbTableColumn.COL_COMPLEMENT);
 				dataInfo.number = stmtResult.getString(PhonapDbTableColumn.COL_NUMBER);
 				dataInfo.codArea = stmtResult.getString(PhonapDbTableColumn.COL_COD_AREA);
+				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_COD_STORE);
+				dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_COD_STORE_SNAPSHOT);
+				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_COD_CUSTOMER);
+				dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_COD_EMPLOYEE);
+				dataInfo.codEmployeeSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_COD_USER);
+				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_COD_USER_SNAPSHOT);
+				dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_COD_OWNER_REF);
+				dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PhonapDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PhoneDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_CREATED_BY);
 				
-				stmtResult.getLong(PhonapDbTableColumn.COL_COD_STORE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStore = stmtResult.getLong(PhonapDbTableColumn.COL_COD_STORE);
-				
-				stmtResult.getLong(PhonapDbTableColumn.COL_COD_STORE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codStoreSnapshot = stmtResult.getLong(PhonapDbTableColumn.COL_COD_STORE_SNAPSHOT);
-				
-				stmtResult.getLong(PhonapDbTableColumn.COL_COD_CUSTOMER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomer = stmtResult.getLong(PhonapDbTableColumn.COL_COD_CUSTOMER);	
-				
-				stmtResult.getLong(PhonapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCustomerSnapshot = stmtResult.getLong(PhonapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);	
-				
-				stmtResult.getLong(PhonapDbTableColumn.COL_COD_EMPLOYEE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployee = stmtResult.getLong(PhonapDbTableColumn.COL_COD_EMPLOYEE);	
-				
-				stmtResult.getLong(PhonapDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codEmployeeSnapshot = stmtResult.getLong(PhonapDbTableColumn.COL_COD_EMPLOYEE_SNAPSHOT);
-				
-				stmtResult.getLong(PhonapDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(PhonapDbTableColumn.COL_COD_USER);	
-				
-				stmtResult.getLong(PhonapDbTableColumn.COL_COD_USER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUserSnapshot = stmtResult.getLong(PhonapDbTableColumn.COL_COD_USER_SNAPSHOT);	
-				
-				stmtResult.getLong(PhonapDbTableColumn.COL_COD_OWNER_REF);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codOwnerRef = stmtResult.getLong(PhonapDbTableColumn.COL_COD_OWNER_REF);
-				
-				stmtResult.getLong(PhonapDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codOwnerRefSnapshot = stmtResult.getLong(PhonapDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
-				
-				stmtResult.getLong(PhonapDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(PhonapDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(PhonapDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();		
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

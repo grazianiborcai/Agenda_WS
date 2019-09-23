@@ -4,22 +4,22 @@ import java.sql.Connection;
 
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PhoneCheckUpdate extends ModelCheckerTemplateSimple_<PhoneInfo> {
+public final class PhoneCheckUpdate extends ModelCheckerTemplateSimpleV2<PhoneInfo> {
 
-	public PhoneCheckUpdate() {
-		super();
+	public PhoneCheckUpdate(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PhoneInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 		<= 0 	||
-			 recordInfo.codPhone 		<= 0 	||
-			 recordInfo.lastChangedBy 	<= 0 	||
-			 recordInfo.codCountryPhone	<= 0		)		
+		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.codPhone 	<= 0 	||
+			 recordInfo.username 	== null	||
+			 recordInfo.codLanguage	== null		)		
 			
 			return super.FAILED;
 		
@@ -29,13 +29,7 @@ public final class PhoneCheckUpdate extends ModelCheckerTemplateSimple_<PhoneInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.PHONE_MANDATORY_FIELD_EMPTY;
 	}
 }

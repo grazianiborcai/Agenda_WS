@@ -30,6 +30,12 @@ public final class PhoneCheckRefWrite extends ModelCheckerTemplateSimpleV2<Phone
 	
 	
 	
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.PHONE_NUMBER_IS_VALID;
+	}	
+	
+	
+	
 	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PHONE_WITHOUT_REFERENCE;
 	}

@@ -37,13 +37,25 @@ public final class NodePhoneInsertT01 extends DeciTreeWriteTemplate<PhoneInfo> {
 		checker = new PhoneCheckLengthT01(checkerOption);
 		queue.add(checker);
 		
-		checker = new PhoneCheckOnlyNumber();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckOnlyNumber(checkerOption);
 		queue.add(checker);
 		
-		checker = new PhoneCheckSequenceT01();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckSequenceT01(checkerOption);
 		queue.add(checker);
 		
-		checker = new PhoneCheckNumberT01();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckNumberT01(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -62,7 +74,6 @@ public final class NodePhoneInsertT01 extends DeciTreeWriteTemplate<PhoneInfo> {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PhoneInfo> insert = new StdPhoneInsert(option);	
-
 		
 		actions.add(insert);		
 		return actions;

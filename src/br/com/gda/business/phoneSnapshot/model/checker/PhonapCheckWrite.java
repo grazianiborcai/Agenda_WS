@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PhonapCheckWrite extends ModelCheckerTemplateSimple_<PhonapInfo> {
+public final class PhonapCheckWrite extends ModelCheckerTemplateSimpleV2<PhonapInfo> {
 
-	public PhonapCheckWrite() {
-		super();
+	public PhonapCheckWrite(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -27,13 +27,7 @@ public final class PhonapCheckWrite extends ModelCheckerTemplateSimple_<PhonapIn
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.PHONE_SNAPSHOT_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -3,6 +3,7 @@ package br.com.gda.business.employeeList.info;
 import java.util.List;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
+import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.business.planningTime.info.PlanimeInfo;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleMonth.info.SchedmonInfo;
@@ -78,4 +79,18 @@ public final class EmplisCopier {
 		InfoCopier<EmplisInfo, AddresnapInfo> copier = new EmplisCopyAddresnap();
 		return copier.makeCopy(sources);
 	}	
+	
+	
+	
+	public static EmplisInfo copyFromPhonap(PhonapInfo source) {
+		InfoCopier<EmplisInfo, PhonapInfo> copier = new EmplisCopyPhonap();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<EmplisInfo> copyFromPhonap(List<PhonapInfo> sources) {
+		InfoCopier<EmplisInfo, PhonapInfo> copier = new EmplisCopyPhonap();
+		return copier.makeCopy(sources);
+	}		
 }

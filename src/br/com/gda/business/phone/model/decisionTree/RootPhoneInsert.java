@@ -7,10 +7,10 @@ import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.LazyPhoneEnforceCreatedBy;
 import br.com.gda.business.phone.model.action.LazyPhoneEnforceCreatedOn;
 import br.com.gda.business.phone.model.action.LazyPhoneEnforceLChanged;
+import br.com.gda.business.phone.model.action.LazyPhoneMergeForm;
 import br.com.gda.business.phone.model.action.LazyPhoneMergeUsername;
 import br.com.gda.business.phone.model.action.LazyPhoneNodeInsert;
 import br.com.gda.business.phone.model.action.LazyPhoneNodeSnapshot;
-import br.com.gda.business.phone.model.action.LazymapPhoneMergeForm;
 import br.com.gda.business.phone.model.action.StdPhoneMergeCountryPhone;
 import br.com.gda.business.phone.model.checker.PhoneCheckCountryPhone;
 import br.com.gda.business.phone.model.checker.PhoneCheckInsert;
@@ -106,7 +106,7 @@ public final class RootPhoneInsert extends DeciTreeWriteTemplate<PhoneInfo> {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<PhoneInfo> mergeCountryPhone = new StdPhoneMergeCountryPhone(option);	
-		ActionLazy<PhoneInfo> mergeForm = new LazymapPhoneMergeForm(option.conn, option.schemaName);	
+		ActionLazy<PhoneInfo> mergeForm = new LazyPhoneMergeForm(option.conn, option.schemaName);	
 		ActionLazy<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PhoneInfo> enforceCreatedOn = new LazyPhoneEnforceCreatedOn(option.conn, option.schemaName);	

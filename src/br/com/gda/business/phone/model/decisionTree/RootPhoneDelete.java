@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.LazyPhoneDelete;
 import br.com.gda.business.phone.model.action.LazyPhoneEnforceLChanged;
+import br.com.gda.business.phone.model.action.LazyPhoneMergeUsername;
 import br.com.gda.business.phone.model.action.LazyPhoneUpdate;
 import br.com.gda.business.phone.model.action.StdPhoneMergeToDelete;
 import br.com.gda.business.phone.model.checker.PhoneCheckDelete;
@@ -55,11 +56,13 @@ public final class RootPhoneDelete extends DeciTreeWriteTemplate<PhoneInfo> {
 		
 		ActionStd<PhoneInfo> mergeToDelete = new StdPhoneMergeToDelete(option);	
 		ActionLazy<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PhoneInfo> update = new LazyPhoneUpdate(option.conn, option.schemaName);
 		ActionLazy<PhoneInfo> delete = new LazyPhoneDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(update);
+		enforceLChanged.addPostAction(mergeUsername);
+		mergeUsername.addPostAction(update);
 		update.addPostAction(delete);
 		
 		actions.add(mergeToDelete);		

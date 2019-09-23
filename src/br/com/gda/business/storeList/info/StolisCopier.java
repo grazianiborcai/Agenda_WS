@@ -3,6 +3,7 @@ package br.com.gda.business.storeList.info;
 import java.util.List;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
+import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.business.planningTime.info.PlanimeInfo;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
 import br.com.gda.business.scheduleMonth.info.SchedmonInfo;
@@ -91,6 +92,20 @@ public final class StolisCopier {
 	
 	public static List<StolisInfo> copyFromAddresnap(List<AddresnapInfo> sources) {
 		InfoCopier<StolisInfo, AddresnapInfo> copier = new StolisCopyAddresnap();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static StolisInfo copyFromPhonap(PhonapInfo source) {
+		InfoCopier<StolisInfo, PhonapInfo> copier = new StolisCopyPhonap();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<StolisInfo> copyFromPhonap(List<PhonapInfo> sources) {
+		InfoCopier<StolisInfo, PhonapInfo> copier = new StolisCopyPhonap();
 		return copier.makeCopy(sources);
 	}
 }

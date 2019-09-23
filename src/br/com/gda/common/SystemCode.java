@@ -346,6 +346,15 @@ public final class SystemCode {
 	public static final int PHONE_SNAPSHOT_IS_FILLED 					= 2051;	
 	public static final int PHONE_SNAPSHOT_NOT_FOUND					= 2052;
 	public static final int PHONE_SNAPSHOT_ALREADY_EXIST				= 2053;
+	public static final int PHONE_SNAPSHOT_MANDATORY_FIELD_EMPTY		= 2054;
+	public static final int PHONE_SNAPSHOT_USER_IS_FILLED				= 2055;
+	public static final int PHONE_SNAPSHOT_USER_IS_EMPTY				= 2056;
+	public static final int PHONE_SNAPSHOT_EMPLOYEE_IS_FILLED			= 2057;
+	public static final int PHONE_SNAPSHOT_EMPLOYEE_IS_EMPTY			= 2058;
+	public static final int PHONE_SNAPSHOT_CUSTOMER_IS_FILLED			= 2059;
+	public static final int PHONE_SNAPSHOT_CUSTOMER_IS_EMPTY			= 2060;
+	public static final int PHONE_SNAPSHOT_STORE_IS_FILLED				= 2061;
+	public static final int PHONE_SNAPSHOT_STORE_IS_EMPTY				= 2062;
 	
 	// Person Snapshot
 	public static final int PERSON_SNAPSHOT_IS_NULL 					= 6200;

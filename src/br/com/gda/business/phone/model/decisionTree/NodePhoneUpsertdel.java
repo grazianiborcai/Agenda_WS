@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.phone.model.action.LazyPhoneRootDelete;
-import br.com.gda.business.phone.model.action.StdPhoneFilterDeleted;
 import br.com.gda.business.phone.model.checker.PhoneCheckFlagDel;
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -15,17 +12,15 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodePhoneUpsertdelL3 extends DeciTreeWriteTemplate<PhoneInfo> {
+public final class NodePhoneUpsertdel extends DeciTreeWriteTemplate<PhoneInfo> {
 	
-	public NodePhoneUpsertdelL3(DeciTreeOption<PhoneInfo> option) {
+	public NodePhoneUpsertdel(DeciTreeOption<PhoneInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected ModelChecker<PhoneInfo> buildDecisionCheckerHook(DeciTreeOption<PhoneInfo> option) {
-		final boolean ONLY_NON_DELETED_RECORD = false;
-		
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
@@ -33,7 +28,7 @@ public final class NodePhoneUpsertdelL3 extends DeciTreeWriteTemplate<PhoneInfo>
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ONLY_NON_DELETED_RECORD;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new PhoneCheckFlagDel(checkerOption);
 		queue.add(checker);
 		
@@ -45,9 +40,9 @@ public final class NodePhoneUpsertdelL3 extends DeciTreeWriteTemplate<PhoneInfo>
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> update = new RootPhoneUpdate(option).toAction();
+		ActionStd<PhoneInfo> delete = new RootPhoneDelete(option).toAction();
 		
-		actions.add(update);	
+		actions.add(delete);	
 		return actions;
 	}
 	
@@ -57,14 +52,8 @@ public final class NodePhoneUpsertdelL3 extends DeciTreeWriteTemplate<PhoneInfo>
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<PhoneInfo> update = new RootPhoneUpdate(option).toAction();
-		ActionStd<PhoneInfo> filterDel = new StdPhoneFilterDeleted(option);			
-		ActionLazy<PhoneInfo> delete = new LazyPhoneRootDelete(option.conn, option.schemaName);
 		
-		filterDel.addPostAction(delete);
-		
-		actions.add(update);		
-		actions.add(filterDel);	
-		
+		actions.add(update);	
 		return actions;
 	}
 }

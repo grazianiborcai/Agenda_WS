@@ -27,9 +27,12 @@ public final class PhonapInfo extends InfoRecord implements Cloneable {
 	public String number;
 	public String complement;
 	public String recordMode;
+	public LocalDateTime createdOn;
+	public long createdBy;	
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String codForm;
+	public String username;
 	
 	
 	public PhonapInfo() {
@@ -50,6 +53,7 @@ public final class PhonapInfo extends InfoRecord implements Cloneable {
 		codUserSnapshot = DefaultValue.number();
 		codCountryPhone = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
+		createdBy = DefaultValue.number(); 
 		lastChangedBy = DefaultValue.number(); 
 	}
 	

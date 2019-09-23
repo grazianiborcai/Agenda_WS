@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.phone.model.checker.PhoneCheckNewRecord;
+import br.com.gda.business.phone.model.checker.PhoneCheckHasPhone;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -21,8 +21,6 @@ public final class RootPhoneUpsertdel extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	@Override protected ModelChecker<PhoneInfo> buildDecisionCheckerHook(DeciTreeOption<PhoneInfo> option) {
-		final boolean ONLY_NEW_RECORD = true;
-		
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
@@ -30,8 +28,8 @@ public final class RootPhoneUpsertdel extends DeciTreeWriteTemplate<PhoneInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ONLY_NEW_RECORD;	
-		checker = new PhoneCheckNewRecord(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhoneCheckHasPhone(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -42,9 +40,9 @@ public final class RootPhoneUpsertdel extends DeciTreeWriteTemplate<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> insert = new NodePhoneUpsertdelL1(option).toAction();
+		ActionStd<PhoneInfo> nodeUpsertdel = new NodePhoneUpsertdel(option).toAction();
 		
-		actions.add(insert);		
+		actions.add(nodeUpsertdel);	
 		return actions;
 	}
 	
@@ -53,9 +51,9 @@ public final class RootPhoneUpsertdel extends DeciTreeWriteTemplate<PhoneInfo> {
 	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> update = new NodePhoneUpsertdelL2(option).toAction();
+		ActionStd<PhoneInfo> insert = new RootPhoneInsert(option).toAction();
 		
-		actions.add(update);		
+		actions.add(insert);	
 		return actions;
 	}
 }

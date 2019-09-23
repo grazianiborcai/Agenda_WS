@@ -4,28 +4,21 @@ import java.sql.Connection;
 
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PhonapCheckRead extends ModelCheckerTemplateSimple_<PhonapInfo> {
+public final class PhonapCheckRead extends ModelCheckerTemplateSimpleV2<PhonapInfo> {
 
-	public PhonapCheckRead() {
-		super();
+	public PhonapCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PhonapInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner <= 0 )		
-			return super.FAILED;
-		
-		
-		if ( recordInfo.codSnapshot 		<= 0 &&
-			 recordInfo.codCustomerSnapshot	<= 0 &&
-			 recordInfo.codEmployeeSnapshot	<= 0 &&
-			 recordInfo.codOwnerRefSnapshot	<= 0 &&
-			 recordInfo.codStoreSnapshot	<= 0 &&
-			 recordInfo.codUserSnapshot		<= 0	)
+		if ( recordInfo.codOwner 	<= 0 ||
+			 recordInfo.codSnapshot <= 0 ||
+			 recordInfo.codLanguage	== null )		
 			
 			return super.FAILED;
 		
@@ -35,13 +28,7 @@ public final class PhonapCheckRead extends ModelCheckerTemplateSimple_<PhonapInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.PHONE_SNAPSHOT_MANDATORY_FIELD_EMPTY;
 	}
 }

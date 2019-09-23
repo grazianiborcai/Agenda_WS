@@ -5,9 +5,24 @@ import java.util.List;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
 import br.com.gda.business.ownerSnapshot.info.OwnerapInfo;
+import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.info.InfoCopier;
 
 public final class UselisCopier {
+	public static UselisInfo copyFromPhonap(PhonapInfo source) {
+		InfoCopier<UselisInfo, PhonapInfo> copier = new UselisCopyPhonap();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UselisInfo> copyFromPhonap(List<PhonapInfo> sources) {
+		InfoCopier<UselisInfo, PhonapInfo> copier = new UselisCopyPhonap();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UselisInfo copyFromAddresnap(AddresnapInfo source) {
 		InfoCopier<UselisInfo, AddresnapInfo> copier = new UselisCopyAddresnap();
 		return copier.makeCopy(source);

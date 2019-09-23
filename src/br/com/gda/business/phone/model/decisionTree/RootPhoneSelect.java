@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.phone.model.action.LazymapPhoneMergeCountryPhone;
-import br.com.gda.business.phone.model.action.LazymapPhoneMergeForm;
+import br.com.gda.business.phone.model.action.LazyPhoneMergeCountryPhone;
+import br.com.gda.business.phone.model.action.LazyPhoneMergeForm;
 import br.com.gda.business.phone.model.action.StdPhoneMergeToSelect;
+import br.com.gda.business.phone.model.checker.PhoneCheckLangu;
+import br.com.gda.business.phone.model.checker.PhoneCheckOwner;
 import br.com.gda.business.phone.model.checker.PhoneCheckRead;
-import br.com.gda.business.phone.model.checker.PhoneCheckRefRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
+import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootPhoneSelect extends DeciTreeReadTemplate<PhoneInfo> {
+public final class RootPhoneSelect extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	public RootPhoneSelect(DeciTreeOption<PhoneInfo> option) {
 		super(option);
@@ -27,11 +29,27 @@ public final class RootPhoneSelect extends DeciTreeReadTemplate<PhoneInfo> {
 	@Override protected ModelChecker<PhoneInfo> buildDecisionCheckerHook(DeciTreeOption<PhoneInfo> option) {
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new PhoneCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new PhoneCheckRead(checkerOption);
 		queue.add(checker);
 		
-		checker = new PhoneCheckRefRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new PhoneCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new PhoneCheckLangu(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -43,8 +61,8 @@ public final class RootPhoneSelect extends DeciTreeReadTemplate<PhoneInfo> {
 		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<PhoneInfo> select = new StdPhoneMergeToSelect(option);	
-		ActionLazy<PhoneInfo> mergeCountryPhone = new LazymapPhoneMergeCountryPhone(option.conn, option.schemaName);
-		ActionLazy<PhoneInfo> mergeForm = new LazymapPhoneMergeForm(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> mergeCountryPhone = new LazyPhoneMergeCountryPhone(option.conn, option.schemaName);
+		ActionLazy<PhoneInfo> mergeForm = new LazyPhoneMergeForm(option.conn, option.schemaName);
 
 		select.addPostAction(mergeCountryPhone);	
 		mergeCountryPhone.addPostAction(mergeForm);

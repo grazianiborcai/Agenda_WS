@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.phone.model.action.LazyPhoneUpdate;
 import br.com.gda.business.phone.model.action.StdPhoneInsertPhonap;
-import br.com.gda.business.phone.model.checker.PhoneCheckRead;
+import br.com.gda.business.phone.model.checker.PhoneCheckDummy;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -26,7 +26,7 @@ public final class NodePhoneSnapshot extends DeciTreeWriteTemplate<PhoneInfo> {
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
 
-		checker = new PhoneCheckRead();
+		checker = new PhoneCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

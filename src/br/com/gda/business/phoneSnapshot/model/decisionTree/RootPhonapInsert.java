@@ -25,19 +25,21 @@ public final class RootPhonapInsert extends DeciTreeWriteTemplate<PhonapInfo> {
 	
 	
 	@Override protected ModelChecker<PhonapInfo> buildDecisionCheckerHook(DeciTreeOption<PhonapInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<PhonapInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhonapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new PhonapCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PhonapCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PhonapCheckOwner(checkerOption);
 		queue.add(checker);
 		
