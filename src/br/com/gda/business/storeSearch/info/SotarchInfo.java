@@ -9,6 +9,7 @@ public final class SotarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codCompany;
+	public long codUser;
 	public String username;
 	public String recordMode;
 	
@@ -19,6 +20,7 @@ public final class SotarchInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codCompany = DefaultValue.number();
+		codUser = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}
 	

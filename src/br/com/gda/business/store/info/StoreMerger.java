@@ -8,12 +8,27 @@ import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.storeSearch.info.SotarchInfo;
 import br.com.gda.business.storeSnapshot.info.StorapInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.user.info.UserInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class StoreMerger {
+	public static StoreInfo mergeWithSotarch(SotarchInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, SotarchInfo> merger = new StoreMergerSotarch();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StoreInfo> mergeWithSotarch(List<SotarchInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, SotarchInfo> merger = new StoreMergerSotarch();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static StoreInfo mergeWithAddress(AddressInfo sourceOne, StoreInfo sourceTwo) {
 		InfoMerger<StoreInfo, AddressInfo> merger = new StoreMergerAddress();		
 		return merger.merge(sourceOne, sourceTwo);

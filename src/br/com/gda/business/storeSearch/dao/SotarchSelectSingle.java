@@ -114,6 +114,7 @@ public final class SotarchSelectSingle implements DaoStmt<SotarchInfo> {
 				dataInfo.codStore = stmtResult.getLong(SotarchDbTableColumn.COL_COD_STORE);
 				dataInfo.recordMode = stmtResult.getString(SotarchDbTableColumn.COL_RECORD_MODE);	
 				dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, SotarchDbTableColumn.COL_COD_COMPANY);		
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, SotarchDbTableColumn.COL_COD_USER);	
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

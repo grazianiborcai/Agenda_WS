@@ -3,12 +3,13 @@ package br.com.gda.business.store.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.gda.business.storeSearch.info.SotarchInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class PhoneVisiMergePhonarch implements InfoMergerVisitor<StoreInfo, PhonarchInfo> {
+final class StoreVisiMergeSotarch implements InfoMergerVisitor<StoreInfo, SotarchInfo> {
 
-	@Override public StoreInfo writeRecord(PhonarchInfo sourceOne, StoreInfo sourceTwo) {
+	@Override public StoreInfo writeRecord(SotarchInfo sourceOne, StoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		StoreInfo clonedInfo = makeClone(sourceTwo);
@@ -17,7 +18,7 @@ final class PhoneVisiMergePhonarch implements InfoMergerVisitor<StoreInfo, Phona
 	
 	
 	
-	private void checkArgument(PhonarchInfo sourceOne, StoreInfo sourceTwo) {
+	private void checkArgument(SotarchInfo sourceOne, StoreInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -36,13 +37,13 @@ final class PhoneVisiMergePhonarch implements InfoMergerVisitor<StoreInfo, Phona
 	
 	
 	
-	private StoreInfo merge(PhonarchInfo sourceOne, StoreInfo sourceTwo) {
+	private StoreInfo merge(SotarchInfo sourceOne, StoreInfo sourceTwo) {
 		return StoreInfo.copyFrom(sourceOne);
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(PhonarchInfo sourceOne, StoreInfo sourceTwo) {
+	@Override public boolean shouldWrite(SotarchInfo sourceOne, StoreInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}	
 	
