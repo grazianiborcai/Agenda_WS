@@ -3,11 +3,11 @@ package br.com.gda.business.storeList.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeList.info.StolisInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -100,7 +100,6 @@ public final class StolisSelectSingle implements DaoStmt<StolisInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<StolisInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<StolisInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -116,27 +115,10 @@ public final class StolisSelectSingle implements DaoStmt<StolisInfo> {
 				dataInfo.codCurr = stmtResult.getString(StolisDbTableColumn.COL_COD_CURRENCY);
 				dataInfo.codTimezone = stmtResult.getString(StolisDbTableColumn.COL_COD_TIMEZONE);
 				dataInfo.recordMode = stmtResult.getString(StolisDbTableColumn.COL_RECORD_MODE);	
-				
-				
-				stmtResult.getLong(StolisDbTableColumn.COL_COD_COMPANY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCompany = stmtResult.getLong(StolisDbTableColumn.COL_COD_COMPANY);
-				
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(StolisDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				
-				stmtResult.getLong(StolisDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(StolisDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				
-				stmtResult.getLong(StolisDbTableColumn.COL_COD_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codSnapshot = stmtResult.getLong(StolisDbTableColumn.COL_COD_SNAPSHOT);
-		
+				dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, StolisDbTableColumn.COL_COD_COMPANY);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StolisDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StolisDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, StolisDbTableColumn.COL_COD_SNAPSHOT);		
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
