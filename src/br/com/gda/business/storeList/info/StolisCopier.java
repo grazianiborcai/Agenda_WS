@@ -3,6 +3,7 @@ package br.com.gda.business.storeList.info;
 import java.util.List;
 
 import br.com.gda.business.addressSnapshot.info.AddresnapInfo;
+import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.phoneSnapshot.info.PhonapInfo;
 import br.com.gda.business.planningTime.info.PlanimeInfo;
 import br.com.gda.business.scheduleLine.info.SchedineInfo;
@@ -80,6 +81,20 @@ public final class StolisCopier {
 		InfoCopier<StolisInfo, SchedineInfo> copier = new StolisCopySchedine();
 		return copier.makeCopy(sources);
 	}
+	
+	
+	
+	public static StolisInfo copyFromOwner(OwnerInfo source) {
+		InfoCopier<StolisInfo, OwnerInfo> copier = new StolisCopyOwner();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<StolisInfo> copyFromOwner(List<OwnerInfo> sources) {
+		InfoCopier<StolisInfo, OwnerInfo> copier = new StolisCopyOwner();
+		return copier.makeCopy(sources);
+	}	
 	
 	
 	

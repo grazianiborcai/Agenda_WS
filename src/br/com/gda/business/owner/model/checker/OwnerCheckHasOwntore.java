@@ -17,10 +17,10 @@ public final class OwnerCheckHasOwntore extends ModelCheckerTemplateSimple_<Owne
 	
 	
 	@Override protected boolean checkHook(OwnerInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.owntores == null)			
+		if (recordInfo.stolises == null)			
 			return super.FAILED;		
 		
-		if (recordInfo.owntores.isEmpty())			
+		if (recordInfo.stolises.isEmpty())			
 			return super.FAILED;
 		
 		return super.SUCCESS;

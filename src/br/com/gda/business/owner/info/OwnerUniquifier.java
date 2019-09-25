@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.gda.business.address.info.AddressInfo;
-import br.com.gda.business.ownerStore.info.OwntoreInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoUniquifier;
 
 final class OwnerUniquifier implements InfoUniquifier<OwnerInfo> {
@@ -21,7 +21,7 @@ final class OwnerUniquifier implements InfoUniquifier<OwnerInfo> {
 				
 				uniquifyAddress(duple, eachRecord);
 				uniquifyPhone(duple, eachRecord);
-				uniquifyOwntore(duple, eachRecord);
+				uniquifyStolis(duple, eachRecord);
 				
 			} else {
 				uniques.add(eachRecord);
@@ -56,12 +56,12 @@ final class OwnerUniquifier implements InfoUniquifier<OwnerInfo> {
 	
 	
 	
-	private void uniquifyOwntore(OwnerInfo duple, OwnerInfo eachRecord) {
-		List<OwntoreInfo> allOwntores = new ArrayList<>();
+	private void uniquifyStolis(OwnerInfo duple, OwnerInfo eachRecord) {
+		List<StolisInfo> allOwntores = new ArrayList<>();
 		
-		allOwntores.addAll(duple.owntores);
-		allOwntores.addAll(eachRecord.owntores);
+		allOwntores.addAll(duple.stolises);
+		allOwntores.addAll(eachRecord.stolises);
 		
-		duple.owntores = allOwntores.stream().distinct().collect(Collectors.toList());
+		duple.stolises = allOwntores.stream().distinct().collect(Collectors.toList());
 	}
 }

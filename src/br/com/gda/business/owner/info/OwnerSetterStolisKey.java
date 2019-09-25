@@ -3,11 +3,11 @@ package br.com.gda.business.owner.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.ownerStore.info.OwntoreInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class OwnerSetterOwntoreKey implements InfoSetter<OwnerInfo> {
+public final class OwnerSetterStolisKey implements InfoSetter<OwnerInfo> {
 	
 	public OwnerInfo setAttr(OwnerInfo recordInfo) {
 		checkArgument(recordInfo);
@@ -32,7 +32,7 @@ public final class OwnerSetterOwntoreKey implements InfoSetter<OwnerInfo> {
 	
 	
 	private OwnerInfo setOwntoreKey(OwnerInfo recordInfo) {
-		for(OwntoreInfo eachRecord : recordInfo.owntores) {
+		for(StolisInfo eachRecord : recordInfo.stolises) {
 			eachRecord.username = recordInfo.username;
 			eachRecord.codLanguage = recordInfo.codLanguage;
 		}

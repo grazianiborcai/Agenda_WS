@@ -3,13 +3,13 @@ package br.com.gda.business.owner.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.ownerStore.info.OwntoreInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class OwnerVisiMergeOwntore implements InfoMergerVisitor<OwnerInfo, OwntoreInfo> {
+final class OwnerVisiMergeStolis implements InfoMergerVisitor<OwnerInfo, StolisInfo> {
 
-	@Override public OwnerInfo writeRecord(OwntoreInfo sourceOne, OwnerInfo sourceTwo) {
+	@Override public OwnerInfo writeRecord(StolisInfo sourceOne, OwnerInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		OwnerInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class OwnerVisiMergeOwntore implements InfoMergerVisitor<OwnerInfo, Owntor
 	
 	
 	
-	private void checkArgument(OwntoreInfo sourceOne, OwnerInfo sourceTwo) {
+	private void checkArgument(StolisInfo sourceOne, OwnerInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,15 +37,15 @@ final class OwnerVisiMergeOwntore implements InfoMergerVisitor<OwnerInfo, Owntor
 	
 	
 	
-	private OwnerInfo merge(OwntoreInfo sourceOne, OwnerInfo sourceTwo) {
-		sourceTwo.owntores.add(sourceOne);
+	private OwnerInfo merge(StolisInfo sourceOne, OwnerInfo sourceTwo) {
+		sourceTwo.stolises.add(sourceOne);
 
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(OwntoreInfo sourceOne, OwnerInfo sourceTwo) {
+	@Override public boolean shouldWrite(StolisInfo sourceOne, OwnerInfo sourceTwo) {
 		return ( sourceOne.codOwner == sourceTwo.codOwner );
 	}	
 	
