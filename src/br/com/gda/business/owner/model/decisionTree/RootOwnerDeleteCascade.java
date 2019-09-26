@@ -13,7 +13,6 @@ import br.com.gda.business.owner.model.action.LazyOwnerEnforceLChanged;
 import br.com.gda.business.owner.model.action.LazyOwnerMergeUsername;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeDeleteAddress;
 import br.com.gda.business.owner.model.action.LazyOwnerNodeDeletePhone;
-import br.com.gda.business.owner.model.action.LazyOwnerNodeDeleteStore;
 import br.com.gda.business.owner.model.action.LazyOwnerUpdate;
 import br.com.gda.business.owner.model.action.StdOwnerMergeToDelete;
 import br.com.gda.business.owner.model.checker.OwnerCheckDelete;
@@ -69,7 +68,6 @@ public final class RootOwnerDeleteCascade extends DeciTreeWriteTemplate<OwnerInf
 		ActionLazy<OwnerInfo> deletePhone = new LazyOwnerNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deletePerson = new LazyOwnerDeletePerson(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteCompany = new LazyOwnerDeleteComp(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> deleteStore = new LazyOwnerNodeDeleteStore(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteMat = new LazyOwnerDeleteMat(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteUser = new LazyOwnerDeleteUser(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteOwner = new LazyOwnerDelete(option.conn, option.schemaName);			
@@ -81,8 +79,7 @@ public final class RootOwnerDeleteCascade extends DeciTreeWriteTemplate<OwnerInf
 		update.addPostAction(deleteAddress);
 		update.addPostAction(deletePhone);
 		update.addPostAction(deletePerson);
-		update.addPostAction(deleteCompany);		
-		update.addPostAction(deleteStore);
+		update.addPostAction(deleteCompany);	
 		update.addPostAction(deleteMat);
 		update.addPostAction(deleteUser);
 		update.addPostAction(deleteOwner);

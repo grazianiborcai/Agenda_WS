@@ -7,7 +7,6 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.user.info.UserInfo;
 import br.com.gda.security.username.info.UsernameInfo;
@@ -50,20 +49,6 @@ public final class OwnerMerger {
 	
 	public static List<OwnerInfo> mergeWithComp(List<CompInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
 		InfoMerger<OwnerInfo, CompInfo> merger = new OwnerMergerComp();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static OwnerInfo mergeWithStolis(StolisInfo sourceOne, OwnerInfo sourceTwo) {
-		InfoMerger<OwnerInfo, StolisInfo> merger = new OwnerMergerStolis();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<OwnerInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
-		InfoMerger<OwnerInfo, StolisInfo> merger = new OwnerMergerStolis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

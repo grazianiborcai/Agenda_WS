@@ -8,7 +8,6 @@ import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.security.user.info.UserInfo;
@@ -33,7 +32,6 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public UserInfo userData;
 	public CompInfo companyData;
 	public PersonInfo personData;
-	public List<StolisInfo> stolises;
 	
 	
 	
@@ -54,7 +52,6 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 		userData = DefaultValue.object();
 		companyData = DefaultValue.object();
 		personData = DefaultValue.object();
-		stolises = DefaultValue.list();
 	}
 	
 	
@@ -79,7 +76,6 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 		deepCopy.personData = clonePerson(deepCopy.personData);
 		deepCopy.companyData = cloneCompany(deepCopy.companyData);
 		deepCopy.userData = cloneUser(deepCopy.userData);
-		deepCopy.stolises = cloneStolis(deepCopy.stolises);
 		
 		return deepCopy;
 	}
@@ -141,22 +137,6 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 			return null;
 		
 		return (UserInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private List<StolisInfo> cloneStolis(List<StolisInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<StolisInfo> deepStones = new ArrayList<>();
-		
-		for (StolisInfo eachPhone : recordInfos) {
-			StolisInfo clonedPhone = (StolisInfo) eachPhone.clone();
-			deepStones.add(clonedPhone);
-		}
-		
-		return deepStones;
 	}
 	
 	
