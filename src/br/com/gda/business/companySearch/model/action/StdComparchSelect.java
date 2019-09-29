@@ -3,8 +3,8 @@ package br.com.gda.business.companySearch.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.company.dao.CompSelect;
-import br.com.gda.business.company.info.CompInfo;
+import br.com.gda.business.companySearch.dao.ComparchSelect;
+import br.com.gda.business.companySearch.info.ComparchInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.action.ActionStd;
@@ -13,34 +13,34 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCompSelect implements ActionStd<CompInfo> {
-	ActionStd<CompInfo> actionHelper;
+public final class StdComparchSelect implements ActionStd<ComparchInfo> {
+	ActionStd<ComparchInfo> actionHelper;
 	
 	
-	public StdCompSelect(DeciTreeOption<CompInfo> option) {
-		DaoStmtExec<CompInfo> sqlStmtExecutor = buildStmtExec(option);
+	public StdComparchSelect(DeciTreeOption<ComparchInfo> option) {
+		DaoStmtExec<ComparchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CompInfo> buildStmtExec(DeciTreeOption<CompInfo> option) {
-		List<DaoStmtExecOption<CompInfo>> stmtExecOptions = new ArrayList<>();			
+	private DaoStmtExec<ComparchInfo> buildStmtExec(DeciTreeOption<ComparchInfo> option) {
+		List<DaoStmtExecOption<ComparchInfo>> stmtExecOptions = new ArrayList<>();			
 		
-		for(CompInfo eachRecord : option.recordInfos) {
-			DaoStmtExecOption<CompInfo> stmtExecOption = new DaoStmtExecOption<>();
+		for(ComparchInfo eachRecord : option.recordInfos) {
+			DaoStmtExecOption<ComparchInfo> stmtExecOption = new DaoStmtExecOption<>();
 			stmtExecOption.conn = option.conn;
 			stmtExecOption.recordInfo = eachRecord;
 			stmtExecOption.schemaName = option.schemaName;
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new CompSelect(stmtExecOptions);
+		return new ComparchSelect(stmtExecOptions);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CompInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<ComparchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	
@@ -52,7 +52,7 @@ public final class StdCompSelect implements ActionStd<CompInfo> {
 	
 	
 	
-	@Override public DeciResult<CompInfo> getDecisionResult() {
+	@Override public DeciResult<ComparchInfo> getDecisionResult() {
 		return actionHelper.getDecisionResult();
 	}
 }

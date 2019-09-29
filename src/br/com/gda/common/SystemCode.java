@@ -741,4 +741,7 @@ public final class SystemCode {
 	
 	// Store Search
 	public static final int STORE_SEARCH_MANDATORY_FIELD_EMPTY 			= 6600;
+	
+	//Comapny Search
+	public static final int COMPANY_SEARCH_MANDATORY_FIELD_EMPTY 		= 6650;
 }

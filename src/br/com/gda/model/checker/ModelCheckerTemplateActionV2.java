@@ -99,7 +99,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	
 	private DeciTreeOption<S> buildActionOption(T recordInfo, Connection dbConn, String dbSchema) {
 		DeciTreeOption<S> option = new DeciTreeOption<>();
-		option.recordInfos = toActionClassHook(recordInfo);
+		option.recordInfos = toActionClass(recordInfo);
 		option.conn = conn;
 		option.schemaName = schemaName;
 		
@@ -266,11 +266,17 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	
 	
 	
-	protected List<S> toActionClassHook(T recordInfo) {
-		//Template method - Default behavior
+	private List<S> toActionClass(T recordInfo) {
 		List<T> recordInfos = new ArrayList<>();
 		recordInfos.add(recordInfo);
 		
+		return toActionClassHook(recordInfos);	
+	}
+	
+	
+	
+	protected List<S> toActionClassHook(List<T> recordInfos) {
+		//Template method - Default behavior		
 		return toActionClass(recordInfos);	
 	}
 	

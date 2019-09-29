@@ -94,6 +94,8 @@ public final class CompInsertSingle implements DaoStmt<CompInfo> {
 			stmt.setString(i++, recordInfo.razaoSocial);
 			DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
+			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
 			
 			return stmt;
 		}		

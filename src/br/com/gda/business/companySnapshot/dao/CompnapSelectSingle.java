@@ -3,11 +3,11 @@ package br.com.gda.business.companySnapshot.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.companySnapshot.info.CompnapInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -101,7 +101,6 @@ public final class CompnapSelectSingle implements DaoStmt<CompnapInfo> {
 	
 	private static class ResultParser implements DaoResultParser<CompnapInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final boolean NOT_NULL = false;
 		
 		@Override public List<CompnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {			
 			List<CompnapInfo> finalResult = new ArrayList<>();
@@ -123,15 +122,10 @@ public final class CompnapSelectSingle implements DaoStmt<CompnapInfo> {
 				dataInfo.inscrEst = stmtResult.getString(CompnapDbTableColumn.COL_INSC_ESTATUAL);
 				dataInfo.inscrMun = stmtResult.getString(CompnapDbTableColumn.COL_INSC_MUNICIPAL);
 				dataInfo.razaoSocial = stmtResult.getString(CompnapDbTableColumn.COL_RAZAO_SOCIAL);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(CompnapDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				
-				stmtResult.getLong(CompnapDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getInt(CompnapDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CompnapDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CompnapDbTableColumn.COL_LAST_CHANGED_BY);				
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, CompnapDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, CompnapDbTableColumn.COL_CREATED_BY);
 				
 				
 				finalResult.add(dataInfo);

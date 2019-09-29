@@ -6,24 +6,24 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class CompVisiMergeToSelect implements InfoMergerVisitor<CompInfo, CompInfo> {
+final class ComparchVisiMergeToSelect implements InfoMergerVisitor<ComparchInfo, ComparchInfo> {
 
-	@Override public CompInfo writeRecord(CompInfo sourceOne, CompInfo sourceTwo) {
+	@Override public ComparchInfo writeRecord(ComparchInfo sourceOne, ComparchInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(CompInfo sourceOne, CompInfo sourceTwo) {
+	private void checkArgument(ComparchInfo sourceOne, ComparchInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private CompInfo merge(CompInfo sourceOne, CompInfo sourceTwo) {
-		CompInfo result = makeClone(sourceOne);		
+	private ComparchInfo merge(ComparchInfo sourceOne, ComparchInfo sourceTwo) {
+		ComparchInfo result = makeClone(sourceOne);		
 		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
 		return result;
@@ -31,9 +31,9 @@ final class CompVisiMergeToSelect implements InfoMergerVisitor<CompInfo, CompInf
 	
 	
 	
-	private CompInfo makeClone(CompInfo recordInfo) {
+	private ComparchInfo makeClone(ComparchInfo recordInfo) {
 		try {
-			return (CompInfo) recordInfo.clone();
+			return (ComparchInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -43,7 +43,7 @@ final class CompVisiMergeToSelect implements InfoMergerVisitor<CompInfo, CompInf
 	
 	
 	
-	@Override public boolean shouldWrite(CompInfo sourceOne, CompInfo sourceTwo) {		
+	@Override public boolean shouldWrite(ComparchInfo sourceOne, ComparchInfo sourceTwo) {		
 		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	

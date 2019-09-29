@@ -16,6 +16,8 @@ public final class CompnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_COUNTRY_LEGAL = DaoDbField.COL_COUNTRY_LEGAL;
+	public static final String COL_CREATED_BY = DaoDbField.COL_CREATED_BY;
+	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;
 	public static final String COL_EMAIL = DaoDbField.COL_EMAIL;
 	public static final String COL_INSC_MUNICIPAL = DaoDbField.COL_INSC_MUNICIPAL;
 	public static final String COL_INSC_ESTATUAL = DaoDbField.COL_INSC_ESTATUAL;
@@ -36,13 +38,13 @@ public final class CompnapDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
-		buildCustomerTable();		
+		buildComanySnapshotTable();		
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildCustomerTable() {
+	private void buildComanySnapshotTable() {
 		final String TABLE_NAME = DaoDbTable.COMP_SNAPHOT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -155,6 +157,22 @@ public final class CompnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_LAST_CHANGED_BY;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_CREATED_BY;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_CREATED_ON;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

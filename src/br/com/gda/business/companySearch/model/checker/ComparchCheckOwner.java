@@ -2,27 +2,27 @@ package br.com.gda.business.companySearch.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.company.info.CompInfo;
+import br.com.gda.business.companySearch.info.ComparchInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.checker.OwnerCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class CompCheckOwner implements ModelChecker<CompInfo> {
+public final class ComparchCheckOwner implements ModelChecker<ComparchInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
 	private ModelChecker<OwnerInfo> checker;
 	
 	
-	public CompCheckOwner(ModelCheckerOption option) {
+	public ComparchCheckOwner(ModelCheckerOption option) {
 		checker = new OwnerCheckExist(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<CompInfo> recordInfos) {
-		for (CompInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<ComparchInfo> recordInfos) {
+		for (ComparchInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == RESULT_FAILED)
 				return RESULT_FAILED;
 		}
@@ -32,7 +32,7 @@ public final class CompCheckOwner implements ModelChecker<CompInfo> {
 
 	
 	
-	@Override public boolean check(CompInfo recordInfo) {
+	@Override public boolean check(ComparchInfo recordInfo) {
 		return checker.check(OwnerInfo.copyFrom(recordInfo));
 	}
 

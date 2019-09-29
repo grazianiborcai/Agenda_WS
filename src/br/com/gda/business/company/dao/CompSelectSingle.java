@@ -51,7 +51,7 @@ public final class CompSelectSingle implements DaoStmt<CompInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new CompWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -123,7 +123,9 @@ public final class CompSelectSingle implements DaoStmt<CompInfo> {
 				dataInfo.razaoSocial = stmtResult.getString(CompDbTableColumn.COL_RAZAO_SOCIAL);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CompDbTableColumn.COL_LAST_CHANGED);
 				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CompDbTableColumn.COL_LAST_CHANGED_BY);
-				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, CompDbTableColumn.COL_COD_SNAPSHOT);				
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, CompDbTableColumn.COL_COD_SNAPSHOT);	
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, CompDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, CompDbTableColumn.COL_CREATED_BY);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

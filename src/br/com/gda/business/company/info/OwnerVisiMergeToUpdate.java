@@ -25,6 +25,8 @@ final class OwnerVisiMergeToUpdate implements InfoMergerVisitor<CompInfo, CompIn
 	private CompInfo merge(CompInfo sourceOne, CompInfo sourceTwo) {
 		CompInfo result = makeClone(sourceTwo);		
 		result.codEntityCateg = sourceOne.codEntityCateg;
+		result.createdBy = sourceOne.createdBy;
+		result.createdOn = sourceOne.createdOn;
 		
 		if (sourceOne.cnpj != null)
 			result.cnpj = sourceOne.cnpj;

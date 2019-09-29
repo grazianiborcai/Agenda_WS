@@ -1,50 +1,40 @@
 package br.com.gda.business.companySearch.info;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class CompInfo extends InfoRecord implements Cloneable {
+public final class ComparchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCompany;
 	public long codSnapshot;
 	public String cnpj;
-	public String inscrMun;
-	public String inscrEst;
-	public String razaoSocial;	
-	public String name;
 	public String codEntityCateg;
-	public String codCountryLegal;
-	public String txtCountryLegal;
 	public String email;
 	public String recordMode;
-	public LocalDateTime lastChanged;
-	public long lastChangedBy;
 	public String username;
 	
 	
-	public CompInfo() {
-		super(CompInfo.class);
+	public ComparchInfo() {
+		super(ComparchInfo.class);
 		
 		codOwner = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		codSnapshot = DefaultValue.number();	
 		recordMode = DefaultValue.recordMode();	
-		lastChangedBy = DefaultValue.number();
 	}
 	
 	
 	
-	public static CompInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, CompInfo.class);
+	public static ComparchInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, ComparchInfo.class);
 	}
 	
 	
 	
-	public static List<CompInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, CompInfo.class);
+	public static List<ComparchInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, ComparchInfo.class);
 	}
 	
 	
@@ -64,9 +54,6 @@ public final class CompInfo extends InfoRecord implements Cloneable {
 		if (cnpj != null)
 			result = result * 31 + cnpj.hashCode();
 		
-		if (name != null)
-			result = result * 31 + name.hashCode();
-		
 		if (codEntityCateg != null)
 			result = result * 31 + codEntityCateg.hashCode();
 		
@@ -80,15 +67,14 @@ public final class CompInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof CompInfo))
+		if (!(o instanceof ComparchInfo))
 			return false;
 		
 		
-		CompInfo obj = (CompInfo) o;		
+		ComparchInfo obj = (ComparchInfo) o;		
 		return (codOwner 	== obj.codOwner 							&& 
 				codCompany 	== obj.codCompany							&&
 				super.isStringEqual(cnpj, obj.cnpj)						&&
-				super.isStringEqual(name, obj.name)						&&
 				super.isStringEqual(codEntityCateg, obj.codEntityCateg)		);
 	}
 }

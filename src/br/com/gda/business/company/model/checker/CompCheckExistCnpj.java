@@ -1,61 +1,45 @@
 package br.com.gda.business.company.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
+import java.util.List;
 
 import br.com.gda.business.company.info.CompInfo;
-import br.com.gda.business.company.model.action.LazyCompSelect;
-import br.com.gda.business.company.model.action.StdCompEnforceCnpj;
+import br.com.gda.business.companySearch.info.ComparchCopier;
+import br.com.gda.business.companySearch.info.ComparchInfo;
+import br.com.gda.business.companySearch.model.action.StdComparchSelect;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateAction_;
+import br.com.gda.model.checker.ModelCheckerTemplateActionV2;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class CompCheckExistCnpj extends ModelCheckerTemplateAction_<CompInfo> {
+public final class CompCheckExistCnpj extends ModelCheckerTemplateActionV2<CompInfo, ComparchInfo> {
 	
 	public CompCheckExistCnpj(ModelCheckerOption option) {
-		super(option);
+		super(option, ComparchInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<CompInfo> buildActionHook(CompInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<CompInfo> option = buildActionOption(recordInfo, conn, schemaName);
-		
-		ActionStd<CompInfo> actionSelect = new StdCompEnforceCnpj(option);
-		actionSelect.addPostAction(new LazyCompSelect(conn, schemaName));
-		return actionSelect;
+	@Override protected ActionStd<ComparchInfo> buildActionHook(DeciTreeOption<ComparchInfo> option) {
+		ActionStd<ComparchInfo> select = new StdComparchSelect(option);
+		return select;
 	}
 	
 	
 	
-	private DeciTreeOption<CompInfo> buildActionOption(CompInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<CompInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
+	@Override protected List<ComparchInfo> toActionClassHook(List<CompInfo> recordInfos) {
+		return ComparchCopier.copyFromComp(recordInfos);	
 	}
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.COMPANY_CNPJ_ALREADY_EXIST)
-			return SystemMessage.COMPANY_CNPJ_ALREADY_EXIST;
-		
-		return SystemMessage.COMPANY_CNPJ_NOT_FOUND;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.COMPANY_CNPJ_ALREADY_EXIST;
+	}	
 	
 	
 	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
-			return SystemCode.COMPANY_CNPJ_ALREADY_EXIST;	
-			
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.COMPANY_CNPJ_NOT_FOUND;
 	}
 }

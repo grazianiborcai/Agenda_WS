@@ -35,14 +35,6 @@ public final class CompWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCompany));
 					break;
 					
-				case CompDbTableColumn.COL_CNPJ :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.cnpj);
-					break;
-					
-				case CompDbTableColumn.COL_COD_ENTITY_CATEG :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codEntityCateg);
-					break;
-					
 				case CompDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;

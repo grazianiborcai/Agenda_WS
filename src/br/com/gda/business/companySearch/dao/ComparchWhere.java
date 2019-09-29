@@ -2,7 +2,7 @@ package br.com.gda.business.companySearch.dao;
 
 import java.util.List;
 
-import br.com.gda.business.company.info.CompInfo;
+import br.com.gda.business.companySearch.info.ComparchInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
@@ -10,40 +10,40 @@ import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class CompWhere implements DaoStmtWhere {	
+public final class ComparchWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public CompWhere(DaoWhereBuilderOption whereOption, String tableName, CompInfo recordInfo) {
+	public ComparchWhere(DaoWhereBuilderOption whereOption, String tableName, ComparchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, CompInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, ComparchInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);
 		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case CompDbTableColumn.COL_COD_OWNER :
+				case ComparchDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case CompDbTableColumn.COL_COD_COMPANY :
+				case ComparchDbTableColumn.COL_COD_COMPANY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCompany));
 					break;
 					
-				case CompDbTableColumn.COL_CNPJ :
+				case ComparchDbTableColumn.COL_CNPJ :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.cnpj);
 					break;
 					
-				case CompDbTableColumn.COL_COD_ENTITY_CATEG :
+				case ComparchDbTableColumn.COL_COD_ENTITY_CATEG :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codEntityCateg);
 					break;
 					
-				case CompDbTableColumn.COL_RECORD_MODE :
+				case ComparchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

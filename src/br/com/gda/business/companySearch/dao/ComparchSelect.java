@@ -1,0 +1,30 @@
+package br.com.gda.business.companySearch.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import br.com.gda.business.companySearch.info.ComparchInfo;
+import br.com.gda.dao.DaoStmtExec;
+import br.com.gda.dao.DaoStmtExecHelper;
+import br.com.gda.dao.DaoStmtExecOption;
+
+public final class ComparchSelect implements DaoStmtExec<ComparchInfo> {
+	private DaoStmtExec<ComparchInfo> helper;
+	
+	
+	public ComparchSelect(List<DaoStmtExecOption<ComparchInfo>> options) {
+		helper = new DaoStmtExecHelper<>(options, ComparchSelectSingle.class, ComparchInfo.class);
+	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		helper.executeStmt();		
+	}
+
+	
+	
+	@Override public List<ComparchInfo> getResultset() {
+		return helper.getResultset();
+	}
+}
