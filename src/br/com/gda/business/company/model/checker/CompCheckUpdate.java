@@ -7,20 +7,24 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CompCheckDelete extends ModelCheckerTemplateSimpleV2<CompInfo> {
-	
-	public CompCheckDelete(ModelCheckerOption option) {
+public final class CompCheckUpdate extends ModelCheckerTemplateSimpleV2<CompInfo> {
+
+	public CompCheckUpdate(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CompInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 		<= 0	||				
-			 recordInfo.codCompany		<= 0 	||
-			 recordInfo.username		== null ||
-			 recordInfo.codLanguage		== null		)			
-			return super.FAILED;		
+		if (   recordInfo.codOwner 			<= 0	
+			|| recordInfo.codCompany 		<= 0	
+			|| recordInfo.username			== null
+			|| recordInfo.codLanguage		== null
+			|| recordInfo.name 				== null
+			|| recordInfo.codCountryLegal	== null )
+			
+			return super.FAILED;
+		
 		
 		return super.SUCCESS;
 	}

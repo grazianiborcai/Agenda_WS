@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.company.info.CompInfo;
+import br.com.gda.business.company.model.decisionTree.RootCompInsert;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyCompEnforceKey extends ActionLazyTemplate<CompInfo, CompInfo> {
+public final class LazyCompRootInsert extends ActionLazyTemplate<CompInfo, CompInfo> {
 	
-	public LazyCompEnforceKey(Connection conn, String schemaName) {
+	public LazyCompRootInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,12 +25,12 @@ public final class LazyCompEnforceKey extends ActionLazyTemplate<CompInfo, CompI
 	
 	
 	@Override protected ActionStd<CompInfo> getInstanceOfActionHook(DeciTreeOption<CompInfo> option) {
-		return new StdCompEnforceKey(option);
+		return new RootCompInsert(option).toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<CompInfo> translateResultHook(DeciResult<CompInfo> result) {		
+	@Override protected DeciResult<CompInfo> translateResultHook(DeciResult<CompInfo> result) {
 		return result;
 	}
 }

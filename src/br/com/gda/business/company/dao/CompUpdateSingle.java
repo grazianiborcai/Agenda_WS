@@ -3,8 +3,6 @@ package br.com.gda.business.company.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.company.info.CompInfo;
@@ -96,36 +94,20 @@ public final class CompUpdateSingle implements DaoStmt<CompInfo> {
 	
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<CompInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CompInfo recordInfo) throws SQLException {	
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
-			
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CompInfo recordInfo) throws SQLException {			
 			int i = 1;
 			stmt.setString(i++, recordInfo.cnpj);
 			stmt.setString(i++, recordInfo.name);
 			stmt.setString(i++, recordInfo.email);	
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setTimestamp(i++, lastChanged);
+			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt.setString(i++, recordInfo.codEntityCateg);
 			stmt.setString(i++, recordInfo.codCountryLegal);
 			stmt.setString(i++, recordInfo.inscrEst);
 			stmt.setString(i++, recordInfo.inscrMun);
 			stmt.setString(i++, recordInfo.razaoSocial);	
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.lastChangedBy) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codSnapshot);
-			}
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
 			
 			return stmt;
 		}		

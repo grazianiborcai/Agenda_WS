@@ -1,4 +1,4 @@
-package br.com.gda.business.company.model.decisionTree;
+package br.com.gda.business.companySearch.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;

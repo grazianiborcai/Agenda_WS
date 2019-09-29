@@ -1,4 +1,4 @@
-package br.com.gda.business.company.info;
+package br.com.gda.business.companySearch.info;
 
 import java.util.List;
 

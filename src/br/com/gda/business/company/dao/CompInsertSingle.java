@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,25 +86,14 @@ public final class CompInsertSingle implements DaoStmt<CompInfo> {
 			stmt.setString(i++, recordInfo.name);
 			stmt.setString(i++, recordInfo.email);			
 			stmt.setString(i++, recordInfo.recordMode);	
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
+			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt.setString(i++, recordInfo.codEntityCateg);
 			stmt.setString(i++, recordInfo.codCountryLegal);
 			stmt.setString(i++, recordInfo.inscrEst);
 			stmt.setString(i++, recordInfo.inscrMun);
 			stmt.setString(i++, recordInfo.razaoSocial);
-			
-			if (DaoFormatter.boxNumber(recordInfo.lastChangedBy) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codSnapshot);
-			}
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
 			
 			return stmt;
 		}		

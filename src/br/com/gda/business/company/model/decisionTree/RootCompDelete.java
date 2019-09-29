@@ -11,6 +11,8 @@ import br.com.gda.business.company.model.action.LazyCompUpdate;
 import br.com.gda.business.company.model.action.StdCompMergeToDelete;
 import br.com.gda.business.company.model.checker.CompCheckDelete;
 import br.com.gda.business.company.model.checker.CompCheckExist;
+import br.com.gda.business.company.model.checker.CompCheckLangu;
+import br.com.gda.business.company.model.checker.CompCheckOwner;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -28,19 +30,35 @@ public final class RootCompDelete extends DeciTreeWriteTemplate<CompInfo> {
 	
 	
 	@Override protected ModelChecker<CompInfo> buildDecisionCheckerHook(DeciTreeOption<CompInfo> option) {
-		final boolean EXIST_ON_DB = true;	
-		
 		List<ModelChecker<CompInfo>> queue = new ArrayList<>();		
 		ModelChecker<CompInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new CompCheckDelete();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CompCheckDelete(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CompCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CompCheckLangu(checkerOption);
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CompCheckExist(checkerOption);
 		queue.add(checker);		
 		

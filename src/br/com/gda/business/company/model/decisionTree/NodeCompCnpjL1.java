@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.company.model.action.StdCompSuccess;
-import br.com.gda.business.company.model.checker.CompCheckCnpjChange;
 import br.com.gda.business.company.model.checker.CompCheckHasCnpj;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -14,29 +13,24 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class NodeCompUpdateCnpjOld extends DeciTreeWriteTemplate<CompInfo> {
+public final class NodeCompCnpjL1 extends DeciTreeWriteTemplate<CompInfo> {
 	
-	public NodeCompUpdateCnpjOld(DeciTreeOption<CompInfo> option) {
+	public NodeCompCnpjL1(DeciTreeOption<CompInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected ModelChecker<CompInfo> buildDecisionCheckerHook(DeciTreeOption<CompInfo> option) {
-		final boolean NOT_CHANGED = true;	
-		
 		List<ModelChecker<CompInfo>> queue = new ArrayList<>();		
-		ModelChecker<CompInfo> checker;	
-		ModelCheckerOption checkerOption;
-		
-		checker = new CompCheckHasCnpj();
-		queue.add(checker);
+		ModelChecker<CompInfo> checker;
+		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = NOT_CHANGED;		
 		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;		
-		checker = new CompCheckCnpjChange(checkerOption);
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new CompCheckHasCnpj(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -45,6 +39,16 @@ public final class NodeCompUpdateCnpjOld extends DeciTreeWriteTemplate<CompInfo>
 	
 	
 	@Override protected List<ActionStd<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
+		List<ActionStd<CompInfo>> actions = new ArrayList<>();
+		
+		ActionStd<CompInfo> nodeCnpjL2 = new NodeCompCnpjL2(option).toAction();		
+		actions.add(nodeCnpjL2);	
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<CompInfo>> buildActionsOnFailedHook(DeciTreeOption<CompInfo> option) {
 		List<ActionStd<CompInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CompInfo> success = new StdCompSuccess(option);

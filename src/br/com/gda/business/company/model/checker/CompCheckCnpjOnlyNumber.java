@@ -4,18 +4,21 @@ import java.sql.Connection;
 
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CompCheckCnpjOnlyNumber extends ModelCheckerTemplateSimple_<CompInfo> {
+public final class CompCheckCnpjOnlyNumber extends ModelCheckerTemplateSimpleV2<CompInfo> {
 
-	public CompCheckCnpjOnlyNumber() {
-		super();
+	public CompCheckCnpjOnlyNumber(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CompInfo recordInfo, Connection conn, String schemaName) {	
+		if (recordInfo.cnpj == null)
+			return super.FAILED;
+		
 		if (recordInfo.cnpj.matches("^\\d+$"))			
 			return super.SUCCESS;		
 		
@@ -24,13 +27,7 @@ public final class CompCheckCnpjOnlyNumber extends ModelCheckerTemplateSimple_<C
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.COMPANY_CNPJ_INVALID_NUMBER;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.COMPANY_CNPJ_INVALID_NUMBER;
 	}
 }

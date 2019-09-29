@@ -1,4 +1,4 @@
-package br.com.gda.business.company.info;
+package br.com.gda.business.companySearch.info;
 
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitor;

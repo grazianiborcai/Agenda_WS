@@ -1,18 +1,18 @@
-package br.com.gda.business.company.model.action;
+package br.com.gda.business.companySearch.model.action;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperEnforce;
+import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdCompEnforceCnpjChange implements ActionStd<CompInfo> {
+public final class StdCompMergeToSelect implements ActionStd<CompInfo> {
 	private ActionStd<CompInfo> actionHelper;	
 	
 	
-	public StdCompEnforceCnpjChange(DeciTreeOption<CompInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCompEnforceCnpjChange());
+	public StdCompMergeToSelect(DeciTreeOption<CompInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCompMergeToSelect(option.conn, option.schemaName));
 	}
 	
 	

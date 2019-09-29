@@ -1,4 +1,4 @@
-package br.com.gda.business.company.dao;
+package br.com.gda.business.companySearch.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

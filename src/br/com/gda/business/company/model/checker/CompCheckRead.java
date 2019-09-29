@@ -4,34 +4,30 @@ import java.sql.Connection;
 
 import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CompCheckRead extends ModelCheckerTemplateSimple_<CompInfo> {
+public final class CompCheckRead extends ModelCheckerTemplateSimpleV2<CompInfo> {
 
-	public CompCheckRead() {
-		super();
+	public CompCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CompInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner  	<= 0 	||
-			 recordInfo.codCompany 	<= 0		)			
-			return FAILED;		
+			 recordInfo.codCompany 	<= 0	||
+			 recordInfo.codLanguage	== null ||
+			 recordInfo.username	== null)			
+			return super.FAILED;		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.COMPANY_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.COMPANY_MANDATORY_FIELD_EMPTY;
 	}
 }

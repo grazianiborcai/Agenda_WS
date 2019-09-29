@@ -14,7 +14,7 @@ import br.com.gda.security.user.model.action.LazyUserEnforceLChanged;
 import br.com.gda.security.user.model.action.LazyUserMergeUsername;
 import br.com.gda.security.user.model.action.LazyUserUpdate;
 import br.com.gda.security.user.model.action.StdUserMergeToUpdate;
-import br.com.gda.security.user.model.checker.UserCheckUpdate;
+import br.com.gda.security.user.model.checker.UserCheckDummy;
 
 public final class NodeUserUpdate extends DeciTreeWriteTemplate<UserInfo> {
 	
@@ -28,7 +28,7 @@ public final class NodeUserUpdate extends DeciTreeWriteTemplate<UserInfo> {
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserInfo> checker;	
 		
-		checker = new UserCheckUpdate();
+		checker = new UserCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
