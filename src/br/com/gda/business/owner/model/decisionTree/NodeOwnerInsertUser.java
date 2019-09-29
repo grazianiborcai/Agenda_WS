@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.action.LazyOwnerEnforceUserCateg;
-import br.com.gda.business.owner.model.action.LazyOwnerInsertUser;
 import br.com.gda.business.owner.model.action.LazyOwnerInsertUserDaemon;
-import br.com.gda.business.owner.model.action.StdOwnerEnforceAuthGroup;
+import br.com.gda.business.owner.model.action.StdOwnerInsertUser;
 import br.com.gda.business.owner.model.checker.OwnerCheckDummy;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -39,16 +37,12 @@ public final class NodeOwnerInsertUser extends DeciTreeWriteTemplate<OwnerInfo> 
 	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> enforceAuthGroup = new StdOwnerEnforceAuthGroup(option);
-		ActionLazy<OwnerInfo> enforceUserCateg = new LazyOwnerEnforceUserCateg(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> insertUser = new LazyOwnerInsertUser(option.conn, option.schemaName);
+		ActionStd<OwnerInfo> insertUser = new StdOwnerInsertUser(option);
 		ActionLazy<OwnerInfo> insertUserDaemon = new LazyOwnerInsertUserDaemon(option.conn, option.schemaName);
 		
-		enforceAuthGroup.addPostAction(enforceUserCateg);	
-		enforceUserCateg.addPostAction(insertUser);	
 		insertUser.addPostAction(insertUserDaemon);
 		
-		actions.add(enforceAuthGroup);	
+		actions.add(insertUser);	
 		return actions;
 	}
 }
