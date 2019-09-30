@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.action.LazyPersonNodeSnapshot;
+import br.com.gda.business.person.model.action.LazyPersonEnforceLChanged;
 import br.com.gda.business.person.model.action.LazyPersonMergeUsername;
-import br.com.gda.business.person.model.action.LazyPersonUpdate;
-import br.com.gda.business.person.model.action.StdPersonEnforceLChanged;
-import br.com.gda.business.person.model.checker.PersonCheckEntityCateg;
+import br.com.gda.business.person.model.action.LazyPersonNodeCpfL1;
+import br.com.gda.business.person.model.action.LazyPersonNodeEmailL1;
+import br.com.gda.business.person.model.action.StdPersonMergeToUpdate;
 import br.com.gda.business.person.model.checker.PersonCheckExist;
 import br.com.gda.business.person.model.checker.PersonCheckGender;
-import br.com.gda.business.person.model.checker.PersonCheckWrite;
-import br.com.gda.business.person.model.checker.PersonCheckKey;
 import br.com.gda.business.person.model.checker.PersonCheckLangu;
 import br.com.gda.business.person.model.checker.PersonCheckOwner;
+import br.com.gda.business.person.model.checker.PersonCheckUpdate;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -32,53 +32,42 @@ public final class RootPersonUpdate extends DeciTreeWriteTemplate<PersonInfo> {
 	
 	
 	@Override protected ModelChecker<PersonInfo> buildDecisionCheckerHook(DeciTreeOption<PersonInfo> option) {
-		final boolean EXIST_ON_DB = true;	
-		final boolean KEY_NOT_NULL = true;		
-		
 		List<ModelChecker<PersonInfo>> queue = new ArrayList<>();		
 		ModelChecker<PersonInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new PersonCheckWrite();
-		queue.add(checker);
-		
 		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = KEY_NOT_NULL;
-		checker = new PersonCheckKey(checkerOption);
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new PersonCheckUpdate(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new PersonCheckLangu(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new PersonCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new PersonCheckGender(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new PersonCheckEntityCateg(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new PersonCheckExist(checkerOption);
 		queue.add(checker);	
 			
@@ -90,20 +79,20 @@ public final class RootPersonUpdate extends DeciTreeWriteTemplate<PersonInfo> {
 	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> nodeL1 = new NodePersonUpdateL1(option).toAction();	
-		ActionStd<PersonInfo> nodeL2 = new NodePersonUpdateL2(option).toAction();	
-		ActionStd<PersonInfo> enforceLChanged = new StdPersonEnforceLChanged(option);
+		ActionStd<PersonInfo> mergeToUpdate = new StdPersonMergeToUpdate(option);	
+		ActionLazy<PersonInfo> cpf = new LazyPersonNodeCpfL1(option.conn, option.schemaName);	
+		ActionLazy<PersonInfo> email = new LazyPersonNodeEmailL1(option.conn, option.schemaName);	
+		ActionLazy<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
-		ActionLazy<PersonInfo> update = new LazyPersonUpdate(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> snapshot = new LazyPersonNodeSnapshot(option.conn, option.schemaName);
 		
+		mergeToUpdate.addPostAction(cpf);
+		cpf.addPostAction(email);
+		email.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(update);
-		update.addPostAction(snapshot);
+		enforceLChangedBy.addPostAction(snapshot);
 		
-		actions.add(nodeL1);	
-		actions.add(nodeL2);
-		actions.add(enforceLChanged);
+		actions.add(mergeToUpdate);
 		return actions;
 	}
 }

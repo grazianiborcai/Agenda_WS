@@ -4,18 +4,22 @@ import java.sql.Connection;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PersonCheckCpfLength extends ModelCheckerTemplateSimple_<PersonInfo> {
+public final class PersonCheckCpfLength extends ModelCheckerTemplateSimpleV2<PersonInfo> {
 
-	public PersonCheckCpfLength() {
-		super();
+	public PersonCheckCpfLength(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PersonInfo recordInfo, Connection conn, String schemaName) {	
+		if (recordInfo.cpf == null)			
+			return super.FAILED;	
+		
+		
 		if (recordInfo.cpf.length() != 11)			
 			return super.FAILED;
 		
@@ -25,13 +29,7 @@ public final class PersonCheckCpfLength extends ModelCheckerTemplateSimple_<Pers
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PERSON_CPF_INVALID_LENGTH;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PERSON_CPF_INVALID_LENGTH;
 	}
 }

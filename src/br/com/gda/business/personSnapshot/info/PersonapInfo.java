@@ -20,6 +20,8 @@ public final class PersonapInfo extends InfoRecord implements Cloneable {
 	public String email;
 	public String recordMode;
 	public LocalDateTime lastChanged;
+	public LocalDateTime createdOn;
+	public long createdBy;	
 	public long lastChangedBy;
 	
 	
@@ -32,6 +34,7 @@ public final class PersonapInfo extends InfoRecord implements Cloneable {
 		codGender = DefaultValue.gender();
 		recordMode = DefaultValue.recordMode();		
 		lastChangedBy = DefaultValue.number();
+		createdBy = DefaultValue.number();
 	}
 	
 	

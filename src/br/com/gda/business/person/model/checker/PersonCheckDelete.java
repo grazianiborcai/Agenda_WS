@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PersonCheckDelete extends ModelCheckerTemplateSimple_<PersonInfo> {
+public final class PersonCheckDelete extends ModelCheckerTemplateSimpleV2<PersonInfo> {
 	
-	public PersonCheckDelete() {
-		super();
+	public PersonCheckDelete(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -27,13 +27,7 @@ public final class PersonCheckDelete extends ModelCheckerTemplateSimple_<PersonI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.PERSON_MANDATORY_FIELD_EMPTY;
 	}
 }

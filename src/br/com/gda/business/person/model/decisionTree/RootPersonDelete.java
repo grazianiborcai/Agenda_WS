@@ -29,26 +29,28 @@ public final class RootPersonDelete extends DeciTreeWriteTemplate<PersonInfo> {
 	
 	
 	@Override protected ModelChecker<PersonInfo> buildDecisionCheckerHook(DeciTreeOption<PersonInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<PersonInfo>> queue = new ArrayList<>();		
 		ModelChecker<PersonInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new PersonCheckDelete();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new PersonCheckDelete(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new PersonCheckLangu(checkerOption);
 		queue.add(checker);	
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new PersonCheckExist(checkerOption);
 		queue.add(checker);		
 		

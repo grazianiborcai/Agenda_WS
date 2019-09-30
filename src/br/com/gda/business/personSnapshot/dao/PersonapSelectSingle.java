@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.personSnapshot.info.PersonapInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -121,6 +122,8 @@ public final class PersonapSelectSingle implements DaoStmt<PersonapInfo> {
 				dataInfo.email = stmtResult.getString(PersonapDbTableColumn.COL_EMAIL);						
 				dataInfo.recordMode = stmtResult.getString(PersonapDbTableColumn.COL_RECORD_MODE);
 				dataInfo.codEntityCateg = stmtResult.getString(PersonapDbTableColumn.COL_COD_ENTITY_CATEG);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PersonapDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, PersonapDbTableColumn.COL_CREATED_BY);
 				
 				stmtResult.getLong(PersonapDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)

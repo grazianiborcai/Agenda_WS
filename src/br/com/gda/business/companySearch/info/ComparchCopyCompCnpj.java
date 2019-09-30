@@ -16,6 +16,7 @@ final class ComparchCopyCompCnpj extends InfoCopierTemplate<ComparchInfo, CompIn
 		ComparchInfo result = new ComparchInfo();
 		result.codOwner = source.codOwner;
 		result.cnpj = source.cnpj;
+		result.codEntityCateg = source.codEntityCateg;
 		result.username = source.username;
 		result.codLanguage = source.codLanguage;
 		return result;

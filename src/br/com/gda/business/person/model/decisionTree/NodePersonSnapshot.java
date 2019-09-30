@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.person.model.action.LazyPersonUpdate;
 import br.com.gda.business.person.model.action.StdPersonInsertPersonap;
-import br.com.gda.business.person.model.checker.PersonCheckRead;
+import br.com.gda.business.person.model.checker.PersonCheckDummy;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -26,7 +26,7 @@ public final class NodePersonSnapshot extends DeciTreeWriteTemplate<PersonInfo> 
 		List<ModelChecker<PersonInfo>> queue = new ArrayList<>();		
 		ModelChecker<PersonInfo> checker;	
 		
-		checker = new PersonCheckRead();
+		checker = new PersonCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

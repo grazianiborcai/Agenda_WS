@@ -744,4 +744,7 @@ public final class SystemCode {
 	
 	//Comapny Search
 	public static final int COMPANY_SEARCH_MANDATORY_FIELD_EMPTY 		= 6650;
+	
+	//Person Search
+	public static final int PERSON_SEARCH_MANDATORY_FIELD_EMPTY			= 6700;
 }

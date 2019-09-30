@@ -51,6 +51,7 @@ import br.com.gda.business.ownerStore.dao.OwntoreDbTableColumn;
 import br.com.gda.business.person.dao.PersonDbTableColumn;
 import br.com.gda.business.personCustomer.dao.PersonCusDbTableColumn;
 import br.com.gda.business.personList.dao.PersolisDbTableColumn;
+import br.com.gda.business.personSearch.dao.PerarchDbTableColumn;
 import br.com.gda.business.personSnapshot.dao.PersonapDbTableColumn;
 import br.com.gda.business.personUser_.dao.PersonUserDbTableColumn;
 import br.com.gda.business.phone.dao.PhoneDbTableColumn;
@@ -206,6 +207,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PhonarchDbTableColumn());
 		addTable(new SotarchDbTableColumn());
 		addTable(new ComparchDbTableColumn());
+		addTable(new PerarchDbTableColumn());
 	}
 	
 	

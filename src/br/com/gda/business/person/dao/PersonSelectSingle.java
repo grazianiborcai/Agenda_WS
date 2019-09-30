@@ -51,7 +51,7 @@ public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new PersonWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -122,6 +122,8 @@ public final class PersonSelectSingle implements DaoStmt<PersonInfo> {
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PersonDbTableColumn.COL_LAST_CHANGED);
 				dataInfo.lastChangedBy = DaoFormatter.sqlToInt(stmtResult, PersonDbTableColumn.COL_LAST_CHANGED_BY);
 				dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, PersonDbTableColumn.COL_BIRTH_DATE);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PersonDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, PersonDbTableColumn.COL_CREATED_BY);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

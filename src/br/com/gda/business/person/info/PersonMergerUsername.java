@@ -2,6 +2,7 @@ package br.com.gda.business.person.info;
 
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitor;
+import br.com.gda.info.InfoUniquifier;
 import br.com.gda.security.username.info.UsernameInfo;
 
 final class PersonMergerUsername extends InfoMergerTemplate<PersonInfo, UsernameInfo> {
@@ -9,4 +10,10 @@ final class PersonMergerUsername extends InfoMergerTemplate<PersonInfo, Username
 	@Override protected InfoMergerVisitor<PersonInfo, UsernameInfo> getVisitorHook() {
 		return new PersonVisiMergeUsername();
 	}
+	
+	
+	
+	@Override protected InfoUniquifier<PersonInfo> getUniquifierHook() {
+		return new PersonUniquifier();
+	}	
 }

@@ -112,6 +112,9 @@ public final class PersonapInsertSingle implements DaoStmt<PersonapInfo> {
 				stmt.setLong(i++, recordInfo.lastChangedBy);
 			}
 			
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
+			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+			
 			return stmt;
 		}		
 	}

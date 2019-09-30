@@ -107,6 +107,8 @@ public final class PersonUpdateSingle implements DaoStmt<PersonInfo> {
 			stmt.setString(i++, recordInfo.codEntityCateg);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+			DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
+			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
 			
 			return stmt;
 		}		

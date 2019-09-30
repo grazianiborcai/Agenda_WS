@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PersonCheckCpfSequence extends ModelCheckerTemplateSimple_<PersonInfo> {
+public final class PersonCheckCpfSequence extends ModelCheckerTemplateSimpleV2<PersonInfo> {
 
-	public PersonCheckCpfSequence() {
-		super();
+	public PersonCheckCpfSequence(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -40,13 +40,7 @@ public final class PersonCheckCpfSequence extends ModelCheckerTemplateSimple_<Pe
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PERSON_CPF_INVALID_SEQUENCE;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PERSON_CPF_INVALID_SEQUENCE;
 	}
 }
