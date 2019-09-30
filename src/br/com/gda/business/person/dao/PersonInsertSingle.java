@@ -85,15 +85,15 @@ public final class PersonInsertSingle implements DaoStmt<PersonInfo> {
 			stmt.setString(i++, recordInfo.cpf);
 			stmt.setString(i++, recordInfo.name);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codGender);
-			DaoFormatter.localDateToStmt(stmt, i++, recordInfo.birthDate);
+			stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.birthDate);
 			stmt.setString(i++, recordInfo.email);			
 			stmt.setString(i++, recordInfo.recordMode);		
-			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt.setString(i++, recordInfo.codEntityCateg);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
-			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
 			
 			return stmt;
 		}		

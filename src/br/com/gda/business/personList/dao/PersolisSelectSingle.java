@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.personList.info.PersolisInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -99,8 +100,6 @@ public final class PersolisSelectSingle implements DaoStmt<PersolisInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<PersolisInfo> {
-		private final boolean NOT_NULL = false;
-		
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<PersolisInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -115,10 +114,7 @@ public final class PersolisSelectSingle implements DaoStmt<PersolisInfo> {
 				dataInfo.codPerson = stmtResult.getLong(PersolisDbTableColumn.COL_COD_PERSON);
 				dataInfo.name = stmtResult.getString(PersolisDbTableColumn.COL_NAME);							
 				dataInfo.recordMode = stmtResult.getString(PersolisDbTableColumn.COL_RECORD_MODE);	
-				
-				stmtResult.getLong(PersolisDbTableColumn.COL_COD_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codSnapshot = stmtResult.getInt(PersolisDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PersolisDbTableColumn.COL_COD_SNAPSHOT);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -1,10 +1,8 @@
 package br.com.gda.business.personSnapshot.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,9 +99,7 @@ public final class PersonapSelectSingle implements DaoStmt<PersonapInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<PersonapInfo> {
-		private final boolean NOT_NULL = false;
-		
+	private static class ResultParser implements DaoResultParser<PersonapInfo> {		
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<PersonapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -124,22 +120,10 @@ public final class PersonapSelectSingle implements DaoStmt<PersonapInfo> {
 				dataInfo.codEntityCateg = stmtResult.getString(PersonapDbTableColumn.COL_COD_ENTITY_CATEG);
 				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PersonapDbTableColumn.COL_CREATED_ON);
 				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, PersonapDbTableColumn.COL_CREATED_BY);
-				
-				stmtResult.getLong(PersonapDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getInt(PersonapDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				stmtResult.getInt(PersonapDbTableColumn.COL_COD_GENDER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codGender = stmtResult.getInt(PersonapDbTableColumn.COL_COD_GENDER);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(PersonapDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
-				
-				Date tempDate = stmtResult.getDate(PersonapDbTableColumn.COL_COD_BIRTH_DATE);
-				if (tempDate != null)
-					dataInfo.birthDate = tempDate.toLocalDate();
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, PersonapDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.codGender = DaoFormatter.sqlToInt(stmtResult, PersonapDbTableColumn.COL_COD_GENDER);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PersonapDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, PersonapDbTableColumn.COL_COD_BIRTH_DATE);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
