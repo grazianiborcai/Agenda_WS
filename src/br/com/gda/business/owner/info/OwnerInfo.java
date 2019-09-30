@@ -18,7 +18,6 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public long codPerson;
 	public long codCompany;
 	public long codUser;
-	public String codEntityCateg;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public LocalDateTime createdOn;

@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOwnerEnforceCompKey extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
+public final class LazyOwnerEnforcePersonKey_ extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
 	
-	public LazyOwnerEnforceCompKey(Connection conn, String schemaName) {
+	public LazyOwnerEnforcePersonKey_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOwnerEnforceCompKey extends ActionLazyTemplate<OwnerInfo,
 	
 	
 	@Override protected ActionStd<OwnerInfo> getInstanceOfActionHook(DeciTreeOption<OwnerInfo> option) {
-		return new StdOwnerEnforceCompKey(option);
+		return new StdOwnerEnforcePersonKey(option);
 	}
 	
 	

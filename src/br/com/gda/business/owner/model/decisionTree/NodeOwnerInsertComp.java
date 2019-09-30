@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.owner.model.action.LazyOwnerEnforceCompKey;
 import br.com.gda.business.owner.model.action.LazyOwnerInsertComp;
-import br.com.gda.business.owner.model.action.StdOwnerEnforceEntityCateg;
+import br.com.gda.business.owner.model.action.StdOwnerEnforceCompKey;
 import br.com.gda.business.owner.model.checker.OwnerCheckHasComp;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -46,14 +45,12 @@ public final class NodeOwnerInsertComp extends DeciTreeWriteTemplate<OwnerInfo> 
 	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
 		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> enforceEntityCateg = new StdOwnerEnforceEntityCateg(option);
-		ActionLazy<OwnerInfo> enforceCompKey = new LazyOwnerEnforceCompKey(option.conn, option.schemaName);
+		ActionStd<OwnerInfo> enforceCompKey = new StdOwnerEnforceCompKey(option);
 		ActionLazy<OwnerInfo> insertComp = new LazyOwnerInsertComp(option.conn, option.schemaName);
 		
-		enforceEntityCateg.addPostAction(enforceCompKey);
 		enforceCompKey.addPostAction(insertComp);
 		
-		actions.add(enforceEntityCateg);	
+		actions.add(enforceCompKey);	
 		return actions;
 	}
 }
