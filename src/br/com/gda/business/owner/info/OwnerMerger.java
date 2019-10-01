@@ -7,11 +7,26 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.file.fileImage.info.FimgInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.user.info.UserInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class OwnerMerger {
+	public static OwnerInfo mergeWithFimg(FimgInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, FimgInfo> merger = new OwnerMergerFimg();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwnerInfo> mergeWithFimg(List<FimgInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, FimgInfo> merger = new OwnerMergerFimg();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static OwnerInfo mergeWithOwnerap(OwnerapInfo sourceOne, OwnerInfo sourceTwo) {
 		InfoMerger<OwnerInfo, OwnerapInfo> merger = new OwnerMergerOwnerap();		
 		return merger.merge(sourceOne, sourceTwo);
