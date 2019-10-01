@@ -111,6 +111,7 @@ public final class FimgSelectSingle implements DaoStmt<FimgInfo> {
 			do {
 				FimgInfo dataInfo = new FimgInfo();
 				dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_OWNER);
+				dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_OWNER_REF);
 				dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_FILE_IMG);
 				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_MATERIAL);
 				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_PERSON);

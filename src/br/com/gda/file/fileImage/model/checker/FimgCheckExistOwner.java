@@ -2,22 +2,23 @@ package br.com.gda.file.fileImage.model.checker;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.file.fileImage.info.FimgInfo;
-import br.com.gda.file.fileImage.model.action.StdFimgSelect;
+import br.com.gda.file.fileImageSearch.info.FimarchInfo;
+import br.com.gda.file.fileImageSearch.model.decisionTree.RootFimarchSelectOwner;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateActionV2;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class FimgCheckExist extends ModelCheckerTemplateActionV2<FimgInfo, FimgInfo> {	
+public final class FimgCheckExistOwner extends ModelCheckerTemplateActionV2<FimgInfo, FimarchInfo> {	
 	
-	public FimgCheckExist(ModelCheckerOption option) {
-		super(option, FimgInfo.class);
+	public FimgCheckExistOwner(ModelCheckerOption option) {
+		super(option, FimarchInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<FimgInfo> buildActionHook(DeciTreeOption<FimgInfo> option) {
-		ActionStd<FimgInfo> select = new StdFimgSelect(option);
+	@Override protected ActionStd<FimarchInfo> buildActionHook(DeciTreeOption<FimarchInfo> option) {
+		ActionStd<FimarchInfo> select = new RootFimarchSelectOwner(option).toAction();
 		return select;
 	}
 	

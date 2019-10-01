@@ -23,20 +23,21 @@ public final class RootFimgDelete extends DeciTreeWriteTemplate<FimgInfo> {
 	
 	
 	@Override protected ModelChecker<FimgInfo> buildDecisionCheckerHook(DeciTreeOption<FimgInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<FimgInfo>> queue = new ArrayList<>();		
 		ModelChecker<FimgInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
-		checker = new FimgCheckWrite();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new FimgCheckWrite(checkerOption);
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new FimgCheckExist(checkerOption);
 		queue.add(checker);	
 

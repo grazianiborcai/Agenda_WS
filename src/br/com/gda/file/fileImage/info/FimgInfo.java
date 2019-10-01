@@ -18,6 +18,7 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 	public long codPerson;
 	public long codMat;
 	public long codCompany;
+	public long codOwnerRef;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -34,6 +35,7 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codCompany = DefaultValue.number();		
+		codOwnerRef = DefaultValue.number();	
 		createdOn = DefaultValue.object();
 		lastChanged = DefaultValue.object();
 		lastChangedBy = DefaultValue.number();	

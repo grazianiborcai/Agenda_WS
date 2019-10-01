@@ -90,6 +90,7 @@ public final class FimgInsertSingle implements DaoStmt<FimgInfo> {
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
 			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);	
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRef);	
 			
 			return stmt;
 		}		

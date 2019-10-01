@@ -7,9 +7,9 @@ import br.com.gda.file.fileImage.info.FimgInfo;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FimgCheckWrite extends ModelCheckerTemplateSimpleV2<FimgInfo> {
+public final class FimgCheckUpdate extends ModelCheckerTemplateSimpleV2<FimgInfo> {
 
-	public FimgCheckWrite(ModelCheckerOption option) {
+	public FimgCheckUpdate(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -17,6 +17,7 @@ public final class FimgCheckWrite extends ModelCheckerTemplateSimpleV2<FimgInfo>
 	
 	@Override protected boolean checkHook(FimgInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 			<= 0 	
+			|| recordInfo.codFileImg		<= 0	
 			|| recordInfo.fileImgData		== null
 			|| recordInfo.codLanguage		== null
 			|| recordInfo.username			== null	)

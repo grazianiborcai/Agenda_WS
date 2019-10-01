@@ -5,17 +5,16 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.file.fileImage.info.FimgInfo;
-import br.com.gda.file.fileImage.model.action.LazyFimgEnforceCreatedBy;
-import br.com.gda.file.fileImage.model.action.LazyFimgEnforceCreatedOn;
 import br.com.gda.file.fileImage.model.action.LazyFimgEnforceFilename;
-import br.com.gda.file.fileImage.model.action.LazyFimgInsert;
+import br.com.gda.file.fileImage.model.action.LazyFimgEnforceLChanged;
 import br.com.gda.file.fileImage.model.action.LazyFimgMergeUsername;
 import br.com.gda.file.fileImage.model.action.LazyFimgNodeWrite;
 import br.com.gda.file.fileImage.model.action.LazyFimgRootSelect;
-import br.com.gda.file.fileImage.model.action.StdFimgEnforceLChanged;
+import br.com.gda.file.fileImage.model.action.LazyFimgUpdate;
+import br.com.gda.file.fileImage.model.action.StdFimgMergeToUpdate;
+import br.com.gda.file.fileImage.model.checker.FimgCheckExist;
 import br.com.gda.file.fileImage.model.checker.FimgCheckLangu;
-import br.com.gda.file.fileImage.model.checker.FimgCheckOwner;
-import br.com.gda.file.fileImage.model.checker.FimgCheckWrite;
+import br.com.gda.file.fileImage.model.checker.FimgCheckUpdate;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -23,9 +22,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootFimgInsert extends DeciTreeWriteTemplate<FimgInfo> {
+public final class RootFimgUpdate extends DeciTreeWriteTemplate<FimgInfo> {
 	
-	public RootFimgInsert(DeciTreeOption<FimgInfo> option) {
+	public RootFimgUpdate(DeciTreeOption<FimgInfo> option) {
 		super(option);
 	}
 	
@@ -40,14 +39,7 @@ public final class RootFimgInsert extends DeciTreeWriteTemplate<FimgInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgCheckWrite(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new FimgCheckOwner(checkerOption);
+		checker = new FimgCheckUpdate(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -55,6 +47,13 @@ public final class RootFimgInsert extends DeciTreeWriteTemplate<FimgInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new FimgCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new FimgCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -65,24 +64,22 @@ public final class RootFimgInsert extends DeciTreeWriteTemplate<FimgInfo> {
 	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
 		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> enforceLChanged = new StdFimgEnforceLChanged(option);	
-		ActionLazy<FimgInfo> enforceCreatedOn = new LazyFimgEnforceCreatedOn(option.conn, option.schemaName);
+		ActionStd<FimgInfo> mergeToUpdate = new StdFimgMergeToUpdate(option);	
+		ActionLazy<FimgInfo> enforceLChanged = new LazyFimgEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<FimgInfo> enforceLChangedBy = new LazyFimgMergeUsername(option.conn, option.schemaName);
-		ActionLazy<FimgInfo> enforceCreatedBy = new LazyFimgEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> enforceFilename = new LazyFimgEnforceFilename(option.conn, option.schemaName);
-		ActionLazy<FimgInfo> insert = new LazyFimgInsert(option.conn, option.schemaName);	
+		ActionLazy<FimgInfo> update = new LazyFimgUpdate(option.conn, option.schemaName);	
 		ActionLazy<FimgInfo> nodeWrite = new LazyFimgNodeWrite(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(enforceCreatedOn);
-		enforceCreatedOn.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(enforceCreatedBy);
-		enforceCreatedBy.addPostAction(enforceFilename);
-		enforceFilename.addPostAction(insert);
-		insert.addPostAction(nodeWrite);
+		mergeToUpdate.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(enforceFilename);
+		enforceFilename.addPostAction(update);
+		update.addPostAction(nodeWrite);
 		nodeWrite.addPostAction(select);
 		
-		actions.add(enforceLChanged);		
+		actions.add(mergeToUpdate);		
 		return actions;
 	}
 }

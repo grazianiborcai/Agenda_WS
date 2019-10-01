@@ -3,14 +3,14 @@ package br.com.gda.file.fileImage.model.checker;
 import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
 import br.com.gda.file.fileImage.info.FimgInfo;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FimgCheckRead extends ModelCheckerTemplateSimple_<FimgInfo> {
+public final class FimgCheckRead extends ModelCheckerTemplateSimpleV2<FimgInfo> {
 
-	public FimgCheckRead() {
-		super();
+	public FimgCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -28,13 +28,7 @@ public final class FimgCheckRead extends ModelCheckerTemplateSimple_<FimgInfo> {
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.FILE_IMG_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.FILE_IMG_MANDATORY_FIELD_EMPTY;
 	}
 }

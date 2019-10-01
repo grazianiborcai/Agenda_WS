@@ -691,8 +691,10 @@ public final class SystemCode {
 	// Schedule Week
 	public static final int SCHEDULE_WEEK_FIELD_EMPTY					= 5950;
 	
-	// File ImageM
+	// File Image
 	public static final int FILE_IMG_MANDATORY_FIELD_EMPTY 				= 6001;
+	public static final int FILE_IMG_ALREADY_EXIST						= 6002;
+	public static final int FILE_IMG_NOT_FOUND							= 6003;
 	
 	// File Path
 	public static final int FILE_PATH_MANDATORY_FIELD_EMPTY 			= 6051;
@@ -747,4 +749,7 @@ public final class SystemCode {
 	
 	//Person Search
 	public static final int PERSON_SEARCH_MANDATORY_FIELD_EMPTY			= 6700;
+	
+	// File Image Searcg
+	public static final int FILE_IMG_SEARCH_MANDATORY_FIELD_EMPTY 		= 6750;
 }
