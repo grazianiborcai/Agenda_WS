@@ -1,58 +1,45 @@
-package br.com.gda.file.fileImage.info;
+package br.com.gda.file.fileImageList.info;
 
-import java.io.InputStream;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class FimgInfo extends InfoRecord implements Cloneable {
+public final class FimistInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codFileImg;
 	public String fileImgUri;
-	public String fileImgName;
 	public String fileImgExtension;
-	public String fileImgPath;
-	public transient InputStream fileImgData;
 	public long codPerson;
 	public long codMat;
 	public long codCompany;
 	public long codOwnerRef;
-	public LocalDateTime createdOn;
-	public LocalDateTime lastChanged;
-	public long lastChangedBy;
-	public long createdBy;
 	public String recordMode;
 	public String username;
 	
 	
-	public FimgInfo() {
-		super(FimgInfo.class);
+	public FimistInfo() {
+		super(FimistInfo.class);
 		
 		codOwner = DefaultValue.number();
 		codFileImg = DefaultValue.number();		
 		codPerson = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codCompany = DefaultValue.number();		
-		codOwnerRef = DefaultValue.number();	
-		createdOn = DefaultValue.object();
-		lastChanged = DefaultValue.object();
-		lastChangedBy = DefaultValue.number();	
-		createdBy = DefaultValue.number();	
+		codOwnerRef = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}
 	
 	
 	
-	public static FimgInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, FimgInfo.class);
+	public static FimistInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, FimistInfo.class);
 	}
 	
 	
 	
-	public static List<FimgInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, FimgInfo.class);
+	public static List<FimistInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, FimistInfo.class);
 	}
 	
 	
@@ -69,9 +56,6 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codOwner   ^ (codOwner   >>> 32));
 		result = result * 31 + (int) (codFileImg ^ (codFileImg >>> 32));
 		
-		if (fileImgName != null)
-			result = result * 31 + fileImgName.hashCode();
-		
 		if (fileImgExtension != null)
 			result = result * 31 + fileImgExtension.hashCode();
 		
@@ -85,14 +69,13 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof FimgInfo))
+		if (!(o instanceof FimistInfo))
 			return false;
 		
 		
-		FimgInfo obj = (FimgInfo) o;		
+		FimistInfo obj = (FimistInfo) o;		
 		return (codOwner    == obj.codOwner   && 
 				codFileImg 	== obj.codFileImg &&
-				super.isStringEqual(fileImgName, obj.fileImgName) &&
 				super.isStringEqual(fileImgExtension, obj.fileImgExtension));
 	}	
 }

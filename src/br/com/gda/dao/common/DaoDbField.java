@@ -102,11 +102,13 @@ public final class DaoDbField {
 	public static final String COL_FILE_IMG_EXTENSION = "file_img_extension";
 	public static final String COL_FILE_IMG_NAME = "file_img_name";
 	public static final String COL_FILE_PATH = "file_path";
+	public static final String COL_FILE_URI = "file_img_uri";
 	public static final String COL_FULL_NUMBER = "full_number";
 	public static final String COL_GRAND_TOTAL = "grandTotal";
 	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
 	public static final String COL_ID_PAYMENT_PARTNER = "id_payment_partner";
 	public static final String COL_ID_REFUND_PARTNER = "id_refund_partner";
+	public static final String COL_IMG_FILE_PATH = "file_img_path";
 	public static final String COL_IS_SYSTEM_RECEIVER = "is_system_receiver";
 	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";
 	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";

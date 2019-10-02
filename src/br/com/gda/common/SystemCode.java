@@ -750,6 +750,9 @@ public final class SystemCode {
 	//Person Search
 	public static final int PERSON_SEARCH_MANDATORY_FIELD_EMPTY			= 6700;
 	
-	// File Image Searcg
+	// File Image Search
 	public static final int FILE_IMG_SEARCH_MANDATORY_FIELD_EMPTY 		= 6750;
+	
+	// File Image List
+	public static final int FILE_IMG_LIST_MANDATORY_FIELD_EMPTY 		= 6800;
 }

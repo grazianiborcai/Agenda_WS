@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdFimgEnforceFullname implements ActionStd<FimgInfo> {
+public final class StdFimgEnforceUri implements ActionStd<FimgInfo> {
 	private ActionStd<FimgInfo> actionHelper;	
 	
 	
-	public StdFimgEnforceFullname(DeciTreeOption<FimgInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiFimgEnforceFullname());
+	public StdFimgEnforceUri(DeciTreeOption<FimgInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiFimgEnforceUri());
 	}
 	
 	

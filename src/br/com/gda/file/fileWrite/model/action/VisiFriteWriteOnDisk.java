@@ -44,7 +44,7 @@ final class VisiFriteWriteOnDisk implements ActionVisitor<FriteInfo> {
 	
 	
 	private void writeOnDisk(FriteInfo recordInfo) throws IOException {
-		File file = new File(recordInfo.fileFullName);		
+		File file = new File(recordInfo.fileUri);		
 		OutputStream out = new FileOutputStream(file); 
 		
 		int read = 0;

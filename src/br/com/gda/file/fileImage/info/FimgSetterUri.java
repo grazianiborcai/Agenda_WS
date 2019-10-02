@@ -6,12 +6,12 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class FimgSetterFullname implements InfoSetter<FimgInfo> {
+public final class FimgSetterUri implements InfoSetter<FimgInfo> {
 	
 	public FimgInfo setAttr(FimgInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		recordInfo.fileImgFullName = recordInfo.fileImgPath + recordInfo.fileImgName + "." + recordInfo.fileImgExtension;
+		recordInfo.fileImgUri = recordInfo.fileImgPath + recordInfo.fileImgName + "." + recordInfo.fileImgExtension;
 		return recordInfo;
 	}
 	

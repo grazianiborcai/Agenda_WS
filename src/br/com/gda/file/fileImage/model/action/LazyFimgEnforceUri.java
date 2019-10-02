@@ -5,14 +5,13 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.file.fileImage.info.FimgInfo;
-import br.com.gda.file.fileImage.model.decisionTree.NodeFimgWrite;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyFimgNodeWrite extends ActionLazyTemplate<FimgInfo, FimgInfo> {
-
-	public LazyFimgNodeWrite(Connection conn, String schemaName) {
+public final class LazyFimgEnforceUri extends ActionLazyTemplate<FimgInfo, FimgInfo> {
+	
+	public LazyFimgEnforceUri(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyFimgNodeWrite extends ActionLazyTemplate<FimgInfo, FimgIn
 	
 	
 	@Override protected ActionStd<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
-		return new NodeFimgWrite(option).toAction();
+		return new StdFimgEnforceUri(option);
 	}
 	
 	

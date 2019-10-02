@@ -123,6 +123,8 @@ public final class FimgSelectSingle implements DaoStmt<FimgInfo> {
 				dataInfo.fileImgExtension = stmtResult.getString(FimgDbTableColumn.COL_FILE_IMG_EXTENSION);
 				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_CREATED_BY);
 				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.fileImgUri = stmtResult.getString(FimgDbTableColumn.COL_FILE_URI);
+				dataInfo.fileImgPath = stmtResult.getString(FimgDbTableColumn.COL_IMG_FILE_PATH);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.info.InfoRecord;
 
 public final class FriteInfo extends InfoRecord implements Cloneable {
-	public String fileFullName;
+	public String fileUri;
 	public InputStream fileData;
 	
 	
@@ -37,8 +37,8 @@ public final class FriteInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		if (fileFullName != null)
-			result = result * 31 + fileFullName.hashCode();
+		if (fileUri != null)
+			result = result * 31 + fileUri.hashCode();
 		
 		return result;
 	}
@@ -55,6 +55,6 @@ public final class FriteInfo extends InfoRecord implements Cloneable {
 		
 		
 		FriteInfo obj = (FriteInfo) o;		
-		return (super.isStringEqual(fileFullName, obj.fileFullName));
+		return (super.isStringEqual(fileUri, obj.fileUri));
 	}	
 }

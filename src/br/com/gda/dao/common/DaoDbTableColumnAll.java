@@ -77,6 +77,7 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumn;
 import br.com.gda.file.fileImage.dao.FimgDbTableColumn;
+import br.com.gda.file.fileImageList.dao.FimistDbTableColumn;
 import br.com.gda.file.fileImageSearch.dao.FimarchDbTableColumn;
 import br.com.gda.file.filePath.dao.FathDbTableColumn;
 import br.com.gda.message.email.dao.EmailDbTableColumn;
@@ -210,6 +211,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new ComparchDbTableColumn());
 		addTable(new PerarchDbTableColumn());
 		addTable(new FimarchDbTableColumn());
+		addTable(new FimistDbTableColumn());
 	}
 	
 	

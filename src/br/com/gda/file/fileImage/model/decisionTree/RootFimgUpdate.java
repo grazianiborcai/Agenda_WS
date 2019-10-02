@@ -7,10 +7,12 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.file.fileImage.info.FimgInfo;
 import br.com.gda.file.fileImage.model.action.LazyFimgEnforceFilename;
 import br.com.gda.file.fileImage.model.action.LazyFimgEnforceLChanged;
+import br.com.gda.file.fileImage.model.action.LazyFimgEnforceUri;
+import br.com.gda.file.fileImage.model.action.LazyFimgMergeFath;
 import br.com.gda.file.fileImage.model.action.LazyFimgMergeUsername;
-import br.com.gda.file.fileImage.model.action.LazyFimgNodeWrite;
 import br.com.gda.file.fileImage.model.action.LazyFimgRootSelect;
 import br.com.gda.file.fileImage.model.action.LazyFimgUpdate;
+import br.com.gda.file.fileImage.model.action.LazyFimgWriteOnDisk;
 import br.com.gda.file.fileImage.model.action.StdFimgMergeToUpdate;
 import br.com.gda.file.fileImage.model.checker.FimgCheckExist;
 import br.com.gda.file.fileImage.model.checker.FimgCheckLangu;
@@ -68,16 +70,20 @@ public final class RootFimgUpdate extends DeciTreeWriteTemplate<FimgInfo> {
 		ActionLazy<FimgInfo> enforceLChanged = new LazyFimgEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<FimgInfo> enforceLChangedBy = new LazyFimgMergeUsername(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> enforceFilename = new LazyFimgEnforceFilename(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> mergeFath = new LazyFimgMergeFath(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> enforceUri = new LazyFimgEnforceUri(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> update = new LazyFimgUpdate(option.conn, option.schemaName);	
-		ActionLazy<FimgInfo> nodeWrite = new LazyFimgNodeWrite(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> writeOnDisk = new LazyFimgWriteOnDisk(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceFilename);
-		enforceFilename.addPostAction(update);
-		update.addPostAction(nodeWrite);
-		nodeWrite.addPostAction(select);
+		enforceFilename.addPostAction(mergeFath);
+		mergeFath.addPostAction(enforceUri);		
+		enforceUri.addPostAction(update);
+		update.addPostAction(writeOnDisk);
+		writeOnDisk.addPostAction(select);
 		
 		actions.add(mergeToUpdate);		
 		return actions;
