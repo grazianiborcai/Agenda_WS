@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyOwnerMergeFimg extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
+public final class LazyOwnerMergeFimist extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
 	
-	public LazyOwnerMergeFimg(Connection conn, String schemaName) {
+	public LazyOwnerMergeFimist(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOwnerMergeFimg extends ActionLazyTemplate<OwnerInfo, Owne
 	
 	
 	@Override protected ActionStd<OwnerInfo> getInstanceOfActionHook(DeciTreeOption<OwnerInfo> option) {
-		return new StdOwnerMergeFimg(option);
+		return new StdOwnerMergeFimist(option);
 	}
 	
 	

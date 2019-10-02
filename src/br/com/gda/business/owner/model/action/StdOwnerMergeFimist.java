@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdOwnerMergeFimg implements ActionStd<OwnerInfo> {
+final class StdOwnerMergeFimist implements ActionStd<OwnerInfo> {
 	private ActionStd<OwnerInfo> actionHelper;	
 	
 	
-	public StdOwnerMergeFimg(DeciTreeOption<OwnerInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOwnerMergeFimg(option.conn, option.schemaName));
+	public StdOwnerMergeFimist(DeciTreeOption<OwnerInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOwnerMergeFimist(option.conn, option.schemaName));
 	}
 	
 	

@@ -9,7 +9,7 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.DefaultValue;
-import br.com.gda.file.fileImage.info.FimgInfo;
+import br.com.gda.file.fileImageList.info.FimistInfo;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.security.user.info.UserInfo;
 
@@ -30,7 +30,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public UserInfo userData;
 	public CompInfo companyData;
 	public PersonInfo personData;
-	public FimgInfo fimgData;
+	public FimistInfo fimistData;
 	
 	
 	
@@ -50,7 +50,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 		userData = DefaultValue.object();
 		companyData = DefaultValue.object();
 		personData = DefaultValue.object();
-		fimgData = DefaultValue.object();
+		fimistData = DefaultValue.object();
 	}
 	
 	
@@ -75,7 +75,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 		deepCopy.personData = clonePerson(deepCopy.personData);
 		deepCopy.companyData = cloneCompany(deepCopy.companyData);
 		deepCopy.userData = cloneUser(deepCopy.userData);
-		deepCopy.fimgData = cloneFimg(deepCopy.fimgData);
+		deepCopy.fimistData = cloneFimist(deepCopy.fimistData);
 		
 		return deepCopy;
 	}
@@ -141,11 +141,11 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private FimgInfo cloneFimg(FimgInfo recordInfo) throws CloneNotSupportedException {
+	private FimistInfo cloneFimist(FimistInfo recordInfo) throws CloneNotSupportedException {
 		if (recordInfo == null)
 			return null;
 		
-		return (FimgInfo) recordInfo.clone();
+		return (FimistInfo) recordInfo.clone();
 	}
 	
 	

@@ -1,14 +1,14 @@
 package br.com.gda.business.owner.info;
 
-import br.com.gda.file.fileImage.info.FimgInfo;
+import br.com.gda.file.fileImageList.info.FimistInfo;
 import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 
-final class OwnerMergerFimg extends InfoMergerTemplate<OwnerInfo, FimgInfo> {
+final class OwnerMergerFimist extends InfoMergerTemplate<OwnerInfo, FimistInfo> {
 
-	@Override protected InfoMergerVisitor<OwnerInfo, FimgInfo> getVisitorHook() {
-		return new OwnerVisiMergeFimg();
+	@Override protected InfoMergerVisitor<OwnerInfo, FimistInfo> getVisitorHook() {
+		return new OwnerVisiMergeFimist();
 	}
 	
 	

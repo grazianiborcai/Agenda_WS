@@ -4,12 +4,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.gda.common.SystemMessage;
-import br.com.gda.file.fileImage.info.FimgInfo;
+import br.com.gda.file.fileImageList.info.FimistInfo;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class OwnerVisiMergeFimg implements InfoMergerVisitor<OwnerInfo, FimgInfo> {
+final class OwnerVisiMergeFimist implements InfoMergerVisitor<OwnerInfo, FimistInfo> {
 
-	@Override public OwnerInfo writeRecord(FimgInfo sourceOne, OwnerInfo sourceTwo) {
+	@Override public OwnerInfo writeRecord(FimistInfo sourceOne, OwnerInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		OwnerInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class OwnerVisiMergeFimg implements InfoMergerVisitor<OwnerInfo, FimgInfo>
 	
 	
 	
-	private void checkArgument(FimgInfo sourceOne, OwnerInfo sourceTwo) {
+	private void checkArgument(FimistInfo sourceOne, OwnerInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,14 +37,14 @@ final class OwnerVisiMergeFimg implements InfoMergerVisitor<OwnerInfo, FimgInfo>
 	
 	
 	
-	private OwnerInfo merge(FimgInfo sourceOne, OwnerInfo sourceTwo) {
-		sourceTwo.fimgData = sourceOne;
+	private OwnerInfo merge(FimistInfo sourceOne, OwnerInfo sourceTwo) {
+		sourceTwo.fimistData = sourceOne;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(FimgInfo sourceOne, OwnerInfo sourceTwo) {
+	@Override public boolean shouldWrite(FimistInfo sourceOne, OwnerInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	

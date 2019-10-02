@@ -7,21 +7,21 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
-import br.com.gda.file.fileImage.info.FimgInfo;
+import br.com.gda.file.fileImageList.info.FimistInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.user.info.UserInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class OwnerMerger {
-	public static OwnerInfo mergeWithFimg(FimgInfo sourceOne, OwnerInfo sourceTwo) {
-		InfoMerger<OwnerInfo, FimgInfo> merger = new OwnerMergerFimg();		
+	public static OwnerInfo mergeWithFimist(FimistInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, FimistInfo> merger = new OwnerMergerFimist();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<OwnerInfo> mergeWithFimg(List<FimgInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
-		InfoMerger<OwnerInfo, FimgInfo> merger = new OwnerMergerFimg();		
+	public static List<OwnerInfo> mergeWithFimist(List<FimistInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, FimistInfo> merger = new OwnerMergerFimist();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
