@@ -5,53 +5,47 @@ import java.sql.Connection;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StoreCheckWritePhone extends ModelCheckerTemplateSimple_<StoreInfo> {
+public final class StoreCheckWritePhone extends ModelCheckerTemplateSimpleV2<StoreInfo> {
 
-	public StoreCheckWritePhone() {
-		super();
+	public StoreCheckWritePhone(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.phones == null)
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		if (recordInfo.phones.isEmpty())
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		for (PhoneInfo eachPhone : recordInfo.phones) {
 			if (checkPhone(eachPhone) == FAILED)
-				return FAILED;
+				return super.FAILED;
 		}
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	private boolean checkPhone(PhoneInfo phone) {
 		if (phone.codPhone <= 0)
-			return SUCCESS;
+			return super.SUCCESS;
 		
-		return FAILED;
+		return super.FAILED;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PHONE_COD_IS_FILLED;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.PHONE_COD_IS_FILLED;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.STORE_PHONE_IS_EMPTY;
 	}
 }

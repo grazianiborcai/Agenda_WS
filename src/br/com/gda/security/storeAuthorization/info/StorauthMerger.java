@@ -2,7 +2,7 @@ package br.com.gda.security.storeAuthorization.info;
 
 import java.util.List;
 
-import br.com.gda.business.ownerStore.info.OwntoreInfo;
+import br.com.gda.business.ownerStore_.info.OwntoreInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 

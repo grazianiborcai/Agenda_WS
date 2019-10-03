@@ -47,7 +47,7 @@ import br.com.gda.business.orderSearch.dao.OrdarchDbTableColumn;
 import br.com.gda.business.orderSnapshot.dao.OrdnapDbTableColumn;
 import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.business.ownerSnapshot.dao.OwnerapDbTableColumn;
-import br.com.gda.business.ownerStore.dao.OwntoreDbTableColumn;
+import br.com.gda.business.ownerStore_.dao.OwntoreDbTableColumn;
 import br.com.gda.business.person.dao.PersonDbTableColumn;
 import br.com.gda.business.personCustomer.dao.PersonCusDbTableColumn;
 import br.com.gda.business.personList.dao.PersolisDbTableColumn;

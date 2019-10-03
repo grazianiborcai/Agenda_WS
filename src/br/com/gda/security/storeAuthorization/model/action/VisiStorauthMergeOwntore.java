@@ -3,8 +3,8 @@ package br.com.gda.security.storeAuthorization.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.business.ownerStore.info.OwntoreInfo;
-import br.com.gda.business.ownerStore.model.decisionTree.RootOwntoreSelect;
+import br.com.gda.business.ownerStore_.info.OwntoreInfo;
+import br.com.gda.business.ownerStore_.model.decisionTree.RootOwntoreSelect;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;

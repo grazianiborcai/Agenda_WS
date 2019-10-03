@@ -3,7 +3,7 @@ package br.com.gda.security.storeAuthorization.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.ownerStore.info.OwntoreInfo;
+import br.com.gda.business.ownerStore_.info.OwntoreInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 

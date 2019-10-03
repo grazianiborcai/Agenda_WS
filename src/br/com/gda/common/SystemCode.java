@@ -67,6 +67,7 @@ public final class SystemCode {
 	public static final int STORE_HAS_ITEM 								= 1132;	
 	public static final int STORE_NO_ITEM_FOUND 						= 1133;	
 	public static final int STORE_MANDATORY_FIELD_EMPTY					= 1134;
+	public static final int STORE_PHONE_IS_EMPTY						= 1135;
 	
 	// Master Data
 	public static final int EMP_POS_ALREADY_EXIST						= 1150;

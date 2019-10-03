@@ -40,7 +40,11 @@ public final class RootStoreUpdate extends DeciTreeWriteTemplate<StoreInfo> {
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new StoreCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new StoreCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

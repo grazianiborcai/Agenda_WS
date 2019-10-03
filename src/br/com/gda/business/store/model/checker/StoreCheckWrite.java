@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StoreCheckWrite extends ModelCheckerTemplateSimple_<StoreInfo> {
+public final class StoreCheckWrite extends ModelCheckerTemplateSimpleV2<StoreInfo> {
 
-	public StoreCheckWrite() {
-		super();
+	public StoreCheckWrite(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -24,21 +24,15 @@ public final class StoreCheckWrite extends ModelCheckerTemplateSimple_<StoreInfo
 			|| recordInfo.username 		== null 
 			|| recordInfo.codTimezone	== null	)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.STORE_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook(){
 		return SystemCode.STORE_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -2,8 +2,8 @@ package br.com.gda.security.storeAuthorization.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.ownerStore.info.OwntoreInfo;
-import br.com.gda.business.ownerStore.model.checker.OwntoreCheckExist;
+import br.com.gda.business.ownerStore_.info.OwntoreInfo;
+import br.com.gda.business.ownerStore_.model.checker.OwntoreCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;

@@ -3,7 +3,7 @@ package br.com.gda.business.store.info;
 import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
-import br.com.gda.business.ownerStore.info.OwntoreInfo;
+import br.com.gda.business.ownerStore_.info.OwntoreInfo;
 import br.com.gda.info.InfoCopier;
 
 public final class StoreCopier {
