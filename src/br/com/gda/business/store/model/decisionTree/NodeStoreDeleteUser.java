@@ -23,8 +23,6 @@ public final class NodeStoreDeleteUser extends DeciTreeWriteTemplate<StoreInfo> 
 	
 	
 	@Override protected ModelChecker<StoreInfo> buildDecisionCheckerHook(DeciTreeOption<StoreInfo> option) {
-		final boolean HAS_USER = true;
-		
 		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -32,7 +30,7 @@ public final class NodeStoreDeleteUser extends DeciTreeWriteTemplate<StoreInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_USER;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new StoreCheckHasUser(checkerOption);
 		queue.add(checker);	
 		

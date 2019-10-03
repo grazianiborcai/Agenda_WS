@@ -74,6 +74,9 @@ public final class SystemCode {
 	public static final int STORE_COMPANY_IS_EMPTY						= 1139;
 	public static final int STORE_COMPANY_IS_FILLED						= 1140;
 	public static final int STORE_ADDRESS_IS_FILLED						= 1141;
+	public static final int STORE_PHONE_IS_FILLED						= 1142;
+	public static final int STORE_USER_IS_EMPTY							= 1143;
+	public static final int STORE_USER_IS_FILLED						= 1144;
 	
 	// Master Data
 	public static final int EMP_POS_ALREADY_EXIST						= 1150;

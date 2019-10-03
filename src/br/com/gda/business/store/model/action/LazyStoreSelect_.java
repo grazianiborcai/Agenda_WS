@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoreSelect extends ActionLazyTemplate<StoreInfo, StoreInfo> {
+public final class LazyStoreSelect_ extends ActionLazyTemplate<StoreInfo, StoreInfo> {
 
-	public LazyStoreSelect(Connection conn, String schemaName) {
+	public LazyStoreSelect_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	

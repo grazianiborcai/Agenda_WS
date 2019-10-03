@@ -10,12 +10,11 @@ import br.com.gda.business.store.model.action.LazyStoreNodeUpsertAddress;
 import br.com.gda.business.store.model.action.LazyStoreNodeUpsertPhone;
 import br.com.gda.business.store.model.checker.StoreCheckCurrency;
 import br.com.gda.business.store.model.checker.StoreCheckExist;
-import br.com.gda.business.store.model.checker.StoreCheckKey;
 import br.com.gda.business.store.model.checker.StoreCheckLangu;
 import br.com.gda.business.store.model.checker.StoreCheckOwner;
 import br.com.gda.business.store.model.checker.StoreCheckStorauth;
 import br.com.gda.business.store.model.checker.StoreCheckTimezone;
-import br.com.gda.business.store.model.checker.StoreCheckWrite;
+import br.com.gda.business.store.model.checker.StoreCheckUpdate;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -33,9 +32,6 @@ public final class RootStoreUpdate extends DeciTreeWriteTemplate<StoreInfo> {
 	
 	
 	@Override protected ModelChecker<StoreInfo> buildDecisionCheckerHook(DeciTreeOption<StoreInfo> option) {
-		final boolean EXIST_ON_DB = true;			
-		final boolean KEY_NOT_NULL = true;	
-		
 		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;		
@@ -44,53 +40,48 @@ public final class RootStoreUpdate extends DeciTreeWriteTemplate<StoreInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StoreCheckWrite(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = KEY_NOT_NULL;
-		checker = new StoreCheckKey(checkerOption);
+		checker = new StoreCheckUpdate(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StoreCheckLangu(checkerOption);
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StoreCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StoreCheckTimezone(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StoreCheckCurrency(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StoreCheckExist(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StoreCheckStorauth(checkerOption);
 		queue.add(checker);
 		

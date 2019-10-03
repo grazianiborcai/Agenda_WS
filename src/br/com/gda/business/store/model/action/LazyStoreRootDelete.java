@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.decisionTree.RootStoreDelete;
+import br.com.gda.business.store.model.decisionTree.RootStoreDeleteCascade;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -25,7 +25,7 @@ public final class LazyStoreRootDelete extends ActionLazyTemplate<StoreInfo, Sto
 	
 	
 	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
-		return new RootStoreDelete(option).toAction();
+		return new RootStoreDeleteCascade(option).toAction();
 	}
 	
 	

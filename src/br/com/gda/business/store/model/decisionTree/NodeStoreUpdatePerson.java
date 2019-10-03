@@ -25,8 +25,6 @@ public final class NodeStoreUpdatePerson extends DeciTreeWriteTemplate<StoreInfo
 	
 	
 	@Override protected ModelChecker<StoreInfo> buildDecisionCheckerHook(DeciTreeOption<StoreInfo> option) {
-		final boolean HAS_PERSON = true;
-		
 		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -34,7 +32,7 @@ public final class NodeStoreUpdatePerson extends DeciTreeWriteTemplate<StoreInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_PERSON;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new StoreCheckHasPerson(checkerOption);
 		queue.add(checker);
 		

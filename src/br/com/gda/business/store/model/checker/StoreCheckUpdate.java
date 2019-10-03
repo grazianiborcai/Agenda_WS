@@ -7,19 +7,23 @@ import br.com.gda.common.SystemCode;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StoreCheckRead extends ModelCheckerTemplateSimpleV2<StoreInfo> {
+public final class StoreCheckUpdate extends ModelCheckerTemplateSimpleV2<StoreInfo> {
 
-	public StoreCheckRead(ModelCheckerOption option) {
+	public StoreCheckUpdate(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0 	|| 
-			recordInfo.codStore 	<= 0 	|| 
-			recordInfo.username 	== null ||
-			recordInfo.codLanguage 	== null		)	
+		if (   recordInfo.codOwner 		<= 0 
+			|| recordInfo.codStore  	<= 0
+			|| recordInfo.personData 	== null 	
+			|| recordInfo.companyData 	== null
+			|| recordInfo.codLanguage 	== null
+			|| recordInfo.codCurr 		== null
+			|| recordInfo.username 		== null 
+			|| recordInfo.codTimezone	== null	)
 			
 			return super.FAILED;
 		

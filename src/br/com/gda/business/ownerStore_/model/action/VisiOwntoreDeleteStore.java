@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.business.ownerStore_.info.OwntoreInfo;
 import br.com.gda.business.store.info.StoreCopier;
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.decisionTree.RootStoreDelete;
+import br.com.gda.business.store.model.decisionTree.RootStoreDeleteCascade;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -25,6 +25,6 @@ final class VisiOwntoreDeleteStore extends ActionVisitorTemplateAction<OwntoreIn
 	
 	
 	@Override protected ActionStd<StoreInfo> getActionHook(DeciTreeOption<StoreInfo> option) {
-		return new RootStoreDelete(option).toAction();
+		return new RootStoreDeleteCascade(option).toAction();
 	}
 }

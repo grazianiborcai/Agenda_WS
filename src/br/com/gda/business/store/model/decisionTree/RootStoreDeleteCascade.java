@@ -7,6 +7,14 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.action.LazyStoreDelete;
 import br.com.gda.business.store.model.action.LazyStoreEnforceLChanged;
 import br.com.gda.business.store.model.action.LazyStoreMergeUsername;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeleteAddress;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeleteComp;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeleteMatore;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeletePerson;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeletePhone;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeleteStolevate;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeleteStowotm;
+import br.com.gda.business.store.model.action.LazyStoreNodeDeleteUser;
 import br.com.gda.business.store.model.action.LazyStoreUpdate;
 import br.com.gda.business.store.model.action.StdStoreMergeToDelete;
 import br.com.gda.business.store.model.checker.StoreCheckDelete;
@@ -20,9 +28,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootStoreDelete extends DeciTreeWriteTemplate<StoreInfo> {	
+public final class RootStoreDeleteCascade extends DeciTreeWriteTemplate<StoreInfo> {	
 	
-	public RootStoreDelete(DeciTreeOption<StoreInfo> option) {
+	public RootStoreDeleteCascade(DeciTreeOption<StoreInfo> option) {
 		super(option);
 	}
 	
@@ -66,11 +74,28 @@ public final class RootStoreDelete extends DeciTreeWriteTemplate<StoreInfo> {
 		ActionLazy<StoreInfo> enforceLChanged = new LazyStoreEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> update = new LazyStoreUpdate(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deleteStowotm = new LazyStoreNodeDeleteStowotm(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deleteStolevate = new LazyStoreNodeDeleteStolevate(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deleteMatore = new LazyStoreNodeDeleteMatore(option.conn, option.schemaName);		
+		ActionLazy<StoreInfo> deleteAddress = new LazyStoreNodeDeleteAddress(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deletePhone = new LazyStoreNodeDeletePhone(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deletePerson = new LazyStoreNodeDeletePerson(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deleteCompany = new LazyStoreNodeDeleteComp(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> deleteUser = new LazyStoreNodeDeleteUser(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> deleteStore = new LazyStoreDelete(option.conn, option.schemaName);			
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
+		
+		update.addPostAction(deleteStowotm);
+		update.addPostAction(deleteStolevate);
+		update.addPostAction(deleteMatore);
+		update.addPostAction(deleteAddress);
+		update.addPostAction(deletePhone);
+		update.addPostAction(deletePerson);
+		update.addPostAction(deleteCompany);
+		update.addPostAction(deleteUser);
 		update.addPostAction(deleteStore);
 		
 		actions.add(mergeToDelete);		
