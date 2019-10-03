@@ -22,9 +22,7 @@ public final class NodeStoreDeleteStolevate extends DeciTreeWriteTemplate<StoreI
 	
 	
 	
-	@Override protected ModelChecker<StoreInfo> buildDecisionCheckerHook(DeciTreeOption<StoreInfo> option) {
-		final boolean HAS_WORK_TIME = true;
-		
+	@Override protected ModelChecker<StoreInfo> buildDecisionCheckerHook(DeciTreeOption<StoreInfo> option) {		
 		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -32,7 +30,7 @@ public final class NodeStoreDeleteStolevate extends DeciTreeWriteTemplate<StoreI
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_WORK_TIME;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new StoreCheckHasStolevate(checkerOption);
 		queue.add(checker);	
 		

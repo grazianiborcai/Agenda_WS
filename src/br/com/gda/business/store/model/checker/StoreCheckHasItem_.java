@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.action.StdStoreEnforceOwnerKey;
-import br.com.gda.business.store.model.action.LazyStoreSelect_;
+import br.com.gda.business.store.model.action.LazyStoreSelect;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionLazy;
@@ -13,9 +13,9 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StoreCheckHasItem extends ModelCheckerTemplateAction_<StoreInfo> {
+public final class StoreCheckHasItem_ extends ModelCheckerTemplateAction_<StoreInfo> {
 	
-	public StoreCheckHasItem(ModelCheckerOption option) {
+	public StoreCheckHasItem_(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -25,7 +25,7 @@ public final class StoreCheckHasItem extends ModelCheckerTemplateAction_<StoreIn
 		DeciTreeOption<StoreInfo> option = buildOption(recordInfo, conn, schemaName);
 		
 		ActionStd<StoreInfo> enforceOwnerKey = new StdStoreEnforceOwnerKey(option);
-		ActionLazy<StoreInfo> select = new LazyStoreSelect_(conn, schemaName);
+		ActionLazy<StoreInfo> select = new LazyStoreSelect(conn, schemaName);
 		
 		enforceOwnerKey.addPostAction(select);
 		return enforceOwnerKey;

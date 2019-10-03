@@ -3,15 +3,15 @@ package br.com.gda.business.store.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoreEnforcePhoneKey extends ActionLazyTemplate<StoreInfo, StoreInfo> {
-	
-	public LazyStoreEnforcePhoneKey(Connection conn, String schemaName) {
+public final class LazyStoreSelect extends ActionLazyTemplate<StoreInfo, StoreInfo> {
+
+	public LazyStoreSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -23,8 +23,8 @@ public final class LazyStoreEnforcePhoneKey extends ActionLazyTemplate<StoreInfo
 	
 	
 	
-	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
-		return new StdStoreEnforcePhoneKey(option);
+	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+		return new StdStoreSelect(option);
 	}
 	
 	
