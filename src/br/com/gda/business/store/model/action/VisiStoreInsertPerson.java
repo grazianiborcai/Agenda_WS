@@ -1,12 +1,11 @@
 package br.com.gda.business.store.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.person.info.PersonCopier;
 import br.com.gda.business.person.info.PersonInfo;
-import br.com.gda.business.person.model.decisionTree.RootPersonInsert;
+import br.com.gda.business.person.model.decisionTree.RootPersonInsertStore;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.info.StoreMerger;
 import br.com.gda.model.action.ActionStd;
@@ -20,20 +19,14 @@ final class VisiStoreInsertPerson extends ActionVisitorTemplateAction<StoreInfo,
 	
 	
 	
-	@Override protected List<PersonInfo> toActionClassHook(List<StoreInfo> recordInfos) {
-		List<PersonInfo> results = new ArrayList<>();
-		
-		for (StoreInfo eachRecord : recordInfos) {
-			results.add(PersonCopier.copyFromStore(eachRecord));
-		}		
-		
-		return results;
+	@Override protected List<PersonInfo> toActionClassHook(List<StoreInfo> recordInfos) {		
+		return PersonCopier.copyFromStore(recordInfos);
 	}
 	
 	
 	
 	@Override protected ActionStd<PersonInfo> getActionHook(DeciTreeOption<PersonInfo> option) {
-		return new RootPersonInsert(option).toAction();
+		return new RootPersonInsertStore(option).toAction();
 	}
 	
 	

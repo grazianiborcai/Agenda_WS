@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.action.LazyStoreEnforceEntityCateg;
+import br.com.gda.business.store.model.action.LazyStoreEnforceEntityCateg_;
 import br.com.gda.business.store.model.action.LazyStoreEnforceLChanged;
 import br.com.gda.business.store.model.action.LazyStoreMergeUsername;
 import br.com.gda.business.store.model.action.LazyStoreNodeSnapshot;
@@ -49,7 +49,7 @@ public final class NodeStoreUpdate extends DeciTreeWriteTemplate<StoreInfo> {
 		ActionStd<StoreInfo> mergeToUpdate = new StdStoreMergeToUpdate(option);
 		ActionLazy<StoreInfo> enforceLChanged = new LazyStoreEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> enforceEntityCateg = new LazyStoreEnforceEntityCateg(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> enforceEntityCateg = new LazyStoreEnforceEntityCateg_(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> snapshot = new LazyStoreNodeSnapshot(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(enforceLChanged);

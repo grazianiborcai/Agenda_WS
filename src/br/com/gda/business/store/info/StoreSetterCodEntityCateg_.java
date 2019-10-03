@@ -3,15 +3,15 @@ package br.com.gda.business.store.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.common.AuthGroup;
+import br.com.gda.business.masterData.info.common.EntityCateg;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class StoreSetterCodAuthGroup implements InfoSetter<StoreInfo> {
+public final class StoreSetterCodEntityCateg_ implements InfoSetter<StoreInfo> {
 	
 	public StoreInfo setAttr(StoreInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setCodAuthGrRole(recordInfo);
+		return setCodEntityCateg(recordInfo);
 	}
 	
 	
@@ -25,8 +25,8 @@ public final class StoreSetterCodAuthGroup implements InfoSetter<StoreInfo> {
 	
 	
 	
-	private StoreInfo setCodAuthGrRole(StoreInfo recordInfo) {
-		recordInfo.codAuthGroup = AuthGroup.STORE_MANAGER.getCodAuthGroup();
+	private StoreInfo setCodEntityCateg(StoreInfo recordInfo) {
+		recordInfo.codEntityCateg = EntityCateg.STORE.getCodEntityCateg();
 		return recordInfo;
 	}
 	

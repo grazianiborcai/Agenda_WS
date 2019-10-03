@@ -1,22 +1,22 @@
-package br.com.gda.business.store.info;
+package br.com.gda.security.user.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.common.EntityCateg;
+import br.com.gda.business.masterData.info.common.AuthGroup;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class StoreSetterCodEntityCateg implements InfoSetter<StoreInfo> {
+public final class UserSetterAuthStore implements InfoSetter<UserInfo> {
 	
-	public StoreInfo setAttr(StoreInfo recordInfo) {
+	public UserInfo setAttr(UserInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setCodEntityCateg(recordInfo);
+		return setCodAuthGrRole(recordInfo);
 	}
 	
 	
 	
-	private void checkArgument(StoreInfo recordInfo) {
+	private void checkArgument(UserInfo recordInfo) {
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
@@ -25,8 +25,8 @@ public final class StoreSetterCodEntityCateg implements InfoSetter<StoreInfo> {
 	
 	
 	
-	private StoreInfo setCodEntityCateg(StoreInfo recordInfo) {
-		recordInfo.codEntityCateg = EntityCateg.STORE.getCodEntityCateg();
+	private UserInfo setCodAuthGrRole(UserInfo recordInfo) {
+		recordInfo.codAuthGroup = AuthGroup.STORE_MANAGER.getCodAuthGroup();
 		return recordInfo;
 	}
 	

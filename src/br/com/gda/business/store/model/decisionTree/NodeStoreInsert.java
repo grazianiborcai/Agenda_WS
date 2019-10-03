@@ -7,11 +7,10 @@ import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.action.LazyStoreInsert;
 import br.com.gda.business.store.model.action.LazyStoreMergeUsername;
 import br.com.gda.business.store.model.action.StdStoreEnforceLChanged;
-import br.com.gda.business.store.model.checker.StoreCheckWrite;
+import br.com.gda.business.store.model.checker.StoreCheckDummy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
@@ -27,13 +26,8 @@ public final class NodeStoreInsert extends DeciTreeWriteTemplate<StoreInfo> {
 	@Override protected ModelChecker<StoreInfo> buildDecisionCheckerHook(DeciTreeOption<StoreInfo> option) {
 		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
-		ModelCheckerOption checkerOption;		
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StoreCheckWrite(checkerOption);
+
+		checker = new StoreCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

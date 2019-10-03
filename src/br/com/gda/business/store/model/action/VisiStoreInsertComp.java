@@ -1,12 +1,11 @@
 package br.com.gda.business.store.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.company.info.CompCopier;
 import br.com.gda.business.company.info.CompInfo;
-import br.com.gda.business.company.model.decisionTree.RootCompInsert;
+import br.com.gda.business.company.model.decisionTree.RootCompInsertStore;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.info.StoreMerger;
 import br.com.gda.model.action.ActionStd;
@@ -20,20 +19,14 @@ final class VisiStoreInsertComp extends ActionVisitorTemplateAction<StoreInfo, C
 	
 	
 	
-	@Override protected List<CompInfo> toActionClassHook(List<StoreInfo> recordInfos) {
-		List<CompInfo> results = new ArrayList<>();
-		
-		for (StoreInfo eachRecord : recordInfos) {
-			results.add(CompCopier.copyFromStore(eachRecord));
-		}		
-		
-		return results;
+	@Override protected List<CompInfo> toActionClassHook(List<StoreInfo> recordInfos) {		
+		return CompCopier.copyFromStore(recordInfos);
 	}
 	
 	
 	
 	@Override protected ActionStd<CompInfo> getActionHook(DeciTreeOption<CompInfo> option) {
-		return new RootCompInsert(option).toAction();
+		return new RootCompInsertStore(option).toAction();
 	}
 	
 	

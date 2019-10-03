@@ -1,22 +1,22 @@
-package br.com.gda.business.store.info;
+package br.com.gda.business.person.info;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.masterData.info.common.UserCateg;
+import br.com.gda.business.masterData.info.common.EntityCateg;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class StoreSetterCodUserCateg implements InfoSetter<StoreInfo> {
+public final class PersonSetterCategStore implements InfoSetter<PersonInfo> {
 	
-	public StoreInfo setAttr(StoreInfo recordInfo) {
+	public PersonInfo setAttr(PersonInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setCodUserCateg(recordInfo);
+		return setCodEntityCateg(recordInfo);
 	}
 	
 	
 	
-	private void checkArgument(StoreInfo recordInfo) {
+	private void checkArgument(PersonInfo recordInfo) {
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
@@ -25,8 +25,8 @@ public final class StoreSetterCodUserCateg implements InfoSetter<StoreInfo> {
 	
 	
 	
-	private StoreInfo setCodUserCateg(StoreInfo recordInfo) {
-		recordInfo.codUserCategory = UserCateg.STORE.getCodUserCateg();
+	private PersonInfo setCodEntityCateg(PersonInfo recordInfo) {
+		recordInfo.codEntityCateg = EntityCateg.STORE.getCodEntityCateg();
 		return recordInfo;
 	}
 	

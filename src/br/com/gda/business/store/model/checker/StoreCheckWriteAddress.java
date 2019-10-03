@@ -5,53 +5,47 @@ import java.sql.Connection;
 import br.com.gda.business.address.info.AddressInfo;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StoreCheckWriteAddress extends ModelCheckerTemplateSimple_<StoreInfo> {
+public final class StoreCheckWriteAddress extends ModelCheckerTemplateSimpleV2<StoreInfo> {
 
-	public StoreCheckWriteAddress() {
-		super();
+	public StoreCheckWriteAddress(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.addresses == null)
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		if (recordInfo.addresses.isEmpty())
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		for (AddressInfo eachAddress : recordInfo.addresses) {
-			if (checkAddress(eachAddress) == FAILED)
-				return FAILED;
+			if (checkAddress(eachAddress) == super.FAILED)
+				return super.FAILED;
 		}
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	private boolean checkAddress(AddressInfo address) {
 		if (address.codAddress <= 0)
-			return SUCCESS;
+			return super.SUCCESS;
 		
-		return FAILED;
+		return super.FAILED;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ADDRESS_COD_IS_FILLED;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.ADDRESS_COD_IS_FILLED;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.STORE_ADDRESS_IS_EMPTY;
 	}
 }

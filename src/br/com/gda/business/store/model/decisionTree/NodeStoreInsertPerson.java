@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.action.LazyStoreEnforcePersonKey;
 import br.com.gda.business.store.model.action.LazyStoreInsertPerson;
-import br.com.gda.business.store.model.action.StdStoreEnforceEntityCateg;
+import br.com.gda.business.store.model.action.StdStoreEnforcePersonKey;
 import br.com.gda.business.store.model.checker.StoreCheckHasPerson;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
@@ -25,8 +24,6 @@ public final class NodeStoreInsertPerson extends DeciTreeWriteTemplate<StoreInfo
 	
 	
 	@Override protected ModelChecker<StoreInfo> buildDecisionCheckerHook(DeciTreeOption<StoreInfo> option) {
-		final boolean HAS_PERSON = true;
-		
 		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -34,7 +31,7 @@ public final class NodeStoreInsertPerson extends DeciTreeWriteTemplate<StoreInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_PERSON;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new StoreCheckHasPerson(checkerOption);
 		queue.add(checker);
 		
@@ -46,14 +43,12 @@ public final class NodeStoreInsertPerson extends DeciTreeWriteTemplate<StoreInfo
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforceEntityCateg = new StdStoreEnforceEntityCateg(option);
-		ActionLazy<StoreInfo> enforcePersonKey = new LazyStoreEnforcePersonKey(option.conn, option.schemaName);
+		ActionStd<StoreInfo> enforcePersonKey = new StdStoreEnforcePersonKey(option);
 		ActionLazy<StoreInfo> insertPerson = new LazyStoreInsertPerson(option.conn, option.schemaName);	
 
-		enforceEntityCateg.addPostAction(enforcePersonKey);
 		enforcePersonKey.addPostAction(insertPerson);
 		
-		actions.add(enforceEntityCateg);	
+		actions.add(enforcePersonKey);	
 		return actions;
 	}
 }

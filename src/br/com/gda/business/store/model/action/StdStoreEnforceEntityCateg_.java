@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdStoreEnforceAuthGroup implements ActionStd<StoreInfo> {
+public final class StdStoreEnforceEntityCateg_ implements ActionStd<StoreInfo> {
 	private ActionStd<StoreInfo> actionHelper;	
 	
 	
-	public StdStoreEnforceAuthGroup(DeciTreeOption<StoreInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiStoreEnforceAuthGroup());
+	public StdStoreEnforceEntityCateg_(DeciTreeOption<StoreInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiStoreEnforceEntityCateg_());
 	}
 	
 	

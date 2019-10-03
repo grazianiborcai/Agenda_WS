@@ -1,7 +1,6 @@
 package br.com.gda.business.store.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
@@ -11,7 +10,7 @@ import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.user.info.UserCopier;
 import br.com.gda.security.user.info.UserInfo;
-import br.com.gda.security.user.model.decisionTree.RootUserInsert;
+import br.com.gda.security.user.model.decisionTree.RootUserInsertStore;
 
 final class VisiStoreInsertUser extends ActionVisitorTemplateAction<StoreInfo, UserInfo> {
 	public VisiStoreInsertUser(Connection conn, String schemaName) {
@@ -21,19 +20,13 @@ final class VisiStoreInsertUser extends ActionVisitorTemplateAction<StoreInfo, U
 	
 	
 	@Override protected List<UserInfo> toActionClassHook(List<StoreInfo> recordInfos) {
-		List<UserInfo> results = new ArrayList<>();
-		
-		for (StoreInfo eachRecord : recordInfos) {
-			results.add(UserCopier.copyFromStore(eachRecord));
-		}		
-		
-		return results;
+		return UserCopier.copyFromStore(recordInfos);
 	}
 	
 	
 	
 	@Override protected ActionStd<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
-		return new RootUserInsert(option).toAction();
+		return new RootUserInsertStore(option).toAction();
 	}
 	
 	

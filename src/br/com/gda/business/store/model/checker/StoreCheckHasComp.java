@@ -4,11 +4,10 @@ import java.sql.Connection;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerOption;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StoreCheckHasComp extends ModelCheckerTemplateSimple_<StoreInfo> {
+public final class StoreCheckHasComp extends ModelCheckerTemplateSimpleV2<StoreInfo> {
 	
 	public StoreCheckHasComp(ModelCheckerOption option) {
 		super(option);
@@ -25,19 +24,13 @@ public final class StoreCheckHasComp extends ModelCheckerTemplateSimple_<StoreIn
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.COMPANY_IS_NULL)
-			return SystemMessage.COMPANY_IS_NULL;
-		
-		return SystemMessage.COMPANY_IS_FILLED;
+	@Override protected int getCodMsgOnResultTrueHook(){
+		return SystemCode.STORE_COMPANY_IS_FILLED;
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == super.SUCCESS)
-			return SystemCode.COMPANY_IS_FILLED;	
-			
-		return SystemCode.COMPANY_IS_NULL;
+	@Override protected int getCodMsgOnResultFalseHook(){
+		return SystemCode.STORE_COMPANY_IS_EMPTY;
 	}
 }

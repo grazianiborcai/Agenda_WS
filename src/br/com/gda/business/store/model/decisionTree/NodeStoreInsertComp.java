@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.action.LazyStoreEnforceCompKey;
 import br.com.gda.business.store.model.action.LazyStoreInsertComp;
-import br.com.gda.business.store.model.action.StdStoreEnforceEntityCateg;
+import br.com.gda.business.store.model.action.StdStoreEnforceCompKey;
 import br.com.gda.business.store.model.checker.StoreCheckHasComp;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
@@ -25,8 +24,6 @@ public final class NodeStoreInsertComp extends DeciTreeWriteTemplate<StoreInfo> 
 	
 	
 	@Override protected ModelChecker<StoreInfo> buildDecisionCheckerHook(DeciTreeOption<StoreInfo> option) {
-		final boolean HAS_COMPANY = true;
-		
 		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -34,7 +31,7 @@ public final class NodeStoreInsertComp extends DeciTreeWriteTemplate<StoreInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_COMPANY;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new StoreCheckHasComp(checkerOption);
 		queue.add(checker);
 		
@@ -46,14 +43,12 @@ public final class NodeStoreInsertComp extends DeciTreeWriteTemplate<StoreInfo> 
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforceEntityCateg = new StdStoreEnforceEntityCateg(option);
-		ActionLazy<StoreInfo> enforceCompKey = new LazyStoreEnforceCompKey(option.conn, option.schemaName);
+		ActionStd<StoreInfo> enforceCompKey = new StdStoreEnforceCompKey(option);
 		ActionLazy<StoreInfo> insertComp = new LazyStoreInsertComp(option.conn, option.schemaName);
 		
-		enforceEntityCateg.addPostAction(enforceCompKey);
 		enforceCompKey.addPostAction(insertComp);
 		
-		actions.add(enforceEntityCateg);	
+		actions.add(enforceCompKey);	
 		return actions;
 	}
 }

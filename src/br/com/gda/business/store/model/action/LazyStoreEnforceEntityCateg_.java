@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoreEnforceEntityCateg extends ActionLazyTemplate<StoreInfo, StoreInfo> {
+public final class LazyStoreEnforceEntityCateg_ extends ActionLazyTemplate<StoreInfo, StoreInfo> {
 	
-	public LazyStoreEnforceEntityCateg(Connection conn, String schemaName) {
+	public LazyStoreEnforceEntityCateg_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStoreEnforceEntityCateg extends ActionLazyTemplate<StoreI
 	
 	
 	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
-		return new StdStoreEnforceEntityCateg(option);
+		return new StdStoreEnforceEntityCateg_(option);
 	}
 	
 	
