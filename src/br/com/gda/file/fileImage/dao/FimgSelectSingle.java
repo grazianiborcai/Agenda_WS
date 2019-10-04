@@ -115,7 +115,7 @@ public final class FimgSelectSingle implements DaoStmt<FimgInfo> {
 				dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_FILE_IMG);
 				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_MATERIAL);
 				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_PERSON);
-				dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_COMPANY);
+				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_STORE);
 				dataInfo.recordMode = stmtResult.getString(FimgDbTableColumn.COL_RECORD_MODE);
 				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, FimgDbTableColumn.COL_CREATED_ON);		
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, FimgDbTableColumn.COL_LAST_CHANGED);	
@@ -125,6 +125,7 @@ public final class FimgSelectSingle implements DaoStmt<FimgInfo> {
 				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_LAST_CHANGED_BY);
 				dataInfo.fileImgUri = stmtResult.getString(FimgDbTableColumn.COL_FILE_URI);
 				dataInfo.fileImgPath = stmtResult.getString(FimgDbTableColumn.COL_IMG_FILE_PATH);
+				dataInfo.isCover = DaoFormatter.sqlToBoole(stmtResult, FimgDbTableColumn.COL_IS_COVER);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

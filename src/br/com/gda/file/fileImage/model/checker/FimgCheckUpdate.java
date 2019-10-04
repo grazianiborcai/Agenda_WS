@@ -26,7 +26,7 @@ public final class FimgCheckUpdate extends ModelCheckerTemplateSimpleV2<FimgInfo
 		
 		
 		if (   recordInfo.codPerson 	<= 0 	
-			&& recordInfo.codCompany	<= 0
+			&& recordInfo.codStore	<= 0
 			&& recordInfo.codOwnerRef	<= 0
 			&& recordInfo.codMat		<= 0)
 			

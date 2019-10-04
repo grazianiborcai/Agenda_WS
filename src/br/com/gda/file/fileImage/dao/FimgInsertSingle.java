@@ -85,7 +85,7 @@ public final class FimgInsertSingle implements DaoStmt<FimgInfo> {
 			stmt.setString(i++, recordInfo.fileImgName);
 			stmt.setString(i++, recordInfo.recordMode);			
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompany);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codMat);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
 			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
@@ -93,6 +93,7 @@ public final class FimgInsertSingle implements DaoStmt<FimgInfo> {
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRef);	
 			stmt.setString(i++, recordInfo.fileImgUri);	
 			stmt.setString(i++, recordInfo.fileImgPath);	
+			stmt.setBoolean(i++, recordInfo.isCover);
 			
 			return stmt;
 		}		

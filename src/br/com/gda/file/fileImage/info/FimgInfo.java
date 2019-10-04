@@ -15,9 +15,10 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 	public String fileImgExtension;
 	public String fileImgPath;
 	public transient InputStream fileImgData;
+	public boolean isCover;
 	public long codPerson;
 	public long codMat;
-	public long codCompany;
+	public long codStore;
 	public long codOwnerRef;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
@@ -31,10 +32,11 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 		super(FimgInfo.class);
 		
 		codOwner = DefaultValue.number();
-		codFileImg = DefaultValue.number();		
+		codFileImg = DefaultValue.number();	
+		isCover = DefaultValue.boole();
 		codPerson = DefaultValue.number();
 		codMat = DefaultValue.number();
-		codCompany = DefaultValue.number();		
+		codStore = DefaultValue.number();		
 		codOwnerRef = DefaultValue.number();	
 		createdOn = DefaultValue.object();
 		lastChanged = DefaultValue.object();

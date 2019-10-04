@@ -5,14 +5,13 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.file.fileImage.info.FimgInfo;
-import br.com.gda.file.fileImage.model.decisionTree.RootFimgUpdate;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyFimgRootUpdate extends ActionLazyTemplate<FimgInfo, FimgInfo> {
-
-	public LazyFimgRootUpdate(Connection conn, String schemaName) {
+public final class LazyFimgMergeToSelect extends ActionLazyTemplate<FimgInfo, FimgInfo> {
+	
+	public LazyFimgMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyFimgRootUpdate extends ActionLazyTemplate<FimgInfo, FimgI
 	
 	
 	@Override protected ActionStd<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
-		return new RootFimgUpdate(option).toAction();
+		return new StdFimgMergeToSelect(option);
 	}
 	
 	

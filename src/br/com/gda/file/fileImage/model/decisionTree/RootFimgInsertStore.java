@@ -3,21 +3,20 @@ package br.com.gda.file.fileImage.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.file.fileImage.info.FimgInfo;
-import br.com.gda.file.fileImage.model.action.LazyFimgRootReplace;
-import br.com.gda.file.fileImage.model.action.StdFimgMergeFimarch;
-import br.com.gda.file.fileImage.model.checker.FimgCheckExistOwner;
+import br.com.gda.file.fileImage.model.checker.FimgCheckInsertStore;
+import br.com.gda.file.fileImage.model.checker.FimgCheckLimitStore;
+import br.com.gda.file.fileImage.model.checker.FimgCheckStore;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeFimgUpsertOwner extends DeciTreeWriteTemplate<FimgInfo> {
+public final class RootFimgInsertStore extends DeciTreeWriteTemplate<FimgInfo> {
 	
-	public NodeFimgUpsertOwner(DeciTreeOption<FimgInfo> option) {
+	public RootFimgInsertStore(DeciTreeOption<FimgInfo> option) {
 		super(option);
 	}
 	
@@ -31,8 +30,22 @@ public final class NodeFimgUpsertOwner extends DeciTreeWriteTemplate<FimgInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
-		checker = new FimgCheckExistOwner(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new FimgCheckInsertStore(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new FimgCheckStore(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new FimgCheckLimitStore(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -46,20 +59,6 @@ public final class NodeFimgUpsertOwner extends DeciTreeWriteTemplate<FimgInfo> {
 		ActionStd<FimgInfo> insert = new RootFimgInsert(option).toAction();
 		
 		actions.add(insert);		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
-		
-		ActionStd<FimgInfo> mergeFimarch = new StdFimgMergeFimarch(option);
-		ActionLazy<FimgInfo> replace = new LazyFimgRootReplace(option.conn, option.schemaName);
-		
-		mergeFimarch.addPostAction(replace);
-		
-		actions.add(mergeFimarch);		
 		return actions;
 	}
 }

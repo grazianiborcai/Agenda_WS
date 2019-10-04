@@ -40,7 +40,7 @@ public final class FimistWhere implements DaoStmtWhere {
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPerson));
 				break;
 				
-			case FimarchDbTableColumn.COL_COD_COMPANY :
+			case FimarchDbTableColumn.COL_COD_STORE :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCompany));
 				break;
 				

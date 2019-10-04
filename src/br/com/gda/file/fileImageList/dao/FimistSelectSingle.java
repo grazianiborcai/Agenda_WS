@@ -119,6 +119,7 @@ public final class FimistSelectSingle implements DaoStmt<FimistInfo> {
 				dataInfo.recordMode = stmtResult.getString(FimistDbTableColumn.COL_RECORD_MODE);	
 				dataInfo.fileImgExtension = stmtResult.getString(FimistDbTableColumn.COL_FILE_IMG_EXTENSION);
 				dataInfo.fileImgUri = stmtResult.getString(FimistDbTableColumn.COL_FILE_URI);
+				dataInfo.isCover = DaoFormatter.sqlToBoole(stmtResult, FimistDbTableColumn.COL_IS_COVER);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -7,9 +7,9 @@ import br.com.gda.file.fileImageSearch.info.FimarchInfo;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FimarchCheckRead extends ModelCheckerTemplateSimpleV2<FimarchInfo> {
+public final class FimarchCheckReadStore extends ModelCheckerTemplateSimpleV2<FimarchInfo> {
 
-	public FimarchCheckRead(ModelCheckerOption option) {
+	public FimarchCheckReadStore(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -17,16 +17,9 @@ public final class FimarchCheckRead extends ModelCheckerTemplateSimpleV2<Fimarch
 	
 	@Override protected boolean checkHook(FimarchInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codStore		<= 0	||	
 			recordInfo.codLanguage 	== null		)
 			
-			return super.FAILED;
-		
-		
-		if ( recordInfo.codPerson 	<= 0 &&
-			 recordInfo.codStore	<= 0 &&
-		     recordInfo.codOwnerRef	<= 0 &&
-			 recordInfo.codMat		<= 0	)
-				
 			return super.FAILED;
 		
 		

@@ -705,6 +705,8 @@ public final class SystemCode {
 	public static final int FILE_IMG_MANDATORY_FIELD_EMPTY 				= 6001;
 	public static final int FILE_IMG_ALREADY_EXIST						= 6002;
 	public static final int FILE_IMG_NOT_FOUND							= 6003;
+	public static final int FILE_IMG_LIMIT_NOT_REACHED					= 6004;
+	public static final int FILE_IMG_LIMIT_EXCEEDED						= 6005;
 	
 	// File Path
 	public static final int FILE_PATH_MANDATORY_FIELD_EMPTY 			= 6051;

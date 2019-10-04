@@ -114,7 +114,7 @@
         <security:intercept-url pattern="/**/Schedule/selectScheduleMonth"		access="isAuthenticated()" 							/> 
         <security:intercept-url pattern="/**/Schedule/selectScheduleWeek"		access="isAuthenticated()" 							/> 
         <security:intercept-url pattern="/**/File/insertFileImgOwner"			access="hasAuthority('OWNER_WRITE')" 				/>
-        <security:intercept-url pattern="/**/File/insertFileImg"				access="isAuthenticated()" 							/> 
+        <security:intercept-url pattern="/**/File/insertFileImgStore" 			access="hasAuthority('STORE_UPDATE')" 				/>
         <security:intercept-url pattern="/**"                					access="isAuthenticated()" 							/>	<!-- TODO: Remover? -->
         <security:http-basic />
         <csrf disabled="true"/>

@@ -24,9 +24,9 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootFimgUpdate extends DeciTreeWriteTemplate<FimgInfo> {
+public final class RootFimgReplace extends DeciTreeWriteTemplate<FimgInfo> {
 	
-	public RootFimgUpdate(DeciTreeOption<FimgInfo> option) {
+	public RootFimgReplace(DeciTreeOption<FimgInfo> option) {
 		super(option);
 	}
 	

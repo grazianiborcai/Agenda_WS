@@ -67,6 +67,7 @@ public final class RootFimgInsert extends DeciTreeWriteTemplate<FimgInfo> {
 	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
 		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
+		ActionStd<FimgInfo> nodeStore = new NodeFimgStore(option).toAction();
 		ActionStd<FimgInfo> enforceLChanged = new StdFimgEnforceLChanged(option);	
 		ActionLazy<FimgInfo> enforceCreatedOn = new LazyFimgEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> enforceLChangedBy = new LazyFimgMergeUsername(option.conn, option.schemaName);
@@ -88,6 +89,7 @@ public final class RootFimgInsert extends DeciTreeWriteTemplate<FimgInfo> {
 		insert.addPostAction(writeOnDisk);
 		writeOnDisk.addPostAction(select);
 		
+		actions.add(nodeStore);
 		actions.add(enforceLChanged);		
 		return actions;
 	}

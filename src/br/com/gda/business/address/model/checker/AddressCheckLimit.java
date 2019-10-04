@@ -7,7 +7,7 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateActionV2;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-
+//TODO: isso esta funcionando ?
 public final class AddressCheckLimit extends ModelCheckerTemplateActionV2<AddressInfo, AddressInfo> {
 	private final int MAX_RECORD_COUNT = 10;
 	

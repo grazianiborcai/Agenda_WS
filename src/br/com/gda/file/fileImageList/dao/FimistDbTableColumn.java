@@ -18,6 +18,7 @@ public final class FimistDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;
 	public static final String COL_FILE_IMG_EXTENSION = DaoDbField.COL_FILE_IMG_EXTENSION;
 	public static final String COL_FILE_URI = DaoDbField.COL_FILE_URI;	
+	public static final String COL_IS_COVER = DaoDbField.COL_IS_COVER;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 		
 	
@@ -113,6 +114,14 @@ public final class FimistDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_FILE_URI;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_IS_COVER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

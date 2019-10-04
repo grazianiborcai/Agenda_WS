@@ -10,6 +10,7 @@ public final class FimistInfo extends InfoRecord implements Cloneable {
 	public long codFileImg;
 	public String fileImgUri;
 	public String fileImgExtension;
+	public boolean isCover;
 	public long codPerson;
 	public long codMat;
 	public long codCompany;
@@ -22,7 +23,8 @@ public final class FimistInfo extends InfoRecord implements Cloneable {
 		super(FimistInfo.class);
 		
 		codOwner = DefaultValue.number();
-		codFileImg = DefaultValue.number();		
+		codFileImg = DefaultValue.number();
+		isCover = DefaultValue.boole();
 		codPerson = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codCompany = DefaultValue.number();		
