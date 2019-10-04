@@ -50,15 +50,15 @@ public final class FimgMerger {
 	
 	
 	
-	public static FimgInfo mergeToUpdate(FimgInfo sourceOne, FimgInfo sourceTwo) {
-		InfoMerger<FimgInfo, FimgInfo> merger = new FimgMergerToUpdate();		
+	public static FimgInfo mergeToReplace(FimgInfo sourceOne, FimgInfo sourceTwo) {
+		InfoMerger<FimgInfo, FimgInfo> merger = new FimgMergerToReplace();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<FimgInfo> mergeToUpdate(List<FimgInfo> sourceOnes, List<FimgInfo> sourceTwos) {
-		InfoMerger<FimgInfo, FimgInfo> merger = new FimgMergerToUpdate();		
+	public static List<FimgInfo> mergeToReplace(List<FimgInfo> sourceOnes, List<FimgInfo> sourceTwos) {
+		InfoMerger<FimgInfo, FimgInfo> merger = new FimgMergerToReplace();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
@@ -87,6 +87,20 @@ public final class FimgMerger {
 	
 	public static List<FimgInfo> mergeToDelete(List<FimgInfo> sourceOnes, List<FimgInfo> sourceTwos) {
 		InfoMerger<FimgInfo, FimgInfo> merger = new FimgMergerToDelete();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static FimgInfo mergeToUpdate(FimgInfo sourceOne, FimgInfo sourceTwo) {
+		InfoMerger<FimgInfo, FimgInfo> merger = new FimgMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<FimgInfo> mergeToUpdate(List<FimgInfo> sourceOnes, List<FimgInfo> sourceTwos) {
+		InfoMerger<FimgInfo, FimgInfo> merger = new FimgMergerToUpdate();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

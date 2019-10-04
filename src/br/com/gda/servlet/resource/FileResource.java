@@ -2,12 +2,14 @@ package br.com.gda.servlet.resource;
 
 import java.io.InputStream;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -18,6 +20,7 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 import br.com.gda.file.fileImage.info.FimgInfo;
 import br.com.gda.file.fileImage.model.FimgModelInsertOwner;
 import br.com.gda.file.fileImage.model.FimgModelInsertStore;
+import br.com.gda.file.fileImage.model.FimgModelUpdateStore;
 import br.com.gda.model.Model;
 
 @Path("/File")
@@ -25,6 +28,7 @@ public class FileResource {
 
 	private static final String INSERT_FILE_IMG_OWNER = "/insertFileImgOwner";
 	private static final String INSERT_FILE_IMG_STORE = "/insertFileImgStore";
+	private static final String UPDATE_FILE_IMG_STORE = "/updateFileImgStore";
 	
 	
 	
@@ -79,4 +83,17 @@ public class FileResource {
 		model.executeRequest();
 		return model.getResponse();
 	} 
+	
+	
+	
+	@POST
+	@Path(UPDATE_FILE_IMG_STORE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Response updateFileImgStore(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new FimgModelUpdateStore(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
+	}
 }

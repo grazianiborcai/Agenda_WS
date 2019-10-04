@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class FimgVisiMergeToUpdate implements InfoMergerVisitor<FimgInfo, FimgInfo> {
+final class FimgVisiMergeToReplace implements InfoMergerVisitor<FimgInfo, FimgInfo> {
 
 	@Override public FimgInfo writeRecord(FimgInfo sourceOne, FimgInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
@@ -23,8 +23,9 @@ final class FimgVisiMergeToUpdate implements InfoMergerVisitor<FimgInfo, FimgInf
 	
 	
 	private FimgInfo merge(FimgInfo sourceOne, FimgInfo sourceTwo) {
-		FimgInfo result = makeClone(sourceOne);		
-		result.isCover = sourceTwo.isCover;
+		FimgInfo result = makeClone(sourceTwo);		
+		result.createdBy = sourceOne.createdBy;
+		result.createdOn = sourceOne.createdOn;
 		return result;
 	}
 	

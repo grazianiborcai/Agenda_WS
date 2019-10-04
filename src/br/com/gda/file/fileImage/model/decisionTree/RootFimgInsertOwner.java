@@ -7,7 +7,7 @@ import br.com.gda.model.action.ActionStd;
 import br.com.gda.file.fileImage.info.FimgInfo;
 import br.com.gda.file.fileImage.model.action.LazyFimgNodeUpsertOwner;
 import br.com.gda.file.fileImage.model.action.StdFimgEnforceOwner;
-import br.com.gda.file.fileImage.model.checker.FimgCheckInsertOwner;
+import br.com.gda.file.fileImage.model.checker.FimgCheckWriteOwner;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -32,7 +32,7 @@ public final class RootFimgInsertOwner extends DeciTreeWriteTemplate<FimgInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgCheckInsertOwner(checkerOption);
+		checker = new FimgCheckWriteOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
