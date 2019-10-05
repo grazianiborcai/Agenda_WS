@@ -47,7 +47,6 @@ import br.com.gda.business.orderSearch.dao.OrdarchDbTableColumn;
 import br.com.gda.business.orderSnapshot.dao.OrdnapDbTableColumn;
 import br.com.gda.business.owner.dao.OwnerDbTableColumn;
 import br.com.gda.business.ownerSnapshot.dao.OwnerapDbTableColumn;
-import br.com.gda.business.ownerStore_.dao.OwntoreDbTableColumn;
 import br.com.gda.business.person.dao.PersonDbTableColumn;
 import br.com.gda.business.personCustomer.dao.PersonCusDbTableColumn;
 import br.com.gda.business.personList.dao.PersolisDbTableColumn;
@@ -95,6 +94,7 @@ import br.com.gda.payment.setupPartner.dao.SetuparDbTableColumn;
 import br.com.gda.payment.storePartner.dao.StoparDbTableColumn;
 import br.com.gda.payment.storePartnerSnapshot.dao.StoparnapDbTableColumn;
 import br.com.gda.payment.systemPartner.dao.SysparDbTableColumn;
+import br.com.gda.security.storeAuthorization.dao.StorauthDbTableColumn;
 import br.com.gda.security.user.dao.UserDbTableColumn;
 import br.com.gda.security.userList.dao.UselistDbTableColumn;
 import br.com.gda.security.userPassword.dao.UpswdDbTableColumn;
@@ -160,7 +160,6 @@ public final class DaoDbTableColumnAll {
 		addTable(new CounparDbTableColumn());
 		addTable(new CompDbTableColumn());
 		addTable(new UpswdDbTableColumn());
-		addTable(new OwntoreDbTableColumn());
 		addTable(new UsernameDbTableColumn());
 		addTable(new MatmovDbTableColumn());
 		addTable(new MatockDbTableColumn());
@@ -212,6 +211,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PerarchDbTableColumn());
 		addTable(new FimarchDbTableColumn());
 		addTable(new FimistDbTableColumn());
+		addTable(new StorauthDbTableColumn());
 	}
 	
 	

@@ -7,9 +7,9 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
 
-public final class StorauthCheckRead extends ModelCheckerTemplateSimpleV2<StorauthInfo> {
+public final class StorauthCheckReadStore extends ModelCheckerTemplateSimpleV2<StorauthInfo> {
 
-	public StorauthCheckRead(ModelCheckerOption option) {
+	public StorauthCheckReadStore(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -17,11 +17,8 @@ public final class StorauthCheckRead extends ModelCheckerTemplateSimpleV2<Storau
 	
 	@Override protected boolean checkHook(StorauthInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner  	<= 0 	||
-			 recordInfo.codLanguage	== null	||
-			 recordInfo.username	== null		 )			
-			
+			 recordInfo.codUser  	<= 0 	 	)			
 			return super.FAILED;		
-		
 		
 		return super.SUCCESS;
 	}

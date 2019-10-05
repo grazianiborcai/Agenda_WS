@@ -2,17 +2,17 @@ package br.com.gda.security.storeAuthorization.model.action;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
-import br.com.gda.model.action.ActionStdHelperMerge;
+import br.com.gda.model.action.ActionStdHelperEnforce;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
 
-public final class StdStorauthMergeOwntore implements ActionStd<StorauthInfo> {
+public final class StdStorauthEnforceOwnerKey implements ActionStd<StorauthInfo> {
 	private ActionStd<StorauthInfo> actionHelper;	
 	
 	
-	public StdStorauthMergeOwntore(DeciTreeOption<StorauthInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStorauthMergeOwntore(option.conn, option.schemaName));
+	public StdStorauthEnforceOwnerKey(DeciTreeOption<StorauthInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiStorauthEnforceOwnerKey());
 	}
 	
 	

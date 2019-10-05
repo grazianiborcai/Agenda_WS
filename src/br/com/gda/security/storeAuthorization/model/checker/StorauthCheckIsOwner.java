@@ -4,14 +4,14 @@ import java.sql.Connection;
 
 import br.com.gda.business.masterData.info.common.UserCateg;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
 
-public final class StorauthCheckIsCategOwner extends ModelCheckerTemplateSimple_<StorauthInfo> {
+public final class StorauthCheckIsOwner extends ModelCheckerTemplateSimpleV2<StorauthInfo> {
 
-	public StorauthCheckIsCategOwner() {
-		super();
+	public StorauthCheckIsOwner(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -25,13 +25,7 @@ public final class StorauthCheckIsCategOwner extends ModelCheckerTemplateSimple_
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.STORE_AUTH_MANDATORY_FIELD_EMPTY;
 	}
 }

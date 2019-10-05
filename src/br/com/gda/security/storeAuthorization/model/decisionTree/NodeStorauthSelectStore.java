@@ -5,15 +5,16 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
-import br.com.gda.security.storeAuthorization.model.checker.StorauthCheckCategStore;
+import br.com.gda.security.storeAuthorization.model.checker.StorauthCheckReadStore;
 
-public final class NodeStorauthSelectCategStore extends DeciTreeWriteTemplate<StorauthInfo> {
+public final class NodeStorauthSelectStore extends DeciTreeWriteTemplate<StorauthInfo> {
 	
-	public NodeStorauthSelectCategStore(DeciTreeOption<StorauthInfo> option) {
+	public NodeStorauthSelectStore(DeciTreeOption<StorauthInfo> option) {
 		super(option);
 	}
 	
@@ -22,8 +23,13 @@ public final class NodeStorauthSelectCategStore extends DeciTreeWriteTemplate<St
 	@Override protected ModelChecker<StorauthInfo> buildDecisionCheckerHook(DeciTreeOption<StorauthInfo> option) {
 		List<ModelChecker<StorauthInfo>> queue = new ArrayList<>();		
 		ModelChecker<StorauthInfo> checker;
+		ModelCheckerOption checkerOption;
 		
-		checker = new StorauthCheckCategStore();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new StorauthCheckReadStore(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

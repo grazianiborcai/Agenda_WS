@@ -1,4 +1,4 @@
-package br.com.gda.business.ownerStore_.dao;
+package br.com.gda.security.storeAuthorization.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -6,33 +6,33 @@ import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class OwntoreDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_COD_USER = "cod_user";
-	public static final String COL_RECORD_MODE = "record_mode";	
+public final class StorauthDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public OwntoreDbTableColumn() {
-		super(OwntoreDbTableColumn.class);
+	public StorauthDbTableColumn() {
+		super(StorauthDbTableColumn.class);
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
-		buildOwnerStoreTable();		
+		buildStoreAuthTable();		
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildOwnerStoreTable() {
-		final String TABLE_NAME = DaoDbTable.OWNER_STORE_VIEW;
+	private void buildStoreAuthTable() {
+		final String TABLE_NAME = DaoDbTable.STORE_AUTH_VIEW;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
@@ -59,15 +59,7 @@ public final class OwntoreDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
+		columns.add(oneColumn);	
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.STORE_TABLE;

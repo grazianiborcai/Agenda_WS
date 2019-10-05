@@ -1,49 +1,45 @@
-package br.com.gda.business.ownerStore_.dao;
+package br.com.gda.security.storeAuthorization.dao;
 
 import java.util.List;
 
-import br.com.gda.business.ownerStore_.info.OwntoreInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
+import br.com.gda.security.storeAuthorization.info.StorauthInfo;
 
-public final class OwntoreWhere implements DaoStmtWhere {
+public final class StorauthWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public OwntoreWhere(DaoWhereBuilderOption whereOption, String tableName, OwntoreInfo recordInfo) {
+	public StorauthWhere(DaoWhereBuilderOption whereOption, String tableName, StorauthInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, OwntoreInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, StorauthInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);
 		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case OwntoreDbTableColumn.COL_COD_OWNER :
+				case StorauthDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;	
 					
-				case OwntoreDbTableColumn.COL_COD_USER :
+				case StorauthDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;	
 					
-				case OwntoreDbTableColumn.COL_COD_STORE :
+				case StorauthDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
-					break;	
+					break;					
 					
-				case OwntoreDbTableColumn.COL_COD_LANGUAGE :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
-					break;						
-					
-				case OwntoreDbTableColumn.COL_RECORD_MODE :
+				case StorauthDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

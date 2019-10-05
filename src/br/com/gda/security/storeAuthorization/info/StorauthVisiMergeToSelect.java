@@ -3,24 +3,30 @@ package br.com.gda.security.storeAuthorization.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.gda.business.ownerStore_.info.OwntoreInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class StorauthVisiMergeOwntore implements InfoMergerVisitor<StorauthInfo, OwntoreInfo> {
+final class StorauthVisiMergeToSelect implements InfoMergerVisitor<StorauthInfo, StorauthInfo> {
 
-	@Override public StorauthInfo writeRecord(OwntoreInfo sourceOne, StorauthInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		
-		StorauthInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+	@Override public StorauthInfo writeRecord(StorauthInfo sourceOne, StorauthInfo sourceTwo) {
+		checkArgument(sourceOne, sourceTwo);		
+		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(OwntoreInfo sourceOne, StorauthInfo sourceTwo) {
+	private void checkArgument(StorauthInfo sourceOne, StorauthInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	}
+	
+	
+	
+	private StorauthInfo merge(StorauthInfo sourceOne, StorauthInfo sourceTwo) {
+		StorauthInfo result = makeClone(sourceOne);		
+		result.username = sourceTwo.username;
+		result.codLanguage = sourceTwo.codLanguage;
+		return result;
 	}
 	
 	
@@ -37,14 +43,7 @@ final class StorauthVisiMergeOwntore implements InfoMergerVisitor<StorauthInfo, 
 	
 	
 	
-	private StorauthInfo merge(OwntoreInfo sourceOne, StorauthInfo sourceTwo) {
-		sourceTwo.codStore = sourceOne.codStore;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(OwntoreInfo sourceOne, StorauthInfo sourceTwo) {		
+	@Override public boolean shouldWrite(StorauthInfo sourceOne, StorauthInfo sourceTwo) {		
 		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	

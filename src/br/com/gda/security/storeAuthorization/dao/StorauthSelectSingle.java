@@ -1,4 +1,4 @@
-package br.com.gda.business.ownerStore_.dao;
+package br.com.gda.security.storeAuthorization.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.ownerStore_.info.OwntoreInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoJoinColumn;
 import br.com.gda.dao.DaoJoinType;
@@ -20,32 +20,32 @@ import br.com.gda.dao.DaoWhereBuilderOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 import br.com.gda.dao.common.DaoOptionValue;
+import br.com.gda.security.storeAuthorization.info.StorauthInfo;
 
-public final class OwntoreSelectSingle implements DaoStmt<OwntoreInfo> {
-	private final static String VIEW_OWNER_STORE = DaoDbTable.OWNER_STORE_VIEW;	
+public final class StorauthSelectSingle implements DaoStmt<StorauthInfo> {
+	private final static String VIEW_STORE_AUTH = DaoDbTable.STORE_AUTH_VIEW;	
 	private final static String LT_STORE = DaoDbTable.STORE_TABLE;	
-	private final static String RT_OWNER = DaoDbTable.OWNER_TABLE;	
-	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
+	private final static String RT_OWNER = DaoDbTable.OWNER_TABLE;
 	
-	private DaoStmt<OwntoreInfo> stmtSql;
-	private DaoStmtOption<OwntoreInfo> stmtOption;
-	
+	private DaoStmt<StorauthInfo> stmtSql;
+	private DaoStmtOption<StorauthInfo> stmtOption;
 	
 	
-	public OwntoreSelectSingle(Connection conn, OwntoreInfo recordInfo, String schemaName) {
+	
+	public StorauthSelectSingle(Connection conn, StorauthInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, OwntoreInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, StorauthInfo recordInfo, String schemaName) {
 		stmtOption = new DaoStmtOption<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
 		stmtOption.tableName = LT_STORE;
-		stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(VIEW_OWNER_STORE);
+		stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(VIEW_STORE_AUTH);
 		stmtOption.stmtParamTranslator = null;
 		stmtOption.resultParser = new ResultParser();
 		stmtOption.whereClause = buildWhereClause();
@@ -59,29 +59,16 @@ public final class OwntoreSelectSingle implements DaoStmt<OwntoreInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new OwntoreWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new StorauthWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();		
-		joins.add(buildJoinLanguage());		
+		List<DaoJoin> joins = new ArrayList<>();
 		joins.add(buildJoinOwner());
 		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
 	}
 	
 	
@@ -91,14 +78,14 @@ public final class OwntoreSelectSingle implements DaoStmt<OwntoreInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_STORE;
-		oneColumn.leftColumnName = OwntoreDbTableColumn.COL_COD_OWNER;
-		oneColumn.rightColumnName = OwntoreDbTableColumn.COL_COD_OWNER;
+		oneColumn.leftColumnName = StorauthDbTableColumn.COL_COD_OWNER;
+		oneColumn.rightColumnName = StorauthDbTableColumn.COL_COD_OWNER;
 		joinColumns.add(oneColumn);
 		
 		oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_STORE;
-		oneColumn.leftColumnName = OwntoreDbTableColumn.COL_RECORD_MODE;
-		oneColumn.rightColumnName = OwntoreDbTableColumn.COL_RECORD_MODE;
+		oneColumn.leftColumnName = StorauthDbTableColumn.COL_RECORD_MODE;
+		oneColumn.rightColumnName = StorauthDbTableColumn.COL_RECORD_MODE;
 		joinColumns.add(oneColumn);
 		
 		
@@ -137,14 +124,14 @@ public final class OwntoreSelectSingle implements DaoStmt<OwntoreInfo> {
 
 	
 	
-	@Override public List<OwntoreInfo> getResultset() {
+	@Override public List<StorauthInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<OwntoreInfo> getNewInstance() {
-		return new OwntoreSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<StorauthInfo> getNewInstance() {
+		return new StorauthSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -152,31 +139,21 @@ public final class OwntoreSelectSingle implements DaoStmt<OwntoreInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<OwntoreInfo> {
-		private final boolean NOT_NULL = false;
+	private static class ResultParser implements DaoResultParser<StorauthInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<OwntoreInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<OwntoreInfo> finalResult = new ArrayList<>();
+		@Override public List<StorauthInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<StorauthInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 			
 			do {
-				OwntoreInfo dataInfo = new OwntoreInfo();
-				dataInfo.codOwner = stmtResult.getLong(OwntoreDbTableColumn.COL_COD_OWNER);
-				dataInfo.codStore = stmtResult.getLong(OwntoreDbTableColumn.COL_COD_STORE);
-				dataInfo.recordMode = stmtResult.getString(OwntoreDbTableColumn.COL_RECORD_MODE);	
-				
-				
-				stmtResult.getLong(OwntoreDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(OwntoreDbTableColumn.COL_COD_USER);
-				
-				
-				stmtResult.getString(OwntoreDbTableColumn.COL_COD_LANGUAGE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codLanguage = stmtResult.getString(OwntoreDbTableColumn.COL_COD_LANGUAGE);
+				StorauthInfo dataInfo = new StorauthInfo();
+				dataInfo.codOwner = stmtResult.getLong(StorauthDbTableColumn.COL_COD_OWNER);
+				dataInfo.codStore = stmtResult.getLong(StorauthDbTableColumn.COL_COD_STORE);
+				dataInfo.recordMode = stmtResult.getString(StorauthDbTableColumn.COL_RECORD_MODE);	
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, StorauthDbTableColumn.COL_COD_USER);
 		
 				
 				finalResult.add(dataInfo);

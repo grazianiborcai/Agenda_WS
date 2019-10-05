@@ -483,6 +483,7 @@ public final class SystemCode {
 	
 	// Store-Authorization
 	public static final int STORE_AUTH_NOT_AUTHORIZED 					= 2850;
+	public static final int STORE_AUTH_MANDATORY_FIELD_EMPTY 			= 2851;
 	
 	// Store-Time
 	public static final int STORE_TIME_IS_EMPTY							= 2900;

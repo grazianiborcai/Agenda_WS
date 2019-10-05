@@ -7,7 +7,7 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class StorauthSetterCategOwnerKey implements InfoSetter<StorauthInfo> {
+public final class StorauthSetterOwnerKey implements InfoSetter<StorauthInfo> {
 	
 	public StorauthInfo setAttr(StorauthInfo recordInfo) {
 		checkArgument(recordInfo);

@@ -136,8 +136,7 @@ public final class DaoDbTable {
 	public static final String FILE_IMG_SEARCH_VIEW = "view_file_image_search";
 	public static final String ORDER_LIST_VIEW = "view_order_list";
 	public static final String ORDER_RESERVE_VIEW = "view_order_reserve";	
-	public static final String ORDER_SEARCH_VIEW = "view_order_search";
-	public static final String OWNER_STORE_VIEW = "owner_store";
+	public static final String ORDER_SEARCH_VIEW = "view_order_search";	
 	public static final String PAYMENT_VIEW = "view_payment";
 	public static final String PERSON_CUS_VIEW = "view_person_customer";
 	public static final String PERSON_LIST_VIEW = "view_person_list";	
@@ -148,6 +147,7 @@ public final class DaoDbTable {
 	public static final String REFUND_VIEW = "view_refund";	
 	public static final String SCHEDULE_LIST_VIEW = "view_list_search";
 	public static final String SCHEDULE_SEARCH_VIEW = "view_schedule_search";
+	public static final String STORE_AUTH_VIEW = "store_auth_view";
 	public static final String STORE_LIST_VIEW = "view_store_list";
 	public static final String STORE_SEARCH_VIEW = "view_store_search";
 	public static final String STORE_WT_CONFLICT_VIEW = "view_store_working_time";
