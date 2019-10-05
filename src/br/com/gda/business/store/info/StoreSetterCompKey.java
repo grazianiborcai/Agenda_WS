@@ -33,7 +33,6 @@ public final class StoreSetterCompKey implements InfoSetter<StoreInfo> {
 	private StoreInfo setCompKey(StoreInfo recordInfo) {
 		recordInfo.companyData.codOwner = recordInfo.codOwner;
 		recordInfo.companyData.codCompany = recordInfo.codCompany;
-		recordInfo.companyData.codEntityCateg = recordInfo.codEntityCateg;
 		recordInfo.companyData.username = recordInfo.username;
 		recordInfo.companyData.codLanguage = recordInfo.codLanguage;
 		

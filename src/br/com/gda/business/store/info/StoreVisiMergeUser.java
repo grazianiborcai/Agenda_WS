@@ -40,8 +40,6 @@ final class StoreVisiMergeUser implements InfoMergerVisitor<StoreInfo, UserInfo>
 	private StoreInfo merge(UserInfo sourceOne, StoreInfo sourceTwo) {
 		sourceTwo.userData = makeClone(sourceOne);
 		sourceTwo.codUser = sourceOne.codUser;
-		sourceTwo.codAuthGroup = sourceOne.codAuthGroup;
-		sourceTwo.codUserCategory = sourceOne.codUserCategory;
 		return sourceTwo;
 	}
 	

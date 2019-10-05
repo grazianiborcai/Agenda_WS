@@ -20,9 +20,6 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public long codUser;
 	public long codPerson;
 	public long codCompany;
-	public String codEntityCateg;
-	public char codUserCategory;
-	public String codAuthGroup;
 	public String codCurr;
 	public String txtCurr;
 	public String codTimezone;
@@ -50,7 +47,6 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		codUser = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codCompany = DefaultValue.number();
-		codUserCategory = DefaultValue.character();
 		recordMode = DefaultValue.recordMode();
 		userData = DefaultValue.object();
 		companyData = DefaultValue.object();
