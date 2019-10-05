@@ -15,6 +15,20 @@ import br.com.gda.payment.customerPartner.info.CusparInfo;
 import br.com.gda.security.user.info.UserInfo;
 
 public final class AddressCopier {
+	public static List<AddressInfo> copyFromStore(StoreInfo source) {
+		InfoCopierOneToMany<AddressInfo, StoreInfo> copier = new AddressCopyStore();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddressInfo> copyFromStore(List<StoreInfo> sources) {
+		InfoCopierOneToMany<AddressInfo, StoreInfo> copier = new AddressCopyStore();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static AddressInfo copyFromCrecard(CrecardInfo source) {
 		InfoCopier<AddressInfo, CrecardInfo> copier = new AddressCopyCrecard();
 		return copier.makeCopy(source);
@@ -71,15 +85,15 @@ public final class AddressCopier {
 	
 	
 	
-	public static AddressInfo copyFromStore(StoreInfo source) {
-		InfoCopier<AddressInfo, StoreInfo> copier = new AddressCopyStore();
+	public static AddressInfo copyFromStoreKey(StoreInfo source) {
+		InfoCopier<AddressInfo, StoreInfo> copier = new AddressCopyStoreKey();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<AddressInfo> copyFromStore(List<StoreInfo> sources) {
-		InfoCopier<AddressInfo, StoreInfo> copier = new AddressCopyStore();
+	public static List<AddressInfo> copyFromStoreKey(List<StoreInfo> sources) {
+		InfoCopier<AddressInfo, StoreInfo> copier = new AddressCopyStoreKey();
 		return copier.makeCopy(sources);
 	}
 	

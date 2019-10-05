@@ -5,19 +5,17 @@ import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.action.LazyStoreInsertUser;
+import br.com.gda.business.store.model.action.LazyStoreNodeInsertAddress;
 import br.com.gda.business.store.model.action.LazyStoreNodeInsertComp;
 import br.com.gda.business.store.model.action.LazyStoreNodeInsertPerson;
+import br.com.gda.business.store.model.action.LazyStoreNodeInsertPhone;
 import br.com.gda.business.store.model.action.LazyStoreNodeSnapshot;
-import br.com.gda.business.store.model.action.LazyStoreNodeUpsertAddress;
-import br.com.gda.business.store.model.action.LazyStoreNodeUpsertPhone;
 import br.com.gda.business.store.model.action.LazyStoreRootSelect;
 import br.com.gda.business.store.model.checker.StoreCheckCurrency;
 import br.com.gda.business.store.model.checker.StoreCheckLangu;
 import br.com.gda.business.store.model.checker.StoreCheckOwner;
 import br.com.gda.business.store.model.checker.StoreCheckTimezone;
 import br.com.gda.business.store.model.checker.StoreCheckWrite;
-import br.com.gda.business.store.model.checker.StoreCheckWriteAddress;
-import br.com.gda.business.store.model.checker.StoreCheckWritePhone;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.checker.ModelChecker;
@@ -44,20 +42,6 @@ public final class RootStoreInsert extends DeciTreeWriteTemplate<StoreInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new StoreCheckWrite(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StoreCheckWritePhone(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StoreCheckWriteAddress(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -102,16 +86,16 @@ public final class RootStoreInsert extends DeciTreeWriteTemplate<StoreInfo> {
 		ActionLazy<StoreInfo> insertComp = new LazyStoreNodeInsertComp(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> insertUser = new LazyStoreInsertUser(option.conn, option.schemaName);	
 		ActionLazy<StoreInfo> snapshot = new LazyStoreNodeSnapshot(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionLazy<StoreInfo> insertAddress = new LazyStoreNodeInsertAddress(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> insertPhone = new LazyStoreNodeInsertPhone(option.conn, option.schemaName);		
 		ActionLazy<StoreInfo> selectStore = new LazyStoreRootSelect(option.conn, option.schemaName);	
 		
 		insertStore.addPostAction(insertPerson);		
 		insertPerson.addPostAction(insertComp);		
 		insertComp.addPostAction(insertUser);
 		insertUser.addPostAction(snapshot);		
-		snapshot.addPostAction(upsertAddress);		
-		snapshot.addPostAction(upsertPhone);			
+		snapshot.addPostAction(insertAddress);		
+		snapshot.addPostAction(insertPhone);			
 		snapshot.addPostAction(selectStore);
 		
 		actions.add(insertStore);	
