@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.file.fileImage.info.FimgInfo;
-import br.com.gda.file.fileImage.model.checker.FimgCheckWriteStore;
+import br.com.gda.file.fileImage.model.checker.FimgCheckInsertStore;
 import br.com.gda.file.fileImage.model.checker.FimgCheckLimitStore;
 import br.com.gda.file.fileImage.model.checker.FimgCheckStorauth;
 import br.com.gda.file.fileImage.model.checker.FimgCheckStore;
@@ -32,7 +32,7 @@ public final class RootFimgInsertStore extends DeciTreeWriteTemplate<FimgInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgCheckWriteStore(checkerOption);
+		checker = new FimgCheckInsertStore(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

@@ -3,11 +3,13 @@ package br.com.gda.file.fileImage.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.file.fileImage.info.FimgInfo;
-import br.com.gda.file.fileImage.model.checker.FimgCheckWriteStore;
-import br.com.gda.file.fileImage.model.checker.FimgCheckStorauth;
-import br.com.gda.file.fileImage.model.checker.FimgCheckStore;
+import br.com.gda.file.fileImage.model.action.LazyFimgNodeUpdateStore;
+import br.com.gda.file.fileImage.model.action.StdFimgMergeToUpdate;
+import br.com.gda.file.fileImage.model.checker.FimgCheckExist;
+import br.com.gda.file.fileImage.model.checker.FimgCheckUpdate;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
@@ -31,21 +33,14 @@ public final class RootFimgUpdateStore extends DeciTreeWriteTemplate<FimgInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgCheckWriteStore(checkerOption);
+		checker = new FimgCheckUpdate(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new FimgCheckStore(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgCheckStorauth(checkerOption);
+		checker = new FimgCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -56,9 +51,12 @@ public final class RootFimgUpdateStore extends DeciTreeWriteTemplate<FimgInfo> {
 	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
 		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> update = new RootFimgUpdate(option).toAction();
+		ActionStd<FimgInfo> mergeToUpdate = new StdFimgMergeToUpdate(option);
+		ActionLazy<FimgInfo> update = new LazyFimgNodeUpdateStore(option.conn, option.schemaName);
 		
-		actions.add(update);		
+		mergeToUpdate.addPostAction(update);
+		
+		actions.add(mergeToUpdate);		
 		return actions;
 	}
 }

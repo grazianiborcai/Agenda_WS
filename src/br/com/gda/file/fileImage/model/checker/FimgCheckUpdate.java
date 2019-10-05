@@ -22,14 +22,6 @@ public final class FimgCheckUpdate extends ModelCheckerTemplateSimpleV2<FimgInfo
 			|| recordInfo.username			== null	)
 			
 			return super.FAILED;
-		
-		
-		if (   recordInfo.codPerson 	<= 0 	
-			&& recordInfo.codStore		<= 0
-			&& recordInfo.codOwnerRef	<= 0
-			&& recordInfo.codMat		<= 0)
-			
-			return super.FAILED;
 			
 		
 		return super.SUCCESS;

@@ -5,19 +5,17 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.file.fileImage.info.FimgInfo;
-import br.com.gda.file.fileImage.model.action.LazyFimgNodeUpsertOwner;
-import br.com.gda.file.fileImage.model.action.StdFimgEnforceOwner;
-import br.com.gda.file.fileImage.model.checker.FimgCheckInsertOwner;
-import br.com.gda.model.action.ActionLazy;
+import br.com.gda.file.fileImage.model.checker.FimgCheckIsStore;
+import br.com.gda.file.fileImage.model.checker.FimgCheckStorauth;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootFimgInsertOwner extends DeciTreeWriteTemplate<FimgInfo> {
+public final class NodeFimgUpdateStore extends DeciTreeWriteTemplate<FimgInfo> {
 	
-	public RootFimgInsertOwner(DeciTreeOption<FimgInfo> option) {
+	public NodeFimgUpdateStore(DeciTreeOption<FimgInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +30,14 @@ public final class RootFimgInsertOwner extends DeciTreeWriteTemplate<FimgInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgCheckInsertOwner(checkerOption);
+		checker = new FimgCheckIsStore(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new FimgCheckStorauth(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -43,12 +48,9 @@ public final class RootFimgInsertOwner extends DeciTreeWriteTemplate<FimgInfo> {
 	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
 		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> enforceOwner = new StdFimgEnforceOwner(option);	
-		ActionLazy<FimgInfo> upsert = new LazyFimgNodeUpsertOwner(option.conn, option.schemaName);
+		ActionStd<FimgInfo> update = new RootFimgUpdate(option).toAction();
 		
-		enforceOwner.addPostAction(upsert);
-		
-		actions.add(enforceOwner);		
+		actions.add(update);		
 		return actions;
 	}
 }
