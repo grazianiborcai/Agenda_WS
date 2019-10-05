@@ -3,7 +3,6 @@ package br.com.gda.business.store.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
@@ -97,48 +96,18 @@ public final class StoreUpdateSingle implements DaoStmt<StoreInfo> {
 	private class ParamTranslator implements DaoStmtParamTranslator<StoreInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoreInfo recordInfo) throws SQLException {	
 			
-			int i = 1;
-			
-			if (recordInfo.codPerson >= 0) {
-				stmt.setLong(i++, recordInfo.codPerson);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codCompany >= 0) {
-				stmt.setLong(i++, recordInfo.codCompany);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
+			int i = 1;			
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompany);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt.setString(i++, recordInfo.codCurr);
 			stmt.setString(i++, recordInfo.codTimezone);
-			stmt.setString(i++, recordInfo.recordMode);
-			
-			
-			if (recordInfo.codUser >= 0) {
-				stmt.setLong(i++, recordInfo.codUser);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.lastChangedBy >= 0) {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
+			stmt.setString(i++, recordInfo.recordMode);		
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);			
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 			
 			return stmt;
 		}		

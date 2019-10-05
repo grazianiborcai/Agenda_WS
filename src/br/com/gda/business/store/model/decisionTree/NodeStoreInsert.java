@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.action.LazyStoreEnforceCreatedBy;
+import br.com.gda.business.store.model.action.LazyStoreEnforceCreatedOn;
 import br.com.gda.business.store.model.action.LazyStoreInsert;
 import br.com.gda.business.store.model.action.LazyStoreMergeUsername;
 import br.com.gda.business.store.model.action.StdStoreEnforceLChanged;
@@ -40,10 +42,14 @@ public final class NodeStoreInsert extends DeciTreeWriteTemplate<StoreInfo> {
 
 		ActionStd<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
 		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> enforceCreatedBy = new LazyStoreEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> enforceCreatedOn = new LazyStoreEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> insertStore = new LazyStoreInsert(option.conn, option.schemaName);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(insertStore);
+		enforceLChangedBy.addPostAction(enforceCreatedBy);
+		enforceCreatedBy.addPostAction(enforceCreatedOn);
+		enforceCreatedOn.addPostAction(insertStore);
 		
 		actions.add(enforceLChanged);	
 		return actions;

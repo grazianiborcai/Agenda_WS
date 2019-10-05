@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,66 +80,20 @@ public final class StorapInsertSingle implements DaoStmt<StorapInfo> {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
-			
-			
-			if (recordInfo.codStore >= 0) {
-				stmt.setLong(i++, recordInfo.codStore);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codPerson >= 0) {
-				stmt.setLong(i++, recordInfo.codPerson);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codCompany >= 0) {
-				stmt.setLong(i++, recordInfo.codCompany);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}			
-			
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompany);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt.setString(i++, recordInfo.codCurr);
 			stmt.setString(i++, recordInfo.codTimezone);
-			stmt.setString(i++, recordInfo.recordMode);			
-			
-			if (recordInfo.codUser >= 0) {
-				stmt.setLong(i++, recordInfo.codUser);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}			
-			
-			
-			if (recordInfo.lastChangedBy >= 0) {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codCompanySnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codCompanySnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codPersonSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codPersonSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			
-			if (recordInfo.codUserSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codUserSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
+			stmt.setString(i++, recordInfo.recordMode);		
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompanySnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPersonSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 			
 			return stmt;
 		}		

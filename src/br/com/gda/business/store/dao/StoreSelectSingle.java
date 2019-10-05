@@ -3,11 +3,11 @@ package br.com.gda.business.store.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -51,7 +51,7 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new StoreWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -100,7 +100,6 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<StoreInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<StoreInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -116,37 +115,14 @@ public final class StoreSelectSingle implements DaoStmt<StoreInfo> {
 				dataInfo.codCurr = stmtResult.getString(StoreDbTableColumn.COL_COD_CURRENCY);
 				dataInfo.codTimezone = stmtResult.getString(StoreDbTableColumn.COL_COD_TIMEZONE);
 				dataInfo.recordMode = stmtResult.getString(StoreDbTableColumn.COL_RECORD_MODE);	
-				
-				
-				stmtResult.getLong(StoreDbTableColumn.COL_COD_PERSON);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPerson = stmtResult.getLong(StoreDbTableColumn.COL_COD_PERSON);
-				
-				
-				stmtResult.getLong(StoreDbTableColumn.COL_COD_COMPANY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCompany = stmtResult.getLong(StoreDbTableColumn.COL_COD_COMPANY);
-				
-				
-				stmtResult.getLong(StoreDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(StoreDbTableColumn.COL_COD_USER);
-				
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(StoreDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				
-				stmtResult.getLong(StoreDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(StoreDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				
-				stmtResult.getLong(StoreDbTableColumn.COL_COD_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codSnapshot = stmtResult.getLong(StoreDbTableColumn.COL_COD_SNAPSHOT);	
-		
+				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, StoreDbTableColumn.COL_COD_PERSON);
+				dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, StoreDbTableColumn.COL_COD_COMPANY);
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, StoreDbTableColumn.COL_COD_USER);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StoreDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StoreDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, StoreDbTableColumn.COL_COD_SNAPSHOT);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StoreDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StoreDbTableColumn.COL_CREATED_BY);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

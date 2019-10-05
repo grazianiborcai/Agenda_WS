@@ -28,6 +28,8 @@ final class StoreVisiMergeToUpdate implements InfoMergerVisitor<StoreInfo, Store
 		result.codStore = sourceOne.codStore;
 		result.codPerson = sourceOne.codPerson;
 		result.codCompany = sourceOne.codCompany;
+		result.createdOn = sourceOne.createdOn;
+		result.createdBy = sourceOne.createdBy;
 		return result;
 	}
 	

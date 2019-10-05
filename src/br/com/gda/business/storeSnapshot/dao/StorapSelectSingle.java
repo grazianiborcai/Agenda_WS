@@ -3,11 +3,11 @@ package br.com.gda.business.storeSnapshot.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeSnapshot.info.StorapInfo;
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -51,7 +51,7 @@ public final class StorapSelectSingle implements DaoStmt<StorapInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new StorapWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -100,7 +100,6 @@ public final class StorapSelectSingle implements DaoStmt<StorapInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<StorapInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<StorapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -114,49 +113,19 @@ public final class StorapSelectSingle implements DaoStmt<StorapInfo> {
 				dataInfo.codOwner = stmtResult.getLong(StorapDbTableColumn.COL_COD_OWNER);
 				dataInfo.codSnapshot = stmtResult.getLong(StorapDbTableColumn.COL_COD_SNAPSHOT);
 				dataInfo.codStore = stmtResult.getLong(StorapDbTableColumn.COL_COD_STORE);
-				dataInfo.codCurr = stmtResult.getString(StorapDbTableColumn.COL_COD_CURR);
-				dataInfo.codTimezone = stmtResult.getString(StorapDbTableColumn.COL_COD_TIME_ZONE);
+				dataInfo.codCurr = stmtResult.getString(StorapDbTableColumn.COL_COD_CURRENCY);
+				dataInfo.codTimezone = stmtResult.getString(StorapDbTableColumn.COL_COD_TIMEZONE);
 				dataInfo.recordMode = stmtResult.getString(StorapDbTableColumn.COL_RECORD_MODE);	
-				
-				
-				stmtResult.getLong(StorapDbTableColumn.COL_COD_PERSON);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPerson = stmtResult.getLong(StorapDbTableColumn.COL_COD_PERSON);
-				
-				
-				stmtResult.getLong(StorapDbTableColumn.COL_COD_COMPANY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCompany = stmtResult.getLong(StorapDbTableColumn.COL_COD_COMPANY);
-				
-				
-				stmtResult.getLong(StorapDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(StorapDbTableColumn.COL_COD_USER);
-				
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(StorapDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				
-				stmtResult.getLong(StorapDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(StorapDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				
-				stmtResult.getLong(StorapDbTableColumn.COL_COD_COMPANY_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codCompanySnapshot = stmtResult.getLong(StorapDbTableColumn.COL_COD_COMPANY_SNAPSHOT);
-				
-				
-				stmtResult.getLong(StorapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPersonSnapshot = stmtResult.getLong(StorapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
-				
-				
-				stmtResult.getLong(StorapDbTableColumn.COL_COD_USER_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUserSnapshot = stmtResult.getLong(StorapDbTableColumn.COL_COD_USER_SNAPSHOT);
+				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, StorapDbTableColumn.COL_COD_PERSON);
+				dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, StorapDbTableColumn.COL_COD_COMPANY);
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, StorapDbTableColumn.COL_COD_USER);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StorapDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StorapDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.codCompanySnapshot = DaoFormatter.sqlToLong(stmtResult, StorapDbTableColumn.COL_COD_COMPANY_SNAPSHOT);
+				dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, StorapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, StorapDbTableColumn.COL_COD_USER_SNAPSHOT);
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StorapDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StorapDbTableColumn.COL_CREATED_BY);
 		
 				
 				finalResult.add(dataInfo);

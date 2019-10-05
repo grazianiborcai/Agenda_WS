@@ -31,6 +31,8 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 	public UserInfo userData;
 	public CompInfo companyData;
 	public PersonInfo personData;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
@@ -56,6 +58,7 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
+		createdBy = DefaultValue.number();
 	}
 	
 	
