@@ -44,24 +44,13 @@ public final class SystemCode {
 	public static final int STORE_NOT_FOUND 							= 1103;
 	public static final int STORE_MAT_EMP_ALREADY_EXIST 				= 1107;
 	public static final int STORE_MAT_EMP_NOT_FOUND 					= 1108;
-	public static final int STORE_MAT_EMP_FLAGGED_AS_DELETED 			= 1109;
-	public static final int STORE_WTIME_NOT_FOUND 						= 1110;
-	public static final int STORE_WTIME_ALREADY_EXIST					= 1111;
-	public static final int STORE_WTIME_FLAGGED_AS_DELETED 				= 1112;		
+	public static final int STORE_MAT_EMP_FLAGGED_AS_DELETED 			= 1109;	
 	public static final int STORE_LDATE_NOT_FOUND 						= 1113;
 	public static final int STORE_LDATE_ALREADY_EXIST					= 1114;
 	public static final int STORE_LDATE_FLAGGED_AS_DELETED 				= 1115;	
-	public static final int STORE_WTIME_VALID_WORKHOUR					= 1116;
-	public static final int STORE_WTIME_WORKHOUR_OUT_OF_RANGE			= 1117;
-	public static final int STORE_WTIME_NO_LEAVE_FOUND					= 1121;
-	public static final int STORE_WTIME_LEAVE_FOUND						= 1122;
 	public static final int STORE_FEE_ALREADY_EXIST 					= 1123;
 	public static final int STORE_FEE_NOT_FOUND 						= 1124;
 	public static final int STORE_TECH_FIELD_SHOULD_BE_EMPTY			= 1125;
-	public static final int STORE_WTIME_FLAG_DELETE_TRUE				= 1126;
-	public static final int STORE_WTIME_FLAG_DELETE_FALSE				= 1127;
-	public static final int STORE_WTIME_HAVE_ITEM 						= 1128;
-	public static final int STORE_WTIME_IS_EMPTY 						= 1129;	
 	public static final int STORE_LDATE_HAVE_ITEM 						= 1130;
 	public static final int STORE_LDATE_IS_EMPTY 						= 1131;	
 	public static final int STORE_HAS_ITEM 								= 1132;	
@@ -770,4 +759,18 @@ public final class SystemCode {
 	
 	// File Image List
 	public static final int FILE_IMG_LIST_MANDATORY_FIELD_EMPTY 		= 6800;
+	
+	// Store Work Time
+	public static final int STORE_WTIME_NOT_FOUND 						= 6850; //1110;
+	public static final int STORE_WTIME_ALREADY_EXIST					= 6851; //1111;
+	public static final int STORE_WTIME_FLAGGED_AS_DELETED 				= 6852; //1112;	
+	public static final int STORE_WTIME_VALID_WORKHOUR					= 6853; //1116;
+	public static final int STORE_WTIME_WORKHOUR_OUT_OF_RANGE			= 6854; //1117;
+	public static final int STORE_WTIME_NO_LEAVE_FOUND					= 6855; //1121;
+	public static final int STORE_WTIME_LEAVE_FOUND						= 6856; //1122;
+	public static final int STORE_WTIME_FLAG_DELETE_TRUE				= 6857; //1126;
+	public static final int STORE_WTIME_FLAG_DELETE_FALSE				= 6858; //1127;
+	public static final int STORE_WTIME_HAVE_ITEM 						= 6859; //1128;
+	public static final int STORE_WTIME_IS_EMPTY 						= 6860; //1129;	
+	public static final int STORE_WTIME_MANDATORY_FIELD_EMPTY 			= 6861;
 }

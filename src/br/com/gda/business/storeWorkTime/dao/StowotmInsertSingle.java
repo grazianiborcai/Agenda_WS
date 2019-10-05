@@ -3,9 +3,6 @@ package br.com.gda.business.storeWorkTime.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
@@ -78,24 +75,16 @@ public final class StowotmInsertSingle implements DaoStmt<StowotmInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<StowotmInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StowotmInfo recordInfo) throws SQLException {
-			Time beginTime = DaoFormatter.localToSqlTime(recordInfo.beginTime);
-			Time endTime = DaoFormatter.localToSqlTime(recordInfo.endTime);	
-			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);				
-			
+
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codStore);
 			stmt.setLong(i++, recordInfo.codWeekday);
-			stmt.setTime(i++, beginTime);
-			stmt.setTime(i++, endTime);
+			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.beginTime);
+			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.endTime);
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setTimestamp(i++, lastChanged);			
-			
-			if (recordInfo.lastChangedBy >= 0) {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}			
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 			
 			return stmt;
 		}		

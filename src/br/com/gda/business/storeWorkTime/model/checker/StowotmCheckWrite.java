@@ -23,10 +23,10 @@ public final class StowotmCheckWrite extends ModelCheckerTemplateSimple_<Stowotm
 			|| recordInfo.beginTime			== null
 			|| recordInfo.endTime			== null	)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	

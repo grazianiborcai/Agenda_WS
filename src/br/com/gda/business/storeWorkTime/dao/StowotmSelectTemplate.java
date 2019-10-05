@@ -186,7 +186,7 @@ class StowotmSelectTemplate implements DaoStmt<StowotmInfo> {
 				dataInfo.codStore = stmtResult.getLong(StowotmDbTableColumn.COL_COD_STORE);
 				dataInfo.codWeekday = stmtResult.getInt(StowotmDbTableColumn.COL_COD_WEEKDAY);
 				dataInfo.txtWeekday = stmtResult.getString(StowotmDbTableColumn.COL_NAME);
-				dataInfo.codTimezone = stmtResult.getString(StowotmDbTableColumn.COL_COD_TIME_ZONE);
+				dataInfo.codTimezone = stmtResult.getString(StowotmDbTableColumn.COL_COD_TIMEZONE);
 				dataInfo.recordMode = stmtResult.getString(StowotmDbTableColumn.COL_RECORD_MODE);	
 				
 				stmtResult.getString(StowotmDbTableColumn.COL_COD_LANGUAGE);
