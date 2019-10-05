@@ -7,17 +7,22 @@ import br.com.gda.file.fileImage.info.FimgInfo;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FimgCheckIsStore extends ModelCheckerTemplateSimpleV2<FimgInfo> {
+public final class FimgCheckDelete extends ModelCheckerTemplateSimpleV2<FimgInfo> {
 
-	public FimgCheckIsStore(ModelCheckerOption option) {
+	public FimgCheckDelete(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(FimgInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codStore <= 0 )			
-			return super.FAILED;		
+		if (   recordInfo.codOwner 		<= 0 	
+			|| recordInfo.codFileImg	<= 0
+			|| recordInfo.codLanguage	== null
+			|| recordInfo.username		== null	)
+			
+			return super.FAILED;
+			
 		
 		return super.SUCCESS;
 	}
@@ -25,6 +30,6 @@ public final class FimgCheckIsStore extends ModelCheckerTemplateSimpleV2<FimgInf
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.FILE_IMG_IS_NOT_STORE;
+		return SystemCode.FILE_IMG_MANDATORY_FIELD_EMPTY;
 	}
 }

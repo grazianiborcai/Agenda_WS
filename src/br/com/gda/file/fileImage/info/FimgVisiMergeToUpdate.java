@@ -25,6 +25,8 @@ final class FimgVisiMergeToUpdate implements InfoMergerVisitor<FimgInfo, FimgInf
 	private FimgInfo merge(FimgInfo sourceOne, FimgInfo sourceTwo) {
 		FimgInfo result = makeClone(sourceOne);		
 		result.isCover = sourceTwo.isCover;
+		result.codLanguage = sourceTwo.codLanguage;
+		result.username = sourceTwo.username;
 		return result;
 	}
 	

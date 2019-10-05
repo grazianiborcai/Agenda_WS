@@ -1,21 +1,21 @@
 package br.com.gda.file.fileImage.model;
 
 import br.com.gda.file.fileImage.info.FimgInfo;
-import br.com.gda.file.fileImage.model.decisionTree.RootFimgDelete;
+import br.com.gda.file.fileImage.model.decisionTree.RootFimgDeleteStore;
 import br.com.gda.model.ModelTemplate;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class FimgModelDelete extends ModelTemplate<FimgInfo> {
+public final class FimgModelDeleteStore extends ModelTemplate<FimgInfo> {
 
-	public FimgModelDelete(FimgInfo recordInfo) {
+	public FimgModelDeleteStore(FimgInfo recordInfo) {
 		super(recordInfo);
 	}
 	
 	
 	
 	@Override protected DeciTree<FimgInfo> getDecisionTreeHook(DeciTreeOption<FimgInfo> option) {
-		return new RootFimgDelete(option);
+		return new RootFimgDeleteStore(option);
 	}
 	
 	

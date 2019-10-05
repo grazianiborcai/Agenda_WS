@@ -4,6 +4,7 @@ import java.io.InputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -18,6 +19,8 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import br.com.gda.file.fileImage.info.FimgInfo;
+import br.com.gda.file.fileImage.model.FimgModelDeleteOwner;
+import br.com.gda.file.fileImage.model.FimgModelDeleteStore;
 import br.com.gda.file.fileImage.model.FimgModelInsertOwner;
 import br.com.gda.file.fileImage.model.FimgModelInsertStore;
 import br.com.gda.file.fileImage.model.FimgModelUpdateStore;
@@ -29,6 +32,8 @@ public class FileResource {
 	private static final String INSERT_FILE_IMG_OWNER = "/insertFileImgOwner";
 	private static final String INSERT_FILE_IMG_STORE = "/insertFileImgStore";
 	private static final String UPDATE_FILE_IMG_STORE = "/updateFileImgStore";
+	private static final String DELETE_FILE_IMG_STORE = "/deleteFileImgStore";
+	private static final String DELETE_FILE_IMG_OWNER = "/deleteFileImgOwner";
 	
 	
 	
@@ -96,4 +101,48 @@ public class FileResource {
 		model.executeRequest();
 		return model.getResponse();
 	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_FILE_IMG_OWNER)
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Response deleteFileImgOwner(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+					                   @HeaderParam("TOKEN_USERNAME") 	String username,
+					                   @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage,
+					                   @HeaderParam("codFileImg") 		@DefaultValue("-1") long  codFileImg) {		
+		
+		FimgInfo recordInfo = new FimgInfo();		
+		
+		recordInfo.codOwner = codOwner;	
+		recordInfo.codFileImg = codFileImg;
+		recordInfo.codLanguage = codLanguage;		
+		recordInfo.username = username;	
+		
+		Model model = new FimgModelDeleteOwner(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	} 
+	
+	
+	
+	@DELETE
+	@Path(DELETE_FILE_IMG_STORE)
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Response deleteFileImgStore(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+					                   @HeaderParam("TOKEN_USERNAME") 	String username,
+					                   @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage,
+					                   @HeaderParam("codFileImg") 		@DefaultValue("-1") long  codFileImg) {		
+		
+		FimgInfo recordInfo = new FimgInfo();		
+		
+		recordInfo.codOwner = codOwner;	
+		recordInfo.codFileImg = codFileImg;
+		recordInfo.codLanguage = codLanguage;		
+		recordInfo.username = username;	
+		
+		Model model = new FimgModelDeleteStore(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	} 
 }
