@@ -115,7 +115,7 @@ public final class FimistSelectSingle implements DaoStmt<FimistInfo> {
 				dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimistDbTableColumn.COL_COD_FILE_IMG);
 				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, FimistDbTableColumn.COL_COD_MATERIAL);
 				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimistDbTableColumn.COL_COD_PERSON);
-				dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, FimistDbTableColumn.COL_COD_COMPANY);
+				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, FimistDbTableColumn.COL_COD_STORE);
 				dataInfo.recordMode = stmtResult.getString(FimistDbTableColumn.COL_RECORD_MODE);	
 				dataInfo.fileImgExtension = stmtResult.getString(FimistDbTableColumn.COL_FILE_IMG_EXTENSION);
 				dataInfo.fileImgUri = stmtResult.getString(FimistDbTableColumn.COL_FILE_URI);

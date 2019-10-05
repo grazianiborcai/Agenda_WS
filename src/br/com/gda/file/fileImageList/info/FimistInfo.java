@@ -13,7 +13,7 @@ public final class FimistInfo extends InfoRecord implements Cloneable {
 	public boolean isCover;
 	public long codPerson;
 	public long codMat;
-	public long codCompany;
+	public long codStore;
 	public long codOwnerRef;
 	public String recordMode;
 	public String username;
@@ -27,7 +27,7 @@ public final class FimistInfo extends InfoRecord implements Cloneable {
 		isCover = DefaultValue.boole();
 		codPerson = DefaultValue.number();
 		codMat = DefaultValue.number();
-		codCompany = DefaultValue.number();		
+		codStore = DefaultValue.number();		
 		codOwnerRef = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}

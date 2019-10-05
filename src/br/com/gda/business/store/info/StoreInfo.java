@@ -9,6 +9,7 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.common.DefaultValue;
+import br.com.gda.file.fileImageList.info.FimistInfo;
 import br.com.gda.info.InfoRecord;
 import br.com.gda.security.user.info.UserInfo;
 
@@ -28,6 +29,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public String txtTimezone;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
+	public List<FimistInfo> fimistes;
 	public UserInfo userData;
 	public CompInfo companyData;
 	public PersonInfo personData;
@@ -53,6 +55,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		personData = DefaultValue.object();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
+		fimistes = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
 	}
 	
@@ -73,6 +76,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		StoreInfo deepCopy = (StoreInfo) super.clone();
 		
+		deepCopy.fimistes = cloneFimistes(deepCopy.fimistes);
 		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
 		deepCopy.phones = clonePhones(deepCopy.phones);
 		deepCopy.personData = clonePerson(deepCopy.personData);
@@ -84,13 +88,29 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<AddressInfo> cloneAddresses(List<AddressInfo> addressesToClone) throws CloneNotSupportedException {
-		if (addressesToClone == null)
+	private List<FimistInfo> cloneFimistes(List<FimistInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
+			return null;
+		
+		List<FimistInfo> deepAddresses = new ArrayList<>();
+		
+		for (FimistInfo eachAddress : recordInfos) {
+			FimistInfo clonedAddress = (FimistInfo) eachAddress.clone();
+			deepAddresses.add(clonedAddress);
+		}
+		
+		return deepAddresses;
+	}
+	
+	
+	
+	private List<AddressInfo> cloneAddresses(List<AddressInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<AddressInfo> deepAddresses = new ArrayList<>();
 		
-		for (AddressInfo eachAddress : addressesToClone) {
+		for (AddressInfo eachAddress : recordInfos) {
 			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
 			deepAddresses.add(clonedAddress);
 		}
@@ -100,13 +120,13 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<PhoneInfo> clonePhones(List<PhoneInfo> phonesToClone) throws CloneNotSupportedException {
-		if (phonesToClone == null)
+	private List<PhoneInfo> clonePhones(List<PhoneInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<PhoneInfo> deepPhones = new ArrayList<>();
 		
-		for (PhoneInfo eachPhone : phonesToClone) {
+		for (PhoneInfo eachPhone : recordInfos) {
 			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
 			deepPhones.add(clonedPhone);
 		}
@@ -116,29 +136,29 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private PersonInfo clonePerson(PersonInfo personToClone) throws CloneNotSupportedException {
-		if (personToClone == null)
+	private PersonInfo clonePerson(PersonInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (PersonInfo) personToClone.clone();
+		return (PersonInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private CompInfo cloneCompany(CompInfo companyToClone) throws CloneNotSupportedException {
-		if (companyToClone == null)
+	private CompInfo cloneCompany(CompInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (CompInfo) companyToClone.clone();
+		return (CompInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private UserInfo cloneUser(UserInfo userToClone) throws CloneNotSupportedException {
-		if (userToClone == null)
+	private UserInfo cloneUser(UserInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (UserInfo) userToClone.clone();
+		return (UserInfo) recordInfo.clone();
 	}
 	
 	
@@ -164,6 +184,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		
 		
 		StoreInfo obj = (StoreInfo) o;		
-		return (codOwner == obj.codOwner && codStore == obj.codStore);
+		return (codOwner == obj.codOwner && 
+				codStore == obj.codStore);
 	}
 }

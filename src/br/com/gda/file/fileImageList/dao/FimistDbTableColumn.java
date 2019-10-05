@@ -9,13 +9,13 @@ import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class FimistDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
+public final class FimistDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_FILE_IMG = DaoDbField.COL_COD_FILE_IMG;	
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_OWNER_REF = DaoDbField.COL_COD_OWNER_REF;
 	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 	public static final String COL_FILE_IMG_EXTENSION = DaoDbField.COL_FILE_IMG_EXTENSION;
 	public static final String COL_FILE_URI = DaoDbField.COL_FILE_URI;	
 	public static final String COL_IS_COVER = DaoDbField.COL_IS_COVER;
@@ -89,7 +89,7 @@ public final class FimistDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_COMPANY;
+		oneColumn.columnName = COL_COD_STORE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

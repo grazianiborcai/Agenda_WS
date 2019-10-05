@@ -10,11 +10,26 @@ import br.com.gda.business.person.info.PersonInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
 import br.com.gda.business.storeSearch.info.SotarchInfo;
 import br.com.gda.business.storeSnapshot.info.StorapInfo;
+import br.com.gda.file.fileImageList.info.FimistInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.user.info.UserInfo;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class StoreMerger {
+	public static StoreInfo mergeWithFimist(FimistInfo sourceOne, StoreInfo sourceTwo) {
+		InfoMerger<StoreInfo, FimistInfo> merger = new StoreMergerFimist();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StoreInfo> mergeWithFimist(List<FimistInfo> sourceOnes, List<StoreInfo> sourceTwos) {
+		InfoMerger<StoreInfo, FimistInfo> merger = new StoreMergerFimist();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static StoreInfo mergeWithSotarch(SotarchInfo sourceOne, StoreInfo sourceTwo) {
 		InfoMerger<StoreInfo, SotarchInfo> merger = new StoreMergerSotarch();		
 		return merger.merge(sourceOne, sourceTwo);
