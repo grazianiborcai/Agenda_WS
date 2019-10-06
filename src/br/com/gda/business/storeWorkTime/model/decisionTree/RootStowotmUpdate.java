@@ -39,10 +39,18 @@ public final class RootStowotmUpdate extends DeciTreeWriteTemplate<StowotmInfo> 
 		final boolean EXIST_ON_DB = true;
 		final boolean DONT_EXIST_ON_DB = false;
 		
-		checker = new StowotmCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new StowotmCheckWrite(checkerOption);
 		queue.add(checker);
 		
-		checker = new StowotmCheckRange();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new StowotmCheckRange(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

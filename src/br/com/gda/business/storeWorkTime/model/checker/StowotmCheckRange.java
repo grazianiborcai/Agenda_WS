@@ -1,56 +1,36 @@
 package br.com.gda.business.storeWorkTime.model.checker;
 
-import java.util.List;
-
+import java.sql.Connection;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
-import br.com.gda.business.timeRange.info.TimeRangeInfo;
-import br.com.gda.business.timeRange.model.checker.TimeRangeCheckRange;
-import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.common.SystemCode;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StowotmCheckRange extends ModelCheckerTemplateSimple_<StowotmInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelChecker<TimeRangeInfo> checker;
-	
-	
-	public StowotmCheckRange() {
-		checker = new TimeRangeCheckRange();
+public final class StowotmCheckRange extends ModelCheckerTemplateSimpleV2<StowotmInfo> {
+
+	public StowotmCheckRange(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<StowotmInfo> recordInfos) {
-		for (StowotmInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
+	@Override protected boolean checkHook(StowotmInfo recordInfo, Connection conn, String schemaName) {	
+		if ( recordInfo.beginTime == null || 
+			 recordInfo.endTime	  == null	)
+			
+			return super.FAILED;
 		
-		return SUCCESS;
+		
+		if (recordInfo.endTime.isBefore(recordInfo.beginTime))
+			return super.FAILED;
+		
+		
+		return super.SUCCESS;
 	}
-
 	
 	
-	@Override public boolean check(StowotmInfo recordInfo) {
-		return checker.check(TimeRangeInfo.copyFrom(recordInfo));
-	}
-
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
-	}
-
-	
-	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
-	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.STORE_WTIME_BAD_TIME_RANGE;
 	}
 }

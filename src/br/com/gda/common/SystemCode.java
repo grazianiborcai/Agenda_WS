@@ -773,4 +773,5 @@ public final class SystemCode {
 	public static final int STORE_WTIME_HAVE_ITEM 						= 6859; //1128;
 	public static final int STORE_WTIME_IS_EMPTY 						= 6860; //1129;	
 	public static final int STORE_WTIME_MANDATORY_FIELD_EMPTY 			= 6861;
+	public static final int STORE_WTIME_BAD_TIME_RANGE 					= 6862;
 }
