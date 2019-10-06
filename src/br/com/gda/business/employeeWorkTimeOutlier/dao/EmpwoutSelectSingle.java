@@ -51,7 +51,7 @@ public final class EmpwoutSelectSingle implements DaoStmt<EmpwoutInfo> {
 	
 	private String buildWhereClause(String tableName, EmpwoutInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new EmpwoutWhere(whereOption, tableName, recordInfo);

@@ -777,4 +777,6 @@ public final class SystemCode {
 	
 	//Employee Work Time Outlier
 	public static final int EMP_WT_OUT_MANDATORY_FIELD_EMPTY 			= 6900;
+	public static final int EMP_WT_OUT_NOT_FOUND						= 6901;
+	public static final int EMP_WT_OUT_ALREADY_EXIST					= 6902;
 }
