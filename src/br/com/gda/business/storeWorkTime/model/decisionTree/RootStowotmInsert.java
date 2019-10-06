@@ -88,7 +88,9 @@ public final class RootStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> 
 	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
 		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
 		
-		actions.add(new NodeStowotmInsert(option).toAction());
+		ActionStd<StowotmInfo> nodeInsert = new NodeStowotmInsert(option).toAction();
+		
+		actions.add(nodeInsert);
 		return actions;
 	}
 }

@@ -27,8 +27,6 @@ final class NodeStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> {
 	
 	
 	@Override protected ModelChecker<StowotmInfo> buildDecisionCheckerHook(DeciTreeOption<StowotmInfo> option) {
-		final boolean NOT_DELETED = false;	
-		
 		List<ModelChecker<StowotmInfo>> queue = new ArrayList<>();		
 		ModelChecker<StowotmInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -36,7 +34,7 @@ final class NodeStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = NOT_DELETED;		
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new StowotmCheckSoftDelete(checkerOption);
 		queue.add(checker);	
 		
