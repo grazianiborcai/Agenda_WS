@@ -1,28 +1,28 @@
-package br.com.gda.business.storeWorkTime.model.checker;
+package br.com.gda.business.employeeWorkTimeOutlier.model.checker;
 
 import java.util.List;
 
 import br.com.gda.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
-import br.com.gda.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckExist;
-import br.com.gda.business.storeWorkTime.info.StowotmInfo;
+import br.com.gda.business.store.info.StoreInfo;
+import br.com.gda.business.store.model.checker.StoreCheckExist;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public class StowotmCheckSWTC implements ModelChecker<StowotmInfo> {
+public final class EmpwoutCheckStore implements ModelChecker<EmpwoutInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmpwoutInfo> checker;
+	private ModelChecker<StoreInfo> checker;
 	
 	
-	public StowotmCheckSWTC(ModelCheckerOption option) {
-		checker = new EmpwoutCheckExist(option);
+	public EmpwoutCheckStore(ModelCheckerOption option) {
+		checker = new StoreCheckExist(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<StowotmInfo> recordInfos) {
-		for (StowotmInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<EmpwoutInfo> recordInfos) {
+		for (EmpwoutInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -32,8 +32,8 @@ public class StowotmCheckSWTC implements ModelChecker<StowotmInfo> {
 
 	
 	
-	@Override public boolean check(StowotmInfo recordInfo) {
-		return checker.check(EmpwoutInfo.copyFrom(recordInfo));
+	@Override public boolean check(EmpwoutInfo recordInfo) {
+		return checker.check(StoreInfo.copyFrom(recordInfo));
 	}
 
 	
@@ -52,5 +52,5 @@ public class StowotmCheckSWTC implements ModelChecker<StowotmInfo> {
 	
 	@Override public int getFailCode() {
 		return checker.getFailCode();
-	}	
+	}
 }

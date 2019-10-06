@@ -1,4 +1,4 @@
-package br.com.gda.business.storeWorkTimeConflict.info;
+package br.com.gda.business.employeeWorkTimeOutlier.info;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class StoreCoInfo extends InfoRecord implements Cloneable {
+public final class EmpwoutInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public long codEmployee;
@@ -15,11 +15,12 @@ public final class StoreCoInfo extends InfoRecord implements Cloneable {
 	public LocalTime beginTime;
 	public LocalTime endTime;
 	public String codTimezone;
+	public String username;
 	public String recordMode;	
 	
 	
-	public StoreCoInfo() {
-		super(StoreCoInfo.class);
+	public EmpwoutInfo() {
+		super(EmpwoutInfo.class);
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
@@ -30,20 +31,20 @@ public final class StoreCoInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static StoreCoInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, StoreCoInfo.class);
+	public static EmpwoutInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, EmpwoutInfo.class);
 	}
 	
 	
 	
-	public static List<StoreCoInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, StoreCoInfo.class);
+	public static List<EmpwoutInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, EmpwoutInfo.class);
 	}
 	
 	
 	
 	@Override public Object clone()throws CloneNotSupportedException {  
-		StoreCoInfo deepCopy = (StoreCoInfo) super.clone();  		
+		EmpwoutInfo deepCopy = (EmpwoutInfo) super.clone();  		
 		
 		LocalTime cloneBeginTime = null;		
 		if (beginTime != null) 
@@ -80,11 +81,11 @@ public final class StoreCoInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof StoreCoInfo))
+		if (!(o instanceof EmpwoutInfo))
 			return false;
 		
 		
-		StoreCoInfo obj = (StoreCoInfo) o;		
+		EmpwoutInfo obj = (EmpwoutInfo) o;		
 		return (codOwner 	== obj.codOwner 	&& 
 				codStore 	== obj.codStore 	&&
 				codEmployee == obj.codEmployee 	&&

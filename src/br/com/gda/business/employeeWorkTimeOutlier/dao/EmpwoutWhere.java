@@ -1,8 +1,8 @@
-package br.com.gda.business.storeWorkTimeConflict.dao;
+package br.com.gda.business.employeeWorkTimeOutlier.dao;
 
 import java.util.List;
 
-import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
+import br.com.gda.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
@@ -12,30 +12,27 @@ import br.com.gda.dao.DaoWhereCondition;
 import br.com.gda.dao.DaoWhereOperator;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class StoreCoWhere implements DaoStmtWhere {
+public final class EmpwoutWhere implements DaoStmtWhere {
 	private String whereClause;	
-	private DaoWhereBuilder builderKey;
-	private DaoWhereBuilder builderBeginTime;
-	private DaoWhereBuilder builderEndTime;
 	
 	
-	public StoreCoWhere(DaoWhereBuilderOption whereOption, String tableName, StoreCoInfo recordInfo) {
+	public EmpwoutWhere(DaoWhereBuilderOption whereOption, String tableName, EmpwoutInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, StoreCoInfo recordInfo) {
-		builderKey = DaoWhereBuilder.factory(whereOption);		
-		builderBeginTime = DaoWhereBuilder.factory(whereOption);
-		builderEndTime = DaoWhereBuilder.factory(whereOption);		
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, EmpwoutInfo recordInfo) {
+		DaoWhereBuilder builderKey = DaoWhereBuilder.factory(whereOption);		
+		DaoWhereBuilder builderBeginTime = DaoWhereBuilder.factory(whereOption);
+		DaoWhereBuilder builderEndTime = DaoWhereBuilder.factory(whereOption);		
 		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {
-			generateKey(eachColumn, recordInfo);
-			generateBeginTime(eachColumn, recordInfo);
-			generateEndTime(eachColumn, recordInfo);
+			builderKey = generateKey(eachColumn, recordInfo, builderKey);
+			builderBeginTime = generateBeginTime(eachColumn, recordInfo, builderBeginTime);
+			builderEndTime = generateEndTime(eachColumn, recordInfo, builderEndTime);
 		}
 		
 		
@@ -47,52 +44,51 @@ public final class StoreCoWhere implements DaoStmtWhere {
 	
 	
 	
-	private void generateKey(DaoColumn column, StoreCoInfo recordInfo) {
+	private DaoWhereBuilder generateKey(DaoColumn column, EmpwoutInfo recordInfo, DaoWhereBuilder builderKey) {
 		switch(column.columnName) {
-		case "cod_owner" :
+		case EmpwoutDbTableColumn.COL_COD_OWNER :
 			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codOwner));
 			break;
 			
-		case "cod_store" :
+		case EmpwoutDbTableColumn.COL_COD_STORE :
 			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codStore));
 			break;
 			
-		case "weekday" :
+		case EmpwoutDbTableColumn.COL_COD_WEEKDAY :
 			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codWeekday));
 			break;
 			
-		case "record_mode" :
+		case EmpwoutDbTableColumn.COL_RECORD_MODE :
 			builderKey.addClauseEqualAnd(column, recordInfo.recordMode);
 			break;
 		}
+		
+		
+		return builderKey;
 	}
 	
 	
 	
-	private void generateBeginTime(DaoColumn column, StoreCoInfo recordInfo) {
+	private DaoWhereBuilder generateBeginTime(DaoColumn column, EmpwoutInfo recordInfo, DaoWhereBuilder builderBeginTime) {
 		switch(column.columnName) {
-		case "begin_time" :
+		case EmpwoutDbTableColumn.COL_BEGIN_TIME :
 			builderBeginTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
 			break;
-			
-		case "end_time" :
-			builderBeginTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);
-			break;
-		}
+		}		
+		
+		return builderBeginTime;
 	}	
 	
 	
 	
-	private void generateEndTime(DaoColumn column, StoreCoInfo recordInfo) {
-		switch(column.columnName) {
-		case "begin_time" :
-			builderEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
-			break;
-			
-		case "end_time" :
+	private DaoWhereBuilder generateEndTime(DaoColumn column, EmpwoutInfo recordInfo, DaoWhereBuilder builderEndTime) {
+		switch(column.columnName) {			
+		case EmpwoutDbTableColumn.COL_END_TIME :
 			builderEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
 			break;
-		}
+		}		
+		
+		return builderEndTime;
 	}	
 	
 	

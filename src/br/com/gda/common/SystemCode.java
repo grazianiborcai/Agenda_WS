@@ -774,4 +774,7 @@ public final class SystemCode {
 	public static final int STORE_WTIME_IS_EMPTY 						= 6860; //1129;	
 	public static final int STORE_WTIME_MANDATORY_FIELD_EMPTY 			= 6861;
 	public static final int STORE_WTIME_BAD_TIME_RANGE 					= 6862;
+	
+	//Employee Work Time Outlier
+	public static final int EMP_WT_OUT_MANDATORY_FIELD_EMPTY 			= 6900;
 }

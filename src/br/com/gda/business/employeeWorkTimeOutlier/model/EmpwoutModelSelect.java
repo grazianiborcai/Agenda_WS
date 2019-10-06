@@ -1,11 +1,11 @@
-package br.com.gda.business.storeWorkTimeConflict.model;
+package br.com.gda.business.employeeWorkTimeOutlier.model;
 
 import java.sql.Connection;
 
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
-import br.com.gda.business.storeWorkTimeConflict.model.decisionTree.RootStoreCoSelect;
+import br.com.gda.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
+import br.com.gda.business.employeeWorkTimeOutlier.model.decisionTree.RootEmpwoutSelect;
 import br.com.gda.common.DbConnection;
 import br.com.gda.common.DbSchema;
 import br.com.gda.model.Model;
@@ -15,13 +15,13 @@ import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.obsolete.ModelHelper_;
 import br.com.gda.model.obsolete.ModelOption_;
 
-public final class StoreCoModelSelect implements Model {
+public final class EmpwoutModelSelect implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public StoreCoModelSelect(StoreCoInfo recordInfo) {
+	public EmpwoutModelSelect(EmpwoutInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -35,10 +35,10 @@ public final class StoreCoModelSelect implements Model {
 	
 	
 	
-	private void buildHelper(StoreCoInfo recordInfo) {
-		ModelOption_<StoreCoInfo> helperOption = new ModelOption_<>();
+	private void buildHelper(EmpwoutInfo recordInfo) {
+		ModelOption_<EmpwoutInfo> helperOption = new ModelOption_<>();
 		
-		helperOption.recordClass = StoreCoInfo.class;
+		helperOption.recordClass = EmpwoutInfo.class;
 		helperOption.deciTreeFactory = new TreeFactory();
 		helperOption.conn = this.conn;
 		helperOption.schemaName = this.schemaName;
@@ -63,9 +63,9 @@ public final class StoreCoModelSelect implements Model {
 	
 	
 	
-	private static class TreeFactory implements DeciTreeFactory<StoreCoInfo> {		
-		@Override public DeciTree<StoreCoInfo> getInstance(DeciTreeOption<StoreCoInfo> option) {
-			return new RootStoreCoSelect(option);
+	private static class TreeFactory implements DeciTreeFactory<EmpwoutInfo> {		
+		@Override public DeciTree<EmpwoutInfo> getInstance(DeciTreeOption<EmpwoutInfo> option) {
+			return new RootEmpwoutSelect(option);
 		}			
 	}
 }

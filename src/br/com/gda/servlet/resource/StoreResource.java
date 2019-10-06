@@ -16,6 +16,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.gda.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
+import br.com.gda.business.employeeWorkTimeOutlier.model.EmpwoutModelSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.StoreModelDelete;
 import br.com.gda.business.store.model.StoreModelInsert;
@@ -33,8 +35,6 @@ import br.com.gda.business.storeWorkTime.model.StowotmModelDelete;
 import br.com.gda.business.storeWorkTime.model.StowotmModelInsert;
 import br.com.gda.business.storeWorkTime.model.StowotmModelSelect;
 import br.com.gda.business.storeWorkTime.model.StowotmModelUpdate;
-import br.com.gda.business.storeWorkTimeConflict.info.StoreCoInfo;
-import br.com.gda.business.storeWorkTimeConflict.model.StoreCoModelSelect;
 import br.com.gda.model.Model;
 import br.com.gda.payment.storePartner.info.StoparInfo;
 import br.com.gda.payment.storePartner.model.StoparModelDelete;
@@ -287,7 +287,7 @@ public class StoreResource {
 	}
 	
 	
-	
+	//TODO: Remover ?
 	@GET
 	@Path(SELECT_STORE_WT_CONFLICT)
 	public Response selectStoreWTimeConflict(@HeaderParam("codOwner")   @DefaultValue("-1") long codOwner, 
@@ -296,14 +296,14 @@ public class StoreResource {
 			                                 @HeaderParam("beginTime")  @DefaultValue("12:00") String beginTime,
 			                                 @HeaderParam("endTime")    @DefaultValue("12:00") String endTime) {
 
-		StoreCoInfo recordInfo = new StoreCoInfo();
+		EmpwoutInfo recordInfo = new EmpwoutInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codWeekday = codWeekday;
 		recordInfo.beginTime = LocalTime.parse(beginTime, DateTimeFormatter.ISO_LOCAL_TIME);
 		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
 		
-		Model model = new StoreCoModelSelect(recordInfo);
+		Model model = new EmpwoutModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
