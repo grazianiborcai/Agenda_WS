@@ -29,26 +29,28 @@ public final class RootStowotmDelete extends DeciTreeWriteTemplate<StowotmInfo> 
 	
 	
 	@Override protected ModelChecker<StowotmInfo> buildDecisionCheckerHook(DeciTreeOption<StowotmInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<StowotmInfo>> queue = new ArrayList<>();		
 		ModelChecker<StowotmInfo> checker;
 		ModelCheckerOption checkerOption;
 			
-		checker = new StowotmCheckDelete();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new StowotmCheckDelete(checkerOption);
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StowotmCheckExist(checkerOption);
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StowotmCheckStorauth(checkerOption);
 		queue.add(checker);
 		

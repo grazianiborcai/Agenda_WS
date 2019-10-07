@@ -13,11 +13,11 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdStowotmSelectRange implements ActionStd<StowotmInfo> {
+public final class StdStowotmSelectRange_ implements ActionStd<StowotmInfo> {
 	private ActionStd<StowotmInfo> actionHelper;
 	
 	
-	public StdStowotmSelectRange(DeciTreeOption<StowotmInfo> option) {
+	public StdStowotmSelectRange_(DeciTreeOption<StowotmInfo> option) {
 		DaoStmtExec<StowotmInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}

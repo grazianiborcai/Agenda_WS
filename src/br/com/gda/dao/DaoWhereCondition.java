@@ -5,6 +5,8 @@ EQUAL("="),
 NOT_EQUAL("<>"), 
 GREATER_OR_EQUAL(">="), 
 LESS_OR_EQUAL("<="), 
+GREATER(">"), 
+LESS("<"), 
 IS_NULL("IS NULL");
 	
 	private final String symbol;

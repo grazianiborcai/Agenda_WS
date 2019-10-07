@@ -9,7 +9,8 @@ import br.com.gda.business.storeWorkTime.model.action.LazyStowotmRootSelect;
 import br.com.gda.business.storeWorkTime.model.action.LazyStowotmUpdate;
 import br.com.gda.business.storeWorkTime.model.action.StdStowotmEnforceLChanged;
 import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckExist;
-import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckSWTC;
+import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckLangu;
+import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckEmpwout;
 import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckStorauth;
 import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckOwner;
 import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckStore;
@@ -36,7 +37,6 @@ public final class RootStowotmUpdate extends DeciTreeWriteTemplate<StowotmInfo> 
 		List<ModelChecker<StowotmInfo>> queue = new ArrayList<>();		
 		ModelChecker<StowotmInfo> checker;
 		ModelCheckerOption checkerOption;
-		final boolean DONT_EXIST_ON_DB = false;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
@@ -63,6 +63,13 @@ public final class RootStowotmUpdate extends DeciTreeWriteTemplate<StowotmInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StowotmCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StowotmCheckStore(checkerOption);
 		queue.add(checker);	
 		
@@ -83,8 +90,8 @@ public final class RootStowotmUpdate extends DeciTreeWriteTemplate<StowotmInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
-		checker = new StowotmCheckSWTC(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
+		checker = new StowotmCheckEmpwout(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
@@ -93,7 +100,7 @@ public final class RootStowotmUpdate extends DeciTreeWriteTemplate<StowotmInfo> 
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StowotmCheckStorauth(checkerOption);
 		queue.add(checker);
-		//TODO: Verificar conflito com Employee
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	

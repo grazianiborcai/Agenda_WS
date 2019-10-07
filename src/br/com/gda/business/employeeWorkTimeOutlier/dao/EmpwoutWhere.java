@@ -72,7 +72,7 @@ public final class EmpwoutWhere implements DaoStmtWhere {
 	private DaoWhereBuilder generateBeginTime(DaoColumn column, EmpwoutInfo recordInfo, DaoWhereBuilder builderBeginTime) {
 		switch(column.columnName) {
 		case EmpwoutDbTableColumn.COL_BEGIN_TIME :
-			builderBeginTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
+			builderBeginTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS);
 			break;
 		}		
 		
@@ -84,7 +84,7 @@ public final class EmpwoutWhere implements DaoStmtWhere {
 	private DaoWhereBuilder generateEndTime(DaoColumn column, EmpwoutInfo recordInfo, DaoWhereBuilder builderEndTime) {
 		switch(column.columnName) {			
 		case EmpwoutDbTableColumn.COL_END_TIME :
-			builderEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
+			builderEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER);
 			break;
 		}		
 		

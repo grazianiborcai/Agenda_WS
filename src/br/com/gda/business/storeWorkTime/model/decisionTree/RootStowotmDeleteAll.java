@@ -7,7 +7,7 @@ import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.business.storeWorkTime.model.action.LazyStowotmMergeToDelete;
 import br.com.gda.business.storeWorkTime.model.action.LazyStowotmRootDelete;
 import br.com.gda.business.storeWorkTime.model.action.StdStowotmEnforceStoreKey;
-import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckHasItem;
+import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckHasItem_;
 import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckDeleteAll;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -39,7 +39,7 @@ public final class RootStowotmDeleteAll extends DeciTreeWriteTemplate<StowotmInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new StowotmCheckHasItem(checkerOption);
+		checker = new StowotmCheckHasItem_(checkerOption);
 		queue.add(checker);	
 		
 		 return new ModelCheckerQueue<StowotmInfo>(queue);

@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StowotmCheckDelete extends ModelCheckerTemplateSimple_<StowotmInfo> {
+public final class StowotmCheckDelete extends ModelCheckerTemplateSimpleV2<StowotmInfo> {
 	
-	public StowotmCheckDelete() {
-		super();
+	public StowotmCheckDelete(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -19,23 +19,18 @@ public final class StowotmCheckDelete extends ModelCheckerTemplateSimple_<Stowot
 		if (   recordInfo.codOwner 		<= 0 	
 			|| recordInfo.codStore 		<= 0
 			|| recordInfo.codWeekday	<= 0
+			|| recordInfo.codLanguage	== null
 			|| recordInfo.username		== null	)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.STORE_WTIME_MANDATORY_FIELD_EMPTY;
 	}
 }

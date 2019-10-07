@@ -2,10 +2,40 @@ package br.com.gda.business.storeWorkTime.info;
 
 import java.util.List;
 
+import br.com.gda.business.masterData.info.WeekdayInfo;
+import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoMerger;
 import br.com.gda.security.username.info.UsernameInfo;
 
 public final class StowotmMerger {
+	public static StowotmInfo mergeWithWeekday(WeekdayInfo sourceOne, StowotmInfo sourceTwo) {
+		InfoMerger<StowotmInfo, WeekdayInfo> merger = new StowotmMergerWeekday();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StowotmInfo> mergeWithWeekday(List<WeekdayInfo> sourceOnes, List<StowotmInfo> sourceTwos) {
+		InfoMerger<StowotmInfo, WeekdayInfo> merger = new StowotmMergerWeekday();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static StowotmInfo mergeWithStolis(StolisInfo sourceOne, StowotmInfo sourceTwo) {
+		InfoMerger<StowotmInfo, StolisInfo> merger = new StowotmMergerStolis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StowotmInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<StowotmInfo> sourceTwos) {
+		InfoMerger<StowotmInfo, StolisInfo> merger = new StowotmMergerStolis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static StowotmInfo mergeWithUsername(UsernameInfo sourceOne, StowotmInfo sourceTwo) {
 		InfoMerger<StowotmInfo, UsernameInfo> merger = new StowotmMergerUsername();		
 		return merger.merge(sourceOne, sourceTwo);

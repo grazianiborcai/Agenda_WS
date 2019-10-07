@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckExist;
+import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckLangu;
 import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckOwner;
 import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckStore;
 import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckRange;
@@ -44,6 +45,13 @@ public final class RootStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> 
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new StowotmCheckRange(checkerOption);
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StowotmCheckLangu(checkerOption);
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

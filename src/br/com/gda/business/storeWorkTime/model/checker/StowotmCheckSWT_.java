@@ -3,7 +3,7 @@ package br.com.gda.business.storeWorkTime.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
-import br.com.gda.business.storeWorkTime.model.action.StdStowotmSelectRange;
+import br.com.gda.business.storeWorkTime.model.action.StdStowotmSelectRange_;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -11,9 +11,9 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StowotmCheckSWT extends ModelCheckerTemplateAction_<StowotmInfo> {
+public final class StowotmCheckSWT_ extends ModelCheckerTemplateAction_<StowotmInfo> {
 	
-	public StowotmCheckSWT(ModelCheckerOption option) {
+	public StowotmCheckSWT_(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -22,7 +22,7 @@ public final class StowotmCheckSWT extends ModelCheckerTemplateAction_<StowotmIn
 	@Override protected ActionStd<StowotmInfo> buildActionHook(StowotmInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<StowotmInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<StowotmInfo> actionSelect = new StdStowotmSelectRange(option);
+		ActionStd<StowotmInfo> actionSelect = new StdStowotmSelectRange_(option);
 		return actionSelect;
 	}
 	

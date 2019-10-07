@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
-import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckHasItem;
+import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckHasItem_;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
@@ -16,7 +16,7 @@ public final class StoreCheckHasStowotm implements ModelChecker<StoreInfo> {
 	
 	
 	public StoreCheckHasStowotm(ModelCheckerOption option) {
-		checker = new StowotmCheckHasItem(option);
+		checker = new StowotmCheckHasItem_(option);
 	}
 	
 	

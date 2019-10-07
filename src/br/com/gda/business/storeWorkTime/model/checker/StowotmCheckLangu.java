@@ -1,28 +1,28 @@
-package br.com.gda.business.employeeWorkTime.model.checker;
+package br.com.gda.business.storeWorkTime.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.employeeWorkTime.info.EmpwotmInfo;
+import br.com.gda.business.masterData.info.LanguInfo;
+import br.com.gda.business.masterData.model.checker.LanguCheckExist;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
-import br.com.gda.business.storeWorkTime.model.checker.StowotmCheckSWT_;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class EmpwotmCheckStowotm implements ModelChecker<EmpwotmInfo> {
+public final class StowotmCheckLangu implements ModelChecker<StowotmInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StowotmInfo> checker;
+	private ModelChecker<LanguInfo> checker;
 	
 	
-	public EmpwotmCheckStowotm(ModelCheckerOption option) {
-		checker = new StowotmCheckSWT_(option);
+	public StowotmCheckLangu(ModelCheckerOption option) {
+		checker = new LanguCheckExist(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<EmpwotmInfo> recordInfos) {
-		for (EmpwotmInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<StowotmInfo> recordInfos) {
+		for (StowotmInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -32,8 +32,8 @@ public final class EmpwotmCheckStowotm implements ModelChecker<EmpwotmInfo> {
 
 	
 	
-	@Override public boolean check(EmpwotmInfo recordInfo) {
-		return checker.check(StowotmInfo.copyFrom(recordInfo));
+	@Override public boolean check(StowotmInfo recordInfo) {
+		return checker.check(LanguInfo.copyFrom(recordInfo));
 	}
 
 	

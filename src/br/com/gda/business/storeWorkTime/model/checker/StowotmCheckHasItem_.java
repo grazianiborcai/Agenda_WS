@@ -14,9 +14,9 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StowotmCheckHasItem extends ModelCheckerTemplateAction_<StowotmInfo> {
+public final class StowotmCheckHasItem_ extends ModelCheckerTemplateAction_<StowotmInfo> {
 	
-	public StowotmCheckHasItem(ModelCheckerOption option) {
+	public StowotmCheckHasItem_(ModelCheckerOption option) {
 		super(option);
 	}
 	

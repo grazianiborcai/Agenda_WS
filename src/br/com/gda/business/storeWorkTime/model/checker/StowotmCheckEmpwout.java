@@ -8,14 +8,14 @@ import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public class StowotmCheckSWTC implements ModelChecker<StowotmInfo> {
+public class StowotmCheckEmpwout implements ModelChecker<StowotmInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<EmpwoutInfo> checker;
 	
 	
-	public StowotmCheckSWTC(ModelCheckerOption option) {
+	public StowotmCheckEmpwout(ModelCheckerOption option) {
 		checker = new EmpwoutCheckExist(option);
 	}
 	

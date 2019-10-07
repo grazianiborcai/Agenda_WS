@@ -13,7 +13,7 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-final class StdEmpwoutSelect implements ActionStd<EmpwoutInfo> {
+public final class StdEmpwoutSelect implements ActionStd<EmpwoutInfo> {
 	private ActionStd<EmpwoutInfo> actionHelper;
 	
 	

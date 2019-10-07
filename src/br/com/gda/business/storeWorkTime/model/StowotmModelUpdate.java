@@ -1,72 +1,27 @@
 package br.com.gda.business.storeWorkTime.model;
 
-import java.sql.Connection;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.core.Response;
-
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.business.storeWorkTime.model.decisionTree.RootStowotmUpdate;
-import br.com.gda.common.DbConnection;
-import br.com.gda.common.DbSchema;
-import br.com.gda.model.Model;
+import br.com.gda.model.ModelTemplate;
 import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.obsolete.ModelHelper_;
-import br.com.gda.model.obsolete.ModelOption_;
 
-public final class StowotmModelUpdate implements Model {
-	private Model helper;
-	private Connection conn;
-	private String schemaName;
-	
-	
+public final class StowotmModelUpdate extends ModelTemplate<StowotmInfo> {
+
 	public StowotmModelUpdate(String incomingData, HttpServletRequest request) {
-		initialize();
-		buildHelper(incomingData, request);
+		super(incomingData, request, StowotmInfo.class);
 	}
 	
 	
 	
-	private void initialize() {
-		this.conn = DbConnection.getConnection();
-		this.schemaName = DbSchema.getDefaultSchemaName();
+	@Override protected DeciTree<StowotmInfo> getDecisionTreeHook(DeciTreeOption<StowotmInfo> option) {
+		return new RootStowotmUpdate(option);
 	}
 	
 	
 	
-	private void buildHelper(String incomingData, HttpServletRequest request) {
-		ModelOption_<StowotmInfo> helperOption = new ModelOption_<>();
-		
-		helperOption.recordClass = StowotmInfo.class;
-		helperOption.deciTreeFactory = new TreeFactory();
-		helperOption.conn = this.conn;
-		helperOption.schemaName = this.schemaName;
-		
-		helper = ModelHelper_.factory(helperOption, incomingData, request);
-	}
-
-
-	
-	@Override public boolean executeRequest() {
-		return helper.executeRequest();
-	}
-
-
-	
-	@Override public Response getResponse() {
-		return helper.getResponse();
-	}
-	
-	
-	
-	
-	
-	
-	private static class TreeFactory implements DeciTreeFactory<StowotmInfo> {		
-		@Override public DeciTree<StowotmInfo> getInstance(DeciTreeOption<StowotmInfo> option) {
-			return new RootStowotmUpdate(option);
-		}			
+	@Override protected Class<?> getImplamentationClassHook() {
+		return this.getClass();
 	}
 }
