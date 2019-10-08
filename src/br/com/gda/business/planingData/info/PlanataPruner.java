@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.gda.business.cartReserve.info.CarterveInfo;
 import br.com.gda.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.gda.business.orderReserve.info.OrderveInfo;
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.info.InfoPruner;
 import br.com.gda.info.InfoPrunerSelf;
 import br.com.gda.payment.storePartner.info.StoparInfo;
@@ -25,8 +25,8 @@ public final class PlanataPruner {
 	
 	
 	
-	public static List<PlanataInfo> pruneWithStolevate(List<PlanataInfo> sourceOne, List<StolevateInfo> sourceTwo) {
-		InfoPruner<PlanataInfo, StolevateInfo> pruner = new PlanataPrunerStolevate();		
+	public static List<PlanataInfo> pruneWithStolate(List<PlanataInfo> sourceOne, List<StolateInfo> sourceTwo) {
+		InfoPruner<PlanataInfo, StolateInfo> pruner = new PlanataPrunerStolate();		
 		return pruner.prune(sourceOne, sourceTwo);
 	}
 	

@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
@@ -19,20 +19,20 @@ import br.com.gda.dao.DaoStmtParamTranslator;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-public final class StolevateInsertSingle implements DaoStmt<StolevateInfo> {
-	private DaoStmt<StolevateInfo> stmtSql;
-	private DaoStmtOption<StolevateInfo> stmtOption;
+public final class StolateInsertSingle implements DaoStmt<StolateInfo> {
+	private DaoStmt<StolateInfo> stmtSql;
+	private DaoStmtOption<StolateInfo> stmtOption;
 	
 	
 	
-	public StolevateInsertSingle(Connection conn, StolevateInfo recordInfo, String schemaName) {
+	public StolateInsertSingle(Connection conn, StolateInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, StolevateInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, StolateInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -71,14 +71,14 @@ public final class StolevateInsertSingle implements DaoStmt<StolevateInfo> {
 
 	
 	
-	@Override public List<StolevateInfo> getResultset() {
+	@Override public List<StolateInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<StolevateInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StolevateInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements DaoStmtParamTranslator<StolateInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StolateInfo recordInfo) throws SQLException {
 			Time beginTime = DaoFormatter.localToSqlTime(recordInfo.timeValidFrom);
 			Time endTime = DaoFormatter.localToSqlTime(recordInfo.timeValidTo);				
 			Date beginDate = DaoFormatter.localToSqlDate(recordInfo.dateValidFrom);
@@ -108,7 +108,7 @@ public final class StolevateInsertSingle implements DaoStmt<StolevateInfo> {
 	
 	
 	
-	@Override public DaoStmt<StolevateInfo> getNewInstance() {
-		return new StolevateInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<StolateInfo> getNewInstance() {
+		return new StolateInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 }

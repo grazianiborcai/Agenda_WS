@@ -3,20 +3,20 @@ package br.com.gda.business.store.model.checker;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckHasItem;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckHasItem;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class StoreCheckHasStolevate implements ModelChecker<StoreInfo> {
+public final class StoreCheckHasStolate implements ModelChecker<StoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StolevateInfo> checker;
+	private ModelChecker<StolateInfo> checker;
 	
 	
-	public StoreCheckHasStolevate(ModelCheckerOption option) {
-		checker = new StolevateCheckHasItem(option);
+	public StoreCheckHasStolate(ModelCheckerOption option) {
+		checker = new StolateCheckHasItem(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class StoreCheckHasStolevate implements ModelChecker<StoreInfo> {
 	
 	
 	@Override public boolean check(StoreInfo recordInfo) {
-		return checker.check(StolevateInfo.copyFrom(recordInfo));
+		return checker.check(StolateInfo.copyFrom(recordInfo));
 	}
 
 	

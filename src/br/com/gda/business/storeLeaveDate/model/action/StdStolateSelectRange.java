@@ -3,8 +3,8 @@ package br.com.gda.business.storeLeaveDate.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.dao.StolevateSelectRange;
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
+import br.com.gda.business.storeLeaveDate.dao.StolateSelectRange;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.dao.DaoStmtExec;
 import br.com.gda.dao.DaoStmtExecOption;
 import br.com.gda.model.action.ActionStd;
@@ -13,34 +13,34 @@ import br.com.gda.model.action.ActionStdHelperStmt;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdStolevateSelectRange implements ActionStd<StolevateInfo> {
-	private ActionStd<StolevateInfo> actionHelper;
+public final class StdStolateSelectRange implements ActionStd<StolateInfo> {
+	private ActionStd<StolateInfo> actionHelper;
 	
 	
-	public StdStolevateSelectRange(DeciTreeOption<StolevateInfo> option) {
-		DaoStmtExec<StolevateInfo> sqlStmtExecutor = buildStmtExec(option);
+	public StdStolateSelectRange(DeciTreeOption<StolateInfo> option) {
+		DaoStmtExec<StolateInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<StolevateInfo> buildStmtExec(DeciTreeOption<StolevateInfo> option) {
-		List<DaoStmtExecOption<StolevateInfo>> stmtExecOptions = new ArrayList<>();			
+	private DaoStmtExec<StolateInfo> buildStmtExec(DeciTreeOption<StolateInfo> option) {
+		List<DaoStmtExecOption<StolateInfo>> stmtExecOptions = new ArrayList<>();			
 		
-		for(StolevateInfo eachRecord : option.recordInfos) {
-			DaoStmtExecOption<StolevateInfo> stmtExecOption = new DaoStmtExecOption<>();
+		for(StolateInfo eachRecord : option.recordInfos) {
+			DaoStmtExecOption<StolateInfo> stmtExecOption = new DaoStmtExecOption<>();
 			stmtExecOption.conn = option.conn;
 			stmtExecOption.recordInfo = eachRecord;
 			stmtExecOption.schemaName = option.schemaName;
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new StolevateSelectRange(stmtExecOptions);
+		return new StolateSelectRange(stmtExecOptions);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StolevateInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<StolateInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	
@@ -52,7 +52,7 @@ public final class StdStolevateSelectRange implements ActionStd<StolevateInfo> {
 	
 	
 	
-	@Override public DeciResult<StolevateInfo> getDecisionResult() {
+	@Override public DeciResult<StolateInfo> getDecisionResult() {
 		return actionHelper.getDecisionResult();
 	}
 }	

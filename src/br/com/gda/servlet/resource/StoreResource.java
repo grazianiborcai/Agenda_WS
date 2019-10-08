@@ -23,11 +23,11 @@ import br.com.gda.business.store.model.StoreModelDelete;
 import br.com.gda.business.store.model.StoreModelInsert;
 import br.com.gda.business.store.model.StoreModelSelect;
 import br.com.gda.business.store.model.StoreModelUpdate;
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.model.StolevateModelDelete;
-import br.com.gda.business.storeLeaveDate.model.StolevateModelInsert;
-import br.com.gda.business.storeLeaveDate.model.StolevateModelSelect;
-import br.com.gda.business.storeLeaveDate.model.StolevateModelUpdate;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.StolateModelDelete;
+import br.com.gda.business.storeLeaveDate.model.StolateModelInsert;
+import br.com.gda.business.storeLeaveDate.model.StolateModelSelect;
+import br.com.gda.business.storeLeaveDate.model.StolateModelUpdate;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.business.storeList.model.StolisModelSelect;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
@@ -220,19 +220,22 @@ public class StoreResource {
 	
 	@GET
 	@Path(SELECT_STORE_LDATE)
-	public Response selectStoreLDate(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
-			                         @HeaderParam("codStore") 	 @DefaultValue("-1") int codStore,
-			                         @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
-			                         @HeaderParam("date")	  	 @DefaultValue("1900-01-01") String date) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStolate(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                      @HeaderParam("codStore") 	     @DefaultValue("-1") int codStore,
+			                      @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage,
+			                      @HeaderParam("date")	  	     @DefaultValue("1900-01-01") String date,
+			                      @HeaderParam("TOKEN_USERNAME") String username) {
 
-		StolevateInfo recordInfo = new StolevateInfo();
+		StolateInfo recordInfo = new StolateInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
 		recordInfo.dateValidFrom = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);	//TODO: criar/mover para uma classe
 		recordInfo.dateValidTo = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);	//TODO: criar/mover para uma classe
 		
-		Model model = new StolevateModelSelect(recordInfo);
+		Model model = new StolateModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -242,9 +245,10 @@ public class StoreResource {
 	@POST
 	@Path(INSERT_STORE_LDATE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertStoreLDate(@Context HttpServletRequest request, String incomingData) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertStolate(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new StolevateModelInsert(incomingData, request);
+		Model model = new StolateModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -254,9 +258,10 @@ public class StoreResource {
 	@POST
 	@Path(UPDATE_STORE_LDATE)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateStoreLDate(@Context HttpServletRequest request, String incomingData) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateStolate(@Context HttpServletRequest request, String incomingData) {
 
-		Model model = new StolevateModelUpdate(incomingData, request);
+		Model model = new StolateModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -265,15 +270,15 @@ public class StoreResource {
 	
 	@DELETE
 	@Path(DELETE_STORE_LDATE)
-	public Response deleteStoreLDate(@HeaderParam("TOKEN_OWNER")   @DefaultValue("-1") long codOwner, 
-			                         @HeaderParam("codStore")      @DefaultValue("-1") int codStore,
-			                         @HeaderParam("codLanguage")   @DefaultValue("EN") String codLanguage,
-			                         @HeaderParam("dateValidFrom") @DefaultValue("1900-01-01") String dateValidFrom,
-			                         @HeaderParam("timeValidFrom") @DefaultValue("12:00") String timeValidFrom,
-			                         @HeaderParam("TOKEN_USERNAME") String username) {
+	public Response deleteStolate(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                      @HeaderParam("codStore")       @DefaultValue("-1") int codStore,
+			                      @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage,
+			                      @HeaderParam("dateValidFrom")  @DefaultValue("1900-01-01") String dateValidFrom,
+			                      @HeaderParam("timeValidFrom")  @DefaultValue("12:00") String timeValidFrom,
+			                      @HeaderParam("TOKEN_USERNAME") String username) {
 		
 		//TODO: adicionar filtros para dar um parse nas datas
-		StolevateInfo recordInfo = new StolevateInfo();
+		StolateInfo recordInfo = new StolateInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codLanguage = codLanguage;
@@ -281,7 +286,7 @@ public class StoreResource {
 		recordInfo.dateValidFrom = LocalDate.parse(dateValidFrom, DateTimeFormatter.ISO_LOCAL_DATE);
 		recordInfo.timeValidFrom = LocalTime.parse(timeValidFrom, DateTimeFormatter.ISO_LOCAL_TIME);
 		
-		Model model = new StolevateModelDelete(recordInfo);
+		Model model = new StolateModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

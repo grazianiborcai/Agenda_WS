@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdStoreDeleteStolevate implements ActionStd<StoreInfo> {
+public final class StdStoreDeleteStolate implements ActionStd<StoreInfo> {
 	private ActionStd<StoreInfo> actionHelper;	
 	
 	
-	public StdStoreDeleteStolevate(DeciTreeOption<StoreInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiStoreDeleteStolevate(option.conn, option.schemaName));
+	public StdStoreDeleteStolate(DeciTreeOption<StoreInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiStoreDeleteStolate(option.conn, option.schemaName));
 	}
 	
 	

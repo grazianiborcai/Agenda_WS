@@ -7,16 +7,16 @@ import br.com.gda.business.masterData.info.common.RecordMode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class StolevateSetterDel implements InfoSetter<StolevateInfo> {
+public final class StolateSetterDel implements InfoSetter<StolateInfo> {
 	
-	public StolevateInfo setAttr(StolevateInfo recordInfo) {
+	public StolateInfo setAttr(StolateInfo recordInfo) {
 		checkArgument(recordInfo);
 		return setCodDel(recordInfo);
 	}
 	
 	
 	
-	private void checkArgument(StolevateInfo recordInfo) {
+	private void checkArgument(StolateInfo recordInfo) {
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
@@ -25,7 +25,7 @@ public final class StolevateSetterDel implements InfoSetter<StolevateInfo> {
 	
 	
 	
-	private StolevateInfo setCodDel(StolevateInfo recordInfo) {
+	private StolateInfo setCodDel(StolateInfo recordInfo) {
 		recordInfo.recordMode = RecordMode.DELETED.getCodRecordMode();
 		return recordInfo;
 	}

@@ -4,25 +4,25 @@ import java.util.List;
 
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.owner.model.checker.OwnerCheckExist;
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 
-public final class StolevateCheckOwner implements ModelChecker<StolevateInfo> {
+public final class StolateCheckOwner implements ModelChecker<StolateInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<OwnerInfo> checker;
 	
 	
-	public StolevateCheckOwner(ModelCheckerOption option) {
+	public StolateCheckOwner(ModelCheckerOption option) {
 		checker = new OwnerCheckExist(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<StolevateInfo> recordInfos) {
-		for (StolevateInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<StolateInfo> recordInfos) {
+		for (StolateInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -32,7 +32,7 @@ public final class StolevateCheckOwner implements ModelChecker<StolevateInfo> {
 
 	
 	
-	@Override public boolean check(StolevateInfo recordInfo) {
+	@Override public boolean check(StolateInfo recordInfo) {
 		return checker.check(OwnerInfo.copyFrom(recordInfo));
 	}
 

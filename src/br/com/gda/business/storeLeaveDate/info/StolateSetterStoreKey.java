@@ -6,16 +6,16 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class StolevateSetterStoreKey implements InfoSetter<StolevateInfo> {
+public final class StolateSetterStoreKey implements InfoSetter<StolateInfo> {
 	
-	public StolevateInfo setAttr(StolevateInfo recordInfo) {
+	public StolateInfo setAttr(StolateInfo recordInfo) {
 		checkArgument(recordInfo);
 		return setStoreKey(recordInfo);
 	}
 	
 	
 	
-	private void checkArgument(StolevateInfo recordInfo) {
+	private void checkArgument(StolateInfo recordInfo) {
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
@@ -24,8 +24,8 @@ public final class StolevateSetterStoreKey implements InfoSetter<StolevateInfo> 
 	
 	
 	
-	private StolevateInfo setStoreKey(StolevateInfo recordInfo) {
-		StolevateInfo result = new StolevateInfo();
+	private StolateInfo setStoreKey(StolateInfo recordInfo) {
+		StolateInfo result = new StolateInfo();
 		
 		result.codOwner = recordInfo.codOwner;
 		result.codStore = recordInfo.codStore;

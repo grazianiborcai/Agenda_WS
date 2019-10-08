@@ -1,71 +1,26 @@
 package br.com.gda.business.storeLeaveDate.model;
 
-import java.sql.Connection;
-
-import javax.ws.rs.core.Response;
-
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStolevateDelete;
-import br.com.gda.common.DbConnection;
-import br.com.gda.common.DbSchema;
-import br.com.gda.model.Model;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStolateDelete;
+import br.com.gda.model.ModelTemplate;
 import br.com.gda.model.decisionTree.DeciTree;
-import br.com.gda.model.decisionTree.DeciTreeFactory;
 import br.com.gda.model.decisionTree.DeciTreeOption;
-import br.com.gda.model.obsolete.ModelHelper_;
-import br.com.gda.model.obsolete.ModelOption_;
 
-public final class StolevateModelDelete implements Model {
-	private Model helper;
-	private Connection conn;
-	private String schemaName;
-	
-	
-	public StolevateModelDelete(StolevateInfo recordInfo) {
-		initialize();
-		buildHelper(recordInfo);
+public final class StolateModelDelete extends ModelTemplate<StolateInfo> {
+
+	public StolateModelDelete(StolateInfo recordInfo) {
+		super(recordInfo);
 	}
 	
 	
 	
-	private void initialize() {
-		this.conn = DbConnection.getConnection();
-		this.schemaName = DbSchema.getDefaultSchemaName();
+	@Override protected DeciTree<StolateInfo> getDecisionTreeHook(DeciTreeOption<StolateInfo> option) {
+		return new RootStolateDelete(option);
 	}
 	
 	
 	
-	private void buildHelper(StolevateInfo recordInfo) {
-		ModelOption_<StolevateInfo> helperOption = new ModelOption_<>();
-		
-		helperOption.recordClass = StolevateInfo.class;
-		helperOption.deciTreeFactory = new TreeFactory();
-		helperOption.conn = this.conn;
-		helperOption.schemaName = this.schemaName;
-		
-		helper = ModelHelper_.factory(helperOption, recordInfo);
-	}
-
-
-	
-	@Override public boolean executeRequest() {
-		return helper.executeRequest();
-	}
-
-
-	
-	@Override public Response getResponse() {
-		return helper.getResponse();
-	}
-	
-	
-	
-	
-	
-	
-	private static class TreeFactory implements DeciTreeFactory<StolevateInfo> {		
-		@Override public DeciTree<StolevateInfo> getInstance(DeciTreeOption<StolevateInfo> option) {
-			return new RootStolevateDelete(option);
-		}
+	@Override protected Class<?> getImplamentationClassHook() {
+		return this.getClass();
 	}
 }

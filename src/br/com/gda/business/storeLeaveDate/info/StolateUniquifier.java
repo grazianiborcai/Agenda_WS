@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 
 import br.com.gda.info.InfoUniquifier;
 
-final class StolevateUniquifier implements InfoUniquifier<StolevateInfo> {
+final class StolateUniquifier implements InfoUniquifier<StolateInfo> {
 	
-	@Override public List<StolevateInfo> uniquify(List<StolevateInfo> infoRecords) {
+	@Override public List<StolateInfo> uniquify(List<StolateInfo> infoRecords) {
 		return infoRecords.stream().distinct().collect(Collectors.toList());
 	}
 }

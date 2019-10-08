@@ -2,20 +2,20 @@ package br.com.gda.business.storeLeaveDate.model.checker;
 
 import java.sql.Connection;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class StolevateCheckWrite extends ModelCheckerTemplateSimple_<StolevateInfo> {
+public final class StolateCheckWrite extends ModelCheckerTemplateSimple_<StolateInfo> {
 
-	public StolevateCheckWrite() {
+	public StolateCheckWrite() {
 		super();
 	}
 	
 	
 	
-	@Override protected boolean checkHook(StolevateInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(StolateInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 			<= 0 	
 			|| recordInfo.codStore 			<= 0
 			|| recordInfo.dateValidFrom		== null

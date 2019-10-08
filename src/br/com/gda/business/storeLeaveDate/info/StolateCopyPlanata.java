@@ -4,16 +4,16 @@ import br.com.gda.business.planingData.info.PlanataInfo;
 import br.com.gda.info.InfoCopierTemplate;
 import br.com.gda.info.InfoUniquifyHelper;
 
-final class StolevateCopyPlanata extends InfoCopierTemplate<StolevateInfo, PlanataInfo>{
+final class StolateCopyPlanata extends InfoCopierTemplate<StolateInfo, PlanataInfo>{
 	
-	public StolevateCopyPlanata() {
-		super(new InfoUniquifyHelper<StolevateInfo>());
+	public StolateCopyPlanata() {
+		super(new InfoUniquifyHelper<StolateInfo>());
 	}
 	
 	
 	
-	@Override protected StolevateInfo makeCopyHook(PlanataInfo source) {
-		StolevateInfo result = new StolevateInfo();
+	@Override protected StolateInfo makeCopyHook(PlanataInfo source) {
+		StolateInfo result = new StolateInfo();
 			
 		result.codOwner = source.codOwner;	
 		result.codStore = source.codStore;

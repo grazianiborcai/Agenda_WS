@@ -9,9 +9,9 @@ import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyPlanataPruneStolevate extends ActionLazyTemplate<PlanataInfo, PlanataInfo> {
+public final class LazyPlanataPruneStolate extends ActionLazyTemplate<PlanataInfo, PlanataInfo> {
 	
-	public LazyPlanataPruneStolevate(Connection conn, String schemaName) {
+	public LazyPlanataPruneStolate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPlanataPruneStolevate extends ActionLazyTemplate<PlanataI
 	
 	
 	@Override protected ActionStd<PlanataInfo> getInstanceOfActionHook(DeciTreeOption<PlanataInfo> option) {
-		return new StdPlanataPruneStolevate(option);
+		return new StdPlanataPruneStolate(option);
 	}
 	
 	

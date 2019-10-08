@@ -3,8 +3,8 @@ package br.com.gda.business.storeLeaveDate.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.model.action.StdStolevateSelectRange;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.action.StdStolateSelectRange;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionStd;
@@ -12,25 +12,25 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StolevateCheckSLD extends ModelCheckerTemplateAction_<StolevateInfo> {
+public final class StolateCheckSLD_ extends ModelCheckerTemplateAction_<StolateInfo> {
 	
-	public StolevateCheckSLD(ModelCheckerOption option) {
+	public StolateCheckSLD_(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected ActionStd<StolevateInfo> buildActionHook(StolevateInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<StolevateInfo> option = buildOption(recordInfo, conn, schemaName);
+	@Override protected ActionStd<StolateInfo> buildActionHook(StolateInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<StolateInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<StolevateInfo> actionSelect = new StdStolevateSelectRange(option);
+		ActionStd<StolateInfo> actionSelect = new StdStolateSelectRange(option);
 		return actionSelect;
 	}
 	
 	
 	
-	private DeciTreeOption<StolevateInfo> buildOption(StolevateInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<StolevateInfo> option = new DeciTreeOption<>();
+	private DeciTreeOption<StolateInfo> buildOption(StolateInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<StolateInfo> option = new DeciTreeOption<>();
 		option.recordInfos = new ArrayList<>();
 		option.recordInfos.add(recordInfo);
 		option.conn = conn;

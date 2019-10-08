@@ -3,27 +3,27 @@ package br.com.gda.business.storeLeaveDate.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.info.StolevateMerger;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateMerger;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 
-final class VisiStolevateMergeToSelect extends ActionVisitorTemplateMergeV2<StolevateInfo, StolevateInfo> {
+final class VisiStolateMergeToSelect extends ActionVisitorTemplateMergeV2<StolateInfo, StolateInfo> {
 	
-	public VisiStolevateMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, StolevateInfo.class);
+	public VisiStolateMergeToSelect(Connection conn, String schemaName) {
+		super(conn, schemaName, StolateInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StolevateInfo>> getActionClassHook() {
-		return StdStolevateSelect.class;
+	@Override protected Class<? extends ActionStd<StolateInfo>> getActionClassHook() {
+		return StdStolateSelect.class;
 	}
 	
 	
 	
-	@Override protected List<StolevateInfo> mergeHook(List<StolevateInfo> recordInfos, List<StolevateInfo> selectedInfos) {	
-		return StolevateMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<StolateInfo> mergeHook(List<StolateInfo> recordInfos, List<StolateInfo> selectedInfos) {	
+		return StolateMerger.mergeToSelect(selectedInfos, recordInfos);
 	}
 	
 	

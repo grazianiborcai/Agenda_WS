@@ -9,9 +9,9 @@ import br.com.gda.common.DefaultValue;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class StolevateSetterLChanged implements InfoSetter<StolevateInfo> {
+public final class StolateSetterLChanged implements InfoSetter<StolateInfo> {
 	
-	public StolevateInfo setAttr(StolevateInfo recordInfo) {
+	public StolateInfo setAttr(StolateInfo recordInfo) {
 		checkArgument(recordInfo);
 		
 		recordInfo.lastChanged = genLastChanged();
@@ -20,7 +20,7 @@ public final class StolevateSetterLChanged implements InfoSetter<StolevateInfo> 
 	
 	
 	
-	private void checkArgument(StolevateInfo recordInfo) {
+	private void checkArgument(StolateInfo recordInfo) {
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);

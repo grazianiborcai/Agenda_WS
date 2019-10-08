@@ -6,24 +6,24 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 
-final class StolevateVisiMergeToDelete implements InfoMergerVisitor<StolevateInfo, StolevateInfo> {
+final class StolateVisiMergeToDelete implements InfoMergerVisitor<StolateInfo, StolateInfo> {
 
-	@Override public StolevateInfo writeRecord(StolevateInfo sourceOne, StolevateInfo sourceTwo) {
+	@Override public StolateInfo writeRecord(StolateInfo sourceOne, StolateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(StolevateInfo sourceOne, StolevateInfo sourceTwo) {
+	private void checkArgument(StolateInfo sourceOne, StolateInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private StolevateInfo merge(StolevateInfo sourceOne, StolevateInfo sourceTwo) {
-		StolevateInfo result = makeClone(sourceOne);		
+	private StolateInfo merge(StolateInfo sourceOne, StolateInfo sourceTwo) {
+		StolateInfo result = makeClone(sourceOne);		
 		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
 		return result;
@@ -31,9 +31,9 @@ final class StolevateVisiMergeToDelete implements InfoMergerVisitor<StolevateInf
 	
 	
 	
-	private StolevateInfo makeClone(StolevateInfo recordInfo) {
+	private StolateInfo makeClone(StolateInfo recordInfo) {
 		try {
-			return (StolevateInfo) recordInfo.clone();
+			return (StolateInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -43,7 +43,7 @@ final class StolevateVisiMergeToDelete implements InfoMergerVisitor<StolevateInf
 	
 	
 	
-	@Override public boolean shouldWrite(StolevateInfo sourceOne, StolevateInfo sourceTwo) {		
+	@Override public boolean shouldWrite(StolateInfo sourceOne, StolateInfo sourceTwo) {		
 		return (sourceOne.codOwner 	 == sourceTwo.codOwner	&& 
 				sourceOne.codStore 	 == sourceTwo.codStore	);
 	}

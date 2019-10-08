@@ -4,33 +4,33 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStolevateSelect;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStolateSelect;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyStolevateRootSelect extends ActionLazyTemplate<StolevateInfo, StolevateInfo> {
+public final class LazyStolateRootSelect extends ActionLazyTemplate<StolateInfo, StolateInfo> {
 	
-	public LazyStolevateRootSelect(Connection conn, String schemaName) {
+	public LazyStolateRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
 	
 	
-	@Override protected List<StolevateInfo> translateRecordInfosHook(List<StolevateInfo> recordInfos) {
+	@Override protected List<StolateInfo> translateRecordInfosHook(List<StolateInfo> recordInfos) {
 		return recordInfos;
 	}
 	
 	
 	
-	@Override protected ActionStd<StolevateInfo> getInstanceOfActionHook(DeciTreeOption<StolevateInfo> option) {
-		return new RootStolevateSelect(option).toAction();
+	@Override protected ActionStd<StolateInfo> getInstanceOfActionHook(DeciTreeOption<StolateInfo> option) {
+		return new RootStolateSelect(option).toAction();
 	}
 	
 	
 	
-	@Override protected DeciResult<StolevateInfo> translateResultHook(DeciResult<StolevateInfo> result) {
+	@Override protected DeciResult<StolateInfo> translateResultHook(DeciResult<StolateInfo> result) {
 		return result;
 	}
 }

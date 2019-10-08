@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.store.model.decisionTree.NodeStoreDeleteStolevate;
+import br.com.gda.business.store.model.decisionTree.NodeStoreDeleteStolate;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
@@ -25,7 +25,7 @@ public final class LazyStoreNodeDeleteStolevate extends ActionLazyTemplate<Store
 	
 	
 	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
-		return new NodeStoreDeleteStolevate(option).toAction();
+		return new NodeStoreDeleteStolate(option).toAction();
 	}
 	
 	

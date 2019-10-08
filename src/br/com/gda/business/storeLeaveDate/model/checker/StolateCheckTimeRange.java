@@ -2,27 +2,27 @@ package br.com.gda.business.storeLeaveDate.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.business.timeRange.info.DateTimeRangeInfo;
 import br.com.gda.business.timeRange.model.checker.DateTimeRangeCheckRange;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
 
-public final class StolevateCheckTimeRange extends ModelCheckerTemplateSimple_<StolevateInfo> {
+public final class StolateCheckTimeRange extends ModelCheckerTemplateSimple_<StolateInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<DateTimeRangeInfo> checker;
 	
 	
-	public StolevateCheckTimeRange() {
+	public StolateCheckTimeRange() {
 		checker = new DateTimeRangeCheckRange();
 	}
 	
 	
 	
-	@Override public boolean check(List<StolevateInfo> recordInfos) {
-		for (StolevateInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<StolateInfo> recordInfos) {
+		for (StolateInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -32,7 +32,7 @@ public final class StolevateCheckTimeRange extends ModelCheckerTemplateSimple_<S
 
 	
 	
-	@Override public boolean check(StolevateInfo recordInfo) {
+	@Override public boolean check(StolateInfo recordInfo) {
 		return checker.check(DateTimeRangeInfo.copyFrom(recordInfo));
 	}
 

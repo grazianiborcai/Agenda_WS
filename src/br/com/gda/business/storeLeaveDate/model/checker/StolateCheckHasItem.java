@@ -3,9 +3,9 @@ package br.com.gda.business.storeLeaveDate.model.checker;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateRootSelect;
-import br.com.gda.business.storeLeaveDate.model.action.StdStolevateEnforceStoreKey;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateRootSelect;
+import br.com.gda.business.storeLeaveDate.model.action.StdStolateEnforceStoreKey;
 import br.com.gda.common.SystemCode;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.model.action.ActionLazy;
@@ -14,19 +14,19 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StolevateCheckHasItem extends ModelCheckerTemplateAction_<StolevateInfo> {
+public final class StolateCheckHasItem extends ModelCheckerTemplateAction_<StolateInfo> {
 	
-	public StolevateCheckHasItem(ModelCheckerOption option) {
+	public StolateCheckHasItem(ModelCheckerOption option) {
 		super(option);
 	}
 	
 
 	
-	@Override protected ActionStd<StolevateInfo> buildActionHook(StolevateInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<StolevateInfo> option = buildActionOption(recordInfo, conn, schemaName);
+	@Override protected ActionStd<StolateInfo> buildActionHook(StolateInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<StolateInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<StolevateInfo> enforceStoreKey = new StdStolevateEnforceStoreKey(option);
-		ActionLazy<StolevateInfo> select = new LazyStolevateRootSelect(conn, schemaName);		
+		ActionStd<StolateInfo> enforceStoreKey = new StdStolateEnforceStoreKey(option);
+		ActionLazy<StolateInfo> select = new LazyStolateRootSelect(conn, schemaName);		
 		
 		enforceStoreKey.addPostAction(select);
 		
@@ -35,8 +35,8 @@ public final class StolevateCheckHasItem extends ModelCheckerTemplateAction_<Sto
 	
 	
 	
-	private DeciTreeOption<StolevateInfo> buildActionOption(StolevateInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<StolevateInfo> option = new DeciTreeOption<>();
+	private DeciTreeOption<StolateInfo> buildActionOption(StolateInfo recordInfo, Connection conn, String schemaName) {
+		DeciTreeOption<StolateInfo> option = new DeciTreeOption<>();
 		option.recordInfos = new ArrayList<>();
 		option.recordInfos.add(recordInfo);
 		option.conn = conn;

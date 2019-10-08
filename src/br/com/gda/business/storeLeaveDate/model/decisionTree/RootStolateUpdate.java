@@ -3,17 +3,17 @@ package br.com.gda.business.storeLeaveDate.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateMergeUsername;
-import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateRootSelect;
-import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateUpdate;
-import br.com.gda.business.storeLeaveDate.model.action.StdStolevateEnforceLChanged;
-import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckExist;
-import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckOwner;
-import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckStorauth;
-import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckStore;
-import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckTimeRange;
-import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckWrite;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateMergeUsername;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateRootSelect;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateUpdate;
+import br.com.gda.business.storeLeaveDate.model.action.StdStolateEnforceLChanged;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckExist;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckOwner;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStorauth;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStore;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckTimeRange;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckWrite;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -22,52 +22,52 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootStolevateUpdate extends DeciTreeWriteTemplate<StolevateInfo> {
+public final class RootStolateUpdate extends DeciTreeWriteTemplate<StolateInfo> {
 	
-	public RootStolevateUpdate(DeciTreeOption<StolevateInfo> option) {
+	public RootStolateUpdate(DeciTreeOption<StolateInfo> option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected ModelChecker<StolevateInfo> buildDecisionCheckerHook(DeciTreeOption<StolevateInfo> option) {
-		List<ModelChecker<StolevateInfo>> queue = new ArrayList<>();		
-		ModelChecker<StolevateInfo> checker;
+	@Override protected ModelChecker<StolateInfo> buildDecisionCheckerHook(DeciTreeOption<StolateInfo> option) {
+		List<ModelChecker<StolateInfo>> queue = new ArrayList<>();		
+		ModelChecker<StolateInfo> checker;
 		ModelCheckerOption checkerOption;
 		final boolean EXIST_ON_DB = true;
 		
-		checker = new StolevateCheckWrite();
+		checker = new StolateCheckWrite();
 		queue.add(checker);
 		
-		checker = new StolevateCheckTimeRange();
+		checker = new StolateCheckTimeRange();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new StolevateCheckOwner(checkerOption);
+		checker = new StolateCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new StolevateCheckStore(checkerOption);
+		checker = new StolateCheckStore(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new StolevateCheckExist(checkerOption);
+		checker = new StolateCheckExist(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new StolevateCheckStorauth(checkerOption);
+		checker = new StolateCheckStorauth(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -75,13 +75,13 @@ public final class RootStolevateUpdate extends DeciTreeWriteTemplate<StolevateIn
 	
 	
 	
-	@Override protected List<ActionStd<StolevateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolevateInfo> option) {
-		List<ActionStd<StolevateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
+		List<ActionStd<StolateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StolevateInfo> enforceLChanged = new StdStolevateEnforceLChanged(option);
-		ActionLazy<StolevateInfo> enforceLChangedBy = new LazyStolevateMergeUsername(option.conn, option.schemaName);
-		ActionLazy<StolevateInfo> update = new LazyStolevateUpdate(option.conn, option.schemaName);
-		ActionLazy<StolevateInfo> select = new LazyStolevateRootSelect(option.conn, option.schemaName);
+		ActionStd<StolateInfo> enforceLChanged = new StdStolateEnforceLChanged(option);
+		ActionLazy<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> update = new LazyStolateUpdate(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> select = new LazyStolateRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);

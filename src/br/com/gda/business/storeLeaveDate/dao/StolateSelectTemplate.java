@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.store.dao.StoreDbTableColumn;
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.dao.DaoJoin;
 import br.com.gda.dao.DaoJoinColumn;
@@ -23,23 +23,23 @@ import br.com.gda.dao.DaoStmtOption;
 import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
-class StolevateSelectTemplate implements DaoStmt<StolevateInfo> {	
+class StolateSelectTemplate implements DaoStmt<StolateInfo> {	
 	private final String LT_STORE_LEAVE_DATE = DaoDbTable.STORE_LD_TABLE;
 	private final String RT_STORE = DaoDbTable.STORE_TABLE;
 	
-	private DaoStmt<StolevateInfo> stmtSql;
-	private DaoStmtOption<StolevateInfo> stmtOption;
+	private DaoStmt<StolateInfo> stmtSql;
+	private DaoStmtOption<StolateInfo> stmtOption;
 	
 	
 	
-	public StolevateSelectTemplate(Connection conn, StolevateInfo recordInfo, String schemaName) {
+	public StolateSelectTemplate(Connection conn, StolateInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, StolevateInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, StolateInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -54,7 +54,7 @@ class StolevateSelectTemplate implements DaoStmt<StolevateInfo> {
 	
 	
 	
-	protected String buildWhereClauseHook(String tableName, StolevateInfo recordInfo) {
+	protected String buildWhereClauseHook(String tableName, StolateInfo recordInfo) {
 		//Template method to be overridden by subclasses
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
@@ -74,8 +74,8 @@ class StolevateSelectTemplate implements DaoStmt<StolevateInfo> {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_STORE_LEAVE_DATE;
-		oneColumn.leftColumnName = StolevateDbTableColumn.COL_COD_STORE;
-		oneColumn.rightColumnName = StolevateDbTableColumn.COL_COD_STORE;
+		oneColumn.leftColumnName = StolateDbTableColumn.COL_COD_STORE;
+		oneColumn.rightColumnName = StolateDbTableColumn.COL_COD_STORE;
 		joinColumns.add(oneColumn);
 		
 		
@@ -114,14 +114,14 @@ class StolevateSelectTemplate implements DaoStmt<StolevateInfo> {
 
 	
 	
-	@Override public List<StolevateInfo> getResultset() {
+	@Override public List<StolateInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<StolevateInfo> getNewInstance() {
-		return new StolevateSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<StolateInfo> getNewInstance() {
+		return new StolateSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -129,51 +129,51 @@ class StolevateSelectTemplate implements DaoStmt<StolevateInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<StolevateInfo> {
+	private static class ResultParser implements DaoResultParser<StolateInfo> {
 		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<StolevateInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<StolevateInfo> finalResult = new ArrayList<>();
+		@Override public List<StolateInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<StolateInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 			
 			do {
-				StolevateInfo dataInfo = new StolevateInfo();
-				dataInfo.codOwner = stmtResult.getLong(StolevateDbTableColumn.COL_COD_OWNER);
-				dataInfo.codStore = stmtResult.getLong(StolevateDbTableColumn.COL_COD_STORE);
-				dataInfo.description = stmtResult.getString(StolevateDbTableColumn.COL_DESCRIPTION);	
-				dataInfo.codTimezone = stmtResult.getString(StolevateDbTableColumn.COL_COD_TIMEZONE);
-				dataInfo.recordMode = stmtResult.getString(StolevateDbTableColumn.COL_RECORD_MODE);		
+				StolateInfo dataInfo = new StolateInfo();
+				dataInfo.codOwner = stmtResult.getLong(StolateDbTableColumn.COL_COD_OWNER);
+				dataInfo.codStore = stmtResult.getLong(StolateDbTableColumn.COL_COD_STORE);
+				dataInfo.description = stmtResult.getString(StolateDbTableColumn.COL_DESCRIPTION);	
+				dataInfo.codTimezone = stmtResult.getString(StolateDbTableColumn.COL_COD_TIMEZONE);
+				dataInfo.recordMode = stmtResult.getString(StolateDbTableColumn.COL_RECORD_MODE);		
 				
 				
-				Time tempTime = stmtResult.getTime(StolevateDbTableColumn.COL_TM_VALID_FROM);
+				Time tempTime = stmtResult.getTime(StolateDbTableColumn.COL_TM_VALID_FROM);
 				if (tempTime != null)
 					dataInfo.timeValidFrom = tempTime.toLocalTime();
 				
 				
-				tempTime = stmtResult.getTime(StolevateDbTableColumn.COL_TM_VALID_TO);
+				tempTime = stmtResult.getTime(StolateDbTableColumn.COL_TM_VALID_TO);
 				if (tempTime != null)
 					dataInfo.timeValidTo = tempTime.toLocalTime();	
 				
 				
-				Date tempDate = stmtResult.getDate(StolevateDbTableColumn.COL_DT_VALID_FROM);
+				Date tempDate = stmtResult.getDate(StolateDbTableColumn.COL_DT_VALID_FROM);
 				if (tempDate != null)
 					dataInfo.dateValidFrom = tempDate.toLocalDate();
 				
 				
-				tempDate = stmtResult.getDate(StolevateDbTableColumn.COL_DT_VALID_TO);
+				tempDate = stmtResult.getDate(StolateDbTableColumn.COL_DT_VALID_TO);
 				if (tempDate != null)
 					dataInfo.dateValidTo = tempDate.toLocalDate();
 				
 				
-				Timestamp lastChanged = stmtResult.getTimestamp(StolevateDbTableColumn.COL_LAST_CHANGED);
+				Timestamp lastChanged = stmtResult.getTimestamp(StolateDbTableColumn.COL_LAST_CHANGED);
 				if (lastChanged != null)
 					dataInfo.lastChanged = lastChanged.toLocalDateTime();
 				
 				
-				stmtResult.getLong(StolevateDbTableColumn.COL_LAST_CHANGED_BY);
+				stmtResult.getLong(StolateDbTableColumn.COL_LAST_CHANGED_BY);
 				if (stmtResult.wasNull() == NOT_NULL)
 					dataInfo.lastChangedBy = stmtResult.getLong(StoreDbTableColumn.COL_LAST_CHANGED_BY);
 				

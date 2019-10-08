@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoStmt;
@@ -22,19 +22,19 @@ import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 import br.com.gda.dao.common.DaoOptionValue;
 
-public final class StolevateUpdateSingle implements DaoStmt<StolevateInfo> {
-	private DaoStmt<StolevateInfo> stmtSql;
-	private DaoStmtOption<StolevateInfo> stmtOption;
+public final class StolateUpdateSingle implements DaoStmt<StolateInfo> {
+	private DaoStmt<StolateInfo> stmtSql;
+	private DaoStmtOption<StolateInfo> stmtOption;
 	
 	
-	public StolevateUpdateSingle(Connection conn, StolevateInfo recordInfo, String schemaName) {
+	public StolateUpdateSingle(Connection conn, StolateInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, StolevateInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, StolateInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -53,7 +53,7 @@ public final class StolevateUpdateSingle implements DaoStmt<StolevateInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new StolevateWhereKey(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new StolateWhereKey(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -83,20 +83,20 @@ public final class StolevateUpdateSingle implements DaoStmt<StolevateInfo> {
 
 	
 	
-	@Override public List<StolevateInfo> getResultset() {
+	@Override public List<StolateInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<StolevateInfo> getNewInstance() {
-		return new StolevateUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<StolateInfo> getNewInstance() {
+		return new StolateUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<StolevateInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StolevateInfo recordInfo) throws SQLException {
+	private class ParamTranslator implements DaoStmtParamTranslator<StolateInfo> {		
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StolateInfo recordInfo) throws SQLException {
 			Time endTime = DaoFormatter.localToSqlTime(recordInfo.timeValidTo);	
 			Date endDate = DaoFormatter.localToSqlDate(recordInfo.dateValidTo);	
 			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);

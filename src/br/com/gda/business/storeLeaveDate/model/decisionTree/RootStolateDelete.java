@@ -3,15 +3,15 @@ package br.com.gda.business.storeLeaveDate.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateDelete;
-import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateEnforceLChanged;
-import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateMergeUsername;
-import br.com.gda.business.storeLeaveDate.model.action.LazyStolevateUpdate;
-import br.com.gda.business.storeLeaveDate.model.action.StdStolevateMergeToDeleteKey;
-import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckExist;
-import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckStorauth;
-import br.com.gda.business.storeLeaveDate.model.checker.StolevateCheckDelete;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateDelete;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateEnforceLChanged;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateMergeUsername;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateUpdate;
+import br.com.gda.business.storeLeaveDate.model.action.StdStolateMergeToDeleteKey;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckExist;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStorauth;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckDelete;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
@@ -20,51 +20,51 @@ import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootStolevateDelete extends DeciTreeWriteTemplate<StolevateInfo> {
+public final class RootStolateDelete extends DeciTreeWriteTemplate<StolateInfo> {
 	
-	public RootStolevateDelete(DeciTreeOption<StolevateInfo> option) {
+	public RootStolateDelete(DeciTreeOption<StolateInfo> option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected ModelChecker<StolevateInfo> buildDecisionCheckerHook(DeciTreeOption<StolevateInfo> option) {
+	@Override protected ModelChecker<StolateInfo> buildDecisionCheckerHook(DeciTreeOption<StolateInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
-		List<ModelChecker<StolevateInfo>> queue = new ArrayList<>();		
-		ModelChecker<StolevateInfo> checker;
+		List<ModelChecker<StolateInfo>> queue = new ArrayList<>();		
+		ModelChecker<StolateInfo> checker;
 		ModelCheckerOption checkerOption;
 			
-		checker = new StolevateCheckDelete();
+		checker = new StolateCheckDelete();
 		queue.add(checker);		
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new StolevateCheckExist(checkerOption);
+		checker = new StolateCheckExist(checkerOption);
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new StolevateCheckStorauth(checkerOption);
+		checker = new StolateCheckStorauth(checkerOption);
 		queue.add(checker);
 		
-		 return new ModelCheckerQueue<StolevateInfo>(queue);
+		 return new ModelCheckerQueue<StolateInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStd<StolevateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolevateInfo> option) {
-		List<ActionStd<StolevateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
+		List<ActionStd<StolateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StolevateInfo> mergeToDelete = new StdStolevateMergeToDeleteKey(option);
-		ActionLazy<StolevateInfo> enforceLChanged = new LazyStolevateEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<StolevateInfo> enforceLChangedBy = new LazyStolevateMergeUsername(option.conn, option.schemaName);
-		ActionLazy<StolevateInfo> update = new LazyStolevateUpdate(option.conn, option.schemaName);
-		ActionLazy<StolevateInfo> delete = new LazyStolevateDelete(option.conn, option.schemaName);
+		ActionStd<StolateInfo> mergeToDelete = new StdStolateMergeToDeleteKey(option);
+		ActionLazy<StolateInfo> enforceLChanged = new LazyStolateEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> update = new LazyStolateUpdate(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> delete = new LazyStolateDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

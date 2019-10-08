@@ -3,17 +3,17 @@ package br.com.gda.business.storeLeaveDate.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.info.StolevateMerger;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateMerger;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 import br.com.gda.security.username.info.UsernameCopier;
 import br.com.gda.security.username.info.UsernameInfo;
 import br.com.gda.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiStolevateMergeUsername extends ActionVisitorTemplateMergeV2<StolevateInfo, UsernameInfo> {
+final class VisiStolateMergeUsername extends ActionVisitorTemplateMergeV2<StolateInfo, UsernameInfo> {
 	
-	public VisiStolevateMergeUsername(Connection conn, String schemaName) {
+	public VisiStolateMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
 	}
 	
@@ -25,14 +25,14 @@ final class VisiStolevateMergeUsername extends ActionVisitorTemplateMergeV2<Stol
 	
 	
 	
-	protected List<UsernameInfo> toActionClassHook(List<StolevateInfo> recordInfos) {
-		return UsernameCopier.copyFromStolevate(recordInfos);	
+	protected List<UsernameInfo> toActionClassHook(List<StolateInfo> recordInfos) {
+		return UsernameCopier.copyFromStolate(recordInfos);	
 	}
 	
 	
 	
-	@Override protected List<StolevateInfo> mergeHook(List<StolevateInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return StolevateMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<StolateInfo> mergeHook(List<StolateInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
+		return StolateMerger.mergeWithUsername(selectedInfos, recordInfos);
 	}
 	
 	

@@ -1,23 +1,23 @@
 package br.com.gda.business.storeLeaveDate.model.action;
 
 import br.com.gda.model.action.ActionStd;
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStdHelperMerge;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdStolevateMergeToDeleteKey implements ActionStd<StolevateInfo> {
-	private ActionStd<StolevateInfo> actionHelper;	
+public final class StdStolateMergeToDeleteKey implements ActionStd<StolateInfo> {
+	private ActionStd<StolateInfo> actionHelper;	
 	
 	
-	public StdStolevateMergeToDeleteKey(DeciTreeOption<StolevateInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStolevateMergeToDeleteKey(option.conn, option.schemaName));
+	public StdStolateMergeToDeleteKey(DeciTreeOption<StolateInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisStolateMergeToDeleteKey(option.conn, option.schemaName));
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StolevateInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazy<StolateInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	
@@ -29,7 +29,7 @@ public final class StdStolevateMergeToDeleteKey implements ActionStd<StolevateIn
 	
 	
 	
-	@Override public DeciResult<StolevateInfo> getDecisionResult() {
+	@Override public DeciResult<StolateInfo> getDecisionResult() {
 		return actionHelper.getDecisionResult();
 	}
 }

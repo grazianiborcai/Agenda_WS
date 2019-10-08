@@ -1,14 +1,14 @@
 package br.com.gda.business.storeLeaveDate.model.action;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.info.StolevateSetterLChanged;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateSetterLChanged;
 import br.com.gda.info.InfoSetter;
 import br.com.gda.model.action.ActionVisitorTemplateEnforce;
 
-final class VisiStolevateEnforceLChanged extends ActionVisitorTemplateEnforce<StolevateInfo> {
+final class VisiStolateEnforceLChanged extends ActionVisitorTemplateEnforce<StolateInfo> {
 	
-	@Override protected StolevateInfo enforceHook(StolevateInfo recordInfo) {
-		InfoSetter<StolevateInfo> attrSetter = new StolevateSetterLChanged();
+	@Override protected StolateInfo enforceHook(StolateInfo recordInfo) {
+		InfoSetter<StolateInfo> attrSetter = new StolateSetterLChanged();
 		return attrSetter.setAttr(recordInfo);
 	}
 }

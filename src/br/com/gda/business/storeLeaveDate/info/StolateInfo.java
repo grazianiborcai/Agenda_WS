@@ -10,7 +10,7 @@ import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.common.DefaultValue;
 import br.com.gda.info.InfoRecord;
 
-public final class StolevateInfo extends InfoRecord implements Cloneable {
+public final class StolateInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public LocalDate dateValidFrom;
@@ -25,8 +25,8 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 	public String recordMode;
 	
 	
-	public StolevateInfo() {
-		super(StolevateInfo.class);
+	public StolateInfo() {
+		super(StolateInfo.class);
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
@@ -36,20 +36,20 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 	
 	
 	//TODO: Mover para Copier
-	public static StolevateInfo copyFrom(Object sourceObj) {
+	public static StolateInfo copyFrom(Object sourceObj) {
 		if (isCart(sourceObj))
 			return copyFromCart(sourceObj);
 		
-		return copyFrom(sourceObj, StolevateInfo.class);
+		return copyFrom(sourceObj, StolateInfo.class);
 	}
 	
 	
 	
-	public static List<StolevateInfo> copyFrom(List<?> sourceObjs) {
+	public static List<StolateInfo> copyFrom(List<?> sourceObjs) {
 		if (isCart(sourceObjs))
 			return copyFromCart(sourceObjs);
 			
-		return copyFrom(sourceObjs, StolevateInfo.class);
+		return copyFrom(sourceObjs, StolateInfo.class);
 	}
 	
 	
@@ -76,20 +76,20 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 	
 	
 	@SuppressWarnings("unchecked")
-	private static List<StolevateInfo> copyFromCart(List<?> sourceObjs) {
-		return new StolevateCopyCart().makeCopy( (List<CartemInfo>)sourceObjs);
+	private static List<StolateInfo> copyFromCart(List<?> sourceObjs) {
+		return new StolateCopyCart().makeCopy( (List<CartemInfo>)sourceObjs);
 	}
 	
 	
 	
-	private static StolevateInfo copyFromCart(Object sourceObj) {
-		return new StolevateCopyCart().makeCopy( (CartemInfo)sourceObj);
+	private static StolateInfo copyFromCart(Object sourceObj) {
+		return new StolateCopyCart().makeCopy( (CartemInfo)sourceObj);
 	}
 	
 	
 	
 	@Override public Object clone()throws CloneNotSupportedException{  
-		StolevateInfo deepCopy = (StolevateInfo) super.clone();  		
+		StolateInfo deepCopy = (StolateInfo) super.clone();  		
 		
 		LocalTime cloneTimeValidFrom = null;		
 		if (timeValidFrom != null) 
@@ -147,11 +147,11 @@ public final class StolevateInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof StolevateInfo))
+		if (!(o instanceof StolateInfo))
 			return false;
 		
 		
-		StolevateInfo obj = (StolevateInfo) o;
+		StolateInfo obj = (StolateInfo) o;
 				
 		return (codOwner == obj.codOwner && 
 				codStore == obj.codStore &&

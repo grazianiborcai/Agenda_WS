@@ -8,7 +8,7 @@ import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
 import br.com.gda.dao.common.DaoDbTable;
 
-public final class StolevateDbTableColumn extends DaoDbTableColumnTemplate {
+public final class StolateDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = "cod_owner";	
 	public static final String COL_COD_STORE = "cod_store";
 	public static final String COL_COD_TIMEZONE = "Cod_timezone";
@@ -24,8 +24,8 @@ public final class StolevateDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public StolevateDbTableColumn() {
-		super(StolevateDbTableColumn.class);
+	public StolateDbTableColumn() {
+		super(StolateDbTableColumn.class);
 	}
 	
 	

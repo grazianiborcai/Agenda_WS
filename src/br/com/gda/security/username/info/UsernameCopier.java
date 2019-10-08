@@ -15,7 +15,7 @@ import br.com.gda.business.materialStore.info.MatoreInfo;
 import br.com.gda.business.materialText.info.MatextInfo;
 import br.com.gda.business.owner.info.OwnerInfo;
 import br.com.gda.business.store.info.StoreInfo;
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.business.storeWorkTime.info.StowotmInfo;
 import br.com.gda.file.fileImage.info.FimgInfo;
 import br.com.gda.info.InfoCopier;
@@ -183,15 +183,15 @@ public final class UsernameCopier {
 	
 	
 	
-	public static UsernameInfo copyFromStolevate(StolevateInfo source) {
-		InfoCopier<UsernameInfo, StolevateInfo> copier = new UsernameCopyStolevate();
+	public static UsernameInfo copyFromStolate(StolateInfo source) {
+		InfoCopier<UsernameInfo, StolateInfo> copier = new UsernameCopyStolate();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<UsernameInfo> copyFromStolevate(List<StolevateInfo> sources) {
-		InfoCopier<UsernameInfo, StolevateInfo> copier = new UsernameCopyStolevate();
+	public static List<UsernameInfo> copyFromStolate(List<StolateInfo> sources) {
+		InfoCopier<UsernameInfo, StolateInfo> copier = new UsernameCopyStolate();
 		return copier.makeCopy(sources);
 	}
 	

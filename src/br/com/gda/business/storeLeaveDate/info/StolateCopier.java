@@ -5,16 +5,16 @@ import java.util.List;
 import br.com.gda.business.planingData.info.PlanataInfo;
 import br.com.gda.info.InfoCopier;
 
-public final class StolevateCopier {
-	public static StolevateInfo copyFromPlanata(PlanataInfo source) {
-		InfoCopier<StolevateInfo, PlanataInfo> copier = new StolevateCopyPlanata();
+public final class StolateCopier {
+	public static StolateInfo copyFromPlanata(PlanataInfo source) {
+		InfoCopier<StolateInfo, PlanataInfo> copier = new StolateCopyPlanata();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<StolevateInfo> copyFromPlanata(List<PlanataInfo> sources) {
-		InfoCopier<StolevateInfo, PlanataInfo> copier = new StolevateCopyPlanata();
+	public static List<StolateInfo> copyFromPlanata(List<PlanataInfo> sources) {
+		InfoCopier<StolateInfo, PlanataInfo> copier = new StolateCopyPlanata();
 		return copier.makeCopy(sources);
 	}
 }

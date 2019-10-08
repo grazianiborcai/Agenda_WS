@@ -2,27 +2,27 @@ package br.com.gda.business.storeLeaveDate.model.checker;
 
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.security.storeAuthorization.info.StorauthInfo;
 import br.com.gda.security.storeAuthorization.model.checker.StorauthCheckExist;
 
-public final class StolevateCheckStorauth implements ModelChecker<StolevateInfo> {
+public final class StolateCheckStorauth implements ModelChecker<StolateInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<StorauthInfo> checker;
 	
 	
-	public StolevateCheckStorauth(ModelCheckerOption option) {
+	public StolateCheckStorauth(ModelCheckerOption option) {
 		checker = new StorauthCheckExist(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<StolevateInfo> recordInfos) {
-		for (StolevateInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<StolateInfo> recordInfos) {
+		for (StolateInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -32,7 +32,7 @@ public final class StolevateCheckStorauth implements ModelChecker<StolevateInfo>
 
 	
 	
-	@Override public boolean check(StolevateInfo recordInfo) {
+	@Override public boolean check(StolateInfo recordInfo) {
 		return checker.check(StorauthInfo.copyFrom(recordInfo));
 	}
 

@@ -7,27 +7,27 @@ import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.security.username.info.UsernameInfo;
 
-final class StolevateVisiMergeUsername implements InfoMergerVisitor<StolevateInfo, UsernameInfo> {
+final class StolateVisiMergeUsername implements InfoMergerVisitor<StolateInfo, UsernameInfo> {
 
-	@Override public StolevateInfo writeRecord(UsernameInfo sourceOne, StolevateInfo sourceTwo) {
+	@Override public StolateInfo writeRecord(UsernameInfo sourceOne, StolateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		StolevateInfo clonedInfo = makeClone(sourceTwo);
+		StolateInfo clonedInfo = makeClone(sourceTwo);
 		return merge(sourceOne, clonedInfo);
 	}
 	
 	
 	
-	private void checkArgument(UsernameInfo sourceOne, StolevateInfo sourceTwo) {
+	private void checkArgument(UsernameInfo sourceOne, StolateInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private StolevateInfo makeClone(StolevateInfo recordInfo) {
+	private StolateInfo makeClone(StolateInfo recordInfo) {
 		try {
-			return (StolevateInfo) recordInfo.clone();
+			return (StolateInfo) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
@@ -37,14 +37,14 @@ final class StolevateVisiMergeUsername implements InfoMergerVisitor<StolevateInf
 	
 	
 	
-	private StolevateInfo merge(UsernameInfo sourceOne, StolevateInfo sourceTwo) {
+	private StolateInfo merge(UsernameInfo sourceOne, StolateInfo sourceTwo) {
 		sourceTwo.lastChangedBy = sourceOne.codUser;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, StolevateInfo sourceTwo) {
+	@Override public boolean shouldWrite(UsernameInfo sourceOne, StolateInfo sourceTwo) {
 		if (sourceOne.username == null ||
 			sourceTwo.username == null		)
 			return false;

@@ -7,16 +7,16 @@ import br.com.gda.business.cartItem.info.CartemInfo;
 import br.com.gda.info.InfoCopierTemplate;
 import br.com.gda.info.InfoUniquifyHelper;
 
-final class StolevateCopyCart extends InfoCopierTemplate<StolevateInfo, CartemInfo>{
+final class StolateCopyCart extends InfoCopierTemplate<StolateInfo, CartemInfo>{
 	
-	public StolevateCopyCart() {
-		super(new InfoUniquifyHelper<StolevateInfo>());
+	public StolateCopyCart() {
+		super(new InfoUniquifyHelper<StolateInfo>());
 	}
 	
 	
 	
-	@Override protected StolevateInfo makeCopyHook(CartemInfo source) {
-		StolevateInfo result = new StolevateInfo();
+	@Override protected StolateInfo makeCopyHook(CartemInfo source) {
+		StolateInfo result = new StolateInfo();
 			
 		result.codOwner = source.codOwner;	
 		result.codStore = source.codStore;

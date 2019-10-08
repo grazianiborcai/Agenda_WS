@@ -7,12 +7,12 @@ import br.com.gda.model.action.ActionStdHelperPrune;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StdPlanataPruneStolevate implements ActionStd<PlanataInfo> {
+public final class StdPlanataPruneStolate implements ActionStd<PlanataInfo> {
 	private ActionStd<PlanataInfo> actionHelper;	
 	
 	
-	public StdPlanataPruneStolevate(DeciTreeOption<PlanataInfo> option) {			
-		actionHelper = new ActionStdHelperPrune<>(option.recordInfos, new VisiPlanataPruneStolevate(option.conn, option.schemaName));
+	public StdPlanataPruneStolate(DeciTreeOption<PlanataInfo> option) {			
+		actionHelper = new ActionStdHelperPrune<>(option.recordInfos, new VisiPlanataPruneStolate(option.conn, option.schemaName));
 	}
 	
 	

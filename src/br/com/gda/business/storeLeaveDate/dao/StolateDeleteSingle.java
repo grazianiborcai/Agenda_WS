@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -18,19 +18,19 @@ import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 import br.com.gda.dao.common.DaoOptionValue;
 
-public final class StolevateDeleteSingle implements DaoStmt<StolevateInfo> {
-	private DaoStmt<StolevateInfo> stmtSql;
-	private DaoStmtOption<StolevateInfo> stmtOption;	
+public final class StolateDeleteSingle implements DaoStmt<StolateInfo> {
+	private DaoStmt<StolateInfo> stmtSql;
+	private DaoStmtOption<StolateInfo> stmtOption;	
 	
 	
-	public StolevateDeleteSingle(Connection conn, StolevateInfo recordInfo, String schemaName) {
+	public StolateDeleteSingle(Connection conn, StolateInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();		
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, StolevateInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, StolateInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -50,7 +50,7 @@ public final class StolevateDeleteSingle implements DaoStmt<StolevateInfo> {
 		whereOption.ignoreRecordMode =  DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		
 		
-		DaoStmtWhere whereClause = new StolevateWhereKey(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new StolateWhereKey(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -81,22 +81,22 @@ public final class StolevateDeleteSingle implements DaoStmt<StolevateInfo> {
 
 	
 	
-	@Override public List<StolevateInfo> getResultset() {
+	@Override public List<StolateInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<StolevateInfo> getNewInstance() {
-		return new StolevateDeleteSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<StolateInfo> getNewInstance() {
+		return new StolateDeleteSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
 	
-	private class ResultParser implements DaoResultParser<StolevateInfo> {
-		@Override public List<StolevateInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<StolevateInfo> finalResult = new ArrayList<>();
-			StolevateInfo emptyInfo = new StolevateInfo();
+	private class ResultParser implements DaoResultParser<StolateInfo> {
+		@Override public List<StolateInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<StolateInfo> finalResult = new ArrayList<>();
+			StolateInfo emptyInfo = new StolateInfo();
 			finalResult.add(emptyInfo);			
 			return finalResult;
 		}

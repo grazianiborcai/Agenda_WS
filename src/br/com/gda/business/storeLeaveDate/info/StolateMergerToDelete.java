@@ -4,15 +4,15 @@ import br.com.gda.info.InfoMergerTemplate;
 import br.com.gda.info.InfoMergerVisitor;
 import br.com.gda.info.InfoUniquifier;
 
-final class StolevateMergerToDelete extends InfoMergerTemplate<StolevateInfo, StolevateInfo> {
+final class StolateMergerToDelete extends InfoMergerTemplate<StolateInfo, StolateInfo> {
 
-	@Override protected InfoMergerVisitor<StolevateInfo, StolevateInfo> getVisitorHook() {
-		return new StolevateVisiMergeToDelete();
+	@Override protected InfoMergerVisitor<StolateInfo, StolateInfo> getVisitorHook() {
+		return new StolateVisiMergeToDelete();
 	}
 	
 	
 	
-	@Override protected InfoUniquifier<StolevateInfo> getUniquifierHook() {
-		return new StolevateUniquifier();
+	@Override protected InfoUniquifier<StolateInfo> getUniquifierHook() {
+		return new StolateUniquifier();
 	}
 }

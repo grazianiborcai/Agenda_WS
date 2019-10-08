@@ -3,28 +3,28 @@ package br.com.gda.business.storeLeaveDate.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.info.StolevateMerger;
-import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStolevateSelectKey;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.info.StolateMerger;
+import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStolateSelectKey;
 import br.com.gda.model.action.ActionVisitorTemplateMergeV2;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiStolevateMergeToDeleteKey extends ActionVisitorTemplateMergeV2<StolevateInfo, StolevateInfo> {
+final class VisStolateMergeToDeleteKey extends ActionVisitorTemplateMergeV2<StolateInfo, StolateInfo> {
 	
-	public VisiStolevateMergeToDeleteKey(Connection conn, String schemaName) {
-		super(conn, schemaName, StolevateInfo.class);
+	public VisStolateMergeToDeleteKey(Connection conn, String schemaName) {
+		super(conn, schemaName, StolateInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<StolevateInfo>> getTreeClassHook() {
-		return RootStolevateSelectKey.class;
+	@Override protected Class<? extends DeciTree<StolateInfo>> getTreeClassHook() {
+		return RootStolateSelectKey.class;
 	}
 	
 	
 	
-	@Override protected List<StolevateInfo> mergeHook(List<StolevateInfo> recordInfos, List<StolevateInfo> selectedInfos) {	
-		return StolevateMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<StolateInfo> mergeHook(List<StolateInfo> recordInfos, List<StolateInfo> selectedInfos) {	
+		return StolateMerger.mergeToDelete(selectedInfos, recordInfos);
 	}
 	
 	

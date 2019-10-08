@@ -5,33 +5,33 @@ import java.util.List;
 
 import br.com.gda.business.planingData.info.PlanataInfo;
 import br.com.gda.business.planingData.info.PlanataPruner;
-import br.com.gda.business.storeLeaveDate.info.StolevateCopier;
-import br.com.gda.business.storeLeaveDate.info.StolevateInfo;
-import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStolevateSelect;
+import br.com.gda.business.storeLeaveDate.info.StolateCopier;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStolateSelect;
 import br.com.gda.model.action.ActionVisitorTemplatePrune;
 import br.com.gda.model.decisionTree.DeciTree;
 
-final class VisiPlanataPruneStolevate extends ActionVisitorTemplatePrune<PlanataInfo, StolevateInfo> {
+final class VisiPlanataPruneStolate extends ActionVisitorTemplatePrune<PlanataInfo, StolateInfo> {
 	
-	public VisiPlanataPruneStolevate(Connection conn, String schemaName) {
-		super(conn, schemaName, StolevateInfo.class);
+	public VisiPlanataPruneStolate(Connection conn, String schemaName) {
+		super(conn, schemaName, StolateInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<StolevateInfo>> getTreeClassHook() {
-		return RootStolevateSelect.class;
+	@Override protected Class<? extends DeciTree<StolateInfo>> getTreeClassHook() {
+		return RootStolateSelect.class;
 	}
 	
 	
 	
-	@Override protected List<StolevateInfo> toActionClassHook(List<PlanataInfo> recordInfos) {
-		return StolevateCopier.copyFromPlanata(recordInfos);	
+	@Override protected List<StolateInfo> toActionClassHook(List<PlanataInfo> recordInfos) {
+		return StolateCopier.copyFromPlanata(recordInfos);	
 	}	
 	
 	
 	
-	@Override protected List<PlanataInfo> pruneHook(List<PlanataInfo> recordInfos, List<StolevateInfo> selectedInfos) {	
-		return PlanataPruner.pruneWithStolevate(recordInfos, selectedInfos);
+	@Override protected List<PlanataInfo> pruneHook(List<PlanataInfo> recordInfos, List<StolateInfo> selectedInfos) {	
+		return PlanataPruner.pruneWithStolate(recordInfos, selectedInfos);
 	}
 }
