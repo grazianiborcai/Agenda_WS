@@ -8,6 +8,7 @@ import br.com.gda.business.storeLeaveDate.model.action.StdStolateMergeToSelect;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckRead;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeReadTemplate;
@@ -22,8 +23,13 @@ public final class RootStolateSelect extends DeciTreeReadTemplate<StolateInfo> {
 	@Override protected ModelChecker<StolateInfo> buildDecisionCheckerHook(DeciTreeOption<StolateInfo> option) {
 		List<ModelChecker<StolateInfo>> queue = new ArrayList<>();		
 		ModelChecker<StolateInfo> checker;
+		ModelCheckerOption checkerOption;
 		
-		checker = new StolateCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new StolateCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

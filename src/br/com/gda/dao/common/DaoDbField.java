@@ -93,6 +93,8 @@ public final class DaoDbField {
 	public static final String COL_CREDIT_CARD_LAST4 = "credit_card_last4";	
 	public static final String COL_CURRENCY_SYMBOL = "symbol";
 	public static final String COL_DATE = "date";
+	public static final String COL_DT_VALID_FROM = "date_valid_from";
+	public static final String COL_DT_VALID_TO = "date_valid_to";
 	public static final String COL_DAY = "day";
 	public static final String COL_DESCRIPTION = "description";
 	public static final String COL_DISTRICT = "district";
@@ -145,6 +147,8 @@ public final class DaoDbField {
 	public static final String COL_STATUS_REFUND_PARTNER = "status_refund_partner";
 	public static final String COL_STREET = "street";
 	public static final String COL_STREET_NUMBER = "street_number";	
+	public static final String COL_TM_VALID_FROM = "time_valid_from";
+	public static final String COL_TM_VALID_TO = "time_valid_to";
 	public static final String COL_TOTAL_ITEM = "total_item";
 	public static final String COL_USERNAME = "username";
 	public static final String COL_WAITING = "waiting";

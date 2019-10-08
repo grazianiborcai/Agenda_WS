@@ -45,14 +45,9 @@ public final class SystemCode {
 	public static final int STORE_MAT_EMP_ALREADY_EXIST 				= 1107;
 	public static final int STORE_MAT_EMP_NOT_FOUND 					= 1108;
 	public static final int STORE_MAT_EMP_FLAGGED_AS_DELETED 			= 1109;	
-	public static final int STORE_LDATE_NOT_FOUND 						= 1113;
-	public static final int STORE_LDATE_ALREADY_EXIST					= 1114;
-	public static final int STORE_LDATE_FLAGGED_AS_DELETED 				= 1115;	
 	public static final int STORE_FEE_ALREADY_EXIST 					= 1123;
 	public static final int STORE_FEE_NOT_FOUND 						= 1124;
 	public static final int STORE_TECH_FIELD_SHOULD_BE_EMPTY			= 1125;
-	public static final int STORE_LDATE_HAVE_ITEM 						= 1130;
-	public static final int STORE_LDATE_IS_EMPTY 						= 1131;	
 	public static final int STORE_HAS_ITEM 								= 1132;	
 	public static final int STORE_NO_ITEM_FOUND 						= 1133;	
 	public static final int STORE_MANDATORY_FIELD_EMPTY					= 1134;
@@ -779,4 +774,12 @@ public final class SystemCode {
 	public static final int EMP_WT_OUT_MANDATORY_FIELD_EMPTY 			= 6900;
 	public static final int EMP_WT_OUT_NOT_FOUND						= 6901;
 	public static final int EMP_WT_OUT_ALREADY_EXIST					= 6902;
+	
+	//Store Leave Date
+	public static final int STORE_LDATE_MANDATORY_FIELD_EMPTY 			= 6950;
+	public static final int STORE_LDATE_NOT_FOUND 						= 6951; //1113;
+	public static final int STORE_LDATE_ALREADY_EXIST					= 6952; //1114;
+	public static final int STORE_LDATE_FLAGGED_AS_DELETED 				= 6953; //1115;	
+	public static final int STORE_LDATE_HAVE_ITEM 						= 6954; //1130;
+	public static final int STORE_LDATE_IS_EMPTY 						= 6955; //1131;	
 }

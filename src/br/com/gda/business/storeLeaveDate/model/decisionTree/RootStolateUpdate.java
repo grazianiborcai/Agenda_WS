@@ -36,7 +36,11 @@ public final class RootStolateUpdate extends DeciTreeWriteTemplate<StolateInfo> 
 		ModelCheckerOption checkerOption;
 		final boolean EXIST_ON_DB = true;
 		
-		checker = new StolateCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new StolateCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checker = new StolateCheckTimeRange();

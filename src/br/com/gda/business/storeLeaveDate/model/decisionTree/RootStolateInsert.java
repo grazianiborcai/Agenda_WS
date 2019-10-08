@@ -33,7 +33,11 @@ public final class RootStolateInsert extends DeciTreeWriteTemplate<StolateInfo> 
 		ModelChecker<StolateInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new StolateCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new StolateCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checker = new StolateCheckTimeRange();

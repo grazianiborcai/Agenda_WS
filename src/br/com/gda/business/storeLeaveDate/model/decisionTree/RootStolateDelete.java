@@ -35,7 +35,11 @@ public final class RootStolateDelete extends DeciTreeWriteTemplate<StolateInfo> 
 		ModelChecker<StolateInfo> checker;
 		ModelCheckerOption checkerOption;
 			
-		checker = new StolateCheckDelete();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new StolateCheckDelete(checkerOption);
 		queue.add(checker);		
 			
 		checkerOption = new ModelCheckerOption();

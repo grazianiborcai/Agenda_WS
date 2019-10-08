@@ -4,15 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StolateCheckDelete extends ModelCheckerTemplateSimple_<StolateInfo> {
-	private final boolean KEY_NOT_NULL = true;
-	private final boolean EMPTY_KEY = false;
+public final class StolateCheckDelete extends ModelCheckerTemplateSimpleV2<StolateInfo> {
 	
-	public StolateCheckDelete() {
-		super();
+	public StolateCheckDelete(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -24,20 +22,14 @@ public final class StolateCheckDelete extends ModelCheckerTemplateSimple_<Stolat
 			 || recordInfo.timeValidFrom	== null
 			 || recordInfo.username			== null
 			 || recordInfo.codLanguage		== null	)			
-			return EMPTY_KEY;		
+			return super.FAILED;		
 		
-		return KEY_NOT_NULL;
+		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook(){
+		return SystemCode.STORE_LDATE_MANDATORY_FIELD_EMPTY;
 	}
 }
