@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
+import br.com.gda.business.employeeWorkTimeOutlier.model.action.LazyEmpwoutMergeEmplis;
 import br.com.gda.business.employeeWorkTimeOutlier.model.action.LazyEmpwoutMergeStolis;
 import br.com.gda.business.employeeWorkTimeOutlier.model.action.LazyEmpwoutMergeWeekday;
 import br.com.gda.business.employeeWorkTimeOutlier.model.action.StdEmpwoutMergeToSelect;
@@ -71,9 +72,11 @@ public final class RootEmpwoutSelect extends DeciTreeReadTemplate<EmpwoutInfo> {
 		ActionStd<EmpwoutInfo> mergeToSelect = new StdEmpwoutMergeToSelect(option);
 		ActionLazy<EmpwoutInfo> mergeStolis = new LazyEmpwoutMergeStolis(option.conn, option.schemaName);
 		ActionLazy<EmpwoutInfo> mergeWeekday = new LazyEmpwoutMergeWeekday(option.conn, option.schemaName);
+		ActionLazy<EmpwoutInfo> mergeEmplis = new LazyEmpwoutMergeEmplis(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(mergeStolis);	
 		mergeStolis.addPostAction(mergeWeekday);
+		mergeWeekday.addPostAction(mergeEmplis);
 		
 		actions.add(mergeToSelect);		
 		return actions; 

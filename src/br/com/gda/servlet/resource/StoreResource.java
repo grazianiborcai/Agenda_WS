@@ -287,16 +287,17 @@ public class StoreResource {
 	}
 	
 	
-	//TODO: Remover ?
+
 	@GET
 	@Path(SELECT_STORE_WT_CONFLICT)
-	public Response selectStoreWTimeConflict(@HeaderParam("TOKEN_OWNER")   	@DefaultValue("-1") long codOwner, 
-			                                 @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage,
-			                                 @HeaderParam("codStore")   	@DefaultValue("-1") int codStore,
-			                                 @HeaderParam("codWeekday") 	@DefaultValue("-1") int codWeekday,
-			                                 @HeaderParam("beginTime")  	@DefaultValue("12:00") String beginTime,
-			                                 @HeaderParam("endTime")    	@DefaultValue("12:00") String endTime,
-			                                 @HeaderParam("TOKEN_USERNAME") String username) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectEmpwout(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                      @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage,
+			                      @HeaderParam("codStore")   	 @DefaultValue("-1") int codStore,
+			                      @HeaderParam("codWeekday") 	 @DefaultValue("-1") int codWeekday,
+			                      @HeaderParam("beginTime")  	 @DefaultValue("12:00") String beginTime,
+			                      @HeaderParam("endTime")    	 @DefaultValue("12:00") String endTime,
+			                      @HeaderParam("TOKEN_USERNAME") String username) {
 
 		EmpwoutInfo recordInfo = new EmpwoutInfo();
 		recordInfo.codOwner = codOwner;

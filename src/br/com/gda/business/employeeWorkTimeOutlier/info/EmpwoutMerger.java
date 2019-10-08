@@ -2,11 +2,26 @@ package br.com.gda.business.employeeWorkTimeOutlier.info;
 
 import java.util.List;
 
+import br.com.gda.business.employeeList.info.EmplisInfo;
 import br.com.gda.business.masterData.info.WeekdayInfo;
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.info.InfoMerger;
 
 public final class EmpwoutMerger {
+	public static EmpwoutInfo mergeWithEmplis(EmplisInfo sourceOne, EmpwoutInfo sourceTwo) {
+		InfoMerger<EmpwoutInfo, EmplisInfo> merger = new EmpwoutMergerEmplis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<EmpwoutInfo> mergeWithEmplis(List<EmplisInfo> sourceOnes, List<EmpwoutInfo> sourceTwos) {
+		InfoMerger<EmpwoutInfo, EmplisInfo> merger = new EmpwoutMergerEmplis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static EmpwoutInfo mergeWithWeekday(WeekdayInfo sourceOne, EmpwoutInfo sourceTwo) {
 		InfoMerger<EmpwoutInfo, WeekdayInfo> merger = new EmpwoutMergerWeekday();		
 		return merger.merge(sourceOne, sourceTwo);
