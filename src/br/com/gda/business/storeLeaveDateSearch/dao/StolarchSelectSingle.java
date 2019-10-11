@@ -1,4 +1,4 @@
-package br.com.gda.business.storeLeaveDate.dao;
+package br.com.gda.business.storeLeaveDateSearch.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDateSearch.info.StolarchInfo;
 import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
@@ -19,22 +19,22 @@ import br.com.gda.dao.common.DaoDbTable;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 import br.com.gda.dao.common.DaoOptionValue;
 
-public final class StolateSelectSingle implements DaoStmt<StolateInfo> {	
+public final class StolarchSelectSingle implements DaoStmt<StolarchInfo> {	
 	private final String LT_STORE_LEAVE_DATE = DaoDbTable.STORE_LD_TABLE;
 	
-	private DaoStmt<StolateInfo> stmtSql;
-	private DaoStmtOption<StolateInfo> stmtOption;
+	private DaoStmt<StolarchInfo> stmtSql;
+	private DaoStmtOption<StolarchInfo> stmtOption;
 	
 	
 	
-	public StolateSelectSingle(Connection conn, StolateInfo recordInfo, String schemaName) {
+	public StolarchSelectSingle(Connection conn, StolarchInfo recordInfo, String schemaName) {
 		buildStmtOption(conn, recordInfo, schemaName);
 		buildStmt();
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, StolateInfo recordInfo, String schemaName) {
+	private void buildStmtOption(Connection conn, StolarchInfo recordInfo, String schemaName) {
 		this.stmtOption = new DaoStmtOption<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
@@ -51,10 +51,10 @@ public final class StolateSelectSingle implements DaoStmt<StolateInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new StolateWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new StolarchWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -84,14 +84,14 @@ public final class StolateSelectSingle implements DaoStmt<StolateInfo> {
 
 	
 	
-	@Override public List<StolateInfo> getResultset() {
+	@Override public List<StolarchInfo> getResultset() {
 		return stmtSql.getResultset();
 	}
 	
 	
 	
-	@Override public DaoStmt<StolateInfo> getNewInstance() {
-		return new StolateSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override public DaoStmt<StolarchInfo> getNewInstance() {
+		return new StolarchSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
 	}
 	
 	
@@ -99,28 +99,24 @@ public final class StolateSelectSingle implements DaoStmt<StolateInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<StolateInfo> {
+	private static class ResultParser implements DaoResultParser<StolarchInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<StolateInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<StolateInfo> finalResult = new ArrayList<>();
+		@Override public List<StolarchInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			List<StolarchInfo> finalResult = new ArrayList<>();
 			
 			if (stmtResult.next() == EMPTY_RESULT_SET)				
 				return finalResult;
 			
 			do {
-				StolateInfo dataInfo = new StolateInfo();
-				dataInfo.codOwner = stmtResult.getLong(StolateDbTableColumn.COL_COD_OWNER);
-				dataInfo.codStore = stmtResult.getLong(StolateDbTableColumn.COL_COD_STORE);
-				dataInfo.description = stmtResult.getString(StolateDbTableColumn.COL_DESCRIPTION);	
-				dataInfo.codTimezone = stmtResult.getString(StolateDbTableColumn.COL_COD_TIMEZONE);
-				dataInfo.recordMode = stmtResult.getString(StolateDbTableColumn.COL_RECORD_MODE);		
-				dataInfo.timeValidFrom = DaoFormatter.sqlToLocalTime(stmtResult, StolateDbTableColumn.COL_TM_VALID_FROM);
-				dataInfo.timeValidTo = DaoFormatter.sqlToLocalTime(stmtResult, StolateDbTableColumn.COL_TM_VALID_TO);
-				dataInfo.dateValidFrom = DaoFormatter.sqlToLocalDate(stmtResult, StolateDbTableColumn.COL_DT_VALID_FROM);
-				dataInfo.dateValidTo = DaoFormatter.sqlToLocalDate(stmtResult, StolateDbTableColumn.COL_DT_VALID_TO);					
-				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StolateDbTableColumn.COL_LAST_CHANGED);	
-				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StolateDbTableColumn.COL_LAST_CHANGED_BY);				
+				StolarchInfo dataInfo = new StolarchInfo();
+				dataInfo.codOwner = stmtResult.getLong(StolarchDbTableColumn.COL_COD_OWNER);
+				dataInfo.codStore = stmtResult.getLong(StolarchDbTableColumn.COL_COD_STORE);
+				dataInfo.recordMode = stmtResult.getString(StolarchDbTableColumn.COL_RECORD_MODE);	
+				dataInfo.timeValidFrom = DaoFormatter.sqlToLocalTime(stmtResult, StolarchDbTableColumn.COL_TM_VALID_FROM);
+				dataInfo.timeValidTo = DaoFormatter.sqlToLocalTime(stmtResult, StolarchDbTableColumn.COL_TM_VALID_TO);
+				dataInfo.dateValidFrom = DaoFormatter.sqlToLocalDate(stmtResult, StolarchDbTableColumn.COL_DT_VALID_FROM);
+				dataInfo.dateValidTo = DaoFormatter.sqlToLocalDate(stmtResult, StolarchDbTableColumn.COL_DT_VALID_TO);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -3,7 +3,7 @@ package br.com.gda.business.store.model.action;
 import java.sql.Connection;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.storeLeaveDate.info.StolateInfo;
-import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStolateDeleteAll;
+import br.com.gda.business.storeLeaveDate.model.decisionTree.RootStolateDelete;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.action.ActionVisitorTemplateAction;
 import br.com.gda.model.decisionTree.DeciTreeOption;
@@ -16,6 +16,6 @@ final class VisiStoreDeleteStolate extends ActionVisitorTemplateAction<StoreInfo
 	
 	
 	@Override protected ActionStd<StolateInfo> getActionHook(DeciTreeOption<StolateInfo> option) {
-		return new RootStolateDeleteAll(option).toAction();
+		return new RootStolateDelete(option).toAction();
 	}
 }

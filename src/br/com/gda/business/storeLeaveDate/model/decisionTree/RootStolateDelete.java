@@ -8,9 +8,12 @@ import br.com.gda.business.storeLeaveDate.model.action.LazyStolateDelete;
 import br.com.gda.business.storeLeaveDate.model.action.LazyStolateEnforceLChanged;
 import br.com.gda.business.storeLeaveDate.model.action.LazyStolateMergeUsername;
 import br.com.gda.business.storeLeaveDate.model.action.LazyStolateUpdate;
-import br.com.gda.business.storeLeaveDate.model.action.StdStolateMergeToDeleteKey;
+import br.com.gda.business.storeLeaveDate.model.action.StdStolateMergeToDelete;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckExist;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckLangu;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckOwner;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStorauth;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStore;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckDelete;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -29,8 +32,6 @@ public final class RootStolateDelete extends DeciTreeWriteTemplate<StolateInfo> 
 	
 	
 	@Override protected ModelChecker<StolateInfo> buildDecisionCheckerHook(DeciTreeOption<StolateInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<StolateInfo>> queue = new ArrayList<>();		
 		ModelChecker<StolateInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -40,19 +41,40 @@ public final class RootStolateDelete extends DeciTreeWriteTemplate<StolateInfo> 
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new StolateCheckDelete(checkerOption);
-		queue.add(checker);		
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StolateCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StolateCheckOwner(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StolateCheckStore(checkerOption);
+		queue.add(checker);	
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolateCheckExist(checkerOption);
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolateCheckStorauth(checkerOption);
 		queue.add(checker);
 		
@@ -64,7 +86,7 @@ public final class RootStolateDelete extends DeciTreeWriteTemplate<StolateInfo> 
 	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
 		List<ActionStd<StolateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StolateInfo> mergeToDelete = new StdStolateMergeToDeleteKey(option);
+		ActionStd<StolateInfo> mergeToDelete = new StdStolateMergeToDelete(option);
 		ActionLazy<StolateInfo> enforceLChanged = new LazyStolateEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StolateInfo> update = new LazyStolateUpdate(option.conn, option.schemaName);

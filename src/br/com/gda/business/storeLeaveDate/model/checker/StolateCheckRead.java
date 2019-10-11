@@ -16,11 +16,14 @@ public final class StolateCheckRead extends ModelCheckerTemplateSimpleV2<Stolate
 	
 	
 	@Override protected boolean checkHook(StolateInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.codStore 	<= 0 	||
-			recordInfo.codLanguage 	== null	||
-			recordInfo.username 	== null)			
-			return super.FAILED;
+		if (	recordInfo.codOwner 		<= 0 
+			 || recordInfo.codStore  		<= 0 
+			 || recordInfo.dateValidFrom	== null
+			 || recordInfo.timeValidFrom	== null
+			 || recordInfo.username			== null
+			 || recordInfo.codLanguage		== null	)		
+			
+		return super.FAILED;		
 		
 		
 		return super.SUCCESS;

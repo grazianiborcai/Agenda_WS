@@ -1,12 +1,8 @@
 package br.com.gda.business.storeLeaveDate.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StolateInfo;
@@ -78,29 +74,18 @@ public final class StolateInsertSingle implements DaoStmt<StolateInfo> {
 	
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<StolateInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StolateInfo recordInfo) throws SQLException {
-			Time beginTime = DaoFormatter.localToSqlTime(recordInfo.timeValidFrom);
-			Time endTime = DaoFormatter.localToSqlTime(recordInfo.timeValidTo);				
-			Date beginDate = DaoFormatter.localToSqlDate(recordInfo.dateValidFrom);
-			Date endDate = DaoFormatter.localToSqlDate(recordInfo.dateValidTo);	
-			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);	
-			
+		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StolateInfo recordInfo) throws SQLException {			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codStore);
-			stmt.setDate(i++, beginDate);
-			stmt.setTime(i++, beginTime);
-			stmt.setDate(i++, endDate);
-			stmt.setTime(i++, endTime);
+			stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.dateValidFrom);
+			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.timeValidFrom);
+			stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.dateValidTo);
+			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.timeValidTo);
 			stmt.setString(i++, recordInfo.description);
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setTimestamp(i++, lastChanged);			
-			
-			if (recordInfo.lastChangedBy >= 0) {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 			
 			return stmt;
 		}		

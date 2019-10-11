@@ -5,7 +5,10 @@ import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.business.storeLeaveDate.model.action.StdStolateMergeToSelect;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckLangu;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckOwner;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckRead;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStore;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -31,6 +34,27 @@ public final class RootStolateSelect extends DeciTreeReadTemplate<StolateInfo> {
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new StolateCheckRead(checkerOption);
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StolateCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StolateCheckOwner(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StolateCheckStore(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}

@@ -50,7 +50,7 @@ public final class StolateDeleteSingle implements DaoStmt<StolateInfo> {
 		whereOption.ignoreRecordMode =  DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		
 		
-		DaoStmtWhere whereClause = new StolateWhereKey(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new StolateWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

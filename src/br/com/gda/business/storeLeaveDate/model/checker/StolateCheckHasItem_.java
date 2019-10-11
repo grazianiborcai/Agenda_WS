@@ -14,9 +14,9 @@ import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateAction_;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class StolateCheckHasItem extends ModelCheckerTemplateAction_<StolateInfo> {
+public final class StolateCheckHasItem_ extends ModelCheckerTemplateAction_<StolateInfo> {
 	
-	public StolateCheckHasItem(ModelCheckerOption option) {
+	public StolateCheckHasItem_(ModelCheckerOption option) {
 		super(option);
 	}
 	

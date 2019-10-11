@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateMergeUsername;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateNodeUpsert;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateRootSelect;
+import br.com.gda.business.storeLeaveDate.model.action.StdStolateEnforceLChanged;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckExist;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckLangu;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckOwner;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStorauth;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStore;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckTimeRange;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckWrite;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -26,9 +32,6 @@ public final class RootStolateInsert extends DeciTreeWriteTemplate<StolateInfo> 
 	
 	
 	@Override protected ModelChecker<StolateInfo> buildDecisionCheckerHook(DeciTreeOption<StolateInfo> option) {
-		final boolean EXIST_ON_DB = true;	
-		final boolean DONT_EXIST_ON_DB = false;
-		
 		List<ModelChecker<StolateInfo>> queue = new ArrayList<>();		
 		ModelChecker<StolateInfo> checker;
 		ModelCheckerOption checkerOption;		
@@ -40,34 +43,45 @@ public final class RootStolateInsert extends DeciTreeWriteTemplate<StolateInfo> 
 		checker = new StolateCheckWrite(checkerOption);
 		queue.add(checker);
 		
-		checker = new StolateCheckTimeRange();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new StolateCheckTimeRange(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StolateCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolateCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolateCheckStore(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new StolateCheckExist(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolateCheckStorauth(checkerOption);
 		queue.add(checker);
 		//TODO: Verificar conflitos antes de inserir
@@ -79,7 +93,16 @@ public final class RootStolateInsert extends DeciTreeWriteTemplate<StolateInfo> 
 	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
 		List<ActionStd<StolateInfo>> actions = new ArrayList<>();	
 		
-		actions.add(new NodeStolateInsert(option).toAction());
+		ActionStd<StolateInfo> enforceLChanged = new StdStolateEnforceLChanged(option);
+		ActionLazy<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> nodeUpsert = new LazyStolateNodeUpsert(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> select = new LazyStolateRootSelect(option.conn, option.schemaName);
+		
+		enforceLChanged.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(nodeUpsert);
+		nodeUpsert.addPostAction(select);
+		
+		actions.add(enforceLChanged);
 		return actions;
 	}
 }

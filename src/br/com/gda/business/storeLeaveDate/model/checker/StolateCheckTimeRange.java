@@ -1,56 +1,42 @@
 package br.com.gda.business.storeLeaveDate.model.checker;
 
-import java.util.List;
-
+import java.sql.Connection;
 import br.com.gda.business.storeLeaveDate.info.StolateInfo;
-import br.com.gda.business.timeRange.info.DateTimeRangeInfo;
-import br.com.gda.business.timeRange.model.checker.DateTimeRangeCheckRange;
-import br.com.gda.model.checker.ModelChecker;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.common.SystemCode;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StolateCheckTimeRange extends ModelCheckerTemplateSimple_<StolateInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelChecker<DateTimeRangeInfo> checker;
+public final class StolateCheckTimeRange extends ModelCheckerTemplateSimpleV2<StolateInfo> {
 	
 	
-	public StolateCheckTimeRange() {
-		checker = new DateTimeRangeCheckRange();
+	public StolateCheckTimeRange(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<StolateInfo> recordInfos) {
-		for (StolateInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
+	@Override protected boolean checkHook(StolateInfo recordInfo, Connection conn, String schemaName) {	
+		if (recordInfo.dateValidFrom == null || recordInfo.dateValidTo == null ||
+				recordInfo.timeValidFrom == null || recordInfo.timeValidTo == null	)
+				return super.FAILED;	
+			
+		if (recordInfo.dateValidFrom.isAfter(recordInfo.dateValidTo))			
+			return super.FAILED;		
 		
-		return SUCCESS;
+		if (recordInfo.dateValidFrom.isEqual(recordInfo.dateValidTo) &&
+			recordInfo.timeValidFrom.isAfter(recordInfo.timeValidTo))			
+			return super.FAILED;	
+		
+		if (recordInfo.dateValidFrom.isEqual(recordInfo.dateValidTo) &&
+			recordInfo.timeValidFrom.equals(recordInfo.timeValidTo))			
+			return super.FAILED;	
+		
+		return super.SUCCESS;
 	}
-
 	
 	
-	@Override public boolean check(StolateInfo recordInfo) {
-		return checker.check(DateTimeRangeInfo.copyFrom(recordInfo));
-	}
-
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
-	}
-
-	
-	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
-	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected int getCodMsgOnResultFalseHook(){
+		return SystemCode.STORE_LDATE_BAD_TIME_RANGE;
 	}
 }

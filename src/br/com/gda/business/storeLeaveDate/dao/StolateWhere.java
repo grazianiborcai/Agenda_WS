@@ -8,7 +8,6 @@ import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoStmtWhere;
 import br.com.gda.dao.DaoWhereBuilder;
 import br.com.gda.dao.DaoWhereBuilderOption;
-import br.com.gda.dao.DaoWhereCondition;
 import br.com.gda.dao.common.DaoDbTableColumnAll;
 
 public final class StolateWhere implements DaoStmtWhere {
@@ -37,11 +36,11 @@ public final class StolateWhere implements DaoStmtWhere {
 					break;
 					
 				case StolateDbTableColumn.COL_DT_VALID_FROM :
-					builder.addClauseAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidFrom), DaoWhereCondition.LESS_OR_EQUAL);
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidFrom));
 					break;
 					
-				case StolateDbTableColumn.COL_DT_VALID_TO :
-					builder.addClauseAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidTo), DaoWhereCondition.GREATER_OR_EQUAL);
+				case StolateDbTableColumn.COL_TM_VALID_FROM :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.timeToString(recordInfo.timeValidFrom));
 					break;
 					
 				case StolateDbTableColumn.COL_RECORD_MODE :

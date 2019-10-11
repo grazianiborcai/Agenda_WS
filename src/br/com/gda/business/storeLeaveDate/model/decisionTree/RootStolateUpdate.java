@@ -9,6 +9,7 @@ import br.com.gda.business.storeLeaveDate.model.action.LazyStolateRootSelect;
 import br.com.gda.business.storeLeaveDate.model.action.LazyStolateUpdate;
 import br.com.gda.business.storeLeaveDate.model.action.StdStolateEnforceLChanged;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckExist;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckLangu;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckOwner;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStorauth;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStore;
@@ -34,7 +35,6 @@ public final class RootStolateUpdate extends DeciTreeWriteTemplate<StolateInfo> 
 		List<ModelChecker<StolateInfo>> queue = new ArrayList<>();		
 		ModelChecker<StolateInfo> checker;
 		ModelCheckerOption checkerOption;
-		final boolean EXIST_ON_DB = true;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
@@ -43,34 +43,45 @@ public final class RootStolateUpdate extends DeciTreeWriteTemplate<StolateInfo> 
 		checker = new StolateCheckWrite(checkerOption);
 		queue.add(checker);
 		
-		checker = new StolateCheckTimeRange();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new StolateCheckTimeRange(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StolateCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolateCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolateCheckStore(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolateCheckExist(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolateCheckStorauth(checkerOption);
 		queue.add(checker);
 		

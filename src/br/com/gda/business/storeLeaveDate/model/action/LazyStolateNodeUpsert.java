@@ -3,15 +3,16 @@ package br.com.gda.business.storeLeaveDate.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.gda.business.storeLeaveDate.info.StolateInfo;
 import br.com.gda.model.action.ActionStd;
+import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.decisionTree.NodeStolateUpsert;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyStolateSelectKey extends ActionLazyTemplate<StolateInfo, StolateInfo> {
+public final class LazyStolateNodeUpsert extends ActionLazyTemplate<StolateInfo, StolateInfo> {
 	
-	public LazyStolateSelectKey(Connection conn, String schemaName) {
+	public LazyStolateNodeUpsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -23,8 +24,8 @@ public final class LazyStolateSelectKey extends ActionLazyTemplate<StolateInfo, 
 	
 	
 	
-	@Override protected  ActionStd<StolateInfo> getInstanceOfActionHook(DeciTreeOption<StolateInfo> option) {
-		return new StdStolateSelectKey(option);
+	@Override protected ActionStd<StolateInfo> getInstanceOfActionHook(DeciTreeOption<StolateInfo> option) {
+		return new NodeStolateUpsert(option).toAction();
 	}
 	
 	
