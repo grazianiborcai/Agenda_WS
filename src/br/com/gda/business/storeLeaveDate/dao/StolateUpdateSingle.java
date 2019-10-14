@@ -102,6 +102,8 @@ public final class StolateUpdateSingle implements DaoStmt<StolateInfo> {
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.monthValidFrom);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.yearValidFrom);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
 			
 			return stmt;
 		}		

@@ -26,6 +26,8 @@ final class StolateVisiMergeToUpdate implements InfoMergerVisitor<StolateInfo, S
 		StolateInfo result = makeClone(sourceTwo);		
 		result.yearValidFrom = sourceOne.yearValidFrom;
 		result.monthValidFrom = sourceOne.monthValidFrom;
+		result.createdOn = sourceOne.createdOn;
+		result.createdBy = sourceOne.createdBy;
 		return result;
 	}
 	

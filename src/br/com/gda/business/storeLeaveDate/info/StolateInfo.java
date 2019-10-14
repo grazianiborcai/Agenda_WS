@@ -23,6 +23,8 @@ public final class StolateInfo extends InfoRecord implements Cloneable {
 	public String codTimezone;
 	public String txtTimezone;
 	public String description;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
@@ -36,6 +38,7 @@ public final class StolateInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		yearValidFrom = DefaultValue.number();
 		monthValidFrom = DefaultValue.number();
+		createdBy = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}

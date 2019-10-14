@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateEnforceCreatedBy;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateEnforceCreatedOn;
 import br.com.gda.business.storeLeaveDate.model.action.LazyStolateEnforceMonth;
 import br.com.gda.business.storeLeaveDate.model.action.LazyStolateEnforceYear;
 import br.com.gda.business.storeLeaveDate.model.action.LazyStolateMergeUsername;
@@ -97,13 +99,17 @@ public final class RootStolateInsert extends DeciTreeWriteTemplate<StolateInfo> 
 		
 		ActionStd<StolateInfo> enforceLChanged = new StdStolateEnforceLChanged(option);
 		ActionLazy<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> enforceCreatedOn = new LazyStolateEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> enforceCreatedBy = new LazyStolateEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<StolateInfo> enforceYear = new LazyStolateEnforceYear(option.conn, option.schemaName);
 		ActionLazy<StolateInfo> enforceMonth= new LazyStolateEnforceMonth(option.conn, option.schemaName);
 		ActionLazy<StolateInfo> nodeUpsert = new LazyStolateNodeUpsert(option.conn, option.schemaName);
 		ActionLazy<StolateInfo> select = new LazyStolateRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(enforceYear);
+		enforceLChangedBy.addPostAction(enforceCreatedOn);
+		enforceCreatedOn.addPostAction(enforceCreatedBy);		
+		enforceCreatedBy.addPostAction(enforceYear);
 		enforceYear.addPostAction(enforceMonth);
 		enforceMonth.addPostAction(nodeUpsert);
 		nodeUpsert.addPostAction(select);

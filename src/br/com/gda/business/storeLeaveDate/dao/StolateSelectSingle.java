@@ -122,6 +122,8 @@ public final class StolateSelectSingle implements DaoStmt<StolateInfo> {
 				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StolateDbTableColumn.COL_LAST_CHANGED_BY);			
 				dataInfo.monthValidFrom = DaoFormatter.sqlToInt(stmtResult, StolateDbTableColumn.COL_MONTH_VALID_FROM);		
 				dataInfo.yearValidFrom = DaoFormatter.sqlToInt(stmtResult, StolateDbTableColumn.COL_YEAR_VALID_FROM);	
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StolateDbTableColumn.COL_CREATED_ON);	
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StolateDbTableColumn.COL_CREATED_BY);	
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
