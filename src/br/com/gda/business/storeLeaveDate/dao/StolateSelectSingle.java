@@ -113,14 +113,15 @@ public final class StolateSelectSingle implements DaoStmt<StolateInfo> {
 				dataInfo.codOwner = stmtResult.getLong(StolateDbTableColumn.COL_COD_OWNER);
 				dataInfo.codStore = stmtResult.getLong(StolateDbTableColumn.COL_COD_STORE);
 				dataInfo.description = stmtResult.getString(StolateDbTableColumn.COL_DESCRIPTION);	
-				dataInfo.codTimezone = stmtResult.getString(StolateDbTableColumn.COL_COD_TIMEZONE);
 				dataInfo.recordMode = stmtResult.getString(StolateDbTableColumn.COL_RECORD_MODE);		
 				dataInfo.timeValidFrom = DaoFormatter.sqlToLocalTime(stmtResult, StolateDbTableColumn.COL_TM_VALID_FROM);
 				dataInfo.timeValidTo = DaoFormatter.sqlToLocalTime(stmtResult, StolateDbTableColumn.COL_TM_VALID_TO);
 				dataInfo.dateValidFrom = DaoFormatter.sqlToLocalDate(stmtResult, StolateDbTableColumn.COL_DT_VALID_FROM);
 				dataInfo.dateValidTo = DaoFormatter.sqlToLocalDate(stmtResult, StolateDbTableColumn.COL_DT_VALID_TO);					
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StolateDbTableColumn.COL_LAST_CHANGED);	
-				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StolateDbTableColumn.COL_LAST_CHANGED_BY);				
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StolateDbTableColumn.COL_LAST_CHANGED_BY);			
+				dataInfo.monthValidFrom = DaoFormatter.sqlToInt(stmtResult, StolateDbTableColumn.COL_MONTH_VALID_FROM);		
+				dataInfo.yearValidFrom = DaoFormatter.sqlToInt(stmtResult, StolateDbTableColumn.COL_YEAR_VALID_FROM);	
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

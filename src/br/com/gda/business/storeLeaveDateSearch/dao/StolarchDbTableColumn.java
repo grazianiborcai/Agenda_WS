@@ -17,6 +17,8 @@ public final class StolarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	public static final String COL_TM_VALID_FROM = DaoDbField.COL_TM_VALID_FROM;
 	public static final String COL_TM_VALID_TO = DaoDbField.COL_TM_VALID_TO;
+	public static final String COL_MONTH_VALID_FROM = DaoDbField.COL_MONTH_VALID_FROM;
+	public static final String COL_YEAR_VALID_FROM = DaoDbField.COL_YEAR_VALID_FROM;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
@@ -99,6 +101,22 @@ public final class StolarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_MONTH_VALID_FROM;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_YEAR_VALID_FROM;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(DaoDbTable.STORE_SEARCH_VIEW, columns);
 	}
 }

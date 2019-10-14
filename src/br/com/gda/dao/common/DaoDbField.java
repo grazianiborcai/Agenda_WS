@@ -131,6 +131,7 @@ public final class DaoDbField {
 	public static final String COL_LONGITUDE = "longitude";
 	public static final String COL_MESSAGE = "message";
 	public static final String COL_MONTH = "month";
+	public static final String COL_MONTH_VALID_FROM = "month_valid_from";
 	public static final String COL_NAME = "name";
 	public static final String COL_NUMBER = "number";
 	public static final String COL_OWN_ID = "own_id";
@@ -155,4 +156,5 @@ public final class DaoDbField {
 	public static final String COL_WEEK_MONTH = "week_month";
 	public static final String COL_WEEK_YEAR = "week_year";
 	public static final String COL_YEAR = "year";
+	public static final String COL_YEAR_VALID_FROM = "year_valid_from";
 }

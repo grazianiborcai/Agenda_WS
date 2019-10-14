@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gda.business.storeLeaveDate.info.StolateInfo;
+import br.com.gda.business.storeLeaveDate.model.action.LazyStolateMergeStolis;
 import br.com.gda.business.storeLeaveDate.model.action.StdStolateMergeToSelect;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckLangu;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckOwner;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckRead;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStorauth;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStore;
+import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
 import br.com.gda.model.checker.ModelCheckerOption;
@@ -56,6 +59,13 @@ public final class RootStolateSelect extends DeciTreeReadTemplate<StolateInfo> {
 		checker = new StolateCheckStore(checkerOption);
 		queue.add(checker);	
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StolateCheckStorauth(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -64,7 +74,12 @@ public final class RootStolateSelect extends DeciTreeReadTemplate<StolateInfo> {
 	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
 		List<ActionStd<StolateInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdStolateMergeToSelect(option));
+		ActionStd<StolateInfo> mergeToSelect = new StdStolateMergeToSelect(option);
+		ActionLazy<StolateInfo> mergeStolis = new LazyStolateMergeStolis(option.conn, option.schemaName);
+		
+		mergeToSelect.addPostAction(mergeStolis);
+		
+		actions.add(mergeToSelect);
 		return actions;
 	}
 }

@@ -11,6 +11,8 @@ import br.com.gda.info.InfoRecord;
 public final class StolarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
+	public int yearValidFrom;
+	public int monthValidFrom;
 	public LocalDate dateValidFrom;
 	public LocalDate dateValidTo;
 	public LocalTime timeValidFrom;
@@ -24,6 +26,8 @@ public final class StolarchInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
+		yearValidFrom = DefaultValue.number();
+		monthValidFrom = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}
 	

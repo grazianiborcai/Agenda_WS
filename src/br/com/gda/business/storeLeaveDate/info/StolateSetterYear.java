@@ -6,11 +6,13 @@ import org.apache.logging.log4j.Logger;
 import br.com.gda.common.SystemMessage;
 import br.com.gda.info.InfoSetter;
 
-public final class StolateSetterKey implements InfoSetter<StolateInfo> {
+public final class StolateSetterYear implements InfoSetter<StolateInfo> {
 	
 	public StolateInfo setAttr(StolateInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setKey(recordInfo);
+		
+		recordInfo.yearValidFrom = recordInfo.dateValidFrom.getYear();
+		return recordInfo;
 	}
 	
 	
@@ -20,21 +22,6 @@ public final class StolateSetterKey implements InfoSetter<StolateInfo> {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}
-	}
-	
-	
-	
-	private StolateInfo setKey(StolateInfo recordInfo) {
-		StolateInfo result = new StolateInfo();
-		
-		result.codOwner = recordInfo.codOwner;
-		result.codStore = recordInfo.codStore;
-		result.codLanguage = recordInfo.codLanguage;
-		result.username = recordInfo.username;
-		result.dateValidFrom = recordInfo.dateValidFrom;
-		result.timeValidFrom = recordInfo.timeValidFrom;
-
-		return result;
 	}
 	
 	

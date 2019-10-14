@@ -40,7 +40,7 @@ public final class StolarchSelectSingle implements DaoStmt<StolarchInfo> {
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
 		this.stmtOption.tableName = LT_STORE_LEAVE_DATE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_STORE_LEAVE_DATE);
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.STORE_SEARCH_VIEW);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
@@ -116,7 +116,9 @@ public final class StolarchSelectSingle implements DaoStmt<StolarchInfo> {
 				dataInfo.timeValidFrom = DaoFormatter.sqlToLocalTime(stmtResult, StolarchDbTableColumn.COL_TM_VALID_FROM);
 				dataInfo.timeValidTo = DaoFormatter.sqlToLocalTime(stmtResult, StolarchDbTableColumn.COL_TM_VALID_TO);
 				dataInfo.dateValidFrom = DaoFormatter.sqlToLocalDate(stmtResult, StolarchDbTableColumn.COL_DT_VALID_FROM);
-				dataInfo.dateValidTo = DaoFormatter.sqlToLocalDate(stmtResult, StolarchDbTableColumn.COL_DT_VALID_TO);				
+				dataInfo.dateValidTo = DaoFormatter.sqlToLocalDate(stmtResult, StolarchDbTableColumn.COL_DT_VALID_TO);		
+				dataInfo.monthValidFrom = DaoFormatter.sqlToInt(stmtResult, StolarchDbTableColumn.COL_MONTH_VALID_FROM);		
+				dataInfo.yearValidFrom = DaoFormatter.sqlToInt(stmtResult, StolarchDbTableColumn.COL_YEAR_VALID_FROM);	
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

@@ -13,11 +13,15 @@ import br.com.gda.info.InfoRecord;
 public final class StolateInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
+	public int yearValidFrom;
+	public int monthValidFrom;
+	public String txtMonthValidFrom;
 	public LocalDate dateValidFrom;
 	public LocalDate dateValidTo;
 	public LocalTime timeValidFrom;
 	public LocalTime timeValidTo;
 	public String codTimezone;
+	public String txtTimezone;
 	public String description;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -30,6 +34,8 @@ public final class StolateInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
+		yearValidFrom = DefaultValue.number();
+		monthValidFrom = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}

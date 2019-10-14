@@ -47,6 +47,7 @@
     	<security:intercept-url pattern="/**/Store/insertStoreLeaveDate" 		access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/deleteStoreLeaveDate" 		access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/selectStoreLeaveDate" 		access="hasAuthority('STORE_READ')" 				/>
+    	<security:intercept-url pattern="/**/Store/searchStoreLeaveDate" 		access="hasAuthority('STORE_READ')" 				/>
     	<security:intercept-url pattern="/**/Store/selectStoreList" 			access="isAuthenticated()" 							/>   
         <security:intercept-url pattern="/**/Store/insertPayPartner" 			access="hasAuthority('STORE_UPDATE')" 				/>	<!-- TODO: Rever essa role -->
         <security:intercept-url pattern="/**/Store/updatePayPartner" 			access="hasAuthority('STORE_UPDATE')" 				/>	<!-- TODO: Rever essa role -->
@@ -118,7 +119,6 @@
         <security:intercept-url pattern="/**/File/insertFileImgStore" 			access="hasAuthority('STORE_UPDATE')" 				/>
         <security:intercept-url pattern="/**/File/updateFileImgStore" 			access="hasAuthority('STORE_UPDATE')" 				/>
         <security:intercept-url pattern="/**/File/deleteFileImgStore" 			access="hasAuthority('STORE_UPDATE')" 				/>
-        <security:intercept-url pattern="/**"                					access="isAuthenticated()" 							/>	<!-- TODO: Remover? -->
         <security:http-basic />
         <csrf disabled="true"/>
         <custom-filter after="SECURITY_CONTEXT_FILTER" ref="tokenParamFilter" />
