@@ -29,7 +29,7 @@ public final class StoreCheckRead extends ModelCheckerTemplateSimpleV2<StoreInfo
 	
 	
 	
-	@Override protected int getCodMsgOnResultFalseHook(){
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.STORE_MANDATORY_FIELD_EMPTY;
 	}
 }

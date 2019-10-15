@@ -15,6 +15,7 @@ import br.com.gda.business.storeLeaveDate.model.action.StdStolateEnforceLChanged
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckExist;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckLangu;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckOwner;
+import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckSchedage;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStorauth;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckStore;
 import br.com.gda.business.storeLeaveDate.model.checker.StolateCheckTimeRange;
@@ -88,7 +89,14 @@ public final class RootStolateInsert extends DeciTreeWriteTemplate<StolateInfo> 
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolateCheckStorauth(checkerOption);
 		queue.add(checker);
-		//TODO: Verificar conflitos antes de inserir
+
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
+		checker = new StolateCheckSchedage(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	

@@ -783,7 +783,11 @@ public final class SystemCode {
 	public static final int STORE_LDATE_HAVE_ITEM 						= 6954; //1130;
 	public static final int STORE_LDATE_IS_EMPTY 						= 6955; //1131;	
 	public static final int STORE_LDATE_BAD_TIME_RANGE 					= 6956;
+	public static final int STORE_LDATE_SCHEDULE_CONFLICT 				= 6957;
 	
 	//Store Leave Date - Search
 	public static final int STORE_LDATE_SEARCH_MANDATORY_FIELD_EMPTY 	= 7000;
+	
+	// Schedule Outlier
+	public static final int SCHEDULE_OUTLIER_MANDATORY_FIELD_EMPTY		= 7050;
 }
