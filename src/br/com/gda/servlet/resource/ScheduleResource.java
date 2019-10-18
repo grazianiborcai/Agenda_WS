@@ -1,5 +1,9 @@
 package br.com.gda.servlet.resource;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -19,6 +23,8 @@ import br.com.gda.business.scheduleLine.model.SchedineModelSelect;
 import br.com.gda.business.scheduleLine.model.SchedineModelUpdate;
 import br.com.gda.business.scheduleMonth.info.SchedmonInfo;
 import br.com.gda.business.scheduleMonth.model.SchedmonModelSelect;
+import br.com.gda.business.scheduleRange.info.SchedageInfo;
+import br.com.gda.business.scheduleRange.model.SchedageModelSelect;
 import br.com.gda.business.scheduleWeek.info.SchedeekInfo;
 import br.com.gda.business.scheduleWeek.model.SchedeekModelSelect;
 import br.com.gda.business.scheduleYear.info.SchedyearInfo;
@@ -35,6 +41,8 @@ public final class ScheduleResource {
 	private static final String SELECT_SCHEDULE_YEAR = "/selectScheduleYear";
 	private static final String SELECT_SCHEDULE_MONTH = "/selectScheduleMonth";
 	private static final String SELECT_SCHEDULE_WEEK = "/selectScheduleWeek";
+	private static final String SELECT_SCHEDULE_RANGE = "/selectScheduleRange";
+	
 	
 	@POST
 	@Path(INSERT_SCHEDULE_LINE)
@@ -198,4 +206,33 @@ public final class ScheduleResource {
 		model.executeRequest();
 		return model.getResponse();	
 	}		
+	
+	
+	
+	@GET
+	@Path(SELECT_SCHEDULE_RANGE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectSchedRange(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore")    	@DefaultValue("-1") long codStore,
+				                     @HeaderParam("dateValidFrom")	@DefaultValue("1900-01-01") String dateValidFrom,
+				                     @HeaderParam("timeValidFrom")	@DefaultValue("12:00") String timeValidFrom,
+				                     @HeaderParam("dateValidTo")	@DefaultValue("1900-01-01") String dateValidTo,
+				                     @HeaderParam("timeValidTo")    @DefaultValue("12:00") String timeValidTo,
+								     @HeaderParam("TOKEN_USERNAME") String username,
+								     @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
+		
+		SchedageInfo recordInfo = new SchedageInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.dateValidFrom = LocalDate.parse(dateValidFrom, DateTimeFormatter.ISO_LOCAL_DATE);	//TODO: criar/mover para uma classe
+		recordInfo.dateValidTo = LocalDate.parse(dateValidTo, DateTimeFormatter.ISO_LOCAL_DATE);		//TODO: criar/mover para uma classe
+		recordInfo.timeValidFrom = LocalTime.parse(timeValidFrom, DateTimeFormatter.ISO_LOCAL_TIME);	//TODO: criar/mover para uma classe
+		recordInfo.timeValidTo = LocalTime.parse(timeValidTo, DateTimeFormatter.ISO_LOCAL_TIME);		//TODO: criar/mover para uma classe
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedageModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();	
+	}	
 }
