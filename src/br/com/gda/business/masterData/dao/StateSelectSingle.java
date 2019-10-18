@@ -82,6 +82,7 @@ public final class StateSelectSingle implements DaoStmt<StateInfo> {
 		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_COD_COUNTRY;
 		joinColumns.add(oneColumn);
 		
+		oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = LT_ATTR;
 		oneColumn.leftColumnName = MasterDataDbTableColumn.COL_STATE_PROVINCE;
 		oneColumn.rightColumnName = MasterDataDbTableColumn.COL_STATE_PROVINCE;
