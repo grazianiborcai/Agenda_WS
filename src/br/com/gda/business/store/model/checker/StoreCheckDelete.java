@@ -29,7 +29,7 @@ public final class StoreCheckDelete extends ModelCheckerTemplateSimpleV2<StoreIn
 	
 	
 	
-	@Override protected int getCodMsgOnResultFalseHook(){
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.STORE_MANDATORY_FIELD_EMPTY;
 	}
 }

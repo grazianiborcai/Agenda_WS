@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StolisCheckRead extends ModelCheckerTemplateSimple_<StolisInfo> {
+public final class StolisCheckRead extends ModelCheckerTemplateSimpleV2<StolisInfo> {
 
-	public StolisCheckRead() {
-		super();
+	public StolisCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -28,13 +28,7 @@ public final class StolisCheckRead extends ModelCheckerTemplateSimple_<StolisInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.STORE_LIST_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.STORE_LIST_MANDATORY_FIELD_EMPTY;
 	}
 }

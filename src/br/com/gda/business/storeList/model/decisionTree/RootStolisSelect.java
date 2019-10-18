@@ -11,6 +11,7 @@ import br.com.gda.business.storeList.model.action.LazyStolisMergePhone;
 import br.com.gda.business.storeList.model.action.LazyStolisMergeTimezone;
 import br.com.gda.business.storeList.model.action.StdStolisMergeToSelect;
 import br.com.gda.business.storeList.model.checker.StolisCheckLangu;
+import br.com.gda.business.storeList.model.checker.StolisCheckOwner;
 import br.com.gda.business.storeList.model.checker.StolisCheckRead;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
@@ -30,20 +31,29 @@ public final class RootStolisSelect extends DeciTreeReadTemplate<StolisInfo> {
 	
 	
 	@Override protected ModelChecker<StolisInfo> buildDecisionCheckerHook(DeciTreeOption<StolisInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<StolisInfo>> queue = new ArrayList<>();		
 		ModelChecker<StolisInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new StolisCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new StolisCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolisCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StolisCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
