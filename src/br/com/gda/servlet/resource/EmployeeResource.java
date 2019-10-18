@@ -44,6 +44,8 @@ import br.com.gda.business.employeeWorkTime.model.EmpwotmModelSelect;
 import br.com.gda.business.employeeWorkTime.model.EmpwotmModelUpdate;
 import br.com.gda.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.gda.business.employeeWorkTimeConflict.model.EmpwocoModelSelect;
+import br.com.gda.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
+import br.com.gda.business.employeeWorkTimeOutlier.model.EmpwoutModelSelect;
 import br.com.gda.model.Model;
 
 @Path("/Employee")
@@ -57,7 +59,7 @@ public class EmployeeResource {
 	private static final String UPDATE_WORK_TIME = "/updateWorkTime";
 	private static final String SELECT_WORK_TIME = "/selectWorkTime";
 	private static final String DELETE_WORK_TIME = "/deleteWorkTime";	
-	private static final String SELECT_WT_CONFLICT = "/selectWorkTimeConflict";
+	private static final String SELECT_WT_CONFLICT = "/selectWorkTimeConflict";		//todo: REVER
 	private static final String INSERT_LEAVE_DATE = "/insertLeaveDate";
 	private static final String UPDATE_LEAVE_DATE = "/updateLeaveDate";
 	private static final String SELECT_LEAVE_DATE = "/selectLeaveDate";
@@ -68,6 +70,7 @@ public class EmployeeResource {
 	private static final String SELECT_EMP_MATERIAL = "/selectMaterial";
 	private static final String INSERT_EMP_MATERIAL = "/insertMaterial";
 	private static final String DELETE_EMP_MATERIAL = "/deleteMaterial";
+	private static final String SELECT_EMP_WT_OUTLIER = "/selectWorkTimeOutlier";
 	
 	
 	
@@ -447,6 +450,33 @@ public class EmployeeResource {
 		recordInfo.username = username;
 		
 		Model model = new EmpmatModelDelete(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_EMP_WT_OUTLIER)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectEmpwout(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                      @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage,
+			                      @HeaderParam("codStore")   	 @DefaultValue("-1") int codStore,
+			                      @HeaderParam("codWeekday") 	 @DefaultValue("-1") int codWeekday,
+			                      @HeaderParam("beginTime")  	 @DefaultValue("12:00") String beginTime,
+			                      @HeaderParam("endTime")  	 	@DefaultValue("12:00") String endTime,
+			                      @HeaderParam("TOKEN_USERNAME") String username) {
+
+		EmpwoutInfo recordInfo = new EmpwoutInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codWeekday = codWeekday;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		recordInfo.beginTime = LocalTime.parse(beginTime, DateTimeFormatter.ISO_LOCAL_TIME);
+		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
+		
+		Model model = new EmpwoutModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

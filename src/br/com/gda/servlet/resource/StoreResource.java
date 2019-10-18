@@ -16,8 +16,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.gda.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
-import br.com.gda.business.employeeWorkTimeOutlier.model.EmpwoutModelSelect;
 import br.com.gda.business.store.info.StoreInfo;
 import br.com.gda.business.store.model.StoreModelDelete;
 import br.com.gda.business.store.model.StoreModelInsert;
@@ -60,8 +58,7 @@ public class StoreResource {
 	private static final String SEARCH_STORE_LDATE = "/searchStoreLeaveDate";
 	private static final String INSERT_STORE_LDATE = "/insertStoreLeaveDate";
 	private static final String UPDATE_STORE_LDATE = "/updateStoreLeaveDate";
-	private static final String DELETE_STORE_LDATE = "/deleteStoreLeaveDate";
-	private static final String SELECT_STORE_WT_CONFLICT = "/selectStoreWorkTimeConflict";	//TODO: REMOVER ?
+	private static final String DELETE_STORE_LDATE = "/deleteStoreLeaveDate";	
 	private static final String SELECT_STORE_PAY_PARTNER = "/selectPayPartner";				//TODO: rever esse fluxo. Eliminar ?
 	private static final String INSERT_STORE_PAY_PARTNER = "/insertPayPartner";				//TODO: rever esse fluxo. Eliminar ?
 	private static final String UPDATE_STORE_PAY_PARTNER = "/updatePayPartner";				//TODO: rever esse fluxo. Eliminar ?
@@ -316,33 +313,6 @@ public class StoreResource {
 		recordInfo.timeValidFrom = LocalTime.parse(timeValidFrom, DateTimeFormatter.ISO_LOCAL_TIME);
 		
 		Model model = new StolateModelDelete(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-
-	@GET
-	@Path(SELECT_STORE_WT_CONFLICT)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectEmpwout(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
-			                      @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage,
-			                      @HeaderParam("codStore")   	 @DefaultValue("-1") int codStore,
-			                      @HeaderParam("codWeekday") 	 @DefaultValue("-1") int codWeekday,
-			                      @HeaderParam("beginTime")  	 @DefaultValue("12:00") String beginTime,
-			                      @HeaderParam("endTime")    	 @DefaultValue("12:00") String endTime,
-			                      @HeaderParam("TOKEN_USERNAME") String username) {
-
-		EmpwoutInfo recordInfo = new EmpwoutInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		recordInfo.codWeekday = codWeekday;
-		recordInfo.codLanguage = codLanguage;
-		recordInfo.username = username;
-		recordInfo.beginTime = LocalTime.parse(beginTime, DateTimeFormatter.ISO_LOCAL_TIME);
-		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
-		
-		Model model = new EmpwoutModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
