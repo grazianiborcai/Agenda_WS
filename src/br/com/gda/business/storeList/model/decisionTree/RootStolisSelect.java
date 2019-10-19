@@ -7,6 +7,7 @@ import br.com.gda.business.storeList.info.StolisInfo;
 import br.com.gda.business.storeList.model.action.LazyStolisMergeAddress;
 import br.com.gda.business.storeList.model.action.LazyStolisMergeComp;
 import br.com.gda.business.storeList.model.action.LazyStolisMergeCurrency;
+import br.com.gda.business.storeList.model.action.LazyStolisMergeFimist;
 import br.com.gda.business.storeList.model.action.LazyStolisMergePhone;
 import br.com.gda.business.storeList.model.action.LazyStolisMergeTimezone;
 import br.com.gda.business.storeList.model.action.StdStolisMergeToSelect;
@@ -70,12 +71,14 @@ public final class RootStolisSelect extends DeciTreeReadTemplate<StolisInfo> {
 		ActionLazy<StolisInfo> mergeCompany = new LazyStolisMergeComp(option.conn, option.schemaName);
 		ActionLazy<StolisInfo> mergeAddress = new LazyStolisMergeAddress(option.conn, option.schemaName);
 		ActionLazy<StolisInfo> mergePhone = new LazyStolisMergePhone(option.conn, option.schemaName);
+		ActionLazy<StolisInfo> mergeFimist = new LazyStolisMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone);
 		mergeTimezone.addPostAction(mergeCompany);
 		mergeCompany.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
+		mergePhone.addPostAction(mergeFimist);
 		
 		actions.add(select);
 		return actions;

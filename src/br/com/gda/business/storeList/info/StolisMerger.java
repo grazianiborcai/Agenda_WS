@@ -7,9 +7,24 @@ import br.com.gda.business.company.info.CompInfo;
 import br.com.gda.business.masterData.info.CurrencyInfo;
 import br.com.gda.business.masterData.info.TimezoneInfo;
 import br.com.gda.business.phone.info.PhoneInfo;
+import br.com.gda.file.fileImageList.info.FimistInfo;
 import br.com.gda.info.InfoMerger;
 
 public final class StolisMerger {
+	public static StolisInfo mergeWithFimist(FimistInfo sourceOne, StolisInfo sourceTwo) {
+		InfoMerger<StolisInfo, FimistInfo> merger = new StolisMergerFimist();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StolisInfo> mergeWithFimist(List<FimistInfo> sourceOnes, List<StolisInfo> sourceTwos) {
+		InfoMerger<StolisInfo, FimistInfo> merger = new StolisMergerFimist();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static StolisInfo mergeWithAddress(AddressInfo sourceOne, StolisInfo sourceTwo) {
 		InfoMerger<StolisInfo, AddressInfo> merger = new StolisMergerAddress();		
 		return merger.merge(sourceOne, sourceTwo);
