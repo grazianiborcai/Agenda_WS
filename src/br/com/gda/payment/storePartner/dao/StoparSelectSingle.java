@@ -1,13 +1,12 @@
 package br.com.gda.payment.storePartner.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gda.dao.DaoFormatter;
 import br.com.gda.dao.DaoOperation;
 import br.com.gda.dao.DaoResultParser;
 import br.com.gda.dao.DaoStmt;
@@ -52,7 +51,7 @@ public final class StoparSelectSingle implements DaoStmt<StoparInfo> {
 	
 	private String buildWhereClause() {		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new StoparWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -102,7 +101,6 @@ public final class StoparSelectSingle implements DaoStmt<StoparInfo> {
 	
 	private static class ResultParser implements DaoResultParser<StoparInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
-		private final boolean NOT_NULL = false;
 		
 		@Override public List<StoparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoparInfo> finalResult = new ArrayList<>();
@@ -122,19 +120,9 @@ public final class StoparSelectSingle implements DaoStmt<StoparInfo> {
 				dataInfo.accessToken = stmtResult.getString(StoparDbTableColumn.COL_ACCESS_TOKEN);
 				dataInfo.refreshToken = stmtResult.getString(StoparDbTableColumn.COL_REFRESH_TOKEN);
 				dataInfo.scope = stmtResult.getString(StoparDbTableColumn.COL_SCOPE);
-
-				
-				stmtResult.getLong(StoparDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(StoparDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(StoparDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				Date tokenExpiresIn = stmtResult.getDate(StoparDbTableColumn.COL_TOKEN_EXPIRES_IN);
-				if (tokenExpiresIn != null)
-					dataInfo.tokenExpiresIn = tokenExpiresIn.toLocalDate();
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StoparDbTableColumn.COL_LAST_CHANGED_BY);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StoparDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.tokenExpiresIn = DaoFormatter.sqlToLocalDate(stmtResult, StoparDbTableColumn.COL_TOKEN_EXPIRES_IN);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

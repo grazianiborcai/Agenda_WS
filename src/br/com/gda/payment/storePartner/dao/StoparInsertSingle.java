@@ -3,7 +3,6 @@ package br.com.gda.payment.storePartner.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.gda.dao.DaoFormatter;
@@ -78,48 +77,18 @@ public final class StoparInsertSingle implements DaoStmt<StoparInfo> {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codStore) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codStore);
-			}
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codPayPartner) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codPayPartner);
-			}
-			
-			
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayPartner);
 			stmt.setString(i++, recordInfo.recordMode);
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codSnapshot) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codSnapshot);
-			}
-			
-
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.lastChangedBy) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			}
-			
-			
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 			stmt.setString(i++, recordInfo.codePayPartnerStore);
 			stmt.setString(i++, recordInfo.idPayPartnerStore);			
 			stmt.setString(i++, recordInfo.accessToken);
 			stmt.setString(i++, recordInfo.refreshToken);
 			stmt.setString(i++, recordInfo.scope);
-			stmt.setDate(i++, DaoFormatter.localToSqlDate(recordInfo.tokenExpiresIn));
+			stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.tokenExpiresIn);
 			
 			
 			return stmt;

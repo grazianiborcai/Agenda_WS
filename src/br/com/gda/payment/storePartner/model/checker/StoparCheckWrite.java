@@ -3,14 +3,14 @@ package br.com.gda.payment.storePartner.model.checker;
 import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.gda.payment.storePartner.info.StoparInfo;
 
-public final class StoparCheckWrite extends ModelCheckerTemplateSimple_<StoparInfo> {
+public final class StoparCheckWrite extends ModelCheckerTemplateSimpleV2<StoparInfo> {
 
-	public StoparCheckWrite() {
-		super();
+	public StoparCheckWrite(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -30,13 +30,7 @@ public final class StoparCheckWrite extends ModelCheckerTemplateSimple_<StoparIn
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.PAY_PARTNER_STORE_MANDATORY_FIELD_EMPTY;
 	}
 }

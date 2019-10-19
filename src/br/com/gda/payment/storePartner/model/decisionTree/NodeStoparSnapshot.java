@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.gda.model.action.ActionLazy;
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.model.checker.ModelChecker;
+import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerQueue;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 import br.com.gda.model.decisionTree.DeciTreeWriteTemplate;
@@ -25,8 +26,13 @@ public final class NodeStoparSnapshot extends DeciTreeWriteTemplate<StoparInfo> 
 	@Override protected ModelChecker<StoparInfo> buildDecisionCheckerHook(DeciTreeOption<StoparInfo> option) {
 		List<ModelChecker<StoparInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoparInfo> checker;
-
-		checker = new StoparCheckWrite();
+		ModelCheckerOption checkerOption;
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new StoparCheckWrite(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

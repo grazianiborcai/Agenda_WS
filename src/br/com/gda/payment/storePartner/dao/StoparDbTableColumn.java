@@ -6,22 +6,23 @@ import java.util.List;
 
 import br.com.gda.dao.DaoColumn;
 import br.com.gda.dao.DaoDbTableColumnTemplate;
+import br.com.gda.dao.common.DaoDbField;
 import br.com.gda.dao.common.DaoDbTable;
 
 public final class StoparDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_ACCESS_TOKEN = "access_token";	
-	public static final String COL_COD_OWNER = "cod_owner";	
-	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";	
-	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
-	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_CODE_PAY_PARTNER_STORE = "code_pay_partner_store";
-	public static final String COL_ID_PAY_PARTNER_STORE = "id_pay_partner_store";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
-	public static final String COL_RECORD_MODE = "record_mode";
-	public static final String COL_REFRESH_TOKEN = "refresh_token";	
-	public static final String COL_SCOPE = "scope";	
-	public static final String COL_TOKEN_EXPIRES_IN = "token_expires_in";	
+	public static final String COL_ACCESS_TOKEN = DaoDbField.COL_ACCESS_TOKEN;	
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;	
+	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_CODE_PAY_PARTNER_STORE = DaoDbField.COL_CODE_PAY_PARTNER_STORE;
+	public static final String COL_ID_PAY_PARTNER_STORE = DaoDbField.COL_ID_PAY_PARTNER_STORE;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
+	public static final String COL_REFRESH_TOKEN = DaoDbField.COL_REFRESH_TOKEN;	
+	public static final String COL_SCOPE = DaoDbField.COL_SCOPE;	
+	public static final String COL_TOKEN_EXPIRES_IN = DaoDbField.COL_TOKEN_EXPIRES_IN;	
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;

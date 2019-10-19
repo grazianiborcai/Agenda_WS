@@ -1,6 +1,7 @@
 package br.com.gda.dao.common;
 
 public final class DaoDbField {	
+	public static final String COL_ACCESS_TOKEN = "access_token";	
 	public static final String COL_AMOUNT_CURRENCY_PARTNER = "amount_currency_partner";
 	public static final String COL_AMOUNT_TOTAL_PARTNER = "amount_total_partner";
 	public static final String COL_BEGIN_TIME = "begin_time";
@@ -78,6 +79,7 @@ public final class DaoDbField {
 	public static final String COL_COD_USER_CATEG = "cod_user_categ";
 	public static final String COL_COD_USER_SNAPSHOT = "cod_user_snapshot";
 	public static final String COL_COD_WEEKDAY = "weekday";	
+	public static final String COL_CODE_PAY_PARTNER_STORE = "code_pay_partner_store";
 	public static final String COL_COMPLEMENT = "complement";
 	public static final String COL_CONFIRMED = "confirmed";
 	public static final String COL_COUNTER = "counter";
@@ -108,6 +110,7 @@ public final class DaoDbField {
 	public static final String COL_FULL_NUMBER = "full_number";
 	public static final String COL_GRAND_TOTAL = "grandTotal";
 	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
+	public static final String COL_ID_PAY_PARTNER_STORE = "id_pay_partner_store";
 	public static final String COL_ID_PAYMENT_PARTNER = "id_payment_partner";
 	public static final String COL_ID_REFUND_PARTNER = "id_refund_partner";
 	public static final String COL_IMG_FILE_PATH = "file_img_path";
@@ -142,6 +145,8 @@ public final class DaoDbField {
 	public static final String COL_QUARTER = "quarter";
 	public static final String COL_RAZAO_SOCIAL = "razao_social";
 	public static final String COL_RECORD_MODE = "record_mode";	
+	public static final String COL_REFRESH_TOKEN = "refresh_token";	
+	public static final String COL_SCOPE = "scope";
 	public static final String COL_STATE_PROVINCE = "state_province";
 	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";	
 	public static final String COL_STATUS_PAYMENT_PARTNER = "status_payment_partner";
@@ -150,6 +155,7 @@ public final class DaoDbField {
 	public static final String COL_STREET_NUMBER = "street_number";	
 	public static final String COL_TM_VALID_FROM = "time_valid_from";
 	public static final String COL_TM_VALID_TO = "time_valid_to";
+	public static final String COL_TOKEN_EXPIRES_IN = "token_expires_in";
 	public static final String COL_TOTAL_ITEM = "total_item";
 	public static final String COL_USERNAME = "username";
 	public static final String COL_WAITING = "waiting";
