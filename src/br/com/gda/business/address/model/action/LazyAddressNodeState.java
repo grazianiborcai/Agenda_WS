@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.gda.model.action.ActionStd;
 import br.com.gda.business.address.info.AddressInfo;
+import br.com.gda.business.address.model.decisionTree.NodeAddressState;
 import br.com.gda.model.action.ActionLazyTemplate;
 import br.com.gda.model.decisionTree.DeciResult;
 import br.com.gda.model.decisionTree.DeciTreeOption;
 
-public final class LazyAddressMergeState extends ActionLazyTemplate<AddressInfo, AddressInfo> {
+public final class LazyAddressNodeState extends ActionLazyTemplate<AddressInfo, AddressInfo> {
 
-	public LazyAddressMergeState(Connection conn, String schemaName) {
+	public LazyAddressNodeState(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyAddressMergeState extends ActionLazyTemplate<AddressInfo,
 	
 	
 	@Override protected ActionStd<AddressInfo> getInstanceOfActionHook(DeciTreeOption<AddressInfo> option) {
-		return new StdAddressMergeState(option);
+		return new NodeAddressState(option).toAction();
 	}
 	
 	

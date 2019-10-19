@@ -270,6 +270,8 @@ public final class SystemCode {
 	public static final int ADDRESS_COD_IS_BLANK						= 1613;
 	public static final int ADDRESS_MANDATORY_FIELD_EMPTY				= 1614;
 	public static final int ADDRESS_LIMIT_NOT_REACHED					= 1615;
+	public static final int ADDRESS_HAS_STATE							= 1616;
+	public static final int ADDRESS_HAS_NO_STATE						= 1617;
 	
 	// Form
 	public static final int FORM_ADDRESS_ALREADY_EXIST					= 1700;
