@@ -3,14 +3,14 @@ package br.com.gda.payment.partnerMoip.accessMoip.model.checker;
 import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
-import br.com.gda.common.SystemMessage;
-import br.com.gda.model.checker.ModelCheckerTemplateSimple_;
+import br.com.gda.model.checker.ModelCheckerOption;
+import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.gda.payment.partnerMoip.accessMoip.info.AccemoipInfo;
 
-public final class AccemoipCheckWrite extends ModelCheckerTemplateSimple_<AccemoipInfo> {
+public final class AccemoipCheckWrite extends ModelCheckerTemplateSimpleV2<AccemoipInfo> {
 
-	public AccemoipCheckWrite() {
-		super();
+	public AccemoipCheckWrite(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -29,13 +29,7 @@ public final class AccemoipCheckWrite extends ModelCheckerTemplateSimple_<Accemo
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ACCESS_MOIP_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.ACCESS_MOIP_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -35,6 +35,8 @@ import br.com.gda.business.storeWorkTime.model.StowotmModelInsert;
 import br.com.gda.business.storeWorkTime.model.StowotmModelSelect;
 import br.com.gda.business.storeWorkTime.model.StowotmModelUpdate;
 import br.com.gda.model.Model;
+import br.com.gda.payment.partnerMoip.accessMoip.info.AccemoipInfo;
+import br.com.gda.payment.partnerMoip.accessMoip.model.AccemoipModelUrl;
 import br.com.gda.payment.storePartnerList.info.StoplisInfo;
 import br.com.gda.payment.storePartnerList.model.StoplisModelSelect;
 
@@ -57,6 +59,7 @@ public class StoreResource {
 	private static final String UPDATE_STORE_LDATE = "/updateStoreLeaveDate";
 	private static final String DELETE_STORE_LDATE = "/deleteStoreLeaveDate";	
 	private static final String SELECT_STORE_PAY_PARTNER_LIST = "/selectPayPartnerList";
+	private static final String GRANT_MOIP = "/grantMoip";
 
 	
 	@POST
@@ -329,5 +332,26 @@ public class StoreResource {
 		Model model = new StoplisModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(GRANT_MOIP)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response grantMoip(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+				              @HeaderParam("codStore")  		@DefaultValue("-1") long codStore,
+				              @HeaderParam("TOKEN_USERNAME") 	String username,
+				              @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
+		
+		AccemoipInfo recordInfo = new AccemoipInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new AccemoipModelUrl(recordInfo);
+		model.executeRequest();
+		return model.getResponse();	
 	}
 }

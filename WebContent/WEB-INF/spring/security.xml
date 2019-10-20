@@ -50,6 +50,7 @@
     	<security:intercept-url pattern="/**/Store/searchStoreLeaveDate" 		access="hasAuthority('STORE_READ')" 				/>
     	<security:intercept-url pattern="/**/Store/selectStoreList" 			access="isAuthenticated()" 							/>   
         <security:intercept-url pattern="/**/Store/selectPayPartnerList"		access="hasAuthority('STORE_PAY_READ')"				/> 	  
+        <security:intercept-url pattern="/**/Store/grantMoip"					access="hasAuthority('STORE_PAY_WRITE')" 			/>    
         <security:intercept-url pattern="/**/Store/insert**" 					access="hasAuthority('STORE_INSERT')" 				/>
         <security:intercept-url pattern="/**/Store/update**" 					access="hasAuthority('STORE_UPDATE')" 				/>
         <security:intercept-url pattern="/**/Store/delete**" 					access="hasAuthority('STORE_DELETE')" 				/>
@@ -98,7 +99,6 @@
         <security:intercept-url pattern="/**/Cart/**"							access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/User/**"							access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/Order/**"							access="isAuthenticated()" 							/> 
-        <security:intercept-url pattern="/**/Payment/grantMoip"					access="hasAuthority('STORE_PAY_WRITE')" 			/>    
         <security:intercept-url pattern="/**/Payment/payOrder"					access="isAuthenticated()" 							/>     
         <security:intercept-url pattern="/**/Payment/refundOrder"				access="isAuthenticated()" 							/>   <!-- TODO: Rever Role -->
         <security:intercept-url pattern="/**/Payment/refreshStatus"				access="isAuthenticated()" 							/>     

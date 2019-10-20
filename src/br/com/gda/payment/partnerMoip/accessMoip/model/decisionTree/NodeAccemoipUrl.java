@@ -31,8 +31,6 @@ public final class NodeAccemoipUrl extends DeciTreeWriteTemplate<AccemoipInfo> {
 	
 	
 	@Override protected ModelChecker<AccemoipInfo> buildDecisionCheckerHook(DeciTreeOption<AccemoipInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<AccemoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<AccemoipInfo> checker;	
 		ModelCheckerOption checkerOption;
@@ -40,14 +38,14 @@ public final class NodeAccemoipUrl extends DeciTreeWriteTemplate<AccemoipInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new AccemoipCheckSetupar(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new AccemoipCheckSyspar(checkerOption);
 		queue.add(checker);
 
