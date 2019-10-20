@@ -35,11 +35,8 @@ import br.com.gda.business.storeWorkTime.model.StowotmModelInsert;
 import br.com.gda.business.storeWorkTime.model.StowotmModelSelect;
 import br.com.gda.business.storeWorkTime.model.StowotmModelUpdate;
 import br.com.gda.model.Model;
-import br.com.gda.payment.storePartner.info.StoparInfo;
-import br.com.gda.payment.storePartner.model.StoparModelDelete;
-import br.com.gda.payment.storePartner.model.StoparModelInsert;
-import br.com.gda.payment.storePartner.model.StoparModelSelect;
-import br.com.gda.payment.storePartner.model.StoparModelUpdate;
+import br.com.gda.payment.storePartnerList.info.StoplisInfo;
+import br.com.gda.payment.storePartnerList.model.StoplisModelSelect;
 
 @Path("/Store")
 @Produces(MediaType.APPLICATION_JSON)
@@ -59,10 +56,7 @@ public class StoreResource {
 	private static final String INSERT_STORE_LDATE = "/insertStoreLeaveDate";
 	private static final String UPDATE_STORE_LDATE = "/updateStoreLeaveDate";
 	private static final String DELETE_STORE_LDATE = "/deleteStoreLeaveDate";	
-	private static final String SELECT_STORE_PAY_PARTNER = "/selectPayPartner";				//TODO: rever esse fluxo. Eliminar ?
-	private static final String INSERT_STORE_PAY_PARTNER = "/insertPayPartner";				//TODO: rever esse fluxo. Eliminar ?
-	private static final String UPDATE_STORE_PAY_PARTNER = "/updatePayPartner";				//TODO: rever esse fluxo. Eliminar ?
-	private static final String DELETE_STORE_PAY_PARTNER = "/deletePayPartner";				//TODO: rever esse fluxo. Eliminar ?
+	private static final String SELECT_STORE_PAY_PARTNER_LIST = "/selectPayPartnerList";
 
 	
 	@POST
@@ -316,69 +310,23 @@ public class StoreResource {
 		model.executeRequest();
 		return model.getResponse();
 	}
-	
-	
-	
-	@POST
-	@Path(INSERT_STORE_PAY_PARTNER)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertStopar(@Context HttpServletRequest request, String incomingData) {
-		
-		Model model = new StoparModelInsert(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-
-	@POST
-	@Path(UPDATE_STORE_PAY_PARTNER)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateStopar(@Context HttpServletRequest request, String incomingData) {
-		
-		Model model = new StoparModelUpdate(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-
-	
-	@DELETE
-	@Path(DELETE_STORE_PAY_PARTNER)
-	public Response deleteStopar(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
-			                     @HeaderParam("codStore")       	@DefaultValue("-1") long codStore,
-			                     @HeaderParam("codPayPartner")      @DefaultValue("-1") int codPayPartner,
-			                     @HeaderParam("codLanguage")		@DefaultValue("EN") String codLanguage,
-			                     @HeaderParam("TOKEN_USERNAME") String username) {
-		
-		StoparInfo recordInfo = new StoparInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		recordInfo.codPayPartner = codPayPartner;
-		recordInfo.codLanguage = codLanguage;
-		recordInfo.username = username;
-		
-		Model model = new StoparModelDelete(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
 
 	
 	
 	@GET
-	@Path(SELECT_STORE_PAY_PARTNER)
-	public Response selectStopar(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
-			                     @HeaderParam("codStore")       @DefaultValue("-1") int codStore,
-			                     @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,
-			                     @HeaderParam("TOKEN_USERNAME") String username) {
+	@Path(SELECT_STORE_PAY_PARTNER_LIST)
+	public Response selectStoplis(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                      @HeaderParam("codStore")       @DefaultValue("-1") int codStore,
+			                      @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,
+			                      @HeaderParam("TOKEN_USERNAME") String username) {
 
-		StoparInfo recordInfo = new StoparInfo();
+		StoplisInfo recordInfo = new StoplisInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.username = username;
 		
-		Model model = new StoparModelSelect(recordInfo);
+		Model model = new StoplisModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

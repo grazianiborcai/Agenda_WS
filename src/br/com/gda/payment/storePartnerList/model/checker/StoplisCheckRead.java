@@ -1,24 +1,23 @@
-package br.com.gda.payment.storePartner.model.checker;
+package br.com.gda.payment.storePartnerList.model.checker;
 
 import java.sql.Connection;
 
 import br.com.gda.common.SystemCode;
 import br.com.gda.model.checker.ModelCheckerOption;
 import br.com.gda.model.checker.ModelCheckerTemplateSimpleV2;
-import br.com.gda.payment.storePartner.info.StoparInfo;
+import br.com.gda.payment.storePartnerList.info.StoplisInfo;
 
-public final class StoparCheckRead extends ModelCheckerTemplateSimpleV2<StoparInfo> {
+public final class StoplisCheckRead extends ModelCheckerTemplateSimpleV2<StoplisInfo> {
 
-	public StoparCheckRead(ModelCheckerOption option) {
+	public StoplisCheckRead(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(StoparInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(StoplisInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner    	<= 0	||
 			   recordInfo.codStore    	<= 0 	||
-			   recordInfo.codPayPartner <= 0 	||
 			   recordInfo.codLanguage 	== null	||
 			   recordInfo.username    	== null		)			
 			

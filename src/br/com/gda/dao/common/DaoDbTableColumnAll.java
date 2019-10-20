@@ -94,6 +94,7 @@ import br.com.gda.payment.payOrderItem.dao.PayordemDbTableColumn;
 import br.com.gda.payment.payOrderSearch.dao.PayordarchDbTableColumn;
 import br.com.gda.payment.setupPartner.dao.SetuparDbTableColumn;
 import br.com.gda.payment.storePartner.dao.StoparDbTableColumn;
+import br.com.gda.payment.storePartnerList.dao.StoplisDbTableColumn;
 import br.com.gda.payment.storePartnerSnapshot.dao.StoparnapDbTableColumn;
 import br.com.gda.payment.systemPartner.dao.SysparDbTableColumn;
 import br.com.gda.security.storeAuthorization.dao.StorauthDbTableColumn;
@@ -216,6 +217,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new StorauthDbTableColumn());
 		addTable(new StolarchDbTableColumn());
 		addTable(new SchedageDbTableColumn());
+		addTable(new StoplisDbTableColumn());
 	}
 	
 	
