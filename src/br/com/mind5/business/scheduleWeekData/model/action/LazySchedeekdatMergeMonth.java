@@ -1,0 +1,35 @@
+package br.com.mind5.business.scheduleWeekData.model.action;
+
+import java.sql.Connection;
+import java.util.List;
+
+import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
+import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
+
+public final class LazySchedeekdatMergeMonth extends ActionLazyTemplate<SchedeekdatInfo, SchedeekdatInfo> {
+	
+	public LazySchedeekdatMergeMonth(Connection conn, String schemaName) {
+		super(conn, schemaName);
+	}
+	
+	
+	
+	@Override protected List<SchedeekdatInfo> translateRecordInfosHook(List<SchedeekdatInfo> recordInfos) {
+		return recordInfos;
+	}
+	
+	
+	
+	@Override protected ActionStd<SchedeekdatInfo> getInstanceOfActionHook(DeciTreeOption<SchedeekdatInfo> option) {
+		return new StdSchedeekdatMergeMonth(option);
+	}
+	
+	
+	
+	@Override protected DeciResult<SchedeekdatInfo> translateResultHook(DeciResult<SchedeekdatInfo> result) {
+		return result;
+	}
+}

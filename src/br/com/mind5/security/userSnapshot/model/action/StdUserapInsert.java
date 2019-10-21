@@ -1,0 +1,58 @@
+package br.com.mind5.security.userSnapshot.model.action;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.dao.DaoStmtExec;
+import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.model.action.ActionLazy;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdHelperStmt;
+import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
+import br.com.mind5.security.userSnapshot.dao.UserapInsert;
+import br.com.mind5.security.userSnapshot.info.UserapInfo;
+
+public final class StdUserapInsert implements ActionStd<UserapInfo> {
+	private ActionStd<UserapInfo> actionHelper;
+	
+	
+	public StdUserapInsert(DeciTreeOption<UserapInfo> option) {
+		DaoStmtExec<UserapInfo> sqlStmtExecutor = buildStmtExec(option);
+		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
+	}
+	
+	
+	
+	private DaoStmtExec<UserapInfo> buildStmtExec(DeciTreeOption<UserapInfo> option) {
+		List<DaoStmtExecOption<UserapInfo>> stmtExecOptions = new ArrayList<>();			
+		
+		for(UserapInfo eachRecord : option.recordInfos) {
+			DaoStmtExecOption<UserapInfo> stmtExecOption = new DaoStmtExecOption<>();
+			stmtExecOption.conn = option.conn;
+			stmtExecOption.recordInfo = eachRecord;
+			stmtExecOption.schemaName = option.schemaName;
+			stmtExecOptions.add(stmtExecOption);
+		}
+		
+		return new UserapInsert(stmtExecOptions);
+	}
+	
+	
+	
+	@Override public void addPostAction(ActionLazy<UserapInfo> actionHandler) {
+		actionHelper.addPostAction(actionHandler);
+	}
+	
+	
+	
+	@Override public boolean executeAction() {			
+		return actionHelper.executeAction();
+	}
+	
+	
+	
+	@Override public DeciResult<UserapInfo> getDecisionResult() {
+		return actionHelper.getDecisionResult();
+	}
+}

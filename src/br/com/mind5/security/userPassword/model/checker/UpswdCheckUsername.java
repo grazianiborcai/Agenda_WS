@@ -1,0 +1,60 @@
+package br.com.mind5.security.userPassword.model.checker;
+
+import java.util.List;
+
+import br.com.mind5.common.SystemCode;
+import br.com.mind5.common.SystemMessage;
+import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.security.user.model.checker.UserCheckUsernameExist;
+import br.com.mind5.security.userPassword.info.UpswdInfo;
+
+public final class UpswdCheckUsername implements ModelChecker<UpswdInfo> {
+	private final boolean FAILED = false;
+	private final boolean SUCCESS = true;
+	
+	private ModelChecker<UserInfo> checker;
+	
+	
+	public UpswdCheckUsername(ModelCheckerOption option) {
+		checker = new UserCheckUsernameExist(option);
+	}
+	
+	
+	
+	@Override public boolean check(List<UpswdInfo> recordInfos) {
+		for (UpswdInfo eachInfo : recordInfos) {
+			if (check(eachInfo) == FAILED)
+				return FAILED;
+		}
+		
+		return SUCCESS;
+	}
+
+	
+	
+	@Override public boolean check(UpswdInfo recordInfo) {
+		return checker.check(UserInfo.copyFrom(recordInfo));
+	}
+
+	
+	
+	@Override public boolean getResult() {
+		return checker.getResult();
+	}
+
+	
+	
+	@Override public String getFailMessage() {
+		checker.getFailMessage();
+		return SystemMessage.USER_PASSWORD_OR_USERNAME_IS_INVALID;
+	}
+
+	
+	
+	@Override public int getFailCode() {
+		checker.getFailCode();
+		return SystemCode.USER_PASSWORD_OR_USERNAME_IS_INVALID;
+	}
+}
