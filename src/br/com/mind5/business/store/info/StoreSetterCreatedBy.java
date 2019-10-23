@@ -10,7 +10,9 @@ public final class StoreSetterCreatedBy implements InfoSetter<StoreInfo> {
 	
 	public StoreInfo setAttr(StoreInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setCreatedBy(recordInfo);
+		
+		recordInfo.createdBy = recordInfo.lastChangedBy;
+		return recordInfo;
 	}
 	
 	
@@ -20,13 +22,6 @@ public final class StoreSetterCreatedBy implements InfoSetter<StoreInfo> {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}
-	}
-	
-	
-	
-	private StoreInfo setCreatedBy(StoreInfo recordInfo) {
-		recordInfo.createdBy = recordInfo.codUser;		
-		return recordInfo;
 	}
 	
 	
