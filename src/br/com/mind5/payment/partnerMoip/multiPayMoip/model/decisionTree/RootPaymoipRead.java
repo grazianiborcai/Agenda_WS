@@ -29,22 +29,28 @@ public final class RootPaymoipRead extends DeciTreeWriteTemplate<PaymoipInfo> {
 	
 	
 	@Override protected ModelChecker<PaymoipInfo> buildDecisionCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<PaymoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaymoipInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new PaymoipCheckRead();
-		queue.add(checker);
-		
-		checker = new PaymoipCheckCusparData();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PaymoipCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PaymoipCheckCusparData(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PaymoipCheckCuspar(checkerOption);
 		queue.add(checker);
 

@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -32,14 +33,27 @@ public final class RootPaymoipPay extends DeciTreeWriteTemplate<PaymoipInfo> {
 	@Override protected ModelChecker<PaymoipInfo> buildDecisionCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
 		List<ModelChecker<PaymoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaymoipInfo> checker;
+		ModelCheckerOption checkerOption;
 		
-		checker = new PaymoipCheckPay();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new PaymoipCheckPay(checkerOption);
 		queue.add(checker);
 		
-		checker = new PaymoipCheckCrecardData();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new PaymoipCheckCrecardData(checkerOption);
 		queue.add(checker);
 		
-		checker = new PaymoipCheckSysparData();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new PaymoipCheckSysparData(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
