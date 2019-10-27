@@ -54,7 +54,7 @@ final class VisiAccemoipUrl implements ActionVisitor<AccemoipInfo> {
 	
 	
 	private String addQueryParam(AccemoipInfo recordInfo, String url) {
-		url = url + "&codOwner=" + recordInfo.codOwner;
+		url = url + "?codOwner=" + recordInfo.codOwner;
 		url = url + "&codStore=" + recordInfo.codStore;
 		url = url + "&codLanguage=" + recordInfo.codLanguage;
 		return url;
