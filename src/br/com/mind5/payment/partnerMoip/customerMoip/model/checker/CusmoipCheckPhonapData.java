@@ -3,14 +3,14 @@ package br.com.mind5.payment.partnerMoip.customerMoip.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
 
-public final class CusmoipCheckPhonapData extends ModelCheckerTemplateSimple_<CusmoipInfo> {
+public final class CusmoipCheckPhonapData extends ModelCheckerTemplateSimpleV2<CusmoipInfo> {
 
-	public CusmoipCheckPhonapData() {
-		super();
+	public CusmoipCheckPhonapData(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -31,13 +31,7 @@ public final class CusmoipCheckPhonapData extends ModelCheckerTemplateSimple_<Cu
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PAY_CUS_MOIP_PHONAP_MISSING;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PAY_CUS_MOIP_PHONAP_MISSING;
 	}
 }

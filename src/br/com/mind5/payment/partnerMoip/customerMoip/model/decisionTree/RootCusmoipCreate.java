@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -36,26 +37,55 @@ public final class RootCusmoipCreate extends DeciTreeWriteTemplate<CusmoipInfo> 
 	@Override protected ModelChecker<CusmoipInfo> buildDecisionCheckerHook(DeciTreeOption<CusmoipInfo> option) {
 		List<ModelChecker<CusmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusmoipInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new CusmoipCheckSetuparData();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
+		checker = new CusmoipCheckSetuparData(checkerOption);
 		queue.add(checker);
 		
-		checker = new CusmoipCheckUserapData();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CusmoipCheckUserapData(checkerOption);
 		queue.add(checker);
 		
-		checker = new CusmoipCheckPhonapData();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CusmoipCheckPhonapData(checkerOption);
 		queue.add(checker);
 		
-		checker = new CusmoipCheckAddresnapData();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CusmoipCheckAddresnapData(checkerOption);
 		queue.add(checker);
 		
-		checker = new CusmoipCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CusmoipCheckWrite(checkerOption);
 		queue.add(checker);
 		
-		checker = new CusmoipCheckAddressBR();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CusmoipCheckAddressBR(checkerOption);
 		queue.add(checker);
 		
-		checker = new CusmoipCheckPhoneBR();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CusmoipCheckPhoneBR(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

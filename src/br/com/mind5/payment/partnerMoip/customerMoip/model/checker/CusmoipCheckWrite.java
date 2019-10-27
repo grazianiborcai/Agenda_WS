@@ -3,14 +3,14 @@ package br.com.mind5.payment.partnerMoip.customerMoip.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
 
-public final class CusmoipCheckWrite extends ModelCheckerTemplateSimple_<CusmoipInfo> {
+public final class CusmoipCheckWrite extends ModelCheckerTemplateSimpleV2<CusmoipInfo> {
 
-	public CusmoipCheckWrite() {
-		super();
+	public CusmoipCheckWrite(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -25,13 +25,7 @@ public final class CusmoipCheckWrite extends ModelCheckerTemplateSimple_<Cusmoip
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PAY_CUS_MOIP_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PAY_CUS_MOIP_MANDATORY_FIELD_EMPTY;
 	}
 }
