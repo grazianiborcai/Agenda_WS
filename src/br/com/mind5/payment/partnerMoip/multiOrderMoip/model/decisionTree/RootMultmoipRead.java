@@ -28,23 +28,29 @@ public final class RootMultmoipRead extends DeciTreeWriteTemplate<MultmoipInfo> 
 	
 	
 	
-	@Override protected ModelChecker<MultmoipInfo> buildDecisionCheckerHook(DeciTreeOption<MultmoipInfo> option) {		
-		final boolean EXIST_ON_DB = true;
-		
+	@Override protected ModelChecker<MultmoipInfo> buildDecisionCheckerHook(DeciTreeOption<MultmoipInfo> option) {				
 		List<ModelChecker<MultmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<MultmoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new MultmoipCheckRead();
-		queue.add(checker);
-		
-		checker = new MultmoipCheckCusparData();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new MultmoipCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new MultmoipCheckCusparData(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MultmoipCheckCuspar(checkerOption);
 		queue.add(checker);
 		//TODO: verificar partner = MOIP
