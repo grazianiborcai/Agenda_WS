@@ -28,22 +28,28 @@ public final class RootCremoipDelete extends DeciTreeWriteTemplate<CremoipInfo> 
 	
 	
 	@Override protected ModelChecker<CremoipInfo> buildDecisionCheckerHook(DeciTreeOption<CremoipInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<CremoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<CremoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new CremoipCheckCusparData();
-		queue.add(checker);
-		
-		checker = new CremoipCheckDelete();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CremoipCheckCusparData(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CremoipCheckDelete(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CremoipCheckSetupar(checkerOption);
 		queue.add(checker);
 		

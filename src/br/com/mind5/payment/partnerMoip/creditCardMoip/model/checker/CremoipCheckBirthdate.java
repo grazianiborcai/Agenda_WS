@@ -5,19 +5,23 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
 
-public final class CremoipCheckBirthdate extends ModelCheckerTemplateSimple_<CremoipInfo> {
+public final class CremoipCheckBirthdate extends ModelCheckerTemplateSimpleV2<CremoipInfo> {
 
-	public CremoipCheckBirthdate() {
-		super();
+	public CremoipCheckBirthdate(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CremoipInfo recordInfo, Connection conn, String schemaName) {	
+		
+		if (recordInfo.birthdateHolder == null)
+			return super.FAILED;
+		
 		
 		return isDateValid(recordInfo.birthdateHolder);
 	}
@@ -36,13 +40,7 @@ public final class CremoipCheckBirthdate extends ModelCheckerTemplateSimple_<Cre
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PAY_CUS_MOIP_USERAP_MISSING;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.PAY_CUS_MOIP_USERAP_MISSING;
-	}
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.CREDIT_CARD_MOIP_MISSING_BIRTHDATE;
+	}	
 }

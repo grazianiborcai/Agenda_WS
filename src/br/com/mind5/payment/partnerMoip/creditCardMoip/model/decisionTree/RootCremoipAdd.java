@@ -39,37 +39,63 @@ public final class RootCremoipAdd extends DeciTreeWriteTemplate<CremoipInfo> {
 	
 	
 	@Override protected ModelChecker<CremoipInfo> buildDecisionCheckerHook(DeciTreeOption<CremoipInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<CremoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<CremoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new CremoipCheckCusparData();
-		queue.add(checker);
-		
-		checker = new CremoipCheckPhoneData();
-		queue.add(checker);
-		
-		checker = new CremoipCheckAddressData();
-		queue.add(checker);
-		
-		checker = new CremoipCheckAdd();
-		queue.add(checker);
-		
-		checker = new CremoipCheckAddressBR();
-		queue.add(checker);
-		
-		checker = new CremoipCheckPhoneBR();
-		queue.add(checker);
-		
-		checker = new CremoipCheckBirthdate();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CremoipCheckCusparData(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CremoipCheckPhoneData(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CremoipCheckAddressData(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CremoipCheckAdd(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CremoipCheckAddressBR(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CremoipCheckPhoneBR(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CremoipCheckBirthdate(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CremoipCheckSetupar(checkerOption);
 		queue.add(checker);
 		

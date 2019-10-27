@@ -3,14 +3,14 @@ package br.com.mind5.payment.partnerMoip.creditCardMoip.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
 
-public final class CremoipCheckPhoneData extends ModelCheckerTemplateSimple_<CremoipInfo> {
+public final class CremoipCheckPhoneData extends ModelCheckerTemplateSimpleV2<CremoipInfo> {
 
-	public CremoipCheckPhoneData() {
-		super();
+	public CremoipCheckPhoneData(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -31,13 +31,7 @@ public final class CremoipCheckPhoneData extends ModelCheckerTemplateSimple_<Cre
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.CREDIT_CARD_MOIP_PHONE_MISSING;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.CREDIT_CARD_MOIP_PHONE_MISSING;
 	}
 }

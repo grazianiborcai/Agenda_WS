@@ -556,6 +556,7 @@ public final class SystemCode {
 	public static final int CREDIT_CARD_PAYPAR_NOT_MOIP					= 4206;
 	public static final int CREDIT_CARD_MOIP_CREATION_ERROR				= 4207;
 	public static final int CREDIT_CARD_MOIP_DELETION_ERROR				= 4208;
+	public static final int CREDIT_CARD_MOIP_MISSING_BIRTHDATE			= 4209;
 	
 	// System Pay Partner
 	public static final int SYS_PAY_PARTNER_MANDATORY_FIELD_EMPTY		= 4250;
