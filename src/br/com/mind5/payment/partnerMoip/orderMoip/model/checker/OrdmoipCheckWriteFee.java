@@ -4,14 +4,14 @@ import java.sql.Connection;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class OrdmoipCheckWriteFee extends ModelCheckerTemplateSimple_<OrdmoipInfo> {
+public final class OrdmoipCheckWriteFee extends ModelCheckerTemplateSimpleV2<OrdmoipInfo> {
 
-	public OrdmoipCheckWriteFee() {
-		super();
+	public OrdmoipCheckWriteFee(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -30,13 +30,7 @@ public final class OrdmoipCheckWriteFee extends ModelCheckerTemplateSimple_<Ordm
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ORDER_MOIP_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.ORDER_MOIP_MANDATORY_FIELD_EMPTY;
 	}
 }

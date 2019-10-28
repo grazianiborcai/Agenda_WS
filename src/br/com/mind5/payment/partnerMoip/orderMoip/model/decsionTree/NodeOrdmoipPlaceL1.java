@@ -21,20 +21,22 @@ public final class NodeOrdmoipPlaceL1 extends DeciTreeWriteTemplate<OrdmoipInfo>
 	
 	
 	
-	@Override protected ModelChecker<OrdmoipInfo> buildDecisionCheckerHook(DeciTreeOption<OrdmoipInfo> option) {		
-		final boolean IS_FEE = true;
-		
+	@Override protected ModelChecker<OrdmoipInfo> buildDecisionCheckerHook(DeciTreeOption<OrdmoipInfo> option) {	
 		List<ModelChecker<OrdmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdmoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new OrdmoipCheckCusparData();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new OrdmoipCheckCusparData(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = IS_FEE;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new OrdmoipCheckIsFee(checkerOption);
 		queue.add(checker);
 
