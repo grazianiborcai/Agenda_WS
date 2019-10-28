@@ -21,8 +21,6 @@ public final class NodePeresmoipInsertL1 extends DeciTreeWriteTemplate<Peresmoip
 	
 	
 	@Override protected ModelChecker<PeresmoipInfo> buildDecisionCheckerHook(DeciTreeOption<PeresmoipInfo> option) {
-		final boolean DONT_EXIST = false;
-		
 		List<ModelChecker<PeresmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<PeresmoipInfo> checker;	
 		ModelCheckerOption checkerOption;
@@ -30,7 +28,7 @@ public final class NodePeresmoipInsertL1 extends DeciTreeWriteTemplate<Peresmoip
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
 		checker = new PeresmoipCheckStopar(checkerOption);
 		queue.add(checker);
 		

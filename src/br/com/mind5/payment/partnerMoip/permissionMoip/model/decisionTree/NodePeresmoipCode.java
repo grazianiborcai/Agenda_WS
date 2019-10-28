@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -28,9 +29,14 @@ public final class NodePeresmoipCode extends DeciTreeWriteTemplate<PeresmoipInfo
 	
 	@Override protected ModelChecker<PeresmoipInfo> buildDecisionCheckerHook(DeciTreeOption<PeresmoipInfo> option) {
 		List<ModelChecker<PeresmoipInfo>> queue = new ArrayList<>();		
-		ModelChecker<PeresmoipInfo> checker;	
+		ModelChecker<PeresmoipInfo> checker;			
+		ModelCheckerOption checkerOption;
 		
-		checker = new PeresmoipCheckIsExpected();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PeresmoipCheckIsExpected(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

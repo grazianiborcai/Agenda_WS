@@ -6,14 +6,15 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class PeresmoipDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_OWNER = "cod_owner";	
-	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_IS_EXPECTED = "is_expected";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_USERNAME = "username";
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_IS_EXPECTED = DaoDbField.COL_IS_EXPECTED;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_USERNAME = DaoDbField.COL_USERNAME;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;

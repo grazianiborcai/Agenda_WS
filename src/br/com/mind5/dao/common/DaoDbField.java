@@ -115,6 +115,7 @@ public final class DaoDbField {
 	public static final String COL_ID_REFUND_PARTNER = "id_refund_partner";
 	public static final String COL_IMG_FILE_PATH = "file_img_path";
 	public static final String COL_IS_COVER = "is_cover";
+	public static final String COL_IS_EXPECTED = "is_expected";
 	public static final String COL_IS_SYSTEM_RECEIVER = "is_system_receiver";
 	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";
 	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";

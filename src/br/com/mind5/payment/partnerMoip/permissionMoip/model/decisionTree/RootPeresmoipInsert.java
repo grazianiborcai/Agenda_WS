@@ -30,40 +30,42 @@ public final class RootPeresmoipInsert extends DeciTreeWriteTemplate<PeresmoipIn
 	
 	
 	@Override protected ModelChecker<PeresmoipInfo> buildDecisionCheckerHook(DeciTreeOption<PeresmoipInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<PeresmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<PeresmoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new PeresmoipCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PeresmoipCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PeresmoipCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PeresmoipCheckLangu(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PeresmoipCheckStore(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PeresmoipCheckUsername(checkerOption);
 		queue.add(checker);
 		

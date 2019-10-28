@@ -3,14 +3,14 @@ package br.com.mind5.payment.partnerMoip.permissionMoip.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
-public final class PeresmoipCheckCode extends ModelCheckerTemplateSimple_<PeresmoipInfo> {
+public final class PeresmoipCheckCode extends ModelCheckerTemplateSimpleV2<PeresmoipInfo> {
 
-	public PeresmoipCheckCode() {
-		super();
+	public PeresmoipCheckCode(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -29,13 +29,7 @@ public final class PeresmoipCheckCode extends ModelCheckerTemplateSimple_<Peresm
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MOIP_PERM_RESP_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.MOIP_PERM_RESP_MANDATORY_FIELD_EMPTY;
 	}
 }

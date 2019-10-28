@@ -3,7 +3,6 @@ package br.com.mind5.payment.partnerMoip.permissionMoip.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
@@ -78,16 +77,8 @@ public final class PeresmoipInsertSingle implements DaoStmt<PeresmoipInfo> {
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
-			
-			
-			if (DaoFormatter.boxNumber(recordInfo.codStore) == null) {
-				stmt.setNull(i++, Types.INTEGER);
-			} else {
-				stmt.setLong(i++, recordInfo.codStore);
-			}
-			
-			
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt.setBoolean(i++, recordInfo.isExpected);
 			stmt.setString(i++, recordInfo.username);
 			

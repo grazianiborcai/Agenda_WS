@@ -56,9 +56,10 @@ public final class NodeOrdmoipPlaceFee extends DeciTreeWriteTemplate<OrdmoipInfo
 	
 	
 	
-	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {		
+		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-	ActionStd<OrdmoipInfo> enforceFeeTxt = new StdOrdmoipEnforceFeeTxt(option);	
+		ActionStd<OrdmoipInfo> enforceFeeTxt = new StdOrdmoipEnforceFeeTxt(option);	
 		ActionLazy<OrdmoipInfo> nodeCreateL2 = new LazyOrdmoipNodePlaceL2(option.conn, option.schemaName);
 		
 		
