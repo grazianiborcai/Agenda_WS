@@ -28,8 +28,6 @@ public final class NodeTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipIn
 	
 	
 	@Override protected ModelChecker<TokemoipInfo> buildDecisionCheckerHook(DeciTreeOption<TokemoipInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<TokemoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<TokemoipInfo> checker;	
 		ModelCheckerOption checkerOption;
@@ -37,14 +35,14 @@ public final class NodeTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipIn
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new TokemoipCheckSetupar(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new TokemoipCheckSyspar(checkerOption);
 		queue.add(checker);
 

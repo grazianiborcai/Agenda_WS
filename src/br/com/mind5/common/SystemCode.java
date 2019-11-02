@@ -794,4 +794,7 @@ public final class SystemCode {
 	
 	// Schedule Outlier
 	public static final int SCHEDULE_OUTLIER_MANDATORY_FIELD_EMPTY		= 7050;
+	
+	// Token Moip
+	public static final int TOKEN_MOIP_MANDATORY_FIELD_EMPTY			= 7100;
 }

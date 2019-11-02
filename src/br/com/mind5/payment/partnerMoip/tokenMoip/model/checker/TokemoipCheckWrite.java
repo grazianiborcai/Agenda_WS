@@ -3,14 +3,14 @@ package br.com.mind5.payment.partnerMoip.tokenMoip.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.partnerMoip.tokenMoip.info.TokemoipInfo;
 
-public final class TokemoipCheckWrite extends ModelCheckerTemplateSimple_<TokemoipInfo> {
+public final class TokemoipCheckWrite extends ModelCheckerTemplateSimpleV2<TokemoipInfo> {
 
-	public TokemoipCheckWrite() {
-		super();
+	public TokemoipCheckWrite(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -30,13 +30,7 @@ public final class TokemoipCheckWrite extends ModelCheckerTemplateSimple_<Tokemo
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ACCESS_MOIP_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.ACCESS_MOIP_MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.TOKEN_MOIP_MANDATORY_FIELD_EMPTY;
 	}
 }
