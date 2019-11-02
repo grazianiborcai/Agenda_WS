@@ -16,9 +16,9 @@ import br.com.mind5.payment.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnf
 import br.com.mind5.payment.partnerMoip.multiPayMoip.model.action.LazyPaymoipMergeSetupar;
 import br.com.mind5.payment.partnerMoip.multiPayMoip.model.action.LazyPaymoipRead;
 import br.com.mind5.payment.partnerMoip.multiPayMoip.model.action.StdPaymoipMergeSysEnviron;
-import br.com.mind5.payment.partnerMoip.multiPayMoip.model.check.PaymoipCheckCuspar;
-import br.com.mind5.payment.partnerMoip.multiPayMoip.model.check.PaymoipCheckCusparData;
-import br.com.mind5.payment.partnerMoip.multiPayMoip.model.check.PaymoipCheckRead;
+import br.com.mind5.payment.partnerMoip.multiPayMoip.model.checker.PaymoipCheckCuspar;
+import br.com.mind5.payment.partnerMoip.multiPayMoip.model.checker.PaymoipCheckCusparData;
+import br.com.mind5.payment.partnerMoip.multiPayMoip.model.checker.PaymoipCheckRead;
 
 public final class RootPaymoipRead extends DeciTreeWriteTemplate<PaymoipInfo> {
 	

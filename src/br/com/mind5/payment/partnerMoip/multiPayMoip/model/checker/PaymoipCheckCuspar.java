@@ -1,4 +1,4 @@
-package br.com.mind5.payment.partnerMoip.multiPayMoip.model.check;
+package br.com.mind5.payment.partnerMoip.multiPayMoip.model.checker;
 
 import java.util.List;
 
