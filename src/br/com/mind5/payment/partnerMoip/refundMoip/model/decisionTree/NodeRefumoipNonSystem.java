@@ -25,20 +25,22 @@ public final class NodeRefumoipNonSystem extends DeciTreeWriteTemplate<RefumoipI
 	
 	
 	
-	@Override protected ModelChecker<RefumoipInfo> buildDecisionCheckerHook(DeciTreeOption<RefumoipInfo> option) {		
-		final boolean EXIST_ON_DB = true;
-		
+	@Override protected ModelChecker<RefumoipInfo> buildDecisionCheckerHook(DeciTreeOption<RefumoipInfo> option) {			
 		List<ModelChecker<RefumoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<RefumoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new RefumoipCheckNonSystem();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new RefumoipCheckNonSystem(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new RefumoipCheckStore(checkerOption);
 		queue.add(checker);
 		

@@ -26,22 +26,28 @@ public final class RootRefumoipRefund extends DeciTreeWriteTemplate<RefumoipInfo
 	
 	
 	@Override protected ModelChecker<RefumoipInfo> buildDecisionCheckerHook(DeciTreeOption<RefumoipInfo> option) {		
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<RefumoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<RefumoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new RefumoipCheckRefund();
-		queue.add(checker);
-		
-		checker = new RefumoipCheckCusparData();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new RefumoipCheckRefund(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new RefumoipCheckCusparData(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new RefumoipCheckCuspar(checkerOption);
 		queue.add(checker);
 		//TODO: verificar partner = MOIP

@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -26,8 +27,13 @@ public final class NodeRefumoipSystem extends DeciTreeWriteTemplate<RefumoipInfo
 	@Override protected ModelChecker<RefumoipInfo> buildDecisionCheckerHook(DeciTreeOption<RefumoipInfo> option) {			
 		List<ModelChecker<RefumoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<RefumoipInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new RefumoipCheckSystemReceiver();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new RefumoipCheckSystemReceiver(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
