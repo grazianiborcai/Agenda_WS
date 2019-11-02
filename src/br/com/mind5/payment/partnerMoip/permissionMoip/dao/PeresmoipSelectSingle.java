@@ -3,10 +3,10 @@ package br.com.mind5.payment.partnerMoip.permissionMoip.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
@@ -114,10 +114,7 @@ public final class PeresmoipSelectSingle implements DaoStmt<PeresmoipInfo> {
 				dataInfo.codStore = stmtResult.getLong(PeresmoipDbTableColumn.COL_COD_STORE);
 				dataInfo.isExpected = stmtResult.getBoolean(PeresmoipDbTableColumn.COL_IS_EXPECTED);
 				dataInfo.username = stmtResult.getString(PeresmoipDbTableColumn.COL_USERNAME);
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(PeresmoipDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PeresmoipDbTableColumn.COL_LAST_CHANGED);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
