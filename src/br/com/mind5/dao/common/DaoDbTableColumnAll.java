@@ -99,7 +99,7 @@ import br.com.mind5.payment.storePartnerSnapshot.dao.StoparnapDbTableColumn;
 import br.com.mind5.payment.systemPartner.dao.SysparDbTableColumn;
 import br.com.mind5.security.storeAuthorization.dao.StorauthDbTableColumn;
 import br.com.mind5.security.user.dao.UserDbTableColumn;
-import br.com.mind5.security.userList.dao.UselistDbTableColumn;
+import br.com.mind5.security.userList.dao.UselisDbTableColumn;
 import br.com.mind5.security.userPassword.dao.UpswdDbTableColumn;
 import br.com.mind5.security.userSnapshot.dao.UserapDbTableColumn;
 import br.com.mind5.security.username.dao.UsernameDbTableColumn;
@@ -189,7 +189,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CompnapDbTableColumn());
 		addTable(new CusnapDbTableColumn());
 		addTable(new CuslisDbTableColumn());
-		addTable(new UselistDbTableColumn());
+		addTable(new UselisDbTableColumn());
 		addTable(new SchedinapDbTableColumn());
 		addTable(new OrdarchDbTableColumn());
 		addTable(new OrdistDbTableColumn());

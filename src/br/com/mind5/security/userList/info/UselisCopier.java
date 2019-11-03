@@ -4,11 +4,26 @@ package br.com.mind5.security.userList.info;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
+import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.info.InfoCopier;
 
 public final class UselisCopier {
+	public static UselisInfo copyFromEmpnap(EmpnapInfo source) {
+		InfoCopier<UselisInfo, EmpnapInfo> copier = new UselisCopyEmpnap();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UselisInfo> copyFromEmpnap(List<EmpnapInfo> sources) {
+		InfoCopier<UselisInfo, EmpnapInfo> copier = new UselisCopyEmpnap();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UselisInfo copyFromPhonap(PhonapInfo source) {
 		InfoCopier<UselisInfo, PhonapInfo> copier = new UselisCopyPhonap();
 		return copier.makeCopy(source);

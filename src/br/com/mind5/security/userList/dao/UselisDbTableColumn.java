@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class UselistDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class UselisDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_AUTH_GROUP = DaoDbField.COL_COD_AUTH_GROUP;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;
@@ -24,8 +24,8 @@ public final class UselistDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	
-	public UselistDbTableColumn() {
-		super(UselistDbTableColumn.class);
+	public UselisDbTableColumn() {
+		super(UselisDbTableColumn.class);
 	}
 	
 	
