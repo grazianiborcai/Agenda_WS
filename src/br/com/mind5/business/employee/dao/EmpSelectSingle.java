@@ -116,7 +116,6 @@ public final class EmpSelectSingle implements DaoStmt<EmpInfo> {
 				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, EmpDbTableColumn.COL_COD_SNAPSHOT);
 				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, EmpDbTableColumn.COL_COD_USER);
 				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, EmpDbTableColumn.COL_COD_PERSON);
-				dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, EmpDbTableColumn.COL_COD_PERSON_SNAPSHOT);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpDbTableColumn.COL_LAST_CHANGED);
 				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmpDbTableColumn.COL_LAST_CHANGED_BY);				
 				
