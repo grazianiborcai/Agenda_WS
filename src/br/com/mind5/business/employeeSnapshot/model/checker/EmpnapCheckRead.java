@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmpnapCheckRead extends ModelCheckerTemplateSimple_<EmpnapInfo> {
+public final class EmpnapCheckRead extends ModelCheckerTemplateSimpleV2<EmpnapInfo> {
 
-	public EmpnapCheckRead() {
-		super();
+	public EmpnapCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -27,13 +27,7 @@ public final class EmpnapCheckRead extends ModelCheckerTemplateSimple_<EmpnapInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.EMP_SNAP_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.EMP_SNAP_MANDATORY_FIELD_EMPTY;
 	}
 }

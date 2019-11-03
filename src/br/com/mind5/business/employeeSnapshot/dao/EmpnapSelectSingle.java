@@ -3,11 +3,11 @@ package br.com.mind5.business.employeeSnapshot.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
@@ -51,7 +51,7 @@ public final class EmpnapSelectSingle implements DaoStmt<EmpnapInfo> {
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new EmpnapWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
@@ -100,7 +100,6 @@ public final class EmpnapSelectSingle implements DaoStmt<EmpnapInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<EmpnapInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<EmpnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -115,32 +114,12 @@ public final class EmpnapSelectSingle implements DaoStmt<EmpnapInfo> {
 				dataInfo.codSnapshot = stmtResult.getLong(EmpnapDbTableColumn.COL_COD_SNAPSHOT);
 				dataInfo.codEmployee = stmtResult.getLong(EmpnapDbTableColumn.COL_COD_EMPLOYEE);
 				dataInfo.recordMode = stmtResult.getString(EmpnapDbTableColumn.COL_RECORD_MODE);	
-				
-				
-				stmtResult.getLong(EmpnapDbTableColumn.COL_COD_USER);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUser = stmtResult.getLong(EmpnapDbTableColumn.COL_COD_USER);
-				
-				
-				stmtResult.getLong(EmpnapDbTableColumn.COL_COD_PERSON);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPerson = stmtResult.getLong(EmpnapDbTableColumn.COL_COD_PERSON);
-				
-				
-				stmtResult.getLong(EmpnapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPersonSnapshot = stmtResult.getLong(EmpnapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
-				
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(EmpnapDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
-				
-				
-				stmtResult.getLong(EmpnapDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(EmpnapDbTableColumn.COL_LAST_CHANGED_BY);
-				
+				dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, EmpnapDbTableColumn.COL_COD_USER);
+				dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, EmpnapDbTableColumn.COL_COD_USER_SNAPSHOT);
+				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, EmpnapDbTableColumn.COL_COD_PERSON);
+				dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, EmpnapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpnapDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmpnapDbTableColumn.COL_LAST_CHANGED_BY);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

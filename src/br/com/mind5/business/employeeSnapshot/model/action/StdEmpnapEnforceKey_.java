@@ -7,11 +7,11 @@ import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpnapEnforceKey implements ActionStd<EmpnapInfo> {
+public final class StdEmpnapEnforceKey_ implements ActionStd<EmpnapInfo> {
 	private ActionStd<EmpnapInfo> actionHelper;	
 	
 	
-	public StdEmpnapEnforceKey(DeciTreeOption<EmpnapInfo> option) {			
+	public StdEmpnapEnforceKey_(DeciTreeOption<EmpnapInfo> option) {			
 		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiEmpnapEnforceKey());
 	}
 	

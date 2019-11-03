@@ -17,6 +17,7 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 	public long codPerson;
 	public long codPersonSnapshot;
 	public long codUser;
+	public long codUserSnapshot;
 	public String codEntityCateg;
 	public char codUserCategory;
 	public String codAuthGroup;	
@@ -38,6 +39,7 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		codPersonSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
+		codUserSnapshot = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
 		recordMode = DefaultValue.recordMode();
 		personapData = DefaultValue.object();

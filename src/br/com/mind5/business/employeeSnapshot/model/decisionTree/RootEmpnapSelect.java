@@ -9,6 +9,7 @@ import br.com.mind5.business.employeeSnapshot.model.action.LazyEmpnapMergePerson
 import br.com.mind5.business.employeeSnapshot.model.action.LazyEmpnapMergePhonap;
 import br.com.mind5.business.employeeSnapshot.model.action.StdEmpnapMergeToSelect;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckLangu;
+import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckOwner;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -27,20 +28,29 @@ public final class RootEmpnapSelect extends DeciTreeReadTemplate<EmpnapInfo> {
 	
 	
 	@Override protected ModelChecker<EmpnapInfo> buildDecisionCheckerHook(DeciTreeOption<EmpnapInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<EmpnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpnapInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
-		checker = new EmpnapCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new EmpnapCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpnapCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmpnapCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
