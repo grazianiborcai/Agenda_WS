@@ -107,4 +107,18 @@ public final class AddresnapMerger {
 		InfoMerger<AddresnapInfo, StateInfo> merger = new AddresnapMergerState();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static AddresnapInfo mergeToSelect(AddresnapInfo sourceOne, AddresnapInfo sourceTwo) {
+		InfoMerger<AddresnapInfo, AddresnapInfo> merger = new AddresnapMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<AddresnapInfo> mergeToSelect(List<AddresnapInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
+		InfoMerger<AddresnapInfo, AddresnapInfo> merger = new AddresnapMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

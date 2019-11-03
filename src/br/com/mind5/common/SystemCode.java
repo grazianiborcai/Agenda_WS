@@ -347,6 +347,8 @@ public final class SystemCode {
 	public static final int ADDRESS_SNAPSHOT_IS_FILLED 					= 2001;	
 	public static final int ADDRESS_SNAPSHOT_NOT_FOUND					= 2002;
 	public static final int ADDRESS_SNAPSHOT_ALREADY_EXIST				= 2003;
+	public static final int ADDRESS_SNAPSHOT_HAS_STATE					= 2004;
+	public static final int ADDRESS_SNAPSHOT_HAS_NO_STATE				= 2005;
 	
 	// Phone Snapshot
 	public static final int PHONE_SNAPSHOT_IS_NULL 						= 2050;	

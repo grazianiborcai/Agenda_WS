@@ -92,8 +92,8 @@ public final class AddresnapInsertSingle implements DaoStmt<AddresnapInfo> {
 			stmt.setString(i++, recordInfo.streetNumber);
 			stmt.setString(i++, recordInfo.complement);
 			stmt.setString(i++, recordInfo.postalCode);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.latitude);	
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.longitude);	
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.latitude);	
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.longitude);	
 			stmt.setString(i++, recordInfo.line1);
 			stmt.setString(i++, recordInfo.line2);
 			stmt.setString(i++, recordInfo.line3);
@@ -102,17 +102,17 @@ public final class AddresnapInsertSingle implements DaoStmt<AddresnapInfo> {
 			stmt.setString(i++, recordInfo.line6);
 			stmt.setString(i++, recordInfo.line7);
 			stmt.setString(i++, recordInfo.recordMode);
-			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);	
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);	
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRef);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployeeSnapshot);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStoreSnapshot);	
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRefSnapshot);	
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
-			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);	
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);	
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRef);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployeeSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStoreSnapshot);	
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRefSnapshot);	
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
 
 			return stmt;
 		}		
