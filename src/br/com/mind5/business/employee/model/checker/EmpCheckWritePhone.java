@@ -5,53 +5,47 @@ import java.sql.Connection;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmpCheckWritePhone extends ModelCheckerTemplateSimple_<EmpInfo> {
+public final class EmpCheckWritePhone extends ModelCheckerTemplateSimpleV2<EmpInfo> {
 
-	public EmpCheckWritePhone() {
-		super();
+	public EmpCheckWritePhone(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.phones == null)
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		if (recordInfo.phones.isEmpty())
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		for (PhoneInfo eachPhone : recordInfo.phones) {
-			if (checkPhone(eachPhone) == FAILED)
-				return FAILED;
+			if (checkPhone(eachPhone) == super.FAILED)
+				return super.FAILED;
 		}
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	private boolean checkPhone(PhoneInfo phone) {
 		if (phone.codPhone <= 0)
-			return SUCCESS;
+			return super.SUCCESS;
 		
-		return FAILED;
+		return super.FAILED;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PHONE_COD_IS_FILLED;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.PHONE_COD_IS_FILLED;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.EMP_PHONE_NUMBER_IS_NULL;
 	}
 }

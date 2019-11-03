@@ -36,6 +36,17 @@ public final class SystemCode {
 	public static final int EMP_SINGLE_ENTRY_FOUND						= 1054;
 	public static final int EMP_CPF_ALREADY_EXIST						= 1055;
 	public static final int EMP_CPF_NOT_FOUND							= 1056;	
+	public static final int EMP_MANDATORY_FIELD_EMPTY					= 1057;
+	public static final int EMP_ADDRESS_IS_NULL							= 1058;
+	public static final int EMP_ADDRESS_IS_FILLED						= 1059;
+	public static final int EMP_PERSON_IS_NULL							= 1060;
+	public static final int EMP_PERSON_IS_FILLED						= 1061;
+	public static final int EMP_PHONE_IS_NULL							= 1062;
+	public static final int EMP_PHONE_IS_FILLED							= 1063;
+	public static final int EMP_USER_IS_NULL							= 1064;
+	public static final int EMP_USER_IS_FILLED							= 1065;
+	public static final int EMP_ADDRESS_NUMBER_IS_NULL					= 1066;
+	public static final int EMP_PHONE_NUMBER_IS_NULL					= 1067;
 	
 	// Store
 	public static final int STORE_CNPJ_ALREADY_EXIST					= 1100;

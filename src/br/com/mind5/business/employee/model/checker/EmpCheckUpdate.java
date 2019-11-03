@@ -7,16 +7,19 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmpCheckHasPerson extends ModelCheckerTemplateSimpleV2<EmpInfo> {
+public final class EmpCheckUpdate extends ModelCheckerTemplateSimpleV2<EmpInfo> {
 	
-	public EmpCheckHasPerson(ModelCheckerOption option) {
+	public EmpCheckUpdate(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.personData == null)			
+		if ( recordInfo.codOwner 	>= 0	|| 
+			 recordInfo.codEmployee	>= 0	||
+			 recordInfo.codLanguage == null	||
+			 recordInfo.username 	== null		)			
 			return super.FAILED;		
 		
 		return super.SUCCESS;
@@ -24,13 +27,7 @@ public final class EmpCheckHasPerson extends ModelCheckerTemplateSimpleV2<EmpInf
 	
 	
 	
-	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.EMP_PERSON_IS_FILLED;
-	}
-	
-	
-	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.EMP_PERSON_IS_NULL;
-	}	
+		return SystemCode.EMP_MANDATORY_FIELD_EMPTY;
+	}
 }

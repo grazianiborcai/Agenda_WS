@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.LazyEmpInsertEmpnap;
-import br.com.mind5.business.employee.model.action.LazyEmpUpdate;
 import br.com.mind5.business.employee.model.action.LazyEmpUpdatePerson;
 import br.com.mind5.business.employee.model.action.StdEmpEnforcePersonKey;
 import br.com.mind5.business.employee.model.action.StdEmpSuccess;
@@ -27,8 +25,6 @@ public final class NodeEmpUpdatePerson extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	@Override protected ModelChecker<EmpInfo> buildDecisionCheckerHook(DeciTreeOption<EmpInfo> option) {
-		final boolean HAS_PERSON = true;
-		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -36,7 +32,7 @@ public final class NodeEmpUpdatePerson extends DeciTreeWriteTemplate<EmpInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_PERSON;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new EmpCheckHasPerson(checkerOption);
 		queue.add(checker);
 		
@@ -50,12 +46,8 @@ public final class NodeEmpUpdatePerson extends DeciTreeWriteTemplate<EmpInfo> {
 		
 		ActionStd<EmpInfo> enforcePersonKey = new StdEmpEnforcePersonKey(option);
 		ActionLazy<EmpInfo> updatePerson = new LazyEmpUpdatePerson(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> insertEmpnap = new LazyEmpInsertEmpnap(option.conn, option.schemaName);	
-		ActionLazy<EmpInfo> updateEnployee = new LazyEmpUpdate(option.conn, option.schemaName);	
 		
 		enforcePersonKey.addPostAction(updatePerson);
-		updatePerson.addPostAction(insertEmpnap);
-		insertEmpnap.addPostAction(updateEnployee);
 		
 		actions.add(enforcePersonKey);
 		return actions;

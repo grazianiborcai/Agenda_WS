@@ -5,53 +5,47 @@ import java.sql.Connection;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmpCheckWriteAddress extends ModelCheckerTemplateSimple_<EmpInfo> {
+public final class EmpCheckWriteAddress extends ModelCheckerTemplateSimpleV2<EmpInfo> {
 
-	public EmpCheckWriteAddress() {
-		super();
+	public EmpCheckWriteAddress(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.addresses == null)
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		if (recordInfo.addresses.isEmpty())
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		for (AddressInfo eachAddress : recordInfo.addresses) {
-			if (checkAddress(eachAddress) == FAILED)
-				return FAILED;
+			if (checkAddress(eachAddress) == super.FAILED)
+				return super.FAILED;
 		}
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
 	private boolean checkAddress(AddressInfo address) {
 		if (address.codAddress <= 0)
-			return SUCCESS;
+			return super.SUCCESS;
 		
-		return FAILED;
+		return super.FAILED;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ADDRESS_COD_IS_FILLED;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.ADDRESS_COD_IS_FILLED;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.EMP_ADDRESS_NUMBER_IS_NULL;
 	}
 }

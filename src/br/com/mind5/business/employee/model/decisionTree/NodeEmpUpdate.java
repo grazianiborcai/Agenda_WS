@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.LazyEmpEnforceEntityCateg;
-import br.com.mind5.business.employee.model.action.LazyEmpKeepEmp;
+import br.com.mind5.business.employee.model.action.LazyEmpEnforceLChanged;
 import br.com.mind5.business.employee.model.action.LazyEmpMergeUsername;
 import br.com.mind5.business.employee.model.action.LazyEmpUpdate;
-import br.com.mind5.business.employee.model.action.StdEmpEnforceLChanged;
-import br.com.mind5.business.employee.model.checker.EmpCheckWrite;
+import br.com.mind5.business.employee.model.action.StdEmpMergeToUpdate;
+import br.com.mind5.business.employee.model.checker.EmpCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -28,8 +27,8 @@ public final class NodeEmpUpdate extends DeciTreeWriteTemplate<EmpInfo> {
 	@Override protected ModelChecker<EmpInfo> buildDecisionCheckerHook(DeciTreeOption<EmpInfo> option) {		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;		
-		
-		checker = new EmpCheckWrite();
+
+		checker = new EmpCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -40,18 +39,16 @@ public final class NodeEmpUpdate extends DeciTreeWriteTemplate<EmpInfo> {
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmpInfo> enforceLChanged = new StdEmpEnforceLChanged(option);
+		ActionStd<EmpInfo> mergeToUpdate = new StdEmpMergeToUpdate(option);
+		ActionLazy<EmpInfo> enforceLChanged = new LazyEmpEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> enforceEntityCateg = new LazyEmpEnforceEntityCateg(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> keepEmployee = new LazyEmpKeepEmp(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> updateEmployee = new LazyEmpUpdate(option.conn, option.schemaName);
 		
+		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(enforceEntityCateg);
-		enforceEntityCateg.addPostAction(keepEmployee);
-		keepEmployee.addPostAction(updateEmployee);	
+		enforceLChangedBy.addPostAction(updateEmployee);	
 		
-		actions.add(enforceLChanged);
+		actions.add(mergeToUpdate);
 		return actions;
 	}
 }

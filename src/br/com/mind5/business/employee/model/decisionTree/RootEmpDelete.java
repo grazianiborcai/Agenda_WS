@@ -35,26 +35,28 @@ public final class RootEmpDelete extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	@Override protected ModelChecker<EmpInfo> buildDecisionCheckerHook(DeciTreeOption<EmpInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new EmpCheckDelete();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new EmpCheckDelete(checkerOption);
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpCheckLangu(checkerOption);
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpCheckExist(checkerOption);
 		queue.add(checker);	
 		

@@ -5,15 +5,14 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertPerson;
-import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertSnapshot;
+import br.com.mind5.business.employee.model.action.LazyEmpNodeSnapshot;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertUser;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeUpsertAddress;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeUpsertPhone;
 import br.com.mind5.business.employee.model.action.LazyEmpRootSelect;
-import br.com.mind5.business.employee.model.checker.EmpCheckGenField;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
-import br.com.mind5.business.employee.model.checker.EmpCheckWrite;
+import br.com.mind5.business.employee.model.checker.EmpCheckInsert;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -31,29 +30,28 @@ public final class RootEmpInsert extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	@Override protected ModelChecker<EmpInfo> buildDecisionCheckerHook(DeciTreeOption<EmpInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new EmpCheckWrite();
-		queue.add(checker);
-		
-		checker = new EmpCheckGenField();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new EmpCheckInsert(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpCheckLangu(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpCheckOwner(checkerOption);
 		queue.add(checker);	
 		
@@ -68,7 +66,7 @@ public final class RootEmpInsert extends DeciTreeWriteTemplate<EmpInfo> {
 		ActionStd<EmpInfo> insertEmployee = new NodeEmpInsert(option).toAction();	
 		ActionLazy<EmpInfo> insertPerson = new LazyEmpNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazy<EmpInfo> insertUser = new LazyEmpNodeInsertUser(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> snapshot = new LazyEmpNodeInsertSnapshot(option.conn, option.schemaName);	
+		ActionLazy<EmpInfo> snapshot = new LazyEmpNodeSnapshot(option.conn, option.schemaName);	
 		ActionLazy<EmpInfo> upsertAddress = new LazyEmpNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> upsertPhone = new LazyEmpNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionLazy<EmpInfo> select = new LazyEmpRootSelect(option.conn, option.schemaName);	

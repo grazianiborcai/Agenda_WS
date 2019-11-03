@@ -120,4 +120,18 @@ public final class EmpMerger {
 		InfoMerger<EmpInfo, EmpInfo> merger = new EmpMergerToSelect();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static EmpInfo mergeToUpdate(EmpInfo sourceOne, EmpInfo sourceTwo) {
+		InfoMerger<EmpInfo, EmpInfo> merger = new EmpMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<EmpInfo> mergeToUpdate(List<EmpInfo> sourceOnes, List<EmpInfo> sourceTwos) {
+		InfoMerger<EmpInfo, EmpInfo> merger = new EmpMergerToUpdate();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

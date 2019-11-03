@@ -1,7 +1,6 @@
 package br.com.mind5.business.employee.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
@@ -11,7 +10,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserInsert;
+import br.com.mind5.security.user.model.decisionTree.RootUserInsertEmp;
 
 final class VisiEmpInsertUser extends ActionVisitorTemplateAction<EmpInfo, UserInfo> {
 	public VisiEmpInsertUser(Connection conn, String schemaName) {
@@ -21,19 +20,13 @@ final class VisiEmpInsertUser extends ActionVisitorTemplateAction<EmpInfo, UserI
 	
 	
 	@Override protected List<UserInfo> toActionClassHook(List<EmpInfo> recordInfos) {
-		List<UserInfo> results = new ArrayList<>();
-		
-		for (EmpInfo eachRecord : recordInfos) {
-			results.add(UserCopier.copyFromEmp(eachRecord));
-		}		
-		
-		return results;
+		return UserCopier.copyFromEmp(recordInfos);
 	}
 	
 	
 	
 	@Override protected ActionStd<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
-		return new RootUserInsert(option).toAction();
+		return new RootUserInsertEmp(option).toAction();
 	}
 	
 	

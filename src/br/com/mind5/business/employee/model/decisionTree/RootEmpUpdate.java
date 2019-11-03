@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
+import br.com.mind5.business.employee.model.action.LazyEmpNodeSnapshot;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeUpdatePerson;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeUpsertAddress;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeUpsertPhone;
+import br.com.mind5.business.employee.model.action.LazyEmpRootSelect;
 import br.com.mind5.business.employee.model.checker.EmpCheckExist;
-import br.com.mind5.business.employee.model.checker.EmpCheckKey;
+import br.com.mind5.business.employee.model.checker.EmpCheckUpdate;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
-import br.com.mind5.business.employee.model.checker.EmpCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -29,39 +30,33 @@ public final class RootEmpUpdate extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	@Override protected ModelChecker<EmpInfo> buildDecisionCheckerHook(DeciTreeOption<EmpInfo> option) {
-		final boolean EXIST_ON_DB = true;			
-		final boolean KEY_NOT_NULL = true;	
-		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
-		ModelCheckerOption checkerOption;		
-		
-		checker = new EmpCheckWrite();
-		queue.add(checker);
+		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = KEY_NOT_NULL;
-		checker = new EmpCheckKey(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new EmpCheckUpdate(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpCheckLangu(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpCheckExist(checkerOption);
 		queue.add(checker);	
 		
@@ -74,17 +69,19 @@ public final class RootEmpUpdate extends DeciTreeWriteTemplate<EmpInfo> {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 
 		ActionStd<EmpInfo> updateEmployee = new NodeEmpUpdate(option).toAction();
+		ActionLazy<EmpInfo> snapshot = new LazyEmpNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> updatePerson = new LazyEmpNodeUpdatePerson(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> upsertAddress = new LazyEmpNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> upsertPhone = new LazyEmpNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionStd<EmpInfo> select = new RootEmpSelect(option).toAction();		
+		ActionLazy<EmpInfo> upsertPhone = new LazyEmpNodeUpsertPhone(option.conn, option.schemaName);				
+		ActionLazy<EmpInfo> select = new LazyEmpRootSelect(option.conn, option.schemaName);		
 		
-		updateEmployee.addPostAction(updatePerson);	
-		updatePerson.addPostAction(upsertAddress);		
-		updatePerson.addPostAction(upsertPhone);
+		updateEmployee.addPostAction(snapshot);	
+		snapshot.addPostAction(updatePerson);
+		snapshot.addPostAction(upsertAddress);		
+		snapshot.addPostAction(upsertPhone);
+		snapshot.addPostAction(select);
 		
 		actions.add(updateEmployee);
-		actions.add(select);
 		return actions;
 	}
 }

@@ -3,16 +3,16 @@ package br.com.mind5.business.employee.model.action;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
+import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpEnforceKey implements ActionStd<EmpInfo> {
+public final class StdEmpMergeToUpdate implements ActionStd<EmpInfo> {
 	private ActionStd<EmpInfo> actionHelper;	
 	
 	
-	public StdEmpEnforceKey(DeciTreeOption<EmpInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiEmpEnforceKey());
+	public StdEmpMergeToUpdate(DeciTreeOption<EmpInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpMergeToUpdate(option.conn, option.schemaName));
 	}
 	
 	

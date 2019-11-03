@@ -23,8 +23,6 @@ public final class NodeEmpDeletePhone extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	@Override protected ModelChecker<EmpInfo> buildDecisionCheckerHook(DeciTreeOption<EmpInfo> option) {
-		final boolean HAS_PHONE = true;
-		
 		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -32,7 +30,7 @@ public final class NodeEmpDeletePhone extends DeciTreeWriteTemplate<EmpInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_PHONE;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new EmpCheckHasPhone(checkerOption);
 		queue.add(checker);	
 		

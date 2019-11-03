@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.LazyEmpEnforceUserCateg;
-import br.com.mind5.business.employee.model.action.LazyEmpInsertUser;
 import br.com.mind5.business.employee.model.action.LazyEmpUpdate;
-import br.com.mind5.business.employee.model.action.StdEmpEnforceAuthGroup;
+import br.com.mind5.business.employee.model.action.StdEmpInsertUser;
 import br.com.mind5.business.employee.model.checker.EmpCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -39,16 +37,12 @@ public final class NodeEmpInsertUser extends DeciTreeWriteTemplate<EmpInfo> {
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpInfo> enforceAuthGroup = new StdEmpEnforceAuthGroup(option);
-		ActionLazy<EmpInfo> enforceUserCateg = new LazyEmpEnforceUserCateg(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> insertUser = new LazyEmpInsertUser(option.conn, option.schemaName);
+		ActionStd<EmpInfo> insertUser = new StdEmpInsertUser(option);
 		ActionLazy<EmpInfo> updateEmployee = new LazyEmpUpdate(option.conn, option.schemaName);
 		
-		enforceAuthGroup.addPostAction(enforceUserCateg);	
-		enforceUserCateg.addPostAction(insertUser);	
 		insertUser.addPostAction(updateEmployee);
 		
-		actions.add(enforceAuthGroup);	
+		actions.add(insertUser);	
 		return actions;
 	}
 }
