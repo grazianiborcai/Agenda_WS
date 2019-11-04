@@ -90,6 +90,8 @@ public final class EmpnapInsertSingle implements DaoStmt<EmpnapInfo> {
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPersonSnapshot);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 			
 			return stmt;
 		}		

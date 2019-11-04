@@ -25,6 +25,8 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 	public List<AddresnapInfo> addresnaps;
 	public List<PhonapInfo> phonaps;
 	public String recordMode;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
@@ -46,6 +48,7 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 		addresnaps = DefaultValue.list();
 		phonaps = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
+		createdBy = DefaultValue.number();
 	}
 	
 	
