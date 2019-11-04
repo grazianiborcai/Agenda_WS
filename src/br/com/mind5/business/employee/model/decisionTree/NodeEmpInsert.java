@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
+import br.com.mind5.business.employee.model.action.LazyEmpEnforceCreatedBy;
+import br.com.mind5.business.employee.model.action.LazyEmpEnforceCreatedOn;
 import br.com.mind5.business.employee.model.action.LazyEmpInsert;
 import br.com.mind5.business.employee.model.action.LazyEmpMergeUsername;
 import br.com.mind5.business.employee.model.action.StdEmpEnforceLChanged;
@@ -40,10 +42,14 @@ public final class NodeEmpInsert extends DeciTreeWriteTemplate<EmpInfo> {
 		
 		ActionStd<EmpInfo> enforceLChanged = new StdEmpEnforceLChanged(option);
 		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> enforceCreatedBy = new LazyEmpEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> enforceCreatedOn = new LazyEmpEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> insertEmployee = new LazyEmpInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(insertEmployee);
+		enforceLChangedBy.addPostAction(enforceCreatedBy);
+		enforceCreatedBy.addPostAction(enforceCreatedOn);
+		enforceCreatedOn.addPostAction(insertEmployee);
 		
 		actions.add(enforceLChanged);	
 		return actions;
