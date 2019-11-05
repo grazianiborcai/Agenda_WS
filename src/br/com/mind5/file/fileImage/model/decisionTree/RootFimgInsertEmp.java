@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.file.fileImage.model.action.LazyFimgRootInsert;
-import br.com.mind5.file.fileImage.model.action.StdFimgEnforceStore;
-import br.com.mind5.file.fileImage.model.checker.FimgCheckInsertStore;
-import br.com.mind5.file.fileImage.model.checker.FimgCheckLimitStore;
-import br.com.mind5.file.fileImage.model.checker.FimgCheckStorauth;
-import br.com.mind5.file.fileImage.model.checker.FimgCheckStore;
+import br.com.mind5.file.fileImage.model.action.LazyFimgNodeUpsertEmp;
+import br.com.mind5.file.fileImage.model.action.StdFimgEnforceEmp;
+import br.com.mind5.file.fileImage.model.checker.FimgCheckEmp;
+import br.com.mind5.file.fileImage.model.checker.FimgCheckInsertEmp;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -18,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootFimgInsertStore extends DeciTreeWriteTemplate<FimgInfo> {
+public final class RootFimgInsertEmp extends DeciTreeWriteTemplate<FimgInfo> {
 	
-	public RootFimgInsertStore(DeciTreeOption<FimgInfo> option) {
+	public RootFimgInsertEmp(DeciTreeOption<FimgInfo> option) {
 		super(option);
 	}
 	
@@ -35,28 +33,14 @@ public final class RootFimgInsertStore extends DeciTreeWriteTemplate<FimgInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgCheckInsertStore(checkerOption);
+		checker = new FimgCheckInsertEmp(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new FimgCheckStore(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgCheckStorauth(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgCheckLimitStore(checkerOption);
+		checker = new FimgCheckEmp(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -67,12 +51,12 @@ public final class RootFimgInsertStore extends DeciTreeWriteTemplate<FimgInfo> {
 	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
 		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> enforceStore = new StdFimgEnforceStore(option);	
-		ActionLazy<FimgInfo> insert = new LazyFimgRootInsert(option.conn, option.schemaName);
+		ActionStd<FimgInfo> enforceEmp = new StdFimgEnforceEmp(option);	
+		ActionLazy<FimgInfo> upsert = new LazyFimgNodeUpsertEmp(option.conn, option.schemaName);
 		
-		enforceStore.addPostAction(insert);
+		enforceEmp.addPostAction(upsert);
 		
-		actions.add(enforceStore);		
+		actions.add(enforceEmp);		
 		return actions;
 	}
 }

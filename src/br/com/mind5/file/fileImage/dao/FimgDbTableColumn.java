@@ -10,6 +10,7 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class FimgDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
 	public static final String COL_COD_FILE_IMG = DaoDbField.COL_COD_FILE_IMG;	
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
@@ -176,6 +177,14 @@ public final class FimgDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_IS_COVER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_EMPLOYEE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

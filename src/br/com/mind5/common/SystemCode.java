@@ -711,6 +711,8 @@ public final class SystemCode {
 	public static final int FILE_IMG_LIMIT_EXCEEDED						= 6005;
 	public static final int FILE_IMG_IS_NOT_STORE						= 6006;
 	public static final int FILE_IMG_IS_NOT_OWNER						= 6007;
+	public static final int FILE_IMG_ILLEGAL_REFERENCE 					= 6008;
+	public static final int FILE_IMG_IS_NOT_EMPLOYEE					= 6009;
 	
 	// File Path
 	public static final int FILE_PATH_MANDATORY_FIELD_EMPTY 			= 6051;

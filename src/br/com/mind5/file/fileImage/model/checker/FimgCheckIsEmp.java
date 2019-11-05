@@ -7,23 +7,17 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FimgCheckReplace extends ModelCheckerTemplateSimpleV2<FimgInfo> {
+public final class FimgCheckIsEmp extends ModelCheckerTemplateSimpleV2<FimgInfo> {
 
-	public FimgCheckReplace(ModelCheckerOption option) {
+	public FimgCheckIsEmp(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(FimgInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 			<= 0 	
-			|| recordInfo.codFileImg		<= 0	
-			|| recordInfo.fileImgData		== null
-			|| recordInfo.codLanguage		== null
-			|| recordInfo.username			== null	)
-			
-			return super.FAILED;
-			
+		if (recordInfo.codEmployee <= 0 )			
+			return super.FAILED;		
 		
 		return super.SUCCESS;
 	}
@@ -31,6 +25,6 @@ public final class FimgCheckReplace extends ModelCheckerTemplateSimpleV2<FimgInf
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.FILE_IMG_MANDATORY_FIELD_EMPTY;
+		return SystemCode.FILE_IMG_IS_NOT_EMPLOYEE;
 	}
 }

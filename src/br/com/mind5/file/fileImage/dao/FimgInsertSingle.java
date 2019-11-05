@@ -94,6 +94,7 @@ public final class FimgInsertSingle implements DaoStmt<FimgInfo> {
 			stmt.setString(i++, recordInfo.fileImgUri);	
 			stmt.setString(i++, recordInfo.fileImgPath);	
 			stmt.setBoolean(i++, recordInfo.isCover);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);
 			
 			return stmt;
 		}		

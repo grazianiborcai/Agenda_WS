@@ -7,9 +7,9 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FimgCheckWrite extends ModelCheckerTemplateSimpleV2<FimgInfo> {
+public final class FimgCheckInsert extends ModelCheckerTemplateSimpleV2<FimgInfo> {
 
-	public FimgCheckWrite(ModelCheckerOption option) {
+	public FimgCheckInsert(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -20,14 +20,6 @@ public final class FimgCheckWrite extends ModelCheckerTemplateSimpleV2<FimgInfo>
 			|| recordInfo.fileImgData	== null
 			|| recordInfo.codLanguage	== null
 			|| recordInfo.username		== null	)
-			
-			return super.FAILED;
-		
-		
-		if (   recordInfo.codPerson 	<= 0 	
-			&& recordInfo.codStore		<= 0
-			&& recordInfo.codOwnerRef	<= 0
-			&& recordInfo.codMat		<= 0)
 			
 			return super.FAILED;
 			

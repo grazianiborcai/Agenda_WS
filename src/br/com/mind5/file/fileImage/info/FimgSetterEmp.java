@@ -7,14 +7,13 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class FimgSetterOwner implements InfoSetter<FimgInfo> {
+public final class FimgSetterEmp implements InfoSetter<FimgInfo> {
 	
 	public FimgInfo setAttr(FimgInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		recordInfo.codOwnerRef = recordInfo.codOwner;
+		recordInfo.codOwnerRef = DefaultValue.number();
 		recordInfo.codPerson = DefaultValue.number();
-		recordInfo.codEmployee = DefaultValue.number();
 		recordInfo.codMat = DefaultValue.number();
 		recordInfo.codStore = DefaultValue.number();
 		

@@ -17,6 +17,7 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 	public transient InputStream fileImgData;
 	public boolean isCover;
 	public long codPerson;
+	public long codEmployee;
 	public long codMat;
 	public long codStore;
 	public long codOwnerRef;
@@ -35,6 +36,7 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 		codFileImg = DefaultValue.number();	
 		isCover = DefaultValue.boole();
 		codPerson = DefaultValue.number();
+		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codStore = DefaultValue.number();		
 		codOwnerRef = DefaultValue.number();	

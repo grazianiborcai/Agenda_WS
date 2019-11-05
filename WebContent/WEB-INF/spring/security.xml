@@ -116,7 +116,9 @@
         <security:intercept-url pattern="/**/File/deleteFileImgOwner"			access="hasAuthority('OWNER_WRITE')" 				/>
         <security:intercept-url pattern="/**/File/insertFileImgStore" 			access="hasAuthority('STORE_UPDATE')" 				/>
         <security:intercept-url pattern="/**/File/updateFileImgStore" 			access="hasAuthority('STORE_UPDATE')" 				/>
-        <security:intercept-url pattern="/**/File/deleteFileImgStore" 			access="hasAuthority('STORE_UPDATE')" 				/>
+        <security:intercept-url pattern="/**/File/deleteFileImgStore" 			access="hasAuthority('STORE_UPDATE')" 				/>        
+        <security:intercept-url pattern="/**/File/insertFileImgEmployee" 		access="hasAuthority('EMPLOYEE_WRITE')" 			/>
+        <security:intercept-url pattern="/**/File/deleteFileImgEmployee" 		access="hasAuthority('EMPLOYEE_WRITE')" 			/>
         <security:http-basic />
         <csrf disabled="true"/>
         <custom-filter after="SECURITY_CONTEXT_FILTER" ref="tokenParamFilter" />
