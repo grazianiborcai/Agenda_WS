@@ -6,11 +6,26 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpMerger {
+	public static EmpInfo mergeWithFimist(FimistInfo sourceOne, EmpInfo sourceTwo) {
+		InfoMerger<EmpInfo, FimistInfo> merger = new EmpMergerFimist();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<EmpInfo> mergeWithFimist(List<FimistInfo> sourceOnes, List<EmpInfo> sourceTwos) {
+		InfoMerger<EmpInfo, FimistInfo> merger = new EmpMergerFimist();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static EmpInfo mergeWithAddress(AddressInfo sourceOne, EmpInfo sourceTwo) {
 		InfoMerger<EmpInfo, AddressInfo> merger = new EmpMergerAddress();		
 		return merger.merge(sourceOne, sourceTwo);

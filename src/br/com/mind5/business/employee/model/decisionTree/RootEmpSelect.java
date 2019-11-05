@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.LazyEmpMergeAddress;
+import br.com.mind5.business.employee.model.action.LazyEmpMergeFimist;
 import br.com.mind5.business.employee.model.action.LazyEmpMergePerson;
 import br.com.mind5.business.employee.model.action.LazyEmpMergePhone;
 import br.com.mind5.business.employee.model.action.LazyEmpMergeUser;
@@ -59,11 +60,13 @@ public final class RootEmpSelect extends DeciTreeReadTemplate<EmpInfo> {
 		ActionLazy<EmpInfo> mergeAddress = new LazyEmpMergeAddress(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> mergePhone = new LazyEmpMergePhone(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> mergeUser = new LazyEmpMergeUser(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> mergeFimist = new LazyEmpMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
 		mergePhone.addPostAction(mergeUser);
+		mergeUser.addPostAction(mergeFimist);
 		
 		actions.add(select);
 		return actions;
