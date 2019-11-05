@@ -114,6 +114,7 @@ public final class FimarchSelectSingle implements DaoStmt<FimarchInfo> {
 				dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_FILE_IMG);
 				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_MATERIAL);
 				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_PERSON);
+				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_EMPLOYEE);
 				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_STORE);
 				dataInfo.recordMode = stmtResult.getString(FimarchDbTableColumn.COL_RECORD_MODE);
 				

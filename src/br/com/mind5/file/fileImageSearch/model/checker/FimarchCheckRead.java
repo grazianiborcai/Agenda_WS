@@ -16,21 +16,40 @@ public final class FimarchCheckRead extends ModelCheckerTemplateSimpleV2<Fimarch
 	
 	
 	@Override protected boolean checkHook(FimarchInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0 	||
+		if (recordInfo.codOwner		<= 0	||
 			recordInfo.codLanguage 	== null		)
 			
 			return super.FAILED;
 		
 		
-		if ( recordInfo.codPerson 	<= 0 &&
-			 recordInfo.codStore	<= 0 &&
-		     recordInfo.codOwnerRef	<= 0 &&
-			 recordInfo.codMat		<= 0	)
+		if (countReference(recordInfo) == 1)
+			return super.SUCCESS;
+
 				
-			return super.FAILED;
+		return super.FAILED;
+	}
+	
+	
+	
+	private int countReference(FimarchInfo recordInfo) {
+		int counter = 0;
 		
+		if ( recordInfo.codPerson 	> 0 )
+			counter = counter + 1;
+				
+		if ( recordInfo.codStore 	> 0 )
+			counter = counter + 1;		
+				
+		if ( recordInfo.codEmployee > 0 )
+			counter = counter + 1;		
+
+		if ( recordInfo.codOwnerRef	> 0 )
+			counter = counter + 1;		
 		
-		return super.SUCCESS;
+		if ( recordInfo.codMat 		> 0 )
+			counter = counter + 1;		
+		
+		return counter;
 	}
 	
 	
