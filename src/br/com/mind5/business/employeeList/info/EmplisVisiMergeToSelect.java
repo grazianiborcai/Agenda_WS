@@ -44,7 +44,7 @@ final class EmplisVisiMergeToSelect implements InfoMergerVisitor<EmplisInfo, Emp
 	
 	
 	@Override public boolean shouldWrite(EmplisInfo sourceOne, EmplisInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+		return (sourceOne.codOwner    == sourceTwo.codOwner);
 	}
 	
 	

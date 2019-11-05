@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
 
 public final class EmplisInfo extends InfoRecord implements Cloneable {
@@ -13,6 +14,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 	public long codSnapshot;
 	public long codPerson;
 	public PersolisInfo persolisData;
+	public FimistInfo fimistData;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -28,6 +30,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		persolisData = DefaultValue.object();
+		fimistData = DefaultValue.object();
 		lastChangedBy = DefaultValue.number();
 	}
 	
@@ -49,6 +52,8 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 		EmplisInfo deepCopy = (EmplisInfo) super.clone(); 
 
 		deepCopy.persolisData = clonePerson(deepCopy.persolisData);
+		deepCopy.fimistData = cloneFimist(deepCopy.fimistData);
+		
 		return deepCopy;	
 	} 
 	
@@ -59,6 +64,15 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 			return null;
 		
 		return (PersolisInfo) personToClone.clone();
+	}
+	
+	
+	
+	private FimistInfo cloneFimist(FimistInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (FimistInfo) recordInfo.clone();
 	}
 	
 	
