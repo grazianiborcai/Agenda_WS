@@ -24,6 +24,7 @@ public final class FimistCheckRead extends ModelCheckerTemplateSimpleV2<FimistIn
 		
 		if ( recordInfo.codPerson 	<= 0 &&
 			 recordInfo.codStore	<= 0 &&
+			 recordInfo.codEmployee	<= 0 &&
 		     recordInfo.codOwnerRef	<= 0 &&
 			 recordInfo.codMat		<= 0	)
 				
