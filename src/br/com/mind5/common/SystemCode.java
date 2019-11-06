@@ -813,4 +813,7 @@ public final class SystemCode {
 	
 	// Token Moip
 	public static final int TOKEN_MOIP_MANDATORY_FIELD_EMPTY			= 7100;
+	
+	// Employee Position Search
+	public static final int EMPOS_SEARCH_MANDATORY_FIELD_EMPTY			= 7150;
 }
