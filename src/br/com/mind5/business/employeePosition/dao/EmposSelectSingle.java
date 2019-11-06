@@ -3,13 +3,11 @@ package br.com.mind5.business.employeePosition.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.dao.DaoJoin;
-import br.com.mind5.dao.DaoJoinType;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
@@ -23,7 +21,6 @@ import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class EmposSelectSingle implements DaoStmt<EmposInfo> {	
 	private final String LT_STORE_EMPLOYEE = DaoDbTable.EMPOS_TABLE;	
-	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
 	
 	private DaoStmt<EmposInfo> stmtSql;
 	private DaoStmtOption<EmposInfo> stmtOption;
@@ -47,38 +44,18 @@ public final class EmposSelectSingle implements DaoStmt<EmposInfo> {
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = buildJoins();
+		this.stmtOption.joins = null;
 	}
 	
 	
 	
 	private String buildWhereClause() {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new EmposWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();
-		joins.add(buildJoinLanguage());	
-		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
 	}
 	
 	
@@ -123,7 +100,6 @@ public final class EmposSelectSingle implements DaoStmt<EmposInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<EmposInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<EmposInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -138,23 +114,9 @@ public final class EmposSelectSingle implements DaoStmt<EmposInfo> {
 				dataInfo.codStore = stmtResult.getLong(EmposDbTableColumn.COL_COD_STORE);
 				dataInfo.codEmployee = stmtResult.getLong(EmposDbTableColumn.COL_COD_EMPLOYEE);
 				dataInfo.codPosition = stmtResult.getInt(EmposDbTableColumn.COL_COD_POSITION);
-				dataInfo.recordMode = stmtResult.getString(EmposDbTableColumn.COL_RECORD_MODE);		
-				
-				
-				stmtResult.getString(EmposDbTableColumn.COL_COD_LANGUAGE);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codLanguage = stmtResult.getString(EmposDbTableColumn.COL_COD_LANGUAGE);
-				
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(EmposDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				
-				stmtResult.getLong(EmposDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(EmposDbTableColumn.COL_LAST_CHANGED_BY);
-				
+				dataInfo.recordMode = stmtResult.getString(EmposDbTableColumn.COL_RECORD_MODE);	
+				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, EmposDbTableColumn.COL_LAST_CHANGED);
+				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmposDbTableColumn.COL_LAST_CHANGED_BY);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

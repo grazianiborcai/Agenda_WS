@@ -466,6 +466,7 @@ public final class SystemCode {
 	public static final int EMPOS_FLAGGED_AS_DELETED 					= 2652;	
 	public static final int EMPOS_HAS_ITEM								= 2653;
 	public static final int EMPOS_NO_ITEM_FOUND							= 2654;
+	public static final int EMPOS_MANDATORY_FIELD_EMPTY					= 2655;
 	
 	// Owner-Store
 	public static final int OWNER_STORE_IS_NULL							= 2700;

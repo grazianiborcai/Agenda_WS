@@ -3,8 +3,6 @@ package br.com.mind5.business.employeePosition.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
@@ -77,7 +75,6 @@ public final class EmposInsertSingle implements DaoStmt<EmposInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<EmposInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmposInfo recordInfo) throws SQLException {
-			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);
 			
 			int i = 1;
 			stmt.setLong(i++, recordInfo.codOwner);
@@ -85,14 +82,8 @@ public final class EmposInsertSingle implements DaoStmt<EmposInfo> {
 			stmt.setLong(i++, recordInfo.codEmployee);
 			stmt.setInt(i++, recordInfo.codPosition);
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setTimestamp(i++, lastChanged);			
-			
-			if (recordInfo.lastChangedBy >= 0) {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);			
 			
 			return stmt;
 		}		

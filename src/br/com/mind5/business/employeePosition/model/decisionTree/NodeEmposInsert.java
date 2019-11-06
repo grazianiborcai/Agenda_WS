@@ -23,8 +23,6 @@ public final class NodeEmposInsert extends DeciTreeWriteTemplate<EmposInfo> {
 	
 	
 	@Override protected ModelChecker<EmposInfo> buildDecisionCheckerHook(DeciTreeOption<EmposInfo> option) {
-		final boolean NOT_DELETED = false;	
-		
 		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmposInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -32,7 +30,7 @@ public final class NodeEmposInsert extends DeciTreeWriteTemplate<EmposInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = NOT_DELETED;		
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new EmposCheckSoftDelete(checkerOption);
 		queue.add(checker);	
 		
@@ -44,7 +42,9 @@ public final class NodeEmposInsert extends DeciTreeWriteTemplate<EmposInfo> {
 	@Override protected List<ActionStd<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmposInsert(option));
+		ActionStd<EmposInfo> insert = new StdEmposInsert(option);
+		
+		actions.add(insert);
 		return actions;
 	}
 	
@@ -53,7 +53,9 @@ public final class NodeEmposInsert extends DeciTreeWriteTemplate<EmposInfo> {
 	@Override protected List<ActionStd<EmposInfo>> buildActionsOnFailedHook(DeciTreeOption<EmposInfo> option) {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmposUpdate(option));	
+		ActionStd<EmposInfo> update = new StdEmposUpdate(option);
+		
+		actions.add(update);	
 		return actions;
 	}
 }

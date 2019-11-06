@@ -23,8 +23,6 @@ public final class NodeEmposDeleteEmpwotm extends DeciTreeWriteTemplate<EmposInf
 	
 	
 	@Override protected ModelChecker<EmposInfo> buildDecisionCheckerHook(DeciTreeOption<EmposInfo> option) {
-		final boolean HAS_WORK_TIME = true;
-		
 		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmposInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -32,7 +30,7 @@ public final class NodeEmposDeleteEmpwotm extends DeciTreeWriteTemplate<EmposInf
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_WORK_TIME;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new EmposCheckHasEmpwotm(checkerOption);
 		queue.add(checker);	
 		
@@ -55,7 +53,9 @@ public final class NodeEmposDeleteEmpwotm extends DeciTreeWriteTemplate<EmposInf
 	@Override protected List<ActionStd<EmposInfo>> buildActionsOnFailedHook(DeciTreeOption<EmposInfo> option) {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmposSuccess(option));		
+		ActionStd<EmposInfo> success = new StdEmposSuccess(option);
+		
+		actions.add(success);		
 		return actions;
 	}
 }

@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposDelete;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposEnforceLChanged;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposMergeUsername;
-import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeInsert;
-import br.com.mind5.business.employeePosition.model.action.LazyEmposRootSelect;
-import br.com.mind5.business.employeePosition.model.action.StdEmposEnforceLChanged;
-import br.com.mind5.business.employeePosition.model.checker.EmposCheckEmp;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeDeleteEmplevate;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeDeleteEmpwotm;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposUpdate;
+import br.com.mind5.business.employeePosition.model.action.StdEmposMergeToDelete;
+import br.com.mind5.business.employeePosition.model.checker.EmposCheckDelete;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckExist;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckLangu;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckOwner;
-import br.com.mind5.business.employeePosition.model.checker.EmposCheckPosition;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStorauth;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStore;
-import br.com.mind5.business.employeePosition.model.checker.EmposCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -24,9 +25,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootEmposInsert extends DeciTreeWriteTemplate<EmposInfo> {
+public final class RootEmposDeleteCascade extends DeciTreeWriteTemplate<EmposInfo> {
 	
-	public RootEmposInsert(DeciTreeOption<EmposInfo> option) {
+	public RootEmposDeleteCascade(DeciTreeOption<EmposInfo> option) {
 		super(option);
 	}
 	
@@ -35,15 +36,15 @@ public final class RootEmposInsert extends DeciTreeWriteTemplate<EmposInfo> {
 	@Override protected ModelChecker<EmposInfo> buildDecisionCheckerHook(DeciTreeOption<EmposInfo> option) {
 		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmposInfo> checker;
-		ModelCheckerOption checkerOption;		
+		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
-		checker = new EmposCheckWrite(checkerOption);
-		queue.add(checker);
-		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new EmposCheckDelete(checkerOption);
+		queue.add(checker);		
+			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
@@ -56,34 +57,20 @@ public final class RootEmposInsert extends DeciTreeWriteTemplate<EmposInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmposCheckOwner(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new EmposCheckExist(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmposCheckPosition(checkerOption);
-		queue.add(checker);	
+		queue.add(checker);			
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmposCheckStore(checkerOption);
-		queue.add(checker);	
+		queue.add(checker);				
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmposCheckEmp(checkerOption);
+		checker = new EmposCheckExist(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
@@ -92,8 +79,8 @@ public final class RootEmposInsert extends DeciTreeWriteTemplate<EmposInfo> {
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmposCheckStorauth(checkerOption);
 		queue.add(checker);	
-
-		return new ModelCheckerQueue<>(queue);
+		
+		return new ModelCheckerQueue<EmposInfo>(queue);
 	}
 	
 	
@@ -101,20 +88,22 @@ public final class RootEmposInsert extends DeciTreeWriteTemplate<EmposInfo> {
 	@Override protected List<ActionStd<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmposInfo> enforceLChanged = new StdEmposEnforceLChanged(option);
+		ActionStd<EmposInfo> mergeToDelete = new StdEmposMergeToDelete(option);
+		ActionLazy<EmposInfo> enforceLChanged = new LazyEmposEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
-		ActionLazy<EmposInfo> nodeInsert = new LazyEmposNodeInsert(option.conn, option.schemaName);
-		ActionLazy<EmposInfo> select = new LazyEmposRootSelect(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> update = new LazyEmposUpdate(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> deleteEmpwotm = new LazyEmposNodeDeleteEmpwotm(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> deleteEmplevate = new LazyEmposNodeDeleteEmplevate(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> deleteEmpos = new LazyEmposDelete(option.conn, option.schemaName);
 		
+		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(nodeInsert);
-		nodeInsert.addPostAction(select);
-		//actions.add(new NodeEmposInsertEWT(option).toAction());
-
+		enforceLChangedBy.addPostAction(update);
+		update.addPostAction(deleteEmpwotm);
+		update.addPostAction(deleteEmplevate);
+		update.addPostAction(deleteEmpos);
 		
-		actions.add(enforceLChanged);
-		return actions;
-		
-		//TODO: O InsertEWT pode gerar conflitos. Imagine que um empregado j� esteja lotado em uma outra loja.
+		actions.add(mergeToDelete);
+		return actions;		
 	}
 }

@@ -26,20 +26,21 @@ public final class RootEmposDeleteByEmp extends DeciTreeWriteTemplate<EmposInfo>
 	
 	
 	@Override protected ModelChecker<EmposInfo> buildDecisionCheckerHook(DeciTreeOption<EmposInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmposInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
-		checker = new EmposCheckDeleteByEmp();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new EmposCheckDeleteByEmp(checkerOption);
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmposCheckHasEmpItem(checkerOption);
 		queue.add(checker);	
 

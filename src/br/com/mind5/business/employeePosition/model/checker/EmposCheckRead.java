@@ -4,19 +4,25 @@ import java.sql.Connection;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmposCheckRead extends ModelCheckerTemplateSimple_<EmposInfo> {
+public final class EmposCheckRead extends ModelCheckerTemplateSimpleV2<EmposInfo> {
 
-	public EmposCheckRead() {
-		super();
+	public EmposCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EmposInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner <= 0 )			
+		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codStore 	<= 0 	||
+			recordInfo.codEmployee 	<= 0 	||
+			recordInfo.codPosition 	<= 0 	||
+			recordInfo.username 	== null ||
+			recordInfo.codLanguage 	== null		)			
+			
 			return super.FAILED;
 		
 		
@@ -25,13 +31,7 @@ public final class EmposCheckRead extends ModelCheckerTemplateSimple_<EmposInfo>
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.EMPOS_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -23,8 +23,6 @@ public final class NodeEmposDeleteEmplevate extends DeciTreeWriteTemplate<EmposI
 	
 	
 	@Override protected ModelChecker<EmposInfo> buildDecisionCheckerHook(DeciTreeOption<EmposInfo> option) {
-		final boolean HAS_LEAVE_DATE = true;
-		
 		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmposInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -32,7 +30,7 @@ public final class NodeEmposDeleteEmplevate extends DeciTreeWriteTemplate<EmposI
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_LEAVE_DATE;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new EmposCheckHasEmplevate(checkerOption);
 		queue.add(checker);	
 		
@@ -55,7 +53,9 @@ public final class NodeEmposDeleteEmplevate extends DeciTreeWriteTemplate<EmposI
 	@Override protected List<ActionStd<EmposInfo>> buildActionsOnFailedHook(DeciTreeOption<EmposInfo> option) {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmposSuccess(option));		
+		ActionStd<EmposInfo> success = new StdEmposSuccess(option);
+		
+		actions.add(success);		
 		return actions;
 	}
 }
