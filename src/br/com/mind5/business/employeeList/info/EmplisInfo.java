@@ -1,6 +1,5 @@
 package br.com.mind5.business.employeeList.info;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
@@ -16,8 +15,6 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 	public PersolisInfo persolisData;
 	public FimistInfo fimistData;
 	public String recordMode;
-	public LocalDateTime lastChanged;
-	public long lastChangedBy;
 	public String username;
 	
 	
@@ -31,7 +28,6 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 		recordMode = DefaultValue.recordMode();
 		persolisData = DefaultValue.object();
 		fimistData = DefaultValue.object();
-		lastChangedBy = DefaultValue.number();
 	}
 	
 	

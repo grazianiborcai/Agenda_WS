@@ -4,19 +4,20 @@ import java.sql.Connection;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmplisCheckRead extends ModelCheckerTemplateSimple_<EmplisInfo> {
+public final class EmplisCheckRead extends ModelCheckerTemplateSimpleV2<EmplisInfo> {
 
-	public EmplisCheckRead() {
-		super();
+	public EmplisCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EmplisInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null		)	
 			
 			return super.FAILED;		
@@ -27,13 +28,7 @@ public final class EmplisCheckRead extends ModelCheckerTemplateSimple_<EmplisInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.EMP_LIST_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.EMP_LIST_MANDATORY_FIELD_EMPTY;
 	}
 }

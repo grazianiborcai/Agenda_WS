@@ -8,6 +8,7 @@ import br.com.mind5.business.employeeList.model.action.LazyEmplisMergeFimist;
 import br.com.mind5.business.employeeList.model.action.LazyEmplisMergePersolis;
 import br.com.mind5.business.employeeList.model.action.StdEmplisMergeToSelect;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckLangu;
+import br.com.mind5.business.employeeList.model.checker.EmplisCheckOwner;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -26,20 +27,29 @@ public final class RootEmplisSelect extends DeciTreeReadTemplate<EmplisInfo> {
 	
 	
 	@Override protected ModelChecker<EmplisInfo> buildDecisionCheckerHook(DeciTreeOption<EmplisInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<EmplisInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmplisInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
-		checker = new EmplisCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new EmplisCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmplisCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmplisCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

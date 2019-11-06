@@ -3,11 +3,11 @@ package br.com.mind5.business.employeeList.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
@@ -100,7 +100,6 @@ public final class EmplisSelectSingle implements DaoStmt<EmplisInfo> {
 	
 	
 	private static class ResultParser implements DaoResultParser<EmplisInfo> {
-		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<EmplisInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
@@ -114,27 +113,8 @@ public final class EmplisSelectSingle implements DaoStmt<EmplisInfo> {
 				dataInfo.codOwner = stmtResult.getLong(EmplisDbTableColumn.COL_COD_OWNER);
 				dataInfo.codEmployee = stmtResult.getLong(EmplisDbTableColumn.COL_COD_EMPLOYEE);
 				dataInfo.recordMode = stmtResult.getString(EmplisDbTableColumn.COL_RECORD_MODE);
-				
-				
-				stmtResult.getLong(EmplisDbTableColumn.COL_COD_PERSON);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPerson = stmtResult.getLong(EmplisDbTableColumn.COL_COD_PERSON);
-				
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(EmplisDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
-				
-				
-				stmtResult.getLong(EmplisDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(EmplisDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				
-				stmtResult.getLong(EmplisDbTableColumn.COL_COD_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codSnapshot = stmtResult.getLong(EmplisDbTableColumn.COL_COD_SNAPSHOT);
-				
+				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, EmplisDbTableColumn.COL_COD_PERSON);
+				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, EmplisDbTableColumn.COL_COD_SNAPSHOT);				
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
