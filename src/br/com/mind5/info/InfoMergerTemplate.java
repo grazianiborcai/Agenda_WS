@@ -47,6 +47,8 @@ public abstract class InfoMergerTemplate<T extends InfoRecord, K extends InfoRec
 					
 					checkEachResult(oneResult);
 					results.add(oneResult);
+				} else {
+					results.add(eachSourceTwo);
 				}
 			}
 		}			
