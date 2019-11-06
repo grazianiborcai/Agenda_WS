@@ -6,16 +6,17 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class EmposDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_EMPLOYEE = "cod_employee";
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_POSITION = "cod_position";
-	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
-	public static final String COL_RECORD_MODE = "record_mode";
+	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_POSITION = DaoDbField.COL_COD_POSITION;
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 
 	Hashtable<String, List<DaoColumn>> tableColumns;	

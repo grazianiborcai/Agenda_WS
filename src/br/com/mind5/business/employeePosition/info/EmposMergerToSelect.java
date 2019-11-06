@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoUniquifier;
 final class EmposMergerToSelect extends InfoMergerTemplate<EmposInfo, EmposInfo> {
 
 	@Override protected InfoMergerVisitor<EmposInfo, EmposInfo> getVisitorHook() {
-		return new EmposVisiMergeToDelete();
+		return new EmposVisiMergeToSelect();
 	}
 	
 	
