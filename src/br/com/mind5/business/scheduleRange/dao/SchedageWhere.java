@@ -58,6 +58,10 @@ public final class SchedageWhere implements DaoStmtWhere {
 			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codStore));
 			break;
 			
+		case SchedageDbTableColumn.COL_COD_EMPLOYEE :
+			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codEmployee));
+			break;
+			
 		case SchedageDbTableColumn.COL_DATE :
 			builderKey.addClauseAnd(column, DaoFormatter.dateToString(recordInfo.dateValidFrom), DaoWhereCondition.GREATER_OR_EQUAL);
 			builderKey.addClauseAnd(column, DaoFormatter.dateToString(recordInfo.dateValidTo), DaoWhereCondition.LESS_OR_EQUAL);
