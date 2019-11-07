@@ -117,6 +117,8 @@ public final class EmposSelectSingle implements DaoStmt<EmposInfo> {
 				dataInfo.recordMode = stmtResult.getString(EmposDbTableColumn.COL_RECORD_MODE);	
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, EmposDbTableColumn.COL_LAST_CHANGED);
 				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmposDbTableColumn.COL_LAST_CHANGED_BY);				
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, EmposDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, EmposDbTableColumn.COL_CREATED_BY);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

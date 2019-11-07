@@ -84,6 +84,8 @@ public final class EmposInsertSingle implements DaoStmt<EmposInfo> {
 			stmt.setString(i++, recordInfo.recordMode);
 			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);			
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 			
 			return stmt;
 		}		

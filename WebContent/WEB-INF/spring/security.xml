@@ -70,7 +70,7 @@
         <security:intercept-url pattern="/**/Employee/updateEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"				/>
         <security:intercept-url pattern="/**/Employee/deleteEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"				/>        
         <security:intercept-url pattern="/**/Employee/insertPosition"			access="hasAuthority('EMPLOYEE_POSITION_WRITE')"	/>
-        <security:intercept-url pattern="/**/Employee/updatePosition"			access="hasAuthority('EMPLOYEE_POSITION_WRITE')"	/>
+        <security:intercept-url pattern="/**/Employee/searchPosition"			access="hasAuthority('EMPLOYEE_POSITION_READ')"		/>
         <security:intercept-url pattern="/**/Employee/deletePosition"			access="hasAuthority('EMPLOYEE_POSITION_WRITE')"	/>
         <security:intercept-url pattern="/**/Employee/selectPosition"			access="hasAuthority('EMPLOYEE_POSITION_READ')" 	/>          
         <security:intercept-url pattern="/**/Employee/insertLeaveDate"			access="hasAuthority('EMPLOYEE_TIME_WRITE')"		/>

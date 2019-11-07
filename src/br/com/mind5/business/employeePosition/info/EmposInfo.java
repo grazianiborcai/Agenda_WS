@@ -8,14 +8,14 @@ import br.com.mind5.info.InfoRecord;
 
 public final class EmposInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public long codStore;	
-	public String nameStore;	
+	public long codStore;
 	public long codEmployee;
-	public String nameEmployee;
 	public int codPosition;
 	public String txtPosition;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public String username;
 	public String recordMode;
 	
@@ -29,6 +29,7 @@ public final class EmposInfo extends InfoRecord implements Cloneable {
 		codPosition = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
+		createdBy = DefaultValue.number();
 	}
 	
 	

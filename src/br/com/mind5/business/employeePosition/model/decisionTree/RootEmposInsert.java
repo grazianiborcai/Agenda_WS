@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.business.employeePosition.model.action.LazyEmposMergeUsername;
-import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeInsert;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposRootSelect;
-import br.com.mind5.business.employeePosition.model.action.StdEmposEnforceLChanged;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckEmp;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckExist;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckLangu;
@@ -101,20 +98,12 @@ public final class RootEmposInsert extends DeciTreeWriteTemplate<EmposInfo> {
 	@Override protected List<ActionStd<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmposInfo> enforceLChanged = new StdEmposEnforceLChanged(option);
-		ActionLazy<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
-		ActionLazy<EmposInfo> nodeInsert = new LazyEmposNodeInsert(option.conn, option.schemaName);
+		ActionStd<EmposInfo> upsert = new NodeEmposUpsert(option).toAction();
 		ActionLazy<EmposInfo> select = new LazyEmposRootSelect(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(nodeInsert);
-		nodeInsert.addPostAction(select);
-		//actions.add(new NodeEmposInsertEWT(option).toAction());
-
+		upsert.addPostAction(select);
 		
-		actions.add(enforceLChanged);
+		actions.add(upsert);
 		return actions;
-		
-		//TODO: O InsertEWT pode gerar conflitos. Imagine que um empregado j� esteja lotado em uma outra loja.
 	}
 }

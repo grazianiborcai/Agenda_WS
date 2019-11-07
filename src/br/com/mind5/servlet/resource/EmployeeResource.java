@@ -36,6 +36,7 @@ import br.com.mind5.business.employeeMaterial.model.EmpmatModelSelect;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.EmposModelDelete;
 import br.com.mind5.business.employeePosition.model.EmposModelInsert;
+import br.com.mind5.business.employeePosition.model.EmposModelSearch;
 import br.com.mind5.business.employeePosition.model.EmposModelSelect;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelDelete;
@@ -65,6 +66,7 @@ public class EmployeeResource {
 	private static final String SELECT_LEAVE_DATE = "/selectLeaveDate";
 	private static final String DELETE_LEAVE_DATE = "/deleteLeaveDate";
 	private static final String SELECT_EMP_POSITION = "/selectPosition";
+	private static final String SEARCH_EMP_POSITION = "/searchPosition";
 	private static final String INSERT_EMP_POSITION = "/insertPosition";
 	private static final String DELETE_EMP_POSITION = "/deletePosition";
 	private static final String SELECT_EMP_MATERIAL = "/selectMaterial";
@@ -344,6 +346,7 @@ public class EmployeeResource {
 	public Response selectEmpos(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
 			                    @HeaderParam("codStore") 	@DefaultValue("-1") int codStore,
 			                    @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
+			                    @HeaderParam("codPosition") @DefaultValue("-1") int codPosition,
 			                    @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,
 			                    @HeaderParam("TOKEN_USERNAME") String username) {
 		
@@ -351,10 +354,36 @@ public class EmployeeResource {
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
+		recordInfo.codPosition = codPosition;
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.username = username;
 		
 		Model model = new EmposModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SEARCH_EMP_POSITION)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchEmpos(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
+			                    @HeaderParam("codStore") 	@DefaultValue("-1") int codStore,
+			                    @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
+			                    @HeaderParam("codPosition") @DefaultValue("-1") int codPosition,
+			                    @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,
+			                    @HeaderParam("TOKEN_USERNAME") String username) {
+		
+		EmposInfo recordInfo = new EmposInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codPosition = codPosition;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new EmposModelSearch(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
