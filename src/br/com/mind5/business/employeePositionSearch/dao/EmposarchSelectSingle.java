@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
-import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
@@ -114,9 +113,7 @@ public final class EmposarchSelectSingle implements DaoStmt<EmposarchInfo> {
 				dataInfo.codStore = stmtResult.getLong(EmposarchDbTableColumn.COL_COD_STORE);
 				dataInfo.codEmployee = stmtResult.getLong(EmposarchDbTableColumn.COL_COD_EMPLOYEE);
 				dataInfo.codPosition = stmtResult.getInt(EmposarchDbTableColumn.COL_COD_POSITION);
-				dataInfo.recordMode = stmtResult.getString(EmposarchDbTableColumn.COL_RECORD_MODE);	
-				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, EmposarchDbTableColumn.COL_LAST_CHANGED);
-				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmposarchDbTableColumn.COL_LAST_CHANGED_BY);				
+				dataInfo.recordMode = stmtResult.getString(EmposarchDbTableColumn.COL_RECORD_MODE);					
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());

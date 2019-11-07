@@ -1,6 +1,5 @@
 package br.com.mind5.business.employeePositionSearch.info;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
@@ -9,13 +8,8 @@ import br.com.mind5.info.InfoRecord;
 public final class EmposarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
-	public String nameStore;	
 	public long codEmployee;
-	public String nameEmployee;
 	public int codPosition;
-	public String txtPosition;
-	public LocalDateTime lastChanged;
-	public long lastChangedBy;
 	public String username;
 	public String recordMode;
 	
@@ -27,7 +21,6 @@ public final class EmposarchInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codPosition = DefaultValue.number();
-		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}
 	
