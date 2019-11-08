@@ -38,21 +38,24 @@ public abstract class InfoMergerTemplate<T extends InfoRecord, K extends InfoRec
 		if (isEmpty(sourceOnes, sourceTwos))
 			return sourceTwos;
 		
-		List<T> results = new ArrayList<>();		
+		List<T> results = new ArrayList<>();
 		
-		for (K eachSourceOne : sourceOnes) {			
-			for (T eachSourceTwo : sourceTwos) {				
+		for (T eachSourceTwo : sourceTwos) {
+			boolean flagMerge = false;
+			
+			for (K eachSourceOne : sourceOnes) {
 				if (visitor.shouldWrite(eachSourceOne, eachSourceTwo)) {
 					T oneResult = write(eachSourceOne, eachSourceTwo, visitor);
 					
 					checkEachResult(oneResult);
 					results.add(oneResult);
-				} else {
-					results.add(eachSourceTwo);
+					flagMerge = true;
 				}
 			}
-		}			
-		
+			
+			if (flagMerge == false)
+				results.add(eachSourceTwo);
+		}
 		
 		checkResults(results);
 		return uniquifyResults(results);
