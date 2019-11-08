@@ -3,9 +3,6 @@ package br.com.mind5.business.employeeWorkTime.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
@@ -97,21 +94,12 @@ public final class EmpwotmUpdateSingle implements DaoStmt<EmpwotmInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<EmpwotmInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpwotmInfo recordInfo) throws SQLException {
-			Time beginTime = DaoFormatter.localToSqlTime(recordInfo.beginTime);
-			Time endTime = DaoFormatter.localToSqlTime(recordInfo.endTime);			
-			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);
 			
 			int i = 1;
-			stmt.setTime(i++, beginTime);
-			stmt.setTime(i++, endTime);
+			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.beginTime);
+			stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.endTime);
 			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setTimestamp(i++, lastChanged);
-			
-			if (recordInfo.lastChangedBy >= 0) {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 			
 			return stmt;
 		}		
