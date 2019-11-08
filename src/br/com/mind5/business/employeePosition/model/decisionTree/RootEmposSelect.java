@@ -17,9 +17,9 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 
-public final class RootEmposSelect extends DeciTreeWriteTemplate<EmposInfo> {
+public final class RootEmposSelect extends DeciTreeReadTemplate<EmposInfo> {
 	
 	public RootEmposSelect(DeciTreeOption<EmposInfo> option) {
 		super(option);
