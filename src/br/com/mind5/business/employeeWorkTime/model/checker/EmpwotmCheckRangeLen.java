@@ -5,26 +5,26 @@ import java.time.Duration;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public class EmpwotmCheckRangeLen extends ModelCheckerTemplateSimple_<EmpwotmInfo> {
+public class EmpwotmCheckRangeLen extends ModelCheckerTemplateSimpleV2<EmpwotmInfo> {
 	private final int ONE_HOUR = 3600;
 	
-	public EmpwotmCheckRangeLen() {
-		super();
+	public EmpwotmCheckRangeLen(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EmpwotmInfo recordInfo, Connection conn, String schemaName) {	
-		if(recordInfo.beginTime == null ||
-		   recordInfo.endTime  == null		)
-			return super.FAILED;
+		if ( recordInfo.beginTime == null ||
+		     recordInfo.endTime  == null		)
 			
-		long duration = computeDuration(recordInfo);
+			return super.FAILED;
+
 		
-		if (duration < ONE_HOUR)
+		if (computeDuration(recordInfo) < ONE_HOUR)
 			return super.FAILED;
 		
 		
@@ -39,13 +39,7 @@ public class EmpwotmCheckRangeLen extends ModelCheckerTemplateSimple_<EmpwotmInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.EMP_WTIME_RANGE_TOO_SHORT;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.EMP_WTIME_RANGE_TOO_SHORT;	
 	}
 }

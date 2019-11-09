@@ -26,11 +26,10 @@ public final class NodeEmpwotmInsert extends DeciTreeWriteTemplate<EmpwotmInfo> 
 		List<ModelChecker<EmpwotmInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpwotmInfo> checker;
 		
-		final boolean EXPECTED_NOT_DELETED = false;
 		ModelCheckerOption checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXPECTED_NOT_DELETED;
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;
 		checker = new EmpwotmCheckSoftDelete(checkerOption);
 		queue.add(checker);
 

@@ -4,20 +4,21 @@ import java.sql.Connection;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public class EmpwotmCheckRange extends ModelCheckerTemplateSimple_<EmpwotmInfo> {
+public class EmpwotmCheckRange extends ModelCheckerTemplateSimpleV2<EmpwotmInfo> {
 	
-	public EmpwotmCheckRange() {
-		super();
+	public EmpwotmCheckRange(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EmpwotmInfo recordInfo, Connection conn, String schemaName) {	
-		if(recordInfo.beginTime == null ||
-		   recordInfo.endTime  == null		)
+		if ( recordInfo.beginTime == null ||
+		     recordInfo.endTime   == null		)
+			
 			return super.FAILED;
 			
 		
@@ -30,13 +31,7 @@ public class EmpwotmCheckRange extends ModelCheckerTemplateSimple_<EmpwotmInfo> 
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.EMP_WTIME_INVALID_RANGE;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.EMP_WTIME_INVALID_RANGE;	
 	}
 }

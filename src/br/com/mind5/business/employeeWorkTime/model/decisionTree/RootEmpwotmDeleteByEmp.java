@@ -11,6 +11,7 @@ import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckDeleteBy
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -26,8 +27,13 @@ public final class RootEmpwotmDeleteByEmp extends DeciTreeWriteTemplate<EmpwotmI
 	@Override protected ModelChecker<EmpwotmInfo> buildDecisionCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ModelChecker<EmpwotmInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpwotmInfo> checker;
+		ModelCheckerOption checkerOption = new ModelCheckerOption();
 		
-		checker = new EmpwotmCheckDeleteByEmp();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new EmpwotmCheckDeleteByEmp(checkerOption);
 		queue.add(checker);
 		
 		 return new ModelCheckerQueue<EmpwotmInfo>(queue);
