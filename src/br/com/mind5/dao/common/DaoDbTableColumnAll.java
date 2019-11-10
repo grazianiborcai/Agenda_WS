@@ -28,6 +28,7 @@ import br.com.mind5.business.employeeSnapshot.dao.EmpnapDbTableColumn;
 import br.com.mind5.business.employeeWorkTime.dao.EmpwotmDbTableColumn;
 import br.com.mind5.business.employeeWorkTimeConflict.dao.EmpwocoDbTableColumn;
 import br.com.mind5.business.employeeWorkTimeOutlier.dao.EmpwoutDbTableColumn;
+import br.com.mind5.business.employeeWorkTimeSearch.dao.EmpwotarchDbTableColumn;
 import br.com.mind5.business.feeDefault.dao.FeedefDbTableColumn;
 import br.com.mind5.business.feeOwner.dao.FeewnerDbTableColumn;
 import br.com.mind5.business.form.formAddress.dao.FormAddressDbTableColumn;
@@ -224,6 +225,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmposarchDbTableColumn());
 		addTable(new StoworgDbTableColumn());
 		addTable(new StowotarchDbTableColumn());
+		addTable(new EmpwotarchDbTableColumn());
 	}
 	
 	
