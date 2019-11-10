@@ -81,6 +81,6 @@ public final class EmposarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.FILE_IMG_LIST_VIEW, columns);
+		tableColumns.put(DaoDbTable.EMPOS_SEARCH_VIEW, columns);
 	}
 }

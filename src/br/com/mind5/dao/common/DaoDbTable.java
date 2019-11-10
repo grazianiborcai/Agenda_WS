@@ -134,6 +134,7 @@ public final class DaoDbTable {
 	public static final String EMP_WT_CONFLICT_VIEW = "view_employee_working_time";
 	public static final String EMP_WT_OUTLIER_VIEW = "view_employee_working_time_search";
 	public static final String EMPOS_LIST_VIEW = "view_employee_position_list";	
+	public static final String EMPOS_SEARCH_VIEW = "view_employee_position_search";	
 	public static final String FILE_IMG_LIST_VIEW = "view_file_image_list";	
 	public static final String FILE_IMG_SEARCH_VIEW = "view_file_image_search";
 	public static final String ORDER_LIST_VIEW = "view_order_list";
