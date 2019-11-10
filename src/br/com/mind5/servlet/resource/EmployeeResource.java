@@ -41,6 +41,7 @@ import br.com.mind5.business.employeePosition.model.EmposModelSelect;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelDelete;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelInsert;
+import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelSearch;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelSelect;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelUpdate;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
@@ -59,6 +60,7 @@ public class EmployeeResource {
 	private static final String INSERT_WORK_TIME = "/insertWorkTime";
 	private static final String UPDATE_WORK_TIME = "/updateWorkTime";
 	private static final String SELECT_WORK_TIME = "/selectWorkTime";
+	private static final String SEARCH_WORK_TIME = "/searchWorkTime";
 	private static final String DELETE_WORK_TIME = "/deleteWorkTime";	
 	private static final String SELECT_WT_CONFLICT = "/selectWorkTimeConflict";		//todo: REVER
 	private static final String INSERT_LEAVE_DATE = "/insertLeaveDate";
@@ -82,6 +84,7 @@ public class EmployeeResource {
 	public Response selectWorkTime(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner,
 								   @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
 								   @HeaderParam("codEmployee") 		@DefaultValue("-1") int codEmployee,
+								   @HeaderParam("codWeekday") 		@DefaultValue("-1") int codWeekday,
 								   @HeaderParam("TOKEN_USERNAME") 	String username,
 								   @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
 		
@@ -89,10 +92,36 @@ public class EmployeeResource {
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
+		recordInfo.codWeekday = codWeekday;
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new EmpwotmModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SEARCH_WORK_TIME)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchWorkTime(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner,
+								   @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
+								   @HeaderParam("codEmployee") 		@DefaultValue("-1") int codEmployee,
+								   @HeaderParam("codWeekday") 		@DefaultValue("-1") int codWeekday,
+								   @HeaderParam("TOKEN_USERNAME") 	String username,
+								   @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
+		
+		EmpwotmInfo recordInfo = new EmpwotmInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codWeekday = codWeekday;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new EmpwotmModelSearch(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

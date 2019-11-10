@@ -7,7 +7,7 @@ import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmMergeToDelete;
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmRootDelete;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmEnforceEmposKey;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckDeleteByEmpos;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckDeleteByEmpos_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootEmpwotmDeleteByEmpos extends DeciTreeWriteTemplate<EmpwotmInfo> {
+public final class RootEmpwotmDeleteByEmpos_ extends DeciTreeWriteTemplate<EmpwotmInfo> {
 	
-	public RootEmpwotmDeleteByEmpos(DeciTreeOption<EmpwotmInfo> option) {
+	public RootEmpwotmDeleteByEmpos_(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
 	}
 	
@@ -33,7 +33,7 @@ public final class RootEmpwotmDeleteByEmpos extends DeciTreeWriteTemplate<Empwot
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new EmpwotmCheckDeleteByEmpos(checkerOption);
+		checker = new EmpwotmCheckDeleteByEmpos_(checkerOption);
 		queue.add(checker);
 		
 		 return new ModelCheckerQueue<EmpwotmInfo>(queue);

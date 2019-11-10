@@ -8,6 +8,7 @@ import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmMergeTimez
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmMergeWeekday;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeToSelect;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckOwner;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -44,6 +45,13 @@ public final class RootEmpwotmSelect extends DeciTreeReadTemplate<EmpwotmInfo> {
 		checker = new EmpwotmCheckLangu(checkerOption);
 		queue.add(checker);		
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmpwotmCheckOwner(checkerOption);
+		queue.add(checker);	
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -58,7 +66,7 @@ public final class RootEmpwotmSelect extends DeciTreeReadTemplate<EmpwotmInfo> {
 		
 		select.addPostAction(mergeWeekday);
 		mergeWeekday.addPostAction(mergeTimezone);
-		//TODO: considerar limitar o horario do Employee com o Store, pois este ultimo pode sofre Update e entrar em conflito com o primeiro
+		
 		actions.add(select);
 		return actions;
 	}

@@ -19,7 +19,7 @@ public class EmpwotmCheckRangeLen extends ModelCheckerTemplateSimpleV2<EmpwotmIn
 	
 	@Override protected boolean checkHook(EmpwotmInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.beginTime == null ||
-		     recordInfo.endTime  == null		)
+		     recordInfo.endTime   == null		)
 			
 			return super.FAILED;
 

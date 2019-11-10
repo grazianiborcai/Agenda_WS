@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmSelect;
-import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmEnforceEmpKey;
+import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmEnforceEmposKey;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.action.ActionLazy;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public class EmpwotmCheckHasEmpItem extends ModelCheckerTemplateAction_<EmpwotmInfo> {
+public class EmpwotmCheckHasEmposItem_ extends ModelCheckerTemplateAction_<EmpwotmInfo> {
 	
-	public EmpwotmCheckHasEmpItem(ModelCheckerOption option) {
+	public EmpwotmCheckHasEmposItem_(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -25,11 +25,11 @@ public class EmpwotmCheckHasEmpItem extends ModelCheckerTemplateAction_<EmpwotmI
 	@Override protected ActionStd<EmpwotmInfo> buildActionHook(EmpwotmInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<EmpwotmInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<EmpwotmInfo> enforceEmpKey = new StdEmpwotmEnforceEmpKey(option);
+		ActionStd<EmpwotmInfo> enforceEmposKey = new StdEmpwotmEnforceEmposKey(option);
 		ActionLazy<EmpwotmInfo> select = new LazyEmpwotmSelect(option.conn, option.schemaName);
 		
-		enforceEmpKey.addPostAction(select);		
-		return enforceEmpKey;
+		enforceEmposKey.addPostAction(select);		
+		return enforceEmposKey;
 	}
 	
 	

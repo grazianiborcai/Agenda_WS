@@ -12,7 +12,7 @@ public final class StdEmposDeleteEmpwotm implements ActionStd<EmposInfo> {
 	
 	
 	public StdEmposDeleteEmpwotm(DeciTreeOption<EmposInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiEmposDeleteEmpwotm(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiEmposDeleteEmpwotm_(option.conn, option.schemaName));
 	}
 	
 	

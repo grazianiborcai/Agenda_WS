@@ -12,6 +12,7 @@ import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeToDele
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckDelete;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckExist;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckOwner;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStorauth;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -47,6 +48,13 @@ public final class RootEmpwotmDelete extends DeciTreeWriteTemplate<EmpwotmInfo> 
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpwotmCheckLangu(checkerOption);
 		queue.add(checker);			
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmpwotmCheckOwner(checkerOption);
+		queue.add(checker);		
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

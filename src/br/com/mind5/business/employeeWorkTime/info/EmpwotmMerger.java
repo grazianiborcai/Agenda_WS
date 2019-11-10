@@ -2,12 +2,27 @@ package br.com.mind5.business.employeeWorkTime.info;
 
 import java.util.List;
 
+import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
 import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpwotmMerger {	
+	public static EmpwotmInfo mergeWithEmpwotarch(EmpwotarchInfo sourceOne, EmpwotmInfo sourceTwo) {
+		InfoMerger<EmpwotmInfo, EmpwotarchInfo> merger = new EmpwotmMergerEmpwotarch();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<EmpwotmInfo> mergeWithEmpwotarch(List<EmpwotarchInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
+		InfoMerger<EmpwotmInfo, EmpwotarchInfo> merger = new EmpwotmMergerEmpwotarch();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static EmpwotmInfo mergeWithTimezone(TimezoneInfo sourceOne, EmpwotmInfo sourceTwo) {
 		InfoMerger<EmpwotmInfo, TimezoneInfo> merger = new EmpwotmMergerTimezone();		
 		return merger.merge(sourceOne, sourceTwo);

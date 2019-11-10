@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckHasEmposItem;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckHasEmposItem_;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
@@ -16,7 +16,7 @@ public final class EmposCheckHasEmpwotm implements ModelChecker<EmposInfo> {
 	
 	
 	public EmposCheckHasEmpwotm(ModelCheckerOption option) {
-		checker = new EmpwotmCheckHasEmposItem(option);
+		checker = new EmpwotmCheckHasEmposItem_(option);
 	}
 	
 	

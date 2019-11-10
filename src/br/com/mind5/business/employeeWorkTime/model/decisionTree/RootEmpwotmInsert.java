@@ -116,14 +116,14 @@ public final class RootEmpwotmInsert extends DeciTreeWriteTemplate<EmpwotmInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpwotmCheckStoworg(checkerOption);				//TODO: rever
+		checker = new EmpwotmCheckStoworg(checkerOption);
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new EmpwotmCheckEmpwoco(checkerOption);				//TODO: rever
+		checker = new EmpwotmCheckEmpwoco(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
