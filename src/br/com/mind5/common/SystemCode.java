@@ -819,4 +819,7 @@ public final class SystemCode {
 	
 	// Employee Position Search
 	public static final int EMPOS_SEARCH_MANDATORY_FIELD_EMPTY			= 7150;
+	
+	// Store Worktime Range
+	public static final int STORE_WTIME_RANGE_MANDATORY_FIELD_EMPTY 	= 7200;
 }

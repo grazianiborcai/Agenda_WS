@@ -75,6 +75,7 @@ import br.com.mind5.business.storeList.dao.StolisDbTableColumn;
 import br.com.mind5.business.storeSearch.dao.SotarchDbTableColumn;
 import br.com.mind5.business.storeSnapshot.dao.StorapDbTableColumn;
 import br.com.mind5.business.storeWorkTime.dao.StowotmDbTableColumn;
+import br.com.mind5.business.storeWorkTimeRange.dao.StoworgDbTableColumn;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumn;
@@ -220,6 +221,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SchedageDbTableColumn());
 		addTable(new StoplisDbTableColumn());
 		addTable(new EmposarchDbTableColumn());
+		addTable(new StoworgDbTableColumn());
 	}
 	
 	

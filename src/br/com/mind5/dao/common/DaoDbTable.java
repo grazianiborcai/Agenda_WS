@@ -154,6 +154,7 @@ public final class DaoDbTable {
 	public static final String STORE_AUTH_VIEW = "store_auth_view";
 	public static final String STORE_LIST_VIEW = "view_store_list";
 	public static final String STORE_SEARCH_VIEW = "view_store_search";	
+	public static final String STORE_WTIME_RANGE_VIEW = "view_store_wtime_range";
 	public static final String USER_LIST_VIEW = "view_user_list";
 	public static final String USERNAME_VIEW = "view_username";	
 }
