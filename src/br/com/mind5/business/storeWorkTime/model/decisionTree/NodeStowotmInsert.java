@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
+import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmEnforceCreatedBy;
+import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmEnforceCreatedOn;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmInsert;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmMergeUsername;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmRootSelect;
@@ -48,11 +50,15 @@ final class NodeStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> {
 		
 		ActionStd<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
 		ActionLazy<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> insert = new LazyStowotmInsert(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(insert);
+		enforceLChangedBy.addPostAction(enforceCreatedOn);
+		enforceCreatedOn.addPostAction(enforceCreatedBy);
+		enforceCreatedBy.addPostAction(insert);
 		insert.addPostAction(select);
 		
 		actions.add(enforceLChanged);				
@@ -66,11 +72,15 @@ final class NodeStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> {
 		
 		ActionStd<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
 		ActionLazy<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> update = new LazyStowotmUpdate(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(update);
+		enforceLChangedBy.addPostAction(enforceCreatedOn);
+		enforceCreatedOn.addPostAction(enforceCreatedBy);
+		enforceCreatedBy.addPostAction(update);
 		update.addPostAction(select);
 		
 		actions.add(enforceLChanged);				

@@ -90,4 +90,18 @@ public final class StowotmMerger {
 		InfoMerger<StowotmInfo, StowotmInfo> merger = new StowotmMergerToDelete();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static StowotmInfo mergeToUpdate(StowotmInfo sourceOne, StowotmInfo sourceTwo) {
+		InfoMerger<StowotmInfo, StowotmInfo> merger = new StowotmMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StowotmInfo> mergeToUpdate(List<StowotmInfo> sourceOnes, List<StowotmInfo> sourceTwos) {
+		InfoMerger<StowotmInfo, StowotmInfo> merger = new StowotmMergerToUpdate();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

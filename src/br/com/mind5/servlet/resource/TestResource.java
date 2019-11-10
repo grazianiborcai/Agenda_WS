@@ -47,8 +47,6 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.model.PlanataModelSelect;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.model.StorapModelSelect;
-import br.com.mind5.business.storeTime_.info.StorimeInfo;
-import br.com.mind5.business.storeTime_.model.StorimeModelSelect;
 import br.com.mind5.model.Model;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 import br.com.mind5.payment.countryPartner.model.CounparModelSelect;
@@ -97,7 +95,6 @@ public class TestResource {
 	private static final String JWTOKEN_VALIDATE = "/jwtokenValidate";
 	private static final String TOKEN_AUTH = "/tokenAuth";
 	private static final String SELECT_STORAUTH = "/authStorauth";
-	private static final String SELECT_STORIME = "/authStorime";
 	private static final String CUSTOMER_SEARCH = "/customerSearch";
 	private static final String SELECT_PLANING_DATA = "/selectPlaningData";
 	private static final String UPSERT_CARTEM = "/upsertCartem";
@@ -500,27 +497,6 @@ public class TestResource {
 		recordInfo.username = username;
 		
 		Model model = new StorauthModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@GET
-	@Path(SELECT_STORIME)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectStorime(@HeaderParam("codOwner") long codOwner,
-								  @HeaderParam("codStore") long codStore,
-								  @HeaderParam("username") String username,
-								  @HeaderParam("codLanguage") String codLanguage) {
-
-		StorimeInfo recordInfo = new StorimeInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		recordInfo.codLanguage = codLanguage;
-		recordInfo.username = username;
-		
-		Model model = new StorimeModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

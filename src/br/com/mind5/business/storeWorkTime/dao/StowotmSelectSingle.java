@@ -118,6 +118,8 @@ public final class StowotmSelectSingle implements DaoStmt<StowotmInfo> {
 				dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, StowotmDbTableColumn.COL_END_TIME);
 				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StowotmDbTableColumn.COL_LAST_CHANGED);
 				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StowotmDbTableColumn.COL_LAST_CHANGED_BY);				
+				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StowotmDbTableColumn.COL_CREATED_ON);
+				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StowotmDbTableColumn.COL_CREATED_BY);
 				
 				finalResult.add(dataInfo);
 			} while (stmtResult.next());
