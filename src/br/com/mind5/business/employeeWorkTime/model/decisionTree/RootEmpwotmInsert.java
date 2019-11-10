@@ -18,7 +18,7 @@ import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckRange;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckRangeLen;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStorauth;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStore;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStowotm;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStoworg;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckWeekday;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
@@ -116,7 +116,7 @@ public final class RootEmpwotmInsert extends DeciTreeWriteTemplate<EmpwotmInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpwotmCheckStowotm(checkerOption);				//TODO: rever
+		checker = new EmpwotmCheckStoworg(checkerOption);				//TODO: rever
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
