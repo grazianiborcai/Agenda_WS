@@ -4,10 +4,25 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class StowotmMerger {
+	public static StowotmInfo mergeWithStowotarch(StowotarchInfo sourceOne, StowotmInfo sourceTwo) {
+		InfoMerger<StowotmInfo, StowotarchInfo> merger = new StowotmMergerStowotarch();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<StowotmInfo> mergeWithStowotarch(List<StowotarchInfo> sourceOnes, List<StowotmInfo> sourceTwos) {
+		InfoMerger<StowotmInfo, StowotarchInfo> merger = new StowotmMergerStowotarch();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static StowotmInfo mergeWithWeekday(WeekdayInfo sourceOne, StowotmInfo sourceTwo) {
 		InfoMerger<StowotmInfo, WeekdayInfo> merger = new StowotmMergerWeekday();		
 		return merger.merge(sourceOne, sourceTwo);

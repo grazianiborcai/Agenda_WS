@@ -18,6 +18,7 @@ public final class StowotmCheckRead extends ModelCheckerTemplateSimpleV2<Stowotm
 	@Override protected boolean checkHook(StowotmInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.codStore 	<= 0 	||
+			recordInfo.codWeekday 	<= 0 	||
 			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null 	)			
 			
