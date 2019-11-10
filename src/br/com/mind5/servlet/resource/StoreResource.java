@@ -32,6 +32,7 @@ import br.com.mind5.business.storeList.model.StolisModelSelect;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelDelete;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelInsert;
+import br.com.mind5.business.storeWorkTime.model.StowotmModelSearch;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelSelect;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelUpdate;
 import br.com.mind5.model.Model;
@@ -50,6 +51,7 @@ public class StoreResource {
 	private static final String SELECT_STORE = "/selectStore";
 	private static final String SELECT_STORE_LIST = "/selectStoreList";
 	private static final String SELECT_STORE_WTIME = "/selectStoreWorkTime";
+	private static final String SEARCH_STORE_WTIME = "/searchStoreWorkTime";
 	private static final String INSERT_STORE_WTIME = "/insertStoreWorkTime";
 	private static final String DELETE_STORE_WTIME = "/deleteStoreWorkTime";
 	private static final String UPDATE_STORE_WTIME = "/updateStoreWorkTime";
@@ -168,6 +170,29 @@ public class StoreResource {
 		recordInfo.username = username;
 		
 		Model model = new StowotmModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SEARCH_STORE_WTIME)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchStoreWTime(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
+			                         @HeaderParam("codStore")    @DefaultValue("-1") int codStore,
+			                         @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday,			                         
+			                         @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                         @HeaderParam("TOKEN_USERNAME") String username) {
+
+		StowotmInfo recordInfo = new StowotmInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codWeekday = codWeekday;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new StowotmModelSearch(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

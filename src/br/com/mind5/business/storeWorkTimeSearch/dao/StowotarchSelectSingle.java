@@ -18,7 +18,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-class StowotarchSelectSingle implements DaoStmt<StowotarchInfo> {
+public final class StowotarchSelectSingle implements DaoStmt<StowotarchInfo> {
 	private final String LT_STORE_WORK_TIME = DaoDbTable.STORE_WT_TABLE;	
 	
 	private DaoStmt<StowotarchInfo> stmtSql;
