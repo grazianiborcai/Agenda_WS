@@ -793,8 +793,8 @@ public final class SystemCode {
 	public static final int STORE_WTIME_IS_EMPTY 						= 6860; //1129;	
 	public static final int STORE_WTIME_MANDATORY_FIELD_EMPTY 			= 6861;
 	public static final int STORE_WTIME_BAD_TIME_RANGE 					= 6862;
-	public static final int STORE_WTIME_HAS_EMPOS 						= 6863;
-	public static final int STORE_WTIME_EMPOS_NOT_FOUND 				= 6864;
+	public static final int STORE_WTIME_HAS_EMPLOYEE 					= 6863;
+	public static final int STORE_WTIME_EMPLOYEE_NOT_FOUND 				= 6864;
 	
 	
 	//Employee Work Time Outlier

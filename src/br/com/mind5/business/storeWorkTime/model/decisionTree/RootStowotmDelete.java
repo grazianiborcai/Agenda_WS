@@ -10,7 +10,7 @@ import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmMergeUsername
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmUpdate;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmMergeToDelete;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckDelete;
-import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckEmposarch;
+import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckEmpwotarch;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckExist;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckStorauth;
 import br.com.mind5.model.action.ActionLazy;
@@ -52,7 +52,7 @@ public final class RootStowotmDelete extends DeciTreeWriteTemplate<StowotmInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new StowotmCheckEmposarch(checkerOption);
+		checker = new StowotmCheckEmpwotarch(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
