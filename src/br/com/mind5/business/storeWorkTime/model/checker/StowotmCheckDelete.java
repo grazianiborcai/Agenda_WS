@@ -30,7 +30,7 @@ public final class StowotmCheckDelete extends ModelCheckerTemplateSimpleV2<Stowo
 	
 	
 	
-	protected int getCodMsgOnResultFalseHook() {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.STORE_WTIME_MANDATORY_FIELD_EMPTY;
 	}
 }

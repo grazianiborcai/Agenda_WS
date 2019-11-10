@@ -32,7 +32,7 @@ public final class StowotmCheckWrite extends ModelCheckerTemplateSimpleV2<Stowot
 	
 	
 	
-	protected int getCodMsgOnResultFalseHook() {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.STORE_WTIME_MANDATORY_FIELD_EMPTY;
 	}
 }

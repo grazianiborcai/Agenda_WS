@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StowotmCheckDeleteAll extends ModelCheckerTemplateSimple_<StowotmInfo> {
+public final class StowotmCheckDeleteAll extends ModelCheckerTemplateSimpleV2<StowotmInfo> {
 	
-	public StowotmCheckDeleteAll() {
-		super();
+	public StowotmCheckDeleteAll(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -18,23 +18,18 @@ public final class StowotmCheckDeleteAll extends ModelCheckerTemplateSimple_<Sto
 	@Override protected boolean checkHook(StowotmInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 		<= 0 	
 			|| recordInfo.codStore 		<= 0
+			|| recordInfo.username		== null
 			|| recordInfo.username		== null	)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.STORE_WTIME_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -20,6 +20,7 @@ public final class StowotmCheckRead extends ModelCheckerTemplateSimpleV2<Stowotm
 			recordInfo.codStore 	<= 0 	||
 			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null 	)			
+			
 			return super.FAILED;
 		
 		
@@ -28,7 +29,7 @@ public final class StowotmCheckRead extends ModelCheckerTemplateSimpleV2<Stowotm
 	
 	
 	
-	protected int getCodMsgOnResultFalseHook() {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.STORE_WTIME_MANDATORY_FIELD_EMPTY;
 	}
 }
