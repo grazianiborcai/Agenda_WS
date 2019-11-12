@@ -37,9 +37,9 @@ final class EmpwocoVisiMergeToSelect implements InfoMergerVisitor<EmpwocoInfo, E
 	
 	
 	private EmpwocoInfo merge(EmpwocoInfo sourceOne, EmpwocoInfo sourceTwo) {
-		sourceTwo.codLanguage = sourceOne.codLanguage;
-		sourceTwo.username = sourceOne.username;
-		return sourceTwo;
+		sourceOne.codLanguage = sourceTwo.codLanguage;
+		sourceOne.username = sourceTwo.username;
+		return sourceOne;
 	}
 	
 	

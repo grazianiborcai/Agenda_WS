@@ -21,6 +21,7 @@ public final class EmpwocoCheckRead extends ModelCheckerTemplateSimpleV2<Empwoco
 			recordInfo.codEmployee  <= 0 	||
 			recordInfo.codWeekday	<= 0 	||
 			recordInfo.codLanguage	== null ||
+			recordInfo.username		== null ||
 			recordInfo.beginTime	== null ||
 			recordInfo.endTime		== null		)
 			

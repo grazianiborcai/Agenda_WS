@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.mind5.business.employeeWorkTimeConflict.model.action.StdEmpwocoMergeToSelect;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckEmp;
-import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckEmpos;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckLangu;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckOwner;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckRead;
@@ -64,13 +63,6 @@ public final class RootEmpwocoSelect extends DeciTreeReadTemplate<EmpwocoInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new EmpwocoCheckEmp(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new EmpwocoCheckEmpos(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
