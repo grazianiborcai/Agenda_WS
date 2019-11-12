@@ -39,13 +39,12 @@ import br.com.mind5.business.employeePosition.model.EmposModelInsert;
 import br.com.mind5.business.employeePosition.model.EmposModelSearch;
 import br.com.mind5.business.employeePosition.model.EmposModelSelect;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
+import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelConflict;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelDelete;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelInsert;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelSearch;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelSelect;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelUpdate;
-import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
-import br.com.mind5.business.employeeWorkTimeConflict.model.EmpwocoModelSelect;
 import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
 import br.com.mind5.business.employeeWorkTimeOutlier.model.EmpwoutModelSelect;
 import br.com.mind5.model.Model;
@@ -180,22 +179,24 @@ public class EmployeeResource {
 	@GET
 	@Path(SELECT_WT_CONFLICT)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response selectWTConflict(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
-								     @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
-								     @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
-								     @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday,
-								     @HeaderParam("beginTime")   @DefaultValue("12:00") String beginTime,
-	                                 @HeaderParam("endTime")     @DefaultValue("12:00") String endTime) {
+	public Response selectWTConflict(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner,
+								     @HeaderParam("codStore")       @DefaultValue("-1") long codStore,
+								     @HeaderParam("codEmployee")    @DefaultValue("-1") int codEmployee,
+								     @HeaderParam("codWeekday")     @DefaultValue("-1") int codWeekday,
+								     @HeaderParam("beginTime")      @DefaultValue("12:00") String beginTime,
+	                                 @HeaderParam("endTime")        @DefaultValue("12:00") String endTime,
+	                                 @HeaderParam("TOKEN_USERNAME") String username) {
 		
-		EmpwocoInfo recordInfo = new EmpwocoInfo();
+		EmpwotmInfo recordInfo = new EmpwotmInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
 		recordInfo.codWeekday = codWeekday;
 		recordInfo.beginTime = LocalTime.parse(beginTime, DateTimeFormatter.ISO_LOCAL_TIME);
 		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
+		recordInfo.username = username;
 		
-		Model model = new EmpwocoModelSelect(recordInfo);
+		Model model = new EmpwotmModelConflict(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

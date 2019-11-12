@@ -2,6 +2,7 @@ package br.com.mind5.business.employeeWorkTime.info;
 
 import java.util.List;
 
+import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
 import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
@@ -9,6 +10,20 @@ import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpwotmMerger {	
+	public static EmpwotmInfo mergeWithEmpwoco(EmpwocoInfo sourceOne, EmpwotmInfo sourceTwo) {
+		InfoMerger<EmpwotmInfo, EmpwocoInfo> merger = new EmpwotmMergerEmpwoco();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<EmpwotmInfo> mergeWithEmpwoco(List<EmpwocoInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
+		InfoMerger<EmpwotmInfo, EmpwocoInfo> merger = new EmpwotmMergerEmpwoco();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static EmpwotmInfo mergeWithEmpwotarch(EmpwotarchInfo sourceOne, EmpwotmInfo sourceTwo) {
 		InfoMerger<EmpwotmInfo, EmpwotarchInfo> merger = new EmpwotmMergerEmpwotarch();		
 		return merger.merge(sourceOne, sourceTwo);
