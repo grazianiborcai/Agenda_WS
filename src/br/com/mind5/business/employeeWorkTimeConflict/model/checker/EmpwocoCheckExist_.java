@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmpwocoCheckExist extends ModelCheckerTemplateAction_<EmpwocoInfo> {
+public final class EmpwocoCheckExist_ extends ModelCheckerTemplateAction_<EmpwocoInfo> {
 
-	public EmpwocoCheckExist(ModelCheckerOption option) {
+	public EmpwocoCheckExist_(ModelCheckerOption option) {
 		super(option);
 	}
 	

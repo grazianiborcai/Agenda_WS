@@ -3,14 +3,11 @@ package br.com.mind5.business.employeeWorkTimeConflict.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
-import br.com.mind5.dao.DaoJoin;
-import br.com.mind5.dao.DaoJoinColumn;
-import br.com.mind5.dao.DaoJoinType;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
@@ -24,9 +21,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 
 
 public final class EmpwocoSelectSingle implements DaoStmt<EmpwocoInfo> {
-	private final String LT_EMP_WT = DaoDbTable.EMP_WT_TABLE;	
-	private final String RT_LANGU = DaoDbTable.LANGUAGE_TABLE;
-	private final String RT_STORE = DaoDbTable.STORE_TABLE;
+	private final String LT_EMP_WT = DaoDbTable.EMP_WT_TABLE;
 	
 	private DaoStmt<EmpwocoInfo> stmtSql;
 	private DaoStmtOption<EmpwocoInfo> stmtOption;
@@ -50,7 +45,7 @@ public final class EmpwocoSelectSingle implements DaoStmt<EmpwocoInfo> {
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause(stmtOption.tableName, stmtOption.recordInfo);
-		this.stmtOption.joins = buildJoins();
+		this.stmtOption.joins = null;
 	}
 	
 	
@@ -62,48 +57,6 @@ public final class EmpwocoSelectSingle implements DaoStmt<EmpwocoInfo> {
 		
 		DaoStmtWhere whereClause = new EmpwocoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();
-		joins.add(buildJoinLanguage());	
-		joins.add(buildJoinStore());		
-		return joins;
-	}
-	
-	
-	
-	private DaoJoin buildJoinLanguage() {
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_LANGU;
-		join.joinType = DaoJoinType.CROSS_JOIN;
-		join.joinColumns = null;
-		join.constraintClause = null;
-		
-		return join;
-	}
-	
-	
-	
-	private DaoJoin buildJoinStore() {
-		List<DaoJoinColumn> joinColumns = new ArrayList<>();
-		
-		DaoJoinColumn oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = LT_EMP_WT;
-		oneColumn.leftColumnName = "cod_store";
-		oneColumn.rightColumnName = "Cod_store";
-		joinColumns.add(oneColumn);
-		
-		
-		DaoJoin join = new DaoJoin();
-		join.rightTableName = RT_STORE;
-		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
-		join.joinColumns = joinColumns;
-		join.constraintClause = null;
-		
-		return join;
 	}
 	
 	
@@ -158,18 +111,10 @@ public final class EmpwocoSelectSingle implements DaoStmt<EmpwocoInfo> {
 				dataInfo.codOwner = stmtResult.getLong(EmpwocoDbTableColumn.COL_COD_OWNER);
 				dataInfo.codStore = stmtResult.getLong(EmpwocoDbTableColumn.COL_COD_STORE);
 				dataInfo.codEmployee = stmtResult.getLong(EmpwocoDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.codWeekday = stmtResult.getInt(EmpwocoDbTableColumn.COL_WEEKDAY);
+				dataInfo.codWeekday = stmtResult.getInt(EmpwocoDbTableColumn.COL_COD_WEEKDAY);
 				dataInfo.recordMode = stmtResult.getString(EmpwocoDbTableColumn.COL_RECORD_MODE);
-				dataInfo.codLanguage = stmtResult.getString(EmpwocoDbTableColumn.COL_COD_LANGUAGE);	
-				dataInfo.codTimezone = stmtResult.getString(EmpwocoDbTableColumn.COL_COD_TIME_ZONE);
-				
-				Time tempTime = stmtResult.getTime(EmpwocoDbTableColumn.COL_BEGIN_TIME);
-				if (tempTime != null)
-					dataInfo.beginTime = tempTime.toLocalTime();
-				
-				tempTime = stmtResult.getTime(EmpwocoDbTableColumn.COL_END_TIME);
-				if (tempTime != null)
-					dataInfo.endTime = tempTime.toLocalTime();				
+				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, EmpwocoDbTableColumn.COL_BEGIN_TIME);
+				dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, EmpwocoDbTableColumn.COL_END_TIME);
 				
 				finalResult.add(dataInfo);				
 			} while (stmtResult.next());

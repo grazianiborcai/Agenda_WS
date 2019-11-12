@@ -65,16 +65,12 @@ final class EmpwocoWhere implements DaoStmtWhere {
 			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codEmployee));
 			break;
 			
-		case EmpwocoDbTableColumn.COL_WEEKDAY :
+		case EmpwocoDbTableColumn.COL_COD_WEEKDAY :
 			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codWeekday));
 			break;
 			
 		case EmpwocoDbTableColumn.COL_RECORD_MODE :
 			builderKey.addClauseEqualAnd(column, recordInfo.recordMode);
-			break;
-			
-		case EmpwocoDbTableColumn.COL_COD_LANGUAGE :
-			builderKey.addClauseEqualAnd(column, recordInfo.codLanguage);
 			break;
 		}
 	}

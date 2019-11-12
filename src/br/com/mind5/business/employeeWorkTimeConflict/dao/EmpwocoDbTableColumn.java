@@ -4,23 +4,20 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.mind5.business.store.dao.StoreDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class EmpwocoDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_BEGIN_TIME = "begin_time";
-	public static final String COL_COD_EMPLOYEE = "cod_employee";
-	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_COD_OWNER = "cod_owner";	
-	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_COD_TIME_ZONE = StoreDbTableColumn.COL_COD_TIMEZONE;
-	public static final String COL_END_TIME = "end_time";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_LAST_CHANGED_BY = "last_changed_by";	
-	public static final String COL_RECORD_MODE = "record_mode";
-	public static final String COL_WEEKDAY = "weekday";
+	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;
+	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;
+	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
+	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
@@ -72,7 +69,7 @@ public final class EmpwocoDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_WEEKDAY;
+		oneColumn.columnName = COL_COD_WEEKDAY;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -99,22 +96,6 @@ public final class EmpwocoDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_RECORD_MODE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.STORE_TABLE;
-		oneColumn.columnName = COL_COD_TIME_ZONE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

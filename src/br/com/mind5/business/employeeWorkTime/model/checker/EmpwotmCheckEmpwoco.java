@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
-import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckExist;
+import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckExist_;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
@@ -16,7 +16,7 @@ public final class EmpwotmCheckEmpwoco implements ModelChecker<EmpwotmInfo> {
 	
 	
 	public EmpwotmCheckEmpwoco(ModelCheckerOption option) {
-		checker = new EmpwocoCheckExist(option);
+		checker = new EmpwocoCheckExist_(option);
 	}
 	
 	

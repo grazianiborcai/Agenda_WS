@@ -11,11 +11,8 @@ public final class EmpwocoInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codEmployee;
 	public int codWeekday;
-	public String txtWeekday;
 	public LocalTime beginTime;
 	public LocalTime endTime;
-	public String codTimezone;
-	public String txtTimezone;
 	public String recordMode;
 	public String username;
 	

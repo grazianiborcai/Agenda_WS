@@ -2,21 +2,21 @@ package br.com.mind5.business.employeeWorkTimeConflict.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckExist;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
+import br.com.mind5.business.masterData.info.LanguInfo;
+import br.com.mind5.business.masterData.model.checker.LanguCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class EmpwocoCheckEmpwotm implements ModelChecker<EmpwocoInfo> {
+public final class EmpwocoCheckLangu implements ModelChecker<EmpwocoInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmpwotmInfo> checker;
+	private ModelChecker<LanguInfo> checker;
 	
 	
-	public EmpwocoCheckEmpwotm(ModelCheckerOption option) {
-		checker = new EmpwotmCheckExist(option);
+	public EmpwocoCheckLangu(ModelCheckerOption option) {
+		checker = new LanguCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class EmpwocoCheckEmpwotm implements ModelChecker<EmpwocoInfo> {
 	
 	
 	@Override public boolean check(EmpwocoInfo recordInfo) {
-		return checker.check(EmpwotmInfo.copyFrom(recordInfo));
+		return checker.check(LanguInfo.copyFrom(recordInfo));
 	}
 
 	

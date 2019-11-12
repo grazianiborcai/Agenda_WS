@@ -832,4 +832,7 @@ public final class SystemCode {
 	
 	// Employee Worktime Search
 	public static final int EMP_WTIME_SEARCH_MANDATORY_FIELD_EMPTY 		= 7300;
+	
+	// Employee Worktime Conflict
+	public static final int EMP_WTIME_CONFLICT_MANDATORY_FIELD_EMPTY 	= 7350;
 }
