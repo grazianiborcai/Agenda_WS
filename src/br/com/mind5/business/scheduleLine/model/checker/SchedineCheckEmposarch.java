@@ -2,21 +2,21 @@ package br.com.mind5.business.scheduleLine.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.business.employeePosition.model.checker.EmposCheckExist;
+import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
+import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckExist;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class SchedineCheckEmpos implements ModelChecker<SchedineInfo> {
+public final class SchedineCheckEmposarch implements ModelChecker<SchedineInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmposInfo> checker;
+	private ModelChecker<EmposarchInfo> checker;
 	
 	
-	public SchedineCheckEmpos(ModelCheckerOption option) {
-		checker = new EmposCheckExist(option);
+	public SchedineCheckEmposarch(ModelCheckerOption option) {
+		checker = new EmposarchCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class SchedineCheckEmpos implements ModelChecker<SchedineInfo> {
 	
 	
 	@Override public boolean check(SchedineInfo recordInfo) {
-		return checker.check(EmposInfo.copyFrom(recordInfo));
+		return checker.check(EmposarchInfo.copyFrom(recordInfo));
 	}
 
 	

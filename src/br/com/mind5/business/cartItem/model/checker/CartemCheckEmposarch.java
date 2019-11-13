@@ -3,20 +3,20 @@ package br.com.mind5.business.cartItem.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.business.employeePosition.model.checker.EmposCheckExist;
+import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
+import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CartemCheckEmpos implements ModelChecker<CartemInfo> {
+public final class CartemCheckEmposarch implements ModelChecker<CartemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmposInfo> checker;
+	private ModelChecker<EmposarchInfo> checker;
 	
 	
-	public CartemCheckEmpos(ModelCheckerOption option) {
-		checker = new EmposCheckExist(option);
+	public CartemCheckEmposarch(ModelCheckerOption option) {
+		checker = new EmposarchCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class CartemCheckEmpos implements ModelChecker<CartemInfo> {
 	
 	
 	@Override public boolean check(CartemInfo recordInfo) {
-		return checker.check(EmposInfo.copyFrom(recordInfo));
+		return checker.check(EmposarchInfo.copyFrom(recordInfo));
 	}
 
 	

@@ -7,7 +7,7 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.StdCartemSuccess;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmp;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmpmat;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckEmpos;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckEmposarch;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckIsTimeAged;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckMatore;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckQuantity;
@@ -69,7 +69,7 @@ public final class NodeCartemServiceL2 extends DeciTreeWriteTemplate<CartemInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartemCheckEmpos(checkerOption);
+		checker = new CartemCheckEmposarch(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

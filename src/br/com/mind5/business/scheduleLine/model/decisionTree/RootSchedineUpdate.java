@@ -9,7 +9,7 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCus;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmp;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmpmat;
-import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmpos;
+import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmposarch;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckMat;
@@ -96,7 +96,7 @@ public final class RootSchedineUpdate extends DeciTreeWriteTemplate<SchedineInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new SchedineCheckEmpos(checkerOption);
+		checker = new SchedineCheckEmposarch(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

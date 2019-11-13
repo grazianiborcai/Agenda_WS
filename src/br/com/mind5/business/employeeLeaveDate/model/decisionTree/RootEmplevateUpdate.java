@@ -8,7 +8,7 @@ import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplevateMergeUs
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplevateUpdate;
 import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplevateEnforceLChanged;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckEmp;
-import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckEmpos;
+import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckEmposarch;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckExist;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckLangu;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckOwner;
@@ -77,7 +77,7 @@ public final class RootEmplevateUpdate extends DeciTreeWriteTemplate<EmplevateIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmplevateCheckEmpos(checkerOption);
+		checker = new EmplevateCheckEmposarch(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();

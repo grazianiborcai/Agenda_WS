@@ -8,7 +8,7 @@ import br.com.mind5.business.orderItem.model.action.LazyOrderemInsert;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeStolis;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmp;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmpmat;
-import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmpos;
+import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmposarch;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckMatore;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckStore;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckWrite;
@@ -63,7 +63,7 @@ public final class NodeOrderemInsertService extends DeciTreeWriteTemplate<Ordere
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new OrderemCheckEmpos(checkerOption);
+		checker = new OrderemCheckEmposarch(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

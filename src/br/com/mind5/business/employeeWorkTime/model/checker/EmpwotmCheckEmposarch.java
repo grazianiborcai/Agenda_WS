@@ -2,21 +2,21 @@ package br.com.mind5.business.employeeWorkTime.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.business.employeePosition.model.checker.EmposCheckExist;
+import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
+import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckExist;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class EmpwotmCheckEmpos implements ModelChecker<EmpwotmInfo> {
+public final class EmpwotmCheckEmposarch implements ModelChecker<EmpwotmInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmposInfo> checker;
+	private ModelChecker<EmposarchInfo> checker;
 	
 	
-	public EmpwotmCheckEmpos(ModelCheckerOption option) {
-		checker = new EmposCheckExist(option);
+	public EmpwotmCheckEmposarch(ModelCheckerOption option) {
+		checker = new EmposarchCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class EmpwotmCheckEmpos implements ModelChecker<EmpwotmInfo> {
 	
 	
 	@Override public boolean check(EmpwotmInfo recordInfo) {
-		return checker.check(EmposInfo.copyFrom(recordInfo));
+		return checker.check(EmposarchInfo.copyFrom(recordInfo));
 	}
 
 	

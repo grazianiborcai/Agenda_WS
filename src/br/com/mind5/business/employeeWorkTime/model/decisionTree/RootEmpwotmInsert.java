@@ -9,7 +9,7 @@ import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmNodeInsert
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmRootSelect;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmEnforceLChanged;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmp;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmpos;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmposarch;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmpwoco;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckExist;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
@@ -102,7 +102,7 @@ public final class RootEmpwotmInsert extends DeciTreeWriteTemplate<EmpwotmInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpwotmCheckEmpos(checkerOption);
+		checker = new EmpwotmCheckEmposarch(checkerOption);
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
