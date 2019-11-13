@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposRootDelete;
 import br.com.mind5.business.employeePosition.model.action.StdEmposMergeEmposarch;
-import br.com.mind5.business.employeePosition.model.checker.EmposCheckDeleteByEmp;
+import br.com.mind5.business.employeePosition.model.checker.EmposCheckDeleteByEmpos;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootEmposDeleteByEmp extends DeciTreeWriteTemplate<EmposInfo> {
+public final class RootEmposDeleteByEmpos extends DeciTreeWriteTemplate<EmposInfo> {
 	
-	public RootEmposDeleteByEmp(DeciTreeOption<EmposInfo> option) {
+	public RootEmposDeleteByEmpos(DeciTreeOption<EmposInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +32,7 @@ public final class RootEmposDeleteByEmp extends DeciTreeWriteTemplate<EmposInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new EmposCheckDeleteByEmp(checkerOption);
+		checker = new EmposCheckDeleteByEmpos(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<EmposInfo>(queue);
