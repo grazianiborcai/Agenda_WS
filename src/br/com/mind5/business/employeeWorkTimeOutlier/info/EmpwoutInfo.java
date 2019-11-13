@@ -3,7 +3,6 @@ package br.com.mind5.business.employeeWorkTimeOutlier.info;
 import java.time.LocalTime;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -12,11 +11,8 @@ public final class EmpwoutInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codEmployee;
 	public int codWeekday;
-	public String txtWeekday;
 	public LocalTime beginTime;
 	public LocalTime endTime;
-	public String codTimezone;
-	public EmplisInfo empData;
 	public String username;
 	public String recordMode;	
 	
@@ -29,7 +25,6 @@ public final class EmpwoutInfo extends InfoRecord implements Cloneable {
 		codEmployee = DefaultValue.number();
 		codWeekday = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
-		empData = DefaultValue.object();
 	}
 	
 	
@@ -48,18 +43,8 @@ public final class EmpwoutInfo extends InfoRecord implements Cloneable {
 	
 	@Override public Object clone() throws CloneNotSupportedException {  
 		EmpwoutInfo deepCopy = (EmpwoutInfo) super.clone();  
-		deepCopy.empData = cloneEmplis(empData);				
 		return deepCopy;	
 	} 
-	
-	
-	
-	private EmplisInfo cloneEmplis(EmplisInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return recordInfo;
-		
-		return (EmplisInfo) recordInfo.clone();
-	}
 	
 	
 	
