@@ -29,6 +29,8 @@ public final class SystemCode {
 	public static final int EMP_WTIME_RANGE_TOO_SHORT					= 1008;
 	public static final int EMP_WTIME_MANDATORY_FIELD_EMPTY 			= 1009;
 	public static final int EMP_WTIME_RANGE_OK 							= 1010;
+	public static final int EMP_WTIME_CONFLICT_FOUND 					= 1011;
+	public static final int EMP_WTIME_CONFLICT_FREE 					= 1012;
 	
 	// Employee
 	public static final int EMP_ALREADY_EXIST 							= 1050;

@@ -1,56 +1,37 @@
 package br.com.mind5.business.employeeWorkTime.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
-import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckExist_;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.business.employeeWorkTimeConflict.model.decisionTree.RootEmpwocoSelect;
+import br.com.mind5.common.SystemCode;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmpwotmCheckEmpwoco implements ModelChecker<EmpwotmInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelChecker<EmpwocoInfo> checker;
-	
+public final class EmpwotmCheckEmpwoco extends ModelCheckerTemplateActionV2<EmpwotmInfo, EmpwocoInfo> {
 	
 	public EmpwotmCheckEmpwoco(ModelCheckerOption option) {
-		checker = new EmpwocoCheckExist_(option);
+		super(option, EmpwocoInfo.class);
 	}
 	
 	
 	
-	@Override public boolean check(List<EmpwotmInfo> recordInfos) {
-		for (EmpwotmInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
+	@Override protected ActionStd<EmpwocoInfo> buildActionHook(DeciTreeOption<EmpwocoInfo> option) {
+		ActionStd<EmpwocoInfo> select = new RootEmpwocoSelect(option).toAction();
 		
-		return SUCCESS;
+		return select;
 	}
-
 	
 	
-	@Override public boolean check(EmpwotmInfo recordInfo) {
-		return checker.check(EmpwocoInfo.copyFrom(recordInfo));
+	
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.EMP_WTIME_CONFLICT_FOUND;	
 	}
-
 	
 	
-	@Override public boolean getResult() {
-		return checker.getResult();
-	}
-
 	
-	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
-	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.EMP_WTIME_CONFLICT_FREE;	
 	}
 }
