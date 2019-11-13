@@ -42,11 +42,10 @@ import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelConflict;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelDelete;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelInsert;
+import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelOutlier;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelSearch;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelSelect;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelUpdate;
-import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
-import br.com.mind5.business.employeeWorkTimeOutlier.model.EmpwoutModelSelect;
 import br.com.mind5.model.Model;
 
 @Path("/Employee")
@@ -526,7 +525,7 @@ public class EmployeeResource {
 			                      @HeaderParam("endTime")  	 	@DefaultValue("12:00") String endTime,
 			                      @HeaderParam("TOKEN_USERNAME") String username) {
 
-		EmpwoutInfo recordInfo = new EmpwoutInfo();
+		EmpwotmInfo recordInfo = new EmpwotmInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codWeekday = codWeekday;
@@ -535,7 +534,7 @@ public class EmployeeResource {
 		recordInfo.beginTime = LocalTime.parse(beginTime, DateTimeFormatter.ISO_LOCAL_TIME);
 		recordInfo.endTime = LocalTime.parse(endTime, DateTimeFormatter.ISO_LOCAL_TIME);
 		
-		Model model = new EmpwoutModelSelect(recordInfo);
+		Model model = new EmpwotmModelOutlier(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
