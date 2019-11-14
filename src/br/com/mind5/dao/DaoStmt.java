@@ -16,5 +16,5 @@ public interface DaoStmt<T> {
 	public List<T> getResultset();	
 	
 	
-	public DaoStmt<T> getNewInstance();
+	public DaoStmt<T> getNewInstance();		//TODO: remover ?
 }
