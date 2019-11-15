@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmpwotmCheckDeleteByEmpos_ extends ModelCheckerTemplateSimpleV2<EmpwotmInfo> {
+public final class EmpwotmCheckDeleteByEmpos extends ModelCheckerTemplateSimpleV2<EmpwotmInfo> {
 
-	public EmpwotmCheckDeleteByEmpos_(ModelCheckerOption option) {
+	public EmpwotmCheckDeleteByEmpos(ModelCheckerOption option) {
 		super(option);
 	}
 	
