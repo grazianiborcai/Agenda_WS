@@ -836,6 +836,8 @@ public final class SystemCode {
 	
 	// Employee Worktime Search
 	public static final int EMP_WTIME_SEARCH_MANDATORY_FIELD_EMPTY 		= 7300;
+	public static final int EMP_WTIME_SEARCH_ALREADY_EXIST 				= 7301;
+	public static final int EMP_WTIME_SEARCH_NOT_FOUND 					= 7302;
 	
 	// Employee Worktime Conflict
 	public static final int EMP_WTIME_CONFLICT_MANDATORY_FIELD_EMPTY 	= 7350;

@@ -15,6 +15,8 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
+import br.com.mind5.dao.common.DaoJoinEmp;
+import br.com.mind5.dao.common.DaoJoinStore;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class EmposarchSelectSingle extends DaoStmtTemplate<EmposarchInfo> {	
@@ -59,10 +61,10 @@ public final class EmposarchSelectSingle extends DaoStmtTemplate<EmposarchInfo> 
 	@Override protected List<DaoJoin> getJoinsHook() {
 		List<DaoJoin> joins = new ArrayList<>();
 		
-		DaoJoinBuilder joinStore = new EmposarchJoinStore(MAIN_TABLE);		
+		DaoJoinBuilder joinStore = new DaoJoinStore(MAIN_TABLE);		
 		joins.add(joinStore.build());
 		
-		DaoJoinBuilder joinEmp = new EmposarchJoinEmp(MAIN_TABLE);		
+		DaoJoinBuilder joinEmp = new DaoJoinEmp(MAIN_TABLE);		
 		joins.add(joinEmp.build());
 		
 		return joins;
