@@ -25,9 +25,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootEmposDeleteCascade extends DeciTreeWriteTemplate<EmposInfo> {
+public final class RootEmposDeleteCascade_ extends DeciTreeWriteTemplate<EmposInfo> {
 	
-	public RootEmposDeleteCascade(DeciTreeOption<EmposInfo> option) {
+	public RootEmposDeleteCascade_(DeciTreeOption<EmposInfo> option) {
 		super(option);
 	}
 	

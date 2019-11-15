@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.StdEmposDeleteEmpwotm;
 import br.com.mind5.business.employeePosition.model.action.StdEmposSuccess;
-import br.com.mind5.business.employeePosition.model.checker.EmposCheckHasEmpwotm;
+import br.com.mind5.business.employeePosition.model.checker.EmposCheckEmpwotarch;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -30,8 +30,8 @@ public final class NodeEmposDeleteEmpwotm extends DeciTreeWriteTemplate<EmposInf
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new EmposCheckHasEmpwotm(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmposCheckEmpwotarch(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
