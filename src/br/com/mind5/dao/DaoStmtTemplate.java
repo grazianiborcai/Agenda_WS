@@ -16,14 +16,12 @@ import br.com.mind5.info.InfoRecord;
 public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T> {
 	private DaoStmt<T> stmtSql;
 	private DaoStmtOption<T> stmtOption;
-	private Class<?> childClass;
 	
 	
 	
-	protected DaoStmtTemplate(Connection conn, T recordInfo, String schemaName, Class<?> clazz) {
-		childClass = clazz;
+	protected DaoStmtTemplate(Connection conn, T recordInfo, String schemaName) {
 		stmtOption = buildStmtOption(conn, recordInfo, schemaName);
-		stmtSql = buildStmt(stmtOption, childClass);
+		stmtSql = buildStmt(stmtOption);
 	}
 	
 	
@@ -62,8 +60,8 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 	
 	
 	
-	private DaoStmt<T> buildStmt(DaoStmtOption<T> option, Class<?> clazz) {
-		return new DaoStmtHelper<>(getOperationHook(), option, clazz);
+	private DaoStmt<T> buildStmt(DaoStmtOption<T> option) {
+		return new DaoStmtHelper<>(getOperationHook(), option, this.getClass());
 	}
 	
 	
@@ -177,12 +175,7 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 	
 	
 	protected void logException(Exception e) {
-		Class<?> clazz = childClass;
-		
-		if (clazz == null)
-			clazz = this.getClass();
-		
-		Logger logger = LogManager.getLogger(clazz);
+		Logger logger = LogManager.getLogger(this.getClass());
 		logger.error(e.getMessage(), e);
 	}	
 }
