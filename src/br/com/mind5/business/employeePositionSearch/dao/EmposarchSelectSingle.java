@@ -24,7 +24,7 @@ public final class EmposarchSelectSingle extends DaoStmtTemplate<EmposarchInfo> 
 
 	
 	public EmposarchSelectSingle(Connection conn, EmposarchInfo recordInfo, String schemaName) {
-		super(conn, recordInfo, schemaName, EmposarchSelectSingle.class);
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
