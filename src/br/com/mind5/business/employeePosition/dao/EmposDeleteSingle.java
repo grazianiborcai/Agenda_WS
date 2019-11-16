@@ -20,7 +20,7 @@ public final class EmposDeleteSingle extends DaoStmtTemplate<EmposInfo> {
 	
 	
 	public EmposDeleteSingle(Connection conn, EmposInfo recordInfo, String schemaName) {
-		super(conn, recordInfo, schemaName, EmposDeleteSingle.class);
+		super(conn, recordInfo, schemaName);
 	}
 	
 	

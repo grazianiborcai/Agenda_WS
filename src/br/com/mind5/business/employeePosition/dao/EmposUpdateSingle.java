@@ -18,7 +18,7 @@ public final class EmposUpdateSingle extends DaoStmtTemplate<EmposInfo> {
 	
 	
 	public EmposUpdateSingle(Connection conn, EmposInfo recordInfo, String schemaName) {
-		super(conn, recordInfo, schemaName, EmposUpdateSingle.class);
+		super(conn, recordInfo, schemaName);
 	}
 	
 	

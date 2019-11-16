@@ -22,7 +22,7 @@ public final class EmposSelectSingle extends DaoStmtTemplate<EmposInfo> {
 	
 	
 	public EmposSelectSingle(Connection conn, EmposInfo recordInfo, String schemaName) {
-		super(conn, recordInfo, schemaName, EmposSelectSingle.class);
+		super(conn, recordInfo, schemaName);
 	}
 	
 	

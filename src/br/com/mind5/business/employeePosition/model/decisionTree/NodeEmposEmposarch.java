@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeDeleteEmpwotm;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposUniquify;
 import br.com.mind5.business.employeePosition.model.action.StdEmposSuccess;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckEmposarch;
 import br.com.mind5.model.action.ActionLazy;
@@ -56,8 +57,10 @@ public final class NodeEmposEmposarch extends DeciTreeWriteTemplate<EmposInfo> {
 		
 		ActionStd<EmposInfo> schedage = new NodeEmposSchedage(option).toAction();
 		ActionLazy<EmposInfo> deleteEmpwotm = new LazyEmposNodeDeleteEmpwotm(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> uniquify = new LazyEmposUniquify(option.conn, option.schemaName);
 		
 		schedage.addPostAction(deleteEmpwotm);
+		deleteEmpwotm.addPostAction(uniquify);
 		
 		
 		actions.add(schedage);
