@@ -24,7 +24,7 @@ public final class EmpwotarchSelectSingle extends DaoStmtTemplate<EmpwotarchInfo
 	
 
 	public EmpwotarchSelectSingle(Connection conn, EmpwotarchInfo recordInfo, String schemaName) {
-		super(conn, recordInfo, schemaName, EmpwotarchSelectSingle.class);
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
