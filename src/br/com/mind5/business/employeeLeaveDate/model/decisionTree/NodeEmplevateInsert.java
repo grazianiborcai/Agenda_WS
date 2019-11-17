@@ -23,8 +23,6 @@ public final class NodeEmplevateInsert extends DeciTreeWriteTemplate<EmplevateIn
 	
 	
 	@Override protected ModelChecker<EmplevateInfo> buildDecisionCheckerHook(DeciTreeOption<EmplevateInfo> option) {
-		final boolean NOT_DELETED = false;	
-		
 		List<ModelChecker<EmplevateInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmplevateInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -32,7 +30,7 @@ public final class NodeEmplevateInsert extends DeciTreeWriteTemplate<EmplevateIn
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = NOT_DELETED;		
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new EmplevateCheckSoftDelete(checkerOption);
 		queue.add(checker);	
 		
@@ -44,7 +42,9 @@ public final class NodeEmplevateInsert extends DeciTreeWriteTemplate<EmplevateIn
 	@Override protected List<ActionStd<EmplevateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplevateInfo> option) {
 		List<ActionStd<EmplevateInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmplevateInsert(option));				
+		ActionStd<EmplevateInfo> insert = new StdEmplevateInsert(option);		
+		actions.add(insert);				
+		
 		return actions;
 	}
 	
@@ -53,7 +53,9 @@ public final class NodeEmplevateInsert extends DeciTreeWriteTemplate<EmplevateIn
 	@Override protected List<ActionStd<EmplevateInfo>> buildActionsOnFailedHook(DeciTreeOption<EmplevateInfo> option) {
 		List<ActionStd<EmplevateInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmplevateUpdate(option));	
+		ActionStd<EmplevateInfo> update = new StdEmplevateUpdate(option);		
+		actions.add(update);	
+		
 		return actions;
 	}
 }

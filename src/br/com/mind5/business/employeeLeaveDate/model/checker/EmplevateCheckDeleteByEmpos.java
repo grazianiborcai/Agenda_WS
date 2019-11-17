@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmplevateCheckDeleteByEmpos extends ModelCheckerTemplateSimple_<EmplevateInfo> {
+public final class EmplevateCheckDeleteByEmpos extends ModelCheckerTemplateSimpleV2<EmplevateInfo> {
 
-	public EmplevateCheckDeleteByEmpos() {
-		super();
+	public EmplevateCheckDeleteByEmpos(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -22,21 +22,15 @@ public final class EmplevateCheckDeleteByEmpos extends ModelCheckerTemplateSimpl
 			recordInfo.codLanguage	== null ||
 			recordInfo.username		== null		)
 			
-			return FAILED;
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.EMP_LDATE_MANDATORY_FIELD_EMPTY;
 	}
 }

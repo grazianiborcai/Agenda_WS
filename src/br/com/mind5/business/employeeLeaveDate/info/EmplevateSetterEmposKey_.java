@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class EmplevateSetterEmposKey implements InfoSetter<EmplevateInfo> {
+public final class EmplevateSetterEmposKey_ implements InfoSetter<EmplevateInfo> {
 	
 	public EmplevateInfo setAttr(EmplevateInfo recordInfo) {
 		checkArgument(recordInfo);

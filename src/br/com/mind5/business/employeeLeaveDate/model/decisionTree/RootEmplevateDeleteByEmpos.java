@@ -11,6 +11,7 @@ import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckDelet
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -26,8 +27,13 @@ public final class RootEmplevateDeleteByEmpos extends DeciTreeWriteTemplate<Empl
 	@Override protected ModelChecker<EmplevateInfo> buildDecisionCheckerHook(DeciTreeOption<EmplevateInfo> option) {
 		List<ModelChecker<EmplevateInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmplevateInfo> checker;
+		ModelCheckerOption checkerOption = new ModelCheckerOption();
 		
-		checker = new EmplevateCheckDeleteByEmpos();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new EmplevateCheckDeleteByEmpos(checkerOption);
 		queue.add(checker);
 		
 		 return new ModelCheckerQueue<EmplevateInfo>(queue);

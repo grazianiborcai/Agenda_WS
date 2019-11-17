@@ -12,6 +12,7 @@ import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckEmpos
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckExist;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckLangu;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckOwner;
+import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckSchedage;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckStorauth;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckStore;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplevateCheckTimeRange;
@@ -33,66 +34,79 @@ public final class RootEmplevateUpdate extends DeciTreeWriteTemplate<EmplevateIn
 	
 	
 	@Override protected ModelChecker<EmplevateInfo> buildDecisionCheckerHook(DeciTreeOption<EmplevateInfo> option) {
-		final boolean EXIST_ON_DB = true;	
-		
 		List<ModelChecker<EmplevateInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmplevateInfo> checker;			
 		ModelCheckerOption checkerOption;
 		
-		checker = new EmplevateCheckWrite();
-		queue.add(checker);
-		
-		checker = new EmplevateCheckTimeRange();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new EmplevateCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new EmplevateCheckTimeRange(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmplevateCheckLangu(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmplevateCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmplevateCheckEmp(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmplevateCheckStore(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmplevateCheckEmposarch(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmplevateCheckExist(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmplevateCheckStorauth(checkerOption);
 		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
+		checker = new EmplevateCheckSchedage(checkerOption);
+		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
 	}

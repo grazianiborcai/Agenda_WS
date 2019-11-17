@@ -198,6 +198,9 @@ public final class SystemCode {
 	public static final int EMP_LDATE_FLAGGED_AS_DELETED 				= 1302;
 	public static final int EMP_LDATE_NO_LEAVE_FOUND					= 1303;
 	public static final int EMP_LDATE_LEAVE_FOUND						= 1304;
+	public static final int EMP_LDATE_MANDATORY_FIELD_EMPTY				= 1305;
+	public static final int EMP_LDATE_BAD_TIME_RANGE 					= 1306;
+	public static final int EMP_LDATE_SCHEDULE_CONFLICT 				= 1307;
 	
 	// Customer
 	public static final int CUS_CPF_ALREADY_EXIST						= 1350;

@@ -9,98 +9,54 @@ import java.util.List;
 import br.com.mind5.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmplevateDeleteSingle implements DaoStmt<EmplevateInfo> {
-	private final String LT_EMP_LD = DaoDbTable.EMP_LD_TABLE;	
-	
-	private DaoStmt<EmplevateInfo> stmtSql;
-	private DaoStmtOption<EmplevateInfo> stmtOption;	
+public final class EmplevateDeleteSingle extends DaoStmtTemplate<EmplevateInfo> {
+	private final String LT_MAIN = DaoDbTable.EMP_LD_TABLE;	
 	
 	
 	public EmplevateDeleteSingle(Connection conn, EmplevateInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, EmplevateInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_EMP_LD;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();		
+	@Override protected String getTableNameHook() {
+		return LT_MAIN;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SOFT_DELETE;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, EmplevateInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		
-		DaoStmtWhere whereClause = new EmplevateWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new EmplevateWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SOFT_DELETE, this.stmtOption, this.getClass());
-	}
-	
-	
-	
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<EmplevateInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<EmplevateInfo> getNewInstance() {
-		return new EmplevateDeleteSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	private class ResultParser implements DaoResultParser<EmplevateInfo> {
-		@Override public List<EmplevateInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<EmplevateInfo> finalResult = new ArrayList<>();
-			EmplevateInfo emptyInfo = new EmplevateInfo();
-			finalResult.add(emptyInfo);			
-			return finalResult;
-		}
+	@Override protected DaoResultParser<EmplevateInfo> getResultParserHook() {
+		return new DaoResultParser<EmplevateInfo>() {
+			@Override public List<EmplevateInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+				List<EmplevateInfo> finalResult = new ArrayList<>();
+				EmplevateInfo emptyInfo = new EmplevateInfo();
+				finalResult.add(emptyInfo);			
+				return finalResult;
+			}
+		};
 	}
 }

@@ -8,7 +8,6 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
-import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
 public final class EmplevateWhere implements DaoStmtWhere {
@@ -40,19 +39,15 @@ public final class EmplevateWhere implements DaoStmtWhere {
 					break;
 					
 				case EmplevateDbTableColumn.COL_DT_VALID_FROM  :
-					builder.addClauseAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidFrom), DaoWhereCondition.LESS_OR_EQUAL);
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidFrom));
 					break;
 					
 				case EmplevateDbTableColumn.COL_DT_VALID_TO :
-					builder.addClauseAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidTo), DaoWhereCondition.GREATER_OR_EQUAL);
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidTo));
 					break;
 					
 				case EmplevateDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
-					break;
-					
-				case EmplevateDbTableColumn.COL_COD_LANGUAGE :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
 		}		

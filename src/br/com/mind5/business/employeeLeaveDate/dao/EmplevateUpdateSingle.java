@@ -1,122 +1,65 @@
 package br.com.mind5.business.employeeLeaveDate.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.sql.Types;
-import java.util.List;
-
 import br.com.mind5.business.employeeLeaveDate.info.EmplevateInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
 import br.com.mind5.dao.DaoStmtParamTranslator;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmplevateUpdateSingle implements DaoStmt<EmplevateInfo> {
-	private DaoStmt<EmplevateInfo> stmtSql;
-	private DaoStmtOption<EmplevateInfo> stmtOption;
+public final class EmplevateUpdateSingle extends DaoStmtTemplate<EmplevateInfo> {
+	private final String LT_MAIN = DaoDbTable.EMP_LD_TABLE;	
 	
 	
 	public EmplevateUpdateSingle(Connection conn, EmplevateInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, EmplevateInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.EMP_LD_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = null;
-		this.stmtOption.whereClause = buildWhereClause();
+	@Override protected String getTableNameHook() {
+		return LT_MAIN;
 	}
 	
 	
 	
-	private String buildWhereClause() {		
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.UPDATE;
+	}	
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, EmplevateInfo recordInfo) {		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		
-		DaoStmtWhere whereClause = new EmplevateWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new EmplevateWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<EmplevateInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<EmplevateInfo> getNewInstance() {
-		return new EmplevateUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	private class ParamTranslator implements DaoStmtParamTranslator<EmplevateInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmplevateInfo recordInfo) throws SQLException {			
-			Time endTime = DaoFormatter.localToSqlTime(recordInfo.timeValidTo);	
-			Date endDate = DaoFormatter.localToSqlDate(recordInfo.dateValidTo);	
-			Timestamp lastChanged = DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged);
-			
-			int i = 1;
-			stmt.setDate(i++, endDate);
-			stmt.setTime(i++, endTime);
-			stmt.setString(i++, recordInfo.description);
-			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setTimestamp(i++, lastChanged);
-			
-			if (recordInfo.lastChangedBy >= 0) {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
-			return stmt;
-		}		
+	@Override protected DaoStmtParamTranslator<EmplevateInfo> getParamTranslatorHook() {
+		return new DaoStmtParamTranslator<EmplevateInfo>() {		
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmplevateInfo recordInfo) throws SQLException {			
+				int i = 1;
+				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.dateValidTo);
+				stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.timeValidTo);
+				stmt.setString(i++, recordInfo.description);
+				stmt.setString(i++, recordInfo.recordMode);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);	
+				
+				return stmt;
+			}		
+		};
 	}
 }
