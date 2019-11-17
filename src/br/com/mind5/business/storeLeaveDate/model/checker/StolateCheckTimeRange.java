@@ -18,8 +18,8 @@ public final class StolateCheckTimeRange extends ModelCheckerTemplateSimpleV2<St
 	
 	@Override protected boolean checkHook(StolateInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.dateValidFrom == null || recordInfo.dateValidTo == null ||
-				recordInfo.timeValidFrom == null || recordInfo.timeValidTo == null	)
-				return super.FAILED;	
+			recordInfo.timeValidFrom == null || recordInfo.timeValidTo == null	)
+			return super.FAILED;	
 			
 		if (recordInfo.dateValidFrom.isAfter(recordInfo.dateValidTo))			
 			return super.FAILED;		
