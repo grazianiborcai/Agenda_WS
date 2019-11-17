@@ -8,16 +8,20 @@ import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDateSearch.info.EmplarchInfo;
 import br.com.mind5.dao.DaoFormatter;
+import br.com.mind5.dao.DaoJoin;
+import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
+import br.com.mind5.dao.common.DaoJoinEmp;
+import br.com.mind5.dao.common.DaoJoinStore;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class EmplarchSelectSingle extends DaoStmtTemplate<EmplarchInfo> {	
-	private final String LT_MAIN = DaoDbTable.EMP_LD_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.EMP_LD_TABLE;	
 	
 	
 	
@@ -28,7 +32,13 @@ public final class EmplarchSelectSingle extends DaoStmtTemplate<EmplarchInfo> {
 	
 	
 	@Override protected String getTableNameHook() {
-		return LT_MAIN;
+		return MAIN_TABLE;
+	}
+	
+	
+	
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.EMP_LD_SEARCH_VIEW;
 	}
 	
 	
@@ -41,11 +51,25 @@ public final class EmplarchSelectSingle extends DaoStmtTemplate<EmplarchInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmplarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new EmplarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
+	}
+	
+	
+	
+	@Override protected List<DaoJoin> getJoinsHook() {
+		List<DaoJoin> joins = new ArrayList<>();
+		
+		DaoJoinBuilder joinStore = new DaoJoinStore(MAIN_TABLE);		
+		joins.add(joinStore.build());
+		
+		DaoJoinBuilder joinEmp = new DaoJoinEmp(MAIN_TABLE);		
+		joins.add(joinEmp.build());
+		
+		return joins;
 	}
 	
 	
@@ -60,6 +84,7 @@ public final class EmplarchSelectSingle extends DaoStmtTemplate<EmplarchInfo> {
 				
 				do {
 					EmplarchInfo dataInfo = new EmplarchInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(EmplarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(EmplarchDbTableColumn.COL_COD_STORE);
 					dataInfo.codEmployee = stmtResult.getLong(EmplarchDbTableColumn.COL_COD_EMPLOYEE);

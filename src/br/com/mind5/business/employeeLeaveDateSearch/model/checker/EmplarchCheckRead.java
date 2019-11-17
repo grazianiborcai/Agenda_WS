@@ -35,6 +35,6 @@ public final class EmplarchCheckRead extends ModelCheckerTemplateSimpleV2<Emplar
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.EMP_LDATE_MANDATORY_FIELD_EMPTY;
+		return SystemCode.EMP_LDATE_SEARCH_MANDATORY_FIELD_EMPTY;
 	}
 }

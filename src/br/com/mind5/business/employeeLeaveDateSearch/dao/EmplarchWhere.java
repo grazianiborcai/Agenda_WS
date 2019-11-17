@@ -38,14 +38,6 @@ public final class EmplarchWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
-				case EmplarchDbTableColumn.COL_DT_VALID_FROM  :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidFrom));
-					break;
-					
-				case EmplarchDbTableColumn.COL_TM_VALID_FROM :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.timeToString(recordInfo.timeValidFrom));
-					break;
-					
 				case EmplarchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
