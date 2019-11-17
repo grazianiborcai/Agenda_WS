@@ -3,7 +3,7 @@ package br.com.mind5.business.planingData.info;
 import java.util.List;
 
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
-import br.com.mind5.business.employeeLeaveDate.info.EmplevateInfo;
+import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.info.InfoPruner;
@@ -18,8 +18,8 @@ public final class PlanataPruner {
 	
 	
 	
-	public static List<PlanataInfo> pruneWithEmplevate(List<PlanataInfo> sourceOne, List<EmplevateInfo> sourceTwo) {
-		InfoPruner<PlanataInfo, EmplevateInfo> pruner = new PlanataPrunerEmplevate();		
+	public static List<PlanataInfo> pruneWithEmplate(List<PlanataInfo> sourceOne, List<EmplateInfo> sourceTwo) {
+		InfoPruner<PlanataInfo, EmplateInfo> pruner = new PlanataPrunerEmplate();		
 		return pruner.prune(sourceOne, sourceTwo);
 	}
 	

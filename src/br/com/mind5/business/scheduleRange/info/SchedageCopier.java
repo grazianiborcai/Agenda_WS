@@ -2,21 +2,21 @@ package br.com.mind5.business.scheduleRange.info;
 
 import java.util.List;
 
-import br.com.mind5.business.employeeLeaveDate.info.EmplevateInfo;
+import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.info.InfoCopier;
 
 public final class SchedageCopier {	
-	public static SchedageInfo copyFromEmplevate(EmplevateInfo source) {
-		InfoCopier<SchedageInfo, EmplevateInfo> copier = new SchedageCopyEmplevate();
+	public static SchedageInfo copyFromEmplate(EmplateInfo source) {
+		InfoCopier<SchedageInfo, EmplateInfo> copier = new SchedageCopyEmplate();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<SchedageInfo> copyFromEmplevate(List<EmplevateInfo> sources) {
-		InfoCopier<SchedageInfo, EmplevateInfo> copier = new SchedageCopyEmplevate();
+	public static List<SchedageInfo> copyFromEmplate(List<EmplateInfo> sources) {
+		InfoCopier<SchedageInfo, EmplateInfo> copier = new SchedageCopyEmplate();
 		return copier.makeCopy(sources);
 	}
 	

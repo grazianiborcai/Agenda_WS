@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employeeLeaveDate.info.EmplevateInfo;
+import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
@@ -295,15 +295,15 @@ public final class UsernameCopier {
 	
 	
 	
-	public static UsernameInfo copyFromEmplevate(EmplevateInfo source) {
-		InfoCopier<UsernameInfo, EmplevateInfo> copier = new UsernameCopyEmplevate();
+	public static UsernameInfo copyFromEmplate(EmplateInfo source) {
+		InfoCopier<UsernameInfo, EmplateInfo> copier = new UsernameCopyEmplate();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<UsernameInfo> copyFromEmplevate(List<EmplevateInfo> sources) {
-		InfoCopier<UsernameInfo, EmplevateInfo> copier = new UsernameCopyEmplevate();
+	public static List<UsernameInfo> copyFromEmplate(List<EmplateInfo> sources) {
+		InfoCopier<UsernameInfo, EmplateInfo> copier = new UsernameCopyEmplate();
 		return copier.makeCopy(sources);
 	}
 	

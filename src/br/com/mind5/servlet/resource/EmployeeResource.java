@@ -22,11 +22,11 @@ import br.com.mind5.business.employee.model.EmpModelDelete;
 import br.com.mind5.business.employee.model.EmpModelInsert;
 import br.com.mind5.business.employee.model.EmpModelSelect;
 import br.com.mind5.business.employee.model.EmpModelUpdate;
-import br.com.mind5.business.employeeLeaveDate.info.EmplevateInfo;
-import br.com.mind5.business.employeeLeaveDate.model.EmplevateModelDelete;
-import br.com.mind5.business.employeeLeaveDate.model.EmplevateModelInsert;
-import br.com.mind5.business.employeeLeaveDate.model.EmplevateModelSelect;
-import br.com.mind5.business.employeeLeaveDate.model.EmplevateModelUpdate;
+import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
+import br.com.mind5.business.employeeLeaveDate.model.EmplateModelDelete;
+import br.com.mind5.business.employeeLeaveDate.model.EmplateModelInsert;
+import br.com.mind5.business.employeeLeaveDate.model.EmplateModelSelect;
+import br.com.mind5.business.employeeLeaveDate.model.EmplateModelUpdate;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.model.EmplisModelSelect;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
@@ -212,7 +212,7 @@ public class EmployeeResource {
 								    @HeaderParam("date")	    @DefaultValue("1900-01-01") String date,
 								    @HeaderParam("TOKEN_USERNAME") String username) {
 		
-		EmplevateInfo recordInfo = new EmplevateInfo();
+		EmplateInfo recordInfo = new EmplateInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
@@ -224,7 +224,7 @@ public class EmployeeResource {
 			recordInfo.dateValidTo = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
 		}
 		
-		Model model = new EmplevateModelSelect(recordInfo);
+		Model model = new EmplateModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -236,7 +236,7 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertLeaveDate(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmplevateModelInsert(incomingData, request);
+		Model model = new EmplateModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -248,7 +248,7 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateLeaveDate(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmplevateModelUpdate(incomingData, request);
+		Model model = new EmplateModelUpdate(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -266,7 +266,7 @@ public class EmployeeResource {
 			                        @HeaderParam("codLanguage")	  @DefaultValue("EN") String codLanguage,
 				                    @HeaderParam("TOKEN_USERNAME") String username) {
 		
-		EmplevateInfo recordInfo = new EmplevateInfo();
+		EmplateInfo recordInfo = new EmplateInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.codEmployee = codEmployee;
@@ -275,7 +275,7 @@ public class EmployeeResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.username = username;
 		
-		Model model = new EmplevateModelDelete(recordInfo);
+		Model model = new EmplateModelDelete(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

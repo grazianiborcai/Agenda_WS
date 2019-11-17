@@ -8,7 +8,7 @@ import br.com.mind5.business.planingData.model.action.LazyPlanataMergeMat;
 import br.com.mind5.business.planingData.model.action.LazyPlanataMergeToSelect;
 import br.com.mind5.business.planingData.model.action.LazyPlanataNodeReserve;
 import br.com.mind5.business.planingData.model.action.LazyPlanataPruneAged;
-import br.com.mind5.business.planingData.model.action.LazyPlanataPruneEmplevate;
+import br.com.mind5.business.planingData.model.action.LazyPlanataPruneEmplate;
 import br.com.mind5.business.planingData.model.action.LazyPlanataPruneStolate;
 import br.com.mind5.business.planingData.model.action.LazyPlanataPruneStopar;
 import br.com.mind5.business.planingData.model.action.StdPlanataEnforceWeekday;
@@ -50,7 +50,7 @@ public class RootPlanataSelect extends DeciTreeReadTemplate<PlanataInfo> {
 		ActionStd<PlanataInfo> enforceWeekday = new StdPlanataEnforceWeekday(option);		
 		ActionLazy<PlanataInfo> select = new LazyPlanataMergeToSelect(option.conn, option.schemaName);		
 		ActionLazy<PlanataInfo> mergeMat = new LazyPlanataMergeMat(option.conn, option.schemaName);	
-		ActionLazy<PlanataInfo> pruneEmplevate = new LazyPlanataPruneEmplevate(option.conn, option.schemaName);
+		ActionLazy<PlanataInfo> pruneEmplate = new LazyPlanataPruneEmplate(option.conn, option.schemaName);
 		ActionLazy<PlanataInfo> pruneStolate = new LazyPlanataPruneStolate(option.conn, option.schemaName);
 		ActionLazy<PlanataInfo> pruneAged = new LazyPlanataPruneAged(option.conn, option.schemaName);
 		ActionLazy<PlanataInfo> pruneStopar = new LazyPlanataPruneStopar(option.conn, option.schemaName);
@@ -58,8 +58,8 @@ public class RootPlanataSelect extends DeciTreeReadTemplate<PlanataInfo> {
 		
 		enforceWeekday.addPostAction(select);
 		select.addPostAction(mergeMat);
-		mergeMat.addPostAction(pruneEmplevate);
-		pruneEmplevate.addPostAction(pruneStolate);
+		mergeMat.addPostAction(pruneEmplate);
+		pruneEmplate.addPostAction(pruneStolate);
 		pruneStolate.addPostAction(pruneAged);
 		pruneAged.addPostAction(pruneStopar);
 		pruneStopar.addPostAction(nodeReserve);
