@@ -42,8 +42,8 @@ public final class EmplateWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidFrom));
 					break;
 					
-				case EmplateDbTableColumn.COL_DT_VALID_TO :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidTo));
+				case EmplateDbTableColumn.COL_TM_VALID_FROM :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.timeToString(recordInfo.timeValidFrom));
 					break;
 					
 				case EmplateDbTableColumn.COL_RECORD_MODE :

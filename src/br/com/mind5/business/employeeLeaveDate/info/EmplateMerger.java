@@ -42,7 +42,7 @@ public final class EmplateMerger {
 	
 	
 	
-	public static List<EmplateInfo> mergeWithToSelect(List<EmplateInfo> sourceOnes, List<EmplateInfo> sourceTwos) {
+	public static List<EmplateInfo> mergeToSelect(List<EmplateInfo> sourceOnes, List<EmplateInfo> sourceTwos) {
 		InfoMerger<EmplateInfo, EmplateInfo> merger = new EmplateMergerToSelect();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}

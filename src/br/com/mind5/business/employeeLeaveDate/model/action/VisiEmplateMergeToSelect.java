@@ -23,7 +23,7 @@ final class VisiEmplateMergeToSelect extends ActionVisitorTemplateMergeV2<Emplat
 	
 	
 	@Override protected List<EmplateInfo> mergeHook(List<EmplateInfo> recordInfos, List<EmplateInfo> selectedInfos) {	
-		return EmplateMerger.mergeToDelete(selectedInfos, recordInfos);
+		return EmplateMerger.mergeToSelect(selectedInfos, recordInfos);
 	}
 	
 	
