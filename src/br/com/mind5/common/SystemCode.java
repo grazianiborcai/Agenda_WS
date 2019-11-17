@@ -844,4 +844,9 @@ public final class SystemCode {
 	
 	// Employee Worktime Conflict
 	public static final int EMP_WTIME_CONFLICT_MANDATORY_FIELD_EMPTY 	= 7350;
+	
+	// Employee Leave Date Search
+	public static final int EMP_LDATE_SEARCH_MANDATORY_FIELD_EMPTY 		= 7400;
+	public static final int EMP_LDATE_SEARCH_ALREADY_EXIST 				= 7401;
+	public static final int EMP_LDATE_SEARCH_NOT_FOUND 					= 7402;
 }
