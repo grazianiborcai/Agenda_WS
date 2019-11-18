@@ -87,6 +87,6 @@ public final class EmplarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		tableColumns.put(DaoDbTable.EMP_LD_SEARCH_VIEW, columns);
 	}
 }
