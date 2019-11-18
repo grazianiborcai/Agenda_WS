@@ -71,6 +71,8 @@ public final class EmplateSelectSingle extends DaoStmtTemplate<EmplateInfo> {
 					dataInfo.dateValidTo = DaoFormatter.sqlToLocalDate(stmtResult, EmplateDbTableColumn.COL_DT_VALID_TO);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, EmplateDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmplateDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, EmplateDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, EmplateDbTableColumn.COL_CREATED_BY);
 					
 					finalResult.add(dataInfo);		
 				} while (stmtResult.next());

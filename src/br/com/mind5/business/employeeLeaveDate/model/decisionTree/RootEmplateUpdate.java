@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
+import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateEnforceLChanged;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateMergeUsername;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateUpdate;
-import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateEnforceLChanged;
+import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateMergeToUpdate;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckEmp;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckEmposarch;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckExist;
@@ -116,15 +117,17 @@ public final class RootEmplateUpdate extends DeciTreeWriteTemplate<EmplateInfo> 
 	@Override protected List<ActionStd<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
 		List<ActionStd<EmplateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmplateInfo> enforceLChanged = new StdEmplateEnforceLChanged(option);
+		ActionStd<EmplateInfo> mergeToUpdate = new StdEmplateMergeToUpdate(option);
+		ActionLazy<EmplateInfo> enforceLChanged = new LazyEmplateEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmplateInfo> update = new LazyEmplateUpdate(option.conn, option.schemaName);
 		ActionStd<EmplateInfo> select = new RootEmplateSelect(option).toAction();
 		
+		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
 		
-		actions.add(enforceLChanged);
+		actions.add(mergeToUpdate);
 		actions.add(select);
 		
 		return actions;

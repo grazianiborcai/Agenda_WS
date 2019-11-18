@@ -25,6 +25,7 @@ import br.com.mind5.business.employee.model.EmpModelUpdate;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.EmplateModelDelete;
 import br.com.mind5.business.employeeLeaveDate.model.EmplateModelInsert;
+import br.com.mind5.business.employeeLeaveDate.model.EmplateModelSearch;
 import br.com.mind5.business.employeeLeaveDate.model.EmplateModelSelect;
 import br.com.mind5.business.employeeLeaveDate.model.EmplateModelUpdate;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
@@ -64,6 +65,7 @@ public class EmployeeResource {
 	private static final String INSERT_LEAVE_DATE = "/insertLeaveDate";
 	private static final String UPDATE_LEAVE_DATE = "/updateLeaveDate";
 	private static final String SELECT_LEAVE_DATE = "/selectLeaveDate";
+	private static final String SEARCH_LEAVE_DATE = "/searchLeaveDate";
 	private static final String DELETE_LEAVE_DATE = "/deleteLeaveDate";
 	private static final String SELECT_EMP_POSITION = "/selectPosition";
 	private static final String SEARCH_EMP_POSITION = "/searchPosition";
@@ -129,6 +131,7 @@ public class EmployeeResource {
 	@POST
 	@Path(INSERT_WORK_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertWorkTime(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new EmpwotmModelInsert(incomingData, request);
@@ -141,6 +144,7 @@ public class EmployeeResource {
 	@POST
 	@Path(UPDATE_WORK_TIME)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateWorkTime(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new EmpwotmModelUpdate(incomingData, request);
@@ -177,7 +181,7 @@ public class EmployeeResource {
 	
 	@GET
 	@Path(SELECT_WT_CONFLICT)
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectWTConflict(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner,
 								     @HeaderParam("codStore")       @DefaultValue("-1") long codStore,
 								     @HeaderParam("codEmployee")    @DefaultValue("-1") int codEmployee,
@@ -204,12 +208,38 @@ public class EmployeeResource {
 	
 	@GET
 	@Path(SELECT_LEAVE_DATE)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response selectLeaveDate(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
-								    @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
-								    @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
-								    @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,				                    
-								    @HeaderParam("date")	    @DefaultValue("1900-01-01") String date,
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectLeaveDate(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner,
+								    @HeaderParam("codStore")    	@DefaultValue("-1") long codStore,
+								    @HeaderParam("codEmployee") 	@DefaultValue("-1") int codEmployee,
+								    @HeaderParam("codLanguage")		@DefaultValue("EN") String codLanguage,				                    
+								    @HeaderParam("dateValidFrom")	@DefaultValue("1900-01-01") String dateValidFrom,
+								    @HeaderParam("timeValidFrom")   @DefaultValue("12:00") String timeValidFrom,
+								    @HeaderParam("TOKEN_USERNAME") String username) {
+		
+		EmplateInfo recordInfo = new EmplateInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codEmployee = codEmployee;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		recordInfo.dateValidFrom = LocalDate.parse(dateValidFrom, DateTimeFormatter.ISO_LOCAL_DATE);
+		recordInfo.timeValidFrom = LocalTime.parse(timeValidFrom, DateTimeFormatter.ISO_LOCAL_TIME);
+		
+		Model model = new EmplateModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SEARCH_LEAVE_DATE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchLeaveDate(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner,
+								    @HeaderParam("codStore")    	@DefaultValue("-1") long codStore,
+								    @HeaderParam("codEmployee") 	@DefaultValue("-1") int codEmployee,
+								    @HeaderParam("codLanguage")		@DefaultValue("EN") String codLanguage,	
 								    @HeaderParam("TOKEN_USERNAME") String username) {
 		
 		EmplateInfo recordInfo = new EmplateInfo();
@@ -219,12 +249,7 @@ public class EmployeeResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.username = username;
 		
-		if (date.equals("1900-01-01") == false) {
-			recordInfo.dateValidFrom = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
-			recordInfo.dateValidTo = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
-		}
-		
-		Model model = new EmplateModelSelect(recordInfo);
+		Model model = new EmplateModelSearch(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -234,6 +259,7 @@ public class EmployeeResource {
 	@POST
 	@Path(INSERT_LEAVE_DATE)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertLeaveDate(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new EmplateModelInsert(incomingData, request);
@@ -246,6 +272,7 @@ public class EmployeeResource {
 	@POST
 	@Path(UPDATE_LEAVE_DATE)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateLeaveDate(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new EmplateModelUpdate(incomingData, request);
@@ -257,7 +284,7 @@ public class EmployeeResource {
 	
 	@DELETE
 	@Path(DELETE_LEAVE_DATE)
-	@Consumes(MediaType.APPLICATION_JSON)	
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteLeaveDate(@HeaderParam("TOKEN_OWNER")   @DefaultValue("-1") long codOwner,
 								    @HeaderParam("codStore")      @DefaultValue("-1") long codStore,
 								    @HeaderParam("codEmployee")   @DefaultValue("-1") int codEmployee,
@@ -286,6 +313,7 @@ public class EmployeeResource {
 	@POST
 	@Path(INSERT_EMP)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertEmployee(@Context HttpServletRequest request, String incomingData) {
 		//TODO: horário do empregado. Se nulo, então pegar da Store	
 		//TODO: position (ex: cabelereiro, manicuro) não deviria ficar na tab empregado, mas somente na store_emp. Assim um empregado pode ter mais de uma position na loja
@@ -298,6 +326,7 @@ public class EmployeeResource {
 	@POST
 	@Path(UPDATE_EMP)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateEmployee(@Context HttpServletRequest request, String incomingData) {
 
 		Model model = new EmpModelUpdate(incomingData, request);
@@ -309,6 +338,7 @@ public class EmployeeResource {
 	
 	@DELETE
 	@Path(DELETE_EMP)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteEmployee(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner,
 								   @HeaderParam("codEmployee") 	  @DefaultValue("-1") int codEmployee,
 								   @HeaderParam("TOKEN_USERNAME") String username,
@@ -422,6 +452,7 @@ public class EmployeeResource {
 	@POST
 	@Path(INSERT_EMP_POSITION)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertEmpos(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new EmposModelInsert(incomingData, request);
@@ -482,6 +513,7 @@ public class EmployeeResource {
 	@POST
 	@Path(INSERT_EMP_MATERIAL)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertEmpmat(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new EmpmatModelInsert(incomingData, request);

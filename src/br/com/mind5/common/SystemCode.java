@@ -828,8 +828,8 @@ public final class SystemCode {
 	
 	// Employee Position Search
 	public static final int EMPOS_SEARCH_MANDATORY_FIELD_EMPTY			= 7150;
-	public static final int EMPOS_SEARCH_ALREADY_EXIST 					= 7151;
-	public static final int EMPOS_SEARCH_NOT_FOUND 						= 7152;
+	public static final int EMPOS_SEARCH_NOT_FOUND 						= 7151;
+	public static final int EMPOS_SEARCH_ALREADY_EXIST 					= 7152;	
 	
 	// Store Worktime Range
 	public static final int STORE_WTIME_RANGE_MANDATORY_FIELD_EMPTY 	= 7200;

@@ -24,6 +24,8 @@ public final class EmplateInfo extends InfoRecord implements Cloneable {
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public String username;
 	
 	
@@ -35,6 +37,7 @@ public final class EmplateInfo extends InfoRecord implements Cloneable {
 		codEmployee = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
+		createdBy = DefaultValue.number();
 	}
 	
 	
