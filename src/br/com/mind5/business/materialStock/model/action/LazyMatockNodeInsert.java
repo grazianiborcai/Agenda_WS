@@ -24,7 +24,7 @@ public final class LazyMatockNodeInsert extends ActionLazyTemplate<MatockInfo, M
 	
 	
 	
-	@Override protected  ActionStd<MatockInfo> getInstanceOfActionHook(DeciTreeOption<MatockInfo> option) {
+	@Override protected ActionStd<MatockInfo> getInstanceOfActionHook(DeciTreeOption<MatockInfo> option) {
 		return new NodeMatockInsert(option).toAction();
 	}
 	

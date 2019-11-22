@@ -23,7 +23,7 @@ public final class LazyEmposEnforceLChanged extends ActionLazyTemplate<EmposInfo
 	
 	
 	
-	@Override protected  ActionStd<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
+	@Override protected ActionStd<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
 		return new StdEmposEnforceLChanged(option);
 	}
 	

@@ -24,7 +24,7 @@ public final class LazyStoreNodeSnapshot extends ActionLazyTemplate<StoreInfo, S
 	
 	
 	
-	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
 		return new NodeStoreSnapshot(option).toAction();
 	}
 	

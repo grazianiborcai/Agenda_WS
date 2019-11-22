@@ -24,7 +24,7 @@ public final class LazyMatmovNodeInsert extends ActionLazyTemplate<MatmovInfo, M
 	
 	
 	
-	@Override protected  ActionStd<MatmovInfo> getInstanceOfActionHook(DeciTreeOption<MatmovInfo> option) {
+	@Override protected ActionStd<MatmovInfo> getInstanceOfActionHook(DeciTreeOption<MatmovInfo> option) {
 		return new NodeMatmovInsert(option).toAction();
 	}
 	

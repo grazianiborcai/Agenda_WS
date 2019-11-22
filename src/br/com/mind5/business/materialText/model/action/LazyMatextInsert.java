@@ -23,7 +23,7 @@ public final class LazyMatextInsert extends ActionLazyTemplate<MatextInfo, Matex
 	
 	
 	
-	@Override protected  ActionStd<MatextInfo> getInstanceOfActionHook(DeciTreeOption<MatextInfo> option) {
+	@Override protected ActionStd<MatextInfo> getInstanceOfActionHook(DeciTreeOption<MatextInfo> option) {
 		return new StdMatextInsert(option);
 	}
 	

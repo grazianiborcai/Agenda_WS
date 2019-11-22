@@ -24,7 +24,7 @@ public final class LazyMatoreNodeDelete extends ActionLazyTemplate<MatoreInfo, M
 	
 	
 	
-	@Override protected  ActionStd<MatoreInfo> getInstanceOfActionHook(DeciTreeOption<MatoreInfo> option) {
+	@Override protected ActionStd<MatoreInfo> getInstanceOfActionHook(DeciTreeOption<MatoreInfo> option) {
 		return new NodeMatoreDelete(option).toAction();
 	}
 	

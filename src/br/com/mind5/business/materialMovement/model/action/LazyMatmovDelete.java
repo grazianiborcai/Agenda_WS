@@ -23,7 +23,7 @@ public final class LazyMatmovDelete extends ActionLazyTemplate<MatmovInfo, Matmo
 	
 	
 	
-	@Override protected  ActionStd<MatmovInfo> getInstanceOfActionHook(DeciTreeOption<MatmovInfo> option) {
+	@Override protected ActionStd<MatmovInfo> getInstanceOfActionHook(DeciTreeOption<MatmovInfo> option) {
 		return new StdMatmovDelete(option);
 	}
 	

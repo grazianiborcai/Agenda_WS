@@ -23,7 +23,7 @@ public final class LazyStoreUpdate extends ActionLazyTemplate<StoreInfo, StoreIn
 	
 	
 	
-	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
 		return new StdStoreUpdate(option);
 	}
 	

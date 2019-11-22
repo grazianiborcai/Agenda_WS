@@ -24,7 +24,7 @@ public final class LazyStoreRootSelect extends ActionLazyTemplate<StoreInfo, Sto
 	
 	
 	
-	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
 		return new RootStoreSelect(option).toAction();
 	}
 	

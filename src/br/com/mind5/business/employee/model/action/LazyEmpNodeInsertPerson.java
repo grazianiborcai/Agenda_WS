@@ -24,7 +24,7 @@ public final class LazyEmpNodeInsertPerson extends ActionLazyTemplate<EmpInfo, E
 	
 	
 	
-	@Override protected  ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
+	@Override protected ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
 		return new NodeEmpInsertPerson(option).toAction();
 	}
 	

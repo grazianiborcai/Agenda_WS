@@ -23,7 +23,7 @@ public final class LazyUpswdUpdate extends ActionLazyTemplate<UpswdInfo, UpswdIn
 	
 	
 	
-	@Override protected  ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
+	@Override protected ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
 		return new StdUpswdUpdate(option);
 	}
 	

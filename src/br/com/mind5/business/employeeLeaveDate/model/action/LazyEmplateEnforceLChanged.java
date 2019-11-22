@@ -23,7 +23,7 @@ public final class LazyEmplateEnforceLChanged extends ActionLazyTemplate<Emplate
 	
 	
 	
-	@Override protected  ActionStd<EmplateInfo> getInstanceOfActionHook(DeciTreeOption<EmplateInfo> option) {
+	@Override protected ActionStd<EmplateInfo> getInstanceOfActionHook(DeciTreeOption<EmplateInfo> option) {
 		return new StdEmplateEnforceLChanged(option);
 	}
 	

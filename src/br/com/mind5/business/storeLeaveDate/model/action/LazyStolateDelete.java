@@ -23,7 +23,7 @@ public final class LazyStolateDelete extends ActionLazyTemplate<StolateInfo, Sto
 	
 	
 	
-	@Override protected  ActionStd<StolateInfo> getInstanceOfActionHook(DeciTreeOption<StolateInfo> option) {
+	@Override protected ActionStd<StolateInfo> getInstanceOfActionHook(DeciTreeOption<StolateInfo> option) {
 		return new StdStolateDelete(option);
 	}
 	

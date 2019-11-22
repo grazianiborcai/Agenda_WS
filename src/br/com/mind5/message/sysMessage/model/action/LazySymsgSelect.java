@@ -23,7 +23,7 @@ public final class LazySymsgSelect extends ActionLazyTemplate<SymsgInfo, SymsgIn
 	
 	
 	
-	@Override protected  ActionStd<SymsgInfo> getInstanceOfActionHook(DeciTreeOption<SymsgInfo> option) {
+	@Override protected ActionStd<SymsgInfo> getInstanceOfActionHook(DeciTreeOption<SymsgInfo> option) {
 		return new StdSymsgSelect(option);
 	}
 	

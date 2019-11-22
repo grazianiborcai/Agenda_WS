@@ -23,7 +23,7 @@ public final class LazyEmposDelete extends ActionLazyTemplate<EmposInfo, EmposIn
 	
 	
 	
-	@Override protected  ActionStd<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
+	@Override protected ActionStd<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
 		return new StdEmposDelete(option);
 	}
 	

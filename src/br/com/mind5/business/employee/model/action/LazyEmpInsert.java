@@ -23,7 +23,7 @@ public final class LazyEmpInsert extends ActionLazyTemplate<EmpInfo, EmpInfo> {
 	
 	
 	
-	@Override protected  ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
+	@Override protected ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
 		return new StdEmpInsert(option);
 	}
 	

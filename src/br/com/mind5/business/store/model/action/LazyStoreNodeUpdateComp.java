@@ -24,7 +24,7 @@ public final class LazyStoreNodeUpdateComp extends ActionLazyTemplate<StoreInfo,
 	
 	
 	
-	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
 		return new NodeStoreUpdateComp(option).toAction();
 	}
 	

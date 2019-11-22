@@ -24,7 +24,7 @@ public final class LazySymsgNodeSelect extends ActionLazyTemplate<SymsgInfo, Sym
 	
 	
 	
-	@Override protected  ActionStd<SymsgInfo> getInstanceOfActionHook(DeciTreeOption<SymsgInfo> option) {
+	@Override protected ActionStd<SymsgInfo> getInstanceOfActionHook(DeciTreeOption<SymsgInfo> option) {
 		return new NodeSymsgSelect(option).toAction();
 	}
 	

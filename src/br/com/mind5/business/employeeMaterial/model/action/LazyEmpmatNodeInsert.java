@@ -24,7 +24,7 @@ public final class LazyEmpmatNodeInsert extends ActionLazyTemplate<EmpmatInfo, E
 	
 	
 	
-	@Override protected  ActionStd<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected ActionStd<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
 		return new NodeEmpmatInsert(option).toAction();
 	}
 	

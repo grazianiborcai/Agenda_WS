@@ -24,7 +24,7 @@ public final class LazyEmposRootDelete extends ActionLazyTemplate<EmposInfo, Emp
 	
 	
 	
-	@Override protected  ActionStd<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
+	@Override protected ActionStd<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
 		return new RootEmposDelete(option).toAction();
 	}
 	

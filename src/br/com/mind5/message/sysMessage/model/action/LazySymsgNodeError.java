@@ -24,7 +24,7 @@ public final class LazySymsgNodeError extends ActionLazyTemplate<SymsgInfo, Syms
 	
 	
 	
-	@Override protected  ActionStd<SymsgInfo> getInstanceOfActionHook(DeciTreeOption<SymsgInfo> option) {
+	@Override protected ActionStd<SymsgInfo> getInstanceOfActionHook(DeciTreeOption<SymsgInfo> option) {
 		return new NodeSymsgError(option).toAction();
 	}
 	

@@ -23,7 +23,7 @@ public final class LazyStowotmDelete extends ActionLazyTemplate<StowotmInfo, Sto
 	
 	
 	
-	@Override protected  ActionStd<StowotmInfo> getInstanceOfActionHook(DeciTreeOption<StowotmInfo> option) {
+	@Override protected ActionStd<StowotmInfo> getInstanceOfActionHook(DeciTreeOption<StowotmInfo> option) {
 		return new StdStowotmDelete(option);
 	}
 	

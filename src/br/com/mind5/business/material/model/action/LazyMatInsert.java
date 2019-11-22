@@ -23,7 +23,7 @@ public final class LazyMatInsert extends ActionLazyTemplate<MatInfo, MatInfo> {
 	
 	
 	
-	@Override protected  ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
+	@Override protected ActionStd<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
 		return new StdMatInsert(option);
 	}
 	

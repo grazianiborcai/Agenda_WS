@@ -23,7 +23,7 @@ public final class LazyEmposUniquify extends ActionLazyTemplate<EmposInfo, Empos
 	
 	
 	
-	@Override protected  ActionStd<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
+	@Override protected ActionStd<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
 		return new StdEmposUniquify(option);
 	}
 	

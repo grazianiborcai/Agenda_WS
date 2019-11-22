@@ -23,7 +23,7 @@ public final class LazyStoreDeletePerson extends ActionLazyTemplate<StoreInfo, S
 	
 	
 	
-	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
 		return new StdStoreDeletePerson(option);
 	}
 	

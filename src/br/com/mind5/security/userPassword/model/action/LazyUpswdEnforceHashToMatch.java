@@ -23,7 +23,7 @@ public final class LazyUpswdEnforceHashToMatch extends ActionLazyTemplate<UpswdI
 	
 	
 	
-	@Override protected  ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
+	@Override protected ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
 		return new StdUpswdEnforceHashToMatch(option);
 	}
 	

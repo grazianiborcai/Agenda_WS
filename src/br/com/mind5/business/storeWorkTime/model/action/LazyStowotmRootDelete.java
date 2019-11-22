@@ -24,7 +24,7 @@ public final class LazyStowotmRootDelete extends ActionLazyTemplate<StowotmInfo,
 	
 	
 	
-	@Override protected  ActionStd<StowotmInfo> getInstanceOfActionHook(DeciTreeOption<StowotmInfo> option) {
+	@Override protected ActionStd<StowotmInfo> getInstanceOfActionHook(DeciTreeOption<StowotmInfo> option) {
 		return new RootStowotmDelete(option).toAction();
 	}
 	

@@ -23,7 +23,7 @@ public final class LazyFimgInsert extends ActionLazyTemplate<FimgInfo, FimgInfo>
 	
 	
 	
-	@Override protected  ActionStd<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
+	@Override protected ActionStd<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
 		return new StdFimgInsert(option);
 	}
 	

@@ -23,7 +23,7 @@ public final class LazyMatoreUpdate extends ActionLazyTemplate<MatoreInfo, Mator
 	
 	
 	
-	@Override protected  ActionStd<MatoreInfo> getInstanceOfActionHook(DeciTreeOption<MatoreInfo> option) {
+	@Override protected ActionStd<MatoreInfo> getInstanceOfActionHook(DeciTreeOption<MatoreInfo> option) {
 		return new StdMatoreUpdate(option);
 	}
 	

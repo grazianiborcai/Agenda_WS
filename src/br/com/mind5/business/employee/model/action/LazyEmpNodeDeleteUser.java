@@ -24,7 +24,7 @@ public final class LazyEmpNodeDeleteUser extends ActionLazyTemplate<EmpInfo, Emp
 	
 	
 	
-	@Override protected  ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
+	@Override protected ActionStd<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
 		return new NodeEmpDeleteUser(option).toAction();
 	}
 	

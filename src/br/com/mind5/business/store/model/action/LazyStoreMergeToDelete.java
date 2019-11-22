@@ -23,7 +23,7 @@ public final class LazyStoreMergeToDelete extends ActionLazyTemplate<StoreInfo, 
 	
 	
 	
-	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
 		return new StdStoreMergeToDelete(option);
 	}
 	

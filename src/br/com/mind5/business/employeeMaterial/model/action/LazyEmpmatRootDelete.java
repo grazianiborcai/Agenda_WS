@@ -24,7 +24,7 @@ public final class LazyEmpmatRootDelete extends ActionLazyTemplate<EmpmatInfo, E
 	
 	
 	
-	@Override protected  ActionStd<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected ActionStd<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
 		return new RootEmpmatDelete(option).toAction();
 	}
 	

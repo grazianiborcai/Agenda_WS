@@ -23,7 +23,7 @@ public final class LazySymsgEnforceError extends ActionLazyTemplate<SymsgInfo, S
 	
 	
 	
-	@Override protected  ActionStd<SymsgInfo> getInstanceOfActionHook(DeciTreeOption<SymsgInfo> option) {
+	@Override protected ActionStd<SymsgInfo> getInstanceOfActionHook(DeciTreeOption<SymsgInfo> option) {
 		return new StdSymsgEnforceError(option);
 	}
 	

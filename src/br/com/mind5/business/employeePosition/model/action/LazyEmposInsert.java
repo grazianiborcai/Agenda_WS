@@ -23,7 +23,7 @@ public final class LazyEmposInsert extends ActionLazyTemplate<EmposInfo, EmposIn
 	
 	
 	
-	@Override protected  ActionStd<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
+	@Override protected ActionStd<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
 		return new StdEmposInsert(option);
 	}
 	

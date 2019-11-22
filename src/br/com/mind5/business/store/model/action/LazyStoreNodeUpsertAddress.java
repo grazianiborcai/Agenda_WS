@@ -24,7 +24,7 @@ public final class LazyStoreNodeUpsertAddress extends ActionLazyTemplate<StoreIn
 	
 	
 	
-	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
 		return new NodeStoreUpsertAddress(option).toAction();
 	}
 	

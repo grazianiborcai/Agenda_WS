@@ -24,7 +24,7 @@ public final class LazyCrecardNodeInsertL1 extends ActionLazyTemplate<CrecardInf
 	
 	
 	
-	@Override protected  ActionStd<CrecardInfo> getInstanceOfActionHook(DeciTreeOption<CrecardInfo> option) {
+	@Override protected ActionStd<CrecardInfo> getInstanceOfActionHook(DeciTreeOption<CrecardInfo> option) {
 		return new NodeCrecardInsertL1(option).toAction();
 	}
 	

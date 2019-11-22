@@ -24,7 +24,7 @@ public final class LazyUpswdNodeEmail extends ActionLazyTemplate<UpswdInfo, Upsw
 	
 	
 	
-	@Override protected  ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
+	@Override protected ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
 		return new NodeUpswdEmail(option).toAction();
 	}
 	

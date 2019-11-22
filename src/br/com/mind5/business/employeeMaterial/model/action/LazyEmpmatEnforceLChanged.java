@@ -23,7 +23,7 @@ public final class LazyEmpmatEnforceLChanged extends ActionLazyTemplate<EmpmatIn
 	
 	
 	
-	@Override protected  ActionStd<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected ActionStd<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
 		return new StdEmpmatEnforceLChanged(option);
 	}
 	

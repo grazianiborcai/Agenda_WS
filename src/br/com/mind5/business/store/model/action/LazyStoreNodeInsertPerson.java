@@ -24,7 +24,7 @@ public final class LazyStoreNodeInsertPerson extends ActionLazyTemplate<StoreInf
 	
 	
 	
-	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
 		return new NodeStoreInsertPerson(option).toAction();
 	}
 	

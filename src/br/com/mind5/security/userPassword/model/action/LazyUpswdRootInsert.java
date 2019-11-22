@@ -24,7 +24,7 @@ public final class LazyUpswdRootInsert extends ActionLazyTemplate<UpswdInfo, Ups
 	
 	
 	
-	@Override protected  ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
+	@Override protected ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
 		return new RootUpswdInsert(option).toAction();
 	}
 	

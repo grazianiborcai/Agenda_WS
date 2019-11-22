@@ -24,7 +24,7 @@ public final class LazyUpswdRootAuth extends ActionLazyTemplate<UpswdInfo, Upswd
 	
 	
 	
-	@Override protected  ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
+	@Override protected ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
 		return new RootUpswdAuth(option).toAction();
 	}
 	

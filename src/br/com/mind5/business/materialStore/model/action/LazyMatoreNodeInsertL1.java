@@ -24,7 +24,7 @@ public final class LazyMatoreNodeInsertL1 extends ActionLazyTemplate<MatoreInfo,
 	
 	
 	
-	@Override protected  ActionStd<MatoreInfo> getInstanceOfActionHook(DeciTreeOption<MatoreInfo> option) {
+	@Override protected ActionStd<MatoreInfo> getInstanceOfActionHook(DeciTreeOption<MatoreInfo> option) {
 		return new NodeMatoreInsertL1(option).toAction();
 	}
 	

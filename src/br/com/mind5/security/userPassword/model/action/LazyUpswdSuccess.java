@@ -23,7 +23,7 @@ public final class LazyUpswdSuccess extends ActionLazyTemplate<UpswdInfo, UpswdI
 	
 	
 	
-	@Override protected  ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
+	@Override protected ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
 		return new StdUpswdSuccess(option);
 	}
 	

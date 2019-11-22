@@ -23,7 +23,7 @@ public final class LazyStorapInsert extends ActionLazyTemplate<StorapInfo, Stora
 	
 	
 	
-	@Override protected  ActionStd<StorapInfo> getInstanceOfActionHook(DeciTreeOption<StorapInfo> option) {
+	@Override protected ActionStd<StorapInfo> getInstanceOfActionHook(DeciTreeOption<StorapInfo> option) {
 		return new StdStorapInsert(option);
 	}
 	

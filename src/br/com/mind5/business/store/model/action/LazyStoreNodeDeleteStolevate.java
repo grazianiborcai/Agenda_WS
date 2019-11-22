@@ -24,7 +24,7 @@ public final class LazyStoreNodeDeleteStolevate extends ActionLazyTemplate<Store
 	
 	
 	
-	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
 		return new NodeStoreDeleteStolate(option).toAction();
 	}
 	

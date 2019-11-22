@@ -23,7 +23,7 @@ public final class LazyMatockSelect extends ActionLazyTemplate<MatockInfo, Matoc
 	
 	
 	
-	@Override protected  ActionStd<MatockInfo> getInstanceOfActionHook(DeciTreeOption<MatockInfo> option) {
+	@Override protected ActionStd<MatockInfo> getInstanceOfActionHook(DeciTreeOption<MatockInfo> option) {
 		return new StdMatockSelect(option);
 	}
 	

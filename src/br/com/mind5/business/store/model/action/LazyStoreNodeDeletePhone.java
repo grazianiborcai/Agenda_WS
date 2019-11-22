@@ -24,7 +24,7 @@ public final class LazyStoreNodeDeletePhone extends ActionLazyTemplate<StoreInfo
 	
 	
 	
-	@Override protected  ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
+	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
 		return new NodeStoreDeletePhone(option).toAction();
 	}
 	

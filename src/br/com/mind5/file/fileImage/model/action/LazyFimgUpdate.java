@@ -23,7 +23,7 @@ public final class LazyFimgUpdate extends ActionLazyTemplate<FimgInfo, FimgInfo>
 	
 	
 	
-	@Override protected  ActionStd<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
+	@Override protected ActionStd<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
 		return new StdFimgUpdate(option);
 	}
 	

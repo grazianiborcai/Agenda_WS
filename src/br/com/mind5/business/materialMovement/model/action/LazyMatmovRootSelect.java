@@ -24,7 +24,7 @@ public final class LazyMatmovRootSelect extends ActionLazyTemplate<MatmovInfo, M
 	
 	
 	
-	@Override protected  ActionStd<MatmovInfo> getInstanceOfActionHook(DeciTreeOption<MatmovInfo> option) {
+	@Override protected ActionStd<MatmovInfo> getInstanceOfActionHook(DeciTreeOption<MatmovInfo> option) {
 		return new RootMatmovSelect(option).toAction();
 	}
 	

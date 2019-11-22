@@ -23,7 +23,7 @@ public final class LazyEmpwotmEnforceLChanged extends ActionLazyTemplate<Empwotm
 	
 	
 	
-	@Override protected  ActionStd<EmpwotmInfo> getInstanceOfActionHook(DeciTreeOption<EmpwotmInfo> option) {
+	@Override protected ActionStd<EmpwotmInfo> getInstanceOfActionHook(DeciTreeOption<EmpwotmInfo> option) {
 		return new StdEmpwotmEnforceLChanged(option);
 	}
 	

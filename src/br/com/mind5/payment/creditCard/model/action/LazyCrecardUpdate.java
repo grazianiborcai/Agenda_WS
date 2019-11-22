@@ -23,7 +23,7 @@ public final class LazyCrecardUpdate extends ActionLazyTemplate<CrecardInfo, Cre
 	
 	
 	
-	@Override protected  ActionStd<CrecardInfo> getInstanceOfActionHook(DeciTreeOption<CrecardInfo> option) {
+	@Override protected ActionStd<CrecardInfo> getInstanceOfActionHook(DeciTreeOption<CrecardInfo> option) {
 		return new StdCrecardUpdate(option);
 	}
 	
