@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposDelete;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposEmptify;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposEnforceLChanged;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposMergeUsername;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeEmposarch;
@@ -93,12 +94,14 @@ public final class RootEmposDelete extends DeciTreeWriteTemplate<EmposInfo> {
 		ActionLazy<EmposInfo> update = new LazyEmposUpdate(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> delete = new LazyEmposDelete(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> emposarch = new LazyEmposNodeEmposarch(option.conn, option.schemaName);
+		ActionLazy<EmposInfo> emptify = new LazyEmposEmptify(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
 		update.addPostAction(delete);
 		update.addPostAction(emposarch);
+		update.addPostAction(emptify);
 		
 		actions.add(mergeToDelete);
 		return actions;		
