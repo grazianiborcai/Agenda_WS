@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
-import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateMergeToDelete;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateRootDelete;
-import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateEnforceEmposKey_;
+import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateMergeEmplarch;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckDeleteByEmpos;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -44,14 +43,12 @@ public final class RootEmplateDeleteByEmpos extends DeciTreeWriteTemplate<Emplat
 	@Override protected List<ActionStd<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
 		List<ActionStd<EmplateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmplateInfo> enforceEmposKey = new StdEmplateEnforceEmposKey_(option);
-		ActionLazy<EmplateInfo> mergeToDelete = new LazyEmplateMergeToDelete(option.conn, option.schemaName);
-		ActionLazy<EmplateInfo> rootDelete = new LazyEmplateRootDelete(option.conn, option.schemaName);
+		ActionStd<EmplateInfo> mergeEmplarch = new StdEmplateMergeEmplarch(option);
+		ActionLazy<EmplateInfo> delete = new LazyEmplateRootDelete(option.conn, option.schemaName);
 		
-		enforceEmposKey.addPostAction(mergeToDelete);
-		mergeToDelete.addPostAction(rootDelete);
+		mergeEmplarch.addPostAction(delete);
 		
-		actions.add(enforceEmposKey);
+		actions.add(mergeEmplarch);
 		return actions;	
 	}
 }
