@@ -476,6 +476,8 @@ public final class SystemCode {
 	public static final int EMPOS_MANDATORY_FIELD_EMPTY					= 2655;
 	public static final int EMPOS_HAS_SCHEDULE							= 2656;
 	public static final int EMPOS_NO_SCHEDULE_FOUND						= 2657;
+	public static final int EMPOS_HAS_LDATE								= 2658;
+	public static final int EMPOS_NO_LDATE_FOUND						= 2659;
 	
 	// Owner-Store
 	public static final int OWNER_STORE_IS_NULL							= 2700;
