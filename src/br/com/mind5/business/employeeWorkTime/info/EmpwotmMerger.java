@@ -7,10 +7,25 @@ import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
 import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
+import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpwotmMerger {	
+	public static EmpwotmInfo mergeWithStowotm(StowotmInfo sourceOne, EmpwotmInfo sourceTwo) {
+		InfoMerger<EmpwotmInfo, StowotmInfo> merger = new EmpwotmMergerStowotm();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<EmpwotmInfo> mergeWithStowotm(List<StowotmInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
+		InfoMerger<EmpwotmInfo, StowotmInfo> merger = new EmpwotmMergerStowotm();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static EmpwotmInfo mergeWithEmpwout(EmpwoutInfo sourceOne, EmpwotmInfo sourceTwo) {
 		InfoMerger<EmpwotmInfo, EmpwoutInfo> merger = new EmpwotmMergerEmpwout();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -21,7 +36,7 @@ public final class EmpwotmMerger {
 	public static List<EmpwotmInfo> mergeWithEmpwout(List<EmpwoutInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
 		InfoMerger<EmpwotmInfo, EmpwoutInfo> merger = new EmpwotmMergerEmpwout();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}	
+	}		
 	
 	
 	
