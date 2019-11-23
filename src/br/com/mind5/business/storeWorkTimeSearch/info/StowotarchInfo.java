@@ -1,5 +1,6 @@
 package br.com.mind5.business.storeWorkTimeSearch.info;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
@@ -9,6 +10,8 @@ public final class StowotarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public int codWeekday;
+	public LocalTime beginTime;
+	public LocalTime endTime;
 	public String username;
 	public String recordMode;
 	

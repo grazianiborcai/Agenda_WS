@@ -10,9 +10,11 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class StowotarchDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;	
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;
+	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
@@ -72,6 +74,22 @@ public final class StowotarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_BEGIN_TIME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_END_TIME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
 		
 		tableColumns.put(DaoDbTable.STORE_WTIME_SEARCH_VIEW, columns);
 	}

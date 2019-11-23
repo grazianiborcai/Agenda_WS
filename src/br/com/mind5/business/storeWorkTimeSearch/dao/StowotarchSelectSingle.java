@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
@@ -81,6 +82,8 @@ public final class StowotarchSelectSingle extends DaoStmtTemplate<StowotarchInfo
 					dataInfo.codOwner = stmtResult.getLong(StowotarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(StowotarchDbTableColumn.COL_COD_STORE);
 					dataInfo.codWeekday = stmtResult.getInt(StowotarchDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, StowotarchDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, StowotarchDbTableColumn.COL_END_TIME);
 					dataInfo.recordMode = stmtResult.getString(StowotarchDbTableColumn.COL_RECORD_MODE);				
 					
 					finalResult.add(dataInfo);
