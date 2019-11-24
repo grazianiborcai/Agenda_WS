@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmpwotmCheckInsertFromEmpos extends ModelCheckerTemplateSimpleV2<EmpwotmInfo> {
+public final class EmpwotmCheckInsertDefault extends ModelCheckerTemplateSimpleV2<EmpwotmInfo> {
 
-	public EmpwotmCheckInsertFromEmpos(ModelCheckerOption option) {
+	public EmpwotmCheckInsertDefault(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -19,7 +19,6 @@ public final class EmpwotmCheckInsertFromEmpos extends ModelCheckerTemplateSimpl
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.codStore    	<= 0 	||
 			recordInfo.codEmployee 	<= 0 	||
-			recordInfo.codWeekday	<= 0	||
 			recordInfo.codLanguage	== null ||
 			recordInfo.username		== null		)
 			

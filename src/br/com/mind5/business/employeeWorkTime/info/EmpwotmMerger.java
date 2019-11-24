@@ -7,20 +7,20 @@ import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
 import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
+import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpwotmMerger {	
-	public static EmpwotmInfo mergeWithStowotm(StowotmInfo sourceOne, EmpwotmInfo sourceTwo) {
-		InfoMerger<EmpwotmInfo, StowotmInfo> merger = new EmpwotmMergerStowotm();		
+	public static EmpwotmInfo mergeWithStowotarch(StowotarchInfo sourceOne, EmpwotmInfo sourceTwo) {
+		InfoMerger<EmpwotmInfo, StowotarchInfo> merger = new EmpwotmMergerStowotarch();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<EmpwotmInfo> mergeWithStowotm(List<StowotmInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
-		InfoMerger<EmpwotmInfo, StowotmInfo> merger = new EmpwotmMergerStowotm();		
+	public static List<EmpwotmInfo> mergeWithStowotarch(List<StowotarchInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
+		InfoMerger<EmpwotmInfo, StowotarchInfo> merger = new EmpwotmMergerStowotarch();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
 	

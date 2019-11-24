@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmRootInsert;
-import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeStowotm;
+import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmNodeInsertDefault;
+import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeStowotarch;
+import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmSuccess;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmp;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmposarch;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckExist;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckInsertFromEmpos;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckInsertDefault;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckOwner;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStorauth;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStore;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckWeekday;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStowotarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -23,9 +23,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootEmpwotmInsertFromEmpos extends DeciTreeWriteTemplate<EmpwotmInfo> {
+public final class RootEmpwotmInsertDefault extends DeciTreeWriteTemplate<EmpwotmInfo> {
 	
-	public RootEmpwotmInsertFromEmpos(DeciTreeOption<EmpwotmInfo> option) {
+	public RootEmpwotmInsertDefault(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
 	}
 	
@@ -40,7 +40,8 @@ public final class RootEmpwotmInsertFromEmpos extends DeciTreeWriteTemplate<Empw
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new EmpwotmCheckInsertFromEmpos(checkerOption);
+		checker = new EmpwotmCheckInsertDefault(checkerOption);
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
@@ -74,21 +75,14 @@ public final class RootEmpwotmInsertFromEmpos extends DeciTreeWriteTemplate<Empw
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpwotmCheckWeekday(checkerOption);
+		checker = new EmpwotmCheckEmposarch(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpwotmCheckEmposarch(checkerOption);
-		queue.add(checker);		
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new EmpwotmCheckExist(checkerOption);
+		checker = new EmpwotmCheckStowotarch(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
@@ -107,12 +101,23 @@ public final class RootEmpwotmInsertFromEmpos extends DeciTreeWriteTemplate<Empw
 	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwotmInfo> mergeStowotm = new StdEmpwotmMergeStowotm(option);
-		ActionLazy<EmpwotmInfo> insert = new LazyEmpwotmRootInsert(option.conn, option.schemaName);
+		ActionStd<EmpwotmInfo> mergeStowotarch = new StdEmpwotmMergeStowotarch(option);
+		ActionLazy<EmpwotmInfo> insertDefault = new LazyEmpwotmNodeInsertDefault(option.conn, option.schemaName);
 		
-		mergeStowotm.addPostAction(insert);
+		mergeStowotarch.addPostAction(insertDefault);
 		
-		actions.add(mergeStowotm);
+		actions.add(mergeStowotarch);
 		return actions;
 	}
+	
+	
+	
+	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
+		
+		ActionStd<EmpwotmInfo> success = new StdEmpwotmSuccess(option);
+		
+		actions.add(success);
+		return actions;
+	}	
 }

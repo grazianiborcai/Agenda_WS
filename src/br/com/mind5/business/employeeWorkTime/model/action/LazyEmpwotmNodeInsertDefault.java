@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.decisionTree.RootEmpwotmInsert;
+import br.com.mind5.business.employeeWorkTime.model.decisionTree.NodeEmpwotmInsertDefault;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpwotmRootInsert extends ActionLazyTemplate<EmpwotmInfo, EmpwotmInfo> {
+public final class LazyEmpwotmNodeInsertDefault extends ActionLazyTemplate<EmpwotmInfo, EmpwotmInfo> {
 	
-	public LazyEmpwotmRootInsert(Connection conn, String schemaName) {
+	public LazyEmpwotmNodeInsertDefault(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyEmpwotmRootInsert extends ActionLazyTemplate<EmpwotmInfo,
 	
 	
 	@Override protected ActionStd<EmpwotmInfo> getInstanceOfActionHook(DeciTreeOption<EmpwotmInfo> option) {
-		return new RootEmpwotmInsert(option).toAction();
+		return new NodeEmpwotmInsertDefault(option).toAction();
 	}
 	
 	

@@ -1,14 +1,14 @@
 package br.com.mind5.business.employeeWorkTime.info;
 
-import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
+import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.info.InfoMergerTemplate;
 import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmpwotmMergerStowotm extends InfoMergerTemplate<EmpwotmInfo, StowotmInfo> {
+final class EmpwotmMergerStowotarch extends InfoMergerTemplate<EmpwotmInfo, StowotarchInfo> {
 
-	@Override protected InfoMergerVisitor<EmpwotmInfo, StowotmInfo> getVisitorHook() {
-		return new EmpwotmVisiMergeStowotm();
+	@Override protected InfoMergerVisitor<EmpwotmInfo, StowotarchInfo> getVisitorHook() {
+		return new EmpwotmVisiMergeStowotarch();
 	}
 	
 	

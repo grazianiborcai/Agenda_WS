@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpwotmMergeStowotm implements ActionStd<EmpwotmInfo> {
+public final class StdEmpwotmMergeStowotarch implements ActionStd<EmpwotmInfo> {
 	private ActionStd<EmpwotmInfo> actionHelper;	
 	
 	
-	public StdEmpwotmMergeStowotm(DeciTreeOption<EmpwotmInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpwotmMergeStowotm(option.conn, option.schemaName));
+	public StdEmpwotmMergeStowotarch(DeciTreeOption<EmpwotmInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpwotmMergeStowotarch(option.conn, option.schemaName));
 	}
 	
 	

@@ -838,6 +838,8 @@ public final class SystemCode {
 	
 	// Store Worktime Search
 	public static final int STORE_WTIME_SEARCH_MANDATORY_FIELD_EMPTY 	= 7250;
+	public static final int STORE_WTIME_SEARCH_ALREADY_EXIST 			= 7251;
+	public static final int STORE_WTIME_SEARCH_NOT_FOUND 				= 7252;
 	
 	// Employee Worktime Search
 	public static final int EMP_WTIME_SEARCH_MANDATORY_FIELD_EMPTY 		= 7300;

@@ -3,13 +3,13 @@ package br.com.mind5.business.employeeWorkTime.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
+import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoMergerVisitor;
 
-final class EmpwotmVisiMergeStowotm implements InfoMergerVisitor<EmpwotmInfo, StowotmInfo> {
+final class EmpwotmVisiMergeStowotarch implements InfoMergerVisitor<EmpwotmInfo, StowotarchInfo> {
 
-	@Override public EmpwotmInfo writeRecord(StowotmInfo sourceOne, EmpwotmInfo sourceTwo) {
+	@Override public EmpwotmInfo writeRecord(StowotarchInfo sourceOne, EmpwotmInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		EmpwotmInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class EmpwotmVisiMergeStowotm implements InfoMergerVisitor<EmpwotmInfo, St
 	
 	
 	
-	private void checkArgument(StowotmInfo sourceOne, EmpwotmInfo sourceTwo) {
+	private void checkArgument(StowotarchInfo sourceOne, EmpwotmInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,18 +37,19 @@ final class EmpwotmVisiMergeStowotm implements InfoMergerVisitor<EmpwotmInfo, St
 	
 	
 	
-	private EmpwotmInfo merge(StowotmInfo sourceOne, EmpwotmInfo sourceTwo) {
+	private EmpwotmInfo merge(StowotarchInfo sourceOne, EmpwotmInfo sourceTwo) {
+		sourceTwo.codWeekday = sourceOne.codWeekday;
 		sourceTwo.beginTime = sourceOne.beginTime;
 		sourceTwo.endTime = sourceOne.endTime;
+		
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(StowotmInfo sourceOne, EmpwotmInfo sourceTwo) {		
+	@Override public boolean shouldWrite(StowotarchInfo sourceOne, EmpwotmInfo sourceTwo) {		
 		return (sourceOne.codOwner   == sourceTwo.codOwner		&&
-				sourceOne.codStore   == sourceTwo.codStore		&&
-				sourceOne.codWeekday == sourceTwo.codWeekday);
+				sourceOne.codStore   == sourceTwo.codStore);
 	}
 	
 	
