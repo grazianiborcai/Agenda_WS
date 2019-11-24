@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeInsertEmpwotm;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposRootSelect;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckEmp;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckExist;
@@ -99,8 +100,10 @@ public final class RootEmposInsert extends DeciTreeWriteTemplate<EmposInfo> {
 		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
 		ActionStd<EmposInfo> upsert = new NodeEmposUpsert(option).toAction();
+		ActionLazy<EmposInfo> insertEmpwotm = new LazyEmposNodeInsertEmpwotm(option.conn, option.schemaName);
 		ActionLazy<EmposInfo> select = new LazyEmposRootSelect(option.conn, option.schemaName);
 		
+		upsert.addPostAction(insertEmpwotm);
 		upsert.addPostAction(select);
 		
 		actions.add(upsert);
