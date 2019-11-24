@@ -8,21 +8,21 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.PayparInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class PayparSelectSingle implements DaoStmt<PayparInfo> {
 	private final String LT_ATTR = DaoDbTable.PAY_PARTNER_TABLE;
 	
 	private DaoStmt<PayparInfo> stmtSql;
-	private DaoStmtOption<PayparInfo> stmtOption;
+	private DaoStmtOption_<PayparInfo> stmtOption;
 	
 	
 	
@@ -34,7 +34,7 @@ public final class PayparSelectSingle implements DaoStmt<PayparInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, PayparInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption<>();
+		stmtOption = new DaoStmtOption_<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
@@ -61,7 +61,7 @@ public final class PayparSelectSingle implements DaoStmt<PayparInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, stmtOption, this.getClass());
+		stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, stmtOption, this.getClass());
 	}
 	
 	
@@ -96,7 +96,7 @@ public final class PayparSelectSingle implements DaoStmt<PayparInfo> {
 	
 	
 	
-	private class ResultParser implements DaoResultParser<PayparInfo> {
+	private class ResultParser implements DaoResultParser_<PayparInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<PayparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

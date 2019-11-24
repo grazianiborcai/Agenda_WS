@@ -10,7 +10,7 @@ import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
+import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -72,11 +72,11 @@ public final class EmposarchSelectSingle extends DaoStmtTemplate<EmposarchInfo> 
 	
 	
 	
-	@Override protected DaoResultParser<EmposarchInfo> getResultParserHook() {
-		return new DaoResultParser<EmposarchInfo>() {
+	@Override protected DaoResultParserV2<EmposarchInfo> getResultParserHook() {
+		return new DaoResultParserV2<EmposarchInfo>() {
 			private final boolean EMPTY_RESULT_SET = false;
 			
-			@Override public List<EmposarchInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+			@Override public List<EmposarchInfo> parseResult(EmposarchInfo redcordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<EmposarchInfo> finalResult = new ArrayList<>();
 				
 				if (stmtResult.next() == EMPTY_RESULT_SET)				

@@ -8,19 +8,19 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class CusDeleteSingle implements DaoStmt<CusInfo> {
 	private DaoStmt<CusInfo> stmtSql;
-	private DaoStmtOption<CusInfo> stmtOption;	
+	private DaoStmtOption_<CusInfo> stmtOption;	
 	
 	
 	public CusDeleteSingle(Connection conn, CusInfo recordInfo, String schemaName) {
@@ -31,7 +31,7 @@ public final class CusDeleteSingle implements DaoStmt<CusInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, CusInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -57,7 +57,7 @@ public final class CusDeleteSingle implements DaoStmt<CusInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SOFT_DELETE, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SOFT_DELETE, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -92,7 +92,7 @@ public final class CusDeleteSingle implements DaoStmt<CusInfo> {
 	
 	
 	
-	private class ResultParser implements DaoResultParser<CusInfo> {
+	private class ResultParser implements DaoResultParser_<CusInfo> {
 		@Override public List<CusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<CusInfo> finalResult = new ArrayList<>();
 			CusInfo emptyInfo = new CusInfo();

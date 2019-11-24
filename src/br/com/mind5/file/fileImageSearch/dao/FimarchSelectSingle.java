@@ -8,22 +8,22 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 
 public final class FimarchSelectSingle implements DaoStmt<FimarchInfo> {
 	private final String LT_FILE = DaoDbTable.FILE_IMG_TABLE;	
 	
 	private DaoStmt<FimarchInfo> stmtSql;
-	private DaoStmtOption<FimarchInfo> stmtOption;
+	private DaoStmtOption_<FimarchInfo> stmtOption;
 	
 	
 	
@@ -35,7 +35,7 @@ public final class FimarchSelectSingle implements DaoStmt<FimarchInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, FimarchInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption<>();
+		stmtOption = new DaoStmtOption_<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
@@ -61,7 +61,7 @@ public final class FimarchSelectSingle implements DaoStmt<FimarchInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -99,7 +99,7 @@ public final class FimarchSelectSingle implements DaoStmt<FimarchInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<FimarchInfo> {
+	private static class ResultParser implements DaoResultParser_<FimarchInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<FimarchInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

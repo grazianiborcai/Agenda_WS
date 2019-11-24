@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
+import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,9 +50,9 @@ public final class EmplateSelectSingle extends DaoStmtTemplate<EmplateInfo> {
 	
 	
 	
-	@Override protected DaoResultParser<EmplateInfo> getResultParserHook() {
-		return new DaoResultParser<EmplateInfo>() {
-			@Override public List<EmplateInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
+	@Override protected DaoResultParserV2<EmplateInfo> getResultParserHook() {
+		return new DaoResultParserV2<EmplateInfo>() {
+			@Override public List<EmplateInfo> parseResult(EmplateInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<EmplateInfo> finalResult = new ArrayList<>();
 				
 				if (stmtResult.next() == false)				

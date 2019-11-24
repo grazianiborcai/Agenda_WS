@@ -9,22 +9,22 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 
 public final class EmpwocoSelectSingle implements DaoStmt<EmpwocoInfo> {
 	private final String LT_EMP_WT = DaoDbTable.EMP_WT_TABLE;
 	
 	private DaoStmt<EmpwocoInfo> stmtSql;
-	private DaoStmtOption<EmpwocoInfo> stmtOption;
+	private DaoStmtOption_<EmpwocoInfo> stmtOption;
 	
 	
 	
@@ -36,7 +36,7 @@ public final class EmpwocoSelectSingle implements DaoStmt<EmpwocoInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, EmpwocoInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -62,7 +62,7 @@ public final class EmpwocoSelectSingle implements DaoStmt<EmpwocoInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -97,7 +97,7 @@ public final class EmpwocoSelectSingle implements DaoStmt<EmpwocoInfo> {
 	
 	
 	
-	private class ResultParser implements DaoResultParser<EmpwocoInfo> {
+	private class ResultParser implements DaoResultParser_<EmpwocoInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<EmpwocoInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
 public final class StoparDeleteSingle implements DaoStmt<StoparInfo> {
 	private DaoStmt<StoparInfo> stmtSql;
-	private DaoStmtOption<StoparInfo> stmtOption;	
+	private DaoStmtOption_<StoparInfo> stmtOption;	
 	
 	
 	public StoparDeleteSingle(Connection conn, StoparInfo recordInfo, String schemaName) {
@@ -31,7 +31,7 @@ public final class StoparDeleteSingle implements DaoStmt<StoparInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, StoparInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -57,7 +57,7 @@ public final class StoparDeleteSingle implements DaoStmt<StoparInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SOFT_DELETE, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SOFT_DELETE, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -93,7 +93,7 @@ public final class StoparDeleteSingle implements DaoStmt<StoparInfo> {
 	
 	
 	
-	private class ResultParser implements DaoResultParser<StoparInfo> {
+	private class ResultParser implements DaoResultParser_<StoparInfo> {
 		@Override public List<StoparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StoparInfo> finalResult = new ArrayList<>();
 			StoparInfo emptyInfo = new StoparInfo();

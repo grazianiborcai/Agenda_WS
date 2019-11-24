@@ -10,21 +10,21 @@ import br.com.mind5.business.scheduleLineSnapshot.dao.SchedinapDbTableColumn;
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class SchedarchSelectSingle implements DaoStmt<SchedarchInfo> {	
 	private final String LT_SCHEDULE = DaoDbTable.SCHEDULE_TABLE;
 	
 	private DaoStmt<SchedarchInfo> stmtSql;
-	private DaoStmtOption<SchedarchInfo> stmtOption;
+	private DaoStmtOption_<SchedarchInfo> stmtOption;
 	
 	
 	
@@ -36,7 +36,7 @@ public final class SchedarchSelectSingle implements DaoStmt<SchedarchInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, SchedarchInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -62,7 +62,7 @@ public final class SchedarchSelectSingle implements DaoStmt<SchedarchInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -100,7 +100,7 @@ public final class SchedarchSelectSingle implements DaoStmt<SchedarchInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<SchedarchInfo> {
+	private static class ResultParser implements DaoResultParser_<SchedarchInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<SchedarchInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

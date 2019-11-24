@@ -10,17 +10,17 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 	private DaoStmt<OrderInfo> stmtSql;
-	private DaoStmtOption<OrderInfo> stmtOption;
+	private DaoStmtOption_<OrderInfo> stmtOption;
 	
 	
 	
@@ -32,7 +32,7 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, OrderInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -46,7 +46,7 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
 	}
 		
 	
@@ -113,7 +113,7 @@ public final class OrderInsertSingle implements DaoStmt<OrderInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<OrderInfo> {
+	private static class ResultParser implements DaoResultParser_<OrderInfo> {
 		private OrderInfo recordInfo;
 		
 		public ResultParser(OrderInfo recordToParse) {

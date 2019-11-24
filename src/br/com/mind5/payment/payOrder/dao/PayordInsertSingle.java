@@ -9,18 +9,18 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
 public final class PayordInsertSingle implements DaoStmt<PayordInfo> {
 	private DaoStmt<PayordInfo> stmtSql;
-	private DaoStmtOption<PayordInfo> stmtOption;
+	private DaoStmtOption_<PayordInfo> stmtOption;
 	
 	
 	
@@ -32,7 +32,7 @@ public final class PayordInsertSingle implements DaoStmt<PayordInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, PayordInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -46,7 +46,7 @@ public final class PayordInsertSingle implements DaoStmt<PayordInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
 	}
 		
 	
@@ -105,7 +105,7 @@ public final class PayordInsertSingle implements DaoStmt<PayordInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<PayordInfo> {
+	private static class ResultParser implements DaoResultParser_<PayordInfo> {
 		private PayordInfo recordInfo;
 		
 		public ResultParser(PayordInfo recordToParse) {

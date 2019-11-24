@@ -9,21 +9,21 @@ import java.util.List;
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class StolarchSelectSingle implements DaoStmt<StolarchInfo> {	
 	private final String LT_STORE_LEAVE_DATE = DaoDbTable.STORE_LD_TABLE;
 	
 	private DaoStmt<StolarchInfo> stmtSql;
-	private DaoStmtOption<StolarchInfo> stmtOption;
+	private DaoStmtOption_<StolarchInfo> stmtOption;
 	
 	
 	
@@ -35,7 +35,7 @@ public final class StolarchSelectSingle implements DaoStmt<StolarchInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, StolarchInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -61,7 +61,7 @@ public final class StolarchSelectSingle implements DaoStmt<StolarchInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -99,7 +99,7 @@ public final class StolarchSelectSingle implements DaoStmt<StolarchInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<StolarchInfo> {
+	private static class ResultParser implements DaoResultParser_<StolarchInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<StolarchInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

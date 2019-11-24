@@ -9,21 +9,21 @@ import java.util.List;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class PersonapSelectSingle implements DaoStmt<PersonapInfo> {
 	private final String LT_PERSON = DaoDbTable.PERSON_SNAPSHOT_TABLE;
 	
 	private DaoStmt<PersonapInfo> stmtSql;
-	private DaoStmtOption<PersonapInfo> stmtOption;
+	private DaoStmtOption_<PersonapInfo> stmtOption;
 	
 	
 	
@@ -35,7 +35,7 @@ public final class PersonapSelectSingle implements DaoStmt<PersonapInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, PersonapInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -61,7 +61,7 @@ public final class PersonapSelectSingle implements DaoStmt<PersonapInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -99,7 +99,7 @@ public final class PersonapSelectSingle implements DaoStmt<PersonapInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<PersonapInfo> {		
+	private static class ResultParser implements DaoResultParser_<PersonapInfo> {		
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<PersonapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

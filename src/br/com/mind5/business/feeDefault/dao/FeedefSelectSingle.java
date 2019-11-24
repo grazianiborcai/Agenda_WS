@@ -9,21 +9,21 @@ import java.util.List;
 import br.com.mind5.business.feeDefault.info.FeedefInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class FeedefSelectSingle implements DaoStmt<FeedefInfo> {
 	private final static String LT_ATTR = DaoDbTable.FEE_DEFAULT_TABLE;
 	
 	private DaoStmt<FeedefInfo> stmtSql;
-	private DaoStmtOption<FeedefInfo> stmtOption;
+	private DaoStmtOption_<FeedefInfo> stmtOption;
 	
 	
 	
@@ -35,7 +35,7 @@ public final class FeedefSelectSingle implements DaoStmt<FeedefInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, FeedefInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -68,7 +68,7 @@ public final class FeedefSelectSingle implements DaoStmt<FeedefInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -106,7 +106,7 @@ public final class FeedefSelectSingle implements DaoStmt<FeedefInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<FeedefInfo> {
+	private static class ResultParser implements DaoResultParser_<FeedefInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<FeedefInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

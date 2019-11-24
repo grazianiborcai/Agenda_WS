@@ -9,18 +9,18 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class CompUpdateSingle implements DaoStmt<CompInfo> {
 	private DaoStmt<CompInfo> stmtSql;
-	private DaoStmtOption<CompInfo> stmtOption;
+	private DaoStmtOption_<CompInfo> stmtOption;
 	
 	
 	public CompUpdateSingle(Connection conn, CompInfo recordInfo, String schemaName) {
@@ -31,7 +31,7 @@ public final class CompUpdateSingle implements DaoStmt<CompInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, CompInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption<>();
+		stmtOption = new DaoStmtOption_<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
@@ -57,7 +57,7 @@ public final class CompUpdateSingle implements DaoStmt<CompInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, stmtOption, this.getClass());
+		stmtSql = new DaoStmtHelper_<>(DaoOperation.UPDATE, stmtOption, this.getClass());
 	}
 	
 	

@@ -10,17 +10,17 @@ import java.util.List;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class CompnapInsertSingle implements DaoStmt<CompnapInfo> {	
 	private DaoStmt<CompnapInfo> stmtSql;
-	private DaoStmtOption<CompnapInfo> stmtOption;
+	private DaoStmtOption_<CompnapInfo> stmtOption;
 	
 	
 	
@@ -33,7 +33,7 @@ public final class CompnapInsertSingle implements DaoStmt<CompnapInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, CompnapInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption<>();
+		stmtOption = new DaoStmtOption_<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
@@ -47,7 +47,7 @@ public final class CompnapInsertSingle implements DaoStmt<CompnapInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption, this.getClass());
+		stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, stmtOption, this.getClass());
 	}
 		
 	
@@ -111,7 +111,7 @@ public final class CompnapInsertSingle implements DaoStmt<CompnapInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<CompnapInfo> {
+	private static class ResultParser implements DaoResultParser_<CompnapInfo> {
 		private CompnapInfo recordInfo;
 		
 		public ResultParser(CompnapInfo recordToParse) {

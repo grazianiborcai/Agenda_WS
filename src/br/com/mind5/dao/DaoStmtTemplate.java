@@ -15,7 +15,7 @@ import br.com.mind5.info.InfoRecord;
 
 public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T> {
 	private DaoStmt<T> stmtSql;
-	private DaoStmtOption<T> stmtOption;
+	private DaoStmtOptionV2<T> stmtOption;
 	
 	
 	
@@ -26,8 +26,8 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 	
 	
 	
-	private DaoStmtOption<T> buildStmtOption(Connection conn, T recordInfo, String schemaName) {
-		DaoStmtOption<T> option = new DaoStmtOption<>();
+	private DaoStmtOptionV2<T> buildStmtOption(Connection conn, T recordInfo, String schemaName) {
+		DaoStmtOptionV2<T> option = new DaoStmtOptionV2<>();
 		
 		option.conn = conn;
 		option.recordInfo = recordInfo;
@@ -60,8 +60,8 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 	
 	
 	
-	private DaoStmt<T> buildStmt(DaoStmtOption<T> option) {
-		return new DaoStmtHelper<>(getOperationHook(), option, this.getClass());
+	private DaoStmt<T> buildStmt(DaoStmtOptionV2<T> option) {
+		return new DaoStmtHelperV2<>(getOperationHook(), option, this.getClass());
 	}
 	
 	
@@ -87,7 +87,7 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 	
 	
 	
-	protected DaoResultParser<T> getResultParserHook() {
+	protected DaoResultParserV2<T> getResultParserHook() {
 		//Template method: default behavior
 		return null;
 	}

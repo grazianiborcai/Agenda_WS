@@ -13,22 +13,22 @@ import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinColumn;
 import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class UserCategSelectSingle implements DaoStmt<UserCategInfo> {
 	private final String LT_ATTR = DaoDbTable.USER_CATEG_TABLE;
 	private final String RT_TEXT = DaoDbTable.USER_CATEG_TEXT_TABLE;
 	
 	private DaoStmt<UserCategInfo> stmtSql;
-	private DaoStmtOption<UserCategInfo> stmtOption;
+	private DaoStmtOption_<UserCategInfo> stmtOption;
 	
 	
 	
@@ -40,7 +40,7 @@ public final class UserCategSelectSingle implements DaoStmt<UserCategInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, UserCategInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -114,7 +114,7 @@ public final class UserCategSelectSingle implements DaoStmt<UserCategInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -149,7 +149,7 @@ public final class UserCategSelectSingle implements DaoStmt<UserCategInfo> {
 	
 	
 	
-	private class ResultParser implements DaoResultParser<UserCategInfo> {
+	private class ResultParser implements DaoResultParser_<UserCategInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<UserCategInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

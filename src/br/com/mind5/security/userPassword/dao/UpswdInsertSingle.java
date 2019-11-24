@@ -9,16 +9,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
 public final class UpswdInsertSingle implements DaoStmt<UpswdInfo> {
 	private DaoStmt<UpswdInfo> stmtSql;
-	private DaoStmtOption<UpswdInfo> stmtOption;
+	private DaoStmtOption_<UpswdInfo> stmtOption;
 	
 	
 	
@@ -31,7 +31,7 @@ public final class UpswdInsertSingle implements DaoStmt<UpswdInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, UpswdInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -45,7 +45,7 @@ public final class UpswdInsertSingle implements DaoStmt<UpswdInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
 	}
 		
 	

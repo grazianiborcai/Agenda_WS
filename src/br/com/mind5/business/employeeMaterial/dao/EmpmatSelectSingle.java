@@ -9,21 +9,21 @@ import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 	static private final String LT_EMP_MAT = DaoDbTable.EMP_MAT_TABLE;
 	
 	private DaoStmt<EmpmatInfo> stmtSql;
-	private DaoStmtOption<EmpmatInfo> stmtOption;	
+	private DaoStmtOption_<EmpmatInfo> stmtOption;	
 	
 	
 	public EmpmatSelectSingle(Connection conn, EmpmatInfo recordInfo, String schemaName) {
@@ -34,7 +34,7 @@ public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, EmpmatInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -60,7 +60,7 @@ public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -98,7 +98,7 @@ public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<EmpmatInfo> {
+	private static class ResultParser implements DaoResultParser_<EmpmatInfo> {
 		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		

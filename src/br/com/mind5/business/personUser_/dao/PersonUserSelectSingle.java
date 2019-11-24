@@ -11,21 +11,21 @@ import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinColumn;
 import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class PersonUserSelectSingle implements DaoStmt<PersonUserInfo> {
 	private final String LT_PERSON = DaoDbTable.PERSON_TABLE;
 	private final String RT_USER = DaoDbTable.USER_TABLE;
 	
 	private DaoStmt<PersonUserInfo> stmtSql;
-	private DaoStmtOption<PersonUserInfo> stmtOption;
+	private DaoStmtOption_<PersonUserInfo> stmtOption;
 	
 	
 	
@@ -37,7 +37,7 @@ public final class PersonUserSelectSingle implements DaoStmt<PersonUserInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, PersonUserInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -103,7 +103,7 @@ public final class PersonUserSelectSingle implements DaoStmt<PersonUserInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -138,7 +138,7 @@ public final class PersonUserSelectSingle implements DaoStmt<PersonUserInfo> {
 	
 	
 	
-	private class ResultParser implements DaoResultParser<PersonUserInfo> {
+	private class ResultParser implements DaoResultParser_<PersonUserInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		private final String COD_ENTITY_CATEG_COL = LT_PERSON + "." + PersonUserDbTableColumn.COL_COD_ENTITY_CATEG;
 		private final String COD_OWNER_COL = LT_PERSON + "." + PersonUserDbTableColumn.COL_COD_OWNER;

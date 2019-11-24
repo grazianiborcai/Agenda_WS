@@ -11,17 +11,17 @@ import java.util.List;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class MatsnapInsertSingle implements DaoStmt<MatsnapInfo> {
 	private DaoStmt<MatsnapInfo> stmtSql;
-	private DaoStmtOption<MatsnapInfo> stmtOption;
+	private DaoStmtOption_<MatsnapInfo> stmtOption;
 	
 	
 	
@@ -33,7 +33,7 @@ public final class MatsnapInsertSingle implements DaoStmt<MatsnapInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, MatsnapInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -47,7 +47,7 @@ public final class MatsnapInsertSingle implements DaoStmt<MatsnapInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
 	}
 		
 	
@@ -115,7 +115,7 @@ public final class MatsnapInsertSingle implements DaoStmt<MatsnapInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<MatsnapInfo> {
+	private static class ResultParser implements DaoResultParser_<MatsnapInfo> {
 		private MatsnapInfo recordInfo;
 		
 		public ResultParser(MatsnapInfo recordToParse) {

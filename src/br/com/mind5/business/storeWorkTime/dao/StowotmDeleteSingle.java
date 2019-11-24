@@ -8,19 +8,19 @@ import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class StowotmDeleteSingle implements DaoStmt<StowotmInfo> {
 	private DaoStmt<StowotmInfo> stmtSql;
-	private DaoStmtOption<StowotmInfo> stmtOption;	
+	private DaoStmtOption_<StowotmInfo> stmtOption;	
 	
 	
 	public StowotmDeleteSingle(Connection conn, StowotmInfo recordInfo, String schemaName) {
@@ -31,7 +31,7 @@ public final class StowotmDeleteSingle implements DaoStmt<StowotmInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, StowotmInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -57,7 +57,7 @@ public final class StowotmDeleteSingle implements DaoStmt<StowotmInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SOFT_DELETE, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SOFT_DELETE, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -93,7 +93,7 @@ public final class StowotmDeleteSingle implements DaoStmt<StowotmInfo> {
 	
 	
 	
-	private class ResultParser implements DaoResultParser<StowotmInfo> {
+	private class ResultParser implements DaoResultParser_<StowotmInfo> {
 		@Override public List<StowotmInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<StowotmInfo> finalResult = new ArrayList<>();
 			StowotmInfo emptyInfo = new StowotmInfo();

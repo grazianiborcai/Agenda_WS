@@ -8,22 +8,22 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.payment.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
 public final class PeresmoipSelectSingle implements DaoStmt<PeresmoipInfo> {
 	private final static String LT_ATTR = DaoDbTable.MOIP_PERMISSION_RESPONSE_TABLE;
 	
 	private DaoStmt<PeresmoipInfo> stmtSql;
-	private DaoStmtOption<PeresmoipInfo> stmtOption;
+	private DaoStmtOption_<PeresmoipInfo> stmtOption;
 	
 	
 	
@@ -35,7 +35,7 @@ public final class PeresmoipSelectSingle implements DaoStmt<PeresmoipInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, PeresmoipInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -61,7 +61,7 @@ public final class PeresmoipSelectSingle implements DaoStmt<PeresmoipInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -99,7 +99,7 @@ public final class PeresmoipSelectSingle implements DaoStmt<PeresmoipInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<PeresmoipInfo> {
+	private static class ResultParser implements DaoResultParser_<PeresmoipInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<PeresmoipInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

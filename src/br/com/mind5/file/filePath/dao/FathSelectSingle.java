@@ -7,22 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.file.filePath.info.FathInfo;
 
 public final class FathSelectSingle implements DaoStmt<FathInfo> {
 	private final String LT_FILE = DaoDbTable.FILE_PATH_TABLE;	
 	
 	private DaoStmt<FathInfo> stmtSql;
-	private DaoStmtOption<FathInfo> stmtOption;
+	private DaoStmtOption_<FathInfo> stmtOption;
 	
 	
 	
@@ -34,7 +34,7 @@ public final class FathSelectSingle implements DaoStmt<FathInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, FathInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption<>();
+		stmtOption = new DaoStmtOption_<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
@@ -60,7 +60,7 @@ public final class FathSelectSingle implements DaoStmt<FathInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -98,7 +98,7 @@ public final class FathSelectSingle implements DaoStmt<FathInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<FathInfo> {
+	private static class ResultParser implements DaoResultParser_<FathInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<FathInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

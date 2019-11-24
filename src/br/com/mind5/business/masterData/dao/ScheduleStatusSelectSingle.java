@@ -12,22 +12,22 @@ import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinColumn;
 import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class ScheduleStatusSelectSingle implements DaoStmt<ScheduleStatusInfo> {
 	private final String LT_ATTR = DaoDbTable.SCHEDULE_STATUS_TABLE;
 	private final String RT_TEXT = DaoDbTable.SCHEDULE_STATUS_TEXT_TABLE;
 	
 	private DaoStmt<ScheduleStatusInfo> stmtSql;
-	private DaoStmtOption<ScheduleStatusInfo> stmtOption;
+	private DaoStmtOption_<ScheduleStatusInfo> stmtOption;
 	
 	
 	
@@ -39,7 +39,7 @@ public final class ScheduleStatusSelectSingle implements DaoStmt<ScheduleStatusI
 	
 	
 	private void buildStmtOption(Connection conn, ScheduleStatusInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -113,7 +113,7 @@ public final class ScheduleStatusSelectSingle implements DaoStmt<ScheduleStatusI
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -148,7 +148,7 @@ public final class ScheduleStatusSelectSingle implements DaoStmt<ScheduleStatusI
 	
 	
 	
-	private class ResultParser implements DaoResultParser<ScheduleStatusInfo> {
+	private class ResultParser implements DaoResultParser_<ScheduleStatusInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<ScheduleStatusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

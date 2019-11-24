@@ -12,22 +12,22 @@ import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinColumn;
 import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class OrderStatusSelectSingle implements DaoStmt<OrderStatusInfo> {
 	private final String LT_ATTR = DaoDbTable.ORDER_STATUS_TABLE;
 	private final String RT_TEXT = DaoDbTable.ORDER_STATUS_TEXT_TABLE;
 	
 	private DaoStmt<OrderStatusInfo> stmtSql;
-	private DaoStmtOption<OrderStatusInfo> stmtOption;
+	private DaoStmtOption_<OrderStatusInfo> stmtOption;
 	
 	
 	
@@ -39,7 +39,7 @@ public final class OrderStatusSelectSingle implements DaoStmt<OrderStatusInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, OrderStatusInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -113,7 +113,7 @@ public final class OrderStatusSelectSingle implements DaoStmt<OrderStatusInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -148,7 +148,7 @@ public final class OrderStatusSelectSingle implements DaoStmt<OrderStatusInfo> {
 	
 	
 	
-	private class ResultParser implements DaoResultParser<OrderStatusInfo> {
+	private class ResultParser implements DaoResultParser_<OrderStatusInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<OrderStatusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

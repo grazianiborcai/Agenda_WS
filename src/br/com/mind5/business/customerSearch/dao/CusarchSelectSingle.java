@@ -12,15 +12,15 @@ import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinColumn;
 import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 	private final String LT_CUS = DaoDbTable.CUS_TABLE;
@@ -28,7 +28,7 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 	private final String RT_PHONE = DaoDbTable.PHONE_TABLE;	
 	
 	private DaoStmt<CusarchInfo> stmtSql;
-	private DaoStmtOption<CusarchInfo> stmtOption;
+	private DaoStmtOption_<CusarchInfo> stmtOption;
 	
 	
 	
@@ -40,7 +40,7 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, CusarchInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -141,7 +141,7 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -176,7 +176,7 @@ public final class CusarchSelectSingle implements DaoStmt<CusarchInfo> {
 	
 	
 	
-	private class ResultParser implements DaoResultParser<CusarchInfo> {
+	private class ResultParser implements DaoResultParser_<CusarchInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		

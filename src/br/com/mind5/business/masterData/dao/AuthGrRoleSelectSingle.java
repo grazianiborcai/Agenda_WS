@@ -8,21 +8,21 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class AuthGrRoleSelectSingle implements DaoStmt<AuthGrRoleInfo> {	
 	private final String LT_AUTH_GROUP_ROLE = DaoDbTable.AUTH_GROUP_ROLE_TABLE;
 	
 	private DaoStmt<AuthGrRoleInfo> stmtSql;
-	private DaoStmtOption<AuthGrRoleInfo> stmtOption;
+	private DaoStmtOption_<AuthGrRoleInfo> stmtOption;
 	
 	
 	
@@ -34,7 +34,7 @@ public final class AuthGrRoleSelectSingle implements DaoStmt<AuthGrRoleInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, AuthGrRoleInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -60,7 +60,7 @@ public final class AuthGrRoleSelectSingle implements DaoStmt<AuthGrRoleInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -98,7 +98,7 @@ public final class AuthGrRoleSelectSingle implements DaoStmt<AuthGrRoleInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<AuthGrRoleInfo> {
+	private static class ResultParser implements DaoResultParser_<AuthGrRoleInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<AuthGrRoleInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

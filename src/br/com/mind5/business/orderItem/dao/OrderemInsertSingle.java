@@ -9,15 +9,15 @@ import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public class OrderemInsertSingle implements DaoStmt<OrderemInfo> {
 	private DaoStmt<OrderemInfo> stmtSql;
-	private DaoStmtOption<OrderemInfo> stmtOption;
+	private DaoStmtOption_<OrderemInfo> stmtOption;
 	
 	
 	
@@ -29,7 +29,7 @@ public class OrderemInsertSingle implements DaoStmt<OrderemInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, OrderemInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption<>();
+		stmtOption = new DaoStmtOption_<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
@@ -43,7 +43,7 @@ public class OrderemInsertSingle implements DaoStmt<OrderemInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption, this.getClass());
+		stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, stmtOption, this.getClass());
 	}
 		
 	

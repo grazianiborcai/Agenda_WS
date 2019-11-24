@@ -8,15 +8,15 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.security.user.dao.UserDbTableColumn;
 import br.com.mind5.security.userList.info.UselisInfo;
 
@@ -24,7 +24,7 @@ public final class UselisSelectSingle implements DaoStmt<UselisInfo> {
 	private final String LT_USER = DaoDbTable.USER_TABLE;
 	
 	private DaoStmt<UselisInfo> stmtSql;
-	private DaoStmtOption<UselisInfo> stmtOption;
+	private DaoStmtOption_<UselisInfo> stmtOption;
 	
 	
 	
@@ -36,7 +36,7 @@ public final class UselisSelectSingle implements DaoStmt<UselisInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, UselisInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -62,7 +62,7 @@ public final class UselisSelectSingle implements DaoStmt<UselisInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -100,7 +100,7 @@ public final class UselisSelectSingle implements DaoStmt<UselisInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<UselisInfo> {
+	private static class ResultParser implements DaoResultParser_<UselisInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<UselisInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

@@ -8,22 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
 public final class CusparSelectSingle implements DaoStmt<CusparInfo> {
 	private final String LT_PAYCUS = DaoDbTable.PAY_CUS_TABLE;
 	
 	private DaoStmt<CusparInfo> stmtSql;
-	private DaoStmtOption<CusparInfo> stmtOption;
+	private DaoStmtOption_<CusparInfo> stmtOption;
 	
 	
 	
@@ -35,7 +35,7 @@ public final class CusparSelectSingle implements DaoStmt<CusparInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, CusparInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -61,7 +61,7 @@ public final class CusparSelectSingle implements DaoStmt<CusparInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -99,7 +99,7 @@ public final class CusparSelectSingle implements DaoStmt<CusparInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<CusparInfo> {
+	private static class ResultParser implements DaoResultParser_<CusparInfo> {
 		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		

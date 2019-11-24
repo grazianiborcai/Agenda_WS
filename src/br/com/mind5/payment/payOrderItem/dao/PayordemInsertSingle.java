@@ -8,16 +8,16 @@ import java.util.List;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
 public class PayordemInsertSingle implements DaoStmt<PayordemInfo> {
 	private DaoStmt<PayordemInfo> stmtSql;
-	private DaoStmtOption<PayordemInfo> stmtOption;
+	private DaoStmtOption_<PayordemInfo> stmtOption;
 	
 	
 	
@@ -29,7 +29,7 @@ public class PayordemInsertSingle implements DaoStmt<PayordemInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, PayordemInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption<>();
+		stmtOption = new DaoStmtOption_<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
@@ -43,7 +43,7 @@ public class PayordemInsertSingle implements DaoStmt<PayordemInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption, this.getClass());
+		stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, stmtOption, this.getClass());
 	}
 		
 	

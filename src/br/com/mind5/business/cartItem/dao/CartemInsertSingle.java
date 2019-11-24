@@ -9,15 +9,15 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public class CartemInsertSingle implements DaoStmt<CartemInfo> {
 	private DaoStmt<CartemInfo> stmtSql;
-	private DaoStmtOption<CartemInfo> stmtOption;
+	private DaoStmtOption_<CartemInfo> stmtOption;
 	
 	
 	
@@ -29,7 +29,7 @@ public class CartemInsertSingle implements DaoStmt<CartemInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, CartemInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption<>();
+		stmtOption = new DaoStmtOption_<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
@@ -43,7 +43,7 @@ public class CartemInsertSingle implements DaoStmt<CartemInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption, this.getClass());
+		stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, stmtOption, this.getClass());
 	}
 		
 	

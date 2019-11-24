@@ -13,18 +13,18 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 abstract class MatextSelectTemplate implements DaoStmt<MatextInfo> {
 	private final String LT_MAT_TEXT = DaoDbTable.MAT_TEXT_TABLE;
 	
 	protected DaoStmt<MatextInfo> stmtSql;
-	protected DaoStmtOption<MatextInfo> stmtOption;
+	protected DaoStmtOption_<MatextInfo> stmtOption;
 	
 	
 	
@@ -36,7 +36,7 @@ abstract class MatextSelectTemplate implements DaoStmt<MatextInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, MatextInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption<>();
+		stmtOption = new DaoStmtOption_<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
@@ -59,7 +59,7 @@ abstract class MatextSelectTemplate implements DaoStmt<MatextInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -98,7 +98,7 @@ abstract class MatextSelectTemplate implements DaoStmt<MatextInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<MatextInfo> {
+	private static class ResultParser implements DaoResultParser_<MatextInfo> {
 		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		

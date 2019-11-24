@@ -13,22 +13,22 @@ import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinColumn;
 import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class OrderveSelectSingle implements DaoStmt<OrderveInfo> {
 	private final String LT_ORDER_ITM = DaoDbTable.ORDER_ITM_TABLE;	
 	private final String RT_ORDER_HDR = DaoDbTable.ORDER_HDR_TABLE;
 	
 	private DaoStmt<OrderveInfo> stmtSql;
-	private DaoStmtOption<OrderveInfo> stmtOption;
+	private DaoStmtOption_<OrderveInfo> stmtOption;
 	
 	
 	
@@ -40,7 +40,7 @@ public final class OrderveSelectSingle implements DaoStmt<OrderveInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, OrderveInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -101,7 +101,7 @@ public final class OrderveSelectSingle implements DaoStmt<OrderveInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -139,7 +139,7 @@ public final class OrderveSelectSingle implements DaoStmt<OrderveInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<OrderveInfo> {
+	private static class ResultParser implements DaoResultParser_<OrderveInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<OrderveInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

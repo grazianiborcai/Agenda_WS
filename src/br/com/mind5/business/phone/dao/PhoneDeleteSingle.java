@@ -8,19 +8,19 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class PhoneDeleteSingle implements DaoStmt<PhoneInfo> {
 	private DaoStmt<PhoneInfo> stmtSql;
-	private DaoStmtOption<PhoneInfo> stmtOption;	
+	private DaoStmtOption_<PhoneInfo> stmtOption;	
 	
 	
 	public PhoneDeleteSingle(Connection conn, PhoneInfo recordInfo, String schemaName) {
@@ -31,7 +31,7 @@ public final class PhoneDeleteSingle implements DaoStmt<PhoneInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, PhoneInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -57,7 +57,7 @@ public final class PhoneDeleteSingle implements DaoStmt<PhoneInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SOFT_DELETE, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SOFT_DELETE, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -93,7 +93,7 @@ public final class PhoneDeleteSingle implements DaoStmt<PhoneInfo> {
 	
 	
 	
-	private class ResultParser implements DaoResultParser<PhoneInfo> {
+	private class ResultParser implements DaoResultParser_<PhoneInfo> {
 		@Override public List<PhoneInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
 			List<PhoneInfo> finalResult = new ArrayList<>();
 			PhoneInfo emptyInfo = new PhoneInfo();

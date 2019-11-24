@@ -9,21 +9,21 @@ import java.util.List;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class StowotmSelectSingle implements DaoStmt<StowotmInfo> {
 	private final String LT_STORE_WORK_TIME = DaoDbTable.STORE_WT_TABLE;	
 	
 	private DaoStmt<StowotmInfo> stmtSql;
-	private DaoStmtOption<StowotmInfo> stmtOption;
+	private DaoStmtOption_<StowotmInfo> stmtOption;
 	
 	
 	
@@ -35,7 +35,7 @@ public final class StowotmSelectSingle implements DaoStmt<StowotmInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, StowotmInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -61,7 +61,7 @@ public final class StowotmSelectSingle implements DaoStmt<StowotmInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -99,7 +99,7 @@ public final class StowotmSelectSingle implements DaoStmt<StowotmInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<StowotmInfo> {
+	private static class ResultParser implements DaoResultParser_<StowotmInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<StowotmInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

@@ -9,21 +9,21 @@ import java.util.List;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class PerarchSelectSingle implements DaoStmt<PerarchInfo> {
 	private final String LT_PERSON = DaoDbTable.PERSON_TABLE;
 	
 	private DaoStmt<PerarchInfo> stmtSql;
-	private DaoStmtOption<PerarchInfo> stmtOption;
+	private DaoStmtOption_<PerarchInfo> stmtOption;
 	
 	
 	
@@ -35,7 +35,7 @@ public final class PerarchSelectSingle implements DaoStmt<PerarchInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, PerarchInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -61,7 +61,7 @@ public final class PerarchSelectSingle implements DaoStmt<PerarchInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -99,7 +99,7 @@ public final class PerarchSelectSingle implements DaoStmt<PerarchInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<PerarchInfo> {
+	private static class ResultParser implements DaoResultParser_<PerarchInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<PerarchInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

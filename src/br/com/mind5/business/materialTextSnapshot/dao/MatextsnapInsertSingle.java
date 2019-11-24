@@ -10,15 +10,15 @@ import java.util.List;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class MatextsnapInsertSingle implements DaoStmt<MatextsnapInfo> {
 	private DaoStmt<MatextsnapInfo> stmtSql;
-	private DaoStmtOption<MatextsnapInfo> stmtOption;
+	private DaoStmtOption_<MatextsnapInfo> stmtOption;
 	
 	
 	
@@ -30,7 +30,7 @@ public final class MatextsnapInsertSingle implements DaoStmt<MatextsnapInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, MatextsnapInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -44,7 +44,7 @@ public final class MatextsnapInsertSingle implements DaoStmt<MatextsnapInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
 	}
 		
 	

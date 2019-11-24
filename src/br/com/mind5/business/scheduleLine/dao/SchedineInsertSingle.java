@@ -10,17 +10,17 @@ import java.util.List;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public class SchedineInsertSingle implements DaoStmt<SchedineInfo> {
 	private DaoStmt<SchedineInfo> stmtSql;
-	private DaoStmtOption<SchedineInfo> stmtOption;
+	private DaoStmtOption_<SchedineInfo> stmtOption;
 	
 	
 	
@@ -32,7 +32,7 @@ public class SchedineInsertSingle implements DaoStmt<SchedineInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, SchedineInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption<>();
+		stmtOption = new DaoStmtOption_<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
@@ -46,7 +46,7 @@ public class SchedineInsertSingle implements DaoStmt<SchedineInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.INSERT, stmtOption, this.getClass());
+		stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, stmtOption, this.getClass());
 	}
 		
 	
@@ -119,7 +119,7 @@ public class SchedineInsertSingle implements DaoStmt<SchedineInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<SchedineInfo> {
+	private static class ResultParser implements DaoResultParser_<SchedineInfo> {
 		private SchedineInfo recordInfo;
 		
 		public ResultParser(SchedineInfo recordToParse) {

@@ -7,22 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
 public final class SysparSelectSingle implements DaoStmt<SysparInfo> {
 	private final static String LT_MAIN = DaoDbTable.SYS_PAY_PARTNER_TABLE;
 	
 	private DaoStmt<SysparInfo> stmtSql;
-	private DaoStmtOption<SysparInfo> stmtOption;
+	private DaoStmtOption_<SysparInfo> stmtOption;
 	
 	
 	
@@ -34,7 +34,7 @@ public final class SysparSelectSingle implements DaoStmt<SysparInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, SysparInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -60,7 +60,7 @@ public final class SysparSelectSingle implements DaoStmt<SysparInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -98,7 +98,7 @@ public final class SysparSelectSingle implements DaoStmt<SysparInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<SysparInfo> {
+	private static class ResultParser implements DaoResultParser_<SysparInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<SysparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {

@@ -9,21 +9,21 @@ import java.util.List;
 
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public class MatextsnapSelectSingle implements DaoStmt<MatextsnapInfo> {
 	private final String LT_MAT_SNAP_TEXT = DaoDbTable.MAT_TEXT_SNAPSHOT_TABLE;
 	
 	protected DaoStmt<MatextsnapInfo> stmtSql;
-	protected DaoStmtOption<MatextsnapInfo> stmtOption;
+	protected DaoStmtOption_<MatextsnapInfo> stmtOption;
 	
 	
 	
@@ -35,7 +35,7 @@ public class MatextsnapSelectSingle implements DaoStmt<MatextsnapInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, MatextsnapInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption<>();
+		stmtOption = new DaoStmtOption_<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
@@ -61,7 +61,7 @@ public class MatextsnapSelectSingle implements DaoStmt<MatextsnapInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
 	}
 	
 	
@@ -99,7 +99,7 @@ public class MatextsnapSelectSingle implements DaoStmt<MatextsnapInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<MatextsnapInfo> {
+	private static class ResultParser implements DaoResultParser_<MatextsnapInfo> {
 		private final boolean NOT_NULL = false;
 		private final boolean EMPTY_RESULT_SET = false;
 		

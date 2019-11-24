@@ -8,19 +8,19 @@ import java.util.List;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 
 public final class FimgUpdateSingle implements DaoStmt<FimgInfo> {
 	private DaoStmt<FimgInfo> stmtSql;
-	private DaoStmtOption<FimgInfo> stmtOption;
+	private DaoStmtOption_<FimgInfo> stmtOption;
 	
 	
 	public FimgUpdateSingle(Connection conn, FimgInfo recordInfo, String schemaName) {
@@ -31,7 +31,7 @@ public final class FimgUpdateSingle implements DaoStmt<FimgInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, FimgInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption<>();
+		this.stmtOption = new DaoStmtOption_<>();
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
@@ -57,7 +57,7 @@ public final class FimgUpdateSingle implements DaoStmt<FimgInfo> {
 	
 	
 	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper<>(DaoOperation.UPDATE, this.stmtOption, this.getClass());
+		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.UPDATE, this.stmtOption, this.getClass());
 	}
 	
 	

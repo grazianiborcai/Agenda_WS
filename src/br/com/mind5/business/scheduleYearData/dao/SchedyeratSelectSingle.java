@@ -9,21 +9,21 @@ import java.util.List;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper;
-import br.com.mind5.dao.DaoStmtOption;
+import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.dao.obsolete.DaoResultParser_;
+import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public class SchedyeratSelectSingle implements DaoStmt<SchedyeratInfo> {
 	private final String LT_SCHEDULE = DaoDbTable.SCHEDULE_YEAR_TABLE;
 	
 	private DaoStmt<SchedyeratInfo> stmtSql;
-	private DaoStmtOption<SchedyeratInfo> stmtOption;
+	private DaoStmtOption_<SchedyeratInfo> stmtOption;
 	
 	
 	
@@ -35,7 +35,7 @@ public class SchedyeratSelectSingle implements DaoStmt<SchedyeratInfo> {
 	
 	
 	private void buildStmtOption(Connection conn, SchedyeratInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption<>();
+		stmtOption = new DaoStmtOption_<>();
 		stmtOption.conn = conn;
 		stmtOption.recordInfo = recordInfo;
 		stmtOption.schemaName = schemaName;
@@ -60,7 +60,7 @@ public class SchedyeratSelectSingle implements DaoStmt<SchedyeratInfo> {
 	
 	
 	private void buildStmt() {
-		stmtSql = new DaoStmtHelper<>(DaoOperation.SELECT, stmtOption, this.getClass());
+		stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, stmtOption, this.getClass());
 	}
 		
 	
@@ -97,7 +97,7 @@ public class SchedyeratSelectSingle implements DaoStmt<SchedyeratInfo> {
 	
 	
 	
-	private static class ResultParser implements DaoResultParser<SchedyeratInfo> {
+	private static class ResultParser implements DaoResultParser_<SchedyeratInfo> {
 		private final boolean EMPTY_RESULT_SET = false;
 		
 		@Override public List<SchedyeratInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
