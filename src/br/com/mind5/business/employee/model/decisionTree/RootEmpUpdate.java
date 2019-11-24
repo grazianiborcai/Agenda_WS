@@ -35,6 +35,8 @@ public final class RootEmpUpdate extends DeciTreeWriteTemplate<EmpInfo> {
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
 		checker = new EmpCheckUpdate(checkerOption);
 		queue.add(checker);

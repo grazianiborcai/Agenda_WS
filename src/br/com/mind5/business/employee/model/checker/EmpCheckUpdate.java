@@ -16,8 +16,8 @@ public final class EmpCheckUpdate extends ModelCheckerTemplateSimpleV2<EmpInfo> 
 	
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	>= 0	|| 
-			 recordInfo.codEmployee	>= 0	||
+		if ( recordInfo.codOwner 	<= 0	|| 
+			 recordInfo.codEmployee	<= 0	||
 			 recordInfo.codLanguage == null	||
 			 recordInfo.username 	== null		)			
 			return super.FAILED;		

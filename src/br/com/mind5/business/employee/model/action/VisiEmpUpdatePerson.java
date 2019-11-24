@@ -1,7 +1,6 @@
 package br.com.mind5.business.employee.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
@@ -19,15 +18,9 @@ final class VisiEmpUpdatePerson extends ActionVisitorTemplateAction<EmpInfo, Per
 	}
 	
 	
-	//TODO: aplicar Template
+
 	@Override protected List<PersonInfo> toActionClassHook(List<EmpInfo> recordInfos) {
-		List<PersonInfo> results = new ArrayList<>();
-		
-		for (EmpInfo eachRecord : recordInfos) {
-			results.add(PersonCopier.copyFromEmp(eachRecord));
-		}		
-		
-		return results;
+		return PersonCopier.copyFromEmp(recordInfos);
 	}
 	
 	
