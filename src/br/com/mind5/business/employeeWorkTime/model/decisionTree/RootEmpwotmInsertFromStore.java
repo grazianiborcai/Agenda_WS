@@ -6,10 +6,9 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmNodeInsertDefault;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeStowotarch;
-import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmSuccess;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmp;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmposarch;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckInsertDefault;
+import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckInsertFromStore;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckLangu;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckOwner;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStorauth;
@@ -23,9 +22,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootEmpwotmInsertDefault extends DeciTreeWriteTemplate<EmpwotmInfo> {
+public final class RootEmpwotmInsertFromStore extends DeciTreeWriteTemplate<EmpwotmInfo> {
 	
-	public RootEmpwotmInsertDefault(DeciTreeOption<EmpwotmInfo> option) {
+	public RootEmpwotmInsertFromStore(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
 	}
 	
@@ -40,7 +39,7 @@ public final class RootEmpwotmInsertDefault extends DeciTreeWriteTemplate<Empwot
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new EmpwotmCheckInsertDefault(checkerOption);
+		checker = new EmpwotmCheckInsertFromStore(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
@@ -107,17 +106,6 @@ public final class RootEmpwotmInsertDefault extends DeciTreeWriteTemplate<Empwot
 		mergeStowotarch.addPostAction(insertDefault);
 		
 		actions.add(mergeStowotarch);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
-		
-		ActionStd<EmpwotmInfo> success = new StdEmpwotmSuccess(option);
-		
-		actions.add(success);
 		return actions;
 	}	
 }
