@@ -8,125 +8,99 @@ import java.util.List;
 
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.dao.DaoFormatter;
+import br.com.mind5.dao.DaoJoin;
+import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.dao.common.DaoJoinPerson;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class PerarchSelectSingle implements DaoStmt<PerarchInfo> {
-	private final String LT_PERSON = DaoDbTable.PERSON_TABLE;
-	
-	private DaoStmt<PerarchInfo> stmtSql;
-	private DaoStmtOption_<PerarchInfo> stmtOption;
-	
+public final class PerarchSelectSingle extends DaoStmtTemplate<PerarchInfo> {
+	private final String MAIN_TABLE = DaoDbTable.PERSON_TABLE;
 	
 	
 	public PerarchSelectSingle(Connection conn, PerarchInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, PerarchInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_PERSON;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.PERSON_SEARCH_VIEW);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.PERSON_SEARCH_VIEW;
+	}
+	
+	
+	
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, PerarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new PerarchWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new PerarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
-	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+	@Override protected List<DaoJoin> getJoinsHook() {
+		List<DaoJoin> joins = new ArrayList<>();
+		
+		DaoJoinBuilder joinPerson = new DaoJoinPerson(MAIN_TABLE);		
+		joins.add(joinPerson.build());
+		
+		return joins;
 	}
 	
 	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
+	@Override protected DaoResultParserV2<PerarchInfo> getResultParserHook() {
+		return new DaoResultParserV2<PerarchInfo>() {		
+			@Override public List<PerarchInfo> parseResult(PerarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<PerarchInfo> finalResult = new ArrayList<>();
+				
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					PerarchInfo dataInfo = new PerarchInfo();
+					dataInfo.codOwner = stmtResult.getLong(PerarchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPerson = stmtResult.getLong(PerarchDbTableColumn.COL_COD_PERSON);
+					dataInfo.cpf = stmtResult.getString(PerarchDbTableColumn.COL_CPF);
+					dataInfo.name = stmtResult.getString(PerarchDbTableColumn.COL_NAME);			
+					dataInfo.email = stmtResult.getString(PerarchDbTableColumn.COL_EMAIL);						
+					dataInfo.recordMode = stmtResult.getString(PerarchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codEntityCateg = stmtResult.getString(PerarchDbTableColumn.COL_COD_ENTITY_CATEG);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PerarchDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codGender = DaoFormatter.sqlToInt(stmtResult, PerarchDbTableColumn.COL_COD_GENDER);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PerarchDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToInt(stmtResult, PerarchDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, PerarchDbTableColumn.COL_BIRTH_DATE);
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
-
 	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<PerarchInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<PerarchInfo> getNewInstance() {
-		return new PerarchSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<PerarchInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<PerarchInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<PerarchInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				PerarchInfo dataInfo = new PerarchInfo();
-				dataInfo.codOwner = stmtResult.getLong(PerarchDbTableColumn.COL_COD_OWNER);
-				dataInfo.codPerson = stmtResult.getLong(PerarchDbTableColumn.COL_COD_PERSON);
-				dataInfo.cpf = stmtResult.getString(PerarchDbTableColumn.COL_CPF);
-				dataInfo.name = stmtResult.getString(PerarchDbTableColumn.COL_NAME);			
-				dataInfo.email = stmtResult.getString(PerarchDbTableColumn.COL_EMAIL);						
-				dataInfo.recordMode = stmtResult.getString(PerarchDbTableColumn.COL_RECORD_MODE);
-				dataInfo.codEntityCateg = stmtResult.getString(PerarchDbTableColumn.COL_COD_ENTITY_CATEG);
-				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PerarchDbTableColumn.COL_COD_SNAPSHOT);
-				dataInfo.codGender = DaoFormatter.sqlToInt(stmtResult, PerarchDbTableColumn.COL_COD_GENDER);
-				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PerarchDbTableColumn.COL_LAST_CHANGED);
-				dataInfo.lastChangedBy = DaoFormatter.sqlToInt(stmtResult, PerarchDbTableColumn.COL_LAST_CHANGED_BY);
-				dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, PerarchDbTableColumn.COL_BIRTH_DATE);
-				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+		super.executeStmt();
 	}
 }
