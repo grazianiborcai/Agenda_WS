@@ -3,8 +3,6 @@ package br.com.mind5.dao.common;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.employeePosition.dao.EmposDbTableColumn;
-import br.com.mind5.business.store.dao.StoreDbTableColumn;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoJoinColumn;
@@ -38,20 +36,20 @@ public final class DaoJoinStore implements DaoJoinBuilder {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = leftTableName;
-		oneColumn.leftColumnName = EmposDbTableColumn.COL_COD_STORE;
-		oneColumn.rightColumnName = StoreDbTableColumn.COL_COD_STORE;
+		oneColumn.leftColumnName = DaoDbField.COL_COD_STORE;
+		oneColumn.rightColumnName = DaoDbField.COL_COD_STORE;
 		joinColumns.add(oneColumn);
 		
 		oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = leftTableName;
-		oneColumn.leftColumnName = EmposDbTableColumn.COL_COD_OWNER;
-		oneColumn.rightColumnName = StoreDbTableColumn.COL_COD_OWNER;
+		oneColumn.leftColumnName = DaoDbField.COL_COD_OWNER;
+		oneColumn.rightColumnName = DaoDbField.COL_COD_OWNER;
 		joinColumns.add(oneColumn);
 		
 		oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = leftTableName;
-		oneColumn.leftColumnName = EmposDbTableColumn.COL_RECORD_MODE;
-		oneColumn.rightColumnName = StoreDbTableColumn.COL_RECORD_MODE;
+		oneColumn.leftColumnName = DaoDbField.COL_RECORD_MODE;
+		oneColumn.rightColumnName = DaoDbField.COL_RECORD_MODE;
 		joinColumns.add(oneColumn);
 		
 		return joinColumns;

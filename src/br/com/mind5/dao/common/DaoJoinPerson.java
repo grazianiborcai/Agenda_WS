@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoJoinColumn;
 import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoJoinEmp implements DaoJoinBuilder {
+public final class DaoJoinPerson implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public DaoJoinEmp(String leftTableName) {
+	public DaoJoinPerson(String leftTableName) {
 		leftTable = leftTableName;
 	}
 
@@ -21,7 +21,7 @@ public final class DaoJoinEmp implements DaoJoinBuilder {
 	
 	@Override public DaoJoin build() {
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = DaoDbTable.EMP_TABLE;
+		join.rightTableName = DaoDbTable.PERSON_TABLE;
 		join.joinType = DaoJoinType.INNER_JOIN;
 		join.joinColumns = getJoinColumns(leftTable);
 		join.constraintClause = null;
@@ -36,8 +36,8 @@ public final class DaoJoinEmp implements DaoJoinBuilder {
 		
 		DaoJoinColumn oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = leftTableName;
-		oneColumn.leftColumnName = DaoDbField.COL_COD_EMPLOYEE;
-		oneColumn.rightColumnName = DaoDbField.COL_COD_EMPLOYEE;
+		oneColumn.leftColumnName = DaoDbField.COL_COD_PERSON;
+		oneColumn.rightColumnName = DaoDbField.COL_COD_PERSON;
 		joinColumns.add(oneColumn);
 		
 		oneColumn = new DaoJoinColumn();
