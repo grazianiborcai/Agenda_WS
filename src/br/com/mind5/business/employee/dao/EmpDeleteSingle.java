@@ -36,6 +36,7 @@ public final class EmpDeleteSingle extends DaoStmtTemplate<EmpInfo> {
 	}
 	
 	
+	
 	@Override protected String buildWhereClauseHook(String tableName, EmpInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
