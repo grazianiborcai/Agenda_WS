@@ -114,7 +114,8 @@ public final class PersonapSelectSingle implements DaoStmt<PersonapInfo> {
 				dataInfo.codSnapshot = stmtResult.getLong(PersonapDbTableColumn.COL_COD_SNAPSHOT);
 				dataInfo.codPerson = stmtResult.getLong(PersonapDbTableColumn.COL_COD_PERSON);
 				dataInfo.cpf = stmtResult.getString(PersonapDbTableColumn.COL_CPF);
-				dataInfo.name = stmtResult.getString(PersonapDbTableColumn.COL_NAME);			
+				dataInfo.name = stmtResult.getString(PersonapDbTableColumn.COL_NAME);	
+				dataInfo.nameSearch = stmtResult.getString(PersonapDbTableColumn.COL_NAME_SEARCH);
 				dataInfo.email = stmtResult.getString(PersonapDbTableColumn.COL_EMAIL);						
 				dataInfo.recordMode = stmtResult.getString(PersonapDbTableColumn.COL_RECORD_MODE);
 				dataInfo.codEntityCateg = stmtResult.getString(PersonapDbTableColumn.COL_COD_ENTITY_CATEG);
