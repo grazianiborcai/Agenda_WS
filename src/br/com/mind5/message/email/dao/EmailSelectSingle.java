@@ -19,7 +19,7 @@ import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.message.email.info.EmailInfo;
 
 public final class EmailSelectSingle implements DaoStmt<EmailInfo> {
-	private final String LT_MAIN = DaoDbTable.SYS_EMAIL_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.SYS_EMAIL_TABLE;	
 	
 	private DaoStmt<EmailInfo> stmtSql;
 	private DaoStmtOption_<EmailInfo> stmtOption;
@@ -38,8 +38,8 @@ public final class EmailSelectSingle implements DaoStmt<EmailInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_MAIN;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_MAIN);
+		this.stmtOption.tableName = MAIN_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(MAIN_TABLE);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();

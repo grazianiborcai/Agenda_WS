@@ -11,7 +11,7 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class EmposInsertSingle extends DaoStmtTemplate<EmposInfo> {
-	private final String LT_MAIN = DaoDbTable.EMPOS_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.EMPOS_TABLE;	
 	
 	
 	public EmposInsertSingle(Connection conn, EmposInfo recordInfo, String schemaName) {
@@ -21,7 +21,7 @@ public final class EmposInsertSingle extends DaoStmtTemplate<EmposInfo> {
 	
 	
 	@Override protected String getTableNameHook() {
-		return LT_MAIN;
+		return MAIN_TABLE;
 	}
 	
 	

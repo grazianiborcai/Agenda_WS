@@ -20,7 +20,7 @@ import br.com.mind5.dao.obsolete.DaoResultParser_;
 import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class AddresnapSelectSingle implements DaoStmt<AddresnapInfo> {
-	private final String LT_MAIN = DaoDbTable.ADDRESS_SNAPSHOT_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.ADDRESS_SNAPSHOT_TABLE;	
 	
 	private DaoStmt<AddresnapInfo> stmtSql;
 	private DaoStmtOption_<AddresnapInfo> stmtOption;
@@ -39,8 +39,8 @@ public final class AddresnapSelectSingle implements DaoStmt<AddresnapInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_MAIN;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_MAIN);
+		this.stmtOption.tableName = MAIN_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(MAIN_TABLE);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();

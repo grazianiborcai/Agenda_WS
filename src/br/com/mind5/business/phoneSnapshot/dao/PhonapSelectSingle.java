@@ -21,7 +21,7 @@ import br.com.mind5.dao.obsolete.DaoResultParser_;
 import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class PhonapSelectSingle implements DaoStmt<PhonapInfo> {
-	private final String LT_MAIN = DaoDbTable.PHONE_SNAPSHOT_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.PHONE_SNAPSHOT_TABLE;	
 	
 	private DaoStmt<PhonapInfo> stmtSql;
 	private DaoStmtOption_<PhonapInfo> stmtOption;
@@ -40,8 +40,8 @@ public final class PhonapSelectSingle implements DaoStmt<PhonapInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_MAIN;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_MAIN);
+		this.stmtOption.tableName = MAIN_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(MAIN_TABLE);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();

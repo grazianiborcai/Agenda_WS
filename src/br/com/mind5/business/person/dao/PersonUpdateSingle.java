@@ -14,7 +14,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class PersonUpdateSingle extends DaoStmtTemplate<PersonInfo> {
-	private final String LT_MAIN = DaoDbTable.PERSON_TABLE;
+	private final String MAIN_TABLE = DaoDbTable.PERSON_TABLE;
 	
 	
 	public PersonUpdateSingle(Connection conn, PersonInfo recordInfo, String schemaName) {
@@ -24,7 +24,7 @@ public final class PersonUpdateSingle extends DaoStmtTemplate<PersonInfo> {
 	
 	
 	@Override protected String getTableNameHook() {
-		return LT_MAIN;
+		return MAIN_TABLE;
 	}
 	
 	

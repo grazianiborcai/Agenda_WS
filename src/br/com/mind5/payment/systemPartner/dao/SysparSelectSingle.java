@@ -19,7 +19,7 @@ import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
 public final class SysparSelectSingle implements DaoStmt<SysparInfo> {
-	private final static String LT_MAIN = DaoDbTable.SYS_PAY_PARTNER_TABLE;
+	private final static String MAIN_TABLE = DaoDbTable.SYS_PAY_PARTNER_TABLE;
 	
 	private DaoStmt<SysparInfo> stmtSql;
 	private DaoStmtOption_<SysparInfo> stmtOption;
@@ -38,8 +38,8 @@ public final class SysparSelectSingle implements DaoStmt<SysparInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_MAIN;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_MAIN);
+		this.stmtOption.tableName = MAIN_TABLE;
+		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(MAIN_TABLE);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
 		this.stmtOption.whereClause = buildWhereClause();

@@ -20,7 +20,7 @@ import br.com.mind5.dao.obsolete.DaoResultParser_;
 import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class AddarchSelectSingle implements DaoStmt<AddarchInfo> {
-	private final String LT_MAIN = DaoDbTable.ADDRESS_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.ADDRESS_TABLE;	
 	
 	private DaoStmt<AddarchInfo> stmtSql;
 	private DaoStmtOption_<AddarchInfo> stmtOption;
@@ -39,7 +39,7 @@ public final class AddarchSelectSingle implements DaoStmt<AddarchInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_MAIN;
+		this.stmtOption.tableName = MAIN_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.ADDRESS_SEARCH_VIEW);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();

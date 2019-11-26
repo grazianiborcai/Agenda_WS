@@ -45,10 +45,7 @@ public final class PersonSelectSingle extends DaoStmtTemplate<PersonInfo> {
 		
 		DaoStmtWhere whereClause = new PersonWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	
+	}	
 	
 	
 	

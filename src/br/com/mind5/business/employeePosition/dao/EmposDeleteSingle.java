@@ -16,7 +16,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class EmposDeleteSingle extends DaoStmtTemplate<EmposInfo> {
-	private final String LT_MAIN = DaoDbTable.EMPOS_TABLE;
+	private final String MAIN_TABLE = DaoDbTable.EMPOS_TABLE;
 	
 	
 	public EmposDeleteSingle(Connection conn, EmposInfo recordInfo, String schemaName) {
@@ -26,7 +26,7 @@ public final class EmposDeleteSingle extends DaoStmtTemplate<EmposInfo> {
 	
 	
 	@Override protected String getTableNameHook() {
-		return LT_MAIN;
+		return MAIN_TABLE;
 	}
 	
 	

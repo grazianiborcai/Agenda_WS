@@ -54,6 +54,7 @@ public final class PerarchSelectSingle extends DaoStmtTemplate<PerarchInfo> {
 	}
 	
 	
+	
 	@Override protected DaoResultParserV2<PerarchInfo> getResultParserHook() {
 		return new DaoResultParserV2<PerarchInfo>() {		
 			@Override public List<PerarchInfo> parseResult(PerarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {

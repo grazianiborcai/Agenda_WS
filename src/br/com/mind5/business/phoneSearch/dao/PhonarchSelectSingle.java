@@ -20,7 +20,7 @@ import br.com.mind5.dao.obsolete.DaoResultParser_;
 import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
 public final class PhonarchSelectSingle implements DaoStmt<PhonarchInfo> {
-	private final String LT_MAIN = DaoDbTable.PHONE_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.PHONE_TABLE;	
 	
 	private DaoStmt<PhonarchInfo> stmtSql;
 	private DaoStmtOption_<PhonarchInfo> stmtOption;
@@ -39,7 +39,7 @@ public final class PhonarchSelectSingle implements DaoStmt<PhonarchInfo> {
 		this.stmtOption.conn = conn;
 		this.stmtOption.recordInfo = recordInfo;
 		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_MAIN;
+		this.stmtOption.tableName = MAIN_TABLE;
 		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.PHONE_SEARCH_VIEW);
 		this.stmtOption.stmtParamTranslator = null;
 		this.stmtOption.resultParser = new ResultParser();
