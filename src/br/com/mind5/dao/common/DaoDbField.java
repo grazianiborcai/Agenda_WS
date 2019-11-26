@@ -137,6 +137,7 @@ public final class DaoDbField {
 	public static final String COL_MONTH = "month";
 	public static final String COL_MONTH_VALID_FROM = "month_valid_from";
 	public static final String COL_NAME = "name";
+	public static final String COL_NAME_SEARCH = "name_search";
 	public static final String COL_NUMBER = "number";
 	public static final String COL_OWN_ID = "own_id";
 	public static final String COL_PRICE = "price";	

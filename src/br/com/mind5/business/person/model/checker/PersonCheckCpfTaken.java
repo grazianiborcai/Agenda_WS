@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PersonCheckExistEmail extends ModelCheckerTemplateActionV2<PersonInfo, PerarchInfo> {
+public final class PersonCheckCpfTaken extends ModelCheckerTemplateActionV2<PersonInfo, PerarchInfo> {
 	
-	public PersonCheckExistEmail(ModelCheckerOption option) {
+	public PersonCheckCpfTaken(ModelCheckerOption option) {
 		super(option, PerarchInfo.class);
 	}
 	
@@ -28,18 +28,18 @@ public final class PersonCheckExistEmail extends ModelCheckerTemplateActionV2<Pe
 	
 	
 	@Override protected List<PerarchInfo> toActionClassHook(List<PersonInfo> recordInfos) {
-		return PerarchCopier.copyFromPersonEmail(recordInfos);	
+		return PerarchCopier.copyFromPersonCpf(recordInfos);	
 	}
 	
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.PERSON_EMAIL_ALREADY_EXIST;
+		return SystemCode.PERSON_CPF_ALREADY_EXIST;
 	}	
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PERSON_EMAIL_NOT_FOUND;
+		return SystemCode.PERSON_CPF_NOT_FOUND;
 	}
 }

@@ -326,6 +326,7 @@ public final class SystemCode {
 	public static final int PERSON_IS_FILLED							= 1774;
 	public static final int PERSON_MISMATCH								= 1775;
 	public static final int PERSON_MANDATORY_FIELD_EMPTY				= 1776;
+	public static final int PERSON_IS_BLANK								= 1777;
 	
 	// User
 	public static final int USER_COD_IS_FILLED							= 1800;

@@ -16,7 +16,7 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class PersonInsertSingle extends DaoStmtTemplate<PersonInfo> {	
-	private final String LT_MAIN = DaoDbTable.EMP_TABLE;
+	private final String LT_MAIN = DaoDbTable.PERSON_TABLE;
 	
 	
 	public PersonInsertSingle(Connection conn, PersonInfo recordInfo, String schemaName) {
@@ -55,6 +55,7 @@ public final class PersonInsertSingle extends DaoStmtTemplate<PersonInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
+				stmt.setString(i++, recordInfo.nameSearch);
 				
 				return stmt;
 			}		

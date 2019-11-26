@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodePersonEmailL2 extends DeciTreeWriteTemplate<PersonInfo> {
+public final class NodePersonCpfL3 extends DeciTreeWriteTemplate<PersonInfo> {
 	
-	public NodePersonEmailL2(DeciTreeOption<PersonInfo> option) {
+	public NodePersonCpfL3(DeciTreeOption<PersonInfo> option) {
 		super(option);
 	}
 	
@@ -28,9 +28,9 @@ public final class NodePersonEmailL2 extends DeciTreeWriteTemplate<PersonInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new PersonCheckHasPerson(checkerOption);
-		queue.add(checker);	
+		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -40,8 +40,8 @@ public final class NodePersonEmailL2 extends DeciTreeWriteTemplate<PersonInfo> {
 	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> nodeEmailL3 = new NodePersonEmailL3(option).toAction();
-		actions.add(nodeEmailL3);	
+		ActionStd<PersonInfo> nodeCpfL4 = new NodePersonCpfL4(option).toAction();
+		actions.add(nodeCpfL4);	
 		
 		return actions;
 	}
@@ -51,8 +51,8 @@ public final class NodePersonEmailL2 extends DeciTreeWriteTemplate<PersonInfo> {
 	@Override protected List<ActionStd<PersonInfo>> buildActionsOnFailedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> nodeEmailL4 = new NodePersonEmailL4(option).toAction();
-		actions.add(nodeEmailL4);	
+		ActionStd<PersonInfo> nodeCpfL5 = new NodePersonCpfL5(option).toAction();
+		actions.add(nodeCpfL5);	
 		
 		return actions;
 	}

@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.action.StdPersonSuccess;
 import br.com.mind5.business.person.model.checker.PersonCheckCpfLength;
 import br.com.mind5.business.person.model.checker.PersonCheckCpfNumber;
 import br.com.mind5.business.person.model.checker.PersonCheckCpfOnlyNumber;
 import br.com.mind5.business.person.model.checker.PersonCheckCpfSequence;
-import br.com.mind5.business.person.model.checker.PersonCheckExistCpf;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -58,13 +56,6 @@ public final class NodePersonCpfL2 extends DeciTreeWriteTemplate<PersonInfo> {
 		checker = new PersonCheckCpfNumber(checkerOption);
 		queue.add(checker);
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new PersonCheckExistCpf(checkerOption);
-		queue.add(checker);	
-		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -73,8 +64,9 @@ public final class NodePersonCpfL2 extends DeciTreeWriteTemplate<PersonInfo> {
 	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> success = new StdPersonSuccess(option);
-		actions.add(success);	
+		ActionStd<PersonInfo> nodeCpfL3 = new NodePersonCpfL3(option).toAction();
+		actions.add(nodeCpfL3);	
+		
 		return actions;
 	}
 }

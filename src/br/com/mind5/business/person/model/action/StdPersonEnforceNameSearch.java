@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPersonEnforceEmail implements ActionStd<PersonInfo> {
+public final class StdPersonEnforceNameSearch implements ActionStd<PersonInfo> {
 	private ActionStd<PersonInfo> actionHelper;	
 	
 	
-	public StdPersonEnforceEmail(DeciTreeOption<PersonInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiPersonEnforceEmail());
+	public StdPersonEnforceNameSearch(DeciTreeOption<PersonInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiPersonEnforceNameSearch());
 	}
 	
 	

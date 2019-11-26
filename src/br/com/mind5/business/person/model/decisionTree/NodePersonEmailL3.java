@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.checker.PersonCheckHasPerson;
+import br.com.mind5.business.person.model.action.StdPersonSuccess;
+import br.com.mind5.business.person.model.checker.PersonCheckEmailTaken;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -12,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodePersonEmailL2 extends DeciTreeWriteTemplate<PersonInfo> {
+public final class NodePersonEmailL3 extends DeciTreeWriteTemplate<PersonInfo> {
 	
-	public NodePersonEmailL2(DeciTreeOption<PersonInfo> option) {
+	public NodePersonEmailL3(DeciTreeOption<PersonInfo> option) {
 		super(option);
 	}
 	
@@ -28,8 +29,8 @@ public final class NodePersonEmailL2 extends DeciTreeWriteTemplate<PersonInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new PersonCheckHasPerson(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
+		checker = new PersonCheckEmailTaken(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -40,8 +41,8 @@ public final class NodePersonEmailL2 extends DeciTreeWriteTemplate<PersonInfo> {
 	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> nodeEmailL3 = new NodePersonEmailL3(option).toAction();
-		actions.add(nodeEmailL3);	
+		ActionStd<PersonInfo> success = new StdPersonSuccess(option);
+		actions.add(success);	
 		
 		return actions;
 	}
@@ -51,8 +52,8 @@ public final class NodePersonEmailL2 extends DeciTreeWriteTemplate<PersonInfo> {
 	@Override protected List<ActionStd<PersonInfo>> buildActionsOnFailedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> nodeEmailL4 = new NodePersonEmailL4(option).toAction();
-		actions.add(nodeEmailL4);	
+		ActionStd<PersonInfo> nodeEmailL5 = new NodePersonEmailL5(option).toAction();
+		actions.add(nodeEmailL5);	
 		
 		return actions;
 	}
