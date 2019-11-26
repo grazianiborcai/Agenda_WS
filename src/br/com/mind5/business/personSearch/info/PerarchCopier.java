@@ -3,10 +3,25 @@ package br.com.mind5.business.personSearch.info;
 
 import java.util.List;
 
+import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.info.InfoCopier;
 
 public final class PerarchCopier {
+	public static PerarchInfo copyFromEmp(EmpInfo source) {
+		InfoCopier<PerarchInfo, EmpInfo> copier = new PerarchCopyEmp();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PerarchInfo> copyFromEmp(List<EmpInfo> sources) {
+		InfoCopier<PerarchInfo, EmpInfo> copier = new PerarchCopyEmp();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static PerarchInfo copyFromPersonEmail(PersonInfo source) {
 		InfoCopier<PerarchInfo, PersonInfo> copier = new PerarchCopyPersonEmail();
 		return copier.makeCopy(source);
@@ -17,7 +32,7 @@ public final class PerarchCopier {
 	public static List<PerarchInfo> copyFromPersonEmail(List<PersonInfo> sources) {
 		InfoCopier<PerarchInfo, PersonInfo> copier = new PerarchCopyPersonEmail();
 		return copier.makeCopy(sources);
-	}
+	}	
 	
 	
 	
