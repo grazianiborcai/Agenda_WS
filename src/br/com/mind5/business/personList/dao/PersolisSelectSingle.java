@@ -17,7 +17,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class PersolisSelectSingle extends DaoStmtTemplate<PersolisInfo> {
-	private final String MAIN_TABLE = DaoDbTable.PERSON_LIST_VIEW;
+	private final String MAIN_TABLE = DaoDbTable.PERSON_TABLE;
 	
 	
 	public PersolisSelectSingle(Connection conn, PersolisInfo recordInfo, String schemaName) {
