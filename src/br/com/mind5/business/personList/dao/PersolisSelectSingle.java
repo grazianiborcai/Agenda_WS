@@ -9,117 +9,73 @@ import java.util.List;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class PersolisSelectSingle implements DaoStmt<PersolisInfo> {
-	private final String LT_PERSON = DaoDbTable.PERSON_LIST_VIEW;
-	
-	private DaoStmt<PersolisInfo> stmtSql;
-	private DaoStmtOption_<PersolisInfo> stmtOption;
-	
+public final class PersolisSelectSingle extends DaoStmtTemplate<PersolisInfo> {
+	private final String MAIN_TABLE = DaoDbTable.PERSON_LIST_VIEW;
 	
 	
 	public PersolisSelectSingle(Connection conn, PersolisInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, PersolisInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.PERSON_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_PERSON);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
-		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.PERSON_LIST_VIEW;
+	}
+	
+	
+	
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, PersolisInfo recordInfo) {
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();		
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new PersolisWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new PersolisWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<PersolisInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<PersolisInfo> getNewInstance() {
-		return new PersolisSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<PersolisInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<PersolisInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<PersolisInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				PersolisInfo dataInfo = new PersolisInfo();
-				dataInfo.codOwner = stmtResult.getLong(PersolisDbTableColumn.COL_COD_OWNER);
-				dataInfo.codPerson = stmtResult.getLong(PersolisDbTableColumn.COL_COD_PERSON);
-				dataInfo.name = stmtResult.getString(PersolisDbTableColumn.COL_NAME);							
-				dataInfo.recordMode = stmtResult.getString(PersolisDbTableColumn.COL_RECORD_MODE);	
-				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PersolisDbTableColumn.COL_COD_SNAPSHOT);
+	@Override protected DaoResultParserV2<PersolisInfo> getResultParserHook() {
+		return new DaoResultParserV2<PersolisInfo>() {				
+			@Override public List<PersolisInfo> parseResult(PersolisInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<PersolisInfo> finalResult = new ArrayList<>();
 				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					PersolisInfo dataInfo = new PersolisInfo();
+					dataInfo.codOwner = stmtResult.getLong(PersolisDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPerson = stmtResult.getLong(PersolisDbTableColumn.COL_COD_PERSON);
+					dataInfo.name = stmtResult.getString(PersolisDbTableColumn.COL_NAME);							
+					dataInfo.recordMode = stmtResult.getString(PersolisDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PersolisDbTableColumn.COL_COD_SNAPSHOT);
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
 }
