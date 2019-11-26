@@ -13,11 +13,12 @@ final class PerarchCopyPersonEmail extends InfoCopierTemplate<PerarchInfo, Perso
 	
 	@Override protected PerarchInfo makeCopyHook(PersonInfo source) {
 		PerarchInfo result = new PerarchInfo();
+		
 		result.codOwner = source.codOwner;
-		result.username = source.username;
-		result.codLanguage = source.codLanguage;
 		result.codEntityCateg = source.codEntityCateg;
 		result.email = source.email;
+		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

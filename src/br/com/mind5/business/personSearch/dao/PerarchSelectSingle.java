@@ -8,15 +8,12 @@ import java.util.List;
 
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.dao.DaoFormatter;
-import br.com.mind5.dao.DaoJoin;
-import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoJoinPerson;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class PerarchSelectSingle extends DaoStmtTemplate<PerarchInfo> {
@@ -54,16 +51,6 @@ public final class PerarchSelectSingle extends DaoStmtTemplate<PerarchInfo> {
 		
 		DaoStmtWhere whereClause = new PerarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}
-	
-	
-	@Override protected List<DaoJoin> getJoinsHook() {
-		List<DaoJoin> joins = new ArrayList<>();
-		
-		DaoJoinBuilder joinPerson = new DaoJoinPerson(MAIN_TABLE);		
-		joins.add(joinPerson.build());
-		
-		return joins;
 	}
 	
 	
