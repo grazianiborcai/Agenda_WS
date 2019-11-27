@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.person.model.action.LazyPersonEnforceBirthdate;
 import br.com.mind5.business.person.model.action.LazyPersonEnforceLChanged;
 import br.com.mind5.business.person.model.action.LazyPersonEnforceNameSearch;
 import br.com.mind5.business.person.model.action.LazyPersonMergeUsername;
@@ -86,6 +87,7 @@ public final class RootPersonUpdate extends DeciTreeWriteTemplate<PersonInfo> {
 		ActionLazy<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> enforceNameSearch = new LazyPersonEnforceNameSearch(option.conn, option.schemaName);	
+		ActionLazy<PersonInfo> enforceBirthdate = new LazyPersonEnforceBirthdate(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> snapshot = new LazyPersonNodeSnapshot(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(cpf);
@@ -93,7 +95,8 @@ public final class RootPersonUpdate extends DeciTreeWriteTemplate<PersonInfo> {
 		email.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceNameSearch);
-		enforceNameSearch.addPostAction(snapshot);
+		enforceNameSearch.addPostAction(enforceBirthdate);
+		enforceBirthdate.addPostAction(snapshot);
 		
 		actions.add(mergeToUpdate);
 		return actions;

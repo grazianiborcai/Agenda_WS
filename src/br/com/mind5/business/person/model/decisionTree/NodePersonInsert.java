@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.person.model.action.LazyPersonEnforceBirthdate;
 import br.com.mind5.business.person.model.action.LazyPersonEnforceCreatedBy;
 import br.com.mind5.business.person.model.action.LazyPersonEnforceCreatedOn;
 import br.com.mind5.business.person.model.action.LazyPersonEnforceNameSearch;
@@ -46,13 +47,15 @@ public final class NodePersonInsert extends DeciTreeWriteTemplate<PersonInfo> {
 		ActionLazy<PersonInfo> enforceCreatedOn = new LazyPersonEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazy<PersonInfo> enforceCreatedBy = new LazyPersonEnforceCreatedBy(option.conn, option.schemaName);	
 		ActionLazy<PersonInfo> enforceNameSearch = new LazyPersonEnforceNameSearch(option.conn, option.schemaName);	
+		ActionLazy<PersonInfo> enforceBirthdate = new LazyPersonEnforceBirthdate(option.conn, option.schemaName);	
 		ActionLazy<PersonInfo> insert = new LazyPersonInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceNameSearch);
-		enforceNameSearch.addPostAction(insert);
+		enforceNameSearch.addPostAction(enforceBirthdate);
+		enforceBirthdate.addPostAction(insert);
 		
 		actions.add(enforceLChanged);
 		return actions;

@@ -72,6 +72,9 @@ public final class PersonSelectSingle extends DaoStmtTemplate<PersonInfo> {
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PersonDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToInt(stmtResult, PersonDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, PersonDbTableColumn.COL_BIRTH_DATE);
+					dataInfo.birthYear = DaoFormatter.sqlToInt(stmtResult, PersonDbTableColumn.COL_BIRTH_YEAR);
+					dataInfo.birthMonth = DaoFormatter.sqlToInt(stmtResult, PersonDbTableColumn.COL_BIRTH_MONTH);
+					dataInfo.birthDay = DaoFormatter.sqlToInt(stmtResult, PersonDbTableColumn.COL_BIRTH_DAY);					
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PersonDbTableColumn.COL_CREATED_ON);
 					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, PersonDbTableColumn.COL_CREATED_BY);
 					

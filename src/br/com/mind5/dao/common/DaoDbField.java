@@ -6,6 +6,9 @@ public final class DaoDbField {
 	public static final String COL_AMOUNT_TOTAL_PARTNER = "amount_total_partner";
 	public static final String COL_BEGIN_TIME = "begin_time";
 	public static final String COL_BIRTH_DATE = "birth_date";
+	public static final String COL_BIRTH_DAY = "birth_day";
+	public static final String COL_BIRTH_MONTH = "birth_month";
+	public static final String COL_BIRTH_YEAR = "birth_year";
 	public static final String COL_CITY = "city";
 	public static final String COL_COD_ADDRESS = "cod_address";	
 	public static final String COL_COD_ADDRESS_SHIP = "cod_address_ship";
