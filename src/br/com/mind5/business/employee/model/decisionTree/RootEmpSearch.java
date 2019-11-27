@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.LazyEmpMergeAddress;
-import br.com.mind5.business.employee.model.action.LazyEmpMergeFimist;
-import br.com.mind5.business.employee.model.action.LazyEmpMergePerson;
-import br.com.mind5.business.employee.model.action.LazyEmpMergePhone;
-import br.com.mind5.business.employee.model.action.LazyEmpMergeUser;
-import br.com.mind5.business.employee.model.action.StdEmpMergeToSelect;
+import br.com.mind5.business.employee.model.action.LazyEmpMergeEmparch;
+import br.com.mind5.business.employee.model.action.LazyEmpMergePerarch;
+import br.com.mind5.business.employee.model.action.LazyEmpRootSelect;
+import br.com.mind5.business.employee.model.action.StdEmpEnforcePersonKey;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
-import br.com.mind5.business.employee.model.checker.EmpCheckRead;
+import br.com.mind5.business.employee.model.checker.EmpCheckSearch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -21,9 +19,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 
-public final class RootEmpSelect extends DeciTreeReadTemplate<EmpInfo> {
+public final class RootEmpSearch extends DeciTreeReadTemplate<EmpInfo> {
 	
-	public RootEmpSelect(DeciTreeOption<EmpInfo> option) {
+	public RootEmpSearch(DeciTreeOption<EmpInfo> option) {
 		super(option);
 	}
 	
@@ -38,7 +36,7 @@ public final class RootEmpSelect extends DeciTreeReadTemplate<EmpInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new EmpCheckRead(checkerOption);
+		checker = new EmpCheckSearch(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -63,20 +61,16 @@ public final class RootEmpSelect extends DeciTreeReadTemplate<EmpInfo> {
 	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmpInfo> select = new StdEmpMergeToSelect(option);
-		ActionLazy<EmpInfo> mergePerson = new LazyEmpMergePerson(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> mergeAddress = new LazyEmpMergeAddress(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> mergePhone = new LazyEmpMergePhone(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> mergeUser = new LazyEmpMergeUser(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> mergeFimist = new LazyEmpMergeFimist(option.conn, option.schemaName);
+		ActionStd<EmpInfo> enforcePersonKey = new StdEmpEnforcePersonKey(option);
+		ActionLazy<EmpInfo> mergePerarch = new LazyEmpMergePerarch(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> mergeEmparch = new LazyEmpMergeEmparch(option.conn, option.schemaName);
+		ActionLazy<EmpInfo> select = new LazyEmpRootSelect(option.conn, option.schemaName);
 		
-		select.addPostAction(mergePerson);
-		mergePerson.addPostAction(mergeAddress);
-		mergeAddress.addPostAction(mergePhone);
-		mergePhone.addPostAction(mergeUser);
-		mergeUser.addPostAction(mergeFimist);
+		enforcePersonKey.addPostAction(mergePerarch);
+		mergePerarch.addPostAction(mergeEmparch);
+		mergeEmparch.addPostAction(select);
 		
-		actions.add(select);
+		actions.add(enforcePersonKey);
 		return actions;
 	}
 }

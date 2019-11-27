@@ -3,13 +3,13 @@ package br.com.mind5.business.employee.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.mind5.business.employeeSearch.info.EmparchInfo;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoMergerVisitor;
-import br.com.mind5.security.user.info.UserInfo;
 
-final class EmpVisiMergeUser implements InfoMergerVisitor<EmpInfo, UserInfo> {
+final class EmpVisiMergeEmparch implements InfoMergerVisitor<EmpInfo, EmparchInfo> {
 
-	@Override public EmpInfo writeRecord(UserInfo sourceOne, EmpInfo sourceTwo) {
+	@Override public EmpInfo writeRecord(EmparchInfo sourceOne, EmpInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		EmpInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class EmpVisiMergeUser implements InfoMergerVisitor<EmpInfo, UserInfo> {
 	
 	
 	
-	private void checkArgument(UserInfo sourceOne, EmpInfo sourceTwo) {
+	private void checkArgument(EmparchInfo sourceOne, EmpInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,28 +37,15 @@ final class EmpVisiMergeUser implements InfoMergerVisitor<EmpInfo, UserInfo> {
 	
 	
 	
-	private EmpInfo merge(UserInfo sourceOne, EmpInfo sourceTwo) {
-		sourceTwo.userData = makeClone(sourceOne);
-		sourceTwo.codUser = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	private UserInfo makeClone(UserInfo recordInfo) {
-		try {
-			return (UserInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
+	private EmpInfo merge(EmparchInfo sourceOne, EmpInfo sourceTwo) {
+		return EmpInfo.copyFrom(sourceOne);
 	}	
 	
 	
 	
-	@Override public boolean shouldWrite(UserInfo sourceOne, EmpInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	@Override public boolean shouldWrite(EmparchInfo sourceOne, EmpInfo sourceTwo) {
+		return (sourceOne.codOwner  == sourceTwo.codOwner &&
+				sourceOne.codPerson == sourceTwo.codPerson);
 	}
 	
 	

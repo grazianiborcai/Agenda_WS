@@ -33,7 +33,6 @@ public final class EmpSetterPersonKey implements InfoSetter<EmpInfo> {
 	private EmpInfo setPersonKey(EmpInfo recordInfo) {
 		recordInfo.personData.codOwner = recordInfo.codOwner;
 		recordInfo.personData.codPerson = recordInfo.codPerson;
-		recordInfo.personData.codEntityCateg = recordInfo.codEntityCateg;
 		recordInfo.personData.username = recordInfo.username;
 		recordInfo.personData.codLanguage = recordInfo.codLanguage;
 		
