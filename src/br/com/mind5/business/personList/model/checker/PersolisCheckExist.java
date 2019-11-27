@@ -1,61 +1,35 @@
 package br.com.mind5.business.personList.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.business.personList.model.action.LazyPersolisSelect;
-import br.com.mind5.business.personList.model.action.StdPersolisEnforceKey;
+import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PersolisCheckExist extends ModelCheckerTemplateAction_<PersolisInfo> {
+public final class PersolisCheckExist extends ModelCheckerTemplateActionV2<PersolisInfo, PersolisInfo> {
 	
 	public PersolisCheckExist(ModelCheckerOption option) {
-		super(option);
+		super(option, PersolisInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<PersolisInfo> buildActionHook(PersolisInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<PersolisInfo> option = buildActionOption(recordInfo, conn, schemaName);
-		
-		ActionStd<PersolisInfo> actionSelect = new StdPersolisEnforceKey(option);
-		actionSelect.addPostAction(new LazyPersolisSelect(conn, schemaName));
-		return actionSelect;
+	@Override protected ActionStd<PersolisInfo> buildActionHook(DeciTreeOption<PersolisInfo> option) {
+		ActionStd<PersolisInfo> select = new RootPersolisSelect(option).toAction();
+		return select;
 	}
 	
 	
 	
-	private DeciTreeOption<PersolisInfo> buildActionOption(PersolisInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<PersolisInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.PERSON_LIST_ALREADY_EXIST;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.PERSON_ALREADY_EXIST)
-			return SystemMessage.PERSON_ALREADY_EXIST;
-		
-		return SystemMessage.PERSON_NOT_FOUND;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
-			return SystemCode.PERSON_ALREADY_EXIST;	
-			
-		return SystemCode.PERSON_NOT_FOUND;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.PERSON_LIST_NOT_FOUND;
 	}
 }

@@ -857,4 +857,9 @@ public final class SystemCode {
 	
 	// Employee Search
 	public static final int EMP_SEARCH_MANDATORY_FIELD_EMPTY			= 7450;
+	
+	// Person List
+	public static final int PERSON_LIST_MANDATORY_FIELD_EMPTY			= 7500;
+	public static final int PERSON_LIST_ALREADY_EXIST 					= 7501;
+	public static final int PERSON_LIST_NOT_FOUND 						= 7502;
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.action.StdPersolisMergeToSelect;
 import br.com.mind5.business.personList.model.checker.PersolisCheckLangu;
+import br.com.mind5.business.personList.model.checker.PersolisCheckOwner;
 import br.com.mind5.business.personList.model.checker.PersolisCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -23,20 +24,29 @@ public final class RootPersolisSelect extends DeciTreeReadTemplate<PersolisInfo>
 	
 	
 	@Override protected ModelChecker<PersolisInfo> buildDecisionCheckerHook(DeciTreeOption<PersolisInfo> option) {
-		final boolean EXIST_ON_DB = true;	
-		
 		List<ModelChecker<PersolisInfo>> queue = new ArrayList<>();		
 		ModelChecker<PersolisInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
-		checker = new PersolisCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PersolisCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new PersolisCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new PersolisCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
