@@ -74,6 +74,9 @@ public final class PersonapSelectSingle extends DaoStmtTemplate<PersonapInfo> {
 					dataInfo.codGender = DaoFormatter.sqlToInt(stmtResult, PersonapDbTableColumn.COL_COD_GENDER);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PersonapDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, PersonapDbTableColumn.COL_COD_BIRTH_DATE);
+					dataInfo.birthYear = DaoFormatter.sqlToInt(stmtResult, PersonapDbTableColumn.COL_BIRTH_YEAR);
+					dataInfo.birthMonth = DaoFormatter.sqlToInt(stmtResult, PersonapDbTableColumn.COL_BIRTH_MONTH);
+					dataInfo.birthDay = DaoFormatter.sqlToInt(stmtResult, PersonapDbTableColumn.COL_BIRTH_DAY);	
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

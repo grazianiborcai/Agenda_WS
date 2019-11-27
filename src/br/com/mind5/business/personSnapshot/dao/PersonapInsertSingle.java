@@ -55,6 +55,9 @@ public final class PersonapInsertSingle extends DaoStmtTemplate<PersonapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 				stmt.setString(i++, recordInfo.nameSearch);	
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.birthYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.birthMonth);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.birthDay);
 				
 				return stmt;
 			}		

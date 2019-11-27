@@ -11,6 +11,9 @@ import br.com.mind5.dao.common.DaoDbTable;
 
 public final class PersonapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BIRTH_DATE = DaoDbField.COL_BIRTH_DATE;
+	public static final String COL_BIRTH_DAY = DaoDbField.COL_BIRTH_DAY;
+	public static final String COL_BIRTH_MONTH = DaoDbField.COL_BIRTH_MONTH;
+	public static final String COL_BIRTH_YEAR = DaoDbField.COL_BIRTH_YEAR;
 	public static final String COL_COD_ENTITY_CATEG = DaoDbField.COL_COD_ENTITY_CATEG;
 	public static final String COL_COD_GENDER = DaoDbField.COL_COD_GENDER;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
@@ -167,6 +170,30 @@ public final class PersonapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_NAME_SEARCH;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_BIRTH_YEAR;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_BIRTH_MONTH;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_BIRTH_DAY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
