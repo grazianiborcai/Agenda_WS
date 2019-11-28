@@ -86,7 +86,7 @@ class DaoWhereBuilderConcrete implements DaoWhereBuilder {
 		if (column.isPK == NOT_PRIMARY_KEY && option.ignoreNonPrimaryKey)
 			return SKIP;
 		
-		if (column.columnName.equals("record_mode")  && option.ignoreRecordMode)
+		if (column.columnName.equals("record_mode") && option.ignoreRecordMode)
 			return SKIP;
 		
 		return DONT_SKIP;
@@ -213,6 +213,8 @@ class DaoWhereBuilderConcrete implements DaoWhereBuilder {
 		if (value == null || condition.equals(DaoWhereCondition.IS_NULL.getSymbol()))
 			return buildClauseIsNull(tableName, columnName);
 		
+		String formattedValue = formatValue(value, condition);
+		
 		StringBuilder resultClause = new StringBuilder();
 		resultClause.append(tableName);
 		resultClause.append(DaoDictionary.PERIOD);
@@ -221,10 +223,19 @@ class DaoWhereBuilderConcrete implements DaoWhereBuilder {
 		resultClause.append(condition);
 		resultClause.append(DaoDictionary.SPACE);
 		resultClause.append(DaoDictionary.QUOTE);
-		resultClause.append(value);
+		resultClause.append(formattedValue);
 		resultClause.append(DaoDictionary.QUOTE);
 		
 		return resultClause.toString();
+	}
+	
+	
+	
+	private String formatValue(String value, String condition) {
+		if (condition.equals(DaoWhereCondition.LIKE.getSymbol()))
+			return "%" + value + "%";
+		
+		return value;
 	}
 	
 	

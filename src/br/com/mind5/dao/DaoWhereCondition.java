@@ -1,13 +1,14 @@
 package br.com.mind5.dao;
 
 public enum DaoWhereCondition {
-EQUAL("="), 
-NOT_EQUAL("<>"), 
-GREATER_OR_EQUAL(">="), 
-LESS_OR_EQUAL("<="), 
-GREATER(">"), 
-LESS("<"), 
-IS_NULL("IS NULL");
+	EQUAL("="), 
+	GREATER(">"), 
+	GREATER_OR_EQUAL(">="), 
+	IS_NULL("IS NULL"),
+	LESS("<"), 
+	LESS_OR_EQUAL("<="), 
+	LIKE("LIKE"), 
+	NOT_EQUAL("<>");
 	
 	private final String symbol;
 	
