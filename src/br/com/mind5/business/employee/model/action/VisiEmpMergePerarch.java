@@ -7,7 +7,7 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.info.EmpMerger;
 import br.com.mind5.business.personSearch.info.PerarchCopier;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
-import br.com.mind5.business.personSearch.model.decisionTree.RootPerarchSelect;
+import br.com.mind5.business.personSearch.model.decisionTree.RootPerarchSelectEmp;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 
@@ -20,7 +20,7 @@ final class VisiEmpMergePerarch extends ActionVisitorTemplateMergeV2<EmpInfo, Pe
 	
 	
 	@Override protected Class<? extends DeciTree<PerarchInfo>> getTreeClassHook() {
-		return RootPerarchSelect.class;
+		return RootPerarchSelectEmp.class;
 	}
 	
 	

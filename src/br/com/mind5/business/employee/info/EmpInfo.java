@@ -157,6 +157,8 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 		
 		
 		EmpInfo obj = (EmpInfo) o;		
-		return (codOwner == obj.codOwner && codEmployee == obj.codEmployee);
+		return (codOwner    == obj.codOwner    && 
+				codEmployee == obj.codEmployee &&
+				codPerson   == obj.codPerson		);
 	}
 }
