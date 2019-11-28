@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
-import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckHasEmpItem;
+import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckHasEmpItem_;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
@@ -16,7 +16,7 @@ public final class EmpCheckHasEmpmat implements ModelChecker<EmpInfo> {
 	
 	
 	public EmpCheckHasEmpmat(ModelCheckerOption option) {
-		checker = new EmpmatCheckHasEmpItem(option);
+		checker = new EmpmatCheckHasEmpItem_(option);
 	}
 	
 	

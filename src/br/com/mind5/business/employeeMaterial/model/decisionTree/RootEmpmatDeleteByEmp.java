@@ -8,7 +8,7 @@ import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeToDele
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatRootDelete;
 import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatEnforceEmpKey;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckDeleteByEmp;
-import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckHasEmpItem;
+import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckHasEmpItem_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -26,21 +26,22 @@ public final class RootEmpmatDeleteByEmp extends DeciTreeWriteTemplate<EmpmatInf
 	
 	
 	@Override protected ModelChecker<EmpmatInfo> buildDecisionCheckerHook(DeciTreeOption<EmpmatInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<EmpmatInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpmatInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
-		checker = new EmpmatCheckDeleteByEmp();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new EmpmatCheckDeleteByEmp(checkerOption);
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new EmpmatCheckHasEmpItem(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmpmatCheckHasEmpItem_(checkerOption);
 		queue.add(checker);	
 
 		return new ModelCheckerQueue<EmpmatInfo>(queue);

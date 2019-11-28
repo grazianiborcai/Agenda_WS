@@ -32,7 +32,7 @@ public final class DaoDbTable {
 	public static final String EMP_SNAPSHOT_TABLE = "employee_snapshot";	
 	public static final String EMP_WT_TABLE = "employee_working_time";
 	public static final String EMP_LD_TABLE = "employee_leave_time";
-	public static final String EMPOS_TABLE = "emp_position";
+	public static final String EMPOS_TABLE = "employee_position";
 	public static final String ENTITY_CATEG_TABLE = "entity_categ";
 	public static final String ENTITY_CATEG_TEXT_TABLE = "entity_categ_text";
 	public static final String FEE_CATEG_TABLE = "fee_categ";

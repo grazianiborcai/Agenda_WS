@@ -6,15 +6,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class EmpmatDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_EMPLOYEE = "cod_employee";
-	public static final String COL_COD_MATERIAL = "cod_material";
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
-	public static final String COL_RECORD_MODE = "record_mode";
+	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
+	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	

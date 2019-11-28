@@ -7,7 +7,6 @@ import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatInsert;
 import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatUpdate;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckSoftDelete;
-import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckWrite;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -24,19 +23,14 @@ public final class NodeEmpmatInsert extends DeciTreeWriteTemplate<EmpmatInfo> {
 	
 	
 	@Override protected ModelChecker<EmpmatInfo> buildDecisionCheckerHook(DeciTreeOption<EmpmatInfo> option) {
-		final boolean NOT_DELETED = false;	
-		
 		List<ModelChecker<EmpmatInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpmatInfo> checker;
-		ModelCheckerOption checkerOption;		
-		
-		checker = new EmpmatCheckWrite();
-		queue.add(checker);
+		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = NOT_DELETED;		
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new EmpmatCheckSoftDelete(checkerOption);
 		queue.add(checker);	
 		

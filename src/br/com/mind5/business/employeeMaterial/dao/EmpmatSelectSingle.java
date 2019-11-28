@@ -3,132 +3,81 @@ package br.com.mind5.business.employeeMaterial.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class EmpmatSelectSingle implements DaoStmt<EmpmatInfo> {
-	static private final String LT_EMP_MAT = DaoDbTable.EMP_MAT_TABLE;
-	
-	private DaoStmt<EmpmatInfo> stmtSql;
-	private DaoStmtOption_<EmpmatInfo> stmtOption;	
+public final class EmpmatSelectSingle extends DaoStmtTemplate<EmpmatInfo> {
+	private final String MAIN_TABLE = DaoDbTable.EMP_MAT_TABLE;
 	
 	
 	public EmpmatSelectSingle(Connection conn, EmpmatInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, EmpmatInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_EMP_MAT;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, EmpmatInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new EmpmatWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new EmpmatWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
+	@Override protected DaoResultParserV2<EmpmatInfo> getResultParserHook() {
+		return new DaoResultParserV2<EmpmatInfo>() {
+			@Override public List<EmpmatInfo> parseResult(EmpmatInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<EmpmatInfo> finalResult = new ArrayList<>();
+				
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					EmpmatInfo dataInfo = new EmpmatInfo();
+					
+					dataInfo.codOwner = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_OWNER);
+					dataInfo.codEmployee = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codMat = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.recordMode = stmtResult.getString(EmpmatDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpmatDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmpmatDbTableColumn.COL_LAST_CHANGED_BY);	
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
 	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<EmpmatInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<EmpmatInfo> getNewInstance() {
-		return new EmpmatSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<EmpmatInfo> {
-		private final boolean NOT_NULL = false;
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<EmpmatInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<EmpmatInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				EmpmatInfo dataInfo = new EmpmatInfo();
-				dataInfo.codOwner = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_OWNER);
-				dataInfo.codEmployee = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.codMat = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_MATERIAL);
-				dataInfo.recordMode = stmtResult.getString(EmpmatDbTableColumn.COL_RECORD_MODE);	
-				
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(EmpmatDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();
-				
-				
-				stmtResult.getLong(EmpmatDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(EmpmatDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+		super.executeStmt();
 	}
 }

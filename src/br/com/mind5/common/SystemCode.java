@@ -57,9 +57,6 @@ public final class SystemCode {
 	public static final int STORE_CNPJ_NOT_FOUND						= 1101;
 	public static final int STORE_ALREADY_EXIST 						= 1102;
 	public static final int STORE_NOT_FOUND 							= 1103;
-	public static final int STORE_MAT_EMP_ALREADY_EXIST 				= 1107;
-	public static final int STORE_MAT_EMP_NOT_FOUND 					= 1108;
-	public static final int STORE_MAT_EMP_FLAGGED_AS_DELETED 			= 1109;	
 	public static final int STORE_FEE_ALREADY_EXIST 					= 1123;
 	public static final int STORE_FEE_NOT_FOUND 						= 1124;
 	public static final int STORE_TECH_FIELD_SHOULD_BE_EMPTY			= 1125;
@@ -862,4 +859,10 @@ public final class SystemCode {
 	public static final int PERSON_LIST_MANDATORY_FIELD_EMPTY			= 7500;
 	public static final int PERSON_LIST_ALREADY_EXIST 					= 7501;
 	public static final int PERSON_LIST_NOT_FOUND 						= 7502;
+	
+	// Employee-Material
+	public static final int EMP_MAT_ALREADY_EXIST 						= 7550; //1107;
+	public static final int EMP_MAT_NOT_FOUND 							= 7551; //1108;
+	public static final int EMP_MAT_FLAGGED_AS_DELETED 					= 7552; //1109;	
+	public static final int EMP_MAT_MANDATORY_FIELD_EMPTY				= 7553;
 }

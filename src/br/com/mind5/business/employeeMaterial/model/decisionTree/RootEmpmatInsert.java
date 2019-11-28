@@ -30,49 +30,50 @@ public final class RootEmpmatInsert extends DeciTreeWriteTemplate<EmpmatInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmpmatInfo> buildDecisionCheckerHook(DeciTreeOption<EmpmatInfo> option) {
-		final boolean EXIST_ON_DB = true;	
-		final boolean DONT_EXIST_ON_DB = false;
-		
+	@Override protected ModelChecker<EmpmatInfo> buildDecisionCheckerHook(DeciTreeOption<EmpmatInfo> option) {		
 		List<ModelChecker<EmpmatInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpmatInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new EmpmatCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new EmpmatCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpmatCheckLangu(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpmatCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpmatCheckEmp(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpmatCheckMat(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new EmpmatCheckExist(checkerOption);
 		queue.add(checker);	
 		//TODO: verificar se material e servico

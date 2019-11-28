@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmpmatCheckHasEmpItem extends ModelCheckerTemplateAction_<EmpmatInfo> {	
+public final class EmpmatCheckHasEmpItem_ extends ModelCheckerTemplateAction_<EmpmatInfo> {	
 	
-	public EmpmatCheckHasEmpItem(ModelCheckerOption option) {
+	public EmpmatCheckHasEmpItem_(ModelCheckerOption option) {
 		super(option);
 	}
 	
