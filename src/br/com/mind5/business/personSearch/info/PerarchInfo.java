@@ -13,6 +13,7 @@ public final class PerarchInfo extends InfoRecord implements Cloneable {
 	public long codPerson;
 	public String cpf;
 	public String name;
+	public String nameSearch;
 	public int codGender;
 	public String txtGender;
 	public String codEntityCateg;

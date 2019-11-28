@@ -8,6 +8,7 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
+import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
 public final class PerarchWhere implements DaoStmtWhere {	
@@ -45,6 +46,10 @@ public final class PerarchWhere implements DaoStmtWhere {
 					
 				case PerarchDbTableColumn.COL_COD_ENTITY_CATEG :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codEntityCateg);
+					break;
+					
+				case PerarchDbTableColumn.COL_NAME_SEARCH :
+					builder.addClauseAnd(eachColumn, recordInfo.nameSearch, DaoWhereCondition.LIKE);
 					break;
 					
 				case PerarchDbTableColumn.COL_RECORD_MODE :

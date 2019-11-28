@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personSearch.info.PerarchInfo;
-import br.com.mind5.business.personSearch.model.action.StdPerarchMergeToSelect;
+import br.com.mind5.business.personSearch.model.action.LazyPerarchMergeToSelect;
+import br.com.mind5.business.personSearch.model.action.StdPerarchEnforceNameSearch;
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckLangu;
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckOwner;
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckRead;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -57,9 +59,12 @@ public final class RootPerarchSelect extends DeciTreeReadTemplate<PerarchInfo> {
 	@Override protected List<ActionStd<PerarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PerarchInfo> option) {
 		List<ActionStd<PerarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PerarchInfo> select = new StdPerarchMergeToSelect(option);		
+		ActionStd<PerarchInfo> enforceNameSearch = new StdPerarchEnforceNameSearch(option);
+		ActionLazy<PerarchInfo> select = new LazyPerarchMergeToSelect(option.conn, option.schemaName);		
+		
+		enforceNameSearch.addPostAction(select);
 
-		actions.add(select);		
+		actions.add(enforceNameSearch);		
 		return actions;
 	}
 }
