@@ -8,9 +8,9 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
 public final class PersonInfo extends InfoRecord implements Cloneable {
-	public long codOwner;
-	public long codSnapshot;
+	public long codOwner;	
 	public long codPerson;
+	public long codSnapshot;
 	public String cpf;
 	public String name;
 	public String nameSearch;
