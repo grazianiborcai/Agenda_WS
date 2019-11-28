@@ -70,6 +70,12 @@ public final class PersolisSelectSingle extends DaoStmtTemplate<PersolisInfo> {
 					dataInfo.name = stmtResult.getString(PersolisDbTableColumn.COL_NAME);							
 					dataInfo.recordMode = stmtResult.getString(PersolisDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PersolisDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, PersolisDbTableColumn.COL_BIRTH_DATE);
+					dataInfo.birthYear = DaoFormatter.sqlToInt(stmtResult, PersolisDbTableColumn.COL_BIRTH_YEAR);
+					dataInfo.birthMonth = DaoFormatter.sqlToInt(stmtResult, PersolisDbTableColumn.COL_BIRTH_MONTH);
+					dataInfo.birthDay = DaoFormatter.sqlToInt(stmtResult, PersolisDbTableColumn.COL_BIRTH_DAY);
+					dataInfo.email = stmtResult.getString(PersolisDbTableColumn.COL_EMAIL);	
+					dataInfo.cpf = stmtResult.getString(PersolisDbTableColumn.COL_CPF);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

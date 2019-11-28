@@ -1,5 +1,6 @@
 package br.com.mind5.business.personList.info;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
@@ -9,7 +10,13 @@ public final class PersolisInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codPerson;
 	public long codSnapshot;
+	public String cpf;
 	public String name;
+	public String email;
+	public LocalDate birthDate;
+	public int birthYear;
+	public int birthMonth;
+	public int birthDay;
 	public String recordMode;
 	public String username;
 	
@@ -20,6 +27,9 @@ public final class PersolisInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();	
+		birthYear = DefaultValue.number();
+		birthMonth = DefaultValue.number();
+		birthDay = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}
 	
