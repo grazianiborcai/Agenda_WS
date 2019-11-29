@@ -865,4 +865,9 @@ public final class SystemCode {
 	public static final int EMP_MAT_NOT_FOUND 							= 7551; //1108;
 	public static final int EMP_MAT_FLAGGED_AS_DELETED 					= 7552; //1109;	
 	public static final int EMP_MAT_MANDATORY_FIELD_EMPTY				= 7553;
+	
+	// Employee-Material Search
+	public static final int EMP_MAT_SEARCH_MANDATORY_FIELD_EMPTY		= 7600;
+	public static final int EMP_MAT_SEARCH_ALREADY_EXIST 				= 7601; 
+	public static final int EMP_MAT_SEARCH_NOT_FOUND 					= 7602; 
 }
