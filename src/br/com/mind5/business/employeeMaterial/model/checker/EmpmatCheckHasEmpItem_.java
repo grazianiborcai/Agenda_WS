@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatSelect;
-import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatEnforceEmpKey;
+import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatEnforceEmpKey_;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.action.ActionStd;
@@ -24,7 +24,7 @@ public final class EmpmatCheckHasEmpItem_ extends ModelCheckerTemplateAction_<Em
 	@Override protected ActionStd<EmpmatInfo> buildActionHook(EmpmatInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<EmpmatInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<EmpmatInfo> actionSelect = new StdEmpmatEnforceEmpKey(option);
+		ActionStd<EmpmatInfo> actionSelect = new StdEmpmatEnforceEmpKey_(option);
 		actionSelect.addPostAction(new LazyEmpmatSelect(conn, schemaName));
 		return actionSelect;
 	}

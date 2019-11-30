@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
-import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeEmp;
+import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeEmplis;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeMat;
 import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatMergeToSelect;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckLangu;
-import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckWrite;
+import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckOwner;
+import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -34,7 +35,7 @@ public final class RootEmpmatSelect extends DeciTreeReadTemplate<EmpmatInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new EmpmatCheckWrite(checkerOption);
+		checker = new EmpmatCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -43,6 +44,13 @@ public final class RootEmpmatSelect extends DeciTreeReadTemplate<EmpmatInfo> {
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpmatCheckLangu(checkerOption);
 		queue.add(checker);		
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmpmatCheckOwner(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -54,10 +62,10 @@ public final class RootEmpmatSelect extends DeciTreeReadTemplate<EmpmatInfo> {
 		
 		ActionStd<EmpmatInfo> select = new StdEmpmatMergeToSelect(option);
 		ActionLazy<EmpmatInfo> mergeMat = new LazyEmpmatMergeMat(option.conn, option.schemaName);
-		ActionLazy<EmpmatInfo> mergeEmp = new LazyEmpmatMergeEmp(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> mergeEmplis = new LazyEmpmatMergeEmplis(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMat);
-		mergeMat.addPostAction(mergeEmp);
+		mergeMat.addPostAction(mergeEmplis);
 		
 		actions.add(select);
 		return actions;

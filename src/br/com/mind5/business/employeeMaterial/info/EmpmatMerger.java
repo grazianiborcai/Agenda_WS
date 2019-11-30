@@ -2,21 +2,21 @@ package br.com.mind5.business.employeeMaterial.info;
 
 import java.util.List;
 
-import br.com.mind5.business.employee.info.EmpInfo;
+import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpmatMerger {
-	public static EmpmatInfo mergeWithEmp(EmpInfo sourceOne, EmpmatInfo sourceTwo) {
-		InfoMerger<EmpmatInfo, EmpInfo> merger = new EmpmatMergerEmp();		
+	public static EmpmatInfo mergeWithEmplis(EmplisInfo sourceOne, EmpmatInfo sourceTwo) {
+		InfoMerger<EmpmatInfo, EmplisInfo> merger = new EmpmatMergerEmplis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<EmpmatInfo> mergeWithEmp(List<EmpInfo> sourceOnes, List<EmpmatInfo> sourceTwos) {
-		InfoMerger<EmpmatInfo, EmpInfo> merger = new EmpmatMergerEmp();		
+	public static List<EmpmatInfo> mergeWithEmplis(List<EmplisInfo> sourceOnes, List<EmpmatInfo> sourceTwos) {
+		InfoMerger<EmpmatInfo, EmplisInfo> merger = new EmpmatMergerEmplis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

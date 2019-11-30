@@ -3,24 +3,24 @@ package br.com.mind5.business.employeeMaterial.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.mind5.business.employee.info.EmpInfo;
+import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoMergerVisitor;
 
-final class EmpmatVisiMergeEmp implements InfoMergerVisitor<EmpmatInfo, EmpInfo> {
+final class EmpmatVisiMergeEmplis implements InfoMergerVisitor<EmpmatInfo, EmplisInfo> {
 
-	@Override public EmpmatInfo writeRecord(EmpInfo sourceOne, EmpmatInfo sourceTwo) {
+	@Override public EmpmatInfo writeRecord(EmplisInfo sourceOne, EmpmatInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		EmpmatInfo resultInfo = makeClone(sourceTwo);		
-		resultInfo.nameEmployee = sourceOne.personData.name;
+		sourceTwo.emplisData = sourceOne;
 
 		return resultInfo;
 	}
 	
 	
 	
-	private void checkArgument(EmpInfo sourceOne, EmpmatInfo sourceTwo) {
+	private void checkArgument(EmplisInfo sourceOne, EmpmatInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -39,9 +39,9 @@ final class EmpmatVisiMergeEmp implements InfoMergerVisitor<EmpmatInfo, EmpInfo>
 
 
 
-	@Override public boolean shouldWrite(EmpInfo sourceOne, EmpmatInfo sourceTwo) {
-		return (sourceOne.codOwner    == sourceTwo.codOwner) && 
-			   (sourceOne.codEmployee == sourceTwo.codEmployee	);
+	@Override public boolean shouldWrite(EmplisInfo sourceOne, EmpmatInfo sourceTwo) {
+		return (sourceOne.codOwner    == sourceTwo.codOwner && 
+			    sourceOne.codEmployee == sourceTwo.codEmployee	);
 	}
 	
 	

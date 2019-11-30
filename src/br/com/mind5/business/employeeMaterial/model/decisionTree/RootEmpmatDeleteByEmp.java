@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeToDelete;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatRootDelete;
-import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatEnforceEmpKey;
+import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatEnforceEmpKey_;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckDeleteByEmp;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckHasEmpItem_;
 import br.com.mind5.model.action.ActionLazy;
@@ -52,7 +52,7 @@ public final class RootEmpmatDeleteByEmp extends DeciTreeWriteTemplate<EmpmatInf
 	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpmatInfo> enforceEmpKey = new StdEmpmatEnforceEmpKey(option);
+		ActionStd<EmpmatInfo> enforceEmpKey = new StdEmpmatEnforceEmpKey_(option);
 		ActionLazy<EmpmatInfo> mergeToDelete = new LazyEmpmatMergeToDelete(option.conn, option.schemaName);
 		ActionLazy<EmpmatInfo> rootDelete = new LazyEmpmatRootDelete(option.conn, option.schemaName);
 		

@@ -3,14 +3,17 @@ package br.com.mind5.business.employeeMaterial.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
 public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
-	public String nameEmployee;
 	public long codMat;
+	/*
+	public String nameEmployee;	
 	public String txtMat;
 	public int codType;
 	public String txtType;
@@ -19,6 +22,9 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	public int priceUnit;
 	public String codUnit;
 	public String txtUnit;
+	*/
+	public MatInfo matData;
+	public EmplisInfo emplisData;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -32,11 +38,13 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codMat = DefaultValue.number();
-		codType = DefaultValue.number();
+		/*codType = DefaultValue.number();
 		codCategory = DefaultValue.number();
-		priceUnit = DefaultValue.number();
+		priceUnit = DefaultValue.number(); */
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
+		matData = DefaultValue.object();
+		emplisData = DefaultValue.object();
 	}
 	
 	
@@ -54,7 +62,30 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		EmpmatInfo deepCopy = (EmpmatInfo) super.clone();
+		
+		deepCopy.matData = cloneMat(deepCopy.matData);
+		deepCopy.emplisData = cloneEmplis(deepCopy.emplisData);
+		
+		return deepCopy;
+	}
+	
+	
+	
+	private MatInfo cloneMat(MatInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (MatInfo) recordInfo.clone();
+	}
+	
+	
+	
+	private EmplisInfo cloneEmplis(EmplisInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (EmplisInfo) recordInfo.clone();
 	}
 	
 	

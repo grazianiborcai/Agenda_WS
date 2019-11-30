@@ -8,12 +8,16 @@ import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.dao.DaoFormatter;
+import br.com.mind5.dao.DaoJoin;
+import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
+import br.com.mind5.dao.common.DaoJoinEmp;
+import br.com.mind5.dao.common.DaoJoinMat;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class EmpmatSelectSingle extends DaoStmtTemplate<EmpmatInfo> {
@@ -45,6 +49,20 @@ public final class EmpmatSelectSingle extends DaoStmtTemplate<EmpmatInfo> {
 		
 		DaoStmtWhere whereClause = new EmpmatWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
+	}
+	
+	
+	
+	@Override protected List<DaoJoin> getJoinsHook() {
+		List<DaoJoin> joins = new ArrayList<>();
+		
+		DaoJoinBuilder joinEmp = new DaoJoinEmp(MAIN_TABLE);		
+		joins.add(joinEmp.build());
+		
+		DaoJoinBuilder joinMat = new DaoJoinMat(MAIN_TABLE);		
+		joins.add(joinMat.build());
+		
+		return joins;
 	}
 	
 	

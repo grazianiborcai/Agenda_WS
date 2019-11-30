@@ -42,7 +42,9 @@ public final class NodeEmpmatInsert extends DeciTreeWriteTemplate<EmpmatInfo> {
 	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmpmatInsert(option));
+		ActionStd<EmpmatInfo> insert = new StdEmpmatInsert(option);		
+		actions.add(insert);
+		
 		return actions;
 	}
 	
@@ -51,7 +53,9 @@ public final class NodeEmpmatInsert extends DeciTreeWriteTemplate<EmpmatInfo> {
 	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmpmatUpdate(option));
+		ActionStd<EmpmatInfo> update = new StdEmpmatUpdate(option);		
+		actions.add(update);
+		
 		return actions;
 	}
 }

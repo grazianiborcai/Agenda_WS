@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpmatMergeEmp extends ActionLazyTemplate<EmpmatInfo, EmpmatInfo> {
+public final class LazyEmpmatMergeEmplis extends ActionLazyTemplate<EmpmatInfo, EmpmatInfo> {
 	
-	public LazyEmpmatMergeEmp(Connection conn, String schemaName) {
+	public LazyEmpmatMergeEmplis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyEmpmatMergeEmp extends ActionLazyTemplate<EmpmatInfo, Emp
 	
 	
 	@Override protected ActionStd<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
-		return new StdEmpmatMergeEmp(option);
+		return new StdEmpmatMergeEmplis(option);
 	}
 	
 	

@@ -9,17 +9,8 @@ final class EmpmatVisiMergeMat implements InfoMergerVisitor<EmpmatInfo, MatInfo>
 	@Override public EmpmatInfo writeRecord(MatInfo sourceOne, EmpmatInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		EmpmatInfo resultInfo = EmpmatInfo.copyFrom(sourceTwo);
-		resultInfo.txtMat = sourceOne.txtMat;
-		resultInfo.codType = sourceOne.codType;
-		resultInfo.txtType = sourceOne.txtType;
-		resultInfo.codCategory = sourceOne.codMatCateg;
-		resultInfo.txtCategory = sourceOne.txtMatCateg;
-		resultInfo.priceUnit = sourceOne.priceUnit;
-		resultInfo.codUnit = sourceOne.codUnit;
-		resultInfo.txtUnit = sourceOne.txtUnit;
-
-		return resultInfo;
+		sourceTwo.matData = sourceOne;
+		return sourceTwo;
 	}
 	
 	

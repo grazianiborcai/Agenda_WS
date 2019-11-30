@@ -93,7 +93,6 @@ public final class RootEmpmatInsert extends DeciTreeWriteTemplate<EmpmatInfo> {
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(nodeInsert);
 		nodeInsert.addPostAction(select);
-
 		
 		actions.add(enforceLChanged);
 		return actions;
