@@ -34,7 +34,7 @@ public final class MatWhere implements DaoStmtWhere {
 				case MatDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
-					
+					/*
 				case MatDbTableColumn.COL_COD_TYPE  :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codType));
 					break;
@@ -46,7 +46,7 @@ public final class MatWhere implements DaoStmtWhere {
 				case MatDbTableColumn.COL_COD_CATEGORY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMatCateg));
 					break;
-					
+					*/
 				case MatDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;

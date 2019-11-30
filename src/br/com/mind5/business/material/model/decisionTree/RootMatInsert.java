@@ -12,7 +12,6 @@ import br.com.mind5.business.material.model.action.LazyMatRootSelect;
 import br.com.mind5.business.material.model.action.StdMatEnforceLChanged;
 import br.com.mind5.business.material.model.checker.MatCheckCateg;
 import br.com.mind5.business.material.model.checker.MatCheckCurrency;
-import br.com.mind5.business.material.model.checker.MatCheckGenField;
 import br.com.mind5.business.material.model.checker.MatCheckGroup;
 import br.com.mind5.business.material.model.checker.MatCheckLangu;
 import br.com.mind5.business.material.model.checker.MatCheckOwner;
@@ -39,16 +38,15 @@ public final class RootMatInsert extends DeciTreeWriteTemplate<MatInfo> {
 	
 	
 	@Override protected ModelChecker<MatInfo> buildDecisionCheckerHook(DeciTreeOption<MatInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatInfo> checker;	
+		ModelChecker<MatInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new MatCheckWrite();
-		queue.add(checker);
-		
-		checker = new MatCheckGenField();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checker = new MatCheckUnitEach();
@@ -63,49 +61,49 @@ public final class RootMatInsert extends DeciTreeWriteTemplate<MatInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MatCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MatCheckLangu(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MatCheckCurrency(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MatCheckUnit(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MatCheckCateg(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MatCheckGroup(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MatCheckType(checkerOption);
 		queue.add(checker);
 		

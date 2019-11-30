@@ -7,11 +7,11 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatCheckGenField extends ModelCheckerTemplateSimple_<MatInfo> {
+public final class MatCheckGenField_ extends ModelCheckerTemplateSimple_<MatInfo> {
 	private final boolean AUTO_GEN_FIELD_NOT_NULL = false;
 	private final boolean EMPTY_AUTO_GEN_FIELD = true;
 	
-	public MatCheckGenField() {
+	public MatCheckGenField_() {
 		super();
 	}
 	

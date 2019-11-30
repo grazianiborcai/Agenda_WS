@@ -89,6 +89,7 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 		
 		
 		MatInfo obj = (MatInfo) o;		
-		return (codOwner == obj.codOwner && codMat == obj.codMat);
+		return (codOwner == obj.codOwner && 
+				codMat   == obj.codMat);
 	}
 }

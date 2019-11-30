@@ -14,6 +14,7 @@ import br.com.mind5.business.material.model.checker.MatCheckDelete;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -29,8 +30,13 @@ public final class NodeMatDeleteL2 extends DeciTreeWriteTemplate<MatInfo> {
 	@Override protected ModelChecker<MatInfo> buildDecisionCheckerHook(DeciTreeOption<MatInfo> option) {
 		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatInfo> checker;
+		ModelCheckerOption checkerOption;
 		
-		checker = new MatCheckDelete();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatCheckDelete(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<MatInfo>(queue);

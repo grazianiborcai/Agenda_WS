@@ -26,8 +26,6 @@ public final class RootMatDeleteAll extends DeciTreeWriteTemplate<MatInfo> {
 	
 	
 	@Override protected ModelChecker<MatInfo> buildDecisionCheckerHook(DeciTreeOption<MatInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -39,7 +37,7 @@ public final class RootMatDeleteAll extends DeciTreeWriteTemplate<MatInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatCheckHasItem(checkerOption);
 		queue.add(checker);	
 
