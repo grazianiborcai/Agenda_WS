@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.mind5.business.material.dao.MatDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class MatsnapDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_BUSINESS = MatDbTableColumn.COL_COD_BUSINESS;
-	public static final String COL_COD_CATEGORY = MatDbTableColumn.COL_COD_CATEGORY;
-	public static final String COL_COD_GROUP = MatDbTableColumn.COL_COD_GROUP;
-	public static final String COL_COD_MATERIAL = MatDbTableColumn.COL_COD_MATERIAL;
-	public static final String COL_COD_OWNER = MatDbTableColumn.COL_COD_OWNER;
-	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
-	public static final String COL_COD_TYPE = MatDbTableColumn.COL_COD_TYPE;
-	public static final String COL_COD_UNIT = MatDbTableColumn.COL_COD_UNIT;
-	public static final String COL_LAST_CHANGED = MatDbTableColumn.COL_LAST_CHANGED;
-	public static final String COL_LAST_CHANGED_BY = MatDbTableColumn.COL_LAST_CHANGED_BY;
-	public static final String COL_IS_LOCKED = MatDbTableColumn.COL_IS_LOCKED;
-	public static final String COL_PRICE_UNIT = MatDbTableColumn.COL_PRICE_UNIT;
-	public static final String COL_RECORD_MODE = MatDbTableColumn.COL_RECORD_MODE;
+	public static final String COL_COD_BUSINESS = DaoDbField.COL_COD_BUSINESS;
+	public static final String COL_COD_CATEGORY = DaoDbField.COL_COD_CATEGORY;
+	public static final String COL_COD_GROUP = DaoDbField.COL_COD_GROUP;
+	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
+	public static final String COL_COD_TYPE = DaoDbField.COL_COD_TYPE;
+	public static final String COL_COD_UNIT = DaoDbField.COL_COD_UNIT;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_IS_LOCKED = DaoDbField.COL_IS_LOCKED;
+	public static final String COL_PRICE_UNIT = DaoDbField.COL_PRICE_UNIT;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	

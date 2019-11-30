@@ -22,9 +22,6 @@ import br.com.mind5.business.cartReserve.model.CarterveModelSelect;
 import br.com.mind5.business.company.model.CompModelInsert;
 import br.com.mind5.business.company.model.CompModelUpdate;
 import br.com.mind5.business.customerSearch.model.CusarchModelSelect_;
-import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
-import br.com.mind5.business.materialSnapshot.model.MatsnapModelInsert;
-import br.com.mind5.business.materialSnapshot.model.MatsnapModelSelect;
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
 import br.com.mind5.business.orderReserve.model.OrderveModelSelect;
 import br.com.mind5.business.person.model.PersonModelInsert;
@@ -81,8 +78,6 @@ public class TestResource {
 	private static final String INSERT_PHONE_SNAPSHOT = "/insertPhoneSnapshot";
 	private static final String SELECT_PERSON_SNAPSHOT = "/selectPersonSnapshot";
 	private static final String INSERT_PERSON_SNAPSHOT = "/insertPersonSnapshot";
-	private static final String INSERT_MATERIAL_SNAPSHOT = "/insertMaterialSnapshot";
-	private static final String SELECT_MATERIAL_SNAPSHOT = "/selectMaterialSnapshot";
 	private static final String SELECT_PAY_PARTNER_COUNTRY = "/selectPayPartnerCountry";
 	private static final String SELECT_PAY_PARTNER_OWNER = "/selectPayPartnerOwner";
 	private static final String INSERT_COMPANY = "/insertCompany";
@@ -272,36 +267,6 @@ public class TestResource {
 		Model model = new PersonapModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();	
-	}
-	
-	
-	
-	@POST
-	@Path(INSERT_MATERIAL_SNAPSHOT)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response insertMatSnapshot(@Context HttpServletRequest request, String incomingData) {
-		
-		
-		Model model = new MatsnapModelInsert(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();	
-	}
-	
-	
-	
-	@GET
-	@Path(SELECT_MATERIAL_SNAPSHOT)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMatSnapshot(@HeaderParam("codOwner")    @DefaultValue("-1") long codOwner, 
-								      @HeaderParam("codSnapshot") @DefaultValue("-1") long codSnapshot) {
-
-		MatsnapInfo recordInfo = new MatsnapInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codSnapshot = codSnapshot;
-		
-		Model model = new MatsnapModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
 	}
 	
 	
