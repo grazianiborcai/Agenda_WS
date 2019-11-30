@@ -90,7 +90,8 @@
         <security:intercept-url pattern="/**/Employee/selectWorkTimeOutlier"	access="hasAuthority('EMPLOYEE_TIME_READ')" 		/>
         <security:intercept-url pattern="/**/Employee/insertMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_WRITE')"	/>
         <security:intercept-url pattern="/**/Employee/deleteMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_WRITE')"	/>
-        <security:intercept-url pattern="/**/Employee/selectMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_READ')" 	/>       
+        <security:intercept-url pattern="/**/Employee/selectMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_READ')" 	/>  
+        <security:intercept-url pattern="/**/Employee/searchMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_READ')" 	/>      
         <security:intercept-url pattern="/**/Employee/selectEmployeeList"		access="hasAuthority('EMPLOYEE_READ')" 				/>  
         <security:intercept-url pattern="/**/Employee/searchEmployeeList"		access="hasAuthority('EMPLOYEE_READ')" 				/>           
         <security:intercept-url pattern="/**/Employee/insert**" 				access="hasAuthority('EMPLOYEE_WRITE')"				/>

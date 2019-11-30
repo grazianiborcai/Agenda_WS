@@ -35,6 +35,7 @@ import br.com.mind5.business.employeeList.model.EmplisModelSelect;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelDelete;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelInsert;
+import br.com.mind5.business.employeeMaterial.model.EmpmatModelSearch;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelSelect;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.EmposModelDelete;
@@ -78,6 +79,7 @@ public class EmployeeResource {
 	private static final String INSERT_EMP_POSITION = "/insertPosition";
 	private static final String DELETE_EMP_POSITION = "/deletePosition";
 	private static final String SELECT_EMP_MATERIAL = "/selectMaterial";
+	private static final String SEARCH_EMP_MATERIAL = "/searchMaterial";
 	private static final String INSERT_EMP_MATERIAL = "/insertMaterial";
 	private static final String DELETE_EMP_MATERIAL = "/deleteMaterial";
 	private static final String SELECT_EMP_WT_OUTLIER = "/selectWorkTimeOutlier";
@@ -557,6 +559,19 @@ public class EmployeeResource {
 	
 	
 	@POST
+	@Path(SEARCH_EMP_MATERIAL)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchEmpmat(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new EmpmatModelSearch(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
 	@Path(INSERT_EMP_MATERIAL)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -565,7 +580,7 @@ public class EmployeeResource {
 		Model model = new EmpmatModelInsert(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
-	}
+	}	
 	
 	
 	

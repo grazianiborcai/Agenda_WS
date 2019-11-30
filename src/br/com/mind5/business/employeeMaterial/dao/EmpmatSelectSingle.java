@@ -8,16 +8,12 @@ import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.dao.DaoFormatter;
-import br.com.mind5.dao.DaoJoin;
-import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoJoinEmp;
-import br.com.mind5.dao.common.DaoJoinMat;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class EmpmatSelectSingle extends DaoStmtTemplate<EmpmatInfo> {
@@ -53,20 +49,6 @@ public final class EmpmatSelectSingle extends DaoStmtTemplate<EmpmatInfo> {
 	
 	
 	
-	@Override protected List<DaoJoin> getJoinsHook() {
-		List<DaoJoin> joins = new ArrayList<>();
-		
-		DaoJoinBuilder joinEmp = new DaoJoinEmp(MAIN_TABLE);		
-		joins.add(joinEmp.build());
-		
-		DaoJoinBuilder joinMat = new DaoJoinMat(MAIN_TABLE);		
-		joins.add(joinMat.build());
-		
-		return joins;
-	}
-	
-	
-	
 	@Override protected DaoResultParserV2<EmpmatInfo> getResultParserHook() {
 		return new DaoResultParserV2<EmpmatInfo>() {
 			@Override public List<EmpmatInfo> parseResult(EmpmatInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
@@ -84,6 +66,8 @@ public final class EmpmatSelectSingle extends DaoStmtTemplate<EmpmatInfo> {
 					dataInfo.recordMode = stmtResult.getString(EmpmatDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpmatDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmpmatDbTableColumn.COL_LAST_CHANGED_BY);	
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpmatDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, EmpmatDbTableColumn.COL_CREATED_BY);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
