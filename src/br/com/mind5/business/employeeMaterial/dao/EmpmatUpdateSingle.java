@@ -14,7 +14,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class EmpmatUpdateSingle extends DaoStmtTemplate<EmpmatInfo> {
-	private final String MAIN_TABLE = DaoDbTable.EMP_TABLE;	
+	private final String MAIN_TABLE = DaoDbTable.EMP_MAT_TABLE;	
 	
 	
 	public EmpmatUpdateSingle(Connection conn, EmpmatInfo recordInfo, String schemaName) {
