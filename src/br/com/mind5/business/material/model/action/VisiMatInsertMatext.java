@@ -1,6 +1,7 @@
 package br.com.mind5.business.material.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.materialText.info.MatextInfo;
@@ -18,5 +19,11 @@ final class VisiMatInsertMatext extends ActionVisitorTemplateAction<MatInfo, Mat
 	
 	@Override protected ActionStd<MatextInfo> getActionHook(DeciTreeOption<MatextInfo> option) {
 		return new RootMatextInsertDefault(option).toAction();
+	}
+	
+	
+	
+	@Override protected List<MatInfo> toBaseClassHook(List<MatInfo> baseInfos, List<MatextInfo> results) {
+		return baseInfos;
 	}
 }
