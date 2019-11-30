@@ -78,6 +78,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
+		result = result * 31 + (int) (codPerson   ^ (codPerson   >>> 32));
 		
 		return result;
 	}
