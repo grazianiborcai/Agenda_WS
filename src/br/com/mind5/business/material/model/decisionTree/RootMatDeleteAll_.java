@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.action.LazyMatMergeToDelete;
 import br.com.mind5.business.material.model.action.LazyMatRootDelete;
-import br.com.mind5.business.material.model.action.StdMatEnforceOwnerKey;
+import br.com.mind5.business.material.model.action.StdMatEnforceOwnerKey_;
 import br.com.mind5.business.material.model.checker.MatCheckDeleteAll;
-import br.com.mind5.business.material.model.checker.MatCheckHasItem;
+import br.com.mind5.business.material.model.checker.MatCheckHasItem_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -17,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootMatDeleteAll extends DeciTreeWriteTemplate<MatInfo> {
+public final class RootMatDeleteAll_ extends DeciTreeWriteTemplate<MatInfo> {
 	
-	public RootMatDeleteAll(DeciTreeOption<MatInfo> option) {
+	public RootMatDeleteAll_(DeciTreeOption<MatInfo> option) {
 		super(option);
 	}
 	
@@ -38,7 +38,7 @@ public final class RootMatDeleteAll extends DeciTreeWriteTemplate<MatInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new MatCheckHasItem(checkerOption);
+		checker = new MatCheckHasItem_(checkerOption);
 		queue.add(checker);	
 
 		return new ModelCheckerQueue<MatInfo>(queue);
@@ -49,7 +49,7 @@ public final class RootMatDeleteAll extends DeciTreeWriteTemplate<MatInfo> {
 	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatInfo> enforceOwnerKey = new StdMatEnforceOwnerKey(option);
+		ActionStd<MatInfo> enforceOwnerKey = new StdMatEnforceOwnerKey_(option);
 		ActionLazy<MatInfo> mergeToDelete = new LazyMatMergeToDelete(option.conn, option.schemaName);
 		ActionLazy<MatInfo> rootDelete = new LazyMatRootDelete(option.conn, option.schemaName);
 		

@@ -172,6 +172,10 @@ public final class SystemCode {
 	public static final int MAT_HAS_ITEM								= 1214;
 	public static final int MAT_NO_ITEM_FOUND							= 1215;
 	public static final int MAT_MANDATORY_FIELD_EMPTY 					= 1216;
+	public static final int MAT_SERVICE_UNIT_INCONSISTENCY				= 1217;
+	public static final int MAT_PRODUCT									= 1218;
+	public static final int MAT_NOT_PRODUCT								= 1219;
+	public static final int MAT_PRODUCT_UNIT_INCONSISTENCY				= 1220;
 	
 	// Owner
 	public static final int OWNER_ALREADY_EXIST							= 1250;

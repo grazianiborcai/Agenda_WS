@@ -135,4 +135,18 @@ public final class MatMerger {
 		InfoMerger<MatInfo, MatInfo> merger = new MatMergerToDelete();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static MatInfo mergeToUpdate(MatInfo sourceOne, MatInfo sourceTwo) {
+		InfoMerger<MatInfo, MatInfo> merger = new MatMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatInfo> mergeToUpdate(List<MatInfo> sourceOnes, List<MatInfo> sourceTwos) {
+		InfoMerger<MatInfo, MatInfo> merger = new MatMergerToUpdate();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

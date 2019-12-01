@@ -4,25 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
-import br.com.mind5.business.material.model.action.LazyMatMergeUsername;
 import br.com.mind5.business.material.model.action.LazyMatNodeSnapshot;
 import br.com.mind5.business.material.model.action.LazyMatRootSelect;
-import br.com.mind5.business.material.model.action.LazyMatUpdate;
 import br.com.mind5.business.material.model.action.LazyMatUpsertMatext;
-import br.com.mind5.business.material.model.action.StdMatEnforceLChanged;
 import br.com.mind5.business.material.model.checker.MatCheckCateg;
-import br.com.mind5.business.material.model.checker.MatCheckCategChange;
-import br.com.mind5.business.material.model.checker.MatCheckCurrency;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
 import br.com.mind5.business.material.model.checker.MatCheckGroup;
-import br.com.mind5.business.material.model.checker.MatCheckKey;
 import br.com.mind5.business.material.model.checker.MatCheckLangu;
 import br.com.mind5.business.material.model.checker.MatCheckOwner;
 import br.com.mind5.business.material.model.checker.MatCheckType;
 import br.com.mind5.business.material.model.checker.MatCheckUnit;
-import br.com.mind5.business.material.model.checker.MatCheckUnitEach;
-import br.com.mind5.business.material.model.checker.MatCheckUnitProduct;
-import br.com.mind5.business.material.model.checker.MatCheckUnitService;
 import br.com.mind5.business.material.model.checker.MatCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -52,18 +43,6 @@ public final class RootMatUpdate extends DeciTreeWriteTemplate<MatInfo> {
 		checker = new MatCheckWrite(checkerOption);
 		queue.add(checker);
 		
-		checker = new MatCheckKey();
-		queue.add(checker);
-		
-		checker = new MatCheckUnitEach();
-		queue.add(checker);
-		
-		checker = new MatCheckUnitService();
-		queue.add(checker);
-		
-		checker = new MatCheckUnitProduct();
-		queue.add(checker);
-		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
@@ -76,13 +55,6 @@ public final class RootMatUpdate extends DeciTreeWriteTemplate<MatInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MatCheckLangu(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new MatCheckCurrency(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -118,16 +90,8 @@ public final class RootMatUpdate extends DeciTreeWriteTemplate<MatInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatCheckExist(checkerOption);
-		queue.add(checker);		
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new MatCheckCategChange(checkerOption);
 		queue.add(checker);	
 		
-		//TODO: Como tratar Update se o material ja estiver no carrinho de compras ?
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -136,20 +100,16 @@ public final class RootMatUpdate extends DeciTreeWriteTemplate<MatInfo> {
 	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatInfo> enforceLChanged = new StdMatEnforceLChanged(option);	
-		ActionLazy<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatInfo> updateMat = new LazyMatUpdate(option.conn, option.schemaName);		
+		ActionStd<MatInfo> updateMat = new NodeMatUpdate(option).toAction();	
 		ActionLazy<MatInfo> upsertMatext = new LazyMatUpsertMatext(option.conn, option.schemaName);
-		ActionLazy<MatInfo> nodeSnapshot = new LazyMatNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<MatInfo> snapshot = new LazyMatNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<MatInfo> select = new LazyMatRootSelect(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(updateMat);
 		updateMat.addPostAction(upsertMatext);
-		upsertMatext.addPostAction(nodeSnapshot);
-		nodeSnapshot.addPostAction(select);
+		upsertMatext.addPostAction(snapshot);
+		snapshot.addPostAction(select);
 		
-		actions.add(enforceLChanged);
+		actions.add(updateMat);
 		return actions;
 	}
 }

@@ -76,7 +76,7 @@ public class MaterialResource {
 	@DELETE
 	@Path(DELETE_MATERIAL)
 	public Response deleteMaterial(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
-			                       @HeaderParam("codMaterial")    @DefaultValue("-1") long codMat,
+			                       @HeaderParam("codMat")    	  @DefaultValue("-1") long codMat,
 			                       @HeaderParam("TOKEN_USERNAME") String username,
 			                       @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
 		
@@ -97,10 +97,10 @@ public class MaterialResource {
 	@GET
 	@Path(SELECT_MATERIAL)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMaterial(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
-								   @HeaderParam("codMaterial") @DefaultValue("-1") long codMat, 
+	public Response selectMaterial(@HeaderParam("TOKEN_OWNER") 	  @DefaultValue("-1") long codOwner,
+								   @HeaderParam("codMat") 		  @DefaultValue("-1") long codMat, 
 								   @HeaderParam("TOKEN_USERNAME") String username,
-								   @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+								   @HeaderParam("codLanguage") 	  @DefaultValue("EN") String codLanguage) {
 
 
 		MatInfo recordInfo = new MatInfo();
@@ -122,7 +122,7 @@ public class MaterialResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectMatore(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
 			                     @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
-								 @HeaderParam("codMaterial") @DefaultValue("-1") long codMat, 
+								 @HeaderParam("codMat") 	 @DefaultValue("-1") long codMat, 
 								 @HeaderParam("TOKEN_USERNAME") String username,
 								 @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 
@@ -170,7 +170,7 @@ public class MaterialResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteMatore(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner,
 			                     @HeaderParam("codStore")    	@DefaultValue("-1") long codStore,
-								 @HeaderParam("codMaterial") 	@DefaultValue("-1") long codMat,
+								 @HeaderParam("codMat") 		@DefaultValue("-1") long codMat,
 								 @HeaderParam("TOKEN_USERNAME") String username,
 								 @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
 
@@ -206,7 +206,7 @@ public class MaterialResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectMatmov(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
 								 @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
-								 @HeaderParam("codMaterial") @DefaultValue("-1") long codMat,
+								 @HeaderParam("codMat") 	 @DefaultValue("-1") long codMat,
 								 @HeaderParam("TOKEN_USERNAME") String username,
 								 @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 
@@ -241,7 +241,7 @@ public class MaterialResource {
 	@DELETE
 	@Path(DELETE_MATERIAL_TEXT)
 	public Response deleteMaterialText(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
-			                           @HeaderParam("codMaterial")    @DefaultValue("-1") long codMat,
+			                           @HeaderParam("codMat")    	  @DefaultValue("-1") long codMat,
 			                           @HeaderParam("TOKEN_USERNAME") String username,
 			                           @HeaderParam("codLanguage")    String codLanguage) {
 		
@@ -263,7 +263,7 @@ public class MaterialResource {
 	@Path(SELECT_MATERIAL_TEXT)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectMaterialText(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
-								       @HeaderParam("codMaterial") @DefaultValue("-1") long codMat, 
+								       @HeaderParam("codMat") 	   @DefaultValue("-1") long codMat, 
 								       @HeaderParam("TOKEN_USERNAME") String username,
 								       @HeaderParam("codLanguage") String codLanguage) {
 

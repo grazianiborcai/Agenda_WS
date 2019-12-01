@@ -10,7 +10,7 @@ import br.com.mind5.business.material.model.action.LazyMatMergeMatType;
 import br.com.mind5.business.material.model.action.LazyMatMergeMatUnit;
 import br.com.mind5.business.material.model.action.LazyMatMergeMatext;
 import br.com.mind5.business.material.model.action.StdMatMergeToSelect;
-import br.com.mind5.business.material.model.checker.MatCheckWrite;
+import br.com.mind5.business.material.model.checker.MatCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -36,7 +36,7 @@ public final class RootMatSelect extends DeciTreeReadTemplate<MatInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new MatCheckWrite(checkerOption);
+		checker = new MatCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

@@ -18,13 +18,13 @@ public final class MatCheckWrite extends ModelCheckerTemplateSimpleV2<MatInfo> {
 	@Override protected boolean checkHook(MatInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 		<= 0 	
 			|| recordInfo.codMat 		<= 0 		
-			|| recordInfo.txtMat		== null 	
-			|| recordInfo.description 	== null	
+			|| recordInfo.codGroup		<= 0
 			|| recordInfo.codType 		<= 0
 			|| recordInfo.codMatCateg	<= 0
 			|| recordInfo.priceUnit		<= 0
 			|| recordInfo.codUnit		== null
-			|| recordInfo.codGroup		<= 0
+			|| recordInfo.txtMat		== null 	
+			|| recordInfo.description 	== null	
 			|| recordInfo.codLanguage	== null
 			|| recordInfo.username		== null	)
 			

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.action.LazyMatSelect;
-import br.com.mind5.business.material.model.action.StdMatEnforceOwnerKey;
+import br.com.mind5.business.material.model.action.StdMatEnforceOwnerKey_;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.action.ActionStd;
@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatCheckHasItem extends ModelCheckerTemplateAction_<MatInfo> {	
+public final class MatCheckHasItem_ extends ModelCheckerTemplateAction_<MatInfo> {	
 	
-	public MatCheckHasItem(ModelCheckerOption option) {
+	public MatCheckHasItem_(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -24,7 +24,7 @@ public final class MatCheckHasItem extends ModelCheckerTemplateAction_<MatInfo> 
 	@Override protected ActionStd<MatInfo> buildActionHook(MatInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<MatInfo> actionSelect = new StdMatEnforceOwnerKey(option);
+		ActionStd<MatInfo> actionSelect = new StdMatEnforceOwnerKey_(option);
 		actionSelect.addPostAction(new LazyMatSelect(conn, schemaName));
 		return actionSelect;
 	}
