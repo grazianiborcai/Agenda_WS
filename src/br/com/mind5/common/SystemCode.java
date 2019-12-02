@@ -880,4 +880,7 @@ public final class SystemCode {
 	
 	// Material Text Default
 	public static final int MAT_TEXT_DEFAULT_MANDATORY_FIELD_EMPTY		= 7700;
+	
+	// Material List
+	public static final int MAT_LIST_MANDATORY_FIELD_EMPTY				= 7750;
 }
