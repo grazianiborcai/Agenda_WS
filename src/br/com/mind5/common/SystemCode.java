@@ -877,4 +877,7 @@ public final class SystemCode {
 	
 	// Material Text Search
 	public static final int MAT_TEXT_SEARCH_MANDATORY_FIELD_EMPTY		= 7650;
+	
+	// Material Text Default
+	public static final int MAT_TEXT_DEFAULT_MANDATORY_FIELD_EMPTY		= 7700;
 }
