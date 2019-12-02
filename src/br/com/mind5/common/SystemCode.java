@@ -874,4 +874,7 @@ public final class SystemCode {
 	public static final int EMP_MAT_SEARCH_MANDATORY_FIELD_EMPTY		= 7600;
 	public static final int EMP_MAT_SEARCH_ALREADY_EXIST 				= 7601; 
 	public static final int EMP_MAT_SEARCH_NOT_FOUND 					= 7602; 
+	
+	// Material Text Search
+	public static final int MAT_TEXT_SEARCH_MANDATORY_FIELD_EMPTY		= 7650;
 }
