@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.action.LazyMatEnforceLChanged;
 import br.com.mind5.business.material.model.action.LazyMatMergeUsername;
+import br.com.mind5.business.material.model.action.LazyMatNodeServiceL1;
 import br.com.mind5.business.material.model.action.LazyMatUpdate;
 import br.com.mind5.business.material.model.action.StdMatMergeToUpdate;
 import br.com.mind5.business.material.model.checker.MatCheckDummy;
@@ -40,11 +41,13 @@ public final class NodeMatUpdate extends DeciTreeWriteTemplate<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 
 		ActionStd<MatInfo> mergeToUpdate = new StdMatMergeToUpdate(option);	
+		ActionLazy<MatInfo> nodeService = new LazyMatNodeServiceL1(option.conn, option.schemaName);	
 		ActionLazy<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatInfo> updateMat = new LazyMatUpdate(option.conn, option.schemaName);	
 		
-		mergeToUpdate.addPostAction(enforceLChanged);
+		mergeToUpdate.addPostAction(nodeService);
+		nodeService.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(updateMat);
 		
