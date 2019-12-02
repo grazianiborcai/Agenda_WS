@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.action.LazyOwnerDelete;
 import br.com.mind5.business.owner.model.action.LazyOwnerDeleteComp;
-import br.com.mind5.business.owner.model.action.LazyOwnerDeleteMat;
 import br.com.mind5.business.owner.model.action.LazyOwnerDeletePerson;
 import br.com.mind5.business.owner.model.action.LazyOwnerDeleteUser;
 import br.com.mind5.business.owner.model.action.LazyOwnerEnforceLChanged;
@@ -68,7 +67,6 @@ public final class RootOwnerDeleteCascade extends DeciTreeWriteTemplate<OwnerInf
 		ActionLazy<OwnerInfo> deletePhone = new LazyOwnerNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deletePerson = new LazyOwnerDeletePerson(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteCompany = new LazyOwnerDeleteComp(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> deleteMat = new LazyOwnerDeleteMat(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteUser = new LazyOwnerDeleteUser(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> deleteOwner = new LazyOwnerDelete(option.conn, option.schemaName);			
 		
@@ -80,7 +78,6 @@ public final class RootOwnerDeleteCascade extends DeciTreeWriteTemplate<OwnerInf
 		update.addPostAction(deletePhone);
 		update.addPostAction(deletePerson);
 		update.addPostAction(deleteCompany);	
-		update.addPostAction(deleteMat);
 		update.addPostAction(deleteUser);
 		update.addPostAction(deleteOwner);
 		
