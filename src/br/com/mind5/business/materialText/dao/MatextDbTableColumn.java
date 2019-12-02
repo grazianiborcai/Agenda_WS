@@ -6,18 +6,19 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class MatextDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_COD_MATERIAL = "cod_material";
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_DESCRIPTION = "description";	
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
-	public static final String COL_NAME = "name";
-	public static final String COL_IS_DEFAULT = "is_default";
-	public static final String COL_RECORD_MODE = "record_mode";
+	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
+	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_DESCRIPTION = DaoDbField.COL_DESCRIPTION;	
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_NAME = DaoDbField.COL_NAME;
+	public static final String COL_IS_DEFAULT = DaoDbField.COL_IS_DEFAULT; 
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
@@ -46,14 +47,6 @@ public final class MatextDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_OWNER;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_MATERIAL;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
@@ -62,7 +55,14 @@ public final class MatextDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_OWNER;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
 		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;		
 		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
