@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.action.LazyMatextUpdate;
-import br.com.mind5.business.materialText.model.action.StdMatextEnforceDefaultOn;
-import br.com.mind5.business.materialText.model.action.StdMatextSuccess;
-import br.com.mind5.business.materialText.model.checker.MatextCheckHasDefault;
-import br.com.mind5.model.action.ActionLazy;
+import br.com.mind5.business.materialText.model.checker.MatextCheckIsDefault;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -16,17 +12,15 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeMatextHasDefault extends DeciTreeWriteTemplate<MatextInfo> {
+public final class NodeMatextDefaultL1 extends DeciTreeWriteTemplate<MatextInfo> {
 	
-	public NodeMatextHasDefault(DeciTreeOption<MatextInfo> option) {
+	public NodeMatextDefaultL1(DeciTreeOption<MatextInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected ModelChecker<MatextInfo> buildDecisionCheckerHook(DeciTreeOption<MatextInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatextInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -34,8 +28,8 @@ public final class NodeMatextHasDefault extends DeciTreeWriteTemplate<MatextInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new MatextCheckHasDefault(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatextCheckIsDefault(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -46,9 +40,9 @@ public final class NodeMatextHasDefault extends DeciTreeWriteTemplate<MatextInfo
 	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatextInfo> success = new StdMatextSuccess(option);		
-		actions.add(success);
+		ActionStd<MatextInfo> nodeL2 = new NodeMatextDefaultL2(option).toAction();
 		
+		actions.add(nodeL2);
 		return actions;
 	}
 	
@@ -57,12 +51,9 @@ public final class NodeMatextHasDefault extends DeciTreeWriteTemplate<MatextInfo
 	@Override protected List<ActionStd<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatextInfo> enforceDefaultOn = new StdMatextEnforceDefaultOn(option);	
-		ActionLazy<MatextInfo> update = new LazyMatextUpdate(option.conn, option.schemaName);
+		ActionStd<MatextInfo> nodeL3 = new NodeMatextDefaultL3(option).toAction();	
 		
-		enforceDefaultOn.addPostAction(update);
-		
-		actions.add(enforceDefaultOn);
+		actions.add(nodeL3);		
 		return actions;
 	}
 }

@@ -164,8 +164,7 @@ public final class SystemCode {
 	public static final int MAT_UNIT_EACH_INCONSISTENCY					= 1206;
 	public static final int MAT_UNIT_INCONSISTENCY						= 1207;
 	public static final int MAT_CATEG_CANT_BE_CHANGED					= 1208;	
-	public static final int MAT_CATEG_NOT_CHANGED						= 1209;	
-	public static final int MAT_TEXT_NOT_DEFAULT						= 1210;
+	public static final int MAT_CATEG_NOT_CHANGED						= 1209;		
 	public static final int MAT_TEXT_HAS_NO_DEFAULT						= 1211;
 	public static final int MAT_TEXT_HAS_DEFAULT						= 1212;
 	public static final int MAT_TEXT_DEFAULT_CANT_BE_DELETED			= 1213;
@@ -880,7 +879,14 @@ public final class SystemCode {
 	
 	// Material Text Default
 	public static final int MAT_TEXT_DEFAULT_MANDATORY_FIELD_EMPTY		= 7700;
+	public static final int MAT_TEXT_DEFAULT_ALREADY_EXIST 				= 7701;
+	public static final int MAT_TEXT_DEFAULT_NOT_FOUND 					= 7702;
 	
 	// Material List
 	public static final int MAT_LIST_MANDATORY_FIELD_EMPTY				= 7750;
+	
+	// Material Text
+	public static final int MAT_TEXT_MANDATORY_FIELD_EMPTY				= 7800;
+	public static final int MAT_TEXT_NOT_DEFAULT						= 7801;	//1210;
+	public static final int MAT_TEXT_FLAGGED_AS_DELETED 				= 7803;	
 }

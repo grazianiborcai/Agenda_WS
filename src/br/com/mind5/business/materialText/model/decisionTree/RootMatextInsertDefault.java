@@ -10,6 +10,7 @@ import br.com.mind5.business.materialText.model.checker.MatextCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -24,9 +25,14 @@ public final class RootMatextInsertDefault extends DeciTreeWriteTemplate<MatextI
 	
 	@Override protected ModelChecker<MatextInfo> buildDecisionCheckerHook(DeciTreeOption<MatextInfo> option) {
 		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatextInfo> checker;	
+		ModelChecker<MatextInfo> checker;
+		ModelCheckerOption checkerOption;
 		
-		checker = new MatextCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatextCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

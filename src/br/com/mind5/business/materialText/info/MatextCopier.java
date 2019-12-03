@@ -7,14 +7,14 @@ import br.com.mind5.info.InfoCopier;
 
 public final class MatextCopier {
 	public static MatextInfo copyToDelete(MatextInfo source) {
-		InfoCopier<MatextInfo, MatextInfo> copier = new MatextCopyToDelete();
+		InfoCopier<MatextInfo, MatextInfo> copier = new MatextCopyToDelete_();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<MatextInfo> copyToDelete(List<MatextInfo> sources) {
-		InfoCopier<MatextInfo, MatextInfo> copier = new MatextCopyToDelete();
+		InfoCopier<MatextInfo, MatextInfo> copier = new MatextCopyToDelete_();
 		return copier.makeCopy(sources);
 	}
 	

@@ -2,9 +2,9 @@ package br.com.mind5.business.materialText.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatextCopyToDelete extends InfoCopierTemplate<MatextInfo, MatextInfo>{
+final class MatextCopyToDelete_ extends InfoCopierTemplate<MatextInfo, MatextInfo>{
 	
-	public MatextCopyToDelete() {
+	public MatextCopyToDelete_() {
 		super();
 	}
 	

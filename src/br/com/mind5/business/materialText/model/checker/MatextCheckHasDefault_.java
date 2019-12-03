@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatextCheckHasDefault extends ModelCheckerTemplateAction_<MatextInfo> {	
+public final class MatextCheckHasDefault_ extends ModelCheckerTemplateAction_<MatextInfo> {	
 	
-	public MatextCheckHasDefault(ModelCheckerOption option) {
+	public MatextCheckHasDefault_(ModelCheckerOption option) {
 		super(option);
 	}
 	

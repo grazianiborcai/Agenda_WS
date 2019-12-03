@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.action.StdMatextInsert;
-import br.com.mind5.business.materialText.model.action.StdMatextUpdate;
-import br.com.mind5.business.materialText.model.checker.MatextCheckSoftDelete;
+import br.com.mind5.business.materialText.model.action.StdMatextEnforceDefaultOn;
+import br.com.mind5.business.materialText.model.action.StdMatextSuccess;
+import br.com.mind5.business.materialText.model.checker.MatextCheckMatextault;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeMatextInsert extends DeciTreeWriteTemplate<MatextInfo> {
+public final class NodeMatextDefaultL3 extends DeciTreeWriteTemplate<MatextInfo> {
 	
-	public NodeMatextInsert(DeciTreeOption<MatextInfo> option) {
+	public NodeMatextDefaultL3(DeciTreeOption<MatextInfo> option) {
 		super(option);
 	}
 	
@@ -30,9 +30,9 @@ public final class NodeMatextInsert extends DeciTreeWriteTemplate<MatextInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new MatextCheckSoftDelete(checkerOption);
-		queue.add(checker);	
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checker = new MatextCheckMatextault(checkerOption);
+		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -42,9 +42,9 @@ public final class NodeMatextInsert extends DeciTreeWriteTemplate<MatextInfo> {
 	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextInfo> insert = new StdMatextInsert(option);
-		actions.add(insert);
+		ActionStd<MatextInfo> enforceDefaultOn = new StdMatextEnforceDefaultOn(option);
 		
+		actions.add(enforceDefaultOn);
 		return actions;
 	}
 	
@@ -52,10 +52,10 @@ public final class NodeMatextInsert extends DeciTreeWriteTemplate<MatextInfo> {
 	
 	@Override protected List<ActionStd<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
+
+		ActionStd<MatextInfo> success = new StdMatextSuccess(option);	
 		
-		ActionStd<MatextInfo> update = new StdMatextUpdate(option);
-		actions.add(update);
-		
+		actions.add(success);		
 		return actions;
 	}
 }

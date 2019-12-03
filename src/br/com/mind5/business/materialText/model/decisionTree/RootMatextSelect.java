@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.action.StdMatextMergeToSelect;
-import br.com.mind5.business.materialText.model.action.StdMatextSelectDefault;
 import br.com.mind5.business.materialText.model.checker.MatextCheckExist;
+import br.com.mind5.business.materialText.model.checker.MatextCheckOwner;
 import br.com.mind5.business.materialText.model.checker.MatextCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -24,19 +24,28 @@ public final class RootMatextSelect extends DeciTreeReadTemplate<MatextInfo> {
 	
 	
 	@Override protected ModelChecker<MatextInfo> buildDecisionCheckerHook(DeciTreeOption<MatextInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatextInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new MatextCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatextCheckRead(checkerOption);
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new MatextCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MatextCheckExist(checkerOption);
 		queue.add(checker);
 		
@@ -59,9 +68,9 @@ public final class RootMatextSelect extends DeciTreeReadTemplate<MatextInfo> {
 	@Override protected List<ActionStd<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextInfo> selectDefault = new StdMatextSelectDefault(option);
+		ActionStd<MatextInfo> nodeSelect = new NodeMatextSelect(option).toAction();
 		
-		actions.add(selectDefault);
+		actions.add(nodeSelect);
 		return actions;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.business.materialTextDefault.model.action.StdMatextaultMergeToSelect;
+import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckMat;
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckOwner;
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckRead;
 import br.com.mind5.model.action.ActionStd;
@@ -40,6 +41,13 @@ public final class RootMatextaultSelect extends DeciTreeReadTemplate<MatextaultI
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new MatextaultCheckOwner(checkerOption);
 		queue.add(checker);			
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatextaultCheckMat(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}
