@@ -16,7 +16,7 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class MatInsertSingle extends DaoStmtTemplate<MatInfo> {
-	private final String MAIN_TABLE = DaoDbTable.EMP_TABLE;		
+	private final String MAIN_TABLE = DaoDbTable.MAT_TABLE;		
 	
 	
 	public MatInsertSingle(Connection conn, MatInfo recordInfo, String schemaName) {

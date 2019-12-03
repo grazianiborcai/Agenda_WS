@@ -9,11 +9,11 @@ import br.com.mind5.business.material.model.action.LazyMatNodeSnapshot;
 import br.com.mind5.business.material.model.action.LazyMatRootSelect;
 import br.com.mind5.business.material.model.checker.MatCheckCateg;
 import br.com.mind5.business.material.model.checker.MatCheckGroup;
+import br.com.mind5.business.material.model.checker.MatCheckInsert;
 import br.com.mind5.business.material.model.checker.MatCheckLangu;
 import br.com.mind5.business.material.model.checker.MatCheckOwner;
 import br.com.mind5.business.material.model.checker.MatCheckType;
 import br.com.mind5.business.material.model.checker.MatCheckUnit;
-import br.com.mind5.business.material.model.checker.MatCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -39,7 +39,7 @@ public final class RootMatInsert extends DeciTreeWriteTemplate<MatInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new MatCheckWrite(checkerOption);
+		checker = new MatCheckInsert(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
