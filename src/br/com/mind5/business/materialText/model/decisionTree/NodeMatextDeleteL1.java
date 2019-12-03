@@ -8,41 +8,28 @@ import br.com.mind5.business.materialText.model.action.LazyMatextDelete;
 import br.com.mind5.business.materialText.model.action.LazyMatextMergeUsername;
 import br.com.mind5.business.materialText.model.action.LazyMatextUpdate;
 import br.com.mind5.business.materialText.model.action.StdMatextEnforceLChanged;
-import br.com.mind5.business.materialText.model.checker.MatextCheckDeleteDefault;
-import br.com.mind5.business.materialText.model.checker.MatextCheckExist;
+import br.com.mind5.business.materialText.model.checker.MatextCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeMatextDelete extends DeciTreeWriteTemplate<MatextInfo> {
+public final class NodeMatextDeleteL1 extends DeciTreeWriteTemplate<MatextInfo> {
 
-	public NodeMatextDelete(DeciTreeOption<MatextInfo> option) {
+	public NodeMatextDeleteL1(DeciTreeOption<MatextInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected ModelChecker<MatextInfo> buildDecisionCheckerHook(DeciTreeOption<MatextInfo> option) {
-		final boolean EXIST_ON_DB = true;	
-		
 		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatextInfo> checker;
-		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checker = new MatextCheckDeleteDefault();
-		queue.add(checker);
 			
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new MatextCheckExist(checkerOption);
-		queue.add(checker);		
+		checker = new MatextCheckDummy();
+		queue.add(checker);
 
 		return new ModelCheckerQueue<MatextInfo>(queue);
 	}

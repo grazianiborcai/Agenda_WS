@@ -29,7 +29,13 @@ public final class MatextCheckSoftDelete extends ModelCheckerTemplateActionV2<Ma
 	
 	
 	
-	@Override protected int getCodMsgOnResultFalseHook() {
+	@Override protected int getCodMsgOnResultTrueHook() {
 		return SystemCode.MAT_TEXT_FLAGGED_AS_DELETED;
+	}
+	
+	
+	
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.MAT_TEXT_NOT_FLAGGED_AS_DELETED;
 	}
 }

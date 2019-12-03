@@ -157,8 +157,6 @@ public final class SystemCode {
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
 	public static final int MAT_NOT_FOUND								= 1201;
-	public static final int MAT_TEXT_ALREADY_EXIST						= 1202;
-	public static final int MAT_TEXT_NOT_FOUND							= 1203;	
 	public static final int MAT_SERVICE									= 1204;
 	public static final int MAT_NOT_SERVICE								= 1205;
 	public static final int MAT_UNIT_EACH_INCONSISTENCY					= 1206;
@@ -876,6 +874,8 @@ public final class SystemCode {
 	
 	// Material Text Search
 	public static final int MAT_TEXT_SEARCH_MANDATORY_FIELD_EMPTY		= 7650;
+	public static final int MAT_TEXT_SEARCH_ALREADY_EXIST				= 7651;
+	public static final int MAT_TEXT_SEARCH_NOT_FOUND					= 7652;
 	
 	// Material Text Default
 	public static final int MAT_TEXT_DEFAULT_MANDATORY_FIELD_EMPTY		= 7700;
@@ -889,4 +889,7 @@ public final class SystemCode {
 	public static final int MAT_TEXT_MANDATORY_FIELD_EMPTY				= 7800;
 	public static final int MAT_TEXT_NOT_DEFAULT						= 7801;	//1210;
 	public static final int MAT_TEXT_FLAGGED_AS_DELETED 				= 7803;	
+	public static final int MAT_TEXT_NOT_FLAGGED_AS_DELETED 			= 7804;	
+	public static final int MAT_TEXT_ALREADY_EXIST						= 7805;	//1202;
+	public static final int MAT_TEXT_NOT_FOUND							= 7806;	//1203;	
 }

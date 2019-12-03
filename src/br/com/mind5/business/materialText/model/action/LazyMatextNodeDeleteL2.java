@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.decisionTree.RootMatextInsert;
+import br.com.mind5.business.materialText.model.decisionTree.NodeMatextDeleteL2;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatextRootInsert extends ActionLazyTemplate<MatextInfo, MatextInfo> {
+public final class LazyMatextNodeDeleteL2 extends ActionLazyTemplate<MatextInfo, MatextInfo> {
 
-	public LazyMatextRootInsert(Connection conn, String schemaName) {
+	public LazyMatextNodeDeleteL2(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyMatextRootInsert extends ActionLazyTemplate<MatextInfo, M
 	
 	
 	@Override protected ActionStd<MatextInfo> getInstanceOfActionHook(DeciTreeOption<MatextInfo> option) {
-		return new RootMatextInsert(option).toAction();
+		return new NodeMatextDeleteL2(option).toAction();
 	}
 	
 	

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
+import br.com.mind5.business.materialText.model.action.LazyMatextEnforceLChanged;
 import br.com.mind5.business.materialText.model.action.LazyMatextMergeUsername;
-import br.com.mind5.business.materialText.model.action.LazyMatextNodeHasDefault_;
+import br.com.mind5.business.materialText.model.action.LazyMatextRootSelect;
 import br.com.mind5.business.materialText.model.action.LazyMatextUpdate;
-import br.com.mind5.business.materialText.model.action.StdMatextEnforceLChanged;
 import br.com.mind5.business.materialText.model.checker.MatextCheckExist;
 import br.com.mind5.business.materialText.model.checker.MatextCheckLangu;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMat;
@@ -77,20 +77,18 @@ public final class RootMatextUpdate extends DeciTreeWriteTemplate<MatextInfo> {
 	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatextInfo> nodeDefaultOn = new NodeMatextDefaultL1(option).toAction();
-		ActionStd<MatextInfo> enforceLChanged = new StdMatextEnforceLChanged(option);	
+		ActionStd<MatextInfo> nodeDefault = new NodeMatextDefaultL1(option).toAction();
+		ActionLazy<MatextInfo> enforceLChanged = new LazyMatextEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> update = new LazyMatextUpdate(option.conn, option.schemaName);
-		ActionLazy<MatextInfo> nodeHasDefault = new LazyMatextNodeHasDefault_(option.conn, option.schemaName);
-		ActionStd<MatextInfo> select = new RootMatextSelect(option).toAction();	
+		ActionLazy<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);	
 		
+		nodeDefault.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
-		update.addPostAction(nodeHasDefault);
+		update.addPostAction(select);
 		
-		actions.add(nodeDefaultOn);
-		actions.add(enforceLChanged);
-		actions.add(select);
+		actions.add(nodeDefault);
 		return actions;
 	}
 }

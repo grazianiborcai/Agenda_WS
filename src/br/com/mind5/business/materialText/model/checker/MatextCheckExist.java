@@ -1,65 +1,35 @@
 package br.com.mind5.business.materialText.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.action.LazyMatextSelect;
-import br.com.mind5.business.materialText.model.action.StdMatextEnforceKey;
+import br.com.mind5.business.materialText.model.action.StdMatextSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatextCheckExist extends ModelCheckerTemplateAction_<MatextInfo> {	
+public final class MatextCheckExist extends ModelCheckerTemplateActionV2<MatextInfo, MatextInfo> {	
 	
 	public MatextCheckExist(ModelCheckerOption option) {
-		super(option);
+		super(option, MatextInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<MatextInfo> buildActionHook(MatextInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<MatextInfo> option = buildOption(recordInfo, conn, schemaName);
-		
-		ActionStd<MatextInfo> enforceKey = new StdMatextEnforceKey(option);
-		ActionLazy<MatextInfo> select = new LazyMatextSelect(conn, schemaName);		
-		
-		enforceKey.addPostAction(select);
-		
-		return enforceKey;
+	@Override protected ActionStd<MatextInfo> buildActionHook(DeciTreeOption<MatextInfo> option) {
+		ActionStd<MatextInfo> select = new StdMatextSelect(option);
+		return select;
 	}
 	
 	
 	
-	private DeciTreeOption<MatextInfo> buildOption(MatextInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<MatextInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.MAT_TEXT_ALREADY_EXIST;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.MAT_TEXT_ALREADY_EXIST)
-			return SystemMessage.MAT_TEXT_ALREADY_EXIST;
-		
-		return SystemMessage.MAT_TEXT_NOT_FOUND;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.MAT_TEXT_ALREADY_EXIST;	
-			
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.MAT_TEXT_NOT_FOUND;
 	}
 }

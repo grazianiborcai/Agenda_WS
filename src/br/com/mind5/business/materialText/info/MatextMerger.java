@@ -3,10 +3,25 @@ package br.com.mind5.business.materialText.info;
 import java.util.List;
 
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
+import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class MatextMerger {
+	public static MatextInfo mergeWithMatextarch(MatextarchInfo sourceOne, MatextInfo sourceTwo) {
+		InfoMerger<MatextInfo, MatextarchInfo> merger = new MatextMergerMatextarch();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatextInfo> mergeWithMatextarch(List<MatextarchInfo> sourceOnes, List<MatextInfo> sourceTwos) {
+		InfoMerger<MatextInfo, MatextarchInfo> merger = new MatextMergerMatextarch();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static MatextInfo mergeWithMatextault(MatextaultInfo sourceOne, MatextInfo sourceTwo) {
 		InfoMerger<MatextInfo, MatextaultInfo> merger = new MatextMergerMatextault();		
 		return merger.merge(sourceOne, sourceTwo);

@@ -29,20 +29,21 @@ public final class RootMatextDeleteAll extends DeciTreeWriteTemplate<MatextInfo>
 	
 	
 	@Override protected ModelChecker<MatextInfo> buildDecisionCheckerHook(DeciTreeOption<MatextInfo> option) {
-		final boolean EXIST_ON_DB = true;	
-		
 		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatextInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
-		checker = new MatextCheckDelete();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatextCheckDelete(checkerOption);
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatextCheckHasItem(checkerOption);
 		queue.add(checker);		
 

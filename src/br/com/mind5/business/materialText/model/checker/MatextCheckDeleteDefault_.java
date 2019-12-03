@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatextCheckDeleteDefault extends ModelCheckerTemplateSimple_<MatextInfo> {
+public final class MatextCheckDeleteDefault_ extends ModelCheckerTemplateSimple_<MatextInfo> {
 
-	public MatextCheckDeleteDefault() {
+	public MatextCheckDeleteDefault_() {
 		super();
 	}
 	

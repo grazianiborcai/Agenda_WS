@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatextCheckDelete extends ModelCheckerTemplateSimple_<MatextInfo> {
+public final class MatextCheckDelete extends ModelCheckerTemplateSimpleV2<MatextInfo> {
 
-	public MatextCheckDelete() {
-		super();
+	public MatextCheckDelete(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -29,13 +29,7 @@ public final class MatextCheckDelete extends ModelCheckerTemplateSimple_<MatextI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.MAT_TEXT_MANDATORY_FIELD_EMPTY;
 	}
 }

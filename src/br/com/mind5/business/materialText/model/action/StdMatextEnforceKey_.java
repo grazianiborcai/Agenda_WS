@@ -7,11 +7,11 @@ import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatextEnforceKey implements ActionStd<MatextInfo> {
+public final class StdMatextEnforceKey_ implements ActionStd<MatextInfo> {
 	private ActionStd<MatextInfo> actionHelper;	
 	
 	
-	public StdMatextEnforceKey(DeciTreeOption<MatextInfo> option) {			
+	public StdMatextEnforceKey_(DeciTreeOption<MatextInfo> option) {			
 		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiMatextEnforceKey());
 	}
 	
