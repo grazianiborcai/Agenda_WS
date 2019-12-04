@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
+import br.com.mind5.business.materialText.model.action.LazyMatextEnforceCreatedBy;
+import br.com.mind5.business.materialText.model.action.LazyMatextEnforceCreatedOn;
 import br.com.mind5.business.materialText.model.action.LazyMatextEnforceLChanged;
 import br.com.mind5.business.materialText.model.action.LazyMatextMergeUsername;
 import br.com.mind5.business.materialText.model.action.LazyMatextNodeInsert;
@@ -79,13 +81,17 @@ public final class RootMatextInsert extends DeciTreeWriteTemplate<MatextInfo> {
 		
 		ActionStd<MatextInfo> nodeDefault = new NodeMatextDefaultL1(option).toAction();	
 		ActionLazy<MatextInfo> enforceLChanged = new LazyMatextEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);		
+		ActionLazy<MatextInfo> enforceCreatedBy = new LazyMatextEnforceCreatedBy(option.conn, option.schemaName);	
+		ActionLazy<MatextInfo> enforceCreatedOn = new LazyMatextEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> insert = new LazyMatextNodeInsert(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);		
 		
 		nodeDefault.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(insert);
+		enforceLChangedBy.addPostAction(enforceCreatedBy);
+		enforceCreatedBy.addPostAction(enforceCreatedOn);
+		enforceCreatedOn.addPostAction(insert);
 		insert.addPostAction(select);
 		
 		actions.add(nodeDefault);

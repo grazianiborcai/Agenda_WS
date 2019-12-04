@@ -892,4 +892,5 @@ public final class SystemCode {
 	public static final int MAT_TEXT_NOT_FLAGGED_AS_DELETED 			= 7804;	
 	public static final int MAT_TEXT_ALREADY_EXIST						= 7805;	//1202;
 	public static final int MAT_TEXT_NOT_FOUND							= 7806;	//1203;	
+	public static final int MAT_TEXT_DONT_HAVE_MAT						= 7807;
 }

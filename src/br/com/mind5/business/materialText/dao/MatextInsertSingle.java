@@ -45,6 +45,8 @@ public final class MatextInsertSingle extends DaoStmtTemplate<MatextInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);			
 				stmt.setBoolean(i++, recordInfo.isDefault);
 				stmt.setString(i++, recordInfo.recordMode);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 				
 				return stmt;
 			}		

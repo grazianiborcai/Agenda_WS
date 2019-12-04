@@ -4,35 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.action.LazyMatextMergeToSelect;
-import br.com.mind5.business.materialText.model.action.StdMatextMergeMatextault;
-import br.com.mind5.business.materialText.model.checker.MatextCheckMatextault;
-import br.com.mind5.model.action.ActionLazy;
+import br.com.mind5.business.materialText.model.checker.MatextCheckIsDeleted;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeMatextSelect extends DeciTreeReadTemplate<MatextInfo> {
+public final class NodeMatextUpsertdelL1 extends DeciTreeWriteTemplate<MatextInfo> {
 	
-	public NodeMatextSelect(DeciTreeOption<MatextInfo> option) {
+	public NodeMatextUpsertdelL1(DeciTreeOption<MatextInfo> option) {
 		super(option);
-	}
+	}	
 	
 	
 	
 	@Override protected ModelChecker<MatextInfo> buildDecisionCheckerHook(DeciTreeOption<MatextInfo> option) {
 		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatextInfo> checker;
+		ModelChecker<MatextInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new MatextCheckMatextault(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatextCheckIsDeleted(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -43,12 +40,20 @@ public final class NodeMatextSelect extends DeciTreeReadTemplate<MatextInfo> {
 	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextInfo> mergeMatextault = new StdMatextMergeMatextault(option);
-		ActionLazy<MatextInfo> mergeToSelect = new LazyMatextMergeToSelect(option.conn, option.schemaName);
+		ActionStd<MatextInfo> delete = new RootMatextDelete(option).toAction();
 		
-		mergeMatextault.addPostAction(mergeToSelect);
+		actions.add(delete);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 		
-		actions.add(mergeMatextault);
+		ActionStd<MatextInfo> nodeL2 = new NodeMatextUpsertdelL2(option).toAction();
+		
+		actions.add(nodeL2);
 		return actions;
 	}
 }

@@ -26,10 +26,6 @@ import br.com.mind5.business.materialStore.model.MatoreModelDelete;
 import br.com.mind5.business.materialStore.model.MatoreModelInsert;
 import br.com.mind5.business.materialStore.model.MatoreModelSelect;
 import br.com.mind5.business.materialStore.model.MatoreModelUpdate;
-import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.MatextModelDelete_;
-import br.com.mind5.business.materialText.model.MatextModelSelect_;
-import br.com.mind5.business.materialText.model.MatextModelUpsert_;
 import br.com.mind5.model.Model;
 
 @Path("/Material")
@@ -43,10 +39,7 @@ public class MaterialResource {
 	private static final String UPDATE_MAT_STORE = "/updateMatStore";
 	private static final String DELETE_MAT_STORE = "/deleteMatStore";
 	private static final String INSERT_MAT_MOV = "/insertMatmov";
-	private static final String SELECT_MAT_MOV = "/selectMatmov";
-	private static final String UPSERT_MATERIAL_TEXT = "/upsertMaterialText";
-	private static final String DELETE_MATERIAL_TEXT = "/deleteMaterialText";
-	private static final String SELECT_MATERIAL_TEXT = "/selectMaterialText";	
+	private static final String SELECT_MAT_MOV = "/selectMatmov";	
 
 	
 	@POST
@@ -220,62 +213,6 @@ public class MaterialResource {
 		
 		
 		Model model = new MatmovModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@POST
-	@Path(UPSERT_MATERIAL_TEXT)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response upsertMaterialText(@Context HttpServletRequest request, String incomingData) {
-
-		Model model = new MatextModelUpsert_(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@DELETE
-	@Path(DELETE_MATERIAL_TEXT)
-	public Response deleteMaterialText(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
-			                           @HeaderParam("codMat")    	  @DefaultValue("-1") long codMat,
-			                           @HeaderParam("TOKEN_USERNAME") String username,
-			                           @HeaderParam("codLanguage")    String codLanguage) {
-		
-		MatextInfo recordInfo = new MatextInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codMat = codMat;
-		recordInfo.username = username;
-		recordInfo.codLanguage = codLanguage;
-		
-		
-		Model model = new MatextModelDelete_(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@GET
-	@Path(SELECT_MATERIAL_TEXT)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMaterialText(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
-								       @HeaderParam("codMat") 	   @DefaultValue("-1") long codMat, 
-								       @HeaderParam("TOKEN_USERNAME") String username,
-								       @HeaderParam("codLanguage") String codLanguage) {
-
-
-		MatextInfo recordInfo = new MatextInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codMat = codMat;
-		recordInfo.codLanguage = codLanguage;
-		recordInfo.username = username;
-		
-		
-		Model model = new MatextModelSelect_(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

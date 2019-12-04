@@ -24,8 +24,8 @@ final class MatextVisiMergeToUpdate implements InfoMergerVisitor<MatextInfo, Mat
 	
 	private MatextInfo merge(MatextInfo sourceOne, MatextInfo sourceTwo) {
 		MatextInfo result = makeClone(sourceTwo);		
-	//	result.createdOn = sourceTwo.createdOn;
-	//	result.createdBy = sourceTwo.createdBy;
+		result.createdOn = sourceOne.createdOn;
+		result.createdBy = sourceOne.createdBy;
 		return result;
 	}
 	

@@ -16,6 +16,8 @@ public final class MatextInfo extends InfoRecord implements Cloneable {
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public String username;
 	
 	
@@ -28,6 +30,7 @@ public final class MatextInfo extends InfoRecord implements Cloneable {
 		isDeleted = DefaultValue.boole();
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();
+		createdBy = DefaultValue.number();
 	}
 	
 	

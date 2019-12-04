@@ -38,7 +38,7 @@
 
 	<!-- JWT Token authentication --> 
     <security:http create-session="stateless" pattern="/**">    
-        <security:intercept-url pattern="/**/Owner/**"       					access="hasAuthority('OWNER_WRITE')" 				/>
+        <security:intercept-url pattern="/**/Owner/**"       					access="hasAuthority('OWNER_WRITE')" 				/> <!-- TODO: rever -->
     	<security:intercept-url pattern="/**/Store/updateStoreWorkTime" 		access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/insertStoreWorkTime" 		access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/deleteStoreWorkTime" 		access="hasAuthority('STORE_UPDATE')" 				/>
@@ -52,7 +52,7 @@
     	<security:intercept-url pattern="/**/Store/selectStoreList" 			access="isAuthenticated()" 							/>   
         <security:intercept-url pattern="/**/Store/selectPayPartnerList"		access="hasAuthority('STORE_PAY_READ')"				/> 	  
         <security:intercept-url pattern="/**/Store/grantMoip"					access="hasAuthority('STORE_PAY_WRITE')" 			/>    
-        <security:intercept-url pattern="/**/Store/insert**" 					access="hasAuthority('STORE_INSERT')" 				/>
+        <security:intercept-url pattern="/**/Store/insert**" 					access="hasAuthority('STORE_INSERT')" 				/> <!-- TODO: rever -->
         <security:intercept-url pattern="/**/Store/update**" 					access="hasAuthority('STORE_UPDATE')" 				/>
         <security:intercept-url pattern="/**/Store/delete**" 					access="hasAuthority('STORE_DELETE')" 				/>
         <security:intercept-url pattern="/**/Store/select**" 					access="hasAuthority('STORE_READ')" 				/>      
@@ -62,7 +62,7 @@
         <security:intercept-url pattern="/**/Material/updateMatStore" 			access="hasAuthority('MAT_STORE_WRITE')"			/>
         <security:intercept-url pattern="/**/Material/insertMatStore" 			access="hasAuthority('MAT_STORE_WRITE')"			/>
         <security:intercept-url pattern="/**/Material/selectMatStore" 			access="isAuthenticated()"							/>
-        <security:intercept-url pattern="/**/Material/insert**" 				access="hasAuthority('MATERIAL_WRITE')"				/>
+        <security:intercept-url pattern="/**/Material/insert**" 				access="hasAuthority('MATERIAL_WRITE')"				/>	<!-- TODO: rever -->
         <security:intercept-url pattern="/**/Material/update**" 				access="hasAuthority('MATERIAL_WRITE')" 			/>
         <security:intercept-url pattern="/**/Material/upsert**" 				access="hasAuthority('MATERIAL_WRITE')" 			/>
         <security:intercept-url pattern="/**/Material/delete**" 				access="hasAuthority('MATERIAL_WRITE')" 			/>

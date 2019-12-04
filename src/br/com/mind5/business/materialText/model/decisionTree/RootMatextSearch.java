@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.checker.MatextCheckLangu;
+import br.com.mind5.business.materialText.model.action.LazyMatextRootSelect;
+import br.com.mind5.business.materialText.model.action.StdMatextMergeMatextarch;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMat;
 import br.com.mind5.business.materialText.model.checker.MatextCheckOwner;
-import br.com.mind5.business.materialText.model.checker.MatextCheckRead;
+import br.com.mind5.business.materialText.model.checker.MatextCheckSearch;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -15,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootMatextSelect extends DeciTreeWriteTemplate<MatextInfo> {
+public final class RootMatextSearch extends DeciTreeWriteTemplate<MatextInfo> {
 	
-	public RootMatextSelect(DeciTreeOption<MatextInfo> option) {
+	public RootMatextSearch(DeciTreeOption<MatextInfo> option) {
 		super(option);
 	}
 	
@@ -32,15 +34,8 @@ public final class RootMatextSelect extends DeciTreeWriteTemplate<MatextInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new MatextCheckRead(checkerOption);
+		checker = new MatextCheckSearch(checkerOption);
 		queue.add(checker);		
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new MatextCheckLangu(checkerOption);
-		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
@@ -64,9 +59,12 @@ public final class RootMatextSelect extends DeciTreeWriteTemplate<MatextInfo> {
 	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextInfo> nodeL1 = new NodeMatextSelectL1(option).toAction();
+		ActionStd<MatextInfo> mergeMatextarch = new StdMatextMergeMatextarch(option);
+		ActionLazy<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);
 		
-		actions.add(nodeL1);
+		mergeMatextarch.addPostAction(select);
+		
+		actions.add(mergeMatextarch);
 		return actions;
 	}
 }
