@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.action.LazyMatextEnforceDefaultOff;
 import br.com.mind5.business.materialText.model.action.LazyMatextEnforceLChanged;
-import br.com.mind5.business.materialText.model.action.LazyMatextMergeToUpdate;
+import br.com.mind5.business.materialText.model.action.LazyMatextMergeToSelect;
 import br.com.mind5.business.materialText.model.action.LazyMatextMergeUsername;
 import br.com.mind5.business.materialText.model.action.LazyMatextUpdate;
 import br.com.mind5.business.materialText.model.action.StdMatextMergeMatextault;
@@ -49,15 +49,15 @@ public final class NodeMatextDefaultL2 extends DeciTreeWriteTemplate<MatextInfo>
 		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 		
 		ActionStd<MatextInfo> mergeMatextault = new StdMatextMergeMatextault(option);
-		ActionLazy<MatextInfo> mergeToUpdate = new LazyMatextMergeToUpdate(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> mergeToSelect = new LazyMatextMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> enforceLChanged = new LazyMatextEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> enforceDefaultOff = new LazyMatextEnforceDefaultOff(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> update = new LazyMatextUpdate(option.conn, option.schemaName);
 		ActionStd<MatextInfo> success = new StdMatextSuccess(option);	
 		
-		mergeMatextault.addPostAction(mergeToUpdate);
-		mergeToUpdate.addPostAction(enforceLChanged);
+		mergeMatextault.addPostAction(mergeToSelect);
+		mergeToSelect.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceDefaultOff);
 		enforceDefaultOff.addPostAction(update);

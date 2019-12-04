@@ -76,4 +76,10 @@ public final class MatextaultSelectSingle extends DaoStmtTemplate<MatextaultInfo
 			}
 		};
 	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
+	}
 }
