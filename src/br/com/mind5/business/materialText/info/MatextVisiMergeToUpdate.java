@@ -44,7 +44,9 @@ final class MatextVisiMergeToUpdate implements InfoMergerVisitor<MatextInfo, Mat
 	
 	
 	@Override public boolean shouldWrite(MatextInfo sourceOne, MatextInfo sourceTwo) {	
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+		return (sourceOne.codOwner == sourceTwo.codOwner &&
+				sourceOne.codMat   == sourceTwo.codMat   &&
+				sourceOne.codLanguage.equals(sourceTwo.codLanguage));
 	}
 	
 	

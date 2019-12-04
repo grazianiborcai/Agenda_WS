@@ -3,11 +3,10 @@ package br.com.mind5.business.materialText.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmt;
 import br.com.mind5.dao.DaoStmtHelper_;
@@ -75,26 +74,14 @@ public final class MatextInsertSingle implements DaoStmt<MatextInfo> {
 	
 	private class ParamTranslator implements DaoStmtParamTranslator<MatextInfo> {		
 		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatextInfo recordInfo) throws SQLException {
-			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
-			
 			int i = 1;
-			stmt.setLong(i++, recordInfo.codOwner);
 			stmt.setLong(i++, recordInfo.codMat);
+			stmt.setLong(i++, recordInfo.codOwner);			
 			stmt.setString(i++, recordInfo.codLanguage);
 			stmt.setString(i++, recordInfo.txtMat);
 			stmt.setString(i++, recordInfo.description);
-			stmt.setTimestamp(i++, lastChanged);
-			
-			
-			if (recordInfo.lastChangedBy >= 0) {
-				stmt.setLong(i++, recordInfo.lastChangedBy);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}
-			
+			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);			
 			stmt.setBoolean(i++, recordInfo.isDefault);
 			stmt.setString(i++, recordInfo.recordMode);
 			

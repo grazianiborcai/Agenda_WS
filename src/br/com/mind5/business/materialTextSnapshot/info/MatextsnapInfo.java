@@ -16,6 +16,7 @@ public final class MatextsnapInfo extends InfoRecord implements Cloneable {
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
+	public String username;
 	
 	
 	public MatextsnapInfo() {

@@ -27,9 +27,9 @@ import br.com.mind5.business.materialStore.model.MatoreModelInsert;
 import br.com.mind5.business.materialStore.model.MatoreModelSelect;
 import br.com.mind5.business.materialStore.model.MatoreModelUpdate;
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.MatextModelDelete;
-import br.com.mind5.business.materialText.model.MatextModelSelect;
-import br.com.mind5.business.materialText.model.MatextModelUpsert;
+import br.com.mind5.business.materialText.model.MatextModelDelete_;
+import br.com.mind5.business.materialText.model.MatextModelSelect_;
+import br.com.mind5.business.materialText.model.MatextModelUpsert_;
 import br.com.mind5.model.Model;
 
 @Path("/Material")
@@ -231,7 +231,7 @@ public class MaterialResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response upsertMaterialText(@Context HttpServletRequest request, String incomingData) {
 
-		Model model = new MatextModelUpsert(incomingData, request);
+		Model model = new MatextModelUpsert_(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -252,7 +252,7 @@ public class MaterialResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new MatextModelDelete(recordInfo);
+		Model model = new MatextModelDelete_(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -275,7 +275,7 @@ public class MaterialResource {
 		recordInfo.username = username;
 		
 		
-		Model model = new MatextModelSelect(recordInfo);
+		Model model = new MatextModelSelect_(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

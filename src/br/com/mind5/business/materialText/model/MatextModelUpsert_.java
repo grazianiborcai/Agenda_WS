@@ -16,13 +16,13 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.obsolete.ModelHelper_;
 import br.com.mind5.model.obsolete.ModelOption_;
 
-public final class MatextModelUpsert implements Model {
+public final class MatextModelUpsert_ implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public MatextModelUpsert(String incomingData, HttpServletRequest request) {
+	public MatextModelUpsert_(String incomingData, HttpServletRequest request) {
 		initialize();
 		buildHelper(incomingData, request);
 	}

@@ -3,7 +3,6 @@ package br.com.mind5.business.materialText.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.business.materialText.info.MatextCopier;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.info.MatextMerger;
 import br.com.mind5.business.materialText.model.decisionTree.RootMatextSelect;
@@ -20,12 +19,6 @@ final class VisiMatextMergeToDelete extends ActionVisitorTemplateMergeV2<MatextI
 	
 	@Override protected Class<? extends DeciTree<MatextInfo>> getTreeClassHook() {
 		return RootMatextSelect.class;
-	}
-	
-	
-	
-	@Override 	protected List<MatextInfo> toActionClassHook(List<MatextInfo> recordInfos) {
-		return MatextCopier.copyToDelete(recordInfos);	
 	}
 	
 	

@@ -1,5 +1,7 @@
 package br.com.mind5.business.materialTextSearch.model.checker;
 
+import java.util.List;
+
 import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
 import br.com.mind5.business.materialTextSearch.model.decisionTree.RootMatextarchSelect;
 import br.com.mind5.common.SystemCode;
@@ -19,6 +21,12 @@ public final class MatextarchCheckExist extends ModelCheckerTemplateActionV2<Mat
 	@Override protected ActionStd<MatextarchInfo> buildActionHook(DeciTreeOption<MatextarchInfo> option) {
 		ActionStd<MatextarchInfo> select = new RootMatextarchSelect(option).toAction();
 		return select;
+	}
+	
+	
+	
+	@Override protected List<MatextarchInfo> toActionClassHook(List<MatextarchInfo> recordInfos) {
+		return recordInfos;	
 	}
 	
 	

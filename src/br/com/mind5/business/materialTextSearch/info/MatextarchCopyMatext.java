@@ -18,6 +18,7 @@ final class MatextarchCopyMatext extends InfoCopierTemplate<MatextarchInfo, Mate
 		result.codOwner = source.codOwner;
 		result.codMat = source.codMat;
 		result.username = source.username;
+		result.codLanguage = null;
 		
 		return result;
 	}

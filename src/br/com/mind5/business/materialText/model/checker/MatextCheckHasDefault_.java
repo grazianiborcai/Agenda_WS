@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.action.LazyMatextEnforceDefaultOn;
 import br.com.mind5.business.materialText.model.action.LazyMatextSelectDefault;
-import br.com.mind5.business.materialText.model.action.StdMatextEnforceMatKey;
+import br.com.mind5.business.materialText.model.action.StdMatextEnforceMatKey_;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.action.ActionLazy;
@@ -26,7 +26,7 @@ public final class MatextCheckHasDefault_ extends ModelCheckerTemplateAction_<Ma
 	@Override protected ActionStd<MatextInfo> buildActionHook(MatextInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<MatextInfo> option = buildOption(recordInfo, conn, schemaName);
 		
-		ActionStd<MatextInfo> enforceMatKey = new StdMatextEnforceMatKey(option);
+		ActionStd<MatextInfo> enforceMatKey = new StdMatextEnforceMatKey_(option);
 		ActionLazy<MatextInfo> enforceDefaultOn = new LazyMatextEnforceDefaultOn(conn, schemaName);		
 		ActionLazy<MatextInfo> select = new LazyMatextSelectDefault(conn, schemaName);	
 		

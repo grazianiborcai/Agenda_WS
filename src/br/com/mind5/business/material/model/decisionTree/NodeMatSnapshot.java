@@ -42,8 +42,7 @@ public final class NodeMatSnapshot extends DeciTreeWriteTemplate<MatInfo> {
 		ActionLazy<MatInfo> insertMatextsnap = new LazyMatInsertMatextsnap(option.conn, option.schemaName);
 		ActionLazy<MatInfo> update = new LazyMatUpdate(option.conn, option.schemaName);
 		
-		insertMatsnap.addPostAction(insertMatextsnap);
-		insertMatextsnap.addPostAction(update);
+		insertMatsnap.addPostAction(update);
 		
 		actions.add(insertMatsnap);
 		return actions;

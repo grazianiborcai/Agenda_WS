@@ -81,6 +81,9 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	
 	
 	private String getLanguage(T recordInfo) {
+		if (recordInfo.codLanguage == null)
+			return DefaultValue.language();		
+		
 		return recordInfo.codLanguage;
 	}
 	

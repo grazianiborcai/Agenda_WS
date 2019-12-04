@@ -5,7 +5,7 @@ import java.sql.Connection;
 import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.decisionTree.RootMatextDelete;
+import br.com.mind5.business.materialText.model.decisionTree.RootMatextSelect;
 import br.com.mind5.common.DbConnection;
 import br.com.mind5.common.DbSchema;
 import br.com.mind5.model.Model;
@@ -15,13 +15,13 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.obsolete.ModelHelper_;
 import br.com.mind5.model.obsolete.ModelOption_;
 
-public final class MatextModelDelete implements Model {
+public final class MatextModelSelect_ implements Model {
 	private Model helper;
 	private Connection conn;
 	private String schemaName;
 	
 	
-	public MatextModelDelete(MatextInfo recordInfo) {
+	public MatextModelSelect_(MatextInfo recordInfo) {
 		initialize();
 		buildHelper(recordInfo);
 	}
@@ -45,8 +45,8 @@ public final class MatextModelDelete implements Model {
 		
 		helper = ModelHelper_.factory(helperOption, recordInfo);
 	}
-
-
+	
+	
 	
 	@Override public boolean executeRequest() {
 		return helper.executeRequest();
@@ -65,7 +65,7 @@ public final class MatextModelDelete implements Model {
 	
 	private static class TreeFactory implements DeciTreeFactory<MatextInfo> {		
 		@Override public DeciTree<MatextInfo> getInstance(DeciTreeOption<MatextInfo> option) {
-			return new RootMatextDelete(option);
-		}		
+			return new RootMatextSelect(option);
+		}			
 	}
 }
