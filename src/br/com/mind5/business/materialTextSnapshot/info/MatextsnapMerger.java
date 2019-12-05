@@ -17,4 +17,18 @@ public final class MatextsnapMerger {
 		InfoMerger<MatextsnapInfo, MatextInfo> merger = new MatextsnapMergerMatext();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static MatextsnapInfo mergeToSelect(MatextsnapInfo sourceOne, MatextsnapInfo sourceTwo) {
+		InfoMerger<MatextsnapInfo, MatextsnapInfo> merger = new MatextsnapMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatextsnapInfo> mergeToSelect(List<MatextsnapInfo> sourceOnes, List<MatextsnapInfo> sourceTwos) {
+		InfoMerger<MatextsnapInfo, MatextsnapInfo> merger = new MatextsnapMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 }

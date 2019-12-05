@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextCopier;
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.decisionTree.RootMatextSelect;
+import br.com.mind5.business.materialText.model.decisionTree.RootMatextSearch;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
@@ -20,7 +20,7 @@ final class VisiMatextsnapMergeMatext extends ActionVisitorTemplateMergeV2<Matex
 	
 	
 	@Override protected Class<? extends DeciTree<MatextInfo>> getTreeClassHook() {
-		return RootMatextSelect.class;
+		return RootMatextSearch.class;
 	}
 	
 	
