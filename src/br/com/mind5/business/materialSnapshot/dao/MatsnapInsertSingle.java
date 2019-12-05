@@ -41,8 +41,8 @@ public final class MatsnapInsertSingle extends DaoStmtTemplate<MatsnapInfo> {
 		return new DaoStmtParamTranslator<MatsnapInfo>() {			
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatsnapInfo recordInfo) throws SQLException {	
 				int i = 1;
-				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setLong(i++, recordInfo.codMat);
+				stmt.setLong(i++, recordInfo.codOwner);				
 				stmt.setInt(i++, recordInfo.codType);
 				stmt.setInt(i++, recordInfo.codMatCateg);
 				stmt.setString(i++, recordInfo.codUnit);
