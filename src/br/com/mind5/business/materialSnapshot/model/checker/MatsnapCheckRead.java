@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatsnapCheckRead extends ModelCheckerTemplateSimple_<MatsnapInfo> {
+public final class MatsnapCheckRead extends ModelCheckerTemplateSimpleV2<MatsnapInfo> {
 
-	public MatsnapCheckRead() {
-		super();
+	public MatsnapCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -19,7 +19,9 @@ public final class MatsnapCheckRead extends ModelCheckerTemplateSimple_<MatsnapI
 		if (recordInfo.codOwner 	<= 0 		||
 			recordInfo.codSnapshot 	<= 0 		||
 			recordInfo.codMat 		<= 0 		||
-			recordInfo.codLanguage  == null			)			
+			recordInfo.codLanguage  == null		||
+			recordInfo.username  	== null			)		
+			
 			return super.FAILED;		
 		
 		return super.SUCCESS;
@@ -27,13 +29,7 @@ public final class MatsnapCheckRead extends ModelCheckerTemplateSimple_<MatsnapI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.MAT_SNAPSHOT_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -4,20 +4,23 @@ import java.sql.Connection;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatsnapCheckWrite extends ModelCheckerTemplateSimple_<MatsnapInfo> {
+public final class MatsnapCheckWrite extends ModelCheckerTemplateSimpleV2<MatsnapInfo> {
 
-	public MatsnapCheckWrite() {
-		super();
+	public MatsnapCheckWrite(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(MatsnapInfo recordInfo, Connection conn, String schemaName) {	
 		if (    recordInfo.codOwner 	<= 0 
-			 || recordInfo.codMat		<= 0	)
+			 || recordInfo.codMat		<= 0
+			 || recordInfo.codSnapshot	<= 0
+			 || recordInfo.username  	== null	)
+			
 			return super.FAILED;
 		
 		
@@ -26,13 +29,7 @@ public final class MatsnapCheckWrite extends ModelCheckerTemplateSimple_<Matsnap
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.MAT_SNAPSHOT_MANDATORY_FIELD_EMPTY;
 	}
 }

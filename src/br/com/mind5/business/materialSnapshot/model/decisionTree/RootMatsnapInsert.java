@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapRootSelect;
 import br.com.mind5.business.materialSnapshot.model.action.StdMatsnapInsert;
+import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckMat;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckOwner;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
@@ -25,20 +26,29 @@ public final class RootMatsnapInsert extends DeciTreeWriteTemplate<MatsnapInfo> 
 	
 	
 	@Override protected ModelChecker<MatsnapInfo> buildDecisionCheckerHook(DeciTreeOption<MatsnapInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<MatsnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatsnapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new MatsnapCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatsnapCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MatsnapCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new MatsnapCheckMat(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
