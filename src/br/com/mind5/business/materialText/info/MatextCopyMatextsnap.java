@@ -13,10 +13,12 @@ final class MatextCopyMatextsnap extends InfoCopierTemplate<MatextInfo, Matextsn
 	
 	@Override protected MatextInfo makeCopyHook(MatextsnapInfo source) {
 		MatextInfo result = new MatextInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codMat = source.codMat;
 		result.codLanguage = null;
 		result.username = source.username;
+		
 		return result;
 	}
 }
