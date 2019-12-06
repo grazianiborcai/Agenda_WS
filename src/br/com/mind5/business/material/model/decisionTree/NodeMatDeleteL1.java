@@ -22,8 +22,6 @@ public final class NodeMatDeleteL1 extends DeciTreeWriteTemplate<MatInfo> {
 	
 	
 	@Override protected ModelChecker<MatInfo> buildDecisionCheckerHook(DeciTreeOption<MatInfo> option) {
-		final boolean DONT_EXIST = false;
-		
 		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -31,7 +29,7 @@ public final class NodeMatDeleteL1 extends DeciTreeWriteTemplate<MatInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST;		
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new MatCheckMatore(checkerOption);
 		queue.add(checker);	
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
+import br.com.mind5.business.materialText.info.MatextCopier;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.decisionTree.RootMatextUpsertdel;
 import br.com.mind5.model.action.ActionStd;
@@ -20,6 +21,12 @@ final class VisiMatUpsertMatext extends ActionVisitorTemplateAction<MatInfo, Mat
 	
 	@Override protected ActionStd<MatextInfo> getActionHook(DeciTreeOption<MatextInfo> option) {
 		return new RootMatextUpsertdel(option).toAction();
+	}
+	
+	
+	
+	@Override protected List<MatextInfo> toActionClassHook(List<MatInfo> baseInfos) {
+		return MatextCopier.copyFromMat(baseInfos);
 	}
 	
 	

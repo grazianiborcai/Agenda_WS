@@ -6,6 +6,8 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.checker.MatCheckDelete;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
+import br.com.mind5.business.material.model.checker.MatCheckLangu;
+import br.com.mind5.business.material.model.checker.MatCheckOwner;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -31,6 +33,20 @@ public final class RootMatDelete extends DeciTreeWriteTemplate<MatInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new MatCheckDelete(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new MatCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new MatCheckLangu(checkerOption);
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();

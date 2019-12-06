@@ -22,8 +22,7 @@ public final class MatCheckInsert extends ModelCheckerTemplateSimpleV2<MatInfo> 
 			|| recordInfo.codMatCateg	<= 0
 			|| recordInfo.priceUnit		<= 0
 			|| recordInfo.codUnit		== null
-			|| recordInfo.txtMat		== null 	
-			|| recordInfo.description 	== null	
+			|| recordInfo.matextes		== null 
 			|| recordInfo.codLanguage	== null
 			|| recordInfo.username		== null	)
 			

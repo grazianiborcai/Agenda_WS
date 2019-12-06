@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
-import br.com.mind5.business.material.model.action.LazyMatInsertMatext;
 import br.com.mind5.business.material.model.action.LazyMatNodeSnapshot;
+import br.com.mind5.business.material.model.action.LazyMatNodeUpsertMatext;
 import br.com.mind5.business.material.model.action.LazyMatRootSelect;
 import br.com.mind5.business.material.model.checker.MatCheckCateg;
 import br.com.mind5.business.material.model.checker.MatCheckGroup;
@@ -93,12 +93,12 @@ public final class RootMatInsert extends DeciTreeWriteTemplate<MatInfo> {
 		List<ActionStd<MatInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<MatInfo> insertMat = new NodeMatInsert(option).toAction();	
-		ActionLazy<MatInfo> insertMatext = new LazyMatInsertMatext(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> upsertMatext = new LazyMatNodeUpsertMatext(option.conn, option.schemaName);	
 		ActionLazy<MatInfo> snapshot = new LazyMatNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<MatInfo> select = new LazyMatRootSelect(option.conn, option.schemaName);		
 		
-		insertMat.addPostAction(insertMatext);
-		insertMatext.addPostAction(snapshot);	
+		insertMat.addPostAction(upsertMatext);
+		upsertMatext.addPostAction(snapshot);	
 		snapshot.addPostAction(select);
 		
 		actions.add(insertMat);		

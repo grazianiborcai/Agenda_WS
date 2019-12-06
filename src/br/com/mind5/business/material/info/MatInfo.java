@@ -1,8 +1,10 @@
 package br.com.mind5.business.material.info;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -10,8 +12,8 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codSnapshot;
 	public long codMat;
-	public String txtMat;
-	public String description;
+	public String txtMat;			//TODO: Eliminar
+	public String description;		//TODO: Eliminar
 	public int codType;
 	public String txtType;
 	public int codMatCateg;
@@ -24,6 +26,7 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public int codBusiness;
 	public String txtBusiness; 
 	public boolean isLocked;
+	public List<MatextInfo> matextes;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -45,6 +48,7 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 		codBusiness = DefaultValue.number();
 		isLocked = DefaultValue.boole();
 		recordMode = DefaultValue.recordMode();	
+		matextes = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
 	}
 	
@@ -63,7 +67,27 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		MatInfo deepCopy = (MatInfo) super.clone();
+		
+		deepCopy.matextes = cloneMatextes(deepCopy.matextes);
+		
+		return deepCopy;
+	}
+	
+	
+	
+	private List<MatextInfo> cloneMatextes(List<MatextInfo> infoRecords) throws CloneNotSupportedException {
+		if (infoRecords == null)
+			return null;
+		
+		List<MatextInfo> deepCopies = new ArrayList<>();
+		
+		for (MatextInfo eachRecord : infoRecords) {
+			MatextInfo clonedAddress = (MatextInfo) eachRecord.clone();
+			deepCopies.add(clonedAddress);
+		}
+		
+		return deepCopies;
 	}
 	
 	
