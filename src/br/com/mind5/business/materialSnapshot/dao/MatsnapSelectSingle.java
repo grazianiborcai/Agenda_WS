@@ -70,7 +70,9 @@ public final class MatsnapSelectSingle extends DaoStmtTemplate<MatsnapInfo> {
 					dataInfo.isLocked = stmtResult.getBoolean(MatsnapDbTableColumn.COL_IS_LOCKED);	
 					dataInfo.recordMode = stmtResult.getString(MatsnapDbTableColumn.COL_RECORD_MODE);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, MatsnapDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, MatsnapDbTableColumn.COL_LAST_CHANGED_BY);						
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, MatsnapDbTableColumn.COL_LAST_CHANGED_BY);		
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, MatsnapDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, MatsnapDbTableColumn.COL_CREATED_BY);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
