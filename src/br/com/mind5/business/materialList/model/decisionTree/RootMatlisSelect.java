@@ -21,9 +21,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 
-public final class MatlisMatSelect extends DeciTreeReadTemplate<MatlisInfo> {
+public final class RootMatlisSelect extends DeciTreeReadTemplate<MatlisInfo> {
 	
-	public MatlisMatSelect(DeciTreeOption<MatlisInfo> option) {
+	public RootMatlisSelect(DeciTreeOption<MatlisInfo> option) {
 		super(option);
 	}
 	

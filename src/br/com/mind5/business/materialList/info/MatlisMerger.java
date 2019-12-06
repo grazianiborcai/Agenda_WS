@@ -6,10 +6,25 @@ import br.com.mind5.business.masterData.info.MatCategInfo;
 import br.com.mind5.business.masterData.info.MatGroupInfo;
 import br.com.mind5.business.masterData.info.MatTypeInfo;
 import br.com.mind5.business.masterData.info.MatUnitInfo;
+import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.info.InfoMerger;
 
 public final class MatlisMerger {
+	public static MatlisInfo mergeWithMatMatarch(MatarchInfo sourceOne, MatlisInfo sourceTwo) {
+		InfoMerger<MatlisInfo, MatarchInfo> merger = new MatlisMergerMatarch();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatlisInfo> mergeWithMatarch(List<MatarchInfo> sourceOnes, List<MatlisInfo> sourceTwos) {
+		InfoMerger<MatlisInfo, MatarchInfo> merger = new MatlisMergerMatarch();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static MatlisInfo mergeWithMatCateg(MatCategInfo sourceOne, MatlisInfo sourceTwo) {
 		InfoMerger<MatlisInfo, MatCategInfo> merger = new MatlisMergerMatCateg();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -20,7 +35,7 @@ public final class MatlisMerger {
 	public static List<MatlisInfo> mergeWithMatCateg(List<MatCategInfo> sourceOnes, List<MatlisInfo> sourceTwos) {
 		InfoMerger<MatlisInfo, MatCategInfo> merger = new MatlisMergerMatCateg();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}
+	}	
 	
 	
 	

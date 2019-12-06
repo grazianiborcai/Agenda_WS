@@ -18,6 +18,7 @@ import br.com.mind5.business.material.model.MatModelDelete;
 import br.com.mind5.business.material.model.MatModelInsert;
 import br.com.mind5.business.material.model.MatModelSelect;
 import br.com.mind5.business.material.model.MatModelUpdate;
+import br.com.mind5.business.materialList.model.MatlisModelSearch;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.model.MatmovModelInsert;
 import br.com.mind5.business.materialMovement.model.MatmovModelSelect;
@@ -34,6 +35,7 @@ public class MaterialResource {
 	private static final String UPDATE_MATERIAL = "/updateMaterial";
 	private static final String DELETE_MATERIAL = "/deleteMaterial";
 	private static final String SELECT_MATERIAL = "/selectMaterial";	
+	private static final String SEARCH_MATERIAL_LIST = "/searchMaterialList";
 	private static final String SELECT_MAT_STORE = "/selectMatStore";
 	private static final String INSERT_MAT_STORE = "/insertMatStore";
 	private static final String UPDATE_MAT_STORE = "/updateMatStore";
@@ -104,6 +106,19 @@ public class MaterialResource {
 		
 		
 		Model model = new MatModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(SEARCH_MATERIAL_LIST)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response searchMatlis(@Context HttpServletRequest request, String incomingData) {	
+		
+		Model model = new MatlisModelSearch(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
