@@ -11,6 +11,7 @@ public final class MatextsnapInfo extends InfoRecord implements Cloneable {
 	public long codSnapshot;
 	public long codMat;
 	public String txtMat;
+	public String txtMatSearch;
 	public String description;
 	public boolean isDefault;
 	public String recordMode;

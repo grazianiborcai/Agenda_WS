@@ -48,6 +48,7 @@ public final class MatextsnapInsertSingle extends DaoStmtTemplate<MatextsnapInfo
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt.setString(i++, recordInfo.txtMatSearch);
 				
 				return stmt;
 			}		

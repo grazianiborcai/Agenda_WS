@@ -20,6 +20,7 @@ public final class MatextsnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
+	public static final String COL_NAME_SEARCH = DaoDbField.COL_NAME_SEARCH;
 	public static final String COL_IS_DEFAULT = DaoDbField.COL_IS_DEFAULT;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
@@ -139,6 +140,14 @@ public final class MatextsnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_CREATED_ON;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_NAME_SEARCH;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

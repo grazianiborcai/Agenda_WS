@@ -64,6 +64,7 @@ public class MatextsnapSelectSingle extends DaoStmtTemplate<MatextsnapInfo> {
 					dataInfo.codSnapshot = stmtResult.getLong(MatextsnapDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.codMat = stmtResult.getLong(MatextsnapDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.txtMat = stmtResult.getString(MatextsnapDbTableColumn.COL_NAME);
+					dataInfo.txtMatSearch = stmtResult.getString(MatextsnapDbTableColumn.COL_NAME_SEARCH);
 					dataInfo.description = stmtResult.getString(MatextsnapDbTableColumn.COL_DESCRIPTION);
 					dataInfo.codLanguage = stmtResult.getString(MatextsnapDbTableColumn.COL_COD_LANGUAGE);	
 					dataInfo.isDefault = stmtResult.getBoolean(MatextsnapDbTableColumn.COL_IS_DEFAULT);	
