@@ -12,8 +12,6 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codSnapshot;
 	public long codMat;
-	public String txtMat;			//TODO: Eliminar
-	public String description;		//TODO: Eliminar
 	public int codType;
 	public String txtType;
 	public int codMatCateg;
