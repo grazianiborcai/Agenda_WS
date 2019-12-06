@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.material.model.action.LazyMatEnforceCreatedBy;
+import br.com.mind5.business.material.model.action.LazyMatEnforceCreatedOn;
 import br.com.mind5.business.material.model.action.LazyMatEnforceLChanged;
 import br.com.mind5.business.material.model.action.LazyMatInsert;
 import br.com.mind5.business.material.model.action.LazyMatMergeUsername;
@@ -41,11 +43,15 @@ public final class NodeMatInsert extends DeciTreeWriteTemplate<MatInfo> {
 		ActionStd<MatInfo> nodeService = new NodeMatServiceL1(option).toAction();	
 		ActionLazy<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
+		ActionLazy<MatInfo> enforceCreatedOn = new LazyMatEnforceCreatedOn(option.conn, option.schemaName);	
+		ActionLazy<MatInfo> enforceCreatedBy = new LazyMatEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<MatInfo> insertMat = new LazyMatInsert(option.conn, option.schemaName);	
 		
 		nodeService.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(insertMat);
+		enforceLChangedBy.addPostAction(enforceCreatedOn);
+		enforceCreatedOn.addPostAction(enforceCreatedBy);
+		enforceCreatedBy.addPostAction(insertMat);
 		
 		actions.add(nodeService);		
 		return actions;

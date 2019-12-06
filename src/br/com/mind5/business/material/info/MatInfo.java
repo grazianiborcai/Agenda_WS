@@ -30,6 +30,8 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public String username;
 	
 	//TODO: testar material precisao com mais de 2 casas decimais
@@ -50,6 +52,7 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 		recordMode = DefaultValue.recordMode();	
 		matextes = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
+		createdBy = DefaultValue.number();
 	}
 	
 	

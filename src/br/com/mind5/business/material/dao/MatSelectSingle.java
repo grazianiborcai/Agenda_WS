@@ -70,7 +70,9 @@ public final class MatSelectSingle extends DaoStmtTemplate<MatInfo> {
 					dataInfo.recordMode = stmtResult.getString(MatDbTableColumn.COL_RECORD_MODE);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, MatDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, MatDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, MatDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, MatDbTableColumn.COL_COD_SNAPSHOT);		
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, MatDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, MatDbTableColumn.COL_CREATED_BY);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -25,6 +25,8 @@ final class MatVisiMergeToUpdate implements InfoMergerVisitor<MatInfo, MatInfo> 
 	private MatInfo merge(MatInfo sourceOne, MatInfo sourceTwo) {
 		MatInfo result = makeClone(sourceTwo);		
 		
+		result.createdBy = sourceOne.createdBy;
+		result.createdOn = sourceOne.createdOn;
 		result.codMatCateg = sourceOne.codMatCateg;
 		
 		return result;
