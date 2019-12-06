@@ -10,6 +10,7 @@ public final class MatextInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codMat;
 	public String txtMat;
+	public String txtMatSearch;
 	public String description;
 	public boolean isDefault;
 	public boolean isDeleted;

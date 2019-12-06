@@ -62,6 +62,7 @@ public final class MatextSelectSingle extends DaoStmtTemplate<MatextInfo> {
 					dataInfo.codOwner = stmtResult.getLong(MatextDbTableColumn.COL_COD_OWNER);
 					dataInfo.codMat = stmtResult.getLong(MatextDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.txtMat = stmtResult.getString(MatextDbTableColumn.COL_NAME);
+					dataInfo.txtMatSearch = stmtResult.getString(MatextDbTableColumn.COL_NAME_SEARCH);
 					dataInfo.description = stmtResult.getString(MatextDbTableColumn.COL_DESCRIPTION);
 					dataInfo.codLanguage = stmtResult.getString(MatextDbTableColumn.COL_COD_LANGUAGE);	
 					dataInfo.isDefault = stmtResult.getBoolean(MatextDbTableColumn.COL_IS_DEFAULT);	

@@ -7,6 +7,7 @@ import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.action.LazyMatextEnforceCreatedBy;
 import br.com.mind5.business.materialText.model.action.LazyMatextEnforceCreatedOn;
 import br.com.mind5.business.materialText.model.action.LazyMatextEnforceLChanged;
+import br.com.mind5.business.materialText.model.action.LazyMatextEnforceTxtSearch;
 import br.com.mind5.business.materialText.model.action.LazyMatextMergeUsername;
 import br.com.mind5.business.materialText.model.action.LazyMatextNodeInsert;
 import br.com.mind5.business.materialText.model.action.LazyMatextRootSelect;
@@ -84,6 +85,7 @@ public final class RootMatextInsert extends DeciTreeWriteTemplate<MatextInfo> {
 		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);		
 		ActionLazy<MatextInfo> enforceCreatedBy = new LazyMatextEnforceCreatedBy(option.conn, option.schemaName);	
 		ActionLazy<MatextInfo> enforceCreatedOn = new LazyMatextEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<MatextInfo> enforceTxtSearch = new LazyMatextEnforceTxtSearch(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> insert = new LazyMatextNodeInsert(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);		
 		
@@ -91,7 +93,8 @@ public final class RootMatextInsert extends DeciTreeWriteTemplate<MatextInfo> {
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceCreatedOn);
-		enforceCreatedOn.addPostAction(insert);
+		enforceCreatedOn.addPostAction(enforceTxtSearch);
+		enforceTxtSearch.addPostAction(insert);
 		insert.addPostAction(select);
 		
 		actions.add(nodeDefault);
