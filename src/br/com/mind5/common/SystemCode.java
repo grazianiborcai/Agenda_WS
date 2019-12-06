@@ -899,4 +899,7 @@ public final class SystemCode {
 	
 	// Material Snapshot
 	public static final int MAT_SNAPSHOT_MANDATORY_FIELD_EMPTY			= 7900;
+	
+	// Material Search
+	public static final int MAT_SEARCH_MANDATORY_FIELD_EMPTY			= 7950;
 }
