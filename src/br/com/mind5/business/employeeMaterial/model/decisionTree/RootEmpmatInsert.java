@@ -14,6 +14,7 @@ import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckEmp;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckExist;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckLangu;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckMat;
+import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckMatarchService;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckOwner;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
@@ -70,6 +71,13 @@ public final class RootEmpmatInsert extends DeciTreeWriteTemplate<EmpmatInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new EmpmatCheckMat(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmpmatCheckMatarchService(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
