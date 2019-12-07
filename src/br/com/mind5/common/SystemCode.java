@@ -903,4 +903,6 @@ public final class SystemCode {
 	
 	// Material Search
 	public static final int MAT_SEARCH_MANDATORY_FIELD_EMPTY			= 7950;
+	public static final int MAT_SEARCH_SERVICE_ALREADY_EXIST			= 7951;
+	public static final int MAT_SEARCH_SERVICE_NOT_FOUND				= 7952;
 }
