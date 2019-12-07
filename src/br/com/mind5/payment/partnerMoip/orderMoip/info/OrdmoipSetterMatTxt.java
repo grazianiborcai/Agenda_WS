@@ -8,8 +8,8 @@ public final class OrdmoipSetterMatTxt implements InfoSetter<OrdmoipInfo> {
 	public OrdmoipInfo setAttr(OrdmoipInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		recordInfo.productTxt = recordInfo.payordemData.matData.txtMat;
-		recordInfo.detailTxt = recordInfo.payordemData.matData.txtMat;
+		recordInfo.productTxt = recordInfo.payordemData.matlisData.txtMat;
+		recordInfo.detailTxt = recordInfo.payordemData.matlisData.txtMat;
 
 		return recordInfo;
 	}

@@ -19,11 +19,11 @@ public final class OrdmoipCheckMatData extends ModelCheckerTemplateSimpleV2<Ordm
 		if ( recordInfo.payordemData == null )	
 			return super.FAILED;
 		
-		if ( recordInfo.payordemData.matData == null )	
+		if ( recordInfo.payordemData.matlisData == null )	
 			return super.FAILED;
 		
-		if ( recordInfo.payordemData.matData.txtMat 	 == null || 
-			 recordInfo.payordemData.matData.txtMatCateg == null 	)	
+		if ( recordInfo.payordemData.matlisData.txtMat 	 == null || 
+			 recordInfo.payordemData.matlisData.txtMatCateg == null 	)	
 			return super.FAILED;
 		
 		
