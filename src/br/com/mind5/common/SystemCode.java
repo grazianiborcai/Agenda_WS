@@ -173,6 +173,7 @@ public final class SystemCode {
 	public static final int MAT_PRODUCT									= 1218;
 	public static final int MAT_NOT_PRODUCT								= 1219;
 	public static final int MAT_PRODUCT_UNIT_INCONSISTENCY				= 1220;
+	public static final int MAT_PRICE_UNIT_LOWER_THAN_MIN				= 1221;
 	
 	// Owner
 	public static final int OWNER_ALREADY_EXIST							= 1250;
