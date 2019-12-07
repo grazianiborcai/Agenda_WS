@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeMat;
+import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeMatlis;
 import br.com.mind5.business.materialStore.model.action.StdMatoreMergeToSelect;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckRead;
 import br.com.mind5.model.action.ActionLazy;
@@ -38,9 +38,9 @@ public final class RootMatoreSelect extends DeciTreeReadTemplate<MatoreInfo> {
 		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
 		
 		ActionStd<MatoreInfo> select = new StdMatoreMergeToSelect(option);
-		ActionLazy<MatoreInfo> mergeMat = new LazyMatoreMergeMat(option.conn, option.schemaName);		
+		ActionLazy<MatoreInfo> mergeMatlis = new LazyMatoreMergeMatlis(option.conn, option.schemaName);		
 		
-		select.addPostAction(mergeMat);		
+		select.addPostAction(mergeMatlis);		
 		actions.add(select);
 		
 		return actions;

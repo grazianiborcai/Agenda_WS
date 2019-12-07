@@ -2,21 +2,21 @@ package br.com.mind5.business.materialStore.info;
 
 import java.util.List;
 
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class MatoreMerger {
-	public static MatoreInfo mergeWithMat(MatInfo sourceOne, MatoreInfo sourceTwo) {
-		InfoMerger<MatoreInfo, MatInfo> merger = new MatoreMergerMat();		
+	public static MatoreInfo mergeWithMatlis(MatlisInfo sourceOne, MatoreInfo sourceTwo) {
+		InfoMerger<MatoreInfo, MatlisInfo> merger = new MatoreMergerMatlis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<MatoreInfo> mergeWithMat(List<MatInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
-		InfoMerger<MatoreInfo, MatInfo> merger = new MatoreMergerMat();		
+	public static List<MatoreInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
+		InfoMerger<MatoreInfo, MatlisInfo> merger = new MatoreMergerMatlis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

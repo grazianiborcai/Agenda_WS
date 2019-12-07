@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatoreMergeMat implements ActionStd<MatoreInfo> {
+public final class StdMatoreMergeMatlis implements ActionStd<MatoreInfo> {
 	private ActionStd<MatoreInfo> actionHelper;	
 	
 	
-	public StdMatoreMergeMat(DeciTreeOption<MatoreInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatoreMergeMat(option.conn, option.schemaName));
+	public StdMatoreMergeMatlis(DeciTreeOption<MatoreInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatoreMergeMatlis(option.conn, option.schemaName));
 	}
 	
 	

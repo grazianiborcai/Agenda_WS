@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatoreMergeMat extends ActionLazyTemplate<MatoreInfo, MatoreInfo> {
+public final class LazyMatoreMergeMatlis extends ActionLazyTemplate<MatoreInfo, MatoreInfo> {
 	
-	public LazyMatoreMergeMat(Connection conn, String schemaName) {
+	public LazyMatoreMergeMatlis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyMatoreMergeMat extends ActionLazyTemplate<MatoreInfo, Mat
 	
 	
 	@Override protected ActionStd<MatoreInfo> getInstanceOfActionHook(DeciTreeOption<MatoreInfo> option) {
-		return new StdMatoreMergeMat(option);
+		return new StdMatoreMergeMatlis(option);
 	}
 	
 	

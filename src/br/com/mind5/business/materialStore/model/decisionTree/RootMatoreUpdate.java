@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeMat;
+import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeMatlis;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeUsername;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreNodeUpdate;
 import br.com.mind5.business.materialStore.model.action.StdMatoreEnforceLChanged;
@@ -84,12 +84,12 @@ public final class RootMatoreUpdate extends DeciTreeWriteTemplate<MatoreInfo> {
 		
 		ActionStd<MatoreInfo> enforceLChanged = new StdMatoreEnforceLChanged(option);
 		ActionLazy<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatoreInfo> mergeMat = new LazyMatoreMergeMat(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> mergeMatlis = new LazyMatoreMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> nodeUpdate = new LazyMatoreNodeUpdate(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(mergeMat);
-		mergeMat.addPostAction(nodeUpdate);
+		enforceLChangedBy.addPostAction(mergeMatlis);
+		mergeMatlis.addPostAction(nodeUpdate);
 				
 		actions.add(enforceLChanged);
 		return actions;

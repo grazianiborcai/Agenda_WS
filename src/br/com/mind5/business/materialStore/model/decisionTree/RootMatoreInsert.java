@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreNodeInsertL1;
-import br.com.mind5.business.materialStore.model.action.StdMatoreMergeMat;
+import br.com.mind5.business.materialStore.model.action.StdMatoreMergeMatlis;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckExist;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckMat;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckOwner;
@@ -81,12 +81,12 @@ public final class RootMatoreInsert extends DeciTreeWriteTemplate<MatoreInfo> {
 	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
 		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatoreInfo> mergeMat = new StdMatoreMergeMat(option);
+		ActionStd<MatoreInfo> mergeMatlis = new StdMatoreMergeMatlis(option);
 		ActionLazy<MatoreInfo> nodeInsert = new LazyMatoreNodeInsertL1(option.conn, option.schemaName);
 		
-		mergeMat.addPostAction(nodeInsert);
+		mergeMatlis.addPostAction(nodeInsert);
 		
-		actions.add(mergeMat);	
+		actions.add(mergeMatlis);	
 		return actions;
 	}
 }
