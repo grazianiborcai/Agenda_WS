@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeToSelect;
-import br.com.mind5.file.fileImage.model.action.LazyFimgNodeCover;
+import br.com.mind5.file.fileImage.model.action.LazyFimgNodeCoverOffL4;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeFimarchStore;
 import br.com.mind5.file.fileImage.model.action.StdFimgSuccess;
-import br.com.mind5.file.fileImage.model.checker.FimgCheckExistStore;
+import br.com.mind5.file.fileImage.model.checker.FimgCheckExistMat;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckIsCover;
-import br.com.mind5.file.fileImage.model.checker.FimgCheckIsStore;
+import br.com.mind5.file.fileImage.model.checker.FimgCheckIsMat;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -19,9 +19,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeFimgStore extends DeciTreeWriteTemplate<FimgInfo> {
+public final class NodeFimgCoverOffL3 extends DeciTreeWriteTemplate<FimgInfo> {
 	
-	public NodeFimgStore(DeciTreeOption<FimgInfo> option) {
+	public NodeFimgCoverOffL3(DeciTreeOption<FimgInfo> option) {
 		super(option);
 	}
 	
@@ -36,7 +36,7 @@ public final class NodeFimgStore extends DeciTreeWriteTemplate<FimgInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgCheckIsStore(checkerOption);
+		checker = new FimgCheckIsMat(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -50,7 +50,7 @@ public final class NodeFimgStore extends DeciTreeWriteTemplate<FimgInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FimgCheckExistStore(checkerOption);
+		checker = new FimgCheckExistMat(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -63,10 +63,10 @@ public final class NodeFimgStore extends DeciTreeWriteTemplate<FimgInfo> {
 		
 		ActionStd<FimgInfo> mergeFimarch = new StdFimgMergeFimarchStore(option);	
 		ActionLazy<FimgInfo> select = new LazyFimgMergeToSelect(option.conn, option.schemaName);
-		ActionLazy<FimgInfo> cover = new LazyFimgNodeCover(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> coverOff = new LazyFimgNodeCoverOffL4(option.conn, option.schemaName);
 		
 		mergeFimarch.addPostAction(select);
-		select.addPostAction(cover);
+		select.addPostAction(coverOff);
 		
 		actions.add(mergeFimarch);		
 		return actions;

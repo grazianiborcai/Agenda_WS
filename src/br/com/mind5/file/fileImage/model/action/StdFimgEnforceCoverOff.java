@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFimgEnforceCover implements ActionStd<FimgInfo> {
+public final class StdFimgEnforceCoverOff implements ActionStd<FimgInfo> {
 	private ActionStd<FimgInfo> actionHelper;	
 	
 	
-	public StdFimgEnforceCover(DeciTreeOption<FimgInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiFimgEnforceCover());
+	public StdFimgEnforceCoverOff(DeciTreeOption<FimgInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiFimgEnforceCoverOff());
 	}
 	
 	

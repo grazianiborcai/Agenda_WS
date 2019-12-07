@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class FimgSetterCover implements InfoSetter<FimgInfo> {
+public final class FimgSetterCoverOff implements InfoSetter<FimgInfo> {
 	
 	public FimgInfo setAttr(FimgInfo recordInfo) {
 		checkArgument(recordInfo);
