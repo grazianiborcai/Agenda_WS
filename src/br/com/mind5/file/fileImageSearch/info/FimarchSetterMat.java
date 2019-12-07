@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class FimarchSetterStore implements InfoSetter<FimarchInfo> {
+public final class FimarchSetterMat implements InfoSetter<FimarchInfo> {
 	
 	public FimarchInfo setAttr(FimarchInfo recordInfo) {
 		checkArgument(recordInfo);
@@ -28,7 +28,7 @@ public final class FimarchSetterStore implements InfoSetter<FimarchInfo> {
 		FimarchInfo result = new FimarchInfo();
 		
 		result.codOwner = recordInfo.codOwner;
-		result.codStore = recordInfo.codStore; 
+		result.codMat = recordInfo.codMat; 
 		result.codLanguage = recordInfo.codLanguage; 
 		result.username = recordInfo.username; 
 		
