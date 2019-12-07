@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpmatMergeMat implements ActionStd<EmpmatInfo> {
+public final class StdEmpmatMergeMatlis implements ActionStd<EmpmatInfo> {
 	private ActionStd<EmpmatInfo> actionHelper;	
 	
 	
-	public StdEmpmatMergeMat(DeciTreeOption<EmpmatInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpmatMergeMat(option.conn, option.schemaName));
+	public StdEmpmatMergeMatlis(DeciTreeOption<EmpmatInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpmatMergeMatlis(option.conn, option.schemaName));
 	}
 	
 	

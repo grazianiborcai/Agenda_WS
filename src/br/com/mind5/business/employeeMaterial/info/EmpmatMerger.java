@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
@@ -37,15 +37,15 @@ public final class EmpmatMerger {
 	
 	
 	
-	public static EmpmatInfo mergeWithMat(MatInfo sourceOne, EmpmatInfo sourceTwo) {
-		InfoMerger<EmpmatInfo, MatInfo> merger = new EmpmatMergerMat();		
+	public static EmpmatInfo mergeWithMatlis(MatlisInfo sourceOne, EmpmatInfo sourceTwo) {
+		InfoMerger<EmpmatInfo, MatlisInfo> merger = new EmpmatMergerMatlis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<EmpmatInfo> mergeWithMat(List<MatInfo> sourceOnes, List<EmpmatInfo> sourceTwos) {
-		InfoMerger<EmpmatInfo, MatInfo> merger = new EmpmatMergerMat();		
+	public static List<EmpmatInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<EmpmatInfo> sourceTwos) {
+		InfoMerger<EmpmatInfo, MatlisInfo> merger = new EmpmatMergerMatlis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

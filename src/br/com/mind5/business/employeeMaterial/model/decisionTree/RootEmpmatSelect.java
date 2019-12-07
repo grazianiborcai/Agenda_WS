@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeEmplis;
-import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeMat;
+import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeMatlis;
 import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatMergeToSelect;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckLangu;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckOwner;
@@ -61,11 +61,11 @@ public final class RootEmpmatSelect extends DeciTreeReadTemplate<EmpmatInfo> {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
 		ActionStd<EmpmatInfo> select = new StdEmpmatMergeToSelect(option);
-		ActionLazy<EmpmatInfo> mergeMat = new LazyEmpmatMergeMat(option.conn, option.schemaName);
+		ActionLazy<EmpmatInfo> mergeMatlis = new LazyEmpmatMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<EmpmatInfo> mergeEmplis = new LazyEmpmatMergeEmplis(option.conn, option.schemaName);
 		
-		select.addPostAction(mergeMat);
-		mergeMat.addPostAction(mergeEmplis);
+		select.addPostAction(mergeMatlis);
+		mergeMatlis.addPostAction(mergeEmplis);
 		
 		actions.add(select);
 		return actions;

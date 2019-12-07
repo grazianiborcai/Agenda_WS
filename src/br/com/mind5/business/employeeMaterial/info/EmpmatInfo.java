@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -12,7 +12,7 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
 	public long codMat;
-	public MatInfo matData;
+	public MatlisInfo matlisData;
 	public EmplisInfo emplisData;
 	public String recordMode;
 	public LocalDateTime lastChanged;
@@ -31,7 +31,7 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 		codMat = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
-		matData = DefaultValue.object();
+		matlisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		createdBy = DefaultValue.number();
 	}
@@ -53,7 +53,7 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		EmpmatInfo deepCopy = (EmpmatInfo) super.clone();
 		
-		deepCopy.matData = cloneMat(deepCopy.matData);
+		deepCopy.matlisData = cloneMatlis(deepCopy.matlisData);
 		deepCopy.emplisData = cloneEmplis(deepCopy.emplisData);
 		
 		return deepCopy;
@@ -61,11 +61,11 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private MatInfo cloneMat(MatInfo recordInfo) throws CloneNotSupportedException {
+	private MatlisInfo cloneMatlis(MatlisInfo recordInfo) throws CloneNotSupportedException {
 		if (recordInfo == null)
 			return null;
 		
-		return (MatInfo) recordInfo.clone();
+		return (MatlisInfo) recordInfo.clone();
 	}
 	
 	
