@@ -9,6 +9,8 @@ public final class MatarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codSnapshot;
 	public long codMat;
+	public String txtMat;
+	public String txtMatSearch;
 	public int codType;
 	public int codMatCateg;
 	public int codGroup;

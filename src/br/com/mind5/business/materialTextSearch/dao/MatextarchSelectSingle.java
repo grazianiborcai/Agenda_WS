@@ -52,7 +52,7 @@ public final class MatextarchSelectSingle extends DaoStmtTemplate<MatextarchInfo
 	}
 	
 	
-	
+		
 	@Override protected DaoResultParserV2<MatextarchInfo> getResultParserHook() {
 		return new DaoResultParserV2<MatextarchInfo>() {
 			@Override public List<MatextarchInfo> parseResult(MatextarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {

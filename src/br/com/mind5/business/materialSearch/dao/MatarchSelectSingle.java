@@ -8,12 +8,15 @@ import java.util.List;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.dao.DaoFormatter;
+import br.com.mind5.dao.DaoJoin;
+import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
+import br.com.mind5.dao.common.DaoJoinMatext;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class MatarchSelectSingle extends DaoStmtTemplate<MatarchInfo> {
@@ -55,6 +58,13 @@ public final class MatarchSelectSingle extends DaoStmtTemplate<MatarchInfo> {
 	
 	
 	
+	@Override protected DaoJoin getJoinHook() {
+		DaoJoinBuilder joinMatext = new DaoJoinMatext(MAIN_TABLE);		
+		return joinMatext.build();
+	}
+	
+	
+	
 	@Override protected DaoResultParserV2<MatarchInfo> getResultParserHook() {
 		return new DaoResultParserV2<MatarchInfo>() {
 			@Override public List<MatarchInfo> parseResult(MatarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
@@ -80,5 +90,11 @@ public final class MatarchSelectSingle extends DaoStmtTemplate<MatarchInfo> {
 				return finalResult;
 			}
 		};
+	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
 	}
 }

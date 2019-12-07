@@ -34,7 +34,7 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 		option.schemaName = schemaName;
 		option.tableName = getTableNameHook();
 		option.columns = getColumns();		
-		option.whereClause = getWhereClause(option.tableName, option.recordInfo);
+		option.whereClause = getWhereClause(getLookupTableHook(), option.recordInfo);
 		option.resultParser = getResultParserHook();
 		option.stmtParamTranslator = getParamTranslatorHook();
 		option.joins = getJoinsHook();

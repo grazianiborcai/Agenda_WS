@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
-import br.com.mind5.business.materialSearch.model.action.StdMatarchMergeToSelect;
+import br.com.mind5.business.materialSearch.model.action.LazyMatarchMergeToSelect;
+import br.com.mind5.business.materialSearch.model.action.StdMatarchEnforceTxtSearch;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckRead;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -41,9 +43,12 @@ public final class RootMatarchSelect extends DeciTreeReadTemplate<MatarchInfo> {
 	@Override protected List<ActionStd<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
 		List<ActionStd<MatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatarchInfo> select = new StdMatarchMergeToSelect(option);
+		ActionStd<MatarchInfo> enforceTxtSearch = new StdMatarchEnforceTxtSearch(option);
+		ActionLazy<MatarchInfo> select = new LazyMatarchMergeToSelect(option.conn, option.schemaName);
 		
-		actions.add(select);
+		enforceTxtSearch.addPostAction(select);
+		
+		actions.add(enforceTxtSearch);
 		return actions;
 	}
 }

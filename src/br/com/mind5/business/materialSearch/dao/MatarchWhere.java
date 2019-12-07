@@ -8,6 +8,7 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
+import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
 public final class MatarchWhere implements DaoStmtWhere {
@@ -46,13 +47,22 @@ public final class MatarchWhere implements DaoStmtWhere {
 				case MatarchDbTableColumn.COL_COD_CATEGORY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMatCateg));
 					break;
+					
+				case MatarchDbTableColumn.COL_NAME_SEARCH :
+					builder.addClauseAnd(eachColumn, recordInfo.txtMatSearch, DaoWhereCondition.LIKE);
+					break;		
+					
+				case MatarchDbTableColumn.COL_COD_LANGUAGE :
+					if(recordInfo.txtMatSearch != null)
+						builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 
 				case MatarchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
 		}		
-		
+		//TODO: Join com MATEXT cria cartesiano. Verificar problema de desempenho
 		whereClause = builder.generateClause();
 	}
 	
