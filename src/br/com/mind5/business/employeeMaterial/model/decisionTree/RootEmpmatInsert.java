@@ -86,7 +86,7 @@ public final class RootEmpmatInsert extends DeciTreeWriteTemplate<EmpmatInfo> {
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new EmpmatCheckExist(checkerOption);
 		queue.add(checker);	
-		//TODO: verificar se material e servico
+
 		return new ModelCheckerQueue<>(queue);
 	}
 	
