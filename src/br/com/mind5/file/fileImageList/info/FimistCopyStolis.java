@@ -13,6 +13,7 @@ final class FimistCopyStolis extends InfoCopierTemplate<FimistInfo, StolisInfo>{
 	
 	@Override protected FimistInfo makeCopyHook(StolisInfo source) {
 		FimistInfo result = new FimistInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codStore = source.codStore;
 		result.codLanguage = source.codLanguage;

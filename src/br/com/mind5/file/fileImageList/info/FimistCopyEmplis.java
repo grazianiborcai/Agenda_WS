@@ -13,6 +13,7 @@ final class FimistCopyEmplis extends InfoCopierTemplate<FimistInfo, EmplisInfo>{
 	
 	@Override protected FimistInfo makeCopyHook(EmplisInfo source) {
 		FimistInfo result = new FimistInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codEmployee = source.codEmployee;
 		result.codLanguage = source.codLanguage;

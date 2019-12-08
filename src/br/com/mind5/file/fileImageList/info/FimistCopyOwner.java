@@ -13,6 +13,7 @@ final class FimistCopyOwner extends InfoCopierTemplate<FimistInfo, OwnerInfo>{
 	
 	@Override protected FimistInfo makeCopyHook(OwnerInfo source) {
 		FimistInfo result = new FimistInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codOwnerRef = source.codOwner;
 		result.codLanguage = source.codLanguage;
