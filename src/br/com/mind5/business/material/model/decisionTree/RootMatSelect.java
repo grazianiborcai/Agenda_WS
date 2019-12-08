@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.material.model.action.LazyMatMergeFimist;
 import br.com.mind5.business.material.model.action.LazyMatMergeMatCateg;
 import br.com.mind5.business.material.model.action.LazyMatMergeMatGroup;
 import br.com.mind5.business.material.model.action.LazyMatMergeMatType;
@@ -53,12 +54,14 @@ public final class RootMatSelect extends DeciTreeReadTemplate<MatInfo> {
 		ActionLazy<MatInfo> mergeMatGroup = new LazyMatMergeMatGroup(option.conn, option.schemaName);
 		ActionLazy<MatInfo> mergeMatUnit = new LazyMatMergeMatUnit(option.conn, option.schemaName);
 		ActionLazy<MatInfo> mergeMatext = new LazyMatMergeMatext(option.conn, option.schemaName);
+		ActionLazy<MatInfo> mergeFimist = new LazyMatMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatType);
 		mergeMatType.addPostAction(mergeMatCateg);
 		mergeMatCateg.addPostAction(mergeMatGroup);
 		mergeMatGroup.addPostAction(mergeMatUnit);
 		mergeMatUnit.addPostAction(mergeMatext);
+		mergeMatext.addPostAction(mergeFimist);
 		
 		actions.add(select);
 		return actions;

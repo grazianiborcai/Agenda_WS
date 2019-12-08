@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
 
 public final class MatInfo extends InfoRecord implements Cloneable {
@@ -25,6 +26,7 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public String txtBusiness; 
 	public boolean isLocked;
 	public List<MatextInfo> matextes;
+	public List<FimistInfo> fimistes;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -49,6 +51,7 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 		isLocked = DefaultValue.boole();
 		recordMode = DefaultValue.recordMode();	
 		matextes = DefaultValue.list();
+		fimistes = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
 	}
@@ -71,8 +74,25 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 		MatInfo deepCopy = (MatInfo) super.clone();
 		
 		deepCopy.matextes = cloneMatextes(deepCopy.matextes);
+		deepCopy.fimistes = cloneFimistes(deepCopy.fimistes);
 		
 		return deepCopy;
+	}
+	
+	
+	
+	private List<FimistInfo> cloneFimistes(List<FimistInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
+			return null;
+		
+		List<FimistInfo> deepAddresses = new ArrayList<>();
+		
+		for (FimistInfo eachAddress : recordInfos) {
+			FimistInfo clonedAddress = (FimistInfo) eachAddress.clone();
+			deepAddresses.add(clonedAddress);
+		}
+		
+		return deepAddresses;
 	}
 	
 	

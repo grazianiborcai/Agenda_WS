@@ -8,10 +8,25 @@ import br.com.mind5.business.masterData.info.MatTypeInfo;
 import br.com.mind5.business.masterData.info.MatUnitInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialText.info.MatextInfo;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class MatMerger {
+	public static MatInfo mergeWithFimist(FimistInfo sourceOne, MatInfo sourceTwo) {
+		InfoMerger<MatInfo, FimistInfo> merger = new MatMergerFimist();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatInfo> mergeWithFimist(List<FimistInfo> sourceOnes, List<MatInfo> sourceTwos) {
+		InfoMerger<MatInfo, FimistInfo> merger = new MatMergerFimist();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static MatInfo mergeWithMatCateg(MatCategInfo sourceOne, MatInfo sourceTwo) {
 		InfoMerger<MatInfo, MatCategInfo> merger = new MatMergerMatCateg();		
 		return merger.merge(sourceOne, sourceTwo);
