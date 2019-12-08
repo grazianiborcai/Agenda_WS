@@ -25,6 +25,6 @@ public final class FimgCheckIsMat extends ModelCheckerTemplateSimpleV2<FimgInfo>
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.FILE_IMG_IS_NOT_STORE;
+		return SystemCode.FILE_IMG_IS_NOT_MAT;
 	}
 }

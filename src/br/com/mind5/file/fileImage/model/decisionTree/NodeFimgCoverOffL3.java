@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeToSelect;
 import br.com.mind5.file.fileImage.model.action.LazyFimgNodeCoverOffL4;
-import br.com.mind5.file.fileImage.model.action.StdFimgMergeFimarchStore;
+import br.com.mind5.file.fileImage.model.action.StdFimgMergeFimarchMat;
 import br.com.mind5.file.fileImage.model.action.StdFimgSuccess;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckExistMat;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckIsCover;
@@ -61,7 +61,7 @@ public final class NodeFimgCoverOffL3 extends DeciTreeWriteTemplate<FimgInfo> {
 	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
 		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> mergeFimarch = new StdFimgMergeFimarchStore(option);	
+		ActionStd<FimgInfo> mergeFimarch = new StdFimgMergeFimarchMat(option);	
 		ActionLazy<FimgInfo> select = new LazyFimgMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> coverOff = new LazyFimgNodeCoverOffL4(option.conn, option.schemaName);
 		
