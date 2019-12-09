@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.materialStore.model.action.LazyMatoreNodeInsertL1;
+import br.com.mind5.business.materialStore.model.action.LazyMatoreNodeUpsertL1;
 import br.com.mind5.business.materialStore.model.action.StdMatoreMergeMatlis;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckExist;
+import br.com.mind5.business.materialStore.model.checker.MatoreCheckLangu;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckMat;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckOwner;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckStorauth;
@@ -51,6 +52,13 @@ public final class RootMatoreInsert extends DeciTreeWriteTemplate<MatoreInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new MatoreCheckLangu(checkerOption);
+		queue.add(checker);		
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatoreCheckStore(checkerOption);
 		queue.add(checker);	
 		
@@ -83,9 +91,9 @@ public final class RootMatoreInsert extends DeciTreeWriteTemplate<MatoreInfo> {
 		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
 		
 		ActionStd<MatoreInfo> mergeMatlis = new StdMatoreMergeMatlis(option);
-		ActionLazy<MatoreInfo> nodeInsert = new LazyMatoreNodeInsertL1(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> upsert = new LazyMatoreNodeUpsertL1(option.conn, option.schemaName);
 		
-		mergeMatlis.addPostAction(nodeInsert);
+		mergeMatlis.addPostAction(upsert);
 		
 		actions.add(mergeMatlis);	
 		return actions;

@@ -3,6 +3,7 @@ package br.com.mind5.business.materialStore.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -10,11 +11,6 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
 	public long codMat;
-	public String txtMat;
-	public int codType;
-	public String txtType;
-	public int codMatCateg;
-	public String txtMatCateg;
 	public double matPrice;
 	public double matPrice1;
 	public double matPrice2;
@@ -24,9 +20,7 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 	public double matPrice6;
 	public double matPrice7;
 	public int quantityStock;
-	public int priceUnit;
-	public String codUnit;
-	public String txtUnit;
+	public MatlisInfo matlisData;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
@@ -39,9 +33,6 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();	
 		codMat = DefaultValue.number();
-		codType = DefaultValue.number();
-		codMatCateg = DefaultValue.number();
-		priceUnit = DefaultValue.number();
 		matPrice = DefaultValue.number();
 		matPrice1 = DefaultValue.number();
 		matPrice2 = DefaultValue.number();
@@ -53,6 +44,7 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 		quantityStock = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
+		matlisData = DefaultValue.object();
 	}
 	
 	
@@ -70,8 +62,21 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		MatoreInfo deepCopy = (MatoreInfo) super.clone();
+		
+		deepCopy.matlisData = cloneMatlis(deepCopy.matlisData);
+		
+		return deepCopy;
 	}
+	
+	
+	
+	private MatlisInfo cloneMatlis(MatlisInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (MatlisInfo) recordInfo.clone();
+	}	
 	
 	
 	

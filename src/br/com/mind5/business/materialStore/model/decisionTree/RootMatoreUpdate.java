@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeMatlis;
-import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeUsername;
-import br.com.mind5.business.materialStore.model.action.LazyMatoreNodeUpdate;
-import br.com.mind5.business.materialStore.model.action.StdMatoreEnforceLChanged;
+import br.com.mind5.business.materialStore.model.action.LazyMatoreNodeUpsertL1;
+import br.com.mind5.business.materialStore.model.action.StdMatoreMergeMatlis;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckExist;
+import br.com.mind5.business.materialStore.model.checker.MatoreCheckLangu;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckMat;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckOwner;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckStorauth;
@@ -53,6 +52,13 @@ public final class RootMatoreUpdate extends DeciTreeWriteTemplate<MatoreInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new MatoreCheckLangu(checkerOption);
+		queue.add(checker);		
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatoreCheckStore(checkerOption);
 		queue.add(checker);	
 		
@@ -84,16 +90,12 @@ public final class RootMatoreUpdate extends DeciTreeWriteTemplate<MatoreInfo> {
 	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
 		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatoreInfo> enforceLChanged = new StdMatoreEnforceLChanged(option);
-		ActionLazy<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatoreInfo> mergeMatlis = new LazyMatoreMergeMatlis(option.conn, option.schemaName);
-		ActionLazy<MatoreInfo> nodeUpdate = new LazyMatoreNodeUpdate(option.conn, option.schemaName);
+		ActionStd<MatoreInfo> mergeMatlis = new StdMatoreMergeMatlis(option);
+		ActionLazy<MatoreInfo> upsert = new LazyMatoreNodeUpsertL1(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(mergeMatlis);
-		mergeMatlis.addPostAction(nodeUpdate);
-				
-		actions.add(enforceLChanged);
+		mergeMatlis.addPostAction(upsert);
+		
+		actions.add(mergeMatlis);	
 		return actions;
 	}
 }

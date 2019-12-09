@@ -2,41 +2,41 @@ package br.com.mind5.business.materialStore.model.checker;
 
 import java.sql.Connection;
 
+import br.com.mind5.business.masterData.info.common.MatCateg;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatoreCheckPriceProduct extends ModelCheckerTemplateSimpleV2<MatoreInfo> {
+public final class MatoreCheckIsService extends ModelCheckerTemplateSimpleV2<MatoreInfo> {
 
-	public MatoreCheckPriceProduct(ModelCheckerOption option) {
+	public MatoreCheckIsService(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(MatoreInfo recordInfo, Connection conn, String schemaName) {	
-		
-		if (recordInfo.matPrice <= 0)
+		if ( recordInfo.matlisData == null )	
 			return super.FAILED;
 		
 		
-		if (   recordInfo.matPrice1 > 0
-			|| recordInfo.matPrice2 > 0
-			|| recordInfo.matPrice3 > 0
-			|| recordInfo.matPrice4 > 0
-			|| recordInfo.matPrice5 > 0
-			|| recordInfo.matPrice6 > 0
-			|| recordInfo.matPrice7 > 0	)			
-			return super.FAILED;
+		if ( recordInfo.matlisData.codMatCateg == MatCateg.SERVICE.getCodMatCateg() )	
+			return super.SUCCESS;
 		
 		
-		return super.SUCCESS;
+		return super.FAILED;
+	}
+	
+	
+	
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.MAT_STORE_IS_SERVICE;
 	}
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.MAT_STORE_PRICE_INCONSISTENCY;
-	}	
+		return SystemCode.MAT_STORE_IS_NOT_SERVICE;
+	}
 }

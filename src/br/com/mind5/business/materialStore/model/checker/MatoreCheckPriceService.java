@@ -2,24 +2,20 @@ package br.com.mind5.business.materialStore.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.common.MatCateg;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatoreCheckPriceService extends ModelCheckerTemplateSimple_<MatoreInfo> {
+public final class MatoreCheckPriceService extends ModelCheckerTemplateSimpleV2<MatoreInfo> {
 
-	public MatoreCheckPriceService() {
-		super();
+	public MatoreCheckPriceService(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(MatoreInfo recordInfo, Connection conn, String schemaName) {	
-		if (shouldCheck(recordInfo.codMatCateg) == false)
-			return super.SUCCESS;
-		
 		
 		if (recordInfo.matPrice > 0)
 			return super.FAILED;
@@ -40,22 +36,7 @@ public final class MatoreCheckPriceService extends ModelCheckerTemplateSimple_<M
 	
 	
 	
-	private boolean shouldCheck(int codCategory) {
-		if (MatCateg.SERVICE.getCodMatCateg() == codCategory)
-			return true;
-		
-		return false;
-	}
-	
-	
-	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MAT_STORE_PRICE_INCONSISTENCY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.MAT_STORE_PRICE_INCONSISTENCY;
-	}
+	}	
 }

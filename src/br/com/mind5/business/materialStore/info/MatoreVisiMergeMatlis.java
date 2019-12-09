@@ -9,17 +9,8 @@ final class MatoreVisiMergeMatlis implements InfoMergerVisitor<MatoreInfo, Matli
 	@Override public MatoreInfo writeRecord(MatlisInfo sourceOne, MatoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
-		MatoreInfo resultInfo = MatoreInfo.copyFrom(sourceTwo);
-		resultInfo.txtMat = sourceOne.txtMat;
-		resultInfo.codType = sourceOne.codType;
-		resultInfo.txtType = sourceOne.txtType;
-		resultInfo.codMatCateg = sourceOne.codMatCateg;
-		resultInfo.txtMatCateg = sourceOne.txtMatCateg;
-		resultInfo.priceUnit = sourceOne.priceUnit;
-		resultInfo.codUnit = sourceOne.codUnit;
-		resultInfo.txtUnit = sourceOne.txtUnit;
-
-		return resultInfo;
+		sourceTwo.matlisData = sourceOne;
+		return sourceTwo;
 	}
 	
 	
@@ -32,6 +23,7 @@ final class MatoreVisiMergeMatlis implements InfoMergerVisitor<MatoreInfo, Matli
 
 
 	@Override public boolean shouldWrite(MatlisInfo sourceOne, MatoreInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codMat == sourceTwo.codMat);
+		return (sourceOne.codOwner == sourceTwo.codOwner && 
+				sourceOne.codMat   == sourceTwo.codMat);
 	}
 }
