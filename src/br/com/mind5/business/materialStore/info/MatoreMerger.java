@@ -4,10 +4,26 @@ import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialStock.info.MatockInfo;
+import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
+import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class MatoreMerger {
+	public static MatoreInfo mergeWithMatorarch(MatorarchInfo sourceOne, MatoreInfo sourceTwo) {
+		InfoMerger<MatoreInfo, MatorarchInfo> merger = new MatoreMergerMatorarch();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatoreInfo> mergeWithMatorarch(List<MatorarchInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
+		InfoMerger<MatoreInfo, MatorarchInfo> merger = new MatoreMergerMatorarch();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static MatoreInfo mergeWithMatlis(MatlisInfo sourceOne, MatoreInfo sourceTwo) {
 		InfoMerger<MatoreInfo, MatlisInfo> merger = new MatoreMergerMatlis();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -17,6 +33,20 @@ public final class MatoreMerger {
 	
 	public static List<MatoreInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
 		InfoMerger<MatoreInfo, MatlisInfo> merger = new MatoreMergerMatlis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
+	public static MatoreInfo mergeWithStolis(StolisInfo sourceOne, MatoreInfo sourceTwo) {
+		InfoMerger<MatoreInfo, StolisInfo> merger = new MatoreMergerStolis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatoreInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
+		InfoMerger<MatoreInfo, StolisInfo> merger = new MatoreMergerStolis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -21,6 +22,7 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 	public double matPrice7;
 	public int quantityStock;
 	public MatlisInfo matlisData;
+	public StolisInfo stolisData;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
@@ -45,6 +47,7 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		matlisData = DefaultValue.object();
+		stolisData = DefaultValue.object();
 	}
 	
 	
@@ -65,6 +68,7 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 		MatoreInfo deepCopy = (MatoreInfo) super.clone();
 		
 		deepCopy.matlisData = cloneMatlis(deepCopy.matlisData);
+		deepCopy.stolisData = cloneStolis(deepCopy.stolisData);
 		
 		return deepCopy;
 	}
@@ -76,6 +80,15 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 			return null;
 		
 		return (MatlisInfo) recordInfo.clone();
+	}	
+	
+	
+	
+	private StolisInfo cloneStolis(StolisInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (StolisInfo) recordInfo.clone();
 	}	
 	
 	

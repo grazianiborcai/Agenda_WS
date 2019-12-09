@@ -17,6 +17,8 @@ public final class MatoreCheckRead extends ModelCheckerTemplateSimpleV2<MatoreIn
 	
 	@Override protected boolean checkHook(MatoreInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner    <= 0
+			|| recordInfo.codMat      <= 0	
+			|| recordInfo.codStore    <= 0	
 			|| recordInfo.codLanguage == null
 			|| recordInfo.username	  == null	)		
 			
