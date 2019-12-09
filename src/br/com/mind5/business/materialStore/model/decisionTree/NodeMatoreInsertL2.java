@@ -26,8 +26,6 @@ public final class NodeMatoreInsertL2 extends DeciTreeWriteTemplate<MatoreInfo> 
 	
 	
 	@Override protected ModelChecker<MatoreInfo> buildDecisionCheckerHook(DeciTreeOption<MatoreInfo> option) {
-		final boolean NOT_DELETED = false;	
-		
 		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatoreInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -35,7 +33,7 @@ public final class NodeMatoreInsertL2 extends DeciTreeWriteTemplate<MatoreInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = NOT_DELETED;		
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new MatoreCheckSoftDelete(checkerOption);
 		queue.add(checker);	
 		

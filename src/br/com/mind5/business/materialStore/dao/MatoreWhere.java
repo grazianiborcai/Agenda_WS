@@ -42,10 +42,6 @@ public final class MatoreWhere implements DaoStmtWhere {
 				case MatoreDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
-					
-				case MatoreDbTableColumn.COL_COD_LANGUAGE :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
-					break;
 			}
 		}		
 		

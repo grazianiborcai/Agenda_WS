@@ -521,6 +521,7 @@ public final class SystemCode {
 	public static final int MAT_STORE_ALREADY_EXIST 					= 3053;
 	public static final int MAT_STORE_NOT_FOUND 						= 3054;
 	public static final int MAT_STORE_STOCK_NOT_EMPTY					= 3055;
+	public static final int MAT_STORE_MANDATORY_FIELD_EMPTY				= 3056;
 	
 	//Order
 	public static final int ORDER_HAVE_ITEM 							= 4000;

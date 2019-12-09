@@ -6,24 +6,24 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_COD_MATERIAL = "cod_material";
-	public static final String COL_COD_OWNER = "cod_owner";	
-	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
-	public static final String COL_PRICE = "price_store";	
-	public static final String COL_PRICE_1 = "price_store_1";
-	public static final String COL_PRICE_2 = "price_store_2";
-	public static final String COL_PRICE_3 = "price_store_3";
-	public static final String COL_PRICE_4 = "price_store_4";
-	public static final String COL_PRICE_5 = "price_store_5";
-	public static final String COL_PRICE_6 = "price_store_6";
-	public static final String COL_PRICE_7 = "price_store_7";	
-	public static final String COL_RECORD_MODE = "record_mode";
+	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_PRICE_STORE = DaoDbField.COL_PRICE_STORE;
+	public static final String COL_PRICE_STORE_1 = DaoDbField.COL_PRICE_STORE_1;
+	public static final String COL_PRICE_STORE_2 = DaoDbField.COL_PRICE_STORE_2;
+	public static final String COL_PRICE_STORE_3 = DaoDbField.COL_PRICE_STORE_3;
+	public static final String COL_PRICE_STORE_4 = DaoDbField.COL_PRICE_STORE_4;
+	public static final String COL_PRICE_STORE_5 = DaoDbField.COL_PRICE_STORE_5;
+	public static final String COL_PRICE_STORE_6 = DaoDbField.COL_PRICE_STORE_6;
+	public static final String COL_PRICE_STORE_7 = DaoDbField.COL_PRICE_STORE_7;		
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
@@ -75,7 +75,7 @@ public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_PRICE;
+		oneColumn.columnName = COL_PRICE_STORE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -83,7 +83,7 @@ public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_PRICE_1;
+		oneColumn.columnName = COL_PRICE_STORE_1;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -91,7 +91,7 @@ public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_PRICE_2;
+		oneColumn.columnName = COL_PRICE_STORE_2;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -99,7 +99,7 @@ public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_PRICE_3;
+		oneColumn.columnName = COL_PRICE_STORE_3;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -107,7 +107,7 @@ public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_PRICE_4;
+		oneColumn.columnName = COL_PRICE_STORE_4;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -115,7 +115,7 @@ public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_PRICE_5;
+		oneColumn.columnName = COL_PRICE_STORE_5;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -123,7 +123,7 @@ public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_PRICE_6;
+		oneColumn.columnName = COL_PRICE_STORE_6;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -131,7 +131,7 @@ public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_PRICE_7;
+		oneColumn.columnName = COL_PRICE_STORE_7;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -158,14 +158,6 @@ public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_LAST_CHANGED_BY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

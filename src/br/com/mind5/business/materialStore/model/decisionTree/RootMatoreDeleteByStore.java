@@ -10,6 +10,7 @@ import br.com.mind5.business.materialStore.model.checker.MatoreCheckDeleteByStor
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -25,8 +26,13 @@ public final class RootMatoreDeleteByStore extends DeciTreeWriteTemplate<MatoreI
 	@Override protected ModelChecker<MatoreInfo> buildDecisionCheckerHook(DeciTreeOption<MatoreInfo> option) {
 		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatoreInfo> checker;
+		ModelCheckerOption checkerOption;
 		
-		checker = new MatoreCheckDeleteByStore();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatoreCheckDeleteByStore(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<MatoreInfo>(queue);

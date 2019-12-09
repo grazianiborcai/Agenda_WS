@@ -145,6 +145,14 @@ public final class DaoDbField {
 	public static final String COL_NUMBER = "number";
 	public static final String COL_OWN_ID = "own_id";
 	public static final String COL_PRICE = "price";	
+	public static final String COL_PRICE_STORE = "price_store";	
+	public static final String COL_PRICE_STORE_1 = "price_store_1";
+	public static final String COL_PRICE_STORE_2 = "price_store_2";
+	public static final String COL_PRICE_STORE_3 = "price_store_3";
+	public static final String COL_PRICE_STORE_4 = "price_store_4";
+	public static final String COL_PRICE_STORE_5 = "price_store_5";
+	public static final String COL_PRICE_STORE_6 = "price_store_6";
+	public static final String COL_PRICE_STORE_7 = "price_store_7";	
 	public static final String COL_PRICE_UNIT = "price_unit";
 	public static final String COL_POSTALCODE = "zipCode";
 	public static final String COL_QUANTITY = "quantity";	

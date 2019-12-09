@@ -29,24 +29,28 @@ public final class RootMatoreDelete extends DeciTreeWriteTemplate<MatoreInfo> {
 	
 	
 	@Override protected ModelChecker<MatoreInfo> buildDecisionCheckerHook(DeciTreeOption<MatoreInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
-		ModelCheckerOption checkerOption = new ModelCheckerOption();
+		ModelCheckerOption checkerOption;
 		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatoreInfo> checker;
 		
-		checker = new MatoreCheckWrite();
-		queue.add(checker);			
-		
+		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new MatoreCheckWrite(checkerOption);
+		queue.add(checker);			
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatoreCheckExist(checkerOption);
 		queue.add(checker);		
 		
+		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatoreCheckStorauth(checkerOption);
 		queue.add(checker);		
 		

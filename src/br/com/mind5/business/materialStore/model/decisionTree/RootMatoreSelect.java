@@ -10,6 +10,7 @@ import br.com.mind5.business.materialStore.model.checker.MatoreCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,11 +24,16 @@ public final class RootMatoreSelect extends DeciTreeReadTemplate<MatoreInfo> {
 	
 	
 	@Override protected ModelChecker<MatoreInfo> buildDecisionCheckerHook(DeciTreeOption<MatoreInfo> option) {
+		ModelCheckerOption checkerOption;
 		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatoreInfo> checker;
 		
-		checker = new MatoreCheckRead();
-		queue.add(checker);
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new MatoreCheckRead(checkerOption);
+		queue.add(checker);		
 		
 		return new ModelCheckerQueue<>(queue);
 	}

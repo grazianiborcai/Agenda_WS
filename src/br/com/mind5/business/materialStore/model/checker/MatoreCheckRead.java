@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatoreCheckRead extends ModelCheckerTemplateSimple_<MatoreInfo> {
+public final class MatoreCheckRead extends ModelCheckerTemplateSimpleV2<MatoreInfo> {
 
-	public MatoreCheckRead() {
-		super();
+	public MatoreCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -18,22 +18,17 @@ public final class MatoreCheckRead extends ModelCheckerTemplateSimple_<MatoreInf
 	@Override protected boolean checkHook(MatoreInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner    <= 0
 			|| recordInfo.codLanguage == null
-			|| recordInfo.username	  == null	)			
-			return FAILED;
+			|| recordInfo.username	  == null	)		
+			
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.MAT_STORE_MANDATORY_FIELD_EMPTY;
 	}
 }
