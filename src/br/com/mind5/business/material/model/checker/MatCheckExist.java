@@ -1,10 +1,8 @@
 package br.com.mind5.business.material.model.checker;
 
 import br.com.mind5.business.material.info.MatInfo;
-import br.com.mind5.business.material.model.action.LazyMatSelect;
-import br.com.mind5.business.material.model.action.StdMatEnforceKey;
+import br.com.mind5.business.material.model.action.StdMatSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -19,11 +17,8 @@ public final class MatCheckExist extends ModelCheckerTemplateActionV2<MatInfo, M
 	
 	
 	@Override protected ActionStd<MatInfo> buildActionHook(DeciTreeOption<MatInfo> option) {
-		ActionStd<MatInfo> enforceKey = new StdMatEnforceKey(option);
-		ActionLazy<MatInfo> select = new LazyMatSelect(option.conn, option.schemaName);
-		
-		enforceKey.addPostAction(select);
-		return enforceKey;
+		ActionStd<MatInfo> select = new StdMatSelect(option);
+		return select;
 	}
 	
 	
