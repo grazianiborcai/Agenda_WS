@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
+import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeMatorarch;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreRootDelete;
-import br.com.mind5.business.materialStore.model.action.StdMatoreMergeToDelete;
+import br.com.mind5.business.materialStore.model.action.StdMatoreEnforceStoreKey;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckDeleteByStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -43,12 +44,14 @@ public final class RootMatoreDeleteByStore extends DeciTreeWriteTemplate<MatoreI
 	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
 		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MatoreInfo> mergeToDelete = new StdMatoreMergeToDelete(option);
-		ActionLazy<MatoreInfo> rootDelete = new LazyMatoreRootDelete(option.conn, option.schemaName);
+		ActionStd<MatoreInfo> enforceStoreKey = new StdMatoreEnforceStoreKey(option);
+		ActionLazy<MatoreInfo> mergeMatorarch = new LazyMatoreMergeMatorarch(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> delete = new LazyMatoreRootDelete(option.conn, option.schemaName);
 		
-		mergeToDelete.addPostAction(rootDelete);
+		enforceStoreKey.addPostAction(mergeMatorarch);
+		mergeMatorarch.addPostAction(delete);
 		
-		actions.add(mergeToDelete);
+		actions.add(enforceStoreKey);
 		return actions;
 	}
 }
