@@ -142,6 +142,7 @@ public final class DaoDbTable {
 	public static final String FILE_IMG_LIST_VIEW = "view_file_image_list";	
 	public static final String FILE_IMG_SEARCH_VIEW = "view_file_image_search";
 	public static final String MAT_LIST_VIEW = "view_material_list";
+	public static final String MAT_STORE_SEARCH_VIEW = "view_material_store_search";
 	public static final String MAT_TEXT_SEARCH_VIEW = "view_material_text_search";
 	public static final String MAT_TEXT_DEFAULT_VIEW = "view_material_text_default";
 	public static final String MAT_SEARCH_VIEW = "view_material_search";
