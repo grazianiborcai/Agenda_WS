@@ -25,6 +25,8 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 	public StolisInfo stolisData;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public String username;
 	public String recordMode;
 	
@@ -48,6 +50,7 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 		recordMode = DefaultValue.recordMode();
 		matlisData = DefaultValue.object();
 		stolisData = DefaultValue.object();
+		createdBy = DefaultValue.number();
 	}
 	
 	

@@ -105,4 +105,18 @@ public final class MatoreMerger {
 		InfoMerger<MatoreInfo, MatoreInfo> merger = new MatoreMergerToDelete();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static MatoreInfo mergeToUpdate(MatoreInfo sourceOne, MatoreInfo sourceTwo) {
+		InfoMerger<MatoreInfo, MatoreInfo> merger = new MatoreMergerToUpdate();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatoreInfo> mergeToUpdate(List<MatoreInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
+		InfoMerger<MatoreInfo, MatoreInfo> merger = new MatoreMergerToUpdate();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 }

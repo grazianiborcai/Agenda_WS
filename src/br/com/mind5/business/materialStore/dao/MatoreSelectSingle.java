@@ -65,6 +65,8 @@ public final class MatoreSelectSingle extends DaoStmtTemplate<MatoreInfo> {
 					dataInfo.recordMode = stmtResult.getString(MatoreDbTableColumn.COL_RECORD_MODE);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, MatoreDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, MatoreDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, MatoreDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, MatoreDbTableColumn.COL_CREATED_BY);
 					dataInfo.matPrice = DaoFormatter.sqlToDouble(stmtResult, MatoreDbTableColumn.COL_PRICE_STORE);
 					dataInfo.matPrice1 = DaoFormatter.sqlToDouble(stmtResult, MatoreDbTableColumn.COL_PRICE_STORE_1);
 					dataInfo.matPrice2 = DaoFormatter.sqlToDouble(stmtResult, MatoreDbTableColumn.COL_PRICE_STORE_2);

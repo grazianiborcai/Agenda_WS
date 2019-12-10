@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
+import br.com.mind5.business.materialStore.model.action.LazyMatoreEnforceLChanged;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeUsername;
+import br.com.mind5.business.materialStore.model.action.LazyMatoreRootSelect;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreUpdate;
-import br.com.mind5.business.materialStore.model.action.StdMatoreEnforceLChanged;
+import br.com.mind5.business.materialStore.model.action.StdMatoreMergeToUpdate;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -38,16 +40,18 @@ public final class NodeMatoreUpsertL7 extends DeciTreeWriteTemplate<MatoreInfo> 
 	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
 		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatoreInfo> enforceLChanged = new StdMatoreEnforceLChanged(option);
+		ActionStd<MatoreInfo> mergeToUpdate = new StdMatoreMergeToUpdate(option);
+		ActionLazy<MatoreInfo> enforceLChanged = new LazyMatoreEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> update = new LazyMatoreUpdate(option.conn, option.schemaName);
-		ActionStd<MatoreInfo> select = new RootMatoreSelect(option).toAction();
+		ActionLazy<MatoreInfo> select = new LazyMatoreRootSelect(option.conn, option.schemaName);
 		
+		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
+		update.addPostAction(select);
 
-		actions.add(enforceLChanged);
-		actions.add(select);
+		actions.add(mergeToUpdate);
 
 		return actions;
 	}
