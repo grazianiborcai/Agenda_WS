@@ -6,19 +6,19 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class MatmovDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_COD_MAT_MOV = "cod_mat_mov";
-	public static final String COL_COD_MAT_MOV_TYPE = "cod_mat_mov_type";
-	public static final String COL_COD_MATERIAL = "cod_material";
-	public static final String COL_COD_OWNER = "cod_owner";	
-	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_LAST_CHANGED_BY = "last_changed_by";
-	public static final String COL_POSTING_DATE = "posting_date";
-	public static final String COL_QUANTITY = "quantity";
+	public static final String COL_COD_MAT_MOV = DaoDbField.COL_COD_MAT_MOV;
+	public static final String COL_COD_MAT_MOV_TYPE = DaoDbField.COL_COD_MAT_MOV_TYPE;
+	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_POSTING_DATE = DaoDbField.COL_POSTING_DATE;
+	public static final String COL_QUANTITY = DaoDbField.COL_QUANTITY;
 
 	
 	
@@ -115,14 +115,6 @@ public final class MatmovDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_POSTING_DATE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

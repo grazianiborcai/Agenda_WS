@@ -25,26 +25,28 @@ public final class RootMatmovSelect extends DeciTreeReadTemplate<MatmovInfo> {
 	
 	
 	@Override protected ModelChecker<MatmovInfo> buildDecisionCheckerHook(DeciTreeOption<MatmovInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<MatmovInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatmovInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new MatmovCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new MatmovCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatmovCheckLangu(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatmovCheckStorauth(checkerOption);
 		queue.add(checker);	
 		

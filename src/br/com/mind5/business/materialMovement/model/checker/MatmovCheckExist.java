@@ -1,61 +1,40 @@
 package br.com.mind5.business.materialMovement.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.model.action.LazyMatmovSelect;
 import br.com.mind5.business.materialMovement.model.action.StdMatmovEnforceKey;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatmovCheckExist extends ModelCheckerTemplateAction_<MatmovInfo> {
+public final class MatmovCheckExist extends ModelCheckerTemplateActionV2<MatmovInfo, MatmovInfo> {
 	
 	public MatmovCheckExist(ModelCheckerOption option) {
-		super(option);
+		super(option, MatmovInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<MatmovInfo> buildActionHook(MatmovInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<MatmovInfo> option = buildOption(recordInfo, conn, schemaName);
+	@Override protected ActionStd<MatmovInfo> buildActionHook(DeciTreeOption<MatmovInfo> option) {
+		ActionStd<MatmovInfo> enforceKey = new StdMatmovEnforceKey(option);
+		ActionLazy<MatmovInfo> select = new LazyMatmovSelect(option.conn, option.schemaName);
 		
-		ActionStd<MatmovInfo> actionSelect = new StdMatmovEnforceKey(option);
-		actionSelect.addPostAction(new LazyMatmovSelect(conn, schemaName));
-		return actionSelect;
+		enforceKey.addPostAction(select);		
+		return enforceKey;
 	}
 	
 	
 	
-	private DeciTreeOption<MatmovInfo> buildOption(MatmovInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<MatmovInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.MAT_MOV_ALREADY_EXIST;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.MAT_MOV_ALREADY_EXIST)
-			return SystemMessage.MAT_MOV_ALREADY_EXIST;
-		
-		return SystemMessage.MAT_MOV_NOT_FOUND;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.MAT_MOV_ALREADY_EXIST;	
-			
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.MAT_MOV_NOT_FOUND;
 	}
 }

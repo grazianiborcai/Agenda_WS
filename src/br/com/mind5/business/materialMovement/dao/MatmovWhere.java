@@ -42,10 +42,6 @@ public final class MatmovWhere implements DaoStmtWhere {
 				case MatmovDbTableColumn.COL_COD_MAT_MOV :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMatmov));
 					break;
-					
-				case MatmovDbTableColumn.COL_COD_LANGUAGE :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
-					break;
 			}
 		}		
 		

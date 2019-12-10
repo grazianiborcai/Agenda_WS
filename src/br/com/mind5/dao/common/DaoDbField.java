@@ -43,6 +43,7 @@ public final class DaoDbField {
 	public static final String COL_COD_LANGUAGE = "language";
 	public static final String COL_COD_MAT_CATEG = "cod_category";
 	public static final String COL_COD_MAT_GROUP = "cod_group";
+	public static final String COL_COD_MAT_MOV = "cod_mat_mov";
 	public static final String COL_COD_MAT_MOV_TYPE = "cod_mat_mov_type";
 	public static final String COL_COD_MAT_TYPE = "cod_type";
 	public static final String COL_COD_MATERIAL = "cod_material";	
@@ -144,6 +145,7 @@ public final class DaoDbField {
 	public static final String COL_NAME_SEARCH = "name_search";
 	public static final String COL_NUMBER = "number";
 	public static final String COL_OWN_ID = "own_id";
+	public static final String COL_POSTING_DATE = "posting_date";
 	public static final String COL_PRICE = "price";	
 	public static final String COL_PRICE_STORE = "price_store";	
 	public static final String COL_PRICE_STORE_1 = "price_store_1";
