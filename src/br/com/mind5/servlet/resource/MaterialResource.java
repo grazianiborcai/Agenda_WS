@@ -25,6 +25,7 @@ import br.com.mind5.business.materialMovement.model.MatmovModelSelect;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.MatoreModelDelete;
 import br.com.mind5.business.materialStore.model.MatoreModelInsert;
+import br.com.mind5.business.materialStore.model.MatoreModelSearch;
 import br.com.mind5.business.materialStore.model.MatoreModelSelect;
 import br.com.mind5.business.materialStore.model.MatoreModelUpdate;
 import br.com.mind5.model.Model;
@@ -37,6 +38,7 @@ public class MaterialResource {
 	private static final String SELECT_MATERIAL = "/selectMaterial";	
 	private static final String SEARCH_MATERIAL_LIST = "/searchMaterialList";
 	private static final String SELECT_MAT_STORE = "/selectMatStore";
+	private static final String SEARCH_MAT_STORE = "/searchMatStore";
 	private static final String INSERT_MAT_STORE = "/insertMatStore";
 	private static final String UPDATE_MAT_STORE = "/updateMatStore";
 	private static final String DELETE_MAT_STORE = "/deleteMatStore";
@@ -47,6 +49,7 @@ public class MaterialResource {
 	@POST
 	@Path(INSERT_MATERIAL)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertMaterial(@Context HttpServletRequest request, String incomingData) {	
 		
 		Model model = new MatModelInsert(incomingData, request);
@@ -59,6 +62,7 @@ public class MaterialResource {
 	@POST
 	@Path(UPDATE_MATERIAL)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateMaterial(@Context HttpServletRequest request, String incomingData) {
 
 		Model model = new MatModelUpdate(incomingData, request);
@@ -70,6 +74,7 @@ public class MaterialResource {
 	
 	@DELETE
 	@Path(DELETE_MATERIAL)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteMaterial(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
 			                       @HeaderParam("codMat")    	  @DefaultValue("-1") long codMat,
 			                       @HeaderParam("TOKEN_USERNAME") String username,
@@ -150,8 +155,22 @@ public class MaterialResource {
 	
 	
 	@POST
+	@Path(SEARCH_MAT_STORE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchMatore(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new MatoreModelSearch(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
 	@Path(INSERT_MAT_STORE)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertMatore(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new MatoreModelInsert(incomingData, request);
@@ -164,6 +183,7 @@ public class MaterialResource {
 	@POST
 	@Path(UPDATE_MAT_STORE)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateMatore(@Context HttpServletRequest request, String incomingData) {
 
 		Model model = new MatoreModelUpdate(incomingData, request);
@@ -200,6 +220,7 @@ public class MaterialResource {
 	@POST
 	@Path(INSERT_MAT_MOV)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertMatmov(@Context HttpServletRequest request, String incomingData) {	
 		
 		Model model = new MatmovModelInsert(incomingData, request);
