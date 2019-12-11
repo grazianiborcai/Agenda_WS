@@ -15,8 +15,8 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoJoinEmp;
 import br.com.mind5.dao.common.DaoJoinMat;
+import br.com.mind5.dao.common.DaoJoinStore;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class MatorarchSelectSingle extends DaoStmtTemplate<MatorarchInfo> {
@@ -61,8 +61,8 @@ public final class MatorarchSelectSingle extends DaoStmtTemplate<MatorarchInfo> 
 	@Override protected List<DaoJoin> getJoinsHook() {		
 		List<DaoJoin> joins = new ArrayList<>();	
 		
-		DaoJoinBuilder joinEmp = new DaoJoinEmp(MAIN_TABLE);		
-		joins.add(joinEmp.build());
+		DaoJoinBuilder joinStore = new DaoJoinStore(MAIN_TABLE);		
+		joins.add(joinStore.build());
 		
 		DaoJoinBuilder joinMat = new DaoJoinMat(MAIN_TABLE);		
 		joins.add(joinMat.build());
