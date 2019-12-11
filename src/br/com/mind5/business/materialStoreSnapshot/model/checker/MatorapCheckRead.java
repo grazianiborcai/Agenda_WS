@@ -17,7 +17,8 @@ public final class MatorapCheckRead extends ModelCheckerTemplateSimpleV2<Matorap
 	
 	@Override protected boolean checkHook(MatorapInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner    <= 0
-			|| recordInfo.codSnapshot <= 0	
+			|| recordInfo.codSnapshot <= 0
+			|| recordInfo.codLanguage == null
 			|| recordInfo.username	  == null	)		
 			
 			return super.FAILED;

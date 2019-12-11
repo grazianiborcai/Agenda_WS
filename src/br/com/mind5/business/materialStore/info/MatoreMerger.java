@@ -5,11 +5,26 @@ import java.util.List;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
+import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class MatoreMerger {
+	public static MatoreInfo mergeWithMatorap(MatorapInfo sourceOne, MatoreInfo sourceTwo) {
+		InfoMerger<MatoreInfo, MatorapInfo> merger = new MatoreMergerMatorap();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatoreInfo> mergeWithMatorap(List<MatorapInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
+		InfoMerger<MatoreInfo, MatorapInfo> merger = new MatoreMergerMatorap();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static MatoreInfo mergeWithMatorarch(MatorarchInfo sourceOne, MatoreInfo sourceTwo) {
 		InfoMerger<MatoreInfo, MatorarchInfo> merger = new MatoreMergerMatorarch();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -20,7 +35,7 @@ public final class MatoreMerger {
 	public static List<MatoreInfo> mergeWithMatorarch(List<MatorarchInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
 		InfoMerger<MatoreInfo, MatorarchInfo> merger = new MatoreMergerMatorarch();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}
+	}	
 	
 	
 	

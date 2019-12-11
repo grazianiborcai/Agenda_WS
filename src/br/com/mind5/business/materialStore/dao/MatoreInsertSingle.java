@@ -52,6 +52,7 @@ public final class MatoreInsertSingle extends DaoStmtTemplate<MatoreInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);			
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
 				
 				return stmt;
 			}		

@@ -8,6 +8,7 @@ import br.com.mind5.business.materialStore.model.action.LazyMatoreEnforceCreated
 import br.com.mind5.business.materialStore.model.action.LazyMatoreEnforceCreatedOn;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreInsert;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeUsername;
+import br.com.mind5.business.materialStore.model.action.LazyMatoreNodeSnapshot;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreRootSelect;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreUpdate;
 import br.com.mind5.business.materialStore.model.action.StdMatoreEnforceLChanged;
@@ -53,13 +54,15 @@ public final class NodeMatoreUpsertL8 extends DeciTreeWriteTemplate<MatoreInfo> 
 		ActionLazy<MatoreInfo> enforceCreatedOn = new LazyMatoreEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazy<MatoreInfo> enforceCreatedBy = new LazyMatoreEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> insert = new LazyMatoreInsert(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> snapshot = new LazyMatoreNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> select = new LazyMatoreRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(insert);
-		insert.addPostAction(select);
+		insert.addPostAction(snapshot);
+		snapshot.addPostAction(select);
 		
 		actions.add(enforceLChanged);		
 		return actions;
@@ -75,13 +78,15 @@ public final class NodeMatoreUpsertL8 extends DeciTreeWriteTemplate<MatoreInfo> 
 		ActionLazy<MatoreInfo> enforceCreatedOn = new LazyMatoreEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazy<MatoreInfo> enforceCreatedBy = new LazyMatoreEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> update = new LazyMatoreUpdate(option.conn, option.schemaName);
+		ActionLazy<MatoreInfo> snapshot = new LazyMatoreNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> select = new LazyMatoreRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(update);
-		update.addPostAction(select);
+		update.addPostAction(snapshot);
+		snapshot.addPostAction(select);
 		
 		actions.add(enforceLChanged);		
 		return actions;

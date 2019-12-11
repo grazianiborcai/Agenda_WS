@@ -62,6 +62,7 @@ public final class MatoreSelectSingle extends DaoStmtTemplate<MatoreInfo> {
 					dataInfo.codOwner = stmtResult.getLong(MatoreDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(MatoreDbTableColumn.COL_COD_STORE);
 					dataInfo.codMat = stmtResult.getLong(MatoreDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, MatoreDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.recordMode = stmtResult.getString(MatoreDbTableColumn.COL_RECORD_MODE);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, MatoreDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, MatoreDbTableColumn.COL_LAST_CHANGED_BY);
