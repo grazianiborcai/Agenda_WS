@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.business.materialStock.model.action.LazyMatockEnforceBalance;
 import br.com.mind5.business.materialStock.model.action.LazyMatockEnforceLChanged;
-import br.com.mind5.business.materialStock.model.action.LazyMatockNodeUpdate;
+import br.com.mind5.business.materialStock.model.action.LazyMatockNodeBalanceL1;
+import br.com.mind5.business.materialStock.model.action.LazyMatockUpdate;
 import br.com.mind5.business.materialStock.model.action.StdMatockMergeToUpdate;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckExist;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckLangu;
@@ -102,13 +102,13 @@ public final class RootMatockUpdate extends DeciTreeWriteTemplate<MatockInfo> {
 		List<ActionStd<MatockInfo>> actions = new ArrayList<>();
 
 		ActionStd<MatockInfo> mergeToUpdate = new StdMatockMergeToUpdate(option);
-		ActionLazy<MatockInfo> enforceLChanged = new LazyMatockEnforceLChanged(option.conn, option.schemaName);		
-		ActionLazy<MatockInfo> enforceBalance = new LazyMatockEnforceBalance(option.conn, option.schemaName);
-		ActionLazy<MatockInfo> update = new LazyMatockNodeUpdate(option.conn, option.schemaName);	
+		ActionLazy<MatockInfo> enforceLChanged = new LazyMatockEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazy<MatockInfo> balance = new LazyMatockNodeBalanceL1(option.conn, option.schemaName);	
+		ActionLazy<MatockInfo> update = new LazyMatockUpdate(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceBalance);
-		enforceBalance.addPostAction(update);
+		enforceLChanged.addPostAction(balance);
+		balance.addPostAction(update);
 		
 		actions.add(mergeToUpdate);
 		return actions;

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.business.materialStock.model.action.LazyMatockEnforceBalance;
-import br.com.mind5.business.materialStock.model.action.LazyMatockNodeInsert;
+import br.com.mind5.business.materialStock.model.action.LazyMatockInsert;
+import br.com.mind5.business.materialStock.model.action.LazyMatockNodeBalanceL1;
 import br.com.mind5.business.materialStock.model.action.StdMatockEnforceLChanged;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckLangu;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckMat;
@@ -93,11 +93,11 @@ public final class RootMatockInsert extends DeciTreeWriteTemplate<MatockInfo> {
 		List<ActionStd<MatockInfo>> actions = new ArrayList<>();
 
 		ActionStd<MatockInfo> enforceLChanged = new StdMatockEnforceLChanged(option);
-		ActionLazy<MatockInfo> enforceBalance = new LazyMatockEnforceBalance(option.conn, option.schemaName);
-		ActionLazy<MatockInfo> insert = new LazyMatockNodeInsert(option.conn, option.schemaName);
+		ActionLazy<MatockInfo> balance = new LazyMatockNodeBalanceL1(option.conn, option.schemaName);
+		ActionLazy<MatockInfo> insert = new LazyMatockInsert(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(enforceBalance);
-		enforceBalance.addPostAction(insert);
+		enforceLChanged.addPostAction(balance);
+		balance.addPostAction(insert);
 		
 		actions.add(enforceLChanged);	
 		return actions;

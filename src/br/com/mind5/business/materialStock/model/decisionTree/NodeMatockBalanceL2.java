@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.business.materialStock.model.action.StdMatockInsert;
-import br.com.mind5.business.materialStock.model.checker.MatockCheckIsIncome;
+import br.com.mind5.business.materialStock.model.action.StdMatockSuccess;
+import br.com.mind5.business.materialStock.model.checker.MatockCheckBalance;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckLimit;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeMatockInsert extends DeciTreeWriteTemplate<MatockInfo> {
+public final class NodeMatockBalanceL2 extends DeciTreeWriteTemplate<MatockInfo> {
 	
-	public NodeMatockInsert(DeciTreeOption<MatockInfo> option) {
+	public NodeMatockBalanceL2(DeciTreeOption<MatockInfo> option) {
 		super(option);
 	}
 	
@@ -24,11 +25,20 @@ public final class NodeMatockInsert extends DeciTreeWriteTemplate<MatockInfo> {
 	@Override protected ModelChecker<MatockInfo> buildDecisionCheckerHook(DeciTreeOption<MatockInfo> option) {
 		List<ModelChecker<MatockInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatockInfo> checker;
+		ModelCheckerOption checkerOption;		
 		
-		checker = new MatockCheckLimit();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatockCheckBalance(checkerOption);
 		queue.add(checker);
 		
-		checker = new MatockCheckIsIncome();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatockCheckLimit(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
@@ -39,11 +49,9 @@ public final class NodeMatockInsert extends DeciTreeWriteTemplate<MatockInfo> {
 	@Override protected List<ActionStd<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
 		List<ActionStd<MatockInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatockInfo> insert = new StdMatockInsert(option);
-		ActionStd<MatockInfo> select = new RootMatockSelect(option).toAction();	
+		ActionStd<MatockInfo> success = new StdMatockSuccess(option);
 		
-		actions.add(insert);	
-		actions.add(select);
+		actions.add(success);
 		return actions;
 	}
 }
