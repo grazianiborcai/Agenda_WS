@@ -38,10 +38,6 @@ public final class MatockWhere implements DaoStmtWhere {
 				case MatockDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
-					
-				case MatockDbTableColumn.COL_COD_LANGUAGE :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
-					break;
 			}
 		}		
 		

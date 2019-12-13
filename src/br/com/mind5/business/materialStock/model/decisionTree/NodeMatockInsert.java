@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.action.StdMatockInsert;
-import br.com.mind5.business.materialStock.model.checker.MatockCheckInsert;
+import br.com.mind5.business.materialStock.model.checker.MatockCheckIsIncome;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckLimit;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -28,7 +28,7 @@ public final class NodeMatockInsert extends DeciTreeWriteTemplate<MatockInfo> {
 		checker = new MatockCheckLimit();
 		queue.add(checker);
 		
-		checker = new MatockCheckInsert();
+		checker = new MatockCheckIsIncome();
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);

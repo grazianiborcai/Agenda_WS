@@ -22,19 +22,21 @@ public final class RootMatockUpsert extends DeciTreeWriteTemplate<MatockInfo> {
 	
 	
 	@Override protected ModelChecker<MatockInfo> buildDecisionCheckerHook(DeciTreeOption<MatockInfo> option) {
-		final boolean EXIST_ON_DB = true;	
-		
 		List<ModelChecker<MatockInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatockInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new MatockCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatockCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatockCheckExist(checkerOption);
 		queue.add(checker);	
 		

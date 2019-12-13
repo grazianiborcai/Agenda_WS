@@ -6,8 +6,10 @@ import java.util.List;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.action.StdMatockMergeToSelect;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckLangu;
+import br.com.mind5.business.materialStock.model.checker.MatockCheckMat;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckRead;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckStorauth;
+import br.com.mind5.business.materialStock.model.checker.MatockCheckStore;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -25,26 +27,42 @@ public final class RootMatockSelect extends DeciTreeReadTemplate<MatockInfo> {
 	
 	
 	@Override protected ModelChecker<MatockInfo> buildDecisionCheckerHook(DeciTreeOption<MatockInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<MatockInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatockInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new MatockCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatockCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatockCheckLangu(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new MatockCheckMat(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new MatockCheckStore(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatockCheckStorauth(checkerOption);
 		queue.add(checker);	
 		

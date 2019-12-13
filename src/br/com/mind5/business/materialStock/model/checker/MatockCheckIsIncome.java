@@ -8,9 +8,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
 
-public final class MatockCheckInsert extends ModelCheckerTemplateSimple_<MatockInfo> {
+public final class MatockCheckIsIncome extends ModelCheckerTemplateSimple_<MatockInfo> {
 
-	public MatockCheckInsert() {
+	public MatockCheckIsIncome() {
 		super();
 	}
 	

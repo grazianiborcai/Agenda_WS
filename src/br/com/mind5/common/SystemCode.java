@@ -514,6 +514,7 @@ public final class SystemCode {
 	public static final int MAT_STOCK_NOT_FOUND 						= 3001;
 	public static final int MAT_STOCK_NO_BALANCE 						= 3002;
 	public static final int MAT_STOCK_LIMIT_EXCEEDED					= 3003;
+	public static final int MAT_STOCK_MANDATORY_FIELD_EMPTY				= 3004;
 	
 	//Material Store
 	public static final int MAT_STORE_PRICE_INCONSISTENCY				= 3050;

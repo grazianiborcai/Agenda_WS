@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class MatockSetterKey implements InfoSetter<MatockInfo> {
+public final class MatockSetterKey_ implements InfoSetter<MatockInfo> {
 	
 	public MatockInfo setAttr(MatockInfo recordInfo) {
 		checkArgument(recordInfo);

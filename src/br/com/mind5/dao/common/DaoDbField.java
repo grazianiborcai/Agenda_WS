@@ -158,6 +158,7 @@ public final class DaoDbField {
 	public static final String COL_PRICE_UNIT = "price_unit";
 	public static final String COL_POSTALCODE = "zipCode";
 	public static final String COL_QUANTITY = "quantity";	
+	public static final String COL_QUANTITY_STOCK = "quantity_stock";
 	public static final String COL_QUARTER = "quarter";
 	public static final String COL_RAZAO_SOCIAL = "razao_social";
 	public static final String COL_RECORD_MODE = "record_mode";	

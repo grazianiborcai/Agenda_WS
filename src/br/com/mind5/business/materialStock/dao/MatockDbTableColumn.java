@@ -6,15 +6,15 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class MatockDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_COD_MATERIAL = "cod_material";
-	public static final String COL_COD_OWNER = "cod_owner";	
-	public static final String COL_COD_STORE = "cod_store";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_QUANTITY_STOCK = "quantity_stock";
+	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_QUANTITY_STOCK = DaoDbField.COL_QUANTITY_STOCK;
 
 	
 	
@@ -79,14 +79,6 @@ public final class MatockDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_QUANTITY_STOCK;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.LANGUAGE_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
