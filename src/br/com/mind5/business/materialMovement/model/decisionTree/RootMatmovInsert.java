@@ -5,13 +5,15 @@ import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.model.action.LazyMatmovEnforcePostingDate;
-import br.com.mind5.business.materialMovement.model.action.LazyMatmovMergeMat;
+import br.com.mind5.business.materialMovement.model.action.LazyMatmovInsert;
 import br.com.mind5.business.materialMovement.model.action.LazyMatmovMergeUsername;
-import br.com.mind5.business.materialMovement.model.action.LazyMatmovNodeInsert;
+import br.com.mind5.business.materialMovement.model.action.LazyMatmovRootSelect;
+import br.com.mind5.business.materialMovement.model.action.LazyMatmovUpsertMatock;
 import br.com.mind5.business.materialMovement.model.action.StdMatmovEnforceLChanged;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckInsert;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckLangu;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMat;
+import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMatarchProduct;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMatmovType;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMatore;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckOwner;
@@ -84,6 +86,13 @@ public final class RootMatmovInsert extends DeciTreeWriteTemplate<MatmovInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new MatmovCheckMatarchProduct(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatmovCheckStorauth(checkerOption);
 		queue.add(checker);	
 		
@@ -94,9 +103,6 @@ public final class RootMatmovInsert extends DeciTreeWriteTemplate<MatmovInfo> {
 		checker = new MatmovCheckMatore(checkerOption);
 		queue.add(checker);	
 		
-		//TODO: posting date + recordmode
-		//TODO: lock table for update
-		//TODO: check limit
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -107,14 +113,16 @@ public final class RootMatmovInsert extends DeciTreeWriteTemplate<MatmovInfo> {
 
 		ActionStd<MatmovInfo> enforceLChanged = new StdMatmovEnforceLChanged(option);
 		ActionLazy<MatmovInfo> enforceLChangedBy = new LazyMatmovMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatmovInfo> mergeMat = new LazyMatmovMergeMat(option.conn, option.schemaName);
 		ActionLazy<MatmovInfo> enforcePostingDate = new LazyMatmovEnforcePostingDate(option.conn, option.schemaName);
-		ActionLazy<MatmovInfo> nodeInsert = new LazyMatmovNodeInsert(option.conn, option.schemaName);
+		ActionLazy<MatmovInfo> insert = new LazyMatmovInsert(option.conn, option.schemaName);
+		ActionLazy<MatmovInfo> upsertStock = new LazyMatmovUpsertMatock(option.conn, option.schemaName);
+		ActionLazy<MatmovInfo> select = new LazyMatmovRootSelect(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(mergeMat);		
-		mergeMat.addPostAction(enforcePostingDate);
-		enforcePostingDate.addPostAction(nodeInsert);
+		enforceLChangedBy.addPostAction(enforcePostingDate);
+		enforcePostingDate.addPostAction(insert);
+		insert.addPostAction(upsertStock);
+		upsertStock.addPostAction(select);
 		
 		actions.add(enforceLChanged);	
 		return actions;

@@ -3,16 +3,16 @@ package br.com.mind5.business.materialMovement.model.action;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
+import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatmovEnforceKey implements ActionStd<MatmovInfo> {
+public final class StdMatmovMergeMatlis implements ActionStd<MatmovInfo> {
 	private ActionStd<MatmovInfo> actionHelper;	
 	
 	
-	public StdMatmovEnforceKey(DeciTreeOption<MatmovInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiMatmovEnforceKey());
+	public StdMatmovMergeMatlis(DeciTreeOption<MatmovInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatmovMergeMatlis(option.conn, option.schemaName));
 	}
 	
 	

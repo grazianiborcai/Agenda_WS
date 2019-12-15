@@ -3,13 +3,13 @@ package br.com.mind5.business.materialMovement.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoMergerVisitor;
 
-final class MatmovVisiMergeMat implements InfoMergerVisitor<MatmovInfo, MatInfo> {
+final class MatmovVisiMergeMatlis implements InfoMergerVisitor<MatmovInfo, MatlisInfo> {
 
-	@Override public MatmovInfo writeRecord(MatInfo sourceOne, MatmovInfo sourceTwo) {
+	@Override public MatmovInfo writeRecord(MatlisInfo sourceOne, MatmovInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		MatmovInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class MatmovVisiMergeMat implements InfoMergerVisitor<MatmovInfo, MatInfo>
 	
 	
 	
-	private void checkArgument(MatInfo sourceOne, MatmovInfo sourceTwo) {
+	private void checkArgument(MatlisInfo sourceOne, MatmovInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,14 +37,14 @@ final class MatmovVisiMergeMat implements InfoMergerVisitor<MatmovInfo, MatInfo>
 	
 	
 	
-	private MatmovInfo merge(MatInfo sourceOne, MatmovInfo sourceTwo) {
-		sourceTwo.codMatCateg = sourceOne.codMatCateg;
+	private MatmovInfo merge(MatlisInfo sourceOne, MatmovInfo sourceTwo) {
+		sourceTwo.matlisData = sourceOne;
 		return sourceTwo;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(MatInfo sourceOne, MatmovInfo sourceTwo) {
+	@Override public boolean shouldWrite(MatlisInfo sourceOne, MatmovInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner	&&
 				sourceOne.codMat   == sourceTwo.codMat			);
 	}

@@ -4,15 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
-import br.com.mind5.business.materialMovement.model.decisionTree.NodeMatmovInsert;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatmovNodeInsert extends ActionLazyTemplate<MatmovInfo, MatmovInfo> {
-
-	public LazyMatmovNodeInsert(Connection conn, String schemaName) {
+public final class LazyMatmovMergeMatlis extends ActionLazyTemplate<MatmovInfo, MatmovInfo> {
+	
+	public LazyMatmovMergeMatlis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyMatmovNodeInsert extends ActionLazyTemplate<MatmovInfo, M
 	
 	
 	@Override protected ActionStd<MatmovInfo> getInstanceOfActionHook(DeciTreeOption<MatmovInfo> option) {
-		return new NodeMatmovInsert(option).toAction();
+		return new StdMatmovMergeMatlis(option);
 	}
 	
 	

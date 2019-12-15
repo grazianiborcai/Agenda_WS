@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -13,12 +14,12 @@ public final class MatmovInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codMat;
 	public char codMatmovType;
-	public int codMatCateg;
 	public int quantity;
 	public LocalDate postingDate;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
+	public MatlisInfo matlisData;
 	
 	
 	public MatmovInfo() {
@@ -29,9 +30,9 @@ public final class MatmovInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codMatmovType = DefaultValue.character();
-		codMatCateg = DefaultValue.number();
 		quantity = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
+		matlisData = DefaultValue.object();
 	}
 	
 	
@@ -49,7 +50,20 @@ public final class MatmovInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		MatmovInfo deepCopy = (MatmovInfo) super.clone();
+		
+		deepCopy.matlisData = cloneMatlis(deepCopy.matlisData);
+		
+		return deepCopy;
+	}
+	
+	
+	
+	private MatlisInfo cloneMatlis(MatlisInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (MatlisInfo) recordInfo.clone();
 	}
 	
 	

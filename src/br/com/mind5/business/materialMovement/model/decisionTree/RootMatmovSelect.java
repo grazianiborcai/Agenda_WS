@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
+import br.com.mind5.business.materialMovement.model.action.LazyMatmovMergeMatlis;
 import br.com.mind5.business.materialMovement.model.action.StdMatmovMergeToSelect;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckLangu;
+import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMat;
+import br.com.mind5.business.materialMovement.model.checker.MatmovCheckOwner;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckRead;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckStorauth;
+import br.com.mind5.business.materialMovement.model.checker.MatmovCheckStore;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -47,6 +52,27 @@ public final class RootMatmovSelect extends DeciTreeReadTemplate<MatmovInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new MatmovCheckOwner(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new MatmovCheckStore(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new MatmovCheckMat(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatmovCheckStorauth(checkerOption);
 		queue.add(checker);	
 		
@@ -59,6 +85,9 @@ public final class RootMatmovSelect extends DeciTreeReadTemplate<MatmovInfo> {
 		List<ActionStd<MatmovInfo>> actions = new ArrayList<>();
 
 		ActionStd<MatmovInfo> select = new StdMatmovMergeToSelect(option);
+		ActionLazy<MatmovInfo> mergeMatlis = new LazyMatmovMergeMatlis(option.conn, option.schemaName);
+		
+		select.addPostAction(mergeMatlis);
 		
 		actions.add(select);
 		return actions;
