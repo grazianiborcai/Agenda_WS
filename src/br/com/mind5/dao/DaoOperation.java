@@ -29,6 +29,12 @@ public enum DaoOperation {
 		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
 			return new DaoStmtBuilderSelect(option, clazz);
 		}
+	},
+	
+	LOCK("LOCK", false) {
+		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
+			return new DaoStmtBuilderLock(option, clazz);
+		}
 	};
 	
 	

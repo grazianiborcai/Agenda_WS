@@ -18,7 +18,7 @@ final class DaoStmtBuilderSelect extends DaoStmtBuilderTemplate {
 	
 	
 	
-	@Override protected String buildStmtHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins, boolean lockWrite) {
+	@Override protected String buildStmtHook(String schemaName, String tableName, String whereClause, List<DaoColumn> columns, List<DaoJoin> joins) {
 		StringBuilder resultStatement = new StringBuilder();
 		
 		resultStatement = appendOperation(resultStatement);
@@ -26,7 +26,7 @@ final class DaoStmtBuilderSelect extends DaoStmtBuilderTemplate {
 		resultStatement = appendTable(resultStatement, schemaName, tableName);
 		resultStatement = appendJoin(resultStatement, schemaName, joins);
 		resultStatement = appendWhere(resultStatement, whereClause);
-		resultStatement = appendLockWrite(resultStatement, lockWrite);
+		resultStatement = appendEndStatement(resultStatement);
 		
 		return resultStatement.toString();
 	}
@@ -194,10 +194,7 @@ final class DaoStmtBuilderSelect extends DaoStmtBuilderTemplate {
 	
 	
 	
-	private StringBuilder appendLockWrite(StringBuilder statement, boolean lockWrite) {
-		if (lockWrite)
-			statement.append(DaoDictionary.LOCK_WRITE);
-		
+	private StringBuilder appendEndStatement(StringBuilder statement) {
 		statement.append(DaoDictionary.END_STATEMENT);
 		
 		return statement;		

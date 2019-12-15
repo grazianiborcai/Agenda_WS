@@ -13,13 +13,11 @@ public final class DaoStmtBuilderOption {
 	public List<DaoJoin> joins;
 	public boolean ignoreLookUpColumn;
 	public boolean ignoreAutoIncrementedColumn;
-	public boolean lockWrite;
 	
 	
 	public DaoStmtBuilderOption() {
 		columns = new ArrayList<>();
 		ignoreLookUpColumn = DaoOptionValue.DONT_IGNORE_LOOKUP;
 		ignoreAutoIncrementedColumn = DaoOptionValue.DONT_IGNORE_AUTO_INCREMENTED;
-		lockWrite = DaoOptionValue.DONT_LOCK_WRITE;
 	}
 }
