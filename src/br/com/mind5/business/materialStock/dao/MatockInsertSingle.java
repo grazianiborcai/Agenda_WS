@@ -37,6 +37,7 @@ public final class MatockInsertSingle extends DaoStmtTemplate<MatockInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatockInfo recordInfo) throws SQLException {
 				
 				int i = 1;
+				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setLong(i++, recordInfo.codMat);
 				stmt.setLong(i++, recordInfo.codStore);

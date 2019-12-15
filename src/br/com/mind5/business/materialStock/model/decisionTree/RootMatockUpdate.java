@@ -5,9 +5,10 @@ import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.action.LazyMatockEnforceLChanged;
+import br.com.mind5.business.materialStock.model.action.LazyMatockMergeToUpdate;
 import br.com.mind5.business.materialStock.model.action.LazyMatockNodeBalanceL1;
 import br.com.mind5.business.materialStock.model.action.LazyMatockUpdate;
-import br.com.mind5.business.materialStock.model.action.StdMatockMergeToUpdate;
+import br.com.mind5.business.materialStock.model.action.StdMatockLock;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckExist;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckLangu;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckMat;
@@ -101,16 +102,18 @@ public final class RootMatockUpdate extends DeciTreeWriteTemplate<MatockInfo> {
 	@Override protected List<ActionStd<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
 		List<ActionStd<MatockInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatockInfo> mergeToUpdate = new StdMatockMergeToUpdate(option);
+		ActionStd<MatockInfo> lockRecord = new StdMatockLock(option);
+		ActionLazy<MatockInfo> mergeToUpdate = new LazyMatockMergeToUpdate(option.conn, option.schemaName);
 		ActionLazy<MatockInfo> enforceLChanged = new LazyMatockEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<MatockInfo> balance = new LazyMatockNodeBalanceL1(option.conn, option.schemaName);	
 		ActionLazy<MatockInfo> update = new LazyMatockUpdate(option.conn, option.schemaName);	
 		
+		lockRecord.addPostAction(mergeToUpdate);
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(balance);
 		balance.addPostAction(update);
 		
-		actions.add(mergeToUpdate);
+		actions.add(lockRecord);
 		return actions;
 	}
 }

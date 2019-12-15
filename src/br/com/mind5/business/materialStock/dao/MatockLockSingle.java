@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -16,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class MatockSelectSingle extends DaoStmtTemplate<MatockInfo> {
+public final class MatockLockSingle extends DaoStmtTemplate<MatockInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_STOCK_TABLE;	
 	
 	
-	public MatockSelectSingle(Connection conn, MatockInfo recordInfo, String schemaName) {
+	public MatockLockSingle(Connection conn, MatockInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -33,7 +32,7 @@ public final class MatockSelectSingle extends DaoStmtTemplate<MatockInfo> {
 	
 	
 	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
+		return DaoOperation.LOCK;
 	}
 	
 	
@@ -42,6 +41,7 @@ public final class MatockSelectSingle extends DaoStmtTemplate<MatockInfo> {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new MatockWhere(whereOption, tableName, recordInfo);
@@ -54,20 +54,7 @@ public final class MatockSelectSingle extends DaoStmtTemplate<MatockInfo> {
 		return new DaoResultParserV2<MatockInfo>() {
 			@Override public List<MatockInfo> parseResult(MatockInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatockInfo> finalResult = new ArrayList<>();
-				
-				if (stmtResult.next() == false)				
-					return finalResult;
-				
-				do {
-					MatockInfo dataInfo = new MatockInfo();
-					dataInfo.codOwner = stmtResult.getLong(MatockDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(MatockDbTableColumn.COL_COD_STORE);
-					dataInfo.codMat = stmtResult.getLong(MatockDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.quantityStock = stmtResult.getInt(MatockDbTableColumn.COL_QUANTITY_STOCK);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, MatockDbTableColumn.COL_LAST_CHANGED);		
-					
-					finalResult.add(dataInfo);
-				} while (stmtResult.next());
+				finalResult.add(recordInfo);
 				
 				return finalResult;
 			}
