@@ -40,6 +40,7 @@ public final class MatmovSelectSingle extends DaoStmtTemplate<MatmovInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, MatmovInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
@@ -66,9 +67,15 @@ public final class MatmovSelectSingle extends DaoStmtTemplate<MatmovInfo> {
 					dataInfo.codMatmovType = DaoFormatter.sqlToChar(stmtResult, MatmovDbTableColumn.COL_COD_MAT_MOV_TYPE);
 					dataInfo.codMat = stmtResult.getLong(MatmovDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.quantity = stmtResult.getInt(MatmovDbTableColumn.COL_QUANTITY);
-					dataInfo.postingDate = DaoFormatter.sqlToLocalDate(stmtResult, MatmovDbTableColumn.COL_POSTING_DATE);
+					dataInfo.quantityStock = stmtResult.getInt(MatmovDbTableColumn.COL_QUANTITY_STOCK);
+					dataInfo.postingDate = DaoFormatter.sqlToLocalDate(stmtResult, MatmovDbTableColumn.COL_POSTING_DATE);					
+					dataInfo.postingMonth = stmtResult.getInt(MatmovDbTableColumn.COL_POSTING_MONTH);
+					dataInfo.postingYear = stmtResult.getInt(MatmovDbTableColumn.COL_POSTING_YEAR);
+					dataInfo.postingYearMonth = stmtResult.getInt(MatmovDbTableColumn.COL_POSTING_YEAR_MONTH);					
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, MatmovDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, MatmovDbTableColumn.COL_LAST_CHANGED_BY);			
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, MatmovDbTableColumn.COL_LAST_CHANGED_BY);	
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, MatmovDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, MatmovDbTableColumn.COL_CREATED_BY);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

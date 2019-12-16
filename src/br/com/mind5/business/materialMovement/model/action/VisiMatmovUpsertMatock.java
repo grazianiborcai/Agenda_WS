@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
+import br.com.mind5.business.materialMovement.info.MatmovMerger;
 import br.com.mind5.business.materialStock.info.MatockCopier;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.decisionTree.RootMatockUpsert;
@@ -31,6 +32,6 @@ final class VisiMatmovUpsertMatock extends ActionVisitorTemplateAction<MatmovInf
 	
 	
 	@Override protected List<MatmovInfo> toBaseClassHook(List<MatmovInfo> baseInfos, List<MatockInfo> results) {
-		return baseInfos;
+		return MatmovMerger.mergeWithMatock(results, baseInfos);
 	}
 }

@@ -75,19 +75,19 @@ public abstract class ModelTemplate<T> implements Model {
 		if (isValid == false)
 			return;
 		
-		conn = getDbConnHook();
-		schemaName = getDbSchemaHook();	
+		conn = getDbConn();
+		schemaName = getDbSchema();	
 	}
 	
 	
 	
-	protected Connection getDbConnHook() {
+	private Connection getDbConn() {
 		return DbConnection.getConnection();
 	}
 	
 	
 	
-	protected String getDbSchemaHook() {
+	private String getDbSchema() {
 		return DbSchema.getDefaultSchemaName();
 	}
 	

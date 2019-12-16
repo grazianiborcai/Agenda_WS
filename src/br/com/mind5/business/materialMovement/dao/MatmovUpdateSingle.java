@@ -52,6 +52,7 @@ public final class MatmovUpdateSingle extends DaoStmtTemplate<MatmovInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatmovInfo recordInfo) throws SQLException {	
 				
 				int i = 1;
+				
 				stmt = DaoFormatter.charToStmt(stmt, i++, recordInfo.codMatmovType);
 				stmt.setLong(i++, recordInfo.codMat);
 				stmt.setLong(i++, recordInfo.codStore);
@@ -59,6 +60,12 @@ public final class MatmovUpdateSingle extends DaoStmtTemplate<MatmovInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 				stmt.setInt(i++, recordInfo.quantity);	
 				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.postingDate);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingMonth);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYearMonth);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.quantityStock);
 				
 				return stmt;
 			}		

@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
-import br.com.mind5.business.materialMovement.model.action.LazyMatmovEnforcePostingDate;
-import br.com.mind5.business.materialMovement.model.action.LazyMatmovInsert;
-import br.com.mind5.business.materialMovement.model.action.LazyMatmovMergeUsername;
 import br.com.mind5.business.materialMovement.model.action.LazyMatmovRootSelect;
-import br.com.mind5.business.materialMovement.model.action.LazyMatmovUpsertMatock;
-import br.com.mind5.business.materialMovement.model.action.StdMatmovEnforceLChanged;
+import br.com.mind5.business.materialMovement.model.action.LazyMatmovNodeMatock;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckInsert;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckLangu;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMat;
@@ -111,20 +107,14 @@ public final class RootMatmovInsert extends DeciTreeWriteTemplate<MatmovInfo> {
 	@Override protected List<ActionStd<MatmovInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmovInfo> option) {
 		List<ActionStd<MatmovInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatmovInfo> enforceLChanged = new StdMatmovEnforceLChanged(option);
-		ActionLazy<MatmovInfo> enforceLChangedBy = new LazyMatmovMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatmovInfo> enforcePostingDate = new LazyMatmovEnforcePostingDate(option.conn, option.schemaName);
-		ActionLazy<MatmovInfo> insert = new LazyMatmovInsert(option.conn, option.schemaName);
-		ActionLazy<MatmovInfo> upsertStock = new LazyMatmovUpsertMatock(option.conn, option.schemaName);
+		ActionStd<MatmovInfo> insert = new NodeMatmovInsert(option).toAction();
+		ActionLazy<MatmovInfo> upsertStock = new LazyMatmovNodeMatock(option.conn, option.schemaName);
 		ActionLazy<MatmovInfo> select = new LazyMatmovRootSelect(option.conn, option.schemaName);	
 		
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(enforcePostingDate);
-		enforcePostingDate.addPostAction(insert);
 		insert.addPostAction(upsertStock);
 		upsertStock.addPostAction(select);
 		
-		actions.add(enforceLChanged);	
+		actions.add(insert);	
 		return actions;
 	}
 }

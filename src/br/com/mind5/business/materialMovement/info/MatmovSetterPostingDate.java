@@ -13,7 +13,11 @@ public final class MatmovSetterPostingDate implements InfoSetter<MatmovInfo> {
 	public MatmovInfo setAttr(MatmovInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		recordInfo.postingDate = genPostingDate();
+		recordInfo.postingDate = DefaultValue.localDateNow();		
+		recordInfo.postingYearMonth = getYearMonth(recordInfo.postingDate);
+		recordInfo.postingYear = recordInfo.postingDate.getYear();
+		recordInfo.postingMonth = Integer.valueOf(getMonth(recordInfo.postingDate));	
+		
 		return recordInfo;
 	}
 	
@@ -28,8 +32,19 @@ public final class MatmovSetterPostingDate implements InfoSetter<MatmovInfo> {
 	
 	
 	
-	private LocalDate genPostingDate() {
-		return DefaultValue.localDateNow();
+	private int getYearMonth(LocalDate postingDate) {
+		String year = String.valueOf(postingDate.getYear());
+		String month = getMonth(postingDate);		
+		String yearMonth = year + month;
+		
+		return Integer.valueOf(yearMonth);
+	}
+	
+	
+	
+	private String getMonth(LocalDate postingDate) {
+		String month = "0" + String.valueOf(postingDate.getMonthValue());		
+		return month.substring(month.length()-2, month.length());
 	}
 	
 	

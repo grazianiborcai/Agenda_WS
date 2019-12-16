@@ -15,9 +15,17 @@ public final class MatmovInfo extends InfoRecord implements Cloneable {
 	public long codMat;
 	public char codMatmovType;
 	public int quantity;
+	public int quantityStock;	
 	public LocalDate postingDate;
+	
+	public int postingYearMonth;
+	public int postingYear;
+	public int postingMonth;
+	
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public String username;
 	public MatlisInfo matlisData;
 	
@@ -31,7 +39,12 @@ public final class MatmovInfo extends InfoRecord implements Cloneable {
 		codMat = DefaultValue.number();
 		codMatmovType = DefaultValue.character();
 		quantity = DefaultValue.number();
+		quantityStock = DefaultValue.number();		
+		postingYearMonth = DefaultValue.number();
+		postingYear = DefaultValue.number();
+		postingMonth = DefaultValue.number();		
 		lastChangedBy = DefaultValue.number();
+		createdBy = DefaultValue.number();
 		matlisData = DefaultValue.object();
 	}
 	

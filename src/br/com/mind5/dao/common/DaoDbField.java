@@ -146,6 +146,9 @@ public final class DaoDbField {
 	public static final String COL_NUMBER = "number";
 	public static final String COL_OWN_ID = "own_id";
 	public static final String COL_POSTING_DATE = "posting_date";
+	public static final String COL_POSTING_MONTH = "posting_month";
+	public static final String COL_POSTING_YEAR = "posting_year";
+	public static final String COL_POSTING_YEAR_MONTH = "posting_year_month";	
 	public static final String COL_PRICE = "price";	
 	public static final String COL_PRICE_STORE = "price_store";	
 	public static final String COL_PRICE_STORE_1 = "price_store_1";

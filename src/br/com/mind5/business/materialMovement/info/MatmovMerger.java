@@ -3,10 +3,25 @@ package br.com.mind5.business.materialMovement.info;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class MatmovMerger {
+	public static MatmovInfo mergeWithMatock(MatockInfo sourceOne, MatmovInfo sourceTwo) {
+		InfoMerger<MatmovInfo, MatockInfo> merger = new MatmovMergerMatock();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<MatmovInfo> mergeWithMatock(List<MatockInfo> sourceOnes, List<MatmovInfo> sourceTwos) {
+		InfoMerger<MatmovInfo, MatockInfo> merger = new MatmovMergerMatock();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static MatmovInfo mergeWithMatlis(MatlisInfo sourceOne, MatmovInfo sourceTwo) {
 		InfoMerger<MatmovInfo, MatlisInfo> merger = new MatmovMergerMatlis();		
 		return merger.merge(sourceOne, sourceTwo);
