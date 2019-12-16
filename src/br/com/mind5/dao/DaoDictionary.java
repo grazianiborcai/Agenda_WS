@@ -1,6 +1,7 @@
 package br.com.mind5.dao;
 
 public final class DaoDictionary {
+	public static final String ALL_COLUMNS = "*";
 	public static final String AND = "AND";
 	public static final String COMMA = ",";
 	public static final String EQUAL = "=";

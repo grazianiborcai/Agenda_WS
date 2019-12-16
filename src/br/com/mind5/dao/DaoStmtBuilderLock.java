@@ -1,6 +1,5 @@
 package br.com.mind5.dao;
 
-import java.util.Iterator;
 import java.util.List;
 
 final class DaoStmtBuilderLock extends DaoStmtBuilderTemplate {
@@ -21,7 +20,7 @@ final class DaoStmtBuilderLock extends DaoStmtBuilderTemplate {
 		StringBuilder resultStatement = new StringBuilder();
 		
 		resultStatement = appendOperation(resultStatement);
-		resultStatement = appendColumn(resultStatement, columns);
+		resultStatement = appendColumn(resultStatement);
 		resultStatement = appendTable(resultStatement, schemaName, tableName);
 		resultStatement = appendWhere(resultStatement, whereClause);
 		resultStatement = appendLockWrite(resultStatement);
@@ -41,20 +40,9 @@ final class DaoStmtBuilderLock extends DaoStmtBuilderTemplate {
 	
 	
 	
-	private StringBuilder appendColumn(StringBuilder statement, List<DaoColumn> columns) {
-		Iterator<DaoColumn> columnItr = columns.iterator();
-		
-		while (columnItr.hasNext()) {
-			DaoColumn eachColumn = columnItr.next();
-			statement.append(eachColumn.tableName);
-			statement.append(DaoDictionary.PERIOD);
-			statement.append(eachColumn.columnName);
-			
-			if (columnItr.hasNext()) {
-				statement.append(DaoDictionary.COMMA);
-				statement.append(DaoDictionary.SPACE);
-			}
-		}
+	private StringBuilder appendColumn(StringBuilder statement) {
+		statement.append(DaoDictionary.ALL_COLUMNS);
+		statement.append(DaoDictionary.SPACE);
 		
 		return statement;		
 	}
@@ -86,6 +74,7 @@ final class DaoStmtBuilderLock extends DaoStmtBuilderTemplate {
 	
 	
 	private StringBuilder appendLockWrite(StringBuilder statement) {
+		statement.append(DaoDictionary.SPACE);
 		statement.append(DaoDictionary.LOCK_WRITE);
 		
 		return statement;		
