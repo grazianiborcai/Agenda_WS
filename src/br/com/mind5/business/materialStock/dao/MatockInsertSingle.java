@@ -48,4 +48,10 @@ public final class MatockInsertSingle extends DaoStmtTemplate<MatockInfo> {
 			}		
 		};
 	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
+	}
 }

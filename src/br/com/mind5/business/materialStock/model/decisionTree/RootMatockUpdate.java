@@ -93,7 +93,7 @@ public final class RootMatockUpdate extends DeciTreeWriteTemplate<MatockInfo> {
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatockCheckStorauth(checkerOption);
 		queue.add(checker);	
-		//TODO: verificar categoria material - somente Produto
+
 		return new ModelCheckerQueue<>(queue);
 	}
 	

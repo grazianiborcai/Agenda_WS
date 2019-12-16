@@ -24,8 +24,8 @@ public final class MatockInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codMatmovType = DefaultValue.character();
-		quantityStock = DefaultValue.number();
-		quantityToUpdate = DefaultValue.number();
+		quantityStock = 0;
+		quantityToUpdate = 0;
 	}
 	
 	
