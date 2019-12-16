@@ -10,13 +10,14 @@ import br.com.mind5.servlet.ServletMind5;
 public final class DbConnection {
 	private static DataSource ds;
 	
-	public static Connection getConnection() {
+	public static synchronized Connection getConnection() {
 		try {
 			if (ds == null)
 				initialize();
 			
 			Connection newConn = ds.getConnection();
 			newConn.setAutoCommit(false);
+			System.out.println(newConn);
 			return newConn;
 			
 		} catch (SQLException e) {
@@ -32,7 +33,7 @@ public final class DbConnection {
 	
 	
 	
-	public static void closeConnection(Connection conn) {
+	public static synchronized void closeConnection(Connection conn) {
 		rollback(conn);
 		close(conn);
 	}

@@ -2,6 +2,7 @@ package br.com.mind5.servlet;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Connection;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -19,9 +20,17 @@ public class ServletMind5 extends ServletContainer {
 	private static final long serialVersionUID = 1L;
 	public static final String DRIVER = "com.mysql.jdbc.Driver";	
 	public static ServletContext context;
-	public static ConcurrentHashMap<String, DataSource> datasource = new ConcurrentHashMap<String, DataSource>();
+	public static ConcurrentHashMap<String, DataSource> datasource = new ConcurrentHashMap<String, DataSource>();	
+	
+	
+	@Override public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		context = config.getServletContext();
+		putDataSource(config.getServletContext(), "jdbc/gdaDB");
+	}
 	
 
+	
 	public static final DataSource putDataSource(ServletContext sContext, String key) {
 		PoolProperties p = new PoolProperties();
 		
@@ -54,7 +63,9 @@ public class ServletMind5 extends ServletContainer {
 		String dbUser = prop.getProperty("user");
 		String dbPassword = prop.getProperty("password");
 
-		
+		p.setDefaultAutoCommit(false);
+		p.setDefaultTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+		p.setFairQueue(true);
 		p.setUrl(dburl);
 		p.setDriverClassName(DRIVER);
 		p.setUsername(dbUser);
@@ -76,7 +87,8 @@ public class ServletMind5 extends ServletContainer {
 		p.setLogAbandoned(true);
 		p.setRemoveAbandoned(true);
 		p.setJdbcInterceptors("org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"
-				+ "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
+				            + "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer;"
+				            + "org.apache.tomcat.jdbc.pool.interceptor.ResetAbandonedTimer");
 		DataSource d = new DataSource();
 		d.setPoolProperties(p);
 
@@ -86,15 +98,6 @@ public class ServletMind5 extends ServletContainer {
 			dS = d;
 
 		return dS;
-	}
-
-	
-	
-	@Override public void init(ServletConfig config) throws ServletException {
-		super.init(config);
-		context = config.getServletContext();
-		putDataSource(config.getServletContext(), "jdbc/gdaDB");
-
 	}
 
 	
