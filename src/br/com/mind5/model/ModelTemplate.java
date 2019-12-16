@@ -350,7 +350,7 @@ public abstract class ModelTemplate<T> implements Model {
 	}	
 
 	
-	
+	//TODO: remover esse metodo
 	protected Class<?> getImplamentationClassHook() {
 		//Template method to be overridden by subclasses
 		logExceptionWithSupperClass(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
