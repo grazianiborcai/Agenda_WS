@@ -27,4 +27,10 @@ final class VisiMatmovUpsertMatock extends ActionVisitorTemplateAction<MatmovInf
 	@Override protected ActionStd<MatockInfo> getActionHook(DeciTreeOption<MatockInfo> option) {
 		return new RootMatockUpsert(option).toAction();
 	}
+	
+	
+	
+	@Override protected List<MatmovInfo> toBaseClassHook(List<MatmovInfo> baseInfos, List<MatockInfo> results) {
+		return baseInfos;
+	}
 }

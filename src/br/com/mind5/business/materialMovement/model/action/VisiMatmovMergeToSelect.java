@@ -5,9 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.info.MatmovMerger;
-import br.com.mind5.business.materialMovement.model.decisionTree.RootMatmovSelect;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
-import br.com.mind5.model.decisionTree.DeciTree;
 
 final class VisiMatmovMergeToSelect extends ActionVisitorTemplateMergeV2<MatmovInfo, MatmovInfo> {
 	
@@ -17,8 +16,8 @@ final class VisiMatmovMergeToSelect extends ActionVisitorTemplateMergeV2<MatmovI
 	
 	
 	
-	@Override protected Class<? extends DeciTree<MatmovInfo>> getTreeClassHook() {
-		return RootMatmovSelect.class;
+	@Override protected Class<? extends ActionStd<MatmovInfo>> getActionClassHook() {
+		return StdMatmovSelect.class;
 	}
 	
 	
