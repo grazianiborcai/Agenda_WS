@@ -7,6 +7,7 @@ import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.action.StdMatockMergeToSelect;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckLangu;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckMat;
+import br.com.mind5.business.materialStock.model.checker.MatockCheckOwner;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckRead;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckStorauth;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckStore;
@@ -43,6 +44,13 @@ public final class RootMatockSelect extends DeciTreeReadTemplate<MatockInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatockCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new MatockCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
