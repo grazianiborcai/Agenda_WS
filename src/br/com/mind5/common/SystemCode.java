@@ -921,4 +921,7 @@ public final class SystemCode {
 	
 	//Material Store Snapshot
 	public static final int MAT_STORE_SNAPSHOT_MANDATORY_FIELD_EMPTY	= 8050;
+	
+	//Material Stock Search
+	public static final int MAT_STOCK_SEARCH_MANDATORY_FIELD_EMPTY		= 9000;
 }

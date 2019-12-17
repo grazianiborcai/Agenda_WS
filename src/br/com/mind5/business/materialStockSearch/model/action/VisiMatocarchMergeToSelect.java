@@ -1,0 +1,34 @@
+package br.com.mind5.business.materialStockSearch.model.action;
+
+import java.sql.Connection;
+import java.util.List;
+
+import br.com.mind5.business.materialStockSearch.info.MatocarchInfo;
+import br.com.mind5.business.materialStockSearch.info.MatocarchMerger;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+final class VisiMatocarchMergeToSelect extends ActionVisitorTemplateMergeV2<MatocarchInfo, MatocarchInfo> {
+	
+	public VisiMatocarchMergeToSelect(Connection conn, String schemaName) {
+		super(conn, schemaName, MatocarchInfo.class);
+	}
+	
+	
+	
+	@Override protected Class<? extends ActionStd<MatocarchInfo>> getActionClassHook() {
+		return StdMatocarchSelect.class;
+	}
+	
+	
+	
+	@Override protected List<MatocarchInfo> mergeHook(List<MatocarchInfo> recordInfos, List<MatocarchInfo> selectedInfos) {	
+		return MatocarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	}
+	
+	
+	
+	@Override protected boolean shouldMergeWhenEmptyHook() {
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+	}
+}
