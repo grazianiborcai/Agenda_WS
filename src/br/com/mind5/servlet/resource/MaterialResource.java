@@ -21,6 +21,7 @@ import br.com.mind5.business.material.model.MatModelUpdate;
 import br.com.mind5.business.materialList.model.MatlisModelSearch;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.model.MatmovModelInsert;
+import br.com.mind5.business.materialMovement.model.MatmovModelSearch;
 import br.com.mind5.business.materialMovement.model.MatmovModelSelect;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.MatoreModelDelete;
@@ -44,6 +45,7 @@ public class MaterialResource {
 	private static final String DELETE_MAT_STORE = "/deleteMatStore";
 	private static final String INSERT_MAT_MOV = "/insertMatmov";
 	private static final String SELECT_MAT_MOV = "/selectMatmov";	
+	private static final String SEARCH_MAT_MOV = "/searchMatmov";
 
 	
 	@POST
@@ -249,6 +251,19 @@ public class MaterialResource {
 		
 		
 		Model model = new MatmovModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@POST
+	@Path(SEARCH_MAT_MOV)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchMatmov(@Context HttpServletRequest request, String incomingData) {	
+		
+		Model model = new MatmovModelSearch(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
