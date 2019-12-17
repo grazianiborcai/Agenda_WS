@@ -924,4 +924,7 @@ public final class SystemCode {
 	
 	//Material Stock Search
 	public static final int MAT_STOCK_SEARCH_MANDATORY_FIELD_EMPTY		= 9000;
+	
+	//Material Movement Search
+	public static final int MAT_MOV_SEARCH_MANDATORY_FIELD_EMPTY		= 9050;
 }
