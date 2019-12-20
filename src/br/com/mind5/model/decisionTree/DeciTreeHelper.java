@@ -39,7 +39,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 	
 	
 	
-	public void makeDecision() {
+	public synchronized void makeDecision() {
 		//TODO: loop por registro
 		boolean checkResult = checkCondition(recordInfos, checker);
 		
@@ -146,7 +146,7 @@ public final class DeciTreeHelper<T> implements DeciTree<T> {
 
 
 	
-	public DeciResult<T> getDecisionResult() {
+	public synchronized DeciResult<T> getDecisionResult() {
 		return deciResult;
 	}
 	

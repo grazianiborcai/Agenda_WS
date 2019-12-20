@@ -38,15 +38,6 @@ public final class DeciResultHelper<T> implements DeciResult<T> {
 	
 	
 	
-	private void checkArgument(DeciResult<?> deciResult) {
-		if (deciResult == null) {
-			logException(new NullPointerException("deciResult" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("deciResult" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
 	private void buildSuccessMessage(DeciResult<?> deciResult) {
 		isSuccess = deciResult.isSuccess();
 		hasResultset = deciResult.hasResultset();
@@ -155,6 +146,15 @@ public final class DeciResultHelper<T> implements DeciResult<T> {
 		failCode = DefaultValue.number();
 		isSuccess = null;
 		hasResultset = false;
+	}
+	
+	
+	
+	private void checkArgument(DeciResult<?> deciResult) {
+		if (deciResult == null) {
+			logException(new NullPointerException("deciResult" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("deciResult" + SystemMessage.NULL_ARGUMENT);
+		}
 	}
 	
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 
-public final class DeciTreeHelperOption<T> {
+final class DeciTreeHelperOption<T> {
 	public List<T> recordInfos;
 	public Connection conn;
 	public String schemaName;
