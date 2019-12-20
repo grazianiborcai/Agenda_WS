@@ -7,10 +7,11 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 
-public final class DeciTreeHelper<T> implements DeciTree<T> {
+public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	private final boolean RESULT_SUCCESS = true;
 	private final boolean RESULT_FAILED = false;
 	private final boolean EMPTY = false;

@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.personCustomer.info.PersonCusInfo;
+import br.com.mind5.business.personCustomer_.info.PersonCusInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;

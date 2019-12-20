@@ -1,6 +1,6 @@
 package br.com.mind5.security.userSnapshot.info;
 
-import br.com.mind5.business.personCustomer.info.PersonCusInfo;
+import br.com.mind5.business.personCustomer_.info.PersonCusInfo;
 import br.com.mind5.info.InfoMergerTemplate;
 import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;

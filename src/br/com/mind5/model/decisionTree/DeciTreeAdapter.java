@@ -10,9 +10,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStdTemplate;
 
-public final class DeciTreeAdapter<T> extends ActionStdTemplate<T> {
+public final class DeciTreeAdapter<T extends InfoRecord> extends ActionStdTemplate<T> {
 	private DeciTree<T> currentTree;
 	private List<DeciTree<T>> trees;
 	private Iterator<DeciTree<T>> itr;

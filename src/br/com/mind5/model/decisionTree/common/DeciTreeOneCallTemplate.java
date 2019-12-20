@@ -9,12 +9,13 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.DbConnection;
 import br.com.mind5.common.DbSchema;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class DeciTreeOneCallTemplate<T> implements DeciTree<T> {
+public abstract class DeciTreeOneCallTemplate<T extends InfoRecord> implements DeciTree<T> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	

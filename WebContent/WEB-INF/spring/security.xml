@@ -19,7 +19,6 @@
 	<!-- Free of authentication --> 
 	<http pattern="/**/Signup/**"   					security="none"/>
 	<http pattern="/**/Signin/**" 						security="none"/>
-	<http pattern="/**/Test/**"     					security="none"/>
 	<http pattern="/**/Webhook/**"     					security="none"/>
 	<http pattern="/**/Payment/permissionCodeMoip"		security="none"/>
 	<http pattern="/**/MoipApp/**"  					security="none"/>	<!-- TODO: Somente para teste -->

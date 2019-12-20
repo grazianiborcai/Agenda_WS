@@ -6,10 +6,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 
-public abstract class DeciTreeReadTemplate<T> implements DeciTree<T> {
+public abstract class DeciTreeReadTemplate<T extends InfoRecord> implements DeciTree<T> {
 	private DeciTree<T> tree;
 	
 	
@@ -53,12 +54,6 @@ public abstract class DeciTreeReadTemplate<T> implements DeciTree<T> {
 	@Override public void makeDecision() {
 		tree.makeDecision();
 	}
-		
-
-/*	
-	@Override public DeciChoice getDecisionMade() {
-		return tree.getDecisionMade();
-	} */
 	
 	
 	

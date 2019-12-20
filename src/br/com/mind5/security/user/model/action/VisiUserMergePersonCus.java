@@ -3,8 +3,8 @@ package br.com.mind5.security.user.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.business.personCustomer.info.PersonCusInfo;
-import br.com.mind5.business.personCustomer.model.decisionTree.RootPersonCusSelect;
+import br.com.mind5.business.personCustomer_.info.PersonCusInfo;
+import br.com.mind5.business.personCustomer_.model.decisionTree.RootPersonCusSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.user.info.UserInfo;

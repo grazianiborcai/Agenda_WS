@@ -9,7 +9,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.obsolete.ModelHelper_;
 
 public abstract class ModelRequestChecker {
 	private String fieldName;
@@ -109,7 +108,7 @@ public abstract class ModelRequestChecker {
 	
 	
 	private static void logException(Exception e) {
-		Logger logger = LogManager.getLogger(ModelHelper_.class);
+		Logger logger = LogManager.getLogger(ModelRequestChecker.class);
 		logger.error(e.getMessage(), e);
 	}
 }

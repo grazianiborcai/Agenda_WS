@@ -8,10 +8,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 
-public abstract class DeciTreeWriteTemplate<T> implements DeciTree<T> {
+public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements DeciTree<T> {
 	private DeciTree<T> currentTree;
 	private List<DeciTree<T>> trees;
 	private Iterator<DeciTree<T>> itr;

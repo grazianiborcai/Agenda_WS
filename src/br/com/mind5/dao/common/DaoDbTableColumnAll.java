@@ -62,7 +62,7 @@ import br.com.mind5.business.orderSnapshot.dao.OrdnapDbTableColumn;
 import br.com.mind5.business.owner.dao.OwnerDbTableColumn;
 import br.com.mind5.business.ownerSnapshot.dao.OwnerapDbTableColumn;
 import br.com.mind5.business.person.dao.PersonDbTableColumn;
-import br.com.mind5.business.personCustomer.dao.PersonCusDbTableColumn;
+import br.com.mind5.business.personCustomer_.dao.PersonCusDbTableColumn;
 import br.com.mind5.business.personList.dao.PersolisDbTableColumn;
 import br.com.mind5.business.personSearch.dao.PerarchDbTableColumn;
 import br.com.mind5.business.personSnapshot.dao.PersonapDbTableColumn;

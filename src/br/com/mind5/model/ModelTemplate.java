@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.DbConnection;
 import br.com.mind5.common.DbSchema;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.json.JsonBodyParser;
 import br.com.mind5.json.standard.JstdBodyParser;
 import br.com.mind5.model.common.ModelRequestCheckerOwner;
@@ -27,7 +28,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 
-public abstract class ModelTemplate<T> implements Model {
+public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
