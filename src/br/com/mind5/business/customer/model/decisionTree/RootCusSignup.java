@@ -9,7 +9,7 @@ import br.com.mind5.business.customer.model.action.StdCusMergeCusarchByEmail;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.business.customer.model.checker.CusCheckSignup;
-import br.com.mind5.business.customer.model.checker.CusCheckTechField;
+import br.com.mind5.business.customer.model.checker.CusCheckTechField_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -36,7 +36,7 @@ public final class RootCusSignup extends DeciTreeWriteTemplate<CusInfo> {
 		checker = new CusCheckSignup();
 		queue.add(checker);
 		
-		checker = new CusCheckTechField();
+		checker = new CusCheckTechField_();
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

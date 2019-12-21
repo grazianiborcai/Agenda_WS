@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCusEnforceUserCateg extends ActionLazyTemplate<CusInfo, CusInfo> {
+public final class LazyCusEnforceUserCateg_ extends ActionLazyTemplate<CusInfo, CusInfo> {
 	
-	public LazyCusEnforceUserCateg(Connection conn, String schemaName) {
+	public LazyCusEnforceUserCateg_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCusEnforceUserCateg extends ActionLazyTemplate<CusInfo, C
 	
 	
 	@Override protected ActionStd<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
-		return new StdCusEnforceUserCateg(option);
+		return new StdCusEnforceUserCateg_(option);
 	}
 	
 	

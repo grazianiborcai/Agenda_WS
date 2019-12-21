@@ -3,14 +3,15 @@ package br.com.mind5.business.customer.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.mind5.business.masterData.info.common.UserCateg;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class CusSetterKey implements InfoSetter<CusInfo> {
+public final class CusSetterCodUserCateg_ implements InfoSetter<CusInfo> {
 	
 	public CusInfo setAttr(CusInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setKey(recordInfo);
+		return setCodUserCateg(recordInfo);
 	}
 	
 	
@@ -24,13 +25,9 @@ public final class CusSetterKey implements InfoSetter<CusInfo> {
 	
 	
 	
-	private CusInfo setKey(CusInfo recordInfo) {
-		CusInfo result = new CusInfo();
-		result.codOwner = recordInfo.codOwner;
-		result.codCustomer = recordInfo.codCustomer;
-		result.username = recordInfo.username;
-		result.codLanguage = recordInfo.codLanguage;
-		return result;
+	private CusInfo setCodUserCateg(CusInfo recordInfo) {
+		recordInfo.codUserCategory = UserCateg.CUSTOMER.getCodUserCateg();
+		return recordInfo;
 	}
 	
 	

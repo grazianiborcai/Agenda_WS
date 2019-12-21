@@ -28,19 +28,21 @@ public final class RootCusSelect extends DeciTreeReadTemplate<CusInfo> {
 	
 	
 	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
-		ModelCheckerOption checkerOption;	
+		ModelCheckerOption checkerOption;		
 		
-		checker = new CusCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
+		checker = new CusCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult =  ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CusCheckLangu(checkerOption);
 		queue.add(checker);	
 		

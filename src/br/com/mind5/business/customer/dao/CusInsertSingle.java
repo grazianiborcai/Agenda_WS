@@ -10,112 +10,61 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtParamTranslator;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class CusInsertSingle implements DaoStmt<CusInfo> {	
-	private DaoStmt<CusInfo> stmtSql;
-	private DaoStmtOption_<CusInfo> stmtOption;
-	
+public final class CusInsertSingle extends DaoStmtTemplate<CusInfo> {	
+	private final String MAIN_TABLE = DaoDbTable.CUS_TABLE;
 	
 	
 	public CusInsertSingle(Connection conn, CusInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
-		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, CusInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.CUS_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser(recordInfo);
-		this.stmtOption.whereClause = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
-	}
-		
-	
-	
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<CusInfo> getResultset() {
-		return stmtSql.getResultset();
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.INSERT;
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<CusInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusInfo recordInfo) throws SQLException {			
-			int i = 1;
-			stmt.setLong(i++, recordInfo.codOwner);		
-			stmt.setString(i++, recordInfo.recordMode);			
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
-			
-			return stmt;
-		}		
+	@Override protected DaoStmtParamTranslator<CusInfo> getParamTranslatorHook() {
+		return new DaoStmtParamTranslator<CusInfo>() {		
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusInfo recordInfo) throws SQLException {
+				int i = 1;
+				
+				stmt.setLong(i++, recordInfo.codOwner);		
+				stmt.setString(i++, recordInfo.recordMode);			
+				stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+				
+				return stmt;
+			}		
+		};
 	}
 	
 	
 	
-	@Override public DaoStmt<CusInfo> getNewInstance() {
-		return new CusInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<CusInfo> {
-		private CusInfo recordInfo;
-		
-		public ResultParser(CusInfo recordToParse) {
-			recordInfo = recordToParse;
-		}
-		
-		
-		
-		@Override public List<CusInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<CusInfo> finalResult = new ArrayList<>();
-			recordInfo.codCustomer = lastId;
-			finalResult.add(recordInfo);			
-			return finalResult;
-		}
+	@Override protected DaoResultParserV2<CusInfo> getResultParserHook() {
+		return new DaoResultParserV2<CusInfo>() {		
+			@Override public List<CusInfo> parseResult(CusInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<CusInfo> finalResult = new ArrayList<>();
+				recordInfo.codCustomer = lastId;
+				finalResult.add(recordInfo);			
+				return finalResult;
+			}
+		};
 	}
 }

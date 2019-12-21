@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
 
-public final class CusCheckTechField extends ModelCheckerTemplateSimple_<CusInfo> {
+public final class CusCheckTechField_ extends ModelCheckerTemplateSimple_<CusInfo> {
 	
-	public CusCheckTechField() {
+	public CusCheckTechField_() {
 		super();
 	}
 	

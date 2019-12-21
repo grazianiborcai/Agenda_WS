@@ -23,8 +23,6 @@ public final class NodeCusInsertL1 extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {
-		final boolean HAS_EMAIL = true;
-		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -32,7 +30,7 @@ public final class NodeCusInsertL1 extends DeciTreeWriteTemplate<CusInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_EMAIL;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new CusCheckHasEmail(checkerOption);
 		queue.add(checker);	
 		

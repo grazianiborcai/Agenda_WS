@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.LazyCusEnforceUserCateg;
+import br.com.mind5.business.customer.model.action.LazyCusEnforceUserCateg_;
 import br.com.mind5.business.customer.model.action.LazyCusInsertUser;
-import br.com.mind5.business.customer.model.action.StdCusEnforceAuthGroup;
+import br.com.mind5.business.customer.model.action.StdCusEnforceAuthGroup_;
 import br.com.mind5.business.customer.model.checker.CusCheckInsertUser;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -38,8 +38,8 @@ public final class NodeCusInsertUser extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> enforceAuthGroup = new StdCusEnforceAuthGroup(option);
-		ActionLazy<CusInfo> enforceUserCateg = new LazyCusEnforceUserCateg(option.conn, option.schemaName);
+		ActionStd<CusInfo> enforceAuthGroup = new StdCusEnforceAuthGroup_(option);
+		ActionLazy<CusInfo> enforceUserCateg = new LazyCusEnforceUserCateg_(option.conn, option.schemaName);
 		ActionLazy<CusInfo> insertUser = new LazyCusInsertUser(option.conn, option.schemaName);
 		
 		enforceAuthGroup.addPostAction(enforceUserCateg);	

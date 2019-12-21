@@ -7,11 +7,11 @@ import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCusEnforceKey implements ActionStd<CusInfo> {
+public final class StdCusEnforceKey_ implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusEnforceKey(DeciTreeOption<CusInfo> option) {			
+	public StdCusEnforceKey_(DeciTreeOption<CusInfo> option) {			
 		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusEnforceKey());
 	}
 	

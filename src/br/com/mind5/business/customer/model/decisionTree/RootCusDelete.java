@@ -32,17 +32,19 @@ public final class RootCusDelete extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {
-		final boolean EXIST_ON_DB = true;	
-		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new CusCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CusCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult =  ModelCheckerOption.EXIST_ON_DB;		
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;		
 		checker = new CusCheckLangu(checkerOption);
@@ -51,7 +53,7 @@ public final class RootCusDelete extends DeciTreeWriteTemplate<CusInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult =  ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CusCheckExist(checkerOption);
 		queue.add(checker);		
 		

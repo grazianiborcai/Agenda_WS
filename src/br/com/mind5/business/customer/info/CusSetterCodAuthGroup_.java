@@ -3,15 +3,15 @@ package br.com.mind5.business.customer.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.mind5.business.masterData.info.common.UserCateg;
+import br.com.mind5.business.masterData.info.common.AuthGroup;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class CusSetterCodUserCateg implements InfoSetter<CusInfo> {
+public final class CusSetterCodAuthGroup_ implements InfoSetter<CusInfo> {
 	
 	public CusInfo setAttr(CusInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setCodUserCateg(recordInfo);
+		return setCodAuthGrRole(recordInfo);
 	}
 	
 	
@@ -25,8 +25,8 @@ public final class CusSetterCodUserCateg implements InfoSetter<CusInfo> {
 	
 	
 	
-	private CusInfo setCodUserCateg(CusInfo recordInfo) {
-		recordInfo.codUserCategory = UserCateg.CUSTOMER.getCodUserCateg();
+	private CusInfo setCodAuthGrRole(CusInfo recordInfo) {
+		recordInfo.codAuthGroup = AuthGroup.CUSTOMER.getCodAuthGroup();
 		return recordInfo;
 	}
 	

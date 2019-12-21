@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCusEnforceAuthGroup implements ActionStd<CusInfo> {
+public final class StdCusEnforceUserCateg_ implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusEnforceAuthGroup(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusEnforceAuthGroup());
+	public StdCusEnforceUserCateg_(DeciTreeOption<CusInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusEnforceUserCateg_());
 	}
 	
 	

@@ -24,7 +24,7 @@ public final class LazyCusEnforceAuthGroup extends ActionLazyTemplate<CusInfo, C
 	
 	
 	@Override protected ActionStd<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
-		return new StdCusEnforceAuthGroup(option);
+		return new StdCusEnforceAuthGroup_(option);
 	}
 	
 	

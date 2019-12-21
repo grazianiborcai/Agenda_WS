@@ -1,7 +1,6 @@
 package br.com.mind5.business.customer.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
@@ -11,7 +10,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserInsert;
+import br.com.mind5.security.user.model.decisionTree.RootUserInsertCus;
 
 final class VisiCusInsertUser extends ActionVisitorTemplateAction<CusInfo, UserInfo> {
 	public VisiCusInsertUser(Connection conn, String schemaName) {
@@ -21,19 +20,13 @@ final class VisiCusInsertUser extends ActionVisitorTemplateAction<CusInfo, UserI
 	
 	
 	@Override protected List<UserInfo> toActionClassHook(List<CusInfo> recordInfos) {
-		List<UserInfo> results = new ArrayList<>();
-		
-		for (CusInfo eachRecord : recordInfos) {
-			results.add(UserCopier.copyFromCus(eachRecord));
-		}		
-		
-		return results;
+		return UserCopier.copyFromCus(recordInfos);
 	}
 	
 	
 	
 	@Override protected ActionStd<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
-		return new RootUserInsert(option).toAction();
+		return new RootUserInsertCus(option).toAction();
 	}
 	
 	
