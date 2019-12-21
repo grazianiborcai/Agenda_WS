@@ -39,9 +39,9 @@ public final class MatInsertSingle extends DaoStmtTemplate<MatInfo> {
 	
 	@Override protected DaoStmtParamTranslator<MatInfo> getParamTranslatorHook() {
 		return new DaoStmtParamTranslator<MatInfo>() {		
-			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatInfo recordInfo) throws SQLException {
-				
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatInfo recordInfo) throws SQLException {				
 				int i = 1;
+				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setInt(i++, recordInfo.codType);
 				stmt.setInt(i++, recordInfo.codMatCateg);

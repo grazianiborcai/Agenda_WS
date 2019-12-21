@@ -37,6 +37,7 @@ public final class MatUpdateSingle extends DaoStmtTemplate<MatInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, MatInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
@@ -49,9 +50,9 @@ public final class MatUpdateSingle extends DaoStmtTemplate<MatInfo> {
 	
 	@Override protected DaoStmtParamTranslator<MatInfo> getParamTranslatorHook() {
 		return new DaoStmtParamTranslator<MatInfo>() {	
-			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatInfo recordInfo) throws SQLException {
-				
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatInfo recordInfo) throws SQLException {				
 				int i = 1;
+				
 				stmt.setInt(i++, recordInfo.codType);
 				stmt.setInt(i++, recordInfo.codMatCateg);
 				stmt.setString(i++, recordInfo.codUnit);
