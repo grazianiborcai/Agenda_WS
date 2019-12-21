@@ -10,6 +10,7 @@ public final class FimarchInfo extends InfoRecord implements Cloneable {
 	public long codFileImg;
 	public long codPerson;
 	public long codEmployee;
+	public long codCustomer;
 	public long codMat;
 	public long codStore;
 	public long codOwnerRef;
@@ -24,6 +25,7 @@ public final class FimarchInfo extends InfoRecord implements Cloneable {
 		codFileImg = DefaultValue.number();		
 		codPerson = DefaultValue.number();
 		codEmployee = DefaultValue.number();
+		codCustomer = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codStore = DefaultValue.number();		
 		codOwnerRef = DefaultValue.number();

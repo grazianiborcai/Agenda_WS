@@ -8,120 +8,72 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 
-public final class FimarchSelectSingle implements DaoStmt<FimarchInfo> {
-	private final String LT_FILE = DaoDbTable.FILE_IMG_TABLE;	
-	
-	private DaoStmt<FimarchInfo> stmtSql;
-	private DaoStmtOption_<FimarchInfo> stmtOption;
-	
+public final class FimarchSelectSingle extends DaoStmtTemplate<FimarchInfo> {
+	private final String MAIN_TABLE = DaoDbTable.FILE_IMG_TABLE;
 	
 	
 	public FimarchSelectSingle(Connection conn, FimarchInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, FimarchInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption_<>();
-		stmtOption.conn = conn;
-		stmtOption.recordInfo = recordInfo;
-		stmtOption.schemaName = schemaName;
-		stmtOption.tableName = LT_FILE;
-		stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.FILE_IMG_SEARCH_VIEW);
-		stmtOption.stmtParamTranslator = null;
-		stmtOption.resultParser = new ResultParser();
-		stmtOption.whereClause = buildWhereClause();
-		stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, FimarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new FimarchWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new FimarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}
+	}	
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<FimarchInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<FimarchInfo> getNewInstance() {
-		return new FimarchSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<FimarchInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<FimarchInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<FimarchInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				FimarchInfo dataInfo = new FimarchInfo();
-				dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_OWNER);
-				dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_FILE_IMG);
-				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_MATERIAL);
-				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_PERSON);
-				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_STORE);
-				dataInfo.recordMode = stmtResult.getString(FimarchDbTableColumn.COL_RECORD_MODE);
+	@Override protected DaoResultParserV2<FimarchInfo> getResultParserHook() {
+		return new DaoResultParserV2<FimarchInfo>() {
+			@Override public List<FimarchInfo> parseResult(FimarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<FimarchInfo> finalResult = new ArrayList<>();
 				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					FimarchInfo dataInfo = new FimarchInfo();
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_FILE_IMG);
+					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_PERSON);
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_STORE);
+					dataInfo.recordMode = stmtResult.getString(FimarchDbTableColumn.COL_RECORD_MODE);
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
 }
