@@ -131,6 +131,8 @@
         <security:intercept-url pattern="/**/File/insertFileImgMaterial" 		access="hasAuthority('MATERIAL_WRITE')" 			/>
         <security:intercept-url pattern="/**/File/updateFileImgMaterial" 		access="hasAuthority('MATERIAL_WRITE')" 			/>
         <security:intercept-url pattern="/**/File/deleteFileImgMaterial" 		access="hasAuthority('MATERIAL_WRITE')" 			/>  
+        <security:intercept-url pattern="/**/File/insertFileImgCustomer" 		access="hasAuthority('CUSTOMER_WRITE')" 			/>
+        <security:intercept-url pattern="/**/File/deleteFileImgCustomer" 		access="hasAuthority('CUSTOMER_WRITE')" 			/>
         <security:http-basic />
         <csrf disabled="true"/>
         <custom-filter after="SECURITY_CONTEXT_FILTER" ref="tokenParamFilter" />

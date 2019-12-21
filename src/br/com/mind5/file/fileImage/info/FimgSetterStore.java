@@ -16,6 +16,7 @@ public final class FimgSetterStore implements InfoSetter<FimgInfo> {
 		recordInfo.codPerson = DefaultValue.number();
 		recordInfo.codEmployee = DefaultValue.number();
 		recordInfo.codMat = DefaultValue.number();
+		recordInfo.codCustomer = DefaultValue.number();
 		
 		return recordInfo;
 	}

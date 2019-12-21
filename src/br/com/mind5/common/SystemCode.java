@@ -733,6 +733,7 @@ public final class SystemCode {
 	public static final int FILE_IMG_ILLEGAL_REFERENCE 					= 6008;
 	public static final int FILE_IMG_IS_NOT_EMPLOYEE					= 6009;
 	public static final int FILE_IMG_IS_NOT_MAT							= 6010;
+	public static final int FILE_IMG_IS_NOT_CUSTOMER					= 6011;
 	
 	// File Path
 	public static final int FILE_PATH_MANDATORY_FIELD_EMPTY 			= 6051;

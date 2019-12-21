@@ -18,6 +18,7 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 	public boolean isCover;
 	public long codPerson;
 	public long codEmployee;
+	public long codCustomer;
 	public long codMat;
 	public long codStore;
 	public long codOwnerRef;
@@ -37,6 +38,7 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 		isCover = DefaultValue.boole();
 		codPerson = DefaultValue.number();
 		codEmployee = DefaultValue.number();
+		codCustomer = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codStore = DefaultValue.number();		
 		codOwnerRef = DefaultValue.number();	

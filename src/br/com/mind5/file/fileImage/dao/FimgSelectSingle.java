@@ -8,130 +8,82 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 
-public final class FimgSelectSingle implements DaoStmt<FimgInfo> {
-	private final String LT_FILE = DaoDbTable.FILE_IMG_TABLE;	
-	
-	private DaoStmt<FimgInfo> stmtSql;
-	private DaoStmtOption_<FimgInfo> stmtOption;
-	
+public final class FimgSelectSingle extends DaoStmtTemplate<FimgInfo> {
+	private final String MAIN_TABLE = DaoDbTable.FILE_IMG_TABLE;		
 	
 	
 	public FimgSelectSingle(Connection conn, FimgInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, FimgInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption_<>();
-		stmtOption.conn = conn;
-		stmtOption.recordInfo = recordInfo;
-		stmtOption.schemaName = schemaName;
-		stmtOption.tableName = LT_FILE;
-		stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_FILE);
-		stmtOption.stmtParamTranslator = null;
-		stmtOption.resultParser = new ResultParser();
-		stmtOption.whereClause = buildWhereClause();
-		stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, FimgInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new FimgWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new FimgWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<FimgInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<FimgInfo> getNewInstance() {
-		return new FimgSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<FimgInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<FimgInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<FimgInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				FimgInfo dataInfo = new FimgInfo();
-				dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_OWNER);
-				dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_OWNER_REF);
-				dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_FILE_IMG);
-				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_MATERIAL);
-				dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_PERSON);
-				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_STORE);
-				dataInfo.recordMode = stmtResult.getString(FimgDbTableColumn.COL_RECORD_MODE);
-				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, FimgDbTableColumn.COL_CREATED_ON);		
-				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, FimgDbTableColumn.COL_LAST_CHANGED);	
-				dataInfo.fileImgName = stmtResult.getString(FimgDbTableColumn.COL_FILE_IMG_NAME);
-				dataInfo.fileImgExtension = stmtResult.getString(FimgDbTableColumn.COL_FILE_IMG_EXTENSION);
-				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_CREATED_BY);
-				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_LAST_CHANGED_BY);
-				dataInfo.fileImgUri = stmtResult.getString(FimgDbTableColumn.COL_FILE_URI);
-				dataInfo.fileImgPath = stmtResult.getString(FimgDbTableColumn.COL_IMG_FILE_PATH);
-				dataInfo.isCover = DaoFormatter.sqlToBoole(stmtResult, FimgDbTableColumn.COL_IS_COVER);
+	@Override protected DaoResultParserV2<FimgInfo> getResultParserHook() {
+		return new DaoResultParserV2<FimgInfo>() {
+			@Override public List<FimgInfo> parseResult(FimgInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<FimgInfo> finalResult = new ArrayList<>();
 				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					FimgInfo dataInfo = new FimgInfo();
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_OWNER);
+					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_OWNER_REF);
+					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_FILE_IMG);
+					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_PERSON);
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_STORE);
+					dataInfo.recordMode = stmtResult.getString(FimgDbTableColumn.COL_RECORD_MODE);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, FimgDbTableColumn.COL_CREATED_ON);		
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, FimgDbTableColumn.COL_LAST_CHANGED);	
+					dataInfo.fileImgName = stmtResult.getString(FimgDbTableColumn.COL_FILE_IMG_NAME);
+					dataInfo.fileImgExtension = stmtResult.getString(FimgDbTableColumn.COL_FILE_IMG_EXTENSION);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_CREATED_BY);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.fileImgUri = stmtResult.getString(FimgDbTableColumn.COL_FILE_URI);
+					dataInfo.fileImgPath = stmtResult.getString(FimgDbTableColumn.COL_IMG_FILE_PATH);
+					dataInfo.isCover = DaoFormatter.sqlToBoole(stmtResult, FimgDbTableColumn.COL_IS_COVER);
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
 }
