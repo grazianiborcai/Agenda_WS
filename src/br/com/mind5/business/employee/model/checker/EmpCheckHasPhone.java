@@ -20,7 +20,7 @@ public final class EmpCheckHasPhone extends ModelCheckerTemplateSimpleV2<EmpInfo
 			return super.FAILED;		
 		
 		if (recordInfo.phones.isEmpty())			
-				return super.FAILED;			
+			return super.FAILED;			
 		
 		return super.SUCCESS;
 	}

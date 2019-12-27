@@ -37,6 +37,7 @@ public final class EmpUpdateSingle extends DaoStmtTemplate<EmpInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmpInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
