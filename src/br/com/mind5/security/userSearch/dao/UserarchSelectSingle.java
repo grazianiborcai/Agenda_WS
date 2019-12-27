@@ -32,6 +32,12 @@ public final class UserarchSelectSingle extends DaoStmtTemplate<UserarchInfo> {
 	
 	
 	
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.USER_SEARCH_VIEW;
+	}	
+	
+	
+	
 	@Override protected DaoOperation getOperationHook() {
 		return DaoOperation.SELECT;
 	}
@@ -75,5 +81,11 @@ public final class UserarchSelectSingle extends DaoStmtTemplate<UserarchInfo> {
 				return finalResult;
 			}
 		};
+	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
 	}
 }

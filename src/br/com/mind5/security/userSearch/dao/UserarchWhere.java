@@ -44,7 +44,7 @@ public final class UserarchWhere implements DaoStmtWhere {
 					break;
 					
 				case UserarchDbTableColumn.COL_COD_USER_CATEG :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUserCategory));
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.charToString(recordInfo.codUserCategory));
 					break;
 					
 				case UserarchDbTableColumn.COL_RECORD_MODE :
