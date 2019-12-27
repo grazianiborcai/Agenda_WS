@@ -40,6 +40,7 @@ public final class PersonSelectSingle extends DaoStmtTemplate<PersonInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, PersonInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
