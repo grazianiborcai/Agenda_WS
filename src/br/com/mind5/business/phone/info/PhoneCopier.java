@@ -125,15 +125,29 @@ public final class PhoneCopier {
 	
 	
 	
-	public static PhoneInfo copyFromCus(CusInfo source) {
-		InfoCopier<PhoneInfo, CusInfo> copier = new PhoneCopyCus();
+	public static PhoneInfo copyFromCusKey(CusInfo source) {
+		InfoCopier<PhoneInfo, CusInfo> copier = new PhoneCopyCusKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhoneInfo> copyFromCusKey(List<CusInfo> sources) {
+		InfoCopier<PhoneInfo, CusInfo> copier = new PhoneCopyCusKey();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static List<PhoneInfo> copyFromCus(CusInfo source) {
+		InfoCopierOneToMany<PhoneInfo, CusInfo> copier = new PhoneCopyCus();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<PhoneInfo> copyFromCus(List<CusInfo> sources) {
-		InfoCopier<PhoneInfo, CusInfo> copier = new PhoneCopyCus();
+		InfoCopierOneToMany<PhoneInfo, CusInfo> copier = new PhoneCopyCus();
 		return copier.makeCopy(sources);
 	}
 }
