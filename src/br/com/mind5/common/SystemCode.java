@@ -934,4 +934,7 @@ public final class SystemCode {
 	
 	//Material Movement Search
 	public static final int MAT_MOV_SEARCH_MANDATORY_FIELD_EMPTY		= 9050;
+	
+	//User Search
+	public static final int USER_SEARCH_MANDATORY_FIELD_EMPTY			= 9100;
 }
