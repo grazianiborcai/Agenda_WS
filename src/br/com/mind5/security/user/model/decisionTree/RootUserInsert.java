@@ -23,7 +23,6 @@ import br.com.mind5.security.user.model.checker.UserCheckAuthGroup;
 import br.com.mind5.security.user.model.checker.UserCheckCateg;
 import br.com.mind5.security.user.model.checker.UserCheckInsert;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
-import br.com.mind5.security.user.model.checker.UserCheckTechField;
 
 public final class RootUserInsert extends DeciTreeWriteTemplate<UserInfo> {
 	
@@ -34,36 +33,35 @@ public final class RootUserInsert extends DeciTreeWriteTemplate<UserInfo> {
 	
 	
 	@Override protected ModelChecker<UserInfo> buildDecisionCheckerHook(DeciTreeOption<UserInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new UserCheckInsert();
-		queue.add(checker);
-		
-		checker = new UserCheckTechField();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new UserCheckInsert(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new UserCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new UserCheckCateg(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new UserCheckAuthGroup(checkerOption);
 		queue.add(checker);	
 		

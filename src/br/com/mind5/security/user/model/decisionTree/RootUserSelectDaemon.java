@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -26,8 +27,13 @@ public final class RootUserSelectDaemon extends DeciTreeReadTemplate<UserInfo> {
 	@Override protected ModelChecker<UserInfo> buildDecisionCheckerHook(DeciTreeOption<UserInfo> option) {
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserInfo> checker;
+		ModelCheckerOption checkerOption;		
 		
-		checker = new UserCheckReadDaemon();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new UserCheckReadDaemon(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

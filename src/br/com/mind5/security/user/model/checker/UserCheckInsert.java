@@ -4,14 +4,14 @@ import java.sql.Connection;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class UserCheckInsert extends ModelCheckerTemplateSimple_<UserInfo> {
+public final class UserCheckInsert extends ModelCheckerTemplateSimpleV2<UserInfo> {
 
-	public UserCheckInsert() {
-		super();
+	public UserCheckInsert(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -22,6 +22,7 @@ public final class UserCheckInsert extends ModelCheckerTemplateSimple_<UserInfo>
 			 recordInfo.personData 		== null						||
 			 recordInfo.codAuthGroup 	== null						||
 			 recordInfo.codUserCategory	== DefaultValue.character()		)
+			
 			return super.FAILED;
 		
 		
@@ -34,13 +35,7 @@ public final class UserCheckInsert extends ModelCheckerTemplateSimple_<UserInfo>
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.USER_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.USER_MANDATORY_FIELD_EMPTY;
 	}
 }
