@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.LazyCusNodeInsertL2;
+import br.com.mind5.business.customer.model.action.LazyCusUpdate;
 import br.com.mind5.business.customer.model.action.StdCusInsertUser;
+import br.com.mind5.business.customer.model.action.StdCusSuccess;
 import br.com.mind5.business.customer.model.checker.CusCheckHasEmail;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -15,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCusInsertL1 extends DeciTreeWriteTemplate<CusInfo> {
+public final class NodeCusInsertUser extends DeciTreeWriteTemplate<CusInfo> {
 
-	public NodeCusInsertL1(DeciTreeOption<CusInfo> option) {
+	public NodeCusInsertUser(DeciTreeOption<CusInfo> option) {
 		super(option);
 	}
 	
@@ -44,9 +45,9 @@ public final class NodeCusInsertL1 extends DeciTreeWriteTemplate<CusInfo> {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CusInfo> insertUser = new StdCusInsertUser(option);
-		ActionLazy<CusInfo> nodeL2 = new LazyCusNodeInsertL2(option.conn, option.schemaName);
+		ActionLazy<CusInfo> update = new LazyCusUpdate(option.conn, option.schemaName);
 		
-		insertUser.addPostAction(nodeL2);
+		insertUser.addPostAction(update);
 		
 		actions.add(insertUser);	
 		return actions;
@@ -57,9 +58,9 @@ public final class NodeCusInsertL1 extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 
-		ActionStd<CusInfo> nodeL2 = new NodeCusInsertL2(option).toAction();
+		ActionStd<CusInfo> success = new StdCusSuccess(option);
 		
-		actions.add(nodeL2);	
+		actions.add(success);	
 		return actions;
 	}
 }

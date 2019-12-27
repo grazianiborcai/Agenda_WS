@@ -4,9 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.business.customer.model.action.LazyCusNodeInsertPerson;
+import br.com.mind5.business.customer.model.action.LazyCusNodeInsertUser;
+import br.com.mind5.business.customer.model.action.LazyCusNodeSnapshot;
+import br.com.mind5.business.customer.model.action.LazyCusNodeUpsertAddress;
+import br.com.mind5.business.customer.model.action.LazyCusNodeUpsertPhone;
+import br.com.mind5.business.customer.model.action.LazyCusRootSelect;
 import br.com.mind5.business.customer.model.checker.CusCheckInsert;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -56,9 +63,22 @@ public final class RootCusInsert extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> nodeL1 = new NodeCusInsertL1(option).toAction();
+		ActionStd<CusInfo> insertCustomer = new NodeCusInsert(option).toAction();
+		ActionLazy<CusInfo> insertUser = new LazyCusNodeInsertUser(option.conn, option.schemaName);
+		ActionLazy<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
+		ActionLazy<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
+		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionLazy<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
 		
-		actions.add(nodeL1);	
+		insertCustomer.addPostAction(insertUser);
+		insertUser.addPostAction(insertPerson);
+		insertPerson.addPostAction(snapshot);
+		snapshot.addPostAction(upsertAddress);
+		upsertAddress.addPostAction(upsertPhone);
+		upsertPhone.addPostAction(select);
+		
+		actions.add(insertCustomer);	
 		return actions;
 	}
 }

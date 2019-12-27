@@ -83,6 +83,20 @@ public final class CusMerger {
 	
 	
 	
+	public static CusInfo mergeWithDaemon(UserInfo sourceOne, CusInfo sourceTwo) {
+		InfoMerger<CusInfo, UserInfo> merger = new CusMergerDaemon();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CusInfo> mergeWithDaemon(List<UserInfo> sourceOnes, List<CusInfo> sourceTwos) {
+		InfoMerger<CusInfo, UserInfo> merger = new CusMergerDaemon();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static CusInfo mergeWithUser(UserInfo sourceOne, CusInfo sourceTwo) {
 		InfoMerger<CusInfo, UserInfo> merger = new CusMergerUser();		
 		return merger.merge(sourceOne, sourceTwo);

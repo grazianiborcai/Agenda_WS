@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.business.customer.model.action.LazyCusRootInsert;
+import br.com.mind5.business.customer.model.action.StdCusMergeDaemon;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.business.customer.model.checker.CusCheckSignup;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -56,11 +59,13 @@ public final class RootCusSignup extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		//TODO: mesmo CPF mas email diferente :: da erro
-		//TODO: merge no User Daemon e chamar RootInsert
 		
-		ActionStd<CusInfo> nodeL1 = new NodeCusInsertL1(option).toAction();
+		ActionStd<CusInfo> mergeDaemon = new StdCusMergeDaemon(option);
+		ActionLazy<CusInfo> insert = new LazyCusRootInsert(option.conn, option.schemaName);
 		
-		actions.add(nodeL1);	
+		mergeDaemon.addPostAction(insert);
+		
+		actions.add(mergeDaemon);	
 		return actions;
 	}
 }

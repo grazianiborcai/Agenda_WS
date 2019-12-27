@@ -6,11 +6,6 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.LazyCusInsert;
 import br.com.mind5.business.customer.model.action.LazyCusMergeUsername;
-import br.com.mind5.business.customer.model.action.LazyCusNodeInsertPerson;
-import br.com.mind5.business.customer.model.action.LazyCusNodeSnapshot;
-import br.com.mind5.business.customer.model.action.LazyCusNodeUpsertAddress;
-import br.com.mind5.business.customer.model.action.LazyCusNodeUpsertPhone;
-import br.com.mind5.business.customer.model.action.LazyCusRootSelect;
 import br.com.mind5.business.customer.model.action.StdCusEnforceLChanged;
 import br.com.mind5.business.customer.model.checker.CusCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
@@ -20,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCusInsertL2 extends DeciTreeWriteTemplate<CusInfo> {
+public final class NodeCusInsert extends DeciTreeWriteTemplate<CusInfo> {
 
-	public NodeCusInsertL2(DeciTreeOption<CusInfo> option) {
+	public NodeCusInsert(DeciTreeOption<CusInfo> option) {
 		super(option);
 	}
 	
@@ -46,19 +41,9 @@ public final class NodeCusInsertL2 extends DeciTreeWriteTemplate<CusInfo> {
 		ActionStd<CusInfo> enforceLChanged = new StdCusEnforceLChanged(option);
 		ActionLazy<CusInfo> mergeLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);	
 		ActionLazy<CusInfo> insertCustomer = new LazyCusInsert(option.conn, option.schemaName);
-		ActionLazy<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
-		ActionLazy<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
-		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionLazy<CusInfo> selectCustomer = new LazyCusRootSelect(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(mergeLChangedBy);
 		mergeLChangedBy.addPostAction(insertCustomer);
-		insertCustomer.addPostAction(insertPerson);
-		insertPerson.addPostAction(snapshot);	
-		snapshot.addPostAction(upsertAddress);		
-		snapshot.addPostAction(upsertPhone);			
-		snapshot.addPostAction(selectCustomer);
 		
 		actions.add(enforceLChanged);	
 		return actions;
