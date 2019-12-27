@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class LazyUserEnforceUsernameKey extends ActionLazyTemplate<UserInfo, UserInfo> {
+public final class LazyUserEnforceUsernameKey_ extends ActionLazyTemplate<UserInfo, UserInfo> {
 	
-	public LazyUserEnforceUsernameKey(Connection conn, String schemaName) {
+	public LazyUserEnforceUsernameKey_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyUserEnforceUsernameKey extends ActionLazyTemplate<UserInf
 	
 	
 	@Override protected ActionStd<UserInfo> getInstanceOfActionHook(DeciTreeOption<UserInfo> option) {
-		return new StdUserEnforceUsernameKey(option);
+		return new StdUserEnforceUsernameKey_(option);
 	}
 	
 	

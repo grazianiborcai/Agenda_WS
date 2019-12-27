@@ -138,6 +138,20 @@ public final class UserCopier {
 	
 	
 	
+	public static UserInfo copyFromCusDaemon(CusInfo source) {
+		InfoCopier<UserInfo, CusInfo> copier = new UserCopyCusDaemon();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UserInfo> copyFromCusDaemon(List<CusInfo> sources) {
+		InfoCopier<UserInfo, CusInfo> copier = new UserCopyCusDaemon();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UserInfo copyFromCus(CusInfo source) {
 		InfoCopier<UserInfo, CusInfo> copier = new UserCopyCus();
 		return copier.makeCopy(source);

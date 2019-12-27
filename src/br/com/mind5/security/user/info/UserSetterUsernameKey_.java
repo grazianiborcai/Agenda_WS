@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class UserSetterUsernameKey implements InfoSetter<UserInfo> {
+public final class UserSetterUsernameKey_ implements InfoSetter<UserInfo> {
 	
 	public UserInfo setAttr(UserInfo recordInfo) {
 		checkArgument(recordInfo);

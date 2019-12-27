@@ -9,10 +9,25 @@ import br.com.mind5.business.personCustomer_.info.PersonCusInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class UserMerger {
+	public static UserInfo mergeWithUserarch(UserarchInfo sourceOne, UserInfo sourceTwo) {
+		InfoMerger<UserInfo, UserarchInfo> merger = new UserMergerUserarch();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<UserInfo> mergeWithUserarch(List<UserarchInfo> sourceOnes, List<UserInfo> sourceTwos) {
+		InfoMerger<UserInfo, UserarchInfo> merger = new UserMergerUserarch();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static UserInfo mergeWithAddress(AddressInfo sourceOne, UserInfo sourceTwo) {
 		InfoMerger<UserInfo, AddressInfo> merger = new UserMergerAddress();		
 		return merger.merge(sourceOne, sourceTwo);

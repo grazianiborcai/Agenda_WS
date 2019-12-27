@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserSelect;
-import br.com.mind5.security.user.model.action.StdUserEnforceUsernameKey;
+import br.com.mind5.security.user.model.action.StdUserEnforceUsernameKey_;
 
 public final class UserCheckUsernameExist extends ModelCheckerTemplateAction_<UserInfo> {
 	
@@ -24,7 +24,7 @@ public final class UserCheckUsernameExist extends ModelCheckerTemplateAction_<Us
 	@Override protected ActionStd<UserInfo> buildActionHook(UserInfo recordInfo, Connection conn, String schemaName) {
 		DeciTreeOption<UserInfo> option = buildActionOption(recordInfo, conn, schemaName);
 		
-		ActionStd<UserInfo> actionSelect = new StdUserEnforceUsernameKey(option);
+		ActionStd<UserInfo> actionSelect = new StdUserEnforceUsernameKey_(option);
 		actionSelect.addPostAction(new LazyUserSelect(conn, schemaName));
 		return actionSelect;
 	}

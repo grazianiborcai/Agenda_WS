@@ -11,7 +11,8 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserEnforceUsernameKey;
+import br.com.mind5.security.user.model.action.LazyUserEnforceCategDaemon;
+import br.com.mind5.security.user.model.action.LazyUserMergeUserarch;
 import br.com.mind5.security.user.model.action.LazyUserRootSelect;
 import br.com.mind5.security.user.model.action.StdUserEnforceUsernameDaemon;
 import br.com.mind5.security.user.model.checker.UserCheckReadDaemon;
@@ -45,11 +46,13 @@ public final class RootUserSelectDaemon extends DeciTreeReadTemplate<UserInfo> {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UserInfo> enforceUsername = new StdUserEnforceUsernameDaemon(option);
-		ActionLazy<UserInfo> enforceUsernameKey = new LazyUserEnforceUsernameKey(option.conn, option.schemaName);
+		ActionLazy<UserInfo> enforceCateg = new LazyUserEnforceCategDaemon(option.conn, option.schemaName);		
+		ActionLazy<UserInfo> mergeUserarch = new LazyUserMergeUserarch(option.conn, option.schemaName);
 		ActionLazy<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);
 		
-		enforceUsername.addPostAction(enforceUsernameKey);
-		enforceUsernameKey.addPostAction(select);
+		enforceUsername.addPostAction(enforceCateg);
+		enforceCateg.addPostAction(mergeUserarch);
+		mergeUserarch.addPostAction(select);
 		
 		actions.add(enforceUsername);
 		return actions;
