@@ -6,11 +6,10 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.LazyCusUpdate;
 import br.com.mind5.business.customer.model.action.StdCusInsertCusnap;
-import br.com.mind5.business.customer.model.checker.CusCheckWrite;
+import br.com.mind5.business.customer.model.checker.CusCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -26,13 +25,8 @@ public final class NodeCusSnapshot extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;	
-		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CusCheckWrite(checkerOption);
+
+		checker = new CusCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

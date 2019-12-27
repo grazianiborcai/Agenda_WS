@@ -23,17 +23,19 @@ final class CusVisiMergeToUpdate implements InfoMergerVisitor<CusInfo, CusInfo> 
 	
 	
 	private CusInfo merge(CusInfo sourceOne, CusInfo sourceTwo) {
-		CusInfo result = makeClone(sourceOne);		
+		CusInfo result = makeClone(sourceOne);	
 		
 		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
-		result.codOwner = sourceTwo.codOwner;
-		result.codCustomer = sourceTwo.codCustomer;
-		result.codPerson = sourceTwo.codPerson;
-		result.addresses = sourceTwo.addresses;
-		result.phones = sourceTwo.phones;
-		result.userData = sourceTwo.userData;
-		result.personData = sourceTwo.personData;
+		
+		if (sourceTwo.addresses != null)
+			result.addresses = sourceTwo.addresses;
+		
+		if (sourceTwo.phones != null)
+			result.phones = sourceTwo.phones;
+		
+		if (sourceTwo.personData != null)
+			result.personData = sourceTwo.personData;
 		
 		return result;
 	}

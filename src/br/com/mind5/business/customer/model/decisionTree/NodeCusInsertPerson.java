@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.LazyCusEnforcePersonKey;
 import br.com.mind5.business.customer.model.action.LazyCusInsertPerson;
-import br.com.mind5.business.customer.model.action.StdCusEnforceEntityCateg;
+import br.com.mind5.business.customer.model.action.LazyCusUpdate;
+import br.com.mind5.business.customer.model.action.StdCusEnforcePersonKey;
 import br.com.mind5.business.customer.model.checker.CusCheckHasPerson;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -25,8 +25,6 @@ public final class NodeCusInsertPerson extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {
-		final boolean HAS_PERSON = true;
-		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -34,7 +32,7 @@ public final class NodeCusInsertPerson extends DeciTreeWriteTemplate<CusInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_PERSON;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new CusCheckHasPerson(checkerOption);
 		queue.add(checker);
 		
@@ -46,14 +44,14 @@ public final class NodeCusInsertPerson extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> enforceEntityCateg = new StdCusEnforceEntityCateg(option);
-		ActionLazy<CusInfo> enforcePersonKey = new LazyCusEnforcePersonKey(option.conn, option.schemaName);
+		ActionStd<CusInfo> enforcePersonKey = new StdCusEnforcePersonKey(option);
 		ActionLazy<CusInfo> insertPerson = new LazyCusInsertPerson(option.conn, option.schemaName);		
+		ActionLazy<CusInfo> update = new LazyCusUpdate(option.conn, option.schemaName);
 		
-		enforceEntityCateg.addPostAction(enforcePersonKey);
 		enforcePersonKey.addPostAction(insertPerson);
+		insertPerson.addPostAction(update);
 		
-		actions.add(enforceEntityCateg);	
+		actions.add(enforcePersonKey);	
 		return actions;
 	}
 }

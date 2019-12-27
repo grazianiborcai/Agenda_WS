@@ -46,7 +46,8 @@ final class CusVisiMergePhone implements InfoMergerVisitor<CusInfo, PhoneInfo> {
 
 	
 	@Override public boolean shouldWrite(PhoneInfo sourceOne, CusInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codCustomer == sourceTwo.codCustomer);
+		return (sourceOne.codOwner    == sourceTwo.codOwner && 
+				sourceOne.codCustomer == sourceTwo.codCustomer);
 	}		
 	
 	

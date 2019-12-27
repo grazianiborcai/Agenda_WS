@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.LazyCusNodeInsertL2;
+import br.com.mind5.business.customer.model.action.StdCusInsertUser;
 import br.com.mind5.business.customer.model.checker.CusCheckHasEmail;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -42,10 +43,10 @@ public final class NodeCusInsertL1 extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> insertUser = new NodeCusInsertUser(option).toAction();
-		ActionLazy<CusInfo> nodeInsertL2 = new LazyCusNodeInsertL2(option.conn, option.schemaName);
+		ActionStd<CusInfo> insertUser = new StdCusInsertUser(option);
+		ActionLazy<CusInfo> nodeL2 = new LazyCusNodeInsertL2(option.conn, option.schemaName);
 		
-		insertUser.addPostAction(nodeInsertL2);
+		insertUser.addPostAction(nodeL2);
 		
 		actions.add(insertUser);	
 		return actions;
@@ -56,9 +57,9 @@ public final class NodeCusInsertL1 extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 
-		ActionStd<CusInfo> nodeInsertL2 = new NodeCusInsertL2(option).toAction();
+		ActionStd<CusInfo> nodeL2 = new NodeCusInsertL2(option).toAction();
 		
-		actions.add(nodeInsertL2);	
+		actions.add(nodeL2);	
 		return actions;
 	}
 }

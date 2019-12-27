@@ -4,11 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CusCheckHasPerson extends ModelCheckerTemplateSimple_<CusInfo> {
+public final class CusCheckHasPerson extends ModelCheckerTemplateSimpleV2<CusInfo> {
 	
 	public CusCheckHasPerson(ModelCheckerOption option) {
 		super(option);
@@ -25,19 +24,13 @@ public final class CusCheckHasPerson extends ModelCheckerTemplateSimple_<CusInfo
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.PERSON_IS_NULL)
-			return SystemMessage.PERSON_IS_NULL;
-		
-		return SystemMessage.PERSON_IS_FILLED;
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.CUS_PERSON_IS_FILLED;
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == super.SUCCESS)
-			return SystemCode.PERSON_IS_FILLED;	
-			
-		return SystemCode.PERSON_IS_NULL;
-	}
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.CUS_PERSON_IS_NULL;
+	}	
 }

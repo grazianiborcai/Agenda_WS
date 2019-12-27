@@ -20,7 +20,8 @@ public final class CusCheckInsert extends ModelCheckerTemplateSimpleV2<CusInfo> 
 			 recordInfo.personData 	== null ||
 			 recordInfo.username 	== null ||
 			 recordInfo.codLanguage == null 	)
-				return super.FAILED;
+				
+			return super.FAILED;
 			
 			
 			return super.SUCCESS;
@@ -29,6 +30,6 @@ public final class CusCheckInsert extends ModelCheckerTemplateSimpleV2<CusInfo> 
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.CUS_MANDATORY_FIELD_EMPTY;
 	}
 }

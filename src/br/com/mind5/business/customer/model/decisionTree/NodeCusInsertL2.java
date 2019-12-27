@@ -12,9 +12,7 @@ import br.com.mind5.business.customer.model.action.LazyCusNodeUpsertAddress;
 import br.com.mind5.business.customer.model.action.LazyCusNodeUpsertPhone;
 import br.com.mind5.business.customer.model.action.LazyCusRootSelect;
 import br.com.mind5.business.customer.model.action.StdCusEnforceLChanged;
-import br.com.mind5.business.customer.model.checker.CusCheckNodeInsert;
-import br.com.mind5.business.customer.model.checker.CusCheckWriteAddress;
-import br.com.mind5.business.customer.model.checker.CusCheckWritePhone;
+import br.com.mind5.business.customer.model.checker.CusCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -32,15 +30,9 @@ public final class NodeCusInsertL2 extends DeciTreeWriteTemplate<CusInfo> {
 	
 	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
-		ModelChecker<CusInfo> checker;		
+		ModelChecker<CusInfo> checker;	
 		
-		checker = new CusCheckNodeInsert();
-		queue.add(checker);
-		
-		checker = new CusCheckWritePhone();
-		queue.add(checker);
-		
-		checker = new CusCheckWriteAddress();
+		checker = new CusCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

@@ -1,7 +1,6 @@
 package br.com.mind5.business.customer.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
@@ -21,13 +20,7 @@ final class VisiCusUpdatePerson extends ActionVisitorTemplateAction<CusInfo, Per
 	
 	
 	@Override protected List<PersonInfo> toActionClassHook(List<CusInfo> recordInfos) {
-		List<PersonInfo> results = new ArrayList<>();
-		
-		for (CusInfo eachRecord : recordInfos) {
-			results.add(PersonCopier.copyFromCus(eachRecord));
-		}		
-		
-		return results;
+		return PersonCopier.copyFromCus(recordInfos);
 	}
 	
 	

@@ -25,8 +25,6 @@ public final class NodeCusUpdatePerson extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {
-		final boolean HAS_PERSON = true;
-		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -34,7 +32,7 @@ public final class NodeCusUpdatePerson extends DeciTreeWriteTemplate<CusInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_PERSON;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new CusCheckHasPerson(checkerOption);
 		queue.add(checker);
 		

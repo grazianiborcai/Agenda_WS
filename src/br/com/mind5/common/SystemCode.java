@@ -220,6 +220,12 @@ public final class SystemCode {
 	public static final int CUS_HAS_EMAIL								= 1365;
 	public static final int CUS_DONT_HAS_EMAIL							= 1366;
 	public static final int CUS_MANDATORY_FIELD_EMPTY					= 1367;
+	public static final int CUS_PERSON_IS_FILLED						= 1368;
+	public static final int CUS_PERSON_IS_NULL							= 1369;
+	public static final int CUS_ADDRESS_IS_NULL							= 1370;
+	public static final int CUS_ADDRESS_IS_FILLED						= 1371;
+	public static final int CUS_PHONE_IS_NULL							= 1372;
+	public static final int CUS_PHONE_IS_FILLED							= 1373;
 	
 	// Cart
 	public static final int CART_ALREADY_EXIST							= 1400;

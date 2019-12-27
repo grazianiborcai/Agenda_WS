@@ -33,7 +33,6 @@ public final class CusSetterPersonKey implements InfoSetter<CusInfo> {
 	private CusInfo setPersonKey(CusInfo recordInfo) {
 		recordInfo.personData.codOwner = recordInfo.codOwner;
 		recordInfo.personData.codPerson = recordInfo.codPerson;
-		recordInfo.personData.codEntityCateg = recordInfo.codEntityCateg;
 		recordInfo.personData.username = recordInfo.username;
 		recordInfo.personData.codLanguage = recordInfo.codLanguage;
 		

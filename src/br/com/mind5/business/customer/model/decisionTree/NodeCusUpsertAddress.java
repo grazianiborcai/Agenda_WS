@@ -25,8 +25,6 @@ public final class NodeCusUpsertAddress extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {
-		final boolean HAS_ADDRESS = true;
-		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -34,7 +32,7 @@ public final class NodeCusUpsertAddress extends DeciTreeWriteTemplate<CusInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_ADDRESS;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new CusCheckHasAddress(checkerOption);
 		queue.add(checker);	
 		

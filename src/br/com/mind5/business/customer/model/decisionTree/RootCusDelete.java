@@ -14,7 +14,7 @@ import br.com.mind5.business.customer.model.action.LazyCusUpdate;
 import br.com.mind5.business.customer.model.action.StdCusMergeToDelete;
 import br.com.mind5.business.customer.model.checker.CusCheckExist;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
-import br.com.mind5.business.customer.model.checker.CusCheckWrite;
+import br.com.mind5.business.customer.model.checker.CusCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -40,7 +40,7 @@ public final class RootCusDelete extends DeciTreeWriteTemplate<CusInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CusCheckWrite(checkerOption);
+		checker = new CusCheckUpdate(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
