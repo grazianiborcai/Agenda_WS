@@ -155,15 +155,29 @@ public final class AddressCopier {
 	
 	
 	
-	public static AddressInfo copyFromCus(CusInfo source) {
-		InfoCopier<AddressInfo, CusInfo> copier = new AddressCopyCus();
+	public static AddressInfo copyFromCusKey(CusInfo source) {
+		InfoCopier<AddressInfo, CusInfo> copier = new AddressCopyCusKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddressInfo> copyFromCusKey(List<CusInfo> sources) {
+		InfoCopier<AddressInfo, CusInfo> copier = new AddressCopyCusKey();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static List<AddressInfo> copyFromCus(CusInfo source) {
+		InfoCopierOneToMany<AddressInfo, CusInfo> copier = new AddressCopyCus();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<AddressInfo> copyFromCus(List<CusInfo> sources) {
-		InfoCopier<AddressInfo, CusInfo> copier = new AddressCopyCus();
+		InfoCopierOneToMany<AddressInfo, CusInfo> copier = new AddressCopyCus();
 		return copier.makeCopy(sources);
-	}
+	}	
 }
