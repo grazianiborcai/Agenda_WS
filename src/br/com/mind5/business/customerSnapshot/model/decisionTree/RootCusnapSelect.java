@@ -23,19 +23,21 @@ public final class RootCusnapSelect extends DeciTreeReadTemplate<CusnapInfo> {
 	
 	
 	@Override protected ModelChecker<CusnapInfo> buildDecisionCheckerHook(DeciTreeOption<CusnapInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<CusnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusnapInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
-		checker = new CusnapCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CusnapCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CusnapCheckLangu(checkerOption);
 		queue.add(checker);	
 		

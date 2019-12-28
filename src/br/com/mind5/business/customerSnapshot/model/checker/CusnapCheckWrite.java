@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CusnapCheckWrite extends ModelCheckerTemplateSimple_<CusnapInfo> {
+public final class CusnapCheckWrite extends ModelCheckerTemplateSimpleV2<CusnapInfo> {
 
-	public CusnapCheckWrite() {
-		super();
+	public CusnapCheckWrite(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -20,6 +20,7 @@ public final class CusnapCheckWrite extends ModelCheckerTemplateSimple_<CusnapIn
 			 || recordInfo.codCustomer	<= 0
 			 || recordInfo.codLanguage  == null	
 			 || recordInfo.username 	== null	)
+			
 			return super.FAILED;
 		
 		
@@ -28,13 +29,7 @@ public final class CusnapCheckWrite extends ModelCheckerTemplateSimple_<CusnapIn
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.CUS_SNAPSHOT_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.CUS_SNAPSHOT_MANDATORY_FIELD_EMPTY;
 	}
 }

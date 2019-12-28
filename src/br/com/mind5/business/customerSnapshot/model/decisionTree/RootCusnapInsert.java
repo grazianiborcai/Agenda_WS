@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.customerSnapshot.model.action.LazyCusnapInsert;
+import br.com.mind5.business.customerSnapshot.model.action.LazyCusnapMergeUselis;
 import br.com.mind5.business.customerSnapshot.model.action.StdCusnapMergePerson;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckLangu;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckOwner;
@@ -25,27 +26,29 @@ public final class RootCusnapInsert extends DeciTreeWriteTemplate<CusnapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CusnapInfo> buildDecisionCheckerHook(DeciTreeOption<CusnapInfo> option) {		
-		final boolean EXIST_ON_DB = true;
-		
+	@Override protected ModelChecker<CusnapInfo> buildDecisionCheckerHook(DeciTreeOption<CusnapInfo> option) {	
 		List<ModelChecker<CusnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusnapInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new CusnapCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CusnapCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CusnapCheckLangu(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CusnapCheckOwner(checkerOption);
 		queue.add(checker);	
 		
@@ -58,9 +61,11 @@ public final class RootCusnapInsert extends DeciTreeWriteTemplate<CusnapInfo> {
 		List<ActionStd<CusnapInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CusnapInfo> mergePerson = new StdCusnapMergePerson(option);
+		ActionLazy<CusnapInfo> mergeUselis = new LazyCusnapMergeUselis(option.conn, option.schemaName);
 		ActionLazy<CusnapInfo> insert = new LazyCusnapInsert(option.conn, option.schemaName);
 		
-		mergePerson.addPostAction(insert);
+		mergePerson.addPostAction(mergeUselis);
+		mergeUselis.addPostAction(insert);
 		
 		actions.add(mergePerson);	
 		return actions;
