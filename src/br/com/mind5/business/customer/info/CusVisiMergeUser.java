@@ -40,8 +40,6 @@ final class CusVisiMergeUser implements InfoMergerVisitor<CusInfo, UserInfo> {
 	private CusInfo merge(UserInfo sourceOne, CusInfo sourceTwo) {
 		sourceTwo.userData = makeClone(sourceOne);
 		sourceTwo.codUser = sourceOne.codUser;
-		sourceTwo.codAuthGroup = sourceOne.codAuthGroup;
-		sourceTwo.codUserCategory = sourceOne.codUserCategory;
 		sourceTwo.username = sourceOne.username;
 		return sourceTwo;
 	}

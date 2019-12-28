@@ -26,7 +26,7 @@ final class VisiCusMergeAddress extends ActionVisitorTemplateMergeV2<CusInfo, Ad
 	
 	
 	@Override protected List<AddressInfo> toActionClassHook(List<CusInfo> recordInfos) {
-		return AddressCopier.copyFromCus(recordInfos);	
+		return AddressCopier.copyFromCusKey(recordInfos);	
 	}
 	
 	

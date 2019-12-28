@@ -1,10 +1,11 @@
 package br.com.mind5.business.customer.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.business.customer.info.CusMerger;
+import br.com.mind5.business.phone.info.PhoneCopier;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneUpsertdel;
 import br.com.mind5.model.action.ActionStd;
@@ -19,18 +20,18 @@ final class VisiCusUpsertPhone extends ActionVisitorTemplateAction<CusInfo, Phon
 	
 	
 	@Override protected List<PhoneInfo> toActionClassHook(List<CusInfo> recordInfos) {
-		List<PhoneInfo> results = new ArrayList<>();
-		
-		for (CusInfo eachRecord : recordInfos) {
-			results.addAll(eachRecord.phones);
-		}		
-		
-		return results;
+		return PhoneCopier.copyFromCus(recordInfos);
 	}
 	
 	
 	
 	@Override protected ActionStd<PhoneInfo> getActionHook(DeciTreeOption<PhoneInfo> option) {
 		return new RootPhoneUpsertdel(option).toAction();
+	}
+	
+	
+	
+	@Override protected List<CusInfo> toBaseClassHook(List<CusInfo> baseInfos, List<PhoneInfo> results) {
+		return CusMerger.mergeWithPhone(results, baseInfos);
 	}
 }

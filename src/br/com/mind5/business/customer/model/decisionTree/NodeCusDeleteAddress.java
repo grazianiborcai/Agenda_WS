@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.LazyCusDeleteAddress;
-import br.com.mind5.business.customer.model.action.StdCusEnforceAddressKey;
+import br.com.mind5.business.customer.model.action.StdCusMergeAddress;
 import br.com.mind5.business.customer.model.action.StdCusSuccess;
-import br.com.mind5.business.customer.model.checker.CusCheckHasAddress;
+import br.com.mind5.business.customer.model.checker.CusCheckAddarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -25,8 +25,6 @@ public final class NodeCusDeleteAddress extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {
-		final boolean HAS_ADDRESS = true;
-		
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -34,8 +32,8 @@ public final class NodeCusDeleteAddress extends DeciTreeWriteTemplate<CusInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_ADDRESS;		
-		checker = new CusCheckHasAddress(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new CusCheckAddarch(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -46,12 +44,12 @@ public final class NodeCusDeleteAddress extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> enforceAddressKey = new StdCusEnforceAddressKey(option);
+		ActionStd<CusInfo> mergeAddress = new StdCusMergeAddress(option);
 		ActionLazy<CusInfo> deleteAddress = new LazyCusDeleteAddress(option.conn, option.schemaName);
 		
-		enforceAddressKey.addPostAction(deleteAddress);
+		mergeAddress.addPostAction(deleteAddress);
 		
-		actions.add(enforceAddressKey);		
+		actions.add(mergeAddress);		
 		return actions;
 	}
 	

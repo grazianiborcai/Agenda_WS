@@ -1,7 +1,6 @@
 package br.com.mind5.business.customer.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
@@ -19,18 +18,18 @@ final class VisiCusDeletePerson extends ActionVisitorTemplateAction<CusInfo, Per
 	
 	
 	@Override protected List<PersonInfo> toActionClassHook(List<CusInfo> recordInfos) {
-		List<PersonInfo> results = new ArrayList<>();
-		
-		for (CusInfo eachRecord : recordInfos) {
-			results.add(PersonInfo.copyFrom(eachRecord));
-		}		
-		
-		return results;
+		return PersonInfo.copyFrom(recordInfos);
 	}
 	
 	
 	
 	@Override protected ActionStd<PersonInfo> getActionHook(DeciTreeOption<PersonInfo> option) {
 		return new RootPersonDelete(option).toAction();
+	}
+	
+	
+	
+	@Override protected List<CusInfo> toBaseClassHook(List<CusInfo> baseInfos, List<PersonInfo> results) {
+		return baseInfos;
 	}
 }

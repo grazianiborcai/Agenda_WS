@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.business.customer.model.action.LazyCusEnforceCreatedBy;
+import br.com.mind5.business.customer.model.action.LazyCusEnforceCreatedOn;
 import br.com.mind5.business.customer.model.action.LazyCusInsert;
 import br.com.mind5.business.customer.model.action.LazyCusMergeUsername;
 import br.com.mind5.business.customer.model.action.StdCusEnforceLChanged;
@@ -40,10 +42,14 @@ public final class NodeCusInsert extends DeciTreeWriteTemplate<CusInfo> {
 
 		ActionStd<CusInfo> enforceLChanged = new StdCusEnforceLChanged(option);
 		ActionLazy<CusInfo> mergeLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);	
+		ActionLazy<CusInfo> enforceCreatedBy = new LazyCusEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazy<CusInfo> enforceCreatedOn = new LazyCusEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<CusInfo> insertCustomer = new LazyCusInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(mergeLChangedBy);
-		mergeLChangedBy.addPostAction(insertCustomer);
+		mergeLChangedBy.addPostAction(enforceCreatedBy);
+		enforceCreatedBy.addPostAction(enforceCreatedOn);
+		enforceCreatedOn.addPostAction(insertCustomer);
 		
 		actions.add(enforceLChanged);	
 		return actions;

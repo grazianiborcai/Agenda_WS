@@ -26,7 +26,7 @@ final class VisiCusMergePhone extends ActionVisitorTemplateMergeV2<CusInfo, Phon
 	
 	
 	@Override protected List<PhoneInfo> toActionClassHook(List<CusInfo> recordInfos) {
-		return PhoneCopier.copyFromCus(recordInfos);	
+		return PhoneCopier.copyFromCusKey(recordInfos);	
 	}
 	
 	

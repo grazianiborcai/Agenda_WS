@@ -17,14 +17,13 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public long codSnapshot;
 	public long codPerson;
 	public long codUser;
-	public String codEntityCateg;
-	public char codUserCategory;
-	public String codAuthGroup;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
+	public LocalDateTime createdOn;
+	public long createdBy;
 	public UserInfo userData;
 	public PersonInfo personData;
 	public String username;
@@ -40,11 +39,11 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		codUser = DefaultValue.number();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
-		codUserCategory = DefaultValue.character();
 		recordMode = DefaultValue.recordMode();		
 		lastChangedBy = DefaultValue.number();
 		userData = DefaultValue.object();
 		personData = DefaultValue.object();
+		createdBy = DefaultValue.number();
 	}
 	
 	

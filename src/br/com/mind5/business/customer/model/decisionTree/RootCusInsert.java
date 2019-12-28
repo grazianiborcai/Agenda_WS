@@ -64,16 +64,16 @@ public final class RootCusInsert extends DeciTreeWriteTemplate<CusInfo> {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CusInfo> insertCustomer = new NodeCusInsert(option).toAction();
-		ActionLazy<CusInfo> insertUser = new LazyCusNodeInsertUser(option.conn, option.schemaName);
 		ActionLazy<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
+		ActionLazy<CusInfo> insertUser = new LazyCusNodeInsertUser(option.conn, option.schemaName);
 		ActionLazy<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionLazy<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
 		
-		insertCustomer.addPostAction(insertUser);
-		insertUser.addPostAction(insertPerson);
-		insertPerson.addPostAction(snapshot);
+		insertCustomer.addPostAction(insertPerson);
+		insertPerson.addPostAction(insertUser);
+		insertUser.addPostAction(snapshot);
 		snapshot.addPostAction(upsertAddress);
 		upsertAddress.addPostAction(upsertPhone);
 		upsertPhone.addPostAction(select);

@@ -59,6 +59,7 @@ public final class CusSelectSingle extends DaoStmtTemplate<CusInfo> {
 				
 				do {
 					CusInfo dataInfo = new CusInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(CusDbTableColumn.COL_COD_OWNER);
 					dataInfo.codCustomer = stmtResult.getLong(CusDbTableColumn.COL_COD_CUSTOMER);									
 					dataInfo.recordMode = stmtResult.getString(CusDbTableColumn.COL_RECORD_MODE);
@@ -67,6 +68,8 @@ public final class CusSelectSingle extends DaoStmtTemplate<CusInfo> {
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CusDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CusDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, CusDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, CusDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, CusDbTableColumn.COL_CREATED_BY);
 	
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
