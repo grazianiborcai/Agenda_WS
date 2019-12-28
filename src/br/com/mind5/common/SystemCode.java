@@ -787,6 +787,8 @@ public final class SystemCode {
 	
 	//Phone Search
 	public static final int PHONE_SEARCH_MANDATORY_FIELD_EMPTY 			= 6550;	
+	public static final int PHONE_SEARCH_ALREADY_EXIST 					= 6551;
+	public static final int PHONE_SEARCH_NOT_FOUND 						= 6552;
 	
 	// Store Search
 	public static final int STORE_SEARCH_MANDATORY_FIELD_EMPTY 			= 6600;
