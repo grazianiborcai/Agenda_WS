@@ -17,4 +17,18 @@ public final class UsernameMerger {
 		InfoMerger<UsernameInfo, AuthGrRoleInfo> merger = new UsernameMergerAuthGrRole();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
+	
+	
+	
+	public static UsernameInfo mergeToSelect(UsernameInfo sourceOne, UsernameInfo sourceTwo) {
+		InfoMerger<UsernameInfo, UsernameInfo> merger = new UsernameMergerToSelect();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<UsernameInfo> mergeToSelect(List<UsernameInfo> sourceOnes, List<UsernameInfo> sourceTwos) {
+		InfoMerger<UsernameInfo, UsernameInfo> merger = new UsernameMergerToSelect();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
 }

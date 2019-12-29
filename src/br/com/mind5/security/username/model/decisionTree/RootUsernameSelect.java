@@ -6,12 +6,13 @@ import java.util.List;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.action.LazyUsernameMergeAuthGrRole;
-import br.com.mind5.security.username.model.action.StdUsernameSelect;
+import br.com.mind5.security.username.model.action.StdUsernameMergeToSelect;
 import br.com.mind5.security.username.model.checker.UsernameCheckRead;
 
 public final class RootUsernameSelect extends DeciTreeReadTemplate<UsernameInfo> {
@@ -25,8 +26,13 @@ public final class RootUsernameSelect extends DeciTreeReadTemplate<UsernameInfo>
 	@Override protected ModelChecker<UsernameInfo> buildDecisionCheckerHook(DeciTreeOption<UsernameInfo> option) {
 		List<ModelChecker<UsernameInfo>> queue = new ArrayList<>();		
 		ModelChecker<UsernameInfo> checker;
+		ModelCheckerOption checkerOption;
 		
-		checker = new UsernameCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new UsernameCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -37,7 +43,7 @@ public final class RootUsernameSelect extends DeciTreeReadTemplate<UsernameInfo>
 	@Override protected List<ActionStd<UsernameInfo>> buildActionsOnPassedHook(DeciTreeOption<UsernameInfo> option) {
 		List<ActionStd<UsernameInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UsernameInfo> select = new StdUsernameSelect(option);
+		ActionStd<UsernameInfo> select = new StdUsernameMergeToSelect(option);
 		ActionLazy<UsernameInfo> mergeAuthGrRole = new LazyUsernameMergeAuthGrRole(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeAuthGrRole);

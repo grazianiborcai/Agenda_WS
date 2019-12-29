@@ -1,59 +1,35 @@
 package br.com.mind5.security.username.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.action.StdUsernameSelect;
 
-public final class UsernameCheckExist extends ModelCheckerTemplateAction_<UsernameInfo> {
+public final class UsernameCheckExist extends ModelCheckerTemplateActionV2<UsernameInfo, UsernameInfo> {
 	
 	public UsernameCheckExist(ModelCheckerOption option) {
-		super(option);
+		super(option, UsernameInfo.class);
 	}
 	
 
 	
-	@Override protected ActionStd<UsernameInfo> buildActionHook(UsernameInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<UsernameInfo> option = buildActionOption(recordInfo, conn, schemaName);
-		
-		ActionStd<UsernameInfo> actionSelect = new StdUsernameSelect(option);
-		return actionSelect;
+	@Override protected ActionStd<UsernameInfo> buildActionHook(DeciTreeOption<UsernameInfo> option) {		
+		ActionStd<UsernameInfo> Select = new StdUsernameSelect(option);
+		return Select;
 	}
 	
 	
 	
-	private DeciTreeOption<UsernameInfo> buildActionOption(UsernameInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<UsernameInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.USERNAME_ALREADY_EXIST;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.USERNAME_ALREADY_EXIST)
-			return SystemMessage.USERNAME_ALREADY_EXIST;
-		
-		return SystemMessage.USERNAME_NOT_FOUND;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.USERNAME_ALREADY_EXIST;	
-			
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.USERNAME_NOT_FOUND;
 	}
 }
