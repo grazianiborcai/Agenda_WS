@@ -1,53 +1,35 @@
 package br.com.mind5.security.userPassword.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.StdUpswdSelect;
 
-public final class UpswdCheckExist extends ModelCheckerTemplateAction_<UpswdInfo> {
+public final class UpswdCheckExist extends ModelCheckerTemplateActionV2<UpswdInfo, UpswdInfo> {
 	
 	public UpswdCheckExist(ModelCheckerOption option) {
-		super(option);
+		super(option, UpswdInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<UpswdInfo> buildActionHook(UpswdInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<UpswdInfo> option = buildOption(recordInfo, conn, schemaName);
-		
-		ActionStd<UpswdInfo> actionSelect = new StdUpswdSelect(option);
-		return actionSelect;
+	@Override protected ActionStd<UpswdInfo> buildActionHook(DeciTreeOption<UpswdInfo> option) {
+		ActionStd<UpswdInfo> select = new StdUpswdSelect(option);
+		return select;
 	}
 	
 	
 	
-	private DeciTreeOption<UpswdInfo> buildOption(UpswdInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<UpswdInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.USER_PASSWORD_AND_USERNAME_IS_VALID;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {	
-		return SystemMessage.USER_PASSWORD_OR_USERNAME_IS_INVALID;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.USER_PASSWORD_OR_USERNAME_IS_INVALID;
 	}
 }

@@ -2,17 +2,17 @@ package br.com.mind5.security.userPassword.model.action;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
+import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class StdUpswdEnforceUsernameKey implements ActionStd<UpswdInfo> {
+public final class StdUpswdMergeToAuth implements ActionStd<UpswdInfo> {
 	private ActionStd<UpswdInfo> actionHelper;	
 	
 	
-	public StdUpswdEnforceUsernameKey(DeciTreeOption<UpswdInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiUpswdEnforceUsernameKey());
+	public StdUpswdMergeToAuth(DeciTreeOption<UpswdInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiUpswdMergeToAuth(option.conn, option.schemaName));
 	}
 	
 	

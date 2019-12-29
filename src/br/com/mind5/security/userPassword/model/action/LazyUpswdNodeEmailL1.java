@@ -8,11 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.decisionTree.NodeUpswdEmail;
+import br.com.mind5.security.userPassword.model.decisionTree.NodeUpswdEmailL1;
 
-public final class LazyUpswdNodeEmail extends ActionLazyTemplate<UpswdInfo, UpswdInfo> {
+public final class LazyUpswdNodeEmailL1 extends ActionLazyTemplate<UpswdInfo, UpswdInfo> {
 	
-	public LazyUpswdNodeEmail(Connection conn, String schemaName) {
+	public LazyUpswdNodeEmailL1(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyUpswdNodeEmail extends ActionLazyTemplate<UpswdInfo, Upsw
 	
 	
 	@Override protected ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
-		return new NodeUpswdEmail(option).toAction();
+		return new NodeUpswdEmailL1(option).toAction();
 	}
 	
 	

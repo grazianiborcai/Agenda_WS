@@ -4,14 +4,14 @@ import java.sql.Connection;
 
 import br.com.mind5.business.masterData.info.common.UserCateg;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class UpswdCheckIsPasswordEnabled extends ModelCheckerTemplateSimple_<UpswdInfo> {
+public final class UpswdCheckIsPasswordEnabled extends ModelCheckerTemplateSimpleV2<UpswdInfo> {
 
-	public UpswdCheckIsPasswordEnabled() {
-		super();
+	public UpswdCheckIsPasswordEnabled(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -20,10 +20,10 @@ public final class UpswdCheckIsPasswordEnabled extends ModelCheckerTemplateSimpl
 		UserCateg categ = getUserCateg(recordInfo);
 		
 		if (categ.isPasswordEnabled() == true)
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
-		return FAILED;
+		return super.FAILED;
 	}
 	
 	
@@ -34,13 +34,7 @@ public final class UpswdCheckIsPasswordEnabled extends ModelCheckerTemplateSimpl
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.USER_PASSWORD_IS_NOT_PWD_ENABLED;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.USER_PASSWORD_IS_NOT_PWD_ENABLED;
 	}
 }

@@ -8,10 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
+import br.com.mind5.security.userPassword.model.decisionTree.NodeUpswdAuth;
 
-public final class LazyUpswdMergeUser extends ActionLazyTemplate<UpswdInfo, UpswdInfo> {
+public final class LazyUpswdNodeAuth extends ActionLazyTemplate<UpswdInfo, UpswdInfo> {
 	
-	public LazyUpswdMergeUser(Connection conn, String schemaName) {
+	public LazyUpswdNodeAuth(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyUpswdMergeUser extends ActionLazyTemplate<UpswdInfo, Upsw
 	
 	
 	@Override protected ActionStd<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
-		return new StdUpswdMergeUser(option);
+		return new NodeUpswdAuth(option).toAction();
 	}
 	
 	

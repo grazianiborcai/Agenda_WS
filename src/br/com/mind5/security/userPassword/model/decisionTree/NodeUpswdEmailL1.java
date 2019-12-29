@@ -3,19 +3,20 @@ package br.com.mind5.security.userPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.StdUpswdSuccess;
-import br.com.mind5.security.userPassword.model.checker.UpswdCheckHasEmail;
-import br.com.mind5.security.userPassword.model.checker.UpswdCheckHasPerson;
+import br.com.mind5.security.userPassword.model.action.LazyUpswdNodeEmailL2;
+import br.com.mind5.security.userPassword.model.action.StdUpswdMergeUser;
+import br.com.mind5.security.userPassword.model.checker.UpswdCheckDummy;
 
-public final class NodeUpswdEmail extends DeciTreeReadTemplate<UpswdInfo> {
+public final class NodeUpswdEmailL1 extends DeciTreeReadTemplate<UpswdInfo> {
 	
-	public NodeUpswdEmail(DeciTreeOption<UpswdInfo> option) {
+	public NodeUpswdEmailL1(DeciTreeOption<UpswdInfo> option) {
 		super(option);
 	}
 	
@@ -25,10 +26,7 @@ public final class NodeUpswdEmail extends DeciTreeReadTemplate<UpswdInfo> {
 		List<ModelChecker<UpswdInfo>> queue = new ArrayList<>();		
 		ModelChecker<UpswdInfo> checker;
 		
-		checker = new UpswdCheckHasPerson();
-		queue.add(checker);
-		
-		checker = new UpswdCheckHasEmail();
+		checker = new UpswdCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -39,10 +37,12 @@ public final class NodeUpswdEmail extends DeciTreeReadTemplate<UpswdInfo> {
 	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> success = new StdUpswdSuccess(option);
-		//TODO: enviar e-mail
+		ActionStd<UpswdInfo> mergeUser = new StdUpswdMergeUser(option);
+		ActionLazy<UpswdInfo> nodeL2 = new LazyUpswdNodeEmailL2(option.conn, option.schemaName);
 		
-		actions.add(success);		
+		mergeUser.addPostAction(nodeL2);
+		
+		actions.add(mergeUser);		
 		return actions;
 	}
 }

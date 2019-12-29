@@ -23,20 +23,22 @@ public final class NodeUpswdMatch extends DeciTreeReadTemplate<UpswdInfo> {
 	
 	
 	@Override protected ModelChecker<UpswdInfo> buildDecisionCheckerHook(DeciTreeOption<UpswdInfo> option) {
-		final boolean MATCH = true;
-		
 		List<ModelChecker<UpswdInfo>> queue = new ArrayList<>();		
 		ModelChecker<UpswdInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new UpswdCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new UpswdCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = MATCH;		
-		checker = new UpswdCheckHashToMatch();
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new UpswdCheckHashToMatch(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

@@ -6,15 +6,15 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class UpswdDbTableColumn extends DaoDbTableColumnTemplate {
-	
-	public static final String COL_COD_OWNER = "cod_owner";	
-	public static final String COL_COD_USER = "cod_user";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_PASSWORD = "hash1";
-	public static final String COL_SALT = "hash2";
+public final class UpswdDbTableColumn extends DaoDbTableColumnTemplate {	
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_PASSWORD = DaoDbField.COL_PASSWORD;
+	public static final String COL_SALT = DaoDbField.COL_SALT;
 	
 
 	Hashtable<String, List<DaoColumn>> tableColumns;	

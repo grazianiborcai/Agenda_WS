@@ -145,6 +145,7 @@ public final class DaoDbField {
 	public static final String COL_NAME_SEARCH = "name_search";
 	public static final String COL_NUMBER = "number";
 	public static final String COL_OWN_ID = "own_id";
+	public static final String COL_PASSWORD = "hash1";
 	public static final String COL_POSTING_DATE = "posting_date";
 	public static final String COL_POSTING_MONTH = "posting_month";
 	public static final String COL_POSTING_YEAR = "posting_year";
@@ -166,6 +167,7 @@ public final class DaoDbField {
 	public static final String COL_RAZAO_SOCIAL = "razao_social";
 	public static final String COL_RECORD_MODE = "record_mode";	
 	public static final String COL_REFRESH_TOKEN = "refresh_token";	
+	public static final String COL_SALT = "hash2";
 	public static final String COL_SCOPE = "scope";
 	public static final String COL_STATE_PROVINCE = "state_province";
 	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";	

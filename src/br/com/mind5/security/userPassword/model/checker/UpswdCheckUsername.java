@@ -3,58 +3,43 @@ package br.com.mind5.security.userPassword.model.checker;
 import java.util.List;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.checker.UserCheckUsernameExist;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
+import br.com.mind5.security.username.info.UsernameCopier;
+import br.com.mind5.security.username.info.UsernameInfo;
+import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-public final class UpswdCheckUsername implements ModelChecker<UpswdInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelChecker<UserInfo> checker;
-	
+public final class UpswdCheckUsername extends ModelCheckerTemplateActionV2<UpswdInfo, UsernameInfo> {
 	
 	public UpswdCheckUsername(ModelCheckerOption option) {
-		checker = new UserCheckUsernameExist(option);
+		super(option, UsernameInfo.class);
 	}
 	
 	
 	
-	@Override public boolean check(List<UpswdInfo> recordInfos) {
-		for (UpswdInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+	@Override protected ActionStd<UsernameInfo> buildActionHook(DeciTreeOption<UsernameInfo> option) {
+		ActionStd<UsernameInfo> select = new RootUsernameSelect(option).toAction();
+		return select;
 	}
-
 	
 	
-	@Override public boolean check(UpswdInfo recordInfo) {
-		return checker.check(UserInfo.copyFrom(recordInfo));
+	
+	@Override protected List<UsernameInfo> toActionClassHook(List<UpswdInfo> recordInfos) {
+		return UsernameCopier.copyFromUpswd(recordInfos);
 	}
-
 	
 	
-	@Override public boolean getResult() {
-		return checker.getResult();
-	}
-
+	
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.USER_PASSWORD_AND_USERNAME_IS_VALID;
+	}	
 	
 	
-	@Override public String getFailMessage() {
-		checker.getFailMessage();
-		return SystemMessage.USER_PASSWORD_OR_USERNAME_IS_INVALID;
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		checker.getFailCode();
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.USER_PASSWORD_OR_USERNAME_IS_INVALID;
 	}
 }

@@ -11,13 +11,8 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceHash;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceLength;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceSalt;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdInsert;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdSendEmail;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdSuccess;
-import br.com.mind5.security.userPassword.model.action.StdUpswdEnforceLChanged;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckExist;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckOwner;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckUser;
@@ -32,34 +27,35 @@ public final class RootUpswdInsert extends DeciTreeWriteTemplate<UpswdInfo> {
 	
 	
 	@Override protected ModelChecker<UpswdInfo> buildDecisionCheckerHook(DeciTreeOption<UpswdInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		final boolean DONT_EXIST = false;
-		
 		List<ModelChecker<UpswdInfo>> queue = new ArrayList<>();		
 		ModelChecker<UpswdInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new UpswdCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new UpswdCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new UpswdCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new UpswdCheckUser(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST;		
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
 		checker = new UpswdCheckExist(checkerOption);
 		queue.add(checker);	
 		
@@ -71,22 +67,14 @@ public final class RootUpswdInsert extends DeciTreeWriteTemplate<UpswdInfo> {
 	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> enforceLChanged = new StdUpswdEnforceLChanged(option);
-		ActionLazy<UpswdInfo> enforceLength = new LazyUpswdEnforceLength(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> enforceSalt = new LazyUpswdEnforceSalt(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> enforceHash = new LazyUpswdEnforceHash(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> insert = new LazyUpswdInsert(option.conn, option.schemaName);
+		ActionStd<UpswdInfo> insertUpswd = new NodeUpswdInsert(option).toAction();
 		ActionLazy<UpswdInfo> sendEmail = new LazyUpswdSendEmail(option.conn, option.schemaName);
 		ActionLazy<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(enforceLength);
-		enforceLength.addPostAction(enforceSalt);
-		enforceSalt.addPostAction(enforceHash);				
-		enforceHash.addPostAction(insert);
-		insert.addPostAction(sendEmail);
+		insertUpswd.addPostAction(sendEmail);
 		sendEmail.addPostAction(success);
 		
-		actions.add(enforceLChanged);	
+		actions.add(insertUpswd);	
 		return actions;
 	}
 }

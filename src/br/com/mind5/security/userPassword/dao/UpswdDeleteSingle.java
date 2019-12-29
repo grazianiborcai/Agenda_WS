@@ -7,99 +7,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class UpswdDeleteSingle implements DaoStmt<UpswdInfo> {
-	private DaoStmt<UpswdInfo> stmtSql;
-	private DaoStmtOption_<UpswdInfo> stmtOption;	
+public final class UpswdDeleteSingle extends DaoStmtTemplate<UpswdInfo> {
+	private final String MAIN_TABLE = DaoDbTable.USER_PASSWORD_TABLE;
 	
 	
 	public UpswdDeleteSingle(Connection conn, UpswdInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, UpswdInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.USER_PASSWORD_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.HARD_DELETE;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, UpswdInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
-		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
+		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		
-		DaoStmtWhere whereClause = new UpswdWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new UpswdWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.HARD_DELETE, this.stmtOption, this.getClass());
-	}
-	
-	
-	
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<UpswdInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<UpswdInfo> getNewInstance() {
-		return new UpswdDeleteSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	private class ResultParser implements DaoResultParser_<UpswdInfo> {
-		@Override public List<UpswdInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<UpswdInfo> finalResult = new ArrayList<>();
-			UpswdInfo emptyInfo = new UpswdInfo();
-			finalResult.add(emptyInfo);			
-			return finalResult;
-		}
+	@Override protected DaoResultParserV2<UpswdInfo> getResultParserHook() {
+		return new DaoResultParserV2<UpswdInfo>() {
+			@Override public List<UpswdInfo> parseResult(UpswdInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<UpswdInfo> finalResult = new ArrayList<>();
+				UpswdInfo emptyInfo = new UpswdInfo();
+				finalResult.add(emptyInfo);			
+				return finalResult;
+			}
+		};
 	}
 }

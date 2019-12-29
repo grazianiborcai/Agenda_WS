@@ -11,15 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceHash;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceLength;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforcePassword;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceSalt;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdSuccess;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdUpdate;
-import br.com.mind5.security.userPassword.model.action.StdUpswdEnforceLChanged;
-import br.com.mind5.security.userPassword.model.checker.UpswdCheckExist;
-import br.com.mind5.security.userPassword.model.checker.UpswdCheckOwner;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckUpdate;
 
 public final class RootUpswdUpdate extends DeciTreeReadTemplate<UpswdInfo> {
@@ -31,28 +23,16 @@ public final class RootUpswdUpdate extends DeciTreeReadTemplate<UpswdInfo> {
 	
 	
 	@Override protected ModelChecker<UpswdInfo> buildDecisionCheckerHook(DeciTreeOption<UpswdInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<UpswdInfo>> queue = new ArrayList<>();		
 		ModelChecker<UpswdInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new UpswdCheckUpdate();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new UpswdCheckUpdate(checkerOption);
 		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new UpswdCheckOwner(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new UpswdCheckExist(checkerOption);
-		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -62,24 +42,14 @@ public final class RootUpswdUpdate extends DeciTreeReadTemplate<UpswdInfo> {
 	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> auth = new RootUpswdAuth(option).toAction();
-		ActionStd<UpswdInfo> enforceLChanged = new StdUpswdEnforceLChanged(option);
-		ActionLazy<UpswdInfo> enforceLength = new LazyUpswdEnforceLength(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> enforcePassword = new LazyUpswdEnforcePassword(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> enforceSalt = new LazyUpswdEnforceSalt(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> enforceHash = new LazyUpswdEnforceHash(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> update = new LazyUpswdUpdate(option.conn, option.schemaName);
+		ActionStd<UpswdInfo> authenticate = new RootUpswdAuth(option).toAction();
+		ActionStd<UpswdInfo> updateUpswd = new NodeUpswdUpdate(option).toAction();
 		ActionLazy<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(enforceLength);
-		enforceLength.addPostAction(enforcePassword);
-		enforcePassword.addPostAction(enforceSalt);
-		enforceSalt.addPostAction(enforceHash);				
-		enforceHash.addPostAction(update);
-		update.addPostAction(success);
+		updateUpswd.addPostAction(success);
 		
-		actions.add(auth);
-		actions.add(enforceLChanged);	
+		actions.add(authenticate);
+		actions.add(updateUpswd);	
 		return actions;
 	}
 }

@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.Arrays;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class UpswdCheckHashToMatch extends ModelCheckerTemplateSimple_<UpswdInfo> {
+public final class UpswdCheckHashToMatch extends ModelCheckerTemplateSimpleV2<UpswdInfo> {
 
-	public UpswdCheckHashToMatch() {
-		super();
+	public UpswdCheckHashToMatch(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -19,11 +19,12 @@ public final class UpswdCheckHashToMatch extends ModelCheckerTemplateSimple_<Ups
 	@Override protected boolean checkHook(UpswdInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.hash 		== null ||
 			recordInfo.hashToMatch	== null		)			
-			return FAILED;
+			
+			return super.FAILED;
 		
 		
 		if (Arrays.equals(recordInfo.hash, recordInfo.hashToMatch))
-			return SUCCESS;
+			return super.SUCCESS;
 		
 		
 		return FAILED;
@@ -31,13 +32,13 @@ public final class UpswdCheckHashToMatch extends ModelCheckerTemplateSimple_<Ups
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.USER_PASSWORD_OR_USERNAME_IS_INVALID;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.USER_PASSWORD_AND_USERNAME_IS_VALID;
+	}	
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.USER_PASSWORD_OR_USERNAME_IS_INVALID;
 	}
 }

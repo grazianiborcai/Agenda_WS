@@ -10,13 +10,13 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.StdUpswdDelete;
-import br.com.mind5.security.userPassword.model.checker.UpswdCheckDelete;
-import br.com.mind5.security.userPassword.model.checker.UpswdCheckExist;
+import br.com.mind5.security.userPassword.model.action.StdUpswdSuccess;
+import br.com.mind5.security.userPassword.model.checker.UpswdCheckHasEmail;
+import br.com.mind5.security.userPassword.model.checker.UpswdCheckHasPerson;
 
-public final class RootUpswdDelete extends DeciTreeReadTemplate<UpswdInfo> {
+public final class NodeUpswdEmailL2 extends DeciTreeReadTemplate<UpswdInfo> {
 	
-	public RootUpswdDelete(DeciTreeOption<UpswdInfo> option) {
+	public NodeUpswdEmailL2(DeciTreeOption<UpswdInfo> option) {
 		super(option);
 	}
 	
@@ -30,18 +30,18 @@ public final class RootUpswdDelete extends DeciTreeReadTemplate<UpswdInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new UpswdCheckDelete(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new UpswdCheckHasPerson(checkerOption);
 		queue.add(checker);
-			
+		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new UpswdCheckExist(checkerOption);
-		queue.add(checker);	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new UpswdCheckHasEmail(checkerOption);
+		queue.add(checker);
 		
-		 return new ModelCheckerQueue<UpswdInfo>(queue);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
@@ -49,9 +49,10 @@ public final class RootUpswdDelete extends DeciTreeReadTemplate<UpswdInfo> {
 	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> delete = new StdUpswdDelete(option);		
-		actions.add(delete);
+		ActionStd<UpswdInfo> success = new StdUpswdSuccess(option);
+		//TODO: enviar e-mail
 		
+		actions.add(success);		
 		return actions;
 	}
 }

@@ -11,12 +11,10 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceHashToMatch;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdNodeMatch;
-import br.com.mind5.security.userPassword.model.action.StdUpswdKeepUpswd;
+import br.com.mind5.security.userPassword.model.action.LazyUpswdNodeAuth;
+import br.com.mind5.security.userPassword.model.action.StdUpswdMergeUser;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckAuth;
-import br.com.mind5.security.userPassword.model.checker.UpswdCheckExist;
-import br.com.mind5.security.userPassword.model.checker.UpswdCheckIsPasswordEnabled;
+import br.com.mind5.security.userPassword.model.checker.UpswdCheckUser;
 
 public final class RootUpswdAuth extends DeciTreeReadTemplate<UpswdInfo> {
 	
@@ -27,24 +25,23 @@ public final class RootUpswdAuth extends DeciTreeReadTemplate<UpswdInfo> {
 	
 	
 	@Override protected ModelChecker<UpswdInfo> buildDecisionCheckerHook(DeciTreeOption<UpswdInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<UpswdInfo>> queue = new ArrayList<>();		
 		ModelChecker<UpswdInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new UpswdCheckAuth();
-		queue.add(checker);
-		
-		checker = new UpswdCheckIsPasswordEnabled();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new UpswdCheckAuth(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
-		checker = new UpswdCheckExist(checkerOption);
-		queue.add(checker);	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new UpswdCheckUser(checkerOption);
+		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -53,15 +50,13 @@ public final class RootUpswdAuth extends DeciTreeReadTemplate<UpswdInfo> {
 	
 	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
-		//TODO: usuario de sistema nao pode ser autenticado. Adicionar check
-		ActionStd<UpswdInfo> keepAttr = new StdUpswdKeepUpswd(option);
-		ActionLazy<UpswdInfo> enforceHashToMatch = new LazyUpswdEnforceHashToMatch(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> nodeMatch = new LazyUpswdNodeMatch(option.conn, option.schemaName);
 		
-		keepAttr.addPostAction(enforceHashToMatch);		
-		enforceHashToMatch.addPostAction(nodeMatch);
+		ActionStd<UpswdInfo> mergeUser = new StdUpswdMergeUser(option);
+		ActionLazy<UpswdInfo> nodeAuth = new LazyUpswdNodeAuth(option.conn, option.schemaName);
 		
-		actions.add(keepAttr);		
+		mergeUser.addPostAction(nodeAuth);
+		
+		actions.add(mergeUser);		
 		return actions;
 	}
 }
