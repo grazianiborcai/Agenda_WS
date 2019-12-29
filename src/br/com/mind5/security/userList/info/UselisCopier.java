@@ -8,8 +8,23 @@ import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.info.InfoCopier;
+import br.com.mind5.security.userAuthentication.info.UauthInfo;
 
 public final class UselisCopier {
+	public static UselisInfo copyFromUauth(UauthInfo source) {
+		InfoCopier<UselisInfo, UauthInfo> copier = new UselisCopyUauth();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UselisInfo> copyFromUauth(List<UauthInfo> sources) {
+		InfoCopier<UselisInfo, UauthInfo> copier = new UselisCopyUauth();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UselisInfo copyFromEmpnap(EmpnapInfo source) {
 		InfoCopier<UselisInfo, EmpnapInfo> copier = new UselisCopyEmpnap();
 		return copier.makeCopy(source);
