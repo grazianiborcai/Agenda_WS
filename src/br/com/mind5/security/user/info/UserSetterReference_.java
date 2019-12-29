@@ -13,7 +13,7 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class UserSetterReference implements InfoSetter<UserInfo> {
+public final class UserSetterReference_ implements InfoSetter<UserInfo> {
 	
 	public UserInfo setAttr(UserInfo recordInfo) {
 		checkArgument(recordInfo);

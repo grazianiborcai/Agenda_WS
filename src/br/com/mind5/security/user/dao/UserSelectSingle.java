@@ -41,7 +41,7 @@ public final class UserSelectSingle extends DaoStmtTemplate<UserInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, UserInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;	//DONT_IGNORE_NULL
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new UserWhere(whereOption, tableName, recordInfo);

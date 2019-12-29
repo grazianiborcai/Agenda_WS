@@ -35,14 +35,6 @@ public final class UserWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case UserDbTableColumn.COL_COD_PERSON :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPerson));
-					break;
-					
-				case UserDbTableColumn.COL_USERNAME :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.username);
-					break;
-					
 				case UserDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;

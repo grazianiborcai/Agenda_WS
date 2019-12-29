@@ -10,8 +10,23 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.security.userAuthentication.info.UauthInfo;
 
 public final class UserCopier {
+	public static UserInfo copyFromUauth(UauthInfo source) {
+		InfoCopier<UserInfo, UauthInfo> copier = new UserCopyUauth();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UserInfo> copyFromUauth(List<UauthInfo> sources) {
+		InfoCopier<UserInfo, UauthInfo> copier = new UserCopyUauth();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UserInfo copyFromOwner(OwnerInfo source) {
 		InfoCopier<UserInfo, OwnerInfo> copier = new UserCopyOwner();
 		return copier.makeCopy(source);

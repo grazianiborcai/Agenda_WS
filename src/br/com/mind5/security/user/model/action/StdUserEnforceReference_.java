@@ -7,12 +7,12 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class StdUserEnforceReference implements ActionStd<UserInfo> {
+public final class StdUserEnforceReference_ implements ActionStd<UserInfo> {
 	private ActionStd<UserInfo> actionHelper;	
 	
 	
-	public StdUserEnforceReference(DeciTreeOption<UserInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiUserEnforceReference());
+	public StdUserEnforceReference_(DeciTreeOption<UserInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiUserEnforceReference_());
 	}
 	
 	
