@@ -34,10 +34,6 @@ public final class UserapWhere implements DaoStmtWhere {
 				case UserapDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
-					
-				case UserapDbTableColumn.COL_COD_USER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
-					break;
 			}
 		}		
 		

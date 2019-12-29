@@ -3,157 +3,81 @@ package br.com.mind5.security.userSnapshot.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
+import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-public final class UserapSelectSingle implements DaoStmt<UserapInfo> {
-	private final String LT_USER = DaoDbTable.USER_SNAPSHOT_TABLE;
-	
-	private DaoStmt<UserapInfo> stmtSql;
-	private DaoStmtOption_<UserapInfo> stmtOption;
-	
+public final class UserapSelectSingle extends DaoStmtTemplate<UserapInfo> {
+	private final String MAIN_TABLE = DaoDbTable.USER_SNAPSHOT_TABLE;
 	
 	
 	public UserapSelectSingle(Connection conn, UserapInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, UserapInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_USER;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_USER);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
-		final boolean IGNORE_NULL = true;
-		final boolean DONT_IGNORE_RECORD_MODE = false;
-		
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, UserapInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = IGNORE_NULL;
-		whereOption.ignoreRecordMode = DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new UserapWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
+		
+		DaoStmtWhere whereClause = new UserapWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<UserapInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<UserapInfo> getNewInstance() {
-		return new UserapSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<UserapInfo> {
-		private final boolean NOT_NULL = false;
-		
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<UserapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<UserapInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				UserapInfo dataInfo = new UserapInfo();
-				dataInfo.codOwner = stmtResult.getLong(UserapDbTableColumn.COL_COD_OWNER);
-				dataInfo.codUser = stmtResult.getLong(UserapDbTableColumn.COL_COD_USER);									
-				dataInfo.recordMode = stmtResult.getString(UserapDbTableColumn.COL_RECORD_MODE);
-				dataInfo.username = stmtResult.getString(UserapDbTableColumn.COL_USERNAME);
-				dataInfo.codAuthGroup = stmtResult.getString(UserapDbTableColumn.COL_COD_AUTH_GROUP);
+	@Override protected DaoResultParserV2<UserapInfo> getResultParserHook() {
+		return new DaoResultParserV2<UserapInfo>() {
+			@Override public List<UserapInfo> parseResult(UserapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<UserapInfo> finalResult = new ArrayList<>();
 				
-				stmtResult.getLong(UserapDbTableColumn.COL_COD_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					UserapInfo dataInfo = new UserapInfo();
+					
+					dataInfo.codOwner = stmtResult.getLong(UserapDbTableColumn.COL_COD_OWNER);
 					dataInfo.codSnapshot = stmtResult.getLong(UserapDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codUser = stmtResult.getLong(UserapDbTableColumn.COL_COD_USER);									
+					dataInfo.recordMode = stmtResult.getString(UserapDbTableColumn.COL_RECORD_MODE);
+					dataInfo.username = stmtResult.getString(UserapDbTableColumn.COL_USERNAME);
+					dataInfo.codAuthGroup = stmtResult.getString(UserapDbTableColumn.COL_COD_AUTH_GROUP);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, UserapDbTableColumn.COL_COD_PERSON);
+					dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, UserapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, UserapDbTableColumn.COL_COD_USER_CATEG);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, UserapDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, UserapDbTableColumn.COL_LAST_CHANGED);
+					
+					finalResult.add(dataInfo);				
+				} while (stmtResult.next());
 				
-				
-				stmtResult.getLong(UserapDbTableColumn.COL_COD_PERSON);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPerson = stmtResult.getLong(UserapDbTableColumn.COL_COD_PERSON);
-				
-				
-				stmtResult.getLong(UserapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codPersonSnapshot = stmtResult.getLong(UserapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
-				
-				
-				stmtResult.getString(UserapDbTableColumn.COL_COD_USER_CATEG);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.codUserCategory = stmtResult.getString(UserapDbTableColumn.COL_COD_USER_CATEG).charAt(0);
-				
-				
-				stmtResult.getLong(UserapDbTableColumn.COL_LAST_CHANGED_BY);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.lastChangedBy = stmtResult.getLong(UserapDbTableColumn.COL_LAST_CHANGED_BY);
-				
-				
-				Timestamp lastChanged = stmtResult.getTimestamp(UserapDbTableColumn.COL_LAST_CHANGED);
-				if (lastChanged != null)
-					dataInfo.lastChanged = lastChanged.toLocalDateTime();	
-
-				
-				finalResult.add(dataInfo);				
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+				return finalResult;
+			}
+		};
 	}
 }

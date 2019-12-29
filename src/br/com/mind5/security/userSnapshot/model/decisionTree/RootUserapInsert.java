@@ -3,7 +3,6 @@ package br.com.mind5.security.userSnapshot.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -11,7 +10,6 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
-import br.com.mind5.security.userSnapshot.model.action.LazyUserapRootSelect;
 import br.com.mind5.security.userSnapshot.model.action.StdUserapInsert;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckOwner;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckUser;
@@ -26,26 +24,28 @@ public final class RootUserapInsert extends DeciTreeWriteTemplate<UserapInfo> {
 	
 	
 	@Override protected ModelChecker<UserapInfo> buildDecisionCheckerHook(DeciTreeOption<UserapInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<UserapInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new UserapCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new UserapCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new UserapCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new UserapCheckUser(checkerOption);
 		queue.add(checker);
 		
@@ -58,9 +58,6 @@ public final class RootUserapInsert extends DeciTreeWriteTemplate<UserapInfo> {
 		List<ActionStd<UserapInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<UserapInfo> insert = new StdUserapInsert(option);
-		ActionLazy<UserapInfo> select = new LazyUserapRootSelect(option.conn, option.schemaName);
-		
-		insert.addPostAction(select);
 		
 		actions.add(insert);	
 		return actions;

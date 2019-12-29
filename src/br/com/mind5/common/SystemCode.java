@@ -398,6 +398,7 @@ public final class SystemCode {
 	public static final int USER_SNAPSHOT_IS_NULL 						= 2152;	
 	public static final int USER_SNAPSHOT_NO_ADDRESS					= 2153;	
 	public static final int USER_SNAPSHOT_NO_PHONE						= 2154;
+	public static final int USER_SNAPSHOT_MANDATORY_FIELD_EMPTY			= 2155;
 	
 	// Material Snapshot
 	public static final int MATERIAL_SNAPSHOT_IS_NULL 					= 2200;	

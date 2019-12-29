@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-public final class LazyUserapSelect extends ActionLazyTemplate<UserapInfo, UserapInfo> {
+public final class LazyUserapSelect_ extends ActionLazyTemplate<UserapInfo, UserapInfo> {
 	
-	public LazyUserapSelect(Connection conn, String schemaName) {
+	public LazyUserapSelect_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	

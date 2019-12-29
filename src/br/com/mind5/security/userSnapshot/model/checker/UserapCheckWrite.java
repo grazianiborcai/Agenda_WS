@@ -3,14 +3,14 @@ package br.com.mind5.security.userSnapshot.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-public final class UserapCheckWrite extends ModelCheckerTemplateSimple_<UserapInfo> {
+public final class UserapCheckWrite extends ModelCheckerTemplateSimpleV2<UserapInfo> {
 
-	public UserapCheckWrite() {
-		super();
+	public UserapCheckWrite(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -20,6 +20,7 @@ public final class UserapCheckWrite extends ModelCheckerTemplateSimple_<UserapIn
 			 || recordInfo.codUser		<= 0
 			 || recordInfo.username		== null
 			 || recordInfo.codLanguage	== null	)
+			
 			return super.FAILED;
 		
 		
@@ -28,13 +29,7 @@ public final class UserapCheckWrite extends ModelCheckerTemplateSimple_<UserapIn
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.USER_SNAPSHOT_MANDATORY_FIELD_EMPTY;
 	}
 }
