@@ -494,6 +494,7 @@ public final class SystemCode {
 	// Username
 	public static final int USERNAME_ALREADY_EXIST 						= 2750;
 	public static final int USERNAME_NOT_FOUND 							= 2751;
+	public static final int USERNAME_MANDATORY_FIELD_EMPTY 				= 2752;
 	
 	// Token
 	public static final int TOKEN_IS_INVALID 							= 2800;
