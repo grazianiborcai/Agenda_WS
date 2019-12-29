@@ -1,61 +1,35 @@
 package br.com.mind5.security.user.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserSelect;
-import br.com.mind5.security.user.model.action.StdUserEnforceKey;
+import br.com.mind5.security.user.model.action.StdUserSelect;
 
-public final class UserCheckExist extends ModelCheckerTemplateAction_<UserInfo> {
+public final class UserCheckExist extends ModelCheckerTemplateActionV2<UserInfo, UserInfo> {
 	
 	public UserCheckExist(ModelCheckerOption option) {
-		super(option);
+		super(option, UserInfo.class);
 	}
 	
-	//TODO: adicionar checkArgument para verificar campos de busca estao preenchidos
+
 	
-	@Override protected ActionStd<UserInfo> buildActionHook(UserInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<UserInfo> option = buildActionOption(recordInfo, conn, schemaName);
-		
-		ActionStd<UserInfo> actionSelect = new StdUserEnforceKey(option);
-		actionSelect.addPostAction(new LazyUserSelect(conn, schemaName));
-		return actionSelect;
+	@Override protected ActionStd<UserInfo> buildActionHook(DeciTreeOption<UserInfo> option) {
+		ActionStd<UserInfo> select = new StdUserSelect(option);
+		return select;
 	}
 	
 	
-	
-	private DeciTreeOption<UserInfo> buildActionOption(UserInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<UserInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
-	}
+
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.USER_ALREADY_EXIST;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.USER_ALREADY_EXIST)
-			return SystemMessage.USER_ALREADY_EXIST;
-		
-		return SystemMessage.USER_NOT_FOUND;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.USER_ALREADY_EXIST;	
-			
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.USER_NOT_FOUND;
 	}
 }

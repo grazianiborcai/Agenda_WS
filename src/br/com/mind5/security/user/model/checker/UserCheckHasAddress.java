@@ -17,8 +17,13 @@ public final class UserCheckHasAddress extends ModelCheckerTemplateSimple_<UserI
 	
 	
 	@Override protected boolean checkHook(UserInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.addresses == null || recordInfo.addresses.isEmpty())			
+		if (recordInfo.addresses == null)			
 			return super.FAILED;		
+		
+		
+		if (recordInfo.addresses.isEmpty())			
+			return super.FAILED;	
+		
 		
 		return super.SUCCESS;
 	}
