@@ -7,12 +7,12 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
 
-public final class StdUauthMergeUser implements ActionStd<UauthInfo> {
+public final class StdUauthMergeUselis implements ActionStd<UauthInfo> {
 	private ActionStd<UauthInfo> actionHelper;	
 	
 	
-	public StdUauthMergeUser(DeciTreeOption<UauthInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiUauthMergeUser(option.conn, option.schemaName));
+	public StdUauthMergeUselis(DeciTreeOption<UauthInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiUauthMergeUselis(option.conn, option.schemaName));
 	}
 	
 	

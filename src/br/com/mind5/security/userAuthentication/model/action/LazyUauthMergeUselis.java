@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
 
-public final class LazyUauthMergeUser extends ActionLazyTemplate<UauthInfo, UauthInfo> {
+public final class LazyUauthMergeUselis extends ActionLazyTemplate<UauthInfo, UauthInfo> {
 	
-	public LazyUauthMergeUser(Connection conn, String schemaName) {
+	public LazyUauthMergeUselis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyUauthMergeUser extends ActionLazyTemplate<UauthInfo, Uaut
 	
 	
 	@Override protected ActionStd<UauthInfo> getInstanceOfActionHook(DeciTreeOption<UauthInfo> option) {
-		return new StdUauthMergeUser(option);
+		return new StdUauthMergeUselis(option);
 	}
 	
 	

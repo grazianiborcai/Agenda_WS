@@ -5,11 +5,11 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoMergerVisitor;
-import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.security.userList.info.UselisInfo;
 
-final class UauthVisiMergeUser implements InfoMergerVisitor<UauthInfo, UserInfo> {
+final class UauthVisiMergeUselis implements InfoMergerVisitor<UauthInfo, UselisInfo> {
 
-	@Override public UauthInfo writeRecord(UserInfo sourceOne, UauthInfo sourceTwo) {
+	@Override public UauthInfo writeRecord(UselisInfo sourceOne, UauthInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		UauthInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class UauthVisiMergeUser implements InfoMergerVisitor<UauthInfo, UserInfo>
 	
 	
 	
-	private void checkArgument(UserInfo sourceOne, UauthInfo sourceTwo) {
+	private void checkArgument(UselisInfo sourceOne, UauthInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,13 +37,13 @@ final class UauthVisiMergeUser implements InfoMergerVisitor<UauthInfo, UserInfo>
 	
 	
 	
-	private UauthInfo merge(UserInfo sourceOne, UauthInfo sourceTwo) {
+	private UauthInfo merge(UselisInfo sourceOne, UauthInfo sourceTwo) {
 		return UauthInfo.copyFrom(sourceOne);
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(UserInfo sourceOne, UauthInfo sourceTwo) {
+	@Override public boolean shouldWrite(UselisInfo sourceOne, UauthInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner 	&&
 				sourceOne.username.equals(sourceTwo.username));
 	}

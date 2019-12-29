@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
-import br.com.mind5.security.userAuthentication.model.action.LazyUauthMergeUser;
+import br.com.mind5.security.userAuthentication.model.action.LazyUauthMergeUselis;
 import br.com.mind5.security.userAuthentication.model.action.StdUauthAuthenticateUpswd;
 import br.com.mind5.security.userAuthentication.model.checker.UauthCheckRead;
 
@@ -44,9 +44,9 @@ public final class RootUauthUpswd extends DeciTreeWriteTemplate<UauthInfo> {
 		List<ActionStd<UauthInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UauthInfo> authenticateUpswd = new StdUauthAuthenticateUpswd(option);
-		ActionLazy<UauthInfo> mergeUser = new LazyUauthMergeUser(option.conn, option.schemaName);
+		ActionLazy<UauthInfo> mergeUselis = new LazyUauthMergeUselis(option.conn, option.schemaName);
 		
-		authenticateUpswd.addPostAction(mergeUser);
+		authenticateUpswd.addPostAction(mergeUselis);
 		
 		actions.add(authenticateUpswd);		
 		return actions;
