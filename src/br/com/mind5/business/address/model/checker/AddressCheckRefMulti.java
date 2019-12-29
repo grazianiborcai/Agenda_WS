@@ -21,13 +21,13 @@ public final class AddressCheckRefMulti extends ModelCheckerTemplateSimpleV2<Add
 		if ( recordInfo.codCustomer >= 0 )
 			totRef = totRef + 1;
 		
-		if ( recordInfo.codStore >= 0 )
+		if ( recordInfo.codStore 	>= 0 )
 			totRef = totRef + 1;
 		
 		if ( recordInfo.codEmployee >= 0 )
 			totRef = totRef + 1;
 		
-		if ( recordInfo.codUser >= 0 )
+		if ( recordInfo.codUser 	>= 0 )
 			totRef = totRef + 1;
 		
 		if ( recordInfo.codOwnerRef >= 0 )

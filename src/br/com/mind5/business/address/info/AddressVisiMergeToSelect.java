@@ -23,10 +23,11 @@ final class AddressVisiMergeToSelect implements InfoMergerVisitor<AddressInfo, A
 	
 	
 	private AddressInfo merge(AddressInfo sourceOne, AddressInfo sourceTwo) {
-		AddressInfo result = makeClone(sourceOne);		
-		result.lastChangedBy = sourceTwo.lastChangedBy;
+		AddressInfo result = makeClone(sourceOne);	
+		
 		result.codLanguage = sourceTwo.codLanguage;
 		result.username = sourceTwo.username;
+		
 		return result;
 	}
 	
