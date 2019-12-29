@@ -7,11 +7,11 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-public final class StdUserMergeToSelect implements ActionStd<UselisInfo> {
+public final class StdUselisMergeToSelect implements ActionStd<UselisInfo> {
 	private ActionStd<UselisInfo> actionHelper;	
 	
 	
-	public StdUserMergeToSelect(DeciTreeOption<UselisInfo> option) {			
+	public StdUselisMergeToSelect(DeciTreeOption<UselisInfo> option) {			
 		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiUselisMergeToSelect(option.conn, option.schemaName));
 	}
 	

@@ -8,10 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisInfo;
+import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-public final class LazyUselisMergePersolis extends ActionLazyTemplate<UselisInfo, UselisInfo> {
+public final class LazyUselisRootSelect extends ActionLazyTemplate<UselisInfo, UselisInfo> {
 	
-	public LazyUselisMergePersolis(Connection conn, String schemaName) {
+	public LazyUselisRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyUselisMergePersolis extends ActionLazyTemplate<UselisInfo
 	
 	
 	@Override protected ActionStd<UselisInfo> getInstanceOfActionHook(DeciTreeOption<UselisInfo> option) {
-		return new StdUselisMergePerson(option);
+		return new RootUselisSelect(option).toAction();
 	}
 	
 	
