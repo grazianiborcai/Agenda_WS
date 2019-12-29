@@ -154,7 +154,6 @@ public final class DaoDbTable {
 	public static final String ORDER_SEARCH_VIEW = "view_order_search";	
 	public static final String PAY_PARTNER_STORE_VIEW = "view_pay_partner_store";
 	public static final String PAYMENT_VIEW = "view_payment";
-	public static final String PERSON_CUS_VIEW = "view_person_customer";
 	public static final String PERSON_LIST_VIEW = "view_person_list";	
 	public static final String PERSON_SEARCH_VIEW = "view_person_search";	
 	public static final String PERSON_USER_VIEW = "view_person_user";
