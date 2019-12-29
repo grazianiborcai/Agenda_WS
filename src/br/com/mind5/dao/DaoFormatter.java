@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemMessage;
@@ -239,6 +240,19 @@ public final class DaoFormatter {
 	
 	
 	
+	public static PreparedStatement base64ToStmt(PreparedStatement stmt, int index, byte[] encoded) throws SQLException {
+		checkArgument(stmt, index);			
+		String base64 = null;
+		
+		if (encoded != null) 
+			base64 = Base64.getEncoder().encodeToString(encoded);
+			
+		stmt.setString(index, base64);		
+		return stmt;
+	}
+	
+	
+	
 	public static PreparedStatement localDateToStmt(PreparedStatement stmt, int index, LocalDate localDate) throws SQLException {
 		checkArgument(stmt, index);			
 		
@@ -362,6 +376,19 @@ public final class DaoFormatter {
 			return null;
 			
 		return result.toLocalDateTime();	
+	}
+	
+	
+	
+	public static byte[] sqlToBase64(ResultSet stmtResult, String colunmName) throws SQLException {
+		checkArgument(stmtResult, colunmName);		
+		
+		String result = stmtResult.getString(colunmName);
+		
+		if (result == null)
+			return null;
+			
+		return Base64.getDecoder().decode(result);	
 	}
 	
 	
