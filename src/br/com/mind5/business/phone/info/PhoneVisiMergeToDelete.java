@@ -24,8 +24,10 @@ final class PhoneVisiMergeToDelete implements InfoMergerVisitor<PhoneInfo, Phone
 	
 	private PhoneInfo merge(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
 		PhoneInfo result = makeClone(sourceOne);		
-		result.lastChangedBy = sourceTwo.lastChangedBy;
+		
+		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
+		
 		return result;
 	}
 	

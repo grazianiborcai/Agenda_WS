@@ -23,9 +23,11 @@ final class PhoneVisiMergeToSelect implements InfoMergerVisitor<PhoneInfo, Phone
 	
 	
 	private PhoneInfo merge(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		PhoneInfo result = makeClone(sourceOne);		
+		PhoneInfo result = makeClone(sourceOne);	
+		
 		result.username = sourceTwo.username;
 		result.codLanguage = sourceTwo.codLanguage;
+		
 		return result;
 	}
 	
