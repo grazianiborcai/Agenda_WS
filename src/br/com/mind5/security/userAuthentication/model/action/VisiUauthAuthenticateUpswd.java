@@ -1,6 +1,7 @@
 package br.com.mind5.security.userAuthentication.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
@@ -18,5 +19,11 @@ final class VisiUauthAuthenticateUpswd extends ActionVisitorTemplateAction<Uauth
 	
 	@Override protected ActionStd<UpswdInfo> getActionHook(DeciTreeOption<UpswdInfo> option) {
 		return new RootUpswdAuthUsername(option).toAction();
+	}
+	
+	
+	
+	@Override protected List<UauthInfo> toBaseClassHook(List<UauthInfo> baseInfos, List<UpswdInfo> results) {
+		return baseInfos;
 	}
 }

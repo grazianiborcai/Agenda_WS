@@ -943,4 +943,7 @@ public final class SystemCode {
 	
 	//User Search
 	public static final int USER_SEARCH_MANDATORY_FIELD_EMPTY			= 9100;
+	
+	//User Authentication
+	public static final int USER_AUTH_MANDATORY_FIELD_EMPTY				= 9150;	
 }

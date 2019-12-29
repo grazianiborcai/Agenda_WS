@@ -5,8 +5,9 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserSelect;
+import br.com.mind5.security.user.model.decisionTree.RootUserSearch;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
 import br.com.mind5.security.userAuthentication.info.UauthMerger;
 
@@ -19,7 +20,13 @@ final class VisiUauthMergeUser extends ActionVisitorTemplateMergeV2<UauthInfo, U
 	
 	
 	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
-		return RootUserSelect.class;
+		return RootUserSearch.class;
+	}
+	
+	
+	
+	@Override protected List<UserInfo> toActionClassHook(List<UauthInfo> recordInfos) {
+		return UserCopier.copyFromUauth(recordInfos);
 	}
 	
 	

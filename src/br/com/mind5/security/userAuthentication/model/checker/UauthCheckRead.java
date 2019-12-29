@@ -3,14 +3,14 @@ package br.com.mind5.security.userAuthentication.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
 
-public final class UauthCheckRead extends ModelCheckerTemplateSimple_<UauthInfo> {
+public final class UauthCheckRead extends ModelCheckerTemplateSimpleV2<UauthInfo> {
 
-	public UauthCheckRead() {
-		super();
+	public UauthCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -20,6 +20,7 @@ public final class UauthCheckRead extends ModelCheckerTemplateSimple_<UauthInfo>
 			recordInfo.username		== null	||
 			recordInfo.password		== null	||
 			recordInfo.codLanguage 	== null		)			
+			
 			return super.FAILED;
 		
 		
@@ -28,13 +29,7 @@ public final class UauthCheckRead extends ModelCheckerTemplateSimple_<UauthInfo>
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.USER_AUTH_MANDATORY_FIELD_EMPTY;
 	}
 }
