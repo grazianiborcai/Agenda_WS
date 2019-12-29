@@ -27,8 +27,23 @@ import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
+import br.com.mind5.security.userPassword.info.UpswdInfo;
 
 public final class UsernameCopier {
+	public static UsernameInfo copyFromUpswd(UpswdInfo source) {
+		InfoCopier<UsernameInfo, UpswdInfo> copier = new UsernameCopyUpswd();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromUpswd(List<UpswdInfo> sources) {
+		InfoCopier<UsernameInfo, UpswdInfo> copier = new UsernameCopyUpswd();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UsernameInfo copyFromFimg(FimgInfo source) {
 		InfoCopier<UsernameInfo, FimgInfo> copier = new UsernameCopyFimg();
 		return copier.makeCopy(source);
