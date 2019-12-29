@@ -12,7 +12,6 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserEnforceLChangedBy;
-import br.com.mind5.security.user.model.action.LazyUserEnforceReference_;
 import br.com.mind5.security.user.model.action.LazyUserInsert;
 import br.com.mind5.security.user.model.action.StdUserEnforceLChanged;
 import br.com.mind5.security.user.model.checker.UserCheckUsername;
@@ -46,12 +45,10 @@ public final class NodeUserInsert extends DeciTreeWriteTemplate<UserInfo> {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();		
 		
 		ActionStd<UserInfo> enforceLChanged = new StdUserEnforceLChanged(option);	
-		ActionLazy<UserInfo> enforceReference = new LazyUserEnforceReference_(option.conn, option.schemaName);
 		ActionLazy<UserInfo> insertUser = new LazyUserInsert(option.conn, option.schemaName);
 		ActionLazy<UserInfo> enforceLChangedBy = new LazyUserEnforceLChangedBy(option.conn, option.schemaName);	//TODO: trocar pelo mergerUsername ?
 		
-		enforceLChanged.addPostAction(enforceReference);
-		enforceReference.addPostAction(insertUser);
+		enforceLChanged.addPostAction(insertUser);
 		insertUser.addPostAction(enforceLChangedBy);
 		
 		actions.add(enforceLChanged);	

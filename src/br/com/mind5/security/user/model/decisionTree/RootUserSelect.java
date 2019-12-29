@@ -15,7 +15,6 @@ import br.com.mind5.security.user.model.action.LazyUserMergeAddress;
 import br.com.mind5.security.user.model.action.LazyUserMergeAuthGrRole;
 import br.com.mind5.security.user.model.action.LazyUserMergeCuspar;
 import br.com.mind5.security.user.model.action.LazyUserMergePerson;
-import br.com.mind5.security.user.model.action.LazyUserMergePersonCus;
 import br.com.mind5.security.user.model.action.LazyUserMergePhone;
 import br.com.mind5.security.user.model.action.StdUserMergeToSelect;
 import br.com.mind5.security.user.model.checker.UserCheckRead;
@@ -52,15 +51,13 @@ public final class RootUserSelect extends DeciTreeReadTemplate<UserInfo> {
 		ActionLazy<UserInfo> mergePerson = new LazyUserMergePerson(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergeAddress = new LazyUserMergeAddress(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergePhone = new LazyUserMergePhone(option.conn, option.schemaName);
-		ActionLazy<UserInfo> mergePersonCus = new LazyUserMergePersonCus(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergeAuthGrRole = new LazyUserMergeAuthGrRole(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergeCuspar = new LazyUserMergeCuspar(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
-		mergePhone.addPostAction(mergePersonCus);
-		mergePersonCus.addPostAction(mergeAuthGrRole);
+		mergePhone.addPostAction(mergeAuthGrRole);
 		mergeAuthGrRole.addPostAction(mergeCuspar);
 		
 		actions.add(select);

@@ -5,7 +5,6 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.personCustomer_.info.PersonCusInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
@@ -81,20 +80,6 @@ public final class UserMerger {
 		InfoMerger<UserInfo, PersonInfo> merger = new UserMergerPerson();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
-	
-	
-	
-	public static UserInfo mergeWithPersonCus(PersonCusInfo sourceOne, UserInfo sourceTwo) {
-		InfoMerger<UserInfo, PersonCusInfo> merger = new UserMergerPersonCus_();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<UserInfo> mergeWithPersonCus(List<PersonCusInfo> sourceOnes, List<UserInfo> sourceTwos) {
-		InfoMerger<UserInfo, PersonCusInfo> merger = new UserMergerPersonCus_();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}	
 	
 	
 	
