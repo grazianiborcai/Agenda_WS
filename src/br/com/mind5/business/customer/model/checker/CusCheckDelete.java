@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CusCheckRead extends ModelCheckerTemplateSimpleV2<CusInfo> {
+public final class CusCheckDelete extends ModelCheckerTemplateSimpleV2<CusInfo> {
 
-	public CusCheckRead(ModelCheckerOption option) {
+	public CusCheckDelete(ModelCheckerOption option) {
 		super(option);
 	}
 	

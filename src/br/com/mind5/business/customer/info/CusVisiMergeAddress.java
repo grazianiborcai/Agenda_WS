@@ -46,7 +46,8 @@ final class CusVisiMergeAddress implements InfoMergerVisitor<CusInfo, AddressInf
 	
 	
 	@Override public boolean shouldWrite(AddressInfo sourceOne, CusInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner) && (sourceOne.codCustomer == sourceTwo.codCustomer);
+		return (sourceOne.codOwner    == sourceTwo.codOwner 	&& 
+				sourceOne.codCustomer == sourceTwo.codCustomer		);
 	}	
 	
 	

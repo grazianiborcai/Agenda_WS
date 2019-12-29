@@ -12,9 +12,10 @@ import br.com.mind5.business.customer.model.action.LazyCusNodeDeleteAddress;
 import br.com.mind5.business.customer.model.action.LazyCusNodeDeletePhone;
 import br.com.mind5.business.customer.model.action.LazyCusUpdate;
 import br.com.mind5.business.customer.model.action.StdCusMergeToDelete;
+import br.com.mind5.business.customer.model.checker.CusCheckDelete;
 import br.com.mind5.business.customer.model.checker.CusCheckExist;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
-import br.com.mind5.business.customer.model.checker.CusCheckUpdate;
+import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -40,7 +41,7 @@ public final class RootCusDelete extends DeciTreeWriteTemplate<CusInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CusCheckUpdate(checkerOption);
+		checker = new CusCheckDelete(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -48,6 +49,13 @@ public final class RootCusDelete extends DeciTreeWriteTemplate<CusInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;		
 		checker = new CusCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.expectedResult =  ModelCheckerOption.EXIST_ON_DB;		
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;		
+		checker = new CusCheckOwner(checkerOption);
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();
