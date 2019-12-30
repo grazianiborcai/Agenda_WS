@@ -8,6 +8,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.security.user.info.UserInfo;
 
@@ -26,6 +27,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public long createdBy;
 	public UserInfo userData;
 	public PersonInfo personData;
+	public FimistInfo fimistData;
 	public String username;
 	
 	
@@ -43,6 +45,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		lastChangedBy = DefaultValue.number();
 		userData = DefaultValue.object();
 		personData = DefaultValue.object();
+		fimistData = DefaultValue.object();
 		createdBy = DefaultValue.number();
 	}
 	
@@ -67,19 +70,20 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		deepCopy.phones = clonePhones(deepCopy.phones);
 		deepCopy.personData = clonePerson(deepCopy.personData);
 		deepCopy.userData = cloneUser(deepCopy.userData);
+		deepCopy.fimistData = cloneFimist(deepCopy.fimistData);
 		
 		return deepCopy;
 	}
 	
 	
 	
-	private List<AddressInfo> cloneAddresses(List<AddressInfo> addresses) throws CloneNotSupportedException {
-		if (addresses == null)
+	private List<AddressInfo> cloneAddresses(List<AddressInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<AddressInfo> deepAddresses = new ArrayList<>();
 		
-		for (AddressInfo eachAddress : addresses) {
+		for (AddressInfo eachAddress : recordInfos) {
 			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
 			deepAddresses.add(clonedAddress);
 		}
@@ -120,6 +124,15 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		
 		return (UserInfo) recordInfos.clone();
 	}
+	
+	
+	
+	private FimistInfo cloneFimist(FimistInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (FimistInfo) recordInfo.clone();
+	}	
 	
 	
 	

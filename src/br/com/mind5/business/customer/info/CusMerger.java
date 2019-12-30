@@ -8,11 +8,26 @@ import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CusMerger {
+	public static CusInfo mergeWithFimist(FimistInfo sourceOne, CusInfo sourceTwo) {
+		InfoMerger<CusInfo, FimistInfo> merger = new CusMergerFimist();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CusInfo> mergeWithFimist(List<FimistInfo> sourceOnes, List<CusInfo> sourceTwos) {
+		InfoMerger<CusInfo, FimistInfo> merger = new CusMergerFimist();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static CusInfo mergeWithCusnap(CusnapInfo sourceOne, CusInfo sourceTwo) {
 		InfoMerger<CusInfo, CusnapInfo> merger = new CusMergerCusnap();		
 		return merger.merge(sourceOne, sourceTwo);
