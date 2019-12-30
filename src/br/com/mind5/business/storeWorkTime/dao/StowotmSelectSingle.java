@@ -9,122 +9,74 @@ import java.util.List;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class StowotmSelectSingle implements DaoStmt<StowotmInfo> {
-	private final String LT_STORE_WORK_TIME = DaoDbTable.STORE_WT_TABLE;	
-	
-	private DaoStmt<StowotmInfo> stmtSql;
-	private DaoStmtOption_<StowotmInfo> stmtOption;
-	
+public final class StowotmSelectSingle extends DaoStmtTemplate<StowotmInfo> {
+	private final String MAIN_TABLE = DaoDbTable.STORE_WT_TABLE;	
 	
 	
 	public StowotmSelectSingle(Connection conn, StowotmInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, StowotmInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_STORE_WORK_TIME;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_STORE_WORK_TIME);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, StowotmInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new StowotmWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new StowotmWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}
+	}	
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<StowotmInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<StowotmInfo> getNewInstance() {
-		return new StowotmSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<StowotmInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<StowotmInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<StowotmInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				StowotmInfo dataInfo = new StowotmInfo();
-				dataInfo.codOwner = stmtResult.getLong(StowotmDbTableColumn.COL_COD_OWNER);
-				dataInfo.codStore = stmtResult.getLong(StowotmDbTableColumn.COL_COD_STORE);
-				dataInfo.codWeekday = stmtResult.getInt(StowotmDbTableColumn.COL_COD_WEEKDAY);
-				dataInfo.recordMode = stmtResult.getString(StowotmDbTableColumn.COL_RECORD_MODE);	
-				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, StowotmDbTableColumn.COL_BEGIN_TIME);
-				dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, StowotmDbTableColumn.COL_END_TIME);
-				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StowotmDbTableColumn.COL_LAST_CHANGED);
-				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StowotmDbTableColumn.COL_LAST_CHANGED_BY);				
-				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StowotmDbTableColumn.COL_CREATED_ON);
-				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StowotmDbTableColumn.COL_CREATED_BY);
+	@Override protected DaoResultParserV2<StowotmInfo> getResultParserHook() {
+		return new DaoResultParserV2<StowotmInfo>() {
+			@Override public List<StowotmInfo> parseResult(StowotmInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<StowotmInfo> finalResult = new ArrayList<>();
 				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					StowotmInfo dataInfo = new StowotmInfo();
+					
+					dataInfo.codOwner = stmtResult.getLong(StowotmDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(StowotmDbTableColumn.COL_COD_STORE);
+					dataInfo.codWeekday = stmtResult.getInt(StowotmDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.recordMode = stmtResult.getString(StowotmDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, StowotmDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, StowotmDbTableColumn.COL_END_TIME);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StowotmDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StowotmDbTableColumn.COL_LAST_CHANGED_BY);				
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StowotmDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StowotmDbTableColumn.COL_CREATED_BY);
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
 }
