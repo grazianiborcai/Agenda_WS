@@ -12,7 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserUpdate;
 import br.com.mind5.security.user.model.action.StdUserInsertUserap;
-import br.com.mind5.security.user.model.checker.UserCheckUpdate;
+import br.com.mind5.security.user.model.checker.UserCheckDummy;
 
 public final class NodeUserSnapshot extends DeciTreeWriteTemplate<UserInfo> {
 	
@@ -26,7 +26,7 @@ public final class NodeUserSnapshot extends DeciTreeWriteTemplate<UserInfo> {
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserInfo> checker;	
 		
-		checker = new UserCheckUpdate();
+		checker = new UserCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
