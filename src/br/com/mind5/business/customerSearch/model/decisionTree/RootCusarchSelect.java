@@ -6,10 +6,12 @@ import java.util.List;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergeToSelect;
 import br.com.mind5.business.customerSearch.model.action.StdCusarchEnforceEntityCateg;
+import br.com.mind5.business.customerSearch.model.checker.CusarchCheckOwner;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -25,9 +27,21 @@ public final class RootCusarchSelect extends DeciTreeReadTemplate<CusarchInfo> {
 	@Override protected ModelChecker<CusarchInfo> buildDecisionCheckerHook(DeciTreeOption<CusarchInfo> option) {
 		List<ModelChecker<CusarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusarchInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new CusarchCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult =  ModelCheckerOption.SUCCESS;	
+		checker = new CusarchCheckRead(checkerOption);
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult =  ModelCheckerOption.EXIST_ON_DB;		
+		checker = new CusarchCheckOwner(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}
