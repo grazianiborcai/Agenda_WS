@@ -345,6 +345,12 @@ public final class SystemCode {
 	public static final int USER_IS_NULL								= 1808;
 	public static final int USER_IS_FILLED								= 1809;
 	public static final int USER_MANDATORY_FIELD_EMPTY					= 1810;
+	public static final int USER_PERSON_IS_FILLED						= 1811;
+	public static final int USER_PERSON_IS_NULL							= 1812;
+	public static final int USER_ADDRESS_IS_NULL						= 1813;
+	public static final int USER_ADDRESS_IS_FILLED						= 1814;
+	public static final int USER_PHONE_IS_NULL							= 1815;
+	public static final int USER_PHONE_IS_FILLED						= 1816;
 	
 	// PersonUser
 	public static final int PERSON_USER_WITHOUT_REFERENCE				= 1900;
