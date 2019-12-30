@@ -9,128 +9,80 @@ import java.util.List;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class CompSelectSingle implements DaoStmt<CompInfo> {
-	private final String LT_COMP = DaoDbTable.COMP_TABLE;
-	
-	private DaoStmt<CompInfo> stmtSql;
-	private DaoStmtOption_<CompInfo> stmtOption;
-	
+public final class CompSelectSingle extends DaoStmtTemplate<CompInfo> {
+	private final String MAIN_TABLE = DaoDbTable.COMP_TABLE;
 	
 	
 	public CompSelectSingle(Connection conn, CompInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, CompInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_COMP;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_COMP);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, CompInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new CompWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new CompWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}
+	}	
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<CompInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<CompInfo> getNewInstance() {
-		return new CompSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<CompInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<CompInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {			
-			List<CompInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				CompInfo dataInfo = new CompInfo();
-				dataInfo.codOwner = stmtResult.getLong(CompDbTableColumn.COL_COD_OWNER);
-				dataInfo.codCompany = stmtResult.getLong(CompDbTableColumn.COL_COD_COMPANY);
-				dataInfo.cnpj = stmtResult.getString(CompDbTableColumn.COL_CNPJ);
-				dataInfo.name = stmtResult.getString(CompDbTableColumn.COL_NAME);			
-				dataInfo.email = stmtResult.getString(CompDbTableColumn.COL_EMAIL);						
-				dataInfo.recordMode = stmtResult.getString(CompDbTableColumn.COL_RECORD_MODE);
-				dataInfo.codEntityCateg = stmtResult.getString(CompDbTableColumn.COL_COD_ENTITY_CATEG);
-				dataInfo.codCountryLegal = stmtResult.getString(CompDbTableColumn.COL_COUNTRY_LEGAL);
-				dataInfo.inscrEst = stmtResult.getString(CompDbTableColumn.COL_INSC_ESTATUAL);
-				dataInfo.inscrMun = stmtResult.getString(CompDbTableColumn.COL_INSC_MUNICIPAL);
-				dataInfo.razaoSocial = stmtResult.getString(CompDbTableColumn.COL_RAZAO_SOCIAL);
-				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CompDbTableColumn.COL_LAST_CHANGED);
-				dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CompDbTableColumn.COL_LAST_CHANGED_BY);
-				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, CompDbTableColumn.COL_COD_SNAPSHOT);	
-				dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, CompDbTableColumn.COL_CREATED_ON);
-				dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, CompDbTableColumn.COL_CREATED_BY);
+	@Override protected DaoResultParserV2<CompInfo> getResultParserHook() {
+		return new DaoResultParserV2<CompInfo>() {
+			@Override public List<CompInfo> parseResult(CompInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {		
+				List<CompInfo> finalResult = new ArrayList<>();
 				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					CompInfo dataInfo = new CompInfo();
+					
+					dataInfo.codOwner = stmtResult.getLong(CompDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCompany = stmtResult.getLong(CompDbTableColumn.COL_COD_COMPANY);
+					dataInfo.cnpj = stmtResult.getString(CompDbTableColumn.COL_CNPJ);
+					dataInfo.name = stmtResult.getString(CompDbTableColumn.COL_NAME);			
+					dataInfo.email = stmtResult.getString(CompDbTableColumn.COL_EMAIL);						
+					dataInfo.recordMode = stmtResult.getString(CompDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codEntityCateg = stmtResult.getString(CompDbTableColumn.COL_COD_ENTITY_CATEG);
+					dataInfo.codCountryLegal = stmtResult.getString(CompDbTableColumn.COL_COUNTRY_LEGAL);
+					dataInfo.inscrEst = stmtResult.getString(CompDbTableColumn.COL_INSC_ESTATUAL);
+					dataInfo.inscrMun = stmtResult.getString(CompDbTableColumn.COL_INSC_MUNICIPAL);
+					dataInfo.razaoSocial = stmtResult.getString(CompDbTableColumn.COL_RAZAO_SOCIAL);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CompDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CompDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, CompDbTableColumn.COL_COD_SNAPSHOT);	
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, CompDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, CompDbTableColumn.COL_CREATED_BY);
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
 }

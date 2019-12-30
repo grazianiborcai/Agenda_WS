@@ -10,121 +10,69 @@ import java.util.List;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtParamTranslator;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class CompInsertSingle implements DaoStmt<CompInfo> {	
-	private DaoStmt<CompInfo> stmtSql;
-	private DaoStmtOption_<CompInfo> stmtOption;
-	
+public final class CompInsertSingle extends DaoStmtTemplate<CompInfo> {	
+	private final String MAIN_TABLE = DaoDbTable.COMP_TABLE;	
 	
 	
 	public CompInsertSingle(Connection conn, CompInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
-		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
-	
-	private void buildStmtOption(Connection conn, CompInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption_<>();
-		stmtOption.conn = conn;
-		stmtOption.recordInfo = recordInfo;
-		stmtOption.schemaName = schemaName;
-		stmtOption.tableName = DaoDbTable.COMP_TABLE;
-		stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(stmtOption.tableName);
-		stmtOption.stmtParamTranslator = new ParamTranslator();
-		stmtOption.resultParser = new ResultParser(recordInfo);
-		stmtOption.whereClause = null;
-	}
-	
-	
-	
-	private void buildStmt() {
-		stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, stmtOption, this.getClass());
-	}
-		
-	
-	
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
-	}
 
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<CompInfo> getResultset() {
-		return stmtSql.getResultset();
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<CompInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CompInfo recordInfo) throws SQLException {
-			
-			int i = 1;
-			stmt.setLong(i++, recordInfo.codOwner);
-			stmt.setString(i++, recordInfo.cnpj);
-			stmt.setString(i++, recordInfo.name);
-			stmt.setString(i++, recordInfo.email);			
-			stmt.setString(i++, recordInfo.recordMode);	
-			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
-			stmt.setString(i++, recordInfo.codEntityCateg);
-			stmt.setString(i++, recordInfo.codCountryLegal);
-			stmt.setString(i++, recordInfo.inscrEst);
-			stmt.setString(i++, recordInfo.inscrMun);
-			stmt.setString(i++, recordInfo.razaoSocial);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
-			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
-			
-			return stmt;
-		}		
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.INSERT;
 	}
 	
 	
 	
-	@Override public DaoStmt<CompInfo> getNewInstance() {
-		return new CompInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override protected DaoStmtParamTranslator<CompInfo> getParamTranslatorHook() {
+		return new DaoStmtParamTranslator<CompInfo>() {			
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CompInfo recordInfo) throws SQLException {			
+				int i = 1;
+				
+				stmt.setLong(i++, recordInfo.codOwner);
+				stmt.setString(i++, recordInfo.cnpj);
+				stmt.setString(i++, recordInfo.name);
+				stmt.setString(i++, recordInfo.email);			
+				stmt.setString(i++, recordInfo.recordMode);	
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt.setString(i++, recordInfo.codEntityCateg);
+				stmt.setString(i++, recordInfo.codCountryLegal);
+				stmt.setString(i++, recordInfo.inscrEst);
+				stmt.setString(i++, recordInfo.inscrMun);
+				stmt.setString(i++, recordInfo.razaoSocial);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
+				
+				return stmt;
+			}		
+		};
 	}
 	
 	
 	
-	
-	
-	private static class ResultParser implements DaoResultParser_<CompInfo> {
-		private CompInfo recordInfo;
-		
-		public ResultParser(CompInfo recordToParse) {
-			recordInfo = recordToParse;
-		}
-		
-		
-		
-		@Override public List<CompInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<CompInfo> finalResult = new ArrayList<>();
-			recordInfo.codCompany = lastId;
-			finalResult.add(recordInfo);			
-			return finalResult;
-		}
+	@Override protected DaoResultParserV2<CompInfo> getResultParserHook() {
+		return new DaoResultParserV2<CompInfo>() {		
+			@Override public List<CompInfo> parseResult(CompInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<CompInfo> finalResult = new ArrayList<>();
+				recordInfo.codCompany = lastId;
+				finalResult.add(recordInfo);			
+				return finalResult;
+			}
+		};
 	}
 }
