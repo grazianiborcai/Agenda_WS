@@ -13,6 +13,7 @@ import br.com.mind5.business.storeSnapshot.model.action.LazyStorapNodePersonap;
 import br.com.mind5.business.storeSnapshot.model.action.LazyStorapNodeUserap;
 import br.com.mind5.business.storeSnapshot.model.action.StdStorapMergeToSelect;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckLangu;
+import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckOwner;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -32,20 +33,29 @@ public final class RootStorapSelect extends DeciTreeReadTemplate<StorapInfo> {
 	
 	
 	@Override protected ModelChecker<StorapInfo> buildDecisionCheckerHook(DeciTreeOption<StorapInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<StorapInfo>> queue = new ArrayList<>();		
 		ModelChecker<StorapInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new StorapCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new StorapCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StorapCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StorapCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

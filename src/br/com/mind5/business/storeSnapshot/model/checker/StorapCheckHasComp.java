@@ -4,33 +4,27 @@ import java.sql.Connection;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StorapCheckHasComp extends ModelCheckerTemplateSimple_<StorapInfo> {
+public final class StorapCheckHasComp extends ModelCheckerTemplateSimpleV2<StorapInfo> {
 
-	public StorapCheckHasComp() {
-		super();
+	public StorapCheckHasComp(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(StorapInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codCompany <= 0)				
-			return FAILED;		
+			return super.FAILED;		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.STORE_SNAPSHOT_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.STORE_SNAPSHOT_MANDATORY_FIELD_EMPTY;
 	}
 }

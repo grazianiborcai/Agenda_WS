@@ -9,6 +9,7 @@ import br.com.mind5.business.storeSnapshot.model.action.StdStorapSuccess;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckHasUserap;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -24,8 +25,13 @@ public final class NodeStorapUserap extends DeciTreeWriteTemplate<StorapInfo> {
 	@Override protected ModelChecker<StorapInfo> buildDecisionCheckerHook(DeciTreeOption<StorapInfo> option) {		
 		List<ModelChecker<StorapInfo>> queue = new ArrayList<>();		
 		ModelChecker<StorapInfo> checker;	
+		ModelCheckerOption checkerOption;		
 		
-		checker = new StorapCheckHasUserap();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new StorapCheckHasUserap(checkerOption);
 		queue.add(checker);		
 		
 		return new ModelCheckerQueue<>(queue);
