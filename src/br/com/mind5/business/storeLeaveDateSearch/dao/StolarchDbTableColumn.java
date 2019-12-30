@@ -117,6 +117,6 @@ public final class StolarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.STORE_SEARCH_VIEW, columns);
+		tableColumns.put(DaoDbTable.STORE_LD_SEARCH_VIEW, columns);
 	}
 }
