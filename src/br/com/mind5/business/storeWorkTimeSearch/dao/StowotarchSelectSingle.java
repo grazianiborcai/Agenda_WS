@@ -49,6 +49,7 @@ public final class StowotarchSelectSingle extends DaoStmtTemplate<StowotarchInfo
 	
 	@Override protected String buildWhereClauseHook(String tableName, StowotarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
@@ -79,6 +80,7 @@ public final class StowotarchSelectSingle extends DaoStmtTemplate<StowotarchInfo
 				
 				do {
 					StowotarchInfo dataInfo = new StowotarchInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(StowotarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(StowotarchDbTableColumn.COL_COD_STORE);
 					dataInfo.codWeekday = stmtResult.getInt(StowotarchDbTableColumn.COL_COD_WEEKDAY);
