@@ -10,6 +10,7 @@ import br.com.mind5.business.customer.model.action.LazyCusMergePhone;
 import br.com.mind5.business.customer.model.action.LazyCusMergeUser;
 import br.com.mind5.business.customer.model.action.StdCusMergeToSelect;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
+import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.business.customer.model.checker.CusCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -44,6 +45,13 @@ public final class RootCusSelect extends DeciTreeReadTemplate<CusInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult =  ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CusCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult =  ModelCheckerOption.EXIST_ON_DB;		
+		checker = new CusCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
