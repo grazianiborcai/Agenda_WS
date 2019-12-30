@@ -7,6 +7,7 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.action.LazyCuslisMergePersolis;
 import br.com.mind5.business.customerList.model.action.StdCuslisMergeToSelect;
 import br.com.mind5.business.customerList.model.checker.CuslisCheckLangu;
+import br.com.mind5.business.customerList.model.checker.CuslisCheckOwner;
 import br.com.mind5.business.customerList.model.checker.CuslisCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -25,20 +26,29 @@ public final class RootCuslisSelect extends DeciTreeReadTemplate<CuslisInfo> {
 	
 	
 	@Override protected ModelChecker<CuslisInfo> buildDecisionCheckerHook(DeciTreeOption<CuslisInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<CuslisInfo>> queue = new ArrayList<>();		
 		ModelChecker<CuslisInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
-		checker = new CuslisCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CuslisCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CuslisCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new CuslisCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

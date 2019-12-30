@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CuslisCheckRead extends ModelCheckerTemplateSimple_<CuslisInfo> {
+public final class CuslisCheckRead extends ModelCheckerTemplateSimpleV2<CuslisInfo> {
 
-	public CuslisCheckRead() {
-		super();
+	public CuslisCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -18,20 +18,16 @@ public final class CuslisCheckRead extends ModelCheckerTemplateSimple_<CuslisInf
 	@Override protected boolean checkHook(CuslisInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
 			recordInfo.codLanguage 	== null		)			
+			
 			return super.FAILED;		
+		
 		
 		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.CUS_LIST_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.CUS_LIST_MANDATORY_FIELD_EMPTY;
 	}
 }
