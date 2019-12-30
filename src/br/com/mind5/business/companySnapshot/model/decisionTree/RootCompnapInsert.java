@@ -24,26 +24,28 @@ public final class RootCompnapInsert extends DeciTreeWriteTemplate<CompnapInfo> 
 	
 	
 	@Override protected ModelChecker<CompnapInfo> buildDecisionCheckerHook(DeciTreeOption<CompnapInfo> option) {
-		final boolean EXIST_ON_DB = true;	
-		
 		List<ModelChecker<CompnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<CompnapInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
-		checker = new CompnapCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CompnapCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CompnapCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CompnapCheckComp(checkerOption);
 		queue.add(checker);	
 			
