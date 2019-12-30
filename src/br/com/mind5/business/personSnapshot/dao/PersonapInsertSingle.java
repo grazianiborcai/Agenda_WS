@@ -41,6 +41,7 @@ public final class PersonapInsertSingle extends DaoStmtTemplate<PersonapInfo> {
 		return new DaoStmtParamTranslator<PersonapInfo>() {	
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PersonapInfo recordInfo) throws SQLException {			
 				int i = 1;
+				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setLong(i++, recordInfo.codPerson);
 				stmt.setString(i++, recordInfo.cpf);

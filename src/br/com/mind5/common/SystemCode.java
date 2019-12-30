@@ -953,4 +953,7 @@ public final class SystemCode {
 	
 	//User Authentication
 	public static final int USER_AUTH_MANDATORY_FIELD_EMPTY				= 9150;	
+	
+	//Person Snapshot
+	public static final int PERSON_SNAPSHOT_MANDATORY_FIELD_EMPTY		= 9200;	
 }

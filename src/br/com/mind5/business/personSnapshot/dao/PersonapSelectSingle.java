@@ -40,6 +40,7 @@ public final class PersonapSelectSingle extends DaoStmtTemplate<PersonapInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, PersonapInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
@@ -59,6 +60,7 @@ public final class PersonapSelectSingle extends DaoStmtTemplate<PersonapInfo> {
 				
 				do {
 					PersonapInfo dataInfo = new PersonapInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(PersonapDbTableColumn.COL_COD_OWNER);
 					dataInfo.codSnapshot = stmtResult.getLong(PersonapDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.codPerson = stmtResult.getLong(PersonapDbTableColumn.COL_COD_PERSON);
