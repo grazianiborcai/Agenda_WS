@@ -65,7 +65,6 @@ import br.com.mind5.business.person.dao.PersonDbTableColumn;
 import br.com.mind5.business.personList.dao.PersolisDbTableColumn;
 import br.com.mind5.business.personSearch.dao.PerarchDbTableColumn;
 import br.com.mind5.business.personSnapshot.dao.PersonapDbTableColumn;
-import br.com.mind5.business.personUser_.dao.PersonUserDbTableColumn;
 import br.com.mind5.business.phone.dao.PhoneDbTableColumn;
 import br.com.mind5.business.phoneSearch.dao.PhonarchDbTableColumn;
 import br.com.mind5.business.phoneSnapshot.dao.PhonapDbTableColumn;
@@ -172,7 +171,6 @@ public final class DaoDbTableColumnAll {
 		addTable(new PersonapDbTableColumn());
 		addTable(new UserDbTableColumn());
 		addTable(new UserapDbTableColumn());
-		addTable(new PersonUserDbTableColumn());
 		addTable(new StoparDbTableColumn());
 		addTable(new CounparDbTableColumn());
 		addTable(new CompDbTableColumn());
