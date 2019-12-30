@@ -40,6 +40,7 @@ public final class MatoreSelectSingle extends DaoStmtTemplate<MatoreInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, MatoreInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
@@ -59,6 +60,7 @@ public final class MatoreSelectSingle extends DaoStmtTemplate<MatoreInfo> {
 				
 				do {
 					MatoreInfo dataInfo = new MatoreInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(MatoreDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(MatoreDbTableColumn.COL_COD_STORE);
 					dataInfo.codMat = stmtResult.getLong(MatoreDbTableColumn.COL_COD_MATERIAL);

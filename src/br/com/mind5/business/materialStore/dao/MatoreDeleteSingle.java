@@ -39,6 +39,7 @@ public final class MatoreDeleteSingle extends DaoStmtTemplate<MatoreInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, MatoreInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;			

@@ -36,6 +36,7 @@ public final class MatoreInsertSingle extends DaoStmtTemplate<MatoreInfo> {
 		return new DaoStmtParamTranslator<MatoreInfo>() {		
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatoreInfo recordInfo) throws SQLException {					
 				int i = 1;
+				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setLong(i++, recordInfo.codStore);
 				stmt.setLong(i++, recordInfo.codMat);				

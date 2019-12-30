@@ -37,6 +37,7 @@ public final class MatoreUpdateSingle extends DaoStmtTemplate<MatoreInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, MatoreInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
@@ -50,8 +51,8 @@ public final class MatoreUpdateSingle extends DaoStmtTemplate<MatoreInfo> {
 	@Override protected DaoStmtParamTranslator<MatoreInfo> getParamTranslatorHook() {
 		return new DaoStmtParamTranslator<MatoreInfo>() {		
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatoreInfo recordInfo) throws SQLException {
-				
 				int i = 1;
+				
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.matPrice);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.matPrice1);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.matPrice2);
