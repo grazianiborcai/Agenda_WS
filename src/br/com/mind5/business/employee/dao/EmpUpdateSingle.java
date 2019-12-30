@@ -50,9 +50,9 @@ public final class EmpUpdateSingle extends DaoStmtTemplate<EmpInfo> {
 	
 	@Override protected DaoStmtParamTranslator<EmpInfo> getParamTranslatorHook() {
 		return new DaoStmtParamTranslator<EmpInfo>() {		
-			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpInfo recordInfo) throws SQLException {
-				
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpInfo recordInfo) throws SQLException {				
 				int i = 1;	
+				
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);			
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);

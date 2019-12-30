@@ -60,6 +60,7 @@ public final class EmpSelectSingle extends DaoStmtTemplate<EmpInfo> {
 				
 				do {
 					EmpInfo dataInfo = new EmpInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(EmpDbTableColumn.COL_COD_OWNER);
 					dataInfo.codEmployee = stmtResult.getLong(EmpDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.recordMode = stmtResult.getString(EmpDbTableColumn.COL_RECORD_MODE);	
