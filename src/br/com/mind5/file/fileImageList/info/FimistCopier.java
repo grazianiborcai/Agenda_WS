@@ -3,6 +3,7 @@ package br.com.mind5.file.fileImageList.info;
 
 import java.util.List;
 
+import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.material.info.MatInfo;
@@ -12,6 +13,20 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoCopier;
 
 public final class FimistCopier {
+	public static FimistInfo copyFromCus(CusInfo source) {
+		InfoCopier<FimistInfo, CusInfo> copier = new FimistCopyCus();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<FimistInfo> copyFromCus(List<CusInfo> sources) {
+		InfoCopier<FimistInfo, CusInfo> copier = new FimistCopyCus();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static FimistInfo copyFromMat(MatInfo source) {
 		InfoCopier<FimistInfo, MatInfo> copier = new FimistCopyMat();
 		return copier.makeCopy(source);
@@ -22,7 +37,7 @@ public final class FimistCopier {
 	public static List<FimistInfo> copyFromMat(List<MatInfo> sources) {
 		InfoCopier<FimistInfo, MatInfo> copier = new FimistCopyMat();
 		return copier.makeCopy(sources);
-	}
+	}	
 	
 	
 	

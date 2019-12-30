@@ -15,6 +15,7 @@ public final class FimistInfo extends InfoRecord implements Cloneable {
 	public long codMat;
 	public long codStore;
 	public long codEmployee;
+	public long codCustomer;
 	public long codOwnerRef;
 	public String recordMode;
 	public String username;
@@ -30,6 +31,7 @@ public final class FimistInfo extends InfoRecord implements Cloneable {
 		codMat = DefaultValue.number();
 		codStore = DefaultValue.number();	
 		codEmployee = DefaultValue.number();
+		codCustomer = DefaultValue.number();
 		codOwnerRef = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}
