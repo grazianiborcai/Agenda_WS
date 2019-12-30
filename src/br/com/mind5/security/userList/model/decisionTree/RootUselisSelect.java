@@ -26,26 +26,28 @@ public final class RootUselisSelect extends DeciTreeReadTemplate<UselisInfo> {
 	
 	
 	@Override protected ModelChecker<UselisInfo> buildDecisionCheckerHook(DeciTreeOption<UselisInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<UselisInfo>> queue = new ArrayList<>();		
 		ModelChecker<UselisInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
-		checker = new UselisCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new UselisCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new UselisCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new UselisCheckLangu(checkerOption);
 		queue.add(checker);	
 		
