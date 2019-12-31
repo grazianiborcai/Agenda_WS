@@ -31,6 +31,12 @@ public enum DaoOperation {
 		}
 	},
 	
+	SELECT_DISTINCT("SELECT DISTINCT", false) {
+		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
+			return new DaoStmtBuilderSelectDistinct(option, clazz);
+		}
+	},	
+	
 	LOCK("LOCK", false) {
 		@Override protected DaoStmtBuilder factorySqlStmtBuilder(DaoStmtBuilderOption option, Class<?> clazz) {
 			return new DaoStmtBuilderLock(option, clazz);
