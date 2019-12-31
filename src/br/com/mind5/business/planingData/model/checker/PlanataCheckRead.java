@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PlanataCheckRead extends ModelCheckerTemplateSimple_<PlanataInfo> {
+public final class PlanataCheckRead extends ModelCheckerTemplateSimpleV2<PlanataInfo> {
 
-	public PlanataCheckRead() {
-		super();
+	public PlanataCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -18,6 +18,7 @@ public final class PlanataCheckRead extends ModelCheckerTemplateSimple_<PlanataI
 	@Override protected boolean checkHook(PlanataInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner <= 0 	||
 			recordInfo.date 	== null		)			
+			
 			return super.FAILED;
 		
 		
@@ -26,13 +27,7 @@ public final class PlanataCheckRead extends ModelCheckerTemplateSimple_<PlanataI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.PLAN_DATA_MANDATORY_FIELD_EMPTY;
 	}
 }

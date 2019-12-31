@@ -956,4 +956,8 @@ public final class SystemCode {
 	
 	//Person Snapshot
 	public static final int PERSON_SNAPSHOT_MANDATORY_FIELD_EMPTY		= 9200;	
+	
+	//Planing Data
+	public static final int PLAN_DATA_MANDATORY_FIELD_EMPTY				= 9250;	
+	public static final int PLAN_DATA_AGED_DATE							= 9251;	
 }

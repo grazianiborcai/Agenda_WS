@@ -6,13 +6,13 @@ import java.time.LocalDate;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PlanataCheckDate extends ModelCheckerTemplateSimple_<PlanataInfo> {
+public final class PlanataCheckDate extends ModelCheckerTemplateSimpleV2<PlanataInfo> {
 
-	public PlanataCheckDate() {
-		super();
+	public PlanataCheckDate(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -38,13 +38,7 @@ public final class PlanataCheckDate extends ModelCheckerTemplateSimple_<PlanataI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.AGED_DATE;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.AGED_DATE;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.PLAN_DATA_AGED_DATE;
 	}
 }
