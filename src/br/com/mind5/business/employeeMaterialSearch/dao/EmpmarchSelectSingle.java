@@ -49,6 +49,7 @@ public final class EmpmarchSelectSingle extends DaoStmtTemplate<EmpmarchInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmpmarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
