@@ -36,6 +36,9 @@ public final class FimgCheckReference extends ModelCheckerTemplateSimpleV2<FimgI
 				
 		if ( recordInfo.codEmployee > 0 )
 			counter = counter + 1;		
+		
+		if ( recordInfo.codCustomer > 0 )
+			counter = counter + 1;	
 
 		if ( recordInfo.codOwnerRef	> 0 )
 			counter = counter + 1;		
