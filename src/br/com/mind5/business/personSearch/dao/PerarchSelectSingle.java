@@ -46,6 +46,7 @@ public final class PerarchSelectSingle extends DaoStmtTemplate<PerarchInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, PerarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
