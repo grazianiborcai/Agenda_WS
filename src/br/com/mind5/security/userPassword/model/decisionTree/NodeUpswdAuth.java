@@ -12,6 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceHashToMatch;
+import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceLength;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdNodeMatch;
 import br.com.mind5.security.userPassword.model.action.StdUpswdMergeToAuth;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckExist;
@@ -53,10 +54,12 @@ public final class NodeUpswdAuth extends DeciTreeReadTemplate<UpswdInfo> {
 		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 
 		ActionStd<UpswdInfo> mergeToAuth = new StdUpswdMergeToAuth(option);
-		ActionLazy<UpswdInfo> enforceHashToMatch = new LazyUpswdEnforceHashToMatch(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> enforceLength = new LazyUpswdEnforceLength(option.conn, option.schemaName);
+		ActionLazy<UpswdInfo> enforceHashToMatch = new LazyUpswdEnforceHashToMatch(option.conn, option.schemaName);		
 		ActionLazy<UpswdInfo> nodeMatch = new LazyUpswdNodeMatch(option.conn, option.schemaName);
 		
-		mergeToAuth.addPostAction(enforceHashToMatch);		
+		mergeToAuth.addPostAction(enforceLength);		
+		enforceLength.addPostAction(enforceHashToMatch);
 		enforceHashToMatch.addPostAction(nodeMatch);
 		
 		actions.add(mergeToAuth);		
