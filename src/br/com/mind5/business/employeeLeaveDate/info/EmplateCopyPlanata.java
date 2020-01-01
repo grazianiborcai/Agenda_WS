@@ -20,6 +20,8 @@ final class EmplateCopyPlanata extends InfoCopierTemplate<EmplateInfo, PlanataIn
 		result.codEmployee = source.codEmployee;
 		result.dateValidFrom = source.date;
 		result.dateValidTo = source.date;
+		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}
