@@ -3,101 +3,56 @@ package br.com.mind5.payment.storePartner.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
-
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-public final class StoparInsertSingle implements DaoStmt<StoparInfo> {
-	private DaoStmt<StoparInfo> stmtSql;
-	private DaoStmtOption_<StoparInfo> stmtOption;
-	
+public final class StoparInsertSingle extends DaoStmtTemplate<StoparInfo> {
+	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_STORE_TABLE;	
 	
 	
 	public StoparInsertSingle(Connection conn, StoparInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, StoparInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.PAY_PARTNER_STORE_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = null;
-		this.stmtOption.whereClause = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
-	}
-		
-	
-	
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<StoparInfo> getResultset() {
-		return stmtSql.getResultset();
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.INSERT;
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<StoparInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoparInfo recordInfo) throws SQLException {
-			
-			int i = 1;
-			stmt.setLong(i++, recordInfo.codOwner);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayPartner);
-			stmt.setString(i++, recordInfo.recordMode);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
-			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
-			stmt.setString(i++, recordInfo.codePayPartnerStore);
-			stmt.setString(i++, recordInfo.idPayPartnerStore);			
-			stmt.setString(i++, recordInfo.accessToken);
-			stmt.setString(i++, recordInfo.refreshToken);
-			stmt.setString(i++, recordInfo.scope);
-			stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.tokenExpiresIn);
-			
-			
-			return stmt;
-		}		
-	}
-	
-	
-	
-	@Override public DaoStmt<StoparInfo> getNewInstance() {
-		return new StoparInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override protected DaoStmtParamTranslator<StoparInfo> getParamTranslatorHook() {
+		return new DaoStmtParamTranslator<StoparInfo>() {			
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoparInfo recordInfo) throws SQLException {					
+				int i = 1;
+				
+				stmt.setLong(i++, recordInfo.codOwner);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayPartner);
+				stmt.setString(i++, recordInfo.recordMode);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+				stmt.setString(i++, recordInfo.codePayPartnerStore);
+				stmt.setString(i++, recordInfo.idPayPartnerStore);			
+				stmt.setString(i++, recordInfo.accessToken);
+				stmt.setString(i++, recordInfo.refreshToken);
+				stmt.setString(i++, recordInfo.scope);
+				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.tokenExpiresIn);				
+				
+				return stmt;
+			}		
+		};
 	}
 }

@@ -1,6 +1,7 @@
 package br.com.mind5.payment.storePartner.model.checker;
 
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -18,9 +19,11 @@ public final class StoparCheckSoftDelete extends ModelCheckerTemplateActionV2<St
 	
 	
 	@Override protected ActionStd<StoparInfo> buildActionHook(DeciTreeOption<StoparInfo> option) {
-		ActionStd<StoparInfo> actionSelect = new StdStoparEnforceDel(option);
-		actionSelect.addPostAction(new LazyStoparSelect(option.conn, option.schemaName));		
-		return actionSelect;
+		ActionStd<StoparInfo> enforceDel = new StdStoparEnforceDel(option);
+		ActionLazy<StoparInfo> select = new LazyStoparSelect(option.conn, option.schemaName);
+		
+		enforceDel.addPostAction(select);
+		return enforceDel;
 	}
 	
 	
