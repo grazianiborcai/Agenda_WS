@@ -19,6 +19,9 @@ final class StolateCopyPlanata extends InfoCopierTemplate<StolateInfo, PlanataIn
 		result.codStore = source.codStore;
 		result.dateValidFrom = source.date;
 		result.dateValidTo = source.date;
+		result.codLanguage = source.codLanguage;
+		result.username = source.username;
+		
 		return result;
 	}
 }
