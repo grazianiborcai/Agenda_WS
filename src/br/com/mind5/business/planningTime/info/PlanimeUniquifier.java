@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.DefaultValue;
@@ -15,7 +15,7 @@ import br.com.mind5.info.InfoUniquifier;
 final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
 	private List<StolisInfo> allStores;
 	private List<LocalDate> allDates;
-	private List<MatInfo> allMaterials;
+	private List<MatlisInfo> allMaterials;
 	private List<EmplisInfo> allEmployees;
 	private List<WeekdayInfo> allWeekdays;
 	private List<PlanataInfo> allPlanatas;	

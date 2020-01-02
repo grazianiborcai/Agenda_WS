@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
@@ -24,15 +24,15 @@ public final class PlanimeMerger {
 	
 	
 	
-	public static PlanimeInfo mergeWithMat(MatInfo sourceOne, PlanimeInfo sourceTwo) {
-		InfoMerger<PlanimeInfo, MatInfo> merger = new PlanimeMergerMat();		
+	public static PlanimeInfo mergeWithMatlis(MatlisInfo sourceOne, PlanimeInfo sourceTwo) {
+		InfoMerger<PlanimeInfo, MatlisInfo> merger = new PlanimeMergerMatlis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<PlanimeInfo> mergeWithMat(List<MatInfo> sourceOnes, List<PlanimeInfo> sourceTwos) {
-		InfoMerger<PlanimeInfo, MatInfo> merger = new PlanimeMergerMat();		
+	public static List<PlanimeInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<PlanimeInfo> sourceTwos) {
+		InfoMerger<PlanimeInfo, MatlisInfo> merger = new PlanimeMergerMatlis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

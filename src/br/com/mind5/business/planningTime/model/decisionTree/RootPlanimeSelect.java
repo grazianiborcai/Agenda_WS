@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeEmplis;
-import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeMat;
+import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeMatlis;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeStolis;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeWeekday;
 import br.com.mind5.business.planningTime.model.action.StdPlanimeMergePlanata;
@@ -13,6 +13,7 @@ import br.com.mind5.business.planningTime.model.checker.PlanimeCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -28,8 +29,13 @@ public class RootPlanimeSelect extends DeciTreeReadTemplate<PlanimeInfo> {
 	@Override protected ModelChecker<PlanimeInfo> buildDecisionCheckerHook(DeciTreeOption<PlanimeInfo> option) {
 		List<ModelChecker<PlanimeInfo>> queue = new ArrayList<>();		
 		ModelChecker<PlanimeInfo> checker;
+		ModelCheckerOption checkerOption;
 		
-		checker = new PlanimeCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PlanimeCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -43,13 +49,13 @@ public class RootPlanimeSelect extends DeciTreeReadTemplate<PlanimeInfo> {
 		ActionStd<PlanimeInfo> mergePlanata = new StdPlanimeMergePlanata(option);		
 		ActionLazy<PlanimeInfo> mergeStolis = new LazyPlanimeMergeStolis(option.conn, option.schemaName);	
 		ActionLazy<PlanimeInfo> mergeEmplis = new LazyPlanimeMergeEmplis(option.conn, option.schemaName);
-		ActionLazy<PlanimeInfo> mergeMat = new LazyPlanimeMergeMat(option.conn, option.schemaName);			
+		ActionLazy<PlanimeInfo> mergeMatlis = new LazyPlanimeMergeMatlis(option.conn, option.schemaName);			
 		ActionLazy<PlanimeInfo> mergeWeekday = new LazyPlanimeMergeWeekday(option.conn, option.schemaName);
 		
 		mergePlanata.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeEmplis);
-		mergeEmplis.addPostAction(mergeMat);
-		mergeMat.addPostAction(mergeWeekday);
+		mergeEmplis.addPostAction(mergeMatlis);
+		mergeMatlis.addPostAction(mergeWeekday);
 		
 		actions.add(mergePlanata);
 		return actions;

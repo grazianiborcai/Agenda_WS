@@ -3,18 +3,18 @@ package br.com.mind5.business.planningTime.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoMergerVisitor;
 
-final class PlanimeVisiMergeMat implements InfoMergerVisitor<PlanimeInfo, MatInfo> {
+final class PlanimeVisiMergeMatlis implements InfoMergerVisitor<PlanimeInfo, MatlisInfo> {
 
-	@Override public PlanimeInfo writeRecord(MatInfo sourceOne, PlanimeInfo sourceTwo) {
+	@Override public PlanimeInfo writeRecord(MatlisInfo sourceOne, PlanimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 				
 		checkArgument(sourceOne, sourceTwo);
 		
-		MatInfo clonedMat = makeClone(sourceOne);
+		MatlisInfo clonedMat = makeClone(sourceOne);
 		sourceTwo.materials.add(clonedMat);
 		
 		return sourceTwo;
@@ -22,16 +22,16 @@ final class PlanimeVisiMergeMat implements InfoMergerVisitor<PlanimeInfo, MatInf
 	
 	
 	
-	private void checkArgument(MatInfo sourceOne, PlanimeInfo sourceTwo) {	
+	private void checkArgument(MatlisInfo sourceOne, PlanimeInfo sourceTwo) {	
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private MatInfo makeClone(MatInfo mat) {
+	private MatlisInfo makeClone(MatlisInfo mat) {
 		try {
-			return (MatInfo) mat.clone();
+			return (MatlisInfo) mat.clone();
 			
 		} catch (CloneNotSupportedException e) {
 			logException(e);
@@ -41,7 +41,7 @@ final class PlanimeVisiMergeMat implements InfoMergerVisitor<PlanimeInfo, MatInf
 
 
 
-	@Override public boolean shouldWrite(MatInfo sourceOne, PlanimeInfo sourceTwo) {		
+	@Override public boolean shouldWrite(MatlisInfo sourceOne, PlanimeInfo sourceTwo) {		
 		return true;
 	}
 	

@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdPlanimeMergeMat implements ActionStd<PlanimeInfo> {
+final class StdPlanimeMergeMatlis implements ActionStd<PlanimeInfo> {
 	private ActionStd<PlanimeInfo> actionHelper;	
 	
 	
-	public StdPlanimeMergeMat(DeciTreeOption<PlanimeInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPlanimeMergeMat(option.conn, option.schemaName));
+	public StdPlanimeMergeMatlis(DeciTreeOption<PlanimeInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPlanimeMergeMatlis(option.conn, option.schemaName));
 	}
 	
 	

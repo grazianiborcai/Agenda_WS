@@ -6,7 +6,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.DefaultValue;
@@ -17,7 +17,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	public String username;
 	public List<LocalDate> dates;
 	public List<StolisInfo> stores;
-	public List<MatInfo> materials;
+	public List<MatlisInfo> materials;
 	public List<EmplisInfo> employees;
 	public List<WeekdayInfo> weekdays;
 	public List<PlanataInfo> planatas;	
@@ -89,14 +89,14 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<MatInfo> cloneMaterials(List<MatInfo> materials) throws CloneNotSupportedException {
+	private List<MatlisInfo> cloneMaterials(List<MatlisInfo> materials) throws CloneNotSupportedException {
 		if (materials == null)
 			return materials;		
 		
-		List<MatInfo> clones = new ArrayList<>();
+		List<MatlisInfo> clones = new ArrayList<>();
 		
-		for (MatInfo eachMaterial : materials) {
-			MatInfo clonedRecord = (MatInfo) eachMaterial.clone();
+		for (MatlisInfo eachMaterial : materials) {
+			MatlisInfo clonedRecord = (MatlisInfo) eachMaterial.clone();
 			clones.add(clonedRecord);
 		}
 		
