@@ -82,7 +82,11 @@ public abstract class InfoPrunerTemplate<T extends InfoRecord, S extends InfoRec
 	
 	private T prune(T sourceOne, S sourceTwo, InfoPrunerVisitor<T,S> visitor) {
 		checkArgument(sourceOne, sourceTwo, visitor);
-		return visitor.pruneRecord(sourceOne, sourceTwo);
+		
+		if(visitor.shouldPrune(sourceOne, sourceTwo))
+			return visitor.pruneRecord(sourceOne, sourceTwo);
+		
+		return sourceOne;
 	}
 	
 	
