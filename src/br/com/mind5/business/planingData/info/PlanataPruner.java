@@ -6,8 +6,8 @@ import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
-import br.com.mind5.info.temp.InfoPrunerBuilder;
-import br.com.mind5.info.temp.InfoPrunerV2;
+import br.com.mind5.info.InfoPruner;
+import br.com.mind5.info.InfoPrunerBuilder;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
 public final class PlanataPruner {
@@ -17,7 +17,7 @@ public final class PlanataPruner {
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PlanataVisiPruneStopar());
-		InfoPrunerV2<PlanataInfo, StoparInfo> pruner = builder.build();		
+		InfoPruner<PlanataInfo, StoparInfo> pruner = builder.build();		
 	
 		return pruner.prune();
 	}
@@ -30,7 +30,7 @@ public final class PlanataPruner {
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PlanataVisiPruneEmplate());
-		InfoPrunerV2<PlanataInfo, EmplateInfo> pruner = builder.build();		
+		InfoPruner<PlanataInfo, EmplateInfo> pruner = builder.build();		
 	
 		return pruner.prune();
 	}
@@ -43,7 +43,7 @@ public final class PlanataPruner {
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PlanataVisiPruneStolate());
-		InfoPrunerV2<PlanataInfo, StolateInfo> pruner = builder.build();		
+		InfoPruner<PlanataInfo, StolateInfo> pruner = builder.build();		
 	
 		return pruner.prune();
 	}
@@ -56,7 +56,7 @@ public final class PlanataPruner {
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(baseInfos);
 		builder.addVisitor(new PlanataVisiPruneAged());
-		InfoPrunerV2<PlanataInfo, PlanataInfo> pruner = builder.build();		
+		InfoPruner<PlanataInfo, PlanataInfo> pruner = builder.build();		
 	
 		return pruner.prune();
 	}
@@ -69,7 +69,7 @@ public final class PlanataPruner {
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PlanataVisiPruneCarterve());
-		InfoPrunerV2<PlanataInfo, CarterveInfo> pruner = builder.build();		
+		InfoPruner<PlanataInfo, CarterveInfo> pruner = builder.build();		
 	
 		return pruner.prune();
 	}
@@ -82,7 +82,7 @@ public final class PlanataPruner {
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PlanataVisiPruneOrderve());
-		InfoPrunerV2<PlanataInfo, OrderveInfo> pruner = builder.build();		
+		InfoPruner<PlanataInfo, OrderveInfo> pruner = builder.build();		
 	
 		return pruner.prune();
 	}	

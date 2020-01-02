@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
-import br.com.mind5.info.temp.InfoPrunerVisitorV2;
+import br.com.mind5.info.InfoPrunerVisitor;
 
-final class PlanataVisiPruneCarterve implements InfoPrunerVisitorV2<PlanataInfo, CarterveInfo> {
+final class PlanataVisiPruneCarterve implements InfoPrunerVisitor<PlanataInfo, CarterveInfo> {
 	
 	@Override public boolean pruneRecord(PlanataInfo baseInfo, CarterveInfo selectedInfo) {
 		

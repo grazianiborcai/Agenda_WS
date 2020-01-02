@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
-import br.com.mind5.info.temp.InfoPrunerVisitorV2;
+import br.com.mind5.info.InfoPrunerVisitor;
 
-final class PlanataVisiPruneOrderve implements InfoPrunerVisitorV2<PlanataInfo, OrderveInfo> {
+final class PlanataVisiPruneOrderve implements InfoPrunerVisitor<PlanataInfo, OrderveInfo> {
 	
 	@Override public boolean pruneRecord(PlanataInfo baseInfo, OrderveInfo selectedInfo) {
 		

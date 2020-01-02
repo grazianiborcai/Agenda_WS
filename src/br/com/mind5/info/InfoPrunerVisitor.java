@@ -1,7 +1,7 @@
 package br.com.mind5.info;
 
-public interface InfoPrunerVisitor<T,S> {
+public interface InfoPrunerVisitor<T extends InfoRecord, S extends InfoRecord> {
 	
-	public T pruneRecord(T sourceOne, S sourceTwo);
-	public boolean shouldPrune(T sourceOne, S sourceTwo);
+	public boolean pruneRecord(T baseInfo, S selectedInfo);
+	public boolean shouldPrune(T baseInfo, S selectedInfo);
 }

@@ -1,4 +1,4 @@
-package br.com.mind5.info.temp;
+package br.com.mind5.info;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,29 +7,28 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoRecord;
 
-public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> implements InfoPrunerV2<T, S> {
+public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> implements InfoPruner<T, S> {
 	private final List<T> bases; 
 	private final List<S> seles;	
-	private final InfoPrunerVisitorV2<T,S> pruner;
-	private final Class<?> visitorClazz;
+	private final InfoPrunerVisitor<T,S> pruner;
+	private final Class<?> prunerClazz;
 	
 	
-	public InfoPrunerHelper(List<T> baseInfos, List<S> selectedInfos, InfoPrunerVisitorV2<T, S> visitor) {
+	public InfoPrunerHelper(List<T> baseInfos, List<S> selectedInfos, InfoPrunerVisitor<T, S> visitor) {
 		super();
 		checkArgument(baseInfos, selectedInfos, visitor);
 		
 		bases = InfoUtil.copy(baseInfos);
 		seles = InfoUtil.copy(selectedInfos);		
-		visitorClazz = visitor.getClass();
+		prunerClazz = visitor.getClass();
 		pruner = visitor;
 	}
 	
 	
 	
 	@Override public List<T> prune() {
-		if (isEmpty(seles))
+		if (seles.isEmpty())
 			return InfoUtil.copy(bases);
 			
 		List<T> baseInfos = InfoUtil.copy(bases); 
@@ -40,7 +39,7 @@ public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> 
 	
 	
 	
-	private List<T> pruneWithVisitor(List<T> baseInfos, List<S> selectedInfos, InfoPrunerVisitorV2<T,S> visitor) {
+	private List<T> pruneWithVisitor(List<T> baseInfos, List<S> selectedInfos, InfoPrunerVisitor<T,S> visitor) {
 		List<T> results = new ArrayList<>();				
 		
 		for (T eachBase : baseInfos) {	
@@ -61,7 +60,7 @@ public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> 
 	
 	
 	
-	private boolean pruneWithVisitor(T baseInfo, S selectedInfo, InfoPrunerVisitorV2<T,S> visitor) {		
+	private boolean pruneWithVisitor(T baseInfo, S selectedInfo, InfoPrunerVisitor<T,S> visitor) {		
 		if(visitor.shouldPrune(baseInfo, selectedInfo))
 			return visitor.pruneRecord(baseInfo, selectedInfo);
 		
@@ -70,16 +69,7 @@ public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> 
 	
 	
 	
-	private boolean isEmpty(List<S> selectedInfos) {
-		if (selectedInfos.isEmpty())
-			return true;
-		
-		return false;
-	}
-	
-	
-	
-	private void checkArgument(List<T> baseInfos, List<S> selectedInfos, InfoPrunerVisitorV2<T, S> visitor) {
+	private void checkArgument(List<T> baseInfos, List<S> selectedInfos, InfoPrunerVisitor<T, S> visitor) {
 		if (baseInfos == null) {
 			logException(new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT);
@@ -106,7 +96,7 @@ public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> 
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(visitorClazz);
+		Logger logger = LogManager.getLogger(prunerClazz);
 		logger.error(e.getMessage(), e);
 	}
 }

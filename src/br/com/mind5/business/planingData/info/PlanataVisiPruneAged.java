@@ -1,9 +1,9 @@
 package br.com.mind5.business.planingData.info;
 
 import br.com.mind5.common.TimeAge;
-import br.com.mind5.info.temp.InfoPrunerVisitorV2;
+import br.com.mind5.info.InfoPrunerVisitor;
 
-final class PlanataVisiPruneAged implements InfoPrunerVisitorV2<PlanataInfo, PlanataInfo> {
+final class PlanataVisiPruneAged implements InfoPrunerVisitor<PlanataInfo, PlanataInfo> {
 	
 	@Override public boolean pruneRecord(PlanataInfo baseInfo, PlanataInfo selectedInfo) {
 		
