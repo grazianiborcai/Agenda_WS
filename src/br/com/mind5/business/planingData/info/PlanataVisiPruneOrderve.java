@@ -4,54 +4,45 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoPrunerVisitor;
+import br.com.mind5.info.temp.InfoPrunerVisitorV2;
 
-final class PlanataVisiPruneOrderve implements InfoPrunerVisitor<PlanataInfo, OrderveInfo> {
+final class PlanataVisiPruneOrderve implements InfoPrunerVisitorV2<PlanataInfo, OrderveInfo> {
 	
-	@Override public PlanataInfo pruneRecord(PlanataInfo sourceOne, OrderveInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+	@Override public boolean pruneRecord(PlanataInfo baseInfo, OrderveInfo selectedInfo) {
 		
-		if (hasTimeOverlap(sourceOne, sourceTwo))
-			return null;
+		if (hasTimeOverlap(baseInfo, selectedInfo))
+			return true;
 		
-		return sourceOne;
+		return false;
 	}
 	
 	
 	
-	private void checkArgument(PlanataInfo sourceOne, OrderveInfo sourceTwo) {
-		if (shouldPrune(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.PRUNE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private boolean hasTimeOverlap(PlanataInfo planata, OrderveInfo recordInfo) {
-		if (isDifferent(planata.date, recordInfo.date))
+	private boolean hasTimeOverlap(PlanataInfo baseInfo, OrderveInfo selectedInfo) {
+		if (isDifferent(baseInfo.date, selectedInfo.date))
 			return false;
 		
 		
-		if (isEqual(planata.beginTime, recordInfo.endTime))
+		if (isEqual(baseInfo.beginTime, selectedInfo.endTime))
 			return false;
 		
 		
-		if (isEqual(planata.endTime, recordInfo.beginTime))
+		if (isEqual(baseInfo.endTime, selectedInfo.beginTime))
 			return false;		
 		
 		
-		if (isEqualOrAfter(planata.beginTime, recordInfo.beginTime)	 &&
-			isEqualOrBefore(planata.beginTime, recordInfo.endTime)		)
+		if (isEqualOrAfter(baseInfo.beginTime, selectedInfo.beginTime)	 &&
+			isEqualOrBefore(baseInfo.beginTime, selectedInfo.endTime)		)
 			return true;
 		
 		
-		if (isEqualOrAfter(planata.endTime, recordInfo.beginTime)	 &&
-			isEqualOrBefore(planata.endTime, recordInfo.endTime)		)
+		if (isEqualOrAfter(baseInfo.endTime, selectedInfo.beginTime)	 &&
+			isEqualOrBefore(baseInfo.endTime, selectedInfo.endTime)			)
 			return true;
 		
 		
-		if (isEqualOrBefore(planata.beginTime, recordInfo.beginTime) &&
-			isEqualOrAfter(planata.endTime, recordInfo.endTime)			)
+		if (isEqualOrBefore(baseInfo.beginTime, selectedInfo.beginTime) &&
+			isEqualOrAfter(baseInfo.endTime, selectedInfo.endTime)			)
 			return true;	
 		
 		
@@ -60,16 +51,16 @@ final class PlanataVisiPruneOrderve implements InfoPrunerVisitor<PlanataInfo, Or
 	
 	
 	
-	private boolean isDifferent(LocalDate planata, LocalDate orderve) {
-		if (planata.equals(orderve))
+	private boolean isDifferent(LocalDate baseDate, LocalDate selectedDate) {
+		if (baseDate.equals(selectedDate))
 			return false;
 		
 		return true;
 	}
 	
 	
-	private boolean isEqual(LocalTime planata, LocalTime orderve) {
-		if (planata.equals(orderve))
+	private boolean isEqual(LocalTime baseTime, LocalTime selectedTime) {
+		if (baseTime.equals(selectedTime))
 			return true;
 		
 		return false;
@@ -77,11 +68,11 @@ final class PlanataVisiPruneOrderve implements InfoPrunerVisitor<PlanataInfo, Or
 	
 	
 	
-	private boolean isEqualOrAfter(LocalTime planata, LocalTime orderve) {
-		if (planata.equals(orderve))
+	private boolean isEqualOrAfter(LocalTime baseTime, LocalTime selectedTime) {
+		if (baseTime.equals(selectedTime))
 			return true;
 		
-		if (planata.isAfter(orderve))
+		if (baseTime.isAfter(selectedTime))
 			return true;
 		
 		return false;
@@ -89,32 +80,32 @@ final class PlanataVisiPruneOrderve implements InfoPrunerVisitor<PlanataInfo, Or
 	
 	
 	
-	private boolean isEqualOrBefore(LocalTime planata, LocalTime orderve) {
-		if (planata.equals(orderve))
+	private boolean isEqualOrBefore(LocalTime baseTime, LocalTime selectedTime) {
+		if (baseTime.equals(selectedTime))
 			return true;
 		
-		if (planata.isBefore(orderve))
+		if (baseTime.isBefore(selectedTime))
 			return true;
 		
 		return false;
 	}
 
 
-	
-	@Override public boolean shouldPrune(PlanataInfo sourceOne, OrderveInfo sourceTwo) {
-		if (sourceOne.codStore		<= 0	||
-			sourceOne.codMat		<= 0	||
-			sourceOne.codEmployee	<= 0	||
-			sourceOne.date			== null	||
-			sourceOne.beginTime		== null	||
-			sourceOne.endTime		== null		)
+
+	@Override public boolean shouldPrune(PlanataInfo baseInfo, OrderveInfo selectedInfo) {
+		if (baseInfo.codStore		<= 0	||
+			baseInfo.codMat			<= 0	||
+			baseInfo.codEmployee	<= 0	||
+			baseInfo.date			== null	||
+			baseInfo.beginTime		== null	||
+			baseInfo.endTime		== null		)
 			
 			return false;
 		
 		
-		return (sourceOne.codOwner 		== sourceTwo.codOwner		&&
-				sourceOne.codStore 		== sourceTwo.codStore		&&
-				sourceOne.codMat 		== sourceTwo.codMat			&&
-				sourceOne.codEmployee 	== sourceTwo.codEmployee		);
+		return (baseInfo.codOwner 		== selectedInfo.codOwner		&&
+				baseInfo.codStore 		== selectedInfo.codStore		&&
+				baseInfo.codMat 		== selectedInfo.codMat			&&
+				baseInfo.codEmployee 	== selectedInfo.codEmployee		);
 	}
 }

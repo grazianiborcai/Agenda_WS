@@ -1,53 +1,43 @@
 package br.com.mind5.business.planingData.info;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoPrunerVisitor;
+import br.com.mind5.info.temp.InfoPrunerVisitorV2;
 
-final class PlanataVisiPruneEmplate implements InfoPrunerVisitor<PlanataInfo, EmplateInfo> {
+final class PlanataVisiPruneEmplate implements InfoPrunerVisitorV2<PlanataInfo, EmplateInfo> {
 	
-	@Override public PlanataInfo pruneRecord(PlanataInfo sourceOne, EmplateInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+	@Override public boolean pruneRecord(PlanataInfo baseInfo, EmplateInfo selectedInfo) {
 		
-		if (hasTimeOverlap(sourceOne, sourceTwo))
-			return null;
+		if (hasTimeOverlap(baseInfo, selectedInfo))
+			return true;
 		
-		return sourceOne;
+		return false;
 	}
 	
 	
 	
-	private void checkArgument(PlanataInfo sourceOne, EmplateInfo sourceTwo) {
-		if (shouldPrune(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.PRUNE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private boolean hasTimeOverlap(PlanataInfo planata, EmplateInfo emplevate) {
+	private boolean hasTimeOverlap(PlanataInfo baseInfo, EmplateInfo selectedInfo) {
 		
-		if ((planata.date.isAfter(emplevate.dateValidFrom)      || planata.date.isEqual(emplevate.dateValidFrom)) 	  &&
-			(planata.date.isBefore(emplevate.dateValidTo)       || planata.date.isEqual(emplevate.dateValidTo)) 	  &&
-			(planata.beginTime.isAfter(emplevate.timeValidFrom) || planata.beginTime.equals(emplevate.timeValidFrom)) &&
-			(planata.beginTime.isBefore(emplevate.timeValidTo)  || planata.beginTime.equals(emplevate.timeValidTo)))
+		if ((baseInfo.date.isAfter(selectedInfo.dateValidFrom)      || baseInfo.date.isEqual(selectedInfo.dateValidFrom)) 	  &&
+			(baseInfo.date.isBefore(selectedInfo.dateValidTo)       || baseInfo.date.isEqual(selectedInfo.dateValidTo)) 	  &&
+			(baseInfo.beginTime.isAfter(selectedInfo.timeValidFrom) || baseInfo.beginTime.equals(selectedInfo.timeValidFrom)) &&
+			(baseInfo.beginTime.isBefore(selectedInfo.timeValidTo)  || baseInfo.beginTime.equals(selectedInfo.timeValidTo)))
 			return true;		
 		
 		
-		if ((planata.date.isAfter(emplevate.dateValidFrom)    || planata.date.isEqual(emplevate.dateValidFrom))   &&
-			(planata.date.isBefore(emplevate.dateValidTo)     || planata.date.isEqual(emplevate.dateValidTo)) 	  &&
-			(planata.endTime.isAfter(emplevate.timeValidFrom) || planata.endTime.equals(emplevate.timeValidFrom)) &&
-			(planata.endTime.isBefore(emplevate.timeValidTo)  || planata.endTime.equals(emplevate.timeValidTo)))
+		if ((baseInfo.date.isAfter(selectedInfo.dateValidFrom)    || baseInfo.date.isEqual(selectedInfo.dateValidFrom))   &&
+			(baseInfo.date.isBefore(selectedInfo.dateValidTo)     || baseInfo.date.isEqual(selectedInfo.dateValidTo)) 	  &&
+			(baseInfo.endTime.isAfter(selectedInfo.timeValidFrom) || baseInfo.endTime.equals(selectedInfo.timeValidFrom)) &&
+			(baseInfo.endTime.isBefore(selectedInfo.timeValidTo)  || baseInfo.endTime.equals(selectedInfo.timeValidTo)))
 			return true;	
 		
 		return false;
 	}
 
 
-	
-	@Override public boolean shouldPrune(PlanataInfo sourceOne, EmplateInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner	&&
-				sourceOne.codStore 		== sourceTwo.codStore	&&
-				sourceOne.codEmployee 	== sourceTwo.codEmployee	);
-	}
 
+	@Override public boolean shouldPrune(PlanataInfo baseInfo, EmplateInfo selectedInfo) {
+		return (baseInfo.codOwner 		== selectedInfo.codOwner	&&
+				baseInfo.codStore 		== selectedInfo.codStore	&&
+				baseInfo.codEmployee 	== selectedInfo.codEmployee	);
+	}
 }

@@ -6,48 +6,84 @@ import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
-import br.com.mind5.info.InfoPruner;
-import br.com.mind5.info.InfoPrunerSelf;
+import br.com.mind5.info.temp.InfoPrunerBuilder;
+import br.com.mind5.info.temp.InfoPrunerV2;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
 public final class PlanataPruner {
-	public static List<PlanataInfo> pruneWithStopar(List<PlanataInfo> sourceOne, List<StoparInfo> sourceTwo) {
-		InfoPruner<PlanataInfo, StoparInfo> pruner = new PlanataPrunerStopar();		
-		return pruner.prune(sourceOne, sourceTwo);
+	public static List<PlanataInfo> pruneWithStopar(List<PlanataInfo> baseInfos, List<StoparInfo> selectedInfos) {
+		InfoPrunerBuilder<PlanataInfo, StoparInfo> builder = new InfoPrunerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanataVisiPruneStopar());
+		InfoPrunerV2<PlanataInfo, StoparInfo> pruner = builder.build();		
+	
+		return pruner.prune();
 	}
 	
 	
 	
-	public static List<PlanataInfo> pruneWithEmplate(List<PlanataInfo> sourceOne, List<EmplateInfo> sourceTwo) {
-		InfoPruner<PlanataInfo, EmplateInfo> pruner = new PlanataPrunerEmplate();		
-		return pruner.prune(sourceOne, sourceTwo);
+	public static List<PlanataInfo> pruneWithEmplate(List<PlanataInfo> baseInfos, List<EmplateInfo> selectedInfos) {
+		InfoPrunerBuilder<PlanataInfo, EmplateInfo> builder = new InfoPrunerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanataVisiPruneEmplate());
+		InfoPrunerV2<PlanataInfo, EmplateInfo> pruner = builder.build();		
+	
+		return pruner.prune();
 	}
 	
 	
 	
-	public static List<PlanataInfo> pruneWithStolate(List<PlanataInfo> sourceOne, List<StolateInfo> sourceTwo) {
-		InfoPruner<PlanataInfo, StolateInfo> pruner = new PlanataPrunerStolate();		
-		return pruner.prune(sourceOne, sourceTwo);
+	public static List<PlanataInfo> pruneWithStolate(List<PlanataInfo> baseInfos, List<StolateInfo> selectedInfos) {
+		InfoPrunerBuilder<PlanataInfo, StolateInfo> builder = new InfoPrunerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanataVisiPruneStolate());
+		InfoPrunerV2<PlanataInfo, StolateInfo> pruner = builder.build();		
+	
+		return pruner.prune();
 	}
 	
 	
 	
-	public static List<PlanataInfo> pruneAged(List<PlanataInfo> source) {
-		InfoPrunerSelf<PlanataInfo> pruner = new PlanataPrunerAged();		
-		return pruner.prune(source);
+	public static List<PlanataInfo> pruneAged(List<PlanataInfo> baseInfos) {
+		InfoPrunerBuilder<PlanataInfo, PlanataInfo> builder = new InfoPrunerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(baseInfos);
+		builder.addVisitor(new PlanataVisiPruneAged());
+		InfoPrunerV2<PlanataInfo, PlanataInfo> pruner = builder.build();		
+	
+		return pruner.prune();
 	}
 	
 	
 	
-	public static List<PlanataInfo> pruneWithCarterve(List<PlanataInfo> sourceOne, List<CarterveInfo> sourceTwo) {
-		InfoPruner<PlanataInfo, CarterveInfo> pruner = new PlanataPrunerCarterve();		
-		return pruner.prune(sourceOne, sourceTwo);
+	public static List<PlanataInfo> pruneWithCarterve(List<PlanataInfo> baseInfos, List<CarterveInfo> selectedInfos) {
+		InfoPrunerBuilder<PlanataInfo, CarterveInfo> builder = new InfoPrunerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanataVisiPruneCarterve());
+		InfoPrunerV2<PlanataInfo, CarterveInfo> pruner = builder.build();		
+	
+		return pruner.prune();
 	}
 	
 	
 	
-	public static List<PlanataInfo> pruneWithOrderve(List<PlanataInfo> sourceOne, List<OrderveInfo> sourceTwo) {
-		InfoPruner<PlanataInfo, OrderveInfo> pruner = new PlanataPrunerOrderve();		
-		return pruner.prune(sourceOne, sourceTwo);
+	public static List<PlanataInfo> pruneWithOrderve(List<PlanataInfo> baseInfos, List<OrderveInfo> selectedInfos) {
+		InfoPrunerBuilder<PlanataInfo, OrderveInfo> builder = new InfoPrunerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanataVisiPruneOrderve());
+		InfoPrunerV2<PlanataInfo, OrderveInfo> pruner = builder.build();		
+	
+		return pruner.prune();
 	}	
 }
