@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPlanataMergeMat extends ActionLazyTemplate<PlanataInfo, PlanataInfo> {
+public final class LazyPlanataMergeMatlis extends ActionLazyTemplate<PlanataInfo, PlanataInfo> {
 	
-	public LazyPlanataMergeMat(Connection conn, String schemaName) {
+	public LazyPlanataMergeMatlis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPlanataMergeMat extends ActionLazyTemplate<PlanataInfo, P
 	
 	
 	@Override protected ActionStd<PlanataInfo> getInstanceOfActionHook(DeciTreeOption<PlanataInfo> option) {
-		return new StdPlanataMergeMat(option);
+		return new StdPlanataMergeMatlis(option);
 	}
 	
 	

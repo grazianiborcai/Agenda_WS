@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
-import br.com.mind5.business.planingData.model.action.LazyPlanataMergeMat;
+import br.com.mind5.business.planingData.model.action.LazyPlanataMergeMatlis;
 import br.com.mind5.business.planingData.model.action.LazyPlanataMergeToSelect;
 import br.com.mind5.business.planingData.model.action.LazyPlanataNodeReserve;
 import br.com.mind5.business.planingData.model.action.LazyPlanataPruneAged;
@@ -59,7 +59,7 @@ public class RootPlanataSelect extends DeciTreeReadTemplate<PlanataInfo> {
 		
 		ActionStd<PlanataInfo> enforceWeekday = new StdPlanataEnforceWeekday(option);		
 		ActionLazy<PlanataInfo> select = new LazyPlanataMergeToSelect(option.conn, option.schemaName);		
-		ActionLazy<PlanataInfo> mergeMat = new LazyPlanataMergeMat(option.conn, option.schemaName);	
+		ActionLazy<PlanataInfo> mergeMatlis = new LazyPlanataMergeMatlis(option.conn, option.schemaName);	
 		ActionLazy<PlanataInfo> pruneEmplate = new LazyPlanataPruneEmplate(option.conn, option.schemaName);
 		ActionLazy<PlanataInfo> pruneStolate = new LazyPlanataPruneStolate(option.conn, option.schemaName);
 		ActionLazy<PlanataInfo> pruneAged = new LazyPlanataPruneAged(option.conn, option.schemaName);
@@ -67,8 +67,8 @@ public class RootPlanataSelect extends DeciTreeReadTemplate<PlanataInfo> {
 		ActionLazy<PlanataInfo> nodeReserve = new LazyPlanataNodeReserve(option.conn, option.schemaName);
 		
 		enforceWeekday.addPostAction(select);
-		select.addPostAction(mergeMat);
-		mergeMat.addPostAction(pruneEmplate);
+		select.addPostAction(mergeMatlis);
+		mergeMatlis.addPostAction(pruneEmplate);
 		pruneEmplate.addPostAction(pruneStolate);
 		pruneStolate.addPostAction(pruneAged);
 		pruneAged.addPostAction(pruneStopar);

@@ -8,13 +8,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.common.MatUnit;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoMergerOneToManyVisitor;
 
-final class PlanataVisiMergeMat implements InfoMergerOneToManyVisitor<PlanataInfo, MatInfo> {
+final class PlanataVisiMergeMatlis implements InfoMergerOneToManyVisitor<PlanataInfo, MatlisInfo> {
 
-	@Override public List<PlanataInfo> writeRecord(MatInfo sourceOne, PlanataInfo sourceTwo) {
+	@Override public List<PlanataInfo> writeRecord(MatlisInfo sourceOne, PlanataInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);	
 		
 		List<PlanataInfo> results = new ArrayList<>();
@@ -39,7 +39,7 @@ final class PlanataVisiMergeMat implements InfoMergerOneToManyVisitor<PlanataInf
 	
 	
 	
-	private PlanataInfo setEndTime(MatInfo mat, PlanataInfo planata) {
+	private PlanataInfo setEndTime(MatlisInfo mat, PlanataInfo planata) {
 		MatUnit matUnit = MatUnit.getMatUnit(mat.codUnit);		
 		PlanataInfo resultInfo = makeClone(planata);
 		
@@ -51,7 +51,7 @@ final class PlanataVisiMergeMat implements InfoMergerOneToManyVisitor<PlanataInf
 	
 	
 	
-	private PlanataInfo shiftTime(MatInfo sourceOne, PlanataInfo sourceTwo) {
+	private PlanataInfo shiftTime(MatlisInfo sourceOne, PlanataInfo sourceTwo) {
 		MatUnit matUnit = MatUnit.getMatUnit(sourceOne.codUnit);		
 		PlanataInfo resultInfo = makeClone(sourceTwo);
 		
@@ -71,14 +71,14 @@ final class PlanataVisiMergeMat implements InfoMergerOneToManyVisitor<PlanataInf
 	
 	
 	
-	private void checkArgument(MatInfo sourceOne, PlanataInfo sourceTwo) {
+	private void checkArgument(MatlisInfo sourceOne, PlanataInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 
 
 
-	@Override public boolean shouldWrite(MatInfo sourceOne, PlanataInfo sourceTwo) {
+	@Override public boolean shouldWrite(MatlisInfo sourceOne, PlanataInfo sourceTwo) {
 		return (sourceOne.codOwner 	== sourceTwo.codOwner && 
 				sourceOne.codMat 	== sourceTwo.codMat			);
 	}

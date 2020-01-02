@@ -2,20 +2,20 @@ package br.com.mind5.business.planingData.info;
 
 import java.util.List;
 
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerOneToMany;
 
 public final class PlanataMerger {	
-	public static List<PlanataInfo> mergeWithMat(MatInfo sourceOne, PlanataInfo sourceTwo) {
-		InfoMergerOneToMany<PlanataInfo, MatInfo> merger = new PlanataMergerMat();		
+	public static List<PlanataInfo> mergeWithMatlis(MatlisInfo sourceOne, PlanataInfo sourceTwo) {
+		InfoMergerOneToMany<PlanataInfo, MatlisInfo> merger = new PlanataMergerMatlis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<PlanataInfo> mergeWithMat(List<MatInfo> sourceOnes, List<PlanataInfo> sourceTwos) {
-		InfoMergerOneToMany<PlanataInfo, MatInfo> merger = new PlanataMergerMat();		
+	public static List<PlanataInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<PlanataInfo> sourceTwos) {
+		InfoMergerOneToMany<PlanataInfo, MatlisInfo> merger = new PlanataMergerMatlis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
