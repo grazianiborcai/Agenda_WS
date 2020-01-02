@@ -28,4 +28,22 @@ final class DeciTreeUtil {
 		
 		return copies;
 	}
+	
+	
+	
+	public static <T extends InfoRecord> T copyOf(T record) {
+		try {
+			return tryCopyOf(record);
+			
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private static <T extends InfoRecord> T tryCopyOf(T record) throws CloneNotSupportedException {		
+		return (T) record.clone();
+	}
 }

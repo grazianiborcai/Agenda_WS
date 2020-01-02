@@ -12,7 +12,7 @@ final class DeciTreeOptionV2Helper<T extends InfoRecord> implements DeciTreeOpti
 	
 	
 	protected DeciTreeOptionV2Helper(List<T> records, Connection c, String name) {
-		recordInfos = records;
+		recordInfos = DeciTreeUtil.copyOf(records);
 		conn = c;
 		schemaName = name;
 	}

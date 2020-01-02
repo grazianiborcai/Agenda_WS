@@ -15,7 +15,7 @@ public final class DeciTreeOptionV2Builder<T extends InfoRecord> {
 	private String schemaName;
 	
 	
-	public synchronized void addRecords(List<T> records) {
+	public void addRecords(List<T> records) {
 		if (isArgumentValid(records))
 			recordInfos = DeciTreeUtil.copyOf(records);
 		
@@ -24,19 +24,19 @@ public final class DeciTreeOptionV2Builder<T extends InfoRecord> {
 	
 	
 	
-	public synchronized void addConn(Connection c) {
+	public void addConn(Connection c) {
 		conn = c;
 	}
 	
 	
 	
-	public synchronized void addSchemaName(String name) {
+	public void addSchemaName(String name) {
 		schemaName = name;
 	}
 	
 	
 	
-	public synchronized DeciTreeOptionV2<T> build() {
+	public DeciTreeOptionV2<T> build() {
 		checkArgument(recordInfos, conn, schemaName);
 		
 		List<T> copies = DeciTreeUtil.copyOf(recordInfos);	
