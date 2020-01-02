@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 
-public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> extends InfoPrunerV2<T, S> {
+public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> implements InfoPrunerV2<T, S> {
 	private final List<T> bases; 
 	private final List<S> seles;	
 	private final InfoPrunerVisitorV2<T,S> pruner;
