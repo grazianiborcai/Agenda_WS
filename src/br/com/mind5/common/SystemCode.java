@@ -849,6 +849,8 @@ public final class SystemCode {
 	
 	//Store Leave Date - Search
 	public static final int STORE_LDATE_SEARCH_MANDATORY_FIELD_EMPTY 	= 7000;
+	public static final int STORE_LDATE_SEARCH_ALREADY_EXIST 			= 7001;
+	public static final int STORE_LDATE_SEARCH_NOT_FOUND 				= 7002;
 	
 	// Schedule Outlier
 	public static final int SCHEDULE_OUTLIER_MANDATORY_FIELD_EMPTY		= 7050;
