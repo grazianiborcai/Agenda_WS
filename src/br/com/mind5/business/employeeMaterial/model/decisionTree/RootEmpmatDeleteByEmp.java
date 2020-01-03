@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
-import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeToDelete;
+import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeEmpmarch;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatRootDelete;
-import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatEnforceEmpKey_;
+import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatEnforceEmpKey;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckDeleteByEmp;
-import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckHasEmpItem_;
+import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckEmpmarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -41,7 +41,7 @@ public final class RootEmpmatDeleteByEmp extends DeciTreeWriteTemplate<EmpmatInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpmatCheckHasEmpItem_(checkerOption);
+		checker = new EmpmatCheckEmpmarch(checkerOption);
 		queue.add(checker);	
 
 		return new ModelCheckerQueue<EmpmatInfo>(queue);
@@ -52,12 +52,12 @@ public final class RootEmpmatDeleteByEmp extends DeciTreeWriteTemplate<EmpmatInf
 	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpmatInfo> enforceEmpKey = new StdEmpmatEnforceEmpKey_(option);
-		ActionLazy<EmpmatInfo> mergeToDelete = new LazyEmpmatMergeToDelete(option.conn, option.schemaName);
+		ActionStd<EmpmatInfo> enforceEmpKey = new StdEmpmatEnforceEmpKey(option);
+		ActionLazy<EmpmatInfo> mergeEmpmarch = new LazyEmpmatMergeEmpmarch(option.conn, option.schemaName);
 		ActionLazy<EmpmatInfo> rootDelete = new LazyEmpmatRootDelete(option.conn, option.schemaName);
 		
-		enforceEmpKey.addPostAction(mergeToDelete);
-		mergeToDelete.addPostAction(rootDelete);
+		enforceEmpKey.addPostAction(mergeEmpmarch);
+		mergeEmpmarch.addPostAction(rootDelete);
 		
 		actions.add(enforceEmpKey);
 		return actions;

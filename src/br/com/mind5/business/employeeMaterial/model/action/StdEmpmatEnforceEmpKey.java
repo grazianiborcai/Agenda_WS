@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpmatEnforceEmpKey_ implements ActionStd<EmpmatInfo> {
+public final class StdEmpmatEnforceEmpKey implements ActionStd<EmpmatInfo> {
 	private ActionStd<EmpmatInfo> actionHelper;	
 	
 	
-	public StdEmpmatEnforceEmpKey_(DeciTreeOption<EmpmatInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiEmpmatEnforceEmpKey_());
+	public StdEmpmatEnforceEmpKey(DeciTreeOption<EmpmatInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiEmpmatEnforceEmpKey());
 	}
 	
 	
