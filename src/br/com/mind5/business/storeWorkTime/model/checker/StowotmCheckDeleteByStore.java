@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StowotmCheckDeleteAll extends ModelCheckerTemplateSimpleV2<StowotmInfo> {
+public final class StowotmCheckDeleteByStore extends ModelCheckerTemplateSimpleV2<StowotmInfo> {
 	
-	public StowotmCheckDeleteAll(ModelCheckerOption option) {
+	public StowotmCheckDeleteByStore(ModelCheckerOption option) {
 		super(option);
 	}
 	
