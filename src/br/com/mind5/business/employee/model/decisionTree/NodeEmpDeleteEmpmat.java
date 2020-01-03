@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.StdEmpDeleteEmpmat;
 import br.com.mind5.business.employee.model.action.StdEmpSuccess;
-import br.com.mind5.business.employee.model.checker.EmpCheckHasEmpmat;
+import br.com.mind5.business.employee.model.checker.EmpCheckEmpmarch;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -31,7 +31,7 @@ public final class NodeEmpDeleteEmpmat extends DeciTreeWriteTemplate<EmpInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new EmpCheckHasEmpmat(checkerOption);
+		checker = new EmpCheckEmpmarch(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
