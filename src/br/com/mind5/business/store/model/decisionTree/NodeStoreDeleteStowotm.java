@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.StdStoreDeleteStowotm;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
-import br.com.mind5.business.store.model.checker.StoreCheckHasStowotm;
+import br.com.mind5.business.store.model.checker.StoreCheckStowotarch;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -31,7 +31,7 @@ public final class NodeStoreDeleteStowotm extends DeciTreeWriteTemplate<StoreInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StoreCheckHasStowotm(checkerOption);
+		checker = new StoreCheckStowotarch(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

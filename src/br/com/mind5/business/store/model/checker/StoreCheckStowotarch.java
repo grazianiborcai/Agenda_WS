@@ -3,20 +3,20 @@ package br.com.mind5.business.store.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckHasItem_;
+import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
+import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class StoreCheckHasStowotm implements ModelChecker<StoreInfo> {
+public final class StoreCheckStowotarch implements ModelChecker<StoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StowotmInfo> checker;
+	private ModelChecker<StowotarchInfo> checker;
 	
 	
-	public StoreCheckHasStowotm(ModelCheckerOption option) {
-		checker = new StowotmCheckHasItem_(option);
+	public StoreCheckStowotarch(ModelCheckerOption option) {
+		checker = new StowotarchCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class StoreCheckHasStowotm implements ModelChecker<StoreInfo> {
 	
 	
 	@Override public boolean check(StoreInfo recordInfo) {
-		return checker.check(StowotmInfo.copyFrom(recordInfo));
+		return checker.check(StowotarchInfo.copyFrom(recordInfo));
 	}
 
 	
