@@ -41,9 +41,9 @@ public final class NodeCartUpsert extends DeciTreeWriteTemplate<CartInfo> {
 	
 	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
-		//TODO: MERGE CUSTOMER
+
 		ActionStd<CartInfo> updateHdr = new StdCartUpdate(option);
-		
+		//TODO: MergeToUpdate
 		actions.add(updateHdr);
 		return actions;
 	}
@@ -52,7 +52,7 @@ public final class NodeCartUpsert extends DeciTreeWriteTemplate<CartInfo> {
 	
 	@Override protected List<ActionStd<CartInfo>> buildActionsOnFailedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
-		//TODO: MERGE CUSTOMER
+
 		ActionStd<CartInfo> insertHdr = new StdCartInsert(option);
 		
 		actions.add(insertHdr);

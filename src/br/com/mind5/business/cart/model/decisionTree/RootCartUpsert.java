@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.LazyCartEnforceLChanged;
+import br.com.mind5.business.cart.model.action.LazyCartMergeCuslis;
 import br.com.mind5.business.cart.model.action.LazyCartNodeCartem;
 import br.com.mind5.business.cart.model.action.LazyCartNodeUpsert;
 import br.com.mind5.business.cart.model.action.LazyCartRootSelect;
@@ -71,12 +72,14 @@ public final class RootCartUpsert extends DeciTreeWriteTemplate<CartInfo> {
 		
 		ActionStd<CartInfo> mergeUsername = new StdCartMergeUsername(option);
 		ActionLazy<CartInfo> enforceLChanged = new LazyCartEnforceLChanged(option.conn, option.schemaName);		
+		ActionLazy<CartInfo> mergeCuslis = new LazyCartMergeCuslis(option.conn, option.schemaName);
 		ActionLazy<CartInfo> upsert = new LazyCartNodeUpsert(option.conn, option.schemaName);
 		ActionLazy<CartInfo> cartem = new LazyCartNodeCartem(option.conn, option.schemaName);
 		ActionLazy<CartInfo> select = new LazyCartRootSelect(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(upsert);
+		enforceLChanged.addPostAction(mergeCuslis);		
+		mergeCuslis.addPostAction(upsert);
 		upsert.addPostAction(cartem);
 		cartem.addPostAction(select);
 		

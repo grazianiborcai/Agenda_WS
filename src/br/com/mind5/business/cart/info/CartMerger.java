@@ -3,6 +3,7 @@ package br.com.mind5.business.cart.info;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
+import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.order.info.OrderInfo;
@@ -10,6 +11,20 @@ import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CartMerger {	
+	public static CartInfo mergeWithCuslis(CuslisInfo sourceOne, CartInfo sourceTwo) {
+		InfoMerger<CartInfo, CuslisInfo> merger = new CartMergerCuslis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CartInfo> mergeWithCuslis(List<CuslisInfo> sourceOnes, List<CartInfo> sourceTwos) {
+		InfoMerger<CartInfo, CuslisInfo> merger = new CartMergerCuslis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
 	public static CartInfo mergeWithOrder(OrderInfo sourceOne, CartInfo sourceTwo) {
 		InfoMerger<CartInfo, OrderInfo> merger = new CartMergerOrder();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -20,7 +35,7 @@ public final class CartMerger {
 	public static List<CartInfo> mergeWithOrder(List<OrderInfo> sourceOnes, List<CartInfo> sourceTwos) {
 		InfoMerger<CartInfo, OrderInfo> merger = new CartMergerOrder();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}		
+	}	
 	
 	
 	
