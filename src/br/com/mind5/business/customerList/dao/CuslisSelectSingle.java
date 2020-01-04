@@ -47,7 +47,7 @@ public final class CuslisSelectSingle extends DaoStmtTemplate<CuslisInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, CuslisInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new CuslisWhere(whereOption, tableName, recordInfo);
@@ -72,8 +72,6 @@ public final class CuslisSelectSingle extends DaoStmtTemplate<CuslisInfo> {
 					dataInfo.recordMode = stmtResult.getString(CuslisDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, CuslisDbTableColumn.COL_COD_PERSON);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, CuslisDbTableColumn.COL_COD_USER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CuslisDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CuslisDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, CuslisDbTableColumn.COL_COD_SNAPSHOT);
 	
 					finalResult.add(dataInfo);

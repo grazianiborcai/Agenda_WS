@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
+import br.com.mind5.business.customerList.model.action.LazyCuslisMergeFimist;
 import br.com.mind5.business.customerList.model.action.LazyCuslisMergePersolis;
 import br.com.mind5.business.customerList.model.action.StdCuslisMergeToSelect;
 import br.com.mind5.business.customerList.model.checker.CuslisCheckLangu;
@@ -61,8 +62,10 @@ public final class RootCuslisSelect extends DeciTreeReadTemplate<CuslisInfo> {
 		
 		ActionStd<CuslisInfo> select = new StdCuslisMergeToSelect(option);
 		ActionLazy<CuslisInfo> mergePersolis = new LazyCuslisMergePersolis(option.conn, option.schemaName);
+		ActionLazy<CuslisInfo> mergeFimist = new LazyCuslisMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePersolis);
+		mergePersolis.addPostAction(mergeFimist);
 		
 		actions.add(select);
 		return actions;

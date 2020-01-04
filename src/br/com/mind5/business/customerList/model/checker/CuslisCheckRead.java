@@ -17,6 +17,8 @@ public final class CuslisCheckRead extends ModelCheckerTemplateSimpleV2<CuslisIn
 	
 	@Override protected boolean checkHook(CuslisInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codCustomer 	<= 0 	||	
+			recordInfo.username 	== null	||
 			recordInfo.codLanguage 	== null		)			
 			
 			return super.FAILED;		

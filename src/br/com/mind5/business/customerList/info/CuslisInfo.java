@@ -1,10 +1,10 @@
 package br.com.mind5.business.customerList.info;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
 
 public final class CuslisInfo extends InfoRecord implements Cloneable {
@@ -13,13 +13,9 @@ public final class CuslisInfo extends InfoRecord implements Cloneable {
 	public long codSnapshot;
 	public long codPerson;
 	public long codUser;
-	public String codEntityCateg;
-	public char codUserCategory;
-	public String codAuthGroup;
 	public String recordMode;
-	public LocalDateTime lastChanged;
-	public long lastChangedBy;
 	public PersolisInfo personData;
+	public FimistInfo fimistData;
 	public String username;
 	
 	
@@ -31,10 +27,9 @@ public final class CuslisInfo extends InfoRecord implements Cloneable {
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codUser = DefaultValue.number();
-		codUserCategory = DefaultValue.character();
-		recordMode = DefaultValue.recordMode();		
-		lastChangedBy = DefaultValue.number();
+		recordMode = DefaultValue.recordMode();	
 		personData = DefaultValue.object();
+		fimistData = DefaultValue.object();
 	}
 	
 	
@@ -53,7 +48,10 @@ public final class CuslisInfo extends InfoRecord implements Cloneable {
 	
 	@Override public Object clone() throws CloneNotSupportedException {
 		CuslisInfo deepCopy = (CuslisInfo) super.clone();		
+		
 		deepCopy.personData = clonePersolis(deepCopy.personData);		
+		deepCopy.fimistData = cloneFimist(deepCopy.fimistData);
+		
 		return deepCopy;
 	}
 	
@@ -65,6 +63,15 @@ public final class CuslisInfo extends InfoRecord implements Cloneable {
 		
 		return (PersolisInfo) recordInfos.clone();
 	}
+	
+	
+	
+	private FimistInfo cloneFimist(FimistInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (FimistInfo) recordInfo.clone();
+	}	
 	
 	
 	
