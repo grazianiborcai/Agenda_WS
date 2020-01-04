@@ -45,7 +45,8 @@ final class CusVisiMergeFimist implements InfoMergerVisitor<CusInfo, FimistInfo>
 	
 	
 	@Override public boolean shouldWrite(FimistInfo sourceOne, CusInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+		return (sourceOne.codOwner 		== sourceTwo.codOwner	&&
+				sourceOne.codCustomer	== sourceTwo.codCustomer	);
 	}
 	
 	
