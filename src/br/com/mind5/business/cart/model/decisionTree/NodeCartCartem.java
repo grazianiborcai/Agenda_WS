@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.LazyCartUpsertCartem;
 import br.com.mind5.business.cart.model.action.StdCartEnforceCartemKey;
-import br.com.mind5.business.cart.model.checker.CartCheckWrite;
+import br.com.mind5.business.cart.model.checker.CartCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -26,9 +26,9 @@ public final class NodeCartCartem extends DeciTreeWriteTemplate<CartInfo> {
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
 		
-		checker = new CartCheckWrite();
+		checker = new CartCheckDummy();
 		queue.add(checker);
-		//TODO: has item ?
+
 		return new ModelCheckerQueue<>(queue);
 	}
 	

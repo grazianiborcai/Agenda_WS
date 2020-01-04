@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CartCheckCheckout extends ModelCheckerTemplateSimple_<CartInfo> {
+public final class CartCheckCheckout extends ModelCheckerTemplateSimpleV2<CartInfo> {
 
-	public CartCheckCheckout() {
-		super();
+	public CartCheckCheckout(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -28,13 +28,7 @@ public final class CartCheckCheckout extends ModelCheckerTemplateSimple_<CartInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.CART_HEADER_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.CART_HEADER_MANDATORY_FIELD_EMPTY;
 	}
 }

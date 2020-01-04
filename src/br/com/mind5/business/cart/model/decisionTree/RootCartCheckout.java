@@ -26,26 +26,28 @@ public final class RootCartCheckout extends DeciTreeWriteTemplate<CartInfo> {
 	
 	
 	@Override protected ModelChecker<CartInfo> buildDecisionCheckerHook(DeciTreeOption<CartInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new CartCheckCheckout();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CartCheckCheckout(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CartCheckLangu(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CartCheckOwner(checkerOption);
 		queue.add(checker);
 		

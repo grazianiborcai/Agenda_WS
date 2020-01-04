@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class CartSetterKey implements InfoSetter<CartInfo> {
+public final class CartSetterKey_ implements InfoSetter<CartInfo> {
 	
 	public CartInfo setAttr(CartInfo recordInfo) {
 		checkArgument(recordInfo);
