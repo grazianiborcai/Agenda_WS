@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.action.StdCartemDelete;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckExist;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckMatarchService;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -22,8 +21,6 @@ public final class NodeCartemDelete extends DeciTreeWriteTemplate<CartemInfo> {
 	
 	
 	@Override protected ModelChecker<CartemInfo> buildDecisionCheckerHook(DeciTreeOption<CartemInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartemInfo> checker;	
 		ModelCheckerOption checkerOption;
@@ -31,8 +28,8 @@ public final class NodeCartemDelete extends DeciTreeWriteTemplate<CartemInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
-		checker = new CartemCheckExist(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CartemCheckMatarchService(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -43,9 +40,9 @@ public final class NodeCartemDelete extends DeciTreeWriteTemplate<CartemInfo> {
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> delete = new StdCartemDelete(option);
+		ActionStd<CartemInfo> deleteService = new NodeCartemDeleteService(option).toAction();
 		
-		actions.add(delete);		
+		actions.add(deleteService);
 		return actions;
 	}
 }

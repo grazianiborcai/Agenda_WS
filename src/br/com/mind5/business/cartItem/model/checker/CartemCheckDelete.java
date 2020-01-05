@@ -4,22 +4,26 @@ import java.sql.Connection;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CartemCheckDelete extends ModelCheckerTemplateSimple_<CartemInfo> {
+public final class CartemCheckDelete extends ModelCheckerTemplateSimpleV2<CartemInfo> {
 
-	public CartemCheckDelete() {
-		super();
+	public CartemCheckDelete(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CartemInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 || 
-			 recordInfo.codCustomer	<= 0 	)
-			
-			return super.FAILED;
+		if (   recordInfo.codOwner 		<= 0 	
+			|| recordInfo.codUser		<= 0 	
+			|| recordInfo.codStore 		<= 0
+			|| recordInfo.codMat		<= 0
+			|| recordInfo.username		== null 
+			|| recordInfo.codLanguage	== null	)
+				
+				return super.FAILED;
 		
 		
 		return super.SUCCESS;
@@ -27,13 +31,7 @@ public final class CartemCheckDelete extends ModelCheckerTemplateSimple_<CartemI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.CART_ITEM_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.CART_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 }

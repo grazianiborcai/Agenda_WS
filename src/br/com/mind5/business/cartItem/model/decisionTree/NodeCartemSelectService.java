@@ -10,17 +10,18 @@ import br.com.mind5.business.cartItem.model.action.LazyCartemMergeEmplis;
 import br.com.mind5.business.cartItem.model.action.LazyCartemMergeMatore;
 import br.com.mind5.business.cartItem.model.action.LazyCartemMergeWeekday;
 import br.com.mind5.business.cartItem.model.action.StdCartemMergeStolis;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckIsService;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckService;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCartemSelectL1 extends DeciTreeWriteTemplate<CartemInfo> {
+public final class NodeCartemSelectService extends DeciTreeWriteTemplate<CartemInfo> {
 	
-	public NodeCartemSelectL1(DeciTreeOption<CartemInfo> option) {
+	public NodeCartemSelectService(DeciTreeOption<CartemInfo> option) {
 		super(option);
 	}
 	
@@ -28,9 +29,14 @@ public final class NodeCartemSelectL1 extends DeciTreeWriteTemplate<CartemInfo> 
 	
 	@Override protected ModelChecker<CartemInfo> buildDecisionCheckerHook(DeciTreeOption<CartemInfo> option) {
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
-		ModelChecker<CartemInfo> checker;
+		ModelChecker<CartemInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new CartemCheckIsService();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CartemCheckService(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class CartemSetterKey implements InfoSetter<CartemInfo> {
+public final class CartemSetterUserKey implements InfoSetter<CartemInfo> {
 	
 	public CartemInfo setAttr(CartemInfo recordInfo) {
 		checkArgument(recordInfo);
@@ -26,9 +26,12 @@ public final class CartemSetterKey implements InfoSetter<CartemInfo> {
 	
 	private CartemInfo setKey(CartemInfo recordInfo) {
 		CartemInfo enforcedInfo = new CartemInfo();
+		
 		enforcedInfo.codOwner = recordInfo.codOwner;
 		enforcedInfo.codUser = recordInfo.codUser;
 		enforcedInfo.codLanguage = recordInfo.codLanguage;	
+		enforcedInfo.username = recordInfo.username;	
+		
 		return enforcedInfo;
 	}	
 	

@@ -26,8 +26,6 @@ public final class NodeCartemUpsert extends DeciTreeWriteTemplate<CartemInfo> {
 	
 	
 	@Override protected ModelChecker<CartemInfo> buildDecisionCheckerHook(DeciTreeOption<CartemInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartemInfo> checker;	
 		ModelCheckerOption checkerOption;
@@ -35,7 +33,7 @@ public final class NodeCartemUpsert extends DeciTreeWriteTemplate<CartemInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CartemCheckExist(checkerOption);
 		queue.add(checker);
 		

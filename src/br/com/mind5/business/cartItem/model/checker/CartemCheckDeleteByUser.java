@@ -7,17 +7,21 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CartemCheckQuantity extends ModelCheckerTemplateSimpleV2<CartemInfo> {
+public final class CartemCheckDeleteByUser extends ModelCheckerTemplateSimpleV2<CartemInfo> {
 
-	public CartemCheckQuantity(ModelCheckerOption option) {
+	public CartemCheckDeleteByUser(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CartemInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.quantity != 1)			
-			return super.FAILED;
+		if (   recordInfo.codOwner 		<= 0 	
+			|| recordInfo.codUser		<= 0 
+			|| recordInfo.username		== null 
+			|| recordInfo.codLanguage	== null	)
+				
+				return super.FAILED;
 		
 		
 		return super.SUCCESS;
@@ -26,6 +30,6 @@ public final class CartemCheckQuantity extends ModelCheckerTemplateSimpleV2<Cart
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.CART_ITEM_QUANTITY_ILLEGAL;
+		return SystemCode.CART_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 }

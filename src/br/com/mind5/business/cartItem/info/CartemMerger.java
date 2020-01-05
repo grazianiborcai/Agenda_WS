@@ -2,26 +2,41 @@ package br.com.mind5.business.cartItem.info;
 
 import java.util.List;
 
+import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CartemMerger {
-	public static CartemInfo mergeWithMat(MatInfo sourceOne, CartemInfo sourceTwo) {
-		InfoMerger<CartemInfo, MatInfo> merger = new CartemMergerMat();		
+	public static CartemInfo mergeWithCartemarch(CartemarchInfo sourceOne, CartemInfo sourceTwo) {
+		InfoMerger<CartemInfo, CartemarchInfo> merger = new CartemMergerCartemarch();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<CartemInfo> mergeWithMat(List<MatInfo> sourceOnes, List<CartemInfo> sourceTwos) {
-		InfoMerger<CartemInfo, MatInfo> merger = new CartemMergerMat();		
+	public static List<CartemInfo> mergeWithCartemarch(List<CartemarchInfo> sourceOnes, List<CartemInfo> sourceTwos) {
+		InfoMerger<CartemInfo, CartemarchInfo> merger = new CartemMergerCartemarch();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}		
+	
+	
+	
+	public static CartemInfo mergeWithMatlis(MatlisInfo sourceOne, CartemInfo sourceTwo) {
+		InfoMerger<CartemInfo, MatlisInfo> merger = new CartemMergerMatlis();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CartemInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<CartemInfo> sourceTwos) {
+		InfoMerger<CartemInfo, MatlisInfo> merger = new CartemMergerMatlis();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
 	
 	
 	

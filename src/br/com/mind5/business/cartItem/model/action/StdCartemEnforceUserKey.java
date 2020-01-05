@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartemEnforceKey implements ActionStd<CartemInfo> {
+public final class StdCartemEnforceUserKey implements ActionStd<CartemInfo> {
 	private ActionStd<CartemInfo> actionHelper;	
 	
 	
-	public StdCartemEnforceKey(DeciTreeOption<CartemInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCartemEnforceKey());
+	public StdCartemEnforceUserKey(DeciTreeOption<CartemInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCartemEnforceUserKey());
 	}
 	
 	

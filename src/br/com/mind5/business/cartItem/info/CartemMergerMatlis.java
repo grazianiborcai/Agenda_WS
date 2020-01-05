@@ -1,14 +1,14 @@
 package br.com.mind5.business.cartItem.info;
 
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.info.InfoMergerTemplate;
 import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CartemMergerMat extends InfoMergerTemplate<CartemInfo, MatInfo> {
+final class CartemMergerMatlis extends InfoMergerTemplate<CartemInfo, MatlisInfo> {
 
-	@Override protected InfoMergerVisitor<CartemInfo, MatInfo> getVisitorHook() {
-		return new CartemVisiMergeMat();
+	@Override protected InfoMergerVisitor<CartemInfo, MatlisInfo> getVisitorHook() {
+		return new CartemVisiMergeMatlis();
 	}
 	
 	

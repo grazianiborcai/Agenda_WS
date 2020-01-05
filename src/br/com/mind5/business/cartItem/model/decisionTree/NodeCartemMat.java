@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.action.StdCartemSuccess;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckIsService;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckMatarchService;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCartemServiceL1 extends DeciTreeWriteTemplate<CartemInfo> {
+public final class NodeCartemMat extends DeciTreeWriteTemplate<CartemInfo> {
 	
-	public NodeCartemServiceL1(DeciTreeOption<CartemInfo> option) {
+	public NodeCartemMat(DeciTreeOption<CartemInfo> option) {
 		super(option);
 	}
 	
@@ -23,8 +23,13 @@ public final class NodeCartemServiceL1 extends DeciTreeWriteTemplate<CartemInfo>
 	@Override protected ModelChecker<CartemInfo> buildDecisionCheckerHook(DeciTreeOption<CartemInfo> option) {
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartemInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new CartemCheckIsService();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CartemCheckMatarchService(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -35,20 +40,9 @@ public final class NodeCartemServiceL1 extends DeciTreeWriteTemplate<CartemInfo>
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> nodeL2 = new NodeCartemServiceL2(option).toAction();
-		actions.add(nodeL2);
+		ActionStd<CartemInfo> service = new NodeCartemMatService(option).toAction();
 		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
-		
-		ActionStd<CartemInfo> success = new StdCartemSuccess(option);			
-		actions.add(success);
-		
+		actions.add(service);
 		return actions;
 	}
 }

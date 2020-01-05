@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CartemCheckWrite extends ModelCheckerTemplateSimple_<CartemInfo> {
+public final class CartemCheckService extends ModelCheckerTemplateSimpleV2<CartemInfo> {
 
-	public CartemCheckWrite() {
-		super();
+	public CartemCheckService(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -18,9 +18,12 @@ public final class CartemCheckWrite extends ModelCheckerTemplateSimple_<CartemIn
 	@Override protected boolean checkHook(CartemInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 		<= 0 	
 			|| recordInfo.codUser		<= 0 	
+			|| recordInfo.codEmployee	<= 0 
 			|| recordInfo.codStore 		<= 0
 			|| recordInfo.codMat		<= 0
 			|| recordInfo.quantity		<= 0
+			|| recordInfo.date			== null 
+			|| recordInfo.beginTime		== null 
 			|| recordInfo.username		== null 
 			|| recordInfo.codLanguage	== null	)
 			
@@ -32,13 +35,7 @@ public final class CartemCheckWrite extends ModelCheckerTemplateSimple_<CartemIn
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.CART_ITEM_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.CART_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CartemCheckIsDeleted extends ModelCheckerTemplateSimple_<CartemInfo> {
+public final class CartemCheckIsDeleted extends ModelCheckerTemplateSimpleV2<CartemInfo> {
 
-	public CartemCheckIsDeleted() {
-		super();
+	public CartemCheckIsDeleted(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -24,13 +24,13 @@ public final class CartemCheckIsDeleted extends ModelCheckerTemplateSimple_<Cart
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.CART_ITEM_IS_NOT_DELETED;
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.CART_ITEM_FLAG_DELETE_TRUE;
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.CART_ITEM_IS_NOT_DELETED;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.CART_ITEM_FLAG_DELETE_FALSE;
 	}
 }

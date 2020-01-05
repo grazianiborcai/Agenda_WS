@@ -4,15 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.decisionTree.NodeCartemDelete;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartemNodeDelete extends ActionLazyTemplate<CartemInfo, CartemInfo> {
+public final class LazyCartemMergeMatlis extends ActionLazyTemplate<CartemInfo, CartemInfo> {
 	
-	public LazyCartemNodeDelete(Connection conn, String schemaName) {
+	public LazyCartemMergeMatlis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,12 +24,12 @@ public final class LazyCartemNodeDelete extends ActionLazyTemplate<CartemInfo, C
 	
 	
 	@Override protected ActionStd<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
-		return new NodeCartemDelete(option).toAction();
+		return new StdCartemMergeMatlis(option);
 	}
 	
 	
 	
-	@Override protected DeciResult<CartemInfo> translateResultHook(DeciResult<CartemInfo> result) {
+	@Override protected DeciResult<CartemInfo> translateResultHook(DeciResult<CartemInfo> result) {		
 		return result;
 	}
 }

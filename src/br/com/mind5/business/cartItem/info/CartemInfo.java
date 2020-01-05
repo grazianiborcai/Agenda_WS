@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemMessage;
@@ -32,7 +32,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public String username;
 	public StolisInfo stolisData;
 	public EmplisInfo emplisData;
-	public MatInfo matData;
+	public MatlisInfo matlisData;
 	
 	
 	public CartemInfo() {
@@ -51,7 +51,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		codWeekday = DefaultValue.number();
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
-		matData = DefaultValue.object();
+		matlisData = DefaultValue.object();
 	}
 	
 	
@@ -77,18 +77,18 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		deepCopy.createdOn = createdOn;
 		deepCopy.stolisData = cloneStolis(stolisData);
 		deepCopy.emplisData = cloneEmplis(emplisData);
-		deepCopy.matData = cloneMat(matData);
+		deepCopy.matlisData = cloneMatlis(matlisData);
 		
 		return deepCopy;
 	}
 	
 	
 	
-	private MatInfo cloneMat(MatInfo recordInfo) throws CloneNotSupportedException {
-		MatInfo result = null;
+	private MatlisInfo cloneMatlis(MatlisInfo recordInfo) throws CloneNotSupportedException {
+		MatlisInfo result = null;
 		
 		if (recordInfo != null)
-			result = (MatInfo) recordInfo.clone();
+			result = (MatlisInfo) recordInfo.clone();
 		
 		return result;
 	}

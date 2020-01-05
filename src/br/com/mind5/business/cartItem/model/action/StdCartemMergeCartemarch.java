@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartemMergeMat implements ActionStd<CartemInfo> {
+public final class StdCartemMergeCartemarch implements ActionStd<CartemInfo> {
 	private ActionStd<CartemInfo> actionHelper;	
 	
 	
-	public StdCartemMergeMat(DeciTreeOption<CartemInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCartemMergeMat(option.conn, option.schemaName));
+	public StdCartemMergeCartemarch(DeciTreeOption<CartemInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCartemMergeCartemarch(option.conn, option.schemaName));
 	}
 	
 	

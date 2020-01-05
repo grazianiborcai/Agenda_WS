@@ -10,9 +10,9 @@ import br.com.mind5.business.cartItem.model.checker.CartemCheckEmpmat;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmposarch;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckIsTimeAged;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckMatore;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckService;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckQuantity;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckStore;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckWrite;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -20,62 +20,72 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCartemServiceL2 extends DeciTreeWriteTemplate<CartemInfo> {
+public final class NodeCartemMatService extends DeciTreeWriteTemplate<CartemInfo> {
 	
-	public NodeCartemServiceL2(DeciTreeOption<CartemInfo> option) {
+	public NodeCartemMatService(DeciTreeOption<CartemInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected ModelChecker<CartemInfo> buildDecisionCheckerHook(DeciTreeOption<CartemInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new CartemCheckWrite();
-		queue.add(checker);
-		
-		checker = new CartemCheckQuantity();
-		queue.add(checker);
-		
-		checker = new CartemCheckIsTimeAged();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CartemCheckService(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CartemCheckQuantity(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CartemCheckIsTimeAged(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CartemCheckStore(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CartemCheckMatore(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CartemCheckEmp(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CartemCheckEmposarch(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CartemCheckEmpmat(checkerOption);
 		queue.add(checker);
 		

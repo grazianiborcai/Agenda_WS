@@ -8,97 +8,56 @@ import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class CartemDeleteSingle implements DaoStmt<CartemInfo> {
-	private DaoStmt<CartemInfo> stmtSql;
-	private DaoStmtOption_<CartemInfo> stmtOption;	
+public final class CartemDeleteSingle extends DaoStmtTemplate<CartemInfo> {
+	private final String MAIN_TABLE = DaoDbTable.CART_ITM_TABLE;	
 	
 	
 	public CartemDeleteSingle(Connection conn, CartemInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, CartemInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.CART_ITM_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.HARD_DELETE;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, CartemInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new CartemWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new CartemWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.HARD_DELETE, this.stmtOption, this.getClass());
-	}
-	
-	
-	
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<CartemInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<CartemInfo> getNewInstance() {
-		return new CartemDeleteSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	private class ResultParser implements DaoResultParser_<CartemInfo> {
-		@Override public List<CartemInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<CartemInfo> finalResult = new ArrayList<>();
-			CartemInfo emptyInfo = new CartemInfo();
-			finalResult.add(emptyInfo);			
-			return finalResult;
-		}
+	@Override protected DaoResultParserV2<CartemInfo> getResultParserHook() {
+		return new DaoResultParserV2<CartemInfo>() {
+			@Override public List<CartemInfo> parseResult(CartemInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<CartemInfo> finalResult = new ArrayList<>();
+				CartemInfo emptyInfo = new CartemInfo();
+				finalResult.add(emptyInfo);			
+				return finalResult;
+			}
+		};
 	}
 }

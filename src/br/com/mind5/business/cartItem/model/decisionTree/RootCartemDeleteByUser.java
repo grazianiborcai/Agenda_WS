@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.action.LazyCartemNodeSelect;
-import br.com.mind5.business.cartItem.model.action.StdCartemMergeToSelect;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckRead;
+import br.com.mind5.business.cartItem.model.action.LazyCartemMergeCartemarch;
+import br.com.mind5.business.cartItem.model.action.LazyCartemRootDelete;
+import br.com.mind5.business.cartItem.model.action.StdCartemEnforceUserKey;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckDeleteByUser;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -15,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootCartemSelect extends DeciTreeWriteTemplate<CartemInfo> {
+public final class RootCartemDeleteByUser extends DeciTreeWriteTemplate<CartemInfo> {
 	
-	public RootCartemSelect(DeciTreeOption<CartemInfo> option) {
+	public RootCartemDeleteByUser(DeciTreeOption<CartemInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +33,7 @@ public final class RootCartemSelect extends DeciTreeWriteTemplate<CartemInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CartemCheckRead(checkerOption);
+		checker = new CartemCheckDeleteByUser(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -43,12 +44,14 @@ public final class RootCartemSelect extends DeciTreeWriteTemplate<CartemInfo> {
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> select = new StdCartemMergeToSelect(option);
-		ActionLazy<CartemInfo> nodeL1 = new LazyCartemNodeSelect(option.conn, option.schemaName);		
+		ActionStd<CartemInfo> enforceUserKey = new StdCartemEnforceUserKey(option);
+		ActionLazy<CartemInfo> mergeCartemarch = new LazyCartemMergeCartemarch(option.conn, option.schemaName);
+		ActionLazy<CartemInfo> delete = new LazyCartemRootDelete(option.conn, option.schemaName);
 		
-		select.addPostAction(nodeL1);
+		enforceUserKey.addPostAction(mergeCartemarch);
+		mergeCartemarch.addPostAction(delete);
 		
-		actions.add(select);
+		actions.add(enforceUserKey);
 		return actions;
 	}
 }

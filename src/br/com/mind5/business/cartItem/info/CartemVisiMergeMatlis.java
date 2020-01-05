@@ -3,24 +3,24 @@ package br.com.mind5.business.cartItem.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoMergerVisitor;
 
-final class CartemVisiMergeMat implements InfoMergerVisitor<CartemInfo, MatInfo> {
+final class CartemVisiMergeMatlis implements InfoMergerVisitor<CartemInfo, MatlisInfo> {
 
-	@Override public CartemInfo writeRecord(MatInfo sourceOne, CartemInfo sourceTwo) {
+	@Override public CartemInfo writeRecord(MatlisInfo sourceOne, CartemInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		CartemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.matData = sourceOne;
+		resultInfo.matlisData = sourceOne;
 
 		return resultInfo;
 	}
 	
 	
 	
-	private void checkArgument(MatInfo sourceOne, CartemInfo sourceTwo) {
+	private void checkArgument(MatlisInfo sourceOne, CartemInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}	
@@ -39,7 +39,7 @@ final class CartemVisiMergeMat implements InfoMergerVisitor<CartemInfo, MatInfo>
 
 
 	
-	@Override public boolean shouldWrite(MatInfo sourceOne, CartemInfo sourceTwo) {
+	@Override public boolean shouldWrite(MatlisInfo sourceOne, CartemInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner && 
 				sourceOne.codMat   == sourceTwo.codMat		);
 	}

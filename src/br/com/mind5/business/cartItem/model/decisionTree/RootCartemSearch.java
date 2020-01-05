@@ -4,20 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.action.LazyCartemNodeSelect;
-import br.com.mind5.business.cartItem.model.action.StdCartemMergeToSelect;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckRead;
+import br.com.mind5.business.cartItem.model.action.LazyCartemRootSelect;
+import br.com.mind5.business.cartItem.model.action.StdCartemMergeCartemarch;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootCartemSelect extends DeciTreeWriteTemplate<CartemInfo> {
+public final class RootCartemSearch extends DeciTreeWriteTemplate<CartemInfo> {
 	
-	public RootCartemSelect(DeciTreeOption<CartemInfo> option) {
+	public RootCartemSearch(DeciTreeOption<CartemInfo> option) {
 		super(option);
 	}
 	
@@ -26,13 +25,8 @@ public final class RootCartemSelect extends DeciTreeWriteTemplate<CartemInfo> {
 	@Override protected ModelChecker<CartemInfo> buildDecisionCheckerHook(DeciTreeOption<CartemInfo> option) {
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartemInfo> checker;
-		ModelCheckerOption checkerOption;
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CartemCheckRead(checkerOption);
+		checker = new CartemCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -43,12 +37,12 @@ public final class RootCartemSelect extends DeciTreeWriteTemplate<CartemInfo> {
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> select = new StdCartemMergeToSelect(option);
-		ActionLazy<CartemInfo> nodeL1 = new LazyCartemNodeSelect(option.conn, option.schemaName);		
+		ActionStd<CartemInfo> mergeCartemarch = new StdCartemMergeCartemarch(option);
+		ActionLazy<CartemInfo> select = new LazyCartemRootSelect(option.conn, option.schemaName);
 		
-		select.addPostAction(nodeL1);
+		mergeCartemarch.addPostAction(select);
 		
-		actions.add(select);
+		actions.add(mergeCartemarch);
 		return actions;
 	}
 }
