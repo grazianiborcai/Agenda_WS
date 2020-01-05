@@ -961,11 +961,15 @@ public final class SystemCode {
 	public static final int PLAN_TIME_MANDATORY_FIELD_EMPTY				= 9350;	
 	
 	//Cart Item
+	public static final int CART_ITEM_MANDATORY_FIELD_EMPTY				= 9400;	//1412;
 	public static final int CART_ITEM_ALREADY_EXIST 					= 1402;
 	public static final int CART_ITEM_NOT_FOUND 						= 1403;
 	public static final int CART_HAVE_ITEM 								= 1404;
 	public static final int CART_ITEM_IS_NOT_SERVICE 					= 1408;
 	public static final int CART_ITEM_IS_NOT_DELETED 					= 1409;
 	public static final int CART_ITEM_QUANTITY_ILLEGAL					= 1410;
-	public static final int CART_ITEM_MANDATORY_FIELD_EMPTY				= 1412;
+	
+	//Cart Item Search
+	public static final int CART_ITEM_SEARCH_MANDATORY_FIELD_EMPTY		= 9450;
+	
 }

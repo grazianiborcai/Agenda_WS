@@ -9,6 +9,7 @@ import br.com.mind5.business.addressSearch.dao.AddarchDbTableColumn;
 import br.com.mind5.business.addressSnapshot.dao.AddresnapDbTableColumn;
 import br.com.mind5.business.cart.dao.CartDbTableColumn;
 import br.com.mind5.business.cartItem.dao.CartemDbTableColumn;
+import br.com.mind5.business.cartItemSearch.dao.CartemarchDbTableColumn;
 import br.com.mind5.business.cartReserve.dao.CarterveDbTableColumn;
 import br.com.mind5.business.company.dao.CompDbTableColumn;
 import br.com.mind5.business.companyList.dao.ComplisDbTableColumn;
@@ -248,6 +249,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new MatmarchDbTableColumn());
 		addTable(new UserarchDbTableColumn());
 		addTable(new StoparchDbTableColumn());
+		addTable(new CartemarchDbTableColumn());
 	}
 	
 	
