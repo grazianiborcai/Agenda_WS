@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartMergeCuslis extends ActionLazyTemplate<CartInfo, CartInfo> {
+public final class LazyCartInsert extends ActionLazyTemplate<CartInfo, CartInfo> {
 
-	public LazyCartMergeCuslis(Connection conn, String schemaName) {
+	public LazyCartInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCartMergeCuslis extends ActionLazyTemplate<CartInfo, Cart
 	
 	
 	@Override protected ActionStd<CartInfo> getInstanceOfActionHook(DeciTreeOption<CartInfo> option) {
-		return new StdCartMergeCuslis(option);
+		return new StdCartInsert(option);
 	}
 	
 	

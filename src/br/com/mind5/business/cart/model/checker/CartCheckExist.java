@@ -24,12 +24,12 @@ public final class CartCheckExist extends ModelCheckerTemplateActionV2<CartInfo,
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.CART_ALREADY_EXIST;
+		return SystemCode.CART_HEADER_ALREADY_EXIST;
 	}	
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.CART_NOT_FOUND;
+		return SystemCode.CART_HEADER_NOT_FOUND;
 	}
 }

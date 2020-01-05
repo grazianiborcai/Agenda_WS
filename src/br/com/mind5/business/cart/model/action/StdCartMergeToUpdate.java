@@ -3,16 +3,16 @@ package br.com.mind5.business.cart.model.action;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
+import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartEnforceKey_ implements ActionStd<CartInfo> {
+public final class StdCartMergeToUpdate implements ActionStd<CartInfo> {
 	private ActionStd<CartInfo> actionHelper;	
 	
 	
-	public StdCartEnforceKey_(DeciTreeOption<CartInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCartEnforceKey_());
+	public StdCartMergeToUpdate(DeciTreeOption<CartInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCartMergeToUpdate(option.conn, option.schemaName));
 	}
 	
 	

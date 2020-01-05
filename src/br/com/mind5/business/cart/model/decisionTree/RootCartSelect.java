@@ -13,6 +13,7 @@ import br.com.mind5.business.cart.model.action.LazyCartMergeFeewner;
 import br.com.mind5.business.cart.model.action.LazyCartMergeToSelect;
 import br.com.mind5.business.cart.model.action.StdCartMergeUsername;
 import br.com.mind5.business.cart.model.checker.CartCheckLangu;
+import br.com.mind5.business.cart.model.checker.CartCheckOwner;
 import br.com.mind5.business.cart.model.checker.CartCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -47,6 +48,13 @@ public final class RootCartSelect extends DeciTreeReadTemplate<CartInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CartCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CartCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

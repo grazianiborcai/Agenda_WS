@@ -227,20 +227,11 @@ public final class SystemCode {
 	public static final int CUS_PHONE_IS_NULL							= 1372;
 	public static final int CUS_PHONE_IS_FILLED							= 1373;
 	
-	// Cart
-	public static final int CART_ALREADY_EXIST							= 1400;
-	public static final int CART_NOT_FOUND								= 1401;
-	public static final int CART_ITEM_ALREADY_EXIST 					= 1402;
-	public static final int CART_ITEM_NOT_FOUND 						= 1403;
-	public static final int CART_HAVE_ITEM 								= 1404;
-	public static final int CART_IS_EMPTY 								= 1405;	
-	public static final int CART_MAT_ALREADY_EXIST 						= 1406;
-	public static final int CART_MAT_NOT_FOUND 							= 1407;
-	public static final int CART_ITEM_IS_NOT_SERVICE 					= 1408;
-	public static final int CART_ITEM_IS_NOT_DELETED 					= 1409;
-	public static final int CART_ITEM_QUANTITY_ILLEGAL					= 1410;
+	// Cart Header
+	public static final int CART_HEADER_ALREADY_EXIST					= 1400;
+	public static final int CART_HEADER_NOT_FOUND						= 1401;
+	public static final int CART_IS_EMPTY 								= 1405;
 	public static final int CART_HEADER_MANDATORY_FIELD_EMPTY			= 1411;
-	public static final int CART_ITEM_MANDATORY_FIELD_EMPTY				= 1412;
 	
 	// Total Amount
 	public static final int AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES			= 1500;
@@ -968,4 +959,13 @@ public final class SystemCode {
 	
 	//Planing Time
 	public static final int PLAN_TIME_MANDATORY_FIELD_EMPTY				= 9350;	
+	
+	//Cart Item
+	public static final int CART_ITEM_ALREADY_EXIST 					= 1402;
+	public static final int CART_ITEM_NOT_FOUND 						= 1403;
+	public static final int CART_HAVE_ITEM 								= 1404;
+	public static final int CART_ITEM_IS_NOT_SERVICE 					= 1408;
+	public static final int CART_ITEM_IS_NOT_DELETED 					= 1409;
+	public static final int CART_ITEM_QUANTITY_ILLEGAL					= 1410;
+	public static final int CART_ITEM_MANDATORY_FIELD_EMPTY				= 1412;
 }
