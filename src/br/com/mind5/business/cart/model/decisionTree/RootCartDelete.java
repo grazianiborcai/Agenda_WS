@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.StdCartDelete;
-import br.com.mind5.business.cart.model.action.StdCartEmptfyCartem;
+import br.com.mind5.business.cart.model.action.StdCartDeleteCartem;
 import br.com.mind5.business.cart.model.checker.CartCheckDelete;
 import br.com.mind5.business.cart.model.checker.CartCheckExist;
 import br.com.mind5.business.cart.model.checker.CartCheckLangu;
@@ -66,10 +66,10 @@ public final class RootCartDelete extends DeciTreeWriteTemplate<CartInfo> {
 	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CartInfo> emptfyCartem = new StdCartEmptfyCartem(option);
+		ActionStd<CartInfo> deleteCartem = new StdCartDeleteCartem(option);	//TODO: verificar se existe Cartem antes de eliminar ?
 		ActionStd<CartInfo> delete = new StdCartDelete(option);
 		
-		actions.add(emptfyCartem);
+		actions.add(deleteCartem);
 		actions.add(delete);
 		
 		return actions;

@@ -6,20 +6,20 @@ import java.util.List;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cartItem.info.CartemCopier;
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.decisionTree.RootCartemEmptfy;
+import br.com.mind5.business.cartItem.model.decisionTree.RootCartemDeleteByUser;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartEmptfyCartem extends ActionVisitorTemplateAction<CartInfo, CartemInfo> {
-	public VisiCartEmptfyCartem(Connection conn, String schemaName) {
+final class VisiCartDeleteCartem extends ActionVisitorTemplateAction<CartInfo, CartemInfo> {
+	public VisiCartDeleteCartem(Connection conn, String schemaName) {
 		super(conn, schemaName, CartInfo.class, CartemInfo.class);
 	}
 	
 	
 	
 	@Override protected ActionStd<CartemInfo> getActionHook(DeciTreeOption<CartemInfo> option) {
-		return new RootCartemEmptfy(option).toAction();
+		return new RootCartemDeleteByUser(option).toAction();
 	}
 	
 	

@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperAction;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartEmptfyCartem implements ActionStd<CartInfo> {
+public final class StdCartDeleteCartem implements ActionStd<CartInfo> {
 	private ActionStd<CartInfo> actionHelper;	
 	
 	
-	public StdCartEmptfyCartem(DeciTreeOption<CartInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiCartEmptfyCartem(option.conn, option.schemaName));
+	public StdCartDeleteCartem(DeciTreeOption<CartInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiCartDeleteCartem(option.conn, option.schemaName));
 	}
 	
 	
