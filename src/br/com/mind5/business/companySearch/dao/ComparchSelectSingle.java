@@ -9,119 +9,77 @@ import java.util.List;
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class ComparchSelectSingle implements DaoStmt<ComparchInfo> {
-	private final String LT_COMP = DaoDbTable.COMP_TABLE;
-	
-	private DaoStmt<ComparchInfo> stmtSql;
-	private DaoStmtOption_<ComparchInfo> stmtOption;
-	
+public final class ComparchSelectSingle extends DaoStmtTemplate<ComparchInfo> {
+	private final String MAIN_TABLE = DaoDbTable.COMP_TABLE;
 	
 	
 	public ComparchSelectSingle(Connection conn, ComparchInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, ComparchInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_COMP;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.COMP_SEARCH_VIEW);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.COMP_SEARCH_VIEW;
+	}		
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, ComparchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new ComparchWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new ComparchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}
+	}	
 	
 	
-	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<ComparchInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<ComparchInfo> getNewInstance() {
-		return new ComparchSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<ComparchInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<ComparchInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {			
-			List<ComparchInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				ComparchInfo dataInfo = new ComparchInfo();
-				dataInfo.codOwner = stmtResult.getLong(ComparchDbTableColumn.COL_COD_OWNER);
-				dataInfo.codCompany = stmtResult.getLong(ComparchDbTableColumn.COL_COD_COMPANY);
-				dataInfo.cnpj = stmtResult.getString(ComparchDbTableColumn.COL_CNPJ);		
-				dataInfo.email = stmtResult.getString(ComparchDbTableColumn.COL_EMAIL);						
-				dataInfo.recordMode = stmtResult.getString(ComparchDbTableColumn.COL_RECORD_MODE);
-				dataInfo.codEntityCateg = stmtResult.getString(ComparchDbTableColumn.COL_COD_ENTITY_CATEG);
-				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, ComparchDbTableColumn.COL_COD_SNAPSHOT);				
+	@Override protected DaoResultParserV2<ComparchInfo> getResultParserHook() {
+		return new DaoResultParserV2<ComparchInfo>() {
+			@Override public List<ComparchInfo> parseResult(ComparchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {				
+				List<ComparchInfo> finalResult = new ArrayList<>();
 				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					ComparchInfo dataInfo = new ComparchInfo();
+					
+					dataInfo.codOwner = stmtResult.getLong(ComparchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCompany = stmtResult.getLong(ComparchDbTableColumn.COL_COD_COMPANY);
+					dataInfo.cnpj = stmtResult.getString(ComparchDbTableColumn.COL_CNPJ);		
+					dataInfo.email = stmtResult.getString(ComparchDbTableColumn.COL_EMAIL);						
+					dataInfo.recordMode = stmtResult.getString(ComparchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codEntityCateg = stmtResult.getString(ComparchDbTableColumn.COL_COD_ENTITY_CATEG);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, ComparchDbTableColumn.COL_COD_SNAPSHOT);				
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
 }
