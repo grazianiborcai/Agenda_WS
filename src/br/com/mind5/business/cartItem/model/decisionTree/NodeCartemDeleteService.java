@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.StdCartemDelete;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckExist;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckService;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -31,6 +32,13 @@ public final class NodeCartemDeleteService extends DeciTreeWriteTemplate<CartemI
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new CartemCheckService(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CartemCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

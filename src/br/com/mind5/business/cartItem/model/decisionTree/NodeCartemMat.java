@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
+import br.com.mind5.business.cartItem.model.action.LazyCartemNodeMatService;
+import br.com.mind5.business.cartItem.model.action.StdCartemEnforceWeekday;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckMatarchService;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -40,9 +43,12 @@ public final class NodeCartemMat extends DeciTreeWriteTemplate<CartemInfo> {
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> service = new NodeCartemMatService(option).toAction();
+		ActionStd<CartemInfo> enforceWeekday = new StdCartemEnforceWeekday(option);
+		ActionLazy<CartemInfo> service = new LazyCartemNodeMatService(option.conn, option.schemaName);
 		
-		actions.add(service);
+		enforceWeekday.addPostAction(service);
+		
+		actions.add(enforceWeekday);
 		return actions;
 	}
 }

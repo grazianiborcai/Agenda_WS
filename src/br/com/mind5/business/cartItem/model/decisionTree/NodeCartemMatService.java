@@ -8,11 +8,13 @@ import br.com.mind5.business.cartItem.model.action.StdCartemSuccess;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmp;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmpmat;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmposarch;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckEmpworg;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckIsTimeAged;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckMatore;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckService;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckQuantity;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckStore;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckStoworg;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -89,11 +91,24 @@ public final class NodeCartemMatService extends DeciTreeWriteTemplate<CartemInfo
 		checker = new CartemCheckEmpmat(checkerOption);
 		queue.add(checker);
 		
-		//TODO: check emp work time
-		//TODO: check store work time
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CartemCheckStoworg(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CartemCheckEmpworg(checkerOption);
+		queue.add(checker);
+		
 		//TODO: check store leave time
 		//TODO: check emp leave time
 		//TODO: is valid? Pode ter mudado apos ser inserido no carrinho
+		//TODO: tempo pode ser maior 
 		
 		return new ModelCheckerQueue<>(queue);
 	}
