@@ -943,35 +943,40 @@ public final class SystemCode {
 	// Material Store Search
 	public static final int MAT_STORE_SEARCH_MANDATORY_FIELD_EMPTY		= 8000;
 	
-	//Material Store Snapshot
+	// Material Store Snapshot
 	public static final int MAT_STORE_SNAPSHOT_MANDATORY_FIELD_EMPTY	= 8050;
 	
-	//Material Stock Search
+	// Material Stock Search
 	public static final int MAT_STOCK_SEARCH_MANDATORY_FIELD_EMPTY		= 9000;
 	
-	//Material Movement Search
+	// Material Movement Search
 	public static final int MAT_MOV_SEARCH_MANDATORY_FIELD_EMPTY		= 9050;
 	
-	//User Search
+	// User Search
 	public static final int USER_SEARCH_MANDATORY_FIELD_EMPTY			= 9100;
 	
-	//User Authentication
+	// User Authentication
 	public static final int USER_AUTH_MANDATORY_FIELD_EMPTY				= 9150;	
 	
-	//Person Snapshot
+	// Person Snapshot
 	public static final int PERSON_SNAPSHOT_MANDATORY_FIELD_EMPTY		= 9200;	
 	
-	//Planing Data
+	// Planing Data
 	public static final int PLAN_DATA_MANDATORY_FIELD_EMPTY				= 9250;	
 	public static final int PLAN_DATA_AGED_DATE							= 9251;	
 	
 	// Pay Partner-Store Search
 	public static final int PAYPAR_STORE_SEARCH_MANDATORY_FIELD_EMPTY 	= 9300;
 	
-	//Planing Time
+	// Planing Time
 	public static final int PLAN_TIME_MANDATORY_FIELD_EMPTY				= 9350;	
 	
-	//Cart Item Search
+	// Cart Item Search
 	public static final int CART_ITEM_SEARCH_MANDATORY_FIELD_EMPTY		= 9450;
+	
+	// Employee Worktime Range
+	public static final int EMP_WTIME_RANGE_MANDATORY_FIELD_EMPTY 		= 9500;
+	public static final int EMP_WTIME_RANGE_NOT_FOUND 					= 9501; 
+	public static final int EMP_WTIME_RANGE_ALREADY_EXIST				= 9502; 
 	
 }
