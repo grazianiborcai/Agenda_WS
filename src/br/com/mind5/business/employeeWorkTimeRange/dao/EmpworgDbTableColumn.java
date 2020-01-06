@@ -39,7 +39,7 @@ public final class EmpworgDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	private void buildStoworgTable() {
-		final String TABLE_NAME = DaoDbTable.STORE_WT_TABLE;
+		final String TABLE_NAME = DaoDbTable.EMP_WT_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
