@@ -17,7 +17,9 @@ public final class ComplisCheckRead extends ModelCheckerTemplateSimpleV2<Complis
 	
 	@Override protected boolean checkHook(ComplisInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner  	<= 0 	||
-			 recordInfo.codLanguage == null		)		
+			 recordInfo.codCompany 	<= 0 	||
+			 recordInfo.codLanguage == null	||
+			 recordInfo.username 	== null		)		
 			
 			return super.FAILED;		
 		
