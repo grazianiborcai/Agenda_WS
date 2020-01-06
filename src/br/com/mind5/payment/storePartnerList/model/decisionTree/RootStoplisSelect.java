@@ -15,7 +15,6 @@ import br.com.mind5.payment.storePartnerList.model.action.LazyStoplisMergePaypar
 import br.com.mind5.payment.storePartnerList.model.action.StdStoplisMergeToSelect;
 import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckOwner;
 import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckRead;
-import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckStorauth;
 import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckStore;
 
 public final class RootStoplisSelect extends DeciTreeReadTemplate<StoplisInfo> {
@@ -50,13 +49,6 @@ public final class RootStoplisSelect extends DeciTreeReadTemplate<StoplisInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StoplisCheckStore(checkerOption);
-		queue.add(checker);	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StoplisCheckStorauth(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
