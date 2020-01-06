@@ -8,16 +8,16 @@ import br.com.mind5.business.orderReserve.info.OrderveInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.info.InfoPruner;
 import br.com.mind5.info.InfoPrunerBuilder;
-import br.com.mind5.payment.storePartner.info.StoparInfo;
+import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 
 public final class PlanataPruner {
-	public static List<PlanataInfo> pruneWithStopar(List<PlanataInfo> baseInfos, List<StoparInfo> selectedInfos) {
-		InfoPrunerBuilder<PlanataInfo, StoparInfo> builder = new InfoPrunerBuilder<>();
+	public static List<PlanataInfo> pruneWithStoplis(List<PlanataInfo> baseInfos, List<StoplisInfo> selectedInfos) {
+		InfoPrunerBuilder<PlanataInfo, StoplisInfo> builder = new InfoPrunerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PlanataVisiPruneStopar());
-		InfoPruner<PlanataInfo, StoparInfo> pruner = builder.build();		
+		builder.addVisitor(new PlanataVisiPruneStoplis());
+		InfoPruner<PlanataInfo, StoplisInfo> pruner = builder.build();		
 	
 		return pruner.prune();
 	}

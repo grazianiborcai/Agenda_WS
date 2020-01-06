@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPlanataPruneStopar extends ActionLazyTemplate<PlanataInfo, PlanataInfo> {
+public final class LazyPlanataPruneStoplis extends ActionLazyTemplate<PlanataInfo, PlanataInfo> {
 	
-	public LazyPlanataPruneStopar(Connection conn, String schemaName) {
+	public LazyPlanataPruneStoplis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPlanataPruneStopar extends ActionLazyTemplate<PlanataInfo
 	
 	
 	@Override protected ActionStd<PlanataInfo> getInstanceOfActionHook(DeciTreeOption<PlanataInfo> option) {
-		return new StdPlanataPruneStopar(option);
+		return new StdPlanataPruneStoplis(option);
 	}
 	
 	

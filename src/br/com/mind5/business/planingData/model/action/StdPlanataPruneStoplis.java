@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperPrune;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPlanataPruneStopar implements ActionStd<PlanataInfo> {
+public final class StdPlanataPruneStoplis implements ActionStd<PlanataInfo> {
 	private ActionStd<PlanataInfo> actionHelper;	
 	
 	
-	public StdPlanataPruneStopar(DeciTreeOption<PlanataInfo> option) {			
-		actionHelper = new ActionStdHelperPrune<>(option.recordInfos, new VisiPlanataPruneStopar(option.conn, option.schemaName));
+	public StdPlanataPruneStoplis(DeciTreeOption<PlanataInfo> option) {			
+		actionHelper = new ActionStdHelperPrune<>(option.recordInfos, new VisiPlanataPruneStoplis(option.conn, option.schemaName));
 	}
 	
 	
