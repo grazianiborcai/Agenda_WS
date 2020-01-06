@@ -865,6 +865,8 @@ public final class SystemCode {
 	
 	// Store Worktime Range
 	public static final int STORE_WTIME_RANGE_MANDATORY_FIELD_EMPTY 	= 7200;
+	public static final int STORE_WTIME_RANGE_NOT_FOUND 				= 7201; 
+	public static final int STORE_WTIME_RANGE_ALREADY_EXIST				= 7202; 
 	
 	// Store Worktime Search
 	public static final int STORE_WTIME_SEARCH_MANDATORY_FIELD_EMPTY 	= 7250;

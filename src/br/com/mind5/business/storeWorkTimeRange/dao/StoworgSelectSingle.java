@@ -47,7 +47,7 @@ public final class StoworgSelectSingle extends DaoStmtTemplate<StoworgInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, StoworgInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new StoworgWhere(whereOption, tableName, recordInfo);
