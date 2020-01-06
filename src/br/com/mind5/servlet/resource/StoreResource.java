@@ -39,7 +39,7 @@ import br.com.mind5.model.Model;
 import br.com.mind5.payment.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.payment.partnerMoip.accessMoip.model.AccemoipModelUrl;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
-import br.com.mind5.payment.storePartnerList.model.StoplisModelSelect;
+import br.com.mind5.payment.storePartnerList.model.StoplisModelSearch;
 
 @Path("/Store")
 @Produces(MediaType.APPLICATION_JSON)
@@ -363,7 +363,7 @@ public class StoreResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.username = username;
 		
-		Model model = new StoplisModelSelect(recordInfo);
+		Model model = new StoplisModelSearch(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

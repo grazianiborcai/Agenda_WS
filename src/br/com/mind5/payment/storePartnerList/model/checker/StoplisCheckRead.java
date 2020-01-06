@@ -18,6 +18,7 @@ public final class StoplisCheckRead extends ModelCheckerTemplateSimpleV2<Stoplis
 	@Override protected boolean checkHook(StoplisInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner    	<= 0	||
 			   recordInfo.codStore    	<= 0 	||
+			   recordInfo.codPayPartner <= 0 	||
 			   recordInfo.codLanguage 	== null	||
 			   recordInfo.username    	== null		)			
 			

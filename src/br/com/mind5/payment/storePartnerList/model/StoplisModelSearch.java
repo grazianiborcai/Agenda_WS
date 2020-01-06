@@ -4,18 +4,18 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
-import br.com.mind5.payment.storePartnerList.model.decisionTree.RootStoplisSelect;
+import br.com.mind5.payment.storePartnerList.model.decisionTree.RootStoplisSearch;
 
-public final class StoplisModelSelect extends ModelTemplate<StoplisInfo> {
+public final class StoplisModelSearch extends ModelTemplate<StoplisInfo> {
 
-	public StoplisModelSelect(StoplisInfo recordInfo) {
+	public StoplisModelSearch(StoplisInfo recordInfo) {
 		super(recordInfo);
 	}
 	
 	
 	
 	@Override protected DeciTree<StoplisInfo> getDecisionTreeHook(DeciTreeOption<StoplisInfo> option) {
-		return new RootStoplisSelect(option);
+		return new RootStoplisSearch(option);
 	}
 	
 	
